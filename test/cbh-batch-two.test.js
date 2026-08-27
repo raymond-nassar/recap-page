@@ -235,6 +235,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'spider-man-no-way-home',
     'marvel-multiverse',
     'marvel-what-if',
+    'silver-surfer-reading-order',
     'secret-invasion',
     'secret-invasion-essential',
     'x-of-swords',

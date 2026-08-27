@@ -1705,32 +1705,14 @@
     "coverIssueId": 8462
   },
   "relationshipReview": {
-    "reportDigest": "f310b63c0058088cc3ef231f303b0b4539123e1d8776d122e7e80f148edcee77",
+    "reportDigest": "e1733eeda5c488e5179b475555c613474bddc85d36f17734912d9a0ead39b2a1",
     "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
     "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
-    "libraryDigest": "04c03bc9f94f031ec590c75463b8e8a348ae579d19e73c0ad7a3e9806722e537",
+    "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
     "peerDigests": {},
     "dispositions": [
       {
-        "orderId": "abomination-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "absolute-carnage",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -1748,25 +1730,7 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "agents-of-atlas-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "all-new-all-different-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -1785,15 +1749,6 @@
       },
       {
         "orderId": "annihilation-conquest",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "ant-man-reading-order",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -1856,15 +1811,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "black-panther-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No selected issue identities overlap, so the guides remain distinct.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "bloodties",
         "relationship": "none",
         "decision": "approved",
@@ -1875,15 +1821,6 @@
       },
       {
         "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -2163,15 +2100,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -2531,15 +2459,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "reckoning-war",
         "relationship": "none",
         "decision": "approved",
@@ -2639,15 +2558,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
@@ -2705,15 +2615,6 @@
       },
       {
         "orderId": "spider-man-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "spider-man-far-from-home",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -2821,25 +2722,7 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "venomverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "wandavision",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -2881,15 +2764,6 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra final reconciliation",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "wolverine-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "The reviewed shared issue identities support a distinct starter guide and do not duplicate the compared guide.",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -3019,15 +2893,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
-        "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -3077,6 +2942,6 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The complete-library comparison was refreshed after the Black Panther guide joined the catalog. Every resulting relationship remains approved. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
     "reviewedAt": "2026-08-27",
-    "approvalDigest": "73adc31922a49238d5ad774b2e4dd5f4e6f28bdc115c3804aeb48a62a7d5e8e3"
+    "approvalDigest": "4b84d3f334bc3f15dc0e4a3d272cdefbbfae0ad26f2c45a6a3d16f64a7333f7a"
   }
 }

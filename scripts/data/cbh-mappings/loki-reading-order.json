@@ -22821,32 +22821,14 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed all 154 complete-library comparisons against the frozen 638-row Loki mapping. The guide is not an exact duplicate; all partial and existing-subset relationships retain their separate source identities and the 18 unresolved positions remain explicit gaps.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "74fc4ab7c5f0ac51faffabd2006f720bce1ae3561f421983a0086bf5871c937a",
+    "reportDigest": "c8fd8e73efaa14e2a8185d4fbc297bb91562d16f265f3448e8e9ddeacbe7249a",
     "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9",
     "mappingDigest": "5ef7839f0d33a30d0b04a70d4b72cb5c5d517c274371448161170b9b774487fe",
-    "libraryDigest": "952e2327d0043e44725cc1dfdb87d9e6e56ae5a2ee5a720c9a6328135f540d7f",
+    "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
     "peerDigests": {},
     "dispositions": [
       {
-        "orderId": "abomination-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "absolute-carnage",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -22864,30 +22846,12 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "agents-of-atlas-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "all-new-all-different-avengers",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -22906,15 +22870,6 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -22972,15 +22927,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "black-panther-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "bloodties",
         "relationship": "none",
         "decision": "approved",
@@ -22991,15 +22937,6 @@
       },
       {
         "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -23080,15 +23017,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "daredevil-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "dark-phoenix-saga",
         "relationship": "none",
         "decision": "approved",
@@ -23143,15 +23071,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "deadpool-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "death-of-doctor-strange",
         "relationship": "none",
         "decision": "approved",
@@ -23185,15 +23104,6 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "doctor-strange-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -23306,15 +23216,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -23459,15 +23360,6 @@
       },
       {
         "orderId": "marvel-fresh-start-avengers",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "marvel-knights-to-planet-x",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -23683,15 +23575,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "reckoning-war",
         "relationship": "none",
         "decision": "approved",
@@ -23791,15 +23674,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
@@ -23815,6 +23689,15 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 17 shared issues with silver-surfer-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -23846,15 +23729,6 @@
       },
       {
         "orderId": "spider-man-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "spider-man-far-from-home",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -23962,25 +23836,7 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "venomverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "wandavision",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -24022,15 +23878,6 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "wolverine-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -24160,15 +24007,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -24214,6 +24052,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "1d92801bcc1c5c9632d302eccc4fe96e37a651816c4c98e44982ca3083f98298"
+    "approvalDigest": "3847120e212f8e9b81b798ed991e72fe9f54933be228064064d6a0240a962408"
   }
 }

@@ -426,10 +426,10 @@
     "coverIssueId": 7342
   },
   "relationshipReview": {
-    "reportDigest": "02dd7134dd55b1b5f4e59deb074afba461ae17151118a90dac703664fd3a5098",
+    "reportDigest": "516072ff4b6da520fa9ab88896ba094796767d411bb478c1a88c7101f30134c5",
     "packetDigest": "4b49d41011aa5b1c32eaab8fb960278aec7de448d4606053b242ab2670bcdf59",
     "mappingDigest": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
-    "libraryDigest": "167ded683962b94d51ffa2cbd4729b444df65f5e0c2fc3e9a790cf74b9cd6093",
+    "libraryDigest": "2be47c73917798e5ddb925ed0c3b733dfb1f2323e43f318124179d0c43fc15a4",
     "peerDigests": {
       "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
       "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -490,19 +490,6 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b01 none-overlap policy",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "partial",
-        "sharedCount": 1,
-        "sharedIds": [
-          "7347"
-        ],
-        "decision": "approved",
-        "rationale": "The compact nine-issue event route keeps one shared Kree-Skrull chapter while the broader Ant-Man reading order serves a different story purpose.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-003-C02 coordinator",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -1952,6 +1939,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset and the Thanos War subset are the approved non-none relationships. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
     "reviewedAt": "2026-08-27",
-    "approvalDigest": "401f8446c4ed72c0c2a22e79e81e9324a97fe06154711f6c2cea44d3b17c57c5"
+    "approvalDigest": "44defc54fe352a1bf9cc2d76f716c8aa1100eee6dcc4375281b91230bf5c50dd"
   }
 }

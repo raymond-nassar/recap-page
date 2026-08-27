@@ -2045,10 +2045,10 @@
     "coverIssueId": 8605
   },
   "relationshipReview": {
-    "reportDigest": "3e8358755764eb0c9db4515cd783c5cd7b02de7678f1a3b6c868ebb0e4d7e614",
+    "reportDigest": "b5012cfab83f02e4fa06c98d0b93474d81237043a9fd5631d653f89a1d269f38",
     "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
     "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
-    "libraryDigest": "0eda0424efb720f4e2863f5945f99a724263cb8f21ea341c45fe698ce5dfd6de",
+    "libraryDigest": "d6ec86d326d603674be92e884aa6973ff844f6dca8ac7bf77ef00f8533bf083e",
     "peerDigests": {
       "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
     },
@@ -2120,6 +2120,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "avengers-disassembled",
         "relationship": "none",
         "sharedCount": 0,
@@ -2153,6 +2171,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "captain-america-best-of",
         "relationship": "none",
         "sharedCount": 0,
@@ -2172,6 +2199,15 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2219,6 +2255,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "damnation",
         "relationship": "none",
         "sharedCount": 0,
@@ -2227,6 +2272,15 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2249,6 +2303,33 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2285,6 +2366,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "doomwar",
         "relationship": "none",
         "sharedCount": 0,
@@ -2293,6 +2383,15 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2307,6 +2406,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "fall-house-x-rise-powers-x",
         "relationship": "none",
         "sharedCount": 0,
@@ -2318,6 +2426,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "generations",
         "relationship": "none",
         "sharedCount": 0,
@@ -2326,6 +2452,15 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2406,6 +2541,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "infinite-destinies",
         "relationship": "none",
         "sharedCount": 0,
@@ -2472,6 +2625,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "last-annihilation",
         "relationship": "none",
         "sharedCount": 0,
@@ -2483,6 +2654,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "marvel-fresh-start-avengers",
         "relationship": "none",
         "sharedCount": 0,
@@ -2491,6 +2671,33 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2527,6 +2734,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "minimum-carnage",
         "relationship": "none",
         "sharedCount": 0,
@@ -2546,6 +2762,33 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2582,6 +2825,60 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "planet-hulk",
         "relationship": "none",
         "sharedCount": 0,
@@ -2604,6 +2901,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "revolutionary-war",
         "relationship": "none",
         "sharedCount": 0,
@@ -2612,6 +2918,24 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2667,6 +2991,15 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2747,6 +3080,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "spider-man-the-other",
         "relationship": "none",
         "sharedCount": 0,
@@ -2766,6 +3117,15 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2793,6 +3153,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "thor-best-of",
         "relationship": "none",
         "sharedCount": 0,
@@ -2801,6 +3179,15 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -2867,6 +3254,24 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -3013,6 +3418,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "xmen-claremont",
         "relationship": "none",
         "sharedCount": 0,
@@ -3039,6 +3453,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 88-list catalog and 1 named batch peer mapping was reviewed; 0 partial relationships required explicit approval. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
     "reviewedAt": "2026-08-27",
-    "approvalDigest": "46d6061e83c43721c15466f8c102873be072521592b3d99f32cbf4e62fce65f0"
+    "approvalDigest": "bae90977df4523e014ebbacd510f129bf1330e376f8b523e45944e362adc98d9"
   }
 }

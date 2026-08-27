@@ -12483,25 +12483,16 @@
     "coverIssueId": 16096
   },
   "relationshipReview": {
-    "reportDigest": "2b7a622f791ba5af1908b21b85b6e676aeeffea1457bca89290b97639d9296cc",
+    "reportDigest": "6ac903a80da97082cc59bbe8bbda6a8e75530d921e60916854530300764b0952",
     "packetDigest": "ae35c61faaaf15f327de4549138291f718d3bc34e5f2819bca9c35ac9794bf01",
     "mappingDigest": "5bd2edbcb2f842342de7dd508beccd6ef924bb24f43ae0b05d03010ba913208a",
-    "libraryDigest": "5c2f54d29e0120b0a61dd2a7696107fed6190b10a332e2000b5edf518a0aa263",
+    "libraryDigest": "6dfc9de39b9cc4105d351031c92d3a6d808194244072d9e51bb5fae1f700d9aa",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "GPT-5.6 Terra reviewed all 155 current comparisons: 23 non-none relationships are intentional source-guide overlaps between distinct source identities and sequences, 132 none relationships have no shared issues, and no exact duplicate is present.",
+    "rationale": "GPT-5.6 Terra reviewed all 135 current comparisons: 23 non-none relationships are intentional source-guide overlaps between distinct source identities and sequences, 132 none relationships have no shared issues, and no exact duplicate is present.",
     "reviewedAt": "2026-08-27",
     "dispositions": [
-      {
-        "orderId": "abomination-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 3 shared issues with abomination-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
-      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -12512,25 +12503,7 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "agatha-harkness-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 3 shared issues with agatha-harkness-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "age-of-x-man",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "agents-of-atlas-reading-order",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues in the current report require a relationship exception.",
@@ -12545,15 +12518,6 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 28 shared issues with amazing-spider-man-reading-order-modern-marvel-era are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -12572,15 +12536,6 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 1 shared issue with ant-man-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -12638,15 +12593,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "black-panther-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 9 shared issues with black-panther-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "bloodties",
         "relationship": "none",
         "decision": "approved",
@@ -12657,15 +12603,6 @@
       },
       {
         "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues in the current report require a relationship exception.",
@@ -12746,15 +12683,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "daredevil-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 1 shared issue with daredevil-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "dark-phoenix-saga",
         "relationship": "none",
         "decision": "approved",
@@ -12809,15 +12737,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "deadpool-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "death-of-doctor-strange",
         "relationship": "none",
         "decision": "approved",
@@ -12851,15 +12770,6 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "doctor-strange-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 31 shared issues with doctor-strange-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -12972,15 +12882,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues in the current report require a relationship exception.",
@@ -13130,15 +13031,6 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "marvel-knights-to-planet-x",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 1 shared issue with marvel-knights-to-planet-x are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -13349,15 +13241,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 24 shared issues with question-of-the-week-do-you-have-a-hulk-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "reckoning-war",
         "relationship": "none",
         "decision": "approved",
@@ -13457,15 +13340,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
@@ -13512,15 +13386,6 @@
       },
       {
         "orderId": "spider-man-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "spider-man-far-from-home",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues in the current report require a relationship exception.",
@@ -13628,34 +13493,7 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "venom-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "venomverse",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "wandavision",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues in the current report require a relationship exception.",
@@ -13697,15 +13535,6 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
-        "orderId": "wolverine-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 5 shared issues with wolverine-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -13835,15 +13664,6 @@
         "reviewedAt": "2026-08-27"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues in the current report require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -13889,6 +13709,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "4e30b22216905359178ea10f9f6942495014166edbfa35ad7218844d4d5c140d"
+    "approvalDigest": "a4b4f51dada973fa122f53506ba9bb9156bceae1de7b0b71a0c249a681101ca1"
   }
 }

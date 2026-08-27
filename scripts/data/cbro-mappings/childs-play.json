@@ -232,10 +232,10 @@
     "coverIssueId": 17997
   },
   "relationshipReview": {
-    "reportDigest": "68042d672ba49069b2bfac235386d73908c70591c51e7f0071a76f658cf5902a",
+    "reportDigest": "da0cfa78d186e3399f395a4a5cb0fc6e746db748b05ef73f0a0f492e7dea9437",
     "packetDigest": "a89c36fd519746af77bd6beaf1ddc8f4efa3f82e66e53d2aba88890262dc7a9b",
     "mappingDigest": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
-    "libraryDigest": "dbd771970647dfd0cbfca0552397c6f0aee5a3bae07f980777f6244bbc779d39",
+    "libraryDigest": "c1670805ab9cda3d24151268f452d714ad62c5c9968377c8fd80d92da06c546e",
     "peerDigests": {
       "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
       "eighth-day": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
@@ -307,6 +307,15 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -497,6 +506,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "death-of-doctor-strange",
         "relationship": "none",
         "sharedCount": 0,
@@ -574,6 +601,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "fall-house-x-rise-powers-x",
         "relationship": "none",
         "sharedCount": 0,
@@ -593,6 +629,15 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -695,6 +740,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "infinite-destinies",
         "relationship": "none",
         "sharedCount": 0,
@@ -791,6 +854,15 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -937,6 +1009,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "necrosha",
         "relationship": "none",
         "sharedCount": 0,
@@ -970,6 +1051,24 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "original-clone-saga",
         "relationship": "none",
         "sharedCount": 0,
@@ -978,6 +1077,15 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -1044,6 +1152,15 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -1201,6 +1318,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "spider-man-no-way-home",
         "relationship": "none",
         "sharedCount": 0,
@@ -1300,6 +1426,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "venomverse",
         "relationship": "none",
         "sharedCount": 0,
@@ -1374,6 +1509,15 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -1520,6 +1664,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues in the current report require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "xmen-claremont",
         "relationship": "none",
         "sharedCount": 0,
@@ -1548,6 +1701,6 @@
     "authorityIdentity": "MRT-003 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
     "reviewedAt": "2026-08-27",
-    "approvalDigest": "563be993c466941da63f627ae3755cf0623c084d453b7d3a189582895b782d75"
+    "approvalDigest": "30e3b8d946887cb612c0c529f11064f059b5e3271b7c7f743f3530d77a26f49b"
   }
 }
