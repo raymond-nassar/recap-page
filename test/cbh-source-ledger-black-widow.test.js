@@ -9,10 +9,10 @@ const ledgerPath = path.join(root, 'scripts', 'data', 'cbh-source-ledgers', 'bla
 const inventoryPath = path.join(root, 'scripts', 'data', 'cbh-character-inventory.json');
 
 const expectedCategoryCounts = {
-  'provisional-canonical-candidate': 572,
+  'provisional-canonical-candidate': 570,
   'semantic-exclusion': 183,
-  'true-repeat': 17,
-  'unresolved-included-identity-gap': 1,
+  'true-repeat': 20,
+  'unresolved-included-identity-gap': 0,
 };
 
 const expectedNodeCounts = new Map([
@@ -219,8 +219,7 @@ function validateLedger(ledger) {
   assert.equal(node95.some((entry) => entry.sourceIssueReference === 'Ashcan Edition'), true);
 
   const node98 = ledger.occurrences.filter((entry) => entry.sourceNode === 98);
-  assert.equal(node98.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 14);
-  assert.equal(node98.filter((entry) => entry.disposition === 'unresolved-included-identity-gap').length, 1);
+  assert.equal(node98.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 15);
   assert.equal(node98.filter((entry) => entry.disposition === 'semantic-exclusion').length, 2);
   assert.equal(node98.some((entry) => entry.sourceIssueReference === 'Captain America: The Legend (1996)'), true);
 
@@ -263,6 +262,13 @@ function validateLedger(ledger) {
 
   const node9 = ledger.occurrences.filter((entry) => entry.sourceNode === 9);
   assert.equal(node9.find((entry) => entry.sourcePosition === 18)?.disposition, 'true-repeat');
+
+  const node13 = ledger.occurrences.filter((entry) => entry.sourceNode === 13);
+  assert.equal(node13.every((entry) => entry.normalizedSeriesTitle === 'Daredevil' && entry.seriesYear === 1964), true);
+
+  const node30 = ledger.occurrences.filter((entry) => entry.sourceNode === 30);
+  assert.equal(node30.filter((entry) => entry.disposition === 'true-repeat').length, 3);
+  assert.equal(node30.filter((entry) => entry.disposition === 'true-repeat').every((entry) => ['81', '82', '83'].includes(entry.issueNumber)), true);
 
   const node74Partial = ledger.occurrences.filter((entry) => entry.sourceNode === 74);
   assert.equal(node74Partial.find((entry) => entry.sourcePosition === 314)?.disposition, 'semantic-exclusion');
@@ -357,8 +363,10 @@ test('the Black Widow source ledger rejects the contrarian mutations', async () 
   });
 
   expectLedgerFailure(ledger, (draft) => {
-    const gap = draft.occurrences.find((entry) => entry.disposition === 'unresolved-included-identity-gap');
-    gap.sourceIssueReference = '';
+    const candidate = draft.occurrences.find((entry) => entry.sourcePosition === 441);
+    candidate.disposition = 'unresolved-included-identity-gap';
+    draft.categoryCounts['provisional-canonical-candidate'] -= 1;
+    draft.categoryCounts['unresolved-included-identity-gap'] += 1;
   });
 
   expectLedgerFailure(ledger, (draft) => {

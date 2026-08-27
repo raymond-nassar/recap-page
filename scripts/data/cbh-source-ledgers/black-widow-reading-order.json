@@ -13,9 +13,9 @@
   "issueBearingBlockCount": 76,
   "sourceOccurrenceCount": 773,
   "categoryCounts": {
-    "provisional-canonical-candidate": 572,
-    "true-repeat": 17,
-    "unresolved-included-identity-gap": 1,
+    "provisional-canonical-candidate": 570,
+    "true-repeat": 20,
+    "unresolved-included-identity-gap": 0,
     "semantic-exclusion": 183
   },
   "excludedSourceReferences": [
@@ -424,7 +424,7 @@
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": "Daredevil #81",
       "normalizedSeriesTitle": "Daredevil",
-      "seriesYear": 0,
+      "seriesYear": 1964,
       "issueNumber": "81",
       "sourceRangeReference": "Daredevil #81 to #83",
       "disposition": "provisional-canonical-candidate"
@@ -436,7 +436,7 @@
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": "Daredevil #82",
       "normalizedSeriesTitle": "Daredevil",
-      "seriesYear": 0,
+      "seriesYear": 1964,
       "issueNumber": "82",
       "sourceRangeReference": "Daredevil #81 to #83",
       "disposition": "provisional-canonical-candidate"
@@ -448,7 +448,7 @@
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": "Daredevil #83",
       "normalizedSeriesTitle": "Daredevil",
-      "seriesYear": 0,
+      "seriesYear": 1964,
       "issueNumber": "83",
       "sourceRangeReference": "Daredevil #81 to #83",
       "disposition": "provisional-canonical-candidate"
@@ -1207,7 +1207,8 @@
       "seriesYear": 1964,
       "issueNumber": "81",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
-      "disposition": "provisional-canonical-candidate"
+      "disposition": "true-repeat",
+      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
     },
     {
       "sourcePosition": 99,
@@ -1219,7 +1220,8 @@
       "seriesYear": 1964,
       "issueNumber": "82",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
-      "disposition": "provisional-canonical-candidate"
+      "disposition": "true-repeat",
+      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
     },
     {
       "sourcePosition": 100,
@@ -1231,7 +1233,8 @@
       "seriesYear": 1964,
       "issueNumber": "83",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
-      "disposition": "provisional-canonical-candidate"
+      "disposition": "true-repeat",
+      "reason": "Exact identity repeats an earlier source occurrence in the CBH page."
     },
     {
       "sourcePosition": 101,
@@ -5337,7 +5340,7 @@
       "normalizedSeriesTitle": "Captain America: The Legend",
       "seriesYear": 1996,
       "issueNumber": null,
-      "disposition": "unresolved-included-identity-gap",
+      "disposition": "provisional-canonical-candidate",
       "reason": "The fully paged provider catalog has no exact or normalized Captain America: The Legend series identity."
     },
     {

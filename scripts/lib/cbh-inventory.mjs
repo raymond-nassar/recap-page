@@ -501,8 +501,14 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
     throw new Error(`${packetId} mapping row count differs from its canonical packet rows`);
   }
   for (const [index, expectedPosition] of expectedPositions.entries()) {
-    if (mappingRows[index]?.sourcePosition !== expectedPosition) {
+    const row = mappingRows[index];
+    if (row?.sourcePosition !== expectedPosition) {
       throw new Error(`${packetId} mapping row ${index + 1} sourcePosition differs from its frozen packet`);
+    }
+    if (row.resolutionStatus !== 'exact'
+      || row.selectedIssueId == null
+      || !Number.isInteger(Number(row.selectedIssueId))) {
+      throw new Error(`${packetId} mapping row ${index + 1} must be exact with a concrete selected issue id`);
     }
   }
   return true;
