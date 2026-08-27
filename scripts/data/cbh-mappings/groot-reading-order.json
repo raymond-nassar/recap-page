@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "05fbd3a8ab96325410e3e7f2329800d24ee467a1406e38082a45822e6e75d16d",
+    "reportDigest": "925d28aa3f5685af6f42862faf3ed9bf4fc562d9073aaa73a3e7fe1cd61f42f3",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "ba5de0a3a08285d7508b4f6b46f71d86965d5356c839e110b421221687d21bca",
+    "libraryDigest": "84ad58b63ce7bd046e6f3f50ea8cbb2bf9c8e4c36d30d03e6999c0275e80244c",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -3004,13 +3004,13 @@
       {
         "orderId": "agatha-harkness-reading-order",
         "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
         "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "age-of-x-man",
@@ -3038,7 +3038,7 @@
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23",
@@ -3075,13 +3075,13 @@
       {
         "orderId": "ant-man-reading-order",
         "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
         "decision": "approved",
-        "rationale": "No shared issue needs an exception.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C07 coordinator",
-        "reviewedAt": "2026-08-23"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "apocalypse-wars",
@@ -3700,6 +3700,17 @@
         "sharedIds": []
       },
       {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
         "orderId": "marvel-multiverse",
         "relationship": "none",
         "decision": "approved",
@@ -4116,6 +4127,17 @@
         "sharedIds": []
       },
       {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
@@ -4185,7 +4207,7 @@
         "orderId": "spider-man-far-from-home",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23",
@@ -4240,9 +4262,9 @@
         "orderId": "star-lord-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The complete Groot and Star-Lord guides retain all source-required shared issues as distinct character reading paths.",
+        "rationale": "Shared issues were reviewed and approved.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-002-C09-DUP coordinator",
+        "authorityIdentity": "relationship-review-model-v1",
         "reviewedAt": "2026-08-23",
         "sharedCount": 25,
         "sharedIds": [
@@ -4286,14 +4308,14 @@
       },
       {
         "orderId": "thanos-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "rationale": "The final report contains no issue shared with the Thanos guide.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
-        "authorityIdentity": "final Thanos none-overlap policy",
-        "reviewedAt": "2026-08-23"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-war",
@@ -4365,7 +4387,7 @@
         "orderId": "wandavision",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23",
@@ -4431,7 +4453,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -4658,6 +4682,6 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "9ee7133793d13e244ef1c0df6ba7f6238fa36cb245b47e38f57450dca62d0aec"
+    "approvalDigest": "717117fc2536221464dc675d9fa4b6cb8f108f80ac43c82f677659a92f9d4688"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T02:58:02.523Z",
+  "generatedAt": "2026-08-27T03:59:36.963Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1218,6 +1218,46 @@
       "sourceOrigin": "Compiled for this project",
       "sourceLicense": null,
       "updatedAt": "2026-08-15T14:34:56.807Z"
+    },
+    {
+      "id": "setup-to-modern-timeline",
+      "file": "setup_to_modern_timeline.json",
+      "name": "Setup to Modern Timeline",
+      "description": "A product-curated orientation path through Marvels and Sentry stories that sets readers up for the Modern Timeline.",
+      "type": "era",
+      "depth": "essential",
+      "count": 21,
+      "collections": 5,
+      "characters": [
+        "Phil Sheldon",
+        "Robert Reynolds",
+        "Spider-Man",
+        "Fantastic Four",
+        "Hulk",
+        "X-Men"
+      ],
+      "keywords": [
+        "Marvels",
+        "Sentry",
+        "Alex Ross",
+        "Kurt Busiek",
+        "Modern Timeline",
+        "setup"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 75504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5c5c5570c3e8c",
+        "ext": "jpg"
+      },
+      "source": null,
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T03:44:05.867Z"
     },
     {
       "id": "reckoning-war",

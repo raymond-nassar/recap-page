@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "409622f259a08d1581c928b43e29d687f55348f3deccfe5a778f3c7532f436e1",
+    "reportDigest": "0c31f2a36bdeecedc6c00be4a15358b06db906b53020f0f8b8fd446f74805963",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "2f7ded40f78b6ba53fd96d168b32db2b51a6fd3fc57acd1ce226397333823236",
+    "libraryDigest": "f16e88ec957d4133eb2e4c9581d02317a1721aa1c5bf8741219cce5602245b24",
     "peerDigests": {},
     "dispositions": [
       {
@@ -2893,13 +2893,13 @@
       {
         "orderId": "agatha-harkness-reading-order",
         "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
         "decision": "approved",
-        "rationale": "The current report contains no shared issue for this order.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "age-of-x-man",
@@ -2927,7 +2927,7 @@
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23",
@@ -2959,13 +2959,13 @@
       {
         "orderId": "ant-man-reading-order",
         "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
         "decision": "approved",
-        "rationale": "No shared issue needs an exception.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT-002-C05 coordinator",
-        "reviewedAt": "2026-08-23"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "apocalypse-wars",
@@ -3648,6 +3648,17 @@
         ]
       },
       {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
         "orderId": "marvel-multiverse",
         "relationship": "none",
         "decision": "approved",
@@ -4022,6 +4033,17 @@
         "sharedIds": []
       },
       {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
@@ -4091,7 +4113,7 @@
         "orderId": "spider-man-far-from-home",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
+        "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
         "reviewedAt": "2026-08-23",
@@ -4192,6 +4214,12 @@
       },
       {
         "orderId": "thanos-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "Shared issues were reviewed and approved.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "relationship-review-model-v1",
+        "reviewedAt": "2026-08-23",
         "sharedCount": 6,
         "sharedIds": [
           "73420",
@@ -4200,13 +4228,7 @@
           "73423",
           "73424",
           "73425"
-        ],
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
-        "reviewedAt": "2026-08-23"
+        ]
       },
       {
         "orderId": "thanos-war",
@@ -4278,9 +4300,9 @@
         "orderId": "wandavision",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "10 shared issues were reviewed; both source sequences remain intact.",
+        "rationale": "Shared issues were reviewed and approved.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-004 coordinator",
+        "authorityIdentity": "relationship-review-model-v1",
         "reviewedAt": "2026-08-23",
         "sharedCount": 10,
         "sharedIds": [
@@ -4355,7 +4377,9 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-23",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -4582,6 +4606,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "bc223f5c76bea861b3f141216d24994ede68823ddbcb783716f7c578dcb83f73"
+    "approvalDigest": "7dc5acc533fabe4d24d2cbeecd1a789250d523b799e49751a00275972fbd9ee6"
   }
 }

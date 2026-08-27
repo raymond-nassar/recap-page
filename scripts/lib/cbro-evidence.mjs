@@ -78,6 +78,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'wolverine-reading-order',
   'hickman-x-men',
   'ultimate-marvel-intro',
+  'setup-to-modern-timeline',
   'x-men-utopia',
   'x-men-messiah-to-avx',
   'abomination-reading-order',

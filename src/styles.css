@@ -633,10 +633,10 @@ kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--ti
    at 1280, and one tile left is one 168px tile at the left rather than a cover the width of the
    screen. */
 .shelf { display: flex; flex-wrap: wrap; gap: 1.15rem .9rem; padding: 0; margin: 0; list-style: none; }
-.tile { flex: 1 1 112px; min-width: 0; max-width: 168px; }
-.tile-focus { display: block; color: inherit; text-decoration: none; border-radius: 8px; }
+.tile { display: flex; flex: 1 1 112px; flex-direction: column; min-width: 0; max-width: 168px; }
+.tile-focus { display: block; margin-bottom: .4rem; color: inherit; text-decoration: none; border-radius: 8px; }
 .tile-read {
-  width: 100%; margin-top: .4rem; padding: .38rem .5rem; border: 1px solid var(--line-2);
+  width: 100%; margin-top: auto; padding: .38rem .5rem; border: 1px solid var(--line-2);
   border-radius: 8px; background: rgb(var(--tint-base) / 5.882%); color: var(--text);
   font: inherit; font-size: var(--t-caption); font-weight: 600;
 }

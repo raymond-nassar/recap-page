@@ -3344,6 +3344,9 @@ const SCENARIOS = [
       await openFullOrder(page);
 
       await page.setViewport({ width: 1280, height: 900 });
+      await page.$eval('#shelf .tile .lab b', (label) => {
+        label.textContent = 'Browser Check with a Deliberately Long Title #2';
+      });
       const measure = () => page.evaluate(() => {
         const px = (el) => (el ? Math.round(el.getBoundingClientRect().width) : 0);
         const shelf = document.querySelector('#shelf');
@@ -3355,6 +3358,17 @@ const SCENARIOS = [
           shelfOverflow: shelf ? shelf.scrollWidth - shelf.clientWidth : 999,
           tiles: tiles.length,
           rows: new Set(tiles.map((el) => Math.round(el.getBoundingClientRect().top))).size,
+          shelfBeforeFull: document.querySelector('#shelf-sec')?.getBoundingClientRect().top
+            < document.querySelector('#full')?.getBoundingClientRect().top,
+          buttonBottomSpread: (() => {
+            const rows = new Map();
+            for (const tile of tiles) {
+              const row = Math.round(tile.getBoundingClientRect().top);
+              const bottom = Math.round(tile.querySelector('.tile-read').getBoundingClientRect().bottom);
+              rows.set(row, [...(rows.get(row) ?? []), bottom]);
+            }
+            return Math.max(0, ...[...rows.values()].map((bottoms) => Math.max(...bottoms) - Math.min(...bottoms)));
+          })(),
           // The widest gap between two tiles sharing a row. It is the figure that catches a shelf
           // whose empty space went into the tracks instead of to the end of the row.
           widestGap: (() => {
@@ -3386,6 +3400,9 @@ const SCENARIOS = [
       t.check('the reading view is wider than the prose measure', narrow.view > 876, `${narrow.view}px`);
       t.check('the hero cover is the largest thing on the screen', narrow.art >= 200, `${narrow.art}px`);
       t.check('no upcoming issue is clipped off the shelf', narrow.shelfOverflow <= 1, `${narrow.shelfOverflow}px of overflow`);
+      t.check('Coming up appears before the full Reading List', narrow.shelfBeforeFull, JSON.stringify(narrow));
+      t.check('Read actions share a baseline despite different title lengths',
+        narrow.buttonBottomSpread <= 1, `${narrow.buttonBottomSpread}px spread`);
       t.check('the progress percentage is readable text', /^\d+%$/.test(narrow.label), JSON.stringify(narrow.label));
       t.check('and the issue count is said beside it', /^\d+ of \d+ read$|All read|Nothing in this list/.test(narrow.sub), JSON.stringify(narrow.sub));
       t.check('the percentage is no longer hidden in a tooltip', narrow.ringTitle === null, JSON.stringify(narrow.ringTitle));
@@ -3502,8 +3519,8 @@ const SCENARIOS = [
       });
       t.check('an ordinary 219-issue route stays closed with zero row DOM',
         starting.open === false && starting.rows === 0, JSON.stringify(starting));
-      t.check('the full Reading List precedes Coming up and states total and unread counts',
-        !!(starting.order & 4)
+      t.check('Coming up appears before the full Reading List and states total and unread counts',
+        !!(starting.order & 2)
           && starting.action === 'View all 219 issues'
           && starting.state === '219 unread',
         JSON.stringify(starting));
@@ -3984,6 +4001,10 @@ async function preparePage(page, origin, mutation) {
             return Promise.resolve(json({ ...order, items: [...order.items, negativeOrderItem] }));
           }
           return Promise.resolve(json(new URL(location.href).searchParams.get('long') === '1' ? longOrder : order));
+        }
+        if (url.endsWith('/health')) {
+          window.__mrtHealthRequests = (window.__mrtHealthRequests ?? 0) + 1;
+          return Promise.resolve(json({ issue_count: catalog.lists.length }));
         }
         if (url === updateApiUrl) {
           window.__mrtUpdateRequests = (window.__mrtUpdateRequests ?? 0) + 1;

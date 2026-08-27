@@ -217,6 +217,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   const laterReviewedIds = new Set([
     'wolverine-reading-order',
     'abomination-reading-order',
+    'setup-to-modern-timeline',
     'rocket-raccoon-reading-order',
     'groot-reading-order',
     'star-lord-reading-order',
@@ -257,7 +258,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   assert.equal(packetRecords.length, 10);
   assert.equal(
     existingRecords.length,
-    116,
+    117,
   );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
