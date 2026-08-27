@@ -6,16 +6,19 @@ import test from 'node:test';
 const EXPECTED = {
   occurrenceCount: 425,
   occurrenceCounts: {
-    'canonical-candidate': 277,
-    exclusion: 103,
-    gap: 5,
-    repeat: 40,
+    'canonical-candidate': 300,
+    exclusion: 108,
+    gap: 0,
+    repeat: 17,
   },
-  normalizedSourceHash: '1aedaa14f9671bbf6cffdb9d8adc0171c7af2343be71c3a6ccbc882178b964a3',
-  sourceNodeOrderHash: '82d979f730300d6dfc76d5ebd8265059910311e26e4a327a321d876397b36cc8',
-  gapPositions: [185, 193, 234, 282, 321],
+  normalizedSourceHash: 'b3fe028d3f50ccedb8ac8be3146b49d4060f6e61bc2140801466167751f7d20a',
+  sourceNodeOrderHash: '9a27179569a96a6bfa0ba85434ddac8559ed63464c58cdb19d253d4efa119721',
+  gapPositions: [],
+  blankIssueMarkerPositions: [185, 193, 234, 282, 321],
+  repeatPositions: [79, 80, 81, 82, 83, 84, 85, 86, 341, 342, 343, 344, 345, 347, 348, 349, 350],
   groupCounts: [5, 46, 43, 48, 58, 94, 44, 87],
   exclusionCategoryCounts: {
+    'blank issue marker': 5,
     'boundary marker': 4,
     'collection marker': 63,
     'prose marker': 29,
@@ -101,6 +104,25 @@ function assertLedgerShape(ledger) {
   assert.equal(ledger.sourceBoundary.lastHeading, 'Latest Additions:');
   assert.equal(ledger.sourceBoundary.contentSha256.length, 64);
   assert.equal(ledger.sourceBoundary.issueBearingBlocksSha256.length, 64);
+  assert.equal(ledger.occurrences.every((entry) => entry.provisionalDisposition !== 'gap'), true);
+  assert.equal(
+    ledger.occurrences
+      .filter((entry) => entry.sourceType === 'issue-marker')
+      .every((entry) => entry.provisionalDisposition === 'exclusion' && entry.reason === 'blank issue marker'),
+    true,
+  );
+  assert.deepEqual(
+    ledger.occurrences
+      .filter((entry) => entry.sourceType === 'issue-marker')
+      .map((entry) => entry.position),
+    EXPECTED.blankIssueMarkerPositions,
+  );
+  assert.equal(
+    ledger.occurrences
+      .filter((entry) => entry.provisionalDisposition === 'repeat')
+      .every((entry) => [36, 149, 151].includes(entry.sourceNodeIndex)),
+    true,
+  );
   assert.equal(ledger.occurrenceCount, EXPECTED.occurrenceCount);
   assert.equal(ledger.occurrenceCount, ledger.occurrences.length);
   assert.equal(ledger.groupCount, new Set(ledger.occurrences.map((entry) => entry.sourceGroup)).size);
@@ -115,18 +137,24 @@ function assertLedgerShape(ledger) {
   const counts = ledger.occurrences.reduce((acc, entry) => {
     acc[entry.provisionalDisposition] = (acc[entry.provisionalDisposition] || 0) + 1;
     return acc;
-  }, {});
+  }, {
+    'canonical-candidate': 0,
+    exclusion: 0,
+    gap: 0,
+    repeat: 0,
+  });
   assert.deepEqual(ledger.occurrenceCounts, EXPECTED.occurrenceCounts);
   assert.deepEqual(ledger.occurrenceCounts, counts);
   assert.equal(counts['canonical-candidate'] > 0, true);
   assert.equal(counts.repeat > 0, true);
-  assert.equal(counts.gap > 0, true);
+  assert.equal(counts.gap, 0);
   assert.equal(counts.exclusion > 0, true);
   assert.deepEqual(ledger.categorizedPositions.canonicalCandidatePositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'canonical-candidate').map((entry) => entry.position));
   assert.deepEqual(ledger.categorizedPositions.repeatPositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'repeat').map((entry) => entry.position));
   assert.deepEqual(ledger.categorizedPositions.gapPositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'gap').map((entry) => entry.position));
   assert.deepEqual(ledger.categorizedPositions.exclusionPositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'exclusion').map((entry) => entry.position));
   assert.deepEqual(ledger.categorizedPositions.gapPositions, EXPECTED.gapPositions);
+  assert.deepEqual(ledger.categorizedPositions.repeatPositions, EXPECTED.repeatPositions);
   assert.deepEqual(ledger.exclusionCategories, exclusionCategories(ledger));
   assert.deepEqual(
     Object.fromEntries(Object.entries(ledger.exclusionCategories).map(([reason, positions]) => [reason, positions.length])),
@@ -156,9 +184,6 @@ function assertLedgerShape(ledger) {
       assert.equal(entry.issueNumber, original.issueNumber);
     } else {
       assert.equal(entry.repeatOfPosition == null, true);
-    }
-    if (entry.provisionalDisposition === 'gap') {
-      assert.equal(entry.sourceText, 'Issues:');
     }
     if (entry.provisionalDisposition === 'canonical-candidate') {
       assert.notEqual(entry.normalizedSeriesTitle, null);
@@ -243,4 +268,25 @@ test('Silver Surfer source ledger rejects the known defect shapes', async () => 
   const missingSourceNode = structuredClone(ledger);
   missingSourceNode.occurrences = missingSourceNode.occurrences.filter((entry) => entry.sourceNodeIndex !== 159);
   assert.throws(() => assertLedgerShape(refreshDerivedFields(missingSourceNode)));
+
+  const titleOnlyRepeat = structuredClone(ledger);
+  const modernDefendersIndex = titleOnlyRepeat.occurrences.findIndex((entry) => entry.sourceNodeIndex === 100);
+  titleOnlyRepeat.occurrences[modernDefendersIndex] = {
+    ...titleOnlyRepeat.occurrences[modernDefendersIndex],
+    normalizedSeriesTitle: 'Defenders',
+    seriesYear: null,
+    provisionalDisposition: 'repeat',
+    repeatOfPosition: 62,
+  };
+  assert.throws(() => assertLedgerShape(refreshDerivedFields(titleOnlyRepeat)));
+
+  const blankFormattingGap = structuredClone(ledger);
+  const blankMarkerIndex = blankFormattingGap.occurrences.findIndex((entry) => entry.sourceNodeIndex === 76);
+  blankFormattingGap.occurrences[blankMarkerIndex] = {
+    ...blankFormattingGap.occurrences[blankMarkerIndex],
+    sourceType: 'gap',
+    provisionalDisposition: 'gap',
+    reason: 'blank issue line',
+  };
+  assert.throws(() => assertLedgerShape(refreshDerivedFields(blankFormattingGap)));
 });

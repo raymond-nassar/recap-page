@@ -16,15 +16,15 @@
     "issueBearingBlockCount": 55,
     "issueBearingBlocksSha256": "ea5c02e6209d5cc3c20e5927e1746e056b5e847875840b6db21e3f866c19308f"
   },
-  "normalizedSourceHash": "1aedaa14f9671bbf6cffdb9d8adc0171c7af2343be71c3a6ccbc882178b964a3",
-  "sourceNodeOrderHash": "82d979f730300d6dfc76d5ebd8265059910311e26e4a327a321d876397b36cc8",
+  "normalizedSourceHash": "b3fe028d3f50ccedb8ac8be3146b49d4060f6e61bc2140801466167751f7d20a",
+  "sourceNodeOrderHash": "9a27179569a96a6bfa0ba85434ddac8559ed63464c58cdb19d253d4efa119721",
   "groupCount": 8,
   "occurrenceCount": 425,
   "occurrenceCounts": {
-    "exclusion": 103,
-    "canonical-candidate": 277,
-    "repeat": 40,
-    "gap": 5
+    "canonical-candidate": 300,
+    "exclusion": 108,
+    "gap": 0,
+    "repeat": 17
   },
   "occurrences": [
     {
@@ -39,8 +39,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 2,
@@ -54,8 +53,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker",
-      "repeatOfPosition": null
+      "reason": "boundary marker"
     },
     {
       "position": 3,
@@ -69,8 +67,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 4,
@@ -84,8 +81,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 5,
@@ -99,8 +95,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker",
-      "repeatOfPosition": null
+      "reason": "boundary marker"
     },
     {
       "position": 6,
@@ -114,8 +109,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker",
-      "repeatOfPosition": null
+      "reason": "section marker"
     },
     {
       "position": 7,
@@ -129,8 +123,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 8,
@@ -143,8 +136,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "48",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 9,
@@ -157,8 +149,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "49",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 10,
@@ -171,8 +162,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "50",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 11,
@@ -185,8 +175,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "55",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 12,
@@ -199,8 +188,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "56",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 13,
@@ -213,8 +201,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "57",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 14,
@@ -227,8 +214,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "58",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 15,
@@ -241,8 +227,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "59",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 16,
@@ -255,8 +240,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "60",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 17,
@@ -269,8 +253,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "61",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 18,
@@ -284,8 +267,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 19,
@@ -298,8 +280,7 @@
       "normalizedSeriesTitle": "Tales to Astonish",
       "seriesYear": null,
       "issueNumber": "92",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 20,
@@ -312,8 +293,7 @@
       "normalizedSeriesTitle": "Tales to Astonish",
       "seriesYear": null,
       "issueNumber": "93",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 21,
@@ -327,8 +307,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 22,
@@ -342,8 +321,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 23,
@@ -353,11 +331,10 @@
       "sourceText": "#5",
       "sourceRangeReference": "Issues: #5",
       "collectionTitle": "Fantastic Four Annual",
-      "normalizedSeriesTitle": "Fantastic Four",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 1963,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 24,
@@ -371,8 +348,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 25,
@@ -385,8 +361,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "72",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 26,
@@ -399,8 +374,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "73",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 27,
@@ -413,8 +387,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "74",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 28,
@@ -427,8 +400,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "75",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 29,
@@ -441,8 +413,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "76",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 30,
@@ -455,8 +426,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "77",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 31,
@@ -470,8 +440,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 32,
@@ -484,8 +453,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 33,
@@ -498,8 +466,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 34,
@@ -512,8 +479,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 35,
@@ -526,8 +492,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 36,
@@ -540,8 +505,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 37,
@@ -554,8 +518,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 38,
@@ -568,8 +531,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "7",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 39,
@@ -582,8 +544,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "8",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 40,
@@ -596,8 +557,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "9",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 41,
@@ -610,8 +570,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 42,
@@ -624,8 +583,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "11",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 43,
@@ -638,8 +596,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "12",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 44,
@@ -652,8 +609,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "13",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 45,
@@ -666,8 +622,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "14",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 46,
@@ -680,8 +635,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "15",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 47,
@@ -694,8 +648,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "16",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 48,
@@ -708,8 +661,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "17",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 49,
@@ -722,8 +674,7 @@
       "normalizedSeriesTitle": "Silver Surfer",
       "seriesYear": null,
       "issueNumber": "18",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 50,
@@ -737,8 +688,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 51,
@@ -752,8 +702,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker",
-      "repeatOfPosition": null
+      "reason": "boundary marker"
     },
     {
       "position": 52,
@@ -767,8 +716,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker",
-      "repeatOfPosition": null
+      "reason": "section marker"
     },
     {
       "position": 53,
@@ -782,8 +730,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 54,
@@ -796,8 +743,7 @@
       "normalizedSeriesTitle": "Sub-mariner",
       "seriesYear": null,
       "issueNumber": "34",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 55,
@@ -810,8 +756,7 @@
       "normalizedSeriesTitle": "Sub-mariner",
       "seriesYear": null,
       "issueNumber": "35",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 56,
@@ -825,8 +770,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 57,
@@ -840,8 +784,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 58,
@@ -854,8 +797,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "122",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 59,
@@ -868,8 +810,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "123",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 60,
@@ -883,8 +824,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 61,
@@ -898,8 +838,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 62,
@@ -912,8 +851,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 63,
@@ -926,8 +864,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 64,
@@ -940,8 +877,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 65,
@@ -954,8 +890,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 66,
@@ -968,8 +903,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 67,
@@ -982,8 +916,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 68,
@@ -996,8 +929,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "7",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 69,
@@ -1011,8 +943,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 70,
@@ -1026,8 +957,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 71,
@@ -1040,8 +970,7 @@
       "normalizedSeriesTitle": "Avengers",
       "seriesYear": null,
       "issueNumber": "115",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 72,
@@ -1054,8 +983,7 @@
       "normalizedSeriesTitle": "Avengers",
       "seriesYear": null,
       "issueNumber": "116",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 73,
@@ -1068,8 +996,7 @@
       "normalizedSeriesTitle": "Avengers",
       "seriesYear": null,
       "issueNumber": "117",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 74,
@@ -1082,8 +1009,7 @@
       "normalizedSeriesTitle": "Avengers",
       "seriesYear": null,
       "issueNumber": "118",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 75,
@@ -1096,8 +1022,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "8",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 76,
@@ -1110,8 +1035,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "9",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 77,
@@ -1124,8 +1048,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 78,
@@ -1138,8 +1061,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "11",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 79,
@@ -1265,8 +1187,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 88,
@@ -1279,8 +1200,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "155",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 89,
@@ -1293,8 +1213,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "156",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 90,
@@ -1307,8 +1226,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "157",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 91,
@@ -1322,8 +1240,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 92,
@@ -1336,8 +1253,7 @@
       "normalizedSeriesTitle": "Tomb of Dracula",
       "seriesYear": null,
       "issueNumber": "50",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 93,
@@ -1351,8 +1267,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 94,
@@ -1366,8 +1281,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "boundary marker",
-      "repeatOfPosition": null
+      "reason": "boundary marker"
     },
     {
       "position": 95,
@@ -1381,8 +1295,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker",
-      "repeatOfPosition": null
+      "reason": "section marker"
     },
     {
       "position": 96,
@@ -1396,8 +1309,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 97,
@@ -1410,8 +1322,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "98",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 98,
@@ -1424,8 +1335,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "99",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 99,
@@ -1438,8 +1348,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "100",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 100,
@@ -1452,8 +1361,7 @@
       "normalizedSeriesTitle": "Defenders",
       "seriesYear": null,
       "issueNumber": "101",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 101,
@@ -1467,8 +1375,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 102,
@@ -1482,8 +1389,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 103,
@@ -1496,8 +1402,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 104,
@@ -1510,8 +1415,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 105,
@@ -1524,8 +1428,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 106,
@@ -1538,8 +1441,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 107,
@@ -1552,8 +1454,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 108,
@@ -1566,8 +1467,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 109,
@@ -1580,8 +1480,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "7",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 110,
@@ -1594,8 +1493,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "8",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 111,
@@ -1608,8 +1506,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "9",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 112,
@@ -1622,8 +1519,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 113,
@@ -1636,8 +1532,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "11",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 114,
@@ -1650,8 +1545,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "12",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 115,
@@ -1664,8 +1558,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "13",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 116,
@@ -1678,8 +1571,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "14",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 117,
@@ -1692,8 +1584,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "15",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 118,
@@ -1706,8 +1597,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "16",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 119,
@@ -1720,8 +1610,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "17",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 120,
@@ -1734,8 +1623,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "18",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 121,
@@ -1748,8 +1636,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "19",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 122,
@@ -1762,8 +1649,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "20",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 123,
@@ -1776,8 +1662,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "21",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 124,
@@ -1790,8 +1675,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "22",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 125,
@@ -1804,8 +1688,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "23",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 126,
@@ -1818,8 +1701,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "24",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 127,
@@ -1832,8 +1714,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "25",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 128,
@@ -1846,8 +1727,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "26",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 129,
@@ -1860,8 +1740,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "27",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 130,
@@ -1874,8 +1753,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "28",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 131,
@@ -1888,8 +1766,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "29",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 132,
@@ -1902,8 +1779,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "30",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 133,
@@ -1916,8 +1792,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "31",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 134,
@@ -1930,8 +1805,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "32",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 135,
@@ -1945,8 +1819,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 136,
@@ -1960,8 +1833,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 137,
@@ -1971,11 +1843,10 @@
       "sourceText": "OGN",
       "sourceRangeReference": "Issues: OGN",
       "collectionTitle": "Silver Surfer: Judgment Day",
-      "normalizedSeriesTitle": "OGN",
+      "normalizedSeriesTitle": "Silver Surfer: Judgment Day",
       "seriesYear": null,
       "issueNumber": "OGN",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 138,
@@ -1989,8 +1860,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 139,
@@ -2004,8 +1874,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 140,
@@ -2018,8 +1887,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Parable",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 141,
@@ -2032,8 +1900,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Parable",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 142,
@@ -2047,8 +1914,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 143,
@@ -2062,8 +1928,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker",
-      "repeatOfPosition": null
+      "reason": "section marker"
     },
     {
       "position": 144,
@@ -2077,8 +1942,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 145,
@@ -2088,11 +1952,10 @@
       "sourceText": "#34",
       "sourceRangeReference": "Issues: #34 to #38",
       "collectionTitle": "Silver Surfer – Rebirth of Thanos",
-      "normalizedSeriesTitle": "Silver Surfer - Rebirth of Thanos",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Silver Surfer (1987)",
+      "seriesYear": 1987,
       "issueNumber": "34",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 146,
@@ -2102,11 +1965,10 @@
       "sourceText": "#35",
       "sourceRangeReference": "Issues: #34 to #38",
       "collectionTitle": "Silver Surfer – Rebirth of Thanos",
-      "normalizedSeriesTitle": "Silver Surfer - Rebirth of Thanos",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Silver Surfer (1987)",
+      "seriesYear": 1987,
       "issueNumber": "35",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 147,
@@ -2116,11 +1978,10 @@
       "sourceText": "#36",
       "sourceRangeReference": "Issues: #34 to #38",
       "collectionTitle": "Silver Surfer – Rebirth of Thanos",
-      "normalizedSeriesTitle": "Silver Surfer - Rebirth of Thanos",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Silver Surfer (1987)",
+      "seriesYear": 1987,
       "issueNumber": "36",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 148,
@@ -2130,11 +1991,10 @@
       "sourceText": "#37",
       "sourceRangeReference": "Issues: #34 to #38",
       "collectionTitle": "Silver Surfer – Rebirth of Thanos",
-      "normalizedSeriesTitle": "Silver Surfer - Rebirth of Thanos",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Silver Surfer (1987)",
+      "seriesYear": 1987,
       "issueNumber": "37",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 149,
@@ -2144,11 +2004,10 @@
       "sourceText": "#38",
       "sourceRangeReference": "Issues: #34 to #38",
       "collectionTitle": "Silver Surfer – Rebirth of Thanos",
-      "normalizedSeriesTitle": "Silver Surfer - Rebirth of Thanos",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Silver Surfer (1987)",
+      "seriesYear": 1987,
       "issueNumber": "38",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 150,
@@ -2162,8 +2021,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 151,
@@ -2177,8 +2035,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 152,
@@ -2191,8 +2048,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "42",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 153,
@@ -2205,8 +2061,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "43",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 154,
@@ -2219,8 +2074,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "44",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 155,
@@ -2233,8 +2087,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "45",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 156,
@@ -2247,8 +2100,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "46",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 157,
@@ -2261,8 +2113,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "47",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 158,
@@ -2275,8 +2126,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "48",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 159,
@@ -2289,8 +2139,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "49",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 160,
@@ -2303,8 +2152,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "50",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 161,
@@ -2317,8 +2165,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "51",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 162,
@@ -2332,8 +2179,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 163,
@@ -2347,8 +2193,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 164,
@@ -2358,11 +2203,10 @@
       "sourceText": "OGN",
       "sourceRangeReference": "Issues: OGN",
       "collectionTitle": "Silver Surfer: Homecoming",
-      "normalizedSeriesTitle": "OGN",
+      "normalizedSeriesTitle": "Silver Surfer: Homecoming",
       "seriesYear": null,
       "issueNumber": "OGN",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 137
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 165,
@@ -2376,8 +2220,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 166,
@@ -2391,8 +2234,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 167,
@@ -2405,8 +2247,7 @@
       "normalizedSeriesTitle": "Infinity Gauntlet",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 168,
@@ -2419,8 +2260,7 @@
       "normalizedSeriesTitle": "Infinity Gauntlet",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 169,
@@ -2433,8 +2273,7 @@
       "normalizedSeriesTitle": "Infinity Gauntlet",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 170,
@@ -2447,8 +2286,7 @@
       "normalizedSeriesTitle": "Infinity Gauntlet",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 171,
@@ -2461,8 +2299,7 @@
       "normalizedSeriesTitle": "Infinity Gauntlet",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 172,
@@ -2475,8 +2312,7 @@
       "normalizedSeriesTitle": "Infinity Gauntlet",
       "seriesYear": null,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 173,
@@ -2490,8 +2326,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 174,
@@ -2504,8 +2339,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "52",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 175,
@@ -2518,8 +2352,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "53",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 176,
@@ -2532,8 +2365,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "54",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 177,
@@ -2546,8 +2378,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "55",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 178,
@@ -2560,8 +2391,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "56",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 179,
@@ -2574,8 +2404,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "57",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 180,
@@ -2588,8 +2417,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "58",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 181,
@@ -2602,8 +2430,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "59",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 182,
@@ -2616,8 +2443,7 @@
       "normalizedSeriesTitle": "Silver Surfer (1987)",
       "seriesYear": 1987,
       "issueNumber": "60",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 183,
@@ -2631,8 +2457,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 184,
@@ -2646,23 +2471,21 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 185,
       "sourceNodeIndex": 76,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
-      "sourceType": "gap",
+      "sourceType": "issue-marker",
       "sourceText": "Issues:",
       "sourceRangeReference": "Issues:",
       "collectionTitle": "Infinity War",
       "normalizedSeriesTitle": "Infinity War",
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "gap",
-      "reason": "blank issue line",
-      "repeatOfPosition": null
+      "provisionalDisposition": "exclusion",
+      "reason": "blank issue marker"
     },
     {
       "position": 186,
@@ -2676,8 +2499,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 187,
@@ -2690,8 +2512,7 @@
       "normalizedSeriesTitle": "Silver Surfer / Warlock",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 188,
@@ -2704,8 +2525,7 @@
       "normalizedSeriesTitle": "Silver Surfer / Warlock",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 189,
@@ -2718,8 +2538,7 @@
       "normalizedSeriesTitle": "Silver Surfer / Warlock",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 190,
@@ -2732,8 +2551,7 @@
       "normalizedSeriesTitle": "Silver Surfer / Warlock",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 191,
@@ -2747,8 +2565,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 192,
@@ -2762,23 +2579,21 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 193,
       "sourceNodeIndex": 81,
       "sourceGroup": "IV) Jim Starlin?s Marvel Cosmic Takes Over!",
-      "sourceType": "gap",
+      "sourceType": "issue-marker",
       "sourceText": "Issues:",
       "sourceRangeReference": "Issues:",
       "collectionTitle": "Infinity Crusade",
       "normalizedSeriesTitle": "Infinity Crusade",
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "gap",
-      "reason": "blank issue line",
-      "repeatOfPosition": null
+      "provisionalDisposition": "exclusion",
+      "reason": "blank issue marker"
     },
     {
       "position": 194,
@@ -2792,8 +2607,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 195,
@@ -2806,8 +2620,7 @@
       "normalizedSeriesTitle": "Galactus: The Devourer",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 196,
@@ -2820,8 +2633,7 @@
       "normalizedSeriesTitle": "Galactus: The Devourer",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 197,
@@ -2834,8 +2646,7 @@
       "normalizedSeriesTitle": "Galactus: The Devourer",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 198,
@@ -2848,8 +2659,7 @@
       "normalizedSeriesTitle": "Galactus: The Devourer",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 199,
@@ -2862,8 +2672,7 @@
       "normalizedSeriesTitle": "Galactus: The Devourer",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 200,
@@ -2877,8 +2686,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 201,
@@ -2892,8 +2700,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker",
-      "repeatOfPosition": null
+      "reason": "section marker"
     },
     {
       "position": 202,
@@ -2907,8 +2714,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 203,
@@ -2921,8 +2727,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "46",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 204,
@@ -2936,8 +2741,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 205,
@@ -2951,8 +2755,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 206,
@@ -2965,8 +2768,7 @@
       "normalizedSeriesTitle": "Black Panther",
       "seriesYear": null,
       "issueNumber": "35",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 207,
@@ -2980,8 +2782,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 208,
@@ -2995,8 +2796,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 209,
@@ -3009,8 +2809,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 210,
@@ -3023,8 +2822,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 211,
@@ -3037,8 +2835,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 212,
@@ -3051,8 +2848,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 213,
@@ -3065,8 +2861,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 214,
@@ -3079,8 +2874,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 215,
@@ -3093,8 +2887,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "7",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 216,
@@ -3107,8 +2900,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "8",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 217,
@@ -3121,8 +2913,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "9",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 218,
@@ -3135,8 +2926,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 219,
@@ -3149,8 +2939,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "11",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 220,
@@ -3163,8 +2952,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "12",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 221,
@@ -3177,8 +2965,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "13",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 222,
@@ -3191,8 +2978,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2003)",
       "seriesYear": 2003,
       "issueNumber": "14",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 223,
@@ -3206,8 +2992,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 224,
@@ -3221,8 +3006,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 225,
@@ -3235,8 +3019,7 @@
       "normalizedSeriesTitle": "Cable & Deadpool",
       "seriesYear": null,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 226,
@@ -3250,8 +3033,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 227,
@@ -3265,8 +3047,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 228,
@@ -3276,11 +3057,10 @@
       "sourceText": "#1",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2005)",
+      "seriesYear": 2005,
       "issueNumber": "1",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 62
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 229,
@@ -3290,11 +3070,10 @@
       "sourceText": "#2",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2005)",
+      "seriesYear": 2005,
       "issueNumber": "2",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 63
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 230,
@@ -3304,11 +3083,10 @@
       "sourceText": "#3",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2005)",
+      "seriesYear": 2005,
       "issueNumber": "3",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 64
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 231,
@@ -3318,11 +3096,10 @@
       "sourceText": "#4",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2005)",
+      "seriesYear": 2005,
       "issueNumber": "4",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 65
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 232,
@@ -3332,11 +3109,10 @@
       "sourceText": "#5",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2005)",
+      "seriesYear": 2005,
       "issueNumber": "5",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 66
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 233,
@@ -3350,23 +3126,21 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 234,
       "sourceNodeIndex": 102,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
-      "sourceType": "gap",
+      "sourceType": "issue-marker",
       "sourceText": "Issues:",
       "sourceRangeReference": "Issues:",
       "collectionTitle": "Annihilation",
       "normalizedSeriesTitle": "Annihilation",
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "gap",
-      "reason": "blank issue line",
-      "repeatOfPosition": null
+      "provisionalDisposition": "exclusion",
+      "reason": "blank issue marker"
     },
     {
       "position": 235,
@@ -3380,8 +3154,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 236,
@@ -3395,8 +3168,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 237,
@@ -3409,8 +3181,7 @@
       "normalizedSeriesTitle": "Incredible Hulk",
       "seriesYear": null,
       "issueNumber": "92",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 238,
@@ -3423,8 +3194,7 @@
       "normalizedSeriesTitle": "Incredible Hulk",
       "seriesYear": null,
       "issueNumber": "93",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 239,
@@ -3437,8 +3207,7 @@
       "normalizedSeriesTitle": "Incredible Hulk",
       "seriesYear": null,
       "issueNumber": "94",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 240,
@@ -3451,8 +3220,7 @@
       "normalizedSeriesTitle": "Incredible Hulk",
       "seriesYear": null,
       "issueNumber": "95",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 241,
@@ -3466,8 +3234,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 242,
@@ -3481,8 +3248,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 243,
@@ -3492,11 +3258,10 @@
       "sourceText": "#1",
       "sourceRangeReference": "Issues: #1 to #6",
       "collectionTitle": "Fantastic Four: The End",
-      "normalizedSeriesTitle": "Fantastic Four",
+      "normalizedSeriesTitle": "Fantastic Four: The End",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 244,
@@ -3506,11 +3271,10 @@
       "sourceText": "#2",
       "sourceRangeReference": "Issues: #1 to #6",
       "collectionTitle": "Fantastic Four: The End",
-      "normalizedSeriesTitle": "Fantastic Four",
+      "normalizedSeriesTitle": "Fantastic Four: The End",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 245,
@@ -3520,11 +3284,10 @@
       "sourceText": "#3",
       "sourceRangeReference": "Issues: #1 to #6",
       "collectionTitle": "Fantastic Four: The End",
-      "normalizedSeriesTitle": "Fantastic Four",
+      "normalizedSeriesTitle": "Fantastic Four: The End",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 246,
@@ -3534,11 +3297,10 @@
       "sourceText": "#4",
       "sourceRangeReference": "Issues: #1 to #6",
       "collectionTitle": "Fantastic Four: The End",
-      "normalizedSeriesTitle": "Fantastic Four",
+      "normalizedSeriesTitle": "Fantastic Four: The End",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 247,
@@ -3548,11 +3310,10 @@
       "sourceText": "#5",
       "sourceRangeReference": "Issues: #1 to #6",
       "collectionTitle": "Fantastic Four: The End",
-      "normalizedSeriesTitle": "Fantastic Four",
+      "normalizedSeriesTitle": "Fantastic Four: The End",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 23
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 248,
@@ -3562,11 +3323,10 @@
       "sourceText": "#6",
       "sourceRangeReference": "Issues: #1 to #6",
       "collectionTitle": "Fantastic Four: The End",
-      "normalizedSeriesTitle": "Fantastic Four",
+      "normalizedSeriesTitle": "Fantastic Four: The End",
       "seriesYear": null,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 249,
@@ -3580,8 +3340,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 250,
@@ -3595,8 +3354,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 251,
@@ -3609,8 +3367,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Requiem",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 252,
@@ -3623,8 +3380,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Requiem",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 253,
@@ -3637,8 +3393,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Requiem",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 254,
@@ -3651,8 +3406,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Requiem",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 255,
@@ -3666,8 +3420,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 256,
@@ -3681,8 +3434,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 257,
@@ -3695,8 +3447,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "546",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 258,
@@ -3709,8 +3460,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "547",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 259,
@@ -3723,8 +3473,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "548",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 260,
@@ -3737,8 +3486,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "549",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 261,
@@ -3751,8 +3499,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "550",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 262,
@@ -3766,8 +3513,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 263,
@@ -3780,8 +3526,7 @@
       "normalizedSeriesTitle": "Silver Surfer: In Thy Name",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 264,
@@ -3794,8 +3539,7 @@
       "normalizedSeriesTitle": "Silver Surfer: In Thy Name",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 265,
@@ -3808,8 +3552,7 @@
       "normalizedSeriesTitle": "Silver Surfer: In Thy Name",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 266,
@@ -3822,8 +3565,7 @@
       "normalizedSeriesTitle": "Silver Surfer: In Thy Name",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 267,
@@ -3837,8 +3579,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 268,
@@ -3851,8 +3592,7 @@
       "normalizedSeriesTitle": "Skaar: Son of Hulk",
       "seriesYear": null,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 269,
@@ -3865,8 +3605,7 @@
       "normalizedSeriesTitle": "Skaar: Son of Hulk",
       "seriesYear": null,
       "issueNumber": "7",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 270,
@@ -3879,8 +3618,7 @@
       "normalizedSeriesTitle": "Skaar: Son of Hulk",
       "seriesYear": null,
       "issueNumber": "8",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 271,
@@ -3893,8 +3631,7 @@
       "normalizedSeriesTitle": "Skaar: Son of Hulk",
       "seriesYear": null,
       "issueNumber": "9",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 272,
@@ -3907,8 +3644,7 @@
       "normalizedSeriesTitle": "Skaar: Son of Hulk",
       "seriesYear": null,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 273,
@@ -3921,8 +3657,7 @@
       "normalizedSeriesTitle": "Skaar: Son of Hulk",
       "seriesYear": null,
       "issueNumber": "11",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 274,
@@ -3935,8 +3670,7 @@
       "normalizedSeriesTitle": "Skaar: Son of Hulk",
       "seriesYear": null,
       "issueNumber": "12",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 275,
@@ -3950,8 +3684,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 276,
@@ -3964,8 +3697,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "583",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 277,
@@ -3978,8 +3710,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "584",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 278,
@@ -3992,8 +3723,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "585",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 279,
@@ -4006,8 +3736,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "586",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 280,
@@ -4021,8 +3750,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 281,
@@ -4036,23 +3764,21 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 282,
       "sourceNodeIndex": 123,
       "sourceGroup": "V) Silver Surfer Enters the 2000?s",
-      "sourceType": "gap",
+      "sourceType": "issue-marker",
       "sourceText": "Issues:",
       "sourceRangeReference": "Issues:",
       "collectionTitle": "Chaos War",
       "normalizedSeriesTitle": "Chaos War",
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "gap",
-      "reason": "blank issue line",
-      "repeatOfPosition": null
+      "provisionalDisposition": "exclusion",
+      "reason": "blank issue marker"
     },
     {
       "position": 283,
@@ -4066,8 +3792,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 284,
@@ -4077,11 +3802,10 @@
       "sourceText": "#1",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Silver Surfer",
-      "normalizedSeriesTitle": "Silver Surfer (2003)",
-      "seriesYear": 2003,
+      "normalizedSeriesTitle": "Silver Surfer (2011)",
+      "seriesYear": 2011,
       "issueNumber": "1",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 209
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 285,
@@ -4091,11 +3815,10 @@
       "sourceText": "#2",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Silver Surfer",
-      "normalizedSeriesTitle": "Silver Surfer (2003)",
-      "seriesYear": 2003,
+      "normalizedSeriesTitle": "Silver Surfer (2011)",
+      "seriesYear": 2011,
       "issueNumber": "2",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 210
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 286,
@@ -4105,11 +3828,10 @@
       "sourceText": "#3",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Silver Surfer",
-      "normalizedSeriesTitle": "Silver Surfer (2003)",
-      "seriesYear": 2003,
+      "normalizedSeriesTitle": "Silver Surfer (2011)",
+      "seriesYear": 2011,
       "issueNumber": "3",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 211
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 287,
@@ -4119,11 +3841,10 @@
       "sourceText": "#4",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Silver Surfer",
-      "normalizedSeriesTitle": "Silver Surfer (2003)",
-      "seriesYear": 2003,
+      "normalizedSeriesTitle": "Silver Surfer (2011)",
+      "seriesYear": 2011,
       "issueNumber": "4",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 212
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 288,
@@ -4133,11 +3854,10 @@
       "sourceText": "#5",
       "sourceRangeReference": "Issues: #1 to #5",
       "collectionTitle": "Silver Surfer",
-      "normalizedSeriesTitle": "Silver Surfer (2003)",
-      "seriesYear": 2003,
+      "normalizedSeriesTitle": "Silver Surfer (2011)",
+      "seriesYear": 2011,
       "issueNumber": "5",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 213
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 289,
@@ -4151,8 +3871,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 290,
@@ -4166,8 +3885,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 291,
@@ -4180,8 +3898,7 @@
       "normalizedSeriesTitle": "Annihilators",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 292,
@@ -4194,8 +3911,7 @@
       "normalizedSeriesTitle": "Annihilators",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 293,
@@ -4208,8 +3924,7 @@
       "normalizedSeriesTitle": "Annihilators",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 294,
@@ -4222,8 +3937,7 @@
       "normalizedSeriesTitle": "Annihilators",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 295,
@@ -4237,8 +3951,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker",
-      "repeatOfPosition": null
+      "reason": "section marker"
     },
     {
       "position": 296,
@@ -4252,8 +3965,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 297,
@@ -4263,11 +3975,10 @@
       "sourceText": "#1",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "1",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 62
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 298,
@@ -4277,11 +3988,10 @@
       "sourceText": "#2",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "2",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 63
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 299,
@@ -4291,11 +4001,10 @@
       "sourceText": "#3",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "3",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 64
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 300,
@@ -4305,11 +4014,10 @@
       "sourceText": "#4",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "4",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 65
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 301,
@@ -4319,11 +4027,10 @@
       "sourceText": "#5",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "5",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 66
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 302,
@@ -4333,11 +4040,10 @@
       "sourceText": "#6",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "6",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 67
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 303,
@@ -4347,11 +4053,10 @@
       "sourceText": "#7",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "7",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 68
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 304,
@@ -4361,11 +4066,10 @@
       "sourceText": "#8",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "8",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 75
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 305,
@@ -4375,11 +4079,10 @@
       "sourceText": "#9",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "9",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 76
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 306,
@@ -4389,11 +4092,10 @@
       "sourceText": "#10",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "10",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 77
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 307,
@@ -4403,11 +4105,10 @@
       "sourceText": "#11",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "11",
-      "provisionalDisposition": "repeat",
-      "repeatOfPosition": 78
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 308,
@@ -4417,11 +4118,10 @@
       "sourceText": "#12",
       "sourceRangeReference": "Issues: #1 to #12",
       "collectionTitle": "Defenders",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": null,
+      "normalizedSeriesTitle": "Defenders (2011)",
+      "seriesYear": 2011,
       "issueNumber": "12",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 309,
@@ -4435,8 +4135,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 310,
@@ -4450,8 +4149,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 311,
@@ -4464,8 +4162,7 @@
       "normalizedSeriesTitle": "Daredevil",
       "seriesYear": null,
       "issueNumber": "30",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 312,
@@ -4479,8 +4176,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 313,
@@ -4493,8 +4189,7 @@
       "normalizedSeriesTitle": "Hunger",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 314,
@@ -4507,8 +4202,7 @@
       "normalizedSeriesTitle": "Hunger",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 315,
@@ -4521,8 +4215,7 @@
       "normalizedSeriesTitle": "Hunger",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 316,
@@ -4535,8 +4228,7 @@
       "normalizedSeriesTitle": "Hunger",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 317,
@@ -4550,8 +4242,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 318,
@@ -4564,8 +4255,7 @@
       "normalizedSeriesTitle": "Silver Surfer Infinite",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 319,
@@ -4579,8 +4269,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 320,
@@ -4594,23 +4283,21 @@
       "seriesYear": null,
       "issueNumber": "16",
       "provisionalDisposition": "canonical-candidate",
-      "reason": "issue-bearing title",
-      "repeatOfPosition": null
+      "reason": "issue-bearing title"
     },
     {
       "position": 321,
       "sourceNodeIndex": 142,
       "sourceGroup": "VI) Marvel NOW! Silver Surfer",
-      "sourceType": "gap",
+      "sourceType": "issue-marker",
       "sourceText": "Issues:",
       "sourceRangeReference": "Issues:",
       "collectionTitle": "FF #16",
       "normalizedSeriesTitle": "FF",
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "gap",
-      "reason": "blank issue line",
-      "repeatOfPosition": null
+      "provisionalDisposition": "exclusion",
+      "reason": "blank issue marker"
     },
     {
       "position": 322,
@@ -4624,8 +4311,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "prose marker",
-      "repeatOfPosition": null
+      "reason": "prose marker"
     },
     {
       "position": 323,
@@ -4639,8 +4325,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 324,
@@ -4653,8 +4338,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 325,
@@ -4667,8 +4351,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 326,
@@ -4681,8 +4364,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 327,
@@ -4695,8 +4377,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 328,
@@ -4709,8 +4390,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 329,
@@ -4723,8 +4403,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 330,
@@ -4737,8 +4416,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "7",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 331,
@@ -4751,8 +4429,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "8",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 332,
@@ -4765,8 +4442,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "9",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 333,
@@ -4779,8 +4455,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 334,
@@ -4793,8 +4468,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "11",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 335,
@@ -4807,8 +4481,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "12",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 336,
@@ -4821,8 +4494,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "13",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 337,
@@ -4835,8 +4507,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "14",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 338,
@@ -4850,8 +4521,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 339,
@@ -4865,8 +4535,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "section marker",
-      "repeatOfPosition": null
+      "reason": "section marker"
     },
     {
       "position": 340,
@@ -4880,8 +4549,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 341,
@@ -4965,8 +4633,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 347,
@@ -5035,8 +4702,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "15",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 352,
@@ -5050,8 +4716,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 353,
@@ -5064,8 +4729,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 354,
@@ -5078,8 +4742,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 355,
@@ -5092,8 +4755,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 356,
@@ -5106,8 +4768,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 357,
@@ -5120,8 +4781,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 358,
@@ -5134,8 +4794,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 359,
@@ -5149,8 +4808,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 360,
@@ -5163,8 +4821,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "7",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 361,
@@ -5177,8 +4834,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "8",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 362,
@@ -5191,8 +4847,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "9",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 363,
@@ -5205,8 +4860,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "10",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 364,
@@ -5219,8 +4873,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "11",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 365,
@@ -5233,8 +4886,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "12",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 366,
@@ -5247,8 +4899,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "13",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 367,
@@ -5261,8 +4912,7 @@
       "normalizedSeriesTitle": "Silver Surfer (2016)",
       "seriesYear": 2016,
       "issueNumber": "14",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 368,
@@ -5276,8 +4926,7 @@
       "seriesYear": null,
       "issueNumber": "27",
       "provisionalDisposition": "canonical-candidate",
-      "reason": "issue-bearing title",
-      "repeatOfPosition": null
+      "reason": "issue-bearing title"
     },
     {
       "position": 369,
@@ -5291,8 +4940,7 @@
       "seriesYear": null,
       "issueNumber": "26",
       "provisionalDisposition": "canonical-candidate",
-      "reason": "issue-bearing title",
-      "repeatOfPosition": null
+      "reason": "issue-bearing title"
     },
     {
       "position": 370,
@@ -5306,8 +4954,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 371,
@@ -5320,8 +4967,7 @@
       "normalizedSeriesTitle": "Infinity Countdown Prime",
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 372,
@@ -5334,8 +4980,7 @@
       "normalizedSeriesTitle": "Infinity Countdown",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 373,
@@ -5348,8 +4993,7 @@
       "normalizedSeriesTitle": "Infinity Countdown",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 374,
@@ -5362,8 +5006,7 @@
       "normalizedSeriesTitle": "Infinity Countdown",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 375,
@@ -5376,8 +5019,7 @@
       "normalizedSeriesTitle": "Infinity Countdown",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 376,
@@ -5390,8 +5032,7 @@
       "normalizedSeriesTitle": "Infinity Countdown",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 377,
@@ -5404,8 +5045,7 @@
       "normalizedSeriesTitle": "Infinity Countdown: Adam Warlock And Material From Free Comic Book Day 2018 (Amazing Spider-Man)",
       "seriesYear": null,
       "issueNumber": null,
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 378,
@@ -5419,8 +5059,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 379,
@@ -5434,8 +5073,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 380,
@@ -5448,8 +5086,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Black (2019)",
       "seriesYear": 2019,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 381,
@@ -5462,8 +5099,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Black (2019)",
       "seriesYear": 2019,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 382,
@@ -5476,8 +5112,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Black (2019)",
       "seriesYear": 2019,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 383,
@@ -5490,8 +5125,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Black (2019)",
       "seriesYear": 2019,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 384,
@@ -5504,8 +5138,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Black (2019)",
       "seriesYear": 2019,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 385,
@@ -5519,8 +5152,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 386,
@@ -5534,8 +5166,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 387,
@@ -5548,8 +5179,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Antithesis (2020)",
       "seriesYear": 2020,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 388,
@@ -5562,8 +5192,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Antithesis (2020)",
       "seriesYear": 2020,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 389,
@@ -5576,8 +5205,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Antithesis (2020)",
       "seriesYear": 2020,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 390,
@@ -5590,8 +5218,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Antithesis (2020)",
       "seriesYear": 2020,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 391,
@@ -5604,8 +5231,7 @@
       "normalizedSeriesTitle": "X-Men (1963)",
       "seriesYear": 1963,
       "issueNumber": "65",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 392,
@@ -5618,8 +5244,7 @@
       "normalizedSeriesTitle": "Fantastic Four (1998)",
       "seriesYear": 1998,
       "issueNumber": "60",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 393,
@@ -5633,8 +5258,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 394,
@@ -5647,8 +5271,7 @@
       "normalizedSeriesTitle": "Defenders (2021)",
       "seriesYear": 2021,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 395,
@@ -5661,8 +5284,7 @@
       "normalizedSeriesTitle": "Defenders (2021)",
       "seriesYear": 2021,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 396,
@@ -5675,8 +5297,7 @@
       "normalizedSeriesTitle": "Defenders (2021)",
       "seriesYear": 2021,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 397,
@@ -5689,8 +5310,7 @@
       "normalizedSeriesTitle": "Defenders (2021)",
       "seriesYear": 2021,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 398,
@@ -5703,8 +5323,7 @@
       "normalizedSeriesTitle": "Defenders (2021)",
       "seriesYear": 2021,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 399,
@@ -5717,8 +5336,7 @@
       "normalizedSeriesTitle": "material from Marvel Comics (2019)",
       "seriesYear": 2019,
       "issueNumber": "1000",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 400,
@@ -5731,8 +5349,7 @@
       "normalizedSeriesTitle": "material from Marvel Comics (2019)",
       "seriesYear": 2019,
       "issueNumber": "1001",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 401,
@@ -5746,8 +5363,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 402,
@@ -5760,8 +5376,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Life Story",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 403,
@@ -5774,8 +5389,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Life Story",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 404,
@@ -5788,8 +5402,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Life Story",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 405,
@@ -5802,8 +5415,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Life Story",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 406,
@@ -5816,8 +5428,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Life Story",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 407,
@@ -5830,8 +5441,7 @@
       "normalizedSeriesTitle": "Fantastic Four: Life Story",
       "seriesYear": null,
       "issueNumber": "6",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 408,
@@ -5845,8 +5455,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 409,
@@ -5859,8 +5468,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Rebirth (2022)",
       "seriesYear": 2022,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 410,
@@ -5873,8 +5481,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Rebirth (2022)",
       "seriesYear": 2022,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 411,
@@ -5887,8 +5494,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Rebirth (2022)",
       "seriesYear": 2022,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 412,
@@ -5901,8 +5507,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Rebirth (2022)",
       "seriesYear": 2022,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 413,
@@ -5915,8 +5520,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Rebirth (2022)",
       "seriesYear": 2022,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 414,
@@ -5930,8 +5534,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 415,
@@ -5944,8 +5547,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Ghost Light (2023)",
       "seriesYear": 2023,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 416,
@@ -5958,8 +5560,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Ghost Light (2023)",
       "seriesYear": 2023,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 417,
@@ -5972,8 +5573,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Ghost Light (2023)",
       "seriesYear": 2023,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 418,
@@ -5986,8 +5586,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Ghost Light (2023)",
       "seriesYear": 2023,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 419,
@@ -6000,8 +5599,7 @@
       "normalizedSeriesTitle": "Silver Surfer: Ghost Light (2023)",
       "seriesYear": 2023,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 420,
@@ -6015,8 +5613,7 @@
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "exclusion",
-      "reason": "collection marker",
-      "repeatOfPosition": null
+      "reason": "collection marker"
     },
     {
       "position": 421,
@@ -6029,8 +5626,7 @@
       "normalizedSeriesTitle": "Silver Surfer Rebirth: Legacy",
       "seriesYear": null,
       "issueNumber": "1",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 422,
@@ -6043,8 +5639,7 @@
       "normalizedSeriesTitle": "Silver Surfer Rebirth: Legacy",
       "seriesYear": null,
       "issueNumber": "2",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 423,
@@ -6057,8 +5652,7 @@
       "normalizedSeriesTitle": "Silver Surfer Rebirth: Legacy",
       "seriesYear": null,
       "issueNumber": "3",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 424,
@@ -6071,8 +5665,7 @@
       "normalizedSeriesTitle": "Silver Surfer Rebirth: Legacy",
       "seriesYear": null,
       "issueNumber": "4",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 425,
@@ -6085,8 +5678,7 @@
       "normalizedSeriesTitle": "Silver Surfer Rebirth: Legacy",
       "seriesYear": null,
       "issueNumber": "5",
-      "provisionalDisposition": "canonical-candidate",
-      "repeatOfPosition": null
+      "provisionalDisposition": "canonical-candidate"
     }
   ],
   "sourceNodeCount": 165,
@@ -6207,6 +5799,7 @@
       159,
       160,
       161,
+      164,
       167,
       168,
       169,
@@ -6248,6 +5841,11 @@
       221,
       222,
       225,
+      228,
+      229,
+      230,
+      231,
+      232,
       237,
       238,
       239,
@@ -6256,6 +5854,7 @@
       244,
       245,
       246,
+      247,
       248,
       251,
       252,
@@ -6281,10 +5880,26 @@
       277,
       278,
       279,
+      284,
+      285,
+      286,
+      287,
+      288,
       291,
       292,
       293,
       294,
+      297,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307,
       308,
       311,
       313,
@@ -6380,29 +5995,6 @@
       84,
       85,
       86,
-      164,
-      228,
-      229,
-      230,
-      231,
-      232,
-      247,
-      284,
-      285,
-      286,
-      287,
-      288,
-      297,
-      298,
-      299,
-      300,
-      301,
-      302,
-      303,
-      304,
-      305,
-      306,
-      307,
       341,
       342,
       343,
@@ -6413,13 +6005,7 @@
       349,
       350
     ],
-    "gapPositions": [
-      185,
-      193,
-      234,
-      282,
-      321
-    ],
+    "gapPositions": [],
     "exclusionPositions": [
       1,
       2,
@@ -6467,9 +6053,11 @@
       173,
       183,
       184,
+      185,
       186,
       191,
       192,
+      193,
       194,
       200,
       201,
@@ -6483,6 +6071,7 @@
       226,
       227,
       233,
+      234,
       235,
       236,
       241,
@@ -6496,6 +6085,7 @@
       275,
       280,
       281,
+      282,
       283,
       289,
       290,
@@ -6506,6 +6096,7 @@
       312,
       317,
       319,
+      321,
       322,
       323,
       338,
@@ -6527,6 +6118,13 @@
     ]
   },
   "exclusionCategories": {
+    "blank issue marker": [
+      185,
+      193,
+      234,
+      282,
+      321
+    ],
     "boundary marker": [
       2,
       5,
