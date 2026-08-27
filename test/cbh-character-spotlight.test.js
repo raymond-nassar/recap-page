@@ -7,6 +7,7 @@ import {
   approvalDigestFor,
   libraryDigestFor,
   packetDigestFor,
+  sourcePositionsForPacket,
   validateFrozenPacket,
   validateInventoryState,
   validateMappingDigest,
@@ -501,6 +502,55 @@ test('the Black Panther packet preserves the full source ledger through publicat
   assert.equal(parsed.unresolved.length, 4);
   assert.match(markdown, /^## Introductory prose$/m);
   assert.match(markdown, /^## Latest Additions$/m);
+});
+
+test('the Punisher packet preserves the full source ledger through stage A evidence', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const packet = await readJson('scripts/data/cbh-packets/punisher-reading-order.json');
+  const mapping = await readJson('scripts/data/cbh-mappings/punisher-reading-order.json');
+  const report = await readJson('scripts/data/cbh-overlaps/punisher-reading-order.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const markdown = await readFile(path.join(root, 'src/data/orders/punisher-reading-order.md'), 'utf8');
+  const inventoryRecord = inventory.find((record) => record.id === 'punisher-reading-order');
+  const parsed = parseChecklist(markdown);
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: 'punisher-reading-order',
+    inventoryRecord,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  const exactPositions = sourcePositionsForPacket(packet);
+  const repeatedPositions = packet.repeatedSourceReferences.map((reference) => reference.sourcePosition);
+  const gapPositions = packet.sourceGaps.map((gap) => gap.sourcePosition);
+  const excludedPositions = packet.excludedSourceRows.map((row) => row.sourcePosition);
+  const allPositions = [
+    ...exactPositions,
+    ...repeatedPositions,
+    ...gapPositions,
+    ...excludedPositions,
+  ];
+
+  assert.equal(packet.sourceOccurrenceCount, 857);
+  assert.equal(packet.rows.length, 480);
+  assert.equal(packet.repeatedSourceReferences.length, 122);
+  assert.equal(packet.sourceGaps.length, 181);
+  assert.equal(packet.excludedSourceRows.length, 74);
+  assert.equal(mapping.rows.length, 480);
+  assert.equal(mapping.approvedSourceCount, 857);
+  assert.equal(report.candidateCount, 480);
+  assert.equal(report.comparisonCount, 151);
+  assert.equal(parsed.entries.length, 480);
+  assert.equal(parsed.unresolved.length, 181);
+  assert.equal(new Set(allPositions).size, allPositions.length);
+  assert.equal(Math.min(...allPositions), 1);
+  assert.equal(Math.max(...allPositions), 857);
+  assert.equal(inventoryRecord?.deliveryStatus, 'ready');
+  assert.equal(inventoryRecord?.centralDisposition, 'pilot-approved');
+  assert.match(markdown, /^## Punisher: Back to the War Omnibus$/m);
+  assert.match(markdown, /^## Punisher War Journal by Carl Potts & Jim Lee$/m);
+  assert.match(markdown, /Marvel Super Action \(1975\) #1/);
 });
 
 test('the Deadpool Best of guide preserves its source groups, repeats, metadata gaps, and complete-library approval', async () => {
