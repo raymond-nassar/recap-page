@@ -2,7 +2,7 @@
   "candidateId": "deadpool-best-of",
   "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
   "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
-  "libraryDigest": "de6712d8c731536b0252fe25acba9a4caca30cb94a2aeed8617bee09327c7571",
+  "libraryDigest": "223a391c55aebdcc5acb1d5c4b5860651ca2c15e08f39744999aa1ed3f08904e",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 56,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 16
   },
   "candidateCount": 38,
-  "comparisonCount": 147,
+  "comparisonCount": 149,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -555,6 +555,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "reckoning-war",
       "sharedCount": 0,
       "sharedIds": [],
@@ -616,6 +622,12 @@
     },
     {
       "orderId": "secret-wars-ii",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "setup-to-modern-timeline",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -900,5 +912,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6f79251e4758f76d7ee24c0640787bb4d01ef0cc356a556cf0075fce65091ffa"
+  "reportDigest": "e09b79802dba51d0662571e86610c9f24215cfdd5875ffa99eae70e2847f7f3e"
 }

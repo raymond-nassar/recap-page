@@ -3519,7 +3519,7 @@ const SCENARIOS = [
       });
       t.check('an ordinary 219-issue route stays closed with zero row DOM',
         starting.open === false && starting.rows === 0, JSON.stringify(starting));
-      t.check('Coming up precedes the full Reading List, which states total and unread counts',
+      t.check('Coming up precedes the full Reading List and states total and unread counts',
         !!(starting.order & 2)
           && starting.action === 'View all 219 issues'
           && starting.state === '219 unread',

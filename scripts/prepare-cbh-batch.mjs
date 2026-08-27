@@ -3022,6 +3022,7 @@ async function main() {
         sourcePosition: sourcePositions[index],
         sourceIssueReference: sourceRow.sourceIssueReference,
         sourceRangeReference: sourceRow.sourceRangeReference,
+        ...(sourceRow.sourceGroup == null ? {} : { sourceGroup: sourceRow.sourceGroup }),
         normalizedSeriesTitle: sourceRow.normalizedSeriesTitle,
         seriesYear: sourceRow.seriesYear,
         issueNumber: sourceRow.issueNumber,
@@ -3089,6 +3090,9 @@ async function main() {
       sourceUrl: guide.sourceUrl,
       ...(guide.sourceSection ? { sourceSection: guide.sourceSection } : {}),
       sourceRetrievedAt: guide.sourceRetrievedAt ?? RETRIEVED_AT,
+      ...(Object.hasOwn(guide, 'sourceContentSha256')
+        ? { sourceContentSha256: guide.sourceContentSha256 }
+        : {}),
       sourceRetrievalStatus: guide.sourceUnavailable ? guide.sourceError : 'retrieved',
       approvedSourceCount: guide.sourceUnavailable
         ? null

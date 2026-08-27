@@ -1052,6 +1052,37 @@
       "timeline": 2023
     },
     {
+      "id": "setup-to-modern-timeline",
+      "name": "Setup to Modern Timeline",
+      "description": "A product-curated orientation path through Marvels and Sentry stories that sets readers up for the Modern Timeline.",
+      "type": "era",
+      "depth": "essential",
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 75504,
+      "sourceFile": "setup_to_modern_timeline.md",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "out": "setup_to_modern_timeline.json",
+      "characters": [
+        "Phil Sheldon",
+        "Robert Reynolds",
+        "Spider-Man",
+        "Fantastic Four",
+        "Hulk",
+        "X-Men"
+      ],
+      "keywords": [
+        "Marvels",
+        "Sentry",
+        "Alex Ross",
+        "Kurt Busiek",
+        "Modern Timeline",
+        "setup"
+      ],
+      "expect": 21
+    },
+    {
       "id": "reckoning-war",
       "name": "Reckoning War",
       "description": "The Fantastic Four and the Watcher confront a war rooted in the universe's oldest secrets.",
@@ -2202,6 +2233,39 @@
       "expect": 1222,
       "timeline": null,
       "coverIssueId": 8797
+    },
+    {
+      "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "name": "Hulk (and She-Hulk, Red Hulk)",
+      "description": "A gap-tolerant Hulk spotlight preserving the full source sequence for Hulk, She-Hulk, Red Hulk, Skaar, and related stories, with exact Marvel issue links where the maintained metadata verifies them.",
+      "type": "character-run",
+      "spotlightKind": "other",
+      "depth": "partial",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "question-of-the-week-do-you-have-a-hulk-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "question_of_the_week_do_you_have_a_hulk_reading_order.json",
+      "characters": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar"
+      ],
+      "keywords": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar",
+        "Comic Book Herald"
+      ],
+      "expect": 1159,
+      "timeline": null,
+      "coverIssueId": 8906
     },
     {
       "id": "xmen-claremont",

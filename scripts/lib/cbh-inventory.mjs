@@ -308,7 +308,9 @@ function assertSourceGap(gap, index) {
     assertNonEmptyString(gap.sourceRangeReference, `${label} sourceRangeReference`);
   }
   assertNonEmptyString(gap.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
-  if (!Number.isInteger(gap.seriesYear)) throw new Error(`${label} seriesYear must be an integer`);
+  if (gap.seriesYear !== null && !Number.isInteger(gap.seriesYear)) {
+    throw new Error(`${label} seriesYear must be an integer or null`);
+  }
   assertNonEmptyString(String(gap.issueNumber ?? ''), `${label} issueNumber`);
   const validPair = (gap.kind === 'published-metadata-gap' && gap.status === 'open')
     || (gap.kind === 'availability-exclusion' && gap.status === 'closed')
@@ -766,22 +768,24 @@ export function validateFrozenPacket(packet, {
     }
   }
 
-  const existingRecords = catalogEntries.map((entry) => ({
-    id: entry.id,
-    url: entry.sourcePage,
-    sourceSection: entry.sourceSection,
-    catalogIds: [entry.id],
-  }));
-  const alreadyShipped = inventoryRecord?.deliveryStatus === 'shipped'
-    && catalogEntries.some((entry) => entry.id === packet.id);
-  if (!alreadyShipped) {
-    validateBatchNoDuplicates([{
-      id: packet.id,
-      url: packet.sourceUrl,
-      sourceSection: packet.sourceSection,
-      catalogIds: [packet.proposedManifest.id],
-    }], existingRecords);
+  const catalogEntriesForPacket = catalogEntries.filter((entry) => entry.id === packet.id);
+  if (catalogEntriesForPacket.length > 1) {
+    throw new Error(`${packet.id} has duplicate catalog entries`);
   }
+  const existingRecords = catalogEntries
+    .filter((entry) => entry.id !== packet.id)
+    .map((entry) => ({
+      id: entry.id,
+      url: entry.sourcePage,
+      sourceSection: entry.sourceSection,
+      catalogIds: [entry.id],
+    }));
+  validateBatchNoDuplicates([{
+    id: packet.id,
+    url: packet.sourceUrl,
+    sourceSection: packet.sourceSection,
+    catalogIds: [packet.proposedManifest.id],
+  }], existingRecords);
   return true;
 }
 
@@ -1069,10 +1073,14 @@ function validateCharacterInventoryRecord(record) {
     deferred: ['deferred', 'not-applicable', 'blocked-exact-resolution-not-run'],
     excluded: ['excluded', 'not-applicable', 'blocked-exact-resolution-not-run'],
     blocked: ['deferred', 'blocked', 'blocked-confirmed-post-horizon'],
-    'pilot-approved': ['new-order', 'shipped', 'approved'],
+    'pilot-approved': ['new-order', ['ready', 'shipped'], 'approved'],
   }[record.centralDisposition];
   const actualState = [record.disposition, record.deliveryStatus, record.metadataHorizonStatus];
-  if (actualState.some((value, index) => value !== expectedState[index])) {
+  if (actualState.some((value, index) => (
+    Array.isArray(expectedState[index])
+      ? !expectedState[index].includes(value)
+      : value !== expectedState[index]
+  ))) {
     throw new Error(`${label} state conflicts with centralDisposition`);
   }
 }

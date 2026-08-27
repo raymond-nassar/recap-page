@@ -45,7 +45,7 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   const expected = [
     ['best-of', 6, 6],
     ['complete-guide', 13, 13],
-    ['other', 4, 3],
+    ['other', 5, 4],
   ];
   for (const [kind, readingCount, storyCount] of expected) {
     const filtered = filterBySpotlightKind(spotlights, kind);

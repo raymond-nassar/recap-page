@@ -245,15 +245,15 @@ export function buildMarkdown(mapping) {
     'No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.',
     'See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.',
   ].join('\n');
-  let previousSourceRangeReference = null;
+  let currentGroup = null;
   const checklist = [...rowsBySourcePosition.entries()]
     .sort(([left], [right]) => left - right)
     .flatMap(([, entry]) => {
-      const sourceRangeReference = entry.value.sourceRangeReference ?? null;
-      const heading = sourceRangeReference && sourceRangeReference !== previousSourceRangeReference
-        ? [`## ${sourceRangeReference}`]
+      const sourceGroup = entry.value.sourceRangeReference ?? entry.value.sourceGroup ?? null;
+      const heading = sourceGroup && sourceGroup !== currentGroup
+        ? [`## ${escapeLinkText(sourceGroup)}`]
         : [];
-      previousSourceRangeReference = sourceRangeReference;
+      currentGroup = sourceGroup;
       if (entry.kind === 'exact') {
         return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))}](${entry.value.marvelIssueUrl})`];
       }

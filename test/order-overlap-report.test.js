@@ -9,7 +9,18 @@ import {
   mappingDigestFor,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping, reportArgs } from '../scripts/report-order-overlap.mjs';
+
+test('the full-library switch keeps peer paths while disabling later-order exclusions', () => {
+  assert.deepEqual(reportArgs(['peer.json', '--include-later']), {
+    peerPaths: ['peer.json'],
+    options: { excludedOrderIds: [] },
+  });
+  assert.deepEqual(reportArgs(['peer.json']), {
+    peerPaths: ['peer.json'],
+    options: {},
+  });
+});
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 

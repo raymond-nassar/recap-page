@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T02:17:07.685Z",
+  "generatedAt": "2026-08-27T04:26:26.281Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -1218,6 +1218,46 @@
       "sourceOrigin": "Compiled for this project",
       "sourceLicense": null,
       "updatedAt": "2026-08-15T14:34:56.807Z"
+    },
+    {
+      "id": "setup-to-modern-timeline",
+      "file": "setup_to_modern_timeline.json",
+      "name": "Setup to Modern Timeline",
+      "description": "A product-curated orientation path through Marvels and Sentry stories that sets readers up for the Modern Timeline.",
+      "type": "era",
+      "depth": "essential",
+      "count": 21,
+      "collections": 5,
+      "characters": [
+        "Phil Sheldon",
+        "Robert Reynolds",
+        "Spider-Man",
+        "Fantastic Four",
+        "Hulk",
+        "X-Men"
+      ],
+      "keywords": [
+        "Marvels",
+        "Sentry",
+        "Alex Ross",
+        "Kurt Busiek",
+        "Modern Timeline",
+        "setup"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 75504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5c5c5570c3e8c",
+        "ext": "jpg"
+      },
+      "source": null,
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T03:44:05.867Z"
     },
     {
       "id": "reckoning-war",
@@ -2553,6 +2593,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-26T20:07:18.806Z"
+    },
+    {
+      "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "file": "question_of_the_week_do_you_have_a_hulk_reading_order.json",
+      "name": "Hulk (and She-Hulk, Red Hulk)",
+      "description": "A gap-tolerant Hulk spotlight preserving the full source sequence for Hulk, She-Hulk, Red Hulk, Skaar, and related stories, with exact Marvel issue links where the maintained metadata verifies them.",
+      "type": "character-run",
+      "depth": "partial",
+      "spotlightKind": "other",
+      "count": 1159,
+      "collections": 12,
+      "characters": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar"
+      ],
+      "keywords": [
+        "Hulk",
+        "She-Hulk",
+        "Red Hulk",
+        "Skaar",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 8906,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/59933ea5b5c2e",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T04:26:25.607Z"
     },
     {
       "id": "xmen-claremont",
