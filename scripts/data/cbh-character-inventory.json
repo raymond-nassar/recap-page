@@ -1198,13 +1198,33 @@
     "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The full-page boundary and Stage A source ledger are frozen, but issue rows have not been resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "The frozen full-page guide now publishes 294 exact metadata rows and 29 explicit unresolved placeholders, with every source position and current-library relationship preserved.",
     "sourceRetrievedAt": "2026-08-27",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "ant-man-reading-order",
+      "avengers-enemy-within",
+      "captain-marvel-ms-marvel-reading-order",
+      "doctor-strange-reading-order",
+      "essential-avengers",
+      "groot-reading-order",
+      "hunt-for-wolverine",
+      "infinity-countdown-wars",
+      "last-annihilation",
+      "loki-reading-order",
+      "rocket-raccoon-reading-order",
+      "star-lord-reading-order",
+      "thanos-reading-order",
+      "venom-reading-order",
+      "war-of-kings",
+      "wolverine-reading-order",
+      "x-men-trial-of-jean-grey"
+    ],
+    "catalogIds": [
+      "guardians-of-the-galaxy-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Guardians of the Galaxy"
     ],
@@ -1214,7 +1234,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "c6e5f90f6dafd6908640a187fc7da29440055a81521cc2cd50158f3c2d28eef3",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 44,

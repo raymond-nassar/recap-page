@@ -379,6 +379,15 @@ test('open source gaps close only as the same exact identity or an availability 
   assert.doesNotThrow(() => validateFrozenPacket(yearlessGap));
   assert.notEqual(yearlessGap.sourceGaps[0].evidenceDigest, openPacket.sourceGaps[0].evidenceDigest);
 
+  const namedWorkGap = structuredClone(openPacket);
+  namedWorkGap.sourceGaps[0].sourceIssueReference = 'Named Source Work';
+  namedWorkGap.sourceGaps[0].normalizedSeriesTitle = 'Named Source Work';
+  namedWorkGap.sourceGaps[0].seriesYear = null;
+  namedWorkGap.sourceGaps[0].issueNumber = null;
+  namedWorkGap.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(namedWorkGap.sourceGaps[0]);
+  namedWorkGap.packetDigest = packetDigestFor(namedWorkGap);
+  assert.doesNotThrow(() => validateFrozenPacket(namedWorkGap));
+
   const unavailablePacket = genericGapPacket('availability-exclusion');
   const unavailableMapping = genericGapMapping(unavailablePacket);
   assert.doesNotThrow(() => assertGapTransition(openPacket, unavailablePacket, unavailableMapping));

@@ -449,13 +449,13 @@ test('the Guardians Stage A ledger freezes the full-page boundary and inventory 
   );
 
   assert.ok(record);
-  assert.equal(record.reason, 'The full-page boundary and Stage A source ledger are frozen, but issue rows have not been resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.');
+  assert.equal(record.reason, 'The frozen full-page guide now publishes 294 exact metadata rows and 29 explicit unresolved placeholders, with every source position and current-library relationship preserved.');
   assert.equal(record.sourceRetrievedAt, ledger.sourceRetrievedAt);
   assert.equal(record.sourceContentSha256, ledger.sourceContentSha256);
-  assert.equal(record.disposition, 'deferred');
-  assert.equal(record.centralDisposition, 'deferred');
-  assert.equal(record.deliveryStatus, 'not-applicable');
-  assert.deepEqual(record.catalogIds, []);
+  assert.equal(record.disposition, 'new-order');
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(record.deliveryStatus, 'shipped');
+  assert.deepEqual(record.catalogIds, ['guardians-of-the-galaxy-reading-order']);
 });
 
 test('the Guardians Stage A ledger expands repeats, named works, and partial-material exclusions', async () => {
@@ -634,6 +634,7 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = await readJson('src/data/catalog.json');
+  const payload = await readJson('src/data/guardians_of_the_galaxy_reading_order.json');
   const record = inventory.find((entry) => entry.id === ledger.id);
   const guardiansSet = new Set(ledger.issueOccurrences
     .filter((entry) => entry.classification === 'provisional-canonical-candidate')
@@ -650,10 +651,13 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
   );
 
   assert.ok(record);
-  assert.deepEqual(record.catalogIds, []);
-  assert.equal(record.centralDisposition, 'deferred');
-  assert.equal(manifest.lists.some((entry) => entry.id === ledger.id), false);
-  assert.equal(catalog.lists.some((entry) => entry.id === ledger.id), false);
+  assert.deepEqual(record.catalogIds, ['guardians-of-the-galaxy-reading-order']);
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.ok(manifest.lists.some((entry) => entry.id === ledger.id));
+  const guardiansCatalog = catalog.lists.find((entry) => entry.id === ledger.id);
+  assert.ok(guardiansCatalog);
+  assert.equal(guardiansCatalog.count, 323);
+  assert.equal(payload.placeholders, 29);
   assert.ok(guardiansSet.has('Marvel Super-Heroes|1967|18'));
   assert.ok(guardiansSet.has('Guardians of the Galaxy|1990|1'));
   assert.ok(guardiansSet.has('Guardians of the Galaxy|2013|1'));
