@@ -347,7 +347,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships eighteen spotlights', async () => {
+test('the character inventory preserves every central disposition, ships eighteen spotlights, and prepares two', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -358,10 +358,10 @@ test('the character inventory preserves every central disposition and ships eigh
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 102);
+  assert.equal(dispositionCounts.deferred, 101);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 18);
+  assert.equal(dispositionCounts['pilot-approved'], 19);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -386,6 +386,9 @@ test('the character inventory preserves every central disposition and ships eigh
   const ready = inventory.find((record) => record.id === 'black-panther-reading-order');
   assert.equal(ready?.centralDisposition, 'pilot-approved');
   assert.equal(ready?.deliveryStatus, 'ready');
+  const punisher = inventory.find((record) => record.id === 'punisher-reading-order');
+  assert.equal(punisher?.centralDisposition, 'pilot-approved');
+  assert.equal(punisher?.deliveryStatus, 'ready');
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get(abominationCandidateId).catalogIds, [abominationCandidateId]);
   assert.deepEqual(shippedById.get(abominationCandidateId).overlapIds, [
@@ -513,6 +516,11 @@ test('the Punisher packet preserves the full source ledger through stage A evide
   const markdown = await readFile(path.join(root, 'src/data/orders/punisher-reading-order.md'), 'utf8');
   const inventoryRecord = inventory.find((record) => record.id === 'punisher-reading-order');
   const parsed = parseChecklist(markdown);
+  const regeneratedReport = await buildReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
+    [],
+    { excludedOrderIds: [] },
+  );
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: 'punisher-reading-order',
@@ -537,15 +545,90 @@ test('the Punisher packet preserves the full source ledger through stage A evide
   assert.equal(packet.repeatedSourceReferences.length, 122);
   assert.equal(packet.sourceGaps.length, 181);
   assert.equal(packet.excludedSourceRows.length, 74);
+  assert.equal(packet.sourceReview.authorityIdentity, 'GPT-5.6 Terra');
+  assert.equal(
+    packet.excludedSourceRows.filter((row) => row.sourceIssueReference.includes('trade header')).length,
+    58,
+  );
+  assert.equal(packet.excludedSourceRows.filter((row) => (
+    /(section header|section marker|series intro|cross-link)/.test(row.sourceIssueReference)
+  )).length, 9);
+  assert.equal(packet.excludedSourceRows.filter((row) => row.sourceIssueReference.includes('DC co-publication')).length, 2);
+  assert.equal(packet.excludedSourceRows.filter((row) => (
+    /(trade header|section header|section marker|series intro|cross-link|DC co-publication)/.test(
+      row.sourceIssueReference,
+    )
+  )).length, 69);
+  assert.equal(packet.excludedSourceRows.filter((row) => (
+    !/(trade header|section header|section marker|series intro|cross-link|DC co-publication)/.test(
+      row.sourceIssueReference,
+    )
+  )).length, 5);
+  assert.deepEqual(
+    packet.excludedSourceRows
+      .filter((row) => !/(trade header|section header|section marker|series intro|cross-link|DC co-publication)/.test(
+        row.sourceIssueReference,
+      ))
+      .map(({ sourcePosition, sourceIssueReference, reason }) => ({
+        sourcePosition,
+        sourceIssueReference,
+        reason,
+      })),
+    [
+      {
+        sourcePosition: 840,
+        sourceIssueReference: 'Punisher: World War Frank',
+        reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 841,
+        sourceIssueReference: 'Cosmic Ghost Rider',
+        reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 842,
+        sourceIssueReference: 'War of the Realms',
+        reason: 'The source names the event but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 843,
+        sourceIssueReference: 'Punisher: Kill Krew',
+        reason: 'The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+      {
+        sourcePosition: 845,
+        sourceIssueReference: 'Punisher/Captain America: Blood & Glory (1992)',
+        reason: 'The source names the crossover but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.',
+      },
+    ],
+  );
   assert.equal(mapping.rows.length, 480);
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 151);
+  assert.equal(report.comparisonCount, manifest.lists.length);
+  assert.deepEqual(regeneratedReport, report);
   assert.equal(parsed.entries.length, 480);
   assert.equal(parsed.unresolved.length, 181);
   assert.equal(new Set(allPositions).size, allPositions.length);
-  assert.equal(Math.min(...allPositions), 1);
-  assert.equal(Math.max(...allPositions), 857);
+  assert.deepEqual(
+    [...allPositions].sort((left, right) => left - right),
+    Array.from({ length: packet.sourceOccurrenceCount }, (_, index) => index + 1),
+  );
+  const missingCanonicalPosition = structuredClone(packet);
+  delete missingCanonicalPosition.rows[0].sourcePosition;
+  missingCanonicalPosition.packetDigest = packetDigestFor(missingCanonicalPosition);
+  assert.throws(
+    () => validateFrozenPacket(missingCanonicalPosition),
+    /must either all define sourcePosition or all omit it/i,
+  );
+  const duplicateCanonicalPosition = structuredClone(packet);
+  duplicateCanonicalPosition.rows[0].sourcePosition = packet.sourceGaps[0].sourcePosition;
+  duplicateCanonicalPosition.packetDigest = packetDigestFor(duplicateCanonicalPosition);
+  assert.throws(
+    () => validateFrozenPacket(duplicateCanonicalPosition),
+    /source position .* is used more than once/i,
+  );
   assert.equal(inventoryRecord?.deliveryStatus, 'ready');
   assert.equal(inventoryRecord?.centralDisposition, 'pilot-approved');
   assert.match(markdown, /^## Punisher: Back to the War Omnibus$/m);

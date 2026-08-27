@@ -1,7 +1,7 @@
 {
   "id": "punisher-reading-order",
   "inventoryId": "punisher-reading-order",
-  "packetDigest": "ceb2bef07986561e631dcec3f54c8b2624cd6338f5c8a5f4831c000422416877",
+  "packetDigest": "985054adad840d3ecd5d04e7d0b77c6413439b3e0d08509945d500485632d048",
   "sourceUrl": "https://www.comicbookherald.com/punisher-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceRetrievalStatus": "retrieved",
@@ -63,12 +63,12 @@
     "Thunderbolts Vol. 5: Punisher vs. Thunderbolts (trade header)",
     "Original Sin (trade header)",
     "The Punisher: Legacy Vol. 1 (trade header, no explicit issue number)",
-    "Punisher: World War Frank (named without an explicit issue number; no matching provider one-shot is indexed)",
-    "Cosmic Ghost Rider (named without an explicit issue number for a multi-issue series)",
-    "War of the Realms (bare event-topic mention, no explicit issue number)",
-    "Punisher: Kill Krew (named without an explicit issue number for a five-issue series)",
+    "Punisher: World War Frank",
+    "Cosmic Ghost Rider",
+    "War of the Realms",
+    "Punisher: Kill Krew",
     "War Of The Realms: The Punisher (trade header)",
-    "Punisher/Captain America: Blood & Glory (1992) (named without an explicit issue number for a three-issue series)",
+    "Punisher/Captain America: Blood & Glory (1992)",
     "Batman/Punisher: Lake of Fire (1994) (DC co-publication outside the Marvel-only provider catalog)",
     "Punisher/Batman: Deadly Knights (1994) (DC co-publication outside the Marvel-only provider catalog)",
     "The Punisher: War Machine Vol. 1 (trade header)",
@@ -22574,7 +22574,7 @@
     "timeline": null,
     "coverIssueId": 6515
   },
-  "mappingDigest": "4221198fada47ec522c585a507b62d697745c3e49a13ce08075464da4e00ba0f",
+  "mappingDigest": "7043c68f43c00fb0017a4323fb8977c49cdc9aac586865bb4a97f5aad1fb5d9d",
   "excludedSourceRows": [
     {
       "sourcePosition": 784,
@@ -22914,26 +22914,26 @@
     },
     {
       "sourcePosition": 840,
-      "sourceIssueReference": "Punisher: World War Frank (named without an explicit issue number; no matching provider one-shot is indexed)",
-      "reason": "Non-issue boundary marker or out-of-boundary reference.",
+      "sourceIssueReference": "Punisher: World War Frank",
+      "reason": "The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.",
       "decisionScope": "punisher-reading-order boundary"
     },
     {
       "sourcePosition": 841,
-      "sourceIssueReference": "Cosmic Ghost Rider (named without an explicit issue number for a multi-issue series)",
-      "reason": "Non-issue boundary marker or out-of-boundary reference.",
+      "sourceIssueReference": "Cosmic Ghost Rider",
+      "reason": "The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.",
       "decisionScope": "punisher-reading-order boundary"
     },
     {
       "sourcePosition": 842,
-      "sourceIssueReference": "War of the Realms (bare event-topic mention, no explicit issue number)",
-      "reason": "Non-issue boundary marker or out-of-boundary reference.",
+      "sourceIssueReference": "War of the Realms",
+      "reason": "The source names the event but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.",
       "decisionScope": "punisher-reading-order boundary"
     },
     {
       "sourcePosition": 843,
-      "sourceIssueReference": "Punisher: Kill Krew (named without an explicit issue number for a five-issue series)",
-      "reason": "Non-issue boundary marker or out-of-boundary reference.",
+      "sourceIssueReference": "Punisher: Kill Krew",
+      "reason": "The source names the collection but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.",
       "decisionScope": "punisher-reading-order boundary"
     },
     {
@@ -22944,8 +22944,8 @@
     },
     {
       "sourcePosition": 845,
-      "sourceIssueReference": "Punisher/Captain America: Blood & Glory (1992) (named without an explicit issue number for a three-issue series)",
-      "reason": "Non-issue boundary marker or out-of-boundary reference.",
+      "sourceIssueReference": "Punisher/Captain America: Blood & Glory (1992)",
+      "reason": "The source names the crossover but supplies neither an issue number nor a Collects statement, so it does not identify a publishable issue.",
       "decisionScope": "punisher-reading-order boundary"
     },
     {

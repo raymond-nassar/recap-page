@@ -183,6 +183,10 @@ function assertPacketRow(row, index) {
     throw new Error(`${label} seriesYear must be an integer`);
   }
   if (row.issueNumber != null) assertNonEmptyString(String(row.issueNumber), `${label} issueNumber`);
+  if (row.sourcePosition != null
+    && (!Number.isInteger(row.sourcePosition) || row.sourcePosition < 1)) {
+    throw new Error(`${label} sourcePosition must be a positive integer`);
+  }
   if (row.seriesId != null && !Number.isInteger(row.seriesId)) {
     throw new Error(`${label} seriesId must be an integer or null`);
   }
@@ -359,6 +363,11 @@ export function sourcePositionsForPacket(packet) {
   const packetId = String(packet?.id ?? 'Frozen packet');
   const rows = Array.isArray(packet?.rows) ? packet.rows : [];
   assertCanonicalPacketRows(rows, packetId);
+  const rowsDeclareSourcePositions = rows.some((row) => Object.hasOwn(row, 'sourcePosition'));
+  if (rowsDeclareSourcePositions
+    && !rows.every((row) => Object.hasOwn(row, 'sourcePosition'))) {
+    throw new Error(`${packetId} rows must either all define sourcePosition or all omit it`);
+  }
   const hasOccurrenceCount = Object.hasOwn(packet ?? {}, 'sourceOccurrenceCount');
   const hasRepeatedReferences = Object.hasOwn(packet ?? {}, 'repeatedSourceReferences');
   const hasExcludedRows = Object.hasOwn(packet ?? {}, 'excludedSourceRows');
@@ -435,6 +444,42 @@ export function sourcePositionsForPacket(packet) {
     }
     gapIdentities.add(identity);
     bySourcePosition.set(gap.sourcePosition, gap);
+  }
+
+  if (rowsDeclareSourcePositions) {
+    const canonicalSourcePositions = [];
+    let previousSourcePosition = 0;
+    for (const row of rows) {
+      const sourcePosition = row.sourcePosition;
+      if (sourcePosition > packet.sourceOccurrenceCount) {
+        throw new Error(`${packetId} canonical source position ${sourcePosition} is outside the source occurrence count`);
+      }
+      if (bySourcePosition.has(sourcePosition)) {
+        throw new Error(`${packetId} source position ${sourcePosition} is used more than once`);
+      }
+      if (sourcePosition <= previousSourcePosition) {
+        throw new Error(`${packetId} canonical rows must be in sourcePosition order`);
+      }
+      bySourcePosition.set(sourcePosition, row);
+      canonicalSourcePositions.push(sourcePosition);
+      previousSourcePosition = sourcePosition;
+    }
+    if (bySourcePosition.size !== packet.sourceOccurrenceCount) {
+      throw new Error(`${packetId} source occurrence positions do not cover the source occurrence count`);
+    }
+    for (const reference of references) {
+      const canonical = rows[reference.canonicalRow - 1];
+      if (canonical.sourcePosition >= reference.sourcePosition) {
+        throw new Error(`${packetId} repeated source position ${reference.sourcePosition} must target an earlier canonical row`);
+      }
+      const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
+      for (const field of fields) {
+        if (String(reference[field]) !== String(canonical[field])) {
+          throw new Error(`${packetId} repeated source position ${reference.sourcePosition} ${field} differs from canonical row ${reference.canonicalRow}`);
+        }
+      }
+    }
+    return canonicalSourcePositions;
   }
 
   const canonicalSourcePositions = [];
