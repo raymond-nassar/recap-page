@@ -1782,7 +1782,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot. The offline ledger is frozen at 736 issue-bearing source positions: 707 exact candidates, 15 repeats, 3 gaps, and 11 exclusions. Exact resolution remains blocked until the later metadata lane transfers.",
+    "reason": "The normalized full-page source boundary has 811 document-ordered source positions: 784 explicit numeric references, 16 title-only issue identities, and 11 prose or year exclusions. The offline ledger holds 769 canonical candidates, 31 repeats, and 11 exclusions, with no provider metadata queried. Exact resolution remains blocked until the later metadata lane transfers.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
@@ -1795,7 +1795,7 @@
       65
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "9311edf7f432cb2e927ae85e7f54ea01109215df2d0ecd2e118d2201b28115a5",
+    "sourceContentSha256": "eee0f0eedf0e3d1350e54410d6ee80f0fd0b56d9491a36c3700ea429d9d61078",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
