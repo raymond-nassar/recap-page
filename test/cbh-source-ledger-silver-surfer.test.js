@@ -46,6 +46,8 @@ function assertLedgerShape(ledger) {
   assert.equal(ledger.occurrenceCount, ledger.occurrences.length);
   assert.equal(ledger.groupCount, new Set(ledger.occurrences.map((entry) => entry.sourceGroup)).size);
   assert.equal(ledger.groupCount, 8);
+  assert.equal(ledger.provenanceGroupCount, ledger.groupCount);
+  assert.equal(ledger.sourceNodeCount, new Set(ledger.occurrences.map((entry) => entry.sourceNodeIndex)).size);
   assert.equal(ledger.normalizedSourceHash, normalizedDigest(ledger));
   assert.equal(ledger.sourceNodeOrderHash, orderDigest(ledger));
   const counts = ledger.occurrences.reduce((acc, entry) => {
@@ -57,6 +59,10 @@ function assertLedgerShape(ledger) {
   assert.equal(counts.repeat > 0, true);
   assert.equal(counts.gap > 0, true);
   assert.equal(counts.exclusion > 0, true);
+  assert.deepEqual(ledger.categorizedPositions.canonicalCandidatePositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'canonical-candidate').map((entry) => entry.position));
+  assert.deepEqual(ledger.categorizedPositions.repeatPositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'repeat').map((entry) => entry.position));
+  assert.deepEqual(ledger.categorizedPositions.gapPositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'gap').map((entry) => entry.position));
+  assert.deepEqual(ledger.categorizedPositions.exclusionPositions, ledger.occurrences.filter((entry) => entry.provisionalDisposition === 'exclusion').map((entry) => entry.position));
   ledger.occurrences.forEach((entry, index) => {
     assert.equal(entry.position, index + 1);
     assert.equal(typeof entry.sourceNodeIndex, 'number');
@@ -76,6 +82,13 @@ function assertLedgerShape(ledger) {
       assert.equal(entry.sourceText, 'Issues:');
     }
   });
+  assert.equal(
+    ledger.occurrenceCount,
+    ledger.categorizedPositions.canonicalCandidatePositions.length
+      + ledger.categorizedPositions.repeatPositions.length
+      + ledger.categorizedPositions.gapPositions.length
+      + ledger.categorizedPositions.exclusionPositions.length,
+  );
 }
 
 test('Silver Surfer source ledger preserves the full boundary and order', async () => {
