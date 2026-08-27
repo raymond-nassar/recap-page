@@ -333,10 +333,10 @@ const moonKnightSourceLedger = expandLedger([
   ]),
   group('Marvel Legacy Moon Knight and Beyond!', [
     block(104, 'Collects: Moon Knight 188-193', [
-      range({ title: 'Moon Knight', year: 2014, start: 188, end: 193, sourceRangeReference: 'Moon Knight 188-193' }),
+      range({ title: 'Moon Knight', year: 2016, start: 188, end: 193, sourceRangeReference: 'Moon Knight 188-193', note: 'The source omits a series year; provider series 20488 identifies the legacy-numbered issues as Moon Knight (2016).' }),
     ]),
     block(106, 'Collects: Moon Knight 194-198', [
-      range({ title: 'Moon Knight', year: 2014, start: 194, end: 198, sourceRangeReference: 'Moon Knight 194-198' }),
+      range({ title: 'Moon Knight', year: 2016, start: 194, end: 198, sourceRangeReference: 'Moon Knight 194-198', note: 'The source omits a series year; provider series 20488 identifies the legacy-numbered issues as Moon Knight (2016).' }),
     ]),
     block(108, 'Collects: Doctor Strange: Damnation #1-4, Damnation: Johnny Blaze - Ghost Rider #1, Doctor Strange (2015) #386-389, Iron Fist (2017) #78-80 And Ben Reilly: Scarlet Spider #15-17', [
       range({ title: 'Doctor Strange: Damnation', year: 2018, start: 1, end: 4, sourceRangeReference: 'Doctor Strange: Damnation #1-4' }),

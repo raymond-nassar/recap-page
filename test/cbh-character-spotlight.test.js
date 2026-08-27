@@ -451,10 +451,19 @@ function assertMoonKnightSourceLedgerShape(ledger) {
   const block128 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 128);
   const block129 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 129);
   const block137 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 137);
+  const legacyMoonKnight = ledger.issueOccurrences.filter((occurrence) => (
+    occurrence.normalizedSeriesTitle === 'Moon Knight'
+    && Number(occurrence.issueNumber) >= 188
+    && Number(occurrence.issueNumber) <= 198
+  ));
   assert.equal(block11.occurrences.filter((occurrence) => occurrence.classification === 'semantic-exclusion').length, 10);
   assert.ok(block19.occurrences.slice(0, 8).every((occurrence) => occurrence.classification === 'true-repeat'));
   assert.ok(block19.occurrences.slice(8).every((occurrence) => occurrence.classification === 'provisional-canonical-candidate'));
   assert.ok(block28.occurrences.at(-1).classification === 'semantic-exclusion');
+  assert.equal(
+    block28.text,
+    'Collects: West Coast Avengers (1985) #38-46, Avengers West Coast (1989) #47-52, West Coast Avengers Annual (1986) #3, Avengers West Coast Annual (1989) #4, Material From Avengers Spotlight (1989) #23.',
+  );
   assert.ok(block30.occurrences.slice(0, 2).every((occurrence) => occurrence.classification === 'true-repeat'));
   assert.ok(block33.occurrences.at(-1).classification === 'provisional-canonical-candidate');
   assert.equal(block51.occurrences.length, 6);
@@ -469,6 +478,8 @@ function assertMoonKnightSourceLedgerShape(ledger) {
   assert.equal(block129.occurrences[0].classification, 'true-repeat');
   assert.equal(block129.occurrences[0].repeatOf, 384);
   assert.equal(block137.occurrences[0].classification, 'provisional-canonical-candidate');
+  assert.equal(legacyMoonKnight.length, 11);
+  assert.ok(legacyMoonKnight.every((occurrence) => occurrence.seriesYear === 2016));
 
   assert.deepEqual(
     ledger.issueOccurrences
@@ -1348,6 +1359,11 @@ test('the Moon Knight source ledger stays exact through its frozen source bounda
     && occurrence.issueNumber === '1'
   )).seriesYear = 1980;
   assert.throws(() => assertMoonKnightSourceLedgerShape(titleOnlyCollision), /deep-equal/);
+
+  const aliasTransitionMutated = structuredClone(moonKnightSourceLedger);
+  aliasTransitionMutated.sourceNodes.find((node) => node.sourceBlockPosition === 28)
+    .text = 'Collects: West Coast Avengers (1985) #38-52.';
+  assert.throws(() => assertMoonKnightSourceLedgerShape(aliasTransitionMutated), /strictly equal/);
 
   const blankNamedCandidate = structuredClone(moonKnightSourceLedger);
   blankNamedCandidate.issueOccurrences.find((occurrence) => occurrence.sourceOccurrencePosition === 206)
