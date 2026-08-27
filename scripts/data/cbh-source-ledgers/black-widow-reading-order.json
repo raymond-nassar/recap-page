@@ -13,9 +13,9 @@
   "issueBearingBlockCount": 76,
   "sourceOccurrenceCount": 773,
   "categoryCounts": {
-    "provisional-canonical-candidate": 573,
+    "provisional-canonical-candidate": 572,
     "true-repeat": 17,
-    "unresolved-included-identity-gap": 0,
+    "unresolved-included-identity-gap": 1,
     "semantic-exclusion": 183
   },
   "excludedSourceReferences": [
@@ -5337,8 +5337,8 @@
       "normalizedSeriesTitle": "Captain America: The Legend",
       "seriesYear": 1996,
       "issueNumber": null,
-      "disposition": "provisional-canonical-candidate",
-      "reason": "Named collection is source-identifiable from the surrounding Black Widow in the 1990s section."
+      "disposition": "unresolved-included-identity-gap",
+      "reason": "The fully paged provider catalog has no exact or normalized Captain America: The Legend series identity."
     },
     {
       "sourcePosition": 442,

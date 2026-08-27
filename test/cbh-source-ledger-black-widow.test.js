@@ -9,10 +9,10 @@ const ledgerPath = path.join(root, 'scripts', 'data', 'cbh-source-ledgers', 'bla
 const inventoryPath = path.join(root, 'scripts', 'data', 'cbh-character-inventory.json');
 
 const expectedCategoryCounts = {
-  'provisional-canonical-candidate': 573,
+  'provisional-canonical-candidate': 572,
   'semantic-exclusion': 183,
   'true-repeat': 17,
-  'unresolved-included-identity-gap': 0,
+  'unresolved-included-identity-gap': 1,
 };
 
 const expectedNodeCounts = new Map([
@@ -47,6 +47,12 @@ const namedComicsWithoutSourceIssueNumbers = new Map([
   [466, { title: 'Thunderbolts Annual', year: 1997 }],
   [699, { title: 'Infinity Countdown Prime', year: 2018 }],
 ]);
+
+const sourceNumberingDistinctFromProviderCanonicalNumbering = {
+  sourcePosition: 298,
+  sourceIssueReference: 'Black Widow: The Coldest War Marvel OGN #61',
+  sourceIssueNumber: '61',
+};
 
 function range(start, end) {
   return Array.from({ length: end - start + 1 }, (_, index) => start + index);
@@ -187,6 +193,13 @@ function validateLedger(ledger) {
     assert.equal(entry?.issueNumber, null, `named comic at source position ${sourcePosition} must not infer issue #1`);
   }
 
+  const coldestWar = ledger.occurrences.find(
+    (entry) => entry.sourcePosition === sourceNumberingDistinctFromProviderCanonicalNumbering.sourcePosition,
+  );
+  assert.equal(coldestWar?.sourceIssueReference, sourceNumberingDistinctFromProviderCanonicalNumbering.sourceIssueReference);
+  assert.equal(coldestWar?.issueNumber, sourceNumberingDistinctFromProviderCanonicalNumbering.sourceIssueNumber);
+  assert.equal(Object.hasOwn(coldestWar ?? {}, 'metadataIssueNumber'), false);
+
   const node10 = ledger.occurrences.filter((entry) => entry.sourceNode === 10);
   assert.equal(node10.filter((entry) => entry.disposition === 'true-repeat').length, 1);
   assert.equal(node10.some((entry) => entry.sourceIssueReference === 'Amazing Spider-Man #86'), true);
@@ -206,7 +219,8 @@ function validateLedger(ledger) {
   assert.equal(node95.some((entry) => entry.sourceIssueReference === 'Ashcan Edition'), true);
 
   const node98 = ledger.occurrences.filter((entry) => entry.sourceNode === 98);
-  assert.equal(node98.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 15);
+  assert.equal(node98.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 14);
+  assert.equal(node98.filter((entry) => entry.disposition === 'unresolved-included-identity-gap').length, 1);
   assert.equal(node98.filter((entry) => entry.disposition === 'semantic-exclusion').length, 2);
   assert.equal(node98.some((entry) => entry.sourceIssueReference === 'Captain America: The Legend (1996)'), true);
 
