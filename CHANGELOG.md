@@ -14,6 +14,13 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Venom reading guide
+
+In plain English: You can now follow Venom stories from the symbiote's first appearance through
+the newest source-page material. Repeated recommendations appear only once in the checklist, and
+33 comics that the maintained metadata cannot yet identify remain visible as unresolved entries
+instead of being replaced or hidden. Nothing you have saved is changed.
+
 ### Added the complete Daredevil reading guide
 
 In plain English: A complete Daredevil reading guide is now available, from his earliest stories
