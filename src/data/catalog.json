@@ -2971,6 +2971,42 @@
       "updatedAt": "2026-08-27T14:42:20.271Z"
     },
     {
+      "id": "moon-knight-reading-order",
+      "file": "moon_knight_reading_order.json",
+      "name": "Moon Knight",
+      "description": "Moon Knight from his Werewolf by Night debut through his modern solo runs, Avengers appearances, and latest collected adventures.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 392,
+      "collections": 69,
+      "characters": [
+        "Moon Knight",
+        "Marc Spector",
+        "Khonshu"
+      ],
+      "keywords": [
+        "Moon Knight",
+        "Marc Spector",
+        "Khonshu",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1972,
+      "coverIssueId": 51010,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/58127df9d72ac",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/moon-knight-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T17:46:34.548Z"
+    },
+    {
       "id": "xmen-claremont",
       "file": "xmen_claremont.json",
       "name": "X-Men: Silver Age to Claremont",

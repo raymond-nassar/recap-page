@@ -14,6 +14,16 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Moon Knight reading guide
+
+In plain English: A complete Moon Knight reading guide is now available from his earliest
+appearances through newer collected stories. Eighteen comics remain visible as placeholders because
+their metadata could not be confirmed, so the guide never guesses or loses their place. Nothing you
+have saved is changed.
+
+For maintainers: the frozen source has 414 occurrences: 374 exact identities, 11 backward repeats,
+18 metadata gaps tracked in Issue #310, and 11 partial-material exclusions.
+
 ### Added a complete Black Widow reading guide
 
 In plain English: A new Black Widow guide follows Natasha Romanoff's comics from her earliest appearances through the latest source-page additions. It has exact Marvel links for 556 comics, while 14 source references stay visible as unresolved placeholders rather than being guessed at or hidden. Nothing you have saved is changed.

@@ -8,7 +8,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "All 127 source-defined issues resolve exactly in source order, and the separate Complete guide remains distinct despite three approved partial relationships.",
-    "sourceRetrievedAt": "2026-08-27",
+    "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "atlantis-attacks",
       "essential-avengers",
@@ -39,7 +39,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "The modern Marvel-era guide now ships with 69 source rows, 13 resolved items, and 56 explicit placeholders, so the remaining metadata gaps are preserved as provenance instead of blocking publication.",
-    "sourceRetrievedAt": "2026-08-27",
+    "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "captain-america-best-of",
       "doctor-doom-primer",
@@ -2109,13 +2109,33 @@
     "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "The frozen full-page source ledger preserves 414 occurrences: 374 exact provider-resolved comics, 11 backward repeats, 18 explicit open metadata gaps, and 11 partial-material exclusions. The complete-library report has 17 approved non-none relationships and no exact duplicate.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "atlantis-attacks",
+      "damnation",
+      "daredevil-reading-order",
+      "devils-reign",
+      "doctor-strange-reading-order",
+      "evolutionary-war",
+      "heroic-age-avengers",
+      "magneto-reading-order",
+      "maximum-security",
+      "shadowland",
+      "thanos-reading-order",
+      "venom-reading-order",
+      "wandavision",
+      "white-tiger-ava-ayala"
+    ],
+    "catalogIds": [
+      "moon-knight-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Moon Knight"
     ],
@@ -2125,7 +2145,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "db641106edefa8524664c9e980fffdd870a60c3fc49f7f7fc841aedff9f7fa20",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 76,
