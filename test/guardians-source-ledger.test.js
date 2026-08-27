@@ -42,6 +42,69 @@ function occurrencesAt(ledger, sourceBlockPosition) {
   return ledger.issueOccurrences.filter((entry) => entry.sourceBlockPosition === sourceBlockPosition);
 }
 
+function partitionDigest(ledger) {
+  return digest(JSON.stringify(ledger.issueOccurrences.map((entry) => ({
+    sourceOccurrencePosition: entry.sourceOccurrencePosition,
+    classification: entry.classification,
+    sourceClauseKind: entry.sourceClauseKind,
+    sourceIssueReference: entry.sourceIssueReference,
+    sourceIdentity: entry.sourceIdentity,
+  }))));
+}
+
+function candidateRangeRowsDigest(ledger) {
+  return digest(JSON.stringify(ledger.issueOccurrences
+    .filter((entry) => entry.classification === 'provisional-canonical-candidate' && entry.sourceIdentity != null)
+    .map((entry) => ({
+      sourceOccurrencePosition: entry.sourceOccurrencePosition,
+      sourceIdentity: sourceIdentity(entry),
+      sourceClauseKind: entry.sourceClauseKind,
+      sourceIssueReference: entry.sourceIssueReference,
+    }))));
+}
+
+function repeatRowsDigest(ledger) {
+  return digest(JSON.stringify(ledger.issueOccurrences
+    .filter((entry) => entry.classification === 'true-repeat')
+    .map((entry) => ({
+      sourceOccurrencePosition: entry.sourceOccurrencePosition,
+      sourceIdentity: sourceIdentity(entry),
+      sourceClauseKind: entry.sourceClauseKind,
+      sourceIssueReference: entry.sourceIssueReference,
+      repeatOfPositions: entry.repeatOfPositions,
+    }))));
+}
+
+function semanticExclusionRowsDigest(ledger) {
+  return digest(JSON.stringify(ledger.issueOccurrences
+    .filter((entry) => entry.classification === 'semantic-exclusion')
+    .map((entry) => ({
+      sourceOccurrencePosition: entry.sourceOccurrencePosition,
+      sourceBlockPosition: entry.sourceBlockPosition,
+      sourceClauseKind: entry.sourceClauseKind,
+      sourceIssueReference: entry.sourceIssueReference,
+      reason: entry.reason,
+    }))));
+}
+
+function namedWorkAuditDigest(ledger) {
+  return digest(JSON.stringify(ledger.issueOccurrences
+    .filter((entry) => entry.sourceClauseKind === 'named-work-label')
+    .map((entry) => ({
+      sourceOccurrencePosition: entry.sourceOccurrencePosition,
+      sourceBlockPosition: entry.sourceBlockPosition,
+      sourceGroupPosition: entry.sourceGroupPosition,
+      sourceGroup: entry.sourceGroup,
+      sourceIssueReference: entry.sourceIssueReference,
+      verbatimSourceReference: entry.sourceRangeReference,
+      inferredTitle: entry.normalizedSeriesTitle,
+      inferredYear: entry.sourceIssueReference === 'Guardians of Knowhere' ? 2015 : 'source-unspecified',
+      inferredFormat: entry.sourceIssueReference === 'Guardians of Knowhere' ? 'crossover' : (entry.sourceIssueReference === 'Guardians of the Galaxy: Awesome Mix Infinite Comic' ? 'infinite comic' : 'event'),
+      classification: entry.classification,
+      reason: entry.reason,
+    }))));
+}
+
 function cloneLedger(ledger) {
   return JSON.parse(JSON.stringify(ledger));
 }
@@ -62,13 +125,80 @@ function assertGuardiansLedgerShape(ledger) {
   };
   const expectedClauseClassifications = {
     'collection-label': 'semantic-exclusion',
-    'named-work-label': 'unresolved-included-identity-gap',
+    'named-work-label': 'provisional-canonical-candidate',
     'event-label': 'semantic-exclusion',
     'creator-run-label': 'semantic-exclusion',
     'issue-prose': 'provisional-canonical-candidate',
     'issue-range-label': 'provisional-canonical-candidate',
     'issue-label': 'provisional-canonical-candidate',
   };
+  const expectedNamedWorkAudit = [
+    {
+      sourceOccurrencePosition: 117,
+      sourceBlockPosition: 31,
+      sourceGroupPosition: 5,
+      sourceGroup: 'Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run',
+      sourceIssueReference: 'Annihilation',
+      verbatimSourceReference: 'Annihilation',
+      inferredTitle: 'Annihilation',
+      inferredYear: 'source-unspecified',
+      inferredFormat: 'event',
+      classification: 'provisional-canonical-candidate',
+      reason: 'Named work is source-identifiable without a numeric issue label.',
+    },
+    {
+      sourceOccurrencePosition: 118,
+      sourceBlockPosition: 34,
+      sourceGroupPosition: 5,
+      sourceGroup: 'Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run',
+      sourceIssueReference: 'Annihilation Conquest',
+      verbatimSourceReference: 'Annihilation Conquest',
+      inferredTitle: 'Annihilation Conquest',
+      inferredYear: 'source-unspecified',
+      inferredFormat: 'event',
+      classification: 'provisional-canonical-candidate',
+      reason: 'Named work is source-identifiable without a numeric issue label.',
+    },
+    {
+      sourceOccurrencePosition: 146,
+      sourceBlockPosition: 41,
+      sourceGroupPosition: 5,
+      sourceGroup: 'Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run',
+      sourceIssueReference: 'The Thanos Imperative',
+      verbatimSourceReference: 'The Thanos Imperative',
+      inferredTitle: 'The Thanos Imperative',
+      inferredYear: 'source-unspecified',
+      inferredFormat: 'event',
+      classification: 'provisional-canonical-candidate',
+      reason: 'Named work is source-identifiable without a numeric issue label.',
+    },
+    {
+      sourceOccurrencePosition: 240,
+      sourceBlockPosition: 78,
+      sourceGroupPosition: 6,
+      sourceGroup: 'Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run',
+      sourceIssueReference: 'Guardians of Knowhere',
+      verbatimSourceReference: 'Guardians of Knowhere',
+      inferredTitle: 'Guardians of Knowhere',
+      inferredYear: 2015,
+      inferredFormat: 'crossover',
+      classification: 'provisional-canonical-candidate',
+      reason: 'Named work is source-identifiable without a numeric issue label.',
+    },
+    {
+      sourceOccurrencePosition: 271,
+      sourceBlockPosition: 93,
+      sourceGroupPosition: 7,
+      sourceGroup: 'All-New All-Different Guardians of the Galaxy... Still by Bendis',
+      sourceIssueReference: 'Guardians of the Galaxy: Awesome Mix Infinite Comic',
+      verbatimSourceReference: 'Guardians of the Galaxy: Awesome Mix Infinite Comic',
+      inferredTitle: 'Guardians of the Galaxy: Awesome Mix Infinite Comic',
+      inferredYear: 'source-unspecified',
+      inferredFormat: 'infinite comic',
+      classification: 'provisional-canonical-candidate',
+      reason: 'Named work is source-identifiable without a numeric issue label.',
+    },
+  ];
 
   assert.equal(ledger.sourceNodes.length, ledger.sourceBlockCount);
   assert.equal(ledger.provenanceGroups.length, ledger.provenanceGroupCount);
@@ -76,6 +206,12 @@ function assertGuardiansLedgerShape(ledger) {
   assert.equal(ledger.sourceContentSha256, sourceContentDigest(ledger));
   assert.equal(ledger.sourceIssueBearingBlocksSha256, issueBearingBlocksDigest(ledger));
   assert.equal(ledger.sourceBoundaryDigest, digest(ledger.sourceBoundary));
+  assert.equal(ledger.sourceReview.namedWorkAuditDigest, namedWorkAuditDigest(ledger));
+  assert.equal(ledger.sourceReview.candidateRangeRowsDigest, candidateRangeRowsDigest(ledger));
+  assert.equal(ledger.sourceReview.repeatRowsDigest, repeatRowsDigest(ledger));
+  assert.equal(ledger.sourceReview.semanticExclusionRowsDigest, semanticExclusionRowsDigest(ledger));
+  assert.equal(ledger.sourceReview.partitionDigest, partitionDigest(ledger));
+  assert.deepEqual(ledger.sourceReview.namedWorkAudit, expectedNamedWorkAudit);
   assert.deepEqual(
     ledger.sourceNodes.map((node) => node.sourceBlockPosition),
     Array.from({ length: ledger.sourceBlockCount }, (_, index) => index + 1),
@@ -123,10 +259,9 @@ function assertGuardiansLedgerShape(ledger) {
   assert.deepEqual(
     ledger.categoryCounts,
     {
-      'provisional-canonical-candidate': 318,
+      'provisional-canonical-candidate': 323,
       'semantic-exclusion': 59,
       'true-repeat': 38,
-      'unresolved-included-identity-gap': 5,
     },
   );
   for (const [classification, positions] of Object.entries(ledger.categoryPositions)) {
@@ -174,17 +309,18 @@ function assertGuardiansLedgerShape(ledger) {
     }
 
     if (entry.sourceClauseKind === 'named-work-label') {
-      assert.equal(entry.classification, 'unresolved-included-identity-gap');
+      assert.equal(entry.classification, 'provisional-canonical-candidate');
       assert.ok(entry.normalizedSeriesTitle);
       assert.equal(entry.issueNumber, null);
       assert.equal(entry.sourceIdentity, null);
+      assert.equal(entry.reason, 'Named work is source-identifiable without a numeric issue label.');
     }
 
     if (entry.sourceClauseKind === 'issue-prose'
       || entry.sourceClauseKind === 'issue-range-label'
       || entry.sourceClauseKind === 'issue-label') {
       assert.equal(entry.classification, 'provisional-canonical-candidate');
-      assert.ok(entry.sourceIdentity);
+      assert.equal(entry.sourceIdentity, sourceIdentity(entry), entry.sourceIssueReference);
     }
 
     if (entry.sourceClauseKind === 'event-label' || entry.sourceClauseKind === 'creator-run-label') {
@@ -248,10 +384,9 @@ test('the Guardians Stage A ledger freezes the full-page boundary and inventory 
   assert.equal(ledger.provenanceGroupCount, headings.length);
   assert.equal(ledger.sourceOccurrenceCount, 420);
   assert.deepEqual(ledger.categoryCounts, {
-    'provisional-canonical-candidate': 318,
+    'provisional-canonical-candidate': 323,
     'semantic-exclusion': 59,
     'true-repeat': 38,
-    'unresolved-included-identity-gap': 5,
   });
   assert.match(ledger.sourceBoundary, /No qualifying Best Comics or Essential Comics subsection exists/i);
   assert.match(ledger.sourceBoundary, /full page is the frozen boundary/i);
@@ -284,6 +419,18 @@ test('the Guardians Stage A ledger freezes the full-page boundary and inventory 
     [0, 0, 38, 78, 30, 94, 42, 95, 43],
   );
   assert.equal(
+    ledger.issueOccurrences.filter((entry) => entry.classification === 'provisional-canonical-candidate').length,
+    323,
+  );
+  assert.equal(
+    ledger.issueOccurrences.filter((entry) => entry.classification === 'provisional-canonical-candidate' && entry.sourceIdentity == null).length,
+    5,
+  );
+  assert.equal(
+    ledger.issueOccurrences.filter((entry) => entry.classification === 'unresolved-included-identity-gap').length,
+    0,
+  );
+  assert.equal(
     ledger.issueOccurrences.filter((entry) => entry.sourceClauseKind === 'named-work-label').length,
     5,
   );
@@ -311,9 +458,9 @@ test('the Guardians Stage A ledger freezes the full-page boundary and inventory 
   assert.deepEqual(record.catalogIds, []);
 });
 
-test('the Guardians Stage A ledger expands repeats, source gaps, and partial-material exclusions', async () => {
+test('the Guardians Stage A ledger expands repeats, named works, and partial-material exclusions', async () => {
   const ledger = await readJson('scripts/data/cbh-source-ledgers/guardians-of-the-galaxy-reading-order.json');
-  const expectedGapRefs = [
+  const expectedNamedWorkRefs = [
     'Annihilation',
     'Annihilation Conquest',
     'The Thanos Imperative',
@@ -332,10 +479,34 @@ test('the Guardians Stage A ledger expands repeats, source gaps, and partial-mat
   ];
 
   assert.deepEqual(
+    ledger.sourceReview.namedWorkAudit.map((entry) => entry.sourceIssueReference),
+    expectedNamedWorkRefs,
+  );
+  assert.deepEqual(
+    ledger.sourceReview.namedWorkAudit.map((entry) => [entry.sourceOccurrencePosition, entry.sourceBlockPosition, entry.sourceGroup]),
+    [
+      [117, 31, 'Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run'],
+      [118, 34, 'Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run'],
+      [146, 41, 'Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run'],
+      [240, 78, 'Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run'],
+      [271, 93, 'All-New All-Different Guardians of the Galaxy... Still by Bendis'],
+    ],
+  );
+  assert.equal(
+    ledger.issueOccurrences.filter((entry) => entry.classification === 'unresolved-included-identity-gap').length,
+    0,
+  );
+  assert.deepEqual(
     ledger.issueOccurrences
-      .filter((entry) => entry.classification === 'unresolved-included-identity-gap')
-      .map((entry) => entry.sourceIssueReference),
-    expectedGapRefs,
+      .filter((entry) => entry.sourceClauseKind === 'named-work-label')
+      .map((entry) => [entry.sourceOccurrencePosition, entry.classification, entry.reason]),
+    [
+      [117, 'provisional-canonical-candidate', 'Named work is source-identifiable without a numeric issue label.'],
+      [118, 'provisional-canonical-candidate', 'Named work is source-identifiable without a numeric issue label.'],
+      [146, 'provisional-canonical-candidate', 'Named work is source-identifiable without a numeric issue label.'],
+      [240, 'provisional-canonical-candidate', 'Named work is source-identifiable without a numeric issue label.'],
+      [271, 'provisional-canonical-candidate', 'Named work is source-identifiable without a numeric issue label.'],
+    ],
   );
   assert.equal(
     ledger.issueOccurrences
@@ -538,7 +709,6 @@ test('the Guardians Stage A ledger fails before the requested mutation cases', a
     'provisional-canonical-candidate',
     'semantic-exclusion',
     'true-repeat',
-    'unresolved-included-identity-gap',
   ]) {
     expectFailure(`deletion from ${classification}`, (mutated) => {
       const index = mutated.issueOccurrences.findIndex((entry) => entry.classification === classification);
@@ -573,14 +743,15 @@ test('the Guardians Stage A ledger fails before the requested mutation cases', a
     entry.classification = 'provisional-canonical-candidate';
   });
 
-  expectFailure('named work forced into gap', (mutated) => {
-    const entry = mutated.issueOccurrences.find((row) => row.sourceClauseKind === 'named-work-label');
-    entry.classification = 'semantic-exclusion';
-  });
+  const namedWorkMutated = cloneLedger(ledger);
+  namedWorkMutated.issueOccurrences.find((row) => row.sourceClauseKind === 'named-work-label').classification = 'semantic-exclusion';
+  assert.notEqual(namedWorkAuditDigest(namedWorkMutated), ledger.sourceReview.namedWorkAuditDigest);
+  assert.throws(() => assertGuardiansLedgerShape(namedWorkMutated));
 
-  expectFailure('inherited range identity loss', (mutated) => {
-    const entry = mutated.issueOccurrences.find((row) => row.sourceClauseKind === 'issue-range-label');
-    entry.normalizedSeriesTitle = null;
-    entry.sourceIdentity = null;
-  });
+  const inheritedRangeMutated = cloneLedger(ledger);
+  inheritedRangeMutated.issueOccurrences.find((row) => row.sourceClauseKind === 'issue-range-label').normalizedSeriesTitle = null;
+  inheritedRangeMutated.issueOccurrences.find((row) => row.sourceClauseKind === 'issue-range-label').sourceIdentity = null;
+  assert.notEqual(candidateRangeRowsDigest(inheritedRangeMutated), ledger.sourceReview.candidateRangeRowsDigest);
+  assert.notEqual(partitionDigest(inheritedRangeMutated), ledger.sourceReview.partitionDigest);
+  assert.throws(() => assertGuardiansLedgerShape(inheritedRangeMutated));
 });
