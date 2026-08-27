@@ -545,6 +545,16 @@ test('the Punisher packet preserves the full source ledger through stage A evide
   assert.equal(packet.repeatedSourceReferences.length, 122);
   assert.equal(packet.sourceGaps.length, 181);
   assert.equal(packet.excludedSourceRows.length, 74);
+  assert.equal(new Set(packet.rows.map((row) => row.sourceGroup)).size, 10);
+  assert.deepEqual(
+    mapping.rows.map((row) => row.sourcePosition),
+    packet.rows.map((row) => row.sourcePosition),
+  );
+  assert.deepEqual(
+    mapping.rows.map((row) => row.sourceGroup),
+    packet.rows.map((row) => row.sourceGroup),
+  );
+  assert.ok(packet.sourceGaps.every((gap) => gap.normalizedSeriesTitle && gap.issueNumber));
   assert.equal(packet.sourceReview.authorityIdentity, 'GPT-5.6 Terra');
   assert.equal(
     packet.excludedSourceRows.filter((row) => row.sourceIssueReference.includes('trade header')).length,
