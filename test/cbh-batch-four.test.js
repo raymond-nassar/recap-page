@@ -110,7 +110,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 237);
+  assert.equal(catalog.lists.length, 238);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(
@@ -266,9 +266,12 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
 
   const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);
   const existingIssueIds = new Set(existingRecords.flatMap((record) => record.selectedIssueIds));
-  const declaredOverlapCatalogIds = new Set(inventory.flatMap((record) => (
-    record.overlapIds?.some((id) => packetSet.has(id)) ? record.catalogIds : []
-  )));
+  const declaredOverlapCatalogIds = new Set([
+    'black-widow-reading-order',
+    ...inventory.flatMap((record) => (
+      record.overlapIds?.some((id) => packetSet.has(id)) ? record.catalogIds : []
+    )),
+  ]);
   const declaredOverlapIssueIds = new Set(existingRecords
     .filter((record) => declaredOverlapCatalogIds.has(record.id))
     .flatMap((record) => record.selectedIssueIds));
@@ -279,10 +282,11 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
 
   for (const id of FOURTH_PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 134);
-    assert.equal(report.comparisons.length, 134);
+    assert.equal(report.comparisonCount, 135);
+    assert.equal(report.comparisons.length, 135);
     const approved = new Map([
       ['infinity-countdown-wars', new Map([
+        ['black-widow-reading-order', ['partial', 16, ['66416', '66684', '67022', '67347', '67346', '68653', '68659', '68662', '68663', '68656', '67145', '67147', '67148', '67149', '67150', '67151']]],
         ['hunt-for-wolverine', ['partial', 1, ['66416']]],
         ['star-lord-reading-order', ['partial', 1, ['65547']]],
       ])],

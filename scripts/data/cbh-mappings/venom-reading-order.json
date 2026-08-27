@@ -16927,10 +16927,10 @@
     "coverIssueId": 10590
   },
   "relationshipReview": {
-    "reportDigest": "7fc687bca4e3359a207837b44b7d8fd1369b85476bec0710bde027e9b388deb4",
+    "reportDigest": "9f23ab611e018f4913fd8580b0c37bba1d4d28fb7080f971419d5551531438af",
     "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
     "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
-    "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
+    "libraryDigest": "efb63bc80dfda2a16068ed8ea7dfc149db54d1aa0455d1e541f5c71df9a182ec",
     "peerDigests": {},
     "dispositions": [
       {
@@ -16940,7 +16940,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 4,
+        "sharedIds": [
+          "74069",
+          "74070",
+          "77172",
+          "77173"
+        ]
       },
       {
         "orderId": "age-of-x-man",
@@ -16949,7 +16956,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -16958,7 +16967,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation",
@@ -16967,7 +16978,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
@@ -16976,7 +16989,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "apocalypse-wars",
@@ -16985,7 +17000,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "atlantis-attacks",
@@ -16994,7 +17011,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-defenders-war",
@@ -17003,7 +17022,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-disassembled",
@@ -17012,7 +17033,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
@@ -17021,7 +17044,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "axis",
@@ -17030,7 +17055,22 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8322"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
       },
       {
         "orderId": "bloodties",
@@ -17039,7 +17079,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-best-of",
@@ -17048,7 +17090,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "chaos-war",
@@ -17057,7 +17101,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
@@ -17066,7 +17112,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
@@ -17075,7 +17123,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-avengers",
@@ -17084,7 +17134,22 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "5812",
+          "5965",
+          "6121",
+          "6262",
+          "13439",
+          "15820",
+          "16123",
+          "16472",
+          "16473",
+          "17597",
+          "20839",
+          "21335"
+        ]
       },
       {
         "orderId": "civil-war-essential",
@@ -17093,7 +17158,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
@@ -17102,7 +17169,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
@@ -17111,7 +17180,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
@@ -17120,7 +17191,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -17129,7 +17202,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-reign-avengers",
@@ -17138,7 +17213,26 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 16,
+        "sharedIds": [
+          "23175",
+          "23655",
+          "23821",
+          "24013",
+          "24216",
+          "24810",
+          "24812",
+          "24813",
+          "24814",
+          "24806",
+          "24807",
+          "24808",
+          "29594",
+          "29595",
+          "29596",
+          "29933"
+        ]
       },
       {
         "orderId": "dark-web",
@@ -17147,7 +17241,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 4,
+        "sharedIds": [
+          "103642",
+          "103643",
+          "103644",
+          "103645"
+        ]
       },
       {
         "orderId": "days-of-future-past",
@@ -17156,7 +17257,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-present",
@@ -17165,7 +17268,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
@@ -17174,7 +17279,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -17183,7 +17290,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "devils-reign",
@@ -17192,7 +17301,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-doom-primer",
@@ -17201,7 +17312,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "10590"
+        ]
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -17210,7 +17325,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doomwar",
@@ -17219,7 +17336,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
@@ -17228,7 +17347,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
@@ -17237,7 +17358,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "evolutionary-war",
@@ -17246,7 +17369,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -17255,7 +17380,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -17264,7 +17391,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fatal-attractions",
@@ -17273,7 +17402,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "generations",
@@ -17282,7 +17413,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "groot-reading-order",
@@ -17291,7 +17424,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -17300,7 +17435,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
@@ -17309,7 +17446,22 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "42518",
+          "35133",
+          "37342",
+          "35167",
+          "40708",
+          "40706",
+          "40705",
+          "40709",
+          "40704",
+          "40710",
+          "40703",
+          "40712"
+        ]
       },
       {
         "orderId": "hickman-full",
@@ -17318,7 +17470,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
@@ -17327,7 +17481,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m",
@@ -17336,7 +17492,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m-essential",
@@ -17345,7 +17503,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -17354,7 +17514,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-xavier",
@@ -17363,7 +17525,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
@@ -17372,7 +17536,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinite-destinies",
@@ -17381,7 +17547,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -17390,7 +17558,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -17399,7 +17569,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "iron-man-2020",
@@ -17408,7 +17580,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
@@ -17417,7 +17591,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "king-in-black",
@@ -17426,7 +17602,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
@@ -17435,7 +17613,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
@@ -17444,7 +17624,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "last-annihilation",
@@ -17453,7 +17635,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "magneto-war",
@@ -17462,7 +17646,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -17471,7 +17657,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-multiverse",
@@ -17480,7 +17668,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -17489,7 +17679,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "10590"
+        ]
       },
       {
         "orderId": "marvel-what-if",
@@ -17498,7 +17692,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -17507,7 +17703,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "maximum-security",
@@ -17516,7 +17714,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-complex",
@@ -17525,7 +17725,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-war",
@@ -17534,7 +17736,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "midnight-massacre",
@@ -17543,7 +17747,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
@@ -17552,7 +17758,16 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "40629",
+          "40627",
+          "43321",
+          "41167",
+          "41168",
+          "43320"
+        ]
       },
       {
         "orderId": "monsters-unleashed",
@@ -17561,7 +17776,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
@@ -17570,7 +17787,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mutant-massacre",
@@ -17579,7 +17798,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mys-tech-wars",
@@ -17588,7 +17809,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
@@ -17597,7 +17820,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe",
@@ -17606,7 +17831,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "125782"
+        ]
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -17615,7 +17844,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "125782"
+        ]
       },
       {
         "orderId": "operation-galactic-storm",
@@ -17624,7 +17857,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -17633,7 +17868,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
@@ -17642,7 +17879,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
@@ -17651,7 +17890,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-reading-order",
@@ -17660,7 +17901,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phoenix-saga",
@@ -17669,7 +17912,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "planet-hulk",
@@ -17678,7 +17923,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reckoning-war",
@@ -17687,7 +17934,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -17696,7 +17945,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
@@ -17705,7 +17956,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -17714,7 +17967,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -17723,7 +17978,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -17732,7 +17989,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "second-coming",
@@ -17741,7 +18000,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion",
@@ -17750,7 +18011,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion-essential",
@@ -17759,7 +18022,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
@@ -17768,7 +18033,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
@@ -17777,7 +18044,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "shadowland",
@@ -17786,7 +18055,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silent-war",
@@ -17795,7 +18066,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -17806,7 +18079,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -17815,7 +18088,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
@@ -17824,7 +18099,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
@@ -17833,7 +18110,22 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "38590",
+          "38592",
+          "38587",
+          "38589",
+          "35513",
+          "35528",
+          "35532",
+          "35529",
+          "35522",
+          "35527",
+          "35523",
+          "35509"
+        ]
       },
       {
         "orderId": "spider-man-best-of",
@@ -17842,7 +18134,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -17851,7 +18145,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -17860,7 +18156,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-the-other",
@@ -17869,7 +18167,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
@@ -17878,7 +18178,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
@@ -17887,7 +18189,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-imperative",
@@ -17896,7 +18200,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
@@ -17905,7 +18211,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-war",
@@ -17914,7 +18222,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -17923,7 +18233,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -17932,7 +18244,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "time-and-time-again",
@@ -17941,7 +18255,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venomverse",
@@ -17950,7 +18266,20 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 10,
+        "sharedIds": [
+          "63237",
+          "63697",
+          "63866",
+          "64140",
+          "64250",
+          "64450",
+          "64545",
+          "64569",
+          "64568",
+          "64757"
+        ]
       },
       {
         "orderId": "war-of-kings",
@@ -17959,7 +18288,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
@@ -17968,7 +18299,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The complete-library comparison was independently reviewed; the full Venom source sequence remains complete.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 3,
+        "sharedIds": [
+          "74065",
+          "74066",
+          "74067"
+        ]
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -17977,7 +18314,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -17986,7 +18325,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -17995,7 +18336,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
@@ -18004,7 +18347,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-cutioners-song",
@@ -18013,7 +18358,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-age-of-x",
@@ -18022,7 +18369,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -18031,7 +18380,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -18040,7 +18391,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -18049,7 +18402,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-extermination",
@@ -18058,7 +18413,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-inferno",
@@ -18067,7 +18424,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -18076,7 +18435,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-nation-x",
@@ -18085,7 +18446,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-regenesis",
@@ -18094,7 +18457,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-schism",
@@ -18103,7 +18468,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -18112,7 +18479,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-of-swords",
@@ -18121,7 +18490,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
@@ -18130,7 +18501,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
@@ -18139,7 +18512,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
@@ -18148,7 +18523,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -18157,13 +18534,15 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27T05:41:32.288Z",
+        "sharedCount": 0,
+        "sharedIds": []
       }
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "The include-later complete-library report was rebuilt against 155 current catalog orders. Twenty-two non-none relationships were reviewed as intentional crossover overlap or an existing subset; no exact duplicate exists. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
-    "reviewedAt": "2026-08-27",
-    "approvalDigest": "cd9408408705bd92009564c7e12dd015a3ad36d37738b06acb2461fb6e769c62"
+    "rationale": "The include-later complete-library report was rebuilt against 154 current catalog orders. Twenty-three non-none relationships were reviewed as intentional crossover overlap or an existing subset; no exact duplicate exists.",
+    "reviewedAt": "2026-08-27T05:41:32.288Z",
+    "approvalDigest": "ffbf234b5b59b91dfed856ce7c38fc3dbbb28e629852cb8799e005f6783fe924"
   }
 }

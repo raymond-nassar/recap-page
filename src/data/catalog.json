@@ -2631,7 +2631,7 @@
       "id": "ant-man-reading-order",
       "file": "ant_man_reading_order.json",
       "name": "Ant-Man",
-      "description": "Ant-Man from Hank Pym’s first appearance through Scott Lang, Eric O’Grady, and the modern Ant-Man and the Wasp era.",
+      "description": "Ant-Man from Hank Pym\u2019s first appearance through Scott Lang, Eric O\u2019Grady, and the modern Ant-Man and the Wasp era.",
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
@@ -2778,6 +2778,45 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T09:36:57.369Z"
+    },
+    {
+      "id": "black-widow-reading-order",
+      "file": "black_widow_reading_order.json",
+      "name": "Black Widow",
+      "description": "The complete Black Widow reading guide from Natasha Romanoff's earliest Marvel appearances through her modern solo series and team appearances.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 570,
+      "collections": 143,
+      "characters": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Daredevil",
+        "Avengers",
+        "Hawkeye"
+      ],
+      "keywords": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Avengers",
+        "Marvel",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11295,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/536d5bd4362ea",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/black-widow-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T17:44:12.206Z"
     },
     {
       "id": "daredevil-reading-order",
@@ -5750,7 +5789,7 @@
     {
       "id": "marvel-knights-to-planet-x-35",
       "file": "marvel_knights_to_planet_x_35.json",
-      "name": "Punisher: You Talkin’ To Me?",
+      "name": "Punisher: You Talkin\u2019 To Me?",
       "description": "Owner-curated chapter 35 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #13 through Punisher (2001) #17.",
       "type": "event",
       "depth": "complete",
@@ -5968,7 +6007,7 @@
     {
       "id": "marvel-knights-to-planet-x-42",
       "file": "marvel_knights_to_planet_x_42.json",
-      "name": "New X-Men: Riot at Xavier’s",
+      "name": "New X-Men: Riot at Xavier\u2019s",
       "description": "Owner-curated chapter 42 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #134 through New X-Men (2001) #138.",
       "type": "event",
       "depth": "complete",

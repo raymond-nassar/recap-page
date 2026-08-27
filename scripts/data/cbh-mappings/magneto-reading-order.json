@@ -29484,10 +29484,10 @@
   },
   "mappingDigest": "74d8d5a2bcf13c4b2034a695fe156c919ff20dcf8fce23819471c45a65709ed5",
   "relationshipReview": {
-    "reportDigest": "59f639a70b168d622f1df961cf3b8a219e504282c4e72ebbd59c2a7916fd47ad",
+    "reportDigest": "47005123e2ae853bc4d2c46c7ac0ad24a95647f01e87e49080541599628ef1a9",
     "packetDigest": "c3295cf4a756bbfcd42638712edd5f0dd3386d1924f95ffa94402711d020a1d6",
     "mappingDigest": "74d8d5a2bcf13c4b2034a695fe156c919ff20dcf8fce23819471c45a65709ed5",
-    "libraryDigest": "4eb4cab6b0ff289e6b97ea03d238ca717b7efe268970b04504b1e28d8db3c9a5",
+    "libraryDigest": "117338e4d6908d1718f7a0b9093c19c27da46388f486a680c2cf77a80c2db12b",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
@@ -29501,7 +29501,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "absolute-carnage",
@@ -29510,7 +29512,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -29519,7 +29523,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 2,
+        "sharedIds": [
+          "18460",
+          "18461"
+        ]
       },
       {
         "orderId": "age-of-x-man",
@@ -29528,7 +29537,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -29537,7 +29548,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -29546,7 +29559,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -29555,7 +29570,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation",
@@ -29564,7 +29581,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
@@ -29573,7 +29592,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "ant-man-reading-order",
@@ -29582,7 +29603,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 2,
+        "sharedIds": [
+          "7304",
+          "7305"
+        ]
       },
       {
         "orderId": "apocalypse-wars",
@@ -29591,7 +29617,15 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 5,
+        "sharedIds": [
+          "56054",
+          "56055",
+          "56056",
+          "56057",
+          "56058"
+        ]
       },
       {
         "orderId": "atlantis-attacks",
@@ -29600,7 +29634,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-defenders-war",
@@ -29609,7 +29645,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-disassembled",
@@ -29618,7 +29656,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
@@ -29627,7 +29667,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "axis",
@@ -29636,7 +29678,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "48921",
+          "48922",
+          "48923",
+          "48924"
+        ]
       },
       {
         "orderId": "black-panther-reading-order",
@@ -29645,7 +29694,44 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 5,
+        "sharedIds": [
+          "7302",
+          "19577",
+          "13438",
+          "15939",
+          "16122"
+        ]
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 17,
+        "sharedIds": [
+          "7294",
+          "7290",
+          "7291",
+          "7292",
+          "7293",
+          "7295",
+          "7296",
+          "7297",
+          "7298",
+          "7300",
+          "6923",
+          "18784",
+          "7250",
+          "7251",
+          "14313",
+          "17788",
+          "13848"
+        ]
       },
       {
         "orderId": "bloodties",
@@ -29654,7 +29740,15 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 5,
+        "sharedIds": [
+          "7250",
+          "7251",
+          "14313",
+          "17788",
+          "13848"
+        ]
       },
       {
         "orderId": "captain-america-best-of",
@@ -29663,7 +29757,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 1,
+        "sharedIds": [
+          "7720"
+        ]
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -29672,7 +29770,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -29681,7 +29781,61 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 51,
+        "sharedIds": [
+          "13741",
+          "13691",
+          "13692",
+          "13693",
+          "13694",
+          "6924",
+          "13695",
+          "13696",
+          "13697",
+          "13698",
+          "13699",
+          "13700",
+          "13701",
+          "13702",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708",
+          "13709",
+          "13710",
+          "13711",
+          "13712",
+          "13713",
+          "13714",
+          "13715",
+          "13716",
+          "13721",
+          "13722",
+          "13723",
+          "13724",
+          "13725",
+          "13726",
+          "13727",
+          "13728",
+          "13729",
+          "13730",
+          "13731",
+          "13732",
+          "13733",
+          "13734",
+          "13735",
+          "13736",
+          "13737",
+          "13738",
+          "13739",
+          "13742",
+          "13743",
+          "13740",
+          "13744"
+        ]
       },
       {
         "orderId": "chaos-war",
@@ -29690,7 +29844,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
@@ -29699,7 +29855,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
@@ -29708,7 +29866,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-avengers",
@@ -29717,7 +29877,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-essential",
@@ -29726,7 +29888,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
@@ -29735,7 +29899,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
@@ -29744,7 +29910,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
@@ -29753,7 +29921,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "daredevil-reading-order",
@@ -29762,7 +29932,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8243"
+        ]
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -29771,7 +29945,19 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 9,
+        "sharedIds": [
+          "12446",
+          "12448",
+          "12449",
+          "12450",
+          "12451",
+          "12452",
+          "12453",
+          "12454",
+          "12455"
+        ]
       },
       {
         "orderId": "dark-reign-avengers",
@@ -29780,7 +29966,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-web",
@@ -29789,7 +29977,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-past",
@@ -29798,7 +29988,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 2,
+        "sharedIds": [
+          "12460",
+          "13683"
+        ]
       },
       {
         "orderId": "days-of-future-present",
@@ -29807,7 +30002,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
@@ -29816,7 +30013,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "deadpool-best-of",
@@ -29825,7 +30024,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -29834,7 +30035,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "devils-reign",
@@ -29843,7 +30046,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-doom-primer",
@@ -29852,7 +30057,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -29861,7 +30068,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-reading-order",
@@ -29870,7 +30079,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 2,
+        "sharedIds": [
+          "20318",
+          "20322"
+        ]
       },
       {
         "orderId": "doomwar",
@@ -29879,7 +30093,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
@@ -29888,7 +30104,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
@@ -29897,7 +30115,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "evolutionary-war",
@@ -29906,7 +30126,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -29915,7 +30137,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "112164",
+          "112165",
+          "112166",
+          "112167"
+        ]
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -29924,7 +30153,21 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 11,
+        "sharedIds": [
+          "48078",
+          "7720",
+          "13766",
+          "13767",
+          "9151",
+          "13768",
+          "10398",
+          "10400",
+          "10401",
+          "8243",
+          "13131"
+        ]
       },
       {
         "orderId": "fatal-attractions",
@@ -29933,7 +30176,16 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 6,
+        "sharedIds": [
+          "13845",
+          "12315",
+          "17989",
+          "14312",
+          "14198",
+          "8656"
+        ]
       },
       {
         "orderId": "generations",
@@ -29942,7 +30194,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "groot-reading-order",
@@ -29951,7 +30205,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -29960,7 +30216,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
@@ -29969,7 +30227,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-full",
@@ -29978,7 +30238,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
@@ -29987,7 +30249,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-x-men",
@@ -29996,7 +30260,37 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 27,
+        "sharedIds": [
+          "76803",
+          "76804",
+          "76805",
+          "76806",
+          "76807",
+          "79944",
+          "79945",
+          "79946",
+          "79947",
+          "79948",
+          "79949",
+          "90146",
+          "90147",
+          "90148",
+          "90149",
+          "90150",
+          "90151",
+          "82527",
+          "82506",
+          "82502",
+          "82526",
+          "82514",
+          "76984",
+          "96222",
+          "96223",
+          "96224",
+          "96225"
+        ]
       },
       {
         "orderId": "house-of-m",
@@ -30005,7 +30299,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "2316",
+          "14511",
+          "2427",
+          "2428"
+        ]
       },
       {
         "orderId": "house-of-m-essential",
@@ -30014,7 +30315,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "2316",
+          "14511",
+          "2427",
+          "2428"
+        ]
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -30023,7 +30331,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-xavier",
@@ -30032,7 +30342,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
@@ -30041,7 +30353,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 3,
+        "sharedIds": [
+          "10412",
+          "10413",
+          "10414"
+        ]
       },
       {
         "orderId": "infinite-destinies",
@@ -30050,7 +30368,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -30059,7 +30379,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -30068,7 +30390,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 3,
+        "sharedIds": [
+          "56064",
+          "60862",
+          "60863"
+        ]
       },
       {
         "orderId": "iron-man-2020",
@@ -30077,7 +30405,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
@@ -30086,7 +30416,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 3,
+        "sharedIds": [
+          "96269",
+          "102552",
+          "102553"
+        ]
       },
       {
         "orderId": "king-in-black",
@@ -30095,7 +30431,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
@@ -30104,7 +30442,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
@@ -30113,7 +30453,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "last-annihilation",
@@ -30122,7 +30464,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 1,
+        "sharedIds": [
+          "90345"
+        ]
       },
       {
         "orderId": "magneto-war",
@@ -30131,7 +30477,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 8,
+        "sharedIds": [
+          "12393",
+          "14379",
+          "14380",
+          "13907",
+          "13908",
+          "9999",
+          "10000",
+          "10001"
+        ]
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -30140,7 +30497,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -30149,7 +30508,23 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 13,
+        "sharedIds": [
+          "14961",
+          "14962",
+          "14963",
+          "14964",
+          "14965",
+          "125",
+          "136",
+          "124",
+          "123",
+          "122",
+          "121",
+          "120",
+          "420"
+        ]
       },
       {
         "orderId": "marvel-multiverse",
@@ -30158,7 +30533,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 2,
+        "sharedIds": [
+          "13683",
+          "13684"
+        ]
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -30167,7 +30547,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-what-if",
@@ -30176,7 +30558,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -30185,7 +30569,24 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 14,
+        "sharedIds": [
+          "14965",
+          "125",
+          "136",
+          "124",
+          "123",
+          "122",
+          "121",
+          "120",
+          "420",
+          "79945",
+          "79946",
+          "79947",
+          "79948",
+          "79949"
+        ]
       },
       {
         "orderId": "maximum-security",
@@ -30194,7 +30595,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-complex",
@@ -30203,7 +30606,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-war",
@@ -30212,7 +30617,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "midnight-massacre",
@@ -30221,7 +30628,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
@@ -30230,7 +30639,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "monsters-unleashed",
@@ -30239,7 +30650,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
@@ -30248,7 +30661,15 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 5,
+        "sharedIds": [
+          "13819",
+          "13820",
+          "13821",
+          "12289",
+          "12291"
+        ]
       },
       {
         "orderId": "mutant-massacre",
@@ -30257,7 +30678,11 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 1,
+        "sharedIds": [
+          "10384"
+        ]
       },
       {
         "orderId": "mys-tech-wars",
@@ -30266,7 +30691,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
@@ -30275,7 +30702,15 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 5,
+        "sharedIds": [
+          "27348",
+          "28415",
+          "30700",
+          "30701",
+          "28103"
+        ]
       },
       {
         "orderId": "new-ultimate-universe",
@@ -30284,7 +30719,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -30293,7 +30730,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-galactic-storm",
@@ -30302,7 +30741,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -30311,7 +30752,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
@@ -30320,7 +30763,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
@@ -30329,7 +30774,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-reading-order",
@@ -30338,7 +30785,19 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 9,
+        "sharedIds": [
+          "10360",
+          "10353",
+          "10354",
+          "10356",
+          "10357",
+          "10358",
+          "10359",
+          "10361",
+          "10335"
+        ]
       },
       {
         "orderId": "phoenix-saga",
@@ -30347,7 +30806,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 8,
+        "sharedIds": [
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423"
+        ]
       },
       {
         "orderId": "planet-hulk",
@@ -30356,7 +30826,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "punisher-reading-order",
@@ -30365,7 +30837,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -30374,7 +30848,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 2,
+        "sharedIds": [
+          "12517",
+          "9151"
+        ]
       },
       {
         "orderId": "reckoning-war",
@@ -30383,7 +30862,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -30392,7 +30873,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
@@ -30401,7 +30884,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -30410,7 +30895,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -30419,7 +30906,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -30428,7 +30917,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "18455",
+          "18459",
+          "18460",
+          "18461"
+        ]
       },
       {
         "orderId": "second-coming",
@@ -30437,7 +30933,24 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 14,
+        "sharedIds": [
+          "30274",
+          "33166",
+          "32564",
+          "30621",
+          "30622",
+          "32552",
+          "30486",
+          "30487",
+          "32598",
+          "30703",
+          "30704",
+          "32583",
+          "30673",
+          "30674"
+        ]
       },
       {
         "orderId": "secret-invasion",
@@ -30446,7 +30959,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion-essential",
@@ -30455,7 +30970,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
@@ -30464,7 +30981,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
@@ -30473,7 +30992,16 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 6,
+        "sharedIds": [
+          "13737",
+          "13743",
+          "13744",
+          "10367",
+          "10373",
+          "10374"
+        ]
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -30482,7 +31010,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "shadowland",
@@ -30491,7 +31021,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silent-war",
@@ -30500,7 +31032,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "sins-of-sinister",
@@ -30509,7 +31043,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
@@ -30518,7 +31054,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
@@ -30527,7 +31065,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
@@ -30536,7 +31076,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -30545,7 +31087,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -30554,7 +31098,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -30563,7 +31109,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-the-other",
@@ -30572,7 +31120,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
@@ -30581,7 +31131,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
@@ -30590,7 +31142,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-imperative",
@@ -30599,7 +31153,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
@@ -30608,7 +31164,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-war",
@@ -30617,7 +31175,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -30626,7 +31186,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -30635,7 +31197,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "time-and-time-again",
@@ -30644,7 +31208,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -30653,7 +31219,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venom-reading-order",
@@ -30662,7 +31230,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venomverse",
@@ -30671,7 +31241,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wandavision",
@@ -30680,7 +31252,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-kings",
@@ -30689,7 +31263,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
@@ -30698,7 +31274,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -30707,7 +31285,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -30716,7 +31296,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wolverine-reading-order",
@@ -30725,7 +31307,98 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 88,
+        "sharedIds": [
+          "12425",
+          "12458",
+          "12461",
+          "12465",
+          "12467",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12424",
+          "12426",
+          "13713",
+          "13714",
+          "12168",
+          "12169",
+          "12170",
+          "12171",
+          "10365",
+          "13746",
+          "10367",
+          "10368",
+          "10369",
+          "9151",
+          "13845",
+          "12315",
+          "17989",
+          "14312",
+          "14198",
+          "8656",
+          "14961",
+          "14962",
+          "14963",
+          "14964",
+          "14965",
+          "125",
+          "136",
+          "124",
+          "123",
+          "122",
+          "121",
+          "120",
+          "420",
+          "2316",
+          "14511",
+          "2427",
+          "2428",
+          "27348",
+          "28415",
+          "30700",
+          "30701",
+          "32564",
+          "30621",
+          "30622",
+          "32552",
+          "30486",
+          "30487",
+          "32598",
+          "30703",
+          "30704",
+          "32583",
+          "30673",
+          "30674",
+          "35297",
+          "40454",
+          "44526",
+          "45721",
+          "45724",
+          "45935",
+          "43696",
+          "56064",
+          "60862",
+          "60863",
+          "68367",
+          "68368",
+          "68369",
+          "68370",
+          "68371"
+        ]
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -30734,7 +31407,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
@@ -30743,7 +31418,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "13726",
+          "13727",
+          "13728",
+          "13729"
+        ]
       },
       {
         "orderId": "x-cutioners-song",
@@ -30752,7 +31434,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-age-of-x",
@@ -30761,7 +31445,21 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 11,
+        "sharedIds": [
+          "36433",
+          "36434",
+          "37996",
+          "36431",
+          "36437",
+          "36426",
+          "36495",
+          "36502",
+          "36497",
+          "38524",
+          "38523"
+        ]
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -30770,7 +31468,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -30779,7 +31479,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -30788,7 +31490,16 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 6,
+        "sharedIds": [
+          "20632",
+          "20819",
+          "20957",
+          "21166",
+          "21167",
+          "21044"
+        ]
       },
       {
         "orderId": "x-men-extermination",
@@ -30797,7 +31508,16 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 6,
+        "sharedIds": [
+          "70222",
+          "68367",
+          "68368",
+          "68369",
+          "68370",
+          "68371"
+        ]
       },
       {
         "orderId": "x-men-inferno",
@@ -30806,7 +31526,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "96222",
+          "96223",
+          "96224",
+          "96225"
+        ]
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -30815,7 +31542,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 4,
+        "sharedIds": [
+          "33565",
+          "21699",
+          "21924",
+          "22255"
+        ]
       },
       {
         "orderId": "x-men-nation-x",
@@ -30824,7 +31558,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 8,
+        "sharedIds": [
+          "26968",
+          "26969",
+          "26970",
+          "26971",
+          "26972",
+          "26973",
+          "26974",
+          "30619"
+        ]
       },
       {
         "orderId": "x-men-regenesis",
@@ -30833,7 +31578,20 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 10,
+        "sharedIds": [
+          "37942",
+          "40454",
+          "39739",
+          "38102",
+          "38084",
+          "39737",
+          "40166",
+          "40154",
+          "40159",
+          "40164"
+        ]
       },
       {
         "orderId": "x-men-schism",
@@ -30842,7 +31600,15 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 5,
+        "sharedIds": [
+          "38491",
+          "38492",
+          "38490",
+          "38489",
+          "38971"
+        ]
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -30851,7 +31617,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-utopia",
@@ -30860,7 +31628,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 8,
+        "sharedIds": [
+          "26965",
+          "26966",
+          "26967",
+          "26968",
+          "26969",
+          "26970",
+          "26971",
+          "26972"
+        ]
       },
       {
         "orderId": "x-of-swords",
@@ -30869,7 +31648,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
@@ -30878,7 +31659,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
@@ -30887,7 +31670,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Source-identity relationship policy",
         "rationale": "No selected issue ID is shared with this reading list.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
@@ -30896,7 +31681,230 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 220,
+        "sharedIds": [
+          "13741",
+          "12413",
+          "12466",
+          "12477",
+          "12488",
+          "12499",
+          "12510",
+          "12521",
+          "12532",
+          "12543",
+          "12414",
+          "12425",
+          "12436",
+          "12447",
+          "12458",
+          "12461",
+          "12462",
+          "12463",
+          "12464",
+          "12465",
+          "12467",
+          "12468",
+          "12469",
+          "12470",
+          "12471",
+          "12472",
+          "12473",
+          "12474",
+          "12475",
+          "12476",
+          "12478",
+          "12479",
+          "12480",
+          "12481",
+          "12482",
+          "12483",
+          "12484",
+          "12485",
+          "12486",
+          "12487",
+          "12489",
+          "12490",
+          "12491",
+          "12492",
+          "12493",
+          "12494",
+          "7303",
+          "12504",
+          "12505",
+          "12506",
+          "12507",
+          "12508",
+          "12509",
+          "12511",
+          "12512",
+          "12513",
+          "12514",
+          "12515",
+          "12516",
+          "12517",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12424",
+          "12426",
+          "12427",
+          "12428",
+          "12429",
+          "12430",
+          "12431",
+          "12432",
+          "12433",
+          "12434",
+          "12435",
+          "12437",
+          "12438",
+          "12439",
+          "12440",
+          "12441",
+          "12442",
+          "12443",
+          "12444",
+          "12445",
+          "12446",
+          "12448",
+          "12449",
+          "13689",
+          "13691",
+          "12450",
+          "12451",
+          "12452",
+          "12453",
+          "12454",
+          "12455",
+          "12456",
+          "12457",
+          "12459",
+          "12460",
+          "13683",
+          "13684",
+          "13685",
+          "13686",
+          "13687",
+          "13688",
+          "13690",
+          "13692",
+          "13693",
+          "13694",
+          "13695",
+          "13696",
+          "13697",
+          "13698",
+          "13699",
+          "13700",
+          "13701",
+          "13702",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708",
+          "13709",
+          "13710",
+          "13711",
+          "13712",
+          "13713",
+          "13714",
+          "13715",
+          "13716",
+          "12366",
+          "12168",
+          "12169",
+          "12170",
+          "12171",
+          "23315",
+          "23316",
+          "23317",
+          "23318",
+          "20817",
+          "13721",
+          "13722",
+          "13723",
+          "13724",
+          "13725",
+          "13726",
+          "13727",
+          "13728",
+          "13729",
+          "13730",
+          "13731",
+          "13732",
+          "13733",
+          "13734",
+          "13735",
+          "13736",
+          "13737",
+          "13738",
+          "13739",
+          "10360",
+          "10365",
+          "13742",
+          "13743",
+          "10353",
+          "10354",
+          "10356",
+          "10357",
+          "10358",
+          "10359",
+          "10361",
+          "13740",
+          "13744",
+          "13745",
+          "13746",
+          "13747",
+          "13748",
+          "13749",
+          "13750",
+          "10362",
+          "10363",
+          "10364",
+          "10367",
+          "10368",
+          "10369",
+          "10370",
+          "10371",
+          "10372",
+          "10373",
+          "10374",
+          "10375",
+          "10376",
+          "10378",
+          "10379",
+          "10380",
+          "10381",
+          "10382",
+          "10383",
+          "10384",
+          "10385",
+          "10336",
+          "12356",
+          "10386",
+          "10387",
+          "10389",
+          "10390",
+          "10391",
+          "10392",
+          "10393"
+        ]
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -30905,9 +31913,234 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issue IDs are source-required crossover reading, and the Magneto guide remains a distinct whole-character path.",
-        "reviewedAt": "2026-08-27T08:27:20-07:00"
+        "reviewedAt": "2026-08-27T08:27:20-07:00",
+        "sharedCount": 222,
+        "sharedIds": [
+          "13741",
+          "12413",
+          "12466",
+          "12477",
+          "12488",
+          "12499",
+          "12510",
+          "12521",
+          "12532",
+          "12543",
+          "12414",
+          "12425",
+          "12436",
+          "12447",
+          "12458",
+          "12461",
+          "12462",
+          "12463",
+          "12464",
+          "12465",
+          "12467",
+          "12468",
+          "12469",
+          "12470",
+          "12471",
+          "12472",
+          "12473",
+          "12474",
+          "12475",
+          "12476",
+          "12478",
+          "12479",
+          "12480",
+          "12481",
+          "12482",
+          "12483",
+          "12484",
+          "12485",
+          "12486",
+          "12487",
+          "12489",
+          "12490",
+          "12491",
+          "12492",
+          "12493",
+          "12494",
+          "7303",
+          "12504",
+          "12505",
+          "12506",
+          "12507",
+          "12508",
+          "12509",
+          "12511",
+          "12512",
+          "12513",
+          "12514",
+          "12515",
+          "12516",
+          "12517",
+          "20318",
+          "20322",
+          "12548",
+          "12549",
+          "12550",
+          "12551",
+          "12552",
+          "12553",
+          "12415",
+          "12416",
+          "12417",
+          "12418",
+          "12419",
+          "12420",
+          "12421",
+          "12422",
+          "12423",
+          "12424",
+          "12426",
+          "12427",
+          "12428",
+          "12429",
+          "12430",
+          "12431",
+          "12432",
+          "12433",
+          "12434",
+          "12435",
+          "12437",
+          "12438",
+          "12439",
+          "12440",
+          "12441",
+          "12442",
+          "12443",
+          "12444",
+          "12445",
+          "12446",
+          "12448",
+          "12449",
+          "13689",
+          "13691",
+          "12450",
+          "12451",
+          "12452",
+          "12453",
+          "12454",
+          "12455",
+          "12456",
+          "12457",
+          "12459",
+          "12460",
+          "13683",
+          "13684",
+          "13685",
+          "13686",
+          "13687",
+          "13688",
+          "13690",
+          "13692",
+          "13693",
+          "13694",
+          "13695",
+          "13696",
+          "13697",
+          "13698",
+          "13699",
+          "13700",
+          "13701",
+          "13702",
+          "13703",
+          "13704",
+          "13705",
+          "13706",
+          "13707",
+          "13708",
+          "13709",
+          "13710",
+          "13711",
+          "13712",
+          "13713",
+          "13714",
+          "13715",
+          "13716",
+          "12366",
+          "12168",
+          "12169",
+          "12170",
+          "12171",
+          "23315",
+          "23316",
+          "23317",
+          "23318",
+          "20817",
+          "13721",
+          "13722",
+          "13723",
+          "13724",
+          "13725",
+          "13726",
+          "13727",
+          "13728",
+          "13729",
+          "13730",
+          "13731",
+          "13732",
+          "13733",
+          "13734",
+          "13735",
+          "13736",
+          "13737",
+          "13738",
+          "13739",
+          "10360",
+          "10365",
+          "13742",
+          "13743",
+          "10353",
+          "10354",
+          "10356",
+          "10357",
+          "10358",
+          "10359",
+          "10361",
+          "13740",
+          "13744",
+          "13745",
+          "13746",
+          "13747",
+          "13748",
+          "13749",
+          "13750",
+          "10362",
+          "10363",
+          "10364",
+          "10367",
+          "10368",
+          "10369",
+          "10370",
+          "10371",
+          "10372",
+          "10373",
+          "10374",
+          "10375",
+          "10376",
+          "10378",
+          "10379",
+          "10380",
+          "10381",
+          "10382",
+          "10383",
+          "10384",
+          "10385",
+          "10336",
+          "12356",
+          "10386",
+          "10387",
+          "10389",
+          "10390",
+          "10391",
+          "10392",
+          "10393"
+        ]
       }
     ],
-    "approvalDigest": "a4c131079c76616cec62bf6153509ea9b907ac4c78d71fb3811e0bec0d5e4555"
+    "approvalDigest": "ac09cea72d14debce2bbb27264423af275aa53ddc969b5ff9c991379cd22c887"
   }
 }

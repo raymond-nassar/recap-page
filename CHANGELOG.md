@@ -14,6 +14,10 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Black Widow reading guide
+
+In plain English: A new Black Widow guide follows Natasha Romanoff's comics from her earliest appearances through the latest source-page additions. It has exact Marvel links for 556 comics, while 14 source references stay visible as unresolved placeholders rather than being guessed at or hidden. Nothing you have saved is changed.
+
 ### Split Marvel Knights to Planet X into shorter Reading Lists
 
 In plain English: Modern Timeline now offers the owner-curated Marvel Knights to Planet X journey

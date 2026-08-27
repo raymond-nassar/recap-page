@@ -38,6 +38,7 @@ test('the shipped spotlight stories resolve the owner-supplied Top 30 ranks exac
     ['Loki', 16],
     ['Phoenix', 17],
     ['Silver Surfer', 18],
+    ['Black Widow', 19],
     ['Essential Avengers', 21],
     ['X-Men: Silver Age to Claremont', 22],
   ]);
@@ -67,6 +68,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Loki',
     'Phoenix',
     'Silver Surfer',
+    'Black Widow',
     'Essential Avengers',
     'X-Men: Silver Age to Claremont',
     'Amazing Spider-Man',

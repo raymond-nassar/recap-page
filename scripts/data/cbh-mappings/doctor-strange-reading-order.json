@@ -30667,1241 +30667,1725 @@
     "coverIssueId": 11029
   },
   "relationshipReview": {
-    "reportDigest": "9fe2f510abbecab39e9cab7ef7476b5fc7f25eb08260bfe639d46dab16b20ebe",
+    "reportDigest": "85e4e1360435b553529cd894fd72d06a6d4514356c133334bfd6c9c58742af89",
     "packetDigest": "44bf6593238e366136b8c341272262c51f5412a103f499f16c6783324ead05bd",
     "mappingDigest": "807760c148cdcdf3c1c1fc2943f14b0410ca457c470c7ee6b1ac88ad8cf2da7e",
-    "libraryDigest": "4db363bf73b101913d86ca057d94277324ff63689eb2a6b10923bbe7594b3b4c",
+    "libraryDigest": "efb63bc80dfda2a16068ed8ea7dfc149db54d1aa0455d1e541f5c71df9a182ec",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "The complete-library comparison was refreshed after the Punisher guide was added; every observed relationship remains reviewed and approved.",
-    "reviewedAt": "2026-08-27T13:28:03.775Z",
+    "rationale": "The complete-library report was reviewed after integrating the current predecessor library. Every resulting relationship is approved.",
+    "reviewedAt": "2026-08-27T09:58:46.774Z",
     "dispositions": [
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "age-of-x-man",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "all-new-all-different-avengers",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "apocalypse-wars",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "atlantis-attacks",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-defenders-war",
         "relationship": "existing-subset",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 8 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 8,
+        "sharedIds": [
+          "20392",
+          "20403",
+          "20263",
+          "20274",
+          "6970",
+          "6971",
+          "6972",
+          "6973"
+        ]
       },
       {
         "orderId": "avengers-disassembled",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "axis",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 14,
+        "sharedIds": [
+          "7312",
+          "20143",
+          "6925",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "67145",
+          "67147",
+          "67148",
+          "67149",
+          "67150",
+          "67151"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
+        "reviewedAt": "2026-08-27T09:58:46.774Z"
       },
       {
         "orderId": "bloodties",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-best-of",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "chaos-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-avengers",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "5413"
+        ]
       },
       {
         "orderId": "civil-war-essential",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
         "relationship": "existing-subset",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 15 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 15,
+        "sharedIds": [
+          "66279",
+          "66409",
+          "66540",
+          "66910",
+          "66537",
+          "66278",
+          "66493",
+          "66762",
+          "66909",
+          "66543",
+          "66688",
+          "66843",
+          "66485",
+          "66532",
+          "66756"
+        ]
       },
       {
         "orderId": "dark-phoenix-saga",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-reign-avengers",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 4 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 4,
+        "sharedIds": [
+          "23747",
+          "23938",
+          "24145",
+          "26031"
+        ]
       },
       {
         "orderId": "dark-web",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-past",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-present",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 5 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 5,
+        "sharedIds": [
+          "93315",
+          "93316",
+          "93317",
+          "93318",
+          "93319"
+        ]
       },
       {
         "orderId": "devils-reign",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-doom-primer",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "23747"
+        ]
       },
       {
         "orderId": "doomwar",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 4 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 4,
+        "sharedIds": [
+          "7312",
+          "7047",
+          "7048",
+          "7049"
+        ]
       },
       {
         "orderId": "evolutionary-war",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 2 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "16897",
+          "12358"
+        ]
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-of-the-mutants",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fatal-attractions",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "generations",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "groot-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "11353"
+        ]
       },
       {
         "orderId": "heroes-reborn-2021",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-full",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m-essential",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-wolverine",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "66416"
+        ]
       },
       {
         "orderId": "hunt-for-xavier",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinite-destinies",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 27 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 27,
+        "sharedIds": [
+          "66283",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "66158",
+          "68295",
+          "67349",
+          "67145",
+          "67147",
+          "67148",
+          "67149",
+          "67150",
+          "67151",
+          "71032",
+          "71785",
+          "71033",
+          "71782",
+          "71034",
+          "71780",
+          "71035",
+          "71786",
+          "71036",
+          "71783",
+          "71573",
+          "73196"
+        ]
       },
       {
         "orderId": "inhumans-vs-x-men",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "iron-man-2020",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "king-in-black",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "last-annihilation",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "magneto-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-fresh-start-avengers",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 12 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 12,
+        "sharedIds": [
+          "67002",
+          "67311",
+          "67756",
+          "67760",
+          "67762",
+          "67763",
+          "73846",
+          "73847",
+          "73848",
+          "73849",
+          "73850",
+          "80108"
+        ]
       },
       {
         "orderId": "marvel-multiverse",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-what-if",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "maximum-security",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-complex",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "midnight-massacre",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "monsters-unleashed",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mutant-massacre",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mys-tech-wars",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe-trades",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-galactic-storm",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-reading-order",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phoenix-saga",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "planet-hulk",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reckoning-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
         "relationship": "existing-subset",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 6 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "22661",
+          "22665",
+          "62400",
+          "62406",
+          "59953",
+          "61589"
+        ]
       },
       {
         "orderId": "rocket-raccoon-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "11353"
+        ]
       },
       {
         "orderId": "scarlet-witch-best-of",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 4 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 4,
+        "sharedIds": [
+          "6984",
+          "7047",
+          "7048",
+          "7049"
+        ]
       },
       {
         "orderId": "second-coming",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion-essential",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "20158"
+        ]
       },
       {
         "orderId": "shadowland",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silent-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silver-surfer-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The 31 shared issues with silver-surfer-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "rationale": "The 7 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 31,
+        "sharedIds": [
+          "20262",
+          "20326",
+          "20337",
+          "20348",
+          "20359",
+          "20370",
+          "20381",
+          "20392",
+          "20403",
+          "20263",
+          "20274",
+          "6970",
+          "6971",
+          "6972",
+          "6973",
+          "20412",
+          "20413",
+          "20264",
+          "20265",
+          "66283",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "66158",
+          "84120",
+          "84121",
+          "84122",
+          "84123",
+          "84124"
+        ]
       },
       {
         "orderId": "sins-of-sinister",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "67330"
+        ]
       },
       {
         "orderId": "spider-man-the-other",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-imperative",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 19 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 19,
+        "sharedIds": [
+          "6981",
+          "8022",
+          "20204",
+          "20205",
+          "20206",
+          "20207",
+          "20208",
+          "20209",
+          "15205",
+          "58270",
+          "58271",
+          "58272",
+          "58264",
+          "58265",
+          "58266",
+          "58267",
+          "58268",
+          "58269",
+          "67349"
+        ]
       },
       {
         "orderId": "thanos-war",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 2 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "6981",
+          "8022"
+        ]
       },
       {
         "orderId": "the-night-gwen-stacy-died",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 6 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 6,
+        "sharedIds": [
+          "71271",
+          "71273",
+          "71274",
+          "71275",
+          "71276",
+          "71277"
+        ]
       },
       {
         "orderId": "time-and-time-again",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venomverse",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-kings",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 7 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 7,
+        "sharedIds": [
+          "71271",
+          "71273",
+          "71274",
+          "71275",
+          "71276",
+          "71277",
+          "74814"
+        ]
       },
       {
         "orderId": "white-tiger-ava-ayala",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 1,
+        "sharedIds": [
+          "80608"
+        ]
       },
       {
         "orderId": "wolverine-goes-to-hell",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "world-war-hulk-aftersmash",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-cutioners-song",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-age-of-x",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-battle-of-the-atom",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-extermination",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-inferno",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-manifest-destiny",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-nation-x",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-regenesis",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-schism",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "No shared issue identities.",
+        "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont-complete",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "rationale": "The 2 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T13:28:03.775Z"
+        "reviewedAt": "2026-08-27T09:58:46.774Z",
+        "sharedCount": 2,
+        "sharedIds": [
+          "20318",
+          "20322"
+        ]
       }
     ],
-    "approvalDigest": "aca4e29f3871a1b660f1147685fdcf88f972c9d657bf46dfd117ae25df665dfa"
+    "approvalDigest": "6e4781668419eaa6575197631c561d3a3b9e1b7142954f0dc4ae485a274796ad"
   }
 }

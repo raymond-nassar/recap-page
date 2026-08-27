@@ -112,7 +112,7 @@ test('batch three preserves the approved source queue and independently verified
     manifest.lists.length - THIRD_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 237);
+  assert.equal(catalog.lists.length, 238);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(
@@ -241,8 +241,8 @@ test('batch three keeps its original identities, sequence, and no-overlap report
 
   for (const id of THIRD_PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 134);
-    assert.equal(report.comparisons.length, 134);
+    assert.equal(report.comparisonCount, 135);
+    assert.equal(report.comparisons.length, 135);
     const approved = new Map([
       ['x-men-regenesis', new Map([
         ['white-tiger-ava-ayala', ['partial', 1, ['36485']]],

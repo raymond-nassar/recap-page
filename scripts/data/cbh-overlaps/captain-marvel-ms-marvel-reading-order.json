@@ -2,10 +2,10 @@
   "candidateId": "captain-marvel-ms-marvel-reading-order",
   "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
   "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-  "libraryDigest": "5c2f54d29e0120b0a61dd2a7696107fed6190b10a332e2000b5edf518a0aa263",
+  "libraryDigest": "429fccd09a477512544949eda6ef7a9ac2f9f70f26ef82b453857ead19edc6e0",
   "peerDigests": {},
   "candidateCount": 527,
-  "comparisonCount": 155,
+  "comparisonCount": 156,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -144,6 +144,35 @@
         "57257",
         "57258",
         "57259"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 22,
+      "sharedIds": [
+        "16890",
+        "7099",
+        "7100",
+        "7101",
+        "7102",
+        "7103",
+        "7104",
+        "7105",
+        "7106",
+        "7107",
+        "7109",
+        "7110",
+        "17514",
+        "17515",
+        "17516",
+        "17517",
+        "6097",
+        "6301",
+        "13477",
+        "15855",
+        "15965",
+        "16519"
       ],
       "relationship": "partial"
     },
@@ -1302,5 +1331,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "083afb88414ec2a75ca95d99072329c5a2f59493f3459db1ed57bdb5616a9cb5"
+  "reportDigest": "d816d73ecf242d7a223c90fac1609946cfd61de9c4273a766d0b685084201f47"
 }

@@ -96,7 +96,7 @@ test('Utopia is a standalone gap order with centrally approved overlaps', async 
   assert.equal(sequenceDigest(mapping.rows.map((row) => String(row.selectedIssueId))),
     'aced364cbb7395fb6d39485b2ce8f769c120574398b7ee800b97036876780db9');
   assert.equal(report.candidateCount, 14);
-  assert.equal(report.comparisonCount, 135);
+  assert.equal(report.comparisonCount, 136);
 
   const overlaps = Object.fromEntries(
     report.comparisons

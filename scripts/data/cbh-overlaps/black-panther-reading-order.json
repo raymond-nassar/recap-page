@@ -2,7 +2,7 @@
   "candidateId": "black-panther-reading-order",
   "packetDigest": "5acb5c9727357a3418d30998f661040f02f2750f09d84013670a7136f914139e",
   "mappingDigest": "c9cc9a2cd8e513c01afe40218bfcee48f3ac7b333fd47b26f317eaf654e1a2c6",
-  "libraryDigest": "96a8ab88d7060b5fc5a2399b02caf799b6a0f30d6ab6af31ad2aaa5eb4ab4d24",
+  "libraryDigest": "c2bf9aa3a2dfe1acbc6aee34882333769be60b37c74cbf8108fdaafb4be715af",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 424,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 57
   },
   "candidateCount": 363,
-  "comparisonCount": 150,
+  "comparisonCount": 151,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -111,6 +111,17 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "73446",
+        "73447",
+        "73448",
+        "73449"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "bloodties",
@@ -935,5 +946,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "6cdbef2ce50b16779a28c4a10f358eeb992aeffe535466002925ba630d3b3ea9"
+  "reportDigest": "0b86baf48e2894c87260117971a73ea926162954e51831cbcda536907997ee27"
 }

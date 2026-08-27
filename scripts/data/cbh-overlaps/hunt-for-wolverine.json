@@ -2,10 +2,10 @@
   "candidateId": "hunt-for-wolverine",
   "packetDigest": "8adcc4f38020cba7472096eb17aa59265603eb1b56799d75b53ae8277e3816e4",
   "mappingDigest": "1f4ed5ebc388bfb433ab5b863856eeea2f6eb3536e960e0f0ed65b5f0ee9c1d3",
-  "libraryDigest": "1d7d1478a87b1e1f025cae1f0f4161ef8b6e29d1821016af2781dfc7770d6c21",
+  "libraryDigest": "b6b1427b9d6f3fb019d95a213fc150e39aa97709fe9ad6b5fd9741bafdc82101",
   "peerDigests": {},
   "candidateCount": 24,
-  "comparisonCount": 86,
+  "comparisonCount": 87,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -60,6 +60,14 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 1,
+      "sharedIds": [
+        "66416"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "captain-america-best-of",
@@ -526,5 +534,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "583e0d59343c954785cacad23e1e89c889a6b490977aa3c6544141471be2548b"
+  "reportDigest": "476ce7321948d440cb509065ef84eaf27c73815b023f7fbb461548c6c78ce51c"
 }
