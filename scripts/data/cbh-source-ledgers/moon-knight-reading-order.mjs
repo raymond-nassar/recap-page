@@ -51,7 +51,7 @@ function single({
   }];
 }
 
-function gap({
+function namedCandidate({
   title,
   year = null,
   sourceIssueReference,
@@ -65,8 +65,29 @@ function gap({
     normalizedSeriesTitle,
     seriesYear: year,
     issueNumber: null,
-    classification: 'unresolved-included-identity-gap',
+    classification: 'provisional-canonical-candidate',
     note,
+  }];
+}
+
+function namedRepeat({
+  title,
+  year = null,
+  sourceIssueReference,
+  sourceRangeReference = null,
+  note = null,
+  normalizedSeriesTitle = title,
+  repeatOf,
+}) {
+  return [{
+    sourceIssueReference,
+    sourceRangeReference,
+    normalizedSeriesTitle,
+    seriesYear: year,
+    issueNumber: null,
+    classification: 'true-repeat',
+    note,
+    repeatOf,
   }];
 }
 
@@ -124,19 +145,18 @@ function expandLedger(groups) {
     }
   }
 
-  const categoryCounts = issueOccurrences.reduce((summary, occurrence) => {
-    summary[occurrence.classification] = (summary[occurrence.classification] ?? 0) + 1;
-    return summary;
-  }, {});
-
+  const classifications = ['provisional-canonical-candidate', 'true-repeat', 'unresolved-included-identity-gap', 'semantic-exclusion'];
   const categoryPositions = Object.fromEntries(
-    ['provisional-canonical-candidate', 'true-repeat', 'unresolved-included-identity-gap', 'semantic-exclusion']
+    classifications
       .map((classification) => [
         classification,
         issueOccurrences
           .filter((occurrence) => occurrence.classification === classification)
           .map((occurrence) => occurrence.sourceOccurrencePosition),
       ]),
+  );
+  const categoryCounts = Object.fromEntries(
+    classifications.map((classification) => [classification, categoryPositions[classification].length]),
   );
 
   const sourceBoundary = {
@@ -234,7 +254,7 @@ const moonKnightSourceLedger = expandLedger([
       single({ title: 'Amazing Spider-Man Annual', year: 1963, issueNumber: 25, sourceIssueReference: 'Amazing Spider-Man Annual #25', sourceRangeReference: 'Amazing Spider-Man Annual #25' }),
       single({ title: 'Spectacular Spider-Man Annual', year: 1979, issueNumber: 11, sourceIssueReference: 'Spectacular Spider-Man Annual #11', sourceRangeReference: 'Spectacular Spider-Man Annual #11' }),
       single({ title: 'Web Of Spider-Man Annual', year: 1985, issueNumber: 7, sourceIssueReference: 'Web Of Spider-Man Annual #7', sourceRangeReference: 'Web Of Spider-Man Annual #7' }),
-      gap({ title: 'Spider-Man: Fear Itself', year: 1992, sourceIssueReference: 'Spider-Man: Fear Itself (1992)', note: 'Named included comic identity, but the source does not resolve an issue number.' }),
+      namedCandidate({ title: 'Spider-Man: Fear Itself', year: 1992, sourceIssueReference: 'Spider-Man: Fear Itself (1992)', note: 'Named included comic identity without a numeric issue label.' }),
     ]),
     block(36, 'Collects: Moon Knight: Divided We Fall #1', [
       single({ title: 'Moon Knight: Divided We Fall', year: 1992, issueNumber: 1, sourceIssueReference: 'Moon Knight: Divided We Fall #1', sourceRangeReference: 'Moon Knight: Divided We Fall #1' }),
@@ -255,7 +275,7 @@ const moonKnightSourceLedger = expandLedger([
     ]),
     block(51, 'Collects: Moon Knight #21 to #25, Moon Knight: Silent Night One-Shot', [
       range({ title: 'Moon Knight', year: 2006, start: 21, end: 25, sourceRangeReference: 'Moon Knight #21 to #25' }),
-      gap({ title: 'Moon Knight: Silent Night One-Shot', year: null, sourceIssueReference: 'Moon Knight: Silent Night One-Shot', note: 'Named included comic identity, but the source does not resolve an issue number.' }),
+      namedCandidate({ title: 'Moon Knight: Silent Night One-Shot', sourceIssueReference: 'Moon Knight: Silent Night One-Shot', note: 'Named included comic identity without a numeric issue label.' }),
     ]),
     block(53, 'Collects: Moon Knight (2006 to 2009) #26 to #30', [
       range({ title: 'Moon Knight', year: 2006, start: 26, end: 30, sourceRangeReference: 'Moon Knight (2006 to 2009) #26 to #30' }),
@@ -342,16 +362,16 @@ const moonKnightSourceLedger = expandLedger([
     ]),
     block(124, "Collects: Moon Knight (2021) #7 to #12, Devil's Reign: Moon Knight", [
       range({ title: 'Moon Knight', year: 2021, start: 7, end: 12, sourceRangeReference: 'Moon Knight (2021) #7 to #12' }),
-      gap({ title: "Devil's Reign: Moon Knight", year: null, sourceIssueReference: "Devil's Reign: Moon Knight", note: 'Named included comic identity, but the source does not resolve an issue number.' }),
+      namedCandidate({ title: "Devil's Reign: Moon Knight", sourceIssueReference: "Devil's Reign: Moon Knight", note: 'Named included comic identity without a numeric issue label.' }),
     ]),
     block(127, 'Collects: Moon Knight: Black, White & Blood #1 to #4', [
       range({ title: 'Moon Knight: Black, White & Blood', year: 2022, start: 1, end: 4, sourceRangeReference: 'Moon Knight: Black, White & Blood #1 to #4' }),
     ]),
     block(128, 'Ms. Marvel & Moon Knight', [
-      gap({ title: 'Ms. Marvel & Moon Knight', year: null, sourceIssueReference: 'Ms. Marvel & Moon Knight', note: 'Named included comic identity, but the source does not resolve an issue number.' }),
+      namedCandidate({ title: 'Ms. Marvel & Moon Knight', sourceIssueReference: 'Ms. Marvel & Moon Knight', note: 'Named included comic identity without a numeric issue label.' }),
     ]),
     block(129, "Devil's Reign: Moon Knight", [
-      gap({ title: "Devil's Reign: Moon Knight", year: null, sourceIssueReference: "Devil's Reign: Moon Knight", note: 'Named included comic identity, but the source does not resolve an issue number.' }),
+      namedRepeat({ title: "Devil's Reign: Moon Knight", sourceIssueReference: "Devil's Reign: Moon Knight", note: 'Later source occurrence of the same named comic identity.', repeatOf: 384 }),
     ]),
     block(131, 'Collects: Moon Knight (2021) #13 to #18, Moon Knight Annual 2022 #1', [
       range({ title: 'Moon Knight', year: 2021, start: 13, end: 18, sourceRangeReference: 'Moon Knight (2021) #13 to #18' }),
@@ -362,6 +382,9 @@ const moonKnightSourceLedger = expandLedger([
     ]),
     block(135, 'Collects: Moon Knight (2021) #25 to #29', [
       range({ title: 'Moon Knight', year: 2021, start: 25, end: 29, sourceRangeReference: 'Moon Knight (2021) #25 to #29' }),
+    ]),
+    block(137, 'Strange Academy: Moon Knight', [
+      namedCandidate({ title: 'Strange Academy: Moon Knight', sourceIssueReference: 'Strange Academy: Moon Knight', note: 'Named included comic identity without a numeric issue label.' }),
     ]),
     block(139, 'Collects: Moon Knight: City of the Dead #1 to #5', [
       range({ title: 'Moon Knight: City of the Dead', year: 2023, start: 1, end: 5, sourceRangeReference: 'Moon Knight: City of the Dead #1 to #5' }),
