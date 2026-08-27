@@ -90,6 +90,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'wandavision',
   'spider-man-far-from-home',
   'modern-x-men-fast-track',
+  'deadpool-best-of',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

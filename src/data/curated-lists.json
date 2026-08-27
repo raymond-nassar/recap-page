@@ -2489,15 +2489,17 @@
     },
     {
       "id": "deadpool-best-of",
-      "name": "The Best Deadpool Comics to Start With!",
-      "description": "The 13 visible recommendations in Comic Book Herald's Best Deadpool Comics section, preserved in source order and stopped before the exhaustive chronology lower on the page.",
+      "name": "The Best Deadpool Comics To Start With!",
+      "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
       "type": "character-run",
       "spotlightKind": "best-of",
       "depth": "essential",
       "beginner": true,
-      "coverIssueId": 1001,
+      "group": null,
+      "groupName": null,
+      "variant": null,
       "sourceFile": "deadpool-best-of.md",
-      "sourcePage": "https://www.comicbookherald.com/the-best-deadpool-comics-to-start-with/",
+      "sourcePage": "https://www.comicbookherald.com/deadpool-reading-order/",
       "sourceSection": "The Best Deadpool Comics To Start With!",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
@@ -2513,13 +2515,13 @@
       "keywords": [
         "Comic Book Herald",
         "best-of",
-        "top 10",
         "Deadpool",
         "Cable",
         "Wolverine"
       ],
-      "expect": 26,
-      "timeline": null
+      "expect": 40,
+      "timeline": null,
+      "coverIssueId": 8462
     },
     {
       "id": "scarlet-witch-best-of",

@@ -1,11 +1,18 @@
 {
-  "candidateId": "rocket-raccoon-reading-order",
-  "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
-  "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-  "libraryDigest": "2b3501ed0217578db920390cd4f3ae18236b3672337166e5ac35884f72bea517",
+  "candidateId": "deadpool-best-of",
+  "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
+  "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
+  "libraryDigest": "de6712d8c731536b0252fe25acba9a4caca30cb94a2aeed8617bee09327c7571",
   "peerDigests": {},
-  "candidateCount": 75,
-  "comparisonCount": 146,
+  "sourceCounts": {
+    "sourceOccurrenceCount": 56,
+    "sourceIdentityCount": 40,
+    "includedIssueCount": 38,
+    "sourceGapCount": 2,
+    "repeatedSourceReferenceCount": 16
+  },
+  "candidateCount": 38,
+  "comparisonCount": 147,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -27,6 +34,12 @@
     },
     {
       "orderId": "age-of-x-man",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "agents-of-atlas-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -200,12 +213,6 @@
       "relationship": "none"
     },
     {
-      "orderId": "deadpool-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
       "orderId": "death-of-doctor-strange",
       "sharedCount": 0,
       "sharedIds": [],
@@ -279,51 +286,9 @@
     },
     {
       "orderId": "groot-reading-order",
-      "sharedCount": 41,
-      "sharedIds": [
-        "11353",
-        "9082",
-        "22811",
-        "22812",
-        "22813",
-        "22814",
-        "19779",
-        "36644",
-        "36647",
-        "36646",
-        "36645",
-        "39982",
-        "39981",
-        "39980",
-        "39979",
-        "21268",
-        "21412",
-        "21586",
-        "21783",
-        "22025",
-        "22352",
-        "22544",
-        "22957",
-        "23148",
-        "23636",
-        "23792",
-        "23793",
-        "23986",
-        "24188",
-        "25303",
-        "25304",
-        "25305",
-        "25306",
-        "25307",
-        "25308",
-        "25309",
-        "29022",
-        "29009",
-        "29010",
-        "32551",
-        "71797"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "heroes-reborn-2021",
@@ -447,20 +412,9 @@
     },
     {
       "orderId": "marvel-fresh-start-avengers",
-      "sharedCount": 10,
-      "sharedIds": [
-        "71433",
-        "71435",
-        "71436",
-        "71437",
-        "71438",
-        "71439",
-        "71440",
-        "71441",
-        "71442",
-        "71987"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "marvel-multiverse",
@@ -625,21 +579,16 @@
       "relationship": "none"
     },
     {
+      "orderId": "rocket-raccoon-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "scarlet-witch-best-of",
-      "sharedCount": 10,
-      "sharedIds": [
-        "71433",
-        "71435",
-        "71436",
-        "71437",
-        "71438",
-        "71439",
-        "71440",
-        "71441",
-        "71442",
-        "71987"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "second-coming",
@@ -739,35 +688,9 @@
     },
     {
       "orderId": "star-lord-reading-order",
-      "sharedCount": 25,
-      "sharedIds": [
-        "21268",
-        "21412",
-        "21586",
-        "21783",
-        "22025",
-        "22352",
-        "22544",
-        "22957",
-        "23148",
-        "23636",
-        "23792",
-        "23793",
-        "23986",
-        "24188",
-        "25303",
-        "25304",
-        "25305",
-        "25306",
-        "25307",
-        "25308",
-        "25309",
-        "29022",
-        "29009",
-        "29010",
-        "32551"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "thanos-imperative",
@@ -777,16 +700,9 @@
     },
     {
       "orderId": "thanos-reading-order",
-      "sharedCount": 6,
-      "sharedIds": [
-        "73420",
-        "73421",
-        "73422",
-        "73423",
-        "73424",
-        "73425"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "thanos-war",
@@ -826,34 +742,15 @@
     },
     {
       "orderId": "wandavision",
-      "sharedCount": 10,
-      "sharedIds": [
-        "71433",
-        "71435",
-        "71436",
-        "71437",
-        "71438",
-        "71439",
-        "71440",
-        "71441",
-        "71442",
-        "71987"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "war-of-kings",
-      "sharedCount": 7,
-      "sharedIds": [
-        "23986",
-        "24188",
-        "25303",
-        "25304",
-        "25305",
-        "25306",
-        "25307"
-      ],
-      "relationship": "partial"
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "war-of-the-realms",
@@ -875,9 +772,12 @@
     },
     {
       "orderId": "wolverine-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 2,
+      "sharedIds": [
+        "32573",
+        "32581"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "world-war-hulk-aftersmash",
@@ -1000,5 +900,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "dba8b37ba106072b911af063d1fb28bf03e1088ea51d358d0b3fbd8951d5190f"
+  "reportDigest": "6f79251e4758f76d7ee24c0640787bb4d01ef0cc356a556cf0075fce65091ffa"
 }

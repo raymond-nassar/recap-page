@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "409622f259a08d1581c928b43e29d687f55348f3deccfe5a778f3c7532f436e1",
+    "reportDigest": "dba8b37ba106072b911af063d1fb28bf03e1088ea51d358d0b3fbd8951d5190f",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "2f7ded40f78b6ba53fd96d168b32db2b51a6fd3fc57acd1ce226397333823236",
+    "libraryDigest": "2b3501ed0217578db920390cd4f3ae18236b3672337166e5ac35884f72bea517",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3219,6 +3219,15 @@
         "reviewedAt": "2026-08-23",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "repository publication policy",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-23"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -4582,6 +4591,6 @@
     "authorityIdentity": "MRT-002-C05 coordinator",
     "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "bc223f5c76bea861b3f141216d24994ede68823ddbcb783716f7c578dcb83f73"
+    "approvalDigest": "49c1db4c1b8cfde811228e9410948df7dd4ee7e5c629b95149c33a5ea29a8466"
   }
 }

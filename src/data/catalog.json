@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-26T22:02:50.533Z",
+  "generatedAt": "2026-08-27T02:17:07.685Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2894,13 +2894,13 @@
     {
       "id": "deadpool-best-of",
       "file": "deadpool_best_of.json",
-      "name": "The Best Deadpool Comics to Start With!",
-      "description": "A best-of path through Deadpool, assembled from the 13 visible recommendations in Comic Book Herald's Best Deadpool Comics section. It preserves the source section's ordering and stops before the exhaustive chronology lower on the page, matching the narrower source boundary rather than broadening to an all-time reading order.",
+      "name": "The Best Deadpool Comics To Start With!",
+      "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
       "type": "character-run",
       "depth": "essential",
       "spotlightKind": "best-of",
-      "count": 26,
-      "collections": 13,
+      "count": 40,
+      "collections": 9,
       "characters": [
         "Deadpool",
         "Cable",
@@ -2912,7 +2912,6 @@
       "keywords": [
         "Comic Book Herald",
         "best-of",
-        "top 10",
         "Deadpool",
         "Cable",
         "Wolverine"
@@ -2922,16 +2921,16 @@
       "variant": null,
       "beginner": true,
       "timeline": null,
-      "coverIssueId": 1001,
+      "coverIssueId": 8462,
       "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5f1d3b6f0d1d9",
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4f20226fb8142",
         "ext": "jpg"
       },
-      "source": "https://www.comicbookherald.com/the-best-deadpool-comics-to-start-with/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "source": "https://www.comicbookherald.com/deadpool-reading-order/",
       "sourceSection": "The Best Deadpool Comics To Start With!",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T23:20:05.473Z"
+      "updatedAt": "2026-08-27T02:17:07.601Z"
     },
     {
       "id": "scarlet-witch-best-of",

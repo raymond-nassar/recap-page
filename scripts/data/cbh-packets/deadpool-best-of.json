@@ -1,0 +1,690 @@
+{
+  "schemaVersion": 1,
+  "id": "deadpool-best-of",
+  "inventoryId": "deadpool-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/deadpool-reading-order/",
+  "sourceSection": "The Best Deadpool Comics To Start With!",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "c00cb7706d865e27e020443d1be72696dd8dd74aee4d75d984e88efeee05603c",
+  "sourceBoundary": "The complete visible section titled The Best Deadpool Comics To Start With!, retaining all 13 numbered recommendation groups and stopping before Full Deadpool Reading Order. The source prose says top 10, but the visible thirteen-group boundary controls.",
+  "excludedSourceReferences": [
+    "Full Deadpool Reading Order"
+  ],
+  "sourceOccurrenceCount": 56,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 41,
+      "canonicalRow": 23,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #1",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 42,
+      "canonicalRow": 24,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #2",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 43,
+      "canonicalRow": 25,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #3",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 44,
+      "canonicalRow": 26,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #4",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 45,
+      "canonicalRow": 27,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #1",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 46,
+      "canonicalRow": 28,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #2",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 47,
+      "canonicalRow": 29,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #3",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 48,
+      "canonicalRow": 30,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #4",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 49,
+      "canonicalRow": 31,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #1",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 50,
+      "canonicalRow": 32,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #2",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 51,
+      "canonicalRow": 33,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #3",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 52,
+      "canonicalRow": 34,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #4",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 53,
+      "canonicalRow": 35,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #1",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 54,
+      "canonicalRow": 36,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #2",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 55,
+      "canonicalRow": 37,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #3",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 56,
+      "canonicalRow": 38,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #4",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "4"
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Deadpool MAX (2010) #1",
+      "sourceRangeReference": "7. Deadpool MAX",
+      "normalizedSeriesTitle": "Deadpool MAX",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The official Marvel issue page confirms this source identity, but the repository metadata provider returns no record for its exact Marvel issue id; Issue 275 tracks resolution.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/32219/deadpool_max_2010_1",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/issues/32219",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "8a7f6ca3d11e4df00b505b0b498bf921f0b490b835589a28dafc50f40c4c482a"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Deadpool MAX (2010) #2",
+      "sourceRangeReference": "7. Deadpool MAX",
+      "normalizedSeriesTitle": "Deadpool MAX",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The official Marvel issue page confirms this source identity, but the repository metadata provider returns no record for its exact Marvel issue id; Issue 275 tracks resolution.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/32228/deadpool_max_2010_2",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/issues/32228",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "70b8aad44421585ee2ea069e0e519b27c37662884ff39a02b2abfebc18b658b3"
+    }
+  ],
+  "expectedCount": 38,
+  "proposedManifest": {
+    "id": "deadpool-best-of",
+    "name": "The Best Deadpool Comics To Start With!",
+    "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
+    "type": "character-run",
+    "spotlightKind": "best-of",
+    "depth": "essential",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "deadpool-best-of.md",
+    "sourcePage": "https://www.comicbookherald.com/deadpool-reading-order/",
+    "sourceSection": "The Best Deadpool Comics To Start With!",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "deadpool_best_of.json",
+    "characters": [
+      "Deadpool",
+      "Cable",
+      "Wolverine",
+      "Spider-Man",
+      "X-Force",
+      "Lady Deadpool"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "best-of",
+      "Deadpool",
+      "Cable",
+      "Wolverine"
+    ],
+    "expect": 40,
+    "timeline": null,
+    "coverIssueId": 8462
+  },
+  "insertionAnchor": {
+    "beforeId": "scarlet-witch-best-of"
+  },
+  "sourceReview": {
+    "authorityType": "human",
+    "authorityIdentity": "repository owner",
+    "rationale": "The owner approved the thirteen visible recommendation groups. Exact Marvel metadata resolves thirty-eight distinct issues; two Deadpool MAX identities remain explicit metadata gaps; the Minibus repetitions remain traceable to their later source groups.",
+    "reviewedAt": "2026-08-26T18:44:06-07:00"
+  },
+  "rows": [
+    {
+      "sourceIssueReference": "Deadpool (1997) #1",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "1",
+      "seriesId": 2005,
+      "candidateIssueId": 8462,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (1997) #2",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "2",
+      "seriesId": 2005,
+      "candidateIssueId": 8473,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (1997) #3",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "3",
+      "seriesId": 2005,
+      "candidateIssueId": 8484,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (1997) #4",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "4",
+      "seriesId": 2005,
+      "candidateIssueId": 8495,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (1997) #18",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "18",
+      "seriesId": 2005,
+      "candidateIssueId": 8471,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (1997) #24",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "24",
+      "seriesId": 2005,
+      "candidateIssueId": 8478,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #1",
+      "sourceRangeReference": "2. Deadpool Classic Omnibus Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "seriesId": 2003,
+      "candidateIssueId": 8453,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #2",
+      "sourceRangeReference": "2. Deadpool Classic Omnibus Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "seriesId": 2003,
+      "candidateIssueId": 8454,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #3",
+      "sourceRangeReference": "2. Deadpool Classic Omnibus Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "seriesId": 2003,
+      "candidateIssueId": 8455,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable & Deadpool (2004) #1",
+      "sourceRangeReference": "3. Cable & Deadpool",
+      "normalizedSeriesTitle": "Cable & Deadpool",
+      "seriesYear": 2004,
+      "issueNumber": "1",
+      "seriesId": 693,
+      "candidateIssueId": 430,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable & Deadpool (2004) #2",
+      "sourceRangeReference": "3. Cable & Deadpool",
+      "normalizedSeriesTitle": "Cable & Deadpool",
+      "seriesYear": 2004,
+      "issueNumber": "2",
+      "seriesId": 693,
+      "candidateIssueId": 479,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Cable & Deadpool (2004) #3",
+      "sourceRangeReference": "3. Cable & Deadpool",
+      "normalizedSeriesTitle": "Cable & Deadpool",
+      "seriesYear": 2004,
+      "issueNumber": "3",
+      "seriesId": 693,
+      "candidateIssueId": 644,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (2008) #1",
+      "sourceRangeReference": "4. Deadpool: The Adamantium Collection",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5701,
+      "candidateIssueId": 22021,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (2008) #2",
+      "sourceRangeReference": "4. Deadpool: The Adamantium Collection",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 5701,
+      "candidateIssueId": 22019,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (2008) #3",
+      "sourceRangeReference": "4. Deadpool: The Adamantium Collection",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 5701,
+      "candidateIssueId": 22348,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool: Merc with a Mouth (2009) #1",
+      "sourceRangeReference": "5. Deadpool - The Daniel Way Run",
+      "normalizedSeriesTitle": "Deadpool: Merc with a Mouth",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8865,
+      "candidateIssueId": 27873,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool: Merc with a Mouth (2009) #2",
+      "sourceRangeReference": "5. Deadpool - The Daniel Way Run",
+      "normalizedSeriesTitle": "Deadpool: Merc with a Mouth",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "seriesId": 8865,
+      "candidateIssueId": 27798,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool: Merc with a Mouth (2009) #3",
+      "sourceRangeReference": "5. Deadpool - The Daniel Way Run",
+      "normalizedSeriesTitle": "Deadpool: Merc with a Mouth",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "seriesId": 8865,
+      "candidateIssueId": 27799,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Force (2010) #1",
+      "sourceRangeReference": "6. Uncanny X-Force - The Rick Remender Run",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9976,
+      "candidateIssueId": 32573,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Force (2010) #2",
+      "sourceRangeReference": "6. Uncanny X-Force - The Rick Remender Run",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9976,
+      "candidateIssueId": 32581,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (2012) #1",
+      "sourceRangeReference": "8. Deadpool (Marvel NOW!) - The Gerry Duggan and Brian Posehn run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 16542,
+      "candidateIssueId": 43797,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool (2012) #2",
+      "sourceRangeReference": "8. Deadpool (Marvel NOW!) - The Gerry Duggan and Brian Posehn run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "2",
+      "seriesId": 16542,
+      "candidateIssueId": 43801,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Killustrated (2013) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 17652,
+      "candidateIssueId": 46862,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Killustrated (2013) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17652,
+      "candidateIssueId": 46863,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Killustrated (2013) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17652,
+      "candidateIssueId": 46864,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Killustrated (2013) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17652,
+      "candidateIssueId": 46865,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 17995,
+      "candidateIssueId": 47678,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17995,
+      "candidateIssueId": 47679,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17995,
+      "candidateIssueId": 47680,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17995,
+      "candidateIssueId": 47681,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 15487,
+      "candidateIssueId": 41553,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "2",
+      "seriesId": 15487,
+      "candidateIssueId": 41552,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "3",
+      "seriesId": 15487,
+      "candidateIssueId": 41551,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "4",
+      "seriesId": 15487,
+      "candidateIssueId": 41554,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18469,
+      "candidateIssueId": 49101,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18469,
+      "candidateIssueId": 49102,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18469,
+      "candidateIssueId": 49103,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18469,
+      "candidateIssueId": 49104,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    }
+  ],
+  "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc"
+}

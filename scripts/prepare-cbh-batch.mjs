@@ -3100,6 +3100,7 @@ async function main() {
           sourceOccurrenceCount: guide.sourceOccurrenceCount,
           repeatedSourceReferences: guide.repeatedSourceReferences,
           excludedSourceRows: guide.excludedSourceRows,
+          ...(guide.sourceGaps == null ? {} : { sourceGaps: guide.sourceGaps }),
         }),
       reviewStatus: guide.sourceUnavailable ? 'blocked-source-unavailable' : 'pending-independent-review',
       proposedManifest,
