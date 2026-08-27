@@ -3783,6 +3783,40 @@
       "coverIssueId": 22754
     },
     {
+      "id": "marvel-knights-to-planet-x",
+      "name": "Marvel Knights to Planet X",
+      "description": "Owner-curated reading spine from Daredevil's Guardian Devil through the Planet X crossover cluster, preserved in source order and expanded issue by issue.",
+      "type": "event",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-knights-to-planet-x.md",
+      "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
+      "sourceLicense": null,
+      "out": "marvel_knights_to_planet_x.json",
+      "characters": [
+        "Daredevil",
+        "Punisher",
+        "Spider-Man",
+        "X-Men",
+        "Fantastic Four",
+        "Avengers",
+        "Wolverine"
+      ],
+      "keywords": [
+        "Marvel Knights",
+        "Planet X",
+        "Guardian Devil",
+        "E is for Extinction",
+        "X-Corps",
+        "Planet X crossover"
+      ],
+      "expect": 487,
+      "timeline": 1998
+    },
+    {
       "id": "spider-man-identity-crisis",
       "name": "Spider-Man: Identity Crisis",
       "description": "Eight chapters tracking Spider-Man's four identities through Identity Crisis.",
