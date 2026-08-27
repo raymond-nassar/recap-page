@@ -347,10 +347,10 @@
     "coverIssueId": 12027
   },
   "relationshipReview": {
-    "reportDigest": "6d2719a0f33ea9e1cd3bf9ba595af134b834931c2b0965cc957461a987a488e0",
+    "reportDigest": "01c886829cb37f1c8fab8f16817ff5e22000d2a001fbd26843bb56832be6274c",
     "packetDigest": "4a660f057356e023180b9433f8e5d8bb0f863ec551d6437aa35599cd0da2f41a",
     "mappingDigest": "ff29f1e4bf1a60165a37ff4a51a723f6d0865627ef5fbdba397b3bfac8909d32",
-    "libraryDigest": "c24d61e7a5510a094f4b05f81db3885a23239c9a2e05e0e067aeccf998580070",
+    "libraryDigest": "a99980983f52ba8017ec642b6150ae63906c74e170c6c0776cead81ddc1f22ce",
     "peerDigests": {
       "fall-of-the-mutants": "223a4b92f028824ec68498b83b35018ec29898d29fa166b27b72e89b475ef804",
       "marvel-super-heroes-secret-wars": "32c4495ceec288e5984c5430e194472f81acc67993676267ede980a6e82e6a05"
@@ -475,6 +475,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b03 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:54.251Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:28:54.251Z"
       },
       {
@@ -1844,6 +1855,6 @@
     "authorityIdentity": "MRT-003-C02-B03 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the five named Secret Wars, Spider-Man, Captain America, and X-Men relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:54.251Z",
-    "approvalDigest": "c657cf69ca46794226402c85c12fa29dd574cece2dcc65b95f5f241818b091fe"
+    "approvalDigest": "8f3ffbcbabff9bd21107fc152b2ed6a4be55577af9d8907452758fa70a0a40fa"
   }
 }

@@ -750,10 +750,10 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "The current library and the four other shipped MCU companion peers were reviewed; prior central approvals were preserved and the new Far From Home peer adds no shared issue.",
     "reviewedAt": "2026-08-26T05:09:20Z",
-    "reportDigest": "08ef6e36ef0dd70df47701fab52c25b26c043d0c2149585b4adcfaf197f51aa4",
+    "reportDigest": "a7c485daa69014eac88380654addcdff84dfa8d01a6c6c6038c3c4ec10dfe7a1",
     "packetDigest": "bd0b58b61128f9787c658f0f182daf04df4b06a668b20225c049cb233f53ed10",
     "mappingDigest": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
-    "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
+    "libraryDigest": "c8da03f234940464d60558ffdf3324151d6caf62998fcc2370a149f4f6f1d58c",
     "peerDigests": {
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
       "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
@@ -859,6 +859,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26T05:09:20Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
@@ -1987,6 +1998,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       }
     ],
-    "approvalDigest": "d97988ab4dcb0920fa0e047eecf3890f357ef09fe3c0a1c68e6e9d936d75220e"
+    "approvalDigest": "4dedf63828b37d13ccd9fb37a8daa22a8fd1224d434904c58b5b4e801b68920f"
   }
 }

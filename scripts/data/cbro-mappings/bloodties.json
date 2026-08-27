@@ -274,10 +274,10 @@
     "coverIssueId": 7250
   },
   "relationshipReview": {
-    "reportDigest": "1a438fe2f9c7977c9f80199da8bf562c14176195a785904725596303385aa30a",
+    "reportDigest": "1944ec1ae72b8785451b89d9fe172e0360f3fad64bd38b1c47ed980a79106641",
     "packetDigest": "183b930f20be0acb7b9330d71839bc0dcb8693be0d8d4f92523775f7d8fa8eeb",
     "mappingDigest": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
-    "libraryDigest": "c4b15c29d0302b2020a91f7d4da1dec01a6e6d1b34867e38389a0c3ee6acfb55",
+    "libraryDigest": "ccfd26ed787bfdac22041acd210f4c16492e3fdd718fe76d97b2f4f5aca7725b",
     "peerDigests": {
       "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
       "eighth-day": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
@@ -393,6 +393,23 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:11.977Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "candidate-subset",
+        "sharedCount": 5,
+        "sharedIds": [
+          "7250",
+          "14313",
+          "17788",
+          "13848",
+          "7251"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-25T03:09:11.977Z"
       },
       {
@@ -1579,6 +1596,6 @@
     "authorityIdentity": "MRT-003 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T03:09:11.977Z",
-    "approvalDigest": "f408a5d0d08b2389e3af8dfd1671fa14129fe915ed27f74567f095b7577d9e56"
+    "approvalDigest": "6e3bc47da261fb6d3612b3f1149f8ee7a92ddecef8360088d96bf30ad0f836dd"
   }
 }

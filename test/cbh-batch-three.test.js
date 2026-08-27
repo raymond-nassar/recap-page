@@ -241,8 +241,8 @@ test('batch three keeps its original identities, sequence, and no-overlap report
 
   for (const id of THIRD_PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 134);
-    assert.equal(report.comparisons.length, 134);
+    assert.equal(report.comparisonCount, 135);
+    assert.equal(report.comparisons.length, 135);
     const approved = new Map([
       ['x-men-regenesis', new Map([
         ['white-tiger-ava-ayala', ['partial', 1, ['36485']]],

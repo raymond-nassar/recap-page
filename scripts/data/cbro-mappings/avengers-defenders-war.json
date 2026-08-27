@@ -386,10 +386,10 @@
     "coverIssueId": 6970
   },
   "relationshipReview": {
-    "reportDigest": "13d3b531a2f0cd3bde21dd8ad1290bb6c3c97ec26ca437f714347b82a52c056e",
+    "reportDigest": "a73a516c1de26a709ee5efa45fd69d90b28370b13d1c49316232dd19a0b86fcd",
     "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
     "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-    "libraryDigest": "bca1d4ab7c87dc95fcf8927ebb1d3dc4111644648e88752b0e08c67f93ac45b2",
+    "libraryDigest": "b643002362550d6c4d2cbd17abc7a991a74b18cd69016f00d41dab561f8f25db",
     "peerDigests": {
       "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
       "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -505,6 +505,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b01 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:38:48.585Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:38:48.585Z"
       },
       {
@@ -1878,6 +1889,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset and the Thanos War subset are the approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:38:48.585Z",
-    "approvalDigest": "93feafc30f9e6db60aefe91a84289d455d180befc9245f3c9bd8f0e65a081ba0"
+    "approvalDigest": "eebc6e5f29167967e5c6b20b03779549bffa3e7868f02f47fb1429758297a4fc"
   }
 }

@@ -1937,10 +1937,10 @@
     "authorityIdentity": "GPT-5.5 central review",
     "rationale": "Approved the creator-run boundary as Hickman-written or Hickman-co-written rows through Inferno. Partial overlaps are intentional because existing event and character guides represent different truthful catalog contexts rather than duplicate line-wide Krakoa intake.",
     "reviewedAt": "2026-08-26T00:00:00Z",
-    "reportDigest": "97958c44554a934fe471a198c5ce67380c90c1a30f1948b7401e667ebbcfcb84",
+    "reportDigest": "da456393e99f2c905a7f5172473bd6c7d876295cb9b2d78a421e18f236b3dab5",
     "packetDigest": "800288f321acf9793b0800e2c6c3f8ece3283ba341d672b9903924edae04f439",
     "mappingDigest": "faef0663fd0c7dc17b1f7f8449971662adda7d8612666f4990970955cc30efa7",
-    "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
+    "libraryDigest": "e70a1e0375e6601ae853c643f2d786fec681a789be7e4bc5c1b85c079ff94d27",
     "peerDigests": {},
     "dispositions": [
       {
@@ -2040,6 +2040,17 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT overlap policy",
         "rationale": "Approved zero-overlap relationship under the standard catalog relationship policy.",
+        "reviewedAt": "2026-08-26T00:00:00Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T00:00:00Z"
       },
       {
@@ -3161,6 +3172,6 @@
         "reviewedAt": "2026-08-26T00:00:00Z"
       }
     ],
-    "approvalDigest": "2cae5cdf1306b575e202aaee52e4951698ed970d2e57cf8331aeb11260493084"
+    "approvalDigest": "1a35e510968497b27c202009d576d902eadd29f37655ee56e887ff0356325d13"
   }
 }

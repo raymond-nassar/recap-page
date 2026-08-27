@@ -514,10 +514,10 @@
     "coverIssueId": 13751
   },
   "relationshipReview": {
-    "reportDigest": "8c29b863da2e2ef5e9d0f9ab864542c78eeec230d8d0ab5d64583e529064134a",
+    "reportDigest": "f1f923d1a93909ce47e24f58083ba8c329821cf0486c98efce21488c3e3060cc",
     "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99",
     "mappingDigest": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
-    "libraryDigest": "6488e2a82857a6f942a7c1650b8a5e0a6734c836e1448188cfba529adbfe577a",
+    "libraryDigest": "9e20d84f6fd8c9eeed2ce136b1f1019681aaceec7aed5eece912eb8da3560e1a",
     "peerDigests": {
       "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1",
       "wraith-war": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954"
@@ -642,6 +642,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b04 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:55.194Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:28:55.194Z"
       },
       {
@@ -2028,6 +2039,6 @@
     "authorityIdentity": "MRT-003-C02-B04 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the eight named X-Men, Avengers, Doctor Doom, and peer relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:55.194Z",
-    "approvalDigest": "88277b3a2d810f2b65d5446104c575020f05a8e8af33bb24db9ddf79fc11e8e7"
+    "approvalDigest": "502beac7d4018973d9a5e465ec9c18ffadc06c5f77456e4960525e96882d70fe"
   }
 }

@@ -964,10 +964,10 @@
     "coverIssueId": 66912
   },
   "relationshipReview": {
-    "reportDigest": "583e0d59343c954785cacad23e1e89c889a6b490977aa3c6544141471be2548b",
+    "reportDigest": "476ce7321948d440cb509065ef84eaf27c73815b023f7fbb461548c6c78ce51c",
     "packetDigest": "8adcc4f38020cba7472096eb17aa59265603eb1b56799d75b53ae8277e3816e4",
     "mappingDigest": "1f4ed5ebc388bfb433ab5b863856eeea2f6eb3536e960e0f0ed65b5f0ee9c1d3",
-    "libraryDigest": "1d7d1478a87b1e1f025cae1f0f4161ef8b6e29d1821016af2781dfc7770d6c21",
+    "libraryDigest": "b6b1427b9d6f3fb019d95a213fc150e39aa97709fe9ad6b5fd9741bafdc82101",
     "peerDigests": {},
     "dispositions": [
       {
@@ -1049,6 +1049,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "66416"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
@@ -1751,6 +1764,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog was reviewed; 1 partial relationship required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "cac5bcbeb5518708080ecba709c69bde0d3172d787b6cb74adefd588bcd8ecbe"
+    "approvalDigest": "d3e0a8742f68089a236a591ae7ed07489ae9add9a290dbc23df37e01b5a6079c"
   }
 }

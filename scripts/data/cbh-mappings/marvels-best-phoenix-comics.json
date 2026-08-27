@@ -2045,10 +2045,10 @@
     "coverIssueId": 8605
   },
   "relationshipReview": {
-    "reportDigest": "b787d13eeaddac17d9e80a5d9eca0531d6214635c5ff5629f1e2403cc6ddfc70",
+    "reportDigest": "e20ec5c9dbf0d885b476085705956a793eadc7972829cf8a65167f2a57b0a9c3",
     "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
     "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
-    "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
+    "libraryDigest": "0f673b6a3bf19a198766b236c59864f6d1c72c15186d7535ff224f1c586baed8",
     "peerDigests": {
       "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
     },
@@ -2150,6 +2150,17 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-23T16:36:05.313Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
@@ -3028,6 +3039,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T16:36:05.313Z",
-    "approvalDigest": "a8f0a6cc4b628064980620b0c890a9988b62f3823c676a5ffb4f236249d1c777"
+    "approvalDigest": "25246bc328f143cffb80c534a83724545ab2a6af4a499029fb708a3a937599d6"
   }
 }

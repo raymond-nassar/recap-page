@@ -272,10 +272,10 @@
     "coverIssueId": 13819
   },
   "relationshipReview": {
-    "reportDigest": "74015a9ab92841f6ec572d2a14d829af61b27d662e27fea499021d98651d830e",
+    "reportDigest": "0da9df8a131afd9f6f33f154b88efa63fab1f57b4e3253a1982e559777130362",
     "packetDigest": "dcb274a7d0ebf4213018883fb7d43238d93a037d4fdaf9dddd52e78033d363e8",
     "mappingDigest": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779",
-    "libraryDigest": "c4b15c29d0302b2020a91f7d4da1dec01a6e6d1b34867e38389a0c3ee6acfb55",
+    "libraryDigest": "ccfd26ed787bfdac22041acd210f4c16492e3fdd718fe76d97b2f4f5aca7725b",
     "peerDigests": {
       "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
       "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
@@ -391,6 +391,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
+        "reviewedAt": "2026-08-25T03:09:11.977Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-25T03:09:11.977Z"
       },
       {
@@ -1577,6 +1588,6 @@
     "authorityIdentity": "MRT-003 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T03:09:11.977Z",
-    "approvalDigest": "b47ab22fd97eec9fcbffbf587ae08e7e6020846da49facae2249f08d4e6b0284"
+    "approvalDigest": "c5bcf3417ed2fe01de93f8e53390e6e7f47b373f36d2ee1226a5a3fa003af5b1"
   }
 }

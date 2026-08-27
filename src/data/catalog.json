@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T14:02:27.921Z",
+  "generatedAt": "2026-08-27T17:44:12.810Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2704,6 +2704,45 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T09:36:57.369Z"
+    },
+    {
+      "id": "black-widow-reading-order",
+      "file": "black_widow_reading_order.json",
+      "name": "Black Widow",
+      "description": "The complete Black Widow reading guide from Natasha Romanoff's earliest Marvel appearances through her modern solo series and team appearances.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 570,
+      "collections": 143,
+      "characters": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Daredevil",
+        "Avengers",
+        "Hawkeye"
+      ],
+      "keywords": [
+        "Black Widow",
+        "Natasha Romanoff",
+        "Avengers",
+        "Marvel",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11295,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/536d5bd4362ea",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/black-widow-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T17:44:12.206Z"
     },
     {
       "id": "daredevil-reading-order",

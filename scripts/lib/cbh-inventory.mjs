@@ -98,6 +98,7 @@ const MAPPING_DIGEST_FIELDS = Object.freeze([
 const REPEATED_SOURCE_REFERENCE_FIELDS = new Set([
   'sourcePosition',
   'canonicalRow',
+  'canonicalGapSourcePosition',
   'sourceIssueReference',
   'sourceRangeReference',
   'normalizedSeriesTitle',
@@ -227,7 +228,8 @@ function assertRepeatedSourceReference(reference, index, rows) {
   const label = `Repeated source reference ${index + 1}`;
   if (!isPlainObject(reference)) throw new Error(`${label} must be an object`);
   const fields = Object.keys(reference);
-  const missing = [...REPEATED_SOURCE_REFERENCE_FIELDS].filter((field) => !Object.hasOwn(reference, field));
+  const missing = [...REPEATED_SOURCE_REFERENCE_FIELDS]
+    .filter((field) => field !== 'canonicalRow' && field !== 'canonicalGapSourcePosition' && !Object.hasOwn(reference, field));
   if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
   const unexpected = fields.filter((field) => !REPEATED_SOURCE_REFERENCE_FIELDS.has(field));
   if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
@@ -235,10 +237,19 @@ function assertRepeatedSourceReference(reference, index, rows) {
     throw new Error(`${label} sourcePosition must be a positive integer`);
   }
 
-  if (!Number.isInteger(reference.canonicalRow)
+  const hasCanonicalRow = Object.hasOwn(reference, 'canonicalRow');
+  const hasCanonicalGap = Object.hasOwn(reference, 'canonicalGapSourcePosition');
+  if (hasCanonicalRow === hasCanonicalGap) {
+    throw new Error(`${label} must name exactly one canonical row or canonical gap`);
+  }
+  if (hasCanonicalRow && (!Number.isInteger(reference.canonicalRow)
     || reference.canonicalRow < 1
-    || reference.canonicalRow > rows.length) {
+    || reference.canonicalRow > rows.length)) {
     throw new Error(`${label} canonicalRow must name a canonical packet row`);
+  }
+  if (hasCanonicalGap && (!Number.isInteger(reference.canonicalGapSourcePosition)
+    || reference.canonicalGapSourcePosition < 1)) {
+    throw new Error(`${label} canonicalGapSourcePosition must name a source gap`);
   }
   assertNonEmptyString(reference.sourceIssueReference, `${label} sourceIssueReference`);
   if (reference.sourceRangeReference != null) {
@@ -319,7 +330,9 @@ function assertSourceGap(gap, index) {
   if (gap.seriesYear !== null && !Number.isInteger(gap.seriesYear)) {
     throw new Error(`${label} seriesYear must be an integer or null`);
   }
-  assertNonEmptyString(String(gap.issueNumber ?? ''), `${label} issueNumber`);
+  if (gap.issueNumber != null) {
+    assertNonEmptyString(String(gap.issueNumber), `${label} issueNumber`);
+  }
   const validPair = (gap.kind === 'published-metadata-gap' && gap.status === 'open')
     || (gap.kind === 'availability-exclusion' && gap.status === 'closed')
     || (gap.kind === 'source-correction' && gap.status === 'closed');
@@ -450,6 +463,19 @@ export function sourcePositionsForPacket(packet) {
     const reference = bySourcePosition.get(sourcePosition);
     if (!reference) {
       canonicalSourcePositions.push(sourcePosition);
+      continue;
+    }
+    if (Object.hasOwn(reference, 'canonicalGapSourcePosition')) {
+      const canonical = gaps.find((gap) => gap.sourcePosition === reference.canonicalGapSourcePosition);
+      if (!canonical || canonical.sourcePosition >= sourcePosition) {
+        throw new Error(`${packetId} repeated source position ${sourcePosition} must target an earlier source gap`);
+      }
+      const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
+      for (const field of fields) {
+        if (String(reference[field]) !== String(canonical[field])) {
+          throw new Error(`${packetId} repeated source position ${sourcePosition} ${field} differs from source gap ${canonical.sourcePosition}`);
+        }
+      }
       continue;
     }
     if (!Object.hasOwn(reference, 'canonicalRow')) continue;

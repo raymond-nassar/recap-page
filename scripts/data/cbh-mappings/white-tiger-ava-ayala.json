@@ -3123,10 +3123,10 @@
     "coverIssueId": 36489
   },
   "relationshipReview": {
-    "reportDigest": "5027da0482c2842bd7a0f3e96315c28c1349b6eb5d7514d01a2ef3fc5905e0a7",
+    "reportDigest": "fa5b45ed366bf1c3fda9408d9e25ef886378b8c418b1e4bb5a006ab951df49a9",
     "packetDigest": "959310f882b67d5b83e8f8ba9ff6136adcd3c61523d05bdef3d9113d9767b740",
     "mappingDigest": "0d4465c495c15bf7b405964a6d50975ba3023bc10be03ba6923a19eb3954060c",
-    "libraryDigest": "777d291c95f0b34de9c5e08bb6e0445d693dca0b5c427ec6ef1a4fb9dcc5c50e",
+    "libraryDigest": "00ff22f57994f42f469be81d13a13d3b2602882a473d07dc9d12f3e1cf51ce10",
     "peerDigests": {},
     "dispositions": [
       {
@@ -3208,6 +3208,17 @@
         "rationale": "The broad Ava Ayala character path intentionally includes these shared issues; the relationship is partial and neither order contains the other.",
         "authorityType": "stronger-model",
         "authorityIdentity": "MRT-002-C01 coordinator",
+        "reviewedAt": "2026-08-23"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-23"
       },
       {
@@ -3919,6 +3930,6 @@
     "authorityIdentity": "MRT-002-C01 coordinator",
     "rationale": "All 86 current-library relationships were reviewed. The four partial relationships match the central Research disposition and are approved for this broad character path.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "ecb289f1eabc30b6c471256a4c591d276eeb4892a79fcc005b9c849ff3c443eb"
+    "approvalDigest": "74e26d7c8004ee92d86f4a979e8dc8078e3329846b89dbaeb597cf42da3c3991"
   }
 }

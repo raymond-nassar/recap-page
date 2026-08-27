@@ -24442,10 +24442,10 @@
     "spotlightKind": "complete-guide"
   },
   "relationshipReview": {
-    "reportDigest": "083afb88414ec2a75ca95d99072329c5a2f59493f3459db1ed57bdb5616a9cb5",
+    "reportDigest": "d816d73ecf242d7a223c90fac1609946cfd61de9c4273a766d0b685084201f47",
     "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
     "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-    "libraryDigest": "5c2f54d29e0120b0a61dd2a7696107fed6190b10a332e2000b5edf518a0aa263",
+    "libraryDigest": "429fccd09a477512544949eda6ef7a9ac2f9f70f26ef82b453857ead19edc6e0",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
@@ -24603,6 +24603,40 @@
         "rationale": "Reviewed 6 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T14:00:00.000Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 22,
+        "sharedIds": [
+          "16890",
+          "7099",
+          "7100",
+          "7101",
+          "7102",
+          "7103",
+          "7104",
+          "7105",
+          "7106",
+          "7107",
+          "7109",
+          "7110",
+          "17514",
+          "17515",
+          "17516",
+          "17517",
+          "6097",
+          "6301",
+          "13477",
+          "15855",
+          "15965",
+          "16519"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-27T14:00:00.000Z"
       },
       {
@@ -25848,7 +25882,7 @@
         "reviewedAt": "2026-08-27T14:00:00.000Z"
       }
     ],
-    "approvalDigest": "fb4e111fa2ff2343e0a827e7f8dd15aeea3eb5744ade26acd457bfb778c75352"
+    "approvalDigest": "358fd1ed5ae29eabfb7ba7c86db4e13372300e7e672d9514fd2f6120b8ad0264"
   },
   "excludedSourceRows": [
     {

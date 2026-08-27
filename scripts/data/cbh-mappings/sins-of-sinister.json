@@ -564,10 +564,10 @@
     "coverIssueId": 102461
   },
   "relationshipReview": {
-    "reportDigest": "8558f42f9ea9a19ab12fff2eadd1fca3a506628fb0ee9e0fef699a12b84c496d",
+    "reportDigest": "05c8a0e102e98b0f6d07439aa3e585a1afcd707cf134b8b63466cfb44041b1da",
     "packetDigest": "5f2a96f6d3e55882fe8d04ec81cfb1f9a8d3c56ba7b21fc69a9d7c003949349e",
     "mappingDigest": "8fe36184b0887ead545859dffe393814c9c33ca2738d2a5fb100004b66b891e1",
-    "libraryDigest": "a5e247406f1b53e8e013403aec5f93819854caa96f8512df7c30880fcf1bc426",
+    "libraryDigest": "1b605e641c04e7050cc14fe49b97e97ccd5755fa10dac9c52e7001dca475ca5c",
     "peerDigests": {
       "dark-web": "e82dbaa204cc50c6da6044023a4808f80071473751bb6a70545ca9bc9c65382f",
       "judgment-day": "45bb86755c51897b1bdfd3bb43b2cdd445e50e769a6d35b8b281a5af01fc55c1"
@@ -652,6 +652,17 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
@@ -1354,6 +1365,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "0d645deabe5f01d454bb886c7bc96e5a8e4aac770d2162335c34e1e73a7933cb"
+    "approvalDigest": "c2791b93572be936917916f5f0f2772131a9969e6d60036cccfcadb8779ba7a3"
   }
 }

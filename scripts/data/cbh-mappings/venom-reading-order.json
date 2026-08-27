@@ -16927,10 +16927,10 @@
     "coverIssueId": 10590
   },
   "relationshipReview": {
-    "reportDigest": "36c13fa25871ac9d60563660afa2fcdad828c60ee3cb3ad59bddef45ad0851d5",
+    "reportDigest": "235e329af48291bb42b135ed452ab71c915191a725f53573a717a444203ba94c",
     "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
     "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
-    "libraryDigest": "952e2327d0043e44725cc1dfdb87d9e6e56ae5a2ee5a720c9a6328135f540d7f",
+    "libraryDigest": "e4cdf262ed17d090c4a952e75aa9c0a23fbf0a4a7c566400838c5968c8c32247",
     "peerDigests": {},
     "dispositions": [
       {
@@ -17084,6 +17084,19 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:41:32.288Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8322"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-27T05:41:32.288Z"
       },
       {
@@ -18322,8 +18335,8 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "The include-later complete-library report was rebuilt against 154 current catalog orders. Twenty-two non-none relationships were reviewed as intentional crossover overlap or an existing subset; no exact duplicate exists.",
+    "rationale": "The include-later complete-library report was rebuilt against 154 current catalog orders. Twenty-three non-none relationships were reviewed as intentional crossover overlap or an existing subset; no exact duplicate exists.",
     "reviewedAt": "2026-08-27T05:41:32.288Z",
-    "approvalDigest": "f9b9678218081f4c58989b57214b23731cacfdaef0dab3a167bf1e40dba01697"
+    "approvalDigest": "3bc473123b3c05956cc5d9557812de3dc655c8e6ed137867b4d90a4d7ed1334b"
   }
 }

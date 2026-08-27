@@ -14488,10 +14488,10 @@
     "coverIssueId": 13258
   },
   "relationshipReview": {
-    "reportDigest": "6cdbef2ce50b16779a28c4a10f358eeb992aeffe535466002925ba630d3b3ea9",
+    "reportDigest": "0b86baf48e2894c87260117971a73ea926162954e51831cbcda536907997ee27",
     "packetDigest": "5acb5c9727357a3418d30998f661040f02f2750f09d84013670a7136f914139e",
     "mappingDigest": "c9cc9a2cd8e513c01afe40218bfcee48f3ac7b333fd47b26f317eaf654e1a2c6",
-    "libraryDigest": "96a8ab88d7060b5fc5a2399b02caf799b6a0f30d6ab6af31ad2aaa5eb4ab4d24",
+    "libraryDigest": "c2bf9aa3a2dfe1acbc6aee34882333769be60b37c74cbf8108fdaafb4be715af",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
@@ -14640,6 +14640,22 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 4,
+        "sharedIds": [
+          "73446",
+          "73447",
+          "73448",
+          "73449"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
@@ -15849,6 +15865,6 @@
         "reviewedAt": "2026-08-27T05:03:43.866Z"
       }
     ],
-    "approvalDigest": "5eb79ff6c52e3058eb8bf29fb755b393844432d7db020943f7c2f08f0588f8e0"
+    "approvalDigest": "4203d13286d72be63be52738545caa3f3152ee107eee80257ad3d927c6f04d88"
   }
 }

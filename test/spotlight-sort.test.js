@@ -35,6 +35,7 @@ test('the shipped spotlight stories resolve the owner-supplied Top 30 ranks exac
     ['Venom', 11],
     ['The Best of the Scarlet Witch', 12],
     ['Phoenix', 17],
+    ['Black Widow', 19],
     ['Essential Avengers', 21],
     ['X-Men: Silver Age to Claremont', 22],
   ]);
@@ -61,6 +62,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Venom',
     'The Best of the Scarlet Witch',
     'Phoenix',
+    'Black Widow',
     'Essential Avengers',
     'X-Men: Silver Age to Claremont',
     'Amazing Spider-Man',

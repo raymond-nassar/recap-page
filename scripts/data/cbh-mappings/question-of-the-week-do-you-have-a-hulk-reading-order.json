@@ -48028,10 +48028,10 @@
     "coverIssueId": 8906
   },
   "relationshipReview": {
-    "reportDigest": "cb0946ae047daf849f34e8033a9f2d2ff1b998042d38d9581a6c306d64555907",
+    "reportDigest": "af83d2ac02e80056bc673c1f8562e7e5f6ce94d901426ee5b4a3426937e3ebb1",
     "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
     "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-    "libraryDigest": "f6027ce55f287f73929e922c39fcd5cb9e8a46ef71feb4dadf0d0c312a0203db",
+    "libraryDigest": "dceb171227b0072eab5d3a55ca639ad8bd27010e06c0ae01c42ac31e8966374a",
     "peerDigests": {},
     "dispositions": [
       {
@@ -48185,6 +48185,22 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identity does not make these source-defined guides duplicates.",
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 4,
+        "sharedIds": [
+          "16880",
+          "9255",
+          "9260",
+          "7409"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
@@ -49389,7 +49405,7 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The complete-library comparison was refreshed after the Black Panther guide joined the catalog. Every resulting relationship remains approved.",
-    "approvalDigest": "82204567cee7dbff0b1d57ff8b16eea12e506e65676e54ee55975bc5e54e60a5"
+    "approvalDigest": "21d5fe00a1beea3cd74b3dfec6567c9500be45c808e5f6a79a59735e128e85b2"
   },
   "excludedSourceRows": [
     {

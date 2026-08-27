@@ -447,8 +447,8 @@ test('the final Thanos artifacts conserve every source position and publish only
   assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourceIssueReference), exclusions);
   assert.ok(packet.sourceGaps.every((gap) => gap.kind === 'availability-exclusion' && gap.status === 'closed'));
   assert.deepEqual(report.sourceCounts, mapping.relationshipReview.sourceCounts);
-  assert.equal(report.comparisonCount, 137);
-  assert.equal(mapping.relationshipReview.dispositions.length, 137);
+  assert.equal(report.comparisonCount, 138);
+  assert.equal(mapping.relationshipReview.dispositions.length, 138);
   assert.equal(mapping.rows.length, 272);
   assert.deepEqual(
     mapping.rows
@@ -877,9 +877,9 @@ test('the original authored packet keeps its identities, sequence, and pre-publi
 
   for (const id of PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 134, `${id} overlap boundary changed`);
+    assert.equal(report.comparisonCount, 135, `${id} overlap boundary changed`);
     assert.equal(report.candidateCount, packetRecords.find((record) => record.id === id).selectedIssueIds.length);
-    assert.equal(report.comparisons.length, 134);
+    assert.equal(report.comparisons.length, 135);
     const allowed = allowedOverlaps.get(id) ?? [];
     assert.ok(report.comparisons.every((comparison) => {
       const expected = allowed.find((entry) => entry.orderId === comparison.orderId);

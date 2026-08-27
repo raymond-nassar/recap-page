@@ -49,7 +49,9 @@ const expectedRelationships = {
     ['xmen-claremont', 'candidate-subset', 2],
     ['xmen-claremont-complete', 'candidate-subset', 2],
   ],
-  'marvel-what-if': [],
+  'marvel-what-if': [
+    ['black-widow-reading-order', 'partial', 1],
+  ],
   wandavision: [
     ['essential-avengers', 'partial', 3],
     ['marvel-fresh-start-avengers', 'partial', 10],
@@ -329,7 +331,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
       .map((entry) => entry.id),
     MCU_SELECTED_IDS,
   );
-  assert.equal(catalog.lists.length, 156);
+  assert.equal(catalog.lists.length, 157);
   assert.deepEqual(
     inventory.records.filter((record) => record.centralDisposition === 'selected')
       .map((record) => [record.deliveryStatus, record.catalogIds]),
@@ -382,7 +384,7 @@ test('approved evidence reaches six payloads, cards, and one MCU Prep group', as
   );
   assert.deepEqual(
     shelfLists(catalog.lists, 'spotlights').length,
-    29,
+    30,
     'Character Spotlight count differs from the merged catalog',
   );
 });

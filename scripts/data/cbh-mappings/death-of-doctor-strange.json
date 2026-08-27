@@ -531,10 +531,10 @@
     "coverIssueId": 93315
   },
   "relationshipReview": {
-    "reportDigest": "194b82a680884ee5801830d661179cdcaa866464efd1e4a39a4b6e966cfa91a6",
+    "reportDigest": "ab3035dcaa246305eaf0d0cec72778c417255c01dda26b7ebda1aaddfda305c4",
     "packetDigest": "444a2a6f5f08e41de12cdfe33d204773239ff8c7eabf121ab65ce4d14cc8faa6",
     "mappingDigest": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
-    "libraryDigest": "45bda80a23c6dc1e9f8dbcaad91ecba3344da84a5395b4fed778070d7f2366e2",
+    "libraryDigest": "0219f3159d60d377273973fb3195c14b66bf59ff5f9169bde120fde51f7da07e",
     "peerDigests": {
       "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7",
       "reckoning-war": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146"
@@ -619,6 +619,17 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
@@ -1321,6 +1332,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "2dea4f20ec63ce027e02626facb85e28f5d4ccb84dea210bb00225bc3409a54f"
+    "approvalDigest": "b4444cac933456555480f1e79bf4da1e4308fb0b00b2f8e1e101f18c85e19d15"
   }
 }

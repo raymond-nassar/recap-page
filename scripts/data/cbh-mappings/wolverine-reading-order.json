@@ -33241,12 +33241,23 @@
     "authorityIdentity": "GitHub Copilot",
     "rationale": "Reviewed the canonical overlap report against the settled current-main library. Existing overlaps are intentional source-defined relationships, including Hunt for Wolverine, Wolverine Goes to Hell, Modern X-Men Fast Track, and broader X-Men guides.",
     "reviewedAt": "2026-08-26T19:13:50Z",
-    "reportDigest": "680c1768b5e26dd1466f49d01c3c90fb24cdf2e594067807f440e9230726a344",
+    "reportDigest": "17f6bfea2ea72fb64d669fd7130d7db672f2e3bac437bdc32b8f0779a85ff3e0",
     "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2",
     "mappingDigest": "ed898bfb96d5272887c1990b6066ec76f285e734613f39babdc48d7b0c85e05f",
-    "libraryDigest": "9ef3d52745a46bf542802fe3083af1ca6b7911af68888f699ff7c917ec39d6cb",
+    "libraryDigest": "a400d6727f5cbe342c16f3520dd29e88ed73e6cade37b3b0afde0eb4864832d9",
     "peerDigests": {},
     "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -33254,6 +33265,17 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33266,12 +33288,37 @@
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
         "orderId": "all-new-all-different-avengers",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "partial",
+        "sharedCount": 2,
+        "sharedIds": [
+          "1532",
+          "18005"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33290,6 +33337,34 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "partial",
+        "sharedCount": 16,
+        "sharedIds": [
+          "40251",
+          "40250",
+          "40253",
+          "40254",
+          "40264",
+          "40706",
+          "40705",
+          "40709",
+          "47001",
+          "47003",
+          "37405",
+          "37406",
+          "37407",
+          "45904",
+          "45905",
+          "45906"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33344,6 +33419,29 @@
         "rationale": "The Wolverine guide is broader and intentionally retains this source-defined overlap; the existing guide remains independently useful.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 11,
+        "sharedIds": [
+          "40",
+          "1438",
+          "1532",
+          "1628",
+          "1720",
+          "1829",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -33641,6 +33739,19 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "76763"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -34148,6 +34259,17 @@
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
         "orderId": "spider-man-identity-crisis",
         "relationship": "none",
         "decision": "approved",
@@ -34247,12 +34369,34 @@
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
         "orderId": "venomverse",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
@@ -34418,6 +34562,17 @@
         "reviewedAt": "2026-08-26T19:13:50Z"
       },
       {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-08-26T19:13:50Z"
+      },
+      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -34463,6 +34618,6 @@
         "reviewedAt": "2026-08-26T19:13:50Z"
       }
     ],
-    "approvalDigest": "dcad65aa9832f5cb7754efe733d9ed2efc58d179a5f2f114855777c32ee355ca"
+    "approvalDigest": "696b7c080712ea99531554f0322751bf70599f7c53619764b0e95231900d0a0f"
   }
 }

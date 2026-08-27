@@ -6078,10 +6078,10 @@
   },
   "mappingDigest": "8dff0a5405f015083ddcb118d441b7c0cc42d53b91e8cc40a2ef7fb2c4447831",
   "relationshipReview": {
-    "reportDigest": "05d0119136812ae674bf54e825270e408247a453e8ef3e7afe4f3f2c09c1d41e",
+    "reportDigest": "73cf103bcb17577194c321aadc69237a98a79e51cfb7484b60ffeddb2230eb83",
     "packetDigest": "dd7a839a63aec8212fba45ce1c438ac1852034ea7c949ce6457c8aa5c4d497cd",
     "mappingDigest": "8dff0a5405f015083ddcb118d441b7c0cc42d53b91e8cc40a2ef7fb2c4447831",
-    "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
+    "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.4 mini",
@@ -6188,6 +6188,17 @@
         "reviewedAt": "2026-08-26"
       },
       {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-08-26"
+      },
+      {
         "orderId": "bloodties",
         "relationship": "none",
         "decision": "approved",
@@ -6203,6 +6214,17 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26"
       },
       {
@@ -6477,15 +6499,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "decision": "approved",
         "rationale": "No shared issues require a relationship exception.",
@@ -7088,15 +7101,6 @@
         "reviewedAt": "2026-08-26"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
         "orderId": "venomverse",
         "relationship": "none",
         "decision": "approved",
@@ -7268,15 +7272,6 @@
         "reviewedAt": "2026-08-26"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "decision": "approved",
@@ -7322,6 +7317,6 @@
         "reviewedAt": "2026-08-26"
       }
     ],
-    "approvalDigest": "cae27ccb8d3d025982d87a5059086ad3f48fe45594fb07b7fa0c3aae153e607b"
+    "approvalDigest": "3d2385b5d642ef27bb30c2792e812e35a3367d29ce781579cdd50058c325ea92"
   }
 }

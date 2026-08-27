@@ -847,10 +847,10 @@
     "coverIssueId": 22754
   },
   "relationshipReview": {
-    "reportDigest": "3acafda8bbf6e4545f9cf591e9a7ce52fd14ed220c6961335e59fa86291d17b3",
+    "reportDigest": "5f47e4ab431866c1b86943c043ea550d665cf3593639d0085e133d27e1e6fd2e",
     "packetDigest": "a132a3a3661900f6a5e81e9d7bc505df833a9d85cedfcc114a2b354aba637ec2",
     "mappingDigest": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
-    "libraryDigest": "1bd91150c031c0c6aaddcd84124c5841b79a26b012a9f1fb8f61c72e78200103",
+    "libraryDigest": "cefa5c69e6bbc20f7e5129ccf0852a95c0d2db6274db268890af018c541d00d3",
     "peerDigests": {
       "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
       "spider-man-identity-crisis": "c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741",
@@ -976,6 +976,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b08 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:58.606Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:28:58.606Z"
       },
       {
@@ -2338,6 +2349,6 @@
     "authorityIdentity": "MRT-003-C02-B08 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Phalanx Covenant subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-26T15:28:58.606Z",
-    "approvalDigest": "9648dda5e637760d42bd2f60162620b854b052a39e46c1ab93ad4b5421048163"
+    "approvalDigest": "ddd1716facce070a8c086fbae4493569e57bae3e10351d9e67a7245a22c5a173"
   }
 }

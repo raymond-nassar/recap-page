@@ -303,10 +303,10 @@
     "coverIssueId": 95798
   },
   "relationshipReview": {
-    "reportDigest": "833a74b2cc99b0811298e40195b084822fa2b7b1f045f8b99f18fcc983a63fb6",
+    "reportDigest": "7edb48030665de5b63f3e15b5dee10aae2e3becbc94f5d51b1b712917388e1b8",
     "packetDigest": "b0b68b28211a271f6e8ea4491718f5b8fbeb881ea52cbee0607d24892ade4584",
     "mappingDigest": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146",
-    "libraryDigest": "45bda80a23c6dc1e9f8dbcaad91ecba3344da84a5395b4fed778070d7f2366e2",
+    "libraryDigest": "0219f3159d60d377273973fb3195c14b66bf59ff5f9169bde120fde51f7da07e",
     "peerDigests": {
       "death-of-doctor-strange": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
       "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7"
@@ -391,6 +391,17 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
@@ -1093,6 +1104,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "5f3df91df3911b786882b055cbe5fc23fa55352335790a5ffc00ad47c596ddf2"
+    "approvalDigest": "1d48128d6e271f742b932aa00e34064ad9e1202f36473dd828313d71e1ffc2ab"
   }
 }

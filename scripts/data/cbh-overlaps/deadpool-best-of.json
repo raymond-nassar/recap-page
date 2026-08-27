@@ -2,7 +2,7 @@
   "candidateId": "deadpool-best-of",
   "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
   "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
-  "libraryDigest": "2adaf22f349325e3b2423de4fdcc46f7347f58fd9af23784862659d6e45bb35e",
+  "libraryDigest": "2a59774786a948a1931894d75ea2d6f6c40068278abe0005ffe13e8d63173715",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 56,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 16
   },
   "candidateCount": 38,
-  "comparisonCount": 150,
+  "comparisonCount": 151,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -112,6 +112,12 @@
     },
     {
       "orderId": "black-panther-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -918,5 +924,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "f515c0c9208a71d7598ffd20395e0eefe37d7dcd99bf241424aa3c96855affd0"
+  "reportDigest": "2628a4c236e92a75dc7a4e7ac22b32b9a4856ecd88e76f0ffafead38e2f60c0a"
 }

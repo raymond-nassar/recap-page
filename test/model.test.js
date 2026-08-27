@@ -1020,8 +1020,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // adds 39 source-preserving metadata gaps with distinct negative identifiers. Daredevil adds
   // eight more source-preserving metadata gaps with distinct negative identifiers. Venom adds 33
   // further source-preserving metadata gaps with distinct negative identifiers.
-  assert.equal(claimed, 1071, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1071, 'the bundled placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1085, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1085, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1219,6 +1219,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // that the provider also cannot answer. Black Panther adds four negative placeholder identifiers.
   // Doctor Strange adds 39 more negative placeholder identifiers. Venom adds 33 more negative
   // placeholder identifiers.
-  assert.equal(refused.length, 1115);
+  assert.equal(refused.length, 1129);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

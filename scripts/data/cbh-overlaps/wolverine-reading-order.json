@@ -2,7 +2,7 @@
   "candidateId": "wolverine-reading-order",
   "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2",
   "mappingDigest": "ed898bfb96d5272887c1990b6066ec76f285e734613f39babdc48d7b0c85e05f",
-  "libraryDigest": "9ef3d52745a46bf542802fe3083af1ca6b7911af68888f699ff7c917ec39d6cb",
+  "libraryDigest": "a400d6727f5cbe342c16f3520dd29e88ed73e6cade37b3b0afde0eb4864832d9",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1328,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 69
   },
   "candidateCount": 437,
-  "comparisonCount": 145,
+  "comparisonCount": 146,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -135,6 +135,24 @@
       "sharedCount": 1,
       "sharedIds": [
         "48907"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 11,
+      "sharedIds": [
+        "40",
+        "1438",
+        "1532",
+        "1628",
+        "1720",
+        "1829",
+        "66416",
+        "66684",
+        "67022",
+        "68653",
+        "68656"
       ],
       "relationship": "partial"
     },
@@ -1228,5 +1246,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "680c1768b5e26dd1466f49d01c3c90fb24cdf2e594067807f440e9230726a344"
+  "reportDigest": "17f6bfea2ea72fb64d669fd7130d7db672f2e3bac437bdc32b8f0779a85ff3e0"
 }

@@ -266,14 +266,23 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   assert.equal(packetRecords.length, 10);
   assert.equal(
     existingRecords.length,
-    116,
+    117,
   );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 
   const packetIssueIds = packetRecords.flatMap((record) => record.selectedIssueIds);
   const existingIssueIds = new Set(existingRecords.flatMap((record) => record.selectedIssueIds));
-  assert.deepEqual(packetIssueIds.filter((id) => existingIssueIds.has(id)), []);
+  assert.deepEqual(
+    packetIssueIds.filter((id) => existingIssueIds.has(id)),
+    ['15350', '15351', '15352', '16066'],
+  );
   const allowedOverlaps = new Map([
+    ['maximum-security', [{
+      orderId: 'black-widow-reading-order',
+      sharedCount: 4,
+      sharedIds: ['15350', '15351', '15352', '16066'],
+      relationship: 'partial',
+    }]],
     ['annihilation-conquest', [
       {
         orderId: 'groot-reading-order',
@@ -306,8 +315,8 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
 
   for (const id of PACKET_IDS) {
     const report = await readJson(path.join(overlapsDir, `${id}.json`));
-    assert.equal(report.comparisonCount, 134);
-    assert.equal(report.comparisons.length, 134);
+    assert.equal(report.comparisonCount, 135);
+    assert.equal(report.comparisons.length, 135);
     const allowed = allowedOverlaps.get(id) ?? [];
     assert.ok(report.comparisons.every((comparison) => {
       const expected = allowed.find((entry) => entry.orderId === comparison.orderId);

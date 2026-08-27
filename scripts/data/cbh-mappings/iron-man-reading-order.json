@@ -26889,10 +26889,10 @@
     "coverIssueId": 11280
   },
   "relationshipReview": {
-    "reportDigest": "a24d2616f8d67b274ff0379f11805cb7e0f6188334e8bef63dcb674907e94264",
+    "reportDigest": "56008133e7792d1e9719ae8623a6caf486cb7559ab1d775ed50ca228a8d7a8ac",
     "packetDigest": "b2c67419dce8fff82401ee9e32498c97086409bae1e514f10d9ab4ac70feb805",
     "mappingDigest": "3b1656e2f3d9eda936d2930e7d1fbb3db5ab7a094268e40a2cf0560aa463828c",
-    "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
+    "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
     "peerDigests": {},
     "dispositions": [
       {
@@ -26995,6 +26995,51 @@
         "reviewedAt": "2026-08-26"
       },
       {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 33,
+        "sharedIds": [
+          "11295",
+          "11296",
+          "11300",
+          "11304",
+          "11308",
+          "9525",
+          "9526",
+          "37769",
+          "37780",
+          "37791",
+          "37802",
+          "37813",
+          "37824",
+          "37835",
+          "37846",
+          "37857",
+          "37770",
+          "37771",
+          "37772",
+          "37773",
+          "19885",
+          "40",
+          "1438",
+          "1532",
+          "1628",
+          "1720",
+          "1829",
+          "6097",
+          "6301",
+          "13477",
+          "15855",
+          "15965",
+          "16519"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
+        "reviewedAt": "2026-08-26"
+      },
+      {
         "orderId": "bloodties",
         "relationship": "none",
         "decision": "approved",
@@ -27010,6 +27055,17 @@
         "rationale": "Shared issues are intentional provenance and do not merge the guides.",
         "authorityType": "stronger-model",
         "authorityIdentity": "MRT-002 resume coordinator",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26"
       },
       {
@@ -27289,15 +27345,6 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
-        "orderId": "hickman-x-men",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "Shared issues are intentional provenance and do not merge the guides.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "MRT-002 resume coordinator",
         "reviewedAt": "2026-08-26"
       },
       {
@@ -27895,15 +27942,6 @@
         "reviewedAt": "2026-08-26"
       },
       {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
         "orderId": "venomverse",
         "relationship": "none",
         "decision": "approved",
@@ -28075,15 +28113,6 @@
         "reviewedAt": "2026-08-26"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require an exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "partial",
         "decision": "approved",
@@ -28133,7 +28162,7 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002 resume coordinator",
     "rationale": "Every current-library comparison was reviewed against the complete-guide boundary; the iron-man-2020 partial overlap is approved as intentional provenance per its disposition, and no exact or subset relationship exists with any other order.",
-    "approvalDigest": "04a4307181082319c2ef7645ae512ab0274e178ff23178dbc50364f21bbcb1d8"
+    "approvalDigest": "b4aa9dbc93a1edfaf5b61d1942cd20e86e03a383964a23e80e231d0fca3d9f61"
   },
   "approvalDigest": "04a4307181082319c2ef7645ae512ab0274e178ff23178dbc50364f21bbcb1d8"
 }

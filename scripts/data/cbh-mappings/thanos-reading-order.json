@@ -10787,10 +10787,10 @@
     "coverIssueId": 9610
   },
   "relationshipReview": {
-    "reportDigest": "87b169a76e8465decf6f3af3d93dd1dd1ef3ba8bf51f2180b4ce77bf0ddecfb1",
+    "reportDigest": "cdd2f1319f0f3555b7d6039f21a38f8827acfa88df31bab75a057348b76f42b0",
     "packetDigest": "385758b69b84394fd9a3952d08e31cff45df1fd0929fc7f171c97db99d25e062",
     "mappingDigest": "88eaf2246b84effae186dd1b54b58e58334a839fcaf2ea32141b4176e5e5c9e6",
-    "libraryDigest": "13b78e5537353828a1c201b5559c7b95b54222a55fbe62a4d1a8755a645f0e9a",
+    "libraryDigest": "885d590dd95c738bd7417cba51782498fa8da1539faef83be822d4ed8ce95fae",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 321,
@@ -10919,6 +10919,33 @@
         "rationale": "No shared issues require a special disposition.",
         "authorityType": "policy",
         "authorityIdentity": "final Thanos none-overlap policy",
+        "reviewedAt": "2026-08-26T07:36:34.796Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 15,
+        "sharedIds": [
+          "8080",
+          "18452",
+          "18453",
+          "18454",
+          "18414",
+          "9292",
+          "9293",
+          "9294",
+          "9295",
+          "9296",
+          "9297",
+          "10020",
+          "10021",
+          "10023",
+          "10024"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T07:36:34.796Z"
       },
       {
@@ -12373,6 +12400,6 @@
     "authorityIdentity": "GPT-5.6 Sol final Thanos overlap review",
     "rationale": "Reviewed the complete current-library report, the 272 exact issue identities, seven availability exclusions, and 42 intentional repeats.",
     "reviewedAt": "2026-08-26T07:36:34.796Z",
-    "approvalDigest": "5d7a0b26d718ba4e59b9c28d6bdf9980377643709335336c49ba44cca2b93e57"
+    "approvalDigest": "3d2a5e6946d24a1a62d47f12f53ddb3d405af5295f808b5c4b7fee9fdc7d4d71"
   }
 }

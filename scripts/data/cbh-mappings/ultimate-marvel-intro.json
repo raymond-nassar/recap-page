@@ -4576,10 +4576,10 @@
     "coverIssueId": 4372
   },
   "relationshipReview": {
-    "reportDigest": "b1d5cb727fe7d28580f76065e01ee57c97cf65aa9d733dcf0255ab59fe89ca8d",
+    "reportDigest": "b499272a7523296894ee96ff18df4f45e29844efa0806812b19b513e812c739a",
     "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc",
     "mappingDigest": "a3daf543129ffdd4062f858ad81f4ead293662ee3628b297d252561ca894a143",
-    "libraryDigest": "c4a7286797d7d56b973763c2aec48fa84a4b70643a1931bbfd5de6cdd349a801",
+    "libraryDigest": "e70a1e0375e6601ae853c643f2d786fec681a789be7e4bc5c1b85c079ff94d27",
     "peerDigests": {},
     "dispositions": [
       {
@@ -4679,6 +4679,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26T05:30:00Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T05:30:00Z"
       },
       {
@@ -5804,6 +5815,6 @@
     "authorityIdentity": "GPT-5.5",
     "reviewedAt": "2026-08-26T05:30:00Z",
     "rationale": "The first Earth-1610 Ultimate Marvel release was compared against every current catalog order. All 134 relationships are none, so no existing order or selected peer duplicates this issue sequence.",
-    "approvalDigest": "a564f3506960438bbfce44da33948476fa7b56c41e18d21e4ec5d91d04835918"
+    "approvalDigest": "6950223a079c50c1ce6010c90f0153c1e06f502045950e86c2843c97b322898a"
   }
 }

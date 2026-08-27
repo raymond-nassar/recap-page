@@ -2787,10 +2787,10 @@
     "coverIssueId": 4801
   },
   "relationshipReview": {
-    "reportDigest": "fdade994f0f81e3167261c7a65b7aabe0b406ee823131ad657d9db7e9dcf4031",
+    "reportDigest": "b020c550996453751097ecd4a979bc0897c9c2697b0047d84f48cbfdb35c2fd5",
     "packetDigest": "422b2a50c012bf32695de1b8df9d5e3776eb502698fc28a7813f4de428de815e",
     "mappingDigest": "4468252f21650e77747ec789865a4c7500c220608412876da0d7ad46ea805946",
-    "libraryDigest": "b8c7dd2dc80f8652ee792f9d22dbdd2e80f3656df916838008d3f3a03c0b250e",
+    "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
     "peerDigests": {},
     "dispositions": [
       {
@@ -2915,6 +2915,20 @@
         "reviewedAt": "2026-08-26"
       },
       {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 2,
+        "sharedIds": [
+          "19785",
+          "19786"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
+        "reviewedAt": "2026-08-26"
+      },
+      {
         "orderId": "bloodties",
         "relationship": "none",
         "sharedCount": 0,
@@ -2934,6 +2948,17 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26"
       },
       {
@@ -3268,17 +3293,6 @@
       },
       {
         "orderId": "hickman-minimal",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
-        "orderId": "hickman-x-men",
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
@@ -4231,17 +4245,6 @@
         "reviewedAt": "2026-08-26"
       },
       {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-26"
-      },
-      {
         "orderId": "x-of-swords",
         "relationship": "none",
         "sharedCount": 0,
@@ -4301,6 +4304,6 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Central review reconciled the exact Comic Book Herald boundary against the current metadata snapshot, retained 80 resolved rows in source order, and approved the two partial overlaps while leaving every other current-library comparison as none.",
     "reviewedAt": "2026-08-26",
-    "approvalDigest": "faf446358cc5437daa7a93f13ed426116973f10dfdeaea22a5c275902709fc67"
+    "approvalDigest": "1760b842ba8f168b21c94839b8004be7771575e83b942809ec3d7bcb7a7e818a"
   }
 }

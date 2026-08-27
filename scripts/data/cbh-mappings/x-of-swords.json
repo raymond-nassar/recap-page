@@ -1006,10 +1006,10 @@
     "coverIssueId": 85662
   },
   "relationshipReview": {
-    "reportDigest": "440cbe119807c9f9f49b3f0c3d65b2c120064eeae0815a2a7f20de8497672d1e",
+    "reportDigest": "34af1cf6c075e84b3db13fb3795797d6c1e80a02d651f36bfa84a92375defee8",
     "packetDigest": "57ee256e63363c7d7309dc27e482566db38153205e3911a5d7816f22045ac0a0",
     "mappingDigest": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3",
-    "libraryDigest": "0dea147fec25c6ef87da0addc9abc392869238229eec3b5c5cd91c8bde3c6961",
+    "libraryDigest": "89cb809d81f6c3723c15c1b90ba8debd461cfb3ccd736ba7b77824596187c4c3",
     "peerDigests": {
       "heroes-reborn-2021": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620"
     },
@@ -1093,6 +1093,17 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-23T05:47:48.847Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-23T05:47:48.847Z"
       },
       {
@@ -1795,6 +1806,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 1 partial relationship required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "1e882a26e782a69c709e02dff308d22a2a23a518d36273029ee5aa872ee0a49b"
+    "approvalDigest": "4ec9cdd709da1a62f568420ee3bc113b6a3af9a5678981667b6a840d0fc4ddd1"
   }
 }

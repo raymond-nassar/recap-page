@@ -425,10 +425,10 @@
     "coverIssueId": 8304
   },
   "relationshipReview": {
-    "reportDigest": "6ae6abeb906a62a8b1cda35d94e77d4ee5cd24a1a3473688c5271d411a479d98",
+    "reportDigest": "e8d2f9c5a15e8f03177c4f8dd81f30bade5cd1d3483228f58ba076b27b819e8f",
     "packetDigest": "65b4c9e1308f1bd68fe0c1538691fe3fc16e622611a7e598fbc74a56c6f112ee",
     "mappingDigest": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
-    "libraryDigest": "66fedc5eaa7b8e088590a0a712c9110af74d8390957ff11422ab4af965b783e5",
+    "libraryDigest": "da54ac5c67cf0242ae22634b7dfaf778bfb179727fd0e27bfe9c4eb0e20c92aa",
     "peerDigests": {
       "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
       "rise-of-the-midnight-sons": "fe7b094aa67dc91e75c1a4d5f2beff933e8f3205893476de9afdb255ea17753e",
@@ -554,6 +554,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:56.881Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:28:56.881Z"
       },
       {
@@ -1916,6 +1927,6 @@
     "authorityIdentity": "MRT-003-C02-B06 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:56.881Z",
-    "approvalDigest": "cdb12f3a1dbada2d0c4b1c584e114ae21c7b0b93c48e35d494421b3628cfd771"
+    "approvalDigest": "d6cce1fdad0e2dee9b911c289f0ad467fb18931239e1e8b182bb786477e92bc8"
   }
 }

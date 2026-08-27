@@ -195,10 +195,10 @@
     "coverIssueId": 39673
   },
   "relationshipReview": {
-    "reportDigest": "67a84723c23dba522de65a82f29bcfbac7fe7b6eac03319fe4a18ecf29ba75cf",
+    "reportDigest": "89cf5a7b77de3b381d2720899450cd9f62442730eedeec7059e2d3bfc448547f",
     "packetDigest": "6ef776481f229f264d61a9cdfe7d961117223434bf7b121ca71cfc526bebd68b",
     "mappingDigest": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
-    "libraryDigest": "e63c8e6a92e25f93805cae6517f27ea83e91b27ee334ff83c84374afe850bac7",
+    "libraryDigest": "12043f3f7f9403d6b54f82a374406f71e45ec806f4d2e08843be74093f35ef29",
     "peerDigests": {
       "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
       "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -325,6 +325,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b02 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:53.308Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:28:53.308Z"
       },
       {
@@ -1687,6 +1698,6 @@
     "authorityIdentity": "MRT-003-C02-B02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:53.308Z",
-    "approvalDigest": "9f9e880c3dc653fe33a482d5369e55681acfee7855d93a665e5456fe491af7df"
+    "approvalDigest": "5cf39994a1b49b034f4e7e62c014444e46e96cfe896a782090dc07ea562e5f0c"
   }
 }

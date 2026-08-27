@@ -363,10 +363,10 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "The current library and the four other shipped MCU companion peers were reviewed; prior central approvals were preserved and the new Far From Home peer adds no shared issue.",
     "reviewedAt": "2026-08-26T05:09:20Z",
-    "reportDigest": "6a070508309b7b18b7d4774553ed7254c59eafd529ca1a254b795093c397ab9e",
+    "reportDigest": "57962c33e950312c8db0d9c3ae634ac6d6555da2b0d326230d7aa2186ce6ac4f",
     "packetDigest": "750e957f3b81c3b4a51d0d17eae8e8adc79b8fc2154e7d18014c1b913e810d9e",
     "mappingDigest": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
-    "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
+    "libraryDigest": "c8da03f234940464d60558ffdf3324151d6caf62998fcc2370a149f4f6f1d58c",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
@@ -472,6 +472,19 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26T05:09:20Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "sharedCount": 1,
+        "sharedIds": [
+          "58430"
+        ],
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
@@ -1600,6 +1613,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       }
     ],
-    "approvalDigest": "5853968daa440531996d55d99a4f42be340a229b96b64dd28e9b88bbb4f3adc1"
+    "approvalDigest": "d94213b4fc327127b73ca944b4da12fc6cc6a91105f05c7087aed4188e1a3452"
   }
 }

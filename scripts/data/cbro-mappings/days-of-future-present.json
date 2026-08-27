@@ -237,10 +237,10 @@
     "coverIssueId": 8702
   },
   "relationshipReview": {
-    "reportDigest": "b02bde247873892df3f646c41a37c98b7469565f2bd3237a8b9356de4f1e1b35",
+    "reportDigest": "2e1627d21076de40d52b1cf9579e7469547029ea415762a59b1649abf3fc1d37",
     "packetDigest": "4ff38fed78b07fca1c58fc5e21a6b3352ff34cb5244b4f0c64bada3290c2e02b",
     "mappingDigest": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
-    "libraryDigest": "89ce207a230d3982a06f19fea71460f1dcc3cd9863ce26cf7e1878b13cdca69e",
+    "libraryDigest": "ee5f3645a0e1b4689a10fd7a68e32becac16a03d7d60eaaf482255a1c1c9bcee",
     "peerDigests": {
       "atlantis-attacks": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
       "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197",
@@ -366,6 +366,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b05 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:56.020Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:28:56.020Z"
       },
       {
@@ -1728,6 +1739,6 @@
     "authorityIdentity": "MRT-003-C02-B05 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:56.020Z",
-    "approvalDigest": "5a1e41e70ccab91649121f7671fe20b12da06fbfac24e3f0563f7039bea605df"
+    "approvalDigest": "7cb621d3842e3acc7b1df887eeaf809ab87deff12ec8dbccebe05e3c7483d86f"
   }
 }

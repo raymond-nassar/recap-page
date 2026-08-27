@@ -502,10 +502,10 @@
     "authorityIdentity": "MRT-004 coordinator",
     "rationale": "The current library and the four shipped MCU companion peers were reviewed. Only spider-man-best-of shares issues, and that partial overlap preserves separate screen-companion value through three unique Far From Home rows.",
     "reviewedAt": "2026-08-26T05:09:20Z",
-    "reportDigest": "282fc5d8f3b85f100f626e53302cef25cb53737098da0fecebac218a7467d164",
+    "reportDigest": "284eb8996c3b70b0261c3f3a2451b5bc07cb852f4c0fa17c391131dfd4ba09b2",
     "packetDigest": "8975b171f32406cd885818b94dcee940db8c871d75481e27c8d26805b5e13ce3",
     "mappingDigest": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
-    "libraryDigest": "7df0bfed1df814847950fc42e5f346db606127bf268f3b44696f80e7ee2d5a55",
+    "libraryDigest": "c8da03f234940464d60558ffdf3324151d6caf62998fcc2370a149f4f6f1d58c",
     "peerDigests": {
       "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
       "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
@@ -611,6 +611,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "MRT-004 none-overlap policy",
+        "reviewedAt": "2026-08-26T05:09:20Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T05:09:20Z"
       },
       {
@@ -1739,6 +1750,6 @@
         "reviewedAt": "2026-08-26T05:09:20Z"
       }
     ],
-    "approvalDigest": "43f0cfdc218f6e0e21429f4116394eb5fe4bc1991628426d7e2da37645e6d579"
+    "approvalDigest": "f8556564e5ce4576679e364b3b70daf1a2fe6742bbda65170afd440c6b626d08"
   }
 }

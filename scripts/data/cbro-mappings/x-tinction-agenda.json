@@ -425,10 +425,10 @@
     "coverIssueId": 13811
   },
   "relationshipReview": {
-    "reportDigest": "3bcfc9f65e7ec38ea0068bbdccba416da1a01196c65f388a39afa3e4aa3134e8",
+    "reportDigest": "0c148ad6a28182b1d30e9695199c45e5af8a76da38f2c42f967acae0b9ed2346",
     "packetDigest": "1db83fdff9270b97a8a6edf8fa389551c842a9f39ef5499322684030bd794aab",
     "mappingDigest": "98a32935b2d090520e5b2f0fc8d6d47acfb64d6448efbf0ac45956409fd4f9d4",
-    "libraryDigest": "66fedc5eaa7b8e088590a0a712c9110af74d8390957ff11422ab4af965b783e5",
+    "libraryDigest": "da54ac5c67cf0242ae22634b7dfaf778bfb179727fd0e27bfe9c4eb0e20c92aa",
     "peerDigests": {
       "dead-mans-hand": "b1829dab006fd9ed1a8be0b3235d3580795d163eaae87ab7ce8b0eedb5249711",
       "operation-galactic-storm": "810d07e7733c8047fe6e856a51e537da632894968c7d4b2786ffc99ff32588c6",
@@ -554,6 +554,17 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003-c02-b06 none-overlap policy",
+        "reviewedAt": "2026-08-26T15:28:56.881Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
         "reviewedAt": "2026-08-26T15:28:56.881Z"
       },
       {
@@ -1916,6 +1927,6 @@
     "authorityIdentity": "MRT-003-C02-B06 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:56.881Z",
-    "approvalDigest": "7f629e72fbda3ff9297f76d3ce9f8c9c2a384f52bd3a0c49f42f1d1dc6d0c62f"
+    "approvalDigest": "fe53116e2d661b344b7f25d98577451261f270efb062c3d794072f61620ee1b8"
   }
 }
