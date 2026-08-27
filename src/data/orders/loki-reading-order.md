@@ -336,7 +336,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [New Mutants Special Edition (1985) #1](https://www.marvel.com/comics/issue/10342/new_mutants_special_edition_1985_1)
 - [ ] [X-Men/Alpha Flight (1985) #1](https://www.marvel.com/comics/issue/62577/x-menalpha_flight_1985_1)
 - [ ] [X-Men/Alpha Flight (1985) #2](https://www.marvel.com/comics/issue/62578/x-menalpha_flight_1985_2)
-- [ ] New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2
+- [ ] Uncanny X-Men Annual #9 <!-- mrt:source-occurrence=368 -->
 ## Thor #364-369; Thor #371-374
 - [ ] [Thor (1966) #364](https://www.marvel.com/comics/issue/11692/thor_1966_364)
 - [ ] [Thor (1966) #365](https://www.marvel.com/comics/issue/11693/thor_1966_365)
@@ -394,10 +394,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Journey Into Mystery (1996) #506](https://www.marvel.com/comics/issue/48372/journey_into_mystery_1996_506)
 - [ ] [Journey Into Mystery (1996) #507](https://www.marvel.com/comics/issue/48373/journey_into_mystery_1996_507)
 - [ ] [Journey Into Mystery (1996) #508](https://www.marvel.com/comics/issue/48374/journey_into_mystery_1996_508)
-- [ ] Journey Into Mystery (1996) #503-513
+- [ ] Journey Into Mystery #509 <!-- mrt:source-occurrence=431 -->
 - [ ] [Journey Into Mystery (1996) #510](https://www.marvel.com/comics/issue/48375/journey_into_mystery_1996_510)
 - [ ] [Journey Into Mystery (1996) #511](https://www.marvel.com/comics/issue/48376/journey_into_mystery_1996_511)
-- [ ] Journey Into Mystery (1996) #503-513
+- [ ] Journey Into Mystery #512 <!-- mrt:source-occurrence=434 -->
 - [ ] [Journey Into Mystery (1996) #513](https://www.marvel.com/comics/issue/61241/journey_into_mystery_1996_513)
 ## Amazing Spider-Man #503 to #504
 - [ ] [Amazing Spider-Man (1999) #503](https://www.marvel.com/comics/issue/290/amazing_spider-man_1999_503)
@@ -428,7 +428,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Thor (2007) #601](https://www.marvel.com/comics/issue/23751/thor_2007_601)
 - [ ] [Thor (2007) #602](https://www.marvel.com/comics/issue/24149/thor_2007_602)
 - [ ] [Thor (2007) #603](https://www.marvel.com/comics/issue/26690/thor_2007_603)
-- [ ] Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)
+- [ ] Thor: Defining Moments Giant-Size #1 <!-- mrt:source-occurrence=476 -->
 ## Dark Reign: The Cabal #1
 - [ ] [DARK REIGN: THE CABAL 1 (2009) #1](https://www.marvel.com/comics/issue/24059/dark_reign_the_cabal_1_2009_1)
 ## Thor (1966) #604-614; New Mutants (2009) #11
@@ -483,7 +483,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Mighty Thor (2011) #10](https://www.marvel.com/comics/issue/38214/the_mighty_thor_2011_10)
 - [ ] [The Mighty Thor (2011) #11](https://www.marvel.com/comics/issue/38207/the_mighty_thor_2011_11)
 - [ ] [The Mighty Thor (2011) #12](https://www.marvel.com/comics/issue/38218/the_mighty_thor_2011_12)
-- [ ] The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor
+- [ ] Fear Itself: Thor #7.2 <!-- mrt:source-occurrence=533 -->
 ## The Mighty Thor #12.1; The Mighty Thor #13-17
 - [ ] [The Mighty Thor (2011) #12.1](https://www.marvel.com/comics/issue/42181/the_mighty_thor_2011_12.1)
 - [ ] [The Mighty Thor (2011) #13](https://www.marvel.com/comics/issue/40824/the_mighty_thor_2011_13)
@@ -509,7 +509,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Mighty Thor (2011) #20](https://www.marvel.com/comics/issue/40827/the_mighty_thor_2011_20)
 - [ ] [The Mighty Thor (2011) #21](https://www.marvel.com/comics/issue/40821/the_mighty_thor_2011_21)
 - [ ] [The Mighty Thor (2011) #22](https://www.marvel.com/comics/issue/40814/the_mighty_thor_2011_22)
-- [ ] Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1
+- [ ] The Mighty Thor Annual #1 <!-- mrt:source-occurrence=559 -->
 ## Young Avengers (2013) 1-15; Marvel Now! Point One 1 (Young Avengers Story)
 - [ ] [Young Avengers (2013) #1](https://www.marvel.com/comics/issue/46824/young_avengers_2013_1)
 - [ ] [Young Avengers (2013) #2](https://www.marvel.com/comics/issue/46829/young_avengers_2013_2)
@@ -534,11 +534,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Loki: Agent of Asgard (2014) #4](https://www.marvel.com/comics/issue/48517/loki_agent_of_asgard_2014_4)
 - [ ] [Loki: Agent of Asgard (2014) #5](https://www.marvel.com/comics/issue/48518/loki_agent_of_asgard_2014_5)
 ## Original Sin: Thor & Loki - The Tenth Realm 1-5
-- [ ] Original Sin: Thor & Loki - The Tenth Realm 1-5
-- [ ] Original Sin: Thor & Loki - The Tenth Realm 1-5
-- [ ] Original Sin: Thor & Loki - The Tenth Realm 1-5
-- [ ] Original Sin: Thor & Loki - The Tenth Realm 1-5
-- [ ] Original Sin: Thor & Loki - The Tenth Realm 1-5
+- [ ] Original Sin: Thor & Loki The Tenth Realm #1 <!-- mrt:source-occurrence=601 -->
+- [ ] Original Sin: Thor & Loki The Tenth Realm #2 <!-- mrt:source-occurrence=602 -->
+- [ ] Original Sin: Thor & Loki The Tenth Realm #3 <!-- mrt:source-occurrence=603 -->
+- [ ] Original Sin: Thor & Loki The Tenth Realm #4 <!-- mrt:source-occurrence=604 -->
+- [ ] Original Sin: Thor & Loki The Tenth Realm #5 <!-- mrt:source-occurrence=605 -->
 ## Loki: Agent Of Asgard 6-11
 - [ ] [Loki: Agent of Asgard (2014) #6](https://www.marvel.com/comics/issue/48519/loki_agent_of_asgard_2014_6)
 - [ ] [Loki: Agent of Asgard (2014) #7](https://www.marvel.com/comics/issue/50715/loki_agent_of_asgard_2014_7)
@@ -587,7 +587,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Mighty Thor (2015) #23](https://www.marvel.com/comics/issue/61018/mighty_thor_2015_23)
 - [ ] [Generations: The Unworthy Thor & The Mighty Thor (2017) #1](https://www.marvel.com/comics/issue/63967/generations_the_unworthy_thor_the_mighty_thor_2017_1)
 ## Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10
-- [ ] Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10
+- [ ] Free Comic Book Day All-New Guardians of the Galaxy #1 <!-- mrt:source-occurrence=661 -->
 - [ ] [All-New Guardians of the Galaxy (2017) #1](https://www.marvel.com/comics/issue/61513/all-new_guardians_of_the_galaxy_2017_1)
 - [ ] [All-New Guardians of the Galaxy (2017) #2](https://www.marvel.com/comics/issue/61514/all-new_guardians_of_the_galaxy_2017_2)
 - [ ] [All-New Guardians of the Galaxy (2017) #4](https://www.marvel.com/comics/issue/61516/all-new_guardians_of_the_galaxy_2017_4)
@@ -610,11 +610,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Unbeatable Squirrel Girl (2015) #31](https://www.marvel.com/comics/issue/66799/the_unbeatable_squirrel_girl_2015_31)
 - [ ] [Not Brand Echh (2017) #14](https://www.marvel.com/comics/issue/65089/not_brand_echh_2017_14)
 ## Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25
-- [ ] Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25
-- [ ] Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25
-- [ ] Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25
-- [ ] Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25
-- [ ] Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25
+- [ ] Amazing Spider-Man #794 <!-- mrt:source-occurrence=689 -->
+- [ ] Amazing Spider-Man #795 <!-- mrt:source-occurrence=690 -->
+- [ ] Amazing Spider-Man #796 <!-- mrt:source-occurrence=691 -->
+- [ ] Amazing Spider-Man Annual #42 <!-- mrt:source-occurrence=692 -->
+- [ ] Amazing Spider-Man #25 <!-- mrt:source-occurrence=693 -->
 ## All-New Guardians of the Galaxy (2017) #3; All-New Guardians of the Galaxy (2017) #5; All-New Guardians of the Galaxy (2017) #7; All-New Guardians of the Galaxy (2017) #9; All-New Guardians of the Galaxy (2017) #11-12
 - [ ] [All-New Guardians of the Galaxy (2017) #3](https://www.marvel.com/comics/issue/61515/all-new_guardians_of_the_galaxy_2017_3)
 - [ ] [All-New Guardians of the Galaxy (2017) #5](https://www.marvel.com/comics/issue/61517/all-new_guardians_of_the_galaxy_2017_5)
@@ -669,7 +669,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Infinity Wars (2018) #5](https://www.marvel.com/comics/issue/67150/infinity_wars_2018_5)
 - [ ] [Infinity Wars (2018) #6](https://www.marvel.com/comics/issue/67151/infinity_wars_2018_6)
 - [ ] [Infinity Wars: Fallen Guardian (2018) #1](https://www.marvel.com/comics/issue/73415/infinity_wars_fallen_guardian_2018_1)
-- [ ] Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1
+- [ ] Infinity Wars: Infinity #1 <!-- mrt:source-occurrence=757 -->
 - [ ] [Thanos Legacy (2018) #1](https://www.marvel.com/comics/issue/71037/thanos_legacy_2018_1)
 ## Wolverine: Infinity Watch (2019) #1-5
 - [ ] [Wolverine: Infinity Watch (2019) #1](https://www.marvel.com/comics/issue/73045/wolverine_infinity_watch_2019_1)

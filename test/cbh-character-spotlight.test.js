@@ -13,9 +13,11 @@ import {
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
+import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const abominationCandidateId = 'abomination-reading-order';
@@ -925,6 +927,40 @@ test('Loki publishes every cached exact issue and preserves its source gaps', as
   );
   assert.match(markdown, /^## Journey Into Mystery \(1952\) 83-109$/m);
   assert.ok(packet.sourceGaps.every((gap) => /issue #302/.test(gap.auditBasis)));
+});
+
+test('Loki source-gap identities survive re-vendoring and import without collapsing', async () => {
+  const markdown = await readFile(path.join(root, 'src/data/orders/loki-reading-order.md'), 'utf8');
+  const mapping = await readJson('scripts/data/cbh-mappings/loki-reading-order.json');
+  const payload = await readJson('src/data/loki_reading_order.json');
+  const { entries, unresolved } = parseChecklist(markdown);
+  const items = [...entries, ...unresolved].sort((left, right) => left.index - right.index).map((entry) => ({
+    issueId: entry.issueId ?? placeholderId('loki-reading-order', entry.title, entry.sourceKey),
+    title: entry.title,
+    url: entry.url,
+    collectedIn: entry.section,
+    ...(entry.issueId == null ? { placeholder: true } : {}),
+  }));
+  let state = createList(createEmptyState(), { name: 'Loki re-vendor regression' });
+  const listId = state.listOrder[0];
+  state = addIssuesToList(state, listId, items).state;
+
+  assert.equal(items.length, 656);
+  assert.deepEqual(
+    unresolved.map((entry) => entry.sourceKey),
+    mapping.sourceGaps.map((gap) => String(gap.sourcePosition)),
+  );
+  assert.equal(new Set(items.map((item) => item.issueId)).size, 656);
+  assert.deepEqual(
+    items.map((item) => item.issueId),
+    payload.items.map((item) => item.issueId),
+  );
+  assert.equal(state.lists[listId].itemIds.length, 656);
+  assert.equal(items.filter((item) => item.placeholder).length, 18);
+  assert.equal(
+    placeholderId('unchanged-order', 'Existing unique placeholder'),
+    placeholderId('unchanged-order', 'Existing unique placeholder', null),
+  );
 });
 
 test('the Deadpool Best of guide preserves its source groups, repeats, metadata gaps, and complete-library approval', async () => {
