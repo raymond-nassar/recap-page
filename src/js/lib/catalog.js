@@ -788,6 +788,33 @@ export function shelfLists(lists, key) {
   return (Array.isArray(lists) ? lists : []).filter((list) => mine.has(list));
 }
 
+export const MODERN_TIMELINE_START_YEAR = 1998;
+export const MODERN_TIMELINE_FEATURED_ID = 'setup-to-modern-timeline';
+
+const isModernTimelineList = (list) => list?.type === 'event'
+  && Number.isInteger(list.timeline)
+  && list.timeline >= MODERN_TIMELINE_START_YEAR;
+
+export function modernTimelineStories(stories) {
+  return shelfStories(stories, 'catalog').filter((story) => {
+    const lists = Array.isArray(story?.lists) ? story.lists : [];
+    return lists.length > 0 && lists.every(isModernTimelineList);
+  });
+}
+
+export function modernTimelineLists(lists) {
+  const selected = new Set();
+  for (const story of modernTimelineStories(groupCatalog(lists))) {
+    for (const list of story.lists) selected.add(list);
+  }
+  return (Array.isArray(lists) ? lists : []).filter((list) => selected.has(list));
+}
+
+export function modernTimelineFeaturedList(lists) {
+  return (Array.isArray(lists) ? lists : [])
+    .find((list) => list?.id === MODERN_TIMELINE_FEATURED_ID) ?? null;
+}
+
 // ------------------------------------------------------------------ publishing ages
 
 // Publishing categories cross the canonical shelves instead of replacing them. A category can
@@ -1016,7 +1043,7 @@ export const HOME_CATEGORIES = [
     label: 'Browse by year',
     icon: 'E736',
     tier: 'primary',
-    select: shelfCategory('catalog'),
+    select: modernTimelineStories,
   },
   {
     key: 'storylines',

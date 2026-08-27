@@ -12,7 +12,10 @@ import {
   filterBySpotlightKind,
   groupCatalog,
   inPublishingAge,
+  modernTimelineFeaturedList,
+  modernTimelineStories,
   parseCatalog,
+  publishingAgeGroups,
   resetCatalogNarrowing,
   shelfLists,
   shelfSections,
@@ -121,6 +124,26 @@ test('the screens sum to the catalog, in stories and in reading paths alike', ()
 
   const byList = keys.reduce((n, key) => n + shelfLists(catalog.lists, key).length, 0);
   assert.equal(byList, catalog.lists.length, 'the screens and the catalog disagree about how many orders exist');
+});
+
+test('filtering Modern Timeline leaves every story on a discovery path', () => {
+  const discovered = new Set();
+  const add = (matches) => {
+    for (const story of matches) discovered.add(story.key);
+  };
+
+  add(modernTimelineStories(stories));
+  add(shelfStories(stories, 'lines'));
+  add(shelfStories(stories, 'spotlights'));
+  add(publishingAgeGroups(stories).stories);
+
+  const featured = modernTimelineFeaturedList(catalog.lists);
+  const featuredStory = stories.find((story) => story.lists.includes(featured));
+  assert.ok(featuredStory, 'the featured setup guide has no catalog story');
+  discovered.add(featuredStory.key);
+
+  const missing = stories.filter((story) => !discovered.has(story.key)).map((story) => story.key);
+  assert.deepEqual(missing, [], `stories disappeared from every discovery path: ${missing.join(', ')}`);
 });
 
 // A story is assigned by all of its readings together, so a story read two ways cannot be torn in
