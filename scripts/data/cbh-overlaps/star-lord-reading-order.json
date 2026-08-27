@@ -2,13 +2,13 @@
   "candidateId": "star-lord-reading-order",
   "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
   "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "b8a24b23d28283cfd4b43170429a03fbc6200aa8232e38ea84634c92ac2a1be6",
+  "libraryDigest": "1e352629a0ec3d15a9b2e4ab64a09452c535c04c455824e6d5ab0e4db8ad006c",
   "peerDigests": {
     "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 99,
-  "comparisonCount": 145,
+  "comparisonCount": 146,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -665,6 +665,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "setup-to-modern-timeline",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "shadowland",
       "sharedCount": 0,
       "sharedIds": [],
@@ -943,5 +949,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "8148ea18737c5903e8e1efc7725739697bd326a8ee61b5532fe2951e0d4423ed"
+  "reportDigest": "04813fd5d5fdd60d2e23be98a14de623d7366b87609fe9e6b8cb78cd11fb91e6"
 }

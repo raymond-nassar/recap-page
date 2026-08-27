@@ -1052,6 +1052,37 @@
       "timeline": 2023
     },
     {
+      "id": "setup-to-modern-timeline",
+      "name": "Setup to Modern Timeline",
+      "description": "A product-curated orientation path through Marvels and Sentry stories that sets readers up for the Modern Timeline.",
+      "type": "era",
+      "depth": "essential",
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 75504,
+      "sourceFile": "setup_to_modern_timeline.md",
+      "sourceOrigin": "Compiled for this project",
+      "sourceLicense": null,
+      "out": "setup_to_modern_timeline.json",
+      "characters": [
+        "Phil Sheldon",
+        "Robert Reynolds",
+        "Spider-Man",
+        "Fantastic Four",
+        "Hulk",
+        "X-Men"
+      ],
+      "keywords": [
+        "Marvels",
+        "Sentry",
+        "Alex Ross",
+        "Kurt Busiek",
+        "Modern Timeline",
+        "setup"
+      ],
+      "expect": 21
+    },
+    {
       "id": "reckoning-war",
       "name": "Reckoning War",
       "description": "The Fantastic Four and the Watcher confront a war rooted in the universe's oldest secrets.",

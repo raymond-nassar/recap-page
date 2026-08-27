@@ -268,6 +268,39 @@ test('every pinned order file states the same origin and licence as the manifest
   }
 });
 
+test('setup to modern timeline keeps its five sections, twenty-one rows, and no overlaps', async () => {
+  const manifest = JSON.parse(await readFile(new URL('../src/data/curated-lists.json', import.meta.url), 'utf8'));
+  const { entries } = parseManifest(manifest);
+  const setup = entries.find((entry) => entry.id === 'setup-to-modern-timeline');
+  assert.ok(setup, 'missing setup-to-modern-timeline manifest entry');
+  assert.equal(setup.type, 'era');
+  assert.equal(setup.depth, 'essential');
+  assert.equal(setup.beginner, true);
+  assert.equal(setup.timeline, null);
+  assert.equal(setup.expect, 21);
+
+  const pinned = JSON.parse(await readFile(new URL('../src/data/setup_to_modern_timeline.json', import.meta.url), 'utf8'));
+  assert.equal(pinned.items.length, 21);
+  assert.deepEqual(
+    [...new Set(pinned.items.map((item) => item.collectedIn))],
+    [
+      'Marvels Annotated',
+      'Marvels: Eye of the Camera',
+      'Marvels Epilogue',
+      'The Sentry',
+      'The Sentry One-Shot Tie-Ins',
+    ],
+  );
+
+  const setupIds = new Set(pinned.items.map((item) => item.issueId));
+  for (const entry of entries) {
+    if (entry.id === setup.id) continue;
+    const order = JSON.parse(await readFile(new URL(`../src/data/${entry.out}`, import.meta.url), 'utf8'));
+    const overlap = order.items.filter((item) => setupIds.has(item.issueId));
+    assert.equal(overlap.length, 0, `${entry.id} overlaps setup-to-modern-timeline with ${overlap.map((item) => item.issueId).join(', ')}`);
+  }
+});
+
 // BL-099 acceptance: locally compiled orders need a reviewable derivation record. Every order
 // under src/data/orders is authored here, and eighteen are written by committed scripts, which
 // put the trail in by construction. The other sixteen carry one only if somebody wrote it, which
