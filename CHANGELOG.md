@@ -14,6 +14,18 @@ quote in a bug report.
 
 ## Unreleased
 
+### Made the full Reading List easier to find
+
+In plain English: The complete Reading List now appears before Coming up as one clear, full-width
+action. It says how many issues the list contains and how many remain unread, while still staying
+closed until you ask for it. A direct link can open it for you, and comic titles still open issue
+details without replacing the separate Read action.
+
+For maintainers: reading addresses accept canonical full-list intent alongside non-default filters.
+Ordinary arrivals create no issue rows, explicit intent renders before the first frame, and the
+219-row reconciliation contract remains at least 217 reused rows with no more than two rebuilt after
+one progress change.
+
 ### Added in-app issue details
 
 In plain English: Comic titles and covers can now open a dedicated details page inside the app.

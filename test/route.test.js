@@ -20,7 +20,9 @@ const lacks = (text, re, what) => assert.ok(!re.test(text), `expected not to fin
 test('every view the rail can reach survives a round trip', () => {
   for (const view of VIEWS.filter((name) => name !== 'issue')) {
     const parsed = parseRoute(formatRoute({ view }));
-    assert.deepEqual(parsed, { view, listId: null, filter: null }, `round trip failed for ${view}`);
+    assert.deepEqual(parsed, {
+      view, listId: null, filter: null, full: false,
+    }, `round trip failed for ${view}`);
   }
 });
 
@@ -82,7 +84,9 @@ test('every publishing category has a direct route and generated panel contract'
   const main = read('src/js/main.js');
   for (const { route } of PUBLISHING_CATEGORIES) {
     assert.ok(VIEWS.includes(route), `${route} is not routable`);
-    assert.deepEqual(parseRoute(`#/${route}`), { view: route, listId: null, filter: null });
+    assert.deepEqual(parseRoute(`#/${route}`), {
+      view: route, listId: null, filter: null, full: false,
+    });
   }
   has(main, /id:\s*`view-\$\{category\.route\}`/, 'registry-derived publishing panel ids');
   has(main, /id:\s*`\$\{category\.route\}-h`/, 'registry-derived publishing heading ids');
@@ -100,6 +104,7 @@ test('Marvel Ages has one generated route without changing publishing hashes', (
     view: 'marvel-ages',
     listId: null,
     filter: null,
+    full: false,
   });
   assert.equal(formatRoute({ view: category.route }), '#/marvel-ages');
   assert.deepEqual(
@@ -122,7 +127,9 @@ test('Marvel Ages has one generated route without changing publishing hashes', (
 });
 
 test('the compatible catalog route remains Modern Timeline', () => {
-  assert.deepEqual(parseRoute('#/catalog'), { view: 'catalog', listId: null, filter: null });
+  assert.deepEqual(parseRoute('#/catalog'), {
+    view: 'catalog', listId: null, filter: null, full: false,
+  });
   const markup = read('src/index.html');
   assert.equal(HOME_CATEGORIES.find(({ route }) => route === 'catalog')?.heading, 'Modern Timeline');
   has(markup, /id="catalog-h">Modern Timeline<\/h1>/, 'Modern Timeline page heading');
@@ -131,14 +138,18 @@ test('the compatible catalog route remains Modern Timeline', () => {
 test('the library views are routable, not just the seven typed ones', () => {
   for (const { value } of LIBRARY_VIEWS) {
     assert.ok(VIEWS.includes(value), `${value} is showable but not routable`);
-    assert.deepEqual(parseRoute(formatRoute({ view: value })), { view: value, listId: null, filter: null });
+    assert.deepEqual(parseRoute(formatRoute({ view: value })), {
+      view: value, listId: null, filter: null, full: false,
+    });
   }
 });
 
 test('a list id rides along and comes back intact', () => {
   const hash = formatRoute({ view: 'read', listId: 'list-mabc123-x7y2z9' });
   assert.equal(hash, '#/read/list-mabc123-x7y2z9');
-  assert.deepEqual(parseRoute(hash), { view: 'read', listId: 'list-mabc123-x7y2z9', filter: null });
+  assert.deepEqual(parseRoute(hash), {
+    view: 'read', listId: 'list-mabc123-x7y2z9', filter: null, full: false,
+  });
 });
 
 // createList accepts a caller-supplied id, so an id containing a slash or a space is reachable
@@ -146,7 +157,9 @@ test('a list id rides along and comes back intact', () => {
 test('a list id needing escapes survives a round trip', () => {
   for (const id of ['a/b', 'a b', 'a%b', 'a#b', 'ünïcødé', 'a?b']) {
     const parsed = parseRoute(formatRoute({ view: 'read', listId: id }));
-    assert.deepEqual(parsed, { view: 'read', listId: id, filter: null }, `round trip failed for ${id}`);
+    assert.deepEqual(parsed, {
+      view: 'read', listId: id, filter: null, full: false,
+    }, `round trip failed for ${id}`);
   }
 });
 
@@ -198,7 +211,9 @@ test('a third segment is refused rather than quietly ignored', () => {
 test('a chosen filter rides along and comes back intact', () => {
   const hash = formatRoute({ view: 'read', listId: 'list-a', filter: 'unread' });
   assert.equal(hash, '#/read/list-a?filter=unread');
-  assert.deepEqual(parseRoute(hash), { view: 'read', listId: 'list-a', filter: 'unread' });
+  assert.deepEqual(parseRoute(hash), {
+    view: 'read', listId: 'list-a', filter: 'unread', full: false,
+  });
 });
 
 // The whole reason the filter is a query and not a third path segment. If the default were written
@@ -214,26 +229,32 @@ test('every filter the app offers is routable, so adding one needs no edit here'
   for (const { value } of READING_FILTERS) {
     const parsed = parseRoute(formatRoute({ view: 'read', listId: 'list-a', filter: value }));
     const expected = value === DEFAULT_FILTER ? null : value;
-    assert.deepEqual(parsed, { view: 'read', listId: 'list-a', filter: expected }, `round trip failed for ${value}`);
+    assert.deepEqual(parsed, {
+      view: 'read', listId: 'list-a', filter: expected, full: false,
+    }, `round trip failed for ${value}`);
   }
 });
 
 test('the popularity sort round trips on the spotlights route', () => {
   const hash = formatRoute({ view: 'spotlights', sort: 'popularity' });
   assert.equal(hash, '#/spotlights?sort=popularity');
-  assert.deepEqual(parseRoute(hash), { view: 'spotlights', listId: null, filter: null, sort: 'popularity' });
+  assert.deepEqual(parseRoute(hash), {
+    view: 'spotlights', listId: null, filter: null, full: false, sort: 'popularity',
+  });
 });
 
 test('the popularity sort coexists with the reading filter query', () => {
   const hash = formatRoute({ view: 'spotlights', filter: 'unread', sort: 'popularity' });
   assert.equal(hash, '#/spotlights?filter=unread&sort=popularity');
   assert.deepEqual(parseRoute(hash), {
-    view: 'spotlights', listId: null, filter: 'unread', sort: 'popularity',
+    view: 'spotlights', listId: null, filter: 'unread', full: false, sort: 'popularity',
   });
 });
 
 test('an unknown spotlights sort is dropped without breaking the route', () => {
-  assert.deepEqual(parseRoute('#/spotlights?sort=bogus'), { view: 'spotlights', listId: null, filter: null });
+  assert.deepEqual(parseRoute('#/spotlights?sort=bogus'), {
+    view: 'spotlights', listId: null, filter: null, full: false,
+  });
   assert.equal(formatRoute({ view: 'spotlights', sort: 'bogus' }), '#/spotlights');
 });
 
@@ -242,7 +263,9 @@ test('an unknown spotlights sort is dropped without breaking the route', () => {
 // to navigate at all, and the address self-corrects on the next sync either way.
 test('an unknown filter is dropped without taking the route down with it', () => {
   for (const hash of ['#/read/list-a?filter=bogus', '#/read/list-a?filter=', '#/read/list-a?other=unread', '#/read/list-a?']) {
-    assert.deepEqual(parseRoute(hash), { view: 'read', listId: 'list-a', filter: null }, `expected no filter for ${hash}`);
+    assert.deepEqual(parseRoute(hash), {
+      view: 'read', listId: 'list-a', filter: null, full: false,
+    }, `expected no filter for ${hash}`);
   }
 });
 
@@ -257,17 +280,23 @@ test('an unknown filter is never written into an address either', () => {
 test('a list id holding a question mark is not read as the start of the filter', () => {
   const hash = formatRoute({ view: 'read', listId: 'a?b', filter: 'unread' });
   assert.equal(hash, '#/read/a%3Fb?filter=unread');
-  assert.deepEqual(parseRoute(hash), { view: 'read', listId: 'a?b', filter: 'unread' });
+  assert.deepEqual(parseRoute(hash), {
+    view: 'read', listId: 'a?b', filter: 'unread', full: false,
+  });
 });
 
 test('a filter cannot smuggle in a path segment', () => {
-  assert.deepEqual(parseRoute('#/read/list-a?filter=un/read'), { view: 'read', listId: 'list-a', filter: null });
+  assert.deepEqual(parseRoute('#/read/list-a?filter=un/read'), {
+    view: 'read', listId: 'list-a', filter: null, full: false,
+  });
 });
 
 test('a filter on a view with no list needs no placeholder in its place', () => {
   const hash = formatRoute({ view: 'progress', filter: 'unread' });
   assert.equal(hash, '#/progress?filter=unread');
-  assert.deepEqual(parseRoute(hash), { view: 'progress', listId: null, filter: 'unread' });
+  assert.deepEqual(parseRoute(hash), {
+    view: 'progress', listId: null, filter: 'unread', full: false,
+  });
 });
 
 test('a malformed percent escape is refused rather than throwing', () => {
@@ -276,7 +305,33 @@ test('a malformed percent escape is refused rather than throwing', () => {
 });
 
 test('a trailing slash reads as no list rather than an empty one', () => {
-  assert.deepEqual(parseRoute('#/read/'), { view: 'read', listId: null, filter: null });
+  assert.deepEqual(parseRoute('#/read/'), {
+    view: 'read', listId: null, filter: null, full: false,
+  });
+});
+
+test('full Reading List intent is canonical only on reading routes', () => {
+  assert.equal(formatRoute({ view: 'read', listId: 'list-a', full: true }), '#/read/list-a?full=1');
+  assert.equal(
+    formatRoute({
+      view: 'read', listId: 'list-a', filter: 'unread', full: true,
+    }),
+    '#/read/list-a?filter=unread&full=1',
+  );
+  assert.deepEqual(parseRoute('#/read/list-a?full=1'), {
+    view: 'read', listId: 'list-a', filter: null, full: true,
+  });
+  assert.deepEqual(parseRoute('#/read/list-a?filter=unread&full=1'), {
+    view: 'read', listId: 'list-a', filter: 'unread', full: true,
+  });
+  for (const hash of [
+    '#/read/list-a?full=', '#/read/list-a?full=0', '#/read/list-a?full=true',
+    '#/read/list-a?full=1&full=1',
+  ]) {
+    assert.equal(parseRoute(hash).full, false, hash);
+  }
+  assert.equal(formatRoute({ view: 'about', full: true }), '#/about');
+  assert.equal(parseRoute('#/about?full=1').full, false);
 });
 
 test('formatting an unknown view yields nothing to write', () => {
@@ -342,8 +397,8 @@ test('a keyboard traversal holds its write until it ends', () => {
     'an arrow key with no modifier setting the traversal flag before the change it produces');
   const handler = main.slice(main.indexOf("radio.addEventListener('change'"), main.indexOf("const group = $('#reading-filters')"));
   has(handler, /if \(arrowing\) \{/, 'the handler branching on whether an arrow key produced the change');
-  has(handler, /filterRunBase = filter;\s*filterRunOpen = true;/,
-    'the traversal recording the filter it began from before the first stop moves it');
+  has(handler, /filterRunBase = filter;\s*filterRunAddressed = filterAddressed;\s*filterRunOpen = true;/,
+    'the traversal recording the filter and its address origin before the first stop moves it');
   lacks(handler, /if \(arrowing\)[\s\S]*?syncHash\(\{ push: true \}\);[\s\S]*?\} else \{/,
     'no write on the arrow branch, which is the whole of holding it until the traversal ends');
   has(handler, /arrowing = false;/, 'the arrow flag being cleared by the change it fired');
@@ -358,7 +413,9 @@ test('a passive sync during a traversal writes the address the traversal began f
   const body = main.slice(main.indexOf('function syncHash'), main.indexOf('function endFilterRun'));
   has(body, /const shown = filterRunOpen && !push \? filterRunBase : filter;/,
     'a passive sync formatting with the base rather than the live filter');
-  has(body, /formatRoute\(\{ view, listId: activeListId\(\), filter: shown, sort \}\)/,
+  has(body, /const showFilter = filterRunOpen && !push \? filterRunAddressed : filterAddressed;/,
+    'a passive sync retaining whether the base filter was explicit');
+  has(body, /formatRoute\(\{[\s\S]*?view,[\s\S]*?listId: activeListId\(\),[\s\S]*?filter: showFilter \? shown : DEFAULT_FILTER,[\s\S]*?full: view === 'read' && \$\('#full'\)\.open,[\s\S]*?sort,/,
     'and the route being built from it');
 });
 
@@ -379,8 +436,10 @@ test('ending a traversal writes one entry when it commits and none when it does 
   const main = read('src/js/main.js');
   const body = main.slice(main.indexOf('function endFilterRun'), main.indexOf('function endFilterRun') + 400);
   has(body, /if \(!filterRunOpen\) return;/, 'ending a traversal that is not open doing nothing');
-  has(body, /filterRunOpen = false;\s*filterRunBase = null;/, 'both traversal variables being cleared');
-  has(body, /if \(commit\) syncHash\(\{ push: true \}\);/, 'a commit pushing and a discard writing nothing');
+  has(body, /filterRunOpen = false;\s*filterRunBase = null;\s*filterRunAddressed = false;/,
+    'all traversal variables being cleared');
+  has(body, /if \(commit\) \{\s*filterAddressed = true;\s*syncHash\(\{ push: true \}\);/,
+    'a commit making the chosen filter explicit and pushing it');
 });
 
 // Back is a navigation and a traversal cannot span one. The landing address is authoritative, so the
@@ -437,6 +496,25 @@ test('main.js reads an absent filter as All on Back but as the stored one at boo
   const main = read('src/js/main.js');
   has(main, /applyRoute\(bootRoute, \{ focus: false, filterIfAbsent: filter \}\)/, 'boot falling back to the restored filter');
   has(main, /applyRoute\(route, \{ focus: true, filterIfAbsent: DEFAULT_FILTER \}\)/, 'hashchange falling back to the default');
+});
+
+test('route application separates explicit disclosure intent from restored filter state', () => {
+  const main = read('src/js/main.js');
+  const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function setFullOrderFromRoute'));
+  has(body, /const openFromRoute = route\.full === true \|\| route\.filter !== null;/,
+    'opening derived from explicit parsed route fields');
+  has(body, /filterAddressed = route\.filter !== null;\s*setFilter\(route\.filter \?\? filterIfAbsent\);/,
+    'route application remembering whether the effective filter was explicit');
+  has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
+  has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
+    'history synchronization suppressed during route application');
+  has(main, /applyingRouteToDisclosure = true;\s*full\.open = open;/,
+    'a route-origin marker set before changing native disclosure state');
+  has(main, /filter: showFilter \? shown : DEFAULT_FILTER,/,
+    'passive synchronization omitting a restored-only filter');
+  const toggle = main.slice(main.indexOf("$('#full').addEventListener('toggle'"), main.indexOf('const radios ='));
+  has(toggle, /const routeDriven = applyingRouteToDisclosure;/, 'toggle origin captured');
+  has(toggle, /if \(!routeDriven\) syncHash\(\);/, 'only a user toggle synchronizing the URL');
 });
 
 // One path in and out of the filter, so a route cannot move the rows without moving the radio, and
