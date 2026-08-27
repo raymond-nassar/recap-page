@@ -2,10 +2,10 @@
   "candidateId": "white-tiger-ava-ayala",
   "packetDigest": "959310f882b67d5b83e8f8ba9ff6136adcd3c61523d05bdef3d9113d9767b740",
   "mappingDigest": "0d4465c495c15bf7b405964a6d50975ba3023bc10be03ba6923a19eb3954060c",
-  "libraryDigest": "777d291c95f0b34de9c5e08bb6e0445d693dca0b5c427ec6ef1a4fb9dcc5c50e",
+  "libraryDigest": "a420ff7149c541ec7fb35f81d857ec0a0731309a2e2777fadb06d25d2f53f096",
   "peerDigests": {},
   "candidateCount": 82,
-  "comparisonCount": 87,
+  "comparisonCount": 88,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -370,6 +370,14 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 1,
+      "sharedIds": [
+        "61093"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -546,5 +554,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "5027da0482c2842bd7a0f3e96315c28c1349b6eb5d7514d01a2ef3fc5905e0a7"
+  "reportDigest": "fc6fd97d50d3d64bf53d920d336fed9ed9092d8a080994808f47209d3e43214c"
 }

@@ -2,7 +2,7 @@
   "candidateId": "bloodties",
   "packetDigest": "183b930f20be0acb7b9330d71839bc0dcb8693be0d8d4f92523775f7d8fa8eeb",
   "mappingDigest": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
-  "libraryDigest": "c4b15c29d0302b2020a91f7d4da1dec01a6e6d1b34867e38389a0c3ee6acfb55",
+  "libraryDigest": "dbd771970647dfd0cbfca0552397c6f0aee5a3bae07f980777f6244bbc779d39",
   "peerDigests": {
     "childs-play": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
     "eighth-day": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
@@ -10,7 +10,7 @@
     "muir-island-saga": "576d63ff0c495e1aea02645320706b54fc4a11f955f0ae3ed1c124fe0095a779"
   },
   "candidateCount": 5,
-  "comparisonCount": 117,
+  "comparisonCount": 118,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -505,6 +505,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -715,5 +721,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "1a438fe2f9c7977c9f80199da8bf562c14176195a785904725596303385aa30a"
+  "reportDigest": "82a88b468656689bcd7ac2814120d7a13759dece9a788254bc82739ee5e1e6cc"
 }

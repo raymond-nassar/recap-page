@@ -2,13 +2,13 @@
   "candidateId": "star-lord-reading-order",
   "packetDigest": "a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac",
   "mappingDigest": "731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da",
-  "libraryDigest": "4210ebf874e1ff8dc442690919751c782451df4f0e15cc936fedc57344a4e918",
+  "libraryDigest": "37715cb0f63f6bc9727e6da879ecbd09404ecebaa2826920e5cc7d35b28a2094",
   "peerDigests": {
     "groot-reading-order": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
     "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
   },
   "candidateCount": 99,
-  "comparisonCount": 147,
+  "comparisonCount": 148,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -689,6 +689,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -955,5 +961,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "640d0b4c35d82b55c5a2e769ce777e5d8f7f3b2e6b5dc45d94495321f7ddb5d3"
+  "reportDigest": "6b28800da5646d430dc38cbc65129c013cf29bf102c8dee226d00ee6b15a25e3"
 }

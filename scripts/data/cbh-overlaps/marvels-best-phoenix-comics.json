@@ -2,12 +2,12 @@
   "candidateId": "marvels-best-phoenix-comics",
   "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
   "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
-  "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
+  "libraryDigest": "0eda0424efb720f4e2863f5945f99a724263cb8f21ea341c45fe698ce5dfd6de",
   "peerDigests": {
     "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
   },
   "candidateCount": 53,
-  "comparisonCount": 88,
+  "comparisonCount": 89,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -358,6 +358,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -540,5 +546,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b787d13eeaddac17d9e80a5d9eca0531d6214635c5ff5629f1e2403cc6ddfc70"
+  "reportDigest": "3e8358755764eb0c9db4515cd783c5cd7b02de7678f1a3b6c868ebb0e4d7e614"
 }

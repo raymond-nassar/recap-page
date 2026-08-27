@@ -2862,10 +2862,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "5a06689e902231d713a01696af12651a26469c6b34d486f85d6e243508d817be",
+    "reportDigest": "7916fb03864c107e1909b0e3b3211cb3e136fd70d5a2e9224681c35aacaced78",
     "packetDigest": "99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384",
     "mappingDigest": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40",
-    "libraryDigest": "20da585ff8aab5c3c5f1d30b2e8b8ee10454425674acd016e9459fe9dea505a2",
+    "libraryDigest": "42f44a92c2e777fee9eb8b0c820091c8ae13f21328ffe3333b7b76890879ef08",
     "peerDigests": {},
     "dispositions": [
       {
@@ -2875,7 +2875,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2886,7 +2886,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2899,7 +2899,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "age-of-x-man",
@@ -2908,7 +2908,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2919,7 +2919,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2930,7 +2930,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2941,7 +2941,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2952,7 +2952,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2965,7 +2965,7 @@
         "rationale": "No shared issue needs an exception.",
         "authorityType": "policy",
         "authorityIdentity": "MRT-002-C05 coordinator",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "apocalypse-wars",
@@ -2974,7 +2974,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2985,7 +2985,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -2996,7 +2996,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3007,7 +3007,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3018,7 +3018,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3029,7 +3029,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3040,7 +3040,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3051,7 +3051,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3062,7 +3062,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3073,7 +3073,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3084,7 +3084,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3095,7 +3095,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3106,7 +3106,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3117,7 +3117,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3128,7 +3128,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3139,7 +3139,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3150,7 +3150,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3161,7 +3161,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3172,7 +3172,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3183,7 +3183,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3194,7 +3194,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3205,7 +3205,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3216,7 +3216,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3227,7 +3227,7 @@
         "authorityType": "policy",
         "authorityIdentity": "repository publication policy",
         "rationale": "No shared published issue identity requires an additional relationship decision.",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -3236,7 +3236,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3247,7 +3247,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3258,7 +3258,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3269,7 +3269,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3280,7 +3280,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3291,7 +3291,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3302,7 +3302,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3313,7 +3313,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3324,7 +3324,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3335,7 +3335,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3346,7 +3346,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3357,7 +3357,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3368,7 +3368,7 @@
         "rationale": "Shared issues were reviewed and approved.",
         "authorityType": "stronger-model",
         "authorityIdentity": "relationship-review-model-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 41,
         "sharedIds": [
           "11353",
@@ -3421,7 +3421,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3432,7 +3432,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3443,7 +3443,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3454,7 +3454,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3465,7 +3465,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3476,7 +3476,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3487,7 +3487,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3498,7 +3498,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3509,7 +3509,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3520,7 +3520,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3531,7 +3531,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3542,7 +3542,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3553,7 +3553,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3564,7 +3564,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3575,7 +3575,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3586,7 +3586,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3597,7 +3597,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3608,7 +3608,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3619,7 +3619,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3630,7 +3630,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3641,7 +3641,7 @@
         "rationale": "Shared issues were reviewed and approved.",
         "authorityType": "stronger-model",
         "authorityIdentity": "relationship-review-model-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 10,
         "sharedIds": [
           "71433",
@@ -3663,7 +3663,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3674,7 +3674,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3685,7 +3685,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3696,7 +3696,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3707,7 +3707,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3718,7 +3718,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3729,7 +3729,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3740,7 +3740,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3751,7 +3751,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3762,7 +3762,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3773,7 +3773,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3784,7 +3784,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3795,7 +3795,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3806,7 +3806,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3817,7 +3817,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3828,7 +3828,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3839,7 +3839,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3850,7 +3850,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3861,7 +3861,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3872,7 +3872,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3883,7 +3883,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3894,7 +3894,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3905,7 +3905,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3916,7 +3916,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3927,7 +3927,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3938,7 +3938,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3949,7 +3949,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3960,7 +3960,7 @@
         "rationale": "Shared issues were reviewed and approved.",
         "authorityType": "stronger-model",
         "authorityIdentity": "relationship-review-model-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 10,
         "sharedIds": [
           "71433",
@@ -3982,7 +3982,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -3993,7 +3993,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4004,7 +4004,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4015,7 +4015,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4026,7 +4026,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4039,7 +4039,7 @@
         "rationale": "The current report contains no shared issue for this order.",
         "authorityType": "policy",
         "authorityIdentity": "mrt-003 none-overlap policy",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "shadowland",
@@ -4048,7 +4048,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4059,9 +4059,25 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "partial",
+        "sharedCount": 4,
+        "sharedIds": [
+          "36644",
+          "36647",
+          "36646",
+          "36645"
+        ],
+        "decision": "approved",
+        "rationale": "The 4 shared issues with Silver Surfer are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "sins-of-sinister",
@@ -4070,7 +4086,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4081,7 +4097,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4092,7 +4108,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4103,7 +4119,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4114,7 +4130,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4125,7 +4141,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4136,7 +4152,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4147,7 +4163,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4158,7 +4174,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4169,7 +4185,7 @@
         "rationale": "Shared issues were reviewed and approved.",
         "authorityType": "stronger-model",
         "authorityIdentity": "relationship-review-model-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 25,
         "sharedIds": [
           "21268",
@@ -4206,7 +4222,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4226,7 +4242,7 @@
         "rationale": "This order intentionally overlaps the broader source-defined Thanos chronology and remains a distinct reader product.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol Thanos reciprocal overlap review",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-war",
@@ -4235,7 +4251,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4246,7 +4262,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4257,7 +4273,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4268,7 +4284,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4279,7 +4295,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4290,7 +4306,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4301,7 +4317,7 @@
         "rationale": "10 shared issues were reviewed; both source sequences remain intact.",
         "authorityType": "stronger-model",
         "authorityIdentity": "MRT-004 coordinator",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 10,
         "sharedIds": [
           "71433",
@@ -4323,7 +4339,7 @@
         "rationale": "Shared issues were reviewed and approved.",
         "authorityType": "stronger-model",
         "authorityIdentity": "relationship-review-model-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 7,
         "sharedIds": [
           "23986",
@@ -4342,7 +4358,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4353,7 +4369,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4364,7 +4380,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4375,7 +4391,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -4384,7 +4400,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4395,7 +4411,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4406,7 +4422,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4417,7 +4433,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4428,7 +4444,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4439,7 +4455,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4450,7 +4466,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4461,7 +4477,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4472,7 +4488,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4483,7 +4499,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4494,7 +4510,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4505,7 +4521,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4516,7 +4532,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4527,7 +4543,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4538,7 +4554,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4549,7 +4565,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4560,7 +4576,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4571,7 +4587,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4582,7 +4598,7 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -4593,15 +4609,15 @@
         "rationale": "No shared issues require an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-23",
+        "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
       }
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002-C05 coordinator",
-    "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary.",
-    "reviewedAt": "2026-08-23",
-    "approvalDigest": "2b029b84df81383d16af9091a9d97bbcf8a513a2a9506e03d2f1de7a1197bf2b"
+    "rationale": "All 89 current-library relationships were reviewed. The three partial relationships match central Research and preserve the complete 75-issue Rocket boundary. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
+    "reviewedAt": "2026-08-27",
+    "approvalDigest": "2e25a9681d01339b1bf4c0a3bd03875ed33e55902b18a3ed3d35782068608864"
   }
 }

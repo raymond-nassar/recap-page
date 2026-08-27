@@ -1124,10 +1124,10 @@
     "coverIssueId": 10353
   },
   "relationshipReview": {
-    "reportDigest": "9678e09ca3826bd2d56db6eb67a36720f8db07ccbf63a036ff85511c53336edf",
+    "reportDigest": "81af2ece22af80dbb690f8247ab541847719e0d003293ccea49610ecab54dd75",
     "packetDigest": "7a896fbba1e57cae85ab9bfcfbd2759e0ca1eee4f4ecc177aad4b48521b6badb",
     "mappingDigest": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495",
-    "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
+    "libraryDigest": "0eda0424efb720f4e2863f5945f99a724263cb8f21ea341c45fe698ce5dfd6de",
     "peerDigests": {
       "marvels-best-phoenix-comics": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0"
     },
@@ -1141,7 +1141,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "age-of-x-man",
@@ -1152,7 +1152,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -1163,7 +1163,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "annihilation",
@@ -1174,7 +1174,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "annihilation-conquest",
@@ -1185,7 +1185,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "apocalypse-wars",
@@ -1196,7 +1196,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-disassembled",
@@ -1207,7 +1207,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -1218,7 +1218,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "axis",
@@ -1229,7 +1229,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "captain-america-best-of",
@@ -1240,7 +1240,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "chaos-war",
@@ -1251,7 +1251,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war",
@@ -1262,7 +1262,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war-avengers",
@@ -1273,7 +1273,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "civil-war-essential",
@@ -1284,7 +1284,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "clone-conspiracy",
@@ -1295,7 +1295,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "damnation",
@@ -1306,7 +1306,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -1317,7 +1317,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "dark-web",
@@ -1328,7 +1328,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -1339,7 +1339,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "devils-reign",
@@ -1350,7 +1350,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -1361,7 +1361,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "doomwar",
@@ -1372,7 +1372,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "essential-avengers",
@@ -1383,7 +1383,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -1394,7 +1394,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "generations",
@@ -1405,7 +1405,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -1416,7 +1416,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -1427,7 +1427,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hickman-full",
@@ -1438,7 +1438,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hickman-minimal",
@@ -1449,7 +1449,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "house-of-m",
@@ -1460,7 +1460,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "house-of-m-essential",
@@ -1471,7 +1471,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -1482,7 +1482,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "infinite-destinies",
@@ -1493,7 +1493,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -1504,7 +1504,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -1515,7 +1515,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "iron-man-2020",
@@ -1526,7 +1526,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "judgment-day",
@@ -1537,7 +1537,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "king-in-black",
@@ -1548,7 +1548,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "last-annihilation",
@@ -1559,7 +1559,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -1570,7 +1570,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "maximum-security",
@@ -1581,7 +1581,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "messiah-complex",
@@ -1592,7 +1592,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "messiah-war",
@@ -1603,7 +1603,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "minimum-carnage",
@@ -1614,7 +1614,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "monsters-unleashed",
@@ -1625,7 +1625,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "necrosha",
@@ -1636,7 +1636,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -1647,7 +1647,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -1658,7 +1658,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "planet-hulk",
@@ -1669,7 +1669,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "reckoning-war",
@@ -1680,7 +1680,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "revolutionary-war",
@@ -1691,7 +1691,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -1702,7 +1702,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "second-coming",
@@ -1713,7 +1713,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-invasion",
@@ -1724,7 +1724,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -1735,7 +1735,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "secret-war",
@@ -1746,7 +1746,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "shadowland",
@@ -1757,7 +1757,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "silent-war",
@@ -1768,7 +1768,18 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "none",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "decision": "approved",
+        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
+        "authorityType": "policy",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "sins-of-sinister",
@@ -1779,7 +1790,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-geddon",
@@ -1790,7 +1801,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-island",
@@ -1801,7 +1812,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-best-of",
@@ -1812,7 +1823,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-man-the-other",
@@ -1823,7 +1834,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "spider-verse",
@@ -1834,7 +1845,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-imperative",
@@ -1845,7 +1856,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thanos-reading-order",
@@ -1856,7 +1867,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "thor-best-of",
@@ -1867,7 +1878,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "venomverse",
@@ -1878,7 +1889,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "war-of-kings",
@@ -1889,7 +1900,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "war-of-the-realms",
@@ -1900,7 +1911,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -1911,7 +1922,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -1922,7 +1933,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -1933,7 +1944,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -1944,7 +1955,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -1955,7 +1966,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -1966,7 +1977,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -1977,7 +1988,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-extermination",
@@ -1988,7 +1999,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-inferno",
@@ -1999,7 +2010,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -2010,7 +2021,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-nation-x",
@@ -2021,7 +2032,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-regenesis",
@@ -2032,7 +2043,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-schism",
@@ -2043,7 +2054,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -2054,7 +2065,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-of-swords",
@@ -2065,7 +2076,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "x-termination",
@@ -2076,7 +2087,7 @@
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "xmen-claremont",
@@ -2096,7 +2107,7 @@
         "rationale": "The overlap is intentional and remains a distinct reader product.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -2116,13 +2127,13 @@
         "rationale": "The overlap is intentional and remains a distinct reader product.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
+        "reviewedAt": "2026-08-27"
       }
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 2 partial relationships required explicit approval.",
-    "reviewedAt": "2026-08-23T16:36:05.313Z",
-    "approvalDigest": "8d0165f03bc10f9cf385836a3663d81df9b1232ee745054a3d492328663eb24d"
+    "rationale": "Every comparison against the complete 88-list catalog and 1 named batch peer mapping was reviewed; 2 partial relationships required explicit approval. Silver Surfer was added to the reviewed library on 2026-08-27; this re-review preserves the recorded relationships and adds its observed relationship.",
+    "reviewedAt": "2026-08-27",
+    "approvalDigest": "747f52435e3460622e74ddac20e6a8e940186e9f99666200bac6ae05153cb28d"
   }
 }

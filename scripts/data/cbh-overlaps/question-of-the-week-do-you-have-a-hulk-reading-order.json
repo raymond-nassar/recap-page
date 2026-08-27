@@ -2,7 +2,7 @@
   "candidateId": "question-of-the-week-do-you-have-a-hulk-reading-order",
   "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
   "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-  "libraryDigest": "f6027ce55f287f73929e922c39fcd5cb9e8a46ef71feb4dadf0d0c312a0203db",
+  "libraryDigest": "59d8fb24a2fc3d7d83275605cf94058a7e2f7eb48829938a2a621e469b2792ab",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1242,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 75
   },
   "candidateCount": 1140,
-  "comparisonCount": 150,
+  "comparisonCount": 151,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -891,6 +891,37 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 24,
+      "sharedIds": [
+        "11440",
+        "11441",
+        "20262",
+        "20326",
+        "20337",
+        "20348",
+        "20359",
+        "20370",
+        "20381",
+        "20392",
+        "20403",
+        "20263",
+        "20274",
+        "3530",
+        "3955",
+        "4081",
+        "4195",
+        "22916",
+        "23115",
+        "23609",
+        "23768",
+        "23769",
+        "24168",
+        "26314"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1215,5 +1246,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "cb0946ae047daf849f34e8033a9f2d2ff1b998042d38d9581a6c306d64555907"
+  "reportDigest": "750535d0195280c9bd1ca8afc6084e654dcaa2a3286dc111b33ab5c144959add"
 }

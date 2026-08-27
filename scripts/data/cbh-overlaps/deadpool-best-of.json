@@ -2,7 +2,7 @@
   "candidateId": "deadpool-best-of",
   "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
   "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
-  "libraryDigest": "2adaf22f349325e3b2423de4fdcc46f7347f58fd9af23784862659d6e45bb35e",
+  "libraryDigest": "04c03bc9f94f031ec590c75463b8e8a348ae579d19e73c0ad7a3e9806722e537",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 56,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 16
   },
   "candidateCount": 38,
-  "comparisonCount": 150,
+  "comparisonCount": 151,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -651,6 +651,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -918,5 +924,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "f515c0c9208a71d7598ffd20395e0eefe37d7dcd99bf241424aa3c96855affd0"
+  "reportDigest": "f310b63c0058088cc3ef231f303b0b4539123e1d8776d122e7e80f148edcee77"
 }
