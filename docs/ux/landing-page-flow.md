@@ -43,6 +43,8 @@ App launch, or selecting the brand lockup in the sidebar.
 - Preview's existing Add control can complete the first add from Home. Failures target the Home
   gateway, while the existing success announcement remains unchanged. A separate follow-on owns
   any expanded first-save explanation.
+- Home has no breadcrumb because it has no route ancestors. Routed destinations reached from Home
+  show their stable hierarchy, while Preview remains a dialog with no breadcrumb.
 - Returning with Back restores Home rather than creating a second navigation model.
 
 ## Design Principles
@@ -65,6 +67,7 @@ App launch, or selecting the brand lockup in the sidebar.
 - [ ] Empty and load-failure states remain named in text
 - [ ] The first-run question and recommendation use ordered `h2` and `h3` headings
 - [ ] Closing recommended Preview returns focus to its Home button
+- [ ] Home and Preview contain no breadcrumb trail
 - [ ] The primary grid becomes one column at narrow widths without horizontal clipping
 - [ ] The layout survives 200% text zoom without clipping
 - [ ] Forced colours preserve tile boundaries and focus

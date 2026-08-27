@@ -60,6 +60,20 @@ test('the rail stays fixed while Library, Browse, and Add own their child pages'
   assert.match(main, /LIBRARY_VIEWS\.some\(\(\{ value \}\) => value === next\)/);
 });
 
+test('one shared breadcrumb renderer covers routed views but never Home or dialogs', () => {
+  assert.match(main, /function renderBreadcrumbs\(\)/);
+  assert.match(main, /const trail = breadcrumbHierarchy\(\{/);
+  assert.match(main, /el\('nav', \{ class: 'breadcrumb', 'aria-label': 'Breadcrumb' \}\)/);
+  assert.match(main, /if \(existing\?\.dataset\.trail === trailKey\) return;/);
+  assert.match(main, /if \(!existing\) head\.before\(breadcrumb\);/);
+  assert.match(main, /if \(next === 'issue'\) void renderIssueFocus\(\);\s*renderBreadcrumbs\(\);/);
+  assert.match(main, /paintIssueFocus[\s\S]*?renderBreadcrumbs\(\);/);
+  assert.doesNotMatch(html, /<dialog[^>]*>[\s\S]*?class="breadcrumb"/);
+  assert.doesNotMatch(main, /#preview[\s\S]{0,120}renderBreadcrumbs|#ask[\s\S]{0,120}renderBreadcrumbs/);
+  assert.match(styles, /\.breadcrumb ol\s*\{[^}]*flex-wrap:\s*wrap;/s);
+  assert.match(styles, /\.breadcrumb li\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
+});
+
 test('product copy uses Reading List everywhere and capitalizes both words', () => {
   const terms = productCopy
     .replace(/Comic Book Reading Orders/g, '')

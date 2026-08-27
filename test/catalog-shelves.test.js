@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import {
   CATALOG_SHELVES,
   PUBLISHING_AGES,
+  catalogListShelf,
   decadeSections,
   firstSentence,
   filterBySpotlightKind,
@@ -37,17 +38,30 @@ const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', '
 const stories = groupCatalog(catalog.lists);
 const keys = CATALOG_SHELVES.map((shelf) => shelf.key);
 
+test('each bundled Reading List resolves through its grouped story to one canonical shelf', () => {
+  for (const story of stories) {
+    const shelf = keys.find((key) => shelfStories([story], key).length === 1);
+    assert.ok(shelf, `${story.key} has no shelf`);
+    for (const list of story.lists) {
+      assert.equal(catalogListShelf(catalog.lists, list.id), shelf, `${list.id} resolved to the wrong shelf`);
+    }
+  }
+  for (const [lists, id] of [[null, 'a'], [catalog.lists, ''], [catalog.lists, 'missing']]) {
+    assert.equal(catalogListShelf(lists, id), null);
+  }
+});
+
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 26);
-  assert.equal(groupCatalog(spotlights).length, 25);
+  assert.equal(spotlights.length, 27);
+  assert.equal(groupCatalog(spotlights).length, 26);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
   const other = filterBySpotlightKind(spotlights, 'other');
   const expected = [
     ['best-of', 6, 6],
-    ['complete-guide', 15, 15],
+    ['complete-guide', 16, 16],
     ['other', 5, 4],
   ];
   for (const [kind, readingCount, storyCount] of expected) {
