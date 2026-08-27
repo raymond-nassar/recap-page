@@ -75,6 +75,7 @@ export const CBRO_BATCH_NINE_UNTOUCHED_INVENTORY_SHA256 =
 export const CBRO_BATCH_NINE_EVALUATED_OUTCOME_SHA256 =
   '486e8e72c2cbe226e17780a0bb4c9c3ab93b4a059eff7e234e02015d271cc5ff';
 export const CBH_LATER_ORDER_IDS = Object.freeze([
+  'black-panther-reading-order',
   'wolverine-reading-order',
   'hickman-x-men',
   'ultimate-marvel-intro',
@@ -91,6 +92,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'wandavision',
   'spider-man-far-from-home',
   'modern-x-men-fast-track',
+  'question-of-the-week-do-you-have-a-hulk-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

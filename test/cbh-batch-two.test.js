@@ -222,6 +222,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'groot-reading-order',
     'star-lord-reading-order',
     'modern-x-men-fast-track',
+    'question-of-the-week-do-you-have-a-hulk-reading-order',
     'x-men-utopia',
     'iron-man-reading-order',
     'amazing-spider-man-reading-order-modern-marvel-era',

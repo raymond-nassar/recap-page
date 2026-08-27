@@ -24,6 +24,7 @@ const batchCandidateIds = ['phalanx-reading-order', 'marvels-best-phoenix-comics
 const cosmicCandidateId = 'rocket-raccoon-reading-order';
 const grootCandidateId = 'groot-reading-order';
 const ironManCandidateId = 'iron-man-reading-order';
+const hulkCandidateId = 'question-of-the-week-do-you-have-a-hulk-reading-order';
 const starLordCandidateId = 'star-lord-reading-order';
 const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics-timeline';
 const modernXMenCandidateId = 'modern-x-men-fast-track';
@@ -33,6 +34,7 @@ const laterCharacterIds = [
   'wolverine-reading-order',
   'captain-america-reading-order-modern-marvel-era',
   modernXMenCandidateId,
+  hulkCandidateId,
 ];
 const characterCandidateIds = [
   abominationCandidateId,
@@ -341,7 +343,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition and ships fifteen spotlights', async () => {
+test('the character inventory preserves every central disposition and ships sixteen spotlights', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -352,10 +354,10 @@ test('the character inventory preserves every central disposition and ships fift
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 105);
+  assert.equal(dispositionCounts.deferred, 104);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 15);
+  assert.equal(dispositionCounts['pilot-approved'], 16);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -366,6 +368,7 @@ test('the character inventory preserves every central disposition and ships fift
     'ant-man-reading-order',
     'captain-america-reading-order-modern-marvel-era',
     grootCandidateId,
+    hulkCandidateId,
     ironManCandidateId,
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
@@ -570,6 +573,70 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   assert.equal(catalogEntry.depth, 'complete');
 });
 
+test('Hulk preserves all reviewed source positions and distinguishes provider gaps from parser markers', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const packet = await readJson(`scripts/data/cbh-packets/${hulkCandidateId}.json`);
+  const mapping = await readJson(`scripts/data/cbh-mappings/${hulkCandidateId}.json`);
+  const report = await readJson(`scripts/data/cbh-overlaps/${hulkCandidateId}.json`);
+  const generated = await readJson('src/data/question_of_the_week_do_you_have_a_hulk_reading_order.json');
+  const record = inventory.find((candidate) => candidate.id === hulkCandidateId);
+  const reviewedLibraryDigest = await prePublicationLibraryDigest(manifest, [hulkCandidateId]);
+
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(record.deliveryStatus, 'shipped');
+  assert.equal(record.metadataHorizonStatus, 'approved');
+  assert.match(record.reason, /1,140 distinct verified issues/i);
+  assert.match(record.reason, /19 explicit provider gaps/i);
+  assert.match(record.reason, /eight excluded collection or Issues parser markers/i);
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: hulkCandidateId,
+    inventoryRecord: record,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: reviewedLibraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+
+  assert.equal(packet.sourceOccurrenceCount, 1242);
+  assert.equal(packet.rows.length, 1140);
+  assert.equal(packet.repeatedSourceReferences.length, 75);
+  assert.equal(packet.sourceGaps.length, 19);
+  assert.deepEqual(packet.excludedSourceRows.map((entry) => entry.sourcePosition),
+    [121, 318, 591, 597, 734, 735, 854, 883]);
+  assert.equal(new Set(mapping.rows.map((row) => row.sourceGroup)).size, 12);
+  assert.deepEqual(
+    mapping.rows.filter((row) => [76, 801, 937, 938, 939, 1046, 1173, 1242].includes(row.sourcePosition))
+      .map((row) => [row.sourcePosition, row.selectedIssueId, row.marvelIssueUrl]),
+    [
+      [76, 17173, 'https://www.marvel.com/comics/issue/17173/incredible_hulk_king-size_special_1968_1'],
+      [801, 26316, 'https://www.marvel.com/comics/issue/26316/son_of_hulk_2009_13'],
+      [937, 48652, 'https://www.marvel.com/comics/issue/48652/indestructible_hulk_2012_17'],
+      [938, 48653, 'https://www.marvel.com/comics/issue/48653/indestructible_hulk_2012_18'],
+      [939, 48654, 'https://www.marvel.com/comics/issue/48654/indestructible_hulk_2012_19'],
+      [1046, 15873, 'https://www.marvel.com/comics/issue/15873/world_war_hulk_2007_1'],
+      [1173, 88707, 'https://www.marvel.com/comics/issue/88707/immortal_hulk_2020'],
+      [1242, 128406, 'https://www.marvel.com/comics/issue/128406/imperial_war_black_panther_2025_1'],
+    ],
+  );
+  assert.equal(generated.items.length, 1159);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 1140);
+  assert.equal(generated.items.filter((item) => item.issueId < 0 && item.placeholder).length, 19);
+  assert.deepEqual(
+    generated.items.filter((item) => item.issueId > 0).map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.equal(manifest.lists.find((entry) => entry.id === hulkCandidateId).expect, 1159);
+  assert.equal(catalog.lists.find((entry) => entry.id === hulkCandidateId).count, 1159);
+});
+
 
 test('the frozen White Tiger evidence stays exact through every generated surface', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
@@ -693,12 +760,12 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
   const inventoryRecord = inventory.find((record) => record.id === cosmicCandidateId);
   const reviewedLibraryDigest = await prePublicationLibraryDigest(
     manifest,
-    [cosmicCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId],
+    [cosmicCandidateId, 'agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
     [],
-    { excludedOrderIds: ['agents-of-atlas-reading-order', ironManCandidateId] },
+    { excludedOrderIds: ['agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
@@ -842,12 +909,13 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
       cosmicCandidateId,
       'agents-of-atlas-reading-order',
       ironManCandidateId,
+      hulkCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
     [path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`)],
-    { excludedOrderIds: ['agents-of-atlas-reading-order', ironManCandidateId] },
+    { excludedOrderIds: ['agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
@@ -999,6 +1067,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
       grootCandidateId,
       'agents-of-atlas-reading-order',
       ironManCandidateId,
+      hulkCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1007,7 +1076,7 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
       path.join(root, 'scripts', 'data', 'cbh-mappings', `${cosmicCandidateId}.json`),
       path.join(root, 'scripts', 'data', 'cbh-mappings', `${grootCandidateId}.json`),
     ],
-    { excludedOrderIds: ['agents-of-atlas-reading-order', ironManCandidateId] },
+    { excludedOrderIds: ['agents-of-atlas-reading-order', ironManCandidateId, hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
@@ -1122,7 +1191,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 1].id, 'thanos-reading-order');
   assert.equal(manifest.lists[starLordIndex + 2].id, 'ant-man-reading-order');
   assert.equal(manifest.lists[starLordIndex + 3].id, 'wolverine-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 4].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 4].id, hulkCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 5].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -1226,12 +1296,13 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
       abominationCandidateId,
       modernXMenCandidateId,
       'agents-of-atlas-reading-order',
+      hulkCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${modernXMenCandidateId}.json`),
     [],
-    { excludedOrderIds: ['abomination-reading-order', 'agents-of-atlas-reading-order'] },
+    { excludedOrderIds: ['abomination-reading-order', 'agents-of-atlas-reading-order', hulkCandidateId] },
   );
 
   assert.equal(packet.packetDigest, '7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a');
@@ -1437,8 +1508,8 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 148);
+  assert.equal(catalog.lists.length, 149);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 22);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 21);
+  assert.equal(characterRuns.length, 23);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 22);
 });
