@@ -372,6 +372,13 @@ test('open source gaps close only as the same exact identity or an availability 
   const exactMapping = genericMapping(exactPacket);
   assert.doesNotThrow(() => assertGapTransition(openPacket, exactPacket, exactMapping));
 
+  const yearlessGap = structuredClone(openPacket);
+  yearlessGap.sourceGaps[0].seriesYear = null;
+  yearlessGap.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(yearlessGap.sourceGaps[0]);
+  yearlessGap.packetDigest = packetDigestFor(yearlessGap);
+  assert.doesNotThrow(() => validateFrozenPacket(yearlessGap));
+  assert.notEqual(yearlessGap.sourceGaps[0].evidenceDigest, openPacket.sourceGaps[0].evidenceDigest);
+
   const unavailablePacket = genericGapPacket('availability-exclusion');
   const unavailableMapping = genericGapMapping(unavailablePacket);
   assert.doesNotThrow(() => assertGapTransition(openPacket, unavailablePacket, unavailableMapping));
@@ -477,6 +484,13 @@ test('repeated source references stay explicit, canonical, fresh, and unique', (
   assert.equal(Object.hasOwn(oldPacket, 'sourceOccurrenceCount'), false);
   assert.equal(packetDigestFor(oldPacket), oldPacket.packetDigest);
   assert.equal(buildMarkdown(genericEvidence().mapping).includes('intentional repeats'), false);
+
+  const groupedMapping = structuredClone(evidence.mapping);
+  groupedMapping.rows[0].sourceGroup = 'First source section';
+  groupedMapping.rows[1].sourceGroup = 'Second source section';
+  const groupedMarkdown = buildMarkdown(groupedMapping);
+  assert.match(groupedMarkdown, /## First source section\n- \[ \]/);
+  assert.match(groupedMarkdown, /## Second source section\n- \[ \]/);
 
   const halfPresent = structuredClone(evidence.packet);
   delete halfPresent.repeatedSourceReferences;
