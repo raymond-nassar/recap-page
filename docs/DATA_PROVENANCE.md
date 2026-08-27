@@ -86,6 +86,15 @@ guide and have separate follow-up work in [Issue #281](https://github.com/raymon
 none is substituted or silently removed. Its complete-library review records eight partial
 relationships and 139 no-overlap relationships.
 
+Doctor Strange's complete guide retains the full visible page boundary: 932 source occurrences
+across 76 issue-bearing blocks and nine top-level headings. It publishes 711 exact issue identities,
+records 181 repeated source references once at their first occurrence, preserves 39 open metadata
+gaps, and names one source exclusion. The open gaps retain their exact source positions and failed
+provider lookups, with follow-up assigned in [Issue #283](https://github.com/raymond-nassar/recap-page/issues/283).
+The complete-library report compares the guide with all 148 existing reading lists: three are
+existing-subset relationships, 25 are partial, and 120 have no shared issues. The source groups and
+gaps remain maintained evidence rather than replacements or invented issue identities.
+
 ## Historical Comic Book Reading Orders intake
 
 The historical event program is a separate build-time source family. Its maintained inventory records
