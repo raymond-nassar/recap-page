@@ -21,6 +21,18 @@ directly to Avengers Disassembled in 2004. The empty years between them remain v
 other Reading Lists from those years stay available in Marvel Ages. Nothing you have saved is
 changed.
 
+### Added a complete Magneto reading guide
+
+In plain English: You can now follow Magneto stories from his earliest X-Men appearances through
+modern stories. The guide has 695 linked comics, while 58 source recommendations that could not be
+identified safely from the local records remain visible as unresolved entries rather than being
+guessed at or hidden. Repeated recommendations appear only once, and nothing you have saved changes.
+
+For maintainers: the frozen cache-only source record retains all 811 positions: 695 exact identities,
+47 repeated references, 58 provider-complete gaps, and 11 prose exclusions. The complete-library
+comparison covers 157 other guides: 10 existing-subset relationships, 38 partial relationships, and
+109 with no shared issues.
+
 ### Corrected Punisher source details
 
 In plain English: Five unresolved Punisher Presents: Barracuda MAX entries now identify their 2007

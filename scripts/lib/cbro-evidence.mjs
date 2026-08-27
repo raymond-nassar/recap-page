@@ -76,6 +76,7 @@ export const CBRO_BATCH_NINE_EVALUATED_OUTCOME_SHA256 =
   '486e8e72c2cbe226e17780a0bb4c9c3ab93b4a059eff7e234e02015d271cc5ff';
 export const CBH_LATER_ORDER_IDS = Object.freeze([
   'captain-marvel-ms-marvel-reading-order',
+  'captain-marvel-ms-marvel-reading-order',
   'black-panther-reading-order',
   'doctor-strange-reading-order',
   'daredevil-reading-order',
@@ -100,6 +101,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'marvel-knights-to-planet-x',
   'punisher-reading-order',
   'venom-reading-order',
+  'magneto-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
