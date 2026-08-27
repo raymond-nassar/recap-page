@@ -2488,6 +2488,40 @@
       "timeline": null
     },
     {
+      "id": "deadpool-best-of",
+      "name": "The Best Deadpool Comics to Start With!",
+      "description": "The 13 visible recommendations in Comic Book Herald's Best Deadpool Comics section, preserved in source order and stopped before the exhaustive chronology lower on the page.",
+      "type": "character-run",
+      "spotlightKind": "best-of",
+      "depth": "essential",
+      "beginner": true,
+      "coverIssueId": 1001,
+      "sourceFile": "deadpool-best-of.md",
+      "sourcePage": "https://www.comicbookherald.com/the-best-deadpool-comics-to-start-with/",
+      "sourceSection": "The Best Deadpool Comics To Start With!",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "deadpool_best_of.json",
+      "characters": [
+        "Deadpool",
+        "Cable",
+        "Wolverine",
+        "Spider-Man",
+        "X-Force",
+        "Lady Deadpool"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "best-of",
+        "top 10",
+        "Deadpool",
+        "Cable",
+        "Wolverine"
+      ],
+      "expect": 26,
+      "timeline": null
+    },
+    {
       "id": "scarlet-witch-best-of",
       "name": "The Best of the Scarlet Witch",
       "description": "A best-of path through Wanda Maximoff, compiled by hand from a reader's outline of Comic Book Herald's guide to the same. It opens with her origin one-shot and the issue where she meets Agatha Harkness, then the Chthon possession on Wundagore Mountain, both Vision and the Scarlet Witch limited series, and her inner world in Avengers. It carries on through the Children's Crusade, Wanda under the Apocalypse Twins in Ragnarok Now, her 2015 solo series, her break with Wonder Man, Quicksilver's side of their bond, and No Road Home. The sections are the guide's and are kept in its order.",

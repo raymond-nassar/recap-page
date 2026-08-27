@@ -2892,6 +2892,48 @@
       "updatedAt": "2026-08-17T04:10:56.790Z"
     },
     {
+      "id": "deadpool-best-of",
+      "file": "deadpool_best_of.json",
+      "name": "The Best Deadpool Comics to Start With!",
+      "description": "A best-of path through Deadpool, assembled from the 13 visible recommendations in Comic Book Herald's Best Deadpool Comics section. It preserves the source section's ordering and stops before the exhaustive chronology lower on the page, matching the narrower source boundary rather than broadening to an all-time reading order.",
+      "type": "character-run",
+      "depth": "essential",
+      "spotlightKind": "best-of",
+      "count": 26,
+      "collections": 13,
+      "characters": [
+        "Deadpool",
+        "Cable",
+        "Wolverine",
+        "Spider-Man",
+        "X-Force",
+        "Lady Deadpool"
+      ],
+      "keywords": [
+        "Comic Book Herald",
+        "best-of",
+        "top 10",
+        "Deadpool",
+        "Cable",
+        "Wolverine"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 1001,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5f1d3b6f0d1d9",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-best-deadpool-comics-to-start-with/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceSection": "The Best Deadpool Comics To Start With!",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-26T23:20:05.473Z"
+    },
+    {
       "id": "scarlet-witch-best-of",
       "file": "scarlet_witch_best_of.json",
       "name": "The Best of the Scarlet Witch",

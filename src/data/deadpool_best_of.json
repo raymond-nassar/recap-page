@@ -1,0 +1,769 @@
+{
+  "id": "deadpool-best-of",
+  "name": "The Best Deadpool Comics to Start With!",
+  "description": "A best-of path through Deadpool compiled from the 13-item Comic Book Herald list of the same name. It preserves the visible recommendation order and stops before the exhaustive chronology lower on the page, matching the source section's own boundary rather than broadening to a full character chronology.",
+  "source": "https://www.comicbookherald.com/the-best-deadpool-comics-to-start-with/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceSection": "The Best Deadpool Comics To Start With!",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-26T23:20:05.473Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 26,
+  "collections": 13,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 1001,
+      "title": "Deadpool (1997) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1001/deadpool_1997_1",
+      "seriesId": 15421,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "onSale": "1997-02-12T00:00:00+0000",
+      "mu": "1997-02-12T00:00:00+0000",
+      "digitalId": 1001,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5f1d3b6f0d1d9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rob Liefeld",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool by Fabian Nicieza: The Complete Collection Vol. 1"
+    },
+    {
+      "issueId": 1002,
+      "title": "Deadpool (1997) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1002/deadpool_1997_2",
+      "seriesId": 15421,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "onSale": "1997-03-12T00:00:00+0000",
+      "mu": "1997-03-12T00:00:00+0000",
+      "digitalId": 1002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5f1d3dbe2cdb2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rob Liefeld",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool by Fabian Nicieza: The Complete Collection Vol. 1"
+    },
+    {
+      "issueId": 1003,
+      "title": "Deadpool (1997) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1003/deadpool_1997_3",
+      "seriesId": 15421,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "onSale": "1997-04-09T00:00:00+0000",
+      "mu": "1997-04-09T00:00:00+0000",
+      "digitalId": 1003,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5f1d3f118f2f1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rob Liefeld",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool by Fabian Nicieza: The Complete Collection Vol. 1"
+    },
+    {
+      "issueId": 1004,
+      "title": "Deadpool (1997) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/1004/deadpool_1997_4",
+      "seriesId": 15421,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "onSale": "1997-05-14T00:00:00+0000",
+      "mu": "1997-05-14T00:00:00+0000",
+      "digitalId": 1004,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5f1d3f99d2c3d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rob Liefeld",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Liefeld",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool by Fabian Nicieza: The Complete Collection Vol. 1"
+    },
+    {
+      "issueId": 1018,
+      "title": "Deadpool (1997) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/1018/deadpool_1997_18",
+      "seriesId": 15421,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "onSale": "1997-11-12T00:00:00+0000",
+      "mu": "1997-11-12T00:00:00+0000",
+      "digitalId": 1018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5f1d4d0d1dffa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Madureira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool by Fabian Nicieza: The Complete Collection Vol. 2"
+    },
+    {
+      "issueId": 1024,
+      "title": "Deadpool (1997) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/1024/deadpool_1997_24",
+      "seriesId": 15421,
+      "seriesName": "Deadpool (1997 - 2002)",
+      "onSale": "1998-05-20T00:00:00+0000",
+      "mu": "1998-05-20T00:00:00+0000",
+      "digitalId": 1024,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/5f1d4f6c2d64a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Madureira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Joe Madureira",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool by Fabian Nicieza: The Complete Collection Vol. 2"
+    },
+    {
+      "issueId": 1033,
+      "title": "The Circle Chase (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1033/the_circle_chase_1994_1",
+      "seriesId": 15430,
+      "seriesName": "The Circle Chase (1994)",
+      "onSale": "1994-03-02T00:00:00+0000",
+      "mu": "1994-03-02T00:00:00+0000",
+      "digitalId": 1033,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/80/5f1d5090dda07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Madureira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool: The Circle Chase"
+    },
+    {
+      "issueId": 1034,
+      "title": "The Circle Chase (1994) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1034/the_circle_chase_1994_2",
+      "seriesId": 15430,
+      "seriesName": "The Circle Chase (1994)",
+      "onSale": "1994-04-06T00:00:00+0000",
+      "mu": "1994-04-06T00:00:00+0000",
+      "digitalId": 1034,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/5f1d50fc8b49f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Madureira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool: The Circle Chase"
+    },
+    {
+      "issueId": 1035,
+      "title": "The Circle Chase (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1035/the_circle_chase_1994_3",
+      "seriesId": 15430,
+      "seriesName": "The Circle Chase (1994)",
+      "onSale": "1994-05-04T00:00:00+0000",
+      "mu": "1994-05-04T00:00:00+0000",
+      "digitalId": 1035,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/70/5f1d515d0d3d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Madureira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool: The Circle Chase"
+    },
+    {
+      "issueId": 1101,
+      "title": "Cable & Deadpool (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1101/cable_and_deadpool_2004_1",
+      "seriesId": 16020,
+      "seriesName": "Cable & Deadpool (2004 - 2007)",
+      "onSale": "2004-03-10T00:00:00+0000",
+      "mu": "2004-03-10T00:00:00+0000",
+      "digitalId": 1101,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/5f1d52d4afaf0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        },
+        {
+          "name": "Phil Briones",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Cable & Deadpool: Vol. 1"
+    },
+    {
+      "issueId": 1102,
+      "title": "Cable & Deadpool (2004) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1102/cable_and_deadpool_2004_2",
+      "seriesId": 16020,
+      "seriesName": "Cable & Deadpool (2004 - 2007)",
+      "onSale": "2004-04-07T00:00:00+0000",
+      "mu": "2004-04-07T00:00:00+0000",
+      "digitalId": 1102,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5f1d5359a6241",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        },
+        {
+          "name": "Phil Briones",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Cable & Deadpool: Vol. 1"
+    },
+    {
+      "issueId": 1103,
+      "title": "Cable & Deadpool (2004) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1103/cable_and_deadpool_2004_3",
+      "seriesId": 16020,
+      "seriesName": "Cable & Deadpool (2004 - 2007)",
+      "onSale": "2004-05-12T00:00:00+0000",
+      "mu": "2004-05-12T00:00:00+0000",
+      "digitalId": 1103,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/20/5f1d53b4f4fa4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        },
+        {
+          "name": "Phil Briones",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Cable & Deadpool: Vol. 1"
+    },
+    {
+      "issueId": 1201,
+      "title": "Deadpool (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1201/deadpool_2008_1",
+      "seriesId": 17040,
+      "seriesName": "Deadpool (2008 - 2012)",
+      "onSale": "2008-06-18T00:00:00+0000",
+      "mu": "2008-06-18T00:00:00+0000",
+      "digitalId": 1201,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5f1d55bf0f733",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool: The Complete Collection Vol. 1"
+    },
+    {
+      "issueId": 1202,
+      "title": "Deadpool (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1202/deadpool_2008_2",
+      "seriesId": 17040,
+      "seriesName": "Deadpool (2008 - 2012)",
+      "onSale": "2008-07-16T00:00:00+0000",
+      "mu": "2008-07-16T00:00:00+0000",
+      "digitalId": 1202,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/40/5f1d563bada86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool: The Complete Collection Vol. 1"
+    },
+    {
+      "issueId": 1203,
+      "title": "Deadpool (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1203/deadpool_2008_3",
+      "seriesId": 17040,
+      "seriesName": "Deadpool (2008 - 2012)",
+      "onSale": "2008-08-20T00:00:00+0000",
+      "mu": "2008-08-20T00:00:00+0000",
+      "digitalId": 1203,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/5f1d56b07a183",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Deadpool: The Complete Collection Vol. 1"
+    },
+    {
+      "issueId": 1301,
+      "title": "Deadpool: Merc with a Mouth (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1301/deadpool_merc_with_a_mouth_2009_1",
+      "seriesId": 17125,
+      "seriesName": "Deadpool: Merc with a Mouth (2009)",
+      "onSale": "2009-03-18T00:00:00+0000",
+      "mu": "2009-03-18T00:00:00+0000",
+      "digitalId": 1301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/5f1d57f7d0d18",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool: Merc with a Mouth"
+    },
+    {
+      "issueId": 1302,
+      "title": "Deadpool: Merc with a Mouth (2009) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1302/deadpool_merc_with_a_mouth_2009_2",
+      "seriesId": 17125,
+      "seriesName": "Deadpool: Merc with a Mouth (2009)",
+      "onSale": "2009-04-15T00:00:00+0000",
+      "mu": "2009-04-15T00:00:00+0000",
+      "digitalId": 1302,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5f1d58f1e33cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool: Merc with a Mouth"
+    },
+    {
+      "issueId": 1303,
+      "title": "Deadpool: Merc with a Mouth (2009) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1303/deadpool_merc_with_a_mouth_2009_3",
+      "seriesId": 17125,
+      "seriesName": "Deadpool: Merc with a Mouth (2009)",
+      "onSale": "2009-05-20T00:00:00+0000",
+      "mu": "2009-05-20T00:00:00+0000",
+      "digitalId": 1303,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/00/5f1d594d5a7e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Daniel Way",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool: Merc with a Mouth"
+    },
+    {
+      "issueId": 1401,
+      "title": "Uncanny X-Force (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1401/uncanny_x_force_2010_1",
+      "seriesId": 18190,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2010-12-01T00:00:00+0000",
+      "mu": "2010-12-01T00:00:00+0000",
+      "digitalId": 1401,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/5f1d5a851339c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender Vol. 1"
+    },
+    {
+      "issueId": 1402,
+      "title": "Uncanny X-Force (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1402/uncanny_x_force_2010_2",
+      "seriesId": 18190,
+      "seriesName": "Uncanny X-Force (2010 - 2012)",
+      "onSale": "2011-01-05T00:00:00+0000",
+      "mu": "2011-01-05T00:00:00+0000",
+      "digitalId": 1402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/5f1d5b65c5c9a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rick Remender",
+          "role": "writer"
+        },
+        {
+          "name": "Jerome Opena",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Uncanny X-Force by Rick Remender Vol. 1"
+    },
+    {
+      "issueId": 1501,
+      "title": "Deadpool Max (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1501/deadpool_max_2010_1",
+      "seriesId": 18210,
+      "seriesName": "Deadpool Max (2010 - 2011)",
+      "onSale": "2010-09-08T00:00:00+0000",
+      "mu": "2010-09-08T00:00:00+0000",
+      "digitalId": 1501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/5f1d5d30229da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Baker",
+          "role": "writer"
+        },
+        {
+          "name": "Kyle Baker",
+          "role": "artist"
+        }
+      ],
+      "collectedIn": "Deadpool Max"
+    },
+    {
+      "issueId": 1502,
+      "title": "Deadpool Max (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1502/deadpool_max_2010_2",
+      "seriesId": 18210,
+      "seriesName": "Deadpool Max (2010 - 2011)",
+      "onSale": "2010-10-06T00:00:00+0000",
+      "mu": "2010-10-06T00:00:00+0000",
+      "digitalId": 1502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5f1d5d8f8a140",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Baker",
+          "role": "writer"
+        },
+        {
+          "name": "Kyle Baker",
+          "role": "artist"
+        }
+      ],
+      "collectedIn": "Deadpool Max"
+    },
+    {
+      "issueId": 1601,
+      "title": "Deadpool (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1601/deadpool_2012_1",
+      "seriesId": 18321,
+      "seriesName": "Deadpool (2012 - 2013)",
+      "onSale": "2012-02-08T00:00:00+0000",
+      "mu": "2012-02-08T00:00:00+0000",
+      "digitalId": 1601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5f1d5ecb54169",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool by Gerry Duggan Vol. 1"
+    },
+    {
+      "issueId": 1602,
+      "title": "Deadpool (2012) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1602/deadpool_2012_2",
+      "seriesId": 18321,
+      "seriesName": "Deadpool (2012 - 2013)",
+      "onSale": "2012-03-07T00:00:00+0000",
+      "mu": "2012-03-07T00:00:00+0000",
+      "digitalId": 1602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5f1d60b53a99a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Brian Posehn",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Deadpool by Gerry Duggan Vol. 1"
+    },
+    {
+      "issueId": 1701,
+      "title": "Deadpool Kills Deadpool (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1701/deadpool_kills_deadpool_2013_1",
+      "seriesId": 18691,
+      "seriesName": "Deadpool Kills Deadpool (2013)",
+      "onSale": "2013-10-30T00:00:00+0000",
+      "mu": "2013-10-30T00:00:00+0000",
+      "digitalId": 1701,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/5f1d6211bfec2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        },
+        {
+          "name": "Dalibor Talajic",
+          "role": "artist"
+        }
+      ],
+      "collectedIn": "Deadpool Kills Deadpool"
+    },
+    {
+      "issueId": 1702,
+      "title": "Deadpool Kills the Marvel Universe (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1702/deadpool_kills_the_marvel_universe_2012_1",
+      "seriesId": 18622,
+      "seriesName": "Deadpool Kills the Marvel Universe (2012)",
+      "onSale": "2012-11-21T00:00:00+0000",
+      "mu": "2012-11-21T00:00:00+0000",
+      "digitalId": 1702,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5f1d62d3cf4d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Cullen Bunn",
+          "role": "writer"
+        },
+        {
+          "name": "Dalibor Talajic",
+          "role": "artist"
+        }
+      ],
+      "collectedIn": "Deadpool Kills the Marvel Universe"
+    }
+  ]
+}
