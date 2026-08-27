@@ -16,13 +16,13 @@
     "issueBearingBlockCount": 55,
     "issueBearingBlocksSha256": "ea5c02e6209d5cc3c20e5927e1746e056b5e847875840b6db21e3f866c19308f"
   },
-  "normalizedSourceHash": "b3fe028d3f50ccedb8ac8be3146b49d4060f6e61bc2140801466167751f7d20a",
-  "sourceNodeOrderHash": "9a27179569a96a6bfa0ba85434ddac8559ed63464c58cdb19d253d4efa119721",
+  "normalizedSourceHash": "f0fe622aaae80618a9533cb5ad5576c1a4c053f2c58ea3170b0ddc1c7e7e55cc",
+  "sourceNodeOrderHash": "6f5d032caf5c2e074ca34980fdccddea1330231af0cbdd780e207c98e57899c8",
   "groupCount": 8,
-  "occurrenceCount": 425,
+  "occurrenceCount": 426,
   "occurrenceCounts": {
-    "canonical-candidate": 300,
-    "exclusion": 108,
+    "canonical-candidate": 298,
+    "exclusion": 111,
     "gap": 0,
     "repeat": 17
   },
@@ -5039,16 +5039,30 @@
       "sourceNodeIndex": 159,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
-      "sourceText": "Infinity Countdown: Adam Warlock And Material From Free Comic Book Day 2018 (Amazing Spider-Man)",
+      "sourceText": "Infinity Countdown: Adam Warlock",
       "sourceRangeReference": "Issues: Infinity Countdown Prime, Infinity Countdown #1-5, Infinity Countdown: Adam Warlock And Material From Free Comic Book Day 2018 (Amazing Spider-Man)",
       "collectionTitle": "Infinity Countdown",
-      "normalizedSeriesTitle": "Infinity Countdown: Adam Warlock And Material From Free Comic Book Day 2018 (Amazing Spider-Man)",
+      "normalizedSeriesTitle": "Infinity Countdown: Adam Warlock",
       "seriesYear": null,
       "issueNumber": null,
       "provisionalDisposition": "canonical-candidate"
     },
     {
       "position": 378,
+      "sourceNodeIndex": 159,
+      "sourceGroup": "Latest Additions:",
+      "sourceType": "partial-material",
+      "sourceText": "material from Free Comic Book Day 2018 (Amazing Spider-Man)",
+      "sourceRangeReference": "Issues: Infinity Countdown Prime, Infinity Countdown #1-5, Infinity Countdown: Adam Warlock And Material From Free Comic Book Day 2018 (Amazing Spider-Man)",
+      "collectionTitle": "Infinity Countdown",
+      "normalizedSeriesTitle": null,
+      "seriesYear": null,
+      "issueNumber": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference"
+    },
+    {
+      "position": 379,
       "sourceNodeIndex": 160,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5062,7 +5076,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 379,
+      "position": 380,
       "sourceNodeIndex": 161,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5076,7 +5090,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 380,
+      "position": 381,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5089,7 +5103,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 381,
+      "position": 382,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5102,7 +5116,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 382,
+      "position": 383,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5115,7 +5129,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 383,
+      "position": 384,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5128,7 +5142,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 384,
+      "position": 385,
       "sourceNodeIndex": 162,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5141,7 +5155,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 385,
+      "position": 386,
       "sourceNodeIndex": 163,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5155,7 +5169,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 386,
+      "position": 387,
       "sourceNodeIndex": 164,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5169,7 +5183,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 387,
+      "position": 388,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5182,7 +5196,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 388,
+      "position": 389,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5195,7 +5209,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 389,
+      "position": 390,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5208,7 +5222,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 390,
+      "position": 391,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5221,7 +5235,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 391,
+      "position": 392,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5234,7 +5248,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 392,
+      "position": 393,
       "sourceNodeIndex": 165,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5247,7 +5261,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 393,
+      "position": 394,
       "sourceNodeIndex": 166,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5261,7 +5275,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 394,
+      "position": 395,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5274,7 +5288,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 395,
+      "position": 396,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5287,7 +5301,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 396,
+      "position": 397,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5300,7 +5314,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 397,
+      "position": 398,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5313,7 +5327,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 398,
+      "position": 399,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5326,33 +5340,35 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 399,
+      "position": 400,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#1000",
       "sourceRangeReference": "Issues: Defenders (2021) #1 to #5, material from Marvel Comics (2019) #1000 to #1001",
       "collectionTitle": "Defenders by Al Ewing: There Are No Rules",
       "normalizedSeriesTitle": "material from Marvel Comics (2019)",
       "seriesYear": 2019,
       "issueNumber": "1000",
-      "provisionalDisposition": "canonical-candidate"
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference"
     },
     {
-      "position": 400,
+      "position": 401,
       "sourceNodeIndex": 167,
       "sourceGroup": "Latest Additions:",
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#1001",
       "sourceRangeReference": "Issues: Defenders (2021) #1 to #5, material from Marvel Comics (2019) #1000 to #1001",
       "collectionTitle": "Defenders by Al Ewing: There Are No Rules",
       "normalizedSeriesTitle": "material from Marvel Comics (2019)",
       "seriesYear": 2019,
       "issueNumber": "1001",
-      "provisionalDisposition": "canonical-candidate"
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference"
     },
     {
-      "position": 401,
+      "position": 402,
       "sourceNodeIndex": 168,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5366,7 +5382,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 402,
+      "position": 403,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5379,7 +5395,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 403,
+      "position": 404,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5392,7 +5408,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 404,
+      "position": 405,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5405,7 +5421,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 405,
+      "position": 406,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5418,7 +5434,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 406,
+      "position": 407,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5431,7 +5447,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 407,
+      "position": 408,
       "sourceNodeIndex": 169,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5444,7 +5460,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 408,
+      "position": 409,
       "sourceNodeIndex": 170,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5458,7 +5474,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 409,
+      "position": 410,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5471,7 +5487,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 410,
+      "position": 411,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5484,7 +5500,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 411,
+      "position": 412,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5497,7 +5513,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 412,
+      "position": 413,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5510,7 +5526,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 413,
+      "position": 414,
       "sourceNodeIndex": 171,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5523,7 +5539,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 414,
+      "position": 415,
       "sourceNodeIndex": 172,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5537,7 +5553,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 415,
+      "position": 416,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5550,7 +5566,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 416,
+      "position": 417,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5563,7 +5579,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 417,
+      "position": 418,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5576,7 +5592,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 418,
+      "position": 419,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5589,7 +5605,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 419,
+      "position": 420,
       "sourceNodeIndex": 173,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5602,7 +5618,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 420,
+      "position": 421,
       "sourceNodeIndex": 174,
       "sourceGroup": "Latest Additions:",
       "sourceType": "collection",
@@ -5616,7 +5632,7 @@
       "reason": "collection marker"
     },
     {
-      "position": 421,
+      "position": 422,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5629,7 +5645,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 422,
+      "position": 423,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5642,7 +5658,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 423,
+      "position": 424,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5655,7 +5671,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 424,
+      "position": 425,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5668,7 +5684,7 @@
       "provisionalDisposition": "canonical-candidate"
     },
     {
-      "position": 425,
+      "position": 426,
       "sourceNodeIndex": 175,
       "sourceGroup": "Latest Additions:",
       "sourceType": "issue",
@@ -5946,45 +5962,43 @@
       375,
       376,
       377,
-      380,
       381,
       382,
       383,
       384,
-      387,
+      385,
       388,
       389,
       390,
       391,
       392,
-      394,
+      393,
       395,
       396,
       397,
       398,
       399,
-      400,
-      402,
       403,
       404,
       405,
       406,
       407,
-      409,
+      408,
       410,
       411,
       412,
       413,
-      415,
+      414,
       416,
       417,
       418,
       419,
-      421,
+      420,
       422,
       423,
       424,
-      425
+      425,
+      426
     ],
     "repeatPositions": [
       79,
@@ -6108,13 +6122,16 @@
       370,
       378,
       379,
-      385,
+      380,
       386,
-      393,
+      387,
+      394,
+      400,
       401,
-      408,
-      414,
-      420
+      402,
+      409,
+      415,
+      421
     ]
   },
   "exclusionCategories": {
@@ -6186,15 +6203,20 @@
       352,
       359,
       370,
-      378,
       379,
-      385,
+      380,
       386,
-      393,
-      401,
-      408,
-      414,
-      420
+      387,
+      394,
+      402,
+      409,
+      415,
+      421
+    ],
+    "partial material reference": [
+      378,
+      400,
+      401
     ],
     "prose marker": [
       1,

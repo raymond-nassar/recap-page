@@ -4,23 +4,25 @@ import crypto from 'node:crypto';
 import test from 'node:test';
 
 const EXPECTED = {
-  occurrenceCount: 425,
+  occurrenceCount: 426,
   occurrenceCounts: {
-    'canonical-candidate': 300,
-    exclusion: 108,
+    'canonical-candidate': 298,
+    exclusion: 111,
     gap: 0,
     repeat: 17,
   },
-  normalizedSourceHash: 'b3fe028d3f50ccedb8ac8be3146b49d4060f6e61bc2140801466167751f7d20a',
-  sourceNodeOrderHash: '9a27179569a96a6bfa0ba85434ddac8559ed63464c58cdb19d253d4efa119721',
+  normalizedSourceHash: 'f0fe622aaae80618a9533cb5ad5576c1a4c053f2c58ea3170b0ddc1c7e7e55cc',
+  sourceNodeOrderHash: '6f5d032caf5c2e074ca34980fdccddea1330231af0cbdd780e207c98e57899c8',
   gapPositions: [],
   blankIssueMarkerPositions: [185, 193, 234, 282, 321],
+  partialMaterialPositions: [378, 400, 401],
   repeatPositions: [79, 80, 81, 82, 83, 84, 85, 86, 341, 342, 343, 344, 345, 347, 348, 349, 350],
-  groupCounts: [5, 46, 43, 48, 58, 94, 44, 87],
+  groupCounts: [5, 46, 43, 48, 58, 94, 44, 88],
   exclusionCategoryCounts: {
     'blank issue marker': 5,
     'boundary marker': 4,
     'collection marker': 63,
+    'partial material reference': 3,
     'prose marker': 29,
     'section marker': 7,
   },
@@ -117,6 +119,12 @@ function assertLedgerShape(ledger) {
       .map((entry) => entry.position),
     EXPECTED.blankIssueMarkerPositions,
   );
+  assert.deepEqual(
+    ledger.occurrences
+      .filter((entry) => entry.sourceType === 'partial-material')
+      .map((entry) => entry.position),
+    EXPECTED.partialMaterialPositions,
+  );
   assert.equal(
     ledger.occurrences
       .filter((entry) => entry.provisionalDisposition === 'repeat')
@@ -211,6 +219,21 @@ function assertLedgerShape(ledger) {
       { sourceText: 'Defenders #11', normalizedSeriesTitle: 'Defenders', issueNumber: '11', provisionalDisposition: 'repeat', repeatOfPosition: 78 },
     ],
   );
+  assert.deepEqual(
+    ledger.occurrences
+      .filter((entry) => entry.sourceNodeIndex === 159)
+      .map(({ sourceText, provisionalDisposition }) => ({ sourceText, provisionalDisposition })),
+    [
+      { sourceText: 'Infinity Countdown Prime', provisionalDisposition: 'canonical-candidate' },
+      { sourceText: '#1', provisionalDisposition: 'canonical-candidate' },
+      { sourceText: '#2', provisionalDisposition: 'canonical-candidate' },
+      { sourceText: '#3', provisionalDisposition: 'canonical-candidate' },
+      { sourceText: '#4', provisionalDisposition: 'canonical-candidate' },
+      { sourceText: '#5', provisionalDisposition: 'canonical-candidate' },
+      { sourceText: 'Infinity Countdown: Adam Warlock', provisionalDisposition: 'canonical-candidate' },
+      { sourceText: 'material from Free Comic Book Day 2018 (Amazing Spider-Man)', provisionalDisposition: 'exclusion' },
+    ],
+  );
   assert.equal(
     ledger.occurrenceCount,
     ledger.categorizedPositions.canonicalCandidatePositions.length
@@ -289,4 +312,24 @@ test('Silver Surfer source ledger rejects the known defect shapes', async () => 
     reason: 'blank issue line',
   };
   assert.throws(() => assertLedgerShape(refreshDerivedFields(blankFormattingGap)));
+
+  const mixedMaterialClause = structuredClone(ledger);
+  const materialIndex = mixedMaterialClause.occurrences.findIndex((entry) => entry.sourceNodeIndex === 159 && entry.sourceType === 'partial-material');
+  mixedMaterialClause.occurrences[materialIndex] = {
+    ...mixedMaterialClause.occurrences[materialIndex],
+    sourceType: 'issue',
+    normalizedSeriesTitle: 'Free Comic Book Day 2018 (Amazing Spider-Man)',
+    provisionalDisposition: 'canonical-candidate',
+  };
+  assert.throws(() => assertLedgerShape(refreshDerivedFields(mixedMaterialClause)));
+
+  const multiIssueMaterial = structuredClone(ledger);
+  const partialRangeIndex = multiIssueMaterial.occurrences.findIndex((entry) => entry.sourceNodeIndex === 167 && entry.issueNumber === '1000');
+  multiIssueMaterial.occurrences[partialRangeIndex] = {
+    ...multiIssueMaterial.occurrences[partialRangeIndex],
+    sourceType: 'issue',
+    normalizedSeriesTitle: 'Marvel Comics (2019)',
+    provisionalDisposition: 'canonical-candidate',
+  };
+  assert.throws(() => assertLedgerShape(refreshDerivedFields(multiIssueMaterial)));
 });
