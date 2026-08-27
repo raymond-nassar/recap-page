@@ -62,6 +62,41 @@ test('the hero offers one dominant action, and the way out of the app is a link'
   assert.equal((cta.match(/btn-lg/g) || []).length, 1, 'more than one call to action carries the dominant treatment');
 });
 
+test('the one native full Reading List disclosure precedes Coming up', () => {
+  const fullAt = html.indexOf('id="full"');
+  const shelfAt = html.indexOf('id="shelf-sec"');
+  assert.ok(fullAt >= 0 && shelfAt >= 0 && fullAt < shelfAt, 'the full Reading List is not before Coming up');
+  const disclosures = html.match(/<details class="full" id="full"[\s\S]*?<\/details>/g) ?? [];
+  assert.equal(disclosures.length, 1, 'the reading screen no longer has exactly one full-order disclosure');
+  assert.equal((disclosures[0].match(/<summary>/g) ?? []).length, 1, 'the disclosure no longer has one native summary');
+  for (const id of ['full-heading', 'full-action', 'full-count']) {
+    assert.match(disclosures[0], new RegExp(`id="${id}"`), `the summary is missing ${id}`);
+  }
+  assert.match(disclosures[0], /class="chev" aria-hidden="true"/);
+});
+
+test('the full Reading List summary is a wrapping full-width action', () => {
+  const full = css.match(/details\.full \{[^}]*\}/)?.[0] ?? '';
+  const summary = css.match(/details\.full > summary \{[^}]*\}/)?.[0] ?? '';
+  assert.match(full, /border: 1px solid var\(--line\)/);
+  assert.match(full, /background: var\(--card\)/);
+  assert.match(summary, /display: flex/);
+  assert.match(summary, /flex-wrap: wrap/);
+  assert.match(summary, /min-height: 44px/);
+  assert.match(summary, /width|padding/);
+  assert.match(css, /#full-heading \{[^}]*font-size: var\(--t-subtitle\)[^}]*font-weight: 600/);
+  assert.match(css, /#full-action \{[^}]*font-weight: 600/);
+  assert.match(css, /details\.full\[open\] > summary \{[^}]*border-bottom/);
+  assert.doesNotMatch(summary, /position: sticky/);
+});
+
+test('the full Reading List action and state hooks receive the accepted copy', () => {
+  assert.match(main, /\$\('#full-action'\)\.textContent = \$\('#full'\)\.open/);
+  for (const copy of ['Hide full Reading List', 'View all ${total} issue', 'No issues yet', '${unread} unread', 'All read']) {
+    assert.ok(main.includes(copy), `the summary renderer is missing ${copy}`);
+  }
+});
+
 test('the list tools are demoted by moving the border to the strip, not by hiding a button', () => {
   // Discoverability and keyboard access both have to survive the demotion, so the test is that the
   // buttons are still there, still bordered when reached, and that the group carries an edge.
@@ -99,6 +134,7 @@ test('every new surface survives forced colours', () => {
   assert.match(forced, /\.list-tools \{ border: 1px solid CanvasText; \}/);
   assert.match(forced, /\.row\.now \{ border: 2px solid Highlight; box-shadow: none; \}/);
   assert.match(forced, /#reading-filters \{ background: Canvas; \}/);
+  assert.match(forced, /details\.full, details\.full > summary \{ border-color: CanvasText; background: Canvas; \}/);
 });
 
 test('the sticky filters are scoped by id, because other fieldsets share the class', () => {

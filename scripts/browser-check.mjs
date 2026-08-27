@@ -168,6 +168,26 @@ const ORDER = {
   ],
 };
 
+const LONG_ORDER = {
+  ...ORDER,
+  id: 'browser-check-long',
+  name: 'Browser Check Long Order',
+  count: 219,
+  items: Array.from({ length: 219 }, (_, index) => {
+    const template = ORDER.items[index % ORDER.items.length];
+    const number = index + 1;
+    return {
+      ...template,
+      issueId: 910000 + number,
+      title: `Browser Check Long Order #${number}`,
+      number: String(number),
+      url: `https://www.marvel.com/comics/issue/${910000 + number}/browser_check_long_${number}`,
+      digitalId: 710000 + number,
+      onSale: `2026-${String((index % 12) + 1).padStart(2, '0')}-01T00:00:00+0000`,
+    };
+  }),
+};
+
 const NEGATIVE_ORDER_ITEM = {
   issueId: -900004,
   title: 'Local Browser Check Issue',
@@ -754,6 +774,48 @@ const MUTATIONS = [
     breaks: 'issue-focus',
     why: 'a deliberate later navigation leaves the old opener on its source history entry',
     rewriteMain: (source) => source.replace('      delete current.issueFocusOpener;', ''),
+  },
+  {
+    id: 'full-order-builds-while-closed',
+    breaks: 'full-order-performance',
+    why: 'the closed guard is removed, so an ordinary 219-issue route eagerly creates every row',
+    rewriteMain: (source) => source.replace(
+      / {4}if \(!\$\('#full'\)\.open\) \{ rowsPending = true; return; \}/,
+      '    if (false) { rowsPending = true; return; }',
+    ),
+  },
+  {
+    id: 'full-order-paints-empty',
+    breaks: 'full-order-discoverability',
+    why: 'manual opening defers row construction past the first animation-frame boundary',
+    rewriteMain: (source) => source
+      .replace(
+        "    queueMicrotask(() => { if ($('#full').open && rowsPending) renderRows(); });",
+        '    requestAnimationFrame(() => requestAnimationFrame(renderRows));',
+      )
+      .replace(
+        '    renderRows();\n    if (!routeDriven) syncHash();',
+        '    requestAnimationFrame(() => requestAnimationFrame(renderRows));\n'
+          + '    if (!routeDriven) syncHash();',
+      ),
+  },
+  {
+    id: 'full-order-addresses-restored-filter',
+    breaks: 'full-order-discoverability',
+    why: 'passive state renders serialize a restored filter and turn it into opening intent on reload',
+    rewriteMain: (source) => source.replace(
+      '      filter: showFilter ? shown : DEFAULT_FILTER,',
+      '      filter: shown,',
+    ),
+  },
+  {
+    id: 'full-order-discards-row-cache',
+    breaks: 'full-order-performance',
+    why: 'every render gets a new row key, so a one-issue progress change rebuilds all 219 rows',
+    rewriteMain: (source) => source.replace(
+      '  return `${JSON.stringify(item)}|${item.issueId === currentId}|${today}|${covers !== false}`;',
+      '  return `${JSON.stringify(item)}|${item.issueId === currentId}|${today}|${covers !== false}|${Math.random()}`;',
+    ),
   },
   {
     id: 'hide-blocked',
@@ -2564,7 +2626,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:818` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:827` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -3388,6 +3450,316 @@ const SCENARIOS = [
         `${few.tiles} tiles, widest gap ${few.widestGap}px`);
     },
   },
+  {
+    id: 'full-order-performance',
+    title: 'the 219-row Reading List stays absent while closed and reuses rows after one change',
+    async run(page, t) {
+      await importLongOrder(page);
+      const closed = await page.$$eval('#rows .row', (rows) => rows.length);
+      t.check('an ordinary closed arrival creates zero issue rows', closed === 0, `${closed} row(s)`);
+
+      await page.evaluate(() => document.querySelector('#full > summary').click());
+      await page.waitForSelector('#rows .row', { timeout: 15000 });
+      const measured = await page.evaluate(() => {
+        const before = [...document.querySelectorAll('#rows .row')];
+        document.querySelector('#rows [data-act="read"][aria-pressed="false"]')?.click();
+        const after = [...document.querySelectorAll('#rows .row')];
+        const reused = after.filter((node) => before.includes(node)).length;
+        return { total: after.length, reused, rebuilt: after.length - reused };
+      });
+      t.check('opening creates all 219 rows',
+        measured.total === 219, JSON.stringify(measured));
+      t.check('one read toggle reuses at least 217 rows and rebuilds no more than two',
+        measured.reused >= 217 && measured.rebuilt <= 2, JSON.stringify(measured));
+    },
+  },
+  {
+    id: 'full-order-discoverability',
+    title: 'the full Reading List is prominent, explicit, lazy, searchable and stable at 219 rows',
+    async run(page, t) {
+      const browserErrors = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+
+      await importLongOrder(page);
+      const starting = await page.evaluate(() => {
+        const full = document.querySelector('#full');
+        const shelf = document.querySelector('#shelf-sec');
+        const summary = full?.querySelector('summary');
+        return {
+          hash: location.hash,
+          open: full?.open ?? null,
+          rows: document.querySelectorAll('#rows .row').length,
+          order: full && shelf ? full.compareDocumentPosition(shelf) : 0,
+          action: document.querySelector('#full-action')?.textContent.trim(),
+          state: document.querySelector('#full-count')?.textContent.trim(),
+          summaryHeight: summary?.getBoundingClientRect().height ?? 0,
+          active: document.activeElement?.id ?? '',
+          focusInRows: document.querySelector('#rows')?.contains(document.activeElement) ?? false,
+        };
+      });
+      t.check('an ordinary 219-issue route stays closed with zero row DOM',
+        starting.open === false && starting.rows === 0, JSON.stringify(starting));
+      t.check('the full Reading List precedes Coming up and states total and unread counts',
+        !!(starting.order & 4)
+          && starting.action === 'View all 219 issues'
+          && starting.state === '219 unread',
+        JSON.stringify(starting));
+      t.check('the native summary has a 44 pixel target without taking focus into the unopened rows',
+        starting.summaryHeight >= 44 && !starting.focusInRows, JSON.stringify(starting));
+
+      await page.evaluate(() => {
+        window.__mrtHistoryWrites = { push: 0, replace: 0 };
+        const push = history.pushState.bind(history);
+        const replace = history.replaceState.bind(history);
+        history.pushState = (...args) => {
+          window.__mrtHistoryWrites.push += 1;
+          return push(...args);
+        };
+        history.replaceState = (...args) => {
+          window.__mrtHistoryWrites.replace += 1;
+          return replace(...args);
+        };
+      });
+      const opened = await page.evaluate(async () => {
+        const summary = document.querySelector('#full > summary');
+        summary.focus();
+        summary.click();
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        window.__mrtLongRows = [...document.querySelectorAll('#rows .row')];
+        return {
+          hash: location.hash,
+          rows: window.__mrtLongRows.length,
+          active: document.activeElement === summary,
+          action: document.querySelector('#full-action')?.textContent.trim(),
+          writes: window.__mrtHistoryWrites,
+          found: window.find('Browser Check Long Order #219'),
+        };
+      });
+      t.check('manual opening renders all rows by the first frame and retains summary focus',
+        opened.rows === 219 && opened.active, JSON.stringify(opened));
+      await page.waitForFunction(() => location.hash.endsWith('?full=1'));
+      const manualRoute = await page.evaluate(() => ({
+        hash: location.hash,
+        action: document.querySelector('#full-action')?.textContent.trim(),
+        writes: window.__mrtHistoryWrites,
+      }));
+      t.check('manual opening replaces once with full intent and changes the action copy',
+        manualRoute.hash.endsWith('?full=1')
+          && manualRoute.writes.push === 0
+          && manualRoute.writes.replace === 1
+          && manualRoute.action === 'Hide full Reading List',
+        JSON.stringify(manualRoute));
+      t.check('browser Find reaches an exact late title after rows exist', opened.found, JSON.stringify(opened));
+
+      await page.evaluate(() => {
+        document.querySelector('#rows [data-act="read"][aria-pressed="false"]')?.click();
+      });
+
+      const listId = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')).active);
+      await open(page, `/?long=1&boot=filter#/read/${encodeURIComponent(listId)}?filter=unread`);
+      await page.waitForSelector('#rows .row', { timeout: 15000 });
+      const filterIntent = await page.evaluate(() => ({
+        hash: location.hash,
+        open: document.querySelector('#full')?.open,
+        rows: document.querySelectorAll('#rows .row').length,
+        active: document.activeElement?.id ?? '',
+        focusInRows: document.querySelector('#rows')?.contains(document.activeElement) ?? false,
+      }));
+      t.check('an explicit filter opens once without adding full intent or moving boot focus',
+        filterIntent.hash.endsWith('?filter=unread')
+          && filterIntent.open
+          && filterIntent.rows === 218
+          && !filterIntent.focusInRows,
+        JSON.stringify(filterIntent));
+
+      await open(page, `/?long=1&boot=plain#/read/${encodeURIComponent(listId)}`);
+      const restored = await page.evaluate(() => ({
+        hash: location.hash,
+        open: document.querySelector('#full')?.open,
+        rows: document.querySelectorAll('#rows .row').length,
+        checked: document.querySelector('input[name="filter"]:checked')?.value,
+      }));
+      t.check('a plain boot with a restored non-default filter stays closed and builds zero rows',
+        restored.open === false && restored.rows === 0 && restored.checked === 'unread',
+        JSON.stringify(restored));
+
+      await page.evaluate(() => document.querySelector('#btn-hero-done')?.click());
+      const passiveStoredFilter = await page.evaluate(() => ({
+        hash: location.hash,
+        open: document.querySelector('#full')?.open,
+        rows: document.querySelectorAll('#rows .row').length,
+      }));
+      t.check('a progress render cannot turn a restored filter into explicit opening intent',
+        !passiveStoredFilter.hash.includes('filter=')
+          && passiveStoredFilter.open === false
+          && passiveStoredFilter.rows === 0,
+        JSON.stringify(passiveStoredFilter));
+
+      const explicitFrame = await page.evaluate(async (id) => {
+        location.hash = `#/read/${encodeURIComponent(id)}?full=1`;
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        return {
+          open: document.querySelector('#full')?.open,
+          rows: document.querySelectorAll('#rows .row').length,
+        };
+      }, listId);
+      t.check('explicit route opening has all rows by the first animation frame',
+        explicitFrame.open && explicitFrame.rows === 219, JSON.stringify(explicitFrame));
+
+      await open(page, '/?long=1&boot=about#/about?filter=unread&full=1');
+      const nonReading = await page.evaluate(() => ({
+        view: document.querySelector('.view:not([hidden])')?.id,
+        open: document.querySelector('#full')?.open,
+        rows: document.querySelectorAll('#rows .row').length,
+      }));
+      t.check('a non-reading route does not open or build the hidden reading order',
+        nonReading.view === 'view-about' && nonReading.open === false && nonReading.rows === 0,
+        JSON.stringify(nonReading));
+
+      await open(page, `/?long=1&boot=full#/read/${encodeURIComponent(listId)}?full=1`);
+      await page.waitForSelector('#rows .row', { timeout: 15000 });
+      const explicitFull = await page.evaluate(() => ({
+        hash: location.hash,
+        open: document.querySelector('#full')?.open,
+        rows: document.querySelectorAll('#rows .row').length,
+      }));
+      t.check('a direct full=1 route opens all rows without rewriting its address',
+        explicitFull.hash.endsWith('?full=1') && explicitFull.open && explicitFull.rows === 217,
+        JSON.stringify(explicitFull));
+
+      await page.focus('#full > summary');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => (
+        document.querySelector('#full')?.open === false && !location.hash.includes('full=1')
+      ));
+      const afterEnter = await page.evaluate(() => ({
+        focus: document.activeElement === document.querySelector('#full > summary'),
+        hash: location.hash,
+      }));
+      await page.keyboard.press('Space');
+      await page.waitForFunction(() => document.querySelector('#full')?.open === true);
+      const afterSpace = await page.evaluate(async () => {
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        return {
+          focus: document.activeElement === document.querySelector('#full > summary'),
+          rows: document.querySelectorAll('#rows .row').length,
+          unique: new Set([...document.querySelectorAll('#rows .row-focus-title')]
+            .map((link) => link.getAttribute('href'))).size,
+        };
+      });
+      t.check('Enter closes and Space reopens the native disclosure without moving focus',
+        afterEnter.focus && !afterEnter.hash.includes('full=1')
+          && afterSpace.focus && afterSpace.rows === 217,
+        JSON.stringify({ afterEnter, afterSpace }));
+      t.check('reopening never duplicates an issue row',
+        afterSpace.unique === 217, JSON.stringify(afterSpace));
+
+      await page.evaluate(() => {
+        const link = document.querySelector('#rows .row-focus-title');
+        link.focus();
+        link.click();
+      });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.activeElement?.classList.contains('row-focus-title'));
+      t.check('Back restores the exact full-order issue link', true);
+
+      await page.evaluate(() => {
+        const replace = history.replaceState.bind(history);
+        window.__mrtRestoreReplace = replace;
+        history.replaceState = (state, title, url) => {
+          const opener = state?.issueFocusOpener;
+          return replace(opener
+            ? { ...state, issueFocusOpener: { ...opener, control: 'missing' } }
+            : state, title, url);
+        };
+        document.querySelector('#rows .row-focus-title').click();
+      });
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.activeElement?.matches('input[name="filter"]:checked'));
+      const fallback = await page.evaluate(() => {
+        history.replaceState = window.__mrtRestoreReplace;
+        return {
+          checked: document.activeElement?.value,
+          view: document.querySelector('.view:not([hidden])')?.id,
+        };
+      });
+      t.check('Back falls back to the checked filter when the exact opener no longer exists',
+        fallback.view === 'view-read' && fallback.checked === 'all', JSON.stringify(fallback));
+
+      await page.setViewport({ width: 320, height: 800 });
+      const narrow = await page.evaluate(() => {
+        const summary = document.querySelector('#full > summary');
+        summary.focus();
+        return {
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          summaryHeight: summary.getBoundingClientRect().height,
+          focusVisible: document.activeElement === summary,
+          summaryText: summary.textContent.replace(/\s+/g, ' ').trim(),
+        };
+      });
+      t.check('the open disclosure reflows at 320 pixels without horizontal clipping or lost focus',
+        narrow.overflow <= 1 && narrow.summaryHeight >= 44 && narrow.focusVisible,
+        JSON.stringify(narrow));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      const zoomBefore = await page.evaluate(() => ({
+        width: innerWidth,
+        scale: visualViewport.scale,
+      }));
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      const zoomed = await page.evaluate(() => ({
+        width: innerWidth,
+        scale: visualViewport.scale,
+        visualWidth: visualViewport.width,
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        focus: document.activeElement === document.querySelector('#full > summary'),
+      }));
+      t.check('DevTools 200 percent page zoom keeps the summary visible without page clipping',
+        zoomed.scale === 2
+          && zoomed.visualWidth >= 620 && zoomed.visualWidth <= 660
+          && zoomed.overflow <= 1
+          && zoomed.focus,
+        JSON.stringify({ zoomBefore, zoomed }));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+      await client.detach();
+
+      const snapshot = await page.accessibility.snapshot({
+        root: await page.$('#full > summary'),
+        interestingOnly: false,
+      });
+      t.check('the native summary exposes its complete name and expanded state',
+        /Full Reading List/.test(snapshot?.name ?? '')
+          && /Hide full Reading List/.test(snapshot?.name ?? '')
+          && /217 unread/.test(snapshot?.name ?? '')
+          && snapshot?.expanded === true,
+        JSON.stringify(snapshot));
+      const forcedColors = await page.evaluate(() => {
+        const full = getComputedStyle(document.querySelector('#full'));
+        const summary = getComputedStyle(document.querySelector('#full > summary'));
+        return {
+          active: matchMedia('(forced-colors: active)').matches,
+          border: full.borderTopColor,
+          background: summary.backgroundColor,
+        };
+      });
+      const forcedColorsRequested = process.argv.includes('--forced-colors');
+      t.check('the forced-colors launch preserves a system border and summary surface',
+        !forcedColorsRequested || (
+          forcedColors.active
+            && forcedColors.border !== 'rgba(0, 0, 0, 0)'
+            && forcedColors.background !== 'rgba(0, 0, 0, 0)'
+        ),
+        JSON.stringify(forcedColors));
+      t.check('the full-order journeys produce no console or page errors',
+        browserErrors.length === 0, browserErrors.join(' / '));
+    },
+  },
 ];
 
 // ------------------------------------------------------------------ page helpers
@@ -3430,6 +3802,13 @@ async function importOrder(page) {
   await click(page, IMPORT_BUTTON);
   await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
   await openFullOrder(page);
+}
+
+async function importLongOrder(page) {
+  await open(page, '/?long=1');
+  await openBrowseCategory(page, 'timeline');
+  await click(page, IMPORT_BUTTON);
+  await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
 }
 
 // The delete is guarded by the app's own dialog rather than confirm(), which matters here: a
@@ -3564,7 +3943,7 @@ async function preparePage(page, origin, mutation) {
   }
   await page.setViewport({ width: 1280, height: 900 });
   await page.evaluateOnNewDocument(
-    (catalog, catalogFixtures, order, negativeOrderItem, orderFile, appVersion, updateApiUrl) => {
+    (catalog, catalogFixtures, order, longOrder, negativeOrderItem, orderFile, appVersion, updateApiUrl) => {
       const real = window.fetch.bind(window);
       const json = (body, status = 200) => new Response(JSON.stringify(body), {
         status,
@@ -3604,7 +3983,7 @@ async function preparePage(page, origin, mutation) {
           if (sessionStorage.getItem('mrt.issue-focus.negative') === '1') {
             return Promise.resolve(json({ ...order, items: [...order.items, negativeOrderItem] }));
           }
-          return Promise.resolve(json(order));
+          return Promise.resolve(json(new URL(location.href).searchParams.get('long') === '1' ? longOrder : order));
         }
         if (url === updateApiUrl) {
           window.__mrtUpdateRequests = (window.__mrtUpdateRequests ?? 0) + 1;
@@ -3705,6 +4084,7 @@ async function preparePage(page, origin, mutation) {
       sparse: SPARSE_PUBLISHING_CATALOG,
     },
     ORDER,
+    LONG_ORDER,
     NEGATIVE_ORDER_ITEM,
     ORDER_FILE,
     APP_VERSION,
@@ -3809,7 +4189,11 @@ async function withStack(fn) {
     browser = await puppeteer.launch({
       executablePath: edge,
       headless: !process.env.MRT_HEADED,
-      args: ['--no-first-run', '--no-default-browser-check'],
+      args: [
+        '--no-first-run',
+        '--no-default-browser-check',
+        ...(process.argv.includes('--forced-colors') ? ['--force-high-contrast'] : []),
+      ],
     });
   } catch (err) {
     prerequisiteFailure(`Microsoft Edge was found at ${edge} but could not be launched.`, [

@@ -658,15 +658,24 @@ body.nocovers .tile .tf, .tile .tf.show { display: flex; }
 
 /* ============================================================ full order */
 
-details.full { margin-top: 2.1rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+details.full {
+  margin-top: 1.2rem; border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--card); overflow: clip;
+}
 details.full > summary {
-  cursor: pointer; list-style: none; display: flex; justify-content: space-between;
-  align-items: center; color: var(--muted); font-size: var(--t-body); padding: .3rem 0;
+  cursor: pointer; list-style: none; display: flex; align-items: center; flex-wrap: wrap;
+  gap: .3rem .8rem; min-height: 44px; padding: .8rem 1rem; color: var(--text);
+  background: var(--card); border-radius: inherit;
 }
 details.full > summary::-webkit-details-marker { display: none; }
-details.full > summary:hover { color: var(--text); }
-.chev { display: inline-block; transition: transform .15s; }
+details.full > summary:hover { background: var(--card-2); }
+#full-heading { flex: 1 0 100%; font-size: var(--t-subtitle); font-weight: 600; }
+#full-action { flex: 1 1 auto; font-weight: 600; }
+#full-count { color: var(--muted); }
+.chev { display: inline-block; flex: 0 0 auto; transition: transform .15s; }
 details.full[open] > summary .chev { transform: rotate(90deg); }
+details.full[open] > summary { border-bottom: 1px solid var(--line); border-radius: var(--r) var(--r) 0 0; }
+details.full > :not(summary) { margin-right: 1rem; margin-left: 1rem; }
 
 .filters { display: flex; gap: .4rem; margin: .9rem 0 .7rem; flex-wrap: wrap; border: 0; padding: 0; }
 /* display:flex would otherwise defeat the hidden attribute. */
@@ -1602,6 +1611,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
      selected view. */
   .row.now { border: 2px solid Highlight; box-shadow: none; }
   #reading-filters { background: Canvas; }
+  details.full, details.full > summary { border-color: CanvasText; background: Canvas; }
 }
 
 /* ============================================================ library and progress shape

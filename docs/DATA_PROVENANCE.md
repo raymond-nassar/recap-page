@@ -577,7 +577,7 @@ The first is that displaying a description and shipping a copy of one are differ
 those terms rather than two degrees of one act. Using Content inside an App is what the licence is
 for, on a condition the attribution page states plainly: "You must attribute Marvel as the source
 of data whenever you display any results from the Marvel Comics API". The app now names both the
-Marvel origin and its actual route at `src/index.html:962`. Redistributing Content outside an App, and sublicensing it onward, are the
+Marvel origin and its actual route at `src/index.html:964`. Redistributing Content outside an App, and sublicensing it onward, are the
 two things sections 4 and 5 name. An MIT grant is a sublicence to everyone who receives a copy, and
 offers them "sublicense, and/or sell".
 
@@ -622,9 +622,9 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/main.js:2687` and the issue-details view at
-`src/js/main.js:1512`. The function behind both already answers for the absence at
-`src/js/main.js:2874-2883`, with a test asserting the sentence it returns. It is also reversible:
+reaches the interface in the reading hero at `src/js/main.js:2749` and the issue-details view at
+`src/js/main.js:1566`. The function behind both already answers for the absence at
+`src/js/main.js:2936-2945`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.
