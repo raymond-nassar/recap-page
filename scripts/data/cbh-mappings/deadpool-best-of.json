@@ -1,0 +1,3062 @@
+{
+  "id": "deadpool-best-of",
+  "inventoryId": "deadpool-reading-order",
+  "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
+  "sourceUrl": "https://www.comicbookherald.com/deadpool-reading-order/",
+  "sourceSection": "The Best Deadpool Comics To Start With!",
+  "sourceRetrievedAt": "2026-08-26",
+  "sourceRetrievalStatus": "retrieved",
+  "approvedSourceCount": 56,
+  "excludedSourceReferences": [
+    "Full Deadpool Reading Order"
+  ],
+  "sourceOccurrenceCount": 56,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 41,
+      "canonicalRow": 23,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #1",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 42,
+      "canonicalRow": 24,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #2",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 43,
+      "canonicalRow": 25,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #3",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 44,
+      "canonicalRow": 26,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #4",
+      "sourceRangeReference": "10. Deadpool: Classics Killustrated",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 45,
+      "canonicalRow": 27,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #1",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 46,
+      "canonicalRow": 28,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #2",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 47,
+      "canonicalRow": 29,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #3",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 48,
+      "canonicalRow": 30,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #4",
+      "sourceRangeReference": "11. Deadpool Kills Deadpool",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 49,
+      "canonicalRow": 31,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #1",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 50,
+      "canonicalRow": 32,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #2",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 51,
+      "canonicalRow": 33,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #3",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 52,
+      "canonicalRow": 34,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #4",
+      "sourceRangeReference": "12. Deadpool Kills the Marvel Universe",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 53,
+      "canonicalRow": 35,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #1",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 54,
+      "canonicalRow": 36,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #2",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 55,
+      "canonicalRow": 37,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #3",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 56,
+      "canonicalRow": 38,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #4",
+      "sourceRangeReference": "13. Night of the Living Deadpool",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "4"
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Deadpool MAX (2010) #1",
+      "sourceRangeReference": "7. Deadpool MAX",
+      "normalizedSeriesTitle": "Deadpool MAX",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The official Marvel issue page confirms this source identity, but the repository metadata provider returns no record for its exact Marvel issue id; Issue 275 tracks resolution.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/32219/deadpool_max_2010_1",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/issues/32219",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "8a7f6ca3d11e4df00b505b0b498bf921f0b490b835589a28dafc50f40c4c482a"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Deadpool MAX (2010) #2",
+      "sourceRangeReference": "7. Deadpool MAX",
+      "normalizedSeriesTitle": "Deadpool MAX",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-26",
+      "auditBasis": "The official Marvel issue page confirms this source identity, but the repository metadata provider returns no record for its exact Marvel issue id; Issue 275 tracks resolution.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/32228/deadpool_max_2010_2",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "provider-absence",
+          "url": "https://marvel.emreparker.com/v1/issues/32228",
+          "retrievedAt": "2026-08-26"
+        }
+      ],
+      "evidenceDigest": "70b8aad44421585ee2ea069e0e519b27c37662884ff39a02b2abfebc18b658b3"
+    }
+  ],
+  "reviewStatus": "approved",
+  "proposedManifest": {
+    "id": "deadpool-best-of",
+    "name": "The Best Deadpool Comics To Start With!",
+    "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
+    "type": "character-run",
+    "spotlightKind": "best-of",
+    "depth": "essential",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "deadpool-best-of.md",
+    "sourcePage": "https://www.comicbookherald.com/deadpool-reading-order/",
+    "sourceSection": "The Best Deadpool Comics To Start With!",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "deadpool_best_of.json",
+    "characters": [
+      "Deadpool",
+      "Cable",
+      "Wolverine",
+      "Spider-Man",
+      "X-Force",
+      "Lady Deadpool"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "best-of",
+      "Deadpool",
+      "Cable",
+      "Wolverine"
+    ],
+    "expect": 40,
+    "timeline": null,
+    "coverIssueId": 8462
+  },
+  "candidateMetadata": [
+    {
+      "id": 8462,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (1997) #1",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (1997 - 2002)",
+      "seriesId": 2005,
+      "issueNumber": "1",
+      "seriesYear": 1997,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8462/deadpool_1997_1",
+      "onSaleDate": "1997-01-01T00:00:00+0000"
+    },
+    {
+      "id": 8473,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (1997) #2",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (1997 - 2002)",
+      "seriesId": 2005,
+      "issueNumber": "2",
+      "seriesYear": 1997,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8473/deadpool_1997_2",
+      "onSaleDate": "1997-02-01T00:00:00+0000"
+    },
+    {
+      "id": 8484,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (1997) #3",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (1997 - 2002)",
+      "seriesId": 2005,
+      "issueNumber": "3",
+      "seriesYear": 1997,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8484/deadpool_1997_3",
+      "onSaleDate": "1997-03-01T00:00:00+0000"
+    },
+    {
+      "id": 8495,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (1997) #4",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (1997 - 2002)",
+      "seriesId": 2005,
+      "issueNumber": "4",
+      "seriesYear": 1997,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8495/deadpool_1997_4",
+      "onSaleDate": "1997-04-01T00:00:00+0000"
+    },
+    {
+      "id": 8471,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (1997) #18",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (1997 - 2002)",
+      "seriesId": 2005,
+      "issueNumber": "18",
+      "seriesYear": 1997,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8471/deadpool_1997_18",
+      "onSaleDate": "1998-07-01T00:00:00+0000"
+    },
+    {
+      "id": 8478,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (1997) #24",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (1997 - 2002)",
+      "seriesId": 2005,
+      "issueNumber": "24",
+      "seriesYear": 1997,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8478/deadpool_1997_24",
+      "onSaleDate": "1999-01-01T00:00:00+0000"
+    },
+    {
+      "id": 8453,
+      "title": "Deadpool: The Circle Chase",
+      "issueTitle": "Deadpool: The Circle Chase (1993) #1",
+      "seriesTitle": "Deadpool: The Circle Chase",
+      "apiSeriesName": "Deadpool: The Circle Chase (1993)",
+      "seriesId": 2003,
+      "issueNumber": "1",
+      "seriesYear": 1993,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8453/deadpool_the_circle_chase_1993_1",
+      "onSaleDate": "1993-08-01T00:00:00+0000"
+    },
+    {
+      "id": 8454,
+      "title": "Deadpool: The Circle Chase",
+      "issueTitle": "Deadpool: The Circle Chase (1993) #2",
+      "seriesTitle": "Deadpool: The Circle Chase",
+      "apiSeriesName": "Deadpool: The Circle Chase (1993)",
+      "seriesId": 2003,
+      "issueNumber": "2",
+      "seriesYear": 1993,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8454/deadpool_the_circle_chase_1993_2",
+      "onSaleDate": "1993-09-01T00:00:00+0000"
+    },
+    {
+      "id": 8455,
+      "title": "Deadpool: The Circle Chase",
+      "issueTitle": "Deadpool: The Circle Chase (1993) #3",
+      "seriesTitle": "Deadpool: The Circle Chase",
+      "apiSeriesName": "Deadpool: The Circle Chase (1993)",
+      "seriesId": 2003,
+      "issueNumber": "3",
+      "seriesYear": 1993,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/8455/deadpool_the_circle_chase_1993_3",
+      "onSaleDate": "1993-10-01T00:00:00+0000"
+    },
+    {
+      "id": 430,
+      "title": "Cable & Deadpool",
+      "issueTitle": "Cable & Deadpool (2004) #1",
+      "seriesTitle": "Cable & Deadpool",
+      "apiSeriesName": "Cable & Deadpool (2004 - 2008)",
+      "seriesId": 693,
+      "issueNumber": "1",
+      "seriesYear": 2004,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/430/cable_deadpool_2004_1",
+      "onSaleDate": "2004-03-24T00:00:00+0000"
+    },
+    {
+      "id": 479,
+      "title": "Cable & Deadpool",
+      "issueTitle": "Cable & Deadpool (2004) #2",
+      "seriesTitle": "Cable & Deadpool",
+      "apiSeriesName": "Cable & Deadpool (2004 - 2008)",
+      "seriesId": 693,
+      "issueNumber": "2",
+      "seriesYear": 2004,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/479/cable_deadpool_2004_2",
+      "onSaleDate": "2004-04-21T00:00:00+0000"
+    },
+    {
+      "id": 644,
+      "title": "Cable & Deadpool",
+      "issueTitle": "Cable & Deadpool (2004) #3",
+      "seriesTitle": "Cable & Deadpool",
+      "apiSeriesName": "Cable & Deadpool (2004 - 2008)",
+      "seriesId": 693,
+      "issueNumber": "3",
+      "seriesYear": 2004,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/644/cable_deadpool_2004_3",
+      "onSaleDate": "2004-05-19T00:00:00+0000"
+    },
+    {
+      "id": 22021,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (2008) #1",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (2008 - 2012)",
+      "seriesId": 5701,
+      "issueNumber": "1",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22021/deadpool_2008_1",
+      "onSaleDate": "2008-09-10T00:00:00+0000"
+    },
+    {
+      "id": 22019,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (2008) #2",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (2008 - 2012)",
+      "seriesId": 5701,
+      "issueNumber": "2",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22019/deadpool_2008_2",
+      "onSaleDate": "2008-09-24T00:00:00+0000"
+    },
+    {
+      "id": 22348,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (2008) #3",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (2008 - 2012)",
+      "seriesId": 5701,
+      "issueNumber": "3",
+      "seriesYear": 2008,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/22348/deadpool_2008_3",
+      "onSaleDate": "2008-10-08T00:00:00+0000"
+    },
+    {
+      "id": 27873,
+      "title": "Deadpool: Merc with a Mouth",
+      "issueTitle": "Deadpool: Merc with a Mouth (2009) #1",
+      "seriesTitle": "Deadpool: Merc with a Mouth",
+      "apiSeriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "seriesId": 8865,
+      "issueNumber": "1",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27873/deadpool_merc_with_a_mouth_2009_1",
+      "onSaleDate": "2009-07-01T00:00:00+0000"
+    },
+    {
+      "id": 27798,
+      "title": "Deadpool: Merc with a Mouth",
+      "issueTitle": "Deadpool: Merc with a Mouth (2009) #2",
+      "seriesTitle": "Deadpool: Merc with a Mouth",
+      "apiSeriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "seriesId": 8865,
+      "issueNumber": "2",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27798/deadpool_merc_with_a_mouth_2009_2",
+      "onSaleDate": "2009-08-05T00:00:00+0000"
+    },
+    {
+      "id": 27799,
+      "title": "Deadpool: Merc with a Mouth",
+      "issueTitle": "Deadpool: Merc with a Mouth (2009) #3",
+      "seriesTitle": "Deadpool: Merc with a Mouth",
+      "apiSeriesName": "Deadpool: Merc with a Mouth (2009 - 2010)",
+      "seriesId": 8865,
+      "issueNumber": "3",
+      "seriesYear": 2009,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/27799/deadpool_merc_with_a_mouth_2009_3",
+      "onSaleDate": "2009-09-16T00:00:00+0000"
+    },
+    {
+      "id": 32573,
+      "title": "Uncanny X-Force",
+      "issueTitle": "Uncanny X-Force (2010) #1",
+      "seriesTitle": "Uncanny X-Force",
+      "apiSeriesName": "Uncanny X-Force (2010 - 2012)",
+      "seriesId": 9976,
+      "issueNumber": "1",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/32573/uncanny_x-force_2010_1",
+      "onSaleDate": "2010-10-06T00:00:00+0000"
+    },
+    {
+      "id": 32581,
+      "title": "Uncanny X-Force",
+      "issueTitle": "Uncanny X-Force (2010) #2",
+      "seriesTitle": "Uncanny X-Force",
+      "apiSeriesName": "Uncanny X-Force (2010 - 2012)",
+      "seriesId": 9976,
+      "issueNumber": "2",
+      "seriesYear": 2010,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/32581/uncanny_x-force_2010_2",
+      "onSaleDate": "2010-11-24T00:00:00+0000"
+    },
+    {
+      "id": 43797,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (2012) #1",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (2012 - 2015)",
+      "seriesId": 16542,
+      "issueNumber": "1",
+      "seriesYear": 2012,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/43797/deadpool_2012_1",
+      "onSaleDate": "2012-11-07T00:00:00+0000"
+    },
+    {
+      "id": 43801,
+      "title": "Deadpool",
+      "issueTitle": "Deadpool (2012) #2",
+      "seriesTitle": "Deadpool",
+      "apiSeriesName": "Deadpool (2012 - 2015)",
+      "seriesId": 16542,
+      "issueNumber": "2",
+      "seriesYear": 2012,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/43801/deadpool_2012_2",
+      "onSaleDate": "2012-11-21T00:00:00+0000"
+    },
+    {
+      "id": 46862,
+      "title": "Deadpool Killustrated",
+      "issueTitle": "Deadpool Killustrated (2013) #1",
+      "seriesTitle": "Deadpool Killustrated",
+      "apiSeriesName": "Deadpool Killustrated (2013)",
+      "seriesId": 17652,
+      "issueNumber": "1",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/46862/deadpool_killustrated_2013_1",
+      "onSaleDate": "2013-01-23T00:00:00+0000"
+    },
+    {
+      "id": 46863,
+      "title": "Deadpool Killustrated",
+      "issueTitle": "Deadpool Killustrated (2013) #2",
+      "seriesTitle": "Deadpool Killustrated",
+      "apiSeriesName": "Deadpool Killustrated (2013)",
+      "seriesId": 17652,
+      "issueNumber": "2",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/46863/deadpool_killustrated_2013_2",
+      "onSaleDate": "2013-02-27T00:00:00+0000"
+    },
+    {
+      "id": 46864,
+      "title": "Deadpool Killustrated",
+      "issueTitle": "Deadpool Killustrated (2013) #3",
+      "seriesTitle": "Deadpool Killustrated",
+      "apiSeriesName": "Deadpool Killustrated (2013)",
+      "seriesId": 17652,
+      "issueNumber": "3",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/46864/deadpool_killustrated_2013_3",
+      "onSaleDate": "2013-03-27T00:00:00+0000"
+    },
+    {
+      "id": 46865,
+      "title": "Deadpool Killustrated",
+      "issueTitle": "Deadpool Killustrated (2013) #4",
+      "seriesTitle": "Deadpool Killustrated",
+      "apiSeriesName": "Deadpool Killustrated (2013)",
+      "seriesId": 17652,
+      "issueNumber": "4",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/46865/deadpool_killustrated_2013_4",
+      "onSaleDate": "2013-04-24T00:00:00+0000"
+    },
+    {
+      "id": 47678,
+      "title": "Deadpool Kills Deadpool",
+      "issueTitle": "Deadpool Kills Deadpool (2013) #1",
+      "seriesTitle": "Deadpool Kills Deadpool",
+      "apiSeriesName": "Deadpool Kills Deadpool (2013)",
+      "seriesId": 17995,
+      "issueNumber": "1",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/47678/deadpool_kills_deadpool_2013_1",
+      "onSaleDate": "2013-07-03T00:00:00+0000"
+    },
+    {
+      "id": 47679,
+      "title": "Deadpool Kills Deadpool",
+      "issueTitle": "Deadpool Kills Deadpool (2013) #2",
+      "seriesTitle": "Deadpool Kills Deadpool",
+      "apiSeriesName": "Deadpool Kills Deadpool (2013)",
+      "seriesId": 17995,
+      "issueNumber": "2",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/47679/deadpool_kills_deadpool_2013_2",
+      "onSaleDate": "2013-08-07T00:00:00+0000"
+    },
+    {
+      "id": 47680,
+      "title": "Deadpool Kills Deadpool",
+      "issueTitle": "Deadpool Kills Deadpool (2013) #3",
+      "seriesTitle": "Deadpool Kills Deadpool",
+      "apiSeriesName": "Deadpool Kills Deadpool (2013)",
+      "seriesId": 17995,
+      "issueNumber": "3",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/47680/deadpool_kills_deadpool_2013_3",
+      "onSaleDate": "2013-09-04T00:00:00+0000"
+    },
+    {
+      "id": 47681,
+      "title": "Deadpool Kills Deadpool",
+      "issueTitle": "Deadpool Kills Deadpool (2013) #4",
+      "seriesTitle": "Deadpool Kills Deadpool",
+      "apiSeriesName": "Deadpool Kills Deadpool (2013)",
+      "seriesId": 17995,
+      "issueNumber": "4",
+      "seriesYear": 2013,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/47681/deadpool_kills_deadpool_2013_4",
+      "onSaleDate": "2013-10-30T00:00:00+0000"
+    },
+    {
+      "id": 41553,
+      "title": "Deadpool Kills the Marvel Universe",
+      "issueTitle": "Deadpool Kills the Marvel Universe (2011) #1",
+      "seriesTitle": "Deadpool Kills the Marvel Universe",
+      "apiSeriesName": "Deadpool Kills the Marvel Universe (2011 - 2012)",
+      "seriesId": 15487,
+      "issueNumber": "1",
+      "seriesYear": 2011,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/41553/deadpool_kills_the_marvel_universe_2011_1",
+      "onSaleDate": "2012-08-01T00:00:00+0000"
+    },
+    {
+      "id": 41552,
+      "title": "Deadpool Kills the Marvel Universe",
+      "issueTitle": "Deadpool Kills the Marvel Universe (2011) #2",
+      "seriesTitle": "Deadpool Kills the Marvel Universe",
+      "apiSeriesName": "Deadpool Kills the Marvel Universe (2011 - 2012)",
+      "seriesId": 15487,
+      "issueNumber": "2",
+      "seriesYear": 2011,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/41552/deadpool_kills_the_marvel_universe_2011_2",
+      "onSaleDate": "2012-08-08T00:00:00+0000"
+    },
+    {
+      "id": 41551,
+      "title": "Deadpool Kills the Marvel Universe",
+      "issueTitle": "Deadpool Kills the Marvel Universe (2011) #3",
+      "seriesTitle": "Deadpool Kills the Marvel Universe",
+      "apiSeriesName": "Deadpool Kills the Marvel Universe (2011 - 2012)",
+      "seriesId": 15487,
+      "issueNumber": "3",
+      "seriesYear": 2011,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/41551/deadpool_kills_the_marvel_universe_2011_3",
+      "onSaleDate": "2012-08-15T00:00:00+0000"
+    },
+    {
+      "id": 41554,
+      "title": "Deadpool Kills the Marvel Universe",
+      "issueTitle": "Deadpool Kills the Marvel Universe (2011) #4",
+      "seriesTitle": "Deadpool Kills the Marvel Universe",
+      "apiSeriesName": "Deadpool Kills the Marvel Universe (2011 - 2012)",
+      "seriesId": 15487,
+      "issueNumber": "4",
+      "seriesYear": 2011,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/41554/deadpool_kills_the_marvel_universe_2011_4",
+      "onSaleDate": "2012-08-22T00:00:00+0000"
+    },
+    {
+      "id": 49101,
+      "title": "Night of the Living Deadpool",
+      "issueTitle": "Night of the Living Deadpool (2014) #1",
+      "seriesTitle": "Night of the Living Deadpool",
+      "apiSeriesName": "Night of the Living Deadpool (2014)",
+      "seriesId": 18469,
+      "issueNumber": "1",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/49101/night_of_the_living_deadpool_2014_1",
+      "onSaleDate": "2014-01-15T00:00:00+0000"
+    },
+    {
+      "id": 49102,
+      "title": "Night of the Living Deadpool",
+      "issueTitle": "Night of the Living Deadpool (2014) #2",
+      "seriesTitle": "Night of the Living Deadpool",
+      "apiSeriesName": "Night of the Living Deadpool (2014)",
+      "seriesId": 18469,
+      "issueNumber": "2",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/49102/night_of_the_living_deadpool_2014_2",
+      "onSaleDate": "2014-01-29T00:00:00+0000"
+    },
+    {
+      "id": 49103,
+      "title": "Night of the Living Deadpool",
+      "issueTitle": "Night of the Living Deadpool (2014) #3",
+      "seriesTitle": "Night of the Living Deadpool",
+      "apiSeriesName": "Night of the Living Deadpool (2014)",
+      "seriesId": 18469,
+      "issueNumber": "3",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/49103/night_of_the_living_deadpool_2014_3",
+      "onSaleDate": "2014-02-19T00:00:00+0000"
+    },
+    {
+      "id": 49104,
+      "title": "Night of the Living Deadpool",
+      "issueTitle": "Night of the Living Deadpool (2014) #4",
+      "seriesTitle": "Night of the Living Deadpool",
+      "apiSeriesName": "Night of the Living Deadpool (2014)",
+      "seriesId": 18469,
+      "issueNumber": "4",
+      "seriesYear": 2014,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/49104/night_of_the_living_deadpool_2014_4",
+      "onSaleDate": "2014-03-05T00:00:00+0000"
+    }
+  ],
+  "rows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Deadpool (1997) #1",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "1",
+      "seriesId": 2005,
+      "candidateIssueId": 8462,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8462"
+      ],
+      "selectedIssueId": 8462,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8462/deadpool_1997_1",
+      "resolvedIssueTitle": "Deadpool (1997) #1",
+      "note": "Marvel series 2005 (Deadpool (1997 - 2002)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8462
+      ]
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Deadpool (1997) #2",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "2",
+      "seriesId": 2005,
+      "candidateIssueId": 8473,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8473"
+      ],
+      "selectedIssueId": 8473,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8473/deadpool_1997_2",
+      "resolvedIssueTitle": "Deadpool (1997) #2",
+      "note": "Marvel series 2005 (Deadpool (1997 - 2002)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8473
+      ]
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Deadpool (1997) #3",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "3",
+      "seriesId": 2005,
+      "candidateIssueId": 8484,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8484"
+      ],
+      "selectedIssueId": 8484,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8484/deadpool_1997_3",
+      "resolvedIssueTitle": "Deadpool (1997) #3",
+      "note": "Marvel series 2005 (Deadpool (1997 - 2002)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8484
+      ]
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Deadpool (1997) #4",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "4",
+      "seriesId": 2005,
+      "candidateIssueId": 8495,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8495"
+      ],
+      "selectedIssueId": 8495,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8495/deadpool_1997_4",
+      "resolvedIssueTitle": "Deadpool (1997) #4",
+      "note": "Marvel series 2005 (Deadpool (1997 - 2002)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8495
+      ]
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Deadpool (1997) #18",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "18",
+      "seriesId": 2005,
+      "candidateIssueId": 8471,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8471"
+      ],
+      "selectedIssueId": 8471,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8471/deadpool_1997_18",
+      "resolvedIssueTitle": "Deadpool (1997) #18",
+      "note": "Marvel series 2005 (Deadpool (1997 - 2002)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8471
+      ]
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Deadpool (1997) #24",
+      "sourceRangeReference": "1. Deadpool - The Joe Kelly Run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 1997,
+      "issueNumber": "24",
+      "seriesId": 2005,
+      "candidateIssueId": 8478,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8478"
+      ],
+      "selectedIssueId": 8478,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8478/deadpool_1997_24",
+      "resolvedIssueTitle": "Deadpool (1997) #24",
+      "note": "Marvel series 2005 (Deadpool (1997 - 2002)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8478
+      ]
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #1",
+      "sourceRangeReference": "2. Deadpool Classic Omnibus Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "1",
+      "seriesId": 2003,
+      "candidateIssueId": 8453,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8453"
+      ],
+      "selectedIssueId": 8453,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8453/deadpool_the_circle_chase_1993_1",
+      "resolvedIssueTitle": "Deadpool: The Circle Chase (1993) #1",
+      "note": "Marvel series 2003 (Deadpool: The Circle Chase (1993)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8453
+      ]
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #2",
+      "sourceRangeReference": "2. Deadpool Classic Omnibus Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "2",
+      "seriesId": 2003,
+      "candidateIssueId": 8454,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8454"
+      ],
+      "selectedIssueId": 8454,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8454/deadpool_the_circle_chase_1993_2",
+      "resolvedIssueTitle": "Deadpool: The Circle Chase (1993) #2",
+      "note": "Marvel series 2003 (Deadpool: The Circle Chase (1993)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8454
+      ]
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Deadpool: The Circle Chase (1993) #3",
+      "sourceRangeReference": "2. Deadpool Classic Omnibus Vol. 1",
+      "normalizedSeriesTitle": "Deadpool: The Circle Chase",
+      "seriesYear": 1993,
+      "issueNumber": "3",
+      "seriesId": 2003,
+      "candidateIssueId": 8455,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "8455"
+      ],
+      "selectedIssueId": 8455,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8455/deadpool_the_circle_chase_1993_3",
+      "resolvedIssueTitle": "Deadpool: The Circle Chase (1993) #3",
+      "note": "Marvel series 2003 (Deadpool: The Circle Chase (1993)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        8455
+      ]
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Cable & Deadpool (2004) #1",
+      "sourceRangeReference": "3. Cable & Deadpool",
+      "normalizedSeriesTitle": "Cable & Deadpool",
+      "seriesYear": 2004,
+      "issueNumber": "1",
+      "seriesId": 693,
+      "candidateIssueId": 430,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "430"
+      ],
+      "selectedIssueId": 430,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/430/cable_deadpool_2004_1",
+      "resolvedIssueTitle": "Cable & Deadpool (2004) #1",
+      "note": "Marvel series 693 (Cable & Deadpool (2004 - 2008)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        430
+      ]
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Cable & Deadpool (2004) #2",
+      "sourceRangeReference": "3. Cable & Deadpool",
+      "normalizedSeriesTitle": "Cable & Deadpool",
+      "seriesYear": 2004,
+      "issueNumber": "2",
+      "seriesId": 693,
+      "candidateIssueId": 479,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "479"
+      ],
+      "selectedIssueId": 479,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/479/cable_deadpool_2004_2",
+      "resolvedIssueTitle": "Cable & Deadpool (2004) #2",
+      "note": "Marvel series 693 (Cable & Deadpool (2004 - 2008)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        479
+      ]
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Cable & Deadpool (2004) #3",
+      "sourceRangeReference": "3. Cable & Deadpool",
+      "normalizedSeriesTitle": "Cable & Deadpool",
+      "seriesYear": 2004,
+      "issueNumber": "3",
+      "seriesId": 693,
+      "candidateIssueId": 644,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "644"
+      ],
+      "selectedIssueId": 644,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/644/cable_deadpool_2004_3",
+      "resolvedIssueTitle": "Cable & Deadpool (2004) #3",
+      "note": "Marvel series 693 (Cable & Deadpool (2004 - 2008)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        644
+      ]
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Deadpool (2008) #1",
+      "sourceRangeReference": "4. Deadpool: The Adamantium Collection",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5701,
+      "candidateIssueId": 22021,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22021"
+      ],
+      "selectedIssueId": 22021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22021/deadpool_2008_1",
+      "resolvedIssueTitle": "Deadpool (2008) #1",
+      "note": "Marvel series 5701 (Deadpool (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22021
+      ]
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Deadpool (2008) #2",
+      "sourceRangeReference": "4. Deadpool: The Adamantium Collection",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 5701,
+      "candidateIssueId": 22019,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22019"
+      ],
+      "selectedIssueId": 22019,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22019/deadpool_2008_2",
+      "resolvedIssueTitle": "Deadpool (2008) #2",
+      "note": "Marvel series 5701 (Deadpool (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22019
+      ]
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Deadpool (2008) #3",
+      "sourceRangeReference": "4. Deadpool: The Adamantium Collection",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 5701,
+      "candidateIssueId": 22348,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "22348"
+      ],
+      "selectedIssueId": 22348,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22348/deadpool_2008_3",
+      "resolvedIssueTitle": "Deadpool (2008) #3",
+      "note": "Marvel series 5701 (Deadpool (2008 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        22348
+      ]
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth (2009) #1",
+      "sourceRangeReference": "5. Deadpool - The Daniel Way Run",
+      "normalizedSeriesTitle": "Deadpool: Merc with a Mouth",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 8865,
+      "candidateIssueId": 27873,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27873"
+      ],
+      "selectedIssueId": 27873,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27873/deadpool_merc_with_a_mouth_2009_1",
+      "resolvedIssueTitle": "Deadpool: Merc with a Mouth (2009) #1",
+      "note": "Marvel series 8865 (Deadpool: Merc with a Mouth (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27873
+      ]
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth (2009) #2",
+      "sourceRangeReference": "5. Deadpool - The Daniel Way Run",
+      "normalizedSeriesTitle": "Deadpool: Merc with a Mouth",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "seriesId": 8865,
+      "candidateIssueId": 27798,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27798"
+      ],
+      "selectedIssueId": 27798,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27798/deadpool_merc_with_a_mouth_2009_2",
+      "resolvedIssueTitle": "Deadpool: Merc with a Mouth (2009) #2",
+      "note": "Marvel series 8865 (Deadpool: Merc with a Mouth (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27798
+      ]
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Deadpool: Merc with a Mouth (2009) #3",
+      "sourceRangeReference": "5. Deadpool - The Daniel Way Run",
+      "normalizedSeriesTitle": "Deadpool: Merc with a Mouth",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "seriesId": 8865,
+      "candidateIssueId": 27799,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "27799"
+      ],
+      "selectedIssueId": 27799,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27799/deadpool_merc_with_a_mouth_2009_3",
+      "resolvedIssueTitle": "Deadpool: Merc with a Mouth (2009) #3",
+      "note": "Marvel series 8865 (Deadpool: Merc with a Mouth (2009 - 2010)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        27799
+      ]
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Uncanny X-Force (2010) #1",
+      "sourceRangeReference": "6. Uncanny X-Force - The Rick Remender Run",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9976,
+      "candidateIssueId": 32573,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "32573"
+      ],
+      "selectedIssueId": 32573,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/32573/uncanny_x-force_2010_1",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #1",
+      "note": "Marvel series 9976 (Uncanny X-Force (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        32573
+      ]
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Uncanny X-Force (2010) #2",
+      "sourceRangeReference": "6. Uncanny X-Force - The Rick Remender Run",
+      "normalizedSeriesTitle": "Uncanny X-Force",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9976,
+      "candidateIssueId": 32581,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "32581"
+      ],
+      "selectedIssueId": 32581,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/32581/uncanny_x-force_2010_2",
+      "resolvedIssueTitle": "Uncanny X-Force (2010) #2",
+      "note": "Marvel series 9976 (Uncanny X-Force (2010 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        32581
+      ]
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Deadpool (2012) #1",
+      "sourceRangeReference": "8. Deadpool (Marvel NOW!) - The Gerry Duggan and Brian Posehn run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 16542,
+      "candidateIssueId": 43797,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "43797"
+      ],
+      "selectedIssueId": 43797,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43797/deadpool_2012_1",
+      "resolvedIssueTitle": "Deadpool (2012) #1",
+      "note": "Marvel series 16542 (Deadpool (2012 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        43797
+      ]
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Deadpool (2012) #2",
+      "sourceRangeReference": "8. Deadpool (Marvel NOW!) - The Gerry Duggan and Brian Posehn run",
+      "normalizedSeriesTitle": "Deadpool",
+      "seriesYear": 2012,
+      "issueNumber": "2",
+      "seriesId": 16542,
+      "candidateIssueId": 43801,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "43801"
+      ],
+      "selectedIssueId": 43801,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43801/deadpool_2012_2",
+      "resolvedIssueTitle": "Deadpool (2012) #2",
+      "note": "Marvel series 16542 (Deadpool (2012 - 2015)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        43801
+      ]
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 17652,
+      "candidateIssueId": 46862,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "46862"
+      ],
+      "selectedIssueId": 46862,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46862/deadpool_killustrated_2013_1",
+      "resolvedIssueTitle": "Deadpool Killustrated (2013) #1",
+      "note": "Marvel series 17652 (Deadpool Killustrated (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        46862
+      ]
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17652,
+      "candidateIssueId": 46863,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "46863"
+      ],
+      "selectedIssueId": 46863,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46863/deadpool_killustrated_2013_2",
+      "resolvedIssueTitle": "Deadpool Killustrated (2013) #2",
+      "note": "Marvel series 17652 (Deadpool Killustrated (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        46863
+      ]
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17652,
+      "candidateIssueId": 46864,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "46864"
+      ],
+      "selectedIssueId": 46864,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46864/deadpool_killustrated_2013_3",
+      "resolvedIssueTitle": "Deadpool Killustrated (2013) #3",
+      "note": "Marvel series 17652 (Deadpool Killustrated (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        46864
+      ]
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Deadpool Killustrated (2013) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Killustrated",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17652,
+      "candidateIssueId": 46865,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "46865"
+      ],
+      "selectedIssueId": 46865,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/46865/deadpool_killustrated_2013_4",
+      "resolvedIssueTitle": "Deadpool Killustrated (2013) #4",
+      "note": "Marvel series 17652 (Deadpool Killustrated (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        46865
+      ]
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 17995,
+      "candidateIssueId": 47678,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "47678"
+      ],
+      "selectedIssueId": 47678,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/47678/deadpool_kills_deadpool_2013_1",
+      "resolvedIssueTitle": "Deadpool Kills Deadpool (2013) #1",
+      "note": "Marvel series 17995 (Deadpool Kills Deadpool (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        47678
+      ]
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17995,
+      "candidateIssueId": 47679,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "47679"
+      ],
+      "selectedIssueId": 47679,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/47679/deadpool_kills_deadpool_2013_2",
+      "resolvedIssueTitle": "Deadpool Kills Deadpool (2013) #2",
+      "note": "Marvel series 17995 (Deadpool Kills Deadpool (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        47679
+      ]
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17995,
+      "candidateIssueId": 47680,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "47680"
+      ],
+      "selectedIssueId": 47680,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/47680/deadpool_kills_deadpool_2013_3",
+      "resolvedIssueTitle": "Deadpool Kills Deadpool (2013) #3",
+      "note": "Marvel series 17995 (Deadpool Kills Deadpool (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        47680
+      ]
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Deadpool Kills Deadpool (2013) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills Deadpool",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17995,
+      "candidateIssueId": 47681,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "47681"
+      ],
+      "selectedIssueId": 47681,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/47681/deadpool_kills_deadpool_2013_4",
+      "resolvedIssueTitle": "Deadpool Kills Deadpool (2013) #4",
+      "note": "Marvel series 17995 (Deadpool Kills Deadpool (2013)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        47681
+      ]
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 15487,
+      "candidateIssueId": 41553,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "41553"
+      ],
+      "selectedIssueId": 41553,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41553/deadpool_kills_the_marvel_universe_2011_1",
+      "resolvedIssueTitle": "Deadpool Kills the Marvel Universe (2011) #1",
+      "note": "Marvel series 15487 (Deadpool Kills the Marvel Universe (2011 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        41553
+      ]
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "2",
+      "seriesId": 15487,
+      "candidateIssueId": 41552,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "41552"
+      ],
+      "selectedIssueId": 41552,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41552/deadpool_kills_the_marvel_universe_2011_2",
+      "resolvedIssueTitle": "Deadpool Kills the Marvel Universe (2011) #2",
+      "note": "Marvel series 15487 (Deadpool Kills the Marvel Universe (2011 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        41552
+      ]
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "3",
+      "seriesId": 15487,
+      "candidateIssueId": 41551,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "41551"
+      ],
+      "selectedIssueId": 41551,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41551/deadpool_kills_the_marvel_universe_2011_3",
+      "resolvedIssueTitle": "Deadpool Kills the Marvel Universe (2011) #3",
+      "note": "Marvel series 15487 (Deadpool Kills the Marvel Universe (2011 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        41551
+      ]
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Deadpool Kills the Marvel Universe (2011) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Deadpool Kills the Marvel Universe",
+      "seriesYear": 2011,
+      "issueNumber": "4",
+      "seriesId": 15487,
+      "candidateIssueId": 41554,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "41554"
+      ],
+      "selectedIssueId": 41554,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41554/deadpool_kills_the_marvel_universe_2011_4",
+      "resolvedIssueTitle": "Deadpool Kills the Marvel Universe (2011) #4",
+      "note": "Marvel series 15487 (Deadpool Kills the Marvel Universe (2011 - 2012)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        41554
+      ]
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #1",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18469,
+      "candidateIssueId": 49101,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "49101"
+      ],
+      "selectedIssueId": 49101,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49101/night_of_the_living_deadpool_2014_1",
+      "resolvedIssueTitle": "Night of the Living Deadpool (2014) #1",
+      "note": "Marvel series 18469 (Night of the Living Deadpool (2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        49101
+      ]
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #2",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18469,
+      "candidateIssueId": 49102,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "49102"
+      ],
+      "selectedIssueId": 49102,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49102/night_of_the_living_deadpool_2014_2",
+      "resolvedIssueTitle": "Night of the Living Deadpool (2014) #2",
+      "note": "Marvel series 18469 (Night of the Living Deadpool (2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        49102
+      ]
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #3",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18469,
+      "candidateIssueId": 49103,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "49103"
+      ],
+      "selectedIssueId": 49103,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49103/night_of_the_living_deadpool_2014_3",
+      "resolvedIssueTitle": "Night of the Living Deadpool (2014) #3",
+      "note": "Marvel series 18469 (Night of the Living Deadpool (2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        49103
+      ]
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Night of the Living Deadpool (2014) #4",
+      "sourceRangeReference": "9. Deadpool Minibus",
+      "normalizedSeriesTitle": "Night of the Living Deadpool",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18469,
+      "candidateIssueId": 49104,
+      "manualSeriesSelectionApproved": false,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "49104"
+      ],
+      "selectedIssueId": 49104,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/49104/night_of_the_living_deadpool_2014_4",
+      "resolvedIssueTitle": "Night of the Living Deadpool (2014) #4",
+      "note": "Marvel series 18469 (Night of the Living Deadpool (2014)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        49104
+      ]
+    }
+  ],
+  "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
+  "packetReview": "Reviewed the owner-approved thirteen-group boundary, all thirty-eight exact metadata selections, the sixteen Minibus source repetitions, and the two explicit Deadpool MAX metadata gaps. No source identity was invented or omitted.",
+  "approvedManifest": {
+    "id": "deadpool-best-of",
+    "name": "The Best Deadpool Comics To Start With!",
+    "description": "A source-ordered Deadpool starter guide that preserves every accepted recommendation group before the exhaustive chronology.",
+    "type": "character-run",
+    "spotlightKind": "best-of",
+    "depth": "essential",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "deadpool-best-of.md",
+    "sourcePage": "https://www.comicbookherald.com/deadpool-reading-order/",
+    "sourceSection": "The Best Deadpool Comics To Start With!",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "deadpool_best_of.json",
+    "characters": [
+      "Deadpool",
+      "Cable",
+      "Wolverine",
+      "Spider-Man",
+      "X-Force",
+      "Lady Deadpool"
+    ],
+    "keywords": [
+      "Comic Book Herald",
+      "best-of",
+      "Deadpool",
+      "Cable",
+      "Wolverine"
+    ],
+    "expect": 40,
+    "timeline": null,
+    "coverIssueId": 8462
+  },
+  "relationshipReview": {
+    "reportDigest": "e09b79802dba51d0662571e86610c9f24215cfdd5875ffa99eae70e2847f7f3e",
+    "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc",
+    "mappingDigest": "4fa8ee966f5cee8c6956f3e7505ffad60d1b8a4e6f09fd4c24316cb45cebf092",
+    "libraryDigest": "223a391c55aebdcc5acb1d5c4b5860651ca2c15e08f39744999aa1ed3f08904e",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "The reviewed shared issue identities support a distinct starter guide and do not duplicate the compared guide.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+        "rationale": "No shared published issue identity requires an additional relationship decision.",
+        "reviewedAt": "2026-08-26T21:45:58-07:00"
+      }
+    ],
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra final reconciliation",
+    "rationale": "The complete-library report covers every current guide. The only observed relationship is the approved partial overlap with Wolverine, while Hulk and Setup add no shared issue identities.",
+    "reviewedAt": "2026-08-26T21:45:58-07:00",
+    "approvalDigest": "5a3678cdf7ef8778cde9ffca8016cf52ae28c966151a6628ebfaa332ae964433"
+  }
+}

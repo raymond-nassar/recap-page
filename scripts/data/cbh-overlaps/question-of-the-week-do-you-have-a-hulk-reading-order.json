@@ -2,7 +2,7 @@
   "candidateId": "question-of-the-week-do-you-have-a-hulk-reading-order",
   "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
   "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-  "libraryDigest": "c88f3bc048979d0e3b3854556514ca875d45727cc48fa3dd32ac0f4df519cc55",
+  "libraryDigest": "e2e0a065566d909657307900b2963913b41ee82e1e97f757cdb057581f49fce5",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1242,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 75
   },
   "candidateCount": 1140,
-  "comparisonCount": 148,
+  "comparisonCount": 149,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -342,6 +342,12 @@
     },
     {
       "orderId": "dead-mans-hand",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "deadpool-best-of",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1201,5 +1207,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "9ee5bab5d647e4ce2b7f4adb4542c4c7defb85817a9db8a65ac9c7d987c939ad"
+  "reportDigest": "63bd4183a4fb9bdef7165df2a61cd43c76a2afe5913a18ff7cfc4d5387f4c51f"
 }

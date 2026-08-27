@@ -10661,10 +10661,10 @@
     "authorityIdentity": "GPT-5.5 implementation session",
     "rationale": "Central relationship review approved the Modern X-Men fast-track as a source-preserving selected spotlight. Existing subset relationships remain canonical event guides, and partial overlaps are justified by narrower or different spotlight boundaries rather than duplicate catalog identities.",
     "reviewedAt": "2026-08-25",
-    "reportDigest": "efb52f2eaab4f31661a7be1b45a3e63d60be6ef0cc564aa97f85a10078a1b4f3",
+    "reportDigest": "9a2986f77772135b3721405be84f33fad0cd49c7717f186556e8b1942d066398",
     "packetDigest": "7ad93b8af0104c6b889e5ceafe49dacde155fe2ec93348e9ae9a2e3c7cc5e46a",
     "mappingDigest": "06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271",
-    "libraryDigest": "6adbd5ecaee9f38b1ce02ad2c12d7e90049a4cd53544abdd5138face6e4a0631",
+    "libraryDigest": "47c6d64bcbb6235d4ba68d8645c5449d294897041354e55a9d1ba9c2871ce838",
     "peerDigests": {},
     "dispositions": [
       {
@@ -11010,6 +11010,15 @@
         "authorityType": "policy",
         "authorityIdentity": "zero-overlap policy",
         "rationale": "No shared issue IDs were observed in the current overlap report.",
+        "reviewedAt": "2026-08-25"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The reviewed shared issue identities do not duplicate this guide.",
         "reviewedAt": "2026-08-25"
       },
       {
@@ -12404,6 +12413,6 @@
         "reviewedAt": "2026-08-25"
       }
     ],
-    "approvalDigest": "d791bc2952b4481653c473880863fd46d8f38f6a85f57bd653047befc90a4e87"
+    "approvalDigest": "4cca9950ae514f2eb8996fe3f60f060acd9feb0b278deb28ecc01a5224740d80"
   }
 }

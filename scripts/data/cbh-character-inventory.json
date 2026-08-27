@@ -685,13 +685,17 @@
     "url": "https://www.comicbookherald.com/deadpool-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The owner-approved thirteen-group source boundary has thirty-eight exact issue rows, sixteen documented source repeats, and two explicit metadata gaps. The guide stops before the exhaustive chronology.",
+    "sourceRetrievedAt": "2026-08-26",
+    "overlapIds": [
+      "wolverine-reading-order"
+    ],
+    "catalogIds": [
+      "deadpool-best-of"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Deadpool"
     ],
@@ -701,7 +705,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "c00cb7706d865e27e020443d1be72696dd8dd74aee4d75d984e88efeee05603c",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 25,

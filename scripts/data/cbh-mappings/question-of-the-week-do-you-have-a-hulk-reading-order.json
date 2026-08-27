@@ -48028,10 +48028,10 @@
     "coverIssueId": 8906
   },
   "relationshipReview": {
-    "reportDigest": "9ee5bab5d647e4ce2b7f4adb4542c4c7defb85817a9db8a65ac9c7d987c939ad",
+    "reportDigest": "63bd4183a4fb9bdef7165df2a61cd43c76a2afe5913a18ff7cfc4d5387f4c51f",
     "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
     "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-    "libraryDigest": "c88f3bc048979d0e3b3854556514ca875d45727cc48fa3dd32ac0f4df519cc55",
+    "libraryDigest": "e2e0a065566d909657307900b2963913b41ee82e1e97f757cdb057581f49fce5",
     "peerDigests": {},
     "dispositions": [
       {
@@ -48324,6 +48324,15 @@
       },
       {
         "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT relationship policy",
+        "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
+        "reviewedAt": "2026-08-26"
+      },
+      {
+        "orderId": "deadpool-best-of",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
@@ -49371,7 +49380,7 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The full-library report compares every current catalog order. The complete Hulk source sequence is preserved without duplicate canonical issue IDs; all 26 non-none relationships are approved because shared comics remain in both independently sourced reading orders.",
-    "approvalDigest": "aebd8359c7335518ba5a5af1ddaf2c801902651ef52b665a09f455b393df6c9a"
+    "approvalDigest": "b58e428cebe463dda064e02b9fe7c843d1c56f5b1e8960e673f3682db48741b7"
   },
   "excludedSourceRows": [
     {

@@ -14,6 +14,13 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a Deadpool starter guide
+
+In plain English: A new Deadpool starter guide is available in Character Spotlight. It follows the
+thirteen recommendations from its source, includes thirty-eight comics that can be opened to read,
+and keeps two unavailable Deadpool MAX entries visible instead of silently leaving them out. Nothing
+you have saved is changed.
+
 ### Made the reading screen easier to scan
 
 In plain English: Coming up now keeps every Read button aligned even when comic titles have

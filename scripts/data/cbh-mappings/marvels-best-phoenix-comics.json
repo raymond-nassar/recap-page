@@ -2045,7 +2045,7 @@
     "coverIssueId": 8605
   },
   "relationshipReview": {
-    "reportDigest": "ffa23beec00489e72358e1c776c748ca2d26def03a339d6949b5e051dd0db116",
+    "reportDigest": "b787d13eeaddac17d9e80a5d9eca0531d6214635c5ff5629f1e2403cc6ddfc70",
     "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
     "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
     "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
@@ -2154,17 +2154,6 @@
       },
       {
         "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
@@ -2333,17 +2322,6 @@
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "groot-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
         "decision": "approved",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
@@ -2604,17 +2582,6 @@
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
-        "orderId": "phalanx-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
         "orderId": "planet-hulk",
         "relationship": "none",
         "sharedCount": 0,
@@ -2641,17 +2608,6 @@
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "rocket-raccoon-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
         "decision": "approved",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
@@ -2795,17 +2751,6 @@
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "star-lord-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
         "decision": "approved",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
@@ -3083,6 +3028,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T16:36:05.313Z",
-    "approvalDigest": "07da2cf9564c17b7942c91f71787ffdb189cccc55690f15a2f8fb6f856f26523"
+    "approvalDigest": "a8f0a6cc4b628064980620b0c890a9988b62f3823c676a5ffb4f236249d1c777"
   }
 }

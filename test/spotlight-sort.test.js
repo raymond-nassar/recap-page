@@ -69,5 +69,6 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Hulk (and She-Hulk, Red Hulk)',
     'Captain America: Modern Marvel Era',
     'There is Only Doom',
+    'The Best Deadpool Comics To Start With!',
   ]);
 });

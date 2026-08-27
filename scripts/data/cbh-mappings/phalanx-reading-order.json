@@ -1124,7 +1124,7 @@
     "coverIssueId": 10353
   },
   "relationshipReview": {
-    "reportDigest": "90a7164b03497533c915828d43c550e283a3376d34372feff79628b6d3eb0c8a",
+    "reportDigest": "9678e09ca3826bd2d56db6eb67a36720f8db07ccbf63a036ff85511c53336edf",
     "packetDigest": "7a896fbba1e57cae85ab9bfcfbd2759e0ca1eee4f4ecc177aad4b48521b6badb",
     "mappingDigest": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495",
     "libraryDigest": "98fe3cd9ba559db93f75a3ddab75bc4e3959746bf0ab47abb2a5151ba788a196",
@@ -1233,17 +1233,6 @@
       },
       {
         "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
@@ -1419,17 +1408,6 @@
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
-        "orderId": "groot-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
         "orderId": "heroes-reborn-2021",
         "relationship": "none",
         "sharedCount": 0,
@@ -1595,17 +1573,6 @@
         "reviewedAt": "2026-08-23T16:36:05.313Z"
       },
       {
-        "orderId": "marvels-best-phoenix-comics",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
         "orderId": "maximum-security",
         "relationship": "none",
         "sharedCount": 0,
@@ -1720,17 +1687,6 @@
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "rocket-raccoon-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
         "decision": "approved",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
@@ -1874,17 +1830,6 @@
         "relationship": "none",
         "sharedCount": 0,
         "sharedIds": [],
-        "decision": "approved",
-        "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
-        "authorityType": "policy",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-23T16:36:05.313Z"
-      },
-      {
-        "orderId": "star-lord-reading-order",
-        "sharedCount": 0,
-        "sharedIds": [],
-        "relationship": "none",
         "decision": "approved",
         "rationale": "No issue ids are shared, so the relationship is distinct under the complete-library policy.",
         "authorityType": "policy",
@@ -2178,6 +2123,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 87-list catalog and 1 named batch peer mapping was reviewed; 2 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T16:36:05.313Z",
-    "approvalDigest": "923e580e6126e3b93497fd338238cf7785c5481b52bc1485b7ad1a546cf752b9"
+    "approvalDigest": "8d0165f03bc10f9cf385836a3663d81df9b1232ee745054a3d492328663eb24d"
   }
 }
