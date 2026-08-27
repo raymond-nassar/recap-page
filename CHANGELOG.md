@@ -59,7 +59,6 @@ as placeholders, so the guide preserves their place without guessing or removing
 have saved is changed.
 For maintainers: the frozen cache-only source record preserves 331 occurrences: 245 exact issue
 rows, 12 repeated references, 23 metadata gaps tracked in Issue #317, and 51 exclusions.
-rows, 12 repeated references, 23 metadata gaps tracked in Issue #317, and 51 exclusions.
 
 ### Split Marvel Knights to Planet X into shorter Reading Lists
 
