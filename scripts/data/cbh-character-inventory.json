@@ -344,13 +344,15 @@
     "url": "https://www.comicbookherald.com/black-panther-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "disposition": "new-order",
+    "reason": "The full-page source ledger preserves 424 issue occurrences, 363 exactly resolved items, 57 repeats, and four explicit metadata gaps while the draft delivery remains unmerged.",
+    "sourceRetrievedAt": "2026-08-26",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "catalogIds": [
+      "black-panther-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Black Panther"
     ],
@@ -358,9 +360,9 @@
       11
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "9466c5e4e0bddb3290c8e2320e1ca1f10ac06f868216f62afebe2ecce83336f9",
+    "sourceContentSha256": "cce2736b94b0c45abfcd37c345b7c4af91ec5fbab07dc40bdf28f2a71d1bf2a1",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 12,

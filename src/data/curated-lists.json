@@ -2070,6 +2070,35 @@
       "coverIssueId": 11427
     },
     {
+      "id": "black-panther-reading-order",
+      "name": "Black Panther",
+      "description": "A complete Black Panther reading path that follows the source page from T Challa debut through the latest additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "black-panther-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/black-panther-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "black_panther_reading_order.json",
+      "characters": [
+        "Black Panther",
+        "T'Challa"
+      ],
+      "keywords": [
+        "Black Panther",
+        "Comic Book Herald",
+        "Wakanda"
+      ],
+      "expect": 367,
+      "timeline": null,
+      "coverIssueId": 13258
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",

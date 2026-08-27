@@ -77,6 +77,15 @@ subset relationships are approved and the other 128 contain no shared issue. The
 `partial` because the seven unavailable comics remain part of the source record but not the published
 Marvel Unlimited checklist.
 
+The Black Panther Character Spotlight follows the complete maintained source page from the
+introductory Fantastic Four references through the latest additions. It preserves 424 explicit
+issue occurrences across 367 identities: 363 exact provider-resolved comics and four open metadata
+gaps. Fifty-seven repeated occurrences remain in the frozen source evidence while the checklist
+publishes each canonical comic once. The four unresolved source positions remain visible in the
+guide and have separate follow-up work in [Issue #281](https://github.com/raymond-nassar/recap-page/issues/281);
+none is substituted or silently removed. Its complete-library review records eight partial
+relationships and 139 no-overlap relationships.
+
 ## Historical Comic Book Reading Orders intake
 
 The historical event program is a separate build-time source family. Its maintained inventory records

@@ -48028,10 +48028,10 @@
     "coverIssueId": 8906
   },
   "relationshipReview": {
-    "reportDigest": "63bd4183a4fb9bdef7165df2a61cd43c76a2afe5913a18ff7cfc4d5387f4c51f",
+    "reportDigest": "cb0946ae047daf849f34e8033a9f2d2ff1b998042d38d9581a6c306d64555907",
     "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
     "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-    "libraryDigest": "e2e0a065566d909657307900b2963913b41ee82e1e97f757cdb057581f49fce5",
+    "libraryDigest": "f6027ce55f287f73929e922c39fcd5cb9e8a46ef71feb4dadf0d0c312a0203db",
     "peerDigests": {},
     "dispositions": [
       {
@@ -48041,7 +48041,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 103 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "absolute-carnage",
@@ -48050,7 +48050,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -48059,7 +48059,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "age-of-x-man",
@@ -48068,7 +48068,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -48077,7 +48077,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -48086,7 +48086,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -48095,7 +48095,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 4 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "annihilation",
@@ -48104,7 +48104,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "annihilation-conquest",
@@ -48113,7 +48113,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "ant-man-reading-order",
@@ -48122,7 +48122,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 15 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "apocalypse-wars",
@@ -48131,7 +48131,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "atlantis-attacks",
@@ -48140,7 +48140,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "avengers-defenders-war",
@@ -48149,7 +48149,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 4 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "avengers-disassembled",
@@ -48158,7 +48158,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "avengers-enemy-within",
@@ -48167,7 +48167,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "axis",
@@ -48176,7 +48176,16 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The 1 shared issue identity does not make these source-defined guides duplicates.",
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "bloodties",
@@ -48185,7 +48194,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "captain-america-best-of",
@@ -48194,7 +48203,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -48203,7 +48212,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "chaos-war",
@@ -48212,7 +48221,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "childs-play",
@@ -48221,7 +48230,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "civil-war",
@@ -48230,7 +48239,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "civil-war-avengers",
@@ -48239,7 +48248,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "civil-war-essential",
@@ -48248,7 +48257,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "clone-conspiracy",
@@ -48257,7 +48266,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "contest-of-champions",
@@ -48266,7 +48275,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "damnation",
@@ -48275,7 +48284,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -48284,7 +48293,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "dark-reign-avengers",
@@ -48293,7 +48302,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "dark-web",
@@ -48302,7 +48311,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "days-of-future-past",
@@ -48311,7 +48320,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "days-of-future-present",
@@ -48320,7 +48329,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "dead-mans-hand",
@@ -48329,7 +48338,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "deadpool-best-of",
@@ -48338,7 +48347,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -48347,7 +48356,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "devils-reign",
@@ -48356,7 +48365,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "doctor-doom-primer",
@@ -48365,7 +48374,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 12 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -48374,7 +48383,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "doomwar",
@@ -48383,7 +48392,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "eighth-day",
@@ -48392,7 +48401,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "essential-avengers",
@@ -48401,7 +48410,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 5 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "evolutionary-war",
@@ -48410,7 +48419,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -48419,7 +48428,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -48428,7 +48437,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -48437,7 +48446,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "generations",
@@ -48446,7 +48455,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "groot-reading-order",
@@ -48455,7 +48464,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -48464,7 +48473,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "heroic-age-avengers",
@@ -48473,7 +48482,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "hickman-full",
@@ -48482,7 +48491,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 20 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "hickman-minimal",
@@ -48491,7 +48500,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 20 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "hickman-x-men",
@@ -48500,7 +48509,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "house-of-m",
@@ -48509,7 +48518,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "house-of-m-essential",
@@ -48518,7 +48527,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -48527,7 +48536,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "hunt-for-xavier",
@@ -48536,7 +48545,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "inferno",
@@ -48545,7 +48554,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "infinite-destinies",
@@ -48554,7 +48563,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -48563,7 +48572,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -48572,7 +48581,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "iron-man-2020",
@@ -48581,7 +48590,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "judgment-day",
@@ -48590,7 +48599,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "king-in-black",
@@ -48599,7 +48608,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "kravens-last-hunt",
@@ -48608,7 +48617,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "kree-skrull-war",
@@ -48617,7 +48626,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "last-annihilation",
@@ -48626,7 +48635,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "magneto-war",
@@ -48635,7 +48644,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -48644,7 +48653,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "marvel-multiverse",
@@ -48653,7 +48662,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -48662,7 +48671,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The existing focused order is fully retained. Its 12 shared issue identities are also required by the complete Hulk source boundary, so neither order loses source-defined reading context.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "marvel-what-if",
@@ -48671,7 +48680,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -48680,7 +48689,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "maximum-security",
@@ -48689,7 +48698,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "messiah-complex",
@@ -48698,7 +48707,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "messiah-war",
@@ -48707,7 +48716,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "midnight-massacre",
@@ -48716,7 +48725,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "minimum-carnage",
@@ -48725,7 +48734,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "monsters-unleashed",
@@ -48734,7 +48743,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "muir-island-saga",
@@ -48743,7 +48752,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "mutant-massacre",
@@ -48752,7 +48761,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "mys-tech-wars",
@@ -48761,7 +48770,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "necrosha",
@@ -48770,7 +48779,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "new-ultimate-universe",
@@ -48779,7 +48788,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -48788,7 +48797,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "operation-galactic-storm",
@@ -48797,7 +48806,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -48806,7 +48815,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "original-clone-saga",
@@ -48815,7 +48824,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "phalanx-covenant",
@@ -48824,7 +48833,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "phalanx-reading-order",
@@ -48833,7 +48842,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "phoenix-saga",
@@ -48842,7 +48851,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "planet-hulk",
@@ -48851,7 +48860,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The existing focused order is fully retained. Its 15 shared issue identities are also required by the complete Hulk source boundary, so neither order loses source-defined reading context.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "reckoning-war",
@@ -48860,7 +48869,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -48869,7 +48878,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "revolutionary-war",
@@ -48878,7 +48887,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -48887,7 +48896,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -48896,7 +48905,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -48905,7 +48914,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "second-coming",
@@ -48914,7 +48923,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "secret-invasion",
@@ -48923,7 +48932,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "secret-invasion-essential",
@@ -48932,7 +48941,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "secret-war",
@@ -48941,7 +48950,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "secret-wars-ii",
@@ -48950,7 +48959,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -48958,7 +48967,7 @@
         "authorityType": "policy",
         "authorityIdentity": "publication-policy",
         "rationale": "No shared issue identities were found in the full-library comparison.",
-        "reviewedAt": "2026-08-26",
+        "reviewedAt": "2026-08-27T05:03:43.866Z",
         "relationship": "none"
       },
       {
@@ -48968,7 +48977,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "silent-war",
@@ -48977,7 +48986,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "sins-of-sinister",
@@ -48986,7 +48995,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-geddon",
@@ -48995,7 +49004,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-island",
@@ -49004,7 +49013,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-man-best-of",
@@ -49013,7 +49022,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -49022,7 +49031,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -49031,7 +49040,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -49040,7 +49049,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-man-the-other",
@@ -49049,7 +49058,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "spider-verse",
@@ -49058,7 +49067,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "star-lord-reading-order",
@@ -49067,7 +49076,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "thanos-imperative",
@@ -49076,7 +49085,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "thanos-reading-order",
@@ -49085,7 +49094,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 10 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "thanos-war",
@@ -49094,7 +49103,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -49103,7 +49112,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "thor-best-of",
@@ -49112,7 +49121,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "time-and-time-again",
@@ -49121,7 +49130,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -49130,7 +49139,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "venomverse",
@@ -49139,7 +49148,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "wandavision",
@@ -49148,7 +49157,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 16 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "war-of-kings",
@@ -49157,7 +49166,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "war-of-the-realms",
@@ -49166,7 +49175,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -49175,7 +49184,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -49184,7 +49193,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "wolverine-reading-order",
@@ -49193,7 +49202,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 3 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -49202,7 +49211,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 15 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "wraith-war",
@@ -49211,7 +49220,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-cutioners-song",
@@ -49220,7 +49229,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-age-of-x",
@@ -49229,7 +49238,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -49238,7 +49247,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -49247,7 +49256,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -49256,7 +49265,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-extermination",
@@ -49265,7 +49274,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-inferno",
@@ -49274,7 +49283,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -49283,7 +49292,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-nation-x",
@@ -49292,7 +49301,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-regenesis",
@@ -49301,7 +49310,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-schism",
@@ -49310,7 +49319,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -49319,7 +49328,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-men-utopia",
@@ -49328,7 +49337,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-of-swords",
@@ -49337,7 +49346,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-termination",
@@ -49346,7 +49355,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "x-tinction-agenda",
@@ -49355,7 +49364,7 @@
         "authorityType": "policy",
         "authorityIdentity": "MRT relationship policy",
         "rationale": "No selected issue identities are shared, so the independently sourced Hulk spotlight can coexist with this catalog order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "xmen-claremont",
@@ -49364,7 +49373,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 1 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -49373,14 +49382,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The 7 shared issue identities are required by separate source-defined reading sequences. Both orders retain their independent boundaries and the Hulk spotlight does not replace the existing order.",
-        "reviewedAt": "2026-08-26"
+        "reviewedAt": "2026-08-27T05:03:43.866Z"
       }
     ],
-    "reviewedAt": "2026-08-26",
+    "reviewedAt": "2026-08-27T05:03:43.866Z",
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "The full-library report compares every current catalog order. The complete Hulk source sequence is preserved without duplicate canonical issue IDs; all 26 non-none relationships are approved because shared comics remain in both independently sourced reading orders.",
-    "approvalDigest": "b58e428cebe463dda064e02b9fe7c843d1c56f5b1e8960e673f3682db48741b7"
+    "rationale": "The complete-library comparison was refreshed after the Black Panther guide joined the catalog. Every resulting relationship remains approved.",
+    "approvalDigest": "82204567cee7dbff0b1d57ff8b16eea12e506e65676e54ee55975bc5e54e60a5"
   },
   "excludedSourceRows": [
     {
