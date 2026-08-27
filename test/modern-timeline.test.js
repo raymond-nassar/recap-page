@@ -6,12 +6,16 @@ import { fileURLToPath } from 'node:url';
 
 import {
   MODERN_TIMELINE_FEATURED_ID,
+  MODERN_TIMELINE_CONTINUATION_YEAR,
+  MODERN_TIMELINE_OPENING_ID,
   MODERN_TIMELINE_START_YEAR,
+  eraSections,
   groupCatalog,
   modernTimelineFeaturedList,
   modernTimelineLists,
   modernTimelineStories,
   parseCatalog,
+  publishingCategoryStories,
   shelfLists,
 } from '../src/js/lib/catalog.js';
 
@@ -31,10 +35,13 @@ const list = (id, timeline, extra = {}) => ({
   ...extra,
 });
 
-test('the app-selected Modern Timeline boundary includes 1998 and excludes 1997', () => {
+test('the app-selected Modern Timeline opens in 1998 and resumes in 2004', () => {
   const selected = modernTimelineStories([
     story('older', list('older', 1997)),
-    story('boundary', list('boundary', 1998)),
+    story('opening', list(MODERN_TIMELINE_OPENING_ID, 1998)),
+    story('other-1998', list('other-1998', 1998)),
+    story('before-continuation', list('before-continuation', 2003)),
+    story('continuation', list('continuation', 2004)),
     story('later', list('later', 2024)),
     story('undated', list('undated', null)),
     story('wrong-kind', list('wrong-kind', 2004, { type: 'creator-run' })),
@@ -42,21 +49,23 @@ test('the app-selected Modern Timeline boundary includes 1998 and excludes 1997'
   ]);
 
   assert.equal(MODERN_TIMELINE_START_YEAR, 1998);
-  assert.deepEqual(selected.map(({ key }) => key), ['boundary', 'later']);
+  assert.equal(MODERN_TIMELINE_CONTINUATION_YEAR, 2004);
+  assert.deepEqual(selected.map(({ key }) => key), ['opening', 'continuation', 'later']);
 });
 
 test('list selection preserves order and never splits a grouped story', () => {
   const lists = [
     list('older', 1997),
-    list('boundary', 1998),
+    list(MODERN_TIMELINE_OPENING_ID, 1998),
+    list('other-1998', 1998),
     list('split-old', 1997, { group: 'split' }),
     list('split-new', 1998, { group: 'split' }),
-    list('later', 2024),
+    list('continuation', 2004),
   ];
 
   assert.deepEqual(
     modernTimelineLists(lists).map(({ id }) => id),
-    ['boundary', 'later'],
+    [MODERN_TIMELINE_OPENING_ID, 'continuation'],
   );
 });
 
@@ -70,22 +79,49 @@ test('the featured guide resolves the existing catalog entry and no substitute',
   assert.equal(modernTimelineFeaturedList([]), null);
 });
 
-test('the shipped Modern Timeline starts with Marvel Knights and keeps only 1998-plus events', () => {
+test('the shipped Modern Timeline runs from Marvel Knights directly to Avengers Disassembled', () => {
   const selectedLists = modernTimelineLists(catalog.lists);
   const selectedStories = modernTimelineStories(stories);
+  const sections = eraSections(selectedStories);
+  const datedSections = sections.filter(({ span }) => span);
+  const excluded = shelfLists(catalog.lists, 'catalog')
+    .filter(({ id, timeline }) => (
+      timeline >= MODERN_TIMELINE_START_YEAR
+      && timeline < MODERN_TIMELINE_CONTINUATION_YEAR
+      && id !== MODERN_TIMELINE_OPENING_ID
+    ));
+  const periodIds = new Set(
+    publishingCategoryStories(stories, 'marvel-knights-heroes-return')
+      .flatMap(({ lists }) => lists.map(({ id }) => id)),
+  );
   const olderEvents = shelfLists(catalog.lists, 'catalog')
     .filter(({ timeline }) => timeline < MODERN_TIMELINE_START_YEAR);
 
-  assert.equal(selectedLists.length, 76);
-  assert.equal(selectedStories.length, 72);
+  assert.equal(selectedLists.length, 71);
+  assert.equal(selectedStories.length, 67);
   assert.equal(olderEvents.length, 34);
-  assert.equal(selectedLists[0].id, 'marvel-knights-to-planet-x');
+  assert.deepEqual(
+    selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),
+    [['Marvel Knights to Planet X', 1998], ['Avengers Disassembled', 2004]],
+  );
   assert.ok(selectedLists.every(({ type, timeline }) => (
-    type === 'event' && timeline >= MODERN_TIMELINE_START_YEAR
+    type === 'event'
+    && (timeline >= MODERN_TIMELINE_CONTINUATION_YEAR || timeline === MODERN_TIMELINE_START_YEAR)
   )));
+  assert.ok(selectedLists.slice(1).every(({ timeline }) => timeline >= MODERN_TIMELINE_CONTINUATION_YEAR));
   assert.ok(selectedLists.some(({ id }) => id === 'avengers-disassembled'));
   assert.equal(selectedLists.some(({ id }) => id === 'operation-zero-tolerance'), false);
   assert.equal(selectedLists.some(({ id }) => id === MODERN_TIMELINE_FEATURED_ID), false);
+  assert.deepEqual(
+    excluded.map(({ id }) => id),
+    ['spider-man-identity-crisis', 'hunt-for-xavier', 'eighth-day', 'magneto-war', 'maximum-security'],
+  );
+  assert.ok(excluded.every(({ id }) => periodIds.has(id)));
+  assert.equal(datedSections[0].from, MODERN_TIMELINE_START_YEAR);
+  assert.equal(datedSections[0].from, datedSections[0].span.from);
+  assert.ok(datedSections.every(({ from, to, span }) => (
+    from === span.from && to === span.to
+  )), 'a rendered era includes empty years before its first or after its last selected story');
 });
 
 test('only Modern Timeline era descriptions opt out of the shared prose measure', () => {

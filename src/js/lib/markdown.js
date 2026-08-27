@@ -9,6 +9,14 @@ const LINK_TEXT = '((?:[^\\]\\\\]|\\\\.)*)';
 const CHECKBOX_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[( |x|X)\\]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
 const CHECKBOX_PLAIN_RE = /^\s*[-*]\s*\[( |x|X)\]\s*(.+?)\s*$/;
 const BULLET_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
+const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=([1-9]\d*)\s*-->\s*$/;
+
+function sourceIdentity(title) {
+  const match = SOURCE_OCCURRENCE_RE.exec(title);
+  return match
+    ? { title: title.slice(0, match.index).trim(), sourceKey: match[1] }
+    : { title, sourceKey: null };
+}
 
 export function unescapeLinkText(s) {
   return String(s ?? '').replace(/\\(.)/g, '$1');
@@ -132,16 +140,24 @@ export function parseChecklist(text) {
       }
     }
 
+    const identified = sourceIdentity(title);
+    title = identified.title;
     if (!title) continue;
     const issueId = issueIdFromUrl(url);
     const at = index;
     index += 1;
 
     if (issueId != null) {
-      entries.push({ issueId, title, url: url, read, index: at, section });
+      entries.push({
+        issueId, title, url: url, read, index: at, section,
+        ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+      });
     } else {
       // A title we could not map to a Marvel issue id. Never silently dropped.
-      unresolved.push({ title, url: url && isSafeMarvelUrl(url) ? url : null, read, index: at, section });
+      unresolved.push({
+        title, url: url && isSafeMarvelUrl(url) ? url : null, read, index: at, section,
+        ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+      });
     }
   }
 

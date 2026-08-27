@@ -247,6 +247,8 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'spider-man-far-from-home',
     'deadpool-best-of',
     'marvel-knights-to-planet-x',
+    'punisher-reading-order',
+    'magneto-reading-order',
   ]);
   const packetRecords = [];
   const existingRecords = [];
@@ -266,7 +268,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
   assert.equal(packetRecords.length, 10);
   assert.equal(
     existingRecords.length,
-    116,
+    117,
   );
   assert.doesNotThrow(() => validateBatchNoDuplicates(packetRecords, existingRecords));
 

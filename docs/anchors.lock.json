@@ -1554,8 +1554,8 @@
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5587-5608|0": {
-    "anchor": "src/js/main.js:5587-5608",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5601-5622|0": {
+    "anchor": "src/js/main.js:5601-5622",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -1604,8 +1604,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5260-5262|0": {
-    "anchor": "src/js/main.js:5260-5262",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5274-5276|0": {
+    "anchor": "src/js/main.js:5274-5276",
     "fp": "8f226e48e15a5fea",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1789,13 +1789,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3139-3150|0": {
-    "anchor": "CHANGELOG.md:3139-3150",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3181-3192|0": {
+    "anchor": "CHANGELOG.md:3181-3192",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3152-3162|0": {
-    "anchor": "CHANGELOG.md:3152-3162",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3194-3204|0": {
+    "anchor": "CHANGELOG.md:3194-3204",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -1929,8 +1929,8 @@
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:4944-5002|0": {
-    "anchor": "src/js/main.js:4944-5002",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:4958-5016|0": {
+    "anchor": "src/js/main.js:4958-5016",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
@@ -1994,8 +1994,8 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/main.js:4734-4743|0": {
-    "anchor": "src/js/main.js:4734-4743",
+  "docs/UX_STUDY.md|sweep-result|src/js/main.js:4748-4757|0": {
+    "anchor": "src/js/main.js:4748-4757",
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
@@ -2169,8 +2169,8 @@
     "fp": "0b4690332af2c11d",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5587-5608|0": {
-    "anchor": "src/js/main.js:5587-5608",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5601-5622|0": {
+    "anchor": "src/js/main.js:5601-5622",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -2194,8 +2194,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:4848|0": {
-    "anchor": "src/js/main.js:4848",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:4862|0": {
+    "anchor": "src/js/main.js:4862",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2209,8 +2209,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5237-5243|0": {
-    "anchor": "src/js/main.js:5237-5243",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5251-5257|0": {
+    "anchor": "src/js/main.js:5251-5257",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
@@ -5834,8 +5834,8 @@
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:5821|0": {
-    "anchor": "src/js/main.js:5821",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:5835|0": {
+    "anchor": "src/js/main.js:5835",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },

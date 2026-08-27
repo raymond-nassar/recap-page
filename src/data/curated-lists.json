@@ -2007,6 +2007,35 @@
       "coverIssueId": 12903
     },
     {
+      "id": "punisher-reading-order",
+      "name": "Punisher",
+      "description": "A complete Punisher reading path that follows the source page from the earliest Punisher material through the latest additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "punisher-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/punisher-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "punisher_reading_order.json",
+      "characters": [
+        "Punisher",
+        "Frank Castle"
+      ],
+      "keywords": [
+        "Punisher",
+        "Comic Book Herald",
+        "Frank Castle"
+      ],
+      "expect": 638,
+      "timeline": null,
+      "coverIssueId": 6515
+    },
+    {
       "id": "rocket-raccoon-reading-order",
       "name": "Rocket Raccoon",
       "description": "Rocket Raccoon from his Half-World debut through the modern Guardians, his solo adventures, and Avengers: No Road Home.",
@@ -2397,6 +2426,70 @@
       "expect": 643,
       "timeline": null,
       "coverIssueId": 10590
+    },
+    {
+      "id": "magneto-reading-order",
+      "name": "Magneto",
+      "description": "A source-ordered Magneto reading guide from early X-Men appearances through modern stories, with unresolved source identities retained as plain-text provenance.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "magneto-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/magneto-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "magneto_reading_order.json",
+      "characters": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver"
+      ],
+      "keywords": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver",
+        "Comic Book Herald"
+      ],
+      "expect": 753,
+      "timeline": null,
+      "coverIssueId": 13741
+    },
+    {
+      "id": "loki-reading-order",
+      "name": "Loki",
+      "description": "A complete Loki reading path from the character origins through the latest source additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "loki-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/loki-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "loki_reading_order.json",
+      "characters": [
+        "Loki",
+        "Thor",
+        "Asgard"
+      ],
+      "keywords": [
+        "Loki",
+        "Thor",
+        "Asgard",
+        "Comic Book Herald"
+      ],
+      "expect": 656,
+      "timeline": null,
+      "coverIssueId": 9779
     },
     {
       "id": "xmen-claremont",

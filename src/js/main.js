@@ -4370,13 +4370,42 @@ function shelfSectionHead(
 
 // The Timeline is content now, not a separate strip of links. Era milestones, year markers and
 // cards share one vertical axis, so the chronology stays beside the stories it describes.
+function emptyTimelineYear(year) {
+  return el('div', { class: 'timeline-year-row is-empty' }, [
+    el('div', { class: 'timeline-year-marker is-empty' }, [
+      el('span', { 'aria-hidden': 'true', text: `${year}` }),
+      el('span', { class: 'visually-hidden', text: `${year}, no Reading Lists` }),
+    ]),
+  ]);
+}
+
 function renderTimelineSections(box, sections, placements, {
   idPrefix = 'timeline', showEmptyYears, sectionBlurb = true,
   sectionLevel = 'h2', yearLevel = 'h3', cardLevel = 'h4', undatedCardLevel = 'h3',
   cardOptions = {},
 }) {
   const flow = el('div', { class: 'timeline-flow' });
+  let previousYear = null;
   for (const section of sections) {
+    const byYear = new Map();
+    for (const story of section.stories) {
+      const year = storyYear(story);
+      if (year === null) continue;
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(story);
+    }
+
+    const years = showEmptyYears && Number.isInteger(section.from) && Number.isInteger(section.to)
+      ? Array.from({ length: section.to - section.from + 1 }, (_, offset) => section.from + offset)
+      : [...byYear.keys()].sort((a, b) => a - b);
+    if (showEmptyYears && Number.isInteger(section.from) && previousYear !== null && years[0] > previousYear + 1) {
+      const gap = el('div', { class: 'timeline-year-list' });
+      for (let year = previousYear + 1; year < years[0]; year += 1) {
+        gap.append(emptyTimelineYear(year));
+      }
+      flow.append(gap);
+    }
+
     const sectionId = `${idPrefix}-era-${section.key}`;
     const era = el('section', {
       class: 'timeline-era',
@@ -4391,27 +4420,11 @@ function renderTimelineSections(box, sections, placements, {
       }),
     ]);
 
-    const byYear = new Map();
-    for (const story of section.stories) {
-      const year = storyYear(story);
-      if (year === null) continue;
-      if (!byYear.has(year)) byYear.set(year, []);
-      byYear.get(year).push(story);
-    }
-
-    const years = showEmptyYears && Number.isInteger(section.from) && Number.isInteger(section.to)
-      ? Array.from({ length: section.to - section.from + 1 }, (_, offset) => section.from + offset)
-      : [...byYear.keys()].sort((a, b) => a - b);
     const yearList = el('div', { class: 'timeline-year-list' });
     for (const year of years) {
       const yearStories = byYear.get(year) ?? [];
       if (!yearStories.length) {
-        yearList.append(el('div', { class: 'timeline-year-row is-empty' }, [
-          el('div', { class: 'timeline-year-marker is-empty' }, [
-            el('span', { 'aria-hidden': 'true', text: `${year}` }),
-            el('span', { class: 'visually-hidden', text: `${year}, no Reading Lists` }),
-          ]),
-        ]));
+        yearList.append(emptyTimelineYear(year));
         continue;
       }
 
@@ -4444,6 +4457,7 @@ function renderTimelineSections(box, sections, placements, {
     }
     era.append(yearList);
     flow.append(era);
+    if (Number.isInteger(section.from) && Number.isInteger(section.to)) previousYear = years[years.length - 1];
   }
   box.append(flow);
 }
