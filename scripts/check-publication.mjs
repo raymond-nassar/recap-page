@@ -263,32 +263,51 @@ function scanBlobs(refs, sink) {
     // printed rather than dropped, because a population line that silently omits its exclusions
     // is a claim wider than the thing it was measured over.
     if (Number(size) >= 4e6) { report.large += 1; continue; }
-    wanted.push({ sha, name: names.get(sha) || sha.slice(0, 8) });
+    wanted.push({ sha, name: names.get(sha) || sha.slice(0, 8), size: Number(size) });
   }
-  // One `git cat-file --batch` for every blob rather than one spawn each. At a thousand blobs the
-  // per-spawn cost was most of the runtime, and a gate slow enough to notice is one that gets moved
-  // out of the pipeline eventually.
-  const raw = execFileSync('git', ['cat-file', '--batch'], {
-    cwd: ROOT,
-    input: wanted.map(({ sha }) => sha).join('\n'),
-    maxBuffer: 512e6,
-  });
-  let at = 0;
-  for (const { name } of wanted) {
-    const nl = raw.indexOf(0x0a, at);
-    if (nl < 0) break;
-    const header = raw.toString('utf8', at, nl).trim().split(' ');
-    // A header without a size means git answered `missing` or `ambiguous`. Advancing by a NaN
-    // would desync every blob after it and report the rest of the population clean, so this stops
-    // being a parse and becomes a fault.
-    if (header.length < 3) { report.unreadable += 1; at = nl + 1; continue; }
-    const size = Number(header[2]);
-    const body = raw.subarray(nl + 1, nl + 1 + size);
-    at = nl + 1 + size + 1;
-    const text = decode(body);
-    if (text === null) { report.binary += 1; continue; }
-    report.scanned += 1;
-    findings(name, text, sink);
+  // Batch by bytes rather than by blob count. A full history can hold hundreds of megabytes of
+  // individually small JSON files; asking git for all of them at once exhausts the child-process
+  // buffer before the gate has read any of them.
+  const maxBatchBytes = 32e6;
+  const protocolOverheadBytes = 512;
+  const batches = [];
+  let batch = [];
+  let batchBytes = 0;
+  for (const entry of wanted) {
+    const estimatedBytes = entry.size + protocolOverheadBytes;
+    if (batch.length && batchBytes + estimatedBytes > maxBatchBytes) {
+      batches.push(batch);
+      batch = [];
+      batchBytes = 0;
+    }
+    batch.push(entry);
+    batchBytes += estimatedBytes;
+  }
+  if (batch.length) batches.push(batch);
+
+  for (const entries of batches) {
+    const raw = execFileSync('git', ['cat-file', '--batch'], {
+      cwd: ROOT,
+      input: entries.map(({ sha }) => sha).join('\n'),
+      maxBuffer: 48e6,
+    });
+    let at = 0;
+    for (const { name } of entries) {
+      const nl = raw.indexOf(0x0a, at);
+      if (nl < 0) break;
+      const header = raw.toString('utf8', at, nl).trim().split(' ');
+      // A header without a size means git answered `missing` or `ambiguous`. Advancing by a NaN
+      // would desync every blob after it and report the rest of the population clean, so this stops
+      // being a parse and becomes a fault.
+      if (header.length < 3) { report.unreadable += 1; at = nl + 1; continue; }
+      const size = Number(header[2]);
+      const body = raw.subarray(nl + 1, nl + 1 + size);
+      at = nl + 1 + size + 1;
+      const text = decode(body);
+      if (text === null) { report.binary += 1; continue; }
+      report.scanned += 1;
+      findings(name, text, sink);
+    }
   }
   return report;
 }

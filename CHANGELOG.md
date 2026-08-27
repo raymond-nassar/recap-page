@@ -31,6 +31,19 @@ thirteen recommendations from its source, includes thirty-eight comics that can 
 and keeps two unavailable Deadpool MAX entries visible instead of silently leaving them out. Nothing
 you have saved is changed.
 
+### Added the complete Doctor Strange Character Spotlight guide
+
+In plain English: The Character Spotlights now include a 711-comic Doctor Strange guide, from his
+first appearances through modern stories. Thirty-nine comics named by the source need a verified
+metadata record, so they are documented for correction instead of being guessed at or silently
+replaced. Nothing you have saved is changed.
+
+For maintainers: the full visible source page has 932 occurrences across 76 issue-bearing blocks
+and nine top-level headings. The frozen packet retains 711 exact rows, 181 repeated references, 39
+open metadata gaps linked to Issue #283, and one exclusion. The complete-library review covers 152
+existing reading lists: three are existing-subset relationships, 26 are partial, and 123 have no
+shared issue.
+
 ### Made the reading screen easier to scan
 
 In plain English: Coming up now keeps every Read button aligned even when comic titles have

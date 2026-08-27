@@ -218,6 +218,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'wolverine-reading-order',
     'abomination-reading-order',
     'black-panther-reading-order',
+    'doctor-strange-reading-order',
     'setup-to-modern-timeline',
     'rocket-raccoon-reading-order',
     'groot-reading-order',

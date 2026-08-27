@@ -114,6 +114,7 @@ const SOURCE_GAP_FIELDS = new Set([
   'sourcePosition',
   'sourceIssueReference',
   'sourceRangeReference',
+  'sourceGroup',
   'normalizedSeriesTitle',
   'seriesYear',
   'issueNumber',
@@ -124,6 +125,7 @@ const SOURCE_GAP_FIELDS = new Set([
   'evidenceSources',
   'evidenceDigest',
 ]);
+const SOURCE_GAP_OPTIONAL_FIELDS = new Set(['sourceGroup']);
 const GAP_EVIDENCE_SOURCE_FIELDS = new Set(['kind', 'url', 'retrievedAt']);
 const REPORT_DIGEST_FIELDS = Object.freeze([
   'candidateId',
@@ -278,6 +280,7 @@ function gapEvidencePayload(gap) {
     sourcePosition: gap.sourcePosition,
     sourceIssueReference: gap.sourceIssueReference,
     sourceRangeReference: gap.sourceRangeReference ?? null,
+    ...(Object.hasOwn(gap, 'sourceGroup') ? { sourceGroup: gap.sourceGroup } : {}),
     normalizedSeriesTitle: gap.normalizedSeriesTitle,
     seriesYear: gap.seriesYear,
     issueNumber: String(gap.issueNumber),
@@ -296,7 +299,9 @@ export function gapEvidenceDigestFor(gap) {
 function assertSourceGap(gap, index) {
   const label = `Source gap ${index + 1}`;
   if (!isPlainObject(gap)) throw new Error(`${label} must be an object`);
-  const missing = [...SOURCE_GAP_FIELDS].filter((field) => !Object.hasOwn(gap, field));
+  const missing = [...SOURCE_GAP_FIELDS].filter((field) => (
+    !SOURCE_GAP_OPTIONAL_FIELDS.has(field) && !Object.hasOwn(gap, field)
+  ));
   if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
   const unexpected = Object.keys(gap).filter((field) => !SOURCE_GAP_FIELDS.has(field));
   if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
@@ -306,6 +311,9 @@ function assertSourceGap(gap, index) {
   assertNonEmptyString(gap.sourceIssueReference, `${label} sourceIssueReference`);
   if (gap.sourceRangeReference != null) {
     assertNonEmptyString(gap.sourceRangeReference, `${label} sourceRangeReference`);
+  }
+  if (Object.hasOwn(gap, 'sourceGroup')) {
+    assertNonEmptyString(gap.sourceGroup, `${label} sourceGroup`);
   }
   assertNonEmptyString(gap.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
   if (gap.seriesYear !== null && !Number.isInteger(gap.seriesYear)) {
