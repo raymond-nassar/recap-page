@@ -5,7 +5,7 @@
   "sourceUrl": "https://www.comicbookherald.com/loki-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceContentSha256": "7d640d24163a83967d8c496e71c259f26a93f5b7c3912bfdca82a4324da26290",
-  "sourceBoundary": "The full visible page is the boundary. No complete Best Comics or Essential Comics section exists: the article headings are Loki Comics Reading Order, Loki?s 1960?s Reading Order!, Loki Comics In The 1970?s, Loki In The 1980?s, Acts of Vengeance and Loki Comics in the 1990?s, Asgard Disassembled And Loki Reborn, Loki by Matt Fraction and Kieron Gillen, Loki in Young Avengers And Agent of Asgard, Loki With All-New, All-Different Thor (And Runs for President), Marvel Fresh Start Loki Comics, and Latest Additions:. Incidental best/essential wording appears only in prose, so the full page is the correct owner-policy boundary.",
+  "sourceBoundary": "The full visible page is the boundary. No complete Best Comics or Essential Comics section exists: the article headings are Loki Comics Reading Order, Loki's 1960's Reading Order!, Loki Comics In The 1970's, Loki In The 1980's, Acts of Vengeance and Loki Comics in the 1990's, Asgard Disassembled And Loki Reborn, Loki by Matt Fraction and Kieron Gillen, Loki in Young Avengers And Agent of Asgard, Loki With All-New, All-Different Thor (And Runs for President), Marvel Fresh Start Loki Comics, and Latest Additions:. Incidental best/essential wording appears only in prose, so the full page is the correct owner-policy boundary.",
   "boundaryEvidence": [
     {
       "type": "heading-scan",
@@ -23,10 +23,10 @@
   "sourceGroupCount": 11,
   "sourceOccurrenceCount": 232,
   "counts": {
-    "gap": 75,
-    "canonical-candidate": 114,
-    "repeat": 0,
-    "exclusion": 43
+    "canonical-candidate": 75,
+    "repeat": 39,
+    "gap": 0,
+    "exclusion": 118
   },
   "occurrences": [
     {
@@ -34,8 +34,8 @@
       "sourceGroup": "Loki Comics Reading Order",
       "sourceText": "Thor Epic Collection: The God of Thunder",
       "sourceReference": "Thor Epic Collection: The God of Thunder",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 2,
@@ -53,16 +53,19 @@
       "sourceText": "Jack Kirby and Stan Lee launch Thor, Loki, and the Gods of Asgard into the Marvel Universe!",
       "sourceReference": "Jack Kirby and Stan Lee launch Thor, Loki, and the Gods of Asgard into the Marvel Universe!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 4,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #85",
       "sourceReference": "Journey Into Mystery #85",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #85"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -70,9 +73,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #88",
       "sourceReference": "Journey Into Mystery #88",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #88"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -80,9 +86,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #91",
       "sourceReference": "Journey Into Mystery #91",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #91"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -90,9 +99,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #92",
       "sourceReference": "Journey Into Mystery #92",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #92"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -100,9 +112,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #94",
       "sourceReference": "Journey Into Mystery #94",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #94"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -110,9 +125,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #96",
       "sourceReference": "Journey Into Mystery #96",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #96"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -120,9 +138,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #97",
       "sourceReference": "Journey Into Mystery #97",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #97"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -130,9 +151,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #100",
       "sourceReference": "Journey Into Mystery #100",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #100"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -140,9 +164,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #101",
       "sourceReference": "Journey Into Mystery #101",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #101"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -150,9 +177,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #102",
       "sourceReference": "Journey Into Mystery #102",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #102"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -160,9 +190,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #103",
       "sourceReference": "Journey Into Mystery #103",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #103"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -170,9 +203,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #104",
       "sourceReference": "Journey Into Mystery #104",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #104"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -180,9 +216,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #107",
       "sourceReference": "Journey Into Mystery #107",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #107"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -190,9 +229,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Journey Into Mystery #108",
       "sourceReference": "Journey Into Mystery #108",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #108"
+      ],
+      "repeatOfPositions": [
+        2
       ]
     },
     {
@@ -200,8 +242,8 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Avengers Epic Collection: Earth’s Mightiest Heroes",
       "sourceReference": "Avengers Epic Collection: Earth’s Mightiest Heroes",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 19,
@@ -218,10 +260,13 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "See how Loki accidentally brings the Avengers together for the very first time in Avengers #1. Loki also makes a cameo in Avengers #7 as the Avengers face off against Enchantress and Executioner.",
       "sourceReference": "See how Loki accidentally brings the Avengers together for the very first time in Avengers #1; Loki also makes a cameo in Avengers #7",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "See how Loki accidentally brings the Avengers together for the very first time in Avengers #1",
         "Loki also makes a cameo in Avengers #7"
+      ],
+      "repeatOfPositions": [
+        19
       ]
     },
     {
@@ -229,18 +274,18 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Doctor Strange Omnibus Vol. 1",
       "sourceReference": "Doctor Strange Omnibus Vol. 1",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 22,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Collects: Strange Tales #110 to #111, #114 to #146",
-      "sourceReference": "Strange Tales #110 to #111; #114 to #146",
+      "sourceReference": "Strange Tales #110 to #111; Strange Tales #114 to #146",
       "disposition": "canonical-candidate",
       "issueReferences": [
         "Strange Tales #110 to #111",
-        "#114 to #146"
+        "Strange Tales #114 to #146"
       ]
     },
     {
@@ -248,9 +293,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Loki attempts to manipulate Dr. Strange into helping him take down Thor in Strange Tales #123.",
       "sourceReference": "Loki attempts to manipulate Dr. Strange into helping him take down Thor in Strange Tales #123",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Loki attempts to manipulate Dr. Strange into helping him take down Thor in Strange Tales #123"
+      ],
+      "repeatOfPositions": [
+        22
       ]
     },
     {
@@ -258,8 +306,8 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor Epic Collection: When Titans Clash",
       "sourceReference": "Thor Epic Collection: When Titans Clash",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 25,
@@ -280,15 +328,15 @@
       "sourceText": "Loki’s in virtually every issue of Journey Into Mystery and then Thor from this time period, whether in the main plot or in the Asgardian Tales backups.",
       "sourceReference": "Loki’s in virtually every issue of Journey Into Mystery and then Thor from this time period, whether in the main plot or in the Asgardian Tales backups.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 27,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Marvel Masterworks: The Mighty Thor Volume 6",
       "sourceReference": "Marvel Masterworks: The Mighty Thor Volume 6",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 28,
@@ -306,16 +354,19 @@
       "sourceText": "Loki centric issues can be found in:",
       "sourceReference": "Loki centric issues can be found in:",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 30,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #142",
       "sourceReference": "Thor #142",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Thor #142"
+      ],
+      "repeatOfPositions": [
+        28
       ]
     },
     {
@@ -323,9 +374,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #147",
       "sourceReference": "Thor #147",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Thor #147"
+      ],
+      "repeatOfPositions": [
+        28
       ]
     },
     {
@@ -333,9 +387,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #148",
       "sourceReference": "Thor #148",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Thor #148"
+      ],
+      "repeatOfPositions": [
+        28
       ]
     },
     {
@@ -343,9 +400,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #149",
       "sourceReference": "Thor #149",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Thor #149"
+      ],
+      "repeatOfPositions": [
+        28
       ]
     },
     {
@@ -353,9 +413,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #150",
       "sourceReference": "Thor #150",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Thor #150"
+      ],
+      "repeatOfPositions": [
+        28
       ]
     },
     {
@@ -363,9 +426,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #151",
       "sourceReference": "Thor #151",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Thor #151"
+      ],
+      "repeatOfPositions": [
+        28
       ]
     },
     {
@@ -373,9 +439,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor #152",
       "sourceReference": "Thor #152",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Thor #152"
+      ],
+      "repeatOfPositions": [
+        28
       ]
     },
     {
@@ -383,8 +452,8 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor Epic Collection: To Wake the Mangog",
       "sourceReference": "Thor Epic Collection: To Wake the Mangog",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 38,
@@ -401,9 +470,12 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "After Thor issues #154 to #159, Loki makes a couple great appearances in an issue of Hulk and Silver Surfer, which you can see below.",
       "sourceReference": "After Thor issues #154 to #159",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "After Thor issues #154 to #159"
+      ],
+      "repeatOfPositions": [
+        38
       ]
     },
     {
@@ -431,8 +503,8 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Marvel Masterworks: The Mighty Thor – Volume 9",
       "sourceReference": "Marvel Masterworks: The Mighty Thor – Volume 9",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 43,
@@ -442,6 +514,9 @@
       "disposition": "canonical-candidate",
       "issueReferences": [
         "Thor #173 to #183"
+      ],
+      "repeatOfPositions": [
+        38
       ]
     },
     {
@@ -449,8 +524,8 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Marvel Masterworks – The Mighty Thor – Volume 10",
       "sourceReference": "Marvel Masterworks – The Mighty Thor – Volume 10",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 45,
@@ -467,8 +542,8 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Marvel Masterworks: The Mighty Thor – Volume 11",
       "sourceReference": "Marvel Masterworks: The Mighty Thor – Volume 11",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 47,
@@ -485,8 +560,8 @@
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor: Son of Asgard",
       "sourceReference": "Thor: Son of Asgard",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 49,
@@ -504,15 +579,15 @@
       "sourceText": "Now that you have the Lee and Kirby years well under your belt, it’s time for some modern reimaginings of Thor’s earliest days, here as a young lad!",
       "sourceReference": "Now that you have the Lee and Kirby years well under your belt, it’s time for some modern reimaginings of Thor’s earliest days, here as a young lad!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 51,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor: First Thunder",
       "sourceReference": "Thor: First Thunder",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 52,
@@ -530,15 +605,15 @@
       "sourceText": "Another modern retelling of Thor’s first year on Earth.",
       "sourceReference": "Another modern retelling of Thor’s first year on Earth.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 54,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
       "sourceText": "Thor: The Trials of Loki",
       "sourceReference": "Thor: The Trials of Loki",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 55,
@@ -556,7 +631,7 @@
       "sourceText": "The best modern look back of the bunch, in Trials of Loki Roberto Aguirre-Sacasa and Sebastian Fiumara retell Loki’s true origins and explain his motivations for Asgardian conquest.",
       "sourceReference": "The best modern look back of the bunch, in Trials of Loki Roberto Aguirre-Sacasa and Sebastian Fiumara retell Loki’s true origins and explain his motivations for Asgardian conquest.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 57,
@@ -564,7 +639,7 @@
       "sourceText": "Avengers/Defenders War",
       "sourceReference": "Avengers/Defenders War",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 58,
@@ -583,15 +658,15 @@
       "sourceText": "Loki’s back to messing with the Avengers on behalf of his animosity towards Thor, this time teaming with mystical overlord Dormammu.",
       "sourceReference": "Loki’s back to messing with the Avengers on behalf of his animosity towards Thor, this time teaming with mystical overlord Dormammu.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 60,
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Marvel Masterworks: The Mighty Thor Volume 14",
       "sourceReference": "Marvel Masterworks: The Mighty Thor Volume 14",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 61,
@@ -611,7 +686,7 @@
       "sourceText": "Loki Centric Thor Issues In The 70’s",
       "sourceReference": "Loki Centric Thor Issues In The 70’s",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 63,
@@ -639,8 +714,8 @@
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Thor Epic Collection: A Kingdom Lost",
       "sourceReference": "Thor Epic Collection: A Kingdom Lost",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 66,
@@ -658,8 +733,8 @@
       "sourceGroup": "Loki Comics In The 1970’s",
       "sourceText": "Thor Epic Collection: Runequest",
       "sourceReference": "Thor Epic Collection: Runequest",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 68,
@@ -677,8 +752,8 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Thor by Walter Simonson – Volume 1",
       "sourceReference": "Thor by Walter Simonson – Volume 1",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 70,
@@ -696,15 +771,15 @@
       "sourceText": "My favorite Thor run of all time, Simonson does plenty of brilliant work with Loki as well!",
       "sourceReference": "My favorite Thor run of all time, Simonson does plenty of brilliant work with Loki as well!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 72,
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Thor by Walter Simonson Volume 2",
       "sourceReference": "Thor by Walter Simonson Volume 2",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 73,
@@ -721,8 +796,8 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Thor by Walter Simonson Volume 3",
       "sourceReference": "Thor by Walter Simonson Volume 3",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 75,
@@ -740,8 +815,8 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "X-Men: Asgardian Wars",
       "sourceReference": "X-Men: Asgardian Wars",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 77,
@@ -761,25 +836,25 @@
       "sourceText": "Loki messes with the New Mutants and X-Men (namely Dani Moonstar and Storm) in Asgard. This special confused the ever-loving pants off me when I read it outside the context of Claremont’s Uncanny X-Men and New Mutants.",
       "sourceReference": "Loki messes with the New Mutants and X-Men (namely Dani Moonstar and Storm) in Asgard. This special confused the ever-loving pants off me when I read it outside the context of Claremont’s Uncanny X-Men and New Mutants.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 79,
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Thor by Walter Simonson Volume 4",
       "sourceReference": "Thor by Walter Simonson Volume 4",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 80,
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: Thor 364-369, 371-374",
-      "sourceReference": "Thor 364-369; 371-374",
+      "sourceReference": "Thor #364-369; Thor #371-374",
       "disposition": "canonical-candidate",
       "issueReferences": [
-        "Thor 364-369",
-        "371-374"
+        "Thor #364-369",
+        "Thor #371-374"
       ]
     },
     {
@@ -788,15 +863,15 @@
       "sourceText": "In perhaps Loki’s greatest prank of all-time, he turns Thor into a Frog for three issues.",
       "sourceReference": "In perhaps Loki’s greatest prank of all-time, he turns Thor into a Frog for three issues.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 82,
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Thor by Walter Simonson Volume 5",
       "sourceReference": "Thor by Walter Simonson Volume 5",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 83,
@@ -813,8 +888,8 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Thor Epic Collection: War of the Pantheons",
       "sourceReference": "Thor Epic Collection: War of the Pantheons",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 85,
@@ -831,16 +906,16 @@
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Acts of Vengeance",
       "sourceReference": "Acts of Vengeance",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 87,
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Collects:",
       "sourceReference": "Collects:",
-      "disposition": "gap",
-      "gapReason": "The page leaves the Collects line empty, so the source marker has no issue identities to carry forward."
+      "disposition": "exclusion",
+      "exclusionReason": "Empty Collects marker without an issue identity."
     },
     {
       "position": 88,
@@ -848,7 +923,7 @@
       "sourceText": "In classic Loki form, a mysterious figure coordinates the villains of the Marvel Universe.",
       "sourceReference": "In classic Loki form, a mysterious figure coordinates the villains of the Marvel Universe.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 89,
@@ -856,16 +931,17 @@
       "sourceText": "90s Loki Comics",
       "sourceReference": "90s Loki Comics",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 90,
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Thor #426 to #432, #440 to #442",
-      "sourceReference": "Thor #426 to #432",
+      "sourceReference": "Thor #426 to #432; #440 to #442",
       "disposition": "canonical-candidate",
       "issueReferences": [
-        "Thor #426 to #432"
+        "Thor #426 to #432",
+        "Thor #440 to #442"
       ]
     },
     {
@@ -874,7 +950,7 @@
       "sourceText": "Thor: The Lost Gods",
       "sourceReference": "Thor: The Lost Gods",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 92,
@@ -891,30 +967,32 @@
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "In the wake of Onslaught, Thor is thought dead while the Asgardians wander Earth unknowing of their pasts. Time for an all-new Loki!",
       "sourceReference": "In the wake of Onslaught, Thor is thought dead while the Asgardians wander Earth unknowing of their pasts. Time for an all-new Loki!",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 94,
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Thor & Loki: Blood Brothers",
       "sourceReference": "Thor & Loki: Blood Brothers",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 95,
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Collects: Loki #1-4, Journey Into Mystery #85, Journey Into Mystery #112",
       "sourceReference": "Loki #1-4; Journey Into Mystery #85; Journey Into Mystery #112",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Loki #1-4",
         "Journey Into Mystery #85",
         "Journey Into Mystery #112"
       ],
       "repeatOfPositions": [
+        2,
         4,
+        25,
         55
       ]
     },
@@ -924,7 +1002,7 @@
       "sourceText": "Tells an out of continuity fantasy of Loki’s in which he rules Asgard! Brilliant art by Esad Ribic and a great narrative from Rob Rodi.",
       "sourceReference": "Tells an out of continuity fantasy of Loki’s in which he rules Asgard! Brilliant art by Esad Ribic and a great narrative from Rob Rodi.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 97,
@@ -932,7 +1010,7 @@
       "sourceText": "Amazing Spider-Man by JMS – Ultimate Collection Book 3",
       "sourceReference": "Amazing Spider-Man by JMS – Ultimate Collection Book 3",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 98,
@@ -950,7 +1028,7 @@
       "sourceText": "Avengers Disassembled: Thor",
       "sourceReference": "Avengers Disassembled: Thor",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 100,
@@ -968,15 +1046,15 @@
       "sourceText": "For the entire event, here’s my Avengers Disassembled reading order.",
       "sourceReference": "For the entire event, here’s my Avengers Disassembled reading order.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 102,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Thor, Vol. 1",
       "sourceReference": "Thor, Vol. 1",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 103,
@@ -994,15 +1072,15 @@
       "sourceText": "Thor returns following Ragnarok, and restores Asgards and the gods. Loki in particular comes back anew, and confuses the sexuality of every Thor reader ever.",
       "sourceReference": "Thor returns following Ragnarok, and restores Asgards and the gods. Loki in particular comes back anew, and confuses the sexuality of every Thor reader ever.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 105,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Thor, Vol. 2",
       "sourceReference": "Thor, Vol. 2",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 106,
@@ -1019,8 +1097,8 @@
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Thor, Vol. 3",
       "sourceReference": "Thor, Vol. 3",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 108,
@@ -1049,15 +1127,15 @@
       "sourceText": "Loki gets a seat at the table of Norman Osborn’s criminal cabal.",
       "sourceReference": "Loki gets a seat at the table of Norman Osborn’s criminal cabal.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 111,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Thor by Kieron Gillen Ultimate Collection",
       "sourceReference": "Thor by Kieron Gillen Ultimate Collection",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 112,
@@ -1076,7 +1154,7 @@
       "sourceText": "Marvel’s 2010 event, Siege, proves surprisingly essential for Loki, and effectively concludes the stretch of Marvel events starting with 2004’s Avengers Disassembled. Full Siege reading order.",
       "sourceReference": "Marvel’s 2010 event, Siege, proves surprisingly essential for Loki, and effectively concludes the stretch of Marvel events starting with 2004’s Avengers Disassembled. Full Siege reading order.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 114,
@@ -1084,7 +1162,7 @@
       "sourceText": "Thor: The World Eaters",
       "sourceReference": "Thor: The World Eaters",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 115,
@@ -1101,8 +1179,8 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor, Vol. 1",
       "sourceReference": "The Mighty Thor, Vol. 1",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 117,
@@ -1119,18 +1197,18 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey into Mystery by Kieron Gillen: The Complete Collection Volume 1",
       "sourceReference": "Journey into Mystery by Kieron Gillen: The Complete Collection Volume 1",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 119,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: Journey Into Mystery 622-636, 626.1 (April 2011 – April 2012)",
-      "sourceReference": "Journey Into Mystery 622-636; 626.1 (April 2011 – April 2012)",
+      "sourceReference": "Journey Into Mystery #622-636; Journey Into Mystery #626.1",
       "disposition": "canonical-candidate",
       "issueReferences": [
-        "Journey Into Mystery 622-636",
-        "626.1 (April 2011 – April 2012)"
+        "Journey Into Mystery #622-636",
+        "Journey Into Mystery #626.1"
       ]
     },
     {
@@ -1139,15 +1217,15 @@
       "sourceText": "Fear itself tie-ins.",
       "sourceReference": "Fear itself tie-ins.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 121,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor, Vol. 2",
       "sourceReference": "The Mighty Thor, Vol. 2",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 122,
@@ -1165,18 +1243,18 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor, Vol. 3",
       "sourceReference": "The Mighty Thor, Vol. 3",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 124,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: The Mighty Thor: 12.1, 13-17",
-      "sourceReference": "The Mighty Thor: 12.1; 13-17",
+      "sourceReference": "The Mighty Thor #12.1; The Mighty Thor #13-17",
       "disposition": "canonical-candidate",
       "issueReferences": [
-        "The Mighty Thor: 12.1",
-        "13-17"
+        "The Mighty Thor #12.1",
+        "The Mighty Thor #13-17"
       ]
     },
     {
@@ -1184,18 +1262,21 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey Into Mystery by Kieron Gillen: The Complete Collection Volume 2",
       "sourceReference": "Journey Into Mystery by Kieron Gillen: The Complete Collection Volume 2",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 126,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: Exiled 1; New Mutants 42-43; Journey Into Mystery 637-645; The Mighty Thor 18-22, Annual 1 (Ends October 2012)",
-      "sourceReference": "Exiled 1; New Mutants 42-43; Journey Into Mystery 637-645; The Mighty Thor 18-22; Annual 1 (Ends October 2012)",
+      "sourceReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
       "disposition": "canonical-candidate",
       "issueReferences": [
-        "Exiled 1; New Mutants 42-43; Journey Into Mystery 637-645; The Mighty Thor 18-22",
-        "Annual 1 (Ends October 2012)"
+        "Exiled #1",
+        "New Mutants #42-43",
+        "Journey Into Mystery #637-645",
+        "The Mighty Thor #18-22",
+        "The Mighty Thor Annual #1"
       ]
     },
     {
@@ -1204,16 +1285,19 @@
       "sourceText": "Exiled Reading Orders",
       "sourceReference": "Exiled Reading Orders",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 128,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Exiled #1",
       "sourceReference": "Exiled #1",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Exiled #1"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1221,9 +1305,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey Into Mystery #637",
       "sourceReference": "Journey Into Mystery #637",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #637"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1231,9 +1318,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "New Mutants #42",
       "sourceReference": "New Mutants #42",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "New Mutants #42"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1241,9 +1331,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey Into Mystery #638",
       "sourceReference": "Journey Into Mystery #638",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #638"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1251,9 +1344,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "New Mutants #43",
       "sourceReference": "New Mutants #43",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "New Mutants #43"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1262,16 +1358,19 @@
       "sourceText": "Everything Burns Reading Order:",
       "sourceReference": "Everything Burns Reading Order:",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 134,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor #18",
       "sourceReference": "The Mighty Thor #18",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "The Mighty Thor #18"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1279,9 +1378,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey Into Mystery #642",
       "sourceReference": "Journey Into Mystery #642",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #642"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1289,9 +1391,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor #19",
       "sourceReference": "The Mighty Thor #19",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "The Mighty Thor #19"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1299,9 +1404,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey Into Mystery #643",
       "sourceReference": "Journey Into Mystery #643",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #643"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1309,9 +1417,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor #20",
       "sourceReference": "The Mighty Thor #20",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "The Mighty Thor #20"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1319,9 +1430,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey Into Mystery #644",
       "sourceReference": "Journey Into Mystery #644",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #644"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1329,9 +1443,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor #21",
       "sourceReference": "The Mighty Thor #21",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "The Mighty Thor #21"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1339,9 +1456,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Journey Into Mystery #645",
       "sourceReference": "Journey Into Mystery #645",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "Journey Into Mystery #645"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1349,9 +1469,12 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "The Mighty Thor #22",
       "sourceReference": "The Mighty Thor #22",
-      "disposition": "canonical-candidate",
+      "disposition": "repeat",
       "issueReferences": [
         "The Mighty Thor #22"
+      ],
+      "repeatOfPositions": [
+        126
       ]
     },
     {
@@ -1359,8 +1482,8 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Young Avengers by Kieron Gillen & Jamie McKelvie Omnibus",
       "sourceReference": "Young Avengers by Kieron Gillen & Jamie McKelvie Omnibus",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 144,
@@ -1379,15 +1502,15 @@
       "sourceText": "More Avengers, this time to keep everyone in the loop on Kid Loki, the newest Young Avenger!",
       "sourceReference": "More Avengers, this time to keep everyone in the loop on Kid Loki, the newest Young Avenger!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 146,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Loki: Agent of Asgard",
       "sourceReference": "Loki: Agent of Asgard",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 147,
@@ -1404,8 +1527,8 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Original Sin: Thor & Loki The 10th Realm",
       "sourceReference": "Original Sin: Thor & Loki The 10th Realm",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 149,
@@ -1423,15 +1546,15 @@
       "sourceText": "Original Sin reading order.",
       "sourceReference": "Original Sin reading order.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 151,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Loki: Agent of Asgard Volume 2: I Cannot Tell a Lie",
       "sourceReference": "Loki: Agent of Asgard Volume 2: I Cannot Tell a Lie",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 152,
@@ -1449,24 +1572,24 @@
       "sourceText": "Marvel Axis event tie-ins.",
       "sourceReference": "Marvel Axis event tie-ins.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 154,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Loki: Agent of Asgard Vol. 3: Last Days",
       "sourceReference": "Loki: Agent of Asgard Vol. 3: Last Days",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 155,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Collects: Loki: Agent of Asgard #12 to #17 (Secret Wars, Last Days tie-ins)",
-      "sourceReference": "Loki: Agent of Asgard #12 to #17 (Secret Wars",
+      "sourceReference": "Loki: Agent of Asgard #12 to #17",
       "disposition": "canonical-candidate",
       "issueReferences": [
-        "Loki: Agent of Asgard #12 to #17 (Secret Wars"
+        "Loki: Agent of Asgard #12 to #17"
       ]
     },
     {
@@ -1475,23 +1598,23 @@
       "sourceText": "Secret Wars reading order.",
       "sourceReference": "Secret Wars reading order.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 157,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Battleworld: Thors",
       "sourceReference": "Battleworld: Thors",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 158,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Mighty Thor Vol. 1: Thunder in Her Veins",
       "sourceReference": "Mighty Thor Vol. 1: Thunder in Her Veins",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 159,
@@ -1509,7 +1632,7 @@
       "sourceText": "Vote Loki",
       "sourceReference": "Vote Loki",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 161,
@@ -1526,8 +1649,8 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "The Mighty Thor Vol. 2: Lords of Midgard",
       "sourceReference": "The Mighty Thor Vol. 2: Lords of Midgard",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 163,
@@ -1545,15 +1668,15 @@
       "sourceText": "Medieval Loki plagues Young Thor with Blood Hulks while in present Jane Foster is forced to save Roxxon CEO Dario Agger!",
       "sourceReference": "Medieval Loki plagues Young Thor with Blood Hulks while in present Jane Foster is forced to save Roxxon CEO Dario Agger!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 165,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "The Mighty Thor Vol. 3: Asgard/Shi’ar War",
       "sourceReference": "The Mighty Thor Vol. 3: Asgard/Shi’ar War",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 166,
@@ -1571,15 +1694,15 @@
       "sourceText": "Loki joins Malekith’s Dark Council while Jane Foster joins the League of Realms!",
       "sourceReference": "Loki joins Malekith’s Dark Council while Jane Foster joins the League of Realms!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 168,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "The Mighty Thor Vol. 4: The War Thor",
       "sourceReference": "The Mighty Thor Vol. 4: The War Thor",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 169,
@@ -1598,28 +1721,29 @@
       "sourceText": "Loki and the Dark Council make the addition of the Queen of Cinders as the War Thor goes on the rampage!",
       "sourceReference": "Loki and the Dark Council make the addition of the Queen of Cinders as the War Thor goes on the rampage!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 171,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "All-New Guardians Of The Galaxy Vol. 1: Communication Breakdown",
       "sourceReference": "All-New Guardians Of The Galaxy Vol. 1: Communication Breakdown",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 172,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Free Comic Book Day 2017 All-New Guardians of the Galaxy #1, All-New Guardians of the Galaxy (2017) #1-2, 4, 6, 8 & 10",
-      "sourceReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; 4; 6; 8 & 10",
+      "sourceReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
       "disposition": "canonical-candidate",
       "issueReferences": [
         "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
         "All-New Guardians of the Galaxy (2017) #1-2",
-        "4",
-        "6",
-        "8 & 10"
+        "All-New Guardians of the Galaxy (2017) #4",
+        "All-New Guardians of the Galaxy (2017) #6",
+        "All-New Guardians of the Galaxy (2017) #8",
+        "All-New Guardians of the Galaxy (2017) #10"
       ]
     },
     {
@@ -1628,15 +1752,15 @@
       "sourceText": "Loki is revealed to be behind the Gardner’s madness and Groot’s regrowth issues!",
       "sourceReference": "Loki is revealed to be behind the Gardner’s madness and Groot’s regrowth issues!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 174,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Marvel Legacy",
       "sourceReference": "Marvel Legacy",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 175,
@@ -1654,16 +1778,16 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Loki’s quest for the Infinity Stones begins here!",
       "sourceReference": "Loki’s quest for the Infinity Stones begins here!",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 177,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Doctor Strange Vol. 6: God of Magic",
       "sourceReference": "Doctor Strange Vol. 6: God of Magic",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 178,
@@ -1680,8 +1804,8 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "The Unbeatable Squirrel Girl Vol. 8: My Best Friend’s Squirrel",
       "sourceReference": "The Unbeatable Squirrel Girl Vol. 8: My Best Friend’s Squirrel",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 180,
@@ -1700,23 +1824,23 @@
       "sourceText": "Loki as the new Sorcerer Supreme assists Squirrel Girl on an intergalactic adventure!",
       "sourceReference": "Loki as the new Sorcerer Supreme assists Squirrel Girl on an intergalactic adventure!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 182,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Loki’s appearances in both Unbeatable Squirrel Girl and Amazing Spider-Man (below) occur smack in the middle of the previous volume of Doctor Strange.",
       "sourceReference": "Loki’s appearances in both Unbeatable Squirrel Girl and Amazing Spider-Man (below) occur smack in the middle of the previous volume of Doctor Strange.",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 183,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Amazing Spider-Man Vol. 8: Worldwide",
       "sourceReference": "Amazing Spider-Man Vol. 8: Worldwide",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 184,
@@ -1736,27 +1860,28 @@
       "sourceText": "Spidey goes to the Sanctum Sanctorum and encounters the new Sorcerer Supreme!",
       "sourceReference": "Spidey goes to the Sanctum Sanctorum and encounters the new Sorcerer Supreme!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 186,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "All-New Guardians Of The Galaxy Vol. 2: Riders In The Sky",
       "sourceReference": "All-New Guardians Of The Galaxy Vol. 2: Riders In The Sky",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 187,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: All-New Guardians of the Galaxy (2017) #3, 5, 7, 9 & 11-12",
-      "sourceReference": "All-New Guardians of the Galaxy (2017) #3; 5; 7; 9 & 11-12",
+      "sourceReference": "All-New Guardians of the Galaxy (2017) #3; All-New Guardians of the Galaxy (2017) #5; All-New Guardians of the Galaxy (2017) #7; All-New Guardians of the Galaxy (2017) #9; All-New Guardians of the Galaxy (2017) #11-12",
       "disposition": "canonical-candidate",
       "issueReferences": [
         "All-New Guardians of the Galaxy (2017) #3",
-        "5",
-        "7",
-        "9 & 11-12"
+        "All-New Guardians of the Galaxy (2017) #5",
+        "All-New Guardians of the Galaxy (2017) #7",
+        "All-New Guardians of the Galaxy (2017) #9",
+        "All-New Guardians of the Galaxy (2017) #11-12"
       ]
     },
     {
@@ -1764,16 +1889,16 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Loki impersonates Cable in an attempt to infiltrate the Guardians (who are also questing for the Infinity Stones).",
       "sourceReference": "Loki impersonates Cable in an attempt to infiltrate the Guardians (who are also questing for the Infinity Stones).",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 189,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "The Mighty Thor Vol. 5: The Death Of The Mighty Thor",
       "sourceReference": "The Mighty Thor Vol. 5: The Death Of The Mighty Thor",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 190,
@@ -1792,15 +1917,15 @@
       "sourceText": "Loki’s loyalties are tested between Asgard and Malekith’s schemes!",
       "sourceReference": "Loki’s loyalties are tested between Asgard and Malekith’s schemes!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 192,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Infinity Countdown",
       "sourceReference": "Infinity Countdown",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 193,
@@ -1820,16 +1945,16 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Loki’s quest for the Infinity Stones kicks up a notch!",
       "sourceReference": "Loki’s quest for the Infinity Stones kicks up a notch!",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 195,
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Thor Vol. 1: God Of Thunder Reborn",
       "sourceReference": "Thor Vol. 1: God Of Thunder Reborn",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 196,
@@ -1847,15 +1972,15 @@
       "sourceText": "Loki accompanies Thor on an adventure into Niffelheim, the land of the dead!",
       "sourceReference": "Loki accompanies Thor on an adventure into Niffelheim, the land of the dead!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 198,
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Avengers by Jason Aaron Vol. 1: The Final Host",
       "sourceReference": "Avengers by Jason Aaron Vol. 1: The Final Host",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 199,
@@ -1874,15 +1999,15 @@
       "sourceText": "Loki’s machinations with the cosmic Celestials results in his accidental forming of a team of Avengers. Again.",
       "sourceReference": "Loki’s machinations with the cosmic Celestials results in his accidental forming of a team of Avengers. Again.",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 201,
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Avengers by Jason Aaron Vol. 2: World Tour",
       "sourceReference": "Avengers by Jason Aaron Vol. 2: World Tour",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 202,
@@ -1899,8 +2024,8 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Imprisoned by the Celestials, Loki is rescued by Old Phoenix Logan and put back on the quest for the Infinity Stones!",
       "sourceReference": "Imprisoned by the Celestials, Loki is rescued by Old Phoenix Logan and put back on the quest for the Infinity Stones!",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 204,
@@ -1908,7 +2033,7 @@
       "sourceText": "Infinty Wars",
       "sourceReference": "Infinty Wars",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Section heading, event label, or reading-order cross-link without an issue identity."
     },
     {
       "position": 205,
@@ -1930,15 +2055,15 @@
       "sourceText": "Loki stands alongside the Cosmic Avengers to oppose the powermad Gamora! Mostly…",
       "sourceReference": "Loki stands alongside the Cosmic Avengers to oppose the powermad Gamora! Mostly…",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 207,
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Wolverine: Infinity Watch",
       "sourceReference": "Wolverine: Infinity Watch",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 208,
@@ -1955,16 +2080,16 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "The thematic sequel to Infinity Wars, Loki enlists Wolverine to track down the new owners of the Infinity Stones!",
       "sourceReference": "The thematic sequel to Infinity Wars, Loki enlists Wolverine to track down the new owners of the Infinity Stones!",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 210,
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Thor Vol. 2",
       "sourceReference": "Thor Vol. 2",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 211,
@@ -1981,16 +2106,16 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Loki gets back to the Dark Council in this prelude to The War Of The Realms!",
       "sourceReference": "Loki gets back to the Dark Council in this prelude to The War Of The Realms!",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 213,
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "War Of The Realms",
       "sourceReference": "War Of The Realms",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 214,
@@ -2009,15 +2134,15 @@
       "sourceText": "Something… unexpected happens to Loki as Malekith’s war hits Midgard!",
       "sourceReference": "Something… unexpected happens to Loki as Malekith’s war hits Midgard!",
       "disposition": "exclusion",
-      "exclusionReason": "Narrative commentary or incidental wording without a source-marker issue identity."
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 216,
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Thor Vol. 3",
       "sourceReference": "Thor Vol. 3",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 217,
@@ -2034,16 +2159,16 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Featuring a more in-depth look at Loki’s War of the Realms situation!",
       "sourceReference": "Featuring a more in-depth look at Loki’s War of the Realms situation!",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Narrative or descriptive prose without an issue identity."
     },
     {
       "position": 219,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Loki by Kibblesmith & Bazaldua",
       "sourceReference": "Loki by Kibblesmith & Bazaldua",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 220,
@@ -2064,8 +2189,8 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
       "sourceReference": "Asgardians of the Galaxy Vol. 1: The Infinity Armada",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 222,
@@ -2082,8 +2207,8 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Asgardians of the Galaxy Vol. 2: War of the Realms",
       "sourceReference": "Asgardians of the Galaxy Vol. 2: War of the Realms",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 224,
@@ -2100,8 +2225,8 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "The Mighty Valkyries: All Hel Let Loose",
       "sourceReference": "The Mighty Valkyries: All Hel Let Loose",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 226,
@@ -2118,8 +2243,8 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Thor & Loki: Double Trouble",
       "sourceReference": "Thor & Loki: Double Trouble",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 228,
@@ -2136,8 +2261,8 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Defenders: Beyond",
       "sourceReference": "Defenders: Beyond",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 230,
@@ -2154,8 +2279,8 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Loki: The Liar by Watters",
       "sourceReference": "Loki: The Liar by Watters",
-      "disposition": "gap",
-      "gapReason": "The block names a source marker or collected volume, but this page does not enumerate an issue identity in the block itself."
+      "disposition": "exclusion",
+      "exclusionReason": "Trade header or collected-edition label without an issue identity."
     },
     {
       "position": 232,
@@ -2167,5 +2292,195 @@
         "Loki (2023) #1 to #4"
       ]
     }
-  ]
+  ],
+  "classificationSummary": {
+    "repeats": {
+      "rationale": "Each occurrence contains only issue identities already named by an earlier source occurrence.",
+      "positions": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        20,
+        23,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        39,
+        95,
+        128,
+        129,
+        130,
+        131,
+        132,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142
+      ]
+    },
+    "gaps": {
+      "rationale": "No included issue or range is source-ambiguous; provider verification is pending for every candidate.",
+      "positions": []
+    },
+    "exclusions": [
+      {
+        "rationale": "Trade header or collected-edition label without an issue identity.",
+        "positions": [
+          1,
+          18,
+          21,
+          24,
+          27,
+          37,
+          42,
+          44,
+          46,
+          48,
+          51,
+          54,
+          57,
+          60,
+          65,
+          67,
+          69,
+          72,
+          74,
+          76,
+          79,
+          82,
+          84,
+          86,
+          91,
+          94,
+          97,
+          99,
+          102,
+          105,
+          107,
+          111,
+          114,
+          116,
+          118,
+          121,
+          123,
+          125,
+          143,
+          146,
+          148,
+          151,
+          154,
+          157,
+          158,
+          160,
+          162,
+          165,
+          168,
+          171,
+          174,
+          177,
+          179,
+          183,
+          186,
+          189,
+          192,
+          195,
+          198,
+          201,
+          207,
+          210,
+          213,
+          216,
+          219,
+          221,
+          223,
+          225,
+          227,
+          229,
+          231
+        ]
+      },
+      {
+        "rationale": "Narrative or descriptive prose without an issue identity.",
+        "positions": [
+          3,
+          26,
+          50,
+          53,
+          56,
+          59,
+          71,
+          78,
+          81,
+          88,
+          93,
+          96,
+          104,
+          110,
+          113,
+          145,
+          164,
+          167,
+          170,
+          173,
+          176,
+          181,
+          182,
+          185,
+          188,
+          191,
+          194,
+          197,
+          200,
+          203,
+          206,
+          209,
+          212,
+          215,
+          218
+        ]
+      },
+      {
+        "rationale": "Section heading, event label, or reading-order cross-link without an issue identity.",
+        "positions": [
+          29,
+          62,
+          89,
+          101,
+          120,
+          127,
+          133,
+          150,
+          153,
+          156,
+          204
+        ]
+      },
+      {
+        "rationale": "Empty Collects marker without an issue identity.",
+        "positions": [
+          87
+        ]
+      }
+    ]
+  }
 }

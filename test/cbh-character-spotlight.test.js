@@ -589,6 +589,36 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const ledger = await readJson('scripts/data/cbh-source-ledgers/loki-reading-order.json');
   const inventoryRecord = inventory.find((record) => record.id === 'loki-reading-order');
+  const repeatPositions = [
+    4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20, 23, 30, 31, 32, 33, 34, 35,
+    36, 39, 95, 128, 129, 130, 131, 132, 134, 135, 136, 137, 138, 139, 140, 141, 142,
+  ];
+  const exclusionClasses = [
+    {
+      rationale: 'Trade header or collected-edition label without an issue identity.',
+      positions: [
+        1, 18, 21, 24, 27, 37, 42, 44, 46, 48, 51, 54, 57, 60, 65, 67, 69, 72, 74, 76,
+        79, 82, 84, 86, 91, 94, 97, 99, 102, 105, 107, 111, 114, 116, 118, 121, 123, 125,
+        143, 146, 148, 151, 154, 157, 158, 160, 162, 165, 168, 171, 174, 177, 179, 183,
+        186, 189, 192, 195, 198, 201, 207, 210, 213, 216, 219, 221, 223, 225, 227, 229, 231,
+      ],
+    },
+    {
+      rationale: 'Narrative or descriptive prose without an issue identity.',
+      positions: [
+        3, 26, 50, 53, 56, 59, 71, 78, 81, 88, 93, 96, 104, 110, 113, 145, 164, 167, 170,
+        173, 176, 181, 182, 185, 188, 191, 194, 197, 200, 203, 206, 209, 212, 215, 218,
+      ],
+    },
+    {
+      rationale: 'Section heading, event label, or reading-order cross-link without an issue identity.',
+      positions: [29, 62, 89, 101, 120, 127, 133, 150, 153, 156, 204],
+    },
+    {
+      rationale: 'Empty Collects marker without an issue identity.',
+      positions: [87],
+    },
+  ];
 
   function validateLedgerShape(candidateLedger) {
     assert.equal(candidateLedger.sourceUrl, 'https://www.comicbookherald.com/loki-reading-order/');
@@ -602,10 +632,6 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
         + candidateLedger.counts.exclusion,
       candidateLedger.sourceOccurrenceCount,
     );
-    assert.equal(candidateLedger.counts['canonical-candidate'], 114);
-    assert.equal(candidateLedger.counts.repeat, 0);
-    assert.equal(candidateLedger.counts.gap, 75);
-    assert.equal(candidateLedger.counts.exclusion, 43);
     assert.match(candidateLedger.sourceBoundary, /No complete Best Comics or Essential Comics section exists/i);
     assert.match(candidateLedger.sourceBoundary, /full page is the correct owner-policy boundary/i);
     assert.equal(candidateLedger.boundaryEvidence.length, 3);
@@ -632,14 +658,67 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
     }
     assert.deepEqual(derivedCounts, candidateLedger.counts);
 
+    const exclusionPositions = exclusionClasses.flatMap((entry) => entry.positions);
+    const expectedCanonicalPositions = Array.from(
+      { length: candidateLedger.sourceOccurrenceCount },
+      (_, index) => index + 1,
+    ).filter((position) => !repeatPositions.includes(position) && !exclusionPositions.includes(position));
+    const expectedCounts = {
+      'canonical-candidate': expectedCanonicalPositions.length,
+      repeat: repeatPositions.length,
+      gap: 0,
+      exclusion: exclusionPositions.length,
+    };
+    assert.deepEqual(candidateLedger.counts, expectedCounts);
+    assert.deepEqual(candidateLedger.classificationSummary, {
+      repeats: {
+        rationale: 'Each occurrence contains only issue identities already named by an earlier source occurrence.',
+        positions: repeatPositions,
+      },
+      gaps: {
+        rationale: 'No included issue or range is source-ambiguous; provider verification is pending for every candidate.',
+        positions: [],
+      },
+      exclusions: exclusionClasses,
+    });
+    assert.deepEqual(
+      candidateLedger.occurrences
+        .filter((entry) => entry.disposition === 'canonical-candidate')
+        .map((entry) => entry.position),
+      expectedCanonicalPositions,
+    );
+    assert.deepEqual(
+      candidateLedger.occurrences
+        .filter((entry) => entry.disposition === 'repeat')
+        .map((entry) => entry.position),
+      repeatPositions,
+    );
+    assert.deepEqual(
+      candidateLedger.occurrences
+        .filter((entry) => entry.disposition === 'gap')
+        .map((entry) => entry.position),
+      [],
+    );
+    assert.deepEqual(
+      candidateLedger.occurrences
+        .filter((entry) => entry.disposition === 'exclusion')
+        .map((entry) => entry.position),
+      exclusionPositions.sort((left, right) => left - right),
+    );
+
     const byText = new Map(candidateLedger.occurrences.map((entry) => [entry.sourceText, entry]));
-    assert.equal(byText.get('Thor Epic Collection: The God of Thunder').disposition, 'gap');
-    assert.equal(byText.get('Thor & Loki: Blood Brothers').disposition, 'gap');
+    assert.equal(byText.get('Thor Epic Collection: The God of Thunder').disposition, 'exclusion');
+    assert.equal(byText.get('Thor & Loki: Blood Brothers').disposition, 'exclusion');
     assert.equal(byText.get('Jack Kirby and Stan Lee launch Thor, Loki, and the Gods of Asgard into the Marvel Universe!').disposition, 'exclusion');
     assert.equal(byText.get('Loki centric issues can be found in:').disposition, 'exclusion');
-    assert.equal(byText.get('Loki by Kibblesmith & Bazaldua').disposition, 'gap');
-    assert.deepEqual(byText.get('Collects: Loki #1-4, Journey Into Mystery #85, Journey Into Mystery #112').repeatOfPositions, [4, 55]);
+    assert.equal(byText.get('Loki by Kibblesmith & Bazaldua').disposition, 'exclusion');
+    assert.deepEqual(byText.get('Collects: Loki #1-4, Journey Into Mystery #85, Journey Into Mystery #112').repeatOfPositions, [2, 4, 25, 55]);
+    assert.deepEqual(byText.get('Collects: Thor #173 to #183').repeatOfPositions, [38]);
     assert.deepEqual(byText.get('Collects: Loki (2019) #1 to #5, material from War of the Realms: Omega (2019) #1').repeatOfPositions, [214]);
+    assert.deepEqual(byText.get('Thor #426 to #432, #440 to #442').issueReferences, [
+      'Thor #426 to #432',
+      'Thor #440 to #442',
+    ]);
 
     for (const entry of candidateLedger.occurrences) {
       assert.equal(typeof entry.sourceText, 'string');
@@ -665,6 +744,10 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
       if (Array.isArray(entry.repeatOfPositions)) {
         assert.ok(entry.repeatOfPositions.every((position) => position < entry.position));
       }
+      if (entry.disposition === 'repeat') {
+        assert.ok(Array.isArray(entry.repeatOfPositions));
+        assert.ok(entry.repeatOfPositions.length > 0);
+      }
     }
   }
 
@@ -674,18 +757,21 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   assert.equal(inventoryRecord.sourceRetrievedAt, '2026-08-27');
   assert.equal(inventoryRecord.sourceContentSha256, ledger.sourceContentSha256);
   assert.match(inventoryRecord.reason, /232 ordered occurrences/i);
-  assert.match(inventoryRecord.reason, /114 canonical candidates/i);
-  assert.match(inventoryRecord.reason, /75 gaps/i);
-  assert.match(inventoryRecord.reason, /43 exclusions/i);
+  assert.match(inventoryRecord.reason, /75 canonical candidates/i);
+  assert.match(inventoryRecord.reason, /39 repeats/i);
+  assert.match(inventoryRecord.reason, /no gaps/i);
+  assert.match(inventoryRecord.reason, /118 exclusions/i);
 
   assert.doesNotThrow(() => validateLedgerShape(ledger));
 
-  const removed = JSON.parse(JSON.stringify(ledger));
-  removed.occurrences.splice(41, 1);
-  assert.throws(() => validateLedgerShape(removed));
+  for (const position of [1, 2, 4]) {
+    const removed = JSON.parse(JSON.stringify(ledger));
+    removed.occurrences.splice(removed.occurrences.findIndex((entry) => entry.position === position), 1);
+    assert.throws(() => validateLedgerShape(removed));
+  }
 
   const duplicated = JSON.parse(JSON.stringify(ledger));
-  duplicated.occurrences.splice(10, 0, duplicated.occurrences[10]);
+  duplicated.occurrences.splice(3, 0, duplicated.occurrences[3]);
   assert.throws(() => validateLedgerShape(duplicated));
 });
 
