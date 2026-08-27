@@ -1,7 +1,7 @@
 {
   "id": "punisher-reading-order",
   "inventoryId": "punisher-reading-order",
-  "packetDigest": "985054adad840d3ecd5d04e7d0b77c6413439b3e0d08509945d500485632d048",
+  "packetDigest": "b52164f244217533ccb8d312ebcb58ab0f01c62c80170b49f00e0f7ab3b717da",
   "sourceUrl": "https://www.comicbookherald.com/punisher-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceRetrievalStatus": "retrieved",
@@ -947,6 +947,213 @@
       "normalizedSeriesTitle": "Punisher War Journal",
       "seriesYear": 2006,
       "issueNumber": "26"
+    },
+    {
+      "sourcePosition": 529,
+      "canonicalGapPosition": 407,
+      "sourceIssueReference": "Punisher MAX X-Mas Special #1",
+      "sourceRangeReference": "Punisher Max by Aaron & Dillon Omnibus",
+      "normalizedSeriesTitle": "Punisher MAX X-Mas Special",
+      "seriesYear": null,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 530,
+      "canonicalGapPosition": 507,
+      "sourceIssueReference": "Punisher MAX (2009) #1",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 531,
+      "canonicalGapPosition": 508,
+      "sourceIssueReference": "Punisher MAX (2009) #2",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 532,
+      "canonicalGapPosition": 509,
+      "sourceIssueReference": "Punisher MAX (2009) #3",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 533,
+      "canonicalGapPosition": 510,
+      "sourceIssueReference": "Punisher MAX (2009) #4",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 534,
+      "canonicalGapPosition": 511,
+      "sourceIssueReference": "Punisher MAX (2009) #5",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 535,
+      "canonicalGapPosition": 512,
+      "sourceIssueReference": "Punisher MAX (2009) #6",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 536,
+      "canonicalGapPosition": 513,
+      "sourceIssueReference": "Punisher MAX (2009) #7",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 537,
+      "canonicalGapPosition": 514,
+      "sourceIssueReference": "Punisher MAX (2009) #8",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 538,
+      "canonicalGapPosition": 515,
+      "sourceIssueReference": "Punisher MAX (2009) #9",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 539,
+      "canonicalGapPosition": 516,
+      "sourceIssueReference": "Punisher MAX (2009) #10",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 540,
+      "canonicalGapPosition": 517,
+      "sourceIssueReference": "Punisher MAX (2009) #11",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 541,
+      "canonicalGapPosition": 518,
+      "sourceIssueReference": "Punisher MAX (2009) #12",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 542,
+      "canonicalGapPosition": 519,
+      "sourceIssueReference": "Punisher MAX (2009) #13",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 543,
+      "canonicalGapPosition": 520,
+      "sourceIssueReference": "Punisher MAX (2009) #14",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 544,
+      "canonicalGapPosition": 521,
+      "sourceIssueReference": "Punisher MAX (2009) #15",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 545,
+      "canonicalGapPosition": 522,
+      "sourceIssueReference": "Punisher MAX (2009) #16",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 546,
+      "canonicalGapPosition": 523,
+      "sourceIssueReference": "Punisher MAX (2009) #17",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 547,
+      "canonicalGapPosition": 524,
+      "sourceIssueReference": "Punisher MAX (2009) #18",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 548,
+      "canonicalGapPosition": 525,
+      "sourceIssueReference": "Punisher MAX (2009) #19",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "19"
+    },
+    {
+      "sourcePosition": 549,
+      "canonicalGapPosition": 526,
+      "sourceIssueReference": "Punisher MAX (2009) #20",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 550,
+      "canonicalGapPosition": 527,
+      "sourceIssueReference": "Punisher MAX (2009) #21",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "21"
+    },
+    {
+      "sourcePosition": 551,
+      "canonicalGapPosition": 528,
+      "sourceIssueReference": "Punisher MAX (2009) #22",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "22"
     },
     {
       "sourcePosition": 573,
@@ -5010,581 +5217,6 @@
       "evidenceDigest": "a82afbdc1e91d0b45ee91219f4e6f14e191d5fa588d13a9e4dba994a79ecf8b2"
     },
     {
-      "sourcePosition": 529,
-      "sourceIssueReference": "Punisher MAX X-Mas Special #1",
-      "sourceRangeReference": "Punisher Max by Aaron & Dillon Omnibus",
-      "normalizedSeriesTitle": "Punisher MAX X-Mas Special",
-      "seriesYear": null,
-      "issueNumber": "1 (source 529)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "No provider series named Punisher MAX X-Mas Special is indexed.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "221f7afe37fe84091a11734d817b2967bc5399d4f4eee49a59e7f8745e7932a1"
-    },
-    {
-      "sourcePosition": 530,
-      "sourceIssueReference": "Punisher MAX (2009) #1",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "1 (source 530)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8c84379874a8d0a8fe49a4dddf8ad91141aaaa7cc45f81f4cf91733fbd7d09e7"
-    },
-    {
-      "sourcePosition": 531,
-      "sourceIssueReference": "Punisher MAX (2009) #2",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "2 (source 531)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2f1bed1d82fe1c84736ca4ff1f1b2b8ba293b492498c5d029391973107bb2317"
-    },
-    {
-      "sourcePosition": 532,
-      "sourceIssueReference": "Punisher MAX (2009) #3",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "3 (source 532)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2ee6cac79dd155442de08502e66239f59470f890e67053ba9b05df8348b82ba9"
-    },
-    {
-      "sourcePosition": 533,
-      "sourceIssueReference": "Punisher MAX (2009) #4",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "4 (source 533)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "1f6469e1d3fa6edaa9b40bda9011242fc9f4315ea8a3629649b4fd4297109958"
-    },
-    {
-      "sourcePosition": 534,
-      "sourceIssueReference": "Punisher MAX (2009) #5",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "5 (source 534)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b32bf7f86157acc5035281d5ed68be60a57448089155afc2cd680d2d04ba918b"
-    },
-    {
-      "sourcePosition": 535,
-      "sourceIssueReference": "Punisher MAX (2009) #6",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "6 (source 535)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "50008baa0fb007bc66553f8738d17e9d91ceb031186529a0318d8609cbfda11c"
-    },
-    {
-      "sourcePosition": 536,
-      "sourceIssueReference": "Punisher MAX (2009) #7",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "7 (source 536)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "d9a1d938845f757b7db2979e04a115d6442e3205dc0e80fd18767aa1f466360a"
-    },
-    {
-      "sourcePosition": 537,
-      "sourceIssueReference": "Punisher MAX (2009) #8",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "8 (source 537)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "26f939426fdca33d663122123e75d3143c85b9242da39aa52745e9a211ceb8ba"
-    },
-    {
-      "sourcePosition": 538,
-      "sourceIssueReference": "Punisher MAX (2009) #9",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "9 (source 538)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "59e7f19c84b654f1d1991aca7811fae76d88cc5884f6e3d67f8da5db0408f2c0"
-    },
-    {
-      "sourcePosition": 539,
-      "sourceIssueReference": "Punisher MAX (2009) #10",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "10 (source 539)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "651a1a0d05d7ba0564b95a5e3084655a54ec3a5abc67bd7094a60d5d16fda7c8"
-    },
-    {
-      "sourcePosition": 540,
-      "sourceIssueReference": "Punisher MAX (2009) #11",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "11 (source 540)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "0bc766f1706a049ae718c8b69f41cbde61cfa3ed9a8ff1234d4338eaade86946"
-    },
-    {
-      "sourcePosition": 541,
-      "sourceIssueReference": "Punisher MAX (2009) #12",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "12 (source 541)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "5ee940e304c32bf4562cb81e647635c1a71b92e55333a5735e36452eca917d05"
-    },
-    {
-      "sourcePosition": 542,
-      "sourceIssueReference": "Punisher MAX (2009) #13",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "13 (source 542)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a56fa1011ca20fa71f9df5a04a5fcea74b9ccb47e1a0c4fcee53656fa81362bc"
-    },
-    {
-      "sourcePosition": 543,
-      "sourceIssueReference": "Punisher MAX (2009) #14",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "14 (source 543)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a79ea7e400706a42c8bff07bffe18f8e9d427f5a2432564c2fe559d3dffffa9e"
-    },
-    {
-      "sourcePosition": 544,
-      "sourceIssueReference": "Punisher MAX (2009) #15",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "15 (source 544)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "6086236425a0245a6f17b5dfc06e8eba76df1217e358dde5490c60916fb069e8"
-    },
-    {
-      "sourcePosition": 545,
-      "sourceIssueReference": "Punisher MAX (2009) #16",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "16 (source 545)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "cb3633d6e3b1077017dd292cbf15ad387a7c839d5f1ce1ed68e145806c8ae93f"
-    },
-    {
-      "sourcePosition": 546,
-      "sourceIssueReference": "Punisher MAX (2009) #17",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "17 (source 546)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "c261b574fe53268aa81cdf7d3b0b2249e94ec6f4d19d63d9b296a4070e0a30f5"
-    },
-    {
-      "sourcePosition": 547,
-      "sourceIssueReference": "Punisher MAX (2009) #18",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "18 (source 547)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "ffdfef630dc18d5f79243df8aa9a2f0c91ee76c8a8d441e4d29c6eabebc8a525"
-    },
-    {
-      "sourcePosition": 548,
-      "sourceIssueReference": "Punisher MAX (2009) #19",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "19 (source 548)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2722569458b61a226550a36d7ad58a147d56939c99e977743053fbdc8515ed8b"
-    },
-    {
-      "sourcePosition": 549,
-      "sourceIssueReference": "Punisher MAX (2009) #20",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "20 (source 549)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "20870e513404731def295282af3799c09172e2754393affa0c63064f175f8bbb"
-    },
-    {
-      "sourcePosition": 550,
-      "sourceIssueReference": "Punisher MAX (2009) #21",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "21 (source 550)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "79455e6cb741625c56c2f58e1680f9cb8ab8191fc7e3180f69679cb0ea56f09e"
-    },
-    {
-      "sourcePosition": 551,
-      "sourceIssueReference": "Punisher MAX (2009) #22",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "22 (source 551)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "964d4c4d73658945772b8f4d696c3c289ff799b3b4d93bf01cb5765967d33d88"
-    },
-    {
       "sourcePosition": 694,
       "sourceIssueReference": "Daredevil/Punisher: Seventh Circle (2015) #1",
       "sourceRangeReference": "Daredevil/Punisher: Seventh Circle",
@@ -5735,7 +5367,7 @@
       "Comic Book Herald",
       "Frank Castle"
     ],
-    "expect": 661,
+    "expect": 638,
     "timeline": null,
     "coverIssueId": 6515
   },
@@ -10564,7 +10196,7 @@
         6515
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6515/amazing_spider_man_1963_129",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6515/the_amazing_spider-man_1963_129",
       "resolvedIssueTitle": "Amazing Spider-Man #129"
     },
     {
@@ -10589,7 +10221,7 @@
         6521
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6521/amazing_spider_man_1963_134",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6521/the_amazing_spider-man_1963_134",
       "resolvedIssueTitle": "Amazing Spider-Man #134"
     },
     {
@@ -10614,7 +10246,7 @@
         6522
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6522/amazing_spider_man_1963_135",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6522/the_amazing_spider-man_1963_135",
       "resolvedIssueTitle": "Amazing Spider-Man #135"
     },
     {
@@ -10639,7 +10271,7 @@
         6551
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6551/amazing_spider_man_1963_161",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6551/the_amazing_spider-man_1963_161",
       "resolvedIssueTitle": "Amazing Spider-Man #161"
     },
     {
@@ -10664,7 +10296,7 @@
         6552
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6552/amazing_spider_man_1963_162",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6552/the_amazing_spider-man_1963_162",
       "resolvedIssueTitle": "Amazing Spider-Man #162"
     },
     {
@@ -10689,7 +10321,7 @@
         6565
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6565/amazing_spider_man_1963_174",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6565/the_amazing_spider-man_1963_174",
       "resolvedIssueTitle": "Amazing Spider-Man #174"
     },
     {
@@ -10714,7 +10346,7 @@
         6566
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6566/amazing_spider_man_1963_175",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6566/the_amazing_spider-man_1963_175",
       "resolvedIssueTitle": "Amazing Spider-Man #175"
     },
     {
@@ -10739,7 +10371,7 @@
         6596
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6596/amazing_spider_man_1963_201",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6596/the_amazing_spider-man_1963_201",
       "resolvedIssueTitle": "Amazing Spider-Man #201"
     },
     {
@@ -10764,7 +10396,7 @@
         6597
       ],
       "note": "Marvel series 1987 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6597/amazing_spider_man_1963_202",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6597/the_amazing_spider-man_1963_202",
       "resolvedIssueTitle": "Amazing Spider-Man #202"
     },
     {
@@ -10789,7 +10421,7 @@
         16889
       ],
       "note": "Marvel series 2984 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16889/amazing_spider_man_annual_1964_15",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/16889/amazing_spider-man_annual_1964_15",
       "resolvedIssueTitle": "Amazing Spider-Man Annual #15"
     },
     {
@@ -10939,7 +10571,7 @@
         14785
       ],
       "note": "Marvel series 2271 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14785/peter_parker_the_spectacular_spider_man_1976_81",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14785/peter_parker_the_spectacular_spider-man_1976_81",
       "resolvedIssueTitle": "Peter Parker, The Spectacular Spider-Man #81"
     },
     {
@@ -10964,7 +10596,7 @@
         14786
       ],
       "note": "Marvel series 2271 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14786/peter_parker_the_spectacular_spider_man_1976_82",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14786/peter_parker_the_spectacular_spider-man_1976_82",
       "resolvedIssueTitle": "Peter Parker, The Spectacular Spider-Man #82"
     },
     {
@@ -10989,7 +10621,7 @@
         14787
       ],
       "note": "Marvel series 2271 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14787/peter_parker_the_spectacular_spider_man_1976_83",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/14787/peter_parker_the_spectacular_spider-man_1976_83",
       "resolvedIssueTitle": "Peter Parker, The Spectacular Spider-Man #83"
     },
     {
@@ -13539,7 +13171,7 @@
         66078
       ],
       "note": "Marvel series 44667 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66078/the_punisher_die_hard_in_the_big_easy_1992_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66078/the_punisher_die_hard_in_the_big_easy_1_1992_1",
       "resolvedIssueTitle": "The Punisher: Die Hard In The Big Easy #1"
     },
     {
@@ -14564,7 +14196,7 @@
         62808
       ],
       "note": "Marvel series 23036 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62808/wolverine_punisher_revelation_1999_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62808/wolverinepunisher_revelation_1999_1",
       "resolvedIssueTitle": "Wolverine/Punisher: Revelation #1"
     },
     {
@@ -14589,7 +14221,7 @@
         62809
       ],
       "note": "Marvel series 23036 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62809/wolverine_punisher_revelation_1999_2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62809/wolverinepunisher_revelation_1999_2",
       "resolvedIssueTitle": "Wolverine/Punisher: Revelation #2"
     },
     {
@@ -14614,7 +14246,7 @@
         62810
       ],
       "note": "Marvel series 23036 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62810/wolverine_punisher_revelation_1999_3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62810/wolverinepunisher_revelation_1999_3",
       "resolvedIssueTitle": "Wolverine/Punisher: Revelation #3"
     },
     {
@@ -14639,7 +14271,7 @@
         62811
       ],
       "note": "Marvel series 23036 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62811/wolverine_punisher_revelation_1999_4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62811/wolverinepunisher_revelation_1999_4",
       "resolvedIssueTitle": "Wolverine/Punisher: Revelation #4"
     },
     {
@@ -14964,7 +14596,7 @@
         18958
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18958/the_punisher_2001_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18958/punisher_2001_1",
       "resolvedIssueTitle": "The Punisher #1"
     },
     {
@@ -14989,7 +14621,7 @@
         18959
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18959/the_punisher_2001_2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18959/punisher_2001_2",
       "resolvedIssueTitle": "The Punisher #2"
     },
     {
@@ -15014,7 +14646,7 @@
         18960
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18960/the_punisher_2001_3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18960/punisher_2001_3",
       "resolvedIssueTitle": "The Punisher #3"
     },
     {
@@ -15039,7 +14671,7 @@
         18961
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18961/the_punisher_2001_4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18961/punisher_2001_4",
       "resolvedIssueTitle": "The Punisher #4"
     },
     {
@@ -15064,7 +14696,7 @@
         18962
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18962/the_punisher_2001_5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18962/punisher_2001_5",
       "resolvedIssueTitle": "The Punisher #5"
     },
     {
@@ -15089,7 +14721,7 @@
         18963
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18963/the_punisher_2001_6",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18963/punisher_2001_6",
       "resolvedIssueTitle": "The Punisher #6"
     },
     {
@@ -15114,7 +14746,7 @@
         18964
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18964/the_punisher_2001_7",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18964/punisher_2001_7",
       "resolvedIssueTitle": "The Punisher #7"
     },
     {
@@ -15139,7 +14771,7 @@
         18965
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18965/the_punisher_2001_8",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18965/punisher_2001_8",
       "resolvedIssueTitle": "The Punisher #8"
     },
     {
@@ -15164,7 +14796,7 @@
         18966
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18966/the_punisher_2001_9",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18966/punisher_2001_9",
       "resolvedIssueTitle": "The Punisher #9"
     },
     {
@@ -15189,7 +14821,7 @@
         18967
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18967/the_punisher_2001_10",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18967/punisher_2001_10",
       "resolvedIssueTitle": "The Punisher #10"
     },
     {
@@ -15214,7 +14846,7 @@
         18968
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18968/the_punisher_2001_11",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18968/punisher_2001_11",
       "resolvedIssueTitle": "The Punisher #11"
     },
     {
@@ -15239,7 +14871,7 @@
         18969
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18969/the_punisher_2001_12",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18969/punisher_2001_12",
       "resolvedIssueTitle": "The Punisher #12"
     },
     {
@@ -15264,7 +14896,7 @@
         18970
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18970/the_punisher_2001_13",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18970/punisher_2001_13",
       "resolvedIssueTitle": "The Punisher #13"
     },
     {
@@ -15289,7 +14921,7 @@
         18971
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18971/the_punisher_2001_14",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18971/punisher_2001_14",
       "resolvedIssueTitle": "The Punisher #14"
     },
     {
@@ -15314,7 +14946,7 @@
         18972
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18972/the_punisher_2001_15",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18972/punisher_2001_15",
       "resolvedIssueTitle": "The Punisher #15"
     },
     {
@@ -15339,7 +14971,7 @@
         18973
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18973/the_punisher_2001_16",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18973/punisher_2001_16",
       "resolvedIssueTitle": "The Punisher #16"
     },
     {
@@ -15364,7 +14996,7 @@
         18974
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18974/the_punisher_2001_17",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18974/punisher_2001_17",
       "resolvedIssueTitle": "The Punisher #17"
     },
     {
@@ -15389,7 +15021,7 @@
         18975
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18975/the_punisher_2001_18",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18975/punisher_2001_18",
       "resolvedIssueTitle": "The Punisher #18"
     },
     {
@@ -15414,7 +15046,7 @@
         18976
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18976/the_punisher_2001_19",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18976/punisher_2001_19",
       "resolvedIssueTitle": "The Punisher #19"
     },
     {
@@ -15439,7 +15071,7 @@
         17174
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17174/the_punisher_2001_20",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17174/punisher_2001_20",
       "resolvedIssueTitle": "The Punisher #20"
     },
     {
@@ -15464,7 +15096,7 @@
         17175
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17175/the_punisher_2001_21",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17175/punisher_2001_21",
       "resolvedIssueTitle": "The Punisher #21"
     },
     {
@@ -15489,7 +15121,7 @@
         17176
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17176/the_punisher_2001_22",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17176/punisher_2001_22",
       "resolvedIssueTitle": "The Punisher #22"
     },
     {
@@ -15514,7 +15146,7 @@
         17177
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17177/the_punisher_2001_23",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17177/punisher_2001_23",
       "resolvedIssueTitle": "The Punisher #23"
     },
     {
@@ -15539,7 +15171,7 @@
         17178
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17178/the_punisher_2001_24",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17178/punisher_2001_24",
       "resolvedIssueTitle": "The Punisher #24"
     },
     {
@@ -15564,7 +15196,7 @@
         17179
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17179/the_punisher_2001_25",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17179/punisher_2001_25",
       "resolvedIssueTitle": "The Punisher #25"
     },
     {
@@ -15589,7 +15221,7 @@
         17180
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17180/the_punisher_2001_26",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17180/punisher_2001_26",
       "resolvedIssueTitle": "The Punisher #26"
     },
     {
@@ -15614,7 +15246,7 @@
         17155
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17155/the_punisher_2001_27",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17155/punisher_2001_27",
       "resolvedIssueTitle": "The Punisher #27"
     },
     {
@@ -15639,7 +15271,7 @@
         17156
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17156/the_punisher_2001_28",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/17156/punisher_2001_28",
       "resolvedIssueTitle": "The Punisher #28"
     },
     {
@@ -15664,7 +15296,7 @@
         34318
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34318/the_punisher_2001_29",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34318/punisher_2001_29",
       "resolvedIssueTitle": "The Punisher #29"
     },
     {
@@ -15689,7 +15321,7 @@
         34319
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34319/the_punisher_2001_30",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34319/punisher_2001_30",
       "resolvedIssueTitle": "The Punisher #30"
     },
     {
@@ -15714,7 +15346,7 @@
         34320
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34320/the_punisher_2001_31",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34320/punisher_2001_31",
       "resolvedIssueTitle": "The Punisher #31"
     },
     {
@@ -15739,7 +15371,7 @@
         34321
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34321/the_punisher_2001_32",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/34321/punisher_2001_32",
       "resolvedIssueTitle": "The Punisher #32"
     },
     {
@@ -15764,7 +15396,7 @@
         114
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/114/the_punisher_2001_33",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/114/punisher_2001_33",
       "resolvedIssueTitle": "The Punisher #33"
     },
     {
@@ -15789,7 +15421,7 @@
         113
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/113/the_punisher_2001_34",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/113/punisher_2001_34",
       "resolvedIssueTitle": "The Punisher #34"
     },
     {
@@ -15814,7 +15446,7 @@
         112
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112/the_punisher_2001_35",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/112/punisher_2001_35",
       "resolvedIssueTitle": "The Punisher #35"
     },
     {
@@ -15839,7 +15471,7 @@
         111
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111/the_punisher_2001_36",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/111/punisher_2001_36",
       "resolvedIssueTitle": "The Punisher #36"
     },
     {
@@ -15864,7 +15496,7 @@
         97
       ],
       "note": "Marvel series 436 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/97/the_punisher_2001_37",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/97/punisher_2001_37",
       "resolvedIssueTitle": "The Punisher #37"
     },
     {
@@ -17089,7 +16721,7 @@
         22511
       ],
       "note": "Marvel series 6131 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22511/punisher_war_journal_2008_annual_2008_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22511/punisher_war_journal_2008_annual_1_2008_1",
       "resolvedIssueTitle": "Punisher War Journal 2008 Annual #1"
     },
     {
@@ -17214,7 +16846,7 @@
         447
       ],
       "note": "Marvel series 720 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/447/wolverine_punisher_2004_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/447/wolverinepunisher_2004_1",
       "resolvedIssueTitle": "Wolverine/Punisher #1"
     },
     {
@@ -17239,7 +16871,7 @@
         507
       ],
       "note": "Marvel series 720 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/507/wolverine_punisher_2004_2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/507/wolverinepunisher_2004_2",
       "resolvedIssueTitle": "Wolverine/Punisher #2"
     },
     {
@@ -17264,7 +16896,7 @@
         675
       ],
       "note": "Marvel series 720 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/675/wolverine_punisher_2004_3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/675/wolverinepunisher_2004_3",
       "resolvedIssueTitle": "Wolverine/Punisher #3"
     },
     {
@@ -17289,7 +16921,7 @@
         746
       ],
       "note": "Marvel series 720 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/746/wolverine_punisher_2004_4",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/746/wolverinepunisher_2004_4",
       "resolvedIssueTitle": "Wolverine/Punisher #4"
     },
     {
@@ -17314,7 +16946,7 @@
         577
       ],
       "note": "Marvel series 720 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/577/wolverine_punisher_2004_5",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/577/wolverinepunisher_2004_5",
       "resolvedIssueTitle": "Wolverine/Punisher #5"
     },
     {
@@ -17464,7 +17096,7 @@
         1495
       ],
       "note": "Marvel series 841 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1495/punisher_red_x_mas_2004_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/1495/punisher_red_x-mas_1_2004_1",
       "resolvedIssueTitle": "Punisher: Red X-Mas #1"
     },
     {
@@ -17489,7 +17121,7 @@
         18955
       ],
       "note": "Marvel series 3696 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18955/punisher_bloody_valentine_2006_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/18955/punisher_bloody_valentine_1_2006_1",
       "resolvedIssueTitle": "Punisher: Bloody Valentine #1"
     },
     {
@@ -17939,7 +17571,7 @@
         30164
       ],
       "note": "Marvel series 10616 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30164/franken_castle_2010_17",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30164/franken-castle_2010_17",
       "resolvedIssueTitle": "Franken-Castle #17"
     },
     {
@@ -17964,7 +17596,7 @@
         30165
       ],
       "note": "Marvel series 10616 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30165/franken_castle_2010_18",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30165/franken-castle_2010_18",
       "resolvedIssueTitle": "Franken-Castle #18"
     },
     {
@@ -17989,7 +17621,7 @@
         30166
       ],
       "note": "Marvel series 10616 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30166/franken_castle_2010_19",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30166/franken-castle_2010_19",
       "resolvedIssueTitle": "Franken-Castle #19"
     },
     {
@@ -18014,7 +17646,7 @@
         30167
       ],
       "note": "Marvel series 10616 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30167/franken_castle_2010_20",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30167/franken-castle_2010_20",
       "resolvedIssueTitle": "Franken-Castle #20"
     },
     {
@@ -18039,7 +17671,7 @@
         30168
       ],
       "note": "Marvel series 10616 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30168/franken_castle_2010_21",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/30168/franken-castle_2010_21",
       "resolvedIssueTitle": "Franken-Castle #21"
     },
     {
@@ -18089,7 +17721,7 @@
         27421
       ],
       "note": "Marvel series 8750 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27421/dark_reign_the_list_punisher_2009_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/27421/dark_reign_the_list_-_punisher_2009_1",
       "resolvedIssueTitle": "Dark Reign: The List - Punisher #1"
     },
     {
@@ -20014,7 +19646,7 @@
         50642
       ],
       "note": "Marvel series 18681 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50642/original_sin_2014_0",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50642/original_sin_2014",
       "resolvedIssueTitle": "Original Sin #0"
     },
     {
@@ -21264,7 +20896,7 @@
         108820
       ],
       "note": "Marvel series 37388 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/108820/ghost_rider_wolverine_punisher_hearts_of_darkness_1991_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/108820/ghost_riderwolverinepunisher_hearts_of_darkness_1_1991_1",
       "resolvedIssueTitle": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness #1"
     },
     {
@@ -21289,7 +20921,7 @@
         62690
       ],
       "note": "Marvel series 23006 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62690/ghost_rider_wolverine_punisher_the_dark_design_1994_0",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62690/ghost_riderwolverinepunisher_the_dark_design_1994",
       "resolvedIssueTitle": "Ghost Rider/Wolverine/Punisher: The Dark Design #0"
     },
     {
@@ -21589,7 +21221,7 @@
         58705
       ],
       "note": "Marvel series 21424 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58705/doctor_strange_punisher_magic_bullets_2016_1",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58705/doctor_strangepunisher_magic_bullets_2016_1",
       "resolvedIssueTitle": "Doctor Strange/Punisher: Magic Bullets #1"
     },
     {
@@ -21614,7 +21246,7 @@
         58706
       ],
       "note": "Marvel series 21424 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58706/doctor_strange_punisher_magic_bullets_2016_2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/58706/doctor_strangepunisher_magic_bullets_2016_2",
       "resolvedIssueTitle": "Doctor Strange/Punisher: Magic Bullets #2"
     },
     {
@@ -21639,7 +21271,7 @@
         62771
       ],
       "note": "Marvel series 21424 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62771/doctor_strange_punisher_magic_bullets_2016_3",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62771/doctor_strangepunisher_magic_bullets_2016_3",
       "resolvedIssueTitle": "Doctor Strange/Punisher: Magic Bullets #3"
     },
     {
@@ -21789,7 +21421,7 @@
         62818
       ],
       "note": "Marvel series 23038 is the reviewed metadata series for this source reference.",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all_new_guardians_of_the_galaxy__2017_0",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
       "resolvedIssueTitle": "Free Comic Book Day (All-New Guardians of the Galaxy) #0"
     },
     {
@@ -22570,11 +22202,11 @@
       "Comic Book Herald",
       "Frank Castle"
     ],
-    "expect": 661,
+    "expect": 638,
     "timeline": null,
     "coverIssueId": 6515
   },
-  "mappingDigest": "7043c68f43c00fb0017a4323fb8977c49cdc9aac586865bb4a97f5aad1fb5d9d",
+  "mappingDigest": "0d403238205a691d74e3ae90a2098d12792060180ad7b3d2084351aff3bfa3cc",
   "excludedSourceRows": [
     {
       "sourcePosition": 784,
@@ -23020,5 +22652,1396 @@
       "reason": "Non-issue boundary marker or out-of-boundary reference.",
       "decisionScope": "punisher-reading-order boundary"
     }
-  ]
+  ],
+  "relationshipReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "The current complete library was compared with all 153 published orders after the serialized live identity audit. Every observed relationship is reviewed and approved for this full guide.",
+    "reviewedAt": "2026-08-27T13:31:19.112Z",
+    "reportDigest": "273211ef0705ec56190fe69bbd352351dc95f76be02a062380af64a8734f2595",
+    "packetDigest": "b52164f244217533ccb8d312ebcb58ab0f01c62c80170b49f00e0f7ab3b717da",
+    "mappingDigest": "0d403238205a691d74e3ae90a2098d12792060180ad7b3d2084351aff3bfa3cc",
+    "libraryDigest": "fefe7518389233452de5122ab7606ee9f6f1551bf3eb2dceaf8f1fff7f9c56c4",
+    "peerDigests": {},
+    "dispositions": [
+      {
+        "orderId": "abomination-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "absolute-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "agatha-harkness-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "ant-man-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "axis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "black-panther-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "bloodties",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "captain-america-reading-order-modern-marvel-era",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "chaos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "childs-play",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "civil-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "damnation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "dark-web",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "devils-reign",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "doomwar",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "eighth-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "essential-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "evolutionary-war",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "fall-house-x-rise-powers-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "fall-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "fatal-attractions",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "generations",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "hickman-full",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "hickman-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "house-of-m",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "judgment-day",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "king-in-black",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "last-annihilation",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "magneto-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "marvel-knights-to-planet-x",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "maximum-security",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "messiah-complex",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "messiah-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "mutant-massacre",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "mys-tech-wars",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "necrosha",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "new-ultimate-universe",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "new-ultimate-universe-trades",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "operation-galactic-storm",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "planet-hulk",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "reckoning-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "revolutionary-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "rise-of-the-midnight-sons",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "rocket-raccoon-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "scarlet-witch-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "second-coming",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "secret-invasion",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "secret-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "shadowland",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "silent-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-geddon",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-island",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "spider-verse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "thanos-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "thor-best-of",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "ultimate-marvel-intro",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "venomverse",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "wandavision",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "war-of-kings",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "rationale": "The shared issue identities are a reviewed partial relationship, not a duplicate guide.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "wolverine-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "world-war-hulk-aftersmash",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "wraith-war",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-cutioners-song",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-age-of-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-battle-of-the-atom",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-curse-of-the-mutants",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-divided-we-stand",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-extermination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-inferno",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-manifest-destiny",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-nation-x",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-regenesis",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-schism",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-trial-of-jean-grey",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-men-utopia",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-of-swords",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-termination",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "x-tinction-agenda",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "xmen-claremont",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      },
+      {
+        "orderId": "xmen-claremont-complete",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "MRT overlap policy",
+        "rationale": "No shared issue identities.",
+        "reviewedAt": "2026-08-27T13:31:19.112Z"
+      }
+    ],
+    "approvalDigest": "6ac2bbe9aa635d26c97d415cfc2156102183a5a671cee60f0a8770a822259d4a"
+  }
 }

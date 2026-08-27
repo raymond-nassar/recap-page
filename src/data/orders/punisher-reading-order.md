@@ -2,30 +2,30 @@
 
 Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen punisher-reading-order issue mapping.
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
-The frozen source records 857 source occurrences: 480 exactly resolved items, 122 intentional repeats, 181 explicit metadata gaps, and 74 explicit exclusions; this checklist lists each distinct comic once at its first source occurrence.
+The frozen source records 857 issue occurrences, including 145 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
 No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
 ## Punisher: Back to the War Omnibus
-- [ ] [Amazing Spider-Man #129](https://www.marvel.com/comics/issue/6515/amazing_spider_man_1963_129)
-- [ ] [Amazing Spider-Man #134](https://www.marvel.com/comics/issue/6521/amazing_spider_man_1963_134)
-- [ ] [Amazing Spider-Man #135](https://www.marvel.com/comics/issue/6522/amazing_spider_man_1963_135)
-- [ ] [Amazing Spider-Man #161](https://www.marvel.com/comics/issue/6551/amazing_spider_man_1963_161)
-- [ ] [Amazing Spider-Man #162](https://www.marvel.com/comics/issue/6552/amazing_spider_man_1963_162)
-- [ ] [Amazing Spider-Man #174](https://www.marvel.com/comics/issue/6565/amazing_spider_man_1963_174)
-- [ ] [Amazing Spider-Man #175](https://www.marvel.com/comics/issue/6566/amazing_spider_man_1963_175)
-- [ ] [Amazing Spider-Man #201](https://www.marvel.com/comics/issue/6596/amazing_spider_man_1963_201)
-- [ ] [Amazing Spider-Man #202](https://www.marvel.com/comics/issue/6597/amazing_spider_man_1963_202)
-- [ ] [Amazing Spider-Man Annual #15](https://www.marvel.com/comics/issue/16889/amazing_spider_man_annual_1964_15)
+- [ ] [Amazing Spider-Man #129](https://www.marvel.com/comics/issue/6515/the_amazing_spider-man_1963_129)
+- [ ] [Amazing Spider-Man #134](https://www.marvel.com/comics/issue/6521/the_amazing_spider-man_1963_134)
+- [ ] [Amazing Spider-Man #135](https://www.marvel.com/comics/issue/6522/the_amazing_spider-man_1963_135)
+- [ ] [Amazing Spider-Man #161](https://www.marvel.com/comics/issue/6551/the_amazing_spider-man_1963_161)
+- [ ] [Amazing Spider-Man #162](https://www.marvel.com/comics/issue/6552/the_amazing_spider-man_1963_162)
+- [ ] [Amazing Spider-Man #174](https://www.marvel.com/comics/issue/6565/the_amazing_spider-man_1963_174)
+- [ ] [Amazing Spider-Man #175](https://www.marvel.com/comics/issue/6566/the_amazing_spider-man_1963_175)
+- [ ] [Amazing Spider-Man #201](https://www.marvel.com/comics/issue/6596/the_amazing_spider-man_1963_201)
+- [ ] [Amazing Spider-Man #202](https://www.marvel.com/comics/issue/6597/the_amazing_spider-man_1963_202)
+- [ ] [Amazing Spider-Man Annual #15](https://www.marvel.com/comics/issue/16889/amazing_spider-man_annual_1964_15)
 - [ ] Marvel Super Action (1975) #1
 - [ ] [Marvel Preview #2](https://www.marvel.com/comics/issue/19769/marvel_preview_1975_2)
 - [ ] [Captain America #241](https://www.marvel.com/comics/issue/7622/captain_america_1968_241)
 - [ ] [Daredevil #182](https://www.marvel.com/comics/issue/8165/daredevil_1964_182)
 - [ ] [Daredevil #183](https://www.marvel.com/comics/issue/8166/daredevil_1964_183)
 - [ ] [Daredevil #184](https://www.marvel.com/comics/issue/8167/daredevil_1964_184)
-- [ ] [Peter Parker, The Spectacular Spider-Man #81](https://www.marvel.com/comics/issue/14785/peter_parker_the_spectacular_spider_man_1976_81)
-- [ ] [Peter Parker, The Spectacular Spider-Man #82](https://www.marvel.com/comics/issue/14786/peter_parker_the_spectacular_spider_man_1976_82)
-- [ ] [Peter Parker, The Spectacular Spider-Man #83](https://www.marvel.com/comics/issue/14787/peter_parker_the_spectacular_spider_man_1976_83)
+- [ ] [Peter Parker, The Spectacular Spider-Man #81](https://www.marvel.com/comics/issue/14785/peter_parker_the_spectacular_spider-man_1976_81)
+- [ ] [Peter Parker, The Spectacular Spider-Man #82](https://www.marvel.com/comics/issue/14786/peter_parker_the_spectacular_spider-man_1976_82)
+- [ ] [Peter Parker, The Spectacular Spider-Man #83](https://www.marvel.com/comics/issue/14787/peter_parker_the_spectacular_spider-man_1976_83)
 - [ ] [The Punisher #1](https://www.marvel.com/comics/issue/21640/the_punisher_1986_1)
 - [ ] [The Punisher #2](https://www.marvel.com/comics/issue/21641/the_punisher_1986_2)
 - [ ] [The Punisher #3](https://www.marvel.com/comics/issue/21642/the_punisher_1986_3)
@@ -140,7 +140,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Punisher #74](https://www.marvel.com/comics/issue/66075/the_punisher_1987_74)
 - [ ] [The Punisher #75](https://www.marvel.com/comics/issue/66076/the_punisher_1987_75)
 - [ ] Punisher: G-Force #1
-- [ ] [The Punisher: Die Hard In The Big Easy #1](https://www.marvel.com/comics/issue/66078/the_punisher_die_hard_in_the_big_easy_1992_1)
+- [ ] [The Punisher: Die Hard In The Big Easy #1](https://www.marvel.com/comics/issue/66078/the_punisher_die_hard_in_the_big_easy_1_1992_1)
 - [ ] Punisher/Black Widow: Spinning Doomsday's Web
 ## Punisher War Zone Volume 1
 - [ ] [The Punisher: War Zone #1](https://www.marvel.com/comics/issue/10598/the_punisher_war_zone_1992_1)
@@ -206,10 +206,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Punisher #2](https://www.marvel.com/comics/issue/75665/the_punisher_1998_2)
 - [ ] [The Punisher #3](https://www.marvel.com/comics/issue/75666/the_punisher_1998_3)
 - [ ] [The Punisher #4](https://www.marvel.com/comics/issue/75667/the_punisher_1998_4)
-- [ ] [Wolverine/Punisher: Revelation #1](https://www.marvel.com/comics/issue/62808/wolverine_punisher_revelation_1999_1)
-- [ ] [Wolverine/Punisher: Revelation #2](https://www.marvel.com/comics/issue/62809/wolverine_punisher_revelation_1999_2)
-- [ ] [Wolverine/Punisher: Revelation #3](https://www.marvel.com/comics/issue/62810/wolverine_punisher_revelation_1999_3)
-- [ ] [Wolverine/Punisher: Revelation #4](https://www.marvel.com/comics/issue/62811/wolverine_punisher_revelation_1999_4)
+- [ ] [Wolverine/Punisher: Revelation #1](https://www.marvel.com/comics/issue/62808/wolverinepunisher_revelation_1999_1)
+- [ ] [Wolverine/Punisher: Revelation #2](https://www.marvel.com/comics/issue/62809/wolverinepunisher_revelation_1999_2)
+- [ ] [Wolverine/Punisher: Revelation #3](https://www.marvel.com/comics/issue/62810/wolverinepunisher_revelation_1999_3)
+- [ ] [Wolverine/Punisher: Revelation #4](https://www.marvel.com/comics/issue/62811/wolverinepunisher_revelation_1999_4)
 ## Punisher: Welcome Back, Frank
 - [ ] [Punisher #1](https://www.marvel.com/comics/issue/18977/punisher_2000_1)
 - [ ] [Punisher #2](https://www.marvel.com/comics/issue/18978/punisher_2000_2)
@@ -224,43 +224,43 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Punisher #11](https://www.marvel.com/comics/issue/22447/punisher_2000_11)
 - [ ] [Punisher #12](https://www.marvel.com/comics/issue/22448/punisher_2000_12)
 ## The Punisher Vol. 2 (Marvel Knights)
-- [ ] [The Punisher #1](https://www.marvel.com/comics/issue/18958/the_punisher_2001_1)
-- [ ] [The Punisher #2](https://www.marvel.com/comics/issue/18959/the_punisher_2001_2)
-- [ ] [The Punisher #3](https://www.marvel.com/comics/issue/18960/the_punisher_2001_3)
-- [ ] [The Punisher #4](https://www.marvel.com/comics/issue/18961/the_punisher_2001_4)
-- [ ] [The Punisher #5](https://www.marvel.com/comics/issue/18962/the_punisher_2001_5)
-- [ ] [The Punisher #6](https://www.marvel.com/comics/issue/18963/the_punisher_2001_6)
-- [ ] [The Punisher #7](https://www.marvel.com/comics/issue/18964/the_punisher_2001_7)
-- [ ] [The Punisher #8](https://www.marvel.com/comics/issue/18965/the_punisher_2001_8)
-- [ ] [The Punisher #9](https://www.marvel.com/comics/issue/18966/the_punisher_2001_9)
-- [ ] [The Punisher #10](https://www.marvel.com/comics/issue/18967/the_punisher_2001_10)
-- [ ] [The Punisher #11](https://www.marvel.com/comics/issue/18968/the_punisher_2001_11)
-- [ ] [The Punisher #12](https://www.marvel.com/comics/issue/18969/the_punisher_2001_12)
-- [ ] [The Punisher #13](https://www.marvel.com/comics/issue/18970/the_punisher_2001_13)
-- [ ] [The Punisher #14](https://www.marvel.com/comics/issue/18971/the_punisher_2001_14)
-- [ ] [The Punisher #15](https://www.marvel.com/comics/issue/18972/the_punisher_2001_15)
-- [ ] [The Punisher #16](https://www.marvel.com/comics/issue/18973/the_punisher_2001_16)
-- [ ] [The Punisher #17](https://www.marvel.com/comics/issue/18974/the_punisher_2001_17)
-- [ ] [The Punisher #18](https://www.marvel.com/comics/issue/18975/the_punisher_2001_18)
-- [ ] [The Punisher #19](https://www.marvel.com/comics/issue/18976/the_punisher_2001_19)
-- [ ] [The Punisher #20](https://www.marvel.com/comics/issue/17174/the_punisher_2001_20)
-- [ ] [The Punisher #21](https://www.marvel.com/comics/issue/17175/the_punisher_2001_21)
-- [ ] [The Punisher #22](https://www.marvel.com/comics/issue/17176/the_punisher_2001_22)
-- [ ] [The Punisher #23](https://www.marvel.com/comics/issue/17177/the_punisher_2001_23)
-- [ ] [The Punisher #24](https://www.marvel.com/comics/issue/17178/the_punisher_2001_24)
-- [ ] [The Punisher #25](https://www.marvel.com/comics/issue/17179/the_punisher_2001_25)
-- [ ] [The Punisher #26](https://www.marvel.com/comics/issue/17180/the_punisher_2001_26)
-- [ ] [The Punisher #27](https://www.marvel.com/comics/issue/17155/the_punisher_2001_27)
-- [ ] [The Punisher #28](https://www.marvel.com/comics/issue/17156/the_punisher_2001_28)
-- [ ] [The Punisher #29](https://www.marvel.com/comics/issue/34318/the_punisher_2001_29)
-- [ ] [The Punisher #30](https://www.marvel.com/comics/issue/34319/the_punisher_2001_30)
-- [ ] [The Punisher #31](https://www.marvel.com/comics/issue/34320/the_punisher_2001_31)
-- [ ] [The Punisher #32](https://www.marvel.com/comics/issue/34321/the_punisher_2001_32)
-- [ ] [The Punisher #33](https://www.marvel.com/comics/issue/114/the_punisher_2001_33)
-- [ ] [The Punisher #34](https://www.marvel.com/comics/issue/113/the_punisher_2001_34)
-- [ ] [The Punisher #35](https://www.marvel.com/comics/issue/112/the_punisher_2001_35)
-- [ ] [The Punisher #36](https://www.marvel.com/comics/issue/111/the_punisher_2001_36)
-- [ ] [The Punisher #37](https://www.marvel.com/comics/issue/97/the_punisher_2001_37)
+- [ ] [The Punisher #1](https://www.marvel.com/comics/issue/18958/punisher_2001_1)
+- [ ] [The Punisher #2](https://www.marvel.com/comics/issue/18959/punisher_2001_2)
+- [ ] [The Punisher #3](https://www.marvel.com/comics/issue/18960/punisher_2001_3)
+- [ ] [The Punisher #4](https://www.marvel.com/comics/issue/18961/punisher_2001_4)
+- [ ] [The Punisher #5](https://www.marvel.com/comics/issue/18962/punisher_2001_5)
+- [ ] [The Punisher #6](https://www.marvel.com/comics/issue/18963/punisher_2001_6)
+- [ ] [The Punisher #7](https://www.marvel.com/comics/issue/18964/punisher_2001_7)
+- [ ] [The Punisher #8](https://www.marvel.com/comics/issue/18965/punisher_2001_8)
+- [ ] [The Punisher #9](https://www.marvel.com/comics/issue/18966/punisher_2001_9)
+- [ ] [The Punisher #10](https://www.marvel.com/comics/issue/18967/punisher_2001_10)
+- [ ] [The Punisher #11](https://www.marvel.com/comics/issue/18968/punisher_2001_11)
+- [ ] [The Punisher #12](https://www.marvel.com/comics/issue/18969/punisher_2001_12)
+- [ ] [The Punisher #13](https://www.marvel.com/comics/issue/18970/punisher_2001_13)
+- [ ] [The Punisher #14](https://www.marvel.com/comics/issue/18971/punisher_2001_14)
+- [ ] [The Punisher #15](https://www.marvel.com/comics/issue/18972/punisher_2001_15)
+- [ ] [The Punisher #16](https://www.marvel.com/comics/issue/18973/punisher_2001_16)
+- [ ] [The Punisher #17](https://www.marvel.com/comics/issue/18974/punisher_2001_17)
+- [ ] [The Punisher #18](https://www.marvel.com/comics/issue/18975/punisher_2001_18)
+- [ ] [The Punisher #19](https://www.marvel.com/comics/issue/18976/punisher_2001_19)
+- [ ] [The Punisher #20](https://www.marvel.com/comics/issue/17174/punisher_2001_20)
+- [ ] [The Punisher #21](https://www.marvel.com/comics/issue/17175/punisher_2001_21)
+- [ ] [The Punisher #22](https://www.marvel.com/comics/issue/17176/punisher_2001_22)
+- [ ] [The Punisher #23](https://www.marvel.com/comics/issue/17177/punisher_2001_23)
+- [ ] [The Punisher #24](https://www.marvel.com/comics/issue/17178/punisher_2001_24)
+- [ ] [The Punisher #25](https://www.marvel.com/comics/issue/17179/punisher_2001_25)
+- [ ] [The Punisher #26](https://www.marvel.com/comics/issue/17180/punisher_2001_26)
+- [ ] [The Punisher #27](https://www.marvel.com/comics/issue/17155/punisher_2001_27)
+- [ ] [The Punisher #28](https://www.marvel.com/comics/issue/17156/punisher_2001_28)
+- [ ] [The Punisher #29](https://www.marvel.com/comics/issue/34318/punisher_2001_29)
+- [ ] [The Punisher #30](https://www.marvel.com/comics/issue/34319/punisher_2001_30)
+- [ ] [The Punisher #31](https://www.marvel.com/comics/issue/34320/punisher_2001_31)
+- [ ] [The Punisher #32](https://www.marvel.com/comics/issue/34321/punisher_2001_32)
+- [ ] [The Punisher #33](https://www.marvel.com/comics/issue/114/punisher_2001_33)
+- [ ] [The Punisher #34](https://www.marvel.com/comics/issue/113/punisher_2001_34)
+- [ ] [The Punisher #35](https://www.marvel.com/comics/issue/112/punisher_2001_35)
+- [ ] [The Punisher #36](https://www.marvel.com/comics/issue/111/punisher_2001_36)
+- [ ] [The Punisher #37](https://www.marvel.com/comics/issue/97/punisher_2001_37)
 ## Marvel Knights Punisher by Garth Ennis: The Complete Collection Vol. 1
 - [ ] [Punisher Kills the Marvel Universe #1](https://www.marvel.com/comics/issue/18956/punisher_kills_the_marvel_universe_1995_1)
 ## Marvel Knights Punisher by Garth Ennis: The Complete Collection Vol. 2
@@ -433,18 +433,18 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Punisher War Journal #24](https://www.marvel.com/comics/issue/22288/punisher_war_journal_2006_24)
 - [ ] [Punisher War Journal #25](https://www.marvel.com/comics/issue/22495/punisher_war_journal_2006_25)
 - [ ] [Punisher War Journal #26](https://www.marvel.com/comics/issue/22900/punisher_war_journal_2006_26)
-- [ ] [Punisher War Journal 2008 Annual #1](https://www.marvel.com/comics/issue/22511/punisher_war_journal_2008_annual_2008_1)
+- [ ] [Punisher War Journal 2008 Annual #1](https://www.marvel.com/comics/issue/22511/punisher_war_journal_2008_annual_1_2008_1)
 ## Issues: #1 to #26 recap
 - [ ] [Punisher War Journal #1](https://www.marvel.com/comics/issue/5437/punisher_war_journal_2006_1)
 - [ ] [Punisher War Journal #2](https://www.marvel.com/comics/issue/5266/punisher_war_journal_2006_2)
 - [ ] [Punisher War Journal #3](https://www.marvel.com/comics/issue/5831/punisher_war_journal_2006_3)
 - [ ] [Punisher War Journal #4](https://www.marvel.com/comics/issue/5985/punisher_war_journal_2006_4)
 ## Wolverine / Punisher
-- [ ] [Wolverine/Punisher #1](https://www.marvel.com/comics/issue/447/wolverine_punisher_2004_1)
-- [ ] [Wolverine/Punisher #2](https://www.marvel.com/comics/issue/507/wolverine_punisher_2004_2)
-- [ ] [Wolverine/Punisher #3](https://www.marvel.com/comics/issue/675/wolverine_punisher_2004_3)
-- [ ] [Wolverine/Punisher #4](https://www.marvel.com/comics/issue/746/wolverine_punisher_2004_4)
-- [ ] [Wolverine/Punisher #5](https://www.marvel.com/comics/issue/577/wolverine_punisher_2004_5)
+- [ ] [Wolverine/Punisher #1](https://www.marvel.com/comics/issue/447/wolverinepunisher_2004_1)
+- [ ] [Wolverine/Punisher #2](https://www.marvel.com/comics/issue/507/wolverinepunisher_2004_2)
+- [ ] [Wolverine/Punisher #3](https://www.marvel.com/comics/issue/675/wolverinepunisher_2004_3)
+- [ ] [Wolverine/Punisher #4](https://www.marvel.com/comics/issue/746/wolverinepunisher_2004_4)
+- [ ] [Wolverine/Punisher #5](https://www.marvel.com/comics/issue/577/wolverinepunisher_2004_5)
 ## Punisher vs. Bullseye
 - [ ] [Punisher Vs. Bullseye #1](https://www.marvel.com/comics/issue/3013/punisher_vs_bullseye_2005_1)
 - [ ] [Punisher Vs. Bullseye #2](https://www.marvel.com/comics/issue/3129/punisher_vs_bullseye_2005_2)
@@ -452,34 +452,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Punisher Vs. Bullseye #4](https://www.marvel.com/comics/issue/3469/punisher_vs_bullseye_2005_4)
 - [ ] [Punisher Vs. Bullseye #5](https://www.marvel.com/comics/issue/3886/punisher_vs_bullseye_2005_5)
 ## Punisher: Very Special Holidays
-- [ ] [Punisher: Red X-Mas #1](https://www.marvel.com/comics/issue/1495/punisher_red_x_mas_2004_1)
-- [ ] [Punisher: Bloody Valentine #1](https://www.marvel.com/comics/issue/18955/punisher_bloody_valentine_2006_1)
+- [ ] [Punisher: Red X-Mas #1](https://www.marvel.com/comics/issue/1495/punisher_red_x-mas_1_2004_1)
+- [ ] [Punisher: Bloody Valentine #1](https://www.marvel.com/comics/issue/18955/punisher_bloody_valentine_1_2006_1)
 - [ ] [Punisher: Silent Night #1](https://www.marvel.com/comics/issue/3208/punisher_silent_night_2005_1)
 ## Punisher Max by Aaron & Dillon Omnibus
-- [ ] Punisher MAX (2009) #1
-- [ ] Punisher MAX (2009) #2
-- [ ] Punisher MAX (2009) #3
-- [ ] Punisher MAX (2009) #4
-- [ ] Punisher MAX (2009) #5
-- [ ] Punisher MAX (2009) #6
-- [ ] Punisher MAX (2009) #7
-- [ ] Punisher MAX (2009) #8
-- [ ] Punisher MAX (2009) #9
-- [ ] Punisher MAX (2009) #10
-- [ ] Punisher MAX (2009) #11
-- [ ] Punisher MAX (2009) #12
-- [ ] Punisher MAX (2009) #13
-- [ ] Punisher MAX (2009) #14
-- [ ] Punisher MAX (2009) #15
-- [ ] Punisher MAX (2009) #16
-- [ ] Punisher MAX (2009) #17
-- [ ] Punisher MAX (2009) #18
-- [ ] Punisher MAX (2009) #19
-- [ ] Punisher MAX (2009) #20
-- [ ] Punisher MAX (2009) #21
-- [ ] Punisher MAX (2009) #22
-- [ ] Punisher MAX X-Mas Special #1
-## Issues: Punisher Max #1 to #22 recap
 - [ ] Punisher MAX (2009) #1
 - [ ] Punisher MAX (2009) #2
 - [ ] Punisher MAX (2009) #3
@@ -520,15 +496,15 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Punisher #15](https://www.marvel.com/comics/issue/30507/punisher_2009_15)
 - [ ] [Punisher #16](https://www.marvel.com/comics/issue/32557/punisher_2009_16)
 ## Frankencastle #17 to #21
-- [ ] [Franken-Castle #17](https://www.marvel.com/comics/issue/30164/franken_castle_2010_17)
-- [ ] [Franken-Castle #18](https://www.marvel.com/comics/issue/30165/franken_castle_2010_18)
-- [ ] [Franken-Castle #19](https://www.marvel.com/comics/issue/30166/franken_castle_2010_19)
-- [ ] [Franken-Castle #20](https://www.marvel.com/comics/issue/30167/franken_castle_2010_20)
-- [ ] [Franken-Castle #21](https://www.marvel.com/comics/issue/30168/franken_castle_2010_21)
+- [ ] [Franken-Castle #17](https://www.marvel.com/comics/issue/30164/franken-castle_2010_17)
+- [ ] [Franken-Castle #18](https://www.marvel.com/comics/issue/30165/franken-castle_2010_18)
+- [ ] [Franken-Castle #19](https://www.marvel.com/comics/issue/30166/franken-castle_2010_19)
+- [ ] [Franken-Castle #20](https://www.marvel.com/comics/issue/30167/franken-castle_2010_20)
+- [ ] [Franken-Castle #21](https://www.marvel.com/comics/issue/30168/franken-castle_2010_21)
 ## Punisher, Vol. 2: Dead End
 - [ ] [Punisher Annual #1](https://www.marvel.com/comics/issue/26156/punisher_annual_2009_1)
 ## Punisher, Vol. 3: Franken-Castle
-- [ ] [Dark Reign: The List - Punisher #1](https://www.marvel.com/comics/issue/27421/dark_reign_the_list_punisher_2009_1)
+- [ ] [Dark Reign: The List - Punisher #1](https://www.marvel.com/comics/issue/27421/dark_reign_the_list_-_punisher_2009_1)
 - [ ] [Dark Wolverine #88](https://www.marvel.com/comics/issue/30388/dark_wolverine_2009_88)
 - [ ] [Dark Wolverine #89](https://www.marvel.com/comics/issue/30389/dark_wolverine_2009_89)
 ## Punisher: In the Blood #1 to #5
@@ -618,7 +594,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Thunderbolts #31](https://www.marvel.com/comics/issue/48872/thunderbolts_2012_31)
 - [ ] [Thunderbolts #32](https://www.marvel.com/comics/issue/51096/thunderbolts_2012_32)
 ## Original Sin
-- [ ] [Original Sin #0](https://www.marvel.com/comics/issue/50642/original_sin_2014_0)
+- [ ] [Original Sin #0](https://www.marvel.com/comics/issue/50642/original_sin_2014)
 - [ ] [Original Sin #1](https://www.marvel.com/comics/issue/49491/original_sin_2014_1)
 - [ ] [Original Sin #2](https://www.marvel.com/comics/issue/49498/original_sin_2014_2)
 - [ ] [Original Sin #3](https://www.marvel.com/comics/issue/49505/original_sin_2014_3)
@@ -680,9 +656,9 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [War of the Realms: War Scrolls #3](https://www.marvel.com/comics/issue/77262/war_of_the_realms_war_scrolls_2019_3)
 - [ ] [War Of The Realms Omega #1](https://www.marvel.com/comics/issue/74814/war_of_the_realms_omega_2019_1)
 ## Ghost Rider/Wolverine/Punisher: Hearts of Darkness (1991)
-- [ ] [Ghost Rider/Wolverine/Punisher: Hearts of Darkness #1](https://www.marvel.com/comics/issue/108820/ghost_rider_wolverine_punisher_hearts_of_darkness_1991_1)
+- [ ] [Ghost Rider/Wolverine/Punisher: Hearts of Darkness #1](https://www.marvel.com/comics/issue/108820/ghost_riderwolverinepunisher_hearts_of_darkness_1_1991_1)
 ## Ghost Rider/Wolverine/Punisher: Dark Design (1994)
-- [ ] [Ghost Rider/Wolverine/Punisher: The Dark Design #0](https://www.marvel.com/comics/issue/62690/ghost_rider_wolverine_punisher_the_dark_design_1994_0)
+- [ ] [Ghost Rider/Wolverine/Punisher: The Dark Design #0](https://www.marvel.com/comics/issue/62690/ghost_riderwolverinepunisher_the_dark_design_1994)
 ## The Punisher: War Machine Vol. 1
 - [ ] [The Punisher #218](https://www.marvel.com/comics/issue/65109/the_punisher_2016_218)
 - [ ] [The Punisher #219](https://www.marvel.com/comics/issue/65311/the_punisher_2016_219)
@@ -697,9 +673,9 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Punisher #227](https://www.marvel.com/comics/issue/69852/the_punisher_2016_227)
 - [ ] [The Punisher #228](https://www.marvel.com/comics/issue/69853/the_punisher_2016_228)
 ## Doctor Strange/Punisher: Magic Bullets
-- [ ] [Doctor Strange/Punisher: Magic Bullets #1](https://www.marvel.com/comics/issue/58705/doctor_strange_punisher_magic_bullets_2016_1)
-- [ ] [Doctor Strange/Punisher: Magic Bullets #2](https://www.marvel.com/comics/issue/58706/doctor_strange_punisher_magic_bullets_2016_2)
-- [ ] [Doctor Strange/Punisher: Magic Bullets #3](https://www.marvel.com/comics/issue/62771/doctor_strange_punisher_magic_bullets_2016_3)
+- [ ] [Doctor Strange/Punisher: Magic Bullets #1](https://www.marvel.com/comics/issue/58705/doctor_strangepunisher_magic_bullets_2016_1)
+- [ ] [Doctor Strange/Punisher: Magic Bullets #2](https://www.marvel.com/comics/issue/58706/doctor_strangepunisher_magic_bullets_2016_2)
+- [ ] [Doctor Strange/Punisher: Magic Bullets #3](https://www.marvel.com/comics/issue/62771/doctor_strangepunisher_magic_bullets_2016_3)
 - [ ] Doctor Strange/Punisher: Magic Bullets (2016) #4
 ## Defenders by Bendis Vol. 1: Diamonds Are Forever
 - [ ] [Defenders #1](https://www.marvel.com/comics/issue/62923/defenders_2017_1)
@@ -707,7 +683,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Defenders #3](https://www.marvel.com/comics/issue/63692/defenders_2017_3)
 - [ ] [Defenders #4](https://www.marvel.com/comics/issue/64138/defenders_2017_4)
 - [ ] [Defenders #5](https://www.marvel.com/comics/issue/64527/defenders_2017_5)
-- [ ] [Free Comic Book Day (All-New Guardians of the Galaxy) #0](https://www.marvel.com/comics/issue/62818/free_comic_book_day_all_new_guardians_of_the_galaxy__2017_0)
+- [ ] [Free Comic Book Day (All-New Guardians of the Galaxy) #0](https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017)
 ## The Punisher Vol. 2: War In Bagalia by Matt Rosenberg
 - [ ] [The Punisher #6](https://www.marvel.com/comics/issue/69766/the_punisher_2018_6)
 - [ ] [The Punisher #7](https://www.marvel.com/comics/issue/69768/the_punisher_2018_7)
@@ -744,4 +720,3 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Punisher War Journal: Blitz #1](https://www.marvel.com/comics/issue/94540/punisher_war_journal_blitz_2022_1)
 - [ ] [Punisher War Journal: Brother #1](https://www.marvel.com/comics/issue/94541/punisher_war_journal_brother_2022_1)
 - [ ] [Punisher War Journal: Base #1](https://www.marvel.com/comics/issue/94542/punisher_war_journal_base_2023_1)
-

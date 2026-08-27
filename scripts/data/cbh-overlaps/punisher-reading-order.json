@@ -1,18 +1,18 @@
 {
   "candidateId": "punisher-reading-order",
-  "packetDigest": "985054adad840d3ecd5d04e7d0b77c6413439b3e0d08509945d500485632d048",
-  "mappingDigest": "7043c68f43c00fb0017a4323fb8977c49cdc9aac586865bb4a97f5aad1fb5d9d",
-  "libraryDigest": "fa639620c25ab38c21974e0b96cac070776215e6cb0bfa6477ac19174a2cfce5",
+  "packetDigest": "b52164f244217533ccb8d312ebcb58ab0f01c62c80170b49f00e0f7ab3b717da",
+  "mappingDigest": "0d403238205a691d74e3ae90a2098d12792060180ad7b3d2084351aff3bfa3cc",
+  "libraryDigest": "fefe7518389233452de5122ab7606ee9f6f1551bf3eb2dceaf8f1fff7f9c56c4",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 857,
-    "sourceIdentityCount": 661,
+    "sourceIdentityCount": 638,
     "includedIssueCount": 480,
-    "sourceGapCount": 181,
-    "repeatedSourceReferenceCount": 122
+    "sourceGapCount": 158,
+    "repeatedSourceReferenceCount": 145
   },
   "candidateCount": 480,
-  "comparisonCount": 151,
+  "comparisonCount": 153,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -265,6 +265,17 @@
       "relationship": "none"
     },
     {
+      "orderId": "doctor-strange-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "74814",
+        "58705",
+        "58706",
+        "62771"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "doomwar",
       "sharedCount": 0,
       "sharedIds": [],
@@ -445,6 +456,51 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "marvel-knights-to-planet-x",
+      "sharedCount": 38,
+      "sharedIds": [
+        "18977",
+        "18978",
+        "18979",
+        "18980",
+        "18981",
+        "18982",
+        "18983",
+        "18984",
+        "18985",
+        "18986",
+        "22447",
+        "22448",
+        "18958",
+        "18959",
+        "18960",
+        "18961",
+        "18962",
+        "18963",
+        "18964",
+        "18970",
+        "18971",
+        "18972",
+        "18973",
+        "18974",
+        "18975",
+        "18976",
+        "17174",
+        "17175",
+        "17176",
+        "17177",
+        "17178",
+        "17179",
+        "17180",
+        "17155",
+        "17156",
+        "34318",
+        "34319",
+        "34320"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "marvel-multiverse",
@@ -947,5 +1003,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "533693da1cc99542b70af6cb4047e769323c1a6bebc9cd996918bf74475b5600"
+  "reportDigest": "273211ef0705ec56190fe69bbd352351dc95f76be02a062380af64a8734f2595"
 }

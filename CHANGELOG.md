@@ -14,6 +14,13 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Punisher reading guide
+
+In plain English: You can now follow 480 Punisher comics from his earliest appearances through the
+latest additions. The guide keeps 158 comics that the metadata source cannot identify as clear
+placeholders instead of guessing or dropping them, and it keeps repeated source mentions from
+duplicating comics in your Reading List. Nothing you have saved is changed.
+
 ### Made page location and adding comics clearer
 
 In plain English: The sidebar and its destination now say Add comics, making it clear that this is

@@ -950,6 +950,213 @@
       "issueNumber": "26"
     },
     {
+      "sourcePosition": 529,
+      "canonicalGapPosition": 407,
+      "sourceIssueReference": "Punisher MAX X-Mas Special #1",
+      "sourceRangeReference": "Punisher Max by Aaron & Dillon Omnibus",
+      "normalizedSeriesTitle": "Punisher MAX X-Mas Special",
+      "seriesYear": null,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 530,
+      "canonicalGapPosition": 507,
+      "sourceIssueReference": "Punisher MAX (2009) #1",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "1"
+    },
+    {
+      "sourcePosition": 531,
+      "canonicalGapPosition": 508,
+      "sourceIssueReference": "Punisher MAX (2009) #2",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "2"
+    },
+    {
+      "sourcePosition": 532,
+      "canonicalGapPosition": 509,
+      "sourceIssueReference": "Punisher MAX (2009) #3",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "3"
+    },
+    {
+      "sourcePosition": 533,
+      "canonicalGapPosition": 510,
+      "sourceIssueReference": "Punisher MAX (2009) #4",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "4"
+    },
+    {
+      "sourcePosition": 534,
+      "canonicalGapPosition": 511,
+      "sourceIssueReference": "Punisher MAX (2009) #5",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "5"
+    },
+    {
+      "sourcePosition": 535,
+      "canonicalGapPosition": 512,
+      "sourceIssueReference": "Punisher MAX (2009) #6",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "6"
+    },
+    {
+      "sourcePosition": 536,
+      "canonicalGapPosition": 513,
+      "sourceIssueReference": "Punisher MAX (2009) #7",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "7"
+    },
+    {
+      "sourcePosition": 537,
+      "canonicalGapPosition": 514,
+      "sourceIssueReference": "Punisher MAX (2009) #8",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "8"
+    },
+    {
+      "sourcePosition": 538,
+      "canonicalGapPosition": 515,
+      "sourceIssueReference": "Punisher MAX (2009) #9",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "9"
+    },
+    {
+      "sourcePosition": 539,
+      "canonicalGapPosition": 516,
+      "sourceIssueReference": "Punisher MAX (2009) #10",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "10"
+    },
+    {
+      "sourcePosition": 540,
+      "canonicalGapPosition": 517,
+      "sourceIssueReference": "Punisher MAX (2009) #11",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "11"
+    },
+    {
+      "sourcePosition": 541,
+      "canonicalGapPosition": 518,
+      "sourceIssueReference": "Punisher MAX (2009) #12",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "12"
+    },
+    {
+      "sourcePosition": 542,
+      "canonicalGapPosition": 519,
+      "sourceIssueReference": "Punisher MAX (2009) #13",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "13"
+    },
+    {
+      "sourcePosition": 543,
+      "canonicalGapPosition": 520,
+      "sourceIssueReference": "Punisher MAX (2009) #14",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "14"
+    },
+    {
+      "sourcePosition": 544,
+      "canonicalGapPosition": 521,
+      "sourceIssueReference": "Punisher MAX (2009) #15",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "15"
+    },
+    {
+      "sourcePosition": 545,
+      "canonicalGapPosition": 522,
+      "sourceIssueReference": "Punisher MAX (2009) #16",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "16"
+    },
+    {
+      "sourcePosition": 546,
+      "canonicalGapPosition": 523,
+      "sourceIssueReference": "Punisher MAX (2009) #17",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "17"
+    },
+    {
+      "sourcePosition": 547,
+      "canonicalGapPosition": 524,
+      "sourceIssueReference": "Punisher MAX (2009) #18",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "18"
+    },
+    {
+      "sourcePosition": 548,
+      "canonicalGapPosition": 525,
+      "sourceIssueReference": "Punisher MAX (2009) #19",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "19"
+    },
+    {
+      "sourcePosition": 549,
+      "canonicalGapPosition": 526,
+      "sourceIssueReference": "Punisher MAX (2009) #20",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 550,
+      "canonicalGapPosition": 527,
+      "sourceIssueReference": "Punisher MAX (2009) #21",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "21"
+    },
+    {
+      "sourcePosition": 551,
+      "canonicalGapPosition": 528,
+      "sourceIssueReference": "Punisher MAX (2009) #22",
+      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
+      "normalizedSeriesTitle": "Punisher MAX",
+      "seriesYear": 2009,
+      "issueNumber": "22"
+    },
+    {
       "sourcePosition": 573,
       "canonicalRow": 280,
       "sourceIssueReference": "Punisher (2009) #1",
@@ -5011,581 +5218,6 @@
       "evidenceDigest": "a82afbdc1e91d0b45ee91219f4e6f14e191d5fa588d13a9e4dba994a79ecf8b2"
     },
     {
-      "sourcePosition": 529,
-      "sourceIssueReference": "Punisher MAX X-Mas Special #1",
-      "sourceRangeReference": "Punisher Max by Aaron & Dillon Omnibus",
-      "normalizedSeriesTitle": "Punisher MAX X-Mas Special",
-      "seriesYear": null,
-      "issueNumber": "1 (source 529)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "No provider series named Punisher MAX X-Mas Special is indexed.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "221f7afe37fe84091a11734d817b2967bc5399d4f4eee49a59e7f8745e7932a1"
-    },
-    {
-      "sourcePosition": 530,
-      "sourceIssueReference": "Punisher MAX (2009) #1",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "1 (source 530)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8c84379874a8d0a8fe49a4dddf8ad91141aaaa7cc45f81f4cf91733fbd7d09e7"
-    },
-    {
-      "sourcePosition": 531,
-      "sourceIssueReference": "Punisher MAX (2009) #2",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "2 (source 531)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2f1bed1d82fe1c84736ca4ff1f1b2b8ba293b492498c5d029391973107bb2317"
-    },
-    {
-      "sourcePosition": 532,
-      "sourceIssueReference": "Punisher MAX (2009) #3",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "3 (source 532)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2ee6cac79dd155442de08502e66239f59470f890e67053ba9b05df8348b82ba9"
-    },
-    {
-      "sourcePosition": 533,
-      "sourceIssueReference": "Punisher MAX (2009) #4",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "4 (source 533)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "1f6469e1d3fa6edaa9b40bda9011242fc9f4315ea8a3629649b4fd4297109958"
-    },
-    {
-      "sourcePosition": 534,
-      "sourceIssueReference": "Punisher MAX (2009) #5",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "5 (source 534)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b32bf7f86157acc5035281d5ed68be60a57448089155afc2cd680d2d04ba918b"
-    },
-    {
-      "sourcePosition": 535,
-      "sourceIssueReference": "Punisher MAX (2009) #6",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "6 (source 535)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "50008baa0fb007bc66553f8738d17e9d91ceb031186529a0318d8609cbfda11c"
-    },
-    {
-      "sourcePosition": 536,
-      "sourceIssueReference": "Punisher MAX (2009) #7",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "7 (source 536)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "d9a1d938845f757b7db2979e04a115d6442e3205dc0e80fd18767aa1f466360a"
-    },
-    {
-      "sourcePosition": 537,
-      "sourceIssueReference": "Punisher MAX (2009) #8",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "8 (source 537)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "26f939426fdca33d663122123e75d3143c85b9242da39aa52745e9a211ceb8ba"
-    },
-    {
-      "sourcePosition": 538,
-      "sourceIssueReference": "Punisher MAX (2009) #9",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "9 (source 538)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "59e7f19c84b654f1d1991aca7811fae76d88cc5884f6e3d67f8da5db0408f2c0"
-    },
-    {
-      "sourcePosition": 539,
-      "sourceIssueReference": "Punisher MAX (2009) #10",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "10 (source 539)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "651a1a0d05d7ba0564b95a5e3084655a54ec3a5abc67bd7094a60d5d16fda7c8"
-    },
-    {
-      "sourcePosition": 540,
-      "sourceIssueReference": "Punisher MAX (2009) #11",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "11 (source 540)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "0bc766f1706a049ae718c8b69f41cbde61cfa3ed9a8ff1234d4338eaade86946"
-    },
-    {
-      "sourcePosition": 541,
-      "sourceIssueReference": "Punisher MAX (2009) #12",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "12 (source 541)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "5ee940e304c32bf4562cb81e647635c1a71b92e55333a5735e36452eca917d05"
-    },
-    {
-      "sourcePosition": 542,
-      "sourceIssueReference": "Punisher MAX (2009) #13",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "13 (source 542)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a56fa1011ca20fa71f9df5a04a5fcea74b9ccb47e1a0c4fcee53656fa81362bc"
-    },
-    {
-      "sourcePosition": 543,
-      "sourceIssueReference": "Punisher MAX (2009) #14",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "14 (source 543)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a79ea7e400706a42c8bff07bffe18f8e9d427f5a2432564c2fe559d3dffffa9e"
-    },
-    {
-      "sourcePosition": 544,
-      "sourceIssueReference": "Punisher MAX (2009) #15",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "15 (source 544)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "6086236425a0245a6f17b5dfc06e8eba76df1217e358dde5490c60916fb069e8"
-    },
-    {
-      "sourcePosition": 545,
-      "sourceIssueReference": "Punisher MAX (2009) #16",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "16 (source 545)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "cb3633d6e3b1077017dd292cbf15ad387a7c839d5f1ce1ed68e145806c8ae93f"
-    },
-    {
-      "sourcePosition": 546,
-      "sourceIssueReference": "Punisher MAX (2009) #17",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "17 (source 546)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "c261b574fe53268aa81cdf7d3b0b2249e94ec6f4d19d63d9b296a4070e0a30f5"
-    },
-    {
-      "sourcePosition": 547,
-      "sourceIssueReference": "Punisher MAX (2009) #18",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "18 (source 547)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "ffdfef630dc18d5f79243df8aa9a2f0c91ee76c8a8d441e4d29c6eabebc8a525"
-    },
-    {
-      "sourcePosition": 548,
-      "sourceIssueReference": "Punisher MAX (2009) #19",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "19 (source 548)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2722569458b61a226550a36d7ad58a147d56939c99e977743053fbdc8515ed8b"
-    },
-    {
-      "sourcePosition": 549,
-      "sourceIssueReference": "Punisher MAX (2009) #20",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "20 (source 549)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "20870e513404731def295282af3799c09172e2754393affa0c63064f175f8bbb"
-    },
-    {
-      "sourcePosition": 550,
-      "sourceIssueReference": "Punisher MAX (2009) #21",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "21 (source 550)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "79455e6cb741625c56c2f58e1680f9cb8ab8191fc7e3180f69679cb0ea56f09e"
-    },
-    {
-      "sourcePosition": 551,
-      "sourceIssueReference": "Punisher MAX (2009) #22",
-      "sourceRangeReference": "Issues: Punisher Max #1 to #22 recap",
-      "normalizedSeriesTitle": "Punisher MAX",
-      "seriesYear": 2009,
-      "issueNumber": "22 (source 551)",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Recap of the same unavailable Punisher MAX (2009) run.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/punisher-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "964d4c4d73658945772b8f4d696c3c289ff799b3b4d93bf01cb5765967d33d88"
-    },
-    {
       "sourcePosition": 694,
       "sourceIssueReference": "Daredevil/Punisher: Seventh Circle (2015) #1",
       "sourceRangeReference": "Daredevil/Punisher: Seventh Circle",
@@ -5737,7 +5369,7 @@
       "Comic Book Herald",
       "Frank Castle"
     ],
-    "expect": 661,
+    "expect": 638,
     "timeline": null,
     "coverIssueId": 6515
   },
@@ -5747,8 +5379,8 @@
   "sourceReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "Independent source review confirmed the full-page boundary through Latest Additions, no qualifying Best or Essential subsection, source-order accounting, explicit repeats, explicit non-issue exclusions, and unresolved provider gaps.",
-    "reviewedAt": "2026-08-27"
+    "rationale": "A serialized live provider audit verified the 480 exact issue identities and reviewed every distinct gap identity against the current provider series catalog; the 857 source occurrences retain 145 repeats, 158 gaps, and 74 exclusions.",
+    "reviewedAt": "2026-08-27T13:31:19.083Z"
   },
   "rows": [
     {
@@ -11994,7 +11626,7 @@
       "sourcePosition": 783
     }
   ],
-  "packetDigest": "985054adad840d3ecd5d04e7d0b77c6413439b3e0d08509945d500485632d048",
+  "packetDigest": "b52164f244217533ccb8d312ebcb58ab0f01c62c80170b49f00e0f7ab3b717da",
   "excludedSourceRows": [
     {
       "sourcePosition": 784,
@@ -12440,5 +12072,6 @@
       "reason": "Non-issue boundary marker or out-of-boundary reference.",
       "decisionScope": "punisher-reading-order boundary"
     }
-  ]
+  ],
+  "canonicalSourcePositions": true
 }

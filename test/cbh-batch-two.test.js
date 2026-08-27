@@ -244,6 +244,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'spider-man-far-from-home',
     'deadpool-best-of',
     'marvel-knights-to-planet-x',
+    'punisher-reading-order',
   ]);
   const packetRecords = [];
   const existingRecords = [];

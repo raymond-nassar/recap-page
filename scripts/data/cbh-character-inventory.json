@@ -2493,7 +2493,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The full-page source ledger preserves 857 source occurrences: 480 exactly resolved items, 122 repeats, 181 explicit metadata gaps, and 74 explicit exclusions while the draft delivery remains unmerged.",
+    "reason": "A serialized live provider audit verified 480 exact issue identities; the full-page ledger preserves 145 repeats, 158 unresolved metadata gaps, and 74 explicit non-issue exclusions while publication awaits delivery.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
