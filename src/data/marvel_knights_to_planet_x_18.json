@@ -1,0 +1,239 @@
+{
+  "id": "marvel-knights-to-planet-x-18",
+  "name": "Exiles: A World Apart",
+  "description": "Owner-curated chapter 18 of 78 in the Marvel Knights to Planet X reading path, from Exiles (2001) #5 through Exiles (2001) #11.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 28,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 4876,
+      "title": "Exiles (2001) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/4876/exiles_2001_5",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2001-10-03T00:00:00+0000",
+      "mu": "2001-10-03T00:00:00+0000",
+      "digitalId": 719,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/4bc37f6ea5a39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 16304,
+      "title": "Exiles (2001) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/16304/exiles_2001_6",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2001-11-07T00:00:00+0000",
+      "mu": "2001-11-07T00:00:00+0000",
+      "digitalId": 4007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5d4491205a5c8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "James Calafiore",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16315,
+      "title": "Exiles (2001) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/16315/exiles_2001_7",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2001-12-05T00:00:00+0000",
+      "mu": "2001-12-05T00:00:00+0000",
+      "digitalId": 4008,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/80/5d44966041570",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16326,
+      "title": "Exiles (2001) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/16326/exiles_2001_8",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-01-02T00:00:00+0000",
+      "mu": "2002-01-02T00:00:00+0000",
+      "digitalId": 4009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5d482b7ab0f8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16327,
+      "title": "Exiles (2001) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/16327/exiles_2001_9",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-02-06T00:00:00+0000",
+      "mu": "2002-02-06T00:00:00+0000",
+      "digitalId": 4010,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5d482c34018f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16250,
+      "title": "Exiles (2001) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/16250/exiles_2001_10",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-02-20T00:00:00+0000",
+      "mu": "2002-02-20T00:00:00+0000",
+      "digitalId": 4011,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5d48339b3db62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16251,
+      "title": "Exiles (2001) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/16251/exiles_2001_11",
+      "seriesId": 479,
+      "seriesName": "Exiles (2001 - 2008)",
+      "onSale": "2002-03-06T00:00:00+0000",
+      "mu": "2002-03-06T00:00:00+0000",
+      "digitalId": 4012,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/5d483a00c36c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Eric Cannon",
+          "role": "cover artist"
+        },
+        {
+          "name": "James Calafiore",
+          "role": "penciler"
+        },
+        {
+          "name": "Judd Winick",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

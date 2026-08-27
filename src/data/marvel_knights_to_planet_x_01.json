@@ -1,0 +1,520 @@
+{
+  "id": "marvel-knights-to-planet-x-01",
+  "name": "Daredevil & Black Widow Opening Sequence",
+  "description": "Owner-curated chapter 01 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #1 through Daredevil (1998) #15.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 21,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 1,
+    "sourceCount": 4,
+    "sourceGroup": "1998-1999",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15609,
+      "title": "Daredevil (1998) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15609/daredevil_1998_1",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1998-11-01T00:00:00+0000",
+      "mu": "1998-11-01T00:00:00+0000",
+      "digitalId": 1093,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/57223eff00d5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15620,
+      "title": "Daredevil (1998) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15620/daredevil_1998_2",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1998-12-01T00:00:00+0000",
+      "mu": "1998-12-01T00:00:00+0000",
+      "digitalId": 5583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/56326dced92e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15631,
+      "title": "Daredevil (1998) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/15631/daredevil_1998_3",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1999-01-01T00:00:00+0000",
+      "mu": "1999-01-01T00:00:00+0000",
+      "digitalId": 5603,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/56326f5207b28",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15642,
+      "title": "Daredevil (1998) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15642/daredevil_1998_4",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1999-02-01T00:00:00+0000",
+      "mu": "1999-02-01T00:00:00+0000",
+      "digitalId": 5614,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/56326fbd2422f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15653,
+      "title": "Daredevil (1998) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/15653/daredevil_1998_5",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1999-03-01T00:00:00+0000",
+      "mu": "1999-03-01T00:00:00+0000",
+      "digitalId": 5626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/56327077ed70b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15664,
+      "title": "Daredevil (1998) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/15664/daredevil_1998_6",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1999-04-01T00:00:00+0000",
+      "mu": "1999-04-01T00:00:00+0000",
+      "digitalId": 5637,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/563270edb0835",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15675,
+      "title": "Daredevil (1998) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/15675/daredevil_1998_7",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1999-05-01T00:00:00+0000",
+      "mu": "1999-05-01T00:00:00+0000",
+      "digitalId": 5647,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/563271b9b470c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15686,
+      "title": "Daredevil (1998) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/15686/daredevil_1998_8",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1999-06-01T00:00:00+0000",
+      "mu": "1999-06-01T00:00:00+0000",
+      "digitalId": 5648,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/5632725b24f94",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quesada",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Smith",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 7370,
+      "title": "Black Widow (1999) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/7370/black_widow_1999_1",
+      "seriesId": 1994,
+      "seriesName": "Black Widow (1999)",
+      "onSale": "1999-06-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 1544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/30/5a2ab0d80322d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 7371,
+      "title": "Black Widow (1999) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/7371/black_widow_1999_2",
+      "seriesId": 1994,
+      "seriesName": "Black Widow (1999)",
+      "onSale": "1999-07-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 5323,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5a2ac3e87c1ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 7372,
+      "title": "Black Widow (1999) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/7372/black_widow_1999_3",
+      "seriesId": 1994,
+      "seriesName": "Black Widow (1999)",
+      "onSale": "1999-08-10T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 5324,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/4bb88cd1138ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 14809,
+      "title": "Black Widow (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/14809/black_widow_2001_1",
+      "seriesId": 2272,
+      "seriesName": "Black Widow (2001)",
+      "onSale": "2001-01-10T00:00:00+0000",
+      "mu": "2007-11-26T00:00:00+0000",
+      "digitalId": 2994,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/4bc33616545d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 14810,
+      "title": "Black Widow (2001) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/14810/black_widow_2001_2",
+      "seriesId": 2272,
+      "seriesName": "Black Widow (2001)",
+      "onSale": "2001-02-10T00:00:00+0000",
+      "mu": "2007-04-01T00:00:00+0000",
+      "digitalId": 1546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4bc467340a6aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 14811,
+      "title": "Black Widow (2001) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/14811/black_widow_2001_3",
+      "seriesId": 2272,
+      "seriesName": "Black Widow (2001)",
+      "onSale": "2001-03-10T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 2996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4bc46cb71098f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15694,
+      "title": "Daredevil (1998) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/15694/daredevil_1998_9",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "1999-12-10T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5657,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/57224121a9252",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": []
+    },
+    {
+      "issueId": 15610,
+      "title": "Daredevil (1998) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/15610/daredevil_1998_10",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2000-03-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/57226e635cd2d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15611,
+      "title": "Daredevil (1998) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/15611/daredevil_1998_11",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2000-05-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/572273ac7df95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": []
+    },
+    {
+      "issueId": 15612,
+      "title": "Daredevil (1998) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/15612/daredevil_1998_12",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2000-06-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/70/572274607b084",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15613,
+      "title": "Daredevil (1998) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/15613/daredevil_1998_13",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2000-10-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/572365ea5e851",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15614,
+      "title": "Daredevil (1998) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/15614/daredevil_1998_14",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2001-03-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/57236c296c60d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15615,
+      "title": "Daredevil (1998) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/15615/daredevil_1998_15",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2001-04-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5548,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/572370e59110d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    }
+  ]
+}

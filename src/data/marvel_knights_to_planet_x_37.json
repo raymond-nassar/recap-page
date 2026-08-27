@@ -1,0 +1,212 @@
+{
+  "id": "marvel-knights-to-planet-x-37",
+  "name": "X-Treme X-Men: X-Pose + Schism",
+  "description": "Owner-curated chapter 37 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #19 through X-Treme X-Men (2001) #23.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 47,
+    "sourceCount": 3,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15021,
+      "title": "X-Treme X-Men (2001) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/15021/x-treme_x-men_2001_19",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2002-10-09T00:00:00+0000",
+      "digitalId": 3117,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5c4f6644608d6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43391,
+      "title": "X-Treme X-Men: X-Pose (2002) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/43391/x-treme_x-men_x-pose_2002_1",
+      "seriesId": 16428,
+      "seriesName": "X-Treme X-Men: X-Pose (2002 - 2003)",
+      "onSale": "2002-11-13T00:00:00+0000",
+      "mu": "2002-11-13T00:00:00+0000",
+      "digitalId": 26523,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/58863b784d434",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Arthur Ranson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43392,
+      "title": "X-Treme X-Men: X-Pose (2002) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/43392/x-treme_x-men_x-pose_2002_2",
+      "seriesId": 16428,
+      "seriesName": "X-Treme X-Men: X-Pose (2002 - 2003)",
+      "onSale": "2002-12-25T00:00:00+0000",
+      "mu": "2002-12-25T00:00:00+0000",
+      "digitalId": 26524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/58863c5917b53",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Arthur Ranson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15023,
+      "title": "X-Treme X-Men (2001) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/15023/x-treme_x-men_2001_20",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-01-08T00:00:00+0000",
+      "mu": "2003-01-08T00:00:00+0000",
+      "digitalId": 3820,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/5c4f6ea5a9de1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15024,
+      "title": "X-Treme X-Men (2001) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/15024/x-treme_x-men_2001_21",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-02-19T00:00:00+0000",
+      "mu": "2003-02-19T00:00:00+0000",
+      "digitalId": 3821,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5c4f755ad0ce6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15025,
+      "title": "X-Treme X-Men (2001) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/15025/x-treme_x-men_2001_22",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-03-05T00:00:00+0000",
+      "mu": "2003-03-05T00:00:00+0000",
+      "digitalId": 3822,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/5c50637524b05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15026,
+      "title": "X-Treme X-Men (2001) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/15026/x-treme_x-men_2001_23",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-03-26T00:00:00+0000",
+      "mu": "2003-03-26T00:00:00+0000",
+      "digitalId": 3823,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5c506e972079b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

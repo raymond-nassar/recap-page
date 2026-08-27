@@ -1,0 +1,149 @@
+{
+  "id": "marvel-knights-to-planet-x-34",
+  "name": "Fantastic Four: Imaginauts",
+  "description": "Owner-curated chapter 34 of 78 in the Marvel Knights to Planet X reading path, from Fantastic Four (1998) #60 through Fantastic Four (1998) #66.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 44,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15583,
+      "title": "Fantastic Four (1998) #60",
+      "number": "60",
+      "url": "https://www.marvel.com/comics/issue/15583/fantastic_four_1998_60",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2002-10-01T00:00:00+0000",
+      "mu": "2002-10-01T00:00:00+0000",
+      "digitalId": 669,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5ab3fb7c14461",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15584,
+      "title": "Fantastic Four (1998) #61",
+      "number": "61",
+      "url": "https://www.marvel.com/comics/issue/15584/fantastic_four_1998_61",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2002-11-01T00:00:00+0000",
+      "digitalId": 4707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5acf77e44e6e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15585,
+      "title": "Fantastic Four (1998) #62",
+      "number": "62",
+      "url": "https://www.marvel.com/comics/issue/15585/fantastic_four_1998_62",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2002-12-01T00:00:00+0000",
+      "digitalId": 4708,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/50/5acf7eebbe4c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15586,
+      "title": "Fantastic Four (1998) #63",
+      "number": "63",
+      "url": "https://www.marvel.com/comics/issue/15586/fantastic_four_1998_63",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 849,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5acf83b688c0b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15587,
+      "title": "Fantastic Four (1998) #64",
+      "number": "64",
+      "url": "https://www.marvel.com/comics/issue/15587/fantastic_four_1998_64",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2003-02-01T00:00:00+0000",
+      "digitalId": 844,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/4bc331a7c1186",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15588,
+      "title": "Fantastic Four (1998) #65",
+      "number": "65",
+      "url": "https://www.marvel.com/comics/issue/15588/fantastic_four_1998_65",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-03-01T00:00:00+0000",
+      "mu": "2003-03-01T00:00:00+0000",
+      "digitalId": 4711,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bc37b3c714a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 15589,
+      "title": "Fantastic Four (1998) #66",
+      "number": "66",
+      "url": "https://www.marvel.com/comics/issue/15589/fantastic_four_1998_66",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2003-04-01T00:00:00+0000",
+      "mu": "2003-04-01T00:00:00+0000",
+      "digitalId": 4712,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/4bc37b41cde9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

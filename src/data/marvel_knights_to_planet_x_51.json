@@ -1,0 +1,236 @@
+{
+  "id": "marvel-knights-to-planet-x-51",
+  "name": "X-Treme X-Men: God Loves, Man Kills II",
+  "description": "Owner-curated chapter 51 of 78 in the Marvel Knights to Planet X reading path, from X-Treme X-Men (2001) #24 through X-Treme X-Men (2001) #30.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 64,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15027,
+      "title": "X-Treme X-Men (2001) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/15027/x-treme_x-men_2001_24",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-06-01T00:00:00+0000",
+      "mu": "2003-06-01T00:00:00+0000",
+      "digitalId": 3824,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5c50773fa385f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Salvador Larroca",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15028,
+      "title": "X-Treme X-Men (2001) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/15028/x-treme_x-men_2001_25",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2003-07-01T00:00:00+0000",
+      "digitalId": 3118,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5c4f0af27c548",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Igor Kordey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15029,
+      "title": "X-Treme X-Men (2001) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/15029/x-treme_x-men_2001_26",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2003-07-01T00:00:00+0000",
+      "digitalId": 3825,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5c4f149c71b62",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Igor Kordey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15030,
+      "title": "X-Treme X-Men (2001) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/15030/x-treme_x-men_2001_27",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-08-01T00:00:00+0000",
+      "mu": "2003-08-01T00:00:00+0000",
+      "digitalId": 3826,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5c4f21f0187b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Igor Kordey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15031,
+      "title": "X-Treme X-Men (2001) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/15031/x-treme_x-men_2001_28",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-09-01T00:00:00+0000",
+      "mu": "2003-09-01T00:00:00+0000",
+      "digitalId": 3827,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/4bc36839c74ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Igor Kordey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15032,
+      "title": "X-Treme X-Men (2001) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/15032/x-treme_x-men_2001_29",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 3828,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/4bc3683ec6142",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Igor Kordey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15034,
+      "title": "X-Treme X-Men (2001) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/15034/x-treme_x-men_2001_30",
+      "seriesId": 646,
+      "seriesName": "X-Treme X-Men (2001 - 2004)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2003-10-01T00:00:00+0000",
+      "digitalId": 3829,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/4bc36843e5203",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Igor Kordey",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,189 @@
+{
+  "id": "marvel-knights-to-planet-x-68",
+  "name": "Iron Man: The Best Defense",
+  "description": "Owner-curated chapter 68 of 78 in the Marvel Knights to Planet X reading path, from Iron Man (1998) #73 through Iron Man (1998) #78.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 82,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 379,
+      "title": "Iron Man (1998) #73",
+      "number": "73",
+      "url": "https://www.marvel.com/comics/issue/379/iron_man_1998_73",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "2003-10-08T00:00:00+0000",
+      "mu": "2003-10-08T00:00:00+0000",
+      "digitalId": 6206,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5a68ee5b42a8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Jackson Miller",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 350,
+      "title": "Iron Man (1998) #74",
+      "number": "74",
+      "url": "https://www.marvel.com/comics/issue/350/iron_man_1998_74",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "2003-11-12T00:00:00+0000",
+      "mu": "2003-11-12T00:00:00+0000",
+      "digitalId": 6207,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5a69e1d3d8651",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Jackson Miller",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 337,
+      "title": "Iron Man (1998) #75",
+      "number": "75",
+      "url": "https://www.marvel.com/comics/issue/337/iron_man_1998_75",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "2003-12-10T00:00:00+0000",
+      "mu": "2003-12-10T00:00:00+0000",
+      "digitalId": 6208,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5a69ef2176180",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Jackson Miller",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 335,
+      "title": "Iron Man (1998) #76",
+      "number": "76",
+      "url": "https://www.marvel.com/comics/issue/335/iron_man_1998_76",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2004-01-21T00:00:00+0000",
+      "digitalId": 6209,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/4d24ece66961b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jorge Lucas",
+          "role": "penciler"
+        },
+        {
+          "name": "John Jackson Miller",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 378,
+      "title": "Iron Man (1998) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/378/iron_man_1998_77",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "2004-02-11T00:00:00+0000",
+      "mu": "2004-02-11T00:00:00+0000",
+      "digitalId": 6210,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/4d24f8e1dbee0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Jackson Miller",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 407,
+      "title": "Iron Man (1998) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/407/iron_man_1998_78",
+      "seriesId": 2572,
+      "seriesName": "Iron Man (1998 - 2004)",
+      "onSale": "2004-03-10T00:00:00+0000",
+      "mu": "2004-03-10T00:00:00+0000",
+      "digitalId": 6211,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4d24dc095be76",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jorge Lucas",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Jackson Miller",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

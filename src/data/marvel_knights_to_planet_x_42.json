@@ -1,0 +1,178 @@
+{
+  "id": "marvel-knights-to-planet-x-42",
+  "name": "New X-Men: Riot at Xavier’s",
+  "description": "Owner-curated chapter 42 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #134 through New X-Men (2001) #138.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 54,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14953,
+      "title": "New X-Men (2001) #134",
+      "number": "134",
+      "url": "https://www.marvel.com/comics/issue/14953/new_x-men_2001_134",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-11-20T00:00:00+0000",
+      "mu": "2002-11-20T00:00:00+0000",
+      "digitalId": 6582,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/4c35ed2920f8d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keron Grant",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14954,
+      "title": "New X-Men (2001) #135",
+      "number": "135",
+      "url": "https://www.marvel.com/comics/issue/14954/new_x-men_2001_135",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-12-18T00:00:00+0000",
+      "mu": "2002-12-18T00:00:00+0000",
+      "digitalId": 6583,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/4c35ed1aaecbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14955,
+      "title": "New X-Men (2001) #136",
+      "number": "136",
+      "url": "https://www.marvel.com/comics/issue/14955/new_x-men_2001_136",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-01-15T00:00:00+0000",
+      "mu": "2003-01-15T00:00:00+0000",
+      "digitalId": 6584,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/577d5cceb4deb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Avalon Studios",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14956,
+      "title": "New X-Men (2001) #137",
+      "number": "137",
+      "url": "https://www.marvel.com/comics/issue/14956/new_x-men_2001_137",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-02-19T00:00:00+0000",
+      "mu": "2003-02-19T00:00:00+0000",
+      "digitalId": 6585,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/577d62c5c9c3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Avalon Studios",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14957,
+      "title": "New X-Men (2001) #138",
+      "number": "138",
+      "url": "https://www.marvel.com/comics/issue/14957/new_x-men_2001_138",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-03-19T00:00:00+0000",
+      "mu": "2003-03-19T00:00:00+0000",
+      "digitalId": 6586,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/577d6c7191401",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Avalon Studios",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

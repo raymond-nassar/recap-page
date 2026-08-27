@@ -1,0 +1,140 @@
+{
+  "id": "marvel-knights-to-planet-x-20",
+  "name": "Daredevil: Underboss",
+  "description": "Owner-curated chapter 20 of 78 in the Marvel Knights to Planet X reading path, from Daredevil (1998) #26 through Daredevil (1998) #31.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 30,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 15627,
+      "title": "Daredevil (1998) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/15627/daredevil_1998_26",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2001-12-15T00:00:00+0000",
+      "mu": "2008-02-11T00:00:00+0000",
+      "digitalId": 5599,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/70/5727637552032",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15628,
+      "title": "Daredevil (1998) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/15628/daredevil_1998_27",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-01-01T00:00:00+0000",
+      "mu": "2010-06-30T00:00:00+0000",
+      "digitalId": 5600,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/f0/5727693524246",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15629,
+      "title": "Daredevil (1998) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/15629/daredevil_1998_28",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-02-01T00:00:00+0000",
+      "mu": "2002-02-01T00:00:00+0000",
+      "digitalId": 5601,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/57277032da8a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Alex Maleev",
+          "role": "cover artist"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 15630,
+      "title": "Daredevil (1998) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/15630/daredevil_1998_29",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-03-01T00:00:00+0000",
+      "mu": "2008-03-31T00:00:00+0000",
+      "digitalId": 5602,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/572778b3e0a2a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 44,
+      "creators": []
+    },
+    {
+      "issueId": 15632,
+      "title": "Daredevil (1998) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/15632/daredevil_1998_30",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-04-01T00:00:00+0000",
+      "mu": "2008-04-07T00:00:00+0000",
+      "digitalId": 5604,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/514c9954b0547",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    },
+    {
+      "issueId": 15633,
+      "title": "Daredevil (1998) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/15633/daredevil_1998_31",
+      "seriesId": 449,
+      "seriesName": "Daredevil (1998 - 2011)",
+      "onSale": "2002-05-01T00:00:00+0000",
+      "mu": "2008-04-14T00:00:00+0000",
+      "digitalId": 5605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/514c99cc90d8e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": []
+    }
+  ]
+}

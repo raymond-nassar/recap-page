@@ -1,0 +1,138 @@
+{
+  "id": "marvel-knights-to-planet-x-40",
+  "name": "Uncanny X-Men: Dominant Species",
+  "description": "Owner-curated chapter 40 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #416 through Uncanny X-Men (1963) #420.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 52,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 13957,
+      "title": "Uncanny X-Men (1963) #416",
+      "number": "416",
+      "url": "https://www.marvel.com/comics/issue/13957/uncanny_x-men_1963_416",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3088,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4bc46a7720054",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kia Asamiya",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13958,
+      "title": "Uncanny X-Men (1963) #417",
+      "number": "417",
+      "url": "https://www.marvel.com/comics/issue/13958/uncanny_x-men_1963_417",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-03-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3089,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bc46a720fb71",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kia Asamiya",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13959,
+      "title": "Uncanny X-Men (1963) #418",
+      "number": "418",
+      "url": "https://www.marvel.com/comics/issue/13959/uncanny_x-men_1963_418",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-03-15T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3090,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/f0/4bc46a6d1acfe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kia Asamiya",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13960,
+      "title": "Uncanny X-Men (1963) #419",
+      "number": "419",
+      "url": "https://www.marvel.com/comics/issue/13960/uncanny_x-men_1963_419",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-04-01T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3091,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/4bc46a6810460",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Uy",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 13961,
+      "title": "Uncanny X-Men (1963) #420",
+      "number": "420",
+      "url": "https://www.marvel.com/comics/issue/13961/uncanny_x-men_1963_420",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-04-09T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3092,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4bc46a6313a68",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kia Asamiya",
+          "role": "penciler"
+        }
+      ]
+    }
+  ]
+}

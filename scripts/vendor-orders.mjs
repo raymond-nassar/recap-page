@@ -29,12 +29,18 @@ import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
 import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
+import {
+  buildChapterFamily,
+  buildChildOverlapEvidence,
+  validateChapterLedger,
+} from './lib/chapter-orders.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const API = 'https://marvel.emreparker.com/v1';
 const MANIFEST = join(ROOT, 'src', 'data', 'curated-lists.json');
 const DATA_DIR = join(ROOT, 'src', 'data');
 const ORDERS_DIR = join(DATA_DIR, 'orders');
+const SCRIPT_DATA_DIR = join(ROOT, 'scripts', 'data');
 
 // A manifest that cannot be read in full is a maintainer error: vendoring the valid subset
 // would quietly ship a catalog missing a list nobody noticed was broken.
@@ -70,6 +76,20 @@ async function getText(url) {
 async function loadOrderText(order) {
   if (order.sourceFile) return readFile(join(ORDERS_DIR, order.sourceFile), 'utf8');
   return getText(order.sourceUrl);
+}
+
+async function loadPartitionLedgers(orders) {
+  const ledgers = new Map();
+  for (const order of orders.filter((entry) => entry.partitionFile)) {
+    const ledger = validateChapterLedger(JSON.parse(
+      await readFile(join(SCRIPT_DATA_DIR, order.partitionFile), 'utf8'),
+    ));
+    if (ledger.parentId !== order.id) {
+      throw new Error(`${order.partitionFile} belongs to "${ledger.parentId}", not "${order.id}"`);
+    }
+    ledgers.set(order.id, ledger);
+  }
+  return ledgers;
 }
 
 function parseOnly(argv) {
@@ -170,6 +190,11 @@ function catalogEntry(order, payload) {
 async function main() {
   const { entries: orders, paths } = await loadOrders();
   const only = parseOnly(process.argv.slice(2));
+  const partitionLedgers = await loadPartitionLedgers(orders);
+  const childParents = new Map();
+  for (const [parentId, ledger] of partitionLedgers) {
+    for (const chapter of ledger.chapters) childParents.set(chapter.id, parentId);
+  }
   // The catalog carries editorial metadata — descriptions, keywords, beginner, the cover
   // issue — that changes without any reading order changing. Rebuilding it from the pinned
   // files costs no API calls and leaves every order's snapshot date alone, so an editorial
@@ -178,25 +203,34 @@ async function main() {
   if (catalogOnly && only.size) {
     throw new Error('--catalog-only rebuilds every catalog entry from the pinned files, so it cannot be combined with --only');
   }
+  const selectedParents = new Set();
   for (const id of only) {
-    // A typo here would otherwise vendor nothing and look like a success.
-    if (!orders.some((o) => o.id === id)) {
+    const parentId = orders.some((order) => order.id === id) ? id : childParents.get(id);
+    // A typo here would otherwise vendor nothing and look like a success. Generated children
+    // resolve to their one partition parent so a catalog id is also a usable maintenance target.
+    if (!parentId) {
       throw new Error(`--only names "${id}", which is not a list in curated-lists.json`);
     }
+    selectedParents.add(parentId);
   }
-  const targets = catalogOnly ? [] : (only.size ? orders.filter((o) => only.has(o.id)) : orders);
+  const targets = catalogOnly
+    ? []
+    : (only.size ? orders.filter((order) => selectedParents.has(order.id)) : orders);
   if (catalogOnly) console.log('Rebuilding catalog.json from the pinned order files; no issues are re-fetched.');
-  else if (only.size) console.log(`Vendoring ${targets.length} of ${orders.length} lists; the rest keep their pinned files.`);
+  else if (only.size) console.log(`Vendoring ${targets.length} of ${orders.length} source orders; the rest keep their pinned files.`);
 
   const parsed = [];
   for (const order of targets) {
     const md = await loadOrderText(order);
-    const { entries, unresolved } = parseChecklist(md);
+    const parsedOrder = parseChecklist(md);
+    const { entries, unresolved } = parsedOrder;
     console.log(`${order.id}: ${entries.length} issues, ${unresolved.length} unresolved`);
-    parsed.push({ order, entries, unresolved });
+    parsed.push({ order, parsedOrder });
   }
 
-  const ids = [...new Set(parsed.flatMap((p) => p.entries.map((e) => e.issueId)))];
+  const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => (
+    parsedOrder.entries.map((entry) => entry.issueId)
+  )))];
   if (ids.length) console.log(`Hydrating ${ids.length} unique issues (rate limited, expect a few minutes)...`);
 
   const { meta, refused } = await lookupIssues(ids, {
@@ -208,10 +242,42 @@ async function main() {
     },
   });
 
+  const generatedAt = new Date().toISOString();
   const summary = [];
   const catalogById = new Map();
+  const payloadByCatalogId = new Map();
+  const families = new Map();
   const outputs = [];
-  for (const { order, entries, unresolved } of parsed) {
+  const addCatalogOutputs = (order, parsedOrder, payload) => {
+    const ledger = partitionLedgers.get(order.id);
+    if (!ledger) {
+      catalogById.set(order.id, [catalogEntry(order, payload)]);
+      payloadByCatalogId.set(order.id, payload);
+      return;
+    }
+    const family = buildChapterFamily({
+      order,
+      parsed: parsedOrder,
+      parentPayload: payload,
+      ledger,
+      existingPathIds: paths.map((entry) => entry.id),
+    });
+    families.set(order.id, family);
+    for (const child of family.children) {
+      outputs.push({
+        path: join(DATA_DIR, child.order.out),
+        content: `${JSON.stringify(child.payload, null, 2)}\n`,
+      });
+      payloadByCatalogId.set(child.order.id, child.payload);
+    }
+    catalogById.set(
+      order.id,
+      family.children.map((child) => catalogEntry(child.order, child.payload)),
+    );
+  };
+
+  for (const { order, parsedOrder } of parsed) {
+    const { entries, unresolved } = parsedOrder;
     let missingDigital = 0;
     let missingCover = 0;
 
@@ -318,7 +384,7 @@ async function main() {
       ...(order.sourceSection ? { sourceSection: order.sourceSection } : {}),
       sourceOrigin: order.sourceOrigin,
       sourceLicense: order.sourceLicense,
-      generatedAt: new Date().toISOString(),
+      generatedAt,
       apiBase: API,
       count: items.length,
       collections,
@@ -339,7 +405,7 @@ async function main() {
       missingDigital,
       missingCover,
     });
-    catalogById.set(order.id, catalogEntry(order, payload));
+    addCatalogOutputs(order, parsedOrder, payload);
   }
 
   // Lists we did not rebuild still have to appear in the catalog, so their entries are derived
@@ -353,20 +419,38 @@ async function main() {
     } catch (err) {
       throw new Error(`${order.id} was skipped but has no pinned ${order.out} to reuse (${err.message}); run without --only`, { cause: err });
     }
-    catalogById.set(order.id, catalogEntry(order, payload));
+    const parsedOrder = order.partitionFile
+      ? parseChecklist(await loadOrderText(order))
+      : null;
+    addCatalogOutputs(order, parsedOrder, payload);
   }
 
-  const catalog = orders.map((o) => catalogById.get(o.id));
+  const catalog = orders.flatMap((order) => catalogById.get(order.id));
   const checked = parseCatalog({ lists: catalog });
   if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
+  const generatedPaths = [...families.values()].map((family) => family.path);
+  for (const family of families.values()) {
+    const peers = [...payloadByCatalogId].map(([id, payload]) => ({ id, payload }));
+    const overlap = buildChildOverlapEvidence({ family, peers, generatedAt });
+    outputs.push({
+      path: join(SCRIPT_DATA_DIR, family.ledger.overlapFile),
+      content: `${JSON.stringify(overlap, null, 2)}\n`,
+    });
+  }
   outputs.push({
     path: join(DATA_DIR, 'catalog.json'),
-    // Paths are copied through rather than derived, because a path is editorial: which stories
-    // connect, and in what order, is not something the issue data can be asked. They are written
-    // after the lists so a hand-read diff of a catalog rebuild shows them together at the end.
-    content: `${JSON.stringify({ generatedAt: new Date().toISOString(), lists: catalog, paths }, null, 2)}\n`,
+    content: `${JSON.stringify({
+      generatedAt,
+      lists: catalog,
+      paths: [...paths, ...generatedPaths],
+    }, null, 2)}\n`,
   });
+  const outputPaths = outputs.map((output) => output.path);
+  if (new Set(outputPaths).size !== outputPaths.length) {
+    throw new Error('Vendor outputs contain duplicate file paths');
+  }
   await mkdir(DATA_DIR, { recursive: true });
+  await mkdir(SCRIPT_DATA_DIR, { recursive: true });
   for (const output of outputs) {
     await writeFile(output.path, output.content, 'utf8');
   }

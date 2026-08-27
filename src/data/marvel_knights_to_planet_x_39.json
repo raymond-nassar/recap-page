@@ -1,0 +1,200 @@
+{
+  "id": "marvel-knights-to-planet-x-39",
+  "name": "Truth: Red, White and Black",
+  "description": "Owner-curated chapter 39 of 78 in the Marvel Knights to Planet X reading path, from Truth: Red, White and Black (2003) #1 through Truth: Red, White and Black (2003) #7.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 51,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 16070,
+      "title": "Truth: Red, White and Black (2003) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/16070/truth_red_white_and_black_2003_1",
+      "seriesId": 2577,
+      "seriesName": "Truth: Red, White and Black (2003)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2003-01-01T00:00:00+0000",
+      "digitalId": 3949,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5ee0fe188afb0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Baker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Morales",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16071,
+      "title": "Truth: Red, White and Black (2003) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/16071/truth_red_white_and_black_2003_2",
+      "seriesId": 2577,
+      "seriesName": "Truth: Red, White and Black (2003)",
+      "onSale": "2003-02-01T00:00:00+0000",
+      "mu": "2003-02-01T00:00:00+0000",
+      "digitalId": 3950,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5ee0ffba6005d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Baker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Morales",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16072,
+      "title": "Truth: Red, White and Black (2003) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/16072/truth_red_white_and_black_2003_3",
+      "seriesId": 2577,
+      "seriesName": "Truth: Red, White and Black (2003)",
+      "onSale": "2003-03-01T00:00:00+0000",
+      "mu": "2003-03-01T00:00:00+0000",
+      "digitalId": 3951,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5ee100306993d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Baker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Morales",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16073,
+      "title": "Truth: Red, White and Black (2003) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16073/truth_red_white_and_black_2003_4",
+      "seriesId": 2577,
+      "seriesName": "Truth: Red, White and Black (2003)",
+      "onSale": "2003-04-01T00:00:00+0000",
+      "mu": "2003-04-01T00:00:00+0000",
+      "digitalId": 3952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5ee100a86b692",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robert Morales",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16074,
+      "title": "Truth: Red, White and Black (2003) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/16074/truth_red_white_and_black_2003_5",
+      "seriesId": 2577,
+      "seriesName": "Truth: Red, White and Black (2003)",
+      "onSale": "2003-05-01T00:00:00+0000",
+      "mu": "2003-05-01T00:00:00+0000",
+      "digitalId": 3953,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5ee1026c47b09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robert Morales",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16075,
+      "title": "Truth: Red, White and Black (2003) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/16075/truth_red_white_and_black_2003_6",
+      "seriesId": 2577,
+      "seriesName": "Truth: Red, White and Black (2003)",
+      "onSale": "2003-06-01T00:00:00+0000",
+      "mu": "2003-06-01T00:00:00+0000",
+      "digitalId": 3954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5ee103d0608bf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robert Morales",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 16076,
+      "title": "Truth: Red, White and Black (2003) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/16076/truth_red_white_and_black_2003_7",
+      "seriesId": 2577,
+      "seriesName": "Truth: Red, White and Black (2003)",
+      "onSale": "2003-07-01T00:00:00+0000",
+      "mu": "2003-07-01T00:00:00+0000",
+      "digitalId": 3955,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5ee104ac4766c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Baker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Morales",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+{
+  "id": "marvel-knights-to-planet-x-73",
+  "name": "New X-Men: Assault on Weapon Plus",
+  "description": "Owner-curated chapter 73 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #139 through New X-Men (2001) #145.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 87,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14958,
+      "title": "New X-Men (2001) #139",
+      "number": "139",
+      "url": "https://www.marvel.com/comics/issue/14958/new_x-men_2001_139",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-04-16T00:00:00+0000",
+      "mu": "2009-10-21T00:00:00+0000",
+      "digitalId": 6587,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/577d723e96f94",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 14959,
+      "title": "New X-Men (2001) #140",
+      "number": "140",
+      "url": "https://www.marvel.com/comics/issue/14959/new_x-men_2001_140",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-04-30T00:00:00+0000",
+      "mu": "2009-10-28T00:00:00+0000",
+      "digitalId": 6588,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/03/577e51b651346",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 14960,
+      "title": "New X-Men (2001) #141",
+      "number": "141",
+      "url": "https://www.marvel.com/comics/issue/14960/new_x-men_2001_141",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-05-21T00:00:00+0000",
+      "mu": "2003-05-21T00:00:00+0000",
+      "digitalId": 6589,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5968d6c6076b9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Phil Jimenez",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14961,
+      "title": "New X-Men (2001) #142",
+      "number": "142",
+      "url": "https://www.marvel.com/comics/issue/14961/new_x-men_2001_142",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-06-04T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 3053,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bc46b237fe78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 14962,
+      "title": "New X-Men (2001) #143",
+      "number": "143",
+      "url": "https://www.marvel.com/comics/issue/14962/new_x-men_2001_143",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-07-02T00:00:00+0000",
+      "mu": "2008-11-10T00:00:00+0000",
+      "digitalId": 6590,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/4bb7251aef31c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 14963,
+      "title": "New X-Men (2001) #144",
+      "number": "144",
+      "url": "https://www.marvel.com/comics/issue/14963/new_x-men_2001_144",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-08-06T00:00:00+0000",
+      "mu": "2009-11-11T00:00:00+0000",
+      "digitalId": 6591,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/4bb7250bf2fad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 14964,
+      "title": "New X-Men (2001) #145",
+      "number": "145",
+      "url": "https://www.marvel.com/comics/issue/14964/new_x-men_2001_145",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2003-09-03T00:00:00+0000",
+      "mu": "2009-11-18T00:00:00+0000",
+      "digitalId": 6592,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4bb72506caf2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        }
+      ]
+    }
+  ]
+}

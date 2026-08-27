@@ -1,0 +1,159 @@
+{
+  "id": "marvel-knights-to-planet-x-08",
+  "name": "Uncanny X-Men: Poptopia",
+  "description": "Owner-curated chapter 08 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #395 through Uncanny X-Men (1963) #398.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 14,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 13936,
+      "title": "Uncanny X-Men (1963) #395",
+      "number": "395",
+      "url": "https://www.marvel.com/comics/issue/13936/uncanny_x-men_1963_395",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2001-07-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31298,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5919ab26b065b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13937,
+      "title": "Uncanny X-Men (1963) #396",
+      "number": "396",
+      "url": "https://www.marvel.com/comics/issue/13937/uncanny_x-men_1963_396",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2001-08-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31299,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5919addb45871",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Larry Stucker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norm Rapmund",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13938,
+      "title": "Uncanny X-Men (1963) #397",
+      "number": "397",
+      "url": "https://www.marvel.com/comics/issue/13938/uncanny_x-men_1963_397",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2001-09-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31300,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5919ae6729bcc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Melvin Borillo Rubi",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13939,
+      "title": "Uncanny X-Men (1963) #398",
+      "number": "398",
+      "url": "https://www.marvel.com/comics/issue/13939/uncanny_x-men_1963_398",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2001-10-01T00:00:00+0000",
+      "mu": "2013-09-09T00:00:00+0000",
+      "digitalId": 31301,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/5919aefd0020c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ashley Wood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Casey",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

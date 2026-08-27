@@ -1,0 +1,236 @@
+{
+  "id": "marvel-knights-to-planet-x-12",
+  "name": "New X-Men: Germ-Free Generation",
+  "description": "Owner-curated chapter 12 of 78 in the Marvel Knights to Planet X reading path, from NEW X-MEN ANNUAL 1 (2001) #1 through New X-Men (2001) #122.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 7,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 18,
+    "sourceCount": 3,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 18997,
+      "title": "NEW X-MEN ANNUAL 1 (2001) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/18997/new_x-men_annual_1_2001_1",
+      "seriesId": 3704,
+      "seriesName": "NEW X-MEN ANNUAL 1 (2001)",
+      "onSale": "2001-09-01T00:00:00+0000",
+      "mu": "2001-09-01T00:00:00+0000",
+      "digitalId": 10056,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/f0/577e6c883fc98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gerry Alanguilan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14936,
+      "title": "New X-Men (2001) #117",
+      "number": "117",
+      "url": "https://www.marvel.com/comics/issue/14936/new_x-men_2001_117",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-09-26T00:00:00+0000",
+      "mu": "2001-09-26T00:00:00+0000",
+      "digitalId": 3050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/4bc46b330096b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Prentis Rollins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ethan Van Sciver",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14937,
+      "title": "New X-Men (2001) #118",
+      "number": "118",
+      "url": "https://www.marvel.com/comics/issue/14937/new_x-men_2001_118",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-10-31T00:00:00+0000",
+      "mu": "2001-10-31T00:00:00+0000",
+      "digitalId": 6568,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/59764e96645ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Prentis Rollins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sandu Florea",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ethan Van Sciver",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14938,
+      "title": "New X-Men (2001) #119",
+      "number": "119",
+      "url": "https://www.marvel.com/comics/issue/14938/new_x-men_2001_119",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-11-28T00:00:00+0000",
+      "mu": "2001-11-28T00:00:00+0000",
+      "digitalId": 6569,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/30/577c045684494",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Igor Kordey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14939,
+      "title": "New X-Men (2001) #120",
+      "number": "120",
+      "url": "https://www.marvel.com/comics/issue/14939/new_x-men_2001_120",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-12-19T00:00:00+0000",
+      "mu": "2001-12-19T00:00:00+0000",
+      "digitalId": 6570,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/577c0c28e62cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Igor Kordey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14940,
+      "title": "New X-Men (2001) #121",
+      "number": "121",
+      "url": "https://www.marvel.com/comics/issue/14940/new_x-men_2001_121",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-01-02T00:00:00+0000",
+      "mu": "2002-01-02T00:00:00+0000",
+      "digitalId": 6571,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/577c150a481a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Quitely",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14941,
+      "title": "New X-Men (2001) #122",
+      "number": "122",
+      "url": "https://www.marvel.com/comics/issue/14941/new_x-men_2001_122",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-02-13T00:00:00+0000",
+      "mu": "2002-02-13T00:00:00+0000",
+      "digitalId": 6572,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/4c35ef30a5f3f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

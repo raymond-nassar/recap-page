@@ -1,0 +1,209 @@
+{
+  "id": "marvel-knights-to-planet-x-46",
+  "name": "Spider-Man: Unintended Consequences",
+  "description": "Owner-curated chapter 46 of 78 in the Marvel Knights to Planet X reading path, from Amazing Spider-Man (1999) #51 through Amazing Spider-Man (1999) #56.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 58,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 43164,
+      "title": "Amazing Spider-Man (1999) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/43164/amazing_spider-man_1999_51",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-03-26T00:00:00+0000",
+      "mu": "2003-03-26T00:00:00+0000",
+      "digitalId": 30170,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/57e953be7b0b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43165,
+      "title": "Amazing Spider-Man (1999) #52",
+      "number": "52",
+      "url": "https://www.marvel.com/comics/issue/43165/amazing_spider-man_1999_52",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-04-23T00:00:00+0000",
+      "mu": "2003-04-23T00:00:00+0000",
+      "digitalId": 30171,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/57e9548f527a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43166,
+      "title": "Amazing Spider-Man (1999) #53",
+      "number": "53",
+      "url": "https://www.marvel.com/comics/issue/43166/amazing_spider-man_1999_53",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-05-21T00:00:00+0000",
+      "mu": "2003-05-21T00:00:00+0000",
+      "digitalId": 30172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/57e9558d93a49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43167,
+      "title": "Amazing Spider-Man (1999) #54",
+      "number": "54",
+      "url": "https://www.marvel.com/comics/issue/43167/amazing_spider-man_1999_54",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-07-02T00:00:00+0000",
+      "mu": "2003-07-02T00:00:00+0000",
+      "digitalId": 30194,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/57e985a2e3245",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43168,
+      "title": "Amazing Spider-Man (1999) #55",
+      "number": "55",
+      "url": "https://www.marvel.com/comics/issue/43168/amazing_spider-man_1999_55",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-07-16T00:00:00+0000",
+      "mu": "2003-07-16T00:00:00+0000",
+      "digitalId": 30195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/57ea731346225",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Fiona Kelly",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43169,
+      "title": "Amazing Spider-Man (1999) #56",
+      "number": "56",
+      "url": "https://www.marvel.com/comics/issue/43169/amazing_spider-man_1999_56",
+      "seriesId": 454,
+      "seriesName": "Amazing Spider-Man (1999 - 2013)",
+      "onSale": "2003-08-13T00:00:00+0000",
+      "mu": "2003-08-13T00:00:00+0000",
+      "digitalId": 30196,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/57ea7bf30cc38",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Fiona Kelly",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

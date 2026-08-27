@@ -1,0 +1,113 @@
+{
+  "id": "marvel-knights-to-planet-x-35",
+  "name": "Punisher: You Talkin’ To Me?",
+  "description": "Owner-curated chapter 35 of 78 in the Marvel Knights to Planet X reading path, from Punisher (2001) #13 through Punisher (2001) #17.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 5,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 45,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 18970,
+      "title": "Punisher (2001) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/18970/punisher_2001_13",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2002-06-12T00:00:00+0000",
+      "mu": "2002-06-12T00:00:00+0000",
+      "digitalId": 6721,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/4bb71d87cdf86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18971,
+      "title": "Punisher (2001) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/18971/punisher_2001_14",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2002-08-28T00:00:00+0000",
+      "mu": "2002-08-28T00:00:00+0000",
+      "digitalId": 6722,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4bb71d75db029",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18972,
+      "title": "Punisher (2001) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/18972/punisher_2001_15",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2002-09-04T00:00:00+0000",
+      "mu": "2002-09-04T00:00:00+0000",
+      "digitalId": 6723,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/4bb71d71147c2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18973,
+      "title": "Punisher (2001) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/18973/punisher_2001_16",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2002-10-02T00:00:00+0000",
+      "mu": "2002-10-02T00:00:00+0000",
+      "digitalId": 6724,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4bb71d57c19f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 18974,
+      "title": "Punisher (2001) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/18974/punisher_2001_17",
+      "seriesId": 436,
+      "seriesName": "Punisher (2001 - 2003)",
+      "onSale": "2002-10-30T00:00:00+0000",
+      "mu": "2002-10-30T00:00:00+0000",
+      "digitalId": 6725,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/59bbecdfd15a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    }
+  ]
+}

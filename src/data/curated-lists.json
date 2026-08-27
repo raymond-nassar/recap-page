@@ -4056,6 +4056,8 @@
       "groupName": null,
       "variant": null,
       "sourceFile": "marvel-knights-to-planet-x.md",
+      "partitionFile": "marvel-knights-to-planet-x-lists.json",
+      "catalog": false,
       "sourceOrigin": "Compiled by hand for this project from owner-curated source positions recorded in GitHub issue #276",
       "sourceLicense": null,
       "out": "marvel_knights_to_planet_x.json",

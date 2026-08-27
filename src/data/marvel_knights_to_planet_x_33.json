@@ -1,0 +1,213 @@
+{
+  "id": "marvel-knights-to-planet-x-33",
+  "name": "Uncanny X-Men: Hope",
+  "description": "Owner-curated chapter 33 of 78 in the Marvel Knights to Planet X reading path, from Uncanny X-Men (1963) #410 through Uncanny X-Men (1963) #415.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 6,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 43,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 13951,
+      "title": "Uncanny X-Men (1963) #410",
+      "number": "410",
+      "url": "https://www.marvel.com/comics/issue/13951/uncanny_x-men_1963_410",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-08-07T00:00:00+0000",
+      "mu": "2002-08-07T00:00:00+0000",
+      "digitalId": 28339,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5919bf773e00e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13952,
+      "title": "Uncanny X-Men (1963) #411",
+      "number": "411",
+      "url": "https://www.marvel.com/comics/issue/13952/uncanny_x-men_1963_411",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-08-21T00:00:00+0000",
+      "mu": "2002-08-21T00:00:00+0000",
+      "digitalId": 28340,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/4f626e5c5dc8b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13953,
+      "title": "Uncanny X-Men (1963) #412",
+      "number": "412",
+      "url": "https://www.marvel.com/comics/issue/13953/uncanny_x-men_1963_412",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-10-31T00:00:00+0000",
+      "mu": "2013-08-06T14:21:38+0000",
+      "digitalId": 28341,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/4f626fe56ed32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Uy",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13954,
+      "title": "Uncanny X-Men (1963) #413",
+      "number": "413",
+      "url": "https://www.marvel.com/comics/issue/13954/uncanny_x-men_1963_413",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-11-01T00:00:00+0000",
+      "mu": "2013-08-06T14:24:02+0000",
+      "digitalId": 28342,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/4f6235dd44910",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Uy",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13955,
+      "title": "Uncanny X-Men (1963) #414",
+      "number": "414",
+      "url": "https://www.marvel.com/comics/issue/13955/uncanny_x-men_1963_414",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2002-12-01T00:00:00+0000",
+      "mu": "2013-08-06T14:26:20+0000",
+      "digitalId": 28343,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/4f6234a5208bd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Uy",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13956,
+      "title": "Uncanny X-Men (1963) #415",
+      "number": "415",
+      "url": "https://www.marvel.com/comics/issue/13956/uncanny_x-men_1963_415",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2003-01-01T00:00:00+0000",
+      "mu": "2013-08-06T14:27:33+0000",
+      "digitalId": 28344,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/30/4f62356b9d595",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Phillips",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Uy",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

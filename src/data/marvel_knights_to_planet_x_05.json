@@ -1,0 +1,124 @@
+{
+  "id": "marvel-knights-to-planet-x-05",
+  "name": "New X-Men Begins",
+  "description": "Owner-curated chapter 05 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #114 through New X-Men (2001) #116.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 3,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 9,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14933,
+      "title": "New X-Men (2001) #114",
+      "number": "114",
+      "url": "https://www.marvel.com/comics/issue/14933/new_x-men_2001_114",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-05-16T00:00:00+0000",
+      "mu": "2001-05-16T00:00:00+0000",
+      "digitalId": 3049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5140cda8ce9af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14934,
+      "title": "New X-Men (2001) #115",
+      "number": "115",
+      "url": "https://www.marvel.com/comics/issue/14934/new_x-men_2001_115",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-07-11T00:00:00+0000",
+      "mu": "2001-07-11T00:00:00+0000",
+      "digitalId": 6566,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/4bb793db72171",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14935,
+      "title": "New X-Men (2001) #116",
+      "number": "116",
+      "url": "https://www.marvel.com/comics/issue/14935/new_x-men_2001_116",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2001-08-22T00:00:00+0000",
+      "mu": "2001-08-22T00:00:00+0000",
+      "digitalId": 6567,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4c35efa48c052",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

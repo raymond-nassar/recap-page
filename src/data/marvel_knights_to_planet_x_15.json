@@ -1,0 +1,151 @@
+{
+  "id": "marvel-knights-to-planet-x-15",
+  "name": "New X-Men: Imperial",
+  "description": "Owner-curated chapter 15 of 78 in the Marvel Knights to Planet X reading path, from New X-Men (2001) #123 through New X-Men (2001) #126.",
+  "source": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "sourceOrigin": "Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-27T09:11:14.577Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 4,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "provenance": {
+    "parentId": "marvel-knights-to-planet-x",
+    "sourceStart": 24,
+    "sourceCount": 1,
+    "sourceGroup": "2000-2001",
+    "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303"
+  },
+  "items": [
+    {
+      "issueId": 14942,
+      "title": "New X-Men (2001) #123",
+      "number": "123",
+      "url": "https://www.marvel.com/comics/issue/14942/new_x-men_2001_123",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-02-27T00:00:00+0000",
+      "mu": "2002-02-27T00:00:00+0000",
+      "digitalId": 6573,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/4c35ef277dd6e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Prentis Rollins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ethan Van Sciver",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14943,
+      "title": "New X-Men (2001) #124",
+      "number": "124",
+      "url": "https://www.marvel.com/comics/issue/14943/new_x-men_2001_124",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-03-20T00:00:00+0000",
+      "mu": "2002-03-20T00:00:00+0000",
+      "digitalId": 6574,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/4c35ef154b276",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Igor Kordey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14944,
+      "title": "New X-Men (2001) #125",
+      "number": "125",
+      "url": "https://www.marvel.com/comics/issue/14944/new_x-men_2001_125",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-04-17T00:00:00+0000",
+      "mu": "2002-04-17T00:00:00+0000",
+      "digitalId": 6575,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/4c35ee4eede60",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Igor Kordey",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 14945,
+      "title": "New X-Men (2001) #126",
+      "number": "126",
+      "url": "https://www.marvel.com/comics/issue/14945/new_x-men_2001_126",
+      "seriesId": 2281,
+      "seriesName": "New X-Men (2001 - 2004)",
+      "onSale": "2002-05-15T00:00:00+0000",
+      "mu": "2002-05-15T00:00:00+0000",
+      "digitalId": 3051,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/577d157e06bba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tim Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Quitely",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ]
+    }
+  ]
+}

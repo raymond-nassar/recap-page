@@ -1,0 +1,833 @@
+{
+  "schemaVersion": 1,
+  "parentId": "marvel-knights-to-planet-x",
+  "ownerIssue": "https://github.com/raymond-nassar/recap-page/issues/303",
+  "ownerAttachmentSha256": "822e8ee50f7034cc174af11c7bd69ef5eed0f76200d9de2e6f6d07d2a1b69420",
+  "sourcePositions": 99,
+  "sourceVectorSha256": "437d917e2e469bdf33ccc855c4d88366a688758e497cdaea569b8f421465c6c5",
+  "sourceGroups": [
+    {
+      "name": "1998-1999",
+      "sourceStart": 1,
+      "sourceCount": 4,
+      "issueCount": 21
+    },
+    {
+      "name": "2000-2001",
+      "sourceStart": 5,
+      "sourceCount": 87,
+      "issueCount": 441
+    },
+    {
+      "name": "Planet X Crossover Cluster",
+      "sourceStart": 92,
+      "sourceCount": 8,
+      "issueCount": 25
+    }
+  ],
+  "chapterCount": 78,
+  "issueCount": 487,
+  "issueIdsSha256": "0223bbdca9912019ebe609de5dcdfc6f703682787e6ff59fc7e863bfc52dd00d",
+  "ownerBulletCount": 98,
+  "chapterContractSha256": "498cdd1fa3183ba9a0d48fa8b85ec4de2bc0f3bf8ca75cb5367782a6a0bc7c35",
+  "chapterNamesSha256": "315b0761581e77095e06b08a076f51820521542d77d0c130a230fdf519fbd784",
+  "overlapFile": "marvel-knights-to-planet-x-overlaps.json",
+  "path": {
+    "id": "marvel-knights-to-planet-x",
+    "name": "Marvel Knights to Planet X",
+    "description": "The 78 owner-curated chapters in reading order.",
+    "sourceOrigin": "Compiled for this project from the owner chapter ledger in issue #303",
+    "stepsSha256": "0c2c3296ee07bd2a7e3a3878efff6af2f12810cdac27319f921ed34f5bec85b7"
+  },
+  "corrections": [
+    {
+      "sourcePosition": 47,
+      "issueId": 15021,
+      "chapterId": "marvel-knights-to-planet-x-37",
+      "placement": "first",
+      "authority": "https://github.com/raymond-nassar/recap-page/issues/303#issuecomment-5442351148"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "marvel-knights-to-planet-x-01",
+      "name": "Daredevil & Black Widow Opening Sequence",
+      "sourceStart": 1,
+      "sourceCount": 4,
+      "ownerBulletCount": 4,
+      "issueCount": 21,
+      "timelineYear": 1998,
+      "issueIdsSha256": "e304b3c95f15693d4df4d3e4b365b07011efb5c6dd5cf5f8d9c01e4ed92ae669"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-02",
+      "name": "Punisher: Welcome Back Frank",
+      "sourceStart": 5,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 12,
+      "timelineYear": 2000,
+      "issueIdsSha256": "3e3e2c3ed729c7074a9abed1dd74635f8d36c1850f917c6547381a5022fb4f85"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-03",
+      "name": "Marvel Boy to Early X-Men Setup",
+      "sourceStart": 6,
+      "sourceCount": 2,
+      "ownerBulletCount": 2,
+      "issueCount": 7,
+      "timelineYear": 2000,
+      "issueIdsSha256": "e43f47e6e1cabd759ec257c5386db947c0b5bad652e1491f524bac991075ecfe"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-04",
+      "name": "X-Treme X-Men: Destiny",
+      "sourceStart": 8,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2001,
+      "issueIdsSha256": "534a683797fb1c7a1e5a61ed7b27be30cf5964c9839c76e6473384b386782475"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-05",
+      "name": "New X-Men Begins",
+      "sourceStart": 9,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 3,
+      "timelineYear": 2001,
+      "issueIdsSha256": "8af8a373162b6db284b4dc4ea7c743ec0202ba05b61964e359c4831780f83f3d"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-06",
+      "name": "Daredevil Companion",
+      "sourceStart": 10,
+      "sourceCount": 2,
+      "ownerBulletCount": 2,
+      "issueCount": 10,
+      "timelineYear": 2001,
+      "issueIdsSha256": "e7e3a054124618c3c495a2afc3f318404a6cfbd85ef743ff1a6947ff6b107abe"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-07",
+      "name": "Spider-Man: JMS Era Begins",
+      "sourceStart": 12,
+      "sourceCount": 2,
+      "ownerBulletCount": 2,
+      "issueCount": 7,
+      "timelineYear": 2001,
+      "issueIdsSha256": "52caf4e88aabf25b9b67365c6764f0a6e72bea571ba399beb1b1c9b119bb9138"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-08",
+      "name": "Uncanny X-Men: Poptopia",
+      "sourceStart": 14,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2001,
+      "issueIdsSha256": "77b2cf63813923775eebd8baede9abe60da76bd240f835642d59927403540e09"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-09",
+      "name": "Exiles Launch",
+      "sourceStart": 15,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2001,
+      "issueIdsSha256": "3ee91ef4b252e658c261b5ca088029141b1cba467ddc3060e766fbaeedddbff7"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-10",
+      "name": "Wolverine: Origin",
+      "sourceStart": 16,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2001,
+      "issueIdsSha256": "b2cd3aa64c6cfd5ba492de3a2dac85cbbd42f286532e4f21c463eb09327076bb"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-11",
+      "name": "X-Treme X-Men: Savage Land",
+      "sourceStart": 17,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2001,
+      "issueIdsSha256": "4ffdd5d5b826128c069fa104109e8c552250b9c55525da28ffb95c134fb2d572"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-12",
+      "name": "New X-Men: Germ-Free Generation",
+      "sourceStart": 18,
+      "sourceCount": 3,
+      "ownerBulletCount": 3,
+      "issueCount": 7,
+      "timelineYear": 2001,
+      "issueIdsSha256": "acbdd8432d644252d92654971d9cb701762c6e6c64ea88635f9f11b017fb9682"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-13",
+      "name": "Punisher: No Limits",
+      "sourceStart": 21,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2001,
+      "issueIdsSha256": "0b02d7be296f8e6c0f025e6fc2aa02698d908d10b3b41e9ca31207bb5f852f9c"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-14",
+      "name": "X-Treme X-Men: Paradise Lost + Annual",
+      "sourceStart": 22,
+      "sourceCount": 2,
+      "ownerBulletCount": 2,
+      "issueCount": 6,
+      "timelineYear": 2001,
+      "issueIdsSha256": "aaab9ea4b03a0331d10612a9889c1269e91029410db4e6fc61b24a67b8a93154"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-15",
+      "name": "New X-Men: Imperial",
+      "sourceStart": 24,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2002,
+      "issueIdsSha256": "193f1c9379b15d2d3edee539a9b35ea5586edeee029dcc49cd7f62d75ad77c4e"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-16",
+      "name": "Uncanny X-Men: X-Corps (Prelude)",
+      "sourceStart": 25,
+      "sourceCount": 2,
+      "ownerBulletCount": 2,
+      "issueCount": 3,
+      "timelineYear": 2001,
+      "issueIdsSha256": "408f2c242dbd3f1118dc9c5dbf0f3682dc8a763f0f2b91e92791f1f9978e3f2a"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-17",
+      "name": "Hulk: Return of the Monster",
+      "sourceStart": 27,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2001,
+      "issueIdsSha256": "baa835c77ad6acc272a81d8ab02ba62d38bee68dda5105c7f290c00a0e5b3d2d"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-18",
+      "name": "Exiles: A World Apart",
+      "sourceStart": 28,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2001,
+      "issueIdsSha256": "c9fd66179195caaf9ae5f0a8590549ea315a5dbe88759492deb01df2b8bb4a87"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-19",
+      "name": "Punisher: Do Not Fall in New York City",
+      "sourceStart": 29,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 2,
+      "timelineYear": 2001,
+      "issueIdsSha256": "e56acf6c798f6f8557e7336a75512b256e4adede7ac0c6faf3b47fc92f6abf42"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-20",
+      "name": "Daredevil: Underboss",
+      "sourceStart": 30,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2001,
+      "issueIdsSha256": "442d41379adf07757de25b7d11f15d10c5608908b173b193eeb7bcf3e54aa0c4"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-21",
+      "name": "Spider-Man: Revelations",
+      "sourceStart": 31,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 3,
+      "timelineYear": 2002,
+      "issueIdsSha256": "a6e58242c33d5ebbfad1f9425d2336e452aeb200b522602fb8a2273f3e66c139"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-22",
+      "name": "Uncanny X-Men: X-Corps (Main Arc)",
+      "sourceStart": 32,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2002,
+      "issueIdsSha256": "451c36464c96510557409e3ff42882daf82068e4b1c08feeb3ca87e28fd2e79b"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-23",
+      "name": "X-Treme X-Men: Invasion",
+      "sourceStart": 33,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 9,
+      "timelineYear": 2002,
+      "issueIdsSha256": "81a87310bf3970ede1d4bedabcaa3c504a01a3266f5fc32d8195b03f58e423b5"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-24",
+      "name": "Spider-Man: Until the Stars Turn Cold",
+      "sourceStart": 34,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2002,
+      "issueIdsSha256": "73f28535e7e91e5326d3ea466ca5edf4b262fc99dfb0e992e128175240a14eb0"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-25",
+      "name": "Hulk: Boiling Point",
+      "sourceStart": 35,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2002,
+      "issueIdsSha256": "f4a3e8a507a24a002ce7fd53b7091d879055cad055ad1b3429ea258d363fd0df"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-26",
+      "name": "Daredevil: Out",
+      "sourceStart": 36,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 9,
+      "timelineYear": 2002,
+      "issueIdsSha256": "4e799ef3d88e414d21f502625c06935e2d8c03f50f9d479856474fa909f66dda"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-27",
+      "name": "Exiles: Out of Time",
+      "sourceStart": 37,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 8,
+      "timelineYear": 2002,
+      "issueIdsSha256": "db100d7b9a17c582bfe72e50b31dd2594355c114e00099d15124b3708927445e"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-28",
+      "name": "Spider-Man: Return of the Goblin",
+      "sourceStart": 38,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2002,
+      "issueIdsSha256": "f1e57be2afbf150945fc940ecf569d0f3bbf1d90f50d053571acbad605b23593"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-29",
+      "name": "New X-Men: New Worlds (Part 1)",
+      "sourceStart": 39,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 2,
+      "timelineYear": 2002,
+      "issueIdsSha256": "5b8e6c09c1a07b944df67326991f0e46665996c0e4760b090de97dcf64821ca9"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-30",
+      "name": "Uncanny X-Men: Identity Crisis",
+      "sourceStart": 40,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 2,
+      "timelineYear": 2002,
+      "issueIdsSha256": "f72e49b463fdb4a06d13de31df71598c2280a9e9ecacd066808618b60898a860"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-31",
+      "name": "Hulk: Transfer of Power",
+      "sourceStart": 41,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2002,
+      "issueIdsSha256": "cc6bea768702bac3172884075eaf061cfe9189eb46906e161489e8e0552f3580"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-32",
+      "name": "New X-Men: New Worlds (Part 2)",
+      "sourceStart": 42,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2002,
+      "issueIdsSha256": "3fab1f4a26686d79a5259ad99d9209615ac2a483a39409c3e2ef6d715365b353"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-33",
+      "name": "Uncanny X-Men: Hope",
+      "sourceStart": 43,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2002,
+      "issueIdsSha256": "e51a03b7d54cf54a0e7e54a3c4a1bfd113affe757c5b8a9684759e92fe5782d0"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-34",
+      "name": "Fantastic Four: Imaginauts",
+      "sourceStart": 44,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2002,
+      "issueIdsSha256": "3878eafcb4d692868bd05cf3e4e1d7ab02d303fe8edc2e210b1f05b9fc45ea73"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-35",
+      "name": "Punisher: You Talkin’ To Me?",
+      "sourceStart": 45,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2002,
+      "issueIdsSha256": "c9f937a5c69543c2884203ee611135868db305d924a1281a71938e046d8e329a"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-36",
+      "name": "Spider-Man: Life and Death of Spiders",
+      "sourceStart": 46,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2002,
+      "issueIdsSha256": "1c9bb03ecdf52c03ba6d46bb250e68a873b797c054c4610fdf2dc510092b2df7"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-37",
+      "name": "X-Treme X-Men: X-Pose + Schism",
+      "sourceStart": 47,
+      "sourceCount": 3,
+      "ownerBulletCount": 2,
+      "issueCount": 7,
+      "timelineYear": 2002,
+      "issueIdsSha256": "777b9034deb082102e9db06672cb7aec2b22b4d76f048f7621ec69d55f009055"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-38",
+      "name": "Captain America: Enemy",
+      "sourceStart": 50,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2002,
+      "issueIdsSha256": "b495cea42753bd607a1468b32cc1c9c964da41b6a0ba7d1337ba288e524d07d0"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-39",
+      "name": "Truth: Red, White and Black",
+      "sourceStart": 51,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "bf84c78beec813a1ebb85ef7a39bf73a79297be4795b1cd9585e6d218ac0d48b"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-40",
+      "name": "Uncanny X-Men: Dominant Species",
+      "sourceStart": 52,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "7a51f2364d7954a173931728d6442ec0ccbe193fae05d9de03626ac5b5365129"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-41",
+      "name": "Exiles: Legacy",
+      "sourceStart": 53,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2002,
+      "issueIdsSha256": "a8e4fea9d2bbbeaceec96dfa432e3b75a6528402c7ba962868911f44fe228eec"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-42",
+      "name": "New X-Men: Riot at Xavier’s",
+      "sourceStart": 54,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2002,
+      "issueIdsSha256": "936ae6e773e3c05dbd9d87f674206288e16e006d663b5ef31d9a38e1553990cf"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-43",
+      "name": "Hulk: Dark Minds, Dark Hearts",
+      "sourceStart": 55,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "ece857d4f5ae3e161ad4023d6e65b9530b59f33911c416b145d593ce3a14414f"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-44",
+      "name": "Punisher: Brotherhood",
+      "sourceStart": 56,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2002,
+      "issueIdsSha256": "42c666a6ba98d02b6d283a48c7e054f77d0889402a0efa566b7a04a4a2487fd2"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-45",
+      "name": "Daredevil: Lowlife",
+      "sourceStart": 57,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "d2f26b7abd06433501376021380fd17be262ede09e51269ae9f4e5b06bce56c0"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-46",
+      "name": "Spider-Man: Unintended Consequences",
+      "sourceStart": 58,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2003,
+      "issueIdsSha256": "23ad918ba64220031b898f0e9885c6c407abb69568f0e4c4405e88b2297e1a9c"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-47",
+      "name": "Spider-Man: Blue",
+      "sourceStart": 59,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2002,
+      "issueIdsSha256": "08bb2c6096f7b488996d41ba208cbac57b025c30ae7be2e38b2b6485e25e1f59"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-48",
+      "name": "Uncanny X-Men: Holy War",
+      "sourceStart": 60,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "5a4d7ee0cc4c4b55643ab8300de26e374b5865cf85a109fc5162803547fc7aab"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-49",
+      "name": "Fantastic Four: Unthinkable",
+      "sourceStart": 61,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "d1852b5d1377c14208c7adc5b6e2956748427ee2bcda85a6708b7db22b7dea12"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-50",
+      "name": "Avengers: Red Zone + Search for She-Hulk",
+      "sourceStart": 62,
+      "sourceCount": 2,
+      "ownerBulletCount": 2,
+      "issueCount": 12,
+      "timelineYear": 2003,
+      "issueIdsSha256": "bc697168412eaad872f590890d5bbab31b2b141f448720d82f4fb9fca6b4322a"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-51",
+      "name": "X-Treme X-Men: God Loves, Man Kills II",
+      "sourceStart": 64,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "c9aeca6d1c2dbf46a2c675b6d904db791a8618b545b7e5b8c56e9420903da90f"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-52",
+      "name": "Punisher: Hidden",
+      "sourceStart": 65,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2003,
+      "issueIdsSha256": "b37685f8514c7c969ab4bb1262aee15f3c78698171bb261183451d5aafaf1d2d"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-53",
+      "name": "Daredevil: Hardcore",
+      "sourceStart": 66,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "9145fe7ace8e5c2ed7499f56d3ec93587698dd12f8df84235a4f183c801160c5"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-54",
+      "name": "Hulk: Hide in Plain Sight",
+      "sourceStart": 67,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "e808cee3ec3a562e24f482502c4d7ce4dcfd601a90e31176450d8ecaf2da74f6"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-55",
+      "name": "Punisher: Streets of Laredo",
+      "sourceStart": 68,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "9acf85868062ede9255363f4106ff8acb30efa57473fcf44d344aa6142f47712"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-56",
+      "name": "Elektra: Introspect",
+      "sourceStart": 69,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2002,
+      "issueIdsSha256": "cbc2dd8e51286128b0c11322c4da24bd0ba2bf6f62dc6b63d99423e041a97f35"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-57",
+      "name": "Wolverine: The Brotherhood",
+      "sourceStart": 70,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2003,
+      "issueIdsSha256": "a2b9a4e197c548b7a6f2fb54c598c0b36caf7a5d14cd1a35f4d874422343d3fa"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-58",
+      "name": "Elektra: Everything Old Is New Again",
+      "sourceStart": 71,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "d16bf5bc034346355e2725e66343a7506c975fd9bc1027520c5b6fa4ae86ba41"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-59",
+      "name": "Exiles: Unnatural Instincts",
+      "sourceStart": 72,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "6ce434324b178323ee1e6162bb9d8f71fe7f81a2e1126886969161469becc1b4"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-60",
+      "name": "New Mutants: Back to School",
+      "sourceStart": 73,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2003,
+      "issueIdsSha256": "72d651a680852dd0d8c2f8592251e9193c5f7472182888bc67e33a65aefa58cf"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-61",
+      "name": "Runaways: Pride and Joy",
+      "sourceStart": 74,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2003,
+      "issueIdsSha256": "eaba6abbaaf8a8376e3b3ae7e6f4a119a553663792a837a591fe80a2e5c9eaf8"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-62",
+      "name": "Fantastic Four: Authoritative Action + Hereafter",
+      "sourceStart": 75,
+      "sourceCount": 2,
+      "ownerBulletCount": 2,
+      "issueCount": 9,
+      "timelineYear": 2003,
+      "issueIdsSha256": "f7bd3a4e72209086d40a3e0769707aa5f133c123eabde59f635794c2986f0391"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-63",
+      "name": "Spider-Man: Happy Birthday",
+      "sourceStart": 77,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "48a61c2563a5b58a0bf2a4126cb4b5f7f070e41f975f63e1ec549cb7710232cd"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-64",
+      "name": "Spectacular Spider-Man: The Hunger",
+      "sourceStart": 78,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "dc83923af8afaa7d4aafd6d7dbb1b3d4cb373d43e7f783498f12d1e6165aabf0"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-65",
+      "name": "Hulk: Split Decisions",
+      "sourceStart": 79,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2003,
+      "issueIdsSha256": "13c1a361ecb4650024081b44ae755cc81eb50570c8f554c6a5cf550f4b9bb0c7"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-66",
+      "name": "Uncanny X-Men: The Draco",
+      "sourceStart": 80,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "e325ef06268541bc357557cc2dfb4701f905c1ec87e23f8b83f08203a7a65e43"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-67",
+      "name": "Exiles: Fantastic Voyage",
+      "sourceStart": 81,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "3e95b2171d74dc0f5139d7df018f701c402c1f5ec8c071b303055475f0d938c5"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-68",
+      "name": "Iron Man: The Best Defense",
+      "sourceStart": 82,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2003,
+      "issueIdsSha256": "c7b014f998cd76f55ce7e11e1d5ffe7f91c927c0a5fac4fd11f52b90015404e1"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-69",
+      "name": "Daredevil: Echo",
+      "sourceStart": 83,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "6c77e056afbd78e8a90450d4e766f33ee304a091d7575d981ab441b4f0057c34"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-70",
+      "name": "Wolverine: Coyote Crossing",
+      "sourceStart": 84,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "313e0b2296948248558629b0184eab8d512a344fbfb06a61039008f029cf1adf"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-71",
+      "name": "New Mutants: The Ties That Bind",
+      "sourceStart": 85,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2004,
+      "issueIdsSha256": "43d8a3e4e4f150be37feb28229c9db1a72cd3aa827659f5a04a92a1be792e391"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-72",
+      "name": "Uncanny X-Men: She Lies With Angels",
+      "sourceStart": 86,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "08a60e02daa22b8552cdaeebafaae3a2641abed0d453a78983ab37327623e8f7"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-73",
+      "name": "New X-Men: Assault on Weapon Plus",
+      "sourceStart": 87,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 7,
+      "timelineYear": 2003,
+      "issueIdsSha256": "4069827ca7662a031cfb8ea4a08922f0a3fa2f33ed7fafc321af7fa6b23b8282"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-74",
+      "name": "X-Treme X-Men: Intifada",
+      "sourceStart": 88,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 5,
+      "timelineYear": 2003,
+      "issueIdsSha256": "5abb76a1cbbd4573d077ffa253740404b9f8427e1338e3dcc87e43e13007ac5b"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-75",
+      "name": "Runaways: Teenage Wasteland",
+      "sourceStart": 89,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2003,
+      "issueIdsSha256": "03bcf372e629a82e504bfa0357c0a45d8a3d3345f988a41ac75d5323150663eb"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-76",
+      "name": "Spider-Man: The Book of Ezekiel",
+      "sourceStart": 90,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 6,
+      "timelineYear": 2004,
+      "issueIdsSha256": "a4130d7c6efa47c764f37b5528d394fc0654ad3f755bb8dffdfad00b5b273239"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-77",
+      "name": "X-Treme X-Men: Storm: The Arena",
+      "sourceStart": 91,
+      "sourceCount": 1,
+      "ownerBulletCount": 1,
+      "issueCount": 4,
+      "timelineYear": 2004,
+      "issueIdsSha256": "a7b266082ed3095c8930d68b621393a3be6c41329cc76a6cf01f4acdcf689b84"
+    },
+    {
+      "id": "marvel-knights-to-planet-x-78",
+      "name": "Planet X Crossover Cluster",
+      "sourceStart": 92,
+      "sourceCount": 8,
+      "ownerBulletCount": 8,
+      "issueCount": 25,
+      "timelineYear": 2003,
+      "issueIdsSha256": "2c27646512c0f339fb1834fc3f23a19944098dafea65365718d8435b5e586401"
+    }
+  ]
+}
