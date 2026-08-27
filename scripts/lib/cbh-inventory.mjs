@@ -280,7 +280,7 @@ function gapEvidencePayload(gap) {
     sourcePosition: gap.sourcePosition,
     sourceIssueReference: gap.sourceIssueReference,
     sourceRangeReference: gap.sourceRangeReference ?? null,
-    sourceGroup: gap.sourceGroup ?? null,
+    ...(Object.hasOwn(gap, 'sourceGroup') ? { sourceGroup: gap.sourceGroup } : {}),
     normalizedSeriesTitle: gap.normalizedSeriesTitle,
     seriesYear: gap.seriesYear,
     issueNumber: String(gap.issueNumber),
@@ -312,7 +312,7 @@ function assertSourceGap(gap, index) {
   if (gap.sourceRangeReference != null) {
     assertNonEmptyString(gap.sourceRangeReference, `${label} sourceRangeReference`);
   }
-  if (gap.sourceGroup != null) {
+  if (Object.hasOwn(gap, 'sourceGroup')) {
     assertNonEmptyString(gap.sourceGroup, `${label} sourceGroup`);
   }
   assertNonEmptyString(gap.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
