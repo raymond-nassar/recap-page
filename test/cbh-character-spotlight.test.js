@@ -1053,6 +1053,45 @@ test('Magneto keeps the frozen offline boundary and accounting summary', async (
   assert.match(record.reason, /707 exact candidates, 15 repeats, 3 gaps, and 11 exclusions/);
 });
 
+test('Magneto source ledger preserves the frozen special ledger', async () => {
+  const ledger = await readJson('scripts/data/cbh-source-ledgers/magneto-reading-order.json');
+
+  assert.equal(ledger.id, 'magneto-reading-order');
+  assert.equal(ledger.sourceUrl, 'https://www.comicbookherald.com/magneto-reading-order/');
+  assert.equal(ledger.sourceBoundary, 'Full page; no qualifying Best Comics or Essential Comics section exists.');
+  assert.equal(ledger.sourceRetrievedAt, '2026-08-27');
+  assert.equal(ledger.sourceContentSha256, '9311edf7f432cb2e927ae85e7f54ea01109215df2d0ecd2e118d2201b28115a5');
+  assert.equal(ledger.sourceOccurrenceCount, 736);
+  assert.deepEqual(ledger.counts, {
+    exactCandidates: 707,
+    repeats: 15,
+    gaps: 3,
+    exclusions: 11,
+  });
+  assert.equal(Array.isArray(ledger.specialLedger), true);
+  assert.equal(ledger.specialLedger.length, 14);
+  assert.deepEqual(
+    ledger.specialLedger.map((entry) => entry.occurrencePosition),
+    Array.from({ length: 14 }, (_, index) => index + 1),
+  );
+  assert.equal(ledger.specialLedger.filter((entry) => entry.classification === 'gap').length, 3);
+  assert.equal(ledger.specialLedger.filter((entry) => entry.classification === 'exclusion').length, 11);
+  assert.equal(new Set(ledger.specialLedger.map((entry) => entry.occurrencePosition)).size, 14);
+  assert.equal(
+    ledger.specialLedger.every((entry) => typeof entry.sourceTextClause === 'string'
+      && typeof entry.sourceIssueReference === 'string'
+      && typeof entry.sourceGroup === 'string'
+      && typeof entry.reason === 'string'
+      && entry.evidence
+      && typeof entry.evidence.pageRef === 'string'),
+    true,
+  );
+  assert.equal(
+    ledger.specialLedger.filter((entry) => entry.classification === 'gap').every((entry) => entry.evidence.localSeriesEvidence),
+    true,
+  );
+});
+
 test('Iron Man ships with its exact boundary and generated surfaces', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
