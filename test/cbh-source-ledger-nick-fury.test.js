@@ -21,7 +21,7 @@ const expectedGroupNames = [
 ];
 
 const expectedGroupNodeCounts = [6, 5, 2, 5, 3, 2, 2];
-const expectedNodeOccurrenceCounts = [1, 1, 1, 1, 1, 1, 34, 32, 33, 64, 21, 1, 1, 13, 33, 13, 1, 36, 6, 7, 28, 1, 25, 14, 1];
+const expectedNodeOccurrenceCounts = [1, 1, 1, 1, 1, 1, 34, 32, 33, 64, 21, 1, 1, 13, 46, 1, 36, 6, 7, 28, 1, 25, 1, 13, 1];
 const expectedCategoryCounts = {
   'provisional-canonical-candidate': 272,
   'true-repeat': 74,
@@ -94,7 +94,7 @@ function assertLedgerShape(ledger) {
   assert.equal(ledger.sourceNodeCount, 25);
   assert.equal(ledger.sourceBlockCount, 25);
   assert.equal(ledger.provenanceGroupCount, 7);
-  assert.equal(ledger.issueBearingBlockCount, 15);
+  assert.equal(ledger.issueBearingBlockCount, 14);
   assert.equal(ledger.sourceOccurrenceCount, 370);
   assert.equal(ledger.sourceNodes.length, ledger.sourceNodeCount);
   assert.equal(ledger.sourceNodes.length, ledger.sourceBlockCount);
@@ -107,7 +107,7 @@ function assertLedgerShape(ledger) {
   assert.equal(ledger.sourceBoundary.headingCount, 0);
   assert.equal(ledger.sourceBoundary.firstIncludedBlock.sourceNode, 1);
   assert.equal(ledger.sourceBoundary.lastIncludedBlock.sourceNode, 25);
-  assert.equal(ledger.sourceBoundary.issueBearingBlockCount, 15);
+  assert.equal(ledger.sourceBoundary.issueBearingBlockCount, 14);
   assert.equal(ledger.sourceBoundaryDigest, digestCanonicalJson(ledger.sourceBoundary));
   assert.equal(ledger.sourceIssueBearingBlocksSha256, digestCanonicalJson(ledger.sourceNodes.filter((node) => node.countsTowardIssueBearingBlocks)));
   assert.equal(ledger.sourceNodeOrderDigest, digestCanonicalJson(ledger.sourceNodes.map(nodeDigest)));
@@ -171,13 +171,13 @@ function validateLedger(ledger) {
       false, false, false, true, false, false,
       true, true, true, true, true,
       false, false,
-      true, true, true, false, true,
-      true, true, true, false,
-      true, true,
+      true, true, false, true, true,
+      true, true, false, true,
+      false, true,
       false,
     ],
   );
-  assert.equal(ledger.sourceNodes.filter((node) => node.countsTowardIssueBearingBlocks).length, 15);
+  assert.equal(ledger.sourceNodes.filter((node) => node.countsTowardIssueBearingBlocks).length, 14);
   assert.deepEqual(
     ledger.sourceNodes.map((node) => node.occurrences.length),
     expectedNodeOccurrenceCounts,
@@ -219,6 +219,19 @@ function validateLedger(ledger) {
   assert.deepEqual(
     ledger.occurrences.map((occurrence) => occurrence.sourceNode).every((sourceNode) => sourceNode >= 1 && sourceNode <= 25),
     true,
+  );
+  for (const node of ledger.sourceNodes) {
+    assert.deepEqual(
+      node.occurrences.map((occurrence) => occurrence.sourceNode),
+      Array.from({ length: node.occurrences.length }, () => node.sourceNode),
+    );
+  }
+  assert.deepEqual(
+    ledger.sourceNodes
+      .flatMap((node) => node.occurrences)
+      .sort((left, right) => left.sourcePosition - right.sourcePosition)
+      .map(occurrenceDigest),
+    ledger.occurrences.map(occurrenceDigest),
   );
 
   for (const occurrence of ledger.occurrences) {

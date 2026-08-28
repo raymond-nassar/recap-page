@@ -7,7 +7,7 @@
   "sourcePageTitle": "Omnibussin: Nick Fury, from World War II to S.H.I.E.L.D.",
   "sourceRetrievedAt": "2026-08-28",
   "sourceContentSha256": "2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e",
-  "sourceIssueBearingBlocksSha256": "d0ebed778206de20be258109ebb54397d1756d76aa877cfaeae0ff81fbb4f16f",
+  "sourceIssueBearingBlocksSha256": "b8acd3a2c0f66ed79ea7eae8e13f5d407283ab1a21581066e3739270374b4ee5",
   "sourceBoundary": {
     "status": "exact-page-snapshot",
     "canonicalUrl": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
@@ -30,8 +30,8 @@
       "sourceBlockPosition": 1,
       "sourceText": "That’s really all of it now! If these omnibuses were published, which ones would you buy, if any?"
     },
-    "issueBearingBlockCount": 15,
-    "issueBearingBlocksSha256": "d0ebed778206de20be258109ebb54397d1756d76aa877cfaeae0ff81fbb4f16f",
+    "issueBearingBlockCount": 14,
+    "issueBearingBlocksSha256": "b8acd3a2c0f66ed79ea7eae8e13f5d407283ab1a21581066e3739270374b4ee5",
     "boundaryRationale": "No qualifying Best Comics or Essential Comics subsection exists, so the full page is the frozen boundary.",
     "adjacentContentExcluded": [
       "The article chrome and surrounding site navigation are outside the content blocks.",
@@ -52,7 +52,7 @@
       },
       {
         "type": "issue-bearing-block-hash",
-        "sha256": "d0ebed778206de20be258109ebb54397d1756d76aa877cfaeae0ff81fbb4f16f"
+        "sha256": "b8acd3a2c0f66ed79ea7eae8e13f5d407283ab1a21581066e3739270374b4ee5"
       },
       {
         "type": "first-included-block",
@@ -66,11 +66,11 @@
       }
     ]
   },
-  "sourceBoundaryDigest": "aac72bc4d14be3484c4ed3682b0b02e8ee7a5678d4b39f5c0cfe658f0a026b6e",
+  "sourceBoundaryDigest": "e56a22472ebafea11c5f8de2e32c348779e9c1ba7e162348e701cdf9b5fa4d95",
   "sourceNodeCount": 25,
   "sourceBlockCount": 25,
   "provenanceGroupCount": 7,
-  "issueBearingBlockCount": 15,
+  "issueBearingBlockCount": 14,
   "sourceOccurrenceCount": 370,
   "categoryCounts": {
     "provisional-canonical-candidate": 272,
@@ -533,10 +533,10 @@
     328,
     329
   ],
-  "repeatDigest": "2828cc188520025a80f9732381c0770fa7ed6b569611f5d9db6b5f9ba700a5df",
+  "repeatDigest": "2387d721fd4162ae595ddffe845ce969ba9e58841bb4d71ec8ab10063bcd4a67",
   "dispositionDigest": "91257302375ca8715fbf873521b1a28e91b3f557e8e958797c06e54853955eea",
-  "sourceNodeOrderDigest": "0ff912ded8505321428d093f1be03b8b9838e3cc851d367a307ca2f31f59abb1",
-  "occurrenceDigest": "224d8ef72ac3b991e5019a966b8940d0351c889e79f7bc06d6120cd74ec12a62",
+  "sourceNodeOrderDigest": "ae42fa7c2c292277a9065e56617ffa16e8a775741fb3bf9a649a86ccd424aa76",
+  "occurrenceDigest": "d049b6ba428ab0df9afcb3cb15be5966431837750a6f8d2e5773abc30351f654",
   "sourceNodes": [
     {
       "sourceNode": 1,
@@ -4559,18 +4559,7 @@
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 33
-        }
-      ]
-    },
-    {
-      "sourceNode": 16,
-      "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
-      "sourceGroupPosition": 4,
-      "sourceType": "issue-list",
-      "sourceText": "Taking over from Harras, D.G. Chichester would write the title for a few years, with Pollard still on pencils for a while, until Jackson Guice took over for mos",
-      "countsTowardIssueBearingBlocks": true,
-      "sourceBlockPosition": 1,
-      "occurrences": [
+        },
         {
           "sourceIssueReference": "Nick Fury vs SHIELD #1",
           "sourceRangeReference": "Nick Fury vs SHIELD (1988) #1-6",
@@ -4582,10 +4571,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 239,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 1,
+          "sourceBlockPosition": 34,
           "repeatOf": 193
         },
         {
@@ -4599,10 +4588,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 240,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 2,
+          "sourceBlockPosition": 35,
           "repeatOf": 194
         },
         {
@@ -4616,10 +4605,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 241,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 3,
+          "sourceBlockPosition": 36,
           "repeatOf": 195
         },
         {
@@ -4633,10 +4622,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 242,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 4,
+          "sourceBlockPosition": 37,
           "repeatOf": 196
         },
         {
@@ -4650,10 +4639,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 243,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 5,
+          "sourceBlockPosition": 38,
           "repeatOf": 197
         },
         {
@@ -4667,10 +4656,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 244,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 6,
+          "sourceBlockPosition": 39,
           "repeatOf": 198
         },
         {
@@ -4684,10 +4673,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 245,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 7,
+          "sourceBlockPosition": 40,
           "repeatOf": 199
         },
         {
@@ -4701,10 +4690,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 246,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 8,
+          "sourceBlockPosition": 41,
           "repeatOf": 200
         },
         {
@@ -4718,10 +4707,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 247,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 9,
+          "sourceBlockPosition": 42,
           "repeatOf": 201
         },
         {
@@ -4735,10 +4724,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 248,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 10,
+          "sourceBlockPosition": 43,
           "repeatOf": 202
         },
         {
@@ -4752,10 +4741,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 249,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 11,
+          "sourceBlockPosition": 44,
           "repeatOf": 203
         },
         {
@@ -4769,10 +4758,10 @@
           "reason": null,
           "note": null,
           "sourcePosition": 250,
-          "sourceNode": 16,
+          "sourceNode": 15,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 12,
+          "sourceBlockPosition": 45,
           "repeatOf": 204
         },
         {
@@ -4786,10 +4775,38 @@
           "reason": null,
           "note": null,
           "sourcePosition": 251,
+          "sourceNode": 15,
+          "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
+          "sourceGroupPosition": 4,
+          "sourceBlockPosition": 46
+        }
+      ]
+    },
+    {
+      "sourceNode": 16,
+      "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
+      "sourceGroupPosition": 4,
+      "sourceType": "issue-list",
+      "sourceText": "Taking over from Harras, D.G. Chichester would write the title for a few years, with Pollard still on pencils for a while, until Jackson Guice took over for mos",
+      "countsTowardIssueBearingBlocks": false,
+      "sourceBlockPosition": 1,
+      "occurrences": [
+        {
+          "sourceIssueReference": "Taking over from Harras, D.G. Chichester would write the title for a few years, with Pollard still on pencils for a while, until Jackson Guice took over for mos",
+          "sourceRangeReference": "Taking over from Harras, D.G. Chichester would write the title for a few years, with Pollard still on pencils for a while, until Jackson Guice took over for mos",
+          "normalizedSeriesTitle": null,
+          "seriesYear": null,
+          "issueNumber": null,
+          "classification": "semantic-exclusion",
+          "sourceType": "prose",
+          "reason": "prose marker",
+          "note": null,
+          "sourcePosition": 252,
           "sourceNode": 16,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
-          "sourceBlockPosition": 13
+          "sourceBlockPosition": 1,
+          "repeatOf": null
         }
       ]
     },
@@ -4799,33 +4816,6 @@
       "sourceGroupPosition": 4,
       "sourceType": "prose",
       "sourceText": "Nick Fury: Director of S.H.I.E.L.D. Omnibus Vol. 2 by D.G. Chichester, Scott Lobdell, Keith Pollard, and Jackson Guice, with Ernie Stiner, M.C. Wyman, and Herb ",
-      "countsTowardIssueBearingBlocks": false,
-      "sourceBlockPosition": 1,
-      "occurrences": [
-        {
-          "sourceIssueReference": "Nick Fury: Director of S.H.I.E.L.D. Omnibus Vol. 2 by D.G. Chichester, Scott Lobdell, Keith Pollard, and Jackson Guice, with Ernie Stiner, M.C. Wyman, and Herb ",
-          "sourceRangeReference": "Nick Fury: Director of S.H.I.E.L.D. Omnibus Vol. 2 by D.G. Chichester, Scott Lobdell, Keith Pollard, and Jackson Guice, with Ernie Stiner, M.C. Wyman, and Herb ",
-          "normalizedSeriesTitle": null,
-          "seriesYear": null,
-          "issueNumber": null,
-          "classification": "semantic-exclusion",
-          "sourceType": "prose",
-          "reason": "prose marker",
-          "note": null,
-          "sourcePosition": 252,
-          "sourceNode": 17,
-          "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
-          "sourceGroupPosition": 4,
-          "sourceBlockPosition": 1
-        }
-      ]
-    },
-    {
-      "sourceNode": 18,
-      "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
-      "sourceGroupPosition": 4,
-      "sourceType": "issue-list",
-      "sourceText": "The final volume would be about as eclectic as the first one, if not even more so. Naturally, it would open with Nick Fury: Agent of S.H.I.E.L.D.’s closing issu",
       "countsTowardIssueBearingBlocks": true,
       "sourceBlockPosition": 1,
       "occurrences": [
@@ -4840,7 +4830,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 253,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 1
@@ -4856,7 +4846,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 254,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 2
@@ -4872,7 +4862,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 255,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 3
@@ -4888,7 +4878,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 256,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 4
@@ -4904,7 +4894,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 257,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 5
@@ -4920,7 +4910,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 258,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 6
@@ -4936,7 +4926,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 259,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 7
@@ -4952,7 +4942,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 260,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 8
@@ -4968,7 +4958,7 @@
           "reason": "partial material reference",
           "note": null,
           "sourcePosition": 261,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 9
@@ -4984,7 +4974,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 262,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 10
@@ -5000,7 +4990,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 263,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 11
@@ -5016,7 +5006,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 264,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 12
@@ -5032,7 +5022,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 265,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 13
@@ -5048,7 +5038,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 266,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 14
@@ -5064,7 +5054,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 267,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 15
@@ -5080,7 +5070,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 268,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 16
@@ -5096,7 +5086,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 269,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 17
@@ -5112,7 +5102,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 270,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 18
@@ -5128,7 +5118,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 271,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 19
@@ -5144,7 +5134,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 272,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 20
@@ -5160,7 +5150,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 273,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 21
@@ -5176,7 +5166,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 274,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 22
@@ -5192,7 +5182,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 275,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 23
@@ -5208,7 +5198,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 276,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 24
@@ -5224,7 +5214,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 277,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 25
@@ -5240,7 +5230,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 278,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 26
@@ -5256,7 +5246,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 279,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 27
@@ -5272,7 +5262,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 280,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 28
@@ -5288,7 +5278,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 281,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 29
@@ -5304,7 +5294,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 282,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 30
@@ -5320,7 +5310,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 283,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 31
@@ -5336,7 +5326,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 284,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 32
@@ -5352,7 +5342,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 285,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 33
@@ -5368,7 +5358,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 286,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 34
@@ -5384,7 +5374,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 287,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 35
@@ -5400,7 +5390,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 288,
-          "sourceNode": 18,
+          "sourceNode": 17,
           "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
           "sourceGroupPosition": 4,
           "sourceBlockPosition": 36
@@ -5408,11 +5398,11 @@
       ]
     },
     {
-      "sourceNode": 19,
-      "sourceGroup": "Modern Fury and Secret War",
-      "sourceGroupPosition": 5,
-      "sourceType": "named-work",
-      "sourceText": "That’s no proper way to end an omnibus, however. This collection should end strongly by catching us up to just before Hickman’s Secret Warriors, with Brian Mich",
+      "sourceNode": 18,
+      "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
+      "sourceGroupPosition": 4,
+      "sourceType": "issue-list",
+      "sourceText": "The final volume would be about as eclectic as the first one, if not even more so. Naturally, it would open with Nick Fury: Agent of S.H.I.E.L.D.’s closing issu",
       "countsTowardIssueBearingBlocks": true,
       "sourceBlockPosition": 1,
       "occurrences": [
@@ -5427,7 +5417,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 289,
-          "sourceNode": 19,
+          "sourceNode": 18,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 1
@@ -5443,7 +5433,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 290,
-          "sourceNode": 19,
+          "sourceNode": 18,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 2
@@ -5459,7 +5449,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 291,
-          "sourceNode": 19,
+          "sourceNode": 18,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 3
@@ -5475,7 +5465,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 292,
-          "sourceNode": 19,
+          "sourceNode": 18,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 4
@@ -5491,7 +5481,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 293,
-          "sourceNode": 19,
+          "sourceNode": 18,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 5
@@ -5507,7 +5497,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 294,
-          "sourceNode": 19,
+          "sourceNode": 18,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 6
@@ -5515,11 +5505,11 @@
       ]
     },
     {
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
-      "sourceType": "issue-list",
-      "sourceText": "Nick Fury: Director of S.H.I.E.L.D. Omnibus Vol. 3, by Brian Michael Bendis, Howard Chaykin, Gregory Wright, Terry Kavanagh, Gabriele Dell’Otto, John Heebink, C",
+      "sourceType": "named-work",
+      "sourceText": "That’s no proper way to end an omnibus, however. This collection should end strongly by catching us up to just before Hickman’s Secret Warriors, with Brian Mich",
       "countsTowardIssueBearingBlocks": true,
       "sourceBlockPosition": 1,
       "occurrences": [
@@ -5534,7 +5524,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 295,
-          "sourceNode": 20,
+          "sourceNode": 19,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 1
@@ -5550,7 +5540,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 296,
-          "sourceNode": 20,
+          "sourceNode": 19,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 2
@@ -5566,7 +5556,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 297,
-          "sourceNode": 20,
+          "sourceNode": 19,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 3
@@ -5582,7 +5572,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 298,
-          "sourceNode": 20,
+          "sourceNode": 19,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 4
@@ -5598,7 +5588,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 299,
-          "sourceNode": 20,
+          "sourceNode": 19,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 5
@@ -5614,7 +5604,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 300,
-          "sourceNode": 20,
+          "sourceNode": 19,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 6
@@ -5630,7 +5620,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 301,
-          "sourceNode": 20,
+          "sourceNode": 19,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 7
@@ -5638,11 +5628,11 @@
       ]
     },
     {
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceType": "issue-list",
-      "sourceText": "“Is that it?!” Garth Ennis’s fans are shouting at me now, I’m sure. Don’t you worry: I haven’t forgotten about him! Ennis wrote several Fury series in the adult",
+      "sourceText": "Nick Fury: Director of S.H.I.E.L.D. Omnibus Vol. 3, by Brian Michael Bendis, Howard Chaykin, Gregory Wright, Terry Kavanagh, Gabriele Dell’Otto, John Heebink, C",
       "countsTowardIssueBearingBlocks": true,
       "sourceBlockPosition": 1,
       "occurrences": [
@@ -5657,7 +5647,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 302,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 1
@@ -5673,7 +5663,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 303,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 2
@@ -5689,7 +5679,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 304,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 3
@@ -5705,7 +5695,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 305,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 4
@@ -5721,7 +5711,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 306,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 5
@@ -5737,7 +5727,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 307,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 6
@@ -5753,7 +5743,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 308,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 7,
@@ -5770,7 +5760,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 309,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 8,
@@ -5787,7 +5777,7 @@
           "reason": "partial material reference",
           "note": null,
           "sourcePosition": 310,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 9
@@ -5803,7 +5793,7 @@
           "reason": "partial material reference",
           "note": null,
           "sourcePosition": 311,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 10
@@ -5819,7 +5809,7 @@
           "reason": "partial material reference",
           "note": null,
           "sourcePosition": 312,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 11
@@ -5835,7 +5825,7 @@
           "reason": "partial material reference",
           "note": null,
           "sourcePosition": 313,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 12
@@ -5851,7 +5841,7 @@
           "reason": "partial material reference",
           "note": null,
           "sourcePosition": 314,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 13
@@ -5867,7 +5857,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 315,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 14,
@@ -5884,7 +5874,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 316,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 15
@@ -5900,7 +5890,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 317,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 16
@@ -5916,7 +5906,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 318,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 17
@@ -5932,7 +5922,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 319,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 18
@@ -5948,7 +5938,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 320,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 19
@@ -5964,7 +5954,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 321,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 20
@@ -5980,7 +5970,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 322,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 21,
@@ -5997,7 +5987,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 323,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 22,
@@ -6014,7 +6004,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 324,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 23,
@@ -6031,7 +6021,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 325,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 24,
@@ -6048,7 +6038,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 326,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 25,
@@ -6065,7 +6055,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 327,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 26,
@@ -6082,7 +6072,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 328,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 27,
@@ -6099,11 +6089,39 @@
           "reason": null,
           "note": null,
           "sourcePosition": 329,
-          "sourceNode": 21,
+          "sourceNode": 20,
           "sourceGroup": "Modern Fury and Secret War",
           "sourceGroupPosition": 5,
           "sourceBlockPosition": 28,
           "repeatOf": 301
+        }
+      ]
+    },
+    {
+      "sourceNode": 21,
+      "sourceGroup": "Modern Fury and Secret War",
+      "sourceGroupPosition": 5,
+      "sourceType": "issue-list",
+      "sourceText": "“Is that it?!” Garth Ennis’s fans are shouting at me now, I’m sure. Don’t you worry: I haven’t forgotten about him! Ennis wrote several Fury series in the adult",
+      "countsTowardIssueBearingBlocks": false,
+      "sourceBlockPosition": 1,
+      "occurrences": [
+        {
+          "sourceIssueReference": "“Is that it?!” Garth Ennis’s fans are shouting at me now, I’m sure. Don’t you worry: I haven’t forgotten about him! Ennis wrote several Fury series in the adult",
+          "sourceRangeReference": "“Is that it?!” Garth Ennis’s fans are shouting at me now, I’m sure. Don’t you worry: I haven’t forgotten about him! Ennis wrote several Fury series in the adult",
+          "normalizedSeriesTitle": null,
+          "seriesYear": null,
+          "issueNumber": null,
+          "classification": "semantic-exclusion",
+          "sourceType": "prose",
+          "reason": "prose marker",
+          "note": null,
+          "sourcePosition": 330,
+          "sourceNode": 21,
+          "sourceGroup": "Garth Ennis Fury",
+          "sourceGroupPosition": 6,
+          "sourceBlockPosition": 1,
+          "repeatOf": null
         }
       ]
     },
@@ -6113,33 +6131,6 @@
       "sourceGroupPosition": 6,
       "sourceType": "prose",
       "sourceText": "Nick Fury by Garth Ennis Omnibus, by Garth Ennis, Darick Robertson, and Goran Parlov, would collect Fury (2001) #1-6, Fury: Peacemaker #1-6, and Fury (2012): MA",
-      "countsTowardIssueBearingBlocks": false,
-      "sourceBlockPosition": 1,
-      "occurrences": [
-        {
-          "sourceIssueReference": "Nick Fury by Garth Ennis Omnibus, by Garth Ennis, Darick Robertson, and Goran Parlov, would collect Fury (2001) #1-6, Fury: Peacemaker #1-6, and Fury (2012): MA",
-          "sourceRangeReference": "Nick Fury by Garth Ennis Omnibus, by Garth Ennis, Darick Robertson, and Goran Parlov, would collect Fury (2001) #1-6, Fury: Peacemaker #1-6, and Fury (2012): MA",
-          "normalizedSeriesTitle": null,
-          "seriesYear": null,
-          "issueNumber": null,
-          "classification": "semantic-exclusion",
-          "sourceType": "prose",
-          "reason": "prose marker",
-          "note": null,
-          "sourcePosition": 330,
-          "sourceNode": 22,
-          "sourceGroup": "Garth Ennis Fury",
-          "sourceGroupPosition": 6,
-          "sourceBlockPosition": 1
-        }
-      ]
-    },
-    {
-      "sourceNode": 23,
-      "sourceGroup": "Garth Ennis Fury",
-      "sourceGroupPosition": 6,
-      "sourceType": "issue-list",
-      "sourceText": "But we are not quite done! Although we have been focusing on Nick Fury, this is also about SHIELD, and there is a crucial story about the organization, or rathe",
       "countsTowardIssueBearingBlocks": true,
       "sourceBlockPosition": 1,
       "occurrences": [
@@ -6154,7 +6145,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 331,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 1
@@ -6170,7 +6161,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 332,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 2
@@ -6186,7 +6177,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 333,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 3
@@ -6202,7 +6193,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 334,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 4
@@ -6218,7 +6209,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 335,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 5
@@ -6234,7 +6225,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 336,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 6
@@ -6250,7 +6241,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 337,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 7
@@ -6266,7 +6257,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 338,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 8
@@ -6282,7 +6273,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 339,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 9
@@ -6298,7 +6289,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 340,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 10
@@ -6314,7 +6305,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 341,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 11
@@ -6330,7 +6321,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 342,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 12
@@ -6346,7 +6337,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 343,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 13
@@ -6362,7 +6353,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 344,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 14
@@ -6378,7 +6369,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 345,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 15
@@ -6394,7 +6385,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 346,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 16
@@ -6410,7 +6401,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 347,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 17
@@ -6426,7 +6417,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 348,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 18
@@ -6442,7 +6433,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 349,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 19
@@ -6458,7 +6449,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 350,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 20
@@ -6474,7 +6465,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 351,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 21
@@ -6490,7 +6481,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 352,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 22
@@ -6506,7 +6497,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 353,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 23
@@ -6522,7 +6513,7 @@
           "reason": null,
           "note": null,
           "sourcePosition": 354,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 24
@@ -6538,10 +6529,38 @@
           "reason": null,
           "note": null,
           "sourcePosition": 355,
-          "sourceNode": 23,
+          "sourceNode": 22,
           "sourceGroup": "Garth Ennis Fury",
           "sourceGroupPosition": 6,
           "sourceBlockPosition": 25
+        }
+      ]
+    },
+    {
+      "sourceNode": 23,
+      "sourceGroup": "Garth Ennis Fury",
+      "sourceGroupPosition": 6,
+      "sourceType": "issue-list",
+      "sourceText": "But we are not quite done! Although we have been focusing on Nick Fury, this is also about SHIELD, and there is a crucial story about the organization, or rathe",
+      "countsTowardIssueBearingBlocks": false,
+      "sourceBlockPosition": 1,
+      "occurrences": [
+        {
+          "sourceIssueReference": "But we are not quite done! Although we have been focusing on Nick Fury, this is also about SHIELD, and there is a crucial story about the organization, or rathe",
+          "sourceRangeReference": "But we are not quite done! Although we have been focusing on Nick Fury, this is also about SHIELD, and there is a crucial story about the organization, or rathe",
+          "normalizedSeriesTitle": null,
+          "seriesYear": null,
+          "issueNumber": null,
+          "classification": "semantic-exclusion",
+          "sourceType": "prose",
+          "reason": "prose marker",
+          "note": null,
+          "sourcePosition": 356,
+          "sourceNode": 23,
+          "sourceGroup": "S.H.I.E.L.D. by Hickman and Weaver",
+          "sourceGroupPosition": 7,
+          "sourceBlockPosition": 1,
+          "repeatOf": null
         }
       ]
     },
@@ -6554,22 +6573,6 @@
       "countsTowardIssueBearingBlocks": true,
       "sourceBlockPosition": 1,
       "occurrences": [
-        {
-          "sourceIssueReference": "S.H.I.E.L.D. by Jonathan Hickman & Dustin Weaver Omnibus, by Jonathan Hickman, Dustin Weaver, and Sonia Oback, collecting S.H.I.E.L.D. (2010) #1-6, S.H.I.E.L.D.",
-          "sourceRangeReference": "S.H.I.E.L.D. by Jonathan Hickman & Dustin Weaver Omnibus, by Jonathan Hickman, Dustin Weaver, and Sonia Oback, collecting S.H.I.E.L.D. (2010) #1-6, S.H.I.E.L.D.",
-          "normalizedSeriesTitle": null,
-          "seriesYear": null,
-          "issueNumber": null,
-          "classification": "semantic-exclusion",
-          "sourceType": "prose",
-          "reason": "prose marker",
-          "note": null,
-          "sourcePosition": 356,
-          "sourceNode": 24,
-          "sourceGroup": "S.H.I.E.L.D. by Hickman and Weaver",
-          "sourceGroupPosition": 7,
-          "sourceBlockPosition": 1
-        },
         {
           "sourceIssueReference": "S.H.I.E.L.D. #1",
           "sourceRangeReference": "S.H.I.E.L.D. (2010) #1-6",
@@ -10679,10 +10682,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 239,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 1,
+      "sourceBlockPosition": 34,
       "repeatOf": 193
     },
     {
@@ -10696,10 +10699,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 240,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 2,
+      "sourceBlockPosition": 35,
       "repeatOf": 194
     },
     {
@@ -10713,10 +10716,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 241,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 3,
+      "sourceBlockPosition": 36,
       "repeatOf": 195
     },
     {
@@ -10730,10 +10733,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 242,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 4,
+      "sourceBlockPosition": 37,
       "repeatOf": 196
     },
     {
@@ -10747,10 +10750,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 243,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 5,
+      "sourceBlockPosition": 38,
       "repeatOf": 197
     },
     {
@@ -10764,10 +10767,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 244,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 6,
+      "sourceBlockPosition": 39,
       "repeatOf": 198
     },
     {
@@ -10781,10 +10784,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 245,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 7,
+      "sourceBlockPosition": 40,
       "repeatOf": 199
     },
     {
@@ -10798,10 +10801,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 246,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 8,
+      "sourceBlockPosition": 41,
       "repeatOf": 200
     },
     {
@@ -10815,10 +10818,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 247,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 9,
+      "sourceBlockPosition": 42,
       "repeatOf": 201
     },
     {
@@ -10832,10 +10835,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 248,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 10,
+      "sourceBlockPosition": 43,
       "repeatOf": 202
     },
     {
@@ -10849,10 +10852,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 249,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 11,
+      "sourceBlockPosition": 44,
       "repeatOf": 203
     },
     {
@@ -10866,10 +10869,10 @@
       "reason": null,
       "note": null,
       "sourcePosition": 250,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 12,
+      "sourceBlockPosition": 45,
       "repeatOf": 204
     },
     {
@@ -10883,14 +10886,14 @@
       "reason": null,
       "note": null,
       "sourcePosition": 251,
-      "sourceNode": 16,
+      "sourceNode": 15,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 13
+      "sourceBlockPosition": 46
     },
     {
-      "sourceIssueReference": "Nick Fury: Director of S.H.I.E.L.D. Omnibus Vol. 2 by D.G. Chichester, Scott Lobdell, Keith Pollard, and Jackson Guice, with Ernie Stiner, M.C. Wyman, and Herb ",
-      "sourceRangeReference": "Nick Fury: Director of S.H.I.E.L.D. Omnibus Vol. 2 by D.G. Chichester, Scott Lobdell, Keith Pollard, and Jackson Guice, with Ernie Stiner, M.C. Wyman, and Herb ",
+      "sourceIssueReference": "Taking over from Harras, D.G. Chichester would write the title for a few years, with Pollard still on pencils for a while, until Jackson Guice took over for mos",
+      "sourceRangeReference": "Taking over from Harras, D.G. Chichester would write the title for a few years, with Pollard still on pencils for a while, until Jackson Guice took over for mos",
       "normalizedSeriesTitle": null,
       "seriesYear": null,
       "issueNumber": null,
@@ -10899,10 +10902,11 @@
       "reason": "prose marker",
       "note": null,
       "sourcePosition": 252,
-      "sourceNode": 17,
+      "sourceNode": 16,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
-      "sourceBlockPosition": 1
+      "sourceBlockPosition": 1,
+      "repeatOf": null
     },
     {
       "sourceIssueReference": "Nick Fury: Agent of SHIELD #7",
@@ -10915,7 +10919,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 253,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 1
@@ -10931,7 +10935,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 254,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 2
@@ -10947,7 +10951,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 255,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 3
@@ -10963,7 +10967,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 256,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 4
@@ -10979,7 +10983,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 257,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 5
@@ -10995,7 +10999,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 258,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 6
@@ -11011,7 +11015,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 259,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 7
@@ -11027,7 +11031,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 260,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 8
@@ -11043,7 +11047,7 @@
       "reason": "partial material reference",
       "note": null,
       "sourcePosition": 261,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 9
@@ -11059,7 +11063,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 262,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 10
@@ -11075,7 +11079,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 263,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 11
@@ -11091,7 +11095,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 264,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 12
@@ -11107,7 +11111,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 265,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 13
@@ -11123,7 +11127,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 266,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 14
@@ -11139,7 +11143,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 267,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 15
@@ -11155,7 +11159,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 268,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 16
@@ -11171,7 +11175,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 269,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 17
@@ -11187,7 +11191,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 270,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 18
@@ -11203,7 +11207,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 271,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 19
@@ -11219,7 +11223,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 272,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 20
@@ -11235,7 +11239,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 273,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 21
@@ -11251,7 +11255,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 274,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 22
@@ -11267,7 +11271,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 275,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 23
@@ -11283,7 +11287,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 276,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 24
@@ -11299,7 +11303,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 277,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 25
@@ -11315,7 +11319,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 278,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 26
@@ -11331,7 +11335,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 279,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 27
@@ -11347,7 +11351,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 280,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 28
@@ -11363,7 +11367,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 281,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 29
@@ -11379,7 +11383,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 282,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 30
@@ -11395,7 +11399,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 283,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 31
@@ -11411,7 +11415,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 284,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 32
@@ -11427,7 +11431,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 285,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 33
@@ -11443,7 +11447,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 286,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 34
@@ -11459,7 +11463,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 287,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 35
@@ -11475,7 +11479,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 288,
-      "sourceNode": 18,
+      "sourceNode": 17,
       "sourceGroup": "Nick Fury: Director of S.H.I.E.L.D.",
       "sourceGroupPosition": 4,
       "sourceBlockPosition": 36
@@ -11491,7 +11495,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 289,
-      "sourceNode": 19,
+      "sourceNode": 18,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 1
@@ -11507,7 +11511,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 290,
-      "sourceNode": 19,
+      "sourceNode": 18,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 2
@@ -11523,7 +11527,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 291,
-      "sourceNode": 19,
+      "sourceNode": 18,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 3
@@ -11539,7 +11543,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 292,
-      "sourceNode": 19,
+      "sourceNode": 18,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 4
@@ -11555,7 +11559,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 293,
-      "sourceNode": 19,
+      "sourceNode": 18,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 5
@@ -11571,7 +11575,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 294,
-      "sourceNode": 19,
+      "sourceNode": 18,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 6
@@ -11587,7 +11591,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 295,
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 1
@@ -11603,7 +11607,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 296,
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 2
@@ -11619,7 +11623,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 297,
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 3
@@ -11635,7 +11639,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 298,
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 4
@@ -11651,7 +11655,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 299,
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 5
@@ -11667,7 +11671,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 300,
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 6
@@ -11683,7 +11687,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 301,
-      "sourceNode": 20,
+      "sourceNode": 19,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 7
@@ -11699,7 +11703,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 302,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 1
@@ -11715,7 +11719,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 303,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 2
@@ -11731,7 +11735,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 304,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 3
@@ -11747,7 +11751,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 305,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 4
@@ -11763,7 +11767,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 306,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 5
@@ -11779,7 +11783,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 307,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 6
@@ -11795,7 +11799,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 308,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 7,
@@ -11812,7 +11816,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 309,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 8,
@@ -11829,7 +11833,7 @@
       "reason": "partial material reference",
       "note": null,
       "sourcePosition": 310,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 9
@@ -11845,7 +11849,7 @@
       "reason": "partial material reference",
       "note": null,
       "sourcePosition": 311,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 10
@@ -11861,7 +11865,7 @@
       "reason": "partial material reference",
       "note": null,
       "sourcePosition": 312,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 11
@@ -11877,7 +11881,7 @@
       "reason": "partial material reference",
       "note": null,
       "sourcePosition": 313,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 12
@@ -11893,7 +11897,7 @@
       "reason": "partial material reference",
       "note": null,
       "sourcePosition": 314,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 13
@@ -11909,7 +11913,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 315,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 14,
@@ -11926,7 +11930,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 316,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 15
@@ -11942,7 +11946,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 317,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 16
@@ -11958,7 +11962,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 318,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 17
@@ -11974,7 +11978,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 319,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 18
@@ -11990,7 +11994,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 320,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 19
@@ -12006,7 +12010,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 321,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 20
@@ -12022,7 +12026,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 322,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 21,
@@ -12039,7 +12043,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 323,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 22,
@@ -12056,7 +12060,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 324,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 23,
@@ -12073,7 +12077,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 325,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 24,
@@ -12090,7 +12094,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 326,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 25,
@@ -12107,7 +12111,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 327,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 26,
@@ -12124,7 +12128,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 328,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 27,
@@ -12141,15 +12145,15 @@
       "reason": null,
       "note": null,
       "sourcePosition": 329,
-      "sourceNode": 21,
+      "sourceNode": 20,
       "sourceGroup": "Modern Fury and Secret War",
       "sourceGroupPosition": 5,
       "sourceBlockPosition": 28,
       "repeatOf": 301
     },
     {
-      "sourceIssueReference": "Nick Fury by Garth Ennis Omnibus, by Garth Ennis, Darick Robertson, and Goran Parlov, would collect Fury (2001) #1-6, Fury: Peacemaker #1-6, and Fury (2012): MA",
-      "sourceRangeReference": "Nick Fury by Garth Ennis Omnibus, by Garth Ennis, Darick Robertson, and Goran Parlov, would collect Fury (2001) #1-6, Fury: Peacemaker #1-6, and Fury (2012): MA",
+      "sourceIssueReference": "“Is that it?!” Garth Ennis’s fans are shouting at me now, I’m sure. Don’t you worry: I haven’t forgotten about him! Ennis wrote several Fury series in the adult",
+      "sourceRangeReference": "“Is that it?!” Garth Ennis’s fans are shouting at me now, I’m sure. Don’t you worry: I haven’t forgotten about him! Ennis wrote several Fury series in the adult",
       "normalizedSeriesTitle": null,
       "seriesYear": null,
       "issueNumber": null,
@@ -12158,10 +12162,11 @@
       "reason": "prose marker",
       "note": null,
       "sourcePosition": 330,
-      "sourceNode": 22,
+      "sourceNode": 21,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
-      "sourceBlockPosition": 1
+      "sourceBlockPosition": 1,
+      "repeatOf": null
     },
     {
       "sourceIssueReference": "Fury #1",
@@ -12174,7 +12179,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 331,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 1
@@ -12190,7 +12195,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 332,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 2
@@ -12206,7 +12211,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 333,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 3
@@ -12222,7 +12227,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 334,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 4
@@ -12238,7 +12243,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 335,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 5
@@ -12254,7 +12259,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 336,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 6
@@ -12270,7 +12275,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 337,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 7
@@ -12286,7 +12291,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 338,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 8
@@ -12302,7 +12307,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 339,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 9
@@ -12318,7 +12323,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 340,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 10
@@ -12334,7 +12339,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 341,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 11
@@ -12350,7 +12355,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 342,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 12
@@ -12366,7 +12371,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 343,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 13
@@ -12382,7 +12387,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 344,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 14
@@ -12398,7 +12403,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 345,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 15
@@ -12414,7 +12419,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 346,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 16
@@ -12430,7 +12435,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 347,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 17
@@ -12446,7 +12451,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 348,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 18
@@ -12462,7 +12467,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 349,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 19
@@ -12478,7 +12483,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 350,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 20
@@ -12494,7 +12499,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 351,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 21
@@ -12510,7 +12515,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 352,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 22
@@ -12526,7 +12531,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 353,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 23
@@ -12542,7 +12547,7 @@
       "reason": null,
       "note": null,
       "sourcePosition": 354,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 24
@@ -12558,14 +12563,14 @@
       "reason": null,
       "note": null,
       "sourcePosition": 355,
-      "sourceNode": 23,
+      "sourceNode": 22,
       "sourceGroup": "Garth Ennis Fury",
       "sourceGroupPosition": 6,
       "sourceBlockPosition": 25
     },
     {
-      "sourceIssueReference": "S.H.I.E.L.D. by Jonathan Hickman & Dustin Weaver Omnibus, by Jonathan Hickman, Dustin Weaver, and Sonia Oback, collecting S.H.I.E.L.D. (2010) #1-6, S.H.I.E.L.D.",
-      "sourceRangeReference": "S.H.I.E.L.D. by Jonathan Hickman & Dustin Weaver Omnibus, by Jonathan Hickman, Dustin Weaver, and Sonia Oback, collecting S.H.I.E.L.D. (2010) #1-6, S.H.I.E.L.D.",
+      "sourceIssueReference": "But we are not quite done! Although we have been focusing on Nick Fury, this is also about SHIELD, and there is a crucial story about the organization, or rathe",
+      "sourceRangeReference": "But we are not quite done! Although we have been focusing on Nick Fury, this is also about SHIELD, and there is a crucial story about the organization, or rathe",
       "normalizedSeriesTitle": null,
       "seriesYear": null,
       "issueNumber": null,
@@ -12574,10 +12579,11 @@
       "reason": "prose marker",
       "note": null,
       "sourcePosition": 356,
-      "sourceNode": 24,
+      "sourceNode": 23,
       "sourceGroup": "S.H.I.E.L.D. by Hickman and Weaver",
       "sourceGroupPosition": 7,
-      "sourceBlockPosition": 1
+      "sourceBlockPosition": 1,
+      "repeatOf": null
     },
     {
       "sourceIssueReference": "S.H.I.E.L.D. #1",
