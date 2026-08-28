@@ -5539,8 +5539,8 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     // Some curated orders are short of metadata, in two ways that look nothing alike to a reader
     // and had been reported as one. Saying so is the difference between a known gap and a list
     // that looks wrong for no reason. The counts come from the items rather than from the
-    // order's own `placeholders` field, which counts only the first kind and reads 0 for every
-    // order this app currently ships while 63 items across two of them hold nothing at all.
+    // order's own `placeholders` field, which records raw flags but not whether an item later
+    // gained launch metadata, and carries no count for records that arrived empty.
     const parts = [`${navigate ? 'Imported' : 'Added'} ${order.name}: ${added} issues.`];
     parts.push(...orderGapSentences(order));
     parts.push('Any issues you had already read stay read.');

@@ -912,6 +912,24 @@ test('a placeholder is not also counted as an item that came back empty', () => 
   assert.equal(empty, 0);
 });
 
+test('a metadata-bearing legacy placeholder flag is not an openability gap', () => {
+  const launchable = {
+    issueId: 12817,
+    placeholder: true,
+    seriesId: 485,
+    digitalId: 1595,
+  };
+  const unlinked = {
+    issueId: -1,
+    placeholder: true,
+    seriesId: null,
+    digitalId: null,
+  };
+  assert.deepEqual(countOrderGaps({ items: [launchable] }), { placeholders: 0, empty: 0 });
+  assert.deepEqual(orderGapSentences({ items: [launchable] }), []);
+  assert.deepEqual(countOrderGaps({ items: [launchable, unlinked] }), { placeholders: 1, empty: 0 });
+});
+
 test('an order with neither kind of gap reports neither, and says nothing', () => {
   const order = { items: [{ issueId: 1, seriesId: 10, digitalId: 100 }, { issueId: 2, seriesId: 11, digitalId: 101 }] };
   assert.deepEqual(countOrderGaps(order), { placeholders: 0, empty: 0 });
@@ -993,10 +1011,15 @@ test('the bundled orders carry a gap the payload field never reported', () => {
     placeholders += gaps.placeholders;
     claimed += Number(order.placeholders) || 0;
     if (gaps.empty > 0) affected += 1;
-    // Whatever the payload does claim has to be the truth about its own items, or the field is
-    // reporting one order's gap while describing another's.
+    // The payload field records raw placeholder flags. One legacy item has since gained launch
+    // metadata without rewriting its pinned provenance, so the item-derived openability count is
+    // intentionally one lower while the raw field must still agree with the raw flags.
     if (order.placeholders != null) {
-      assert.equal(gaps.placeholders, Number(order.placeholders), `${list.file}: placeholder count disagrees with its items`);
+      assert.equal(
+        order.items.filter((item) => item.placeholder === true).length,
+        Number(order.placeholders),
+        `${list.file}: placeholder field disagrees with its item flags`,
+      );
     }
   }
 
@@ -1010,11 +1033,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
   //
-  // The placeholder figures were 0 until the X-Men order arrived with six, which is what finally
-  // gives the agreement assertion above something to compare: before it, every order either read 0
-  // or carried no field at all, so it could not have caught a payload disagreeing with its items.
-  // The Captain America guide adds 69 source-preserving placeholders. Its representative cover
-  // record remains a placeholder, so the total rises without claiming a metadata match. The
+  // The placeholder figures were 0 until the X-Men order arrived with six. The Captain America
+  // guide carries 69 raw source-preserving flags, but one representative cover record also carries
+  // valid launch metadata, leaving 68 unopenable placeholders in that guide. The
   // Deadpool guide adds two provider-metadata gaps with official issue identities. Black Panther
   // adds four source-preserving metadata gaps with distinct negative identifiers. Doctor Strange
   // adds 39 source-preserving metadata gaps with distinct negative identifiers. Daredevil adds
@@ -1029,7 +1050,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
   // claiming a metadata match.
   assert.equal(claimed, 1892, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1892, 'the bundled placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1891, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 85);
   assert.equal(affected, 6);
 });
