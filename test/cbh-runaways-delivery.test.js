@@ -148,7 +148,7 @@ test('Runaways publishes exact reader-visible rows while preserving owner-direct
     ],
   );
 
-  assert.equal(inventoryRecord.deliveryStatus, 'ready');
+  assert.equal(inventoryRecord.deliveryStatus, 'shipped');
   assert.deepEqual(inventoryRecord.overlapIds, ['civil-war', 'civil-war-avengers', 'secret-invasion']);
   assert.deepEqual(manifestRecord, mapping.approvedManifest);
   assert.equal(payload.count, 114);
