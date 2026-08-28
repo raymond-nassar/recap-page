@@ -1133,7 +1133,12 @@ export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) 
 // moved once: retyping one order took the badge from the events shelf to the character spotlights.
 // A sentence attached to a named screen was silently wrong the moment that happened, so the caller
 // asks the placements it is drawing from instead.
-
+export function visibleFirstStopGuide(stories, placements, select = defaultPath) {
+  const visible = Array.isArray(stories) ? stories : [];
+  if (!placements || typeof placements.get !== 'function' || typeof select !== 'function') return null;
+  const first = visible.find((story) => placements.get(story?.key)?.previous === null);
+  return first ? select(first) ?? null : null;
+}
 
 export function shelfSections(stories) {
   const all = Array.isArray(stories) ? stories : [];

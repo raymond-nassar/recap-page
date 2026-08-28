@@ -10,6 +10,7 @@ import {
   readingTimeLabel, MINUTES_PER_ISSUE, SHORT_ORDER_MAX, collectionsLabel, isTradeOrder, sortCatalog,
   countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements,
   filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing, SPOTLIGHT_KINDS,
+  visibleFirstStopGuide,
 } from '../src/js/lib/catalog.js';
 
 test('safeOrderFile accepts a plain markdown name and nothing that escapes the orders folder', () => {
@@ -919,6 +920,38 @@ test('narrowing can leave a screen populated with the first stop gone', async ()
 
   const searched = groupCatalog(searchCatalog(catalog.lists, 'spider'));
   assert.ok(searched.length && !first(searched), 'and so does a search');
+});
+
+test('visibleFirstStopGuide follows the visible placement and selected guide', () => {
+  const first = {
+    key: 'first',
+    lists: [
+      { id: 'first-short', name: 'First short guide' },
+      { id: 'first-long', name: 'First complete guide' },
+    ],
+  };
+  const moved = { key: 'moved', lists: [{ id: 'moved-guide', name: 'Moved guide' }] };
+  const other = { key: 'other', lists: [{ id: 'other-guide', name: 'Other guide' }] };
+  const placements = new Map([
+    ['first', { previous: null }],
+    ['moved', { previous: { key: 'first' } }],
+  ]);
+
+  assert.equal(visibleFirstStopGuide([other, first], placements), first.lists[0]);
+  assert.equal(
+    visibleFirstStopGuide([first], placements, (story) => story.lists[1]),
+    first.lists[1],
+  );
+  assert.equal(visibleFirstStopGuide([other], placements), null);
+  assert.equal(visibleFirstStopGuide([], placements), null);
+  assert.equal(visibleFirstStopGuide(null, placements), null);
+
+  const movedPlacements = new Map([
+    ['first', { previous: { key: 'moved' } }],
+    ['moved', { previous: null }],
+  ]);
+  assert.equal(visibleFirstStopGuide([first, moved], movedPlacements), moved.lists[0]);
+  assert.equal(visibleFirstStopGuide([first, moved], new Map()), null);
 });
 
 // This replaces an assertion that the reading path stayed wholly inside one section, which was the

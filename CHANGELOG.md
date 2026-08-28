@@ -14,6 +14,12 @@ quote in a bug report.
 
 ## Unreleased
 
+### Clarified where a reading path starts
+
+In plain English: A short line above the relevant shelf now names the first guide to read. It
+disappears when searching or filtering hides that guide, and follows changes to the selected guide
+or the shelf where its first stop appears. Nothing you have saved is changed.
+
 ### Added cancellation for long series and creator loads
 
 In plain English: A long series or creator add can now be stopped from its progress message. Every
