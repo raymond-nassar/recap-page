@@ -5327,10 +5327,11 @@ const SCENARIOS = [
       await click(page, '#btn-export-md');
       await page.waitForFunction(() => (window.__mrtDownloads ?? []).length > 0, { timeout: 15000 });
       const markdown = await page.evaluate(() => window.__mrtDownloads.at(-1)?.text ?? '');
+      const exportedLinks = [...markdown.matchAll(/\]\(([^)]+)\)/g)].map((match) => match[1]);
       t.check('export writes the canonical HTTPS reader address',
-        markdown.includes(`https://read.marvel.com/#/book/${READER_DIGITAL_ID}`)
-          && !markdown.includes('http://read.marvel.com'),
-        markdown);
+        exportedLinks.length === 1
+          && exportedLinks[0] === `https://read.marvel.com/#/book/${READER_DIGITAL_ID}`,
+        JSON.stringify(exportedLinks));
 
       await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
       await open(page, '/');
