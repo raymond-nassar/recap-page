@@ -492,7 +492,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-six spotlights, and prepares six', async () => {
+test('the character inventory preserves every central disposition, ships twenty-seven spotlights, and prepares five', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -523,6 +523,7 @@ test('the character inventory preserves every central disposition, ships twenty-
     grootCandidateId,
     guardiansCandidateId,
     hulkCandidateId,
+    inhumansCandidateId,
     ironManCandidateId,
     'loki-reading-order',
     magnetoCandidateId,
@@ -554,7 +555,7 @@ test('the character inventory preserves every central disposition, ships twenty-
   assert.equal(silverSurfer?.deliveryStatus, 'ready');
   const inhumans = inventory.find((record) => record.id === inhumansCandidateId);
   assert.equal(inhumans?.centralDisposition, 'pilot-approved');
-  assert.equal(inhumans?.deliveryStatus, 'ready');
+  assert.equal(inhumans?.deliveryStatus, 'shipped');
   assert.deepEqual(inhumans?.catalogIds, [inhumansCandidateId]);
   assert.equal(inhumans?.overlapIds.length, 16);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
