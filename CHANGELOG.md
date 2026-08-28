@@ -14,6 +14,13 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added the setup guide card to both starting points
+
+In plain English: The Setup to Modern Timeline recommendation now looks and works like the other
+Reading Lists, with a comic cover, issue count, description, and the usual actions. The same guide
+also appears before the Marvel Knights / Heroes Return lists, so either route offers the same place
+to preview or begin it. Nothing you have saved is changed.
+
 ### Added a complete Moon Knight reading guide
 
 In plain English: A complete Moon Knight reading guide is now available from his earliest

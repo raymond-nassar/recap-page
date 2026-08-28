@@ -797,6 +797,10 @@ export function catalogListShelf(lists, id) {
 
 export const MODERN_TIMELINE_START_YEAR = 1998;
 export const MODERN_TIMELINE_FEATURED_ID = 'setup-to-modern-timeline';
+export const MODERN_TIMELINE_FEATURED_ROUTES = Object.freeze([
+  'catalog',
+  'age-marvel-knights-heroes-return',
+]);
 export const MODERN_TIMELINE_CHAPTER_PARENT_ID = 'marvel-knights-to-planet-x';
 export const MODERN_TIMELINE_CHAPTER_COUNT = 78;
 export const MODERN_TIMELINE_CONTINUATION_YEAR = 2004;
@@ -835,6 +839,11 @@ export function modernTimelineLists(lists) {
 export function modernTimelineFeaturedList(lists) {
   return (Array.isArray(lists) ? lists : [])
     .find((list) => list?.id === MODERN_TIMELINE_FEATURED_ID) ?? null;
+}
+
+export function modernTimelineFeaturedCard(lists, route) {
+  if (!MODERN_TIMELINE_FEATURED_ROUTES.includes(route)) return null;
+  return modernTimelineFeaturedList(lists);
 }
 
 // ------------------------------------------------------------------ publishing ages
