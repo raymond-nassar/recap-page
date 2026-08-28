@@ -854,6 +854,26 @@ test('a failed saved-state sanitation is reported and remains retryable', () => 
   assert.equal(JSON.parse(storage.getItem(KEY)).issues[7].description, 'Legacy synopsis.');
 });
 
+test('a silently ignored saved-state sanitation is detected by reading durable state back', () => {
+  const raw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw }, { ignoreWrite: true });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  const failures = [];
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, raw, {
+      onFailure: (error) => failures.push(error),
+    }),
+    { needed: true, cleared: false },
+  );
+  assert.deepEqual(failures, ['The saved-state cleanup write could not be verified.']);
+  assert.equal(JSON.parse(storage.getItem(KEY)).issues[7].description, 'Legacy synopsis.');
+});
+
 
 // ------------------------------------------------- what a run says about itself when it goes wrong
 

@@ -806,6 +806,35 @@ function rawCarriesIssueDescriptions(raw) {
   ));
 }
 
+function verifySavedStateSanitation(storage, onFailure) {
+  let raw;
+  try {
+    raw = storage?.getItem(STATE_KEY);
+  } catch (err) {
+    onFailure(`Could not verify saved-state cleanup (${err.message}).`);
+    return false;
+  }
+  if (typeof raw !== 'string' || raw === '') {
+    onFailure('The saved-state cleanup write could not be verified.');
+    return false;
+  }
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch {
+    onFailure('The saved-state cleanup write could not be verified.');
+    return false;
+  }
+  const issues = parsed?.issues;
+  const clean = issues && typeof issues === 'object'
+    && !Object.values(issues).some((issue) => (
+      issue && typeof issue === 'object'
+      && Object.prototype.hasOwnProperty.call(issue, 'description')
+    ));
+  if (!clean) onFailure('The saved-state cleanup write could not be verified.');
+  return Boolean(clean);
+}
+
 export function sanitizeStoredIssueDescriptions(
   readerStore,
   raw,
@@ -822,16 +851,26 @@ export function sanitizeStoredIssueDescriptions(
       return { needed: true, cleared: false };
     }
     const cleared = sanitizer.persist();
-    if (!cleared) onFailure(sanitizer.lastError);
-    return { needed: true, cleared };
+    if (!cleared) {
+      onFailure(sanitizer.lastError);
+      return { needed: true, cleared: false };
+    }
+    return {
+      needed: true,
+      cleared: verifySavedStateSanitation(readerStore.storage, onFailure),
+    };
   }
   if (!readerStore.adoptForeignWrite(raw)) return { needed: true, cleared: false };
   const cleared = readerStore.persist();
   if (!cleared) {
     readerStore.onChange?.(readerStore.state, readerStore.lastError);
     onFailure(readerStore.lastError);
+    return { needed: true, cleared: false };
   }
-  return { needed: true, cleared };
+  return {
+    needed: true,
+    cleared: verifySavedStateSanitation(readerStore.storage, onFailure),
+  };
 }
 
 function reportBlockedLegacyCleanup({ activeCleared }) {
