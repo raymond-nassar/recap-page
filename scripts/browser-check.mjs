@@ -18,9 +18,9 @@
 // hazard; for a check that writes corrupt state and starts fresh, it is exactly the isolation
 // wanted. Running on a port the app never uses means this file structurally cannot read, damage
 // or clear the reading progress saved at 127.0.0.1:8787. That is also the whole of the cleanup
-// story. The cache-generation scenario is the one exception because the origin itself is part of
-// its acceptance. Its targeted run uses 127.0.0.1:8787 inside Edge's temporary automation profile,
-// not the person's installed browser profile.
+// story. The cache-generation and catalog-gap scenarios are the exceptions because their acceptance
+// explicitly requires the app origin. Their targeted runs use 127.0.0.1:8787 inside Edge's temporary
+// automation profile, not the person's installed browser profile.
 //
 // **The data is fixtures, not the catalog.** The scenarios assert what the interface does, and
 // the vendored orders have their own gates. Stubbing `fetch` for the two data files keeps this
@@ -263,6 +263,8 @@ const shelfEntry = (id, name, extra = {}) => ({
   type: 'event',
   depth: 'complete',
   count: 3,
+  placeholderCount: 0,
+  emptyRecordCount: 0,
   collections: 0,
   characters: [],
   keywords: [],
@@ -296,14 +298,17 @@ const CATALOG = {
   lists: [
     shelfEntry('browser-check', 'Browser Check Order', {
       timeline: 2004, beginner: true,
+      placeholderCount: 1,
       source: 'https://example.com/shared-page', sourceSection: 'Fixture section',
     }),
-    shelfEntry('browser-check-two', 'Second Stop', { timeline: 2005 }),
+    shelfEntry('browser-check-two', 'Second Stop', { timeline: 2005, emptyRecordCount: 2 }),
     shelfEntry('browser-check-three-main', 'Third Stop: The Long Way', {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Complete', timeline: 2006,
+      emptyRecordCount: 2,
     }),
     shelfEntry('browser-check-three-short', 'Third Stop: The Short Way', {
       group: 'bc-third', groupName: 'Third Stop', variant: 'Essential', depth: 'essential', timeline: 2006,
+      placeholderCount: 1,
     }),
     shelfEntry('browser-check-line', 'Across the Line', { type: 'creator-run', timeline: 2012 }),
     shelfEntry('browser-check-age-line', 'Across Two Periods', { type: 'creator-run', timeline: 2004 }),
@@ -814,6 +819,15 @@ const MUTATIONS = [
         sheet.insertRule('.railed .rail-foot .pill { width: auto; height: auto; padding: .2rem .6rem; }', sheet.cssRules.length);
       });
     },
+  },
+  {
+    id: 'catalog-gap-disclosure-off',
+    breaks: 'catalog-gaps',
+    why: 'both catalog surfaces omit the generated gap disclosure',
+    rewriteMain: (source) => source.replace(
+      /^\s*\.\.\.catalogGapLabels\(list\),\r?\n/gm,
+      '',
+    ),
   },
   {
     id: 'first-stop-single-only',
@@ -4017,6 +4031,97 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'catalog-gaps',
+    title: 'catalog cards and Preview disclose selected guide gaps',
+    async run(page, t) {
+      const cardMeta = (title) => page.$$eval(
+        '#catalog-results .catalog-card',
+        (cards, wanted) => cards
+          .find((card) => card.querySelector('.catalog-card-title')?.textContent.trim() === wanted)
+          ?.querySelector('.catalog-card-meta')?.textContent.trim() ?? null,
+        title,
+      );
+
+      await open(page, '/');
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
+
+      const zero = await cardMeta('Avengers Disassembled');
+      const one = await cardMeta('Browser Check Order');
+      const many = await cardMeta('Second Stop');
+      const selectedBefore = await cardMeta('Third Stop');
+      t.check(
+        'cards omit zero and use truthful singular and plural gap labels',
+        zero === '3 issues'
+          && one === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened'
+          && many === '3 issues · 2 issues have no details, covers, or Unlimited links',
+        JSON.stringify({ zero, one, many }),
+      );
+      t.check(
+        'the grouped card starts with the selected essential guide disclosure',
+        selectedBefore === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened',
+        selectedBefore,
+      );
+
+      await click(page, '#catalog-results [data-story="bc-third"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open]');
+      const previewBefore = await page.$eval('#preview-meta', (node) => node.textContent.trim());
+      await click(page, '#preview-paths input[data-key="browser-check-three-main"]');
+      await page.waitForFunction(() => (
+        document.querySelector('#preview-meta')?.textContent
+          .includes('2 issues have no details, covers, or Unlimited links')
+      ));
+      const previewAfter = await page.$eval('#preview-meta', (node) => node.textContent.trim());
+      t.check(
+        'Preview repaints from singular placeholder disclosure to plural empty-record disclosure',
+        previewBefore.includes('1 issue has no Marvel Unlimited link yet and cannot be opened')
+          && !previewBefore.includes('no details')
+          && previewAfter.includes('2 issues have no details, covers, or Unlimited links')
+          && !previewAfter.includes('cannot be opened'),
+        JSON.stringify({ previewBefore, previewAfter }),
+      );
+
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
+      await page.waitForFunction(() => (
+        [...document.querySelectorAll('#catalog-results .catalog-card')]
+          .find((card) => card.querySelector('.catalog-card-title')?.textContent.trim() === 'Third Stop')
+          ?.querySelector('.catalog-card-meta')?.textContent
+          .includes('2 issues have no details, covers, or Unlimited links')
+      ));
+      const selectedAfter = await cardMeta('Third Stop');
+      t.check(
+        'closing Preview repaints the originating card with the chosen guide disclosure',
+        selectedAfter === '3 issues · 2 issues have no details, covers, or Unlimited links',
+        selectedAfter,
+      );
+
+      await page.setViewport({ width: 390, height: 844 });
+      await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
+      const narrow = await page.evaluate(() => {
+        const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
+        const card = cards.find(
+          (entry) => entry.querySelector('.catalog-card-title')?.textContent.trim() === 'Second Stop',
+        );
+        const meta = card?.querySelector('.catalog-card-meta');
+        const cardRect = card?.getBoundingClientRect();
+        const metaRect = meta?.getBoundingClientRect();
+        return {
+          text: meta?.textContent.trim() ?? '',
+          inside: Boolean(cardRect && metaRect
+            && metaRect.left >= cardRect.left && metaRect.right <= cardRect.right),
+          overflow: document.documentElement.scrollWidth - innerWidth,
+        };
+      });
+      t.check(
+        'plural disclosure stays inside its card without horizontal overflow at narrow width',
+        narrow.text.includes('2 issues have no details, covers, or Unlimited links')
+          && narrow.inside && narrow.overflow <= 1,
+        JSON.stringify(narrow),
+      );
+    },
+  },
+  {
     id: 'first-stop-orientation',
     title: 'the visible shelf names the selected guide at its first stop',
     async run(page, t) {
@@ -6761,7 +6866,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = only === 'cache-generations' ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);

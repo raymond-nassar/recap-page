@@ -14,6 +14,13 @@ quote in a bug report.
 
 ## Unreleased
 
+### Disclosed catalog metadata gaps before import
+
+In plain English: Reading List cards and Preview now say when a guide contains issues with no Marvel
+Unlimited link or issues that arrived without details, cover art or an Unlimited link. The counts
+follow the guide selected for a story and report only gaps already preserved in that guide. No
+identity is filled or changed, and saved lists and reading progress are unchanged.
+
 ### Preserved imported Marvel Unlimited reader links
 
 In plain English: A Marvel Unlimited reader address pasted into a Reading List now stays attached

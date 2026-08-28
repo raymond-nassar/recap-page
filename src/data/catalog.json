@@ -9,6 +9,8 @@
       "type": "event",
       "depth": "complete",
       "count": 11,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -46,6 +48,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -82,6 +86,8 @@
       "type": "event",
       "depth": "complete",
       "count": 13,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -117,6 +123,8 @@
       "type": "event",
       "depth": "complete",
       "count": 43,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -155,6 +163,8 @@
       "type": "creator-run",
       "depth": "essential",
       "count": 89,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -196,6 +206,8 @@
       "type": "creator-run",
       "depth": "complete",
       "count": 219,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -239,6 +251,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Scarlet Spider",
@@ -275,6 +289,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -310,6 +326,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Captain Marvel",
@@ -344,6 +362,8 @@
       "type": "event",
       "depth": "complete",
       "count": 10,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -380,6 +400,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Dark Angel",
@@ -416,6 +438,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Jean Grey",
@@ -451,6 +475,8 @@
       "type": "event",
       "depth": "complete",
       "count": 13,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -486,6 +512,8 @@
       "type": "event",
       "depth": "complete",
       "count": 11,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Venom",
@@ -520,6 +548,8 @@
       "type": "event",
       "depth": "complete",
       "count": 10,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk",
@@ -561,6 +591,8 @@
       "type": "event",
       "depth": "complete",
       "count": 46,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Gamora",
@@ -597,6 +629,8 @@
       "type": "event",
       "depth": "complete",
       "count": 15,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Doctor Strange",
@@ -634,6 +668,8 @@
       "type": "event",
       "depth": "complete",
       "count": 24,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Wolverine",
@@ -669,6 +705,8 @@
       "type": "event",
       "depth": "complete",
       "count": 25,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -704,6 +742,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -739,6 +779,8 @@
       "type": "event",
       "depth": "complete",
       "count": 32,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -774,6 +816,8 @@
       "type": "event",
       "depth": "complete",
       "count": 66,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Thor",
@@ -811,6 +855,8 @@
       "type": "creator-run",
       "depth": "complete",
       "count": 54,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -853,6 +899,8 @@
       "type": "event",
       "depth": "complete",
       "count": 31,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Carnage",
@@ -890,6 +938,8 @@
       "type": "event",
       "depth": "complete",
       "count": 18,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Iron Man",
@@ -925,6 +975,8 @@
       "type": "event",
       "depth": "complete",
       "count": 18,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -959,6 +1011,8 @@
       "type": "event",
       "depth": "complete",
       "count": 10,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Iron Man",
@@ -995,6 +1049,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Guardians of the Galaxy",
@@ -1033,6 +1089,8 @@
       "type": "event",
       "depth": "complete",
       "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Doctor Strange",
@@ -1071,6 +1129,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -1106,6 +1166,8 @@
       "type": "event",
       "depth": "complete",
       "count": 24,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil",
@@ -1144,6 +1206,8 @@
       "type": "era",
       "depth": "essential",
       "count": 138,
+      "placeholderCount": 0,
+      "emptyRecordCount": 34,
       "collections": 0,
       "characters": [
         "The Maker",
@@ -1185,6 +1249,8 @@
       "type": "era",
       "depth": "essential",
       "count": 132,
+      "placeholderCount": 0,
+      "emptyRecordCount": 29,
       "collections": 23,
       "characters": [
         "The Maker",
@@ -1227,6 +1293,8 @@
       "type": "era",
       "depth": "essential",
       "count": 21,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 5,
       "characters": [
         "Phil Sheldon",
@@ -1267,6 +1335,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Fantastic Four",
@@ -1301,6 +1371,8 @@
       "type": "event",
       "depth": "complete",
       "count": 44,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -1336,6 +1408,8 @@
       "type": "event",
       "depth": "complete",
       "count": 22,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -1373,6 +1447,8 @@
       "type": "event",
       "depth": "complete",
       "count": 13,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -1409,6 +1485,8 @@
       "type": "event",
       "depth": "complete",
       "count": 34,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -1445,6 +1523,8 @@
       "type": "event",
       "depth": "complete",
       "count": 20,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Scarlet Witch",
@@ -1490,6 +1570,8 @@
       "type": "event",
       "depth": "essential",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Scarlet Witch",
@@ -1535,6 +1617,8 @@
       "type": "event",
       "depth": "complete",
       "count": 15,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk",
@@ -1570,6 +1654,8 @@
       "type": "event",
       "depth": "complete",
       "count": 31,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Iron Man",
@@ -1616,6 +1702,8 @@
       "type": "event",
       "depth": "essential",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Iron Man",
@@ -1661,6 +1749,8 @@
       "type": "event",
       "depth": "complete",
       "count": 25,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Nova",
@@ -1706,6 +1796,8 @@
       "type": "event",
       "depth": "complete",
       "count": 48,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -1744,6 +1836,8 @@
       "type": "event",
       "depth": "complete",
       "count": 36,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Skrulls",
@@ -1792,6 +1886,8 @@
       "type": "event",
       "depth": "essential",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Skrulls",
@@ -1839,6 +1935,8 @@
       "type": "event",
       "depth": "complete",
       "count": 25,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -1874,6 +1972,8 @@
       "type": "event",
       "depth": "complete",
       "count": 38,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Knull",
@@ -1922,6 +2022,8 @@
       "type": "screen-companion",
       "depth": "selected",
       "count": 17,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Doctor Strange",
@@ -1958,6 +2060,8 @@
       "type": "screen-companion",
       "depth": "selected",
       "count": 17,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -1994,6 +2098,8 @@
       "type": "screen-companion",
       "depth": "selected",
       "count": 2,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -2030,6 +2136,8 @@
       "type": "screen-companion",
       "depth": "selected",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Doctor Doom",
@@ -2068,6 +2176,8 @@
       "type": "screen-companion",
       "depth": "selected",
       "count": 56,
+      "placeholderCount": 0,
+      "emptyRecordCount": 9,
       "collections": 0,
       "characters": [
         "Scarlet Witch",
@@ -2106,6 +2216,8 @@
       "type": "screen-companion",
       "depth": "selected",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -2143,6 +2255,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 80,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Agents of Atlas",
@@ -2184,6 +2298,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 82,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "White Tiger",
@@ -2225,6 +2341,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 28,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Phalanx",
@@ -2265,6 +2383,8 @@
       "depth": "complete",
       "spotlightKind": "best-of",
       "count": 53,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Phoenix",
@@ -2303,6 +2423,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 104,
+      "placeholderCount": 0,
+      "emptyRecordCount": 4,
       "collections": 0,
       "characters": [
         "Agatha Harkness",
@@ -2341,6 +2463,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 638,
+      "placeholderCount": 158,
+      "emptyRecordCount": 0,
       "collections": 76,
       "characters": [
         "Punisher",
@@ -2375,6 +2499,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 75,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Rocket Raccoon",
@@ -2414,6 +2540,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 298,
+      "placeholderCount": 4,
+      "emptyRecordCount": 0,
       "collections": 46,
       "characters": [
         "Silver Surfer",
@@ -2454,6 +2582,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 127,
+      "placeholderCount": 0,
+      "emptyRecordCount": 2,
       "collections": 0,
       "characters": [
         "Abomination",
@@ -2488,6 +2618,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 367,
+      "placeholderCount": 4,
+      "emptyRecordCount": 0,
       "collections": 11,
       "characters": [
         "Black Panther",
@@ -2522,6 +2654,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 268,
+      "placeholderCount": 23,
+      "emptyRecordCount": 0,
       "collections": 25,
       "characters": [
         "The Defenders",
@@ -2561,6 +2695,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 114,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 5,
       "characters": [
         "Runaways",
@@ -2596,6 +2732,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 76,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Groot",
@@ -2634,6 +2772,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 99,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Star-Lord",
@@ -2672,6 +2812,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 811,
+      "placeholderCount": 0,
+      "emptyRecordCount": 7,
       "collections": 0,
       "characters": [
         "Iron Man",
@@ -2713,6 +2855,8 @@
       "depth": "selected",
       "spotlightKind": "other",
       "count": 278,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -2753,6 +2897,8 @@
       "depth": "partial",
       "spotlightKind": "complete-guide",
       "count": 272,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Thanos",
@@ -2791,6 +2937,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 386,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Ant-Man",
@@ -2830,6 +2978,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 1222,
+      "placeholderCount": 785,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Wolverine",
@@ -2866,6 +3016,8 @@
       "depth": "partial",
       "spotlightKind": "other",
       "count": 1159,
+      "placeholderCount": 19,
+      "emptyRecordCount": 0,
       "collections": 12,
       "characters": [
         "Hulk",
@@ -2904,6 +3056,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 750,
+      "placeholderCount": 39,
+      "emptyRecordCount": 0,
       "collections": 72,
       "characters": [
         "Doctor Strange",
@@ -2943,6 +3097,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 570,
+      "placeholderCount": 14,
+      "emptyRecordCount": 0,
       "collections": 143,
       "characters": [
         "Black Widow",
@@ -2982,6 +3138,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 876,
+      "placeholderCount": 8,
+      "emptyRecordCount": 0,
       "collections": 11,
       "characters": [
         "Daredevil",
@@ -3021,6 +3179,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 643,
+      "placeholderCount": 33,
+      "emptyRecordCount": 0,
       "collections": 91,
       "characters": [
         "Venom",
@@ -3060,6 +3220,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 753,
+      "placeholderCount": 58,
+      "emptyRecordCount": 0,
       "collections": 87,
       "characters": [
         "Magneto",
@@ -3098,6 +3260,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 656,
+      "placeholderCount": 18,
+      "emptyRecordCount": 0,
       "collections": 75,
       "characters": [
         "Loki",
@@ -3134,6 +3298,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 392,
+      "placeholderCount": 18,
+      "emptyRecordCount": 0,
       "collections": 69,
       "characters": [
         "Moon Knight",
@@ -3170,6 +3336,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 323,
+      "placeholderCount": 29,
+      "emptyRecordCount": 0,
       "collections": 46,
       "characters": [
         "Guardians of the Galaxy",
@@ -3211,6 +3379,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 259,
+      "placeholderCount": 42,
+      "emptyRecordCount": 0,
       "collections": 39,
       "characters": [
         "Inhumans",
@@ -3249,6 +3419,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 169,
+      "placeholderCount": 55,
+      "emptyRecordCount": 0,
       "collections": 35,
       "characters": [
         "Young Avengers",
@@ -3285,6 +3457,8 @@
       "depth": "essential",
       "spotlightKind": "other",
       "count": 318,
+      "placeholderCount": 2,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -3336,6 +3510,8 @@
       "depth": "complete",
       "spotlightKind": "other",
       "count": 404,
+      "placeholderCount": 4,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -3387,6 +3563,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 527,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Captain Marvel",
@@ -3425,6 +3603,8 @@
       "depth": "essential",
       "spotlightKind": "best-of",
       "count": 114,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 10,
       "characters": [
         "Captain America",
@@ -3473,6 +3653,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 69,
+      "placeholderCount": 69,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Captain America",
@@ -3518,6 +3700,8 @@
       "depth": "essential",
       "spotlightKind": "other",
       "count": 104,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 16,
       "characters": [
         "Doctor Doom",
@@ -3563,6 +3747,8 @@
       "depth": "essential",
       "spotlightKind": "best-of",
       "count": 230,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 10,
       "characters": [
         "Spider-Man",
@@ -3611,6 +3797,8 @@
       "depth": "essential",
       "spotlightKind": "best-of",
       "count": 131,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 11,
       "characters": [
         "Thor",
@@ -3660,6 +3848,8 @@
       "depth": "essential",
       "spotlightKind": "best-of",
       "count": 40,
+      "placeholderCount": 2,
+      "emptyRecordCount": 0,
       "collections": 9,
       "characters": [
         "Deadpool",
@@ -3701,6 +3891,8 @@
       "depth": "essential",
       "spotlightKind": "best-of",
       "count": 73,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 12,
       "characters": [
         "Scarlet Witch",
@@ -3747,6 +3939,8 @@
       "depth": "essential",
       "spotlightKind": "other",
       "count": 120,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 10,
       "characters": [
         "Avengers",
@@ -3793,6 +3987,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 285,
+      "placeholderCount": 23,
+      "emptyRecordCount": 0,
       "collections": 60,
       "characters": [
         "X-Force",
@@ -3826,6 +4022,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -3862,6 +4060,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Nightstalkers",
@@ -3899,6 +4099,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -3936,6 +4138,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Force",
@@ -3971,6 +4175,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Iron Man",
@@ -4007,6 +4213,8 @@
       "type": "event",
       "depth": "complete",
       "count": 1,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Fantastic Four",
@@ -4044,6 +4252,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -4081,6 +4291,8 @@
       "type": "event",
       "depth": "complete",
       "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Thanos",
@@ -4117,6 +4329,8 @@
       "type": "event",
       "depth": "complete",
       "count": 2,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -4152,6 +4366,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -4187,6 +4403,8 @@
       "type": "event",
       "depth": "complete",
       "count": 13,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -4222,6 +4440,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4257,6 +4477,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4292,6 +4514,8 @@
       "type": "event",
       "depth": "complete",
       "count": 2,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4327,6 +4551,8 @@
       "type": "event",
       "depth": "complete",
       "count": 3,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -4362,6 +4588,8 @@
       "type": "event",
       "depth": "complete",
       "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -4400,6 +4628,8 @@
       "type": "event",
       "depth": "essential",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk",
@@ -4435,6 +4665,8 @@
       "type": "event",
       "depth": "selected",
       "count": 40,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Beyonder",
@@ -4471,6 +4703,8 @@
       "type": "event",
       "depth": "selected",
       "count": 11,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4508,6 +4742,8 @@
       "type": "event",
       "depth": "complete",
       "count": 29,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4543,6 +4779,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -4577,6 +4815,8 @@
       "type": "event",
       "depth": "complete",
       "count": 11,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4613,6 +4853,8 @@
       "type": "event",
       "depth": "complete",
       "count": 39,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4649,6 +4891,8 @@
       "type": "event",
       "depth": "complete",
       "count": 17,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -4685,6 +4929,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4721,6 +4967,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4756,6 +5004,8 @@
       "type": "event",
       "depth": "complete",
       "count": 22,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -4792,6 +5042,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil",
@@ -4827,6 +5079,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Ghost Rider",
@@ -4862,6 +5116,8 @@
       "type": "event",
       "depth": "complete",
       "count": 13,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4897,6 +5153,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Mys-Tech"
@@ -4929,6 +5187,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -4964,6 +5224,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New Warriors",
@@ -4999,6 +5261,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -5036,6 +5300,8 @@
       "type": "event",
       "depth": "complete",
       "count": 20,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -5073,6 +5339,8 @@
       "type": "event",
       "depth": "complete",
       "count": 21,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil",
@@ -5105,6 +5373,8 @@
       "type": "event",
       "depth": "complete",
       "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Punisher"
@@ -5136,6 +5406,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Marvel Boy",
@@ -5168,6 +5440,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men"
@@ -5199,6 +5473,8 @@
       "type": "event",
       "depth": "complete",
       "count": 3,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New X-Men"
@@ -5230,6 +5506,8 @@
       "type": "event",
       "depth": "complete",
       "count": 10,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil",
@@ -5262,6 +5540,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Peter Parker: Spider-Man",
@@ -5294,6 +5574,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -5325,6 +5607,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Exiles"
@@ -5356,6 +5640,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Wolverine: The Origin"
@@ -5387,6 +5673,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men: Savage Land"
@@ -5418,6 +5706,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "NEW X-MEN ANNUAL 1",
@@ -5450,6 +5740,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Punisher"
@@ -5481,6 +5773,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men",
@@ -5513,6 +5807,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New X-Men"
@@ -5544,6 +5840,8 @@
       "type": "event",
       "depth": "complete",
       "count": 3,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men",
@@ -5576,6 +5874,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk"
@@ -5607,6 +5907,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Exiles"
@@ -5638,6 +5940,8 @@
       "type": "event",
       "depth": "complete",
       "count": 2,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Punisher"
@@ -5669,6 +5973,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil"
@@ -5700,6 +6006,8 @@
       "type": "event",
       "depth": "complete",
       "count": 3,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Amazing Spider-Man"
@@ -5731,6 +6039,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -5762,6 +6072,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men"
@@ -5793,6 +6105,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Amazing Spider-Man"
@@ -5824,6 +6138,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk"
@@ -5855,6 +6171,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil"
@@ -5886,6 +6204,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Exiles"
@@ -5917,6 +6237,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Peter Parker: Spider-Man"
@@ -5948,6 +6270,8 @@
       "type": "event",
       "depth": "complete",
       "count": 2,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New X-Men"
@@ -5979,6 +6303,8 @@
       "type": "event",
       "depth": "complete",
       "count": 2,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -6010,6 +6336,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk"
@@ -6041,6 +6369,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New X-Men"
@@ -6072,6 +6402,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -6103,6 +6435,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Fantastic Four"
@@ -6134,6 +6468,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Punisher"
@@ -6165,6 +6501,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Amazing Spider-Man"
@@ -6196,6 +6534,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men",
@@ -6228,6 +6568,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Captain America"
@@ -6259,6 +6601,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Truth: Red, White and Black"
@@ -6290,6 +6634,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -6321,6 +6667,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Exiles"
@@ -6352,6 +6700,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New X-Men"
@@ -6383,6 +6733,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk"
@@ -6414,6 +6766,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Punisher"
@@ -6445,6 +6799,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil"
@@ -6476,6 +6832,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Amazing Spider-Man"
@@ -6507,6 +6865,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man: Blue"
@@ -6538,6 +6898,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -6569,6 +6931,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Fantastic Four"
@@ -6600,6 +6964,8 @@
       "type": "event",
       "depth": "complete",
       "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers"
@@ -6631,6 +6997,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men"
@@ -6662,6 +7030,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Punisher"
@@ -6693,6 +7063,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil"
@@ -6724,6 +7096,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk"
@@ -6755,6 +7129,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Punisher"
@@ -6786,6 +7162,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Elektra"
@@ -6817,6 +7195,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Wolverine"
@@ -6848,6 +7228,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Elektra"
@@ -6879,6 +7261,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Exiles"
@@ -6910,6 +7294,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New Mutants"
@@ -6941,6 +7327,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Runaways"
@@ -6972,6 +7360,8 @@
       "type": "event",
       "depth": "complete",
       "count": 9,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Fantastic Four"
@@ -7003,6 +7393,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Amazing Spider-Man"
@@ -7034,6 +7426,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spectacular Spider-Man"
@@ -7065,6 +7459,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk"
@@ -7096,6 +7492,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -7127,6 +7525,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Exiles"
@@ -7158,6 +7558,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Iron Man"
@@ -7189,6 +7591,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil"
@@ -7220,6 +7624,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Wolverine"
@@ -7251,6 +7657,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New Mutants"
@@ -7282,6 +7690,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Uncanny X-Men"
@@ -7313,6 +7723,8 @@
       "type": "event",
       "depth": "complete",
       "count": 7,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New X-Men"
@@ -7344,6 +7756,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men"
@@ -7375,6 +7789,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Runaways"
@@ -7406,6 +7822,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Amazing Spider-Man"
@@ -7437,6 +7855,8 @@
       "type": "event",
       "depth": "complete",
       "count": 4,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Treme X-Men"
@@ -7468,6 +7888,8 @@
       "type": "event",
       "depth": "complete",
       "count": 25,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "New X-Men",
@@ -7503,6 +7925,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man"
@@ -7538,6 +7962,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -7571,6 +7997,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -7604,6 +8032,8 @@
       "type": "era",
       "depth": "complete",
       "count": 121,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -7645,6 +8075,8 @@
       "type": "event",
       "depth": "selected",
       "count": 172,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man 2099",
@@ -7680,6 +8112,8 @@
       "type": "event",
       "depth": "complete",
       "count": 28,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -7718,6 +8152,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 1000,
+      "placeholderCount": 185,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Fantastic Four"
@@ -7753,6 +8189,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 272,
+      "placeholderCount": 194,
+      "emptyRecordCount": 0,
       "collections": 43,
       "characters": [
         "Nick Fury",
@@ -7789,6 +8227,8 @@
       "type": "event",
       "depth": "essential",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 1,
       "characters": [
         "Avengers",
@@ -7829,6 +8269,8 @@
       "type": "event",
       "depth": "complete",
       "count": 83,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 12,
       "characters": [
         "Avengers",
@@ -7873,6 +8315,8 @@
       "type": "event",
       "depth": "complete",
       "count": 19,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -7911,6 +8355,8 @@
       "type": "era",
       "depth": "complete",
       "count": 75,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 15,
       "characters": [
         "Norman Osborn",
@@ -7954,6 +8400,8 @@
       "type": "event",
       "depth": "complete",
       "count": 32,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Black Bolt",
@@ -7991,6 +8439,8 @@
       "type": "event",
       "depth": "complete",
       "count": 10,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Cable",
@@ -8027,6 +8477,8 @@
       "type": "event",
       "depth": "complete",
       "count": 14,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -8064,6 +8516,8 @@
       "type": "event",
       "depth": "complete",
       "count": 20,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -8101,6 +8555,8 @@
       "type": "event",
       "depth": "complete",
       "count": 14,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -8137,6 +8593,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Black Panther",
@@ -8173,6 +8631,8 @@
       "type": "event",
       "depth": "complete",
       "count": 23,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -8210,6 +8670,8 @@
       "type": "event",
       "depth": "complete",
       "count": 8,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Thanos",
@@ -8246,6 +8708,8 @@
       "type": "era",
       "depth": "complete",
       "count": 92,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 15,
       "characters": [
         "Avengers",
@@ -8288,6 +8752,8 @@
       "type": "era",
       "depth": "complete",
       "count": 92,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 17,
       "characters": [
         "Avengers",
@@ -8333,6 +8799,8 @@
       "type": "era",
       "depth": "complete",
       "count": 59,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 10,
       "characters": [
         "Avengers",
@@ -8378,6 +8846,8 @@
       "type": "event",
       "depth": "complete",
       "count": 5,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Nick Fury",
@@ -8414,6 +8884,8 @@
       "type": "event",
       "depth": "complete",
       "count": 12,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -8449,6 +8921,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 2043,
+      "placeholderCount": 106,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -8482,6 +8956,8 @@
       "type": "event",
       "depth": "complete",
       "count": 6,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Black Bolt",
@@ -8517,6 +8993,8 @@
       "type": "event",
       "depth": "complete",
       "count": 29,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Star-Lord",
@@ -8554,6 +9032,8 @@
       "type": "event",
       "depth": "complete",
       "count": 13,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -8590,6 +9070,8 @@
       "type": "event",
       "depth": "complete",
       "count": 26,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hulk",
@@ -8626,6 +9108,8 @@
       "type": "event",
       "depth": "complete",
       "count": 18,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -8664,6 +9148,8 @@
       "type": "event",
       "depth": "complete",
       "count": 29,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Daredevil",
@@ -8700,6 +9186,8 @@
       "type": "event",
       "depth": "complete",
       "count": 15,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Wolverine",
@@ -8735,6 +9223,8 @@
       "type": "event",
       "depth": "complete",
       "count": 19,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Hercules",
@@ -8772,6 +9262,8 @@
       "type": "event",
       "depth": "complete",
       "count": 55,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Avengers",
@@ -8810,6 +9302,8 @@
       "type": "event",
       "depth": "complete",
       "count": 35,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -8846,6 +9340,8 @@
       "type": "event",
       "depth": "complete",
       "count": 13,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",
@@ -8879,6 +9375,8 @@
       "type": "event",
       "depth": "complete",
       "count": 24,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -8915,6 +9413,8 @@
       "type": "event",
       "depth": "complete",
       "count": 20,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
         "X-Men",

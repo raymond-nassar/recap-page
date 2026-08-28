@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import {
-  parseCatalog, typeLabel, depthLabel, depthHint, catalogCategories, filterByCategory,
+  parseCatalog as parseCatalogRaw, typeLabel, depthLabel, depthHint, catalogCategories, filterByCategory,
   searchCatalog, groupCatalog, variantLabel, defaultPath, pickPath,
   sourceLink, sourceLabel, sourceLicense, updatedLabel,
   safeOrderFile, LIST_TYPES, READING_DEPTHS, UNCATEGORIZED,
@@ -10,8 +10,23 @@ import {
   readingTimeLabel, MINUTES_PER_ISSUE, SHORT_ORDER_MAX, collectionsLabel, isTradeOrder, sortCatalog,
   countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements,
   filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing, SPOTLIGHT_KINDS,
-  visibleFirstStopGuides,
+  visibleFirstStopGuides, catalogGapLabels,
 } from '../src/js/lib/catalog.js';
+import { countOrderGaps } from '../src/js/lib/model.js';
+
+// Most fixtures predate catalog gap disclosure and are about an unrelated field. Keep their setup
+// small while the raw parser tests below remain responsible for requiring the generated counts.
+function parseCatalog(raw) {
+  if (!Array.isArray(raw?.lists)) return parseCatalogRaw(raw);
+  return parseCatalogRaw({
+    ...raw,
+    lists: raw.lists.map((entry) => (
+      entry && typeof entry === 'object'
+        ? { placeholderCount: 0, emptyRecordCount: 0, ...entry }
+        : entry
+    )),
+  });
+}
 
 test('safeOrderFile accepts a plain markdown name and nothing that escapes the orders folder', () => {
   assert.equal(safeOrderFile('new-ultimate-universe.md'), 'new-ultimate-universe.md');
@@ -45,6 +60,54 @@ test('parses a well-formed catalog entry', () => {
   assert.equal(lists[0].count, 89);
   assert.equal(lists[0].type, 'creator-run');
   assert.equal(lists[0].sourceSection, 'X-Men: Divided We Stand');
+});
+
+test('gap counts are required nonnegative integers', () => {
+  const entry = {
+    id: 'x',
+    file: 'x.json',
+    name: 'X',
+    count: 3,
+    placeholderCount: 1,
+    emptyRecordCount: 2,
+  };
+  const { lists, dropped } = parseCatalogRaw({
+    lists: [
+      entry,
+      { ...entry, id: 'missing-placeholder', placeholderCount: undefined },
+      { ...entry, id: 'missing-empty', emptyRecordCount: undefined },
+      { ...entry, id: 'negative-placeholder', placeholderCount: -1 },
+      { ...entry, id: 'fractional-empty', emptyRecordCount: 1.5 },
+      { ...entry, id: 'string-placeholder', placeholderCount: '1' },
+    ],
+  });
+  assert.equal(dropped, 5);
+  assert.deepEqual(
+    lists.map(({ id, placeholderCount, emptyRecordCount }) => (
+      { id, placeholderCount, emptyRecordCount }
+    )),
+    [{ id: 'x', placeholderCount: 1, emptyRecordCount: 2 }],
+  );
+});
+
+test('catalog gap labels omit zero and preserve singular and plural meanings', () => {
+  assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 0 }), []);
+  assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 0 }), [
+    '1 issue has no Marvel Unlimited link yet and cannot be opened',
+  ]);
+  assert.deepEqual(catalogGapLabels({ placeholderCount: 2, emptyRecordCount: 0 }), [
+    '2 issues have no Marvel Unlimited links yet and cannot be opened',
+  ]);
+  assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 1 }), [
+    '1 issue has no details, cover, or Unlimited link',
+  ]);
+  assert.deepEqual(catalogGapLabels({ placeholderCount: 0, emptyRecordCount: 2 }), [
+    '2 issues have no details, covers, or Unlimited links',
+  ]);
+  assert.deepEqual(catalogGapLabels({ placeholderCount: 1, emptyRecordCount: 2 }), [
+    '1 issue has no Marvel Unlimited link yet and cannot be opened',
+    '2 issues have no details, covers, or Unlimited links',
+  ]);
 });
 
 test('entries missing what a reader needs to choose are dropped, and counted', () => {
@@ -102,9 +165,15 @@ test('a missing or malformed catalog yields an empty list, not a crash', () => {
 
 test('the bundled catalog is valid and its counts match the vendored orders', async () => {
   const url = new URL('../src/data/catalog.json', import.meta.url);
-  const { lists, dropped } = parseCatalog(JSON.parse(await readFile(url, 'utf8')));
+  const { lists, dropped } = parseCatalogRaw(JSON.parse(await readFile(url, 'utf8')));
   assert.equal(dropped, 0);
-  assert.ok(lists.length > 0);
+  assert.equal(lists.length, 250);
+  let placeholders = 0;
+  let emptyRecords = 0;
+  let complete = 0;
+  let placeholderEntries = 0;
+  let emptyEntries = 0;
+  let bothEntries = 0;
 
   for (const list of lists) {
     assert.ok(LIST_TYPES.includes(list.type), `${list.id} has no valid type`);
@@ -118,6 +187,15 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     const order = JSON.parse(await readFile(new URL(`../src/data/${list.file}`, import.meta.url), 'utf8'));
     assert.equal(list.count, order.items.length, `${list.id} count is out of date`);
     assert.equal(list.id, order.id);
+    const gaps = countOrderGaps(order);
+    assert.equal(list.placeholderCount, gaps.placeholders, `${list.id} placeholder count is out of date`);
+    assert.equal(list.emptyRecordCount, gaps.empty, `${list.id} empty-record count is out of date`);
+    placeholders += gaps.placeholders;
+    emptyRecords += gaps.empty;
+    complete += order.items.length - gaps.placeholders - gaps.empty;
+    if (gaps.placeholders) placeholderEntries += 1;
+    if (gaps.empty) emptyEntries += 1;
+    if (gaps.placeholders && gaps.empty) bothEntries += 1;
 
     // The card art has to belong to the order it represents. A cover pinned from an issue
     // that is not in the file is how a catalog ends up illustrated with the wrong comic.
@@ -129,6 +207,26 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
     // blocked as mixed content the moment the app is served over TLS.
     assert.match(list.cover.path, /^https:\/\//, `${list.id} cover is not https`);
   }
+  assert.deepEqual(
+    {
+      complete,
+      placeholders,
+      emptyRecords,
+      total: complete + placeholders + emptyRecords,
+      placeholderEntries,
+      emptyEntries,
+      bothEntries,
+    },
+    {
+      complete: 19389,
+      placeholders: 1892,
+      emptyRecords: 85,
+      total: 21366,
+      placeholderEntries: 24,
+      emptyEntries: 6,
+      bothEntries: 0,
+    },
+  );
 });
 
 test('the bundled Hickman X-Men order is a distinct creator run', async () => {

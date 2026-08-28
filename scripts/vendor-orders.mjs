@@ -32,6 +32,7 @@ import { parseManifest } from '../src/js/lib/curated.js';
 import { parseIssueNumber, reconcileIssueTitleNumber } from './lib/issue-number.mjs';
 import { RateLimiter } from '../src/js/lib/limiter.js';
 import { placeholderId } from './lib/placeholder-id.mjs';
+import { countOrderGaps } from '../src/js/lib/model.js';
 import {
   buildChapterFamily,
   buildChildOverlapEvidence,
@@ -305,6 +306,7 @@ function catalogCover(order, payload) {
 // importing can never drift from the file they will actually import.
 function catalogEntry(order, payload) {
   const { coverIssueId, cover } = catalogCover(order, payload);
+  const { placeholders, empty } = countOrderGaps(payload);
   return {
     id: order.id,
     file: order.out,
@@ -314,6 +316,8 @@ function catalogEntry(order, payload) {
     depth: order.depth,
     ...(order.type === 'character-run' ? { spotlightKind: order.spotlightKind } : {}),
     count: payload.count,
+    placeholderCount: placeholders,
+    emptyRecordCount: empty,
     // Derived from the payload for the same reason the issue count is: a number the reader
     // sees before importing must come from the file they will actually import. Orders that are
     // not divided into collected editions report 0, which the catalog renders as nothing.
@@ -600,10 +604,15 @@ async function main() {
   const catalog = orders.flatMap((order) => catalogById.get(order.id));
   const checked = parseCatalog({ lists: catalog });
   if (checked.dropped) throw new Error(`${checked.dropped} catalog entries are not valid; catalog.json not written`);
+  const outputGeneratedAt = catalogOnly
+    ? catalog.reduce((latest, entry) => (
+      entry.updatedAt && entry.updatedAt > latest ? entry.updatedAt : latest
+    ), '') || generatedAt
+    : generatedAt;
   const generatedPaths = [...families.values()].map((family) => family.path);
   for (const family of families.values()) {
     const peers = [...payloadByCatalogId].map(([id, payload]) => ({ id, payload }));
-    const overlap = buildChildOverlapEvidence({ family, peers, generatedAt });
+    const overlap = buildChildOverlapEvidence({ family, peers, generatedAt: outputGeneratedAt });
     outputs.push({
       path: join(SCRIPT_DATA_DIR, family.ledger.overlapFile),
       content: `${JSON.stringify(overlap, null, 2)}\n`,
@@ -612,7 +621,7 @@ async function main() {
   outputs.push({
     path: join(DATA_DIR, 'catalog.json'),
     content: `${JSON.stringify({
-      generatedAt,
+      generatedAt: outputGeneratedAt,
       lists: catalog,
       paths: [...paths, ...generatedPaths],
     }, null, 2)}\n`,

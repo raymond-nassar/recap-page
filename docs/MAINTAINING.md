@@ -205,7 +205,8 @@ keep the checked ledger under `scripts/data`. The vendor validates source-positi
 pinned parent issue vector, child metadata, derived years, path order and overlaps before writing
 anything. It then keeps the parent payload for provenance and existing saved lists while emitting
 ordinary child payloads and catalog entries. Catalog-only regeneration is offline and still rebuilds
-the children, generated path and overlap matrix:
+the children, generated path and overlap matrix. Its catalog and overlap timestamps reuse the newest
+pinned payload timestamp, so unchanged inputs produce byte-identical output on a second run:
 
 ```text
 npm run vendor -- --catalog-only

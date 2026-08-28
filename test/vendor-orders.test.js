@@ -73,6 +73,74 @@ function writeMetadataCache(rootPath, records) {
   return cache;
 }
 
+function writeCatalogGapFixture(rootPath) {
+  writeFixture(rootPath);
+  setFixtureCoverIssue(rootPath, 1);
+  const data = path.join(rootPath, 'src', 'data');
+  writeFileSync(path.join(data, 'atomic_order.json'), `${JSON.stringify({
+    id: 'atomic-order',
+    name: 'Atomic Order',
+    description: 'A fixture reading order.',
+    source: 'https://example.test/atomic-order',
+    sourceOrigin: 'Fixture source',
+    sourceLicense: null,
+    generatedAt: '2026-08-27T00:00:00.000Z',
+    apiBase: 'https://example.test/v1',
+    count: 3,
+    collections: 0,
+    placeholders: 1,
+    unresolved: [],
+    items: [
+      {
+        issueId: 1,
+        title: 'Atomic Order #1',
+        number: '1',
+        url: 'https://www.marvel.com/comics/issue/1/atomic_order_1',
+        seriesId: 1,
+        seriesName: 'Atomic Order',
+        onSale: '2026-01-01T00:00:00+0000',
+        mu: null,
+        digitalId: 101,
+        cover: { path: 'https://example.test/cover', ext: 'jpg' },
+        description: null,
+        pageCount: 20,
+        creators: [],
+      },
+      {
+        issueId: 2,
+        title: 'Atomic Order #2',
+        number: '2',
+        url: 'https://www.marvel.com/comics/issue/2/atomic_order_2',
+        seriesId: null,
+        seriesName: null,
+        onSale: null,
+        mu: null,
+        digitalId: null,
+        cover: null,
+        description: null,
+        pageCount: null,
+        creators: [],
+      },
+      {
+        issueId: -3,
+        title: 'Atomic Order #3',
+        number: '3',
+        url: null,
+        seriesId: null,
+        seriesName: null,
+        onSale: null,
+        mu: null,
+        digitalId: null,
+        cover: null,
+        description: null,
+        pageCount: null,
+        creators: [],
+        placeholder: true,
+      },
+    ],
+  }, null, 2)}\n`);
+}
+
 function cachedAtomicIssue(id = 1) {
   return {
     id,
@@ -401,6 +469,7 @@ test('catalog-only expands a noncatalog parent into ordinary children, a path, a
     cwd: fixture,
     encoding: 'utf8',
   });
+
   assert.equal(output.status, 0, output.stderr);
 
   const data = path.join(fixture, 'src', 'data');
@@ -420,6 +489,38 @@ test('catalog-only expands a noncatalog parent into ordinary children, a path, a
   assert.deepEqual(
     [overlap.pairCount, overlap.chapterCountWithOverlap, overlap.existingListCount],
     [1, 1, 1],
+  );
+});
+
+test('catalog-only carries both gap counts and is byte-stable on a second run', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-catalog-gaps-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeCatalogGapFixture(fixture);
+
+  const first = spawnSync(process.execPath, ['scripts/vendor-orders.mjs', '--catalog-only'], {
+    cwd: fixture,
+    encoding: 'utf8',
+  });
+  assert.equal(first.status, 0, first.stderr);
+  const firstBytes = readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8');
+  const catalog = JSON.parse(firstBytes);
+  assert.equal(catalog.generatedAt, '2026-08-27T00:00:00.000Z');
+  assert.deepEqual(
+    {
+      placeholderCount: catalog.lists[0].placeholderCount,
+      emptyRecordCount: catalog.lists[0].emptyRecordCount,
+    },
+    { placeholderCount: 1, emptyRecordCount: 1 },
+  );
+
+  const second = spawnSync(process.execPath, ['scripts/vendor-orders.mjs', '--catalog-only'], {
+    cwd: fixture,
+    encoding: 'utf8',
+  });
+  assert.equal(second.status, 0, second.stderr);
+  assert.equal(
+    readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'),
+    firstBytes,
   );
 });
 
