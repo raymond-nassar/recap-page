@@ -53,15 +53,15 @@ test('each bundled Reading List resolves through its grouped story to one canoni
 
 test('Character Spotlight taxonomy accounts for every reading and preserves grouped stories', () => {
   const spotlights = shelfLists(catalog.lists, 'spotlights');
-  assert.equal(spotlights.length, 37);
-  assert.equal(groupCatalog(spotlights).length, 36);
+  assert.equal(spotlights.length, 38);
+  assert.equal(groupCatalog(spotlights).length, 37);
 
   const bestOf = filterBySpotlightKind(spotlights, 'best-of');
   const completeGuide = filterBySpotlightKind(spotlights, 'complete-guide');
   const other = filterBySpotlightKind(spotlights, 'other');
   const expected = [
     ['best-of', 6, 6],
-    ['complete-guide', 26, 26],
+    ['complete-guide', 27, 27],
     ['other', 5, 4],
   ];
   for (const [kind, readingCount, storyCount] of expected) {
@@ -87,6 +87,11 @@ test('Character Spotlight taxonomy accounts for every reading and preserves grou
   assert.ok(abomination, 'Abomination is missing from Character Spotlight All');
   assert.ok(filterBySpotlightKind(spotlights, 'complete-guide').includes(abomination));
   assert.equal(filterBySpotlightKind(spotlights, 'best-of').includes(abomination), false);
+
+  const defenders = spotlights.find((list) => list.id === 'the-defenders-reading-order');
+  assert.ok(defenders, 'The Defenders is missing from Character Spotlight All');
+  assert.ok(completeGuide.includes(defenders));
+  assert.equal(bestOf.includes(defenders), false);
 
   const blackPanther = spotlights.find((list) => list.id === 'black-panther-reading-order');
   assert.ok(blackPanther, 'Black Panther is missing from Character Spotlight All');

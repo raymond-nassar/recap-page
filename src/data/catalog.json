@@ -2514,6 +2514,45 @@
       "updatedAt": "2026-08-27T03:53:15.980Z"
     },
     {
+      "id": "the-defenders-reading-order",
+      "file": "the_defenders_reading_order.json",
+      "name": "The Defenders",
+      "description": "A complete Defenders reading path from the non-team origins through the latest source additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 268,
+      "collections": 25,
+      "characters": [
+        "The Defenders",
+        "Doctor Strange",
+        "Hulk",
+        "Namor",
+        "Silver Surfer"
+      ],
+      "keywords": [
+        "The Defenders",
+        "Comic Book Herald",
+        "Doctor Strange",
+        "Hulk",
+        "Marvel"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 17089,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/4bb5a02c63cf9",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/the-defenders-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T18:44:46.826Z"
+    },
+    {
       "id": "groot-reading-order",
       "file": "groot_reading_order.json",
       "name": "Groot",

@@ -458,6 +458,7 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     'loki-reading-order',
     'silver-surfer-reading-order',
     moonKnightCandidateId,
+    'the-defenders-reading-order',
   ]);
 }
 
@@ -738,7 +739,15 @@ test('the Punisher guide preserves its full source ledger through publication', 
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts', 'data', 'cbh-mappings', 'punisher-reading-order.json'),
     [],
-    { excludedOrderIds: [magnetoCandidateId, 'loki-reading-order', 'silver-surfer-reading-order', moonKnightCandidateId] },
+    {
+      excludedOrderIds: [
+        magnetoCandidateId,
+        'loki-reading-order',
+        'silver-surfer-reading-order',
+        moonKnightCandidateId,
+        'the-defenders-reading-order',
+      ],
+    },
   );
   const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
@@ -894,7 +903,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 6);
+  assert.equal(report.comparisonCount, manifest.lists.length - 7);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1349,17 +1358,18 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   const expectedOrderIds = manifest.lists
     .map((entry) => entry.id)
     .filter((id) => id !== 'silver-surfer-reading-order'
-      && id !== moonKnightCandidateId
-      && id !== guardiansCandidateId)
+     && id !== moonKnightCandidateId
+     && id !== guardiansCandidateId
+     && id !== 'the-defenders-reading-order')
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
-    ['silver-surfer-reading-order', moonKnightCandidateId],
+    ['silver-surfer-reading-order', moonKnightCandidateId, 'the-defenders-reading-order'],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts/data/cbh-mappings/silver-surfer-reading-order.json'),
     [],
-    { excludedOrderIds: [moonKnightCandidateId] },
+    { excludedOrderIds: [moonKnightCandidateId, 'the-defenders-reading-order'] },
   );
 
   assert.equal(packet.sourceOccurrenceCount, 426);
@@ -1924,7 +1934,10 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
   const markdown = await readFile(path.join(root, 'src/data/orders/moon-knight-reading-order.md'), 'utf8');
   const record = inventory.find((entry) => entry.id === moonKnightCandidateId);
   const parsed = parseChecklist(markdown);
-  const reviewedLibraryDigest = await libraryDigestForScope(manifest, [moonKnightCandidateId]);
+  const reviewedLibraryDigest = await libraryDigestForScope(manifest, [
+    'the-defenders-reading-order',
+    moonKnightCandidateId,
+  ]);
 
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.centralDisposition, 'pilot-approved');
@@ -2686,10 +2699,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 241);
+  assert.equal(catalog.lists.length, 242);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 37);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 36);
+  assert.equal(characterRuns.length, 38);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 37);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {

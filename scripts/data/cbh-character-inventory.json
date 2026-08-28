@@ -73,7 +73,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "The modern Marvel-era guide ships with explicit unresolved provenance, a representative cover issue, and the same exact source boundary, so the catalog entry can be published without inventing missing rows.",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "captain-america-best-of",
       "doctor-doom-primer",
@@ -132,7 +132,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "1,937 of 2,043 source-defined issues resolve exactly in source order; the remaining 106 rows ship as explicit plain-text placeholders (no invented Marvel issue ids or links) and are tracked for follow-up research in issue #248. The separate Complete guide remains distinct despite 32 approved partial relationships.",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "spider-man-best-of",
       "hickman-full",
@@ -320,8 +320,8 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The 331-occurrence full-page source boundary is exact and yields 268 exact rows, 12 backward repeats, and 51 exclusions. Issue #239 remains the source queue record while the issue rows stay unfrozen against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
     "deliveryStatus": "not-applicable",
@@ -765,8 +765,8 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The 331-occurrence full-page source boundary is exact and yields 268 exact rows, 12 backward repeats, and 51 exclusions. Issue #239 remains the source queue record while the issue rows stay unfrozen against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
     "deliveryStatus": "not-applicable",
@@ -778,7 +778,7 @@
       26
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "e32b9e54bf662ea54019536acad18c3d2a4c7128f0fad72f47ce5e2841e6e754",
+    "sourceContentSha256": "a160548ac1308afd403c0338e214f14a33097424e26ec10bfe69425d1ac91c83",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },

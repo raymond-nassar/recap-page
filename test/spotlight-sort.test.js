@@ -85,6 +85,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Punisher',
     'Rocket Raccoon',
     'Abomination',
+    'The Defenders',
     'Groot',
     'Star-Lord',
     'Thanos',
