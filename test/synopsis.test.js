@@ -20,7 +20,20 @@ import assert from 'node:assert/strict';
 
 import { SessionSynopsis, SynopsisRunner, NO_SYNOPSIS } from '../src/js/synopsis.js';
 import { withoutSynopsis, MarvelApi } from '../src/js/api.js';
-import { purgeStaleCache, synopsisAnnouncement, synopsisDisclaimer, synopsisServiceName, synopsisStatusLine } from '../src/js/main.js';
+import {
+  CACHE_PURGE_KEY,
+  cachePurgeMark,
+  cacheCleanupFailureMessage,
+  clearCacheGenerations,
+  maintainCacheGeneration,
+  purgeStaleCache,
+  sanitizeStoredIssueDescriptions,
+  synopsisAnnouncement,
+  synopsisDisclaimer,
+  synopsisServiceName,
+  synopsisStatusLine,
+  writeCachePurgeMark,
+} from '../src/js/main.js';
 import { Store, KEY } from '../src/js/storage.js';
 import {
   addIssuesToList, createEmptyState, createList, markRead, markDetailsRefused,
@@ -606,6 +619,38 @@ test('every request carries no-store, so the browser keeps no copy either', asyn
 const okCache = () => ({ cleared: 0, async clear() { this.cleared += 1; return true; } });
 const brokenCache = () => ({ cleared: 0, async clear() { this.cleared += 1; return false; } });
 
+function memoryStorage(initial = {}, { failWrite = false, ignoreWrite = false } = {}) {
+  const values = new Map(Object.entries(initial));
+  return {
+    writes: [],
+    getItem(key) {
+      return values.has(key) ? values.get(key) : null;
+    },
+    setItem(key, value) {
+      this.writes.push([key, value]);
+      if (failWrite) throw new Error('storage full');
+      if (!ignoreWrite) values.set(key, value);
+    },
+  };
+}
+
+function cleanupCache({ active = true, legacy = { status: 'deleted', blocked: false } } = {}) {
+  const activeResults = Array.isArray(active) ? [...active] : null;
+  return {
+    clears: 0,
+    deletions: 0,
+    async clear() {
+      this.clears += 1;
+      return activeResults ? activeResults.shift() : active;
+    },
+    async deleteLegacy({ onBlocked } = {}) {
+      this.deletions += 1;
+      if (legacy.blocked) onBlocked?.();
+      return legacy;
+    },
+  };
+}
+
 test('the purge runs once and then never again', async () => {
   const cache = okCache();
   assert.deepEqual(await purgeStaleCache(cache, 0, 1), { ran: true, cleared: true });
@@ -627,6 +672,434 @@ test('a marker from a newer build is left alone rather than treated as behind', 
   const cache = okCache();
   assert.deepEqual(await purgeStaleCache(cache, 5, 1), { ran: false, cleared: false });
   assert.equal(cache.cleared, 0);
+});
+
+test('the dedicated purge marker migrates from the maximum valid dedicated or legacy value', () => {
+  const storage = memoryStorage({
+    [CACHE_PURGE_KEY]: '3',
+    'mrt.settings': JSON.stringify({ cachePurge: 5 }),
+  });
+  assert.equal(cachePurgeMark(storage), 5);
+
+  const dedicatedWins = memoryStorage({
+    [CACHE_PURGE_KEY]: '8',
+    'mrt.settings': JSON.stringify({ cachePurge: 2 }),
+  });
+  assert.equal(cachePurgeMark(dedicatedWins), 8);
+});
+
+test('invalid dedicated and legacy purge values are ignored explicitly', () => {
+  for (const value of [
+    '', '-1', '1.5', 'Infinity', 'unsafe', String(Number.MAX_SAFE_INTEGER + 1),
+    true, false, [1], { value: 1 },
+  ]) {
+    const storage = memoryStorage({
+      [CACHE_PURGE_KEY]: value,
+      'mrt.settings': JSON.stringify({ cachePurge: value }),
+    });
+    assert.equal(cachePurgeMark(storage), 0, `accepted invalid marker ${JSON.stringify(value)}`);
+  }
+  assert.equal(cachePurgeMark(memoryStorage({
+    [CACHE_PURGE_KEY]: '4',
+    'mrt.settings': '{not json',
+  })), 4, 'malformed legacy settings hid a valid dedicated marker');
+});
+
+function serialLocks() {
+  const names = [];
+  let tail = Promise.resolve();
+  return {
+    names,
+    request(name, callback) {
+      names.push(name);
+      const result = tail.then(callback);
+      tail = result.catch(() => {});
+      return result;
+    },
+  };
+}
+
+test('writing the dedicated marker migrates legacy state and never moves backwards', async () => {
+  const storage = memoryStorage({ 'mrt.settings': JSON.stringify({ cachePurge: 3 }) });
+  const locks = serialLocks();
+  assert.equal(await writeCachePurgeMark(storage, 1, locks), 3);
+  assert.deepEqual(storage.writes, [[CACHE_PURGE_KEY, '3']]);
+
+  assert.equal(await writeCachePurgeMark(storage, 2, locks), 3);
+  assert.equal(storage.writes.length, 1, 'an idempotent lower write touched storage again');
+  assert.deepEqual(locks.names, [CACHE_PURGE_KEY, CACHE_PURGE_KEY]);
+});
+
+test('current tabs serialize marker updates so a lower generation cannot win a race', async () => {
+  const storage = memoryStorage();
+  const locks = serialLocks();
+  await Promise.all([
+    writeCachePurgeMark(storage, 5, locks),
+    writeCachePurgeMark(storage, 1, locks),
+  ]);
+  assert.equal(storage.getItem(CACHE_PURGE_KEY), '5');
+});
+
+test('a missing lock and a failed or ineffective marker write are surfaced', async () => {
+  await assert.rejects(
+    () => writeCachePurgeMark(memoryStorage(), 1, null),
+    /lock/i,
+  );
+  await assert.rejects(
+    () => writeCachePurgeMark(memoryStorage({}, { failWrite: true }), 1, serialLocks()),
+    /storage full/,
+  );
+  await assert.rejects(
+    () => writeCachePurgeMark(memoryStorage({}, { ignoreWrite: true }), 1, serialLocks()),
+    /could not be verified/i,
+  );
+});
+
+test('a current marker preserves active cache entries but still retires the legacy database', async () => {
+  const cache = cleanupCache();
+  assert.deepEqual(await maintainCacheGeneration(cache, 1, 1), {
+    ran: false,
+    activeCleared: true,
+    legacy: { status: 'deleted', blocked: false },
+  });
+  assert.equal(cache.clears, 0);
+  assert.equal(cache.deletions, 1);
+});
+
+test('automatic cleanup treats entirely unavailable IndexedDB as nothing reachable to remove', async () => {
+  const cache = {
+    available: false,
+    async clear() { return false; },
+    async deleteLegacy() {
+      return { status: 'unavailable', blocked: false, error: null };
+    },
+  };
+  const result = await maintainCacheGeneration(cache, 0, 1);
+
+  assert.deepEqual(result, {
+    ran: true,
+    activeCleared: true,
+    storageUnavailable: true,
+    legacy: { status: 'unavailable', blocked: false, error: null },
+  });
+  assert.equal(cacheCleanupFailureMessage(result), '');
+
+  const storage = memoryStorage();
+  await writeCachePurgeMark(storage, 1, serialLocks());
+  assert.equal(storage.getItem(CACHE_PURGE_KEY), '1');
+});
+
+test('automatic cleanup also completes when the retained IndexedDB factory denies all access', async () => {
+  for (const name of ['SecurityError', 'InvalidStateError']) {
+    const cache = {
+      available: false,
+      async clear() { return false; },
+      async deleteLegacy() {
+        return {
+          status: 'failed',
+          blocked: false,
+          error: Object.assign(new Error('storage denied'), { name }),
+        };
+      },
+    };
+    const result = await maintainCacheGeneration(cache, 0, 1);
+    assert.equal(result.storageUnavailable, true, `${name} was treated as a permanent failure`);
+    assert.equal(result.activeCleared, true);
+    assert.equal(cacheCleanupFailureMessage(result), '');
+  }
+
+  const genericFailure = await maintainCacheGeneration({
+    available: false,
+    async clear() { return false; },
+    async deleteLegacy() {
+      return { status: 'failed', blocked: false, error: new Error('disk failure') };
+    },
+  }, 0, 1);
+  assert.equal(genericFailure.storageUnavailable, undefined);
+  assert.match(cacheCleanupFailureMessage(genericFailure), /disk failure/);
+});
+
+test('a current legacy marker probes denied active storage before migrating silently', async () => {
+  const cache = {
+    available: true,
+    opens: 0,
+    async clear() {
+      throw new Error('a current marker must not clear active entries');
+    },
+    async deleteLegacy() {
+      return {
+        status: 'failed',
+        blocked: false,
+        error: Object.assign(new Error('storage denied'), { name: 'SecurityError' }),
+      };
+    },
+    async open() {
+      this.opens += 1;
+      this.available = false;
+      return null;
+    },
+  };
+  const first = await maintainCacheGeneration(cache, 1, 1);
+  assert.equal(first.storageUnavailable, true);
+  assert.equal(cacheCleanupFailureMessage(first), '');
+  assert.equal(cache.opens, 1);
+
+  const second = await maintainCacheGeneration(cache, 1, 1);
+  assert.equal(second.storageUnavailable, true);
+  assert.equal(cache.opens, 1, 'repeat startup probed storage after denial was already known');
+});
+
+test('a successful legacy delete cannot hide an active-cache clear failure', async () => {
+  const cache = {
+    available: false,
+    clears: 0,
+    async clear() {
+      this.clears += 1;
+      return false;
+    },
+    async deleteLegacy() {
+      return { status: 'deleted', blocked: false };
+    },
+  };
+  const result = await maintainCacheGeneration(cache, 0, 1);
+  assert.equal(cache.clears, 2);
+  assert.equal(result.storageUnavailable, undefined);
+  assert.equal(result.activeCleared, false);
+  assert.match(cacheCleanupFailureMessage(result), /could not be cleared/);
+});
+
+test('generation maintenance reports active clear failure, blocked cleanup, and deletion failure', async () => {
+  let blocked = 0;
+  const partial = cleanupCache({
+    active: false,
+    legacy: { status: 'deleted', blocked: true },
+  });
+  assert.deepEqual(
+    await maintainCacheGeneration(partial, 0, 1, { onLegacyBlocked: () => { blocked += 1; } }),
+    {
+      ran: true,
+      activeCleared: false,
+      legacy: { status: 'deleted', blocked: true },
+    },
+  );
+  assert.equal(blocked, 1);
+
+  const failed = cleanupCache({ legacy: { status: 'failed', blocked: false, error: new Error('delete failed') } });
+  const result = await clearCacheGenerations(failed);
+  assert.equal(result.activeCleared, true);
+  assert.equal(result.legacy.status, 'failed');
+  assert.match(result.legacy.error.message, /delete failed/);
+});
+
+test('automatic generation purge final-clears writes arriving during legacy deletion', async () => {
+  for (const blocked of [false, true]) {
+    const cache = cleanupCache({
+      active: [true, false],
+      legacy: { status: 'deleted', blocked },
+    });
+    const result = await maintainCacheGeneration(cache, 0, 1);
+    assert.equal(cache.clears, 2, `automatic ${blocked ? 'blocked' : 'unblocked'} deletion skipped the final clear`);
+    assert.equal(result.activeCleared, false);
+  }
+});
+
+test('manual cleanup clears the active generation again after a blocked legacy deletion', async () => {
+  const cache = cleanupCache({
+    active: [true, false],
+    legacy: { status: 'deleted', blocked: true },
+  });
+  const result = await clearCacheGenerations(cache);
+  assert.equal(cache.clears, 2);
+  assert.equal(result.activeCleared, false, 'a failed final clear was reported as successful');
+});
+
+test('manual cleanup final-clears active writes that arrive during an unblocked deletion', async () => {
+  const cache = cleanupCache({
+    active: [true, false],
+    legacy: { status: 'deleted', blocked: false },
+  });
+  const result = await clearCacheGenerations(cache);
+  assert.equal(cache.clears, 2);
+  assert.equal(result.activeCleared, false, 'an unblocked deletion skipped the final active clear');
+});
+
+test('foreign saved-state prose is removed independently of the cache marker', () => {
+  const raw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+
+  const result = sanitizeStoredIssueDescriptions(readerStore, raw);
+  assert.deepEqual(result, { needed: true, cleared: true });
+  assert.equal('description' in JSON.parse(storage.getItem(KEY)).issues[7], false);
+});
+
+test('boot sanitation resynchronizes the live store so the first real edit is not refused', () => {
+  const raw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, raw, { adoptCurrent: true }),
+    { needed: true, cleared: true },
+  );
+  readerStore.update((state) => ({ ...state, read: { ...state.read, 7: true } }));
+  assert.equal(readerStore.lastUpdateOk, true);
+  assert.equal(JSON.parse(storage.getItem(KEY)).read[7], true);
+});
+
+test('foreign saved-state prose is sanitized without disturbing a blocked recovery incident', () => {
+  const recoveryRaw = JSON.stringify({ schemaVersion: 99, marker: 'recovery bytes' });
+  const storage = memoryStorage({ [KEY]: recoveryRaw });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  assert.equal(readerStore.blocked, true);
+  const salvageKey = readerStore.salvageKey;
+
+  const foreignRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  storage.setItem(KEY, foreignRaw);
+  const failures = [];
+  const result = sanitizeStoredIssueDescriptions(readerStore, foreignRaw, {
+    onFailure: (error) => failures.push(error),
+  });
+
+  assert.deepEqual(result, { needed: true, cleared: true });
+  assert.deepEqual(failures, []);
+  assert.equal(readerStore.blocked, true, 'sanitation cleared the unrelated recovery latch');
+  assert.equal(storage.getItem(salvageKey), recoveryRaw, 'sanitation changed the recovery copy');
+  assert.equal('description' in JSON.parse(storage.getItem(KEY)).issues[7], false);
+});
+
+test('a failed saved-state sanitation is reported and remains retryable', () => {
+  const raw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw }, { failWrite: true });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  const failures = [];
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, raw, {
+      onFailure: (error) => failures.push(error),
+    }),
+    { needed: true, cleared: false },
+  );
+  assert.equal(failures.length, 1);
+  assert.match(failures[0], /could not save/i);
+  assert.equal(JSON.parse(storage.getItem(KEY)).issues[7].description, 'Legacy synopsis.');
+});
+
+test('a silently ignored saved-state sanitation is detected by reading durable state back', () => {
+  const raw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw }, { ignoreWrite: true });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  const failures = [];
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, raw, {
+      onFailure: (error) => failures.push(error),
+    }),
+    { needed: true, cleared: false },
+  );
+  assert.deepEqual(failures, ['The saved-state cleanup write could not be verified.']);
+  assert.equal(JSON.parse(storage.getItem(KEY)).issues[7].description, 'Legacy synopsis.');
+});
+
+test('a queued old sanitation event cannot overwrite newer tokenless saved data', () => {
+  const olderRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Older synopsis.' } },
+  });
+  const newerRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 8: { issueId: 8, title: 'Eight', description: 'Newer synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: olderRaw });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  storage.setItem(KEY, newerRaw);
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, olderRaw),
+    { needed: true, cleared: true },
+  );
+  const durable = JSON.parse(storage.getItem(KEY));
+  assert.equal('7' in durable.issues, false, 'the queued old event replaced newer saved data');
+  assert.equal(durable.issues[8].title, 'Eight');
+  assert.equal('description' in durable.issues[8], false);
+});
+
+test('unsupported current foreign state is preserved and its sanitation failure is surfaced', () => {
+  const raw = JSON.stringify({
+    schemaVersion: 99,
+    issues: { 7: { issueId: 7, description: 'Unknown-schema synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw });
+  const readerStore = new Store({ storage });
+  const failures = [];
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, raw, {
+      onFailure: (error) => failures.push(error),
+    }),
+    { needed: true, cleared: false },
+  );
+  assert.equal(storage.getItem(KEY), raw);
+  assert.equal(failures.length, 1);
+  assert.match(failures[0], /unsupported schema|could not be read safely/i);
+});
+
+test('saved data changing during sanitation is re-read and only the newer bytes are cleaned', () => {
+  const firstRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'First synopsis.' } },
+  });
+  const newerRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 8: { issueId: 8, title: 'Eight', description: 'Newer synopsis.' } },
+  });
+  let current = firstRaw;
+  let reads = 0;
+  const storage = {
+    getItem() {
+      reads += 1;
+      if (reads === 2) current = newerRaw;
+      return current;
+    },
+    setItem(_key, value) {
+      current = value;
+    },
+  };
+  const readerStore = new Store({ storage });
+  const failures = [];
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, firstRaw, {
+      onFailure: (error) => failures.push(error),
+    }),
+    { needed: true, cleared: true },
+  );
+  const durable = JSON.parse(current);
+  assert.deepEqual(failures, []);
+  assert.equal('7' in durable.issues, false);
+  assert.equal(durable.issues[8].title, 'Eight');
+  assert.equal('description' in durable.issues[8], false);
 });
 
 
