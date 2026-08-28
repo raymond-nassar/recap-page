@@ -516,6 +516,15 @@ const MUTATIONS = [
     ),
   },
   {
+    id: 'cache-automatic-final-clear-off',
+    breaks: 'cache-generations',
+    why: 'automatic generation cleanup keeps active metadata written while legacy deletion is pending',
+    rewriteMain: (source) => source.replace(
+      '  if (purge.ran && !storageUnavailable) {',
+      '  if (false && purge.ran && !storageUnavailable) {',
+    ),
+  },
+  {
     id: 'cache-generation-shared',
     breaks: 'cache-generations',
     why: 'current code opens the legacy database and loses physical isolation from the old writer',
@@ -4320,8 +4329,8 @@ const SCENARIOS = [
       await legacy.setViewport({ width: 1280, height: 900 });
       await legacy.goto(`${page.__origin}/open.html`, { waitUntil: 'load' });
       await legacy.evaluate(async () => {
-        localStorage.setItem('mrt.cache-purge.v1', '1');
-        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 1 }));
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 0 }));
         window.__legacyDb = await new Promise((resolve, reject) => {
           const request = indexedDB.open('mrt-cache', 1);
           request.onupgradeneeded = () => {
@@ -4438,11 +4447,9 @@ const SCENARIOS = [
         legacyAfter.includes('legacy-before') && legacyAfter.includes('legacy-after'),
         JSON.stringify(legacyAfter));
 
-      const markerAfterOldWrite = await legacy.evaluate(() => {
+      await legacy.evaluate(() => {
         localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 0, theme: 'dark' }));
-        return localStorage.getItem('mrt.cache-purge.v1');
       });
-      t.check('an old settings write cannot lower the dedicated marker', markerAfterOldWrite === '1', markerAfterOldWrite);
 
       await click(page, '#opt-covers');
       const currentSettings = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings') || '{}'));
@@ -4482,11 +4489,17 @@ const SCENARIOS = [
       });
       t.check('legacy cleanup completes after the old connection closes',
         !afterClose.names.includes('mrt-cache'), JSON.stringify(afterClose.names));
-      t.check('legacy cleanup does not remove the active generation',
-        afterClose.names.includes('mrt-cache-v2') && afterClose.current?.id === 'current',
+      t.check('automatic cleanup leaves the active generation usable but final-clears writes made during the purge',
+        afterClose.names.includes('mrt-cache-v2') && afterClose.current === null,
         JSON.stringify(afterClose));
       t.check('the completed cleanup leaves the authoritative marker current',
         afterClose.marker === '1', afterClose.marker);
+      const markerAfterOldWrite = await legacy.evaluate(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 0, theme: 'dark' }));
+        return localStorage.getItem('mrt.cache-purge.v1');
+      });
+      t.check('an old settings write cannot lower the dedicated marker',
+        markerAfterOldWrite === '1', markerAfterOldWrite);
 
       await legacy.evaluate(async () => {
         window.__markerLockHeld = new Promise((resolve) => {

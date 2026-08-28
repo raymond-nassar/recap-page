@@ -842,6 +842,18 @@ test('generation maintenance reports active clear failure, blocked cleanup, and 
   assert.match(result.legacy.error.message, /delete failed/);
 });
 
+test('automatic generation purge final-clears writes arriving during legacy deletion', async () => {
+  for (const blocked of [false, true]) {
+    const cache = cleanupCache({
+      active: [true, false],
+      legacy: { status: 'deleted', blocked },
+    });
+    const result = await maintainCacheGeneration(cache, 0, 1);
+    assert.equal(cache.clears, 2, `automatic ${blocked ? 'blocked' : 'unblocked'} deletion skipped the final clear`);
+    assert.equal(result.activeCleared, false);
+  }
+});
+
 test('manual cleanup clears the active generation again after a blocked legacy deletion', async () => {
   const cache = cleanupCache({
     active: [true, false],

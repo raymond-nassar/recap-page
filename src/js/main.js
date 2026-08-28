@@ -806,9 +806,13 @@ export async function maintainCacheGeneration(
     || legacy.status === 'deleted'
     || (legacy.status === 'failed' && denied);
   const storageUnavailable = cacheRef.available === false && legacyUnreachable;
+  let activeCleared = storageUnavailable || !purge.ran || purge.cleared;
+  if (purge.ran && !storageUnavailable) {
+    activeCleared = await cacheRef.clear({ requireAccess: true });
+  }
   return {
     ran: purge.ran,
-    activeCleared: storageUnavailable || !purge.ran || purge.cleared,
+    activeCleared,
     ...(storageUnavailable ? { storageUnavailable: true } : {}),
     legacy,
   };
