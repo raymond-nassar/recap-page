@@ -25,10 +25,10 @@
   "provenanceGroupCount": 8,
   "sourceOccurrenceCount": 354,
   "categoryCounts": {
-    "canonical-candidate": 267,
+    "canonical-candidate": 259,
     "repeat": 4,
     "gap": 0,
-    "exclusion": 83
+    "exclusion": 91
   },
   "categoryPositions": {
     "canonical-candidate": [
@@ -48,14 +48,6 @@
       19,
       20,
       21,
-      25,
-      26,
-      27,
-      28,
-      29,
-      30,
-      31,
-      32,
       40,
       41,
       42,
@@ -316,6 +308,14 @@
       22,
       23,
       24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
       33,
       37,
       38,
@@ -448,7 +448,15 @@
     "partial material reference": [
       22,
       23,
-      24
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
     ],
     "collection marker": [
       51,
@@ -859,7 +867,7 @@
               "position": 24
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#54",
               "sourceIssueReference": "Fantastic Four #54",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -867,12 +875,12 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "54",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 25
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#55",
               "sourceIssueReference": "Fantastic Four #55",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -880,12 +888,12 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "55",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 26
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#56",
               "sourceIssueReference": "Fantastic Four #56",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -893,12 +901,12 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "56",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 27
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#57",
               "sourceIssueReference": "Fantastic Four #57",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -906,12 +914,12 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "57",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 28
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#58",
               "sourceIssueReference": "Fantastic Four #58",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -919,12 +927,12 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "58",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 29
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#59",
               "sourceIssueReference": "Fantastic Four #59",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -932,12 +940,12 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "59",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 30
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#60",
               "sourceIssueReference": "Fantastic Four #60",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -945,12 +953,12 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "60",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 31
             },
             {
-              "sourceType": "issue",
+              "sourceType": "partial-material",
               "sourceText": "#61",
               "sourceIssueReference": "Fantastic Four #61",
               "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -958,8 +966,8 @@
               "normalizedSeriesTitle": "Fantastic Four",
               "seriesYear": null,
               "issueNumber": "61",
-              "provisionalDisposition": "canonical-candidate",
-              "reason": null,
+              "provisionalDisposition": "exclusion",
+              "reason": "partial material reference",
               "position": 32
             }
           ]
@@ -2991,7 +2999,7 @@
             {
               "sourceType": "issue",
               "sourceText": "#5",
-              "sourceIssueReference": "FF #5",
+              "sourceIssueReference": "Ff #5",
               "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
               "collectionTitle": "Fantastic Four by Jonathan Hickman",
               "normalizedSeriesTitle": "FF",
@@ -3004,7 +3012,7 @@
             {
               "sourceType": "issue",
               "sourceText": "#6",
-              "sourceIssueReference": "FF #6",
+              "sourceIssueReference": "Ff #6",
               "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
               "collectionTitle": "Fantastic Four by Jonathan Hickman",
               "normalizedSeriesTitle": "FF",
@@ -3017,7 +3025,7 @@
             {
               "sourceType": "issue",
               "sourceText": "#7",
-              "sourceIssueReference": "FF #7",
+              "sourceIssueReference": "Ff #7",
               "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
               "collectionTitle": "Fantastic Four by Jonathan Hickman",
               "normalizedSeriesTitle": "FF",
@@ -3030,7 +3038,7 @@
             {
               "sourceType": "issue",
               "sourceText": "#8",
-              "sourceIssueReference": "FF #8",
+              "sourceIssueReference": "Ff #8",
               "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
               "collectionTitle": "Fantastic Four by Jonathan Hickman",
               "normalizedSeriesTitle": "FF",
@@ -3043,7 +3051,7 @@
             {
               "sourceType": "issue",
               "sourceText": "#9",
-              "sourceIssueReference": "FF #9",
+              "sourceIssueReference": "Ff #9",
               "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
               "collectionTitle": "Fantastic Four by Jonathan Hickman",
               "normalizedSeriesTitle": "FF",
@@ -3056,7 +3064,7 @@
             {
               "sourceType": "issue",
               "sourceText": "#10",
-              "sourceIssueReference": "FF #10",
+              "sourceIssueReference": "Ff #10",
               "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
               "collectionTitle": "Fantastic Four by Jonathan Hickman",
               "normalizedSeriesTitle": "FF",
@@ -3069,7 +3077,7 @@
             {
               "sourceType": "issue",
               "sourceText": "#11",
-              "sourceIssueReference": "FF #11",
+              "sourceIssueReference": "Ff #11",
               "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
               "collectionTitle": "Fantastic Four by Jonathan Hickman",
               "normalizedSeriesTitle": "FF",
@@ -6062,16 +6070,16 @@
           "text": "The Darkhold: Black Bolt",
           "occurrences": [
             {
-              "sourceType": "issue-title",
+              "sourceType": "collection",
               "sourceText": "The Darkhold: Black Bolt",
-              "sourceIssueReference": "The Darkhold: Black Bolt",
+              "sourceIssueReference": null,
               "sourceRangeReference": "The Darkhold: Black Bolt",
-              "collectionTitle": "The Darkhold: Black Bolt",
-              "normalizedSeriesTitle": "The Darkhold: Black Bolt",
+              "collectionTitle": null,
+              "normalizedSeriesTitle": null,
               "seriesYear": null,
               "issueNumber": null,
-              "provisionalDisposition": "canonical-candidate",
-              "reason": "issue-bearing title",
+              "provisionalDisposition": "exclusion",
+              "reason": "collection marker",
               "position": 354
             }
           ]
@@ -6444,7 +6452,7 @@
           "position": 24
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#54",
           "sourceIssueReference": "Fantastic Four #54",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6452,12 +6460,12 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "54",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 25
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#55",
           "sourceIssueReference": "Fantastic Four #55",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6465,12 +6473,12 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "55",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 26
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#56",
           "sourceIssueReference": "Fantastic Four #56",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6478,12 +6486,12 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "56",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 27
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#57",
           "sourceIssueReference": "Fantastic Four #57",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6491,12 +6499,12 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "57",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 28
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#58",
           "sourceIssueReference": "Fantastic Four #58",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6504,12 +6512,12 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "58",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 29
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#59",
           "sourceIssueReference": "Fantastic Four #59",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6517,12 +6525,12 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "59",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 30
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#60",
           "sourceIssueReference": "Fantastic Four #60",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6530,12 +6538,12 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "60",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 31
         },
         {
-          "sourceType": "issue",
+          "sourceType": "partial-material",
           "sourceText": "#61",
           "sourceIssueReference": "Fantastic Four #61",
           "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -6543,8 +6551,8 @@
           "normalizedSeriesTitle": "Fantastic Four",
           "seriesYear": null,
           "issueNumber": "61",
-          "provisionalDisposition": "canonical-candidate",
-          "reason": null,
+          "provisionalDisposition": "exclusion",
+          "reason": "partial material reference",
           "position": 32
         }
       ]
@@ -8614,7 +8622,7 @@
         {
           "sourceType": "issue",
           "sourceText": "#5",
-          "sourceIssueReference": "FF #5",
+          "sourceIssueReference": "Ff #5",
           "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
           "collectionTitle": "Fantastic Four by Jonathan Hickman",
           "normalizedSeriesTitle": "FF",
@@ -8627,7 +8635,7 @@
         {
           "sourceType": "issue",
           "sourceText": "#6",
-          "sourceIssueReference": "FF #6",
+          "sourceIssueReference": "Ff #6",
           "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
           "collectionTitle": "Fantastic Four by Jonathan Hickman",
           "normalizedSeriesTitle": "FF",
@@ -8640,7 +8648,7 @@
         {
           "sourceType": "issue",
           "sourceText": "#7",
-          "sourceIssueReference": "FF #7",
+          "sourceIssueReference": "Ff #7",
           "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
           "collectionTitle": "Fantastic Four by Jonathan Hickman",
           "normalizedSeriesTitle": "FF",
@@ -8653,7 +8661,7 @@
         {
           "sourceType": "issue",
           "sourceText": "#8",
-          "sourceIssueReference": "FF #8",
+          "sourceIssueReference": "Ff #8",
           "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
           "collectionTitle": "Fantastic Four by Jonathan Hickman",
           "normalizedSeriesTitle": "FF",
@@ -8666,7 +8674,7 @@
         {
           "sourceType": "issue",
           "sourceText": "#9",
-          "sourceIssueReference": "FF #9",
+          "sourceIssueReference": "Ff #9",
           "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
           "collectionTitle": "Fantastic Four by Jonathan Hickman",
           "normalizedSeriesTitle": "FF",
@@ -8679,7 +8687,7 @@
         {
           "sourceType": "issue",
           "sourceText": "#10",
-          "sourceIssueReference": "FF #10",
+          "sourceIssueReference": "Ff #10",
           "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
           "collectionTitle": "Fantastic Four by Jonathan Hickman",
           "normalizedSeriesTitle": "FF",
@@ -8692,7 +8700,7 @@
         {
           "sourceType": "issue",
           "sourceText": "#11",
-          "sourceIssueReference": "FF #11",
+          "sourceIssueReference": "Ff #11",
           "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
           "collectionTitle": "Fantastic Four by Jonathan Hickman",
           "normalizedSeriesTitle": "FF",
@@ -12053,7 +12061,7 @@
       "position": 24
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#54",
       "sourceIssueReference": "Fantastic Four #54",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12061,12 +12069,12 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "54",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 25
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#55",
       "sourceIssueReference": "Fantastic Four #55",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12074,12 +12082,12 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "55",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 26
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#56",
       "sourceIssueReference": "Fantastic Four #56",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12087,12 +12095,12 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "56",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 27
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#57",
       "sourceIssueReference": "Fantastic Four #57",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12100,12 +12108,12 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "57",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 28
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#58",
       "sourceIssueReference": "Fantastic Four #58",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12113,12 +12121,12 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "58",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 29
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#59",
       "sourceIssueReference": "Fantastic Four #59",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12126,12 +12134,12 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "59",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 30
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#60",
       "sourceIssueReference": "Fantastic Four #60",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12139,12 +12147,12 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "60",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 31
     },
     {
-      "sourceType": "issue",
+      "sourceType": "partial-material",
       "sourceText": "#61",
       "sourceIssueReference": "Fantastic Four #61",
       "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
@@ -12152,8 +12160,8 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": null,
       "issueNumber": "61",
-      "provisionalDisposition": "canonical-candidate",
-      "reason": null,
+      "provisionalDisposition": "exclusion",
+      "reason": "partial material reference",
       "position": 32
     },
     {
@@ -13719,7 +13727,7 @@
     {
       "sourceType": "issue",
       "sourceText": "#5",
-      "sourceIssueReference": "FF #5",
+      "sourceIssueReference": "Ff #5",
       "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
       "collectionTitle": "Fantastic Four by Jonathan Hickman",
       "normalizedSeriesTitle": "FF",
@@ -13732,7 +13740,7 @@
     {
       "sourceType": "issue",
       "sourceText": "#6",
-      "sourceIssueReference": "FF #6",
+      "sourceIssueReference": "Ff #6",
       "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
       "collectionTitle": "Fantastic Four by Jonathan Hickman",
       "normalizedSeriesTitle": "FF",
@@ -13745,7 +13753,7 @@
     {
       "sourceType": "issue",
       "sourceText": "#7",
-      "sourceIssueReference": "FF #7",
+      "sourceIssueReference": "Ff #7",
       "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
       "collectionTitle": "Fantastic Four by Jonathan Hickman",
       "normalizedSeriesTitle": "FF",
@@ -13758,7 +13766,7 @@
     {
       "sourceType": "issue",
       "sourceText": "#8",
-      "sourceIssueReference": "FF #8",
+      "sourceIssueReference": "Ff #8",
       "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
       "collectionTitle": "Fantastic Four by Jonathan Hickman",
       "normalizedSeriesTitle": "FF",
@@ -13771,7 +13779,7 @@
     {
       "sourceType": "issue",
       "sourceText": "#9",
-      "sourceIssueReference": "FF #9",
+      "sourceIssueReference": "Ff #9",
       "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
       "collectionTitle": "Fantastic Four by Jonathan Hickman",
       "normalizedSeriesTitle": "FF",
@@ -13784,7 +13792,7 @@
     {
       "sourceType": "issue",
       "sourceText": "#10",
-      "sourceIssueReference": "FF #10",
+      "sourceIssueReference": "Ff #10",
       "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
       "collectionTitle": "Fantastic Four by Jonathan Hickman",
       "normalizedSeriesTitle": "FF",
@@ -13797,7 +13805,7 @@
     {
       "sourceType": "issue",
       "sourceText": "#11",
-      "sourceIssueReference": "FF #11",
+      "sourceIssueReference": "Ff #11",
       "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
       "collectionTitle": "Fantastic Four by Jonathan Hickman",
       "normalizedSeriesTitle": "FF",

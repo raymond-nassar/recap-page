@@ -57,25 +57,25 @@ const expected = {
   ],
   groupSizes: [2, 12, 15, 15, 19, 19, 10, 28],
   dispositionCounts: {
-    'canonical-candidate': 267,
+    'canonical-candidate': 259,
     repeat: 4,
     gap: 0,
-    exclusion: 83,
+    exclusion: 91,
   },
   sourceTypeCounts: {
-    issue: 268,
+    issue: 260,
     collection: 35,
     prose: 27,
     'formatting-marker': 11,
     h2: 7,
     'issue-title': 3,
-    'partial-material': 3,
+    'partial-material': 11,
   },
   exclusionReasonCounts: {
     'collection marker': 33,
     'formatting marker': 11,
     'guide link': 2,
-    'partial material reference': 3,
+    'partial material reference': 11,
     'prose marker': 27,
     'section marker': 7,
   },
@@ -87,8 +87,8 @@ const expected = {
     { position: 280, sourceIssueReference: 'Inhumans Prime #1', issueNumber: '1', provisionalDisposition: 'canonical-candidate' },
     { position: 289, sourceIssueReference: 'Inhumans: Judgement Day', issueNumber: null, provisionalDisposition: 'canonical-candidate' },
   ],
-  partialMaterialPositions: [22, 23, 24],
-  partialMaterialSourceTexts: ['#48', '#50', '#52'],
+  partialMaterialPositions: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32],
+  partialMaterialSourceTexts: ['#48', '#50', '#52', '#54', '#55', '#56', '#57', '#58', '#59', '#60', '#61'],
   node6IssueNumbers: ['36', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '62', '63', '64', '65', '5', '48', '50', '52', '54', '55', '56', '57', '58', '59', '60', '61'],
   node18IssueNumbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
   node113IssueNumbers: ['6', '7', '8', '11'],
@@ -225,6 +225,10 @@ function assertLedgerShape(ledger) {
     expected.groupBlockPositions,
   );
   assert.deepEqual(ledger.provenanceGroups.map((group) => group.blocks.length), expected.groupSizes);
+  assert.deepEqual(
+    ledger.provenanceGroups.flatMap((group) => group.blocks),
+    ledger.sourceNodes.map(({ sourceGroup: _sourceGroup, ...node }) => node),
+  );
 
   const issueBearingNodes = ledger.sourceNodes.filter((node) => node.occurrences.some((entry) => entry.provisionalDisposition !== 'exclusion'));
   assert.equal(issueBearingNodes.length, expected.issueBearingBlockCount);
@@ -260,7 +264,7 @@ function assertLedgerShape(ledger) {
   });
   assert.deepEqual(ledger.categoryPositions.repeat, expected.repeatPositions);
   assert.deepEqual(ledger.categoryPositions.gap, []);
-  assert.equal(ledger.categoryPositions.exclusion.length, 83);
+  assert.equal(ledger.categoryPositions.exclusion.length, 91);
   const exclusionPositions = flatProjection.filter((occurrence) => occurrence.provisionalDisposition === 'exclusion').reduce((categories, occurrence) => {
     if (!categories[occurrence.reason]) {
       categories[occurrence.reason] = [];
@@ -377,6 +381,10 @@ function assertLedgerShape(ledger) {
     ['#36', '#38', '#39', '#40', '#41', '#42', '#43', '#44', '#45', '#46', '#47', '#62', '#63', '#64', '#65', 'Fantastic Four Annual #5', '#48', '#50', '#52', '#54', '#55', '#56', '#57', '#58', '#59', '#60', '#61'],
   );
   assert.deepEqual(sourceNodeByIndex(ledger, 18).occurrences.map((occurrence) => occurrence.issueNumber), expected.node18IssueNumbers);
+  assert.deepEqual(
+    sourceNodeByIndex(ledger, 62).occurrences.slice(1, 8).map((occurrence) => occurrence.sourceIssueReference),
+    ['Ff #5', 'Ff #6', 'Ff #7', 'Ff #8', 'Ff #9', 'Ff #10', 'Ff #11'],
+  );
   assert.deepEqual(sourceNodeByIndex(ledger, 113).occurrences.map((occurrence) => occurrence.issueNumber), expected.node113IssueNumbers);
   assert.equal(sourceNodeByIndex(ledger, 113).occurrences.at(-1).provisionalDisposition, 'repeat');
   assert.equal(sourceNodeByIndex(ledger, 113).occurrences.at(-1).repeatOfPosition, 262);
@@ -481,6 +489,13 @@ test('the Inhumans source ledger rejects the contrarian mutations', async () => 
 
   expectLedgerFailure(ledger, (draft) => {
     mutateOccurrence(draft, 22, (flat, node, nested) => {
+      flat.provisionalDisposition = 'canonical-candidate';
+      nested.provisionalDisposition = 'canonical-candidate';
+    });
+  });
+
+  expectLedgerFailure(ledger, (draft) => {
+    mutateOccurrence(draft, 25, (flat, node, nested) => {
       flat.provisionalDisposition = 'canonical-candidate';
       nested.provisionalDisposition = 'canonical-candidate';
     });
