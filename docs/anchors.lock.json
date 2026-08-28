@@ -1509,8 +1509,8 @@
     "fp": "6db2dec2e99dd8a3",
     "head": "if (/^\\s*absent:/.test(cell)) ranges.push([offset + from, offset + from + cell.length]);"
   },
-  ".github/copilot-instructions.md|what-the-app-is|src/js/storage.js:9|0": {
-    "anchor": "src/js/storage.js:9",
+  ".github/copilot-instructions.md|what-the-app-is|src/js/storage.js:11|0": {
+    "anchor": "src/js/storage.js:11",
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
@@ -1559,28 +1559,28 @@
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:365-392|0": {
-    "anchor": "src/js/storage.js:365-392",
-    "fp": "8094830e0a33ec67",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:372-399|0": {
+    "anchor": "src/js/storage.js:372-399",
+    "fp": "b7d36f9e697421d1",
     "head": "update(fn) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:505-571|0": {
-    "anchor": "src/js/storage.js:505-571",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:512-578|0": {
+    "anchor": "src/js/storage.js:512-578",
     "fp": "87bb22d2166d3fff",
     "head": "restore(rawJson) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:634-642|0": {
-    "anchor": "src/js/storage.js:634-642",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:641-649|0": {
+    "anchor": "src/js/storage.js:641-649",
     "fp": "c10d8af0b6ad7801",
     "head": "// A successful restore is a deliberate overwrite, so it also clears the block."
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:78-110|0": {
-    "anchor": "src/js/storage.js:78-110",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/storage.js:85-117|0": {
+    "anchor": "src/js/storage.js:85-117",
     "fp": "7240fa3b501276f5",
     "head": "load() {"
   },
-  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:137-147|0": {
-    "anchor": "src/js/storage.js:137-147",
+  "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:144-154|0": {
+    "anchor": "src/js/storage.js:144-154",
     "fp": "8a51ad8622832a60",
     "head": "// The main slot is asked directly rather than through the walk, so that a storage which"
   },
@@ -1639,28 +1639,28 @@
     "fp": "382bdc82a62fe977",
     "head": "localStorage.setItem(SETTINGS_KEY, JSON.stringify({"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:663-680|0": {
-    "anchor": "src/js/storage.js:663-680",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:670-687|0": {
+    "anchor": "src/js/storage.js:670-687",
     "fp": "6a45bb40e47d2dfa",
     "head": "rewindSnapshot(held) {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:682-699|0": {
-    "anchor": "src/js/storage.js:682-699",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-prerestore|src/js/storage.js:689-706|0": {
+    "anchor": "src/js/storage.js:689-706",
     "fp": "d0ddabeee321f509",
     "head": "undoRestore() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:545-550|0": {
-    "anchor": "src/js/storage.js:545-550",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-restore-tmp|src/js/storage.js:552-557|0": {
+    "anchor": "src/js/storage.js:552-557",
     "fp": "226b51fd48953d63",
     "head": "this.storage?.setItem(TEMP_KEY, serialized);"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:168-174|0": {
-    "anchor": "src/js/storage.js:168-174",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-salvage-timestamp|src/js/storage.js:175-181|0": {
+    "anchor": "src/js/storage.js:175-181",
     "fp": "b429c9cf55d87586",
     "head": "freeArchiveKey() {"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:448|0": {
-    "anchor": "src/js/storage.js:448",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-state-v2|src/js/storage.js:455|0": {
+    "anchor": "src/js/storage.js:455",
     "fp": "3b87d88ca5723d1d",
     "head": "this.storage.setItem(KEY, JSON.stringify({ [WRITE_TOKEN]: token, ...exportBackup(state) }));"
   },
@@ -1694,15 +1694,15 @@
     "fp": "9179653f1e66ad0d",
     "head": "const SETTINGS_KEY = 'mrt.settings';"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:291-314|0": {
-    "anchor": "src/js/storage.js:291-314",
-    "fp": "a217fd173d10b27a",
-    "head": "salvageCopies() {"
-  },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:9-12|0": {
-    "anchor": "src/js/storage.js:9-12",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:11-14|0": {
+    "anchor": "src/js/storage.js:11-14",
     "fp": "a7459e56c471d9c8",
     "head": "export const KEY = 'mrt.state.v2';"
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/storage.js:298-321|0": {
+    "anchor": "src/js/storage.js:298-321",
+    "fp": "a217fd173d10b27a",
+    "head": "salvageCopies() {"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/open.js:63|0": {
     "anchor": "src/open.js:63",
@@ -1789,13 +1789,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3280-3291|0": {
-    "anchor": "CHANGELOG.md:3280-3291",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3288-3299|0": {
+    "anchor": "CHANGELOG.md:3288-3299",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3293-3303|0": {
-    "anchor": "CHANGELOG.md:3293-3303",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3301-3311|0": {
+    "anchor": "CHANGELOG.md:3301-3311",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -5924,8 +5924,8 @@
     "fp": "139d546734af59b6",
     "head": "},"
   },
-  "src/js/main.js|preamble|src/js/storage.js:329-332|0": {
-    "anchor": "src/js/storage.js:329-332",
+  "src/js/main.js|preamble|src/js/storage.js:336-339|0": {
+    "anchor": "src/js/storage.js:336-339",
     "fp": "8455b6473b281f3f",
     "head": "// Removes one copy, at the reader's explicit request. Nothing else in this module removes one:"
   },

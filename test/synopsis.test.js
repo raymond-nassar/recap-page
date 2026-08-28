@@ -21,9 +21,11 @@ import assert from 'node:assert/strict';
 import { SessionSynopsis, SynopsisRunner, NO_SYNOPSIS } from '../src/js/synopsis.js';
 import { withoutSynopsis, MarvelApi } from '../src/js/api.js';
 import { purgeStaleCache, synopsisAnnouncement, synopsisDisclaimer, synopsisServiceName, synopsisStatusLine } from '../src/js/main.js';
+import { Store, KEY } from '../src/js/storage.js';
 import {
   addIssuesToList, createEmptyState, createList, markRead, markDetailsRefused,
-  hydrationOrder, synopsisOrder, lookaheadPriority, MAX_DESCRIPTION,
+  exportBackup, hydrationOrder, synopsisOrder, lookaheadPriority, MAX_DESCRIPTION,
+  withoutIssueDescriptions,
 } from '../src/js/lib/model.js';
 
 function stateWith(ids, { read = [], manual = [], refused = [] } = {}) {
@@ -491,6 +493,65 @@ test('the strip does not choke on what a service might return instead of an obje
   assert.equal(withoutSynopsis(null), null);
   assert.equal(withoutSynopsis(undefined), undefined);
   assert.equal(withoutSynopsis('text'), 'text');
+});
+
+// ------------------------------------------------------ what reaches saved state and backup files
+
+test('a clean state crosses the persistence guard without a copy or warning', () => {
+  const state = stateWith([7]).state;
+  const warnings = [];
+  assert.equal(withoutIssueDescriptions(state, 'Test boundary', (text) => warnings.push(text)), state);
+  assert.deepEqual(warnings, []);
+});
+
+test('backup export refuses issue prose without changing its source', () => {
+  const { state, listId } = stateWith([7]);
+  const source = {
+    ...state,
+    issues: { ...state.issues, 7: { ...state.issues[7], description: 'Secret synopsis.' } },
+    lists: { ...state.lists, [listId]: { ...state.lists[listId], description: 'Reader list notes.' } },
+  };
+  const warnings = [];
+  const originalWarn = console.warn;
+  console.warn = (text) => warnings.push(text);
+  let backup;
+  try {
+    backup = exportBackup(source);
+  } finally {
+    console.warn = originalWarn;
+  }
+
+  assert.equal('description' in backup.issues[7], false);
+  assert.equal(backup.lists[listId].description, 'Reader list notes.');
+  assert.equal(source.issues[7].description, 'Secret synopsis.', 'export mutated its caller');
+  assert.deepEqual(warnings, ['Backup export refused 1 issue description field.']);
+});
+
+test('state update refuses issue prose before adopting or saving the change', () => {
+  const values = new Map();
+  const storage = {
+    getItem: (key) => values.get(key) ?? null,
+    setItem: (key, value) => values.set(key, String(value)),
+  };
+  const store = new Store({ storage });
+  const warnings = [];
+  const originalWarn = console.warn;
+  console.warn = (text) => warnings.push(text);
+  try {
+    store.update((state) => ({
+      ...state,
+      issues: { ...state.issues, 7: { issueId: 7, title: 'Seven', description: 'Secret synopsis.' } },
+      read: { ...state.read, 7: true },
+    }));
+  } finally {
+    console.warn = originalWarn;
+  }
+
+  assert.equal(store.lastUpdateOk, true);
+  assert.equal('description' in store.state.issues[7], false);
+  assert.equal(store.state.read[7], true);
+  assert.equal('description' in JSON.parse(values.get(KEY)).issues[7], false);
+  assert.deepEqual(warnings, ['State update refused 1 issue description field.']);
 });
 
 // ---------------------------------------------------------------- what reaches the wire and the cache

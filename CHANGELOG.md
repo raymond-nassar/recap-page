@@ -14,6 +14,14 @@ quote in a bug report.
 
 ## Unreleased
 
+### Protected synopsis privacy at save and backup boundaries
+
+In plain English: Issue summaries fetched for temporary display are now refused again when reading
+progress is saved or a backup is exported. Copies preserved after a failed read or before a restore
+remain exact so recovery never destroys the only usable data, and restoring one removes any old
+summary before it becomes live saved data. Existing lists, progress, and recovery copies are
+otherwise unchanged.
+
 ### Added a complete Runaways reading guide
 
 In plain English: A complete Runaways reading guide now follows the original 2003 series through
