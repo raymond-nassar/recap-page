@@ -293,15 +293,15 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and forty-nine pinned reading-order payloads sit under
-[`src/data/`](../src/data): 248 visible catalog files and one noncatalog partition parent. They hold
-20,764 issue records covering 15,388 distinct issues. The visible files hold 20,277 of those records;
+Two hundred and fifty-one pinned reading-order payloads sit under
+[`src/data/`](../src/data): 250 visible catalog files and one noncatalog partition parent. They hold
+21,853 issue records covering 16,076 distinct issues. The visible files hold 21,366 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Each record copies from the upstream API:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 249 payloads, 16,245
-records carry a cover URL and 15,259 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across all 251 payloads, 16,524
+records carry a cover URL and 15,518 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -310,8 +310,10 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,969 carry neither a series ID nor a digital ID. 1,891 are explicit
-placeholders for unresolved source positions and 78 record an upstream refusal. Placeholder
+Of the visible records, 1,892 are explicit placeholders for unresolved source positions and 85
+non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
+1,977 gap positions affect 30 catalog entries: 24 carry placeholders, six carry empty records, and
+none carry both kinds. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
 their exact source positions rather than guessing or silently shortening a guide.
@@ -380,7 +382,7 @@ authored work, which is why they are named separately rather than left to this s
 | Field | Holds |
 |---|---|
 | `sourceOrigin` | Prose. Where the order came from and who compiled it. Always present. This is what the catalog shows a reader, because it is the credit that is owed |
-| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 249 pinned reading-order payloads today |
+| `sourceLicense` | An SPDX expression, or `null`. Only a licence actually conveyed with the vendored order. `null` on all 251 pinned reading-order payloads today |
 | `sourcePage` | A link a reader can follow to the upstream, when there is one |
 | `sourceSection` | A visible heading that distinguishes several guides on one exact page. Absent for an ordinary whole-page source |
 | `spotlightKind` | An editorial classification required only for character runs. `best-of` and `complete-guide` make distinct, reviewable claims about a guide's scope; `other` records that neither claim is accurate. It is authored here and is never copied or inferred from an upstream field |
@@ -706,9 +708,9 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/main.js:3025` and the issue-details view at
-`src/js/main.js:1837`. The function behind both already answers for the absence at
-`src/js/main.js:3212-3221`, with a test asserting the sentence it returns. It is also reversible:
+reaches the interface in the reading hero at `src/js/main.js:3027` and the issue-details view at
+`src/js/main.js:1838`. The function behind both already answers for the absence at
+`src/js/main.js:3214-3223`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.

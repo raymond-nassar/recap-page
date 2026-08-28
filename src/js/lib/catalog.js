@@ -142,13 +142,22 @@ function normalizeEntry(raw) {
   const name = str(raw.name);
   const file = safeFile(raw.file);
   const count = Number.isInteger(raw.count) && raw.count >= 0 ? raw.count : null;
-  if (!id || !name || !file || count == null) return null;
+  const placeholderCount = Number.isInteger(raw.placeholderCount) && raw.placeholderCount >= 0
+    ? raw.placeholderCount
+    : null;
+  const emptyRecordCount = Number.isInteger(raw.emptyRecordCount) && raw.emptyRecordCount >= 0
+    ? raw.emptyRecordCount
+    : null;
+  if (!id || !name || !file || count == null
+    || placeholderCount == null || emptyRecordCount == null) return null;
 
   return {
     id,
     name,
     file,
     count,
+    placeholderCount,
+    emptyRecordCount,
     // How many collected editions the order is divided into, or 0 for an ordinary issue order.
     // A trade order is a different kind of reading commitment, so the number a reader weighs is
     // the number of books, not only the number of issues.
@@ -236,6 +245,26 @@ export function parseCatalog(raw) {
   // that survived, and a path naming an entry this function just dropped is one it will skip. The
   // manifest is where a path is checked; by the time it is in the generated catalog it has been.
   return { lists: sortCatalog(lists), paths: Array.isArray(raw?.paths) ? raw.paths : [], dropped };
+}
+
+// These are the same two gaps import describes after the order is saved, shortened to fit beside
+// the issue count before a reader opens Preview. A placeholder cannot be opened; an empty record
+// still has a real issue id, so its label deliberately makes no claim about opening it.
+export function catalogGapLabels(list) {
+  const out = [];
+  if (list?.placeholderCount > 0) {
+    const count = list.placeholderCount;
+    out.push(
+      `${count} ${count === 1 ? 'issue has no Marvel Unlimited link' : 'issues have no Marvel Unlimited links'} yet and cannot be opened`,
+    );
+  }
+  if (list?.emptyRecordCount > 0) {
+    const count = list.emptyRecordCount;
+    out.push(
+      `${count} ${count === 1 ? 'issue has no details, cover, or Unlimited link' : 'issues have no details, covers, or Unlimited links'}`,
+    );
+  }
+  return out;
 }
 
 // Categories are derived from the lists themselves, so a category never appears with nothing

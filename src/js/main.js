@@ -29,6 +29,7 @@ import {
   firstSentence, storyYear, timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
   modernTimelineLists, modernTimelineFeaturedList, modernTimelineFeaturedCard, visibleFirstStopGuides,
+  catalogGapLabels,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -2492,6 +2493,7 @@ function paintPreview(list) {
     // the dialog would describe a reading path it never identifies.
     previewStory ? variantLabel(list) : null,
     `${list.count} issue${list.count === 1 ? '' : 's'}`,
+    ...catalogGapLabels(list),
     collectionsLabel(list),
     readingTime,
     depthLabel(list.depth),
@@ -5097,7 +5099,10 @@ function catalogCard(
     paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(title), title);
     desc.textContent = firstSentence(list.description);
     desc.hidden = !desc.textContent;
-    meta.textContent = `${list.count} issue${list.count === 1 ? '' : 's'}`;
+    meta.textContent = [
+      `${list.count} issue${list.count === 1 ? '' : 's'}`,
+      ...catalogGapLabels(list),
+    ].join(' · ');
     source.replaceChildren(...[attributionLine(list)].filter(Boolean));
     const previewText = story.lists.length > 1 ? `${story.lists.length} reading options` : 'Preview';
     actions.replaceChildren(
