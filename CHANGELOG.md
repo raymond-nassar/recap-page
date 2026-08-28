@@ -14,6 +14,16 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Guardians of the Galaxy reading guide
+
+In plain English: A complete Guardians team reading guide now follows the original 1960s team through
+the modern cosmic era. It includes 294 comics with verified Marvel links, while 29 source
+recommendations remain visible as placeholders until their identity can be resolved safely. Nothing
+you have saved is changed.
+
+For maintainers: the frozen source record retains 420 occurrences: 294 exact rows, 38 repeats, 29
+open metadata gaps tracked in Issue #316, and 59 exclusions.
+
 ### Added the setup guide card to both starting points
 
 In plain English: The Setup to Modern Timeline recommendation now looks and works like the other
