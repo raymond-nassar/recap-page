@@ -819,6 +819,36 @@ test('automatic cleanup also completes when the retained IndexedDB factory denie
   assert.match(cacheCleanupFailureMessage(genericFailure), /disk failure/);
 });
 
+test('a current legacy marker probes denied active storage before migrating silently', async () => {
+  const cache = {
+    available: true,
+    opens: 0,
+    async clear() {
+      throw new Error('a current marker must not clear active entries');
+    },
+    async deleteLegacy() {
+      return {
+        status: 'failed',
+        blocked: false,
+        error: Object.assign(new Error('storage denied'), { name: 'SecurityError' }),
+      };
+    },
+    async open() {
+      this.opens += 1;
+      this.available = false;
+      return null;
+    },
+  };
+  const first = await maintainCacheGeneration(cache, 1, 1);
+  assert.equal(first.storageUnavailable, true);
+  assert.equal(cacheCleanupFailureMessage(first), '');
+  assert.equal(cache.opens, 1);
+
+  const second = await maintainCacheGeneration(cache, 1, 1);
+  assert.equal(second.storageUnavailable, true);
+  assert.equal(cache.opens, 1, 'repeat startup probed storage after denial was already known');
+});
+
 test('a successful legacy delete cannot hide an active-cache clear failure', async () => {
   const cache = {
     available: false,

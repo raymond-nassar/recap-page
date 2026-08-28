@@ -799,8 +799,8 @@ export async function maintainCacheGeneration(
   const legacy = await cacheRef.deleteLegacy({
     onBlocked: () => onLegacyBlocked({ activeCleared: !purge.ran || purge.cleared }),
   });
-  const denied = ['SecurityError', 'InvalidStateError', 'NotAllowedError']
-    .includes(legacy.error?.name);
+  const denied = ['SecurityError', 'InvalidStateError', 'NotAllowedError'].includes(legacy.error?.name);
+  if (!purge.ran && denied && cacheRef.available !== false && typeof cacheRef.open === 'function') await cacheRef.open();
   const legacyUnreachable = legacy.status === 'unavailable'
     // A confirmed deletion proves the factory was reachable and cannot excuse an active clear failure.
     || (legacy.status === 'failed' && denied);

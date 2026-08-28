@@ -4595,7 +4595,7 @@ const SCENARIOS = [
       await preparePage(unavailable, page.__origin, page.__mutation);
       await unavailable.evaluateOnNewDocument(() => {
         localStorage.removeItem('mrt.cache-purge.v1');
-        localStorage.setItem('mrt.settings', '{}');
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 1 }));
         const denied = () => {
           throw new DOMException('Storage access denied by the browser.', 'SecurityError');
         };
