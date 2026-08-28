@@ -9,6 +9,7 @@ import {
 
 const readJson = async (file) => JSON.parse(await readFile(file, 'utf8'));
 const id = 'nick-fury-reading-order';
+const inventoryId = 'omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d';
 
 test('Nick Fury and S.H.I.E.L.D. preserves the complete settled source accounting', async () => {
   const [packet, mapping, payload, inventory, manifest] = await Promise.all([
@@ -48,4 +49,13 @@ test('Nick Fury and S.H.I.E.L.D. preserves the complete settled source accountin
     ambiguous,
   );
   assert.equal(mapping.rows.some((row) => ambiguous.includes(row.sourceIssueReference)), false);
+});
+
+test('the merged Nick Fury inventory record is marked shipped', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const record = inventory.find((candidate) => candidate.id === inventoryId);
+
+  assert.ok(record, `Missing the Nick Fury inventory record ${inventoryId}`);
+  assert.deepEqual(record.catalogIds, [id]);
+  assert.equal(record.deliveryStatus, 'shipped');
 });

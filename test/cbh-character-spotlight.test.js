@@ -490,7 +490,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-five spotlights, and prepares five', async () => {
+test('the character inventory preserves every central disposition, ships twenty-six spotlights, and prepares four', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -525,6 +525,7 @@ test('the character inventory preserves every central disposition, ships twenty-
     'loki-reading-order',
     magnetoCandidateId,
     moonKnightCandidateId,
+    'omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d',
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
     'rocket-raccoon-reading-order',
