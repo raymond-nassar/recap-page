@@ -14,6 +14,14 @@ quote in a bug report.
 
 ## Unreleased
 
+### Isolated cached metadata written by older tabs
+
+In plain English: A tab left open on an older version can keep running, but its cached metadata now
+lands in a separate place that the current app never reads. The current app removes that older cache
+when it can. If the old tab is still holding it open, Settings says the current cache is clear and
+asks you to close the old tab before claiming the older metadata is gone. Lists and reading progress
+are unchanged.
+
 ### Clarified where a reading path starts
 
 In plain English: A short line above each relevant shelf now names where its reading paths begin. It

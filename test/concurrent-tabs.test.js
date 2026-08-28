@@ -212,6 +212,133 @@ test('production storage dispatch keeps reader data and education in their own l
   assert.equal(storage.getItem(KEY), readerBefore);
 });
 
+test('three queued legacy writes cannot roll current state back through middle events', () => {
+  const legacyRaw = (id, title) => JSON.stringify({
+    ...createEmptyState(),
+    issues: { [id]: { issueId: id, title, description: `${title} synopsis.` } },
+  });
+  const first = legacyRaw(1, 'One');
+  const middle = legacyRaw(2, 'Two');
+  const latest = legacyRaw(3, 'Three');
+  const storage = fakeStorage({ [KEY]: first });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  storage.setItem(KEY, latest);
+
+  dispatchStorageEvent({ key: KEY, newValue: first }, { readerStore });
+  dispatchStorageEvent({ key: KEY, newValue: middle }, { readerStore });
+  readerStore.update((state) => ({ ...state, read: { ...state.read, 3: true } }));
+  dispatchStorageEvent({ key: KEY, newValue: latest }, { readerStore });
+
+  const durable = JSON.parse(storage.getItem(KEY));
+  assert.equal('1' in durable.issues, false);
+  assert.equal('2' in durable.issues, false);
+  assert.equal(durable.issues[3].title, 'Three');
+  assert.equal(durable.read[3], true, 'the current edit between queued events was lost');
+});
+
+test('queued legacy lineage preserves a current list and read mark before the last event', () => {
+  const legacyRaw = (id, title) => JSON.stringify({
+    ...createEmptyState(),
+    issues: { [id]: { issueId: id, title, description: `${title} synopsis.` } },
+  });
+  const first = legacyRaw(1, 'One');
+  const middle = legacyRaw(2, 'Two');
+  const latest = legacyRaw(3, 'Three');
+  const storage = fakeStorage({ [KEY]: first });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  dispatchStorageEvent({ key: KEY, newValue: first }, { readerStore });
+
+  storage.setItem(KEY, middle);
+  storage.setItem(KEY, latest);
+  dispatchStorageEvent({ key: KEY, newValue: middle }, { readerStore });
+  readerStore.update((state) => {
+    const created = createList(state, { name: 'Current tab list' });
+    return markRead(created, 3, true);
+  });
+  dispatchStorageEvent({ key: KEY, newValue: latest }, { readerStore });
+
+  const durable = JSON.parse(storage.getItem(KEY));
+  assert.equal(durable.issues[3].title, 'Three');
+  assert.ok(durable.read[3]);
+  assert.equal(durable.lists[durable.listOrder[0]].name, 'Current tab list');
+  assert.equal(readerStore.state.lists[readerStore.state.listOrder[0]].name, 'Current tab list');
+  assert.equal(readerStore.lastError, null);
+});
+
+test('a current edit that reverts a queued legacy value is not silently reversed', () => {
+  const legacyRaw = (title, read) => JSON.stringify({
+    ...createEmptyState(),
+    issues: { 3: { issueId: 3, title, description: `${title} synopsis.` } },
+    read: read ? { 3: 1 } : {},
+  });
+  const first = legacyRaw('First', false);
+  const middle = legacyRaw('Middle', false);
+  const latest = legacyRaw('Latest', true);
+  const storage = fakeStorage({ [KEY]: first });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  dispatchStorageEvent({ key: KEY, newValue: first }, { readerStore });
+
+  storage.setItem(KEY, middle);
+  storage.setItem(KEY, latest);
+  dispatchStorageEvent({ key: KEY, newValue: middle }, { readerStore });
+  assert.equal(isRead(readerStore.state, 3), true);
+  readerStore.update((state) => markRead(state, 3, false));
+  dispatchStorageEvent({ key: KEY, newValue: latest }, { readerStore });
+
+  assert.equal(isRead(readerStore.state, 3), false);
+  assert.equal(isRead(savedState(storage), 3), false);
+  assert.equal(readerStore.lastError, null);
+});
+
+test('storage event order is inert after the actual current bytes are sanitized', () => {
+  const orders = [[0], [0, 1], [0, 1, 2], [2, 0, 1], [1, 2, 0]];
+  for (const order of orders) {
+    const first = JSON.stringify({
+      ...createEmptyState(),
+      issues: { 1: { issueId: 1, title: 'First', description: 'First synopsis.' } },
+    });
+    const storage = fakeStorage({ [KEY]: first });
+    const readerStore = new Store({ storage });
+    readerStore.load();
+    dispatchStorageEvent({ key: KEY, newValue: first }, { readerStore });
+
+    const queued = order.map((_, index) => JSON.stringify({
+      ...createEmptyState(),
+      issues: {
+        [index + 2]: {
+          issueId: index + 2,
+          title: `Legacy ${index + 2}`,
+          description: `Legacy ${index + 2} synopsis.`,
+        },
+      },
+    }));
+    for (const raw of queued) storage.setItem(KEY, raw);
+    dispatchStorageEvent({ key: KEY, newValue: queued[order[0]] }, { readerStore });
+    readerStore.update((state) => {
+      const created = createList(state, { name: 'Current tab list' });
+      const listId = created.listOrder[0];
+      const added = addIssuesToList(created, listId, [{ issueId: 99, title: 'Current issue' }]).state;
+      const read = markRead(added, 99, true);
+      return { ...read, notes: { ...read.notes, 99: 'Current note' } };
+    });
+    for (const index of order.slice(1)) {
+      dispatchStorageEvent({ key: KEY, newValue: queued[index] }, { readerStore });
+    }
+
+    const durable = savedState(storage);
+    const latestId = queued.length + 1;
+    assert.equal(durable.issues[latestId].title, `Legacy ${latestId}`);
+    assert.equal(durable.issues[99].title, 'Current issue');
+    assert.equal(durable.lists[durable.listOrder[0]].name, 'Current tab list');
+    assert.equal(isRead(durable, 99), true);
+    assert.equal(durable.notes[99], 'Current note');
+    assert.equal(readerStore.lastError, null);
+  }
+});
+
 // ----------------------------------------------------------------------------- whole-state routes
 
 test('an erase in another tab is adopted rather than written back over', () => {

@@ -13,13 +13,14 @@
 // import below is to add it to devDependencies, that is the instinct this paragraph exists to
 // stop.
 //
-// **The server binds an ephemeral port, and that is a guarantee rather than a convenience.**
+// **The server normally binds an ephemeral port, and that is a guarantee rather than a convenience.**
 // Constraint 5 says a different origin is a different storage bucket. For the app that is a
 // hazard; for a check that writes corrupt state and starts fresh, it is exactly the isolation
 // wanted. Running on a port the app never uses means this file structurally cannot read, damage
 // or clear the reading progress saved at 127.0.0.1:8787. That is also the whole of the cleanup
-// story: there is nothing to tidy up, because nothing durable was ever written where the app
-// would look for it.
+// story. The cache-generation scenario is the one exception because the origin itself is part of
+// its acceptance. Its targeted run uses 127.0.0.1:8787 inside Edge's temporary automation profile,
+// not the person's installed browser profile.
 //
 // **The data is fixtures, not the catalog.** The scenarios assert what the interface does, and
 // the vendored orders have their own gates. Stubbing `fetch` for the two data files keeps this
@@ -27,7 +28,7 @@
 // Modern Timeline contract is the exception: its boundary and aggregate assertions intentionally
 // run against the checked-in snapshot because the exact first entry and totals are the contract.
 
-import { createStaticServer, HOST } from '../server.mjs';
+import { createStaticServer, DEFAULT_PORT, HOST } from '../server.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
@@ -467,6 +468,85 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // are injected into the page rather than edited into a source file, so a killed run cannot leave
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
+  {
+    id: 'cache-deleted-means-unreachable',
+    breaks: 'cache-generations',
+    why: 'a successful legacy delete hides an active-cache clear failure during automatic cleanup',
+    rewriteMain: (source) => source.replace(
+      / {2}const legacyUnreachable = legacy\.status === 'unavailable'\r?\n/,
+      "  const legacyUnreachable = legacy.status === 'unavailable'\n    || legacy.status === 'deleted'\n",
+    ),
+  },
+  {
+    id: 'cache-unavailable-warning-return',
+    breaks: 'cache-generations',
+    why: 'automatic cleanup treats unreachable IndexedDB as a permanent failure that can never clear',
+    rewriteMain: (source) => source.replace(
+      '  const storageUnavailable = cacheRef.available === false && legacyUnreachable;',
+      '  const storageUnavailable = false;',
+    ),
+  },
+  {
+    id: 'cache-marker-lock-off',
+    breaks: 'cache-generations',
+    why: 'the purge marker read-max-write step runs while another current tab holds its origin-wide lock',
+    script: () => {
+      Object.defineProperty(Navigator.prototype, 'locks', {
+        configurable: true,
+        get: () => ({ request: (_name, callback) => Promise.resolve(callback()) }),
+      });
+    },
+  },
+  {
+    id: 'cache-marker-coercion-return',
+    breaks: 'cache-generations',
+    why: 'coercible non-number legacy values are accepted as completed cleanup generations',
+    rewriteMain: (source) => source.replace(
+      / {2}if \(typeof value === 'string' && !\/\^\[1-9\]\\d\*\$\/\.test\(value\)\) return 0;\r?\n {2}if \(typeof value !== 'string' && typeof value !== 'number'\) return 0;\r?\n/,
+      '',
+    ),
+  },
+  {
+    id: 'cache-state-sanitize-off',
+    breaks: 'cache-generations',
+    why: 'a current tab adopts saved-state prose from an old writer without removing it again',
+    rewriteMain: (source) => source.replace(
+      '  const needed = rawCarriesIssueDescriptions(currentRaw);',
+      '  const needed = false;',
+    ),
+  },
+  {
+    id: 'cache-final-clear-off',
+    breaks: 'cache-generations',
+    why: 'manual cleanup does not clear current metadata that arrived while legacy deletion was blocked',
+    rewriteMain: (source) => source.replace(
+      '  const activeCleared = await cacheRef.clear({ requireAccess: true });',
+      '  const activeCleared = firstActiveClear;',
+    ),
+  },
+  {
+    id: 'cache-automatic-final-clear-off',
+    breaks: 'cache-generations',
+    why: 'automatic generation cleanup keeps active metadata written while legacy deletion is pending',
+    rewriteMain: (source) => source.replace(
+      '  if (purge.ran && !storageUnavailable) {',
+      '  if (false && purge.ran && !storageUnavailable) {',
+    ),
+  },
+  {
+    id: 'cache-generation-shared',
+    breaks: 'cache-generations',
+    why: 'current code opens the legacy database and loses physical isolation from the old writer',
+    rewriteCache: (source) => source
+      .replace(
+        "export const ACTIVE_DB_NAME = 'mrt-cache-v2';",
+        "export const ACTIVE_DB_NAME = 'mrt-cache';",
+      )
+      .replace(
+        '  deleteLegacy({ onBlocked = () => {} } = {}) {',
+        "  deleteLegacy({ onBlocked = () => {} } = {}) { onBlocked(); return new Promise((resolve) => setTimeout(() => resolve({ status: 'deleted', blocked: true }), 500)); }\n\n  unusedDeleteLegacy({ onBlocked = () => {} } = {}) {",
+      ),
+  },
   {
     id: 'first-run-question-generic',
     breaks: 'home-first-run-wayfinding',
@@ -4251,6 +4331,333 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'cache-generations',
+    title: 'an old tab and current code use separate cache generations',
+    async run(page, t) {
+      const legacy = await page.browserContext().newPage();
+      await legacy.setViewport({ width: 1280, height: 900 });
+      await legacy.goto(`${page.__origin}/open.html`, { waitUntil: 'load' });
+      await legacy.evaluate(async () => {
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 0 }));
+        window.__legacyDb = await new Promise((resolve, reject) => {
+          const request = indexedDB.open('mrt-cache', 1);
+          request.onupgradeneeded = () => {
+            request.result.createObjectStore('responses', { keyPath: 'key' });
+          };
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+        const tx = window.__legacyDb.transaction('responses', 'readwrite');
+        tx.objectStore('responses').put({
+          key: 'https://example.test/v1|v2|/legacy-before',
+          value: { id: 'legacy-before', description: 'legacy prose' },
+          bytes: 100,
+          ttl: 86400000,
+          storedAt: Date.now(),
+          lastAccess: Date.now(),
+        });
+        await new Promise((resolve, reject) => {
+          tx.oncomplete = resolve;
+          tx.onabort = () => reject(tx.error);
+        });
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 6: { issueId: 6, title: 'Six', description: 'Preloaded legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
+      });
+
+      await open(page, '/#/settings');
+      await page.waitForFunction(
+        () => document.querySelector('#cache-report')?.textContent.includes('Close other tabs'),
+        { timeout: 15000 },
+      );
+      t.check('cleanup reports that older metadata is still waiting on another tab', true);
+      const preloadedState = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2') || '{}'));
+      t.check('saved-state prose is removed before waiting on a blocked legacy deletion',
+        !Object.prototype.hasOwnProperty.call(preloadedState.issues?.['6'] ?? {}, 'description'),
+        JSON.stringify(preloadedState));
+
+      await legacy.evaluate(() => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 8: { issueId: 8, title: 'Eight', description: 'Latest legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 9: { issueId: 9, title: 'Nine', description: 'Final legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
+      });
+      const savedStateStripped = await page.waitForFunction(() => {
+        const raw = localStorage.getItem('mrt.state.v2');
+        if (!raw) return false;
+        const issues = JSON.parse(raw).issues ?? {};
+        return !('7' in issues)
+          && !('8' in issues)
+          && issues['9']?.title === 'Nine'
+          && !Object.prototype.hasOwnProperty.call(issues['9'], 'description');
+      }, { polling: 100, timeout: 15000 }).then(() => true, () => false);
+      t.check('queued legacy writes sanitize the newest saved state without rolling it back',
+        savedStateStripped, await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
+
+      const isolated = await page.evaluate(async () => {
+        const { ResponseCache } = await import('/js/cache.js');
+        const current = new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2 });
+        await current.set('/current', { id: 'current' });
+        return {
+          current: await current.get('/current'),
+          legacy: await current.get('/legacy-before'),
+        };
+      });
+      t.check('current writes remain readable in the active generation',
+        isolated.current?.id === 'current', JSON.stringify(isolated));
+      t.check('the active generation cannot read a legacy-only record',
+        isolated.legacy === null, JSON.stringify(isolated));
+
+      const legacyAfter = await legacy.evaluate(async () => {
+        const tx = window.__legacyDb.transaction('responses', 'readwrite');
+        tx.objectStore('responses').put({
+          key: 'https://example.test/v1|v2|/legacy-after',
+          value: { id: 'legacy-after', description: 'more legacy prose' },
+          bytes: 100,
+          ttl: 86400000,
+          storedAt: Date.now(),
+          lastAccess: Date.now(),
+        });
+        await new Promise((resolve, reject) => {
+          tx.oncomplete = resolve;
+          tx.onabort = () => reject(tx.error);
+        });
+        return new Promise((resolve, reject) => {
+          const txRead = window.__legacyDb.transaction('responses', 'readonly');
+          const request = txRead.objectStore('responses').getAll();
+          request.onsuccess = () => resolve(request.result.map((entry) => entry.value.id));
+          request.onerror = () => reject(request.error);
+        });
+      });
+      t.check('the already-running context can still write, but only into its legacy generation',
+        legacyAfter.includes('legacy-before') && legacyAfter.includes('legacy-after'),
+        JSON.stringify(legacyAfter));
+
+      await legacy.evaluate(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 0, theme: 'dark' }));
+      });
+
+      await click(page, '#opt-covers');
+      const currentSettings = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings') || '{}'));
+      t.check('current settings writes no longer serialize the legacy marker field',
+        !Object.prototype.hasOwnProperty.call(currentSettings, 'cachePurge'), JSON.stringify(currentSettings));
+
+      const invalidMarker = await page.evaluate(async () => {
+        const { cachePurgeMark } = await import('/js/main.js');
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: true }));
+        const marker = cachePurgeMark(localStorage);
+        localStorage.setItem('mrt.cache-purge.v1', '1');
+        localStorage.setItem('mrt.settings', JSON.stringify({ theme: 'dark' }));
+        return marker;
+      });
+      t.check('coercible non-number marker values cannot suppress cleanup', invalidMarker === 0, invalidMarker);
+
+      const beforeCloseReport = await page.$eval('#cache-report', (el) => el.textContent);
+      t.check('blocked cleanup does not claim the legacy generation is gone before the old connection closes',
+        !beforeCloseReport.includes('Older cached metadata was removed'), beforeCloseReport);
+      await legacy.evaluate(() => window.__legacyDb.close());
+      const cleanupCompleted = await page.waitForFunction(
+        () => document.querySelector('#cache-report')?.textContent.includes('Older cached metadata was removed'),
+        { polling: 100, timeout: 30000 },
+      ).then(() => true, () => false);
+      t.check('the final cleanup status waits for confirmed legacy deletion', cleanupCompleted,
+        await page.$eval('#cache-report', (el) => el.textContent));
+      const afterClose = await page.evaluate(async () => {
+        const names = (await indexedDB.databases()).map((db) => db.name);
+        const { ResponseCache } = await import('/js/cache.js');
+        const current = new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2 });
+        return {
+          names,
+          current: await current.get('/current'),
+          marker: localStorage.getItem('mrt.cache-purge.v1'),
+        };
+      });
+      t.check('legacy cleanup completes after the old connection closes',
+        !afterClose.names.includes('mrt-cache'), JSON.stringify(afterClose.names));
+      t.check('automatic cleanup leaves the active generation usable but final-clears writes made during the purge',
+        afterClose.names.includes('mrt-cache-v2') && afterClose.current === null,
+        JSON.stringify(afterClose));
+      t.check('the completed cleanup leaves the authoritative marker current',
+        afterClose.marker === '1', afterClose.marker);
+      const markerAfterOldWrite = await legacy.evaluate(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 0, theme: 'dark' }));
+        return localStorage.getItem('mrt.cache-purge.v1');
+      });
+      t.check('an old settings write cannot lower the dedicated marker',
+        markerAfterOldWrite === '1', markerAfterOldWrite);
+
+      await legacy.evaluate(async () => {
+        window.__markerLockHeld = new Promise((resolve) => {
+          navigator.locks.request('mrt.cache-purge.v1', async () => {
+            window.__markerLockEntered = true;
+            await new Promise((release) => { window.__releaseMarkerLock = release; });
+            resolve();
+          });
+        });
+      });
+      await legacy.waitForFunction(() => window.__markerLockEntered === true, { timeout: 15000 });
+      const lowerWrite = page.evaluate(async () => {
+        window.__lowerMarkerWriteStarted = true;
+        const { writeCachePurgeMark } = await import('/js/main.js');
+        return writeCachePurgeMark(localStorage, 3);
+      });
+      const higherWrite = legacy.evaluate(async () => {
+        window.__higherMarkerWriteStarted = true;
+        const { writeCachePurgeMark } = await import('/js/main.js');
+        return writeCachePurgeMark(localStorage, 5);
+      });
+      await page.waitForFunction(() => window.__lowerMarkerWriteStarted === true, { timeout: 15000 });
+      await legacy.waitForFunction(() => window.__higherMarkerWriteStarted === true, { timeout: 15000 });
+      const whileLocked = await page.evaluate(() => localStorage.getItem('mrt.cache-purge.v1'));
+      t.check('current marker writes wait while another tab holds the origin-wide lock',
+        whileLocked === '1', whileLocked);
+      await legacy.evaluate(() => window.__releaseMarkerLock());
+      await Promise.all([lowerWrite, higherWrite, legacy.evaluate(() => window.__markerLockHeld)]);
+      const afterConcurrentMarkers = await page.evaluate(() => localStorage.getItem('mrt.cache-purge.v1'));
+      t.check('concurrent current tabs leave the maximum marker authoritative',
+        afterConcurrentMarkers === '5', afterConcurrentMarkers);
+
+      await legacy.evaluate(async () => {
+        window.__legacyDb = await new Promise((resolve, reject) => {
+          const request = indexedDB.open('mrt-cache', 1);
+          request.onupgradeneeded = () => {
+            request.result.createObjectStore('responses', { keyPath: 'key' });
+          };
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error);
+        });
+      });
+      await click(page, '#btn-clear-cache');
+      await page.waitForFunction(
+        () => document.querySelector('#cache-report')?.textContent.includes('Close other tabs'),
+        { polling: 100, timeout: 15000 },
+      );
+      const manualBlocked = await page.evaluate(() => ({
+        disabled: document.querySelector('#btn-clear-cache').disabled,
+        report: document.querySelector('#cache-report').textContent,
+      }));
+      t.check('manual clearing reports partial cleanup and cannot be offered twice while blocked',
+        manualBlocked.disabled && manualBlocked.report.includes('used by this version is clear'),
+        JSON.stringify(manualBlocked));
+
+      await page.evaluate(async () => {
+        const { ResponseCache } = await import('/js/cache.js');
+        const current = new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2 });
+        await current.set('/during-manual-clear', { id: 'during-manual-clear' });
+      });
+      await legacy.evaluate(() => window.__legacyDb.close());
+      await page.waitForFunction(
+        () => document.querySelector('#cache-report')?.textContent.includes('Cached metadata cleared.'),
+        { polling: 100, timeout: 15000 },
+      );
+      const manualComplete = await page.evaluate(async () => {
+        const { ResponseCache } = await import('/js/cache.js');
+        const current = new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2 });
+        return {
+          disabled: document.querySelector('#btn-clear-cache').disabled,
+          names: (await indexedDB.databases()).map((db) => db.name),
+          report: document.querySelector('#cache-report').textContent,
+          during: await current.get('/during-manual-clear'),
+        };
+      });
+      t.check('manual clearing claims full success only after the recreated legacy cache is deleted',
+        !manualComplete.disabled
+        && !manualComplete.names.includes('mrt-cache')
+        && manualComplete.during === null
+        && manualComplete.report.includes('Lists and reading progress are untouched.'),
+        JSON.stringify(manualComplete));
+
+      const unavailable = await page.browserContext().newPage();
+      await preparePage(unavailable, page.__origin, page.__mutation);
+      await unavailable.evaluateOnNewDocument(() => {
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: 1 }));
+        const denied = () => {
+          throw new DOMException('Storage access denied by the browser.', 'SecurityError');
+        };
+        Object.defineProperty(globalThis, 'indexedDB', {
+          configurable: true,
+          value: { open: denied, deleteDatabase: denied },
+        });
+      });
+      await open(unavailable, '/#/settings');
+      const unavailableRecorded = await unavailable.waitForFunction(
+        () => localStorage.getItem('mrt.cache-purge.v1') === '1',
+        { polling: 100, timeout: 15000 },
+      ).then(() => true, () => false);
+      const unavailableReport = await unavailable.$eval('#cache-report', (el) => el.textContent);
+      t.check('automatic boot records access-denied IndexedDB without announcing permanent failure',
+        unavailableRecorded && !/could not|unavailable/i.test(unavailableReport),
+        JSON.stringify({ unavailableRecorded, unavailableReport }));
+      await unavailable.close();
+
+      const partlyDenied = await page.browserContext().newPage();
+      await preparePage(partlyDenied, page.__origin, page.__mutation);
+      await partlyDenied.evaluateOnNewDocument(() => {
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', '{}');
+        const real = indexedDB;
+        Object.defineProperty(globalThis, 'indexedDB', {
+          configurable: true,
+          value: {
+            deleteDatabase: real.deleteDatabase.bind(real),
+            open() {
+              throw new DOMException('Active cache access denied.', 'SecurityError');
+            },
+          },
+        });
+      });
+      await open(partlyDenied, '/#/settings');
+      const activeFailureReported = await partlyDenied.waitForFunction(
+        () => document.querySelector('#cache-report')?.textContent.includes('could not be cleared'),
+        { polling: 100, timeout: 15000 },
+      ).then(() => true, () => false);
+      const partialDenial = await partlyDenied.evaluate(() => ({
+        marker: localStorage.getItem('mrt.cache-purge.v1'),
+        report: document.querySelector('#cache-report').textContent,
+      }));
+      t.check('a successful legacy delete cannot hide an active-cache clear failure',
+        activeFailureReported && partialDenial.marker === null,
+        JSON.stringify({ activeFailureReported, ...partialDenial }));
+      await partlyDenied.close();
+    },
+  },
+  {
     id: 'recovery',
     title: 'unreadable saved data is met with an offer rather than a wipe',
     async run(page, t) {
@@ -5776,11 +6183,13 @@ async function readUpdateReport(page) {
 // memoized on first read: a stub installed afterwards is a stub the app has already gone past.
 async function preparePage(page, origin, mutation) {
   page.__origin = origin;
+  page.__mutation = mutation;
   await page.setCacheEnabled(false);
   await page.setBypassServiceWorker(true);
   const rewrites = new Map();
   for (const [path, rewrite] of [
     ['/js/main.js', mutation?.rewriteMain],
+    ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/route.js', mutation?.rewriteRoute],
@@ -6121,7 +6530,7 @@ function report(results, { quiet = false } = {}) {
   return { passed, failed };
 }
 
-async function withStack(fn) {
+async function withStack(fn, { port = 0 } = {}) {
   const driver = resolveDriver();
   if (!driver) {
     prerequisiteFailure('puppeteer-core was not found.', [
@@ -6183,7 +6592,7 @@ async function withStack(fn) {
   // behind. Everything from here is covered by the finally.
   const server = createStaticServer();
   try {
-    await new Promise((resolve) => server.listen(0, HOST, resolve));
+    await new Promise((resolve) => server.listen(port, HOST, resolve));
     const origin = `http://${HOST}:${server.address().port}`;
     return await fn({ browser, origin, driver, edge });
   } finally {
@@ -6196,11 +6605,14 @@ async function withStack(fn) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
+  const port = only === 'cache-generations' ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);
     console.log(`browser ${edge}`);
-    console.log(`origin  ${origin}  (an ephemeral port, so the reading progress saved at :8787 is untouched)`);
+    console.log(`origin  ${origin}  (${port === DEFAULT_PORT
+      ? 'the required app origin in Edge temporary profile'
+      : 'an ephemeral port, so the reading progress saved at :8787 is untouched'})`);
 
     const scenarios = only ? SCENARIOS.filter((s) => s.id === only) : SCENARIOS;
     if (scenarios.length === 0) {
@@ -6251,7 +6663,7 @@ async function main() {
     }
     console.log(`\n${mutations.length - unproved}/${mutations.length} mutation(s) caught by the scenario they were aimed at`);
     return unproved === 0 ? 0 : 1;
-  });
+  }, { port });
 
   process.exit(code);
 }

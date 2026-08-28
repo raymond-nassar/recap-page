@@ -6,7 +6,8 @@
 
 import { cacheKey, isExpired, selectEvictions, sizeOf, ttlFor, DEFAULT_BUDGET_BYTES } from './lib/cachePolicy.js';
 
-const DB_NAME = 'mrt-cache';
+export const ACTIVE_DB_NAME = 'mrt-cache-v2';
+export const LEGACY_DB_NAME = 'mrt-cache';
 const DB_VERSION = 1;
 const STORE = 'responses';
 
@@ -16,7 +17,8 @@ export class ResponseCache {
     this.schemaVersion = schemaVersion;
     this.budget = budget;
     this.dbPromise = null;
-    this.available = typeof indexedDB !== 'undefined';
+    this.indexedDB = globalThis.indexedDB;
+    this.available = typeof this.indexedDB !== 'undefined';
   }
 
   open() {
@@ -25,7 +27,7 @@ export class ResponseCache {
       this.dbPromise = new Promise((resolve) => {
         let req;
         try {
-          req = indexedDB.open(DB_NAME, DB_VERSION);
+          req = this.indexedDB.open(ACTIVE_DB_NAME, DB_VERSION);
         } catch {
           this.available = false;
           return resolve(null);
@@ -36,7 +38,15 @@ export class ResponseCache {
             db.createObjectStore(STORE, { keyPath: 'key' }).createIndex('lastAccess', 'lastAccess');
           }
         };
-        req.onsuccess = () => resolve(req.result);
+        req.onsuccess = () => {
+          const db = req.result;
+          db.onversionchange = () => {
+            db.close();
+            this.available = false;
+            this.dbPromise = null;
+          };
+          resolve(db);
+        };
         req.onerror = () => {
           // Caching is an optimisation. Losing it must never break the app.
           this.available = false;
@@ -115,15 +125,41 @@ export class ResponseCache {
   // A store that would not open counts as cleared. There is nothing in it to remove, and treating
   // it as a failure would make the purge retry on every boot in a browser that has IndexedDB turned
   // off, which is exactly where it can never succeed.
-  async clear() {
+  async clear({ requireAccess = false } = {}) {
     const db = await this.open();
-    if (!db) return true;
+    if (!db) return !requireAccess;
     try {
       await idbReq(db, STORE, 'readwrite', (s) => s.clear());
       return true;
     } catch {
       return false;
     }
+  }
+
+  deleteLegacy({ onBlocked = () => {} } = {}) {
+    if (!this.indexedDB) {
+      return Promise.resolve({ status: 'unavailable', blocked: false, error: null });
+    }
+    return new Promise((resolve) => {
+      let req;
+      let blocked = false;
+      try {
+        req = this.indexedDB.deleteDatabase(LEGACY_DB_NAME);
+      } catch (error) {
+        resolve({ status: 'failed', blocked, error });
+        return;
+      }
+      req.onblocked = () => {
+        blocked = true;
+        onBlocked();
+      };
+      req.onsuccess = () => resolve({ status: 'deleted', blocked });
+      req.onerror = () => resolve({
+        status: 'failed',
+        blocked,
+        error: req.error ?? new Error('The legacy cache could not be deleted.'),
+      });
+    });
   }
 
   async usage() {

@@ -180,14 +180,48 @@ $('b-free').addEventListener('click', () => {
   say('out-3c', `Freed ${removed} chunk(s). Saving should work again, so try the same action in the tracker.`);
 });
 
-$('b-wipe').addEventListener('click', () => {
+function deleteCacheDatabase(name, onBlocked) {
+  return new Promise((resolve) => {
+    let request;
+    try {
+      request = indexedDB.deleteDatabase(name);
+    } catch (error) {
+      resolve({ name, status: 'failed', error });
+      return;
+    }
+    request.onblocked = () => onBlocked(name);
+    request.onsuccess = () => resolve({ name, status: 'deleted' });
+    request.onerror = () => resolve({
+      name,
+      status: 'failed',
+      error: request.error ?? new Error('Deletion failed.'),
+    });
+  });
+}
+
+$('b-wipe').addEventListener('click', async () => {
   if (!confirm('Remove ALL tracker data on this origin, including the harness backup?\n\nThis cannot be undone from here.')) return;
   let removed = 0;
   for (const k of Object.keys(localStorage)) {
     if (k.startsWith('mrt.') || k.startsWith(FILL)) { localStorage.removeItem(k); removed += 1; }
   }
-  indexedDB.deleteDatabase('mrt-cache');
-  say('out-wipe', `Removed ${removed} key(s) and requested deletion of the metadata cache.`);
+  const pending = new Set();
+  const onBlocked = (name) => {
+    pending.add(name);
+    say('out-wipe', `Removed ${removed} key(s). Close other tracker tabs to finish deleting ${[...pending].join(' and ')}.`, 'bad');
+  };
+  const results = await Promise.all([
+    deleteCacheDatabase('mrt-cache-v2', onBlocked),
+    deleteCacheDatabase('mrt-cache', onBlocked),
+  ]);
+  const failed = results.filter((result) => result.status === 'failed');
+  say(
+    'out-wipe',
+    failed.length
+      ? `Removed ${removed} key(s), but could not delete ${failed.map((result) => result.name).join(' and ')} (${failed[0].error.message}).`
+      : `Removed ${removed} key(s) and deleted both metadata cache generations.`,
+    failed.length ? 'bad' : 'ok',
+  );
   refreshSafe();
 });
 
