@@ -1198,13 +1198,35 @@
     "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The frozen full-page guide now publishes 294 exact metadata rows and 29 explicit unresolved placeholders, with every source position and current-library relationship preserved.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "ant-man-reading-order",
+      "avengers-enemy-within",
+      "captain-marvel-ms-marvel-reading-order",
+      "doctor-strange-reading-order",
+      "essential-avengers",
+      "fantastic-four-reading-order",
+      "groot-reading-order",
+      "hunt-for-wolverine",
+      "infinity-countdown-wars",
+      "last-annihilation",
+      "loki-reading-order",
+      "rocket-raccoon-reading-order",
+      "silver-surfer-reading-order",
+      "star-lord-reading-order",
+      "thanos-reading-order",
+      "venom-reading-order",
+      "war-of-kings",
+      "wolverine-reading-order",
+      "x-men-trial-of-jean-grey"
+    ],
+    "catalogIds": [
+      "guardians-of-the-galaxy-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Guardians of the Galaxy"
     ],
@@ -1212,9 +1234,9 @@
       43
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "09c1d8ea66560003c04aed00579b1a51060dac18d725aad9a186cf228cb0accb",
+    "sourceContentSha256": "c6e5f90f6dafd6908640a187fc7da29440055a81521cc2cd50158f3c2d28eef3",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 44,

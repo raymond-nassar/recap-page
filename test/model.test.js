@@ -1023,9 +1023,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
   // Magneto adds 58 cached-provider gaps. Loki adds 18 distinct source-occurrence gaps. Silver
   // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight 18,
-  // and Fantastic Four 185 individually preserved cache-only provider gaps.
-  assert.equal(claimed, 1526, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1526, 'the bundled placeholder total moved; re-derive the figures in the record');
+  // Fantastic Four adds 185 individually preserved cache-only provider gaps, and Guardians adds
+  // 29 more without substituting a source identity.
+  assert.equal(claimed, 1555, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1555, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1224,7 +1225,7 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Doctor Strange adds 39 more negative placeholder identifiers. Venom adds 33 more negative
   // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
-  // Surfer adds four. Black Widow adds fourteen, and Moon Knight adds 18.
-  assert.equal(refused.length, 1385);
+  // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, and Guardians adds 29.
+  assert.equal(refused.length, 1414);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

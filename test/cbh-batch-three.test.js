@@ -19,7 +19,10 @@ const dataDir = path.join(root, 'src', 'data');
 const mappingsDir = path.join(root, 'scripts', 'data', 'cbh-mappings');
 const overlapsDir = path.join(root, 'scripts', 'data', 'cbh-overlaps');
 const sharedXMenPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-events-from-messiah-complex-to-avengers-vs-x-men-2007-to-2012/';
-const laterReviewedIds = new Set(['x-men-utopia']);
+const laterReviewedIds = new Set([
+  'x-men-utopia',
+  'guardians-of-the-galaxy-reading-order',
+]);
 
 const EXPECTED_COUNTS = Object.freeze({
   'x-men-divided-we-stand': 48,
@@ -112,7 +115,7 @@ test('batch three preserves the approved source queue and independently verified
     manifest.lists.length - THIRD_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 240);
+  assert.equal(catalog.lists.length, 241);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(
