@@ -1,6 +1,8 @@
 // Markdown checklist parsing and serialization.
 // Upstream format: - [ ] [Title](https://www.marvel.com/comics/issue/<id>/<slug>)
 
+import { readerUrl } from '../reader.js';
+
 const MARVEL_ISSUE_RE = /^https?:\/\/(?:www\.)?marvel\.com\/comics\/issue\/(\d+)(?:\/([^/?#]*))?/i;
 // Link text allows backslash escapes so a title containing "]" survives a
 // serialize -> parse round trip. Without this, escapeLinkText produces output
@@ -59,7 +61,13 @@ export function digitalIdFromUrl(url) {
   // Twelve digits is that same rule: it is the ceiling the launcher in src/open.js enforces before
   // it will build a reader address, so a longer id accepted here would store and then be refused
   // there, which is precisely the dead button this comment rules out.
-  return Number.isSafeInteger(n) && n > 0 && String(n).length <= 12 ? n : null;
+  return readerIssueId(n) != null ? n : null;
+}
+
+export function readerIssueId(digitalId) {
+  const n = Number(digitalId);
+  if (!Number.isSafeInteger(n) || n <= 0 || String(n).length > 12) return null;
+  return n - Number.MAX_SAFE_INTEGER;
 }
 
 export function isSafeMarvelUrl(url) {
@@ -76,7 +84,7 @@ export function isSafeMarvelUrl(url) {
 }
 
 // Returns { entries, unresolved, headings }
-// entry: { issueId|null, title, url|null, read, index, section|null }
+// entry: { issueId|null, title, url|null, read, index, section|null, digitalId? }
 //
 // `index` is the item's position in the checklist, counted across both arrays. Splitting a
 // list into resolved and unresolved loses the reading order between them, and reading order is
@@ -163,6 +171,7 @@ export function parseChecklist(text) {
     title = identified.title;
     if (!title) continue;
     const issueId = issueIdFromUrl(url);
+    const digitalId = issueId == null ? digitalIdFromUrl(url) : null;
     const at = index;
     index += 1;
     if (sourcePosition) sourcePosition.count += 1;
@@ -170,6 +179,11 @@ export function parseChecklist(text) {
     if (issueId != null) {
       entries.push({
         issueId, title, url: url, read, index: at, section,
+        ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
+      });
+    } else if (digitalId != null) {
+      entries.push({
+        issueId: readerIssueId(digitalId), title, url: null, read, index: at, section, digitalId,
         ...(identified.sourceKey ? { sourceKey: identified.sourceKey } : {}),
       });
     } else {
@@ -236,7 +250,12 @@ export function serializeChecklist({ name, description, items, note }) {
       }
     }
     const box = it.read ? '- [x]' : '- [ ]';
-    const url = it.url || (it.issueId > 0 ? `https://www.marvel.com/comics/issue/${it.issueId}/` : null);
+    const canonicalReaderUrl = readerIssueId(it.digitalId) === Number(it.issueId)
+      ? readerUrl(it.digitalId)
+      : null;
+    const url = canonicalReaderUrl
+      || it.url
+      || (it.issueId > 0 ? `https://www.marvel.com/comics/issue/${it.issueId}/` : null);
     lines.push(url ? `${box} [${escapeLinkText(it.title)}](${url})` : `${box} ${it.title}`);
     if (it.note) lines.push(...quoteNote(it.note));
     wroteItem = true;
