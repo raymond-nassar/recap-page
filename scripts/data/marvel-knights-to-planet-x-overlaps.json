@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
   "generatedAt": "2026-08-28T01:18:16.457Z",
-  "pairCount": 55,
-  "chapterCountWithOverlap": 44,
-  "existingListCount": 15,
-  "sharedOccurrenceCount": 293,
+  "pairCount": 56,
+  "chapterCountWithOverlap": 45,
+  "existingListCount": 16,
+  "sharedOccurrenceCount": 297,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "4b24bc2618b4d1ef90f1a3ff7027d662f18eb3dab6b326eeaabfd2a1f6d88b19",
+  "matrixSha256": "4ad238ebf22162aace723e9a71d1e4a748053c026d51d8e7d40b7b79798c6987",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -67,6 +67,10 @@
     {
       "id": "wolverine-reading-order",
       "sharedCount": 42
+    },
+    {
+      "id": "young-avengers-reading-order",
+      "sharedCount": 4
     }
   ],
   "pairs": [
@@ -109,6 +113,17 @@
         18986,
         22447,
         22448
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-03",
+      "existingListId": "young-avengers-reading-order",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        10004,
+        10005,
+        10006,
+        10007
       ]
     },
     {

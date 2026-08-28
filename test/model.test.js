@@ -1023,13 +1023,13 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
   // Magneto adds 58 cached-provider gaps. Loki adds 18 distinct source-occurrence gaps. Silver
   // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight adds 18,
-  // and X-Force adds 23 source-position metadata gaps. Inhumans adds 42 more.
-  // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight 18,
-  // Fantastic Four adds 185 individually preserved cache-only provider gaps, Guardians adds 29,
-  // and Defenders adds 23 without substituting a source identity. Nick Fury and S.H.I.E.L.D. adds
-  // 194 individually preserved source-position gaps without claiming a metadata match.
-  assert.equal(claimed, 1837, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1837, 'the bundled placeholder total moved; re-derive the figures in the record');
+  // and X-Force adds 23 source-position metadata gaps. Inhumans adds 42 more. Young Avengers adds
+  // 55 source-preserving placeholders. Fantastic Four adds 185 individually preserved cache-only
+  // provider gaps, Guardians adds 29, and Defenders adds 23 without substituting a source identity.
+  // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
+  // claiming a metadata match.
+  assert.equal(claimed, 1892, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1892, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1228,9 +1228,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Doctor Strange adds 39 more negative placeholder identifiers. Venom adds 33 more negative
   // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
-  // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, and
-  // Inhumans adds 42. Fantastic Four adds 185,
-  // Guardians adds 29, Defenders adds 23, and Nick Fury and S.H.I.E.L.D. adds 194.
-  assert.equal(refused.length, 1881);
+  // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
+  // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
+  // adds 23, and Nick Fury and S.H.I.E.L.D. adds 194.
+  assert.equal(refused.length, 1936);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

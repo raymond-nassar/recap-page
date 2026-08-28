@@ -41,6 +41,7 @@ const currentOverlaps = [
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],
   ['silver-surfer-reading-order', 1],
   ['venom-reading-order', 5],
+  ['young-avengers-reading-order', 4],
 ].sort(([left], [right]) => left.localeCompare(right));
 
 async function readJson(relativePath) {

@@ -3125,6 +3125,42 @@
       "updatedAt": "2026-08-28T03:46:03.663Z"
     },
     {
+      "id": "young-avengers-reading-order",
+      "file": "young_avengers_reading_order.json",
+      "name": "Young Avengers",
+      "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 169,
+      "collections": 35,
+      "characters": [
+        "Young Avengers",
+        "Kate Bishop",
+        "Wiccan",
+        "Hulkling"
+      ],
+      "keywords": [
+        "Young Avengers",
+        "Comic Book Herald",
+        "Marvel"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 4500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5718ee6a84c6b",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/young-avengers-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-28T03:03:48.579Z"
+    },
+    {
       "id": "xmen-claremont",
       "file": "xmen_claremont.json",
       "name": "X-Men: Silver Age to Claremont",

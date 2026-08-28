@@ -1,0 +1,3285 @@
+{
+  "schemaVersion": 1,
+  "id": "young-avengers-reading-order",
+  "inventoryId": "young-avengers-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/young-avengers-reading-order/",
+  "sourceRetrievedAt": "2026-08-27",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1",
+  "sourceIssueBearingBlocksSha256": "e4c6de73726ffca68ff07aa86d56a14b049d1a012811af113abf5420fa0cf146",
+  "sourceBoundary": "The full Comic Book Herald Young Avengers reading-order page. No qualifying Best Comics or Essential Comics subsection exists, so the full page is the frozen boundary. It begins with the opening prose and Related Reading Orders and ends with Latest Additions and Guardians of the Galaxy by Kelly #7.",
+  "excludedSourceReferences": [
+    "Adjacent guide link without an issue identity.",
+    "Named-work label without an issue-bearing clause on the page.",
+    "Narrative or descriptive prose without an issue identity.",
+    "Section heading without an issue identity."
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "Young Avengers is one of those overly simplistic ideas you’d have expected from Marvel in the Bronze Age, as an attempt to replicate DC’s Teen Titans. Instead, it’s a 2000’s era concept that remains shockingly effective, and has resulted in some of the best new characters in the entire Marvel Universe.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Below you’ll find a complete guide to the official Young Avengers comics through Marvel’s history, as well as background reading for team members, and spinoff series for individual heroes. I’ve marked my personal favorites with the Comic Book Herald logo next to the series title.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "Related Reading Orders:",
+      "reason": "Section heading without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Avengers",
+      "reason": "Adjacent guide link without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Hawkeye",
+      "reason": "Adjacent guide link without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Scarlet Witch",
+      "reason": "Adjacent guide link without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Young Avengers Origins!",
+      "reason": "Section heading without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Young Avengers by Allen Heinberg and Jim Cheung: The Complete Collection",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "The concept for Young Avengers launched in the wake of the 2004 event Avengers Disassembled, and I would argue that familiarity with that event will provide valuable context for these original issues by Allen Heinberg and Jim Cheung. Young Avengers does an excellent job introducing an all-new teen Avengers lineup, and deftly subverting expectations. The original team lineup consists of Patriot, Iron Lad, Hawkeye (Kate Bishop), Hulkling, Wiccan, and Stature.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Civil War: Young Avengers & Runaways",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Following their strong debut in the pages of a short-lived ongoing, the Young Avengers bounced around a bit through the Marvel events landscape of the late 2000’s. If for no other reason than approximately similar ages, this means we get some generally fun crossovers with the Runaways.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "For full event context, check out Comic Book Herald’s guide to Civil War.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Young Avengers Presents",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Secret Invasion: Runaways/Young Avengers",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "For full event context, check out Comic Book Herald’s guide to Secret Invasion.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Young Avengers by Allan Heinberg & Jim Cheung: The Children’s Crusade",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Children’s Crusade is about as big as Young Avengers stories can get, with a shockingly central role in broader Marvel Universe loose ends. The comics include Doctor Doom, a major character death, and an attempted resolution for Scarlet Witch’s role in Avengers Disassembled and House of M. The oversized ambition results in a less cohesive narrative than the original twelve issues, and more or less puts the team on ice until 2013!",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Young Avengers Reborn!",
+      "reason": "Section heading without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Young Avengers Vol. 1: Style > Substance",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "The Marvel NOW! era reinvigorated the Young Avengers, with creative tandem Kieron Gillen and Jamie McKelvie relaunching the series with a lineup of Hawkeye (Kate Bishop), America Chavez, Wiccan, Hulkling, Marvel Boy, and Kid Loki!",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Marvel Boy",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "If you want to know more about Marvel Boy, there’s always his origin by Grant Morrison and JG Jones. Marvel Boy was released in the early 2000’s as part of the Marvel Knights line.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Journey Into Mystery",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 90,
+      "sourceIssueReference": "Similarly, if you’re looking for background on Kid Loki, Journey Into Mystery (also written by Kieron Gillen) is the place to find it.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 91,
+      "sourceIssueReference": "Young Avengers Vol. 2: Alternative Culture",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "Young Avengers Vol. 3: Mic-Drop At The Edge Of Time And Space",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 103,
+      "sourceIssueReference": "Hawkeye: Kate Bishop Vol. 1: Anchor Points",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 110,
+      "sourceIssueReference": "Following the combination of her starring role in the Fraction / Aja / Wu era of Hawkeye *and* her place on the Gillen / Mckelvie Young Avengers, Kate Bishop was ready for a starring role. Fortunately, Kate’s story found the perfect creative pairing of Kelly Thompson and Leonardo Romero, resulting in one of my favorite Marvel Comics since 2016. Likewise, Hawkeye (2016) doubles as my favorite solo Young Avengers spinoff.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 111,
+      "sourceIssueReference": "Hawkeye: Kate Bishop Vol. 2: Masks",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 118,
+      "sourceIssueReference": "Hawkeye: Kate Bishop Vol. 3: Family Reunion",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 124,
+      "sourceIssueReference": "America Vol. 1: The Life and Times of America Chavez",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 131,
+      "sourceIssueReference": "America Chavez also earned her own starring ongoing after Young Avengers, but unforunately the title never really coalesced. That said, America did find a fascinating place among the 2016 Ultimates, another of my favorite Marvel Comics since Secret Wars ended!",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 132,
+      "sourceIssueReference": "America Vol. 2: Fast and Fuertona",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 139,
+      "sourceIssueReference": "New Avengers: A.I.M. Vol. 1: Everything is New",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 147,
+      "sourceIssueReference": "Hulking nad Wiccan find a home in the pages of New Avengers following Secret Wars.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 148,
+      "sourceIssueReference": "New Avengers: A.I.M. Vol. 2: Standoff",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 154,
+      "sourceIssueReference": "New Avengers: A.I.M. Vol. 3: Civil War II",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 162,
+      "sourceIssueReference": "West Coast Avengers",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 167,
+      "sourceIssueReference": "Both Kate Bishop and America Chavez reunite for a more-west-coast-than-young Avengers lineup that also includes Old Hawkeye and Gwenpool.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 168,
+      "sourceIssueReference": "Latest Additions:",
+      "reason": "Section heading without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 170,
+      "sourceIssueReference": "Exiles Vol. 1: Test of Time",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 177,
+      "sourceIssueReference": "Exiles Vol. 2: The Trial of The Exiles",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 184,
+      "sourceIssueReference": "War of the Realms",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 185,
+      "sourceIssueReference": "West Coast Avengers Vol. 2: City of Evils",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 192,
+      "sourceIssueReference": "Empyre",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 193,
+      "sourceIssueReference": "King in Black",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 195,
+      "sourceIssueReference": "X-Factor by Williams Vol. 1",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 200,
+      "sourceIssueReference": "Prodigy rejoins the X-Men franchise.",
+      "reason": "Narrative or descriptive prose without an issue identity.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 201,
+      "sourceIssueReference": "X-Factor by Williams Vol. 2",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 207,
+      "sourceIssueReference": "Hawkeye: Kate Bishop by Nijkamp",
+      "reason": "Named-work label without an issue-bearing clause on the page.",
+      "decisionScope": "source-boundary"
+    }
+  ],
+  "sourceOccurrenceCount": 220,
+  "canonicalSourcePositions": true,
+  "sourceGaps": [
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Young Avengers #1",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "129c7e0a341378777e99aba1223c5a45cf229e9967a7a1d64462ec54b8e03e04"
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Young Avengers #2",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "b17b3b976a1de4558781f8b80e4eb6e3a45a52089de8bc0cefcf6d7d9666cfe5"
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Young Avengers #3",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "41ddb33874831af6d4dc0c72b999f7225d6f592fccdb411a5dd7c2705e24734e"
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Young Avengers #4",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "0d180aa1fd97614fa28394731f213c72030f83589f88be14d4af019694feed21"
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Young Avengers #5",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "9606854e4d6d011abd1f2154301266c5cf9663e5bd281dfa5badd0d04b978dd4"
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Young Avengers #6",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "37d02a5fdf212bdb7802d9cc55aa7cc153dc68c92af453f5a67e8212488cd295"
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Young Avengers #7",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "c07d42145807bb019e94703ed4586efa027c6f0917eed90c39d6354bb07101a6"
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Young Avengers #8",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "1e6ac4e3d8d8b731141486aee1bc58d372d31490076bc6fdc4bf2c8267930fde"
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Young Avengers #9",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "9",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "b49607daa1322ca38e280ae5c46ce252f058c3e03b73253e22d8cca27ff206bc"
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Young Avengers #10",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "1b6a8736a346f830b02f802acf03664894e7bd4bdbc182eba0ac44ae27e49fa6"
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Young Avengers #11",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "11",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "29cc6898d472082349d90831ee2ecacbf045c90d82e1056984d68551f8e7ddb9"
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Young Avengers #12",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "12",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "6e9c2c366c7395618031f13a278199feac8ab5bab0740ac1a5e5ad9abd876a94"
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Young Avengers 1-12, Special",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers Special",
+      "seriesYear": null,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "efdd7a33e97aacb2828418c0a1c45b4121285af68ce7b6fdf2e9c77638531ef9"
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Avengers: The Children's Crusade ? Young Avengers #1",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade ? Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "8f77ad779c28efd0eef4bf4532126fb38cd8e7f25d4e97a12db64cbde3e70e15"
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Marvel Now! Point One",
+      "seriesYear": null,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "17061055ba4dc622c79482952cf6c8b5191ec29698d18290fa36758026f0a619"
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "Marvel Boy #1",
+      "sourceRangeReference": "Marvel Boy #1 To #6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Marvel Boy",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "9f6f2ba1f8b9ba70d0d4fc2b4e655ddf65e9ddd55b80dead75078a5fe05581e5"
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Marvel Boy #2",
+      "sourceRangeReference": "Marvel Boy #1 To #6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Marvel Boy",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "b9eab4fa37f8afdda87329f1b33f08a91dee632953120b44643d01dada7bce70"
+    },
+    {
+      "sourcePosition": 112,
+      "sourceIssueReference": "Hawkeye #7",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "d5a8bc427c6dbf18c96132bc633bad6c72f8e5a98fc0dd209aa20b47c14d7a42"
+    },
+    {
+      "sourcePosition": 113,
+      "sourceIssueReference": "Hawkeye #8",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "6ce4d9743b24f7ef9dca47eff755c3834d75dc4cbd6ab65868caf04462e39549"
+    },
+    {
+      "sourcePosition": 114,
+      "sourceIssueReference": "Hawkeye #9",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "fa6e19551e6e60e6852916f5614e0b15b5c9dea05af99d0bb8051dc1154aefb7"
+    },
+    {
+      "sourcePosition": 115,
+      "sourceIssueReference": "Hawkeye #10",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "a695515c9ae9230f2ef29986c8a10b19bad99260b1ff4ccb8e8bd4de43124316"
+    },
+    {
+      "sourcePosition": 116,
+      "sourceIssueReference": "Hawkeye #11",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "11",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "90fbb3bb213c3f44064c8086e88c772096fd3c2968480a12f97cff893b165ad5"
+    },
+    {
+      "sourcePosition": 117,
+      "sourceIssueReference": "Hawkeye #12",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "12",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "4af9302d647cd58de42a32425f4a7ff75b8225cfac43c9d59617fccfa67dd4be"
+    },
+    {
+      "sourcePosition": 140,
+      "sourceIssueReference": "New Avengers #1",
+      "sourceRangeReference": "New Avengers 1-6, Avengers 0",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "8d9edd367a406cfa25b5f9afae257f6b06e5a3c5778583af315926b514d2ceac"
+    },
+    {
+      "sourcePosition": 141,
+      "sourceIssueReference": "New Avengers #2",
+      "sourceRangeReference": "New Avengers 1-6, Avengers 0",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "3d6444a541dbb00bf1dcc87ef4d86c9c91947caf8bcdba072ec365e65b2a9dd2"
+    },
+    {
+      "sourcePosition": 142,
+      "sourceIssueReference": "New Avengers #3",
+      "sourceRangeReference": "New Avengers 1-6, Avengers 0",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "6e28e88e0ad8edf8b728cc684d132681830c493794be0d499930b0ea64fb24de"
+    },
+    {
+      "sourcePosition": 143,
+      "sourceIssueReference": "New Avengers #4",
+      "sourceRangeReference": "New Avengers 1-6, Avengers 0",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "5c5b4d2bec9997793b286549b3da50db1105310e451d52650bd965385b4f74da"
+    },
+    {
+      "sourcePosition": 144,
+      "sourceIssueReference": "New Avengers #5",
+      "sourceRangeReference": "New Avengers 1-6, Avengers 0",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "9abbbe80cfa26216904653ad0f2e9979298cc34cbd9687fb5554d873250b7e52"
+    },
+    {
+      "sourcePosition": 145,
+      "sourceIssueReference": "New Avengers #6",
+      "sourceRangeReference": "New Avengers 1-6, Avengers 0",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "ed58f16aedd34f7eb6faa39975b28774adc981c5297ea5e627a1e2642ebc1d8f"
+    },
+    {
+      "sourcePosition": 149,
+      "sourceIssueReference": "New Avengers #7",
+      "sourceRangeReference": "New Avengers 7-11",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "bb8a1714508440f7dea15b9c89671739a62612605a3640abab0ff9f07d1068b0"
+    },
+    {
+      "sourcePosition": 150,
+      "sourceIssueReference": "New Avengers #8",
+      "sourceRangeReference": "New Avengers 7-11",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "54b165444cccd0b03aaf1cd316c85ce9744999f33edb756d140f6642e6b4deb2"
+    },
+    {
+      "sourcePosition": 151,
+      "sourceIssueReference": "New Avengers #9",
+      "sourceRangeReference": "New Avengers 7-11",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "9",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "dfb26e1f613bd83c08fd0e11fee88778a688040b213779002e0685911fd5ed01"
+    },
+    {
+      "sourcePosition": 152,
+      "sourceIssueReference": "New Avengers #10",
+      "sourceRangeReference": "New Avengers 7-11",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "4210076554b84e933ef6ec070af81a79f10006a2a2b1b802be696078dcf6fc17"
+    },
+    {
+      "sourcePosition": 153,
+      "sourceIssueReference": "New Avengers #11",
+      "sourceRangeReference": "New Avengers 7-11",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "11",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "20eacd522884c383838d200aadd3e1bcda8be0a9cd036e30788ff7ec7c5336ba"
+    },
+    {
+      "sourcePosition": 155,
+      "sourceIssueReference": "New Avengers #12",
+      "sourceRangeReference": "New Avengers 12-18",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "12",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "6dd066d0ea34b4fd74b4ed719d88593ea21afff85bfbaba0103ede05440dd6a9"
+    },
+    {
+      "sourcePosition": 156,
+      "sourceIssueReference": "New Avengers #13",
+      "sourceRangeReference": "New Avengers 12-18",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "13",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "e6ed1e266b0d1639ece5fdf92ac17940858e574a655603a0bc2ced17c660d35b"
+    },
+    {
+      "sourcePosition": 157,
+      "sourceIssueReference": "New Avengers #14",
+      "sourceRangeReference": "New Avengers 12-18",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "14",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "fc2ddf3deb98fec94c34a408020230cc06a04ad0de51af57c34a4eb8b898b1b0"
+    },
+    {
+      "sourcePosition": 158,
+      "sourceIssueReference": "New Avengers #15",
+      "sourceRangeReference": "New Avengers 12-18",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "15",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "7bdf4a87161ba12a4040f4ce80a17462f29b8255edd2fab4155156e6e2292baf"
+    },
+    {
+      "sourcePosition": 159,
+      "sourceIssueReference": "New Avengers #16",
+      "sourceRangeReference": "New Avengers 12-18",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "16",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "6679b4b47a5789d9e437630e3967d991e38e426de0ee496b76b439e1ebb3c1e2"
+    },
+    {
+      "sourcePosition": 160,
+      "sourceIssueReference": "New Avengers #17",
+      "sourceRangeReference": "New Avengers 12-18",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "17",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "edee99b30d5d8a905e0779df075bf76b11d9c16202cc2bb8c396274fc3bbdc0c"
+    },
+    {
+      "sourcePosition": 161,
+      "sourceIssueReference": "New Avengers #18",
+      "sourceRangeReference": "New Avengers 12-18",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "18",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "3678b64a9c4416c2155edda8d4d4eea89fab06452520f01110349bfae4f01c74"
+    },
+    {
+      "sourcePosition": 163,
+      "sourceIssueReference": "West Coast Avengers #1",
+      "sourceRangeReference": "West Coast Avengers #1 To #4",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "afe385d5f2b8d77cd1f022dde74901513e91d8a03f9e1a664b4842be8ca1e9df"
+    },
+    {
+      "sourcePosition": 164,
+      "sourceIssueReference": "West Coast Avengers #2",
+      "sourceRangeReference": "West Coast Avengers #1 To #4",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "f8f4420a6b0cf3c6b308b6ecc0d044763a76470bc2d407c7cca9b947fa3660fe"
+    },
+    {
+      "sourcePosition": 165,
+      "sourceIssueReference": "West Coast Avengers #3",
+      "sourceRangeReference": "West Coast Avengers #1 To #4",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "41ebbb98bff9609a9b5f49cefc8a839d890e9eafc198668542a551b7b146ccb6"
+    },
+    {
+      "sourcePosition": 166,
+      "sourceIssueReference": "West Coast Avengers #4",
+      "sourceRangeReference": "West Coast Avengers #1 To #4",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": null,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "03cdd3e9e9a8ce4a031f8370632934524d93d4fccbe292546d267358941f8861"
+    },
+    {
+      "sourcePosition": 169,
+      "sourceIssueReference": "Marvel Rising (2018)",
+      "sourceRangeReference": "Marvel Rising (2018)",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2018,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "d83dae41843b820a0154345d9f417c3b501c9c5634473731bfda39467aa8f576"
+    },
+    {
+      "sourcePosition": 194,
+      "sourceIssueReference": "Death’s Head: Clone Drive",
+      "sourceRangeReference": "Death’s Head: Clone Drive",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Death’s Head: Clone Drive",
+      "seriesYear": null,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "be1423c9b3134bc8dd4051b784c5d2c1cc8c68ac858a646cfd18b1daa26175a6"
+    },
+    {
+      "sourcePosition": 213,
+      "sourceIssueReference": "Marvel Voices: Pride (2021)",
+      "sourceRangeReference": "Marvel Voices: Pride (2021)",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Voices: Pride",
+      "seriesYear": 2021,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "d7c2b39e11b3712bcc1c67a96dcb406b3c4daeff548d4834656c6b46840d70f7"
+    },
+    {
+      "sourcePosition": 214,
+      "sourceIssueReference": "The Last Annihilation: Wiccan & Hulkling",
+      "sourceRangeReference": "The Last Annihilation: Wiccan & Hulkling",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "seriesYear": null,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "bc493536785e29393761385713f622fea8a597ad27e88c991adfd77395d8b52a"
+    },
+    {
+      "sourcePosition": 215,
+      "sourceIssueReference": "Hulkling & Wiccan",
+      "sourceRangeReference": "Hulkling & Wiccan",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Hulkling & Wiccan",
+      "seriesYear": null,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "d67748bb038588e5051a732c43ba8816a344f5994cfa9a9aaaa59d73073aec4b"
+    },
+    {
+      "sourcePosition": 216,
+      "sourceIssueReference": "Marvel Voices: Pride (2022)",
+      "sourceRangeReference": "Marvel Voices: Pride (2022)",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Voices: Pride",
+      "seriesYear": 2022,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "c93b27426817497916fa677ccc11acfdd4b8c58227d6e4076765abba8cdaf585"
+    },
+    {
+      "sourcePosition": 217,
+      "sourceIssueReference": "Marvel Voices: Pride (2023)",
+      "sourceRangeReference": "Marvel Voices: Pride (2023)",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Voices: Pride",
+      "seriesYear": 2023,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "d8f590df215b37764950c7bbe8e0540b07273959a22d81de4f0587d8c7f22e7d"
+    },
+    {
+      "sourcePosition": 218,
+      "sourceIssueReference": "Scarlet Witch by Orlando #6",
+      "sourceRangeReference": "Scarlet Witch by Orlando #6",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Scarlet Witch by Orlando",
+      "seriesYear": null,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "70598b97f128cfd55d843ee4746ccaa4ffe7ed0ad6091adeb4cbfa1e1c7900ff"
+    },
+    {
+      "sourcePosition": 219,
+      "sourceIssueReference": "Loki by Watters #3",
+      "sourceRangeReference": "Loki by Watters #3",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Loki by Watters",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "4c3984d29c30e1decbf247f5f6a7ee9cc87d23f037b9d252bdfd915469d2671f"
+    },
+    {
+      "sourcePosition": 220,
+      "sourceIssueReference": "Guardians of the Galaxy by Kelly #7",
+      "sourceRangeReference": "Guardians of the Galaxy by Kelly #7",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Guardians of the Galaxy by Kelly",
+      "seriesYear": null,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact title/year provider series context exists in the fully paginated catalog. See issue #333.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "dde3adbbc74116646b0c320e215ff154dfad8a33f9d654b0741029ab086d6050"
+    }
+  ],
+  "expectedCount": 114,
+  "proposedManifest": {
+    "id": "young-avengers-reading-order",
+    "name": "Young Avengers",
+    "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": true,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "young-avengers-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/young-avengers-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "young_avengers_reading_order.json",
+    "characters": [
+      "Young Avengers",
+      "Kate Bishop",
+      "Wiccan",
+      "Hulkling"
+    ],
+    "keywords": [
+      "Young Avengers",
+      "Comic Book Herald",
+      "Marvel"
+    ],
+    "expect": 169,
+    "timeline": null,
+    "coverIssueId": 4500
+  },
+  "insertionAnchor": {
+    "beforeId": "xmen-claremont"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Terra",
+    "rationale": "Independent review verified the full source page boundary, all 220 ordered source occurrences, zero repeated identities, and the accepted provider settlement. Every non-exact source candidate remains an individual gap with its source identity intact.",
+    "reviewedAt": "2026-08-27"
+  },
+  "rows": [
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Civil War: Young Avengers & Runaways #1",
+      "sourceRangeReference": "Civil War: Young Avengers & Runaways 1-4",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Civil War: Young Avengers & Runaways",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1114,
+      "candidateIssueId": 4500,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Civil War: Young Avengers & Runaways #2",
+      "sourceRangeReference": "Civil War: Young Avengers & Runaways 1-4",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Civil War: Young Avengers & Runaways",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1114,
+      "candidateIssueId": 4821,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Civil War: Young Avengers & Runaways #3",
+      "sourceRangeReference": "Civil War: Young Avengers & Runaways 1-4",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Civil War: Young Avengers & Runaways",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 1114,
+      "candidateIssueId": 5114,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Civil War: Young Avengers & Runaways #4",
+      "sourceRangeReference": "Civil War: Young Avengers & Runaways 1-4",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Civil War: Young Avengers & Runaways",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1114,
+      "candidateIssueId": 5267,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Young Avengers Presents #1",
+      "sourceRangeReference": "Young Avengers Presents #1-6",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers Presents",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 3424,
+      "candidateIssueId": 17663,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Young Avengers Presents #2",
+      "sourceRangeReference": "Young Avengers Presents #1-6",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers Presents",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 3424,
+      "candidateIssueId": 20710,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "Young Avengers Presents #3",
+      "sourceRangeReference": "Young Avengers Presents #1-6",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers Presents",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 3424,
+      "candidateIssueId": 20903,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 34,
+      "sourceIssueReference": "Young Avengers Presents #4",
+      "sourceRangeReference": "Young Avengers Presents #1-6",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers Presents",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 3424,
+      "candidateIssueId": 21038,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 35,
+      "sourceIssueReference": "Young Avengers Presents #5",
+      "sourceRangeReference": "Young Avengers Presents #1-6",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers Presents",
+      "seriesYear": 2008,
+      "issueNumber": "5",
+      "seriesId": 3424,
+      "candidateIssueId": 21256,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 36,
+      "sourceIssueReference": "Young Avengers Presents #6",
+      "sourceRangeReference": "Young Avengers Presents #1-6",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Young Avengers Presents",
+      "seriesYear": 2008,
+      "issueNumber": "6",
+      "seriesId": 3424,
+      "candidateIssueId": 21401,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Secret Invasion: Runaways/Young Avengers #1",
+      "sourceRangeReference": "Secret Invasion: Runaways/Young Avengers #1-3",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Secret Invasion: Runaways/Young Avengers",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5046,
+      "candidateIssueId": 21414,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Secret Invasion: Runaways/Young Avengers #2",
+      "sourceRangeReference": "Secret Invasion: Runaways/Young Avengers #1-3",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Secret Invasion: Runaways/Young Avengers",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 5046,
+      "candidateIssueId": 21588,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Secret Invasion: Runaways/Young Avengers #3",
+      "sourceRangeReference": "Secret Invasion: Runaways/Young Avengers #1-3",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Secret Invasion: Runaways/Young Avengers",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 5046,
+      "candidateIssueId": 21785,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Avengers: The Children's Crusade #1",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9864,
+      "candidateIssueId": 31134,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Avengers: The Children's Crusade #2",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "2",
+      "seriesId": 9864,
+      "candidateIssueId": 31136,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Avengers: The Children's Crusade #3",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "3",
+      "seriesId": 9864,
+      "candidateIssueId": 31138,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Avengers: The Children's Crusade #4",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "4",
+      "seriesId": 9864,
+      "candidateIssueId": 31140,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Avengers: The Children's Crusade #5",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "5",
+      "seriesId": 9864,
+      "candidateIssueId": 31142,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "Avengers: The Children's Crusade #6",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "6",
+      "seriesId": 9864,
+      "candidateIssueId": 31144,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Avengers: The Children's Crusade #7",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "7",
+      "seriesId": 9864,
+      "candidateIssueId": 31146,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Avengers: The Children's Crusade #8",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "8",
+      "seriesId": 9864,
+      "candidateIssueId": 31148,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Avengers: The Children's Crusade #9",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Avengers: The Children's Crusade",
+      "seriesYear": 2010,
+      "issueNumber": "9",
+      "seriesId": 9864,
+      "candidateIssueId": 34271,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Uncanny X-Men #526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceGroup": "Young Avengers Origins!",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 1963,
+      "issueNumber": "526",
+      "seriesId": 2258,
+      "candidateIssueId": 30623,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Young Avengers #1",
+      "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 17647,
+      "candidateIssueId": 46824,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Young Avengers #2",
+      "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17647,
+      "candidateIssueId": 46829,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Young Avengers #3",
+      "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17647,
+      "candidateIssueId": 46832,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Young Avengers #4",
+      "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17647,
+      "candidateIssueId": 46834,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Young Avengers #5",
+      "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "5",
+      "seriesId": 17647,
+      "candidateIssueId": 46836,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Marvel Boy #3",
+      "sourceRangeReference": "Marvel Boy #1 To #6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Marvel Boy",
+      "seriesYear": 2000,
+      "issueNumber": "3",
+      "seriesId": 2036,
+      "candidateIssueId": 10004,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Marvel Boy #4",
+      "sourceRangeReference": "Marvel Boy #1 To #6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Marvel Boy",
+      "seriesYear": 2000,
+      "issueNumber": "4",
+      "seriesId": 2036,
+      "candidateIssueId": 10005,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Marvel Boy #5",
+      "sourceRangeReference": "Marvel Boy #1 To #6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Marvel Boy",
+      "seriesYear": 2000,
+      "issueNumber": "5",
+      "seriesId": 2036,
+      "candidateIssueId": 10006,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Marvel Boy #6",
+      "sourceRangeReference": "Marvel Boy #1 To #6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Marvel Boy",
+      "seriesYear": 2000,
+      "issueNumber": "6",
+      "seriesId": 2036,
+      "candidateIssueId": 10007,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Journey Into Mystery #622",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "622",
+      "seriesId": 14764,
+      "candidateIssueId": 39901,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Journey Into Mystery #623",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "623",
+      "seriesId": 14764,
+      "candidateIssueId": 40887,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "Journey Into Mystery #624",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "624",
+      "seriesId": 14764,
+      "candidateIssueId": 39878,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Journey Into Mystery #625",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "625",
+      "seriesId": 14764,
+      "candidateIssueId": 41482,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Journey Into Mystery #626",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "626",
+      "seriesId": 14764,
+      "candidateIssueId": 41056,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Journey Into Mystery #627",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "627",
+      "seriesId": 14764,
+      "candidateIssueId": 36560,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Journey Into Mystery #628",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "628",
+      "seriesId": 14764,
+      "candidateIssueId": 36557,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Journey Into Mystery #629",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "629",
+      "seriesId": 14764,
+      "candidateIssueId": 36555,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Journey Into Mystery #630",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "630",
+      "seriesId": 14764,
+      "candidateIssueId": 36553,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Journey Into Mystery #631",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "631",
+      "seriesId": 14764,
+      "candidateIssueId": 37683,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "Journey Into Mystery #632",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "632",
+      "seriesId": 14764,
+      "candidateIssueId": 37682,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "Journey Into Mystery #633",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "633",
+      "seriesId": 14764,
+      "candidateIssueId": 37681,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Journey Into Mystery #634",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "634",
+      "seriesId": 14764,
+      "candidateIssueId": 38055,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 87,
+      "sourceIssueReference": "Journey Into Mystery #635",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "635",
+      "seriesId": 14764,
+      "candidateIssueId": 40565,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 88,
+      "sourceIssueReference": "Journey Into Mystery #636",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "636",
+      "seriesId": 14764,
+      "candidateIssueId": 40567,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceRangeReference": "Journey Into Mystery 622-636, 626.1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 2011,
+      "issueNumber": "626.1",
+      "seriesId": 14764,
+      "candidateIssueId": 39968,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 92,
+      "sourceIssueReference": "Young Avengers #6",
+      "sourceRangeReference": "Young Avengers (2013) #6-10",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "6",
+      "seriesId": 17647,
+      "candidateIssueId": 46838,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 93,
+      "sourceIssueReference": "Young Avengers #7",
+      "sourceRangeReference": "Young Avengers (2013) #6-10",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "7",
+      "seriesId": 17647,
+      "candidateIssueId": 46839,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 94,
+      "sourceIssueReference": "Young Avengers #8",
+      "sourceRangeReference": "Young Avengers (2013) #6-10",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "8",
+      "seriesId": 17647,
+      "candidateIssueId": 46840,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 95,
+      "sourceIssueReference": "Young Avengers #9",
+      "sourceRangeReference": "Young Avengers (2013) #6-10",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "9",
+      "seriesId": 17647,
+      "candidateIssueId": 46841,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "Young Avengers #10",
+      "sourceRangeReference": "Young Avengers (2013) #6-10",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "10",
+      "seriesId": 17647,
+      "candidateIssueId": 46842,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 98,
+      "sourceIssueReference": "Young Avengers #11",
+      "sourceRangeReference": "Young Avengers (2013) #11-15",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "11",
+      "seriesId": 17647,
+      "candidateIssueId": 46843,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "Young Avengers #12",
+      "sourceRangeReference": "Young Avengers (2013) #11-15",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "12",
+      "seriesId": 17647,
+      "candidateIssueId": 46844,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 100,
+      "sourceIssueReference": "Young Avengers #13",
+      "sourceRangeReference": "Young Avengers (2013) #11-15",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "13",
+      "seriesId": 17647,
+      "candidateIssueId": 46845,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 101,
+      "sourceIssueReference": "Young Avengers #14",
+      "sourceRangeReference": "Young Avengers (2013) #11-15",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "14",
+      "seriesId": 17647,
+      "candidateIssueId": 47720,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "Young Avengers #15",
+      "sourceRangeReference": "Young Avengers (2013) #11-15",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "15",
+      "seriesId": 17647,
+      "candidateIssueId": 47721,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 104,
+      "sourceIssueReference": "Hawkeye #1",
+      "sourceRangeReference": "Hawkeye (2016) #1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 22533,
+      "candidateIssueId": 61276,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 105,
+      "sourceIssueReference": "Hawkeye #2",
+      "sourceRangeReference": "Hawkeye (2016) #1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "seriesId": 22533,
+      "candidateIssueId": 61277,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 106,
+      "sourceIssueReference": "Hawkeye #3",
+      "sourceRangeReference": "Hawkeye (2016) #1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "seriesId": 22533,
+      "candidateIssueId": 61278,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 107,
+      "sourceIssueReference": "Hawkeye #4",
+      "sourceRangeReference": "Hawkeye (2016) #1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "seriesId": 22533,
+      "candidateIssueId": 61279,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 108,
+      "sourceIssueReference": "Hawkeye #5",
+      "sourceRangeReference": "Hawkeye (2016) #1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "seriesId": 22533,
+      "candidateIssueId": 61280,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 109,
+      "sourceIssueReference": "Hawkeye #6",
+      "sourceRangeReference": "Hawkeye (2016) #1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "seriesId": 22533,
+      "candidateIssueId": 61281,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 119,
+      "sourceIssueReference": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1",
+      "sourceRangeReference": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Generations: Hawkeye & Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 24801,
+      "candidateIssueId": 63956,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "Hawkeye #13",
+      "sourceRangeReference": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "13",
+      "seriesId": 22533,
+      "candidateIssueId": 65284,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "Hawkeye #14",
+      "sourceRangeReference": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "14",
+      "seriesId": 22533,
+      "candidateIssueId": 65562,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 122,
+      "sourceIssueReference": "Hawkeye #15",
+      "sourceRangeReference": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "15",
+      "seriesId": 22533,
+      "candidateIssueId": 66100,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 123,
+      "sourceIssueReference": "Hawkeye #16",
+      "sourceRangeReference": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2016,
+      "issueNumber": "16",
+      "seriesId": 22533,
+      "candidateIssueId": 66414,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 125,
+      "sourceIssueReference": "America #1",
+      "sourceRangeReference": "America 1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 22997,
+      "candidateIssueId": 62656,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 126,
+      "sourceIssueReference": "America #2",
+      "sourceRangeReference": "America 1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 22997,
+      "candidateIssueId": 62705,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 127,
+      "sourceIssueReference": "America #3",
+      "sourceRangeReference": "America 1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 22997,
+      "candidateIssueId": 62813,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 128,
+      "sourceIssueReference": "America #4",
+      "sourceRangeReference": "America 1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 22997,
+      "candidateIssueId": 63048,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 129,
+      "sourceIssueReference": "America #5",
+      "sourceRangeReference": "America 1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 22997,
+      "candidateIssueId": 63831,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 130,
+      "sourceIssueReference": "America #6",
+      "sourceRangeReference": "America 1-6",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": 22997,
+      "candidateIssueId": 64279,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 133,
+      "sourceIssueReference": "America #7",
+      "sourceRangeReference": "America 7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "7",
+      "seriesId": 22997,
+      "candidateIssueId": 64578,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 134,
+      "sourceIssueReference": "America #8",
+      "sourceRangeReference": "America 7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "8",
+      "seriesId": 22997,
+      "candidateIssueId": 64970,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 135,
+      "sourceIssueReference": "America #9",
+      "sourceRangeReference": "America 7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 22997,
+      "candidateIssueId": 65054,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 136,
+      "sourceIssueReference": "America #10",
+      "sourceRangeReference": "America 7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 22997,
+      "candidateIssueId": 65262,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 137,
+      "sourceIssueReference": "America #11",
+      "sourceRangeReference": "America 7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "11",
+      "seriesId": 22997,
+      "candidateIssueId": 65896,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 138,
+      "sourceIssueReference": "America #12",
+      "sourceRangeReference": "America 7-12",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": 2017,
+      "issueNumber": "12",
+      "seriesId": 22997,
+      "candidateIssueId": 66264,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 146,
+      "sourceIssueReference": "New Avengers 1-6, Avengers 0",
+      "sourceRangeReference": "New Avengers 1-6, Avengers 0",
+      "sourceGroup": "Young Avengers Reborn!",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1998,
+      "issueNumber": "0",
+      "seriesId": 354,
+      "candidateIssueId": 3589,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 171,
+      "sourceIssueReference": "Exiles #1",
+      "sourceRangeReference": "Exiles (2018) #1 to #6",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24155,
+      "candidateIssueId": 66769,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 172,
+      "sourceIssueReference": "Exiles #2",
+      "sourceRangeReference": "Exiles (2018) #1 to #6",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24155,
+      "candidateIssueId": 66911,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 173,
+      "sourceIssueReference": "Exiles #3",
+      "sourceRangeReference": "Exiles (2018) #1 to #6",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24155,
+      "candidateIssueId": 67337,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 174,
+      "sourceIssueReference": "Exiles #4",
+      "sourceRangeReference": "Exiles (2018) #1 to #6",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24155,
+      "candidateIssueId": 68356,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 175,
+      "sourceIssueReference": "Exiles #5",
+      "sourceRangeReference": "Exiles (2018) #1 to #6",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 24155,
+      "candidateIssueId": 68358,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 176,
+      "sourceIssueReference": "Exiles #6",
+      "sourceRangeReference": "Exiles (2018) #1 to #6",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "seriesId": 24155,
+      "candidateIssueId": 68360,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 178,
+      "sourceIssueReference": "Exiles #7",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 24155,
+      "candidateIssueId": 68361,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 179,
+      "sourceIssueReference": "Exiles #8",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 24155,
+      "candidateIssueId": 68362,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 180,
+      "sourceIssueReference": "Exiles #9",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 24155,
+      "candidateIssueId": 68363,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 181,
+      "sourceIssueReference": "Exiles #10",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 24155,
+      "candidateIssueId": 68364,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 182,
+      "sourceIssueReference": "Exiles #11",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "11",
+      "seriesId": 24155,
+      "candidateIssueId": 68365,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 183,
+      "sourceIssueReference": "Exiles #12",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "12",
+      "seriesId": 24155,
+      "candidateIssueId": 68366,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 186,
+      "sourceIssueReference": "West Coast Avengers #5",
+      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 25575,
+      "candidateIssueId": 70105,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 187,
+      "sourceIssueReference": "West Coast Avengers #6",
+      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "6",
+      "seriesId": 25575,
+      "candidateIssueId": 70106,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 188,
+      "sourceIssueReference": "West Coast Avengers #7",
+      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "7",
+      "seriesId": 25575,
+      "candidateIssueId": 70107,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 189,
+      "sourceIssueReference": "West Coast Avengers #8",
+      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "8",
+      "seriesId": 25575,
+      "candidateIssueId": 70108,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 190,
+      "sourceIssueReference": "West Coast Avengers #9",
+      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "9",
+      "seriesId": 25575,
+      "candidateIssueId": 70109,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 191,
+      "sourceIssueReference": "West Coast Avengers #10",
+      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "10",
+      "seriesId": 25575,
+      "candidateIssueId": 70110,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 196,
+      "sourceIssueReference": "X-Factor #1",
+      "sourceRangeReference": "X-Factor (2020) #1 to #3, #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "1",
+      "seriesId": 28053,
+      "candidateIssueId": 78746,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 197,
+      "sourceIssueReference": "X-Factor #2",
+      "sourceRangeReference": "X-Factor (2020) #1 to #3, #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "2",
+      "seriesId": 28053,
+      "candidateIssueId": 78747,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 198,
+      "sourceIssueReference": "X-Factor #3",
+      "sourceRangeReference": "X-Factor (2020) #1 to #3, #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "3",
+      "seriesId": 28053,
+      "candidateIssueId": 78748,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 199,
+      "sourceIssueReference": "X-Factor (2020) #1 to #3, #5",
+      "sourceRangeReference": "X-Factor (2020) #1 to #3, #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "5",
+      "seriesId": 28053,
+      "candidateIssueId": 78750,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 202,
+      "sourceIssueReference": "X-Factor #6",
+      "sourceRangeReference": "X-Factor (2020) #6 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "6",
+      "seriesId": 28053,
+      "candidateIssueId": 78751,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 203,
+      "sourceIssueReference": "X-Factor #7",
+      "sourceRangeReference": "X-Factor (2020) #6 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "7",
+      "seriesId": 28053,
+      "candidateIssueId": 78752,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 204,
+      "sourceIssueReference": "X-Factor #8",
+      "sourceRangeReference": "X-Factor (2020) #6 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "8",
+      "seriesId": 28053,
+      "candidateIssueId": 78753,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 205,
+      "sourceIssueReference": "X-Factor #9",
+      "sourceRangeReference": "X-Factor (2020) #6 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "9",
+      "seriesId": 28053,
+      "candidateIssueId": 78754,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 206,
+      "sourceIssueReference": "X-Factor #10",
+      "sourceRangeReference": "X-Factor (2020) #6 to #10",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "10",
+      "seriesId": 28053,
+      "candidateIssueId": 78755,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 208,
+      "sourceIssueReference": "Hawkeye: Kate Bishop #1",
+      "sourceRangeReference": "Hawkeye: Kate Bishop (2021) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Hawkeye: Kate Bishop",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32953,
+      "candidateIssueId": 96217,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 209,
+      "sourceIssueReference": "Hawkeye: Kate Bishop #2",
+      "sourceRangeReference": "Hawkeye: Kate Bishop (2021) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Hawkeye: Kate Bishop",
+      "seriesYear": 2021,
+      "issueNumber": "2",
+      "seriesId": 32953,
+      "candidateIssueId": 96218,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 210,
+      "sourceIssueReference": "Hawkeye: Kate Bishop #3",
+      "sourceRangeReference": "Hawkeye: Kate Bishop (2021) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Hawkeye: Kate Bishop",
+      "seriesYear": 2021,
+      "issueNumber": "3",
+      "seriesId": 32953,
+      "candidateIssueId": 96219,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 211,
+      "sourceIssueReference": "Hawkeye: Kate Bishop #4",
+      "sourceRangeReference": "Hawkeye: Kate Bishop (2021) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Hawkeye: Kate Bishop",
+      "seriesYear": 2021,
+      "issueNumber": "4",
+      "seriesId": 32953,
+      "candidateIssueId": 96220,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    },
+    {
+      "sourcePosition": 212,
+      "sourceIssueReference": "Hawkeye: Kate Bishop #5",
+      "sourceRangeReference": "Hawkeye: Kate Bishop (2021) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Hawkeye: Kate Bishop",
+      "seriesYear": 2021,
+      "issueNumber": "5",
+      "seriesId": 32953,
+      "candidateIssueId": 96221,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "One provider issue matches the source title/year/number context."
+    }
+  ],
+  "packetDigest": "cd96d43cc0b84c1d3308acad624440953c3869d99fb41b9823039b2bed94cb82"
+}

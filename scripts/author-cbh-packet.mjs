@@ -260,7 +260,7 @@ export function buildMarkdown(mapping) {
         : [];
       currentGroup = sourceGroup;
       if (entry.kind === 'exact') {
-        return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))}](${entry.value.marvelIssueUrl})`];
+        return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->](${entry.value.marvelIssueUrl})`];
       }
       return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference)
         .replace(TYPHOGRAPHIC_DASHES, '-').replace(/\s+/g, ' ')} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->`];

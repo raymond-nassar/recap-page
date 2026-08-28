@@ -1,0 +1,4887 @@
+{
+  "id": "young-avengers-reading-order",
+  "name": "Young Avengers",
+  "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
+  "source": "https://www.comicbookherald.com/young-avengers-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-28T03:03:48.579Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 169,
+  "collections": 35,
+  "placeholders": 55,
+  "unresolved": [
+    {
+      "title": "Young Avengers #1",
+      "sourceKey": "9"
+    },
+    {
+      "title": "Young Avengers #2",
+      "sourceKey": "10"
+    },
+    {
+      "title": "Young Avengers #3",
+      "sourceKey": "11"
+    },
+    {
+      "title": "Young Avengers #4",
+      "sourceKey": "12"
+    },
+    {
+      "title": "Young Avengers #5",
+      "sourceKey": "13"
+    },
+    {
+      "title": "Young Avengers #6",
+      "sourceKey": "14"
+    },
+    {
+      "title": "Young Avengers #7",
+      "sourceKey": "15"
+    },
+    {
+      "title": "Young Avengers #8",
+      "sourceKey": "16"
+    },
+    {
+      "title": "Young Avengers #9",
+      "sourceKey": "17"
+    },
+    {
+      "title": "Young Avengers #10",
+      "sourceKey": "18"
+    },
+    {
+      "title": "Young Avengers #11",
+      "sourceKey": "19"
+    },
+    {
+      "title": "Young Avengers #12",
+      "sourceKey": "20"
+    },
+    {
+      "title": "Young Avengers 1-12, Special",
+      "sourceKey": "21"
+    },
+    {
+      "title": "Avengers: The Children's Crusade ? Young Avengers #1",
+      "sourceKey": "43"
+    },
+    {
+      "title": "Young Avengers #1-5, Marvel Now! Point One",
+      "sourceKey": "59"
+    },
+    {
+      "title": "Marvel Boy #1",
+      "sourceKey": "66"
+    },
+    {
+      "title": "Marvel Boy #2",
+      "sourceKey": "67"
+    },
+    {
+      "title": "Hawkeye #7",
+      "sourceKey": "112"
+    },
+    {
+      "title": "Hawkeye #8",
+      "sourceKey": "113"
+    },
+    {
+      "title": "Hawkeye #9",
+      "sourceKey": "114"
+    },
+    {
+      "title": "Hawkeye #10",
+      "sourceKey": "115"
+    },
+    {
+      "title": "Hawkeye #11",
+      "sourceKey": "116"
+    },
+    {
+      "title": "Hawkeye #12",
+      "sourceKey": "117"
+    },
+    {
+      "title": "New Avengers #1",
+      "sourceKey": "140"
+    },
+    {
+      "title": "New Avengers #2",
+      "sourceKey": "141"
+    },
+    {
+      "title": "New Avengers #3",
+      "sourceKey": "142"
+    },
+    {
+      "title": "New Avengers #4",
+      "sourceKey": "143"
+    },
+    {
+      "title": "New Avengers #5",
+      "sourceKey": "144"
+    },
+    {
+      "title": "New Avengers #6",
+      "sourceKey": "145"
+    },
+    {
+      "title": "New Avengers #7",
+      "sourceKey": "149"
+    },
+    {
+      "title": "New Avengers #8",
+      "sourceKey": "150"
+    },
+    {
+      "title": "New Avengers #9",
+      "sourceKey": "151"
+    },
+    {
+      "title": "New Avengers #10",
+      "sourceKey": "152"
+    },
+    {
+      "title": "New Avengers #11",
+      "sourceKey": "153"
+    },
+    {
+      "title": "New Avengers #12",
+      "sourceKey": "155"
+    },
+    {
+      "title": "New Avengers #13",
+      "sourceKey": "156"
+    },
+    {
+      "title": "New Avengers #14",
+      "sourceKey": "157"
+    },
+    {
+      "title": "New Avengers #15",
+      "sourceKey": "158"
+    },
+    {
+      "title": "New Avengers #16",
+      "sourceKey": "159"
+    },
+    {
+      "title": "New Avengers #17",
+      "sourceKey": "160"
+    },
+    {
+      "title": "New Avengers #18",
+      "sourceKey": "161"
+    },
+    {
+      "title": "West Coast Avengers #1",
+      "sourceKey": "163"
+    },
+    {
+      "title": "West Coast Avengers #2",
+      "sourceKey": "164"
+    },
+    {
+      "title": "West Coast Avengers #3",
+      "sourceKey": "165"
+    },
+    {
+      "title": "West Coast Avengers #4",
+      "sourceKey": "166"
+    },
+    {
+      "title": "Marvel Rising (2018)",
+      "sourceKey": "169"
+    },
+    {
+      "title": "Death’s Head: Clone Drive",
+      "sourceKey": "194"
+    },
+    {
+      "title": "Marvel Voices: Pride (2021)",
+      "sourceKey": "213"
+    },
+    {
+      "title": "The Last Annihilation: Wiccan & Hulkling",
+      "sourceKey": "214"
+    },
+    {
+      "title": "Hulkling & Wiccan",
+      "sourceKey": "215"
+    },
+    {
+      "title": "Marvel Voices: Pride (2022)",
+      "sourceKey": "216"
+    },
+    {
+      "title": "Marvel Voices: Pride (2023)",
+      "sourceKey": "217"
+    },
+    {
+      "title": "Scarlet Witch by Orlando #6",
+      "sourceKey": "218"
+    },
+    {
+      "title": "Loki by Watters #3",
+      "sourceKey": "219"
+    },
+    {
+      "title": "Guardians of the Galaxy by Kelly #7",
+      "sourceKey": "220"
+    }
+  ],
+  "items": [
+    {
+      "issueId": -462196839,
+      "title": "Young Avengers #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1110689205,
+      "title": "Young Avengers #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1127466824,
+      "title": "Young Avengers #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1144244443,
+      "title": "Young Avengers #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1161022062,
+      "title": "Young Avengers #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1043578729,
+      "title": "Young Avengers #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1060356348,
+      "title": "Young Avengers #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1077133967,
+      "title": "Young Avengers #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -1093911586,
+      "title": "Young Avengers #9",
+      "number": "9",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -976468253,
+      "title": "Young Avengers #10",
+      "number": "10",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -993245872,
+      "title": "Young Avengers #11",
+      "number": "11",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -876295410,
+      "title": "Young Avengers #12",
+      "number": "12",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": -859517791,
+      "title": "Young Avengers 1-12, Special",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers 1-12, Special"
+    },
+    {
+      "issueId": 4500,
+      "title": "Civil War: Young Avengers & Runaways (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4500/civil_war_young_avengers_runaways_2006_1",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-07-26T00:00:00+0000",
+      "mu": "2006-07-26T00:00:00+0000",
+      "digitalId": 1663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5718ee6a84c6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Young Avengers & Runaways 1-4"
+    },
+    {
+      "issueId": 4821,
+      "title": "Civil War: Young Avengers & Runaways (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/4821/civil_war_young_avengers_runaways_2006_2",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-08-30T00:00:00+0000",
+      "mu": "2006-08-30T00:00:00+0000",
+      "digitalId": 5507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5718ef23a698a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Young Avengers & Runaways 1-4"
+    },
+    {
+      "issueId": 5114,
+      "title": "Civil War: Young Avengers & Runaways (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/5114/civil_war_young_avengers_runaways_2006_3",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-09-27T00:00:00+0000",
+      "mu": "2006-09-27T00:00:00+0000",
+      "digitalId": 5508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5718f05fa1f5e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Young Avengers & Runaways 1-4"
+    },
+    {
+      "issueId": 5267,
+      "title": "Civil War: Young Avengers & Runaways (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/5267/civil_war_young_avengers_runaways_2006_4",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-11-08T00:00:00+0000",
+      "mu": "2006-11-08T00:00:00+0000",
+      "digitalId": 5509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5718ed9cc636e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Civil War: Young Avengers & Runaways 1-4"
+    },
+    {
+      "issueId": 17663,
+      "title": "Young Avengers Presents (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/17663/young_avengers_presents_2008_1",
+      "seriesId": 3424,
+      "seriesName": "Young Avengers Presents (2008)",
+      "onSale": "2008-01-23T00:00:00+0000",
+      "mu": "2008-01-23T00:00:00+0000",
+      "digitalId": 10317,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5b17fb5769dce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juan Vlasco",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers Presents #1-6"
+    },
+    {
+      "issueId": 20710,
+      "title": "Young Avengers Presents (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/20710/young_avengers_presents_2008_2",
+      "seriesId": 3424,
+      "seriesName": "Young Avengers Presents (2008)",
+      "onSale": "2008-02-27T00:00:00+0000",
+      "mu": "2008-02-27T00:00:00+0000",
+      "digitalId": 11894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/5b1803da53488",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Harvey Tolibao",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers Presents #1-6"
+    },
+    {
+      "issueId": 20903,
+      "title": "Young Avengers Presents (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/20903/young_avengers_presents_2008_3",
+      "seriesId": 3424,
+      "seriesName": "Young Avengers Presents (2008)",
+      "onSale": "2008-04-02T00:00:00+0000",
+      "mu": "2008-04-02T00:00:00+0000",
+      "digitalId": 11895,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5b1819ae93d7a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto Aguirre-Sacasa",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers Presents #1-6"
+    },
+    {
+      "issueId": 21038,
+      "title": "Young Avengers Presents (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/21038/young_avengers_presents_2008_4",
+      "seriesId": 3424,
+      "seriesName": "Young Avengers Presents (2008)",
+      "onSale": "2008-04-23T00:00:00+0000",
+      "mu": "2008-04-23T00:00:00+0000",
+      "digitalId": 11896,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/5b181e6a11038",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jaime Mendoza",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Brooks",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Cornell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers Presents #1-6"
+    },
+    {
+      "issueId": 21256,
+      "title": "Young Avengers Presents (2008) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/21256/young_avengers_presents_2008_5",
+      "seriesId": 3424,
+      "seriesName": "Young Avengers Presents (2008)",
+      "onSale": "2008-05-28T00:00:00+0000",
+      "mu": "2008-05-28T00:00:00+0000",
+      "digitalId": 11897,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5b1825909761f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mitch Breitweiser",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Grevioux",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers Presents #1-6"
+    },
+    {
+      "issueId": 21401,
+      "title": "Young Avengers Presents (2008) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/21401/young_avengers_presents_2008_6",
+      "seriesId": 3424,
+      "seriesName": "Young Avengers Presents (2008)",
+      "onSale": "2008-06-25T00:00:00+0000",
+      "mu": "2008-06-25T00:00:00+0000",
+      "digitalId": 11898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/588b891da37c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "John Dell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers Presents #1-6"
+    },
+    {
+      "issueId": 21414,
+      "title": "Secret Invasion: Runaways/Young Avengers (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21414/secret_invasion_runawaysyoung_avengers_2008_1",
+      "seriesId": 5046,
+      "seriesName": "Secret Invasion: Runaways/Young Avengers (2008)",
+      "onSale": "2008-06-25T00:00:00+0000",
+      "mu": "2008-06-25T00:00:00+0000",
+      "digitalId": 11479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5151f6dd708aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret Invasion: Runaways/Young Avengers #1-3"
+    },
+    {
+      "issueId": 21588,
+      "title": "Secret Invasion: Runaways/Young Avengers (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/21588/secret_invasion_runawaysyoung_avengers_2008_2",
+      "seriesId": 5046,
+      "seriesName": "Secret Invasion: Runaways/Young Avengers (2008)",
+      "onSale": "2008-08-13T00:00:00+0000",
+      "mu": "2008-08-13T00:00:00+0000",
+      "digitalId": 11480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5151f6ec6faec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret Invasion: Runaways/Young Avengers #1-3"
+    },
+    {
+      "issueId": 21785,
+      "title": "Secret Invasion: Runaways/Young Avengers (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/21785/secret_invasion_runawaysyoung_avengers_2008_3",
+      "seriesId": 5046,
+      "seriesName": "Secret Invasion: Runaways/Young Avengers (2008)",
+      "onSale": "2008-09-10T00:00:00+0000",
+      "mu": "2008-09-10T00:00:00+0000",
+      "digitalId": 11481,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5151f6f2ec269",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret Invasion: Runaways/Young Avengers #1-3"
+    },
+    {
+      "issueId": -757866339,
+      "title": "Avengers: The Children's Crusade ? Young Avengers #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31134,
+      "title": "Avengers: The Children's Crusade (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/31134/avengers_the_childrens_crusade_2010_1",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2010-07-08T00:00:00+0000",
+      "mu": "2011-05-17T00:00:00+0000",
+      "digitalId": 15156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/4f6210eddab18",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31136,
+      "title": "Avengers: The Children's Crusade (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/31136/avengers_the_childrens_crusade_2010_2",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2010-09-01T00:00:00+0000",
+      "mu": "2011-09-27T00:00:00+0000",
+      "digitalId": 15888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/4f62106ddde29",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31138,
+      "title": "Avengers: The Children's Crusade (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/31138/avengers_the_childrens_crusade_2010_3",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2010-11-10T00:00:00+0000",
+      "mu": "2011-11-15T00:00:00+0000",
+      "digitalId": 17520,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/4f620fc064599",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31140,
+      "title": "Avengers: The Children's Crusade (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/31140/avengers_the_childrens_crusade_2010_4",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-01-05T00:00:00+0000",
+      "mu": "2013-03-20T14:44:00+0000",
+      "digitalId": 18833,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5c335c7f44735",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31142,
+      "title": "Avengers: The Children's Crusade (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/31142/avengers_the_childrens_crusade_2010_5",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-04-06T00:00:00+0000",
+      "mu": "2012-03-06T00:00:00+0000",
+      "digitalId": 20383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/51685316004de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31144,
+      "title": "Avengers: The Children's Crusade (2010) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/31144/avengers_the_childrens_crusade_2010_6",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-06-29T00:00:00+0000",
+      "mu": "2012-03-06T00:00:00+0000",
+      "digitalId": 22119,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/b0/5168530750909",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31146,
+      "title": "Avengers: The Children's Crusade (2010) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/31146/avengers_the_childrens_crusade_2010_7",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-08-31T00:00:00+0000",
+      "mu": "2012-05-02T00:00:00+0000",
+      "digitalId": 23890,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/4e78b6fb32ad6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dexter Vines",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "penciler"
+        },
+        {
+          "name": "Justin Ponsor",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 31148,
+      "title": "Avengers: The Children's Crusade (2010) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/31148/avengers_the_childrens_crusade_2010_8",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2011-12-28T00:00:00+0000",
+      "mu": "2011-12-28T00:00:00+0000",
+      "digitalId": 25189,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/10/514a0aea7b20c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Livesay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 34271,
+      "title": "Avengers: The Children's Crusade (2010) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/34271/avengers_the_childrens_crusade_2010_9",
+      "seriesId": 9864,
+      "seriesName": "Avengers: The Children's Crusade (2010 - 2012)",
+      "onSale": "2012-03-07T00:00:00+0000",
+      "mu": "2013-02-26T00:00:00+0000",
+      "digitalId": 25765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/03/51684c6275d03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 30623,
+      "title": "Uncanny X-Men (1963) #526",
+      "number": "526",
+      "url": "https://www.marvel.com/comics/issue/30623/uncanny_x-men_1963_526",
+      "seriesId": 2258,
+      "seriesName": "Uncanny X-Men (1963 - 2011)",
+      "onSale": "2010-07-28T00:00:00+0000",
+      "mu": "2011-06-01T00:00:00+0000",
+      "digitalId": 15413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/513f52f0934b8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Edgar Tadeo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Whilce Portacio",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
+    },
+    {
+      "issueId": 46824,
+      "title": "Young Avengers (2013) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/46824/young_avengers_2013_1",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-01-23T00:00:00+0000",
+      "mu": "2013-07-22T09:27:00+0000",
+      "digitalId": 28064,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/5b16c769d894f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
+    },
+    {
+      "issueId": -858384958,
+      "title": "Young Avengers #1-5, Marvel Now! Point One",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
+    },
+    {
+      "issueId": 46829,
+      "title": "Young Avengers (2013) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/46829/young_avengers_2013_2",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-02-27T00:00:00+0000",
+      "mu": "2013-08-26T00:00:00+0000",
+      "digitalId": 28410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5b16d7ae057f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
+    },
+    {
+      "issueId": 46832,
+      "title": "Young Avengers (2013) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/46832/young_avengers_2013_3",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-03-27T00:00:00+0000",
+      "mu": "2013-09-30T00:00:00+0000",
+      "digitalId": 28763,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/5b16f06244535",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
+    },
+    {
+      "issueId": 46834,
+      "title": "Young Avengers (2013) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/46834/young_avengers_2013_4",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-04-24T00:00:00+0000",
+      "mu": "2013-10-28T00:00:00+0000",
+      "digitalId": 29413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/5b16f761d864e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
+    },
+    {
+      "issueId": 46836,
+      "title": "Young Avengers (2013) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/46836/young_avengers_2013_5",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-05-22T00:00:00+0000",
+      "mu": "2013-11-25T00:00:00+0000",
+      "digitalId": 29414,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/5b17e517d1c07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
+    },
+    {
+      "issueId": -1110490528,
+      "title": "Marvel Boy #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Boy #1 To #6"
+    },
+    {
+      "issueId": -1093712909,
+      "title": "Marvel Boy #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Boy #1 To #6"
+    },
+    {
+      "issueId": 10004,
+      "title": "Marvel Boy (2000) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10004/marvel_boy_2000_3",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-10-01T00:00:00+0000",
+      "mu": "2000-10-01T00:00:00+0000",
+      "digitalId": 11238,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/4bb5b936db261",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Boy #1 To #6"
+    },
+    {
+      "issueId": 10005,
+      "title": "Marvel Boy (2000) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10005/marvel_boy_2000_4",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-11-01T00:00:00+0000",
+      "mu": "2000-11-01T00:00:00+0000",
+      "digitalId": 11239,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/4bb5b79309359",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Boy #1 To #6"
+    },
+    {
+      "issueId": 10006,
+      "title": "Marvel Boy (2000) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/10006/marvel_boy_2000_5",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-12-01T00:00:00+0000",
+      "mu": "2000-12-01T00:00:00+0000",
+      "digitalId": 11240,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/4bb5b78dd8b00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. G. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Boy #1 To #6"
+    },
+    {
+      "issueId": 10007,
+      "title": "Marvel Boy (2000) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10007/marvel_boy_2000_6",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2001-01-31T00:00:00+0000",
+      "mu": "2001-01-31T00:00:00+0000",
+      "digitalId": 11241,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/50/4bb5b5bbae141",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sean Parsons",
+          "role": "cover artist"
+        },
+        {
+          "name": "J. G. Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Kelly",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Boy #1 To #6"
+    },
+    {
+      "issueId": 39901,
+      "title": "Journey Into Mystery (2011) #622",
+      "number": "622",
+      "url": "https://www.marvel.com/comics/issue/39901/journey_into_mystery_2011_622",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-04-13T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 20480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5a83537da94a8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 40887,
+      "title": "Journey Into Mystery (2011) #623",
+      "number": "623",
+      "url": "https://www.marvel.com/comics/issue/40887/journey_into_mystery_2011_623",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-05-11T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 20940,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/10/5a84478059481",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 39878,
+      "title": "Journey Into Mystery (2011) #624",
+      "number": "624",
+      "url": "https://www.marvel.com/comics/issue/39878/journey_into_mystery_2011_624",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-06-08T00:00:00+0000",
+      "mu": "2011-06-08T00:00:00+0000",
+      "digitalId": 21455,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5a8451cc49c5b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 41482,
+      "title": "Journey Into Mystery (2011) #625",
+      "number": "625",
+      "url": "https://www.marvel.com/comics/issue/41482/journey_into_mystery_2011_625",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-07-13T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 22631,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5a8459a94ae86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 41056,
+      "title": "Journey Into Mystery (2011) #626",
+      "number": "626",
+      "url": "https://www.marvel.com/comics/issue/41056/journey_into_mystery_2011_626",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-08-17T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 23436,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5a8461ed5823f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 36560,
+      "title": "Journey Into Mystery (2011) #627",
+      "number": "627",
+      "url": "https://www.marvel.com/comics/issue/36560/journey_into_mystery_2011_627",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-09-14T00:00:00+0000",
+      "mu": "2012-07-11T00:00:00+0000",
+      "digitalId": 23861,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/5a8476f45c045",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Richard Elson",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 36557,
+      "title": "Journey Into Mystery (2011) #628",
+      "number": "628",
+      "url": "https://www.marvel.com/comics/issue/36557/journey_into_mystery_2011_628",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-09-28T00:00:00+0000",
+      "mu": "2012-07-11T00:00:00+0000",
+      "digitalId": 24069,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/5a848e1732731",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Allen Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 36555,
+      "title": "Journey Into Mystery (2011) #629",
+      "number": "629",
+      "url": "https://www.marvel.com/comics/issue/36555/journey_into_mystery_2011_629",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-10-19T00:00:00+0000",
+      "mu": "2012-07-11T00:00:00+0000",
+      "digitalId": 24349,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/04/5a7ddea4e88e7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Allen Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Whilce Portacio",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 36553,
+      "title": "Journey Into Mystery (2011) #630",
+      "number": "630",
+      "url": "https://www.marvel.com/comics/issue/36553/journey_into_mystery_2011_630",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-10-26T00:00:00+0000",
+      "mu": "2012-11-19T00:00:00+0000",
+      "digitalId": 24481,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5a7df8cc45755",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Richard Elson",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 37683,
+      "title": "Journey Into Mystery (2011) #631",
+      "number": "631",
+      "url": "https://www.marvel.com/comics/issue/37683/journey_into_mystery_2011_631",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-11-09T00:00:00+0000",
+      "mu": "2012-04-08T00:00:00+0000",
+      "digitalId": 24688,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5a7e064964a20",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Allen Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeffrey Huet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Whilce Portacio",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 37682,
+      "title": "Journey Into Mystery (2011) #632",
+      "number": "632",
+      "url": "https://www.marvel.com/comics/issue/37682/journey_into_mystery_2011_632",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-12-14T00:00:00+0000",
+      "mu": "2012-10-25T00:00:00+0000",
+      "digitalId": 24992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5a7e103877d35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 37681,
+      "title": "Journey Into Mystery (2011) #633",
+      "number": "633",
+      "url": "https://www.marvel.com/comics/issue/37681/journey_into_mystery_2011_633",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2012-01-11T00:00:00+0000",
+      "mu": "2012-07-11T00:00:00+0000",
+      "digitalId": 25208,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/5a81a551dcfba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 38055,
+      "title": "Journey Into Mystery (2011) #634",
+      "number": "634",
+      "url": "https://www.marvel.com/comics/issue/38055/journey_into_mystery_2011_634",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2012-02-08T00:00:00+0000",
+      "mu": "2012-10-29T00:00:00+0000",
+      "digitalId": 25428,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5a81b48d2bb80",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 40565,
+      "title": "Journey Into Mystery (2011) #635",
+      "number": "635",
+      "url": "https://www.marvel.com/comics/issue/40565/journey_into_mystery_2011_635",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2012-03-14T00:00:00+0000",
+      "mu": "2012-10-30T00:00:00+0000",
+      "digitalId": 25785,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5a81c357043ea",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 40567,
+      "title": "Journey Into Mystery (2011) #636",
+      "number": "636",
+      "url": "https://www.marvel.com/comics/issue/40567/journey_into_mystery_2011_636",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2012-04-11T00:00:00+0000",
+      "mu": "2012-10-31T00:00:00+0000",
+      "digitalId": 26077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/e0/5a81cfd4ebae0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Richard Elson",
+          "role": "penciler"
+        },
+        {
+          "name": "Stephanie Hans",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 39968,
+      "title": "Journey Into Mystery (2011) #626.1",
+      "number": "626.1",
+      "url": "https://www.marvel.com/comics/issue/39968/journey_into_mystery_2011_626.1",
+      "seriesId": 14764,
+      "seriesName": "Journey Into Mystery (2011 - 2013)",
+      "onSale": "2011-08-31T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 24535,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5a846d4b2a8dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pasqual Ferry",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rob Rodi",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Journey Into Mystery 622-636, 626.1"
+    },
+    {
+      "issueId": 46838,
+      "title": "Young Avengers (2013) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/46838/young_avengers_2013_6",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-06-26T00:00:00+0000",
+      "mu": "2013-12-30T00:00:00+0000",
+      "digitalId": 29415,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/589ddebd1cb14",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kate Brown",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #6-10"
+    },
+    {
+      "issueId": 46839,
+      "title": "Young Avengers (2013) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/46839/young_avengers_2013_7",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-07-10T00:00:00+0000",
+      "mu": "2014-01-13T00:00:00+0000",
+      "digitalId": 30452,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/a0/51d1e5bc20184",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #6-10"
+    },
+    {
+      "issueId": 46840,
+      "title": "Young Avengers (2013) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/46840/young_avengers_2013_8",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-07-24T00:00:00+0000",
+      "mu": "2014-01-27T00:00:00+0000",
+      "digitalId": 30680,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/51dae5a62566c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #6-10"
+    },
+    {
+      "issueId": 46841,
+      "title": "Young Avengers (2013) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/46841/young_avengers_2013_9",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-08-28T00:00:00+0000",
+      "mu": "2014-02-03T00:00:00+0000",
+      "digitalId": 31348,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/5213bbc450f9a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #6-10"
+    },
+    {
+      "issueId": 46842,
+      "title": "Young Avengers (2013) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/46842/young_avengers_2013_10",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-09-25T00:00:00+0000",
+      "mu": "2014-03-24T00:00:00+0000",
+      "digitalId": 31598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/c0/5238763299221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #6-10"
+    },
+    {
+      "issueId": 46843,
+      "title": "Young Avengers (2013) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/46843/young_avengers_2013_11",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-10-23T00:00:00+0000",
+      "mu": "2014-04-28T00:00:00+0000",
+      "digitalId": 31753,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5260099f3f550",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #11-15"
+    },
+    {
+      "issueId": 46844,
+      "title": "Young Avengers (2013) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/46844/young_avengers_2013_12",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-11-20T00:00:00+0000",
+      "mu": "2014-05-19T00:00:00+0000",
+      "digitalId": 32293,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/528149c2cef7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mike Norton",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #11-15"
+    },
+    {
+      "issueId": 46845,
+      "title": "Young Avengers (2013) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/46845/young_avengers_2013_13",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-12-04T00:00:00+0000",
+      "mu": "2014-07-07T00:00:00+0000",
+      "digitalId": 32292,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/529e53e17331d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #11-15"
+    },
+    {
+      "issueId": 47720,
+      "title": "Young Avengers (2013) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/47720/young_avengers_2013_14",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2013-12-18T00:00:00+0000",
+      "mu": "2014-06-23T00:00:00+0000",
+      "digitalId": 32723,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/52a7889c7afcd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #11-15"
+    },
+    {
+      "issueId": 47721,
+      "title": "Young Avengers (2013) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/47721/young_avengers_2013_15",
+      "seriesId": 17647,
+      "seriesName": "Young Avengers (2013)",
+      "onSale": "2014-01-08T00:00:00+0000",
+      "mu": "2014-07-09T00:00:00+0000",
+      "digitalId": 32886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/589dde7f21dbd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Young Avengers (2013) #11-15"
+    },
+    {
+      "issueId": 61276,
+      "title": "Hawkeye (2016) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61276/hawkeye_2016_1",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2016-12-14T00:00:00+0000",
+      "mu": "2017-06-19T00:00:00+0000",
+      "digitalId": 43424,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/583da12fd43aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonardo Romero",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #1-6"
+    },
+    {
+      "issueId": 61277,
+      "title": "Hawkeye (2016) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/61277/hawkeye_2016_2",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-01-04T00:00:00+0000",
+      "mu": "2017-07-10T00:00:00+0000",
+      "digitalId": 43811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/585c1014c646f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonardo Romero",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #1-6"
+    },
+    {
+      "issueId": 61278,
+      "title": "Hawkeye (2016) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/61278/hawkeye_2016_3",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-02-01T00:00:00+0000",
+      "mu": "2017-08-07T00:00:00+0000",
+      "digitalId": 44039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/588b71976b5b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonardo Romero",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #1-6"
+    },
+    {
+      "issueId": 61279,
+      "title": "Hawkeye (2016) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/61279/hawkeye_2016_4",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44288,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/58af18fab0a5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #1-6"
+    },
+    {
+      "issueId": 61280,
+      "title": "Hawkeye (2016) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/61280/hawkeye_2016_5",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-04-05T00:00:00+0000",
+      "mu": "2017-10-09T00:00:00+0000",
+      "digitalId": 44471,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/58da76ad581ae",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Walsh",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #1-6"
+    },
+    {
+      "issueId": 61281,
+      "title": "Hawkeye (2016) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/61281/hawkeye_2016_6",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-05-03T00:00:00+0000",
+      "mu": "2017-05-03T00:00:00+0000",
+      "digitalId": 44752,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5900a1a8d8fa8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Walsh",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #1-6"
+    },
+    {
+      "issueId": -1065549104,
+      "title": "Hawkeye #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hawkeye (2017) #7-12"
+    },
+    {
+      "issueId": -1048771485,
+      "title": "Hawkeye #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hawkeye (2017) #7-12"
+    },
+    {
+      "issueId": -1031993866,
+      "title": "Hawkeye #9",
+      "number": "9",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hawkeye (2017) #7-12"
+    },
+    {
+      "issueId": -1015216247,
+      "title": "Hawkeye #10",
+      "number": "10",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hawkeye (2017) #7-12"
+    },
+    {
+      "issueId": -998438628,
+      "title": "Hawkeye #11",
+      "number": "11",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hawkeye (2017) #7-12"
+    },
+    {
+      "issueId": -981661009,
+      "title": "Hawkeye #12",
+      "number": "12",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hawkeye (2017) #7-12"
+    },
+    {
+      "issueId": 63956,
+      "title": "Generations: Hawkeye & Hawkeye (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/63956/generations_hawkeye_hawkeye_2017_1",
+      "seriesId": 24801,
+      "seriesName": "Generations: Hawkeye & Hawkeye (2017)",
+      "onSale": "2017-08-30T00:00:00+0000",
+      "mu": "2018-03-05T00:00:00+0000",
+      "digitalId": 45450,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/59934cfb5f403",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Stefano Raffaele",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Smallwood",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1"
+    },
+    {
+      "issueId": 65284,
+      "title": "Hawkeye (2016) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/65284/hawkeye_2016_13",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-12-06T00:00:00+0000",
+      "mu": "2018-06-11T00:00:00+0000",
+      "digitalId": 46759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5a1f347c9ca9d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1"
+    },
+    {
+      "issueId": 65562,
+      "title": "Hawkeye (2016) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/65562/hawkeye_2016_14",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2018-01-03T00:00:00+0000",
+      "mu": "2018-07-09T00:00:00+0000",
+      "digitalId": 47015,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5a382ee80c715",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1"
+    },
+    {
+      "issueId": 66100,
+      "title": "Hawkeye (2016) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/66100/hawkeye_2016_15",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2018-02-07T00:00:00+0000",
+      "mu": "2018-02-07T00:00:00+0000",
+      "digitalId": 47260,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/5a7242ed545d2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1"
+    },
+    {
+      "issueId": 66414,
+      "title": "Hawkeye (2016) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/66414/hawkeye_2016_16",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2018-03-07T00:00:00+0000",
+      "mu": "2018-09-10T00:00:00+0000",
+      "digitalId": 47476,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5a9729480ea06",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1"
+    },
+    {
+      "issueId": 62656,
+      "title": "America (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62656/america_2017_1",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/58af131e0365f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Kevin Wada",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 1-6"
+    },
+    {
+      "issueId": 62705,
+      "title": "America (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/62705/america_2017_2",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-04-05T00:00:00+0000",
+      "mu": "2017-10-09T00:00:00+0000",
+      "digitalId": 44467,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/58da68187c734",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 1-6"
+    },
+    {
+      "issueId": 62813,
+      "title": "America (2017) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/62813/america_2017_3",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-05-10T00:00:00+0000",
+      "mu": "2017-11-13T00:00:00+0000",
+      "digitalId": 44799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5908c015a83b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Stacey Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 1-6"
+    },
+    {
+      "issueId": 63048,
+      "title": "America (2017) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/63048/america_2017_4",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-06-21T00:00:00+0000",
+      "mu": "2017-12-25T00:00:00+0000",
+      "digitalId": 44962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/5941a87d78149",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Ming Doyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 1-6"
+    },
+    {
+      "issueId": 63831,
+      "title": "America (2017) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/63831/america_2017_5",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-07-19T00:00:00+0000",
+      "mu": "2018-01-22T00:00:00+0000",
+      "digitalId": 45309,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5967f115a0e9e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ramon Villalobos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kevin Wada",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 1-6"
+    },
+    {
+      "issueId": 64279,
+      "title": "America (2017) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/64279/america_2017_6",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-08-30T00:00:00+0000",
+      "mu": "2018-03-05T00:00:00+0000",
+      "digitalId": 45536,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/59934c6cc448e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ramon Villalobos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 1-6"
+    },
+    {
+      "issueId": 64578,
+      "title": "America (2017) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/64578/america_2017_7",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-09-20T00:00:00+0000",
+      "mu": "2018-03-26T00:00:00+0000",
+      "digitalId": 45792,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/59b93d14a1fc5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Annie Wu",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aud Koch",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ming Doyle",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 7-12"
+    },
+    {
+      "issueId": 64970,
+      "title": "America (2017) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/64970/america_2017_8",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-10-25T00:00:00+0000",
+      "mu": "2018-04-30T00:00:00+0000",
+      "digitalId": 46040,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/59e7b0dadb831",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 7-12"
+    },
+    {
+      "issueId": 65054,
+      "title": "America (2017) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/65054/america_2017_9",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-11-29T00:00:00+0000",
+      "mu": "2018-06-04T00:00:00+0000",
+      "digitalId": 46430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5a14adf94c6a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 7-12"
+    },
+    {
+      "issueId": 65262,
+      "title": "America (2017) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/65262/america_2017_10",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5a3170dda9a7d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jen Bartel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 7-12"
+    },
+    {
+      "issueId": 65896,
+      "title": "America (2017) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/65896/america_2017_11",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2018-01-17T00:00:00+0000",
+      "mu": "2018-07-23T00:00:00+0000",
+      "digitalId": 47094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5a56670ed4229",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stacey Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 7-12"
+    },
+    {
+      "issueId": 66264,
+      "title": "America (2017) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/66264/america_2017_12",
+      "seriesId": 22997,
+      "seriesName": "America (2017 - 2018)",
+      "onSale": "2018-02-28T00:00:00+0000",
+      "mu": "2018-09-03T00:00:00+0000",
+      "digitalId": 47316,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/e0/5a8de687696d8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "F Flaviano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stacey Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Annie Wu",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabby Rivera",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "America 7-12"
+    },
+    {
+      "issueId": -1131820937,
+      "title": "New Avengers #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 1-6, Avengers 0"
+    },
+    {
+      "issueId": -1148598556,
+      "title": "New Avengers #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 1-6, Avengers 0"
+    },
+    {
+      "issueId": -1165376175,
+      "title": "New Avengers #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 1-6, Avengers 0"
+    },
+    {
+      "issueId": -1182153794,
+      "title": "New Avengers #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 1-6, Avengers 0"
+    },
+    {
+      "issueId": -1198931413,
+      "title": "New Avengers #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 1-6, Avengers 0"
+    },
+    {
+      "issueId": -1215709032,
+      "title": "New Avengers #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 1-6, Avengers 0"
+    },
+    {
+      "issueId": 3589,
+      "title": "Avengers (1998)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/3589/avengers_1998",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "1999-07-01T00:00:00+0000",
+      "mu": "1999-07-01T00:00:00+0000",
+      "digitalId": 5113,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/4bb5103542432",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "New Avengers 1-6, Avengers 0"
+    },
+    {
+      "issueId": -1014377604,
+      "title": "New Avengers #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 7-11"
+    },
+    {
+      "issueId": -1232633746,
+      "title": "New Avengers #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 7-11"
+    },
+    {
+      "issueId": -1215856127,
+      "title": "New Avengers #9",
+      "number": "9",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 7-11"
+    },
+    {
+      "issueId": -1199078508,
+      "title": "New Avengers #10",
+      "number": "10",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 7-11"
+    },
+    {
+      "issueId": -1182300889,
+      "title": "New Avengers #11",
+      "number": "11",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 7-11"
+    },
+    {
+      "issueId": -1282966603,
+      "title": "New Avengers #12",
+      "number": "12",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 12-18"
+    },
+    {
+      "issueId": -1266188984,
+      "title": "New Avengers #13",
+      "number": "13",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 12-18"
+    },
+    {
+      "issueId": -1249411365,
+      "title": "New Avengers #14",
+      "number": "14",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 12-18"
+    },
+    {
+      "issueId": -1098412794,
+      "title": "New Avengers #15",
+      "number": "15",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 12-18"
+    },
+    {
+      "issueId": -1081635175,
+      "title": "New Avengers #16",
+      "number": "16",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 12-18"
+    },
+    {
+      "issueId": -1333498141,
+      "title": "New Avengers #17",
+      "number": "17",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 12-18"
+    },
+    {
+      "issueId": -1350275760,
+      "title": "New Avengers #18",
+      "number": "18",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "New Avengers 12-18"
+    },
+    {
+      "issueId": -1316720522,
+      "title": "West Coast Avengers #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "West Coast Avengers #1 To #4"
+    },
+    {
+      "issueId": -1266387665,
+      "title": "West Coast Avengers #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "West Coast Avengers #1 To #4"
+    },
+    {
+      "issueId": -1283165284,
+      "title": "West Coast Avengers #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "West Coast Avengers #1 To #4"
+    },
+    {
+      "issueId": -1232832427,
+      "title": "West Coast Avengers #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "West Coast Avengers #1 To #4"
+    },
+    {
+      "issueId": -1216054808,
+      "title": "Marvel Rising (2018)",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Rising (2018)"
+    },
+    {
+      "issueId": 66769,
+      "title": "Exiles (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66769/exiles_2018_1",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-04-11T00:00:00+0000",
+      "mu": "2018-10-15T00:00:00+0000",
+      "digitalId": 47729,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5ac52335b4961",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #1 to #6"
+    },
+    {
+      "issueId": 66911,
+      "title": "Exiles (2018) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/66911/exiles_2018_2",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-10-29T00:00:00+0000",
+      "digitalId": 47805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5ad7af63b42c9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #1 to #6"
+    },
+    {
+      "issueId": 67337,
+      "title": "Exiles (2018) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/67337/exiles_2018_3",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-05-09T00:00:00+0000",
+      "mu": "2018-11-12T00:00:00+0000",
+      "digitalId": 47951,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5aea2f826ee06",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #1 to #6"
+    },
+    {
+      "issueId": 68356,
+      "title": "Exiles (2018) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/68356/exiles_2018_4",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-12-17T00:00:00+0000",
+      "digitalId": 48272,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5b1704e8e9ad1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #1 to #6"
+    },
+    {
+      "issueId": 68358,
+      "title": "Exiles (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/68358/exiles_2018_5",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-07-11T00:00:00+0000",
+      "mu": "2019-01-14T00:00:00+0000",
+      "digitalId": 48564,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5b3fe7792251f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Marquez",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #1 to #6"
+    },
+    {
+      "issueId": 68360,
+      "title": "Exiles (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/68360/exiles_2018_6",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-08-08T00:00:00+0000",
+      "mu": "2019-02-11T00:00:00+0000",
+      "digitalId": 48839,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/5b6211b941881",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rod Reis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #1 to #6"
+    },
+    {
+      "issueId": 68361,
+      "title": "Exiles (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/68361/exiles_2018_7",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2018-08-29T00:00:00+0000",
+      "digitalId": 48840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5b7ed70b8509c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lee Ferguson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rod Reis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #7 to #12"
+    },
+    {
+      "issueId": 68362,
+      "title": "Exiles (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/68362/exiles_2018_8",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2019-03-18T00:00:00+0000",
+      "digitalId": 49140,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5b9016f5c16f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #7 to #12"
+    },
+    {
+      "issueId": 68363,
+      "title": "Exiles (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/68363/exiles_2018_9",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-10-10T00:00:00+0000",
+      "mu": "2018-10-10T00:00:00+0000",
+      "digitalId": 49483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5bb531446bccb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #7 to #12"
+    },
+    {
+      "issueId": 68364,
+      "title": "Exiles (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/68364/exiles_2018_10",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-11-14T00:00:00+0000",
+      "mu": "2019-05-20T00:00:00+0000",
+      "digitalId": 49755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5be37153ec2e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #7 to #12"
+    },
+    {
+      "issueId": 68365,
+      "title": "Exiles (2018) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/68365/exiles_2018_11",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2018-12-19T00:00:00+0000",
+      "mu": "2019-06-24T00:00:00+0000",
+      "digitalId": 50081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5c12b439f3181",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #7 to #12"
+    },
+    {
+      "issueId": 68366,
+      "title": "Exiles (2018) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/68366/exiles_2018_12",
+      "seriesId": 24155,
+      "seriesName": "Exiles (2018 - 2019)",
+      "onSale": "2019-01-30T00:00:00+0000",
+      "mu": "2019-08-05T00:00:00+0000",
+      "digitalId": 50437,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5c48fa717937e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alvaro Lopez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Javier Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Saladin Ahmed",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Exiles (2018) #7 to #12"
+    },
+    {
+      "issueId": 70105,
+      "title": "West Coast Avengers (2018) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/70105/west_coast_avengers_2018_5",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2018-12-05T00:00:00+0000",
+      "mu": "2019-06-10T00:00:00+0000",
+      "digitalId": 50018,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5bff092a216f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniele DI Nicuolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "West Coast Avengers (2018) #5 to #10"
+    },
+    {
+      "issueId": 70106,
+      "title": "West Coast Avengers (2018) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/70106/west_coast_avengers_2018_6",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2018-12-19T00:00:00+0000",
+      "mu": "2019-06-24T00:00:00+0000",
+      "digitalId": 50019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5c12b56f14738",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniele DI Nicuolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "West Coast Avengers (2018) #5 to #10"
+    },
+    {
+      "issueId": 70107,
+      "title": "West Coast Avengers (2018) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/70107/west_coast_avengers_2018_7",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2019-01-30T00:00:00+0000",
+      "mu": "2019-08-05T00:00:00+0000",
+      "digitalId": 50357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5c48f735cec7c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Daniele DI Nicuolo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "West Coast Avengers (2018) #5 to #10"
+    },
+    {
+      "issueId": 70108,
+      "title": "West Coast Avengers (2018) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/70108/west_coast_avengers_2018_8",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2019-02-27T00:00:00+0000",
+      "mu": "2019-02-27T00:00:00+0000",
+      "digitalId": 50589,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5c6dd9b2344af",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "West Coast Avengers (2018) #5 to #10"
+    },
+    {
+      "issueId": 70109,
+      "title": "West Coast Avengers (2018) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/70109/west_coast_avengers_2018_9",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2019-03-20T00:00:00+0000",
+      "mu": "2019-09-23T00:00:00+0000",
+      "digitalId": 50898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/5c881b1a316b1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eduard Petrovich",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "West Coast Avengers (2018) #5 to #10"
+    },
+    {
+      "issueId": 70110,
+      "title": "West Coast Avengers (2018) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/70110/west_coast_avengers_2018_10",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2019-04-17T00:00:00+0000",
+      "mu": "2019-10-21T00:00:00+0000",
+      "digitalId": 51108,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5cacf715cdee1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Moy Rodriguez",
+          "role": "penciler"
+        },
+        {
+          "name": "Gang Hyuk Lim",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "West Coast Avengers (2018) #5 to #10"
+    },
+    {
+      "issueId": -1299104260,
+      "title": "Death’s Head: Clone Drive",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Death’s Head: Clone Drive"
+    },
+    {
+      "issueId": 78746,
+      "title": "X-Factor (2020) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/78746/x-factor_2020_1",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2020-07-29T00:00:00+0000",
+      "mu": "2020-11-02T00:00:00+0000",
+      "digitalId": 54668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/70/5e8b6ccb4dfbd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #1 to #3, #5"
+    },
+    {
+      "issueId": 78747,
+      "title": "X-Factor (2020) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/78747/x-factor_2020_2",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2020-08-26T00:00:00+0000",
+      "mu": "2020-11-30T00:00:00+0000",
+      "digitalId": 54944,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/5f3d36a3e13e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #1 to #3, #5"
+    },
+    {
+      "issueId": 78748,
+      "title": "X-Factor (2020) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/78748/x-factor_2020_3",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2020-09-09T00:00:00+0000",
+      "mu": "2020-12-14T00:00:00+0000",
+      "digitalId": 55140,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5f594327ea67f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #1 to #3, #5"
+    },
+    {
+      "issueId": 78750,
+      "title": "X-Factor (2020) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/78750/x-factor_2020_5",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2020-12-02T00:00:00+0000",
+      "mu": "2021-03-08T00:00:00+0000",
+      "digitalId": 55840,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/00/601afd0b1c33a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #1 to #3, #5"
+    },
+    {
+      "issueId": 78751,
+      "title": "X-Factor (2020) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/78751/x-factor_2020_6",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2021-01-06T00:00:00+0000",
+      "mu": "2021-04-12T00:00:00+0000",
+      "digitalId": 56060,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5ff32d3ec8856",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #6 to #10"
+    },
+    {
+      "issueId": 78752,
+      "title": "X-Factor (2020) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/78752/x-factor_2020_7",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2021-02-03T00:00:00+0000",
+      "mu": "2021-05-10T00:00:00+0000",
+      "digitalId": 56188,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/6009e1e6ee13f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #6 to #10"
+    },
+    {
+      "issueId": 78753,
+      "title": "X-Factor (2020) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/78753/x-factor_2020_8",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2021-03-10T00:00:00+0000",
+      "mu": "2021-06-14T00:00:00+0000",
+      "digitalId": 56430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/603d21d04df93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #6 to #10"
+    },
+    {
+      "issueId": 78754,
+      "title": "X-Factor (2020) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/78754/x-factor_2020_9",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2021-05-12T00:00:00+0000",
+      "mu": "2021-08-16T00:00:00+0000",
+      "digitalId": 56836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/608731840ffc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #6 to #10"
+    },
+    {
+      "issueId": 78755,
+      "title": "X-Factor (2020) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/78755/x-factor_2020_10",
+      "seriesId": 28053,
+      "seriesName": "X-Factor (2020 - 2021)",
+      "onSale": "2021-06-30T00:00:00+0000",
+      "mu": "2021-10-04T00:00:00+0000",
+      "digitalId": 56992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/609ee5a64f88e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Baldeon",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Messina",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ivan Shavrin",
+          "role": "penciler"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "X-Factor (2020) #6 to #10"
+    },
+    {
+      "issueId": 96217,
+      "title": "Hawkeye: Kate Bishop (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/96217/hawkeye_kate_bishop_2021_1",
+      "seriesId": 32953,
+      "seriesName": "Hawkeye: Kate Bishop (2021 - 2022)",
+      "onSale": "2021-11-24T00:00:00+0000",
+      "mu": "2022-02-28T00:00:00+0000",
+      "digitalId": 57906,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/619e6383d7477",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Enid Balam",
+          "role": "penciler"
+        },
+        {
+          "name": "Jahnoy Lindsay",
+          "role": "penciler"
+        },
+        {
+          "name": "Marieke Nijkamp",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye: Kate Bishop (2021) #1 to #5"
+    },
+    {
+      "issueId": 96218,
+      "title": "Hawkeye: Kate Bishop (2021) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/96218/hawkeye_kate_bishop_2021_2",
+      "seriesId": 32953,
+      "seriesName": "Hawkeye: Kate Bishop (2021 - 2022)",
+      "onSale": "2021-12-22T00:00:00+0000",
+      "mu": "2022-03-28T00:00:00+0000",
+      "digitalId": 58178,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/61a92d24612cc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Enid Balam",
+          "role": "penciler"
+        },
+        {
+          "name": "Jahnoy Lindsay",
+          "role": "penciler"
+        },
+        {
+          "name": "Marieke Nijkamp",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye: Kate Bishop (2021) #1 to #5"
+    },
+    {
+      "issueId": 96219,
+      "title": "Hawkeye: Kate Bishop (2021) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/96219/hawkeye_kate_bishop_2021_3",
+      "seriesId": 32953,
+      "seriesName": "Hawkeye: Kate Bishop (2021 - 2022)",
+      "onSale": "2022-01-12T00:00:00+0000",
+      "mu": "2022-04-18T00:00:00+0000",
+      "digitalId": 58524,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/61cf408798e95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Enid Balam",
+          "role": "penciler"
+        },
+        {
+          "name": "Jahnoy Lindsay",
+          "role": "penciler"
+        },
+        {
+          "name": "Marieke Nijkamp",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye: Kate Bishop (2021) #1 to #5"
+    },
+    {
+      "issueId": 96220,
+      "title": "Hawkeye: Kate Bishop (2021) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/96220/hawkeye_kate_bishop_2021_4",
+      "seriesId": 32953,
+      "seriesName": "Hawkeye: Kate Bishop (2021 - 2022)",
+      "onSale": "2022-02-09T00:00:00+0000",
+      "mu": "2022-05-16T00:00:00+0000",
+      "digitalId": 58630,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/62015588c8565",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Enid Balam",
+          "role": "penciler"
+        },
+        {
+          "name": "Jahnoy Lindsay",
+          "role": "penciler"
+        },
+        {
+          "name": "Marieke Nijkamp",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye: Kate Bishop (2021) #1 to #5"
+    },
+    {
+      "issueId": 96221,
+      "title": "Hawkeye: Kate Bishop (2021) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/96221/hawkeye_kate_bishop_2021_5",
+      "seriesId": 32953,
+      "seriesName": "Hawkeye: Kate Bishop (2021 - 2022)",
+      "onSale": "2022-03-09T00:00:00+0000",
+      "mu": "2022-06-13T00:00:00+0000",
+      "digitalId": 58811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/6227804fc96ed",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "OREN JUNIOR",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roberto Poggi",
+          "role": "cover artist"
+        },
+        {
+          "name": "Enid Balam",
+          "role": "penciler"
+        },
+        {
+          "name": "Jahnoy Lindsay",
+          "role": "penciler"
+        },
+        {
+          "name": "Marieke Nijkamp",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Hawkeye: Kate Bishop (2021) #1 to #5"
+    },
+    {
+      "issueId": -355596224,
+      "title": "Marvel Voices: Pride (2021)",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Voices: Pride (2021)"
+    },
+    {
+      "issueId": -238152891,
+      "title": "The Last Annihilation: Wiccan & Hulkling",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "The Last Annihilation: Wiccan & Hulkling"
+    },
+    {
+      "issueId": -254930510,
+      "title": "Hulkling & Wiccan",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulkling & Wiccan"
+    },
+    {
+      "issueId": -271708129,
+      "title": "Marvel Voices: Pride (2022)",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Voices: Pride (2022)"
+    },
+    {
+      "issueId": -288485748,
+      "title": "Marvel Voices: Pride (2023)",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Voices: Pride (2023)"
+    },
+    {
+      "issueId": -171042415,
+      "title": "Scarlet Witch by Orlando #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Scarlet Witch by Orlando #6"
+    },
+    {
+      "issueId": -187820034,
+      "title": "Loki by Watters #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Loki by Watters #3"
+    },
+    {
+      "issueId": -70869568,
+      "title": "Guardians of the Galaxy by Kelly #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Guardians of the Galaxy by Kelly #7"
+    }
+  ]
+}
