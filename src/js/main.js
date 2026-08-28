@@ -4553,7 +4553,11 @@ function catalogPrimaryButton(list, reportTarget) {
       dataset: { key: list.id, act: 'open' },
       onclick: () => {
         store.update((state) => setActive(state, saved.id));
-        if (store.lastUpdateOk) showView('read', { push: true });
+        if (!store.lastUpdateOk) {
+          notify(reportTarget, `${list.name} could not be opened because that selection could not be saved.`, 'error', `open:${list.id}`);
+          return;
+        }
+        showView('read', { push: true });
       },
     }, text);
   }
