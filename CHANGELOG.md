@@ -14,6 +14,17 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added a complete Runaways reading guide
+
+In plain English: A complete Runaways reading guide now follows the original 2003 series through
+the latest source-page additions, with 114 comics that link directly to Marvel Unlimited. Two source
+references have no usable reader link, so their original places are kept in the project's research
+record instead of appearing as unusable entries. Nothing you have saved is changed.
+
+For maintainers: the full source boundary has 116 positions: 113 exact provider resolutions, one
+owner-validated official issue identity, and two owner-directed availability exclusions recorded in
+Issue #344.
+
 ### Made cover-off mode easier to scan
 
 In plain English: When cover art is off, each placeholder now fills its tile with layered color and

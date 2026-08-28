@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-08-28T01:18:16.457Z",
-  "pairCount": 56,
-  "chapterCountWithOverlap": 45,
-  "existingListCount": 16,
-  "sharedOccurrenceCount": 297,
+  "generatedAt": "2026-08-28T05:48:01.810Z",
+  "pairCount": 58,
+  "chapterCountWithOverlap": 47,
+  "existingListCount": 17,
+  "sharedOccurrenceCount": 309,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "4ad238ebf22162aace723e9a71d1e4a748053c026d51d8e7d40b7b79798c6987",
+  "matrixSha256": "dbcfa7b40472f0ae9b62afa7830c9b0da5fdec179bd5b283efda11fa8f222c85",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -47,6 +47,10 @@
     {
       "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
       "sharedCount": 32
+    },
+    {
+      "id": "runaways-reading-order",
+      "sharedCount": 12
     },
     {
       "id": "silver-surfer-reading-order",
@@ -590,6 +594,19 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-61",
+      "existingListId": "runaways-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        15061,
+        15071,
+        15072,
+        15073,
+        15074,
+        15075
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-63",
       "existingListId": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 5,
@@ -691,6 +708,19 @@
         14962,
         14963,
         14964
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-75",
+      "existingListId": "runaways-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        107,
+        106,
+        105,
+        110,
+        109,
+        108
       ]
     },
     {
