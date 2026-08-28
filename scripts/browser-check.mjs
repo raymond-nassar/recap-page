@@ -1255,6 +1255,82 @@ const MUTATIONS = [
       });
     },
   },
+  {
+    id: 'long-add-page-delivery-off',
+    breaks: 'long-add-cancellation',
+    why: 'completed pages never reach the durable Add runner, so partial retention and progress disappear',
+    rewriteApi: (source) => source.replace(
+      '      await onPage?.(items, progress);',
+      '',
+    ),
+  },
+  {
+    id: 'long-add-ordering-off',
+    breaks: 'long-add-cancellation',
+    why: 'completed pages keep provider order instead of the chronological order a completed add used',
+    rewriteMain: (source) => source.replace(
+      '  nextOwned.sort((a, b) => compareIssues(merged.state.issues[a], merged.state.issues[b]));',
+      '',
+    ),
+  },
+  {
+    id: 'long-add-cancel-name-off',
+    breaks: 'long-add-cancellation',
+    why: 'the active Cancel action loses the form-specific name that identifies what it stops',
+    rewriteMain: (source) => source.replace(
+      'running ? { label: `Cancel ${config.kind} import`, onClick: () => runner.cancel() } : null,',
+      "running ? { label: 'Stop', onClick: () => runner.cancel() } : null,",
+    ),
+  },
+  {
+    id: 'long-add-active-search-guard-off',
+    breaks: 'long-add-cancellation',
+    why: 'submitting another search hides the only Cancel action while the original import still runs',
+    rewriteMain: (source) => source.replace(
+      / {4}if \(active\?\.\(\)\) \{\r?\n {6}\$\(results\)\.querySelector\('\.notice-act button'\)\?\.focus\(\{ preventScroll: true \}\);\r?\n {6}announce\(`Cancel the current \$\{kind === 'series' \? 'series' : 'creator'\} import before searching again\.`\);\r?\n {6}return;\r?\n {4}\}\r?\n/,
+      '',
+    ),
+  },
+  {
+    id: 'long-add-focus-return-off',
+    breaks: 'long-add-cancellation',
+    why: 'removing a focused Cancel action drops focus instead of returning it to the matching query',
+    rewriteMain: (source) => source.replace(
+      '    $(config.input)?.focus({ preventScroll: true });',
+      '',
+    ),
+  },
+  {
+    id: 'long-add-immediate-retirement-off',
+    breaks: 'long-add-cancellation',
+    why: 'Cancel leaves the old run owning the form until its transport settles, so restart is blocked',
+    rewriteMain: (source) => source.replace(
+      / {4}this\.current = null;\r?\n {4}run\.controller\.abort\(\);/,
+      '    run.controller.abort();',
+    ),
+  },
+  {
+    id: 'long-add-stale-guard-off',
+    breaks: 'long-add-cancellation',
+    why: 'a late page from the cancelled series can be saved into the replacement run',
+    rewriteMain: (source) => source.replace(
+      '          if (signal.aborted || this.current !== run) return;',
+      '',
+    ),
+    rewriteApi: (source) => source.replace(
+      / {6}if \(signal\?\.aborted\) throw abortError\(\);\r?\n {6}await onPage\?\.\(items, progress\);/,
+      '      await onPage?.(items, progress);',
+    ),
+  },
+  {
+    id: 'long-add-failure-status-off',
+    breaks: 'long-add-cancellation',
+    why: 'a failed creator request is reported as stopped rather than failed',
+    rewriteMain: (source) => source.replace(
+      '    return `${name}: loading failed. ${kept}${unsaved} ${friendly(status.error)}`;',
+      '    return `${name}: stopped. ${kept}${unsaved} ${friendly(status.error)}`;',
+    ),
+  },
 ];
 
 // ------------------------------------------------------------------ scenarios
@@ -4172,6 +4248,188 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'long-add-cancellation',
+    title: 'series and creator loads stop cleanly without stale work crossing runs',
+    async run(page, t) {
+      await open(page, '/?long-add=1#/add-series');
+
+      const searchAndAdd = async (form, input, results, query, label) => {
+        await page.$eval(input, (node, value) => { node.value = value; }, query);
+        await click(page, `${form} button[type="submit"]`);
+        const button = `${results} button[aria-label="${label}"]`;
+        try {
+          await page.waitForSelector(button, { visible: true, timeout: 15000 });
+        } catch (error) {
+          const detail = await page.evaluate((selector) => ({
+            result: document.querySelector(selector)?.textContent ?? '',
+            fetches: window.__mrtLongAdd?.fetches ?? [],
+          }), results);
+          throw new Error(`${error.message}: ${JSON.stringify(detail)}`, { cause: error });
+        }
+        await click(page, button);
+      };
+      const storedIds = async () => {
+        const state = await readState(page);
+        const list = state?.lists?.[state.active];
+        return list?.itemIds ?? [];
+      };
+
+      await searchAndAdd(
+        '#form-series',
+        '#series-q',
+        '#series-results',
+        'House of M (2005)',
+        'Add all issues of House of M (2005)',
+      );
+      await page.waitForFunction(
+        () => (document.querySelector('#series-results .grow')?.textContent ?? '').includes('2 of 4 issues saved so far'),
+        { timeout: 15000 },
+      );
+      await page.waitForFunction(
+        () => window.__mrtLongAdd.requests.some((request) => request === 'series:855:2'),
+        { timeout: 15000 },
+      );
+      await page.$eval('#series-q', (node) => { node.value = 'House of M (2015)'; });
+      await click(page, '#form-series button[type="submit"]');
+      const activeSearch = await page.evaluate(() => ({
+        text: document.querySelector('#series-results .grow')?.textContent ?? '',
+        cancel: document.querySelector('#series-results .notice-act button')?.textContent ?? null,
+        focus: document.activeElement?.textContent?.trim() ?? '',
+      }));
+      t.check('searching again cannot hide the active import or its Cancel action',
+        /2 of 4 issues saved so far/.test(activeSearch.text)
+          && activeSearch.cancel === 'Cancel series import'
+          && activeSearch.focus === 'Cancel series import',
+        JSON.stringify(activeSearch));
+
+      const seriesCancel = '#series-results .notice-act button';
+      const seriesCancelNode = await page.$(seriesCancel);
+      const seriesCancelA11y = await page.accessibility.snapshot({
+        root: seriesCancelNode,
+        interestingOnly: false,
+      });
+      await seriesCancelNode.dispose();
+      t.check('the active series run exposes one visible Cancel action with its full accessible name',
+        seriesCancelA11y?.name === 'Cancel series import'
+          && await page.$$eval(seriesCancel, (nodes) => nodes.filter((node) => !node.hidden).length) === 1,
+        JSON.stringify(seriesCancelA11y));
+
+      const partialIds = await storedIds();
+      t.check('the first complete series page is already durable in chronological order',
+        JSON.stringify(partialIds) === JSON.stringify([97101, 97102]), JSON.stringify(partialIds));
+
+      await page.focus(seriesCancel);
+      await click(page, seriesCancel);
+      const stoppedSeries = await page.evaluate(() => ({
+        text: document.querySelector('#series-results .grow')?.textContent ?? '',
+        cancel: document.querySelector('#series-results .notice-act button')?.textContent ?? null,
+        focus: document.activeElement?.id ?? null,
+      }));
+      t.check('series cancellation is immediate, distinct, and returns focus',
+        /stopped after 2 of 4 issues were saved/.test(stoppedSeries.text)
+          && stoppedSeries.cancel === null && stoppedSeries.focus === 'series-q',
+        JSON.stringify(stoppedSeries));
+
+      await searchAndAdd(
+        '#form-series',
+        '#series-q',
+        '#series-results',
+        'House of M (2015)',
+        'Add all issues of House of M (2015)',
+      );
+      await page.waitForSelector(seriesCancel, { visible: true, timeout: 15000 });
+      await page.focus(seriesCancel);
+      await page.waitForFunction(
+        () => (document.querySelector('#series-results .grow')?.textContent ?? '').includes('House of M (2015): 1 issue added.'),
+        { timeout: 15000 },
+      );
+      const replacement = await page.evaluate(() => ({
+        text: document.querySelector('#series-results .grow')?.textContent ?? '',
+        cancel: document.querySelector('#series-results .notice-act button')?.textContent ?? null,
+        focus: document.activeElement?.id ?? null,
+      }));
+      t.check('normal completion removes Cancel, reports completion, and restores focused control',
+        replacement.cancel === null && replacement.focus === 'series-q'
+          && /1 issue added/.test(replacement.text),
+        JSON.stringify(replacement));
+
+      await page.waitForFunction(
+        () => window.__mrtLongAdd.settled.includes('series:855:2'),
+        { timeout: 15000 },
+      );
+      const afterStale = await storedIds();
+      const afterStaleStatus = await page.$eval('#series-results .grow', (node) => node.textContent);
+      t.check('the cancelled run settling late cannot cross into the replacement',
+        JSON.stringify(afterStale) === JSON.stringify([97101, 97102, 97201])
+          && /House of M \(2015\)/.test(afterStaleStatus),
+        JSON.stringify({ ids: afterStale, status: afterStaleStatus }));
+
+      await page.evaluate(() => { location.hash = '#/add-creator'; });
+      await page.waitForSelector('#view-add-creator:not([hidden])', { timeout: 15000 });
+      await searchAndAdd(
+        '#form-creator',
+        '#creator-q',
+        '#creator-results',
+        'Jonathan Hickman',
+        'Add all issues of Jonathan Hickman',
+      );
+      const creatorCancel = '#creator-results .notice-act button';
+      await page.waitForSelector(creatorCancel, { visible: true, timeout: 15000 });
+      const creatorCancelNode = await page.$(creatorCancel);
+      const creatorCancelA11y = await page.accessibility.snapshot({
+        root: creatorCancelNode,
+        interestingOnly: false,
+      });
+      await creatorCancelNode.dispose();
+      t.check('the active creator run exposes its own visible and accessible Cancel action',
+        creatorCancelA11y?.name === 'Cancel creator import', JSON.stringify(creatorCancelA11y));
+
+      const beforeZero = await storedIds();
+      await page.focus(creatorCancel);
+      await click(page, creatorCancel);
+      const afterZero = await storedIds();
+      const zero = await page.evaluate(() => ({
+        text: document.querySelector('#creator-results .grow')?.textContent ?? '',
+        cancel: document.querySelector('#creator-results .notice-act button')?.textContent ?? null,
+        focus: document.activeElement?.id ?? null,
+      }));
+      t.check('zero-page creator cancellation saves nothing and returns focus',
+        /stopped before the first page was saved/.test(zero.text)
+          && zero.cancel === null && zero.focus === 'creator-q'
+          && JSON.stringify(afterZero) === JSON.stringify(beforeZero),
+        JSON.stringify({ zero, beforeZero }));
+
+      await searchAndAdd(
+        '#form-creator',
+        '#creator-q',
+        '#creator-results',
+        'Rye Hickman',
+        'Add all issues of Rye Hickman',
+      );
+      await page.waitForSelector(creatorCancel, { visible: true, timeout: 15000 });
+      await page.focus(creatorCancel);
+      await page.waitForFunction(
+        () => document.querySelector('#creator-results .notice-act button') === null,
+        { timeout: 15000 },
+      );
+      const failedCreator = await page.evaluate(() => ({
+        text: document.querySelector('#creator-results .grow')?.textContent ?? '',
+        cancel: document.querySelector('#creator-results .notice-act button')?.textContent ?? null,
+        focus: document.activeElement?.id ?? null,
+      }));
+      const finalIds = await storedIds();
+      t.check('creator failure stays distinct and keeps its completed page',
+        /loading failed/.test(failedCreator.text)
+          && /1 of 3 issues were saved/.test(failedCreator.text)
+          && failedCreator.cancel === null && failedCreator.focus === 'creator-q'
+          && finalIds.includes(97401),
+        JSON.stringify({ failedCreator, finalIds }));
+      t.check('all cancellation paths retain exactly the intended issues',
+        JSON.stringify(finalIds) === JSON.stringify([97101, 97102, 97201, 97401]),
+        JSON.stringify(finalIds));
+    },
+  },
+  {
     id: 'wiki-lookup',
     title: 'a hand entry can take facts and an issue id from the wiki, and refuses one it already holds',
     async run(page, t) {
@@ -5335,6 +5593,7 @@ async function preparePage(page, origin, mutation) {
   const rewrites = new Map();
   for (const [path, rewrite] of [
     ['/js/main.js', mutation?.rewriteMain],
+    ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
     ['/js/lib/route.js', mutation?.rewriteRoute],
   ]) {
@@ -5380,6 +5639,11 @@ async function preparePage(page, origin, mutation) {
       });
       window.fetch = (input, init) => {
         const url = typeof input === 'string' ? input : input?.url ?? '';
+        const longAdd = new URL(location.href).searchParams.get('long-add') === '1';
+        if (longAdd && !window.__mrtLongAdd) {
+          window.__mrtLongAdd = { requests: [], settled: [], fetches: [] };
+        }
+        if (longAdd) window.__mrtLongAdd.fetches.push(url);
         if (url.endsWith('data/catalog.json')) {
           const fixture = new URL(location.href).searchParams.get('catalog')
             ?? localStorage.getItem('mrt.catalog.fixture');
@@ -5424,6 +5688,84 @@ async function preparePage(page, origin, mutation) {
           if (mode === 'newer') return Promise.resolve(json({ tag_name: 'v9.9.9' }));
           if (mode === 'older') return Promise.resolve(json({ tag_name: 'v1.0.0' }));
           return Promise.resolve(json({ tag_name: `v${appVersion}` }));
+        }
+        const requestUrl = new URL(url, location.href);
+        const longAddPath = /\/(series|creators)\/(\d+)\/issues$/.exec(requestUrl.pathname);
+        if (longAdd && longAddPath) {
+          const [, kind, id] = longAddPath;
+          const offset = Number(requestUrl.searchParams.get('offset') ?? 0);
+          const key = `${kind}:${id}:${offset}`;
+          const issue = (issueId, day, seriesName) => ({
+            id: issueId,
+            title: `${seriesName} #${issueId}`,
+            issueNumber: String(issueId),
+            seriesId: Number(id),
+            seriesName,
+            onSaleDate: `2026-01-${String(day).padStart(2, '0')}T00:00:00+0000`,
+          });
+          const pages = {
+            'series:855:0': {
+              delay: 30,
+              body: {
+                items: [issue(97102, 2, 'House of M (2005)'), issue(97101, 1, 'House of M (2005)')],
+                total: 4,
+                has_next: true,
+              },
+            },
+            'series:855:2': {
+              delay: 600,
+              ignoreAbort: true,
+              body: {
+                items: [issue(97104, 4, 'House of M (2005)'), issue(97103, 3, 'House of M (2005)')],
+                total: 4,
+                has_next: false,
+              },
+            },
+            'series:19462:0': {
+              delay: 180,
+              body: {
+                items: [issue(97201, 5, 'House of M (2015)')],
+                total: 1,
+                has_next: false,
+              },
+            },
+            'creators:11743:0': {
+              delay: 500,
+              body: {
+                items: [issue(97301, 6, 'Jonathan Hickman')],
+                total: 2,
+                has_next: true,
+              },
+            },
+            'creators:14264:0': {
+              delay: 80,
+              body: {
+                items: [issue(97401, 7, 'Rye Hickman')],
+                total: 3,
+                has_next: true,
+              },
+            },
+            'creators:14264:1': { delay: 180, fail: true },
+          };
+          const response = pages[key];
+          window.__mrtLongAdd.requests.push(key);
+          if (!response) return Promise.resolve(json({ items: [], total: 0, has_next: false }));
+          return new Promise((resolve, reject) => {
+            const finish = () => {
+              window.__mrtLongAdd.settled.push(key);
+              if (response.fail) reject(new TypeError('Fixture service failure'));
+              else resolve(json(response.body));
+            };
+            const timer = setTimeout(finish, response.delay);
+            if (!response.ignoreAbort) {
+              const abort = () => {
+                clearTimeout(timer);
+                reject(new DOMException('Aborted', 'AbortError'));
+              };
+              if (init?.signal?.aborted) abort();
+              else init?.signal?.addEventListener('abort', abort, { once: true });
+            }
+          });
         }
         // Guarded by a flag for the same reason as the synopsis stub below: only the wiki
         // scenario sets it, so every other scenario sees the stub it saw before this existed. The

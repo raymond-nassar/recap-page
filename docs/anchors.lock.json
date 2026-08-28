@@ -1524,6 +1524,11 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/api.js:193-230|0": {
+    "anchor": "src/js/api.js:193-230",
+    "fp": "483a2fb7c1d14bef",
+    "head": "// Pages to completion. Guarded so a misbehaving `has_next` cannot loop forever."
+  },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/hydrate.js:59|0": {
     "anchor": "src/js/hydrate.js:59",
     "fp": "2e19500d63dda59d",
@@ -1554,8 +1559,23 @@
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5728-5749|0": {
-    "anchor": "src/js/main.js:5728-5749",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3648-3748|0": {
+    "anchor": "src/js/main.js:3648-3748",
+    "fp": "5b0a81126933765d",
+    "head": "export class LongAddRunner {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3760-3800|0": {
+    "anchor": "src/js/main.js:3760-3800",
+    "fp": "b4c4088a9ef3f244",
+    "head": "function saveLongAddPage(items, context) {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3836-3867|0": {
+    "anchor": "src/js/main.js:3836-3867",
+    "fp": "a28708ff651cc0c5",
+    "head": "function renderLongAddStatus(config, runner, status) {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5984-6005|0": {
+    "anchor": "src/js/main.js:5984-6005",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -1604,8 +1624,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5401-5403|0": {
-    "anchor": "src/js/main.js:5401-5403",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5657-5659|0": {
+    "anchor": "src/js/main.js:5657-5659",
     "fp": "8f226e48e15a5fea",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1789,13 +1809,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3294-3305|0": {
-    "anchor": "CHANGELOG.md:3294-3305",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3302-3313|0": {
+    "anchor": "CHANGELOG.md:3302-3313",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3307-3317|0": {
-    "anchor": "CHANGELOG.md:3307-3317",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3315-3325|0": {
+    "anchor": "CHANGELOG.md:3315-3325",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -1929,8 +1949,8 @@
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:5085-5143|0": {
-    "anchor": "src/js/main.js:5085-5143",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:5341-5399|0": {
+    "anchor": "src/js/main.js:5341-5399",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
@@ -1994,8 +2014,8 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/main.js:4875-4884|0": {
-    "anchor": "src/js/main.js:4875-4884",
+  "docs/UX_STUDY.md|sweep-result|src/js/main.js:5131-5140|0": {
+    "anchor": "src/js/main.js:5131-5140",
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
@@ -2179,8 +2199,8 @@
     "fp": "840763abad460542",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5728-5749|0": {
-    "anchor": "src/js/main.js:5728-5749",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5984-6005|0": {
+    "anchor": "src/js/main.js:5984-6005",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -2204,8 +2224,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:4989|0": {
-    "anchor": "src/js/main.js:4989",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:5245|0": {
+    "anchor": "src/js/main.js:5245",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2219,8 +2239,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5378-5384|0": {
-    "anchor": "src/js/main.js:5378-5384",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5634-5640|0": {
+    "anchor": "src/js/main.js:5634-5640",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
@@ -5844,8 +5864,8 @@
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:5962|0": {
-    "anchor": "src/js/main.js:5962",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:6218|0": {
+    "anchor": "src/js/main.js:6218",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
@@ -5944,8 +5964,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/main.js:3764-3767|0": {
-    "anchor": "src/js/main.js:3764-3767",
+  "test/passive-announce.test.js|preamble|src/js/main.js:4046-4049|0": {
+    "anchor": "src/js/main.js:4046-4049",
     "fp": "aef17ca5da7c2c9f",
     "head": "announce(withSaveEducation("
   },

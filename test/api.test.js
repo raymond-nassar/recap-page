@@ -27,6 +27,26 @@ function stubLoader(impl) {
 
 const names = (result) => result.items.map((i) => i.name);
 
+function pagedApi(responses) {
+  const api = new MarvelApi();
+  api.pageCalls = [];
+  api.get = async (path, { signal } = {}) => {
+    api.pageCalls.push({ path, signal });
+    const next = responses.shift();
+    if (next instanceof Error) throw next;
+    return next;
+  };
+  return api;
+}
+
+const rawIssue = (id) => ({
+  id,
+  title: `Issue ${id}`,
+  issueNumber: String(id),
+  seriesId: 10,
+  seriesName: 'Paged',
+});
+
 test('a series search reads the vendored index rather than the API', async () => {
   const loadIndex = stubLoader(() => INDEX);
   const api = new MarvelApi({ loadIndex });
@@ -110,6 +130,72 @@ test('a warmed index is reused rather than fetched again by the search', async (
   await api.warmNameIndex('series');
   await api.searchSeries('civil war');
   assert.deepEqual(loadIndex.calls, ['series']);
+});
+
+test('series pagination delivers each normalized page and preserves the complete result', async () => {
+  const api = pagedApi([
+    { items: [rawIssue(3), rawIssue(2)], total: 3, has_next: true },
+    { items: [rawIssue(1)], total: 3, has_next: false },
+  ]);
+  const pages = [];
+
+  const issues = await api.seriesIssues(10, {
+    onPage: (items, progress) => pages.push({ ids: items.map((item) => item.issueId), progress }),
+  });
+
+  assert.deepEqual(pages, [
+    { ids: [3, 2], progress: { loaded: 2, total: 3 } },
+    { ids: [1], progress: { loaded: 3, total: 3 } },
+  ]);
+  assert.deepEqual(issues.map((item) => item.issueId), [3, 2, 1]);
+  assert.equal(issues[0].seriesName, 'Paged');
+});
+
+test('creator pagination awaits page delivery before requesting the next page', async () => {
+  const api = pagedApi([
+    { items: [rawIssue(2)], total: 2, has_next: true },
+    { items: [rawIssue(1)], total: 2, has_next: false },
+  ]);
+  let release;
+  const gate = new Promise((resolve) => { release = resolve; });
+  const pages = [];
+
+  const loading = api.creatorIssues(7, {
+    onPage: async (items) => {
+      pages.push(items.map((item) => item.issueId));
+      if (pages.length === 1) await gate;
+    },
+  });
+  await new Promise((resolve) => setTimeout(resolve, 0));
+
+  assert.equal(api.pageCalls.length, 1, 'the second request started before the first page was handled');
+  release();
+  const issues = await loading;
+  assert.deepEqual(pages, [[2], [1]]);
+  assert.deepEqual(issues.map((item) => item.issueId), [2, 1]);
+});
+
+test('aborting after a delivered page prevents every later page callback', async () => {
+  const api = pagedApi([
+    { items: [rawIssue(2)], total: 2, has_next: true },
+    { items: [rawIssue(1)], total: 2, has_next: false },
+  ]);
+  const controller = new AbortController();
+  const pages = [];
+
+  await assert.rejects(
+    () => api.seriesIssues(10, {
+      signal: controller.signal,
+      onPage: (items) => {
+        pages.push(items.map((item) => item.issueId));
+        controller.abort();
+      },
+    }),
+    { name: 'AbortError' },
+  );
+
+  assert.deepEqual(pages, [[2]]);
+  assert.equal(api.pageCalls.length, 1, 'a later page was requested after abort');
 });
 
 // The kind-to-file map in the real loader is the gate, so this exercises the shipped default

@@ -144,8 +144,8 @@ test('every approved list path records only its final cumulative operation resul
   assert.match(MAIN, /return \{ listId: id, ok: true \};/);
   assert.equal(
     [...MAIN.matchAll(/recordNonEmptyListSave\(/g)].length,
-    7,
-    'one definition and the add, import, two unresolved, manual, and curated paths must be explicit',
+    8,
+    'one definition and the direct add, long add, import, two unresolved, manual, and curated paths must be explicit',
   );
   assert.doesNotMatch(MAIN, /const listId = ensureList\(/);
   assert.match(MAIN, /const operationOk = setupOk && store\.lastUpdateOk;/);

@@ -191,15 +191,20 @@ export class MarvelApi {
   }
 
   // Pages to completion. Guarded so a misbehaving `has_next` cannot loop forever.
-  async allPages(path, { signal, onProgress, maxPages = 60 } = {}) {
+  async allPages(path, { signal, onPage, onProgress, maxPages = 60 } = {}) {
     const out = [];
     let offset = 0;
     for (let page = 0; page < maxPages; page += 1) {
+      if (signal?.aborted) throw abortError();
       const sep = path.includes('?') ? '&' : '?';
       const data = await this.get(`${path}${sep}limit=${MAX_LIMIT}&offset=${offset}`, { signal });
       const items = data.items ?? [];
       out.push(...items);
-      onProgress?.({ loaded: out.length, total: data.total ?? null });
+      const progress = { loaded: out.length, total: data.total ?? null };
+      if (signal?.aborted) throw abortError();
+      await onPage?.(items, progress);
+      if (signal?.aborted) throw abortError();
+      onProgress?.(progress);
       if (!data.has_next || items.length === 0) break;
       offset += items.length;
       if (data.total != null && out.length >= data.total) break;
@@ -208,12 +213,20 @@ export class MarvelApi {
   }
 
   async seriesIssues(seriesId, opts = {}) {
-    const items = await this.allPages(`/series/${Number(seriesId)}/issues`, opts);
+    const { onPage, ...pageOpts } = opts;
+    const items = await this.allPages(`/series/${Number(seriesId)}/issues`, {
+      ...pageOpts,
+      onPage: onPage ? (page, progress) => onPage(page.map(toIssue), progress) : undefined,
+    });
     return items.map(toIssue);
   }
 
   async creatorIssues(creatorId, opts = {}) {
-    const items = await this.allPages(`/creators/${Number(creatorId)}/issues`, opts);
+    const { onPage, ...pageOpts } = opts;
+    const items = await this.allPages(`/creators/${Number(creatorId)}/issues`, {
+      ...pageOpts,
+      onPage: onPage ? (page, progress) => onPage(page.map(toIssue), progress) : undefined,
+    });
     // Creator responses omit detailUrl and unlimitedDate; toIssue reconstructs the URL and
     // leaves availability `unknown` rather than implying the issue is not in Unlimited.
     return items.map(toIssue);

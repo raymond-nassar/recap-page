@@ -7,6 +7,8 @@ import { fileURLToPath } from 'node:url';
 import {
   ADD_VIEWS, LEGACY_VIEW_ALIASES, VIEWS, formatRoute, parseRoute,
 } from '../src/js/lib/route.js';
+import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import { LongAddRunner, longAddStatusLine, mergeLongAddPage } from '../src/js/main.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -32,6 +34,228 @@ function page(view) {
 
 const pages = new Map(ADD_VIEWS.map((view) => [view, page(view)]));
 const allPages = [...pages.values()].join('\n');
+
+function controlledPages() {
+  const runs = [];
+  return {
+    runs,
+    load(item, { signal, onPage }) {
+      let finish;
+      let fail;
+      let loaded = 0;
+      const pending = new Promise((resolve, reject) => {
+        finish = resolve;
+        fail = reject;
+      });
+      runs.push({
+        item,
+        signal,
+        finish,
+        fail,
+        async page(items, total) {
+          loaded += items.length;
+          await onPage(items, { loaded, total });
+        },
+      });
+      return pending;
+    },
+  };
+}
+
+const issue = (id, day = id) => ({
+  issueId: id,
+  title: `Issue ${id}`,
+  number: String(id),
+  onSale: `2026-01-${String(day).padStart(2, '0')}T00:00:00+0000`,
+  source: 'api',
+});
+
+function listState(ids = []) {
+  let state = createList(createEmptyState(), { name: 'Reading List' });
+  const listId = state.listOrder[0];
+  state = addIssuesToList(state, listId, ids.map((id) => issue(id))).state;
+  return { state, listId };
+}
+
+test('pagewise long adds preserve existing order and sort only issues owned by the run', () => {
+  const { state: initial, listId } = listState([90, 91]);
+  let context = { listId, insertAt: 2, ownedIds: [] };
+
+  const first = mergeLongAddPage(initial, context, [issue(4), issue(2)]);
+  context = { ...context, ownedIds: first.ownedIds };
+  const second = mergeLongAddPage(first.state, context, [issue(3), issue(1), issue(2)]);
+
+  assert.deepEqual(second.state.lists[listId].itemIds, [90, 91, 1, 2, 3, 4]);
+  assert.deepEqual(second.ownedIds, [1, 2, 3, 4]);
+  assert.deepEqual(
+    { firstAdded: first.added, secondAdded: second.added, secondSkipped: second.skipped },
+    { firstAdded: 2, secondAdded: 2, secondSkipped: 1 },
+  );
+});
+
+test('a long add completes with persisted-page counts distinct from received counts', async () => {
+  const api = controlledPages();
+  const saved = [];
+  const statuses = [];
+  const runner = new LongAddRunner({
+    load: api.load,
+    savePage(items, context) {
+      saved.push(items.map((item) => item.issueId));
+      return { ok: true, added: items.length, skipped: 0, context };
+    },
+    onStatus: (status) => statuses.push(status),
+  });
+
+  const pending = runner.start({ id: 1, name: 'Complete', issueCount: 2 });
+  await api.runs[0].page([issue(2), issue(1)], 2);
+  api.runs[0].finish();
+  const result = await pending;
+
+  assert.deepEqual(saved, [[2, 1]]);
+  assert.equal(result.phase, 'complete');
+  assert.deepEqual(
+    { received: result.received, persisted: result.persisted, pages: result.pages, added: result.added },
+    { received: 2, persisted: 2, pages: 1, added: 2 },
+  );
+  assert.deepEqual(statuses.map((status) => status.phase), ['running', 'running', 'complete']);
+});
+
+test('cancel retires immediately and stale work cannot mutate or tear down its replacement', async () => {
+  const api = controlledPages();
+  const saved = [];
+  const statuses = [];
+  const runner = new LongAddRunner({
+    load: api.load,
+    savePage(items, context) {
+      saved.push({ run: context.run, ids: items.map((item) => item.issueId) });
+      return { ok: true, added: items.length, skipped: 0, context };
+    },
+    onStatus: (status) => statuses.push(status),
+  });
+
+  const first = runner.start({ id: 1, name: 'First', issueCount: 3 }, { run: 'first' });
+  await api.runs[0].page([issue(1)], 3);
+  const cancelled = runner.cancel();
+
+  assert.equal(cancelled.phase, 'cancelled');
+  assert.equal(cancelled.persisted, 1);
+  assert.equal(runner.active, false, 'Cancel waited for the old transport to settle');
+
+  const second = runner.start({ id: 2, name: 'Second', issueCount: 1 }, { run: 'second' });
+  assert.equal(runner.active, true, 'the replacement did not start immediately');
+  const replacement = runner.current;
+
+  await api.runs[0].page([issue(2)], 3);
+  api.runs[0].finish();
+  await first;
+  assert.equal(runner.current, replacement, 'old teardown cleared replacement ownership');
+
+  await api.runs[1].page([issue(9)], 1);
+  api.runs[1].finish();
+  const completed = await second;
+
+  assert.deepEqual(saved, [
+    { run: 'first', ids: [1] },
+    { run: 'second', ids: [9] },
+  ]);
+  assert.equal(completed.phase, 'complete');
+  assert.equal(statuses.at(-1).item.name, 'Second', 'old status replaced the new run');
+});
+
+test('zero-page cancellation and failures remain distinct terminal outcomes', async () => {
+  const zeroApi = controlledPages();
+  const zeroStatuses = [];
+  const zero = new LongAddRunner({
+    load: zeroApi.load,
+    savePage() {
+      assert.fail('zero-page cancellation attempted a save');
+    },
+    onStatus: (status) => zeroStatuses.push(status),
+  });
+  const zeroPending = zero.start({ id: 1, name: 'Zero' });
+  zero.cancel();
+  zeroApi.runs[0].finish();
+  const cancelled = await zeroPending;
+
+  assert.equal(cancelled.phase, 'cancelled');
+  assert.equal(cancelled.persisted, 0);
+  assert.equal(zeroStatuses.at(-1).phase, 'cancelled');
+
+  const failedApi = controlledPages();
+  const failedStatuses = [];
+  const failed = new LongAddRunner({
+    load: failedApi.load,
+    savePage(items, context) {
+      return { ok: true, added: items.length, skipped: 0, context };
+    },
+    onStatus: (status) => failedStatuses.push(status),
+  });
+  const failedPending = failed.start({ id: 2, name: 'Failed' });
+  await failedApi.runs[0].page([issue(2)], 3);
+  failedApi.runs[0].fail(new TypeError('offline'));
+  const failure = await failedPending;
+
+  assert.equal(failure.phase, 'failed');
+  assert.equal(failure.persisted, 1);
+  assert.equal(failedStatuses.at(-1).phase, 'failed');
+});
+
+test('a refused page write fails without counting that page as persisted', async () => {
+  const statuses = [];
+  const runner = new LongAddRunner({
+    load: async (_item, { onPage }) => {
+      await onPage([issue(1)], { loaded: 1, total: 2 });
+    },
+    savePage: () => ({ ok: false, error: 'Browser storage is full.' }),
+    onStatus: (status) => statuses.push(status),
+  });
+
+  const result = await runner.start({ id: 1, name: 'No room' });
+
+  assert.equal(result.phase, 'failed');
+  assert.equal(result.error.name, 'SaveError');
+  assert.equal(result.received, 1);
+  assert.equal(result.persisted, 0);
+  assert.equal(result.pages, 0);
+  assert.equal(statuses.at(-1).phase, 'failed');
+});
+
+test('long-add status keeps cancellation, failure, and completion distinct', () => {
+  const base = {
+    item: { name: 'Fixture' },
+    context: {},
+    received: 2,
+    persisted: 2,
+    total: 4,
+    pages: 1,
+    added: 2,
+    skipped: 0,
+  };
+
+  assert.equal(
+    longAddStatusLine({ ...base, phase: 'cancelled' }, { name: 'Fixture', kind: 'series' }),
+    'Fixture: stopped after 2 of 4 issues were saved. 2 added.',
+  );
+  assert.match(
+    longAddStatusLine(
+      { ...base, phase: 'failed', error: new TypeError('offline') },
+      { name: 'Fixture', kind: 'series' },
+    ),
+    /^Fixture: loading failed\./,
+  );
+  assert.equal(
+    longAddStatusLine({ ...base, phase: 'complete' }, { name: 'Fixture', kind: 'series' }),
+    'Fixture: 2 issues added.',
+  );
+});
+
+test('series and creator long adds use independent runners and active Cancel actions', () => {
+  assert.match(main, /const seriesAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'series'[\s\S]*?input: '#series-q'/);
+  assert.match(main, /const creatorAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'creator'[\s\S]*?input: '#creator-q'/);
+  assert.match(main, /running \? \{ label: `Cancel \$\{config\.kind\} import`, onClick: \(\) => runner\.cancel\(\) \} : null/);
+  assert.match(main, /else if \(!running && focusedCancel\) \{\s*\$\(config\.input\)\?\.focus\(\{ preventScroll: true \}\);/);
+  assert.match(main, /if \(active\?\.\(\)\) \{[\s\S]*?Cancel the current \$\{kind === 'series' \? 'series' : 'creator'\} import before searching again\./);
+});
 
 test('the Add hub groups five routes with five dedicated pages', () => {
   assert.deepEqual(ADD_VIEWS, ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual']);

@@ -3587,12 +3587,14 @@ function wireAdd() {
     section: '#sec-series', form: '#form-series', input: '#series-q', results: '#series-results',
     kind: 'series', many: 'series', btnClass: 'btn btn-g',
     search: (q, opts) => api.searchSeries(q, opts), onAdd: addSeries,
+    active: () => seriesAddRunner.active,
   });
 
   wireNameSearch({
     section: '#sec-creator', form: '#form-creator', input: '#creator-q', results: '#creator-results',
     kind: 'creators', many: 'creators', btnClass: 'btn btn-g',
     search: (q, opts) => api.searchCreators(q, opts), onAdd: addCreator,
+    active: () => creatorAddRunner.active,
   });
 
   $('#form-import').addEventListener('submit', (e) => { e.preventDefault(); doImport(); });
@@ -3611,11 +3613,291 @@ function wireAdd() {
 
 const NAME_SEARCH_LIMIT = 40;
 
+export function mergeLongAddPage(state, { listId, insertAt, ownedIds = [] }, issues) {
+  const list = state.lists[listId];
+  if (!list) return { state, added: 0, skipped: 0, ownedIds, missing: true };
+
+  const before = new Set(list.itemIds);
+  const merged = addIssuesToList(state, listId, issues);
+  const mergedList = merged.state.lists[listId];
+  const fresh = mergedList.itemIds.filter((id) => !before.has(id));
+  const present = new Set(mergedList.itemIds);
+  const nextOwned = [...new Set([...ownedIds, ...fresh])].filter((id) => present.has(id));
+  const owned = new Set(nextOwned);
+  const stable = mergedList.itemIds.filter((id) => !owned.has(id));
+  const at = Math.max(0, Math.min(Number(insertAt) || 0, stable.length));
+  nextOwned.sort((a, b) => compareIssues(merged.state.issues[a], merged.state.issues[b]));
+
+  return {
+    state: {
+      ...merged.state,
+      lists: Object.assign(Object.create(null), merged.state.lists, {
+        [listId]: {
+          ...mergedList,
+          itemIds: stable.slice(0, at).concat(nextOwned, stable.slice(at)),
+        },
+      }),
+    },
+    added: merged.added,
+    skipped: merged.skipped,
+    ownedIds: nextOwned,
+    missing: false,
+  };
+}
+
+export class LongAddRunner {
+  constructor({ load, savePage, onStatus = () => {} } = {}) {
+    this.load = load;
+    this.savePage = savePage;
+    this.onStatus = onStatus;
+    this.current = null;
+  }
+
+  get active() {
+    return this.current !== null;
+  }
+
+  status(run, phase, error = null) {
+    return {
+      phase,
+      item: run.item,
+      context: run.context,
+      received: run.received,
+      persisted: run.persisted,
+      total: run.total,
+      pages: run.pages,
+      added: run.added,
+      skipped: run.skipped,
+      error,
+      running: phase === 'running',
+    };
+  }
+
+  cancel() {
+    const run = this.current;
+    if (!run) return null;
+    const status = this.status(run, 'cancelled');
+    run.terminal = status;
+    this.current = null;
+    run.controller.abort();
+    this.onStatus(status);
+    return status;
+  }
+
+  async start(item, context = {}) {
+    if (this.current) return this.status(this.current, 'running');
+
+    const run = {
+      item,
+      context,
+      controller: new AbortController(),
+      received: 0,
+      persisted: 0,
+      total: Number(item?.issueCount) || null,
+      pages: 0,
+      added: 0,
+      skipped: 0,
+      terminal: null,
+    };
+    this.current = run;
+    this.onStatus(this.status(run, 'running'));
+    if (this.current !== run) return run.terminal;
+
+    const { signal } = run.controller;
+    try {
+      await this.load(item, {
+        signal,
+        onPage: (items, progress = {}) => {
+          if (signal.aborted || this.current !== run) return;
+          run.received = Number.isFinite(Number(progress.loaded))
+            ? Number(progress.loaded)
+            : run.received + items.length;
+          run.total = progress.total == null ? run.total : Number(progress.total);
+          const saved = this.savePage(items, run.context);
+          if (signal.aborted || this.current !== run) return;
+          if (!saved?.ok) {
+            const error = new Error(saved?.error || 'That page could not be saved.');
+            error.name = 'SaveError';
+            throw error;
+          }
+          run.context = saved.context ?? run.context;
+          run.persisted += Number(saved.persisted ?? items.length);
+          run.pages += 1;
+          run.added += Number(saved.added) || 0;
+          run.skipped += Number(saved.skipped) || 0;
+          this.onStatus(this.status(run, 'running'));
+        },
+      });
+    } catch (error) {
+      if (this.current !== run) return run.terminal;
+      this.current = null;
+      const phase = signal.aborted || error?.name === 'AbortError' ? 'cancelled' : 'failed';
+      const status = this.status(run, phase, error);
+      run.terminal = status;
+      this.onStatus(status);
+      return status;
+    }
+
+    if (this.current !== run) return run.terminal;
+    this.current = null;
+    const status = this.status(run, signal.aborted ? 'cancelled' : 'complete');
+    run.terminal = status;
+    this.onStatus(status);
+    return status;
+  }
+}
+
+function longAddContext() {
+  const listId = activeListId();
+  return {
+    listId,
+    insertAt: listId ? (store.state.lists[listId]?.itemIds.length ?? 0) : 0,
+    ownedIds: [],
+    transition: null,
+  };
+}
+
+function saveLongAddPage(items, context) {
+  let nextContext = context;
+  if (!items.length) return { ok: true, added: 0, skipped: 0, context: nextContext };
+
+  if (!nextContext.listId) {
+    const created = store.update((state) => createList(state, { name: DEFAULT_LIST_NAME }));
+    if (!store.lastUpdateOk) return { ok: false, error: store.lastError, context: nextContext };
+    const listId = created.listOrder[created.listOrder.length - 1];
+    store.update((state) => setActive(state, listId));
+    if (!store.lastUpdateOk) return { ok: false, error: store.lastError, context: nextContext };
+    nextContext = { ...nextContext, listId, insertAt: 0 };
+  }
+
+  if (!Object.hasOwn(store.state.lists, nextContext.listId)) {
+    return {
+      ok: false,
+      error: 'The destination list no longer exists. No later pages were added.',
+      context: nextContext,
+    };
+  }
+
+  let merged;
+  store.update((state) => {
+    merged = mergeLongAddPage(state, nextContext, items);
+    return merged.state;
+  });
+  if (!store.lastUpdateOk) {
+    return { ok: false, error: store.lastError, context: nextContext };
+  }
+
+  const transition = nextContext.transition
+    ?? recordNonEmptyListSave({ ok: true, added: merged.added, listId: nextContext.listId });
+  nextContext = { ...nextContext, ownedIds: merged.ownedIds, transition };
+  return {
+    ok: true,
+    added: merged.added,
+    skipped: merged.skipped,
+    persisted: merged.added + merged.skipped,
+    context: nextContext,
+  };
+}
+
+export function longAddStatusLine(status, { name, kind }) {
+  const total = status.total ? ` of ${status.total}` : '';
+  const savedIssues = `${status.persisted}${total} issue${status.total || status.persisted !== 1 ? 's' : ''}`;
+  if (status.phase === 'running') {
+    if (!status.received) {
+      return kind === 'creator'
+        ? `Loading issues credited to ${name}\u2026`
+        : `Loading all issues of ${name}\u2026`;
+    }
+    return `${name}: ${savedIssues} saved so far.`;
+  }
+  if (status.phase === 'cancelled') {
+    if (!status.persisted) return `${name}: stopped before the first page was saved.`;
+    return `${name}: stopped after ${savedIssues} ${status.total || status.persisted !== 1 ? 'were' : 'was'} saved. `
+      + `${status.added} added${status.skipped ? `, ${status.skipped} skipped as duplicates` : ''}.`;
+  }
+  if (status.phase === 'failed') {
+    const kept = status.persisted
+      ? `${savedIssues} ${status.total || status.persisted !== 1 ? 'were' : 'was'} saved.`
+      : 'No completed page was saved.';
+    const unsaved = status.received > status.persisted
+      ? ` ${status.received - status.persisted} received issue${status.received - status.persisted === 1 ? '' : 's'} could not be saved.`
+      : '';
+    return `${name}: loading failed. ${kept}${unsaved} ${friendly(status.error)}`;
+  }
+  const duplicate = status.skipped
+    ? `, ${status.skipped} ${kind === 'creator' ? 'duplicates' : 'skipped as duplicates'}`
+    : '';
+  const ending = `${name}: ${status.added} ${kind === 'series' ? `issue${status.added === 1 ? '' : 's'} ` : ''}added${duplicate}.`;
+  return kind === 'creator'
+    ? `${ending} Creator records omit Unlimited dates, so availability shows as unknown until details are fetched.`
+    : ending;
+}
+
+function renderLongAddStatus(config, runner, status) {
+  const box = $(config.results);
+  const focusedCancel = box?.querySelector('.notice-act button') === document.activeElement;
+  const running = status.phase === 'running';
+  const message = running
+    ? longAddStatusLine(status, { ...config, name: status.item.name })
+    : withSaveEducation(
+      longAddStatusLine(status, { ...config, name: status.item.name }),
+      status.context?.transition,
+    );
+  notify(
+    config.results,
+    message,
+    running ? 'busy' : status.phase === 'failed' ? 'error' : status.phase === 'cancelled' ? 'warn' : 'ok',
+    config.results,
+    running ? { label: `Cancel ${config.kind} import`, onClick: () => runner.cancel() } : null,
+  );
+
+  if (running && focusedCancel) {
+    box.querySelector('.notice-act button')?.focus({ preventScroll: true });
+  } else if (!running && focusedCancel) {
+    $(config.input)?.focus({ preventScroll: true });
+  }
+  if (!running && status.added > 0 && status.context?.listId) {
+    queueLongAddHydration(status.context.listId);
+  }
+}
+
+let longAddHydration = Promise.resolve();
+function queueLongAddHydration(listId) {
+  longAddHydration = longAddHydration.then(() => hydrator.start(listId));
+}
+
+function createLongAddRunner(config) {
+  const runner = new LongAddRunner({
+    load: (item, options) => config.load(item.id, options),
+    savePage: saveLongAddPage,
+    onStatus: (status) => renderLongAddStatus(config, runner, status),
+  });
+  return runner;
+}
+
+const seriesAddRunner = createLongAddRunner({
+  kind: 'series',
+  input: '#series-q',
+  results: '#series-results',
+  load: (id, options) => api.seriesIssues(id, options),
+});
+const creatorAddRunner = createLongAddRunner({
+  kind: 'creator',
+  input: '#creator-q',
+  results: '#creator-results',
+  load: (id, options) => api.creatorIssues(id, options),
+});
+
 function wireNameSearch({
-  section: _section, form, input, results, kind: _kind, many, btnClass, search, onAdd,
+  section: _section, form, input, results, kind, many, btnClass, search, onAdd, active,
 }) {
   $(form).addEventListener('submit', async (e) => {
     e.preventDefault();
+    if (active?.()) {
+      $(results).querySelector('.notice-act button')?.focus({ preventScroll: true });
+      announce(`Cancel the current ${kind === 'series' ? 'series' : 'creator'} import before searching again.`);
+      return;
+    }
     const q = $(input).value.trim();
     if (!q) return;
     notify(results, 'Searching…', 'busy');
@@ -3777,37 +4059,11 @@ function addToActive(issues, message, { sort = false } = {}) {
 }
 
 async function addSeries(series) {
-  notify('#series-results', `Loading all issues of ${series.name}…`, 'busy');
-  try {
-    const issues = await api.seriesIssues(series.id, {
-      onProgress: ({ loaded, total }) => announce(`Loaded ${loaded}${total ? ` of ${total}` : ''} issues…`),
-    });
-    // The API returns series issues newest-first; reading order needs oldest-first.
-    const sorted = [...issues].sort(compareIssues);
-    const { added, skipped, ok } = addToActive(sorted, `${series.name}:`);
-    if (!ok) return notify('#series-results', `${series.name}: nothing was added, because that change could not be saved.`, 'error');
-    notify('#series-results', `${series.name}: ${added} issues added${skipped ? `, ${skipped} skipped as duplicates` : ''}.`, 'ok');
-  } catch (err) {
-    notify('#series-results', friendly(err), 'error');
-  }
+  return seriesAddRunner.start(series, longAddContext());
 }
 
 async function addCreator(creator) {
-  notify('#creator-results', `Loading issues credited to ${creator.name}…`, 'busy');
-  try {
-    const issues = await api.creatorIssues(creator.id, {
-      onProgress: ({ loaded, total }) => announce(`Loaded ${loaded}${total ? ` of ${total}` : ''} issues…`),
-    });
-    const sorted = [...issues].sort(compareIssues);
-    const { added, skipped, ok } = addToActive(sorted, `${creator.name}:`);
-    if (!ok) return notify('#creator-results', `${creator.name}: nothing was added, because that change could not be saved.`, 'error');
-    notify('#creator-results',
-      `${creator.name}: ${added} added${skipped ? `, ${skipped} duplicates skipped` : ''}. ` +
-      'Creator records omit Unlimited dates, so availability shows as unknown until details are fetched.',
-      'ok');
-  } catch (err) {
-    notify('#creator-results', friendly(err), 'error');
-  }
+  return creatorAddRunner.start(creator, longAddContext());
 }
 
 function doImport() {

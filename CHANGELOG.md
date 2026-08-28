@@ -14,6 +14,14 @@ quote in a bug report.
 
 ## Unreleased
 
+### Added cancellation for long series and creator loads
+
+In plain English: A long series or creator add can now be stopped from its progress message. Every
+complete page is saved as it arrives, so stopping keeps exactly that work and a later add can start
+immediately without an old request changing it. The message distinguishes a stop, a service or save
+failure, and a completed add, and keyboard focus returns to the matching search box when Cancel
+disappears.
+
 ### Protected synopsis privacy at save and backup boundaries
 
 In plain English: Issue summaries fetched for temporary display are now refused again when reading
