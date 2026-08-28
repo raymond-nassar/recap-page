@@ -402,9 +402,11 @@ dedicated page packet records `sourceProvider`, the exact page URL, raw page SHA
 panel boundary, exclusions, row order, manifest proposal, chronology anchor, and central source
 review. Timeline-only entries additionally require the visible event label as `sourceSection`.
 Every record carries `universeScope`; only `marvel-2099` and `mc2` may use `alternate`.
-If any source row lacks exact issue metadata, keep the whole affected event blocked and record the
-missing series and issue identity in the inventory. Do not omit that row, substitute a nearby issue,
-or widen the batch to hide the gap. Re-entry requires exact metadata for every named blocker.
+Missing configured Marvel Unlimited metadata does not block an otherwise exact reading list when
+the owner approves the gap bundle. Preserve every missing source position in ordered packet
+provenance with its identity and failed lookup evidence, create a separate assigned repository
+issue, and publish only the exact rows. Never substitute a nearby issue or silently delete a source
+position.
 
 The source publishes a five-second crawl delay. Use normal public access, wait between page requests,
 and stop on a changed digest until the source boundary has been read and reviewed again. Copy no page
@@ -433,16 +435,16 @@ one known complete source-order or chronology-order set. Unknown releases, incom
 duplicates, and the wrong order are refused so an omitted guide cannot become an ordinary library
 comparison instead of a bound peer.
 
-The maintained historical program currently ships 38 guides. The ninth continuation release has two
+The maintained historical program currently ships 39 guides. The ninth continuation release has two
 guides and 14 exact rows, which is why release validation names a complete known release rather than
 assuming every release contains five guides. MC2 and Apocalypse: The Twelve retain complete blocker
 records for 273 source rows and 21 exact gaps. MC2 keeps `universeScope: "alternate"` in the
 inventory; blocker records remain on schema version 1 and do not duplicate universe scope. All
 earlier blocker records remain unchanged. Second Clone Saga is blocked with 20 metadata gaps across
-its complete 161-row source order. Marvel 2099 is blocked after a complete review preserved all 271
-source rows: 172 exact configured results and 99 unresolved identities across 13 source series. It
-keeps `universeScope: "alternate"` in the inventory and no partial guide is published. Position 58
-is the final maintained pre-Maximum Security entry, so the sequential source is exhausted and there
+its complete 161-row source order. Marvel 2099 now publishes 172 distinct exact issues from all 271
+source positions while preserving one repeated occurrence and 98 owner-approved metadata
+exclusions. It keeps `universeScope: "alternate"` in the inventory. Position 58 is the final
+maintained pre-Maximum Security entry, so the sequential source is exhausted and there
 is no next cursor.
 
 Authoring validates provider, source, packet, mapping, report, complete-library, peer, approval,

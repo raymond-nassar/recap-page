@@ -1,0 +1,5407 @@
+{
+  "id": "marvel-2099",
+  "name": "Marvel 2099",
+  "description": "A selected 172-issue tour through Marvel 2099, preserving the exact available chapters from the full alternate-universe source order.",
+  "source": "https://comicbookreadingorders.com/marvel/events/marvel-2099-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-28T05:34:31.302Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 172,
+  "collections": 0,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 10865,
+      "title": "Spider-Man 2099 (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10865/spider-man_2099_1992_1",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 3459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5bc8dcc780c86",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10876,
+      "title": "Spider-Man 2099 (1992) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10876/spider-man_2099_1992_2",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 1168,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5bc8e64e9eaaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10887,
+      "title": "Spider-Man 2099 (1992) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10887/spider-man_2099_1992_3",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 12312,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/5bc8ec6468ea7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80165,
+      "title": "Doom 2099 (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/80165/doom_2099_1993_1",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 73796,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/684b31526fc31",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pat Broderick",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 80166,
+      "title": "Doom 2099 (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/80166/doom_2099_1993_2",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 73797,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/684b31526fd90",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 10898,
+      "title": "Spider-Man 2099 (1992) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10898/spider-man_2099_1992_4",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 21510,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5bc8f21998af3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10906,
+      "title": "Spider-Man 2099 (1992) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/10906/spider-man_2099_1992_5",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 21519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5bcdd618832d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10907,
+      "title": "Spider-Man 2099 (1992) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10907/spider-man_2099_1992_6",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "1993-04-01T00:00:00+0000",
+      "digitalId": 21514,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/5bcddd9dd723d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10908,
+      "title": "Spider-Man 2099 (1992) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/10908/spider-man_2099_1992_7",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "1993-05-01T00:00:00+0000",
+      "digitalId": 21546,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5bcde5ee687da",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10909,
+      "title": "Spider-Man 2099 (1992) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/10909/spider-man_2099_1992_8",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "1993-06-01T00:00:00+0000",
+      "digitalId": 21534,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/5bcdeca408d4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10910,
+      "title": "Spider-Man 2099 (1992) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/10910/spider-man_2099_1992_9",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 21527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5bce079397db1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kelley Jones",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10866,
+      "title": "Spider-Man 2099 (1992) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/10866/spider-man_2099_1992_10",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 21521,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5bce07f601423",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80167,
+      "title": "Doom 2099 (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/80167/doom_2099_1993_3",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 73798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/684b315273cdb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79137,
+      "title": "Doom 2099 (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/79137/doom_2099_1993_4",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "1993-04-01T00:00:00+0000",
+      "digitalId": 73799,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/684b31527b3f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80168,
+      "title": "Doom 2099 (1993) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/80168/doom_2099_1993_5",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "1993-05-01T00:00:00+0000",
+      "digitalId": 73800,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/684b31527cbb7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80169,
+      "title": "Doom 2099 (1993) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/80169/doom_2099_1993_6",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-06-01T00:00:00+0000",
+      "mu": "1993-06-01T00:00:00+0000",
+      "digitalId": 73801,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/684b316c440d7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80170,
+      "title": "Doom 2099 (1993) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/80170/doom_2099_1993_7",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-07-01T00:00:00+0000",
+      "mu": "1993-07-01T00:00:00+0000",
+      "digitalId": 73802,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/684b316c69a48",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79138,
+      "title": "Doom 2099 (1993) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/79138/doom_2099_1993_8",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-08-01T00:00:00+0000",
+      "mu": "1993-08-01T00:00:00+0000",
+      "digitalId": 73803,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/03/684b316c62622",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79139,
+      "title": "Doom 2099 (1993) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/79139/doom_2099_1993_9",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-09-01T00:00:00+0000",
+      "mu": "1993-09-01T00:00:00+0000",
+      "digitalId": 73804,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/684b316c6a86b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ernie Colon",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 80171,
+      "title": "Doom 2099 (1993) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/80171/doom_2099_1993_10",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "1993-10-01T00:00:00+0000",
+      "digitalId": 73805,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/684b316c6f5cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 43362,
+      "title": "X-Men 2099 (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/43362/x-men_2099_1993_1",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1993-10-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32063,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5845c61cc4dd1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43363,
+      "title": "X-Men 2099 (1993) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/43363/x-men_2099_1993_2",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32064,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/5845d1550324c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43364,
+      "title": "X-Men 2099 (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/43364/x-men_2099_1993_3",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32065,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/5845d17d7f8e8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10867,
+      "title": "Spider-Man 2099 (1992) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/10867/spider-man_2099_1992_11",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-09-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36437,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/58344f5aa4634",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10868,
+      "title": "Spider-Man 2099 (1992) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/10868/spider-man_2099_1992_12",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-10-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36438,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/583450da19dc5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10869,
+      "title": "Spider-Man 2099 (1992) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/10869/spider-man_2099_1992_13",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-11-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36439,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/58345198b1fc7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10870,
+      "title": "Spider-Man 2099 (1992) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/10870/spider-man_2099_1992_14",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1993-12-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36440,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/50/58345288835d5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80172,
+      "title": "Doom 2099 (1993) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/80172/doom_2099_1993_11",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 73806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/684b31b139b67",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80173,
+      "title": "Doom 2099 (1993) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/80173/doom_2099_1993_12",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1993-12-01T00:00:00+0000",
+      "mu": "1993-12-01T00:00:00+0000",
+      "digitalId": 73807,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/684b31b137825",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80174,
+      "title": "Doom 2099 (1993) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/80174/doom_2099_1993_13",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 73808,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/684b31b138768",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": []
+    },
+    {
+      "issueId": 43365,
+      "title": "X-Men 2099 (1993) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/43365/x-men_2099_1993_4",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32066,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5845d18f9dfa4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10871,
+      "title": "Spider-Man 2099 (1992) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/10871/spider-man_2099_1992_15",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-01-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36441,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/58345329bd43c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10872,
+      "title": "Spider-Man 2099 (1992) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/10872/spider-man_2099_1992_16",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-02-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36442,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/583454a09e6a4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53430,
+      "title": "Ravage 2099 (1992) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/53430/ravage_2099_1992_15",
+      "seriesId": 20021,
+      "seriesName": "Ravage 2099 (1992)",
+      "onSale": "1994-03-01T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36460,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/5835b78b41b22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Grant Miehm",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Pat Mills",
+          "role": "writer"
+        },
+        {
+          "name": "Tony Skinner",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43366,
+      "title": "X-Men 2099 (1993) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/43366/x-men_2099_1993_5",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32067,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5845d0edc5028",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53428,
+      "title": "Doom 2099 (1993) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/53428/doom_2099_1993_14",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 36458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/57ebddd5852d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53429,
+      "title": "Punisher 2099 (1993) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/53429/punisher_2099_1993_13",
+      "seriesId": 20020,
+      "seriesName": "Punisher 2099 (1993)",
+      "onSale": "1994-02-01T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36459,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5825ea9b2a494",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Morgan",
+          "role": "penciler"
+        },
+        {
+          "name": "Pat Mills",
+          "role": "writer"
+        },
+        {
+          "name": "Tony Skinner",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 71614,
+      "title": "Thor Corps (1993) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/71614/thor_corps_1993_3",
+      "seriesId": 26100,
+      "seriesName": "Thor Corps (1993)",
+      "onSale": "1993-11-01T00:00:00+0000",
+      "mu": "1993-11-01T00:00:00+0000",
+      "digitalId": 48783,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5af49047f3e44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Romeo Tanghal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Olliffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10873,
+      "title": "Spider-Man 2099 (1992) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/10873/spider-man_2099_1992_17",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-03-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36443,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/b0/583455106384f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10874,
+      "title": "Spider-Man 2099 (1992) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/10874/spider-man_2099_1992_18",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-04-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36444,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5834556d8915f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candilance",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10875,
+      "title": "Spider-Man 2099 (1992) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/10875/spider-man_2099_1992_19",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-05-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36445,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/30/583456c68c762",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10877,
+      "title": "Spider-Man 2099 (1992) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/10877/spider-man_2099_1992_20",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-06-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36446,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/5834579776b6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10878,
+      "title": "Spider-Man 2099 (1992) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/10878/spider-man_2099_1992_21",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-07-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36447,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/5834581f6f9ff",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Fern",
+          "role": "penciler"
+        },
+        {
+          "name": "Ian Edginton",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10879,
+      "title": "Spider-Man 2099 (1992) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/10879/spider-man_2099_1992_22",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-08-10T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36448,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/583458ae35558",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43367,
+      "title": "X-Men 2099 (1993) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/43367/x-men_2099_1993_6",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-03-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32068,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/5845d11642598",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43368,
+      "title": "X-Men 2099 (1993) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/43368/x-men_2099_1993_7",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-04-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32069,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5845d0feb0a27",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43369,
+      "title": "X-Men 2099 (1993) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/43369/x-men_2099_1993_8",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-05-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32070,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5845d13df1928",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 43370,
+      "title": "X-Men 2099 (1993) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/43370/x-men_2099_1993_9",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 32201,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5845d12e0c3f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "John Francis Moore",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70168,
+      "title": "X-Men 2099 (1993) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/70168/x-men_2099_1993_10",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66745,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/661805d093e4f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Sanders III",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70169,
+      "title": "X-Men 2099 (1993) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/70169/x-men_2099_1993_11",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66746,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/661805d090f6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70170,
+      "title": "X-Men 2099 (1993) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/70170/x-men_2099_1993_12",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66748,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/661805d09cca0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70171,
+      "title": "X-Men 2099 (1993) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/70171/x-men_2099_1993_13",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66749,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/661805d09cbd0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80175,
+      "title": "Doom 2099 (1993) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/80175/doom_2099_1993_15",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-03-01T00:00:00+0000",
+      "mu": "1994-03-01T00:00:00+0000",
+      "digitalId": 73809,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/684b31b13ef1f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79140,
+      "title": "Doom 2099 (1993) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/79140/doom_2099_1993_16",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-04-01T00:00:00+0000",
+      "mu": "1994-04-01T00:00:00+0000",
+      "digitalId": 73810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/684b31b1455b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ernie Colon",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 80176,
+      "title": "Doom 2099 (1993) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/80176/doom_2099_1993_17",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-05-01T00:00:00+0000",
+      "mu": "1994-05-01T00:00:00+0000",
+      "digitalId": 73811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/684b31c9d1bf7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79141,
+      "title": "Doom 2099 (1993) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/79141/doom_2099_1993_18",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "1994-06-01T00:00:00+0000",
+      "digitalId": 73812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/684b31cc4a304",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80177,
+      "title": "Doom 2099 (1993) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/80177/doom_2099_1993_19",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "1994-07-01T00:00:00+0000",
+      "digitalId": 73813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/684b31cc59564",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80178,
+      "title": "Doom 2099 (1993) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/80178/doom_2099_1993_20",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "1994-08-01T00:00:00+0000",
+      "digitalId": 73814,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/684b31cc59438",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79142,
+      "title": "Doom 2099 (1993) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/79142/doom_2099_1993_21",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 73815,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/684b32066c92b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 83158,
+      "title": "Ghost Rider 2099 (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/83158/ghost_rider_2099_1994_1",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-05-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69032,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/66fc39db19ebe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Buckingham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83007,
+      "title": "Ghost Rider 2099 (1994) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/83007/ghost_rider_2099_1994_2",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-06-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69033,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/66fc3a108a700",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Buckingham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83008,
+      "title": "Ghost Rider 2099 (1994) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/83008/ghost_rider_2099_1994_3",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-07-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69034,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/66fc3a108aa44",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Sutherland",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Bachalo",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter Gross",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83009,
+      "title": "Ghost Rider 2099 (1994) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/83009/ghost_rider_2099_1994_4",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-08-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69035,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/66fdb19824148",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Sutherland",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Peter Gross",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83010,
+      "title": "Ghost Rider 2099 (1994) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/83010/ghost_rider_2099_1994_5",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69036,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/66fdb19824058",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Sutherland",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83011,
+      "title": "Ghost Rider 2099 (1994) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/83011/ghost_rider_2099_1994_6",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69037,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/66fdb198272ab",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83012,
+      "title": "Ghost Rider 2099 (1994) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/83012/ghost_rider_2099_1994_7",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69038,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/66fdb1982dcfb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83013,
+      "title": "Ghost Rider 2099 (1994) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/83013/ghost_rider_2099_1994_8",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/66fdb1982e676",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 53431,
+      "title": "Spider-Man 2099 Annual (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/53431/spider-man_2099_annual_1994_1",
+      "seriesId": 20022,
+      "seriesName": "Spider-Man 2099 Annual (1994)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "2016-12-26T00:00:00+0000",
+      "digitalId": 36463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/583df5e468351",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70172,
+      "title": "X-Men 2099 (1993) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/70172/x-men_2099_1993_14",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66750,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/661805d09d57c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70173,
+      "title": "X-Men 2099 (1993) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/70173/x-men_2099_1993_15",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66751,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/661805ee4d4f5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 10880,
+      "title": "Spider-Man 2099 (1992) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/10880/spider-man_2099_1992_23",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-09-01T00:00:00+0000",
+      "mu": "1994-09-01T00:00:00+0000",
+      "digitalId": 44927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5925d515bfd93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Batista",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 65143,
+      "title": "SPIDER-MAN 2099 MEETS SPIDER-MAN 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/65143/spider-man_2099_meets_spider-man_1_1995_1",
+      "seriesId": 44665,
+      "seriesName": "SPIDER-MAN 2099 MEETS SPIDER-MAN 1 (1995 - Present)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 46445,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/59c2d555a03dd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 76328,
+      "title": "Spider-Man 2099 Special (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/76328/spider-man_2099_special_1995_1",
+      "seriesId": 27380,
+      "seriesName": "Spider-Man 2099 Special (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2019-04-08T00:00:00+0000",
+      "digitalId": 51200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5ca37e22bae72",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriel Morrissette",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Hildebrandt",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Tim Hildebrandt",
+          "role": "penciler"
+        },
+        {
+          "name": "Vince Giarrano",
+          "role": "penciler"
+        },
+        {
+          "name": "Ian Edginton",
+          "role": "writer"
+        },
+        {
+          "name": "Jonathan Peterson",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10881,
+      "title": "Spider-Man 2099 (1992) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/10881/spider-man_2099_1992_24",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 44928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5925d62621df9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10882,
+      "title": "Spider-Man 2099 (1992) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/10882/spider-man_2099_1992_25",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "1994-11-01T00:00:00+0000",
+      "digitalId": 44929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5925d4ea49a22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Ivy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Malcolm Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Grindberg",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10883,
+      "title": "Spider-Man 2099 (1992) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/10883/spider-man_2099_1992_26",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "1994-12-01T00:00:00+0000",
+      "digitalId": 44930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5925d5017b1bb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Peter Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vincent Giarrano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80179,
+      "title": "Doom 2099 (1993) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/80179/doom_2099_1993_22",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "1994-10-01T00:00:00+0000",
+      "digitalId": 73816,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/684b32066ce03",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80180,
+      "title": "Doom 2099 (1993) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/80180/doom_2099_1993_23",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-11-01T00:00:00+0000",
+      "mu": "1994-11-01T00:00:00+0000",
+      "digitalId": 73817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/684b32066dffb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79143,
+      "title": "Doom 2099 (1993) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/79143/doom_2099_1993_24",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5d727e553e0ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80181,
+      "title": "Doom 2099 (1993) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/80181/doom_2099_1993_25",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52919,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5d727e4de4065",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leo Duranona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luke Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Jo Duffy",
+          "role": "writer"
+        },
+        {
+          "name": "Pat Mills",
+          "role": "writer"
+        },
+        {
+          "name": "Tony Skinner",
+          "role": "writer"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70174,
+      "title": "X-Men 2099 (1993) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/70174/x-men_2099_1993_16",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66752,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/661805ee8a49f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 83014,
+      "title": "Ghost Rider 2099 (1994) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/83014/ghost_rider_2099_1994_9",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69040,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/66fdb1af9c0ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Sutherland",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10884,
+      "title": "Spider-Man 2099 (1992) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/10884/spider-man_2099_1992_27",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-01-01T00:00:00+0000",
+      "mu": "1995-01-01T00:00:00+0000",
+      "digitalId": 44931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5925d60ce633c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10885,
+      "title": "Spider-Man 2099 (1992) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/10885/spider-man_2099_1992_28",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "1995-02-01T00:00:00+0000",
+      "digitalId": 44932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/5925d67116808",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10886,
+      "title": "Spider-Man 2099 (1992) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/10886/spider-man_2099_1992_29",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "1995-03-01T00:00:00+0000",
+      "digitalId": 44933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/5925d68fef1b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10888,
+      "title": "Spider-Man 2099 (1992) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/10888/spider-man_2099_1992_30",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 44934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5925d6a58d221",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10889,
+      "title": "Spider-Man 2099 (1992) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/10889/spider-man_2099_1992_31",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "1995-05-01T00:00:00+0000",
+      "digitalId": 44935,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5925d5423bbd2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70175,
+      "title": "X-Men 2099 (1993) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/70175/x-men_2099_1993_17",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66753,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/661805eee6b0d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70176,
+      "title": "X-Men 2099 (1993) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/70176/x-men_2099_1993_18",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66754,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/661805ef9825a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Hector Collazo",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70177,
+      "title": "X-Men 2099 (1993) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/70177/x-men_2099_1993_19",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66755,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/661805f0d0709",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 80182,
+      "title": "Doom 2099 (1993) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/80182/doom_2099_1993_26",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52921,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/5d727e828de84",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80183,
+      "title": "Doom 2099 (1993) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/80183/doom_2099_1993_27",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52922,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5d727e3c672b2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80184,
+      "title": "Doom 2099 (1993) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/80184/doom_2099_1993_28",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52923,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5d727e45b7701",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83015,
+      "title": "Ghost Rider 2099 (1994) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/83015/ghost_rider_2099_1994_10",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69041,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/66fdb1b055e07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83016,
+      "title": "Ghost Rider 2099 (1994) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/83016/ghost_rider_2099_1994_11",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-03-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69042,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/66fdb1b04bd95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83017,
+      "title": "Ghost Rider 2099 (1994) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/83017/ghost_rider_2099_1994_12",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69043,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/66fdb1b05aae4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kyle Hotz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 129598,
+      "title": "2099 A.D. APOCALYPSE 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/129598/2099_ad_apocalypse_1_1995_1",
+      "seriesId": 44376,
+      "seriesName": "2099 A.D. APOCALYPSE 1 (1995 - Present)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 73747,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/684b31207938c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Sutherland",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80185,
+      "title": "Doom 2099 (1993) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/80185/doom_2099_1993_29",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52924,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/5d727e5f39012",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79144,
+      "title": "Doom 2099 (1993) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/79144/doom_2099_1993_30",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52925,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5d727e7a1d8ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pat Broderick",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79145,
+      "title": "Doom 2099 (1993) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/79145/doom_2099_1993_31",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5d727e71d5349",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Klein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83018,
+      "title": "Ghost Rider 2099 (1994) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/83018/ghost_rider_2099_1994_13",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69044,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/66fdb1b057136",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Graham Higgins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83019,
+      "title": "Ghost Rider 2099 (1994) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/83019/ghost_rider_2099_1994_14",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69045,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/66fdb1b042ea2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Graham Higgins",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70178,
+      "title": "X-Men 2099 (1993) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/70178/x-men_2099_1993_20",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-05-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66756,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/661806008c9b7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70179,
+      "title": "X-Men 2099 (1993) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/70179/x-men_2099_1993_21",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66757,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/6618066be084d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 10890,
+      "title": "Spider-Man 2099 (1992) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/10890/spider-man_2099_1992_32",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-06-01T00:00:00+0000",
+      "mu": "1995-06-01T00:00:00+0000",
+      "digitalId": 44936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/5925d66638d22",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roger Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10891,
+      "title": "Spider-Man 2099 (1992) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/10891/spider-man_2099_1992_33",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 44937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5925d602cd25b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70180,
+      "title": "X-Men 2099 (1993) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/70180/x-men_2099_1993_22",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/6618066be122a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 83020,
+      "title": "Ghost Rider 2099 (1994) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/83020/ghost_rider_2099_1994_15",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69046,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/66fdb1b40e378",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ashley Wood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83021,
+      "title": "Ghost Rider 2099 (1994) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/83021/ghost_rider_2099_1994_16",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69047,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/66fdb1b46189c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ashley Wood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83022,
+      "title": "Ghost Rider 2099 (1994) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/83022/ghost_rider_2099_1994_17",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69048,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/66fdb1b521b5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79146,
+      "title": "Doom 2099 (1993) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/79146/doom_2099_1993_32",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5d727e8ac39c3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Royle",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70181,
+      "title": "X-Men 2099 (1993) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/70181/x-men_2099_1993_23",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/6618066beb76b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70182,
+      "title": "X-Men 2099 (1993) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/70182/x-men_2099_1993_24",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66760,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/6618066bed401",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70183,
+      "title": "X-Men 2099 (1993) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/70183/x-men_2099_1993_25",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/6618066bec588",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 120317,
+      "title": "X-Men 2099: Oasis (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/120317/x-men_2099_oasis_1996_1",
+      "seriesId": 41974,
+      "seriesName": "X-Men 2099: Oasis (1996)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66989,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/661805843f843",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Greg Hildebrandt",
+          "role": "cover artist"
+        }
+      ]
+    },
+    {
+      "issueId": 120316,
+      "title": "X-Men 2099 Special (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/120316/x-men_2099_special_1995_1",
+      "seriesId": 41973,
+      "seriesName": "X-Men 2099 Special (1995)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66988,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/66180584401d3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Peter Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Pugh",
+          "role": "cover artist"
+        },
+        {
+          "name": "Graham Higgins",
+          "role": "penciler"
+        },
+        {
+          "name": "James Calafiore",
+          "role": "penciler"
+        },
+        {
+          "name": "Ian Edginton",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10892,
+      "title": "Spider-Man 2099 (1992) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/10892/spider-man_2099_1992_34",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-08-01T00:00:00+0000",
+      "mu": "1995-08-01T00:00:00+0000",
+      "digitalId": 51191,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5ca37f43e048f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10893,
+      "title": "Spider-Man 2099 (1992) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/10893/spider-man_2099_1992_35",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 51192,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5ca37e40a6350",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10894,
+      "title": "Spider-Man 2099 (1992) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/10894/spider-man_2099_1992_36",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "1995-10-01T00:00:00+0000",
+      "digitalId": 51193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/5ca37e0fab0ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brad Vancata",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10895,
+      "title": "Spider-Man 2099 (1992) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/10895/spider-man_2099_1992_37",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 51194,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5ca37db783e35",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10896,
+      "title": "Spider-Man 2099 (1992) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/10896/spider-man_2099_1992_38",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 51195,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5ca37f61b7927",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Boller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 80186,
+      "title": "Doom 2099 (1993) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/80186/doom_2099_1993_33",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5d727de28b5b4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Pugh",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79147,
+      "title": "Doom 2099 (1993) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/79147/doom_2099_1993_34",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5d727dd2c3898",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Pugh",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10897,
+      "title": "Spider-Man 2099 (1992) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/10897/spider-man_2099_1992_39",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/647898b74384d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10899,
+      "title": "Spider-Man 2099 (1992) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/10899/spider-man_2099_1992_40",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62157,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/647898b74430a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wheeler",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83023,
+      "title": "Ghost Rider 2099 (1994) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/83023/ghost_rider_2099_1994_18",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-10-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/66fdb1b47b2a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83024,
+      "title": "Ghost Rider 2099 (1994) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/83024/ghost_rider_2099_1994_19",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69050,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/66fdb1b4c482d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83025,
+      "title": "Ghost Rider 2099 (1994) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/83025/ghost_rider_2099_1994_20",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69051,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/66fdb1b5094cf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83026,
+      "title": "Ghost Rider 2099 (1994) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/83026/ghost_rider_2099_1994_21",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69052,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/66fdb1b5b60fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83027,
+      "title": "Ghost Rider 2099 (1994) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/83027/ghost_rider_2099_1994_22",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69053,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/66fdb1ea457b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70184,
+      "title": "X-Men 2099 (1993) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/70184/x-men_2099_1993_26",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66762,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/66180689b768a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70185,
+      "title": "X-Men 2099 (1993) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/70185/x-men_2099_1993_27",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66763,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/6618068b36e52",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 10900,
+      "title": "Spider-Man 2099 (1992) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/10900/spider-man_2099_1992_41",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62158,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/647898b74434a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79148,
+      "title": "Doom 2099 (1993) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/79148/doom_2099_1993_35",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/5d727e1439371",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Pugh",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79149,
+      "title": "Doom 2099 (1993) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/79149/doom_2099_1993_36",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5d727ddac5d31",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Pugh",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79150,
+      "title": "Doom 2099 (1993) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/79150/doom_2099_1993_37",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5d727e24d12ce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70186,
+      "title": "X-Men 2099 (1993) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/70186/x-men_2099_1993_28",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66764,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/6618068b4c5f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70187,
+      "title": "X-Men 2099 (1993) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/70187/x-men_2099_1993_29",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66765,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/6618068b8af06",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 70188,
+      "title": "X-Men 2099 (1993) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/70188/x-men_2099_1993_30",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66766,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/6618068b9b235",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79151,
+      "title": "Doom 2099 (1993) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/79151/doom_2099_1993_38",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5d727e0d19abb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Pugh",
+          "role": "penciler"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82972,
+      "title": "Fantastic Four 2099 (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82972/fantastic_four_2099_1996_1",
+      "seriesId": 29426,
+      "seriesName": "Fantastic Four 2099 (1996 - Present)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 73823,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/b0/684b3250df693",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10901,
+      "title": "Spider-Man 2099 (1992) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/10901/spider-man_2099_1992_42",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62159,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/647898b743488",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82973,
+      "title": "Fantastic Four 2099 (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/82973/fantastic_four_2099_1996_2",
+      "seriesId": 29426,
+      "seriesName": "Fantastic Four 2099 (1996 - Present)",
+      "onSale": "1996-02-01T00:00:00+0000",
+      "mu": "1996-02-01T00:00:00+0000",
+      "digitalId": 73824,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/684b3250de257",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82974,
+      "title": "Fantastic Four 2099 (1996) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/82974/fantastic_four_2099_1996_3",
+      "seriesId": 29426,
+      "seriesName": "Fantastic Four 2099 (1996 - Present)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 73825,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/684b3250e390f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83028,
+      "title": "Ghost Rider 2099 (1994) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/83028/ghost_rider_2099_1994_23",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69054,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/66fdb1ea23855",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83029,
+      "title": "Ghost Rider 2099 (1994) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/83029/ghost_rider_2099_1994_24",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69055,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/66fdb1e9bb2e2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 83030,
+      "title": "Ghost Rider 2099 (1994) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/83030/ghost_rider_2099_1994_25",
+      "seriesId": 29430,
+      "seriesName": "Ghost Rider 2099 (1994 - Present)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "2024-10-24T00:00:00+0000",
+      "digitalId": 69056,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/66fdb1e9b4f49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "James Daly",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ashley Wood",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Kaminski",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70189,
+      "title": "X-Men 2099 (1993) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/70189/x-men_2099_1993_31",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66767,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/6618076f9380e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 82739,
+      "title": "X-Nation 2099 (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/82739/x-nation_2099_1996_1",
+      "seriesId": 29405,
+      "seriesName": "X-Nation 2099 (1996 - Present)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/6618078c6d61e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Peyer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82740,
+      "title": "X-Nation 2099 (1996) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/82740/x-nation_2099_1996_2",
+      "seriesId": 29405,
+      "seriesName": "X-Nation 2099 (1996 - Present)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66774,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/6618078c74b09",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Peyer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79152,
+      "title": "Doom 2099 (1993) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/79152/doom_2099_1993_39",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "2019-09-09T00:00:00+0000",
+      "digitalId": 52934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5d727e352a4ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "penciler"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Peyer",
+          "role": "writer"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82741,
+      "title": "X-Nation 2099 (1996) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/82741/x-nation_2099_1996_3",
+      "seriesId": 29405,
+      "seriesName": "X-Nation 2099 (1996 - Present)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66775,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/6618078c8a6f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Miller",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto Flores",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Peyer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82742,
+      "title": "X-Nation 2099 (1996) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/82742/x-nation_2099_1996_4",
+      "seriesId": 29405,
+      "seriesName": "X-Nation 2099 (1996 - Present)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66776,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/6618078d5176e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jaime Mendoza",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Battle",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70190,
+      "title": "X-Men 2099 (1993) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/70190/x-men_2099_1993_32",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66768,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/20/6618076f8e09c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 82975,
+      "title": "Fantastic Four 2099 (1996) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/82975/fantastic_four_2099_1996_4",
+      "seriesId": 29426,
+      "seriesName": "Fantastic Four 2099 (1996 - Present)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "1996-04-01T00:00:00+0000",
+      "digitalId": 73826,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/684b3250e47f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10902,
+      "title": "Spider-Man 2099 (1992) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/10902/spider-man_2099_1992_43",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62160,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/50/647898b7622eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Baskerville",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Wildman",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10903,
+      "title": "Spider-Man 2099 (1992) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/10903/spider-man_2099_1992_44",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62161,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/647898d31e973",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter David",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70191,
+      "title": "X-Men 2099 (1993) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/70191/x-men_2099_1993_33",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66770,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/80/6618076f97069",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79153,
+      "title": "Doom 2099 (1993) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/79153/doom_2099_1993_40",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-04-01T00:00:00+0000",
+      "mu": "1996-04-01T00:00:00+0000",
+      "digitalId": 73818,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/684b320676069",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79154,
+      "title": "Doom 2099 (1993) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/79154/doom_2099_1993_41",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 73819,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/03/684b3206741f6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Royle",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Peyer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79155,
+      "title": "Doom 2099 (1993) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/79155/doom_2099_1993_42",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 73820,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/684b321ee608d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Williams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Lafferty",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 13243,
+      "title": "Fantastic Four (1961) #413",
+      "number": "413",
+      "url": "https://www.marvel.com/comics/issue/13243/fantastic_four_1961_413",
+      "seriesId": 2121,
+      "seriesName": "Fantastic Four (1961 - 1998)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 24628,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/50ae291b22314",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Wiacek",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Lowe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "writer"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82976,
+      "title": "Fantastic Four 2099 (1996) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/82976/fantastic_four_2099_1996_5",
+      "seriesId": 29426,
+      "seriesName": "Fantastic Four 2099 (1996 - Present)",
+      "onSale": "1996-05-01T00:00:00+0000",
+      "mu": "1996-05-01T00:00:00+0000",
+      "digitalId": 73827,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/03/684b3250e8610",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 82977,
+      "title": "Fantastic Four 2099 (1996) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/82977/fantastic_four_2099_1996_6",
+      "seriesId": 29426,
+      "seriesName": "Fantastic Four 2099 (1996 - Present)",
+      "onSale": "1996-06-01T00:00:00+0000",
+      "mu": "1996-06-01T00:00:00+0000",
+      "digitalId": 73828,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/684b3269a3c98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10904,
+      "title": "Spider-Man 2099 (1992) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/10904/spider-man_2099_1992_45",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62162,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/647898d372ddf",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10905,
+      "title": "Spider-Man 2099 (1992) #46",
+      "number": "46",
+      "url": "https://www.marvel.com/comics/issue/10905/spider-man_2099_1992_46",
+      "seriesId": 2070,
+      "seriesName": "Spider-Man 2099 (1992 - 1996)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "2023-06-01T00:00:00+0000",
+      "digitalId": 62163,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/e0/647898d394df5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Harry Candelario",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Miller",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 79156,
+      "title": "Doom 2099 (1993) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/79156/doom_2099_1993_43",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 73821,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/684b322103508",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Lafferty",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 82743,
+      "title": "X-Nation 2099 (1996) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/82743/x-nation_2099_1996_5",
+      "seriesId": 29405,
+      "seriesName": "X-Nation 2099 (1996 - Present)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66777,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/6618078d83d98",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Eric Battle",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70192,
+      "title": "X-Men 2099 (1993) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/70192/x-men_2099_1993_34",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/03/6618076f972c1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Hunter",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 82744,
+      "title": "X-Nation 2099 (1996) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/82744/x-nation_2099_1996_6",
+      "seriesId": 29405,
+      "seriesName": "X-Nation 2099 (1996 - Present)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/6618078e3a0c4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jon Holdredge",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Eric Battle",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Raab",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 70193,
+      "title": "X-Men 2099 (1993) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/70193/x-men_2099_1993_35",
+      "seriesId": 16423,
+      "seriesName": "X-Men 2099 (1993 - 1996)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "2024-05-02T00:00:00+0000",
+      "digitalId": 66772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/6618076f92877",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jeff Albrecht",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jan Duursema",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "issueId": 79157,
+      "title": "Doom 2099 (1993) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/79157/doom_2099_1993_44",
+      "seriesId": 20019,
+      "seriesName": "Doom 2099 (1993)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "1996-08-01T00:00:00+0000",
+      "digitalId": 73822,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/684b32210844d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andrew Pepoy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Vince Russell",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jeff Lafferty",
+          "role": "penciler"
+        }
+      ]
+    }
+  ]
+}

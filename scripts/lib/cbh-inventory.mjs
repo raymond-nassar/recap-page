@@ -113,6 +113,22 @@ const EXCLUDED_SOURCE_ROW_FIELDS = new Set([
   'reason',
   'decisionScope',
 ]);
+const EXCLUDED_SOURCE_ROW_OPTIONAL_FIELDS = new Set([
+  'normalizedSeriesTitle',
+  'issueNumber',
+  'reviewedSeriesId',
+  'lookupResult',
+  'exclusionKind',
+  'evidenceDigest',
+]);
+const RICH_EXCLUDED_SOURCE_ROW_FIELDS = Object.freeze([
+  'normalizedSeriesTitle',
+  'issueNumber',
+  'reviewedSeriesId',
+  'lookupResult',
+  'exclusionKind',
+  'evidenceDigest',
+]);
 const SOURCE_GAP_FIELDS = new Set([
   'sourcePosition',
   'sourceIssueReference',
@@ -294,7 +310,9 @@ function assertExcludedSourceRow(row, index) {
   const fields = Object.keys(row);
   const missing = [...EXCLUDED_SOURCE_ROW_FIELDS].filter((field) => !Object.hasOwn(row, field));
   if (missing.length > 0) throw new Error(`${label} is missing required fields: ${missing.join(', ')}`);
-  const unexpected = fields.filter((field) => !EXCLUDED_SOURCE_ROW_FIELDS.has(field));
+  const unexpected = fields.filter((field) => (
+    !EXCLUDED_SOURCE_ROW_FIELDS.has(field) && !EXCLUDED_SOURCE_ROW_OPTIONAL_FIELDS.has(field)
+  ));
   if (unexpected.length > 0) throw new Error(`${label} has unsupported fields: ${unexpected.join(', ')}`);
   if (!Number.isInteger(row.sourcePosition) || row.sourcePosition < 1) {
     throw new Error(`${label} sourcePosition must be a positive integer`);
@@ -302,6 +320,27 @@ function assertExcludedSourceRow(row, index) {
   assertNonEmptyString(row.sourceIssueReference, `${label} sourceIssueReference`);
   assertNonEmptyString(row.reason, `${label} reason`);
   assertNonEmptyString(row.decisionScope, `${label} decisionScope`);
+  const richFields = RICH_EXCLUDED_SOURCE_ROW_FIELDS.filter((field) => Object.hasOwn(row, field));
+  if (richFields.length > 0) {
+    const missingRich = RICH_EXCLUDED_SOURCE_ROW_FIELDS.filter((field) => !Object.hasOwn(row, field));
+    if (missingRich.length > 0) {
+      throw new Error(`${label} is missing rich evidence fields: ${missingRich.join(', ')}`);
+    }
+    assertNonEmptyString(row.normalizedSeriesTitle, `${label} normalizedSeriesTitle`);
+    assertNonEmptyString(String(row.issueNumber), `${label} issueNumber`);
+    if (row.reviewedSeriesId != null
+      && (!Number.isInteger(row.reviewedSeriesId) || row.reviewedSeriesId < 1)) {
+      throw new Error(`${label} reviewedSeriesId must be null or a positive integer`);
+    }
+    assertNonEmptyString(row.lookupResult, `${label} lookupResult`);
+    assertNonEmptyString(row.exclusionKind, `${label} exclusionKind`);
+    assertSha256(row.evidenceDigest, `${label} evidenceDigest`);
+    const evidence = { ...row };
+    delete evidence.evidenceDigest;
+    if (digestCanonicalJson(evidence) !== row.evidenceDigest) {
+      throw new Error(`${label} evidence digest is stale`);
+    }
+  }
 }
 
 function sourceIdentityKey(value) {

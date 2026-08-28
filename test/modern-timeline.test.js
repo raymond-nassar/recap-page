@@ -141,7 +141,7 @@ test('the shipped Modern Timeline carries all chapters into the Avengers era', (
   const chapters = selectedLists.filter(({ id }) => isModernTimelineChapterId(id));
   assert.equal(selectedLists.length, 148);
   assert.equal(selectedStories.length, 144);
-  assert.equal(olderEvents.length, 34);
+  assert.equal(olderEvents.length, 35);
   assert.deepEqual(
     selectedStories.slice(0, 2).map(({ lists: [first] }) => [first.name, first.timeline]),
     [

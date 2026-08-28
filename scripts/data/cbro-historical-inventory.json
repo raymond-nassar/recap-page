@@ -820,12 +820,16 @@
     "sourceRetrievedAt": "2026-08-28",
     "sourceContentSha256": "b8a518200e23b182edd779e35c27019c699428925fc3510b2e97c237889de08e",
     "sourceRowCount": 271,
-    "centralDisposition": "blocked",
-    "relationshipStatus": "unresolved",
-    "reason": "Blocked: 99 source rows lack exact configured issue metadata across 13 source series; the complete 271-row alternate-universe order cannot publish.",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "blocked",
+    "centralDisposition": "selected",
+    "relationshipStatus": "approved-mixed",
+    "reason": "Selected as a 172-issue alternate-universe guide after preserving 98 owner-approved Marvel Unlimited metadata exclusions and one repeated source occurrence.",
+    "overlapIds": [
+      "fantastic-four-reading-order"
+    ],
+    "catalogIds": [
+      "marvel-2099"
+    ],
+    "deliveryStatus": "shipped",
     "universeScope": "alternate"
   },
   {

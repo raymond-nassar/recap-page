@@ -7557,6 +7557,41 @@
       "updatedAt": "2026-08-26T05:12:20.429Z"
     },
     {
+      "id": "marvel-2099",
+      "file": "marvel_2099.json",
+      "name": "Marvel 2099",
+      "description": "A selected 172-issue tour through Marvel 2099, preserving the exact available chapters from the full alternate-universe source order.",
+      "type": "event",
+      "depth": "selected",
+      "count": 172,
+      "collections": 0,
+      "characters": [
+        "Spider-Man 2099",
+        "Doctor Doom",
+        "X-Men 2099",
+        "Ghost Rider 2099"
+      ],
+      "keywords": [
+        "Marvel 2099",
+        "alternate universe",
+        "Spider-Man 2099"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1992,
+      "coverIssueId": 10865,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5bc8dcc780c86",
+        "ext": "jpg"
+      },
+      "source": "https://comicbookreadingorders.com/marvel/events/marvel-2099-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-28T05:34:31.302Z"
+    },
+    {
       "id": "maximum-security",
       "file": "maximum_security.json",
       "name": "Maximum Security",
