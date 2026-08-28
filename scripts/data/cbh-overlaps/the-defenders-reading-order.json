@@ -2,7 +2,7 @@
   "candidateId": "the-defenders-reading-order",
   "packetDigest": "d50645b6f4d324178d7ea8b93fae012bfcc3177af42a2befea818328926d6440",
   "mappingDigest": "b748ed01220030899a42af5f547eaea5b2746e8de25e7f88e5dcd13821459884",
-  "libraryDigest": "18db2278ce70b41a5b29e36102d07177d8cfad89d4fc1c5378947993401f38af",
+  "libraryDigest": "036dedb13914605e139031a0debecde2a14aabdbac1e02d612b50206e7ecdb11",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 331,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 12
   },
   "candidateCount": 245,
-  "comparisonCount": 160,
+  "comparisonCount": 164,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -128,6 +128,14 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 1,
+      "sharedIds": [
+        "6925"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "bloodties",
@@ -514,6 +522,15 @@
       "relationship": "none"
     },
     {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 2,
+      "sharedIds": [
+        "6983",
+        "12951"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "fatal-attractions",
       "sharedCount": 0,
       "sharedIds": [],
@@ -530,6 +547,19 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
+      "sharedCount": 6,
+      "sharedIds": [
+        "20333",
+        "20334",
+        "20335",
+        "20336",
+        "20030",
+        "15429"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "heroes-reborn-2021",
@@ -751,6 +781,17 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "moon-knight-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "20356",
+        "20357",
+        "20358",
+        "20360"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "muir-island-saga",
@@ -1271,5 +1312,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "904cba5613d61805d8f1a23c05550163f6f60b3f133a5d50c0ffd20e33830975"
+  "reportDigest": "00254f33e0432285dc303b75f08c218ccd28a5aa39506da83bd2e87e701dc9e6"
 }

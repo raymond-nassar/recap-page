@@ -1357,7 +1357,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   const catalogEntry = catalog.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
   const expectedOrderIds = manifest.lists
     .map((entry) => entry.id)
-   .filter((id) => id !== 'silver-surfer-reading-order'
+    .filter((id) => id !== 'silver-surfer-reading-order'
      && id !== moonKnightCandidateId
      && id !== guardiansCandidateId
      && id !== 'the-defenders-reading-order')
@@ -1934,7 +1934,10 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
   const markdown = await readFile(path.join(root, 'src/data/orders/moon-knight-reading-order.md'), 'utf8');
   const record = inventory.find((entry) => entry.id === moonKnightCandidateId);
   const parsed = parseChecklist(markdown);
-  const reviewedLibraryDigest = await libraryDigestForScope(manifest, [moonKnightCandidateId]);
+  const reviewedLibraryDigest = await libraryDigestForScope(manifest, [
+    'the-defenders-reading-order',
+    moonKnightCandidateId,
+  ]);
 
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.centralDisposition, 'pilot-approved');

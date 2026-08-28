@@ -10661,14 +10661,14 @@
     "coverIssueId": 17089
   },
   "relationshipReview": {
-    "reportDigest": "904cba5613d61805d8f1a23c05550163f6f60b3f133a5d50c0ffd20e33830975",
+    "reportDigest": "00254f33e0432285dc303b75f08c218ccd28a5aa39506da83bd2e87e701dc9e6",
     "packetDigest": "d50645b6f4d324178d7ea8b93fae012bfcc3177af42a2befea818328926d6440",
     "mappingDigest": "b748ed01220030899a42af5f547eaea5b2746e8de25e7f88e5dcd13821459884",
-    "libraryDigest": "18db2278ce70b41a5b29e36102d07177d8cfad89d4fc1c5378947993401f38af",
+    "libraryDigest": "036dedb13914605e139031a0debecde2a14aabdbac1e02d612b50206e7ecdb11",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "GPT-5.6 Terra reviewed all 160 complete-library comparisons: 15 non-none relationships are intentional source-guide overlaps between distinct source identities and sequences, 145 none relationships have no shared issues, and no exact duplicate is present.",
+    "rationale": "GPT-5.6 Terra reviewed all 164 complete-library comparisons: 19 non-none relationships are intentional source-guide overlaps between distinct source identities and sequences, 145 none relationships have no shared issues, and no exact duplicate is present.",
     "reviewedAt": "2026-08-27",
     "dispositions": [
       {
@@ -10822,6 +10822,15 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 1 shared issue with black-widow-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -11104,6 +11113,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 2 shared issues with fantastic-four-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "fatal-attractions",
         "relationship": "none",
         "decision": "approved",
@@ -11128,6 +11146,15 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 6 shared issues with guardians-of-the-galaxy-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -11434,6 +11461,15 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The 4 shared issues with moon-knight-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -12112,6 +12148,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "5fd455b5058bd106903d3fae3076dfd79be65659f119f7b4445cc4f048869bf1"
+    "approvalDigest": "a1a59413cf6a2476ba4d00d9499afa888c1bcdcc59fd860afce1965981a6980b"
   }
 }

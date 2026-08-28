@@ -872,8 +872,30 @@ test('The Defenders publication preserves the settled source partition and cache
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
   assert.equal(report.candidateCount, 245);
-  assert.equal(report.comparisonCount, 160);
+  assert.equal(report.comparisonCount, 164);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'exact').length, 0);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 145);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 19);
+  assert.deepEqual(
+    report.comparisons
+      .filter((comparison) => [
+        'fantastic-four-reading-order',
+        'guardians-of-the-galaxy-reading-order',
+      ].includes(comparison.orderId))
+      .map(({ orderId, relationship, sharedIds }) => ({ orderId, relationship, sharedIds })),
+    [
+      {
+        orderId: 'fantastic-four-reading-order',
+        relationship: 'partial',
+        sharedIds: ['6983', '12951'],
+      },
+      {
+        orderId: 'guardians-of-the-galaxy-reading-order',
+        relationship: 'partial',
+        sharedIds: ['20333', '20334', '20335', '20336', '20030', '15429'],
+      },
+    ],
+  );
   assert.equal(generated.count, 268);
   assert.equal(generated.placeholders, 23);
   assert.equal(generated.unresolved.length, 23);
