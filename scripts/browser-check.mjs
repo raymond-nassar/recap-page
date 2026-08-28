@@ -115,6 +115,10 @@ const ACTUAL_CATALOG = JSON.parse(
 const ACTUAL_MARVEL_KNIGHTS_PARENT = JSON.parse(
   readFileSync(new URL('../src/data/marvel_knights_to_planet_x.json', import.meta.url), 'utf8'),
 );
+const COVER_PIXEL = Buffer.from(
+  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
+  'base64',
+);
 
 function legacyMarvelKnightsState() {
   const items = ACTUAL_MARVEL_KNIGHTS_PARENT.items;
@@ -1192,6 +1196,14 @@ const MUTATIONS = [
       .replace('  void runAutomaticUpdateCheck();', '  await runAutomaticUpdateCheck();'),
   },
   {
+    id: 'setup-guide-card-route-off',
+    breaks: 'modern-timeline-actual-data',
+    why: 'the shared setup card is removed from both routes',
+    rewriteMain: (source) => source
+      .replace(/ {2}ensureSetupGuideFeature\(catalog\.lists, route\);\r?\n/, '')
+      .replace(/ {2}if \(key === 'catalog'\) ensureSetupGuideFeature\(catalog\.lists, key\);\r?\n/, ''),
+  },
+  {
     id: 'modern-timeline-boundary-2000',
     breaks: 'modern-timeline-actual-data',
     why: 'the chosen opening year moves forward, so the intended 1998 chapter disappears',
@@ -2244,6 +2256,11 @@ const SCENARIOS = [
     title: 'the chosen 1998 timeline and setup guide stay distinct on actual data',
     async run(page, t) {
       const externalRequests = [];
+      const browserErrors = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
       page.on('request', (request) => {
         const url = new URL(request.url());
         if (url.protocol.startsWith('http') && url.origin !== page.__origin) {
@@ -2251,7 +2268,9 @@ const SCENARIOS = [
         }
       });
       await page.evaluateOnNewDocument(() => {
-        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        if (!localStorage.getItem('mrt.settings')) {
+          localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        }
         window.__mrtBlockExternal = true;
       });
       await open(page, '/?catalog=actual#/home');
@@ -2301,39 +2320,17 @@ const SCENARIOS = [
         && afterHomePreview.focus === 'btn-home-recommended',
         JSON.stringify({ beforeHomePreview, afterHomePreview }));
 
-      await click(page, '#btn-home-recommended');
-      await page.waitForSelector('#preview[open]');
-      await click(page, '#preview-add [data-act="main"]');
-      await page.waitForFunction(() => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        return Object.values(state.lists)
-          .some((list) => list.catalogId === 'setup-to-modern-timeline');
-      });
-      await click(page, '#preview-close');
-      await page.waitForFunction(() => !document.querySelector('#preview')?.open);
-      const trackedSetup = await page.evaluate(() => {
-        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
-        const list = Object.values(state.lists)
-          .find((candidate) => candidate.catalogId === 'setup-to-modern-timeline');
-        return {
-          catalogId: list?.catalogId ?? '',
-          issueCount: list?.itemIds.length ?? 0,
-          listCount: state.listOrder.length,
-        };
-      });
-      t.check('the featured setup remains one normal trackable 21-issue Reading List',
-        trackedSetup.catalogId === 'setup-to-modern-timeline'
-        && trackedSetup.issueCount === 21
-        && trackedSetup.listCount === 1,
-        JSON.stringify(trackedSetup));
-
       await click(page, '.ri[data-view="browse"]');
       await page.waitForSelector('#view-browse:not([hidden])');
       await click(page, '#view-browse [data-primary-paths] [data-category="timeline"]');
-      await page.waitForSelector('#modern-timeline-feature:not([hidden])', { timeout: 15000 });
+      await page.waitForSelector('#modern-timeline-feature .catalog-card', { timeout: 15000 });
       await page.waitForSelector('#catalog-results .catalog-card');
       const timeline = await page.evaluate(() => {
         const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
+        const feature = document.querySelector('#modern-timeline-feature');
+        const featureCard = feature?.querySelector('.catalog-card');
+        const featureImage = featureCard?.querySelector('.ocard-art img');
+        const featureFallback = featureCard?.querySelector('.ocard-art .of');
         const chapterCards = cards.filter((card) => (
           /^list:marvel-knights-to-planet-x-\d{2}$/.test(card.dataset.story)
         ));
@@ -2346,8 +2343,21 @@ const SCENARIOS = [
             empty: marker.classList.contains('is-empty'),
           }));
         return {
-          featureHeading: document.querySelector('#modern-timeline-feature-h')?.textContent.trim() ?? '',
-          featureCopy: document.querySelector('#modern-timeline-feature p')?.textContent.trim() ?? '',
+          featureHeading: featureCard?.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
+          featureCopy: feature?.querySelector('.setup-guide-context p:last-child')?.textContent.trim() ?? '',
+          featureIdentity: feature?.dataset.featuredList ?? '',
+          featureStory: featureCard?.dataset.story ?? '',
+          featureDescription: featureCard?.querySelector('.catalog-card-desc')?.textContent.trim() ?? '',
+          featureMeta: featureCard?.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
+          featureActions: [...(featureCard?.querySelectorAll('button') ?? [])].map((button) => ({
+            text: button.textContent.trim(),
+            name: button.getAttribute('aria-label'),
+            act: button.dataset.act,
+          })),
+          featureImageSrc: featureImage?.getAttribute('src') ?? null,
+          featureImageHidden: featureImage?.hidden ?? null,
+          featureFallbackDisplay: featureFallback ? getComputedStyle(featureFallback).display : '',
+          oldPlainAction: Boolean(document.querySelector('#btn-modern-timeline-feature')),
           cards: cards.length,
           firstCards: cards.slice(0, 3).map((card) => ({
             title: card.querySelector('.catalog-card-title')?.textContent.trim() ?? '',
@@ -2367,16 +2377,38 @@ const SCENARIOS = [
               copy: head.querySelector('.shelf-section-blurb')?.textContent.trim() ?? '',
             })),
           spine,
-          setupCards: cards.filter((card) => card.dataset.story === 'list:setup-to-modern-timeline').length,
+          setupCards: document.querySelectorAll(
+            '#modern-timeline-feature [data-story="list:setup-to-modern-timeline"]',
+          ).length,
           operationCards: cards.filter((card) => card.dataset.story === 'list:operation-zero-tolerance').length,
           avengersCards: cards.filter((card) => card.dataset.story === 'list:avengers-disassembled').length,
         };
       });
-      t.check('the feature names the product boundary without becoming a normal card',
-        timeline.featureHeading === 'Start with Setup to Modern Timeline'
+      t.check('Modern Timeline shows the existing setup guide as one shared rich card',
+        timeline.featureHeading === 'Setup to Modern Timeline'
         && timeline.featureCopy.includes('This app chooses 1998 as the start of its Modern Timeline.')
         && timeline.featureCopy.includes('It is not an official Marvel editorial-era boundary.')
-        && timeline.setupCards === 0,
+        && timeline.featureIdentity === 'setup-to-modern-timeline'
+        && timeline.featureStory === 'list:setup-to-modern-timeline'
+        && timeline.featureDescription.includes('orientation path through Marvels and Sentry stories')
+        && timeline.featureMeta === '21 issues'
+        && JSON.stringify(timeline.featureActions) === JSON.stringify([
+          {
+            text: '+ Add to library',
+            name: 'Add to library: Setup to Modern Timeline',
+            act: 'import',
+          },
+          {
+            text: 'Preview',
+            name: 'Preview: Setup to Modern Timeline',
+            act: 'preview',
+          },
+        ])
+        && timeline.featureImageSrc === null
+        && timeline.featureImageHidden === true
+        && timeline.featureFallbackDisplay === 'flex'
+        && timeline.oldPlainAction === false
+        && timeline.setupCards === 1,
         JSON.stringify(timeline));
       t.check('148 selected lists render as 144 cards beginning with the owner chapters',
         timeline.cards === 144
@@ -2412,25 +2444,73 @@ const SCENARIOS = [
         history: history.length,
         state: localStorage.getItem('mrt.state.v2'),
       }));
-      await page.focus('#btn-modern-timeline-feature');
+      const featurePreview =
+        '#modern-timeline-feature [data-story="list:setup-to-modern-timeline"] [data-act="preview"]';
+      await page.focus(featurePreview);
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => document.querySelector('#preview')?.open
         && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open
-        && document.activeElement?.id === 'btn-modern-timeline-feature');
+        && document.activeElement?.dataset.act === 'preview'
+        && document.activeElement?.dataset.key === 'list:setup-to-modern-timeline');
       const afterFeaturePreview = await page.evaluate(() => ({
         href: location.href,
         history: history.length,
         state: localStorage.getItem('mrt.state.v2'),
-        focus: document.activeElement?.id ?? '',
+        focus: {
+          act: document.activeElement?.dataset.act ?? '',
+          key: document.activeElement?.dataset.key ?? '',
+        },
       }));
       t.check('the featured action uses the same Preview flow without a second tracked guide',
         afterFeaturePreview.href === beforeFeaturePreview.href
         && afterFeaturePreview.history === beforeFeaturePreview.history
         && afterFeaturePreview.state === beforeFeaturePreview.state
-        && afterFeaturePreview.focus === 'btn-modern-timeline-feature',
+        && afterFeaturePreview.focus.act === 'preview'
+        && afterFeaturePreview.focus.key === 'list:setup-to-modern-timeline',
         JSON.stringify({ beforeFeaturePreview, afterFeaturePreview }));
+
+      await click(
+        page,
+        '#modern-timeline-feature [data-story="list:setup-to-modern-timeline"] [data-act="import"]',
+      );
+      await page.waitForSelector('#view-read:not([hidden])');
+      const trackedSetup = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const list = Object.values(state.lists)
+          .find((candidate) => candidate.catalogId === 'setup-to-modern-timeline');
+        return {
+          catalogId: list?.catalogId ?? '',
+          issueCount: list?.itemIds.length ?? 0,
+          listCount: state.listOrder.length,
+          activeName: document.querySelector('#order-name')?.textContent.trim() ?? '',
+        };
+      });
+      t.check('the rich card adds the one existing 21-issue guide and opens it for reading',
+        trackedSetup.catalogId === 'setup-to-modern-timeline'
+        && trackedSetup.issueCount === 21
+        && trackedSetup.listCount === 1
+        && trackedSetup.activeName === 'Setup to Modern Timeline',
+        JSON.stringify(trackedSetup));
+
+      await open(page, '/?catalog=actual#/home');
+      await page.waitForSelector('#home-continue:not([hidden])');
+      const continued = await page.$eval('#chero-h', (heading) => heading.textContent.trim());
+      t.check('Home continues the same setup guide after it is added',
+        continued === 'Setup to Modern Timeline', continued);
+
+      await open(page, '/?catalog=actual#/catalog');
+      await page.waitForSelector(
+        '#modern-timeline-feature [data-story="list:setup-to-modern-timeline"] [data-act="open"]',
+        { timeout: 15000 },
+      );
+      const openName = await page.$eval(
+        '#modern-timeline-feature [data-act="open"]',
+        (button) => button.getAttribute('aria-label'),
+      );
+      t.check('the shared card replaces Add with an accessible Open action when already saved',
+        openName === 'Open: Setup to Modern Timeline', openName);
 
       await page.$eval('#catalog-q', (input) => {
         input.value = 'Avengers Disassembled';
@@ -2438,7 +2518,7 @@ const SCENARIOS = [
       });
       await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
       const searched = await page.evaluate(() => ({
-        featureVisible: !document.querySelector('#modern-timeline-feature')?.hidden,
+        featureVisible: Boolean(document.querySelector('#modern-timeline-feature')),
         title: document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() ?? '',
         setupCard: Boolean(document.querySelector(
           '#catalog-results [data-story="list:setup-to-modern-timeline"]',
@@ -2449,7 +2529,7 @@ const SCENARIOS = [
       await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length >= 144);
       await page.$eval('#catalog-filters input:not([value="all"])', (input) => input.click());
       const filtered = await page.evaluate(() => ({
-        featureVisible: !document.querySelector('#modern-timeline-feature')?.hidden,
+        featureVisible: Boolean(document.querySelector('#modern-timeline-feature')),
         checked: document.querySelector('#catalog-filters input:checked')?.value ?? '',
         setupCard: Boolean(document.querySelector(
           '#catalog-results [data-story="list:setup-to-modern-timeline"]',
@@ -2577,7 +2657,106 @@ const SCENARIOS = [
         ['maximum-security', 'Maximum Security'],
       ];
       await open(page, '/?catalog=actual#/age-marvel-knights-heroes-return');
+      await page.waitForSelector(
+        '#age-marvel-knights-heroes-return-setup-guide-feature .catalog-card',
+        { timeout: 15000 },
+      );
       await page.waitForSelector('#age-marvel-knights-heroes-return-results .catalog-card', { timeout: 15000 });
+      const ageFeature = await page.evaluate(() => {
+        const feature = document.querySelector('#age-marvel-knights-heroes-return-setup-guide-feature');
+        const card = feature?.querySelector('.catalog-card');
+        const image = card?.querySelector('.ocard-art img');
+        const fallback = card?.querySelector('.ocard-art .of');
+        const title = card?.querySelector('.catalog-card-title');
+        return {
+          identity: feature?.dataset.featuredList ?? '',
+          story: card?.dataset.story ?? '',
+          heading: title?.textContent.trim() ?? '',
+          headingId: title?.id ?? '',
+          labelledBy: feature?.getAttribute('aria-labelledby') ?? '',
+          context: feature?.querySelector('.setup-guide-context p:last-child')?.textContent.trim() ?? '',
+          meta: card?.querySelector('.catalog-card-meta')?.textContent.trim() ?? '',
+          actions: [...(card?.querySelectorAll('button') ?? [])].map((button) => ({
+            text: button.textContent.trim(),
+            name: button.getAttribute('aria-label'),
+            act: button.dataset.act,
+          })),
+          imageSrc: image?.getAttribute('src') ?? null,
+          imageHidden: image?.hidden ?? null,
+          fallbackDisplay: fallback ? getComputedStyle(fallback).display : '',
+          inResults: Boolean(document.querySelector(
+            '#age-marvel-knights-heroes-return-results [data-story="list:setup-to-modern-timeline"]',
+          )),
+        };
+      });
+      t.check('Marvel Knights / Heroes Return shows the same saved guide card before its dated lists',
+        ageFeature.identity === 'setup-to-modern-timeline'
+        && ageFeature.story === 'list:setup-to-modern-timeline'
+        && ageFeature.heading === 'Setup to Modern Timeline'
+        && ageFeature.headingId === ageFeature.labelledBy
+        && ageFeature.context.includes('earlier stories that lead into this age')
+        && ageFeature.meta === '21 issues'
+        && JSON.stringify(ageFeature.actions) === JSON.stringify([
+          {
+            text: 'Open →',
+            name: 'Open: Setup to Modern Timeline',
+            act: 'open',
+          },
+          {
+            text: 'Preview',
+            name: 'Preview: Setup to Modern Timeline',
+            act: 'preview',
+          },
+        ])
+        && ageFeature.imageSrc === null
+        && ageFeature.imageHidden === true
+        && ageFeature.fallbackDisplay === 'flex'
+        && ageFeature.inResults === false,
+        JSON.stringify(ageFeature));
+
+      const agePreview =
+        '#age-marvel-knights-heroes-return-setup-guide-feature [data-act="preview"]';
+      await page.focus(agePreview);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#preview')?.open
+        && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open
+        && document.activeElement?.dataset.act === 'preview'
+        && document.activeElement?.dataset.key === 'list:setup-to-modern-timeline');
+      t.check('the age-page Preview returns focus to the same shared card action', true);
+
+      await page.setViewport({ width: 320, height: 900 });
+      const ageNarrow = await page.$eval(
+        '#age-marvel-knights-heroes-return-setup-guide-feature',
+        (feature) => {
+          const card = feature.querySelector('.catalog-card');
+          const grid = feature.querySelector('.setup-guide-grid');
+          const actions = card.querySelector('.catalog-card-actions');
+          const rect = card.getBoundingClientRect();
+          return {
+            viewport: innerWidth,
+            documentWidth: document.documentElement.scrollWidth,
+            left: rect.left,
+            right: rect.right,
+            cardColumns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
+            actionColumns: getComputedStyle(actions).gridTemplateColumns.split(' ').length,
+            controls: [...actions.querySelectorAll('button')].every((button) => (
+              button.getBoundingClientRect().height >= 44
+            )),
+          };
+        },
+      );
+      t.check('the age-page setup card stays one column, unclipped, and operable at 320 pixels',
+        ageNarrow.documentWidth <= ageNarrow.viewport
+        && ageNarrow.left >= 0
+        && ageNarrow.right <= ageNarrow.viewport
+        && ageNarrow.cardColumns === 1
+        && ageNarrow.actionColumns === 2
+        && ageNarrow.controls,
+        JSON.stringify(ageNarrow));
+      await page.setViewport({ width: 1280, height: 900 });
+
       const excludedOnPeriod = [];
       for (const [id, title] of excluded) {
         const selector = `#age-marvel-knights-heroes-return-results [data-story="list:${id}"] [data-act="preview"]`;
@@ -2668,6 +2847,40 @@ const SCENARIOS = [
           (url) => url === 'https://marvel.emreparker.com/v1/health',
         ),
         JSON.stringify({ externalRequests, blockedExternal: olderDiscovery.blockedExternal }));
+
+      await page.evaluate(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: true }));
+      });
+      const coveredRoutes = [];
+      for (const [route, featureId] of [
+        ['catalog', 'modern-timeline-feature'],
+        ['age-marvel-knights-heroes-return', 'age-marvel-knights-heroes-return-setup-guide-feature'],
+      ]) {
+        await open(page, `/?catalog=actual&covers=1#/${route}`);
+        await page.waitForSelector(`#${featureId} .catalog-card`, { timeout: 15000 });
+        coveredRoutes.push(await page.$eval(`#${featureId}`, (feature) => {
+          const image = feature.querySelector('.ocard-art img');
+          const fallback = feature.querySelector('.ocard-art .of');
+          return {
+            route: location.hash,
+            settings: localStorage.getItem('mrt.settings'),
+            noCovers: document.body.classList.contains('nocovers'),
+            source: image.getAttribute('src'),
+            complete: image.complete,
+            naturalWidth: image.naturalWidth,
+            shown: !image.hidden && getComputedStyle(image).display !== 'none',
+            fallback: getComputedStyle(fallback).display,
+          };
+        }));
+      }
+      t.check('both setup cards show the catalog cover when cover art is on',
+        coveredRoutes.every(({ source, complete, naturalWidth, shown, fallback }) => (
+          source?.includes('/portrait_incredible.jpg')
+          && complete && naturalWidth > 0 && shown && fallback === 'none'
+        )),
+        JSON.stringify(coveredRoutes));
+      t.check('the setup-card journeys produce no console or page errors',
+        browserErrors.length === 0, browserErrors.join(' / '));
     },
   },
   {
@@ -2780,7 +2993,7 @@ const SCENARIOS = [
   },
   {
     id: 'modern-timeline-layout',
-    title: 'Modern Timeline era copy uses its box and remains readable under constrained display',
+    title: 'Modern Timeline content and setup card remain usable under constrained display',
     async run(page, t) {
       await page.evaluateOnNewDocument(() => {
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
@@ -2816,29 +3029,39 @@ const SCENARIOS = [
 
       await page.setViewport({ width: 320, height: 900 });
       await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
-      const narrow = await page.$eval(
-        '#catalog-results .timeline-era-head',
-        (head) => {
-          const blurb = head.querySelector('.shelf-section-blurb');
-          const headRect = head.getBoundingClientRect();
-          const blurbRect = blurb.getBoundingClientRect();
-          return {
-            viewport: innerWidth,
-            documentWidth: document.documentElement.scrollWidth,
-            headLeft: Math.round(headRect.left),
-            headRight: Math.round(headRect.right),
-            blurbLeft: Math.round(blurbRect.left),
-            blurbRight: Math.round(blurbRect.right),
-            blurbScroll: blurb.scrollWidth,
-            blurbClient: blurb.clientWidth,
-          };
-        },
-      );
-      t.check('the era box and its copy reflow without horizontal clipping at 320 pixels',
+      const narrow = await page.evaluate(() => {
+        const head = document.querySelector('#catalog-results .timeline-era-head');
+        const feature = document.querySelector('#modern-timeline-feature');
+        const card = feature.querySelector('.catalog-card');
+        const actions = card.querySelector('.catalog-card-actions');
+        const cardRect = card.getBoundingClientRect();
+        const blurb = head.querySelector('.shelf-section-blurb');
+        const headRect = head.getBoundingClientRect();
+        const blurbRect = blurb.getBoundingClientRect();
+        return {
+          viewport: innerWidth,
+          documentWidth: document.documentElement.scrollWidth,
+          headLeft: Math.round(headRect.left),
+          headRight: Math.round(headRect.right),
+          blurbLeft: Math.round(blurbRect.left),
+          blurbRight: Math.round(blurbRect.right),
+          blurbScroll: blurb.scrollWidth,
+          blurbClient: blurb.clientWidth,
+          cardLeft: Math.round(cardRect.left),
+          cardRight: Math.round(cardRect.right),
+          actionColumns: getComputedStyle(actions).gridTemplateColumns.split(' ').length,
+          actionTargets: [...actions.querySelectorAll('button')].every((button) => (
+            button.getBoundingClientRect().height >= 44
+          )),
+        };
+      });
+      t.check('the era copy and setup card reflow without horizontal clipping at 320 pixels',
         narrow.documentWidth <= narrow.viewport
         && narrow.headLeft >= 0 && narrow.headRight <= narrow.viewport
         && narrow.blurbLeft >= narrow.headLeft && narrow.blurbRight <= narrow.headRight
-        && narrow.blurbScroll <= narrow.blurbClient,
+        && narrow.blurbScroll <= narrow.blurbClient
+        && narrow.cardLeft >= 0 && narrow.cardRight <= narrow.viewport
+        && narrow.actionColumns === 2 && narrow.actionTargets,
         JSON.stringify(narrow));
 
       await page.setViewport({ width: 1280, height: 900 });
@@ -2846,27 +3069,33 @@ const SCENARIOS = [
         document.querySelector('#catalog-h').focus();
       });
       for (let press = 0; press < 20; press += 1) {
-        if (await page.evaluate(() => document.activeElement?.id === 'btn-modern-timeline-feature')) break;
+        if (await page.evaluate(() => (
+          document.activeElement?.dataset.key === 'setup-to-modern-timeline'
+          && document.activeElement?.dataset.act === 'import'
+        ))) break;
         await page.keyboard.press('Tab');
       }
-      const keyboardFocus = await page.$eval('#btn-modern-timeline-feature', (button) => ({
-        active: document.activeElement === button,
-        outlineStyle: getComputedStyle(button).outlineStyle,
-        outlineWidth: Number.parseFloat(getComputedStyle(button).outlineWidth),
-      }));
+      const keyboardFocus = await page.$eval(
+        '#modern-timeline-feature [data-act="import"]',
+        (button) => ({
+          active: document.activeElement === button,
+          outlineStyle: getComputedStyle(button).outlineStyle,
+          outlineWidth: Number.parseFloat(getComputedStyle(button).outlineWidth),
+        }),
+      );
       t.check('keyboard traversal reaches the featured setup action with a visible focus ring',
         keyboardFocus.active && keyboardFocus.outlineStyle !== 'none' && keyboardFocus.outlineWidth >= 3,
         JSON.stringify(keyboardFocus));
 
       const client = await page.createCDPSession();
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
-      await page.$eval('#btn-modern-timeline-feature', (button) => {
+      await page.$eval('#modern-timeline-feature [data-act="import"]', (button) => {
         button.scrollIntoView({ block: 'center', inline: 'center' });
       });
       const zoom = await page.$eval('#modern-timeline-feature', (feature) => {
-        const button = feature.querySelector('#btn-modern-timeline-feature');
+        const button = feature.querySelector('[data-act="import"]');
         const buttonRect = button.getBoundingClientRect();
-        const copy = feature.querySelector('p');
+        const copy = feature.querySelector('.setup-guide-context p:last-child');
         return {
           scale: visualViewport.scale,
           active: document.activeElement === button,
@@ -2886,7 +3115,10 @@ const SCENARIOS = [
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
 
       await client.send('Emulation.setEmulatedMedia', {
-        features: [{ name: 'forced-colors', value: 'active' }],
+        features: [
+          { name: 'forced-colors', value: 'active' },
+          { name: 'prefers-reduced-motion', value: 'reduce' },
+        ],
       });
       const forced = await page.$eval(
         '#catalog-results .timeline-era-head',
@@ -2901,6 +3133,7 @@ const SCENARIOS = [
           };
           const blurb = head.querySelector('.shelf-section-blurb');
           const feature = document.querySelector('#modern-timeline-feature');
+          const card = feature.querySelector('.catalog-card');
           const style = getComputedStyle(head);
           return {
             active: matchMedia('(forced-colors: active)').matches,
@@ -2909,7 +3142,9 @@ const SCENARIOS = [
             headBorder: style.borderTopColor,
             accentBorder: style.borderLeftColor,
             blurbColor: getComputedStyle(blurb).color,
-            featureBorder: getComputedStyle(feature).borderTopColor,
+            featureBorder: getComputedStyle(card).borderTopColor,
+            transitionDuration: getComputedStyle(card).transitionDuration,
+            animationDuration: getComputedStyle(card).animationDuration,
           };
         },
       );
@@ -2917,7 +3152,9 @@ const SCENARIOS = [
         forced.active && forced.headBorder === forced.canvasText
         && forced.accentBorder === forced.highlight
         && forced.blurbColor === forced.canvasText
-        && forced.featureBorder === forced.canvasText,
+        && forced.featureBorder === forced.canvasText
+        && forced.transitionDuration === '0s'
+        && forced.animationDuration === '0s',
         JSON.stringify(forced));
       await client.send('Emulation.setEmulatedMedia', { features: [] });
     },
@@ -5107,22 +5344,29 @@ async function preparePage(page, origin, mutation) {
     if (rewritten === source) throw new Error(`Mutation ${mutation.id} did not change ${path}`);
     rewrites.set(`${origin}${path}`, rewritten);
   }
-  if (rewrites.size > 0) {
-    await page.setRequestInterception(true);
-    page.on('request', async (request) => {
-      const rewritten = rewrites.get(request.url());
-      if (rewritten) {
-        await request.respond({
-          status: 200,
-          contentType: 'application/javascript; charset=utf-8',
-          headers: { 'cache-control': 'no-store' },
-          body: rewritten,
-        });
-        return;
-      }
-      await request.continue();
-    });
-  }
+  await page.setRequestInterception(true);
+  page.on('request', async (request) => {
+    const rewritten = rewrites.get(request.url());
+    if (rewritten) {
+      await request.respond({
+        status: 200,
+        contentType: 'application/javascript; charset=utf-8',
+        headers: { 'cache-control': 'no-store' },
+        body: rewritten,
+      });
+      return;
+    }
+    if (new URL(request.url()).hostname === 'i.annihil.us') {
+      await request.respond({
+        status: 200,
+        contentType: 'image/png',
+        headers: { 'cache-control': 'no-store' },
+        body: COVER_PIXEL,
+      });
+      return;
+    }
+    await request.continue();
+  });
   await page.setViewport({ width: 1280, height: 900 });
   await page.evaluateOnNewDocument(
     (
