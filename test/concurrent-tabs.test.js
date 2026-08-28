@@ -212,6 +212,31 @@ test('production storage dispatch keeps reader data and education in their own l
   assert.equal(storage.getItem(KEY), readerBefore);
 });
 
+test('three queued legacy writes cannot roll current state back through middle events', () => {
+  const legacyRaw = (id, title) => JSON.stringify({
+    ...createEmptyState(),
+    issues: { [id]: { issueId: id, title, description: `${title} synopsis.` } },
+  });
+  const first = legacyRaw(1, 'One');
+  const middle = legacyRaw(2, 'Two');
+  const latest = legacyRaw(3, 'Three');
+  const storage = fakeStorage({ [KEY]: first });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  storage.setItem(KEY, latest);
+
+  dispatchStorageEvent({ key: KEY, newValue: first }, { readerStore });
+  dispatchStorageEvent({ key: KEY, newValue: middle }, { readerStore });
+  readerStore.update((state) => ({ ...state, read: { ...state.read, 3: true } }));
+  dispatchStorageEvent({ key: KEY, newValue: latest }, { readerStore });
+
+  const durable = JSON.parse(storage.getItem(KEY));
+  assert.equal('1' in durable.issues, false);
+  assert.equal('2' in durable.issues, false);
+  assert.equal(durable.issues[3].title, 'Three');
+  assert.equal(durable.read[3], true, 'the current edit between queued events was lost');
+});
+
 // ----------------------------------------------------------------------------- whole-state routes
 
 test('an erase in another tab is adopted rather than written back over', () => {

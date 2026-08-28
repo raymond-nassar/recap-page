@@ -789,6 +789,36 @@ test('automatic cleanup treats entirely unavailable IndexedDB as nothing reachab
   assert.equal(storage.getItem(CACHE_PURGE_KEY), '1');
 });
 
+test('automatic cleanup also completes when the retained IndexedDB factory denies all access', async () => {
+  for (const name of ['SecurityError', 'InvalidStateError']) {
+    const cache = {
+      available: false,
+      async clear() { return false; },
+      async deleteLegacy() {
+        return {
+          status: 'failed',
+          blocked: false,
+          error: Object.assign(new Error('storage denied'), { name }),
+        };
+      },
+    };
+    const result = await maintainCacheGeneration(cache, 0, 1);
+    assert.equal(result.storageUnavailable, true, `${name} was treated as a permanent failure`);
+    assert.equal(result.activeCleared, true);
+    assert.equal(cacheCleanupFailureMessage(result), '');
+  }
+
+  const genericFailure = await maintainCacheGeneration({
+    available: false,
+    async clear() { return false; },
+    async deleteLegacy() {
+      return { status: 'failed', blocked: false, error: new Error('disk failure') };
+    },
+  }, 0, 1);
+  assert.equal(genericFailure.storageUnavailable, undefined);
+  assert.match(cacheCleanupFailureMessage(genericFailure), /disk failure/);
+});
+
 test('generation maintenance reports active clear failure, blocked cleanup, and deletion failure', async () => {
   let blocked = 0;
   const partial = cleanupCache({
@@ -820,6 +850,16 @@ test('manual cleanup clears the active generation again after a blocked legacy d
   const result = await clearCacheGenerations(cache);
   assert.equal(cache.clears, 2);
   assert.equal(result.activeCleared, false, 'a failed final clear was reported as successful');
+});
+
+test('manual cleanup final-clears active writes that arrive during an unblocked deletion', async () => {
+  const cache = cleanupCache({
+    active: [true, false],
+    legacy: { status: 'deleted', blocked: false },
+  });
+  const result = await clearCacheGenerations(cache);
+  assert.equal(cache.clears, 2);
+  assert.equal(result.activeCleared, false, 'an unblocked deletion skipped the final active clear');
 });
 
 test('foreign saved-state prose is removed independently of the cache marker', () => {

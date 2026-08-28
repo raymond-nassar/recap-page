@@ -473,7 +473,7 @@ const MUTATIONS = [
     breaks: 'cache-generations',
     why: 'automatic cleanup treats unreachable IndexedDB as a permanent failure that can never clear',
     rewriteMain: (source) => source.replace(
-      "  const storageUnavailable = cacheRef.available === false && legacy.status === 'unavailable';",
+      '  const storageUnavailable = cacheRef.available === false && legacyUnreachable;',
       '  const storageUnavailable = false;',
     ),
   },
@@ -511,7 +511,7 @@ const MUTATIONS = [
     breaks: 'cache-generations',
     why: 'manual cleanup does not clear current metadata that arrived while legacy deletion was blocked',
     rewriteMain: (source) => source.replace(
-      / {2}const activeCleared = legacy\.blocked\r?\n {4}\? await cacheRef\.clear\(\{ requireAccess: true \}\)\r?\n {4}: firstActiveClear;/,
+      '  const activeCleared = await cacheRef.clear({ requireAccess: true });',
       '  const activeCleared = firstActiveClear;',
     ),
   },
@@ -4395,7 +4395,7 @@ const SCENARIOS = [
         return !('7' in issues)
           && issues['8']?.title === 'Eight'
           && !Object.prototype.hasOwnProperty.call(issues['8'], 'description');
-      }, { timeout: 15000 }).then(() => true, () => false);
+      }, { polling: 100, timeout: 15000 }).then(() => true, () => false);
       t.check('queued legacy writes sanitize the newest saved state without rolling it back',
         savedStateStripped, await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
 
@@ -4574,9 +4574,12 @@ const SCENARIOS = [
       await unavailable.evaluateOnNewDocument(() => {
         localStorage.removeItem('mrt.cache-purge.v1');
         localStorage.setItem('mrt.settings', '{}');
+        const denied = () => {
+          throw new DOMException('Storage access denied by the browser.', 'SecurityError');
+        };
         Object.defineProperty(globalThis, 'indexedDB', {
           configurable: true,
-          value: undefined,
+          value: { open: denied, deleteDatabase: denied },
         });
       });
       await open(unavailable, '/#/settings');
@@ -4585,7 +4588,7 @@ const SCENARIOS = [
         { polling: 100, timeout: 15000 },
       ).then(() => true, () => false);
       const unavailableReport = await unavailable.$eval('#cache-report', (el) => el.textContent);
-      t.check('automatic boot records unreachable IndexedDB without announcing permanent failure',
+      t.check('automatic boot records access-denied IndexedDB without announcing permanent failure',
         unavailableRecorded && !/could not|unavailable/i.test(unavailableReport),
         JSON.stringify({ unavailableRecorded, unavailableReport }));
       await unavailable.close();

@@ -124,22 +124,37 @@ export function dispatchStorageEvent(
   } = {},
 ) {
   if (event.key === STATE_KEY) {
+    if (foreignStateSanitation?.coveredUntilRaw) {
+      let currentRaw;
+      try {
+        currentRaw = readerStore.storage?.getItem(STATE_KEY);
+      } catch (err) {
+        foreignStateSanitation = null;
+        notify('#save-report', `Could not read saved data for cleanup (${err.message}).`, 'error');
+        return;
+      }
+      if (currentRaw === foreignStateSanitation?.durableRaw) {
+        if (event.newValue === foreignStateSanitation.coveredUntilRaw) {
+          if (!readerStore.blocked) readerStore.adoptForeignWrite(currentRaw);
+          foreignStateSanitation = null;
+        }
+        return;
+      }
+      foreignStateSanitation = null;
+    }
     const cleanup = sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
       adoptCurrent: true,
       onFailure: (error) => notify('#save-report', error, 'error'),
+      onSanitized: ({ sourceRaw, durableRaw }) => {
+        foreignStateSanitation = {
+          sourceRaw,
+          durableRaw,
+          coveredUntilRaw: sourceRaw === event.newValue ? null : sourceRaw,
+        };
+      },
       queuedAfter: foreignStateSanitation,
     });
-    if (cleanup.needed && cleanup.cleared) {
-      try {
-        foreignStateSanitation = {
-          sourceRaw: event.newValue,
-          durableRaw: readerStore.storage?.getItem(STATE_KEY),
-        };
-      } catch (err) {
-        foreignStateSanitation = null;
-        notify('#save-report', `Could not re-read cleaned saved data (${err.message}).`, 'error');
-      }
-    } else if (!cleanup.needed) {
+    if (!cleanup.needed) {
       foreignStateSanitation = null;
     }
     return;
@@ -771,9 +786,7 @@ export async function clearCacheGenerations(cacheRef, { onLegacyBlocked = () => 
   const legacy = await cacheRef.deleteLegacy({
     onBlocked: () => onLegacyBlocked({ activeCleared: firstActiveClear }),
   });
-  const activeCleared = legacy.blocked
-    ? await cacheRef.clear({ requireAccess: true })
-    : firstActiveClear;
+  const activeCleared = await cacheRef.clear({ requireAccess: true });
   return { activeCleared, legacy };
 }
 
@@ -787,7 +800,12 @@ export async function maintainCacheGeneration(
   const legacy = await cacheRef.deleteLegacy({
     onBlocked: () => onLegacyBlocked({ activeCleared: !purge.ran || purge.cleared }),
   });
-  const storageUnavailable = cacheRef.available === false && legacy.status === 'unavailable';
+  const denied = ['SecurityError', 'InvalidStateError', 'NotAllowedError']
+    .includes(legacy.error?.name);
+  const legacyUnreachable = legacy.status === 'unavailable'
+    || legacy.status === 'deleted'
+    || (legacy.status === 'failed' && denied);
+  const storageUnavailable = cacheRef.available === false && legacyUnreachable;
   return {
     ran: purge.ran,
     activeCleared: storageUnavailable || !purge.ran || purge.cleared,
@@ -804,7 +822,7 @@ export function cacheCleanupFailureMessage(result) {
   }
   if (result.legacy.status === 'unavailable' && !result.storageUnavailable) {
     failures.push('Older cached metadata could not be checked because browser storage is unavailable.');
-  } else if (result.legacy.status === 'failed') {
+  } else if (result.legacy.status === 'failed' && !result.storageUnavailable) {
     failures.push(`Older cached metadata could not be removed (${result.legacy.error?.message ?? 'unknown error'}).`);
   }
   return failures.join(' ');
@@ -860,6 +878,7 @@ export function sanitizeStoredIssueDescriptions(
   {
     adoptCurrent = false,
     onFailure = () => {},
+    onSanitized = () => {},
     queuedAfter = null,
     retryConflict = true,
   } = {},
@@ -914,12 +933,18 @@ export function sanitizeStoredIssueDescriptions(
     needed: true,
     cleared: verifySavedStateSanitation(readerStore.storage, onFailure),
   };
-  if (result.cleared && adoptCurrent && !readerStore.blocked) {
+  let durableRaw = null;
+  if (result.cleared) {
     try {
-      readerStore.adoptForeignWrite(readerStore.storage.getItem(STATE_KEY));
+      durableRaw = readerStore.storage.getItem(STATE_KEY);
     } catch (err) {
       onFailure(`Could not read the cleaned saved data (${err.message}).`);
+      result.cleared = false;
     }
+  }
+  if (result.cleared) {
+    onSanitized({ sourceRaw: candidateRaw, durableRaw });
+    if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(durableRaw);
   }
   return result;
 }

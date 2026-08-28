@@ -128,7 +128,7 @@ function fakeIndexedDB({
 
   const idb = {
     open(name) {
-      if (openThrows) throw new Error('blocked by policy');
+      if (openThrows) throw (openThrows instanceof Error ? openThrows : new Error('blocked by policy'));
       log.push('open');
       openNames.push(name);
       const req = new FakeRequest();
@@ -142,7 +142,7 @@ function fakeIndexedDB({
       return req;
     },
     deleteDatabase(name) {
-      if (deleteThrows) throw new Error('delete blocked by policy');
+      if (deleteThrows) throw (deleteThrows instanceof Error ? deleteThrows : new Error('delete blocked by policy'));
       deleteNames.push(name);
       const req = new FakeRequest();
       queueMicrotask(() => {
@@ -251,6 +251,21 @@ test('legacy deletion exposes unavailable, thrown, and request failure states', 
       assert.equal(result.status, 'failed');
       assert.equal(result.blocked, false);
       assert.match(result.error.message, /delete/);
+    });
+  }
+});
+
+test('access-denied IndexedDB factories preserve their explicit error names', async () => {
+  for (const name of ['SecurityError', 'InvalidStateError']) {
+    const openError = Object.assign(new Error('storage denied'), { name });
+    const deleteError = Object.assign(new Error('storage denied'), { name });
+    await withIdb({ openThrows: openError, deleteThrows: deleteError }, async () => {
+      const cache = newCache();
+      assert.equal(await cache.open(), null);
+      assert.equal(cache.available, false);
+      const legacy = await cache.deleteLegacy();
+      assert.equal(legacy.status, 'failed');
+      assert.equal(legacy.error.name, name);
     });
   }
 });
