@@ -3643,13 +3643,24 @@
     "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The exact full-page source ledger and cache-only provider settlement preserve all 220 source occurrences: 114 importable issue selections, four context-only named works, 51 unresolved placeholders, and 51 exclusions. The remaining provider gaps are tracked in issue #333.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "civil-war",
+      "civil-war-avengers",
+      "dark-reign-avengers",
+      "generations",
+      "marvel-fresh-start-avengers",
+      "scarlet-witch-best-of",
+      "secret-invasion",
+      "white-tiger-ava-ayala"
+    ],
+    "catalogIds": [
+      "young-avengers-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Young Avengers"
     ],
@@ -3657,8 +3668,8 @@
       130
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "0f17795c8d34a156f2cdbbe2432c241f63f97c07fbd747488bce57e04cf6fd1b",
+    "sourceContentSha256": "b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   }
 ]

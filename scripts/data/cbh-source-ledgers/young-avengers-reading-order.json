@@ -6,7 +6,7 @@
   "sourceRetrievedAt": "2026-08-27",
   "sourceContentSha256": "b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1",
   "sourceNodeSha256": "f62928e1cdd6471327716eab1d832ec5322c19d79aa9beb43b7ee2960ef01b61",
-  "sourceOccurrenceSha256": "16ceadd5443753110834402f78ff70540416e4040571e43fd27c534d323dcc53",
+  "sourceOccurrenceSha256": "968d30fdff3cda6a9c30f3d9117a0a1b3e7acbd9b74f2424427e97a0682fc938",
   "sourceIssueBearingBlocksSha256": "e4c6de73726ffca68ff07aa86d56a14b049d1a012811af113abf5420fa0cf146",
   "sourceBoundary": {
     "scope": "full page",
@@ -636,45 +636,6 @@
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
-      "sourceReference": "Young Avengers #10",
-      "disposition": "exact",
-      "sourceRangeReference": "Young Avengers 1-12, Special",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
-      "issueNumber": "10"
-    },
-    {
-      "position": 11,
-      "sourceBlockPosition": 9,
-      "sourceGroup": "Young Avengers Origins!",
-      "sourceText": "Collects: Young Avengers 1-12, Special",
-      "sourceReference": "Young Avengers #11",
-      "disposition": "exact",
-      "sourceRangeReference": "Young Avengers 1-12, Special",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
-      "issueNumber": "11"
-    },
-    {
-      "position": 12,
-      "sourceBlockPosition": 9,
-      "sourceGroup": "Young Avengers Origins!",
-      "sourceText": "Collects: Young Avengers 1-12, Special",
-      "sourceReference": "Young Avengers #12",
-      "disposition": "exact",
-      "sourceRangeReference": "Young Avengers 1-12, Special",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
-      "issueNumber": "12"
-    },
-    {
-      "position": 13,
-      "sourceBlockPosition": 9,
-      "sourceGroup": "Young Avengers Origins!",
-      "sourceText": "Collects: Young Avengers 1-12, Special",
       "sourceReference": "Young Avengers #2",
       "disposition": "exact",
       "sourceRangeReference": "Young Avengers 1-12, Special",
@@ -684,7 +645,7 @@
       "issueNumber": "2"
     },
     {
-      "position": 14,
+      "position": 11,
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
@@ -697,7 +658,7 @@
       "issueNumber": "3"
     },
     {
-      "position": 15,
+      "position": 12,
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
@@ -710,7 +671,7 @@
       "issueNumber": "4"
     },
     {
-      "position": 16,
+      "position": 13,
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
@@ -723,7 +684,7 @@
       "issueNumber": "5"
     },
     {
-      "position": 17,
+      "position": 14,
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
@@ -736,7 +697,7 @@
       "issueNumber": "6"
     },
     {
-      "position": 18,
+      "position": 15,
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
@@ -749,7 +710,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 19,
+      "position": 16,
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
@@ -762,7 +723,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 20,
+      "position": 17,
       "sourceBlockPosition": 9,
       "sourceGroup": "Young Avengers Origins!",
       "sourceText": "Collects: Young Avengers 1-12, Special",
@@ -773,6 +734,45 @@
       "normalizedSeriesTitle": "Young Avengers",
       "seriesYear": null,
       "issueNumber": "9"
+    },
+    {
+      "position": 18,
+      "sourceBlockPosition": 9,
+      "sourceGroup": "Young Avengers Origins!",
+      "sourceText": "Collects: Young Avengers 1-12, Special",
+      "sourceReference": "Young Avengers #10",
+      "disposition": "exact",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "10"
+    },
+    {
+      "position": 19,
+      "sourceBlockPosition": 9,
+      "sourceGroup": "Young Avengers Origins!",
+      "sourceText": "Collects: Young Avengers 1-12, Special",
+      "sourceReference": "Young Avengers #11",
+      "disposition": "exact",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "11"
+    },
+    {
+      "position": 20,
+      "sourceBlockPosition": 9,
+      "sourceGroup": "Young Avengers Origins!",
+      "sourceText": "Collects: Young Avengers 1-12, Special",
+      "sourceReference": "Young Avengers #12",
+      "disposition": "exact",
+      "sourceRangeReference": "Young Avengers 1-12, Special",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": null,
+      "issueNumber": "12"
     },
     {
       "position": 21,
@@ -1630,19 +1630,6 @@
       "sourceBlockPosition": 34,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: Young Avengers (2013) #6-10",
-      "sourceReference": "Young Avengers #10",
-      "disposition": "exact",
-      "sourceRangeReference": "Young Avengers (2013) #6-10",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": 2013,
-      "issueNumber": "10"
-    },
-    {
-      "position": 93,
-      "sourceBlockPosition": 34,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: Young Avengers (2013) #6-10",
       "sourceReference": "Young Avengers #6",
       "disposition": "exact",
       "sourceRangeReference": "Young Avengers (2013) #6-10",
@@ -1652,7 +1639,7 @@
       "issueNumber": "6"
     },
     {
-      "position": 94,
+      "position": 93,
       "sourceBlockPosition": 34,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: Young Avengers (2013) #6-10",
@@ -1665,7 +1652,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 95,
+      "position": 94,
       "sourceBlockPosition": 34,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: Young Avengers (2013) #6-10",
@@ -1678,7 +1665,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 96,
+      "position": 95,
       "sourceBlockPosition": 34,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: Young Avengers (2013) #6-10",
@@ -1689,6 +1676,19 @@
       "normalizedSeriesTitle": "Young Avengers",
       "seriesYear": 2013,
       "issueNumber": "9"
+    },
+    {
+      "position": 96,
+      "sourceBlockPosition": 34,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: Young Avengers (2013) #6-10",
+      "sourceReference": "Young Avengers #10",
+      "disposition": "exact",
+      "sourceRangeReference": "Young Avengers (2013) #6-10",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Young Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "10"
     },
     {
       "position": 97,
@@ -1874,45 +1874,6 @@
       "sourceBlockPosition": 41,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: Hawkeye (2017) #7-12",
-      "sourceReference": "Hawkeye #10",
-      "disposition": "exact",
-      "sourceRangeReference": "Hawkeye (2017) #7-12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Hawkeye",
-      "seriesYear": 2017,
-      "issueNumber": "10"
-    },
-    {
-      "position": 113,
-      "sourceBlockPosition": 41,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: Hawkeye (2017) #7-12",
-      "sourceReference": "Hawkeye #11",
-      "disposition": "exact",
-      "sourceRangeReference": "Hawkeye (2017) #7-12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Hawkeye",
-      "seriesYear": 2017,
-      "issueNumber": "11"
-    },
-    {
-      "position": 114,
-      "sourceBlockPosition": 41,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: Hawkeye (2017) #7-12",
-      "sourceReference": "Hawkeye #12",
-      "disposition": "exact",
-      "sourceRangeReference": "Hawkeye (2017) #7-12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Hawkeye",
-      "seriesYear": 2017,
-      "issueNumber": "12"
-    },
-    {
-      "position": 115,
-      "sourceBlockPosition": 41,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: Hawkeye (2017) #7-12",
       "sourceReference": "Hawkeye #7",
       "disposition": "exact",
       "sourceRangeReference": "Hawkeye (2017) #7-12",
@@ -1922,7 +1883,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 116,
+      "position": 113,
       "sourceBlockPosition": 41,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: Hawkeye (2017) #7-12",
@@ -1935,7 +1896,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 117,
+      "position": 114,
       "sourceBlockPosition": 41,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: Hawkeye (2017) #7-12",
@@ -1946,6 +1907,45 @@
       "normalizedSeriesTitle": "Hawkeye",
       "seriesYear": 2017,
       "issueNumber": "9"
+    },
+    {
+      "position": 115,
+      "sourceBlockPosition": 41,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: Hawkeye (2017) #7-12",
+      "sourceReference": "Hawkeye #10",
+      "disposition": "exact",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "10"
+    },
+    {
+      "position": 116,
+      "sourceBlockPosition": 41,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: Hawkeye (2017) #7-12",
+      "sourceReference": "Hawkeye #11",
+      "disposition": "exact",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "11"
+    },
+    {
+      "position": 117,
+      "sourceBlockPosition": 41,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: Hawkeye (2017) #7-12",
+      "sourceReference": "Hawkeye #12",
+      "disposition": "exact",
+      "sourceRangeReference": "Hawkeye (2017) #7-12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Hawkeye",
+      "seriesYear": 2017,
+      "issueNumber": "12"
     },
     {
       "position": 118,
@@ -2131,45 +2131,6 @@
       "sourceBlockPosition": 48,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: America 7-12",
-      "sourceReference": "America #10",
-      "disposition": "exact",
-      "sourceRangeReference": "America 7-12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "America",
-      "seriesYear": null,
-      "issueNumber": "10"
-    },
-    {
-      "position": 134,
-      "sourceBlockPosition": 48,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: America 7-12",
-      "sourceReference": "America #11",
-      "disposition": "exact",
-      "sourceRangeReference": "America 7-12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "America",
-      "seriesYear": null,
-      "issueNumber": "11"
-    },
-    {
-      "position": 135,
-      "sourceBlockPosition": 48,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: America 7-12",
-      "sourceReference": "America #12",
-      "disposition": "exact",
-      "sourceRangeReference": "America 7-12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "America",
-      "seriesYear": null,
-      "issueNumber": "12"
-    },
-    {
-      "position": 136,
-      "sourceBlockPosition": 48,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: America 7-12",
       "sourceReference": "America #7",
       "disposition": "exact",
       "sourceRangeReference": "America 7-12",
@@ -2179,7 +2140,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 137,
+      "position": 134,
       "sourceBlockPosition": 48,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: America 7-12",
@@ -2192,7 +2153,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 138,
+      "position": 135,
       "sourceBlockPosition": 48,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: America 7-12",
@@ -2203,6 +2164,45 @@
       "normalizedSeriesTitle": "America",
       "seriesYear": null,
       "issueNumber": "9"
+    },
+    {
+      "position": 136,
+      "sourceBlockPosition": 48,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: America 7-12",
+      "sourceReference": "America #10",
+      "disposition": "exact",
+      "sourceRangeReference": "America 7-12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": null,
+      "issueNumber": "10"
+    },
+    {
+      "position": 137,
+      "sourceBlockPosition": 48,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: America 7-12",
+      "sourceReference": "America #11",
+      "disposition": "exact",
+      "sourceRangeReference": "America 7-12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": null,
+      "issueNumber": "11"
+    },
+    {
+      "position": 138,
+      "sourceBlockPosition": 48,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: America 7-12",
+      "sourceReference": "America #12",
+      "disposition": "exact",
+      "sourceRangeReference": "America 7-12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "America",
+      "seriesYear": null,
+      "issueNumber": "12"
     },
     {
       "position": 139,
@@ -2327,32 +2327,6 @@
       "sourceBlockPosition": 53,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: New Avengers 7-11",
-      "sourceReference": "New Avengers #10",
-      "disposition": "exact",
-      "sourceRangeReference": "New Avengers 7-11",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "New Avengers",
-      "seriesYear": null,
-      "issueNumber": "10"
-    },
-    {
-      "position": 150,
-      "sourceBlockPosition": 53,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: New Avengers 7-11",
-      "sourceReference": "New Avengers #11",
-      "disposition": "exact",
-      "sourceRangeReference": "New Avengers 7-11",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "New Avengers",
-      "seriesYear": null,
-      "issueNumber": "11"
-    },
-    {
-      "position": 151,
-      "sourceBlockPosition": 53,
-      "sourceGroup": "Young Avengers Reborn!",
-      "sourceText": "Collects: New Avengers 7-11",
       "sourceReference": "New Avengers #7",
       "disposition": "exact",
       "sourceRangeReference": "New Avengers 7-11",
@@ -2362,7 +2336,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 152,
+      "position": 150,
       "sourceBlockPosition": 53,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: New Avengers 7-11",
@@ -2375,7 +2349,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 153,
+      "position": 151,
       "sourceBlockPosition": 53,
       "sourceGroup": "Young Avengers Reborn!",
       "sourceText": "Collects: New Avengers 7-11",
@@ -2386,6 +2360,32 @@
       "normalizedSeriesTitle": "New Avengers",
       "seriesYear": null,
       "issueNumber": "9"
+    },
+    {
+      "position": 152,
+      "sourceBlockPosition": 53,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: New Avengers 7-11",
+      "sourceReference": "New Avengers #10",
+      "disposition": "exact",
+      "sourceRangeReference": "New Avengers 7-11",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "10"
+    },
+    {
+      "position": 153,
+      "sourceBlockPosition": 53,
+      "sourceGroup": "Young Avengers Reborn!",
+      "sourceText": "Collects: New Avengers 7-11",
+      "sourceReference": "New Avengers #11",
+      "disposition": "exact",
+      "sourceRangeReference": "New Avengers 7-11",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "11"
     },
     {
       "position": 154,
@@ -2680,45 +2680,6 @@
       "sourceBlockPosition": 64,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Exiles (2018) #7 to #12",
-      "sourceReference": "Exiles #10",
-      "disposition": "exact",
-      "sourceRangeReference": "Exiles (2018) #7 to #12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Exiles",
-      "seriesYear": 2018,
-      "issueNumber": "10"
-    },
-    {
-      "position": 179,
-      "sourceBlockPosition": 64,
-      "sourceGroup": "Latest Additions:",
-      "sourceText": "Collects: Exiles (2018) #7 to #12",
-      "sourceReference": "Exiles #11",
-      "disposition": "exact",
-      "sourceRangeReference": "Exiles (2018) #7 to #12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Exiles",
-      "seriesYear": 2018,
-      "issueNumber": "11"
-    },
-    {
-      "position": 180,
-      "sourceBlockPosition": 64,
-      "sourceGroup": "Latest Additions:",
-      "sourceText": "Collects: Exiles (2018) #7 to #12",
-      "sourceReference": "Exiles #12",
-      "disposition": "exact",
-      "sourceRangeReference": "Exiles (2018) #7 to #12",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "Exiles",
-      "seriesYear": 2018,
-      "issueNumber": "12"
-    },
-    {
-      "position": 181,
-      "sourceBlockPosition": 64,
-      "sourceGroup": "Latest Additions:",
-      "sourceText": "Collects: Exiles (2018) #7 to #12",
       "sourceReference": "Exiles #7",
       "disposition": "exact",
       "sourceRangeReference": "Exiles (2018) #7 to #12",
@@ -2728,7 +2689,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 182,
+      "position": 179,
       "sourceBlockPosition": 64,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Exiles (2018) #7 to #12",
@@ -2741,7 +2702,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 183,
+      "position": 180,
       "sourceBlockPosition": 64,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: Exiles (2018) #7 to #12",
@@ -2752,6 +2713,45 @@
       "normalizedSeriesTitle": "Exiles",
       "seriesYear": 2018,
       "issueNumber": "9"
+    },
+    {
+      "position": 181,
+      "sourceBlockPosition": 64,
+      "sourceGroup": "Latest Additions:",
+      "sourceText": "Collects: Exiles (2018) #7 to #12",
+      "sourceReference": "Exiles #10",
+      "disposition": "exact",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "10"
+    },
+    {
+      "position": 182,
+      "sourceBlockPosition": 64,
+      "sourceGroup": "Latest Additions:",
+      "sourceText": "Collects: Exiles (2018) #7 to #12",
+      "sourceReference": "Exiles #11",
+      "disposition": "exact",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "11"
+    },
+    {
+      "position": 183,
+      "sourceBlockPosition": 64,
+      "sourceGroup": "Latest Additions:",
+      "sourceText": "Collects: Exiles (2018) #7 to #12",
+      "sourceReference": "Exiles #12",
+      "disposition": "exact",
+      "sourceRangeReference": "Exiles (2018) #7 to #12",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "Exiles",
+      "seriesYear": 2018,
+      "issueNumber": "12"
     },
     {
       "position": 184,
@@ -2776,19 +2776,6 @@
       "sourceBlockPosition": 67,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: West Coast Avengers (2018) #5 to #10",
-      "sourceReference": "West Coast Avengers #10",
-      "disposition": "exact",
-      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 2018,
-      "issueNumber": "10"
-    },
-    {
-      "position": 187,
-      "sourceBlockPosition": 67,
-      "sourceGroup": "Latest Additions:",
-      "sourceText": "Collects: West Coast Avengers (2018) #5 to #10",
       "sourceReference": "West Coast Avengers #5",
       "disposition": "exact",
       "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
@@ -2798,7 +2785,7 @@
       "issueNumber": "5"
     },
     {
-      "position": 188,
+      "position": 187,
       "sourceBlockPosition": 67,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: West Coast Avengers (2018) #5 to #10",
@@ -2811,7 +2798,7 @@
       "issueNumber": "6"
     },
     {
-      "position": 189,
+      "position": 188,
       "sourceBlockPosition": 67,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: West Coast Avengers (2018) #5 to #10",
@@ -2824,7 +2811,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 190,
+      "position": 189,
       "sourceBlockPosition": 67,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: West Coast Avengers (2018) #5 to #10",
@@ -2837,7 +2824,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 191,
+      "position": 190,
       "sourceBlockPosition": 67,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: West Coast Avengers (2018) #5 to #10",
@@ -2848,6 +2835,19 @@
       "normalizedSeriesTitle": "West Coast Avengers",
       "seriesYear": 2018,
       "issueNumber": "9"
+    },
+    {
+      "position": 191,
+      "sourceBlockPosition": 67,
+      "sourceGroup": "Latest Additions:",
+      "sourceText": "Collects: West Coast Avengers (2018) #5 to #10",
+      "sourceReference": "West Coast Avengers #10",
+      "disposition": "exact",
+      "sourceRangeReference": "West Coast Avengers (2018) #5 to #10",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 2018,
+      "issueNumber": "10"
     },
     {
       "position": 192,
@@ -2894,19 +2894,6 @@
       "sourceBlockPosition": 72,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: X-Factor (2020) #1 to #3, #5",
-      "sourceReference": "X-Factor (2020) #1 to #3, #5",
-      "disposition": "exact",
-      "sourceRangeReference": "X-Factor (2020) #1 to #3, #5",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "X-Factor",
-      "seriesYear": 2020,
-      "issueNumber": "5"
-    },
-    {
-      "position": 197,
-      "sourceBlockPosition": 72,
-      "sourceGroup": "Latest Additions:",
-      "sourceText": "Collects: X-Factor (2020) #1 to #3, #5",
       "sourceReference": "X-Factor #1",
       "disposition": "exact",
       "sourceRangeReference": "X-Factor (2020) #1 to #3, #5",
@@ -2916,7 +2903,7 @@
       "issueNumber": "1"
     },
     {
-      "position": 198,
+      "position": 197,
       "sourceBlockPosition": 72,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: X-Factor (2020) #1 to #3, #5",
@@ -2929,7 +2916,7 @@
       "issueNumber": "2"
     },
     {
-      "position": 199,
+      "position": 198,
       "sourceBlockPosition": 72,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: X-Factor (2020) #1 to #3, #5",
@@ -2940,6 +2927,19 @@
       "normalizedSeriesTitle": "X-Factor",
       "seriesYear": 2020,
       "issueNumber": "3"
+    },
+    {
+      "position": 199,
+      "sourceBlockPosition": 72,
+      "sourceGroup": "Latest Additions:",
+      "sourceText": "Collects: X-Factor (2020) #1 to #3, #5",
+      "sourceReference": "X-Factor (2020) #1 to #3, #5",
+      "disposition": "exact",
+      "sourceRangeReference": "X-Factor (2020) #1 to #3, #5",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "5"
     },
     {
       "position": 200,
@@ -2964,19 +2964,6 @@
       "sourceBlockPosition": 75,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: X-Factor (2020) #6 to #10",
-      "sourceReference": "X-Factor #10",
-      "disposition": "exact",
-      "sourceRangeReference": "X-Factor (2020) #6 to #10",
-      "sourceClauseKind": "collect-clause",
-      "normalizedSeriesTitle": "X-Factor",
-      "seriesYear": 2020,
-      "issueNumber": "10"
-    },
-    {
-      "position": 203,
-      "sourceBlockPosition": 75,
-      "sourceGroup": "Latest Additions:",
-      "sourceText": "Collects: X-Factor (2020) #6 to #10",
       "sourceReference": "X-Factor #6",
       "disposition": "exact",
       "sourceRangeReference": "X-Factor (2020) #6 to #10",
@@ -2986,7 +2973,7 @@
       "issueNumber": "6"
     },
     {
-      "position": 204,
+      "position": 203,
       "sourceBlockPosition": 75,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: X-Factor (2020) #6 to #10",
@@ -2999,7 +2986,7 @@
       "issueNumber": "7"
     },
     {
-      "position": 205,
+      "position": 204,
       "sourceBlockPosition": 75,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: X-Factor (2020) #6 to #10",
@@ -3012,7 +2999,7 @@
       "issueNumber": "8"
     },
     {
-      "position": 206,
+      "position": 205,
       "sourceBlockPosition": 75,
       "sourceGroup": "Latest Additions:",
       "sourceText": "Collects: X-Factor (2020) #6 to #10",
@@ -3023,6 +3010,19 @@
       "normalizedSeriesTitle": "X-Factor",
       "seriesYear": 2020,
       "issueNumber": "9"
+    },
+    {
+      "position": 206,
+      "sourceBlockPosition": 75,
+      "sourceGroup": "Latest Additions:",
+      "sourceText": "Collects: X-Factor (2020) #6 to #10",
+      "sourceReference": "X-Factor #10",
+      "disposition": "exact",
+      "sourceRangeReference": "X-Factor (2020) #6 to #10",
+      "sourceClauseKind": "collect-clause",
+      "normalizedSeriesTitle": "X-Factor",
+      "seriesYear": 2020,
+      "issueNumber": "10"
     },
     {
       "position": 207,

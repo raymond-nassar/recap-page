@@ -19,7 +19,7 @@ const EXPECTED = {
   },
   sourceContentSha256: 'b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1',
   sourceNodeSha256: 'f62928e1cdd6471327716eab1d832ec5322c19d79aa9beb43b7ee2960ef01b61',
-  sourceOccurrenceSha256: '16ceadd5443753110834402f78ff70540416e4040571e43fd27c534d323dcc53',
+  sourceOccurrenceSha256: '968d30fdff3cda6a9c30f3d9117a0a1b3e7acbd9b74f2424427e97a0682fc938',
   sourceIssueBearingBlocksSha256: 'e4c6de73726ffca68ff07aa86d56a14b049d1a012811af113abf5420fa0cf146',
   groupCounts: {
     Prelude: 3,
@@ -28,6 +28,18 @@ const EXPECTED = {
     'Latest Additions:': 27,
   },
   adjacentExclusions: ['Avengers', 'Hawkeye', 'Scarlet Witch', 'War of the Realms', 'Empyre', 'King in Black'],
+};
+
+const EXPANDED_RANGE_ORDERS = {
+  'Collects: Young Avengers 1-12, Special': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', null],
+  'Collects: Young Avengers (2013) #6-10': ['6', '7', '8', '9', '10'],
+  'Collects: Hawkeye (2017) #7-12': ['7', '8', '9', '10', '11', '12'],
+  'Collects: America 7-12': ['7', '8', '9', '10', '11', '12'],
+  'Collects: New Avengers 7-11': ['7', '8', '9', '10', '11'],
+  'Collects: Exiles (2018) #7 to #12': ['7', '8', '9', '10', '11', '12'],
+  'Collects: West Coast Avengers (2018) #5 to #10': ['5', '6', '7', '8', '9', '10'],
+  'Collects: X-Factor (2020) #1 to #3, #5': ['1', '2', '3', '5'],
+  'Collects: X-Factor (2020) #6 to #10': ['6', '7', '8', '9', '10'],
 };
 
 function digest(value) {
@@ -94,6 +106,14 @@ function validateLedger(ledger) {
     }, { exact: 0, exclusion: 0, repeat: 0, gap: 0 }),
     ledger.counts,
   );
+
+  for (const [sourceText, issueNumbers] of Object.entries(EXPANDED_RANGE_ORDERS)) {
+    assert.deepEqual(
+      rowsByText(ledger, sourceText).map((row) => row.issueNumber),
+      issueNumbers,
+      `${sourceText} must retain its written issue order`,
+    );
+  }
 
   assert.equal(
     ledger.occurrences.every((row) => row.sourceText && row.sourceText.trim().length > 0),
@@ -345,6 +365,12 @@ test('Young Avengers source ledger rejects contrarian mutations', async () => {
   expectLedgerFailure(ledger, (draft) => {
     const partial = draft.occurrences.find((row) => row.sourceText.includes('Collects: Avengers: The Children'));
     partial.issueNumber = '1-9';
+  });
+
+  expectLedgerFailure(ledger, (draft) => {
+    const six = draft.occurrences.find((row) => row.sourceText === 'Collects: Young Avengers (2013) #6-10' && row.issueNumber === '6');
+    const ten = draft.occurrences.find((row) => row.sourceText === 'Collects: Young Avengers (2013) #6-10' && row.issueNumber === '10');
+    [six.issueNumber, ten.issueNumber] = [ten.issueNumber, six.issueNumber];
   });
 
   for (const disposition of ['exact', 'exclusion']) {
