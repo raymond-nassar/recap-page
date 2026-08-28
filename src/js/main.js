@@ -7,7 +7,7 @@
 
 import {
   createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList, removeFromList, moveItem,
-  toggleRead, markRead, isRead, upNext, listProgress, seriesProgress, listItems, exportBackup,
+  toggleRead, markRead, isRead, upNext, listProgress, seriesProgress, listItems, exportBackup, migrate,
   setOverride, pendingIssueIds, coverUrl, listForCatalogId, SCHEMA_VERSION,
   setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, progressSummary, progressGroups, completionState, orderWord, orderStates, heldCount,
 } from './lib/model.js';
@@ -125,9 +125,23 @@ export function dispatchStorageEvent(
 ) {
   if (event.key === STATE_KEY) {
     const cleanup = sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+      adoptCurrent: true,
       onFailure: (error) => notify('#save-report', error, 'error'),
+      queuedAfter: foreignStateSanitation,
     });
-    if (!cleanup.needed) readerStore.adoptForeignWrite(event.newValue);
+    if (cleanup.needed && cleanup.cleared) {
+      try {
+        foreignStateSanitation = {
+          sourceRaw: event.newValue,
+          durableRaw: readerStore.storage?.getItem(STATE_KEY),
+        };
+      } catch (err) {
+        foreignStateSanitation = null;
+        notify('#save-report', `Could not re-read cleaned saved data (${err.message}).`, 'error');
+      }
+    } else if (!cleanup.needed) {
+      foreignStateSanitation = null;
+    }
     return;
   }
   if (event.key === SAVE_EDUCATION_KEY) {
@@ -770,20 +784,25 @@ export async function maintainCacheGeneration(
   { onLegacyBlocked = () => {} } = {},
 ) {
   const purge = await purgeStaleCache(cacheRef, marker, current);
-  const activeCleared = !purge.ran || purge.cleared;
   const legacy = await cacheRef.deleteLegacy({
-    onBlocked: () => onLegacyBlocked({ activeCleared }),
+    onBlocked: () => onLegacyBlocked({ activeCleared: !purge.ran || purge.cleared }),
   });
-  return { ran: purge.ran, activeCleared, legacy };
+  const storageUnavailable = cacheRef.available === false && legacy.status === 'unavailable';
+  return {
+    ran: purge.ran,
+    activeCleared: storageUnavailable || !purge.ran || purge.cleared,
+    ...(storageUnavailable ? { storageUnavailable: true } : {}),
+    legacy,
+  };
 }
 
-function cleanupFailureMessage(result) {
+export function cacheCleanupFailureMessage(result) {
   const failures = [];
   if (!result.activeCleared) failures.push('Cached metadata used by this version could not be cleared.');
   if (result.savedStateCleared === false) {
     failures.push('Saved issue summaries written by an older tab could not be removed.');
   }
-  if (result.legacy.status === 'unavailable') {
+  if (result.legacy.status === 'unavailable' && !result.storageUnavailable) {
     failures.push('Older cached metadata could not be checked because browser storage is unavailable.');
   } else if (result.legacy.status === 'failed') {
     failures.push(`Older cached metadata could not be removed (${result.legacy.error?.message ?? 'unknown error'}).`);
@@ -837,41 +856,75 @@ function verifySavedStateSanitation(storage, onFailure) {
 
 export function sanitizeStoredIssueDescriptions(
   readerStore,
-  raw,
-  { onFailure = () => {} } = {},
+  sourceRaw,
+  {
+    adoptCurrent = false,
+    onFailure = () => {},
+    queuedAfter = null,
+    retryConflict = true,
+  } = {},
 ) {
-  if (!rawCarriesIssueDescriptions(raw)) return { needed: false, cleared: true };
-  if (readerStore.blocked) {
-    const sanitizer = new Store({ storage: readerStore.storage });
-    sanitizer.load();
-    if (sanitizer.blocked) {
-      const error = sanitizer.blockedReason ?? sanitizer.lastError
-        ?? 'Saved issue summaries written by an older tab could not be read safely.';
-      onFailure(error);
-      return { needed: true, cleared: false };
+  let currentRaw;
+  if (typeof readerStore.storage?.getItem !== 'function') {
+    currentRaw = sourceRaw;
+  } else {
+    try {
+      currentRaw = readerStore.storage.getItem(STATE_KEY);
+    } catch (err) {
+      onFailure(`Could not read saved data for cleanup (${err.message}).`);
+      return { needed: rawCarriesIssueDescriptions(sourceRaw), cleared: false };
     }
-    const cleared = sanitizer.persist();
-    if (!cleared) {
-      onFailure(sanitizer.lastError);
-      return { needed: true, cleared: false };
-    }
-    return {
-      needed: true,
-      cleared: verifySavedStateSanitation(readerStore.storage, onFailure),
-    };
   }
-  if (!readerStore.adoptForeignWrite(raw)) return { needed: true, cleared: false };
-  const cleared = readerStore.persist();
-  if (!cleared) {
-    readerStore.onChange?.(readerStore.state, readerStore.lastError);
-    onFailure(readerStore.lastError);
+  const candidateRaw = queuedAfter?.durableRaw === currentRaw
+    && queuedAfter.sourceRaw !== sourceRaw
+    && rawCarriesIssueDescriptions(sourceRaw)
+    ? sourceRaw
+    : currentRaw;
+  const needed = rawCarriesIssueDescriptions(candidateRaw);
+  if (!needed) {
+    if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(currentRaw);
+    return { needed: false, cleared: true };
+  }
+
+  const sanitizer = new Store({ storage: readerStore.storage });
+  try {
+    sanitizer.state = migrate(JSON.parse(candidateRaw));
+  } catch (err) {
+    onFailure(`Saved issue summaries written by an older tab could not be read safely (${err.message}).`);
     return { needed: true, cleared: false };
   }
-  return {
+  const cleared = sanitizer.persist(sanitizer.state, currentRaw);
+  if (!cleared) {
+    if (sanitizer.conflicted && retryConflict) {
+      return sanitizeStoredIssueDescriptions(readerStore, sourceRaw, {
+        adoptCurrent,
+        onFailure,
+        queuedAfter: null,
+        retryConflict: false,
+      });
+    }
+    if (sanitizer.conflicted) {
+      onFailure('Saved data kept changing while old issue summaries were being removed. The app will try again.');
+      return { needed: true, cleared: false };
+    }
+    onFailure(sanitizer.lastError);
+    return { needed: true, cleared: false };
+  }
+  const result = {
     needed: true,
     cleared: verifySavedStateSanitation(readerStore.storage, onFailure),
   };
+  if (result.cleared && adoptCurrent && !readerStore.blocked) {
+    try {
+      readerStore.adoptForeignWrite(readerStore.storage.getItem(STATE_KEY));
+    } catch (err) {
+      onFailure(`Could not read the cleaned saved data (${err.message}).`);
+    }
+  }
+  return result;
 }
+
+let foreignStateSanitation = null;
 
 function reportBlockedLegacyCleanup({ activeCleared }) {
   notify(
@@ -886,6 +939,7 @@ function reportBlockedLegacyCleanup({ activeCleared }) {
 async function runCachePurge() {
   const marker = cachePurgeMark(localStorage);
   sanitizeStoredIssueDescriptions(store, localStorage.getItem(STATE_KEY), {
+    adoptCurrent: true,
     onFailure: (error) => notify('#save-report', error, 'error'),
   });
   const result = await maintainCacheGeneration(cache, marker, CACHE_PURGE_VERSION, {
@@ -897,9 +951,12 @@ async function runCachePurge() {
   // next click; for one who opens the app, looks at it and closes it, it is never. One forced write
   // closes the gap, and a blocked store refuses it, which is what should happen while it is holding
   // a salvage copy of data it could not read.
-  const stateCleanup = sanitizeStoredIssueDescriptions(store, localStorage.getItem(STATE_KEY));
+  const stateCleanup = sanitizeStoredIssueDescriptions(store, localStorage.getItem(STATE_KEY), {
+    adoptCurrent: true,
+    onFailure: (error) => notify('#save-report', error, 'error'),
+  });
   const complete = { ...result, savedStateCleared: stateCleanup.cleared };
-  const cleanupFailure = cleanupFailureMessage(complete);
+  const cleanupFailure = cacheCleanupFailureMessage(complete);
   if (cleanupFailure) {
     notify('#cache-report', `${cleanupFailure} The app will try again next time.`, 'warn');
     return;
@@ -5859,7 +5916,7 @@ function wireData() {
         onLegacyBlocked: reportBlockedLegacyCleanup,
       });
       await refreshCacheUsage();
-      const failure = cleanupFailureMessage(result);
+      const failure = cacheCleanupFailureMessage(result);
       notify(
         '#cache-report',
         failure || 'Cached metadata cleared. Lists and reading progress are untouched.',

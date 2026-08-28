@@ -23,6 +23,7 @@ import { withoutSynopsis, MarvelApi } from '../src/js/api.js';
 import {
   CACHE_PURGE_KEY,
   cachePurgeMark,
+  cacheCleanupFailureMessage,
   clearCacheGenerations,
   maintainCacheGeneration,
   purgeStaleCache,
@@ -765,6 +766,29 @@ test('a current marker preserves active cache entries but still retires the lega
   assert.equal(cache.deletions, 1);
 });
 
+test('automatic cleanup treats entirely unavailable IndexedDB as nothing reachable to remove', async () => {
+  const cache = {
+    available: false,
+    async clear() { return false; },
+    async deleteLegacy() {
+      return { status: 'unavailable', blocked: false, error: null };
+    },
+  };
+  const result = await maintainCacheGeneration(cache, 0, 1);
+
+  assert.deepEqual(result, {
+    ran: true,
+    activeCleared: true,
+    storageUnavailable: true,
+    legacy: { status: 'unavailable', blocked: false, error: null },
+  });
+  assert.equal(cacheCleanupFailureMessage(result), '');
+
+  const storage = memoryStorage();
+  await writeCachePurgeMark(storage, 1, serialLocks());
+  assert.equal(storage.getItem(CACHE_PURGE_KEY), '1');
+});
+
 test('generation maintenance reports active clear failure, blocked cleanup, and deletion failure', async () => {
   let blocked = 0;
   const partial = cleanupCache({
@@ -812,6 +836,24 @@ test('foreign saved-state prose is removed independently of the cache marker', (
   assert.equal('description' in JSON.parse(storage.getItem(KEY)).issues[7], false);
 });
 
+test('boot sanitation resynchronizes the live store so the first real edit is not refused', () => {
+  const raw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, raw, { adoptCurrent: true }),
+    { needed: true, cleared: true },
+  );
+  readerStore.update((state) => ({ ...state, read: { ...state.read, 7: true } }));
+  assert.equal(readerStore.lastUpdateOk, true);
+  assert.equal(JSON.parse(storage.getItem(KEY)).read[7], true);
+});
+
 test('foreign saved-state prose is sanitized without disturbing a blocked recovery incident', () => {
   const recoveryRaw = JSON.stringify({ schemaVersion: 99, marker: 'recovery bytes' });
   const storage = memoryStorage({ [KEY]: recoveryRaw });
@@ -845,12 +887,16 @@ test('a failed saved-state sanitation is reported and remains retryable', () => 
   const storage = memoryStorage({ [KEY]: raw }, { failWrite: true });
   const readerStore = new Store({ storage });
   readerStore.load();
+  const failures = [];
 
   assert.deepEqual(
-    sanitizeStoredIssueDescriptions(readerStore, raw),
+    sanitizeStoredIssueDescriptions(readerStore, raw, {
+      onFailure: (error) => failures.push(error),
+    }),
     { needed: true, cleared: false },
   );
-  assert.match(readerStore.lastError, /could not save/i);
+  assert.equal(failures.length, 1);
+  assert.match(failures[0], /could not save/i);
   assert.equal(JSON.parse(storage.getItem(KEY)).issues[7].description, 'Legacy synopsis.');
 });
 
@@ -872,6 +918,87 @@ test('a silently ignored saved-state sanitation is detected by reading durable s
   );
   assert.deepEqual(failures, ['The saved-state cleanup write could not be verified.']);
   assert.equal(JSON.parse(storage.getItem(KEY)).issues[7].description, 'Legacy synopsis.');
+});
+
+test('a queued old sanitation event cannot overwrite newer tokenless saved data', () => {
+  const olderRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Older synopsis.' } },
+  });
+  const newerRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 8: { issueId: 8, title: 'Eight', description: 'Newer synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: olderRaw });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  storage.setItem(KEY, newerRaw);
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, olderRaw),
+    { needed: true, cleared: true },
+  );
+  const durable = JSON.parse(storage.getItem(KEY));
+  assert.equal('7' in durable.issues, false, 'the queued old event replaced newer saved data');
+  assert.equal(durable.issues[8].title, 'Eight');
+  assert.equal('description' in durable.issues[8], false);
+});
+
+test('unsupported current foreign state is preserved and its sanitation failure is surfaced', () => {
+  const raw = JSON.stringify({
+    schemaVersion: 99,
+    issues: { 7: { issueId: 7, description: 'Unknown-schema synopsis.' } },
+  });
+  const storage = memoryStorage({ [KEY]: raw });
+  const readerStore = new Store({ storage });
+  const failures = [];
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, raw, {
+      onFailure: (error) => failures.push(error),
+    }),
+    { needed: true, cleared: false },
+  );
+  assert.equal(storage.getItem(KEY), raw);
+  assert.equal(failures.length, 1);
+  assert.match(failures[0], /unsupported schema|could not be read safely/i);
+});
+
+test('saved data changing during sanitation is re-read and only the newer bytes are cleaned', () => {
+  const firstRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'First synopsis.' } },
+  });
+  const newerRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 8: { issueId: 8, title: 'Eight', description: 'Newer synopsis.' } },
+  });
+  let current = firstRaw;
+  let reads = 0;
+  const storage = {
+    getItem() {
+      reads += 1;
+      if (reads === 2) current = newerRaw;
+      return current;
+    },
+    setItem(_key, value) {
+      current = value;
+    },
+  };
+  const readerStore = new Store({ storage });
+  const failures = [];
+
+  assert.deepEqual(
+    sanitizeStoredIssueDescriptions(readerStore, firstRaw, {
+      onFailure: (error) => failures.push(error),
+    }),
+    { needed: true, cleared: true },
+  );
+  const durable = JSON.parse(current);
+  assert.deepEqual(failures, []);
+  assert.equal('7' in durable.issues, false);
+  assert.equal(durable.issues[8].title, 'Eight');
+  assert.equal('description' in durable.issues[8], false);
 });
 
 

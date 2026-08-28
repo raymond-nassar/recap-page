@@ -469,6 +469,15 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
+    id: 'cache-unavailable-warning-return',
+    breaks: 'cache-generations',
+    why: 'automatic cleanup treats unreachable IndexedDB as a permanent failure that can never clear',
+    rewriteMain: (source) => source.replace(
+      "  const storageUnavailable = cacheRef.available === false && legacy.status === 'unavailable';",
+      '  const storageUnavailable = false;',
+    ),
+  },
+  {
     id: 'cache-marker-lock-off',
     breaks: 'cache-generations',
     why: 'the purge marker read-max-write step runs while another current tab holds its origin-wide lock',
@@ -493,8 +502,8 @@ const MUTATIONS = [
     breaks: 'cache-generations',
     why: 'a current tab adopts saved-state prose from an old writer without removing it again',
     rewriteMain: (source) => source.replace(
-      '  if (!rawCarriesIssueDescriptions(raw)) return { needed: false, cleared: true };',
-      '  return { needed: false, cleared: true };',
+      '  const needed = rawCarriesIssueDescriptions(candidateRaw);',
+      '  const needed = false;',
     ),
   },
   {
@@ -4368,13 +4377,26 @@ const SCENARIOS = [
           listOrder: [],
           active: null,
         }));
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 8: { issueId: 8, title: 'Eight', description: 'Latest legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
       });
       const savedStateStripped = await page.waitForFunction(() => {
         const raw = localStorage.getItem('mrt.state.v2');
         if (!raw) return false;
-        return !Object.prototype.hasOwnProperty.call(JSON.parse(raw).issues?.['7'] ?? {}, 'description');
+        const issues = JSON.parse(raw).issues ?? {};
+        return !('7' in issues)
+          && issues['8']?.title === 'Eight'
+          && !Object.prototype.hasOwnProperty.call(issues['8'], 'description');
       }, { timeout: 15000 }).then(() => true, () => false);
-      t.check('a current tab strips saved-state prose written while legacy deletion is blocked',
+      t.check('queued legacy writes sanitize the newest saved state without rolling it back',
         savedStateStripped, await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
 
       const isolated = await page.evaluate(async () => {
@@ -4546,6 +4568,27 @@ const SCENARIOS = [
         && manualComplete.during === null
         && manualComplete.report.includes('Lists and reading progress are untouched.'),
         JSON.stringify(manualComplete));
+
+      const unavailable = await page.browserContext().newPage();
+      await preparePage(unavailable, page.__origin, page.__mutation);
+      await unavailable.evaluateOnNewDocument(() => {
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', '{}');
+        Object.defineProperty(globalThis, 'indexedDB', {
+          configurable: true,
+          value: undefined,
+        });
+      });
+      await open(unavailable, '/#/settings');
+      const unavailableRecorded = await unavailable.waitForFunction(
+        () => localStorage.getItem('mrt.cache-purge.v1') === '1',
+        { polling: 100, timeout: 15000 },
+      ).then(() => true, () => false);
+      const unavailableReport = await unavailable.$eval('#cache-report', (el) => el.textContent);
+      t.check('automatic boot records unreachable IndexedDB without announcing permanent failure',
+        unavailableRecorded && !/could not|unavailable/i.test(unavailableReport),
+        JSON.stringify({ unavailableRecorded, unavailableReport }));
+      await unavailable.close();
     },
   },
   {
@@ -6074,6 +6117,7 @@ async function readUpdateReport(page) {
 // memoized on first read: a stub installed afterwards is a stub the app has already gone past.
 async function preparePage(page, origin, mutation) {
   page.__origin = origin;
+  page.__mutation = mutation;
   await page.setCacheEnabled(false);
   await page.setBypassServiceWorker(true);
   const rewrites = new Map();

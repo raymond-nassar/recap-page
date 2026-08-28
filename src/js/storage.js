@@ -411,7 +411,7 @@ export class Store {
     }
   }
 
-  persist(state = this.state) {
+  persist(state = this.state, expectedRaw = undefined) {
     // Cleared on entry so it can only ever describe the call that just ran. It used to be cleared
     // only in update()'s conflict branch, so a refusal raised for startFresh() outlived that call,
     // and the next ordinary edit, refused by the blocked latch for an entirely unrelated reason,
@@ -443,7 +443,13 @@ export class Store {
       this.lastError = `Could not check your saved data before saving (${err.message}). That change was not saved.`;
       return false;
     }
-    if (tokenOf(held) !== this.seenToken) {
+    if (expectedRaw !== undefined && held !== expectedRaw) {
+      this.conflicted = true;
+      this.lastError =
+        'Saved data changed again before cleanup finished, so the older copy was not written over.';
+      return false;
+    }
+    if (expectedRaw === undefined && tokenOf(held) !== this.seenToken) {
       this.conflicted = true;
       this.lastError =
         'Another tab saved newer data, so that change was not saved. This tab has been brought '
