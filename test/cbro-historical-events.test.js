@@ -1551,8 +1551,8 @@ test('historical continuation authoring retains all chronological cards and 32 b
   assert.ok(selected.every((record) => ['ready', 'shipped'].includes(record.deliveryStatus)));
   assert.equal(inventory.filter((record) => (
     ['deferred', 'deferred-subset'].includes(record.centralDisposition)
-  )).length, 2);
-  assert.equal(inventory.filter((record) => record.centralDisposition === 'blocked').length, 16);
+  )).length, 1);
+  assert.equal(inventory.filter((record) => record.centralDisposition === 'blocked').length, 17);
   assert.equal(inventory.filter((record) => record.centralDisposition === 'absorbed').length, 1);
   assert.equal(inventory.filter((record) => (
     record.centralDisposition === 'provenance-blocked'
@@ -2037,8 +2037,8 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
     }), {}),
     {
       selected: 38,
-      blocked: 16,
-      deferred: 2,
+      blocked: 17,
+      deferred: 1,
       absorbed: 1,
       'provenance-blocked': 1,
     },
@@ -2050,8 +2050,8 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
     }), {}),
     {
       shipped: 38,
-      blocked: 17,
-      deferred: 2,
+      blocked: 18,
+      deferred: 1,
       'not-applicable': 1,
     },
   );
@@ -2433,8 +2433,8 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
     }), {}),
     {
       selected: 38,
-      blocked: 16,
-      deferred: 2,
+      blocked: 17,
+      deferred: 1,
       absorbed: 1,
       'provenance-blocked': 1,
     },
@@ -2446,8 +2446,8 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
     }), {}),
     {
       shipped: 38,
-      blocked: 17,
-      deferred: 2,
+      blocked: 18,
+      deferred: 1,
       'not-applicable': 1,
     },
   );
@@ -2951,8 +2951,8 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
     }), {}),
     {
       shipped: 38,
-      blocked: 17,
-      deferred: 2,
+      blocked: 18,
+      deferred: 1,
       'not-applicable': 1,
     },
   );
@@ -2967,6 +2967,81 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
   const changelog = await readFile(path.join(root, 'CHANGELOG.md'), 'utf8');
   assert.match(changelog, /Time and Time Again, Phalanx Covenant, Operation: Zero Tolerance/);
   assert.match(changelog, /Six complete blocker records preserve all\s+210 source rows/i);
+});
+
+test('Second Clone Saga blocker preserves all 161 recorded source and resolution outcomes', async () => {
+  const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
+  const evidence = await readJson(path.join(blockersDir, 'second-clone-saga.json'));
+  const inventoryRecord = inventory.find((record) => record.id === 'second-clone-saga');
+  const sourceIdentityProjection = (rows) => rows.map((row) => ({
+    sourcePosition: row.sourcePosition,
+    sourceIssueReference: row.sourceIssueReference,
+    sourceSeriesTitle: row.sourceSeriesTitle,
+    issueNumber: row.issueNumber,
+  }));
+  const resolutionProjection = (rows) => rows.map((row) => ({
+    sourcePosition: row.sourcePosition,
+    resolutionStatus: row.resolutionStatus,
+    seriesId: row.seriesId,
+    seriesName: row.seriesName ?? null,
+    seriesYear: row.seriesYear ?? null,
+    selectedIssueId: row.selectedIssueId,
+    resolvedIssueTitle: row.resolvedIssueTitle,
+    marvelIssueUrl: row.marvelIssueUrl,
+    onSaleDate: row.onSaleDate,
+  }));
+  const assertRecordedProjections = (rows) => {
+    assert.equal(
+      digestCanonicalJson(sourceIdentityProjection(rows)),
+      '1bfd201d936ad64bdf7db088cb0e397c0ae1c258873f8cd681f0c6502712906c',
+    );
+    assert.equal(
+      digestCanonicalJson(resolutionProjection(rows)),
+      'a718f22bed620ff8c5484cb1855f1527e381bbe9977251fbf1b7e65996d00128',
+    );
+  };
+
+  assert.doesNotThrow(() => validateCbroHistoricalInventory(inventory));
+  assert.doesNotThrow(() => validateCbroBlockerEvidence(evidence, {
+    expectedId: 'second-clone-saga',
+    inventoryRecord,
+  }));
+  assert.equal(inventoryRecord.sourceRowCount, 161);
+  assert.equal(inventoryRecord.centralDisposition, 'blocked');
+  assert.equal(inventoryRecord.deliveryStatus, 'blocked');
+  assert.deepEqual(inventoryRecord.catalogIds, []);
+  assert.equal(evidence.rows.length, 161);
+  assert.equal(evidence.rows.filter((row) => row.resolutionStatus === 'exact').length, 141);
+  assert.deepEqual(
+    evidence.rows
+      .filter((row) => row.resolutionStatus === 'unmatched')
+      .map((row) => row.sourcePosition),
+    [1, 4, 5, 6, 7, 8, 9, 10, 12, 14, 25, 30, 31, 32, 47, 54, 56, 59, 64, 161],
+  );
+  assertRecordedProjections(evidence.rows);
+  const provenance = await readFile(path.join(root, 'docs', 'DATA_PROVENANCE.md'), 'utf8');
+  assert.match(provenance, /Second Clone Saga is blocked with 20 exact metadata gaps across its complete 161-row source order/i);
+  for (const relativePath of [
+    ['scripts', 'data', 'cbro-packets', 'second-clone-saga.json'],
+    ['scripts', 'data', 'cbro-mappings', 'second-clone-saga.json'],
+    ['scripts', 'data', 'cbro-overlaps', 'second-clone-saga.json'],
+    ['src', 'data', 'orders', 'second-clone-saga.md'],
+    ['src', 'data', 'second_clone_saga.json'],
+  ]) {
+    await assert.rejects(() => access(path.join(root, ...relativePath)), /ENOENT/);
+  }
+
+  const renamed = structuredClone(evidence.rows);
+  renamed[0].sourceIssueReference = 'Spider-Man: The Lost Years #0';
+  assert.throws(() => assertRecordedProjections(renamed), /Expected values to be strictly equal/);
+
+  const reordered = structuredClone(evidence.rows);
+  [reordered[1], reordered[2]] = [reordered[2], reordered[1]];
+  assert.throws(() => assertRecordedProjections(reordered), /Expected values to be strictly equal/);
+
+  const alteredResolution = structuredClone(evidence.rows);
+  alteredResolution[1].selectedIssueId = 1;
+  assert.throws(() => assertRecordedProjections(alteredResolution), /Expected values to be strictly equal/);
 });
 
 test('batch nine authority conserves the final 291 source rows and both complete blockers', async () => {
@@ -3014,7 +3089,7 @@ test('batch nine authority conserves the final 291 source rows and both complete
   assert.equal(
     digestCanonicalJson(inventory.filter(
       (record) => !CBRO_BATCH_NINE_TOUCHED_IDS.includes(record.id),
-    )),
+    ).map(cbroBatchNinePredecessorRecord)),
     CBRO_BATCH_NINE_UNTOUCHED_INVENTORY_SHA256,
   );
   assert.equal(
@@ -3116,8 +3191,8 @@ test('batch nine authority conserves the final 291 source rows and both complete
     }), {}),
     {
       selected: 38,
-      blocked: 16,
-      deferred: 2,
+      blocked: 17,
+      deferred: 1,
       absorbed: 1,
       'provenance-blocked': 1,
     },
@@ -3129,8 +3204,8 @@ test('batch nine authority conserves the final 291 source rows and both complete
     }), {}),
     {
       shipped: 38,
-      blocked: 17,
-      deferred: 2,
+      blocked: 18,
+      deferred: 1,
       'not-applicable': 1,
     },
   );
