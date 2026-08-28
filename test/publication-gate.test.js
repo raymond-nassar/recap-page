@@ -262,6 +262,54 @@ test('an unplanned second occurrence of an allowed shape is still reported', () 
   assert.deepEqual([...second.keys()], [pattern], 'a different hit of the same shape in the same file is a finding');
 });
 
+const STORE_PUBLISHER_FILES = [
+  'docs/MICROSOFT_STORE.md',
+  'packaging/windows/Package.appxmanifest',
+  'scripts/pack-msix.mjs',
+  'test/msix-packaging.test.js',
+];
+
+test('the public Store publisher GUID is allowed only at its four intended identity sites', () => {
+  const entries = [...ALLOWED.keys()]
+    .map((key) => key.split('|'))
+    .filter(([file, pattern]) => (
+      STORE_PUBLISHER_FILES.includes(file)
+      && pattern === 'a session or workspace identifier'
+    ));
+  assert.deepEqual(
+    entries.map(([file]) => file).sort(),
+    [...STORE_PUBLISHER_FILES].sort(),
+    'each intended identity site needs one exact allowance',
+  );
+
+  const publisher = entries[0]?.[2];
+  assert.ok(publisher, 'the public publisher identity is absent from the allowance map');
+  for (const file of STORE_PUBLISHER_FILES) {
+    const sink = new Map();
+    findings(file, publisher, sink);
+    assert.deepEqual([...sink.keys()], [], `${file} allows the exact publisher identity`);
+  }
+
+  const elsewhere = new Map();
+  findings('some/other/file.js', publisher, elsewhere);
+  assert.deepEqual(
+    [...elsewhere.keys()],
+    ['a session or workspace identifier'],
+    'the same GUID remains private-shaped outside the intended files',
+  );
+
+  const arbitrary = '00000000-0000-4000-8000-0000000000' + '02';
+  for (const file of STORE_PUBLISHER_FILES) {
+    const sink = new Map();
+    findings(file, arbitrary, sink);
+    assert.deepEqual(
+      [...sink.keys()],
+      ['a session or workspace identifier'],
+      `${file} does not allow another GUID`,
+    );
+  }
+});
+
 // PowerShell 5.1 is the shell this repository is developed in, and its `>` and `Set-Content` write
 // UTF-16LE by default. Every second byte of such a file is NUL, so the gate discarded captured logs
 // and transcripts as binary, which is the artifact class most likely to carry a path or a token.

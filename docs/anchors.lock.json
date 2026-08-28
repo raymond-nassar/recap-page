@@ -5984,8 +5984,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:168-172|0": {
-    "anchor": "scripts/check-publication.mjs:168-172",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:179-183|0": {
+    "anchor": "scripts/check-publication.mjs:179-183",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },

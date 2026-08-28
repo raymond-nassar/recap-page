@@ -99,6 +99,13 @@ export const PATTERNS = [
 // a literal here would be a real string of that shape in a real file, and this file is now scanned
 // like every other.
 const FIXTURES_FILE = 'test/publication-gate.test.js';
+const STORE_PUBLISHER = 'F6D9045B-46F0-4EAC-' + '9524-4BFC8A75A472';
+const STORE_PUBLISHER_FILES = [
+  'docs/MICROSOFT_STORE.md',
+  'packaging/windows/Package.appxmanifest',
+  'scripts/pack-msix.mjs',
+  'test/msix-packaging.test.js',
+];
 export const ALLOWED = new Map([
   [`${FIXTURES_FILE}|a path inside one machine's home directory|/ho` + 'me/somebody/',
     'the positive fixture for the home-directory pattern'],
@@ -106,6 +113,10 @@ export const ALLOWED = new Map([
     'the positive fixture for the identifier pattern, which is this session\'s own id'],
   [`${FIXTURES_FILE}|a private key block|-----BEGIN RSA ` + 'PRIVATE KEY-----',
     'the positive fixture for the private key pattern, a header with no key under it'],
+  ...STORE_PUBLISHER_FILES.map((file) => [
+    `${file}|a session or workspace identifier|${STORE_PUBLISHER}`,
+    'the exact public Microsoft Store package Publisher supplied by Partner Center',
+  ]),
 ]);
 
 export function findings(label, text, sink) {
