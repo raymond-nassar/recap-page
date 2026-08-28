@@ -38,7 +38,7 @@ export const CBRO_SOURCE_PROVIDER = Object.freeze({
 
 export const CBRO_HISTORICAL_COUNT = 58;
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  'b773f435cec4a3d4619e1a32c647847b6c11a78307a322e32954dd0263b8f947';
+  '16b3e4ffe08f68d3dc8d11a9aca7ea6533853a3e33f8d419b46b8e0f535e05bb';
 export const CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256 =
   '0fb172f493fff2d6001a9c8c3bf2efaf756c40566056df00373a3f18e58c7316';
 export const CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256 =
@@ -993,6 +993,18 @@ const BATCH_NINE_PREDECESSOR_STATE = Object.freeze({
     '0dc4c1a9b7124ac09844decef9ad7a449e2f8e22d3fb2ff2f7df2f4050aeb182',
   ),
 });
+const BATCH_TEN_PREDECESSOR_STATE = Object.freeze({
+  'second-clone-saga': Object.freeze({
+    sourceRetrievedAt: '2026-08-25',
+    sourceContentSha256: 'f4d3548d73d1b916db0928e0d4939e74074cb7d68a8b06ba16a68685b0fc3399',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred for a separate 161-row review requiring explicit product approval.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+});
 const INVENTORY_DELIVERY = new Set(['ready', 'shipped', 'deferred', 'blocked', 'not-applicable']);
 
 function assert(condition, message) {
@@ -1025,7 +1037,9 @@ export function cbroBatchEightPredecessorRecord(record) {
 
 export function cbroBatchNinePredecessorRecord(record) {
   const state = BATCH_NINE_PREDECESSOR_STATE[record.id];
-  return state ? { ...record, ...state } : record;
+  const predecessor = state ? { ...record, ...state } : record;
+  const laterState = BATCH_TEN_PREDECESSOR_STATE[predecessor.id];
+  return laterState ? { ...predecessor, ...laterState } : predecessor;
 }
 
 export function cbroReleaseForIds(ids, { order = 'source' } = {}) {
@@ -1453,6 +1467,7 @@ export function validateCbroHistoricalInventory(records) {
   );
   const batchNineUntouched = records
     .filter((record) => !CBRO_BATCH_NINE_TOUCHED_IDS.includes(record.id))
+    .map(cbroBatchNinePredecessorRecord)
     .map((record) => CBRO_PRE_BATCH_NINE_SELECTED_IDS.includes(record.id)
       ? {
         ...record,

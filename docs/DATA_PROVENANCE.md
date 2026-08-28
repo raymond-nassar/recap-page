@@ -213,8 +213,12 @@ Their reports contain 266 current-library and selected-peer comparisons, all wit
 MC2 remains wholly blocked with 17 exact metadata gaps across its complete 224-row source order and
 keeps its alternate-universe classification. Apocalypse: The Twelve remains wholly blocked with 4 exact
 gaps across 49 source rows. Eighth Day's 4 rows were already shipped and were not published
-again. Position 58 exhausts the maintained pre-Maximum Security sequence; Marvel 2099 and Second
-Clone Saga remain deferred for separate review.
+again. Position 58 exhausts the maintained pre-Maximum Security sequence; at that point, Marvel 2099
+and Second Clone Saga remained deferred for separate review.
+
+Second Clone Saga is blocked with 20 exact metadata gaps across its complete 161-row source order.
+Its blocker record preserves every source occurrence and exact configured result without publishing a
+partial reading list.
 
 Each catalog card uses `Compiled for this project from Comic Book Reading Orders`, links to the exact
 event page, and keeps `sourceLicense` null. The source owner permitted credited and linked derived
