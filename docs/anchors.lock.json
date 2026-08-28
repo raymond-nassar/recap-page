@@ -1579,8 +1579,8 @@
     "fp": "a28708ff651cc0c5",
     "head": "function renderLongAddStatus(config, runner, status) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5986-6007|0": {
-    "anchor": "src/js/main.js:5986-6007",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5996-6017|0": {
+    "anchor": "src/js/main.js:5996-6017",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -1629,8 +1629,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5659-5661|0": {
-    "anchor": "src/js/main.js:5659-5661",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5669-5671|0": {
+    "anchor": "src/js/main.js:5669-5671",
     "fp": "8f226e48e15a5fea",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1814,13 +1814,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3302-3313|0": {
-    "anchor": "CHANGELOG.md:3302-3313",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3308-3319|0": {
+    "anchor": "CHANGELOG.md:3308-3319",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3315-3325|0": {
-    "anchor": "CHANGELOG.md:3315-3325",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3321-3331|0": {
+    "anchor": "CHANGELOG.md:3321-3331",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -1954,8 +1954,8 @@
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:5343-5401|0": {
-    "anchor": "src/js/main.js:5343-5401",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:5353-5411|0": {
+    "anchor": "src/js/main.js:5353-5411",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
@@ -2019,8 +2019,8 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/main.js:5133-5142|0": {
-    "anchor": "src/js/main.js:5133-5142",
+  "docs/UX_STUDY.md|sweep-result|src/js/main.js:5143-5152|0": {
+    "anchor": "src/js/main.js:5143-5152",
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
@@ -2204,8 +2204,8 @@
     "fp": "840763abad460542",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5986-6007|0": {
-    "anchor": "src/js/main.js:5986-6007",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5996-6017|0": {
+    "anchor": "src/js/main.js:5996-6017",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -2229,8 +2229,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:5247|0": {
-    "anchor": "src/js/main.js:5247",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:5257|0": {
+    "anchor": "src/js/main.js:5257",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2244,8 +2244,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5636-5642|0": {
-    "anchor": "src/js/main.js:5636-5642",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5646-5652|0": {
+    "anchor": "src/js/main.js:5646-5652",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
@@ -5869,8 +5869,8 @@
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:6220|0": {
-    "anchor": "src/js/main.js:6220",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:6230|0": {
+    "anchor": "src/js/main.js:6230",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },

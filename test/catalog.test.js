@@ -10,6 +10,7 @@ import {
   readingTimeLabel, MINUTES_PER_ISSUE, SHORT_ORDER_MAX, collectionsLabel, isTradeOrder, sortCatalog,
   countStories, shelfKey, shelfSections, CATALOG_SHELVES, pathPlacements,
   filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing, SPOTLIGHT_KINDS,
+  visibleFirstStopGuides,
 } from '../src/js/lib/catalog.js';
 
 test('safeOrderFile accepts a plain markdown name and nothing that escapes the orders folder', () => {
@@ -919,6 +920,61 @@ test('narrowing can leave a screen populated with the first stop gone', async ()
 
   const searched = groupCatalog(searchCatalog(catalog.lists, 'spider'));
   assert.ok(searched.length && !first(searched), 'and so does a search');
+});
+
+test('visibleFirstStopGuides returns a present first stop and omits absent or empty results', () => {
+  const first = {
+    key: 'first',
+    lists: [{ id: 'first-short', name: 'First short guide' }],
+  };
+  const other = { key: 'other', lists: [{ id: 'other-guide', name: 'Other guide' }] };
+  const placement = { pathName: 'First path', previous: null };
+  const placements = new Map([['first', placement]]);
+  assert.deepEqual(
+    visibleFirstStopGuides([other, first], placements),
+    [{ guide: first.lists[0], placement }],
+  );
+  assert.deepEqual(visibleFirstStopGuides([other], placements), []);
+  assert.deepEqual(visibleFirstStopGuides([], placements), []);
+  assert.deepEqual(visibleFirstStopGuides(null, placements), []);
+});
+
+test('visibleFirstStopGuides keeps every visible start and follows a moved placement', () => {
+  const first = { key: 'first', lists: [{ id: 'first-guide', name: 'First guide' }] };
+  const moved = { key: 'moved', lists: [{ id: 'moved-guide', name: 'Moved guide' }] };
+  const placements = new Map([
+    ['first', { pathName: 'First path', previous: null }],
+    ['moved', { pathName: 'Moved path', previous: null }],
+  ]);
+  assert.deepEqual(
+    visibleFirstStopGuides([first, moved], placements),
+    [
+      { guide: first.lists[0], placement: placements.get('first') },
+      { guide: moved.lists[0], placement: placements.get('moved') },
+    ],
+  );
+
+  placements.set('first', { pathName: 'First path', previous: { key: 'moved' } });
+  assert.deepEqual(
+    visibleFirstStopGuides([first, moved], placements),
+    [{ guide: moved.lists[0], placement: placements.get('moved') }],
+  );
+  assert.deepEqual(visibleFirstStopGuides([first], placements), []);
+});
+
+test('visibleFirstStopGuides uses the currently selected guide', () => {
+  const first = {
+    key: 'first',
+    lists: [
+      { id: 'first-short', name: 'First short guide' },
+      { id: 'first-long', name: 'First complete guide' },
+    ],
+  };
+  const placement = { pathName: 'First path', previous: null };
+  assert.deepEqual(
+    visibleFirstStopGuides([first], new Map([['first', placement]]), (story) => story.lists[1]),
+    [{ guide: first.lists[1], placement }],
+  );
 });
 
 // This replaces an assertion that the reading path stayed wholly inside one section, which was the

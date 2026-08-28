@@ -344,7 +344,7 @@ const CATALOG = {
     ...Array.from({ length: 9 }, (_, index) => shelfEntry(
       `browser-check-extra-${index + 1}`,
       `Fixture Event ${index + 1}`,
-      { timeline: index === 0 ? 2012 : 2008 },
+      { timeline: index === 0 ? 2012 : 2008, collections: index === 0 ? 2 : 0 },
     )),
     shelfEntry('setup-to-modern-timeline', 'Setup to Modern Timeline', {
       type: 'era', timeline: null,
@@ -387,6 +387,55 @@ const PUBLISHING_CATALOG = {
   ],
 };
 const EMPTY_CATALOG = { lists: [], paths: [] };
+const MULTI_FIRST_STOP_CATALOG = {
+  ...CATALOG,
+  lists: [
+    ...CATALOG.lists,
+    shelfEntry('parallel-first', 'Parallel First Stop', { timeline: 2004 }),
+    shelfEntry('parallel-last', 'Parallel Last Stop', { type: 'creator-run', timeline: 2012 }),
+  ],
+  paths: [
+    ...CATALOG.paths,
+    {
+      id: 'parallel-path',
+      name: 'Parallel Fixture Path',
+      description: 'A second fixture path that starts on the same shelf.',
+      sourceOrigin: 'Fixture',
+      steps: ['parallel-first', 'parallel-last'],
+    },
+  ],
+};
+const SELECTABLE_FIRST_STOP_CATALOG = {
+  ...CATALOG,
+  lists: CATALOG.lists.flatMap((list) => (
+    list.id === 'browser-check'
+      ? [
+        {
+          ...list,
+          depth: 'essential',
+          group: 'bc-first',
+          groupName: 'Browser Check Order',
+          variant: 'Essential',
+        },
+        shelfEntry('browser-check-complete', 'Browser Check Order: Complete', {
+          timeline: 2004,
+          beginner: true,
+          group: 'bc-first',
+          groupName: 'Browser Check Order',
+          variant: 'Complete',
+          source: 'https://example.com/shared-page',
+          sourceSection: 'Fixture section',
+        }),
+      ]
+      : [list]
+  )),
+};
+const MOVED_FIRST_STOP_CATALOG = {
+  ...SELECTABLE_FIRST_STOP_CATALOG,
+  lists: SELECTABLE_FIRST_STOP_CATALOG.lists.map((list) => (
+    list.group === 'bc-first' ? { ...list, type: 'character-run', spotlightKind: 'other' } : list
+  )),
+};
 const SPARSE_PUBLISHING_CATALOG = {
   lists: [
     shelfEntry('sparse-silver', 'Sparse Silver Fixture', { timeline: 1961 }),
@@ -682,6 +731,24 @@ const MUTATIONS = [
         sheet.insertRule('.railed .rail-foot .pill { width: auto; height: auto; padding: .2rem .6rem; }', sheet.cssRules.length);
       });
     },
+  },
+  {
+    id: 'first-stop-single-only',
+    breaks: 'first-stop-orientation',
+    why: 'the catalog returns only the first visible path start, so another start on the same shelf is omitted',
+    rewriteCatalog: (source) => source.replace(
+      '  return starts;',
+      '  return starts.slice(0, 1);',
+    ),
+  },
+  {
+    id: 'first-stop-hidden-marker-copy',
+    breaks: 'first-stop-orientation',
+    why: 'the sentence points to Start here wording that the compact card hides inside its disclosure',
+    rewriteMain: (source) => source.replace(
+      "      text: `${directions.join('; ')}.`,",
+      '      text: `Start with ${firstStops[0].guide.name}, marked Start here below.`,',
+    ),
   },
   {
     id: 'path-strip',
@@ -3850,6 +3917,127 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'first-stop-orientation',
+    title: 'the visible shelf names the selected guide at its first stop',
+    async run(page, t) {
+      const text = 'Start The Fixture Path with Browser Check Order.';
+      const multiple = 'Start The Fixture Path with Browser Check Order; start Parallel Fixture Path with Parallel First Stop.';
+      const readOrientation = () => page.evaluate(() => {
+        const orientation = document.querySelector('#catalog-results .shelf-orientation');
+        const shelf = document.querySelector('#catalog-results .timeline-flow');
+        const result = document.querySelector('#catalog-results');
+        if (!orientation || !shelf || !result) return null;
+        const rect = orientation.getBoundingClientRect();
+        const resultRect = result.getBoundingClientRect();
+        return {
+          count: document.querySelectorAll('#catalog-results .shelf-orientation').length,
+          text: orientation.textContent.trim(),
+          beforeShelf: Boolean(
+            orientation.compareDocumentPosition(shelf) & Node.DOCUMENT_POSITION_FOLLOWING,
+          ),
+          inCard: Boolean(orientation.closest('.catalog-card')),
+          focusable: orientation.matches('a, button, input, select, textarea, [tabindex]')
+            || Boolean(orientation.querySelector('a, button, input, select, textarea, [tabindex]')),
+          color: getComputedStyle(orientation).color,
+          inside: rect.left >= resultRect.left && rect.right <= resultRect.right,
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        };
+      });
+
+      await open(page, '/?catalog=multiple-first-stops');
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results .shelf-orientation', { timeout: 15000 });
+
+      await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'light'));
+      const light = await readOrientation();
+      await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
+      const dark = await readOrientation();
+      t.check('one sentence names the selected first-stop guide before the shelf',
+        light?.count === 1 && light.text === multiple && light.beforeShelf && !light.inCard,
+        JSON.stringify(light));
+      t.check('the sentence points to the visible Start summaries rather than hidden detail wording',
+        light?.text.startsWith('Start The Fixture Path with ') && !light.text.includes('Start here'),
+        light?.text);
+      t.check('the sentence stays visible in light and dark themes without entering keyboard order',
+        light?.color && dark?.color && light.color !== dark.color && !light.focusable && !dark.focusable,
+        JSON.stringify({ light, dark }));
+
+      await page.setViewport({ width: 620, height: 900 });
+      await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
+      const narrow = await readOrientation();
+      t.check('the sentence stays inside the shelf at the narrow layout',
+        narrow?.text === multiple && narrow.inside && !narrow.overflow,
+        JSON.stringify(narrow));
+
+      await page.focus('#catalog-q');
+      await page.$eval('#catalog-q', (input) => {
+        input.value = 'Second Stop';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
+      const searched = await page.evaluate(() => ({
+        sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent ?? null,
+        title: document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() ?? null,
+        focus: document.activeElement?.id ?? null,
+      }));
+      t.check('search removes the sentence when it hides the first stop and keeps focus in search',
+        searched.sentence === null && searched.title === 'Second Stop' && searched.focus === 'catalog-q',
+        JSON.stringify(searched));
+
+      await click(page, '#catalog-clear');
+      await page.waitForSelector('#catalog-results .shelf-orientation', { timeout: 15000 });
+      await click(page, 'input[name="catalog-category"][value="trade"]');
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 1);
+      const faceted = await page.evaluate(() => ({
+        sentence: document.querySelector('#catalog-results .shelf-orientation')?.textContent ?? null,
+        title: document.querySelector('#catalog-results .catalog-card-title')?.textContent.trim() ?? null,
+      }));
+      t.check('a facet also removes the sentence while another row remains',
+        faceted.sentence === null && faceted.title === 'Fixture Event 1',
+        JSON.stringify(faceted));
+
+      await click(page, 'input[name="catalog-category"][value="all"]');
+      await page.waitForSelector('#catalog-results .shelf-orientation', { timeout: 15000 });
+      await page.$eval('#catalog-q', (input) => {
+        input.value = 'nothing-here';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => document.querySelectorAll('#catalog-results .catalog-card').length === 0);
+      t.check('an empty result has no orientation sentence',
+        await page.$('#catalog-results .shelf-orientation') === null);
+
+      await open(page, '/?catalog=moved-first-stop');
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results .catalog-card', { timeout: 15000 });
+      t.check('the former shelf loses the sentence when catalog data moves the first stop',
+        await page.$('#catalog-results .shelf-orientation') === null);
+
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.waitForSelector('#spotlights-results .shelf-orientation', { timeout: 15000 });
+      const moved = await page.$eval(
+        '#spotlights-results .shelf-orientation',
+        (orientation) => orientation.textContent.trim(),
+      );
+      t.check('the sentence follows the moved first stop to its visible shelf', moved === text, moved);
+
+      await click(page, '#spotlights-results [data-story="bc-first"] [data-act="preview"]');
+      await page.waitForSelector('#preview[open]');
+      await click(page, '#preview-paths input[data-key="browser-check-complete"]');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => (
+        document.querySelector('#spotlights-results .shelf-orientation')?.textContent
+          === 'Start The Fixture Path with Browser Check Order: Complete.'
+      ));
+      const selected = await page.$eval(
+        '#spotlights-results .shelf-orientation',
+        (orientation) => orientation.textContent.trim(),
+      );
+      t.check('changing the selected guide updates the sentence',
+        selected === 'Start The Fixture Path with Browser Check Order: Complete.',
+        selected);
+    },
+  },
+  {
     id: 'reading-path',
     title: 'the shelf says where a story sits in a reading order',
     async run(page, t) {
@@ -5865,6 +6053,8 @@ async function preparePage(page, origin, mutation) {
     {
       publishing: PUBLISHING_CATALOG,
       empty: EMPTY_CATALOG,
+      'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
+      'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG,
       actual: ACTUAL_CATALOG,
     },

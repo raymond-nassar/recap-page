@@ -25,7 +25,7 @@ import {
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   firstSentence, storyYear, timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
-  modernTimelineLists, modernTimelineFeaturedList, modernTimelineFeaturedCard,
+  modernTimelineLists, modernTimelineFeaturedList, modernTimelineFeaturedCard, visibleFirstStopGuides,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -4668,6 +4668,16 @@ async function renderCatalogShelf(key) {
   // against the whole catalog rather than this shelf, because a path runs through orders this
   // screen does not list and a placement computed from a slice of it would number the stops wrong.
   const placements = pathPlacements(catalog.paths, catalog.lists);
+  const firstStops = visibleFirstStopGuides(stories, placements, chosenPath);
+  if (firstStops.length) {
+    const directions = firstStops.map(({ guide, placement }, index) => (
+      `${index === 0 ? 'Start' : 'start'} ${placement.pathName} with ${guide.name}`
+    ));
+    box.append(el('p', {
+      class: 'rail-hint shelf-orientation',
+      text: `${directions.join('; ')}.`,
+    }));
+  }
   const sections = shelf.sections === 'eras'
     ? eraSections(stories)
     : shelf.sections === 'decades'
