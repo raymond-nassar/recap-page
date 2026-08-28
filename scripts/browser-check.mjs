@@ -6299,7 +6299,7 @@ const SCENARIOS = [
       };
       await page.evaluateOnNewDocument((state) => {
         localStorage.setItem('mrt.state.v2', JSON.stringify(state));
-        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
       }, saved);
 
       await open(page, '/?catalog=reading-paths&path-delay=600#/reading-paths?path=bc-path');
@@ -6433,9 +6433,12 @@ const SCENARIOS = [
       await page.evaluate(() => history.forward());
       await page.waitForFunction(() => location.hash === '#/reading-paths?path=spotlight-arrival'
         && document.activeElement?.id === 'reading-paths-h');
-      const forward = await page.$eval('#reading-path-select', (node) => node.value);
+      const forward = await page.$eval('#reading-path-select', (node) => ({
+        value: node.value,
+        filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+      }));
       t.check('Back and Forward restore path selection and focus the route heading',
-        back === 'bc-age-path' && forward === 'spotlight-arrival',
+        back === 'bc-age-path' && forward.value === 'spotlight-arrival' && forward.filter === 'unread',
         JSON.stringify({ back, forward }));
 
       const beforeReload = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
@@ -6465,8 +6468,13 @@ const SCENARIOS = [
         state.read['4'] = Date.now();
         const newValue = JSON.stringify(state);
         localStorage.setItem('mrt.state.v2', newValue);
-        const { refreshReadingPathProgress } = await import('./js/main.js');
-        refreshReadingPathProgress(state);
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2',
+          oldValue,
+          newValue,
+          storageArea: localStorage,
+          url: location.href,
+        }));
       });
       await new Promise((resolve) => setTimeout(resolve, 500));
       const repainted = await page.evaluate(() => ({

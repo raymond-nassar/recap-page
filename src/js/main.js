@@ -128,10 +128,10 @@ export function dispatchStorageEvent(
   } = {},
 ) {
   if (event.key === STATE_KEY) {
-    const sanitizeCurrent = () => sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+    const sanitizeCurrent = () => (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
       adoptCurrent: true,
       onFailure: (error) => notify('#save-report', error, 'error'),
-    });
+    }), refreshReadingPathProgress());
     if (readerStore === store) {
       clearTimeout(foreignStateSanitationTimer);
       foreignStateSanitationTimer = setTimeout(sanitizeCurrent, 50);
@@ -1585,8 +1585,8 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     }
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
-    filterAddressed = route.filter !== null;
-    setFilter(route.filter ?? filterIfAbsent);
+    if (route.view !== 'reading-paths') { filterAddressed = route.filter !== null;
+      setFilter(route.filter ?? filterIfAbsent); }
     // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
     // because the address this route describes is the authoritative one and writing the traversal's
     // would fight it.
@@ -6218,7 +6218,7 @@ const announceBackoff = backoffAnnouncer(announce);
 
 function onApiStatus(s) {
   announceBackoff(s);
-  renderQueue(); refreshReadingPathProgress();
+  renderQueue();
 }
 
 // Deliberately not announced and not a live region. The hydrator awaits one issue at a time, so

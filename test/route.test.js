@@ -603,7 +603,7 @@ test('route application separates explicit disclosure intent from restored filte
   const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function setFullOrderFromRoute'));
   has(body, /const openFromRoute = route\.full === true \|\| route\.filter !== null;/,
     'opening derived from explicit parsed route fields');
-  has(body, /filterAddressed = route\.filter !== null;\s*setFilter\(route\.filter \?\? filterIfAbsent\);/,
+  has(body, /if \(route\.view !== 'reading-paths'\) \{ filterAddressed = route\.filter !== null;\s*setFilter\(route\.filter \?\? filterIfAbsent\); \}/,
     'route application remembering whether the effective filter was explicit');
   has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
   has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
@@ -685,4 +685,6 @@ test('main.js retains path intent through load and permits only the current gene
     'stale or hidden render continuations being refused');
   has(main, /if \(requestedReadingPathId !== selected\.id\)[\s\S]*?syncHash\(\);/,
     'post-load fallback canonicalized through passive replacement');
+  has(main, /sanitizeStoredIssueDescriptions\(readerStore, event\.newValue,[\s\S]*?\), refreshReadingPathProgress\(\)\);/,
+    'an adopted cross-tab write refreshing only visible reading-path progress');
 });
