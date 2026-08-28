@@ -146,7 +146,7 @@ export function dispatchStorageEvent(
     return;
   }
   if (event.key === null) {
-    readerStore.adoptForeignWrite(null);
+    readerStore.adoptForeignWrite(null); refreshReadingPathProgress();
     education.adopt(null);
     renderEducation();
   }
@@ -1501,7 +1501,7 @@ function syncHash({ push = false } = {}) {
       view,
       listId: activeListId(),
       filter: showFilter ? shown : DEFAULT_FILTER,
-      full: view === 'read' && $('#full').open && !showFilter,
+      full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
       sort, pathId: view === 'reading-paths' ? requestedReadingPathId : null,
     });
   if (!next || next === location.hash) return;

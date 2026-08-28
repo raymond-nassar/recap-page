@@ -6079,12 +6079,29 @@ const SCENARIOS = [
         active: document.activeElement?.id ?? '',
         focusInRows: document.querySelector('#rows')?.contains(document.activeElement) ?? false,
       }));
-      t.check('an explicit filter opens once without adding full intent or moving boot focus',
+      await click(page, 'input[name="filter"][value="all"]');
+      await page.waitForFunction(() => location.hash.endsWith('?full=1'));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#rows .row', { timeout: 15000 });
+      const explicitDefault = await page.evaluate(() => ({
+        hash: location.hash,
+        open: document.querySelector('#full')?.open,
+        rows: document.querySelectorAll('#rows .row').length,
+      }));
+      await page.evaluate(() => {
+        const settings = JSON.parse(localStorage.getItem('mrt.settings'));
+        settings.filter = 'unread';
+        localStorage.setItem('mrt.settings', JSON.stringify(settings));
+      });
+      t.check('explicit filters keep the open list address truthful without moving boot focus',
         filterIntent.hash.endsWith('?filter=unread')
           && filterIntent.open
           && filterIntent.rows === 218
-          && !filterIntent.focusInRows,
-        JSON.stringify(filterIntent));
+          && !filterIntent.focusInRows
+          && explicitDefault.hash.endsWith('?full=1')
+          && explicitDefault.open
+          && explicitDefault.rows === 219,
+        JSON.stringify({ filterIntent, explicitDefault }));
 
       await open(page, `/?long=1&boot=plain#/read/${encodeURIComponent(listId)}`);
       const restored = await page.evaluate(() => ({
@@ -6467,6 +6484,22 @@ const SCENARIOS = [
         const state = JSON.parse(oldValue);
         state.read['4'] = Date.now();
         const newValue = JSON.stringify(state);
+        localStorage.clear();
+        dispatchEvent(new StorageEvent('storage', {
+          key: null,
+          oldValue: null,
+          newValue: null,
+          storageArea: localStorage,
+          url: location.href,
+        }));
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        window.__readingPathCleared = {
+          same: window.__readingPathSelector === document.querySelector('#reading-path-select'),
+          focused: document.activeElement === document.querySelector('#reading-path-select'),
+          progress: document.querySelector(
+            '#reading-path-spine [data-reading-path-stop="browser-check-three-short"] .reading-path-stop-progress',
+          )?.textContent.trim(),
+        };
         localStorage.setItem('mrt.state.v2', newValue);
         dispatchEvent(new StorageEvent('storage', {
           key: 'mrt.state.v2',
@@ -6484,11 +6517,14 @@ const SCENARIOS = [
         progress: document.querySelector(
           '#reading-path-spine [data-reading-path-stop="browser-check-three-short"] .reading-path-stop-progress',
         )?.textContent.trim(),
+        cleared: window.__readingPathCleared,
         storedRead: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read),
       }));
       t.check('state repaint updates progress without replacing or blurring the selector',
         repainted.same && repainted.focused
         && repainted.hash === '#/reading-paths?path=bc-path'
+        && repainted.cleared.same && repainted.cleared.focused
+        && repainted.cleared.progress === 'Not added'
         && repainted.progress === '1 of 2 issues read in Exact short import. Reading.',
         JSON.stringify(repainted));
 

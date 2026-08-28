@@ -515,7 +515,7 @@ test('a passive sync during a traversal writes the address the traversal began f
     'a passive sync formatting with the base rather than the live filter');
   has(body, /const showFilter = filterRunOpen && !push \? filterRunAddressed : filterAddressed;/,
     'a passive sync retaining whether the base filter was explicit');
-  has(body, /formatRoute\(\{[\s\S]*?view,[\s\S]*?listId: activeListId\(\),[\s\S]*?filter: showFilter \? shown : DEFAULT_FILTER,[\s\S]*?full: view === 'read' && \$\('#full'\)\.open && !showFilter,[\s\S]*?sort,/,
+  has(body, /formatRoute\(\{[\s\S]*?view,[\s\S]*?listId: activeListId\(\),[\s\S]*?filter: showFilter \? shown : DEFAULT_FILTER,[\s\S]*?full: view === 'read' && \$\('#full'\)\.open && !\(showFilter && shown !== DEFAULT_FILTER\),[\s\S]*?sort,/,
     'and the route being built from it');
 });
 
@@ -687,4 +687,6 @@ test('main.js retains path intent through load and permits only the current gene
     'post-load fallback canonicalized through passive replacement');
   has(main, /sanitizeStoredIssueDescriptions\(readerStore, event\.newValue,[\s\S]*?\), refreshReadingPathProgress\(\)\);/,
     'an adopted cross-tab write refreshing only visible reading-path progress');
+  has(main, /readerStore\.adoptForeignWrite\(null\); refreshReadingPathProgress\(\);/,
+    'an adopted cross-tab origin clear removing visible reading-path progress');
 });
