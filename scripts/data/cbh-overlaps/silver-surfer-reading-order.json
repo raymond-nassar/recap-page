@@ -2,7 +2,7 @@
   "candidateId": "silver-surfer-reading-order",
   "packetDigest": "ae35c61faaaf15f327de4549138291f718d3bc34e5f2819bca9c35ac9794bf01",
   "mappingDigest": "5bd2edbcb2f842342de7dd508beccd6ef924bb24f43ae0b05d03010ba913208a",
-  "libraryDigest": "ef807b16b4a87237333a977e24d72cc04d217f6c0a20e73212cd1fb91309765f",
+  "libraryDigest": "46f349f5f3ea7975b8849e3294cc6609f58b059db8d0609ff58e81856eb813f0",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 426,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 17
   },
   "candidateCount": 294,
-  "comparisonCount": 160,
+  "comparisonCount": 161,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -416,6 +416,44 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 31,
+      "sharedIds": [
+        "13253",
+        "13254",
+        "13256",
+        "13261",
+        "13262",
+        "13263",
+        "13264",
+        "13265",
+        "13267",
+        "13268",
+        "8709",
+        "13280",
+        "13281",
+        "13282",
+        "13283",
+        "13284",
+        "13285",
+        "12920",
+        "12921",
+        "12956",
+        "12957",
+        "12958",
+        "13251",
+        "5358",
+        "5496",
+        "5627",
+        "5774",
+        "5937",
+        "6075",
+        "60724",
+        "15583"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "fatal-attractions",
@@ -1187,5 +1225,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "4e34f4ffaf1b3618d3bd0aacbc5ef56039b009d7471264542e35f36573423b0e"
+  "reportDigest": "5b3459a78d41c10574b4243c38ab5961914a26fb75243806145a69597b4f38ee"
 }

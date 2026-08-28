@@ -992,8 +992,8 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The frozen source ledger keeps 133 selected source blocks, including 129 issue-bearing blocks and 4 verified prose or caption blocks, 13 provenance groups, and 1,058 normalized ordered occurrences. It expands 46 source range entries into 267 issue occurrences: 1000 provisional-canonical candidates, 35 exact repeats, 23 semantic exclusions, and 0 identity gaps. 2 candidate occurrences remain source-identifiable named works without invented issue numbers.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
     "deliveryStatus": "not-applicable",
@@ -1005,7 +1005,7 @@
       35
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "6bc7640dee0b8a2310dcbd2c10c333475acdb12bebeebdc2caa2133fb0e3ac4d",
+    "sourceContentSha256": "2300d47b48b391d75c5ac32cd4502aa11c51ef7e6b083f37c7c662a7fed91080",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },

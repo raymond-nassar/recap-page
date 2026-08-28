@@ -22680,10 +22680,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The repaired complete library was compared with all 156 published orders using cached evidence only. Every 10 non-none relationship was independently reviewed and approved for this full guide.",
     "reviewedAt": "2026-08-27T14:57:51.400Z",
-    "reportDigest": "4cfb9eb23ef66f9fc465a7043437f2fee4fa869e309c39e0c871368c7a48b5d5",
+    "reportDigest": "5251fd45ae600201302e0afd6e15b4ee68f6ee7de2d10a07437b8e0f464a8772",
     "packetDigest": "ff88a21e032af67bf42c2c4a6424ed8e0eebc08b02710cac8f2eba92feaafb42",
     "mappingDigest": "ca9165c8db00878066426b13090acb92fb79fcd17d59ee129a51d5b6e1c26b80",
-    "libraryDigest": "aa63070ce65bbf4fc74310b45fad3ed1305b8b77e4bb73769b5b25b0766c0d5d",
+    "libraryDigest": "3fcf7a52c95543dfc47f6f9a41bcb8548925bd6ccb29b782dd12b8c31d641961",
     "peerDigests": {},
     "dispositions": [
       {
@@ -23283,6 +23283,15 @@
         "reviewedAt": "2026-08-27T14:57:51.400Z",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared issues are intentional cross-character or event relationships; this source-derived guide remains distinct.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27T14:57:51.400Z"
       },
       {
         "orderId": "fatal-attractions",
@@ -24553,6 +24562,6 @@
         "sharedIds": []
       }
     ],
-    "approvalDigest": "38d82f7f5371ead4ff61de293f395d24b25b10802f632c501207b05616291b1a"
+    "approvalDigest": "04a345d674581c0edc22c2f3976d4b76592d70d6f4074fb406d3b392e8f633ee"
   }
 }
