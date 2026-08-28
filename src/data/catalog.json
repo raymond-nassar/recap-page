@@ -3595,6 +3595,40 @@
       "updatedAt": "2026-08-17T04:10:56.795Z"
     },
     {
+      "id": "x-force-reading-order",
+      "file": "x_force_reading_order.json",
+      "name": "X-Force",
+      "description": "X-Force from its early Cable-led missions through later team eras and Uncanny X-Force.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 285,
+      "collections": 60,
+      "characters": [
+        "X-Force",
+        "Cable"
+      ],
+      "keywords": [
+        "X-Force",
+        "Cable",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1991,
+      "coverIssueId": 10441,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/4c7d506d22f2b",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/x-force-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T20:53:47.177Z"
+    },
+    {
       "id": "muir-island-saga",
       "file": "muir_island_saga.json",
       "name": "Muir Island Saga",

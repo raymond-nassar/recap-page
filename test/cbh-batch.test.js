@@ -683,6 +683,19 @@ test('excluded source rows conserve exact positions without changing legacy pack
   assert.deepEqual(sourcePositionsForPacket(legacy), [1, 2]);
 });
 
+test('checklist gap copy normalizes each typographic dash independently', () => {
+  const mapping = genericEvidence().mapping;
+  mapping.sourceGaps = [{
+    sourcePosition: 3,
+    sourceIssueReference: 'Gap \u2013 source \u2014 #1',
+    sourceRangeReference: null,
+  }];
+  assert.match(
+    buildMarkdown(mapping),
+    /- \[ \] Gap - source - #1 <!-- mrt:source-occurrence=3 -->/,
+  );
+});
+
 test('the three blocked source shapes reconstruct one unique first-occurrence sequence', () => {
   const ironMan = packetForOccurrenceShape(813, [
     {

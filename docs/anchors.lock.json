@@ -1589,8 +1589,8 @@
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/vendor-orders.mjs:28|0": {
-    "anchor": "scripts/vendor-orders.mjs:28",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/vendor-orders.mjs:31|0": {
+    "anchor": "scripts/vendor-orders.mjs:31",
     "fp": "2691c5a6c7db0bcf",
     "head": "import { parseManifest } from '../src/js/lib/curated.js';"
   },
@@ -1789,13 +1789,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3232-3243|0": {
-    "anchor": "CHANGELOG.md:3232-3243",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3241-3252|0": {
+    "anchor": "CHANGELOG.md:3241-3252",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3245-3255|0": {
-    "anchor": "CHANGELOG.md:3245-3255",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3254-3264|0": {
+    "anchor": "CHANGELOG.md:3254-3264",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },

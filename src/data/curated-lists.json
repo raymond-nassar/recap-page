@@ -3089,6 +3089,35 @@
       "timeline": null
     },
     {
+      "id": "x-force-reading-order",
+      "name": "X-Force",
+      "description": "X-Force from its early Cable-led missions through later team eras and Uncanny X-Force.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "coverIssueId": 10441,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "x-force-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/x-force-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "x_force_reading_order.json",
+      "characters": [
+        "X-Force",
+        "Cable"
+      ],
+      "keywords": [
+        "X-Force",
+        "Cable",
+        "Comic Book Herald"
+      ],
+      "expect": 285,
+      "timeline": 1991
+    },
+    {
       "id": "muir-island-saga",
       "name": "Muir Island Saga",
       "description": "Five chapters closing the Muir Island conflict across Uncanny X-Men and X-Factor.",

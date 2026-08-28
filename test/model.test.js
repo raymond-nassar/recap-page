@@ -1022,11 +1022,13 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // further source-preserving metadata gaps with distinct negative identifiers. Punisher adds 158
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
   // Magneto adds 58 cached-provider gaps. Loki adds 18 distinct source-occurrence gaps. Silver
+  // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight adds 18,
+  // and X-Force adds 23 source-position metadata gaps.
   // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight 18,
   // Fantastic Four adds 185 individually preserved cache-only provider gaps, Guardians adds 29,
   // and Defenders adds 23 without substituting a source identity.
-  assert.equal(claimed, 1578, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1578, 'the bundled placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1601, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1601, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1225,8 +1227,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Doctor Strange adds 39 more negative placeholder identifiers. Venom adds 33 more negative
   // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
-  // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, Guardians adds 29,
-  // and Defenders adds 23.
-  assert.equal(refused.length, 1437);
+  // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, and X-Force adds 23.
+  // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, Fantastic Four adds 185,
+  // Guardians adds 29, and Defenders adds 23.
+  assert.equal(refused.length, 1645);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

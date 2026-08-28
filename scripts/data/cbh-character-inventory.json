@@ -3439,7 +3439,49 @@
     "metadataHorizonStatus": "approved"
   },
   {
-    "position": 123,
+    "id": "x-force-reading-order",
+    "title": "X-Force",
+    "url": "https://www.comicbookherald.com/x-force-reading-order/",
+    "guideType": "character-run",
+    "window": null,
+    "disposition": "new-order",
+    "reason": "The 409-occurrence X-Force source ledger is settled cache-only as 262 exact unique provider rows, 81 full-identity backward repeats, 23 explicit metadata gaps tracked in Issue #321, and 43 semantic exclusions.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "childs-play",
+      "deadpool-best-of",
+      "fatal-attractions",
+      "magneto-reading-order",
+      "messiah-war",
+      "necrosha",
+      "phalanx-covenant",
+      "phalanx-reading-order",
+      "second-coming",
+      "wolverine-reading-order",
+      "x-cutioners-song",
+      "x-men-divided-we-stand",
+      "x-men-regenesis"
+    ],
+    "catalogIds": [
+      "x-force-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
+    "labels": [
+      "X-Force"
+    ],
+    "sourcePositions": [
+      10
+    ],
+    "duplicateFlags": [],
+    "sourceContentSha256": "6efc1e3a4a60bc2a77c7179c6738e9f9f94c90cbd98fed3a46458d54c0109664",
+    "sourceBoundaryStatus": "exact-page-snapshot",
+    "metadataHorizonStatus": "approved",
+    "position": 123
+  },
+  {
+    "position": 124,
     "id": "x-23-reading-order",
     "title": "X-23 (Laura Kinney)",
     "url": "https://www.comicbookherald.com/x-23-reading-order/",
@@ -3464,7 +3506,7 @@
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
   {
-    "position": 124,
+    "position": 125,
     "id": "the-complete-x-men-reading-order-guide-modern-marvel-comics-era",
     "title": "The X-Men (Modern Era)",
     "url": "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
@@ -3489,7 +3531,7 @@
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
   {
-    "position": 125,
+    "position": 126,
     "id": "chris-claremont-era-x-men-reading-order-guide",
     "title": "The X-Men (Chris Claremont Era)",
     "url": "https://www.comicbookherald.com/chris-claremont-era-x-men-reading-order-guide/",
@@ -3514,7 +3556,7 @@
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
   {
-    "position": 126,
+    "position": 127,
     "id": "the-complete-marvel-reading-order-guide-x-men-onslaught-reading-order",
     "title": "X-Men: Onslaught",
     "url": "https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/x-men-onslaught-reading-order/",
@@ -3539,7 +3581,7 @@
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
   {
-    "position": 127,
+    "position": 128,
     "id": "x-man-nate-grey-comics-reading-order",
     "title": "X-Man (Nate Grey)",
     "url": "https://www.comicbookherald.com/x-man-nate-grey-comics-reading-order/",
@@ -3564,7 +3606,7 @@
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
   {
-    "position": 128,
+    "position": 129,
     "id": "young-avengers-reading-order",
     "title": "Young Avengers",
     "url": "https://www.comicbookherald.com/young-avengers-reading-order/",

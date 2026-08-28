@@ -1,12 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import {
+  cpSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync,
+} from 'node:fs';
 import { spawnSync } from 'node:child_process';
+import { createHash } from 'node:crypto';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { digestJson } from '../scripts/lib/chapter-orders.mjs';
+import { writeOutputsAtomically } from '../scripts/vendor-orders.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -49,6 +53,48 @@ function writeFixture(rootPath) {
     seriesId: 1, seriesName: 'Atomic Order', cover: { path: 'https://example.test/cover', extension: 'jpg' },
   }), { status: 200, headers: { 'content-type': 'application/json' } });\n`);
   return hook;
+}
+
+function writeMetadataCache(rootPath, records) {
+  const cache = path.join(rootPath, 'metadata-cache');
+  mkdirSync(cache, { recursive: true });
+  for (const [id, body] of Object.entries(records)) {
+    const url = `https://marvel.emreparker.com/v1/issues/${id}`;
+    const urlSha256 = createHash('sha256').update(url, 'utf8').digest('hex');
+    writeFileSync(path.join(cache, `${urlSha256}.json`), JSON.stringify({
+      url,
+      urlSha256,
+      status: 200,
+      fetchedAt: '2026-08-27T00:00:00.000Z',
+      bodySha256: createHash('sha256').update(JSON.stringify(body), 'utf8').digest('hex'),
+      body,
+    }));
+  }
+  return cache;
+}
+
+function cachedAtomicIssue(id = 1) {
+  return {
+    id,
+    title: 'Atomic Order #1',
+    issueNumber: '1',
+    detailUrl: 'https://www.marvel.com/comics/issue/1/atomic_order_1',
+    seriesId: 1,
+    seriesName: 'Atomic Order',
+    onSaleDate: '2026-01-01T00:00:00+0000',
+    unlimitedDate: null,
+    digitalId: 101,
+    pageCount: 20,
+    creators: [],
+    cover: { path: 'http://example.test/cover', extension: 'jpg' },
+  };
+}
+
+function setFixtureCoverIssue(rootPath, coverIssueId) {
+  const manifest = path.join(rootPath, 'src', 'data', 'curated-lists.json');
+  const data = JSON.parse(readFileSync(manifest, 'utf8'));
+  data.lists[0].coverIssueId = coverIssueId;
+  writeFileSync(manifest, `${JSON.stringify(data, null, 2)}\n`);
 }
 
 function writePartitionFixture(rootPath) {
@@ -256,6 +302,95 @@ test('an invalid configured cover leaves both final vendor outputs unchanged', (
   assert.match(output.stderr, /coverIssueId 2 is not an issue in this order/);
   assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'atomic_order.json'), 'utf8'), '{"sentinel":"existing payload"}\n');
   assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'), '{"sentinel":"existing catalog"}\n');
+});
+
+test('cache-only metadata vendoring makes zero fetches and writes hydrated output', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-cache-only-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  setFixtureCoverIssue(fixture, 1);
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue() });
+  const fetchCount = path.join(fixture, 'fetch-count.txt');
+  writeFileSync(fetchCount, '0');
+  const hook = path.join(fixture, 'zero-fetch-hook.mjs');
+  writeFileSync(hook, `import { writeFileSync } from 'node:fs';
+globalThis.fetch = async () => {
+  writeFileSync(process.env.MRT_FETCH_COUNT, '1');
+  throw new Error('cache-only mode must not fetch');
+};
+`);
+
+  const output = spawnSync(
+    process.execPath,
+    ['--import', pathToFileURL(hook).href, 'scripts/vendor-orders.mjs', '--only=atomic-order', `--metadata-cache=${cache}`],
+    {
+      cwd: fixture,
+      encoding: 'utf8',
+      env: { ...process.env, MRT_FETCH_COUNT: fetchCount },
+    },
+  );
+
+  assert.equal(output.status, 0, output.stderr);
+  assert.equal(readFileSync(fetchCount, 'utf8'), '0');
+  const payload = JSON.parse(readFileSync(path.join(fixture, 'src', 'data', 'atomic_order.json'), 'utf8'));
+  assert.equal(payload.items[0].issueId, 1);
+  assert.equal(payload.items[0].digitalId, 101);
+});
+
+test('invalid cache-only metadata leaves final vendor outputs unchanged', (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-cache-atomic-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  writeFixture(fixture);
+  const cache = writeMetadataCache(fixture, { 1: cachedAtomicIssue(2) });
+
+  const output = spawnSync(
+    process.execPath,
+    ['scripts/vendor-orders.mjs', '--only=atomic-order', `--metadata-cache=${cache}`],
+    { cwd: fixture, encoding: 'utf8' },
+  );
+
+  assert.notEqual(output.status, 0);
+  assert.match(output.stderr, /does not identify that exact issue/);
+  assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'atomic_order.json'), 'utf8'), '{"sentinel":"existing payload"}\n');
+  assert.equal(readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'), '{"sentinel":"existing catalog"}\n');
+});
+
+test('a later vendor commit rename restores every final output', async (t) => {
+  const fixture = mkdtempSync(path.join(os.tmpdir(), 'mrt-vendor-commit-recovery-'));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  const sentinels = new Map([
+    ['first.json', Buffer.from([0, 1, 2, 3])],
+    ['second.json', Buffer.from([4, 5, 6, 7])],
+    ['third.json', Buffer.from([8, 9, 10, 11])],
+  ]);
+  for (const [name, content] of sentinels) writeFileSync(path.join(fixture, name), content);
+
+  let commitRenames = 0;
+  await assert.rejects(
+    writeOutputsAtomically(
+      [...sentinels.keys()].map((name) => ({
+        path: path.join(fixture, name),
+        content: `replacement for ${name}`,
+      })),
+      {
+        replaceFile: async (source, destination) => {
+          commitRenames += 1;
+          if (commitRenames === 3) throw new Error('forced later commit-phase rename failure');
+          renameSync(source, destination);
+        },
+      },
+    ),
+    /forced later commit-phase rename failure/,
+  );
+
+  assert.equal(commitRenames, 3);
+  for (const [name, content] of sentinels) {
+    assert.deepEqual(readFileSync(path.join(fixture, name)), content);
+  }
+  assert.deepEqual(
+    readdirSync(fixture).filter((name) => /\.(?:tmp|backup)-/.test(name)),
+    [],
+  );
 });
 
 test('catalog-only expands a noncatalog parent into ordinary children, a path, and overlaps', (t) => {

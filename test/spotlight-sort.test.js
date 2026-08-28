@@ -44,6 +44,7 @@ test('the shipped spotlight stories resolve the owner-supplied Top 30 ranks exac
     ['X-Men: Silver Age to Claremont', 22],
     ['Fantastic Four', 23],
     ['Guardians of the Galaxy', 24],
+    ['X-Force', 26],
   ]);
 
   for (const story of spotlights) {
@@ -77,6 +78,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'X-Men: Silver Age to Claremont',
     'Fantastic Four',
     'Guardians of the Galaxy',
+    'X-Force',
     'Amazing Spider-Man',
     'Agents of Atlas',
     'White Tiger: Ava Ayala',

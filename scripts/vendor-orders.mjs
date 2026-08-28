@@ -18,8 +18,11 @@
 // The output is committed so importing a curated order needs zero network access at runtime,
 // and so we are not exposed to upstream `main` changing under us.
 
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import {
+  readFile, writeFile, mkdir, rename, rm,
+} from 'node:fs/promises';
+import { createHash, randomUUID } from 'node:crypto';
+import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createJsonFetcher } from './lib/fetch-json.mjs';
 import { lookupIssues } from './lib/lookup-issues.mjs';
@@ -101,6 +104,155 @@ function parseOnly(argv) {
     }
   }
   return ids;
+}
+
+function parseMetadataCache(argv) {
+  const matches = argv.filter((arg) => arg.startsWith('--metadata-cache='));
+  if (matches.length === 0) return null;
+  if (matches.length > 1) throw new Error('Use --metadata-cache once');
+  const cacheDir = matches[0].slice('--metadata-cache='.length).trim();
+  if (!cacheDir) throw new Error('--metadata-cache must name a cache directory');
+  return resolve(cacheDir);
+}
+
+function cacheKey(url) {
+  return createHash('sha256').update(url, 'utf8').digest('hex');
+}
+
+function assertCachedMetadata(record, id, url) {
+  if (!record || typeof record !== 'object') {
+    throw new Error(`Cached metadata for issue ${id} is not an object`);
+  }
+  if (record.url !== url || record.urlSha256 !== cacheKey(url)) {
+    throw new Error(`Cached metadata for issue ${id} does not match its request URL`);
+  }
+  if (record.status !== 200 || !record.body || typeof record.body !== 'object'
+    || Array.isArray(record.body)) {
+    throw new Error(`Cached metadata for issue ${id} is not a successful JSON response`);
+  }
+  if (!Number.isInteger(record.body.id) || record.body.id !== id) {
+    throw new Error(`Cached metadata for issue ${id} does not identify that exact issue`);
+  }
+  if (record.bodySha256 !== cacheKey(JSON.stringify(record.body))) {
+    throw new Error(`Cached metadata for issue ${id} has an invalid body digest`);
+  }
+  for (const field of ['title', 'issueNumber', 'detailUrl', 'seriesId', 'seriesName']) {
+    if (record.body[field] == null || String(record.body[field]).trim() === '') {
+      throw new Error(`Cached metadata for issue ${id} has no ${field}`);
+    }
+  }
+  return record.body;
+}
+
+async function loadCachedMetadata(ids, cacheDir) {
+  if (new Set(ids).size !== ids.length) {
+    throw new Error('Cache-only metadata requires each requested issue exactly once');
+  }
+  const metadata = await Promise.all(ids.map(async (id) => {
+    const url = `${API}/issues/${id}`;
+    const file = join(cacheDir, `${cacheKey(url)}.json`);
+    let record;
+    try {
+      record = JSON.parse(await readFile(file, 'utf8'));
+    } catch (error) {
+      throw new Error(`Cached metadata for issue ${id} could not be read from ${file}`, {
+        cause: error,
+      });
+    }
+    return [id, assertCachedMetadata(record, id, url)];
+  }));
+  const meta = new Map(metadata);
+  if (meta.size !== ids.length) {
+    throw new Error('Cache-only metadata did not establish a one-to-one issue set');
+  }
+  return meta;
+}
+
+async function cleanupArtifacts(paths) {
+  const results = await Promise.allSettled(paths.map((artifact) => rm(artifact, { force: true })));
+  return results
+    .filter((result) => result.status === 'rejected')
+    .map((result) => result.reason);
+}
+
+async function restoreOutput(output) {
+  if (output.backedUp) {
+    await rm(output.path, { force: true });
+    await rename(output.backupPath, output.path);
+    output.restored = true;
+  } else if (output.replaced) {
+    await rm(output.path, { force: true });
+    output.restored = true;
+  }
+}
+
+export async function writeOutputsAtomically(outputs, { replaceFile = rename } = {}) {
+  const staged = outputs.map((output) => ({
+    ...output,
+    tempPath: `${output.path}.tmp-${process.pid}-${randomUUID()}`,
+    backupPath: `${output.path}.backup-${process.pid}-${randomUUID()}`,
+    backedUp: false,
+    replaced: false,
+    restored: false,
+  }));
+  let retainBackups = false;
+  let outcomeError = null;
+  try {
+    const writes = await Promise.allSettled(
+      staged.map((output) => writeFile(output.tempPath, output.content, 'utf8')),
+    );
+    const writeErrors = writes
+      .filter((result) => result.status === 'rejected')
+      .map((result) => result.reason);
+    if (writeErrors.length) {
+      throw new AggregateError(writeErrors, 'Vendor output staging failed');
+    }
+
+    for (const output of staged) {
+      // Renames commit one file at a time. Keeping the old file beside its replacement lets a
+      // later failed commit return every final output to the exact pre-vendoring state.
+      try {
+        await rename(output.path, output.backupPath);
+        output.backedUp = true;
+      } catch (error) {
+        if (error?.code !== 'ENOENT') throw error;
+      }
+      await replaceFile(output.tempPath, output.path);
+      output.replaced = true;
+    }
+  } catch (error) {
+    const restores = await Promise.allSettled(
+      [...staged].reverse().map((output) => restoreOutput(output)),
+    );
+    const restoreErrors = restores
+      .filter((result) => result.status === 'rejected')
+      .map((result) => result.reason);
+    if (restoreErrors.length) {
+      retainBackups = true;
+      outcomeError = new AggregateError(
+        [error, ...restoreErrors],
+        `Vendor output commit failed and recovery was incomplete: ${error.message}`,
+        { cause: error },
+      );
+    } else {
+      outcomeError = error;
+    }
+  }
+  const artifacts = staged.map((output) => output.tempPath);
+  if (!retainBackups) artifacts.push(...staged.map((output) => output.backupPath));
+  const cleanupErrors = await cleanupArtifacts(artifacts);
+  if (cleanupErrors.length) {
+    const cause = outcomeError ?? cleanupErrors[0];
+    const message = outcomeError
+      ? `Vendor output commit failed and temporary cleanup also failed: ${outcomeError.message}`
+      : 'Vendor output commit succeeded but temporary cleanup failed';
+    throw new AggregateError(
+      outcomeError ? [outcomeError, ...cleanupErrors] : cleanupErrors,
+      message,
+      { cause },
+    );
+  }
+  if (outcomeError) throw outcomeError;
 }
 
 // Marvel's metadata occasionally carries a doubled space inside a title, as in
@@ -189,7 +341,9 @@ function catalogEntry(order, payload) {
 
 async function main() {
   const { entries: orders, paths } = await loadOrders();
-  const only = parseOnly(process.argv.slice(2));
+  const args = process.argv.slice(2);
+  const only = parseOnly(args);
+  const metadataCacheDir = parseMetadataCache(args);
   const partitionLedgers = await loadPartitionLedgers(orders);
   const childParents = new Map();
   for (const [parentId, ledger] of partitionLedgers) {
@@ -199,9 +353,12 @@ async function main() {
   // issue — that changes without any reading order changing. Rebuilding it from the pinned
   // files costs no API calls and leaves every order's snapshot date alone, so an editorial
   // edit is not a reason to re-fetch several hundred issues.
-  const catalogOnly = process.argv.slice(2).includes('--catalog-only');
+  const catalogOnly = args.includes('--catalog-only');
   if (catalogOnly && only.size) {
     throw new Error('--catalog-only rebuilds every catalog entry from the pinned files, so it cannot be combined with --only');
+  }
+  if (metadataCacheDir && (catalogOnly || only.size === 0)) {
+    throw new Error('--metadata-cache requires an --only target and cannot rebuild catalog-only');
   }
   const selectedParents = new Set();
   for (const id of only) {
@@ -216,6 +373,12 @@ async function main() {
   const targets = catalogOnly
     ? []
     : (only.size ? orders.filter((order) => selectedParents.has(order.id)) : orders);
+  if (metadataCacheDir && targets.length !== 1) {
+    throw new Error('--metadata-cache requires exactly one source order');
+  }
+  if (metadataCacheDir && targets.some((order) => !order.sourceFile)) {
+    throw new Error('--metadata-cache requires a local sourceFile and never fetches source pages');
+  }
   if (catalogOnly) console.log('Rebuilding catalog.json from the pinned order files; no issues are re-fetched.');
   else if (only.size) console.log(`Vendoring ${targets.length} of ${orders.length} source orders; the rest keep their pinned files.`);
 
@@ -231,16 +394,25 @@ async function main() {
   const ids = [...new Set(parsed.flatMap(({ parsedOrder }) => (
     parsedOrder.entries.map((entry) => entry.issueId)
   )))];
-  if (ids.length) console.log(`Hydrating ${ids.length} unique issues (rate limited, expect a few minutes)...`);
+  if (ids.length) {
+    console.log(metadataCacheDir
+      ? `Reading ${ids.length} unique issues from the metadata cache only...`
+      : `Hydrating ${ids.length} unique issues (rate limited, expect a few minutes)...`);
+  }
 
-  const { meta, refused } = await lookupIssues(ids, {
-    getJson,
-    url: (id) => `${API}/issues/${id}`,
-    onProgress: ({ done, total, id, refused: wasRefused }) => {
-      if (wasRefused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
-      if (done % 25 === 0) console.log(`  ${done}/${total}`);
-    },
-  });
+  const { meta, refused } = metadataCacheDir
+    ? {
+      meta: await loadCachedMetadata(ids, metadataCacheDir),
+      refused: new Set(),
+    }
+    : await lookupIssues(ids, {
+      getJson,
+      url: (id) => `${API}/issues/${id}`,
+      onProgress: ({ done, total, id, refused: wasRefused }) => {
+        if (wasRefused) console.warn(`  ! issue ${id}: upstream holds no record of it (404)`);
+        if (done % 25 === 0) console.log(`  ${done}/${total}`);
+      },
+    });
 
   const generatedAt = new Date().toISOString();
   const summary = [];
@@ -451,9 +623,7 @@ async function main() {
   }
   await mkdir(DATA_DIR, { recursive: true });
   await mkdir(SCRIPT_DATA_DIR, { recursive: true });
-  for (const output of outputs) {
-    await writeFile(output.path, output.content, 'utf8');
-  }
+  await writeOutputsAtomically(outputs);
 
   if (summary.length) console.table(summary);
   const bad = summary.filter((s) => s.count !== s.expected);
@@ -462,7 +632,9 @@ async function main() {
   }
 }
 
-main().catch((err) => {
-  console.error(err);
-  process.exitCode = 1;
-});
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((err) => {
+    console.error(err);
+    process.exitCode = 1;
+  });
+}

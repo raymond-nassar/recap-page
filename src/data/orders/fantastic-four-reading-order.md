@@ -121,7 +121,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (1961) #102](https://www.marvel.com/comics/issue/12898/fantastic_four_1961_102)
 - [ ] [Fantastic Four (1961) #103](https://www.marvel.com/comics/issue/12899/fantastic_four_1961_103)
 - [ ] [Fantastic Four (1961) #104](https://www.marvel.com/comics/issue/12900/fantastic_four_1961_104)
-- [ ] Fantastic Four: The Lost Adventure (2008) #1
+- [ ] Fantastic Four: The Lost Adventure (2008) #1 <!-- mrt:source-occurrence=112 -->
 ## Collects: Fantastic Four (1961) #105-116
 - [ ] [Fantastic Four (1961) #105](https://www.marvel.com/comics/issue/12901/fantastic_four_1961_105)
 - [ ] [Fantastic Four (1961) #106](https://www.marvel.com/comics/issue/12902/fantastic_four_1961_106)
@@ -349,21 +349,21 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Thing (1983) #10](https://www.marvel.com/comics/issue/18718/thing_1983_10)
 - [ ] [Thing (1983) #19](https://www.marvel.com/comics/issue/18727/thing_1983_19)
 - [ ] [Avengers Annual (1967) #14](https://www.marvel.com/comics/issue/6928/avengers_annual_1967_14)
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
-- [ ] Epic Illustrated #26-34
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=341 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=342 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=343 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=344 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=345 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=346 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=347 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=348 -->
+- [ ] Epic Illustrated #26-34 <!-- mrt:source-occurrence=349 -->
 - [ ] [What If? (1977) #36](https://www.marvel.com/comics/issue/12150/what_if_1977_36)
-- [ ] What The -?! #2
-- [ ] And #10
+- [ ] What The -?! #2 <!-- mrt:source-occurrence=351 -->
+- [ ] And #10 <!-- mrt:source-occurrence=352 -->
 - [ ] [Thing (1983) #7](https://www.marvel.com/comics/issue/18750/thing_1983_7)
-- [ ] Fantastic Four Roast
-- [ ] Fantastic Four Special Edition
+- [ ] Fantastic Four Roast <!-- mrt:source-occurrence=354 -->
+- [ ] Fantastic Four Special Edition <!-- mrt:source-occurrence=355 -->
 ## Fantastic Four Vs. The X-Men #1-4
 - [ ] [Fantastic Four Vs. X-Men (1987) #1](https://www.marvel.com/comics/issue/42863/fantastic_four_vs_x-men_1987_1)
 - [ ] [Fantastic Four Vs. X-Men (1987) #2](https://www.marvel.com/comics/issue/42864/fantastic_four_vs_x-men_1987_2)
@@ -385,7 +385,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (1961) #320](https://www.marvel.com/comics/issue/13140/fantastic_four_1961_320)
 - [ ] [Fantastic Four Annual (1963) #21](https://www.marvel.com/comics/issue/8700/fantastic_four_annual_1963_21)
 - [ ] [Incredible Hulk (1962) #350](https://www.marvel.com/comics/issue/9161/incredible_hulk_1962_350)
-- [ ] Marvel Graphic Novel: Hulk/Thing - The Big Change
+- [ ] Marvel Graphic Novel: Hulk/Thing - The Big Change <!-- mrt:source-occurrence=375 -->
 ## Collects: Avengers (1963) #298-300, Fantastic Four (1961) #322-324, Amazing Spider-Man (1963) #311-313, Spectacular Spider-Man (1976) #146-148, Web Of Spider-Man (1985) #47-48, Daredevil (1964) #262-263 & 265
 - [ ] [Avengers (1963) #298](https://www.marvel.com/comics/issue/7172/avengers_1963_298)
 - [ ] [Avengers (1963) #299](https://www.marvel.com/comics/issue/7173/avengers_1963_299)
@@ -461,7 +461,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (1961) #414](https://www.marvel.com/comics/issue/13244/fantastic_four_1961_414)
 - [ ] [Fantastic Four (1961) #415](https://www.marvel.com/comics/issue/13245/fantastic_four_1961_415)
 - [ ] [Fantastic Four (1961) #416](https://www.marvel.com/comics/issue/13246/fantastic_four_1961_416)
-- [ ] Fantastic Four: The Legend (1996) #1
+- [ ] Fantastic Four: The Legend (1996) #1 <!-- mrt:source-occurrence=446 -->
 - [ ] [Onslaught: Marvel Universe (1996) #1](https://www.marvel.com/comics/issue/10453/onslaught_marvel_universe_1996_1)
 ## Collects: Fantastic Four (1996) #1-12
 - [ ] [Fantastic Four (1996) #1](https://www.marvel.com/comics/issue/13310/fantastic_four_1996_1)
@@ -492,7 +492,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (1998) #13](https://www.marvel.com/comics/issue/15531/fantastic_four_1998_13)
 - [ ] [Fantastic Four (1998) #14](https://www.marvel.com/comics/issue/15532/fantastic_four_1998_14)
 - [ ] [Fantastic Four (1998) #15](https://www.marvel.com/comics/issue/15533/fantastic_four_1998_15)
-- [ ] Fantastic Four (1998) #1/2
+- [ ] Fantastic Four (1998) #1/2 <!-- mrt:source-occurrence=476 -->
 - [ ] [Iron Man (1998) #14](https://www.marvel.com/comics/issue/19885/iron_man_1998_14)
 - [ ] [Fantastic Four Annual (1998) #1](https://www.marvel.com/comics/issue/76070/fantastic_four_annual_1998_1)
 ## Fantastic Four #40 â€“ 45
@@ -535,43 +535,43 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (1998) #501](https://www.marvel.com/comics/issue/12855/fantastic_four_1998_501)
 - [ ] [Fantastic Four (1998) #502](https://www.marvel.com/comics/issue/12856/fantastic_four_1998_502)
 ## Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
-- [ ] Collecting Fantastic Four (1961) #503-513
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=519 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=520 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=521 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=522 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=523 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=524 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=525 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=526 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=527 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=528 -->
+- [ ] Collecting Fantastic Four (1961) #503-513 <!-- mrt:source-occurrence=529 -->
 ## Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
-- [ ] Collecting Fantastic Four (1961) #514-524
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=530 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=531 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=532 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=533 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=534 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=535 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=536 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=537 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=538 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=539 -->
+- [ ] Collecting Fantastic Four (1961) #514-524 <!-- mrt:source-occurrence=540 -->
 ## Collects Son Of A Genius, Everybody Loves Franklin, Super Summer Spectacular, Happy Franksgiving, March Madness, World Be Warned, Monster Mash, Fall Football Fiasco!
 - [ ] [Franklin Richards: Son of a Genius (2005) #1](https://www.marvel.com/comics/issue/3636/franklin_richards_son_of_a_genius_2005_1)
-- [ ] Everybody Loves Franklin
-- [ ] Super Summer Spectacular
+- [ ] Everybody Loves Franklin <!-- mrt:source-occurrence=542 -->
+- [ ] Super Summer Spectacular <!-- mrt:source-occurrence=543 -->
 - [ ] [Franklin Richards: Happy Franksgiving (2006) #1](https://www.marvel.com/comics/issue/5585/franklin_richards_happy_franksgiving_2006_1)
-- [ ] March Madness
-- [ ] World Be Warned
-- [ ] Monster Mash
-- [ ] Fall Football Fiasco
+- [ ] March Madness <!-- mrt:source-occurrence=545 -->
+- [ ] World Be Warned <!-- mrt:source-occurrence=546 -->
+- [ ] Monster Mash <!-- mrt:source-occurrence=547 -->
+- [ ] Fall Football Fiasco <!-- mrt:source-occurrence=548 -->
 ## #1 â€“ #4
-- [ ] #1 - #4
-- [ ] #1 - #4
-- [ ] #1 - #4
-- [ ] #1 - #4
+- [ ] #1 - #4 <!-- mrt:source-occurrence=549 -->
+- [ ] #1 - #4 <!-- mrt:source-occurrence=550 -->
+- [ ] #1 - #4 <!-- mrt:source-occurrence=551 -->
+- [ ] #1 - #4 <!-- mrt:source-occurrence=552 -->
 ## The Thing: Freakshow #1 â€“ #4, Thing & She-Hulk: Long Night #1
 - [ ] [Thing: Freakshow (2002) #1](https://www.marvel.com/comics/issue/11450/thing_freakshow_2002_1)
 - [ ] [Thing: Freakshow (2002) #2](https://www.marvel.com/comics/issue/11451/thing_freakshow_2002_2)
@@ -609,36 +609,36 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four: Foes (2005) #5](https://www.marvel.com/comics/issue/1974/fantastic_four_foes_2005_5)
 - [ ] [Fantastic Four: Foes (2005) #6](https://www.marvel.com/comics/issue/2079/fantastic_four_foes_2005_6)
 ## Marvel Knights 4 â€“ #1 â€“ #7 (Feb 2004 â€“ July 2004)
-- [ ] Marvel Knights 4 - #1 - #7
-- [ ] Marvel Knights 4 - #1 - #7
-- [ ] Marvel Knights 4 - #1 - #7
+- [ ] Marvel Knights 4 - #1 - #7 <!-- mrt:source-occurrence=588 -->
+- [ ] Marvel Knights 4 - #1 - #7 <!-- mrt:source-occurrence=589 -->
+- [ ] Marvel Knights 4 - #1 - #7 <!-- mrt:source-occurrence=590 -->
 ## Marvel Knights 4 â€“ #8 â€“ #12
-- [ ] Marvel Knights 4 - #8 - #12
-- [ ] Marvel Knights 4 - #8 - #12
-- [ ] Marvel Knights 4 - #8 - #12
-- [ ] Marvel Knights 4 - #8 - #12
-- [ ] Marvel Knights 4 - #8 - #12
+- [ ] Marvel Knights 4 - #8 - #12 <!-- mrt:source-occurrence=591 -->
+- [ ] Marvel Knights 4 - #8 - #12 <!-- mrt:source-occurrence=592 -->
+- [ ] Marvel Knights 4 - #8 - #12 <!-- mrt:source-occurrence=593 -->
+- [ ] Marvel Knights 4 - #8 - #12 <!-- mrt:source-occurrence=594 -->
+- [ ] Marvel Knights 4 - #8 - #12 <!-- mrt:source-occurrence=595 -->
 ## Collects Marvel Knights 4 #13-18
-- [ ] Collects Marvel Knights 4 #13-18
-- [ ] Collects Marvel Knights 4 #13-18
-- [ ] Collects Marvel Knights 4 #13-18
-- [ ] Collects Marvel Knights 4 #13-18
-- [ ] Collects Marvel Knights 4 #13-18
-- [ ] Collects Marvel Knights 4 #13-18
+- [ ] Collects Marvel Knights 4 #13-18 <!-- mrt:source-occurrence=596 -->
+- [ ] Collects Marvel Knights 4 #13-18 <!-- mrt:source-occurrence=597 -->
+- [ ] Collects Marvel Knights 4 #13-18 <!-- mrt:source-occurrence=598 -->
+- [ ] Collects Marvel Knights 4 #13-18 <!-- mrt:source-occurrence=599 -->
+- [ ] Collects Marvel Knights 4 #13-18 <!-- mrt:source-occurrence=600 -->
+- [ ] Collects Marvel Knights 4 #13-18 <!-- mrt:source-occurrence=601 -->
 ## Marvel Knights 4 #19-24
-- [ ] Marvel Knights 4 #19-24
-- [ ] Marvel Knights 4 #19-24
-- [ ] Marvel Knights 4 #19-24
-- [ ] Marvel Knights 4 #19-24
-- [ ] Marvel Knights 4 #19-24
-- [ ] Marvel Knights 4 #19-24
+- [ ] Marvel Knights 4 #19-24 <!-- mrt:source-occurrence=602 -->
+- [ ] Marvel Knights 4 #19-24 <!-- mrt:source-occurrence=603 -->
+- [ ] Marvel Knights 4 #19-24 <!-- mrt:source-occurrence=604 -->
+- [ ] Marvel Knights 4 #19-24 <!-- mrt:source-occurrence=605 -->
+- [ ] Marvel Knights 4 #19-24 <!-- mrt:source-occurrence=606 -->
+- [ ] Marvel Knights 4 #19-24 <!-- mrt:source-occurrence=607 -->
 ## Collects Marvel Knights 4 #25-30
-- [ ] Collects Marvel Knights 4 #25-30
-- [ ] Collects Marvel Knights 4 #25-30
-- [ ] Collects Marvel Knights 4 #25-30
-- [ ] Collects Marvel Knights 4 #25-30
-- [ ] Collects Marvel Knights 4 #25-30
-- [ ] Collects Marvel Knights 4 #25-30
+- [ ] Collects Marvel Knights 4 #25-30 <!-- mrt:source-occurrence=608 -->
+- [ ] Collects Marvel Knights 4 #25-30 <!-- mrt:source-occurrence=609 -->
+- [ ] Collects Marvel Knights 4 #25-30 <!-- mrt:source-occurrence=610 -->
+- [ ] Collects Marvel Knights 4 #25-30 <!-- mrt:source-occurrence=611 -->
+- [ ] Collects Marvel Knights 4 #25-30 <!-- mrt:source-occurrence=612 -->
+- [ ] Collects Marvel Knights 4 #25-30 <!-- mrt:source-occurrence=613 -->
 ## Fantastic Four: House Of M #1 â€“ #3
 - [ ] [Fantastic Four: House of M (2005) #1](https://www.marvel.com/comics/issue/4872/fantastic_four_house_of_m_2005_1)
 - [ ] [Fantastic Four: House of M (2005) #2](https://www.marvel.com/comics/issue/2361/fantastic_four_house_of_m_2005_2)
@@ -648,12 +648,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Tales of the Thing (2005) #2](https://www.marvel.com/comics/issue/1911/tales_of_the_thing_2005_2)
 - [ ] [Tales of the Thing (2005) #3](https://www.marvel.com/comics/issue/2013/tales_of_the_thing_2005_3)
 ## Collects Fantastic Four: Books Of Doom #1-6
-- [ ] Collects Fantastic Four: Books Of Doom #1-6
-- [ ] Collects Fantastic Four: Books Of Doom #1-6
-- [ ] Collects Fantastic Four: Books Of Doom #1-6
-- [ ] Collects Fantastic Four: Books Of Doom #1-6
-- [ ] Collects Fantastic Four: Books Of Doom #1-6
-- [ ] Collects Fantastic Four: Books Of Doom #1-6
+- [ ] Collects Fantastic Four: Books Of Doom #1-6 <!-- mrt:source-occurrence=620 -->
+- [ ] Collects Fantastic Four: Books Of Doom #1-6 <!-- mrt:source-occurrence=621 -->
+- [ ] Collects Fantastic Four: Books Of Doom #1-6 <!-- mrt:source-occurrence=622 -->
+- [ ] Collects Fantastic Four: Books Of Doom #1-6 <!-- mrt:source-occurrence=623 -->
+- [ ] Collects Fantastic Four: Books Of Doom #1-6 <!-- mrt:source-occurrence=624 -->
+- [ ] Collects Fantastic Four: Books Of Doom #1-6 <!-- mrt:source-occurrence=625 -->
 ## The Thing #1 â€“ #8
 - [ ] [Thing (1983) #1](https://www.marvel.com/comics/issue/18717/thing_1983_1)
 - [ ] [Thing (1983) #3](https://www.marvel.com/comics/issue/18739/thing_1983_3)
@@ -681,12 +681,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four: First Family (2006) #5](https://www.marvel.com/comics/issue/4413/fantastic_four_first_family_2006_5)
 - [ ] [Fantastic Four: First Family (2006) #6](https://www.marvel.com/comics/issue/4734/fantastic_four_first_family_2006_6)
 ## Collects Fantastic Four #538-543
-- [ ] Collects Fantastic Four #538-543
-- [ ] Collects Fantastic Four #538-543
-- [ ] Collects Fantastic Four #538-543
-- [ ] Collects Fantastic Four #538-543
-- [ ] Collects Fantastic Four #538-543
-- [ ] Collects Fantastic Four #538-543
+- [ ] Collects Fantastic Four #538-543 <!-- mrt:source-occurrence=652 -->
+- [ ] Collects Fantastic Four #538-543 <!-- mrt:source-occurrence=653 -->
+- [ ] Collects Fantastic Four #538-543 <!-- mrt:source-occurrence=654 -->
+- [ ] Collects Fantastic Four #538-543 <!-- mrt:source-occurrence=655 -->
+- [ ] Collects Fantastic Four #538-543 <!-- mrt:source-occurrence=656 -->
+- [ ] Collects Fantastic Four #538-543 <!-- mrt:source-occurrence=657 -->
 ## Collects Fantastic Four: The End #1-6
 - [ ] [Fantastic Four: The End (2006) #1](https://www.marvel.com/comics/issue/5358/fantastic_four_the_end_2006_1)
 - [ ] [Fantastic Four: The End (2006) #2](https://www.marvel.com/comics/issue/5496/fantastic_four_the_end_2006_2)
@@ -700,44 +700,44 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four and Power Pack (2007) #3](https://www.marvel.com/comics/issue/16535/fantastic_four_and_power_pack_2007_3)
 - [ ] [Fantastic Four and Power Pack (2007) #4](https://www.marvel.com/comics/issue/16536/fantastic_four_and_power_pack_2007_4)
 ## Collects Fantastic Four #544-550
-- [ ] Collects Fantastic Four #544-550
-- [ ] Collects Fantastic Four #544-550
-- [ ] Collects Fantastic Four #544-550
-- [ ] Collects Fantastic Four #544-550
-- [ ] Collects Fantastic Four #544-550
-- [ ] Collects Fantastic Four #544-550
-- [ ] Collects Fantastic Four #544-550
+- [ ] Collects Fantastic Four #544-550 <!-- mrt:source-occurrence=668 -->
+- [ ] Collects Fantastic Four #544-550 <!-- mrt:source-occurrence=669 -->
+- [ ] Collects Fantastic Four #544-550 <!-- mrt:source-occurrence=670 -->
+- [ ] Collects Fantastic Four #544-550 <!-- mrt:source-occurrence=671 -->
+- [ ] Collects Fantastic Four #544-550 <!-- mrt:source-occurrence=672 -->
+- [ ] Collects Fantastic Four #544-550 <!-- mrt:source-occurrence=673 -->
+- [ ] Collects Fantastic Four #544-550 <!-- mrt:source-occurrence=674 -->
 ## Collects Fantastic Four #525-526, 551-553
-- [ ] Collects Fantastic Four #525-526
-- [ ] Collects Fantastic Four #525-526
+- [ ] Collects Fantastic Four #525-526 <!-- mrt:source-occurrence=675 -->
+- [ ] Collects Fantastic Four #525-526 <!-- mrt:source-occurrence=676 -->
 ## Collects Fantastic Four #554-561 (Feb 2008 â€“ Nov 2008)
-- [ ] Collects Fantastic Four #554-561
-- [ ] Collects Fantastic Four #554-561
-- [ ] Collects Fantastic Four #554-561
-- [ ] Collects Fantastic Four #554-561
-- [ ] Collects Fantastic Four #554-561
-- [ ] Collects Fantastic Four #554-561
-- [ ] Collects Fantastic Four #554-561
-- [ ] Collects Fantastic Four #554-561
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=680 -->
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=681 -->
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=682 -->
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=683 -->
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=684 -->
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=685 -->
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=686 -->
+- [ ] Collects Fantastic Four #554-561 <!-- mrt:source-occurrence=687 -->
 ## Collects Secret Invasion: Fantastic Four #1-3, And Fantastic Four #300 And #357
 - [ ] [Secret Invasion: Fantastic Four (2008) #1](https://www.marvel.com/comics/issue/21269/secret_invasion_fantastic_four_2008_1)
 - [ ] [Secret Invasion: Fantastic Four (2008) #2](https://www.marvel.com/comics/issue/21413/secret_invasion_fantastic_four_2008_2)
 - [ ] [Secret Invasion: Fantastic Four (2008) #3](https://www.marvel.com/comics/issue/21587/secret_invasion_fantastic_four_2008_3)
 - [ ] [Fantastic Four (1961) #300](https://www.marvel.com/comics/issue/13118/fantastic_four_1961_300)
 ## Fantastic Four True Story #1 â€“ #4
-- [ ] Fantastic Four True Story #1 - #4
-- [ ] Fantastic Four True Story #1 - #4
-- [ ] Fantastic Four True Story #1 - #4
-- [ ] Fantastic Four True Story #1 - #4
+- [ ] Fantastic Four True Story #1 - #4 <!-- mrt:source-occurrence=693 -->
+- [ ] Fantastic Four True Story #1 - #4 <!-- mrt:source-occurrence=694 -->
+- [ ] Fantastic Four True Story #1 - #4 <!-- mrt:source-occurrence=695 -->
+- [ ] Fantastic Four True Story #1 - #4 <!-- mrt:source-occurrence=696 -->
 ## Collects Fantastic Four #562-569 (Ends July 2009)
-- [ ] Collects Fantastic Four #562-569
-- [ ] Collects Fantastic Four #562-569
-- [ ] Collects Fantastic Four #562-569
-- [ ] Collects Fantastic Four #562-569
-- [ ] Collects Fantastic Four #562-569
-- [ ] Collects Fantastic Four #562-569
-- [ ] Collects Fantastic Four #562-569
-- [ ] Collects Fantastic Four #562-569
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=697 -->
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=698 -->
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=699 -->
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=700 -->
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=701 -->
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=702 -->
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=703 -->
+- [ ] Collects Fantastic Four #562-569 <!-- mrt:source-occurrence=704 -->
 ## Collects Dark Reign: Fantastic Four #1-5
 - [ ] [Dark Reign: Fantastic Four (2009) #1](https://www.marvel.com/comics/issue/23843/dark_reign_fantastic_four_2009_1)
 - [ ] [Dark Reign: Fantastic Four (2009) #2](https://www.marvel.com/comics/issue/24043/dark_reign_fantastic_four_2009_2)
@@ -756,12 +756,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Doctor Doom and the Masters of Evil (2009) #3](https://www.marvel.com/comics/issue/23838/doctor_doom_and_the_masters_of_evil_2009_3)
 - [ ] [Doctor Doom and the Masters of Evil (2009) #4](https://www.marvel.com/comics/issue/24035/doctor_doom_and_the_masters_of_evil_2009_4)
 ## Collects Fantastic Four #570-575 (Aug 2009 â€“ Jan 2010)
-- [ ] Collects Fantastic Four #570-575
-- [ ] Collects Fantastic Four #570-575
-- [ ] Collects Fantastic Four #570-575
-- [ ] Collects Fantastic Four #570-575
-- [ ] Collects Fantastic Four #570-575
-- [ ] Collects Fantastic Four #570-575
+- [ ] Collects Fantastic Four #570-575 <!-- mrt:source-occurrence=719 -->
+- [ ] Collects Fantastic Four #570-575 <!-- mrt:source-occurrence=720 -->
+- [ ] Collects Fantastic Four #570-575 <!-- mrt:source-occurrence=721 -->
+- [ ] Collects Fantastic Four #570-575 <!-- mrt:source-occurrence=722 -->
+- [ ] Collects Fantastic Four #570-575 <!-- mrt:source-occurrence=723 -->
+- [ ] Collects Fantastic Four #570-575 <!-- mrt:source-occurrence=724 -->
 ## Fantastic Four #575-578
 - [ ] [Fantastic Four (1998) #575](https://www.marvel.com/comics/issue/25187/fantastic_four_1998_575)
 - [ ] [Fantastic Four (1998) #576](https://www.marvel.com/comics/issue/25188/fantastic_four_1998_576)
@@ -773,19 +773,19 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (1998) #581](https://www.marvel.com/comics/issue/29601/fantastic_four_1998_581)
 - [ ] [Fantastic Four (1998) #582](https://www.marvel.com/comics/issue/29602/fantastic_four_1998_582)
 ## Collecting Fantastic Four #583-588 (Sept 2010 â€“ Feb 2011)
-- [ ] Collecting Fantastic Four #583-588
-- [ ] Collecting Fantastic Four #583-588
-- [ ] Collecting Fantastic Four #583-588
-- [ ] Collecting Fantastic Four #583-588
-- [ ] Collecting Fantastic Four #583-588
-- [ ] Collecting Fantastic Four #583-588
+- [ ] Collecting Fantastic Four #583-588 <!-- mrt:source-occurrence=733 -->
+- [ ] Collecting Fantastic Four #583-588 <!-- mrt:source-occurrence=734 -->
+- [ ] Collecting Fantastic Four #583-588 <!-- mrt:source-occurrence=735 -->
+- [ ] Collecting Fantastic Four #583-588 <!-- mrt:source-occurrence=736 -->
+- [ ] Collecting Fantastic Four #583-588 <!-- mrt:source-occurrence=737 -->
+- [ ] Collecting Fantastic Four #583-588 <!-- mrt:source-occurrence=738 -->
 ## Doomwar #1 â€“ #6
-- [ ] Doomwar #1 - #6
-- [ ] Doomwar #1 - #6
-- [ ] Doomwar #1 - #6
-- [ ] Doomwar #1 - #6
-- [ ] Doomwar #1 - #6
-- [ ] Doomwar #1 - #6
+- [ ] Doomwar #1 - #6 <!-- mrt:source-occurrence=739 -->
+- [ ] Doomwar #1 - #6 <!-- mrt:source-occurrence=740 -->
+- [ ] Doomwar #1 - #6 <!-- mrt:source-occurrence=741 -->
+- [ ] Doomwar #1 - #6 <!-- mrt:source-occurrence=742 -->
+- [ ] Doomwar #1 - #6 <!-- mrt:source-occurrence=743 -->
+- [ ] Doomwar #1 - #6 <!-- mrt:source-occurrence=744 -->
 ## Ff #1 â€“ #5
 - [ ] [FF (2011) #1](https://www.marvel.com/comics/issue/37398/ff_2011_1)
 - [ ] [FF (2011) #2](https://www.marvel.com/comics/issue/37400/ff_2011_2)
@@ -807,11 +807,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Galacta: Daughter of Galactus (2010) #1](https://www.marvel.com/comics/issue/29938/galacta_daughter_of_galactus_2010_1)
 ## Collecting:Â Fantastic Four 4-8, 5Au
 - [ ] [Fantastic Four (2012) #4](https://www.marvel.com/comics/issue/46094/fantastic_four_2012_4)
-- [ ] Fantastic Four 4-8
+- [ ] Fantastic Four 4-8 <!-- mrt:source-occurrence=765 -->
 - [ ] [Fantastic Four (2012) #6](https://www.marvel.com/comics/issue/46098/fantastic_four_2012_6)
 - [ ] [Fantastic Four (2012) #7](https://www.marvel.com/comics/issue/46099/fantastic_four_2012_7)
 - [ ] [Fantastic Four (2012) #8](https://www.marvel.com/comics/issue/46100/fantastic_four_2012_8)
-- [ ] Fantastic Four 5Au
+- [ ] Fantastic Four 5Au <!-- mrt:source-occurrence=769 -->
 ## Collecting:Â Fantastic Four 9-16
 - [ ] [Fantastic Four (2012) #9](https://www.marvel.com/comics/issue/46101/fantastic_four_2012_9)
 - [ ] [Fantastic Four (2012) #10](https://www.marvel.com/comics/issue/46102/fantastic_four_2012_10)
@@ -836,10 +836,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (2012) #2](https://www.marvel.com/comics/issue/44927/fantastic_four_2012_2)
 - [ ] [Fantastic Four (2012) #3](https://www.marvel.com/comics/issue/46092/fantastic_four_2012_3)
 ## Collecting:Â Fantastic Four 642-645
-- [ ] Fantastic Four 642-645
-- [ ] Fantastic Four 642-645
-- [ ] Fantastic Four 642-645
-- [ ] Fantastic Four 642-645
+- [ ] Fantastic Four 642-645 <!-- mrt:source-occurrence=803 -->
+- [ ] Fantastic Four 642-645 <!-- mrt:source-occurrence=804 -->
+- [ ] Fantastic Four 642-645 <!-- mrt:source-occurrence=805 -->
+- [ ] Fantastic Four 642-645 <!-- mrt:source-occurrence=806 -->
 ## Uncanny Inhumans Vol. 1: Time CrushÂ (Uncanny Inhumans #0 to #4)
 - [ ] [Uncanny Inhumans (2015) #0](https://www.marvel.com/comics/issue/52855/uncanny_inhumans_2015)
 - [ ] [Uncanny Inhumans (2015) #1](https://www.marvel.com/comics/issue/52856/uncanny_inhumans_2015_1)
@@ -859,12 +859,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Ultimates (2015) #4](https://www.marvel.com/comics/issue/57258/ultimates_2015_4)
 - [ ] [Ultimates (2015) #5](https://www.marvel.com/comics/issue/57259/ultimates_2015_5)
 ## Collects: Uncanny Avengers (2015B) #1-6, Material from Avengers (2015) #0
-- [ ] Uncanny Avengers (2015B) #1-6
-- [ ] Uncanny Avengers (2015B) #1-6
-- [ ] Uncanny Avengers (2015B) #1-6
-- [ ] Uncanny Avengers (2015B) #1-6
-- [ ] Uncanny Avengers (2015B) #1-6
-- [ ] Uncanny Avengers (2015B) #1-6
+- [ ] Uncanny Avengers (2015B) #1-6 <!-- mrt:source-occurrence=822 -->
+- [ ] Uncanny Avengers (2015B) #1-6 <!-- mrt:source-occurrence=823 -->
+- [ ] Uncanny Avengers (2015B) #1-6 <!-- mrt:source-occurrence=824 -->
+- [ ] Uncanny Avengers (2015B) #1-6 <!-- mrt:source-occurrence=825 -->
+- [ ] Uncanny Avengers (2015B) #1-6 <!-- mrt:source-occurrence=826 -->
+- [ ] Uncanny Avengers (2015B) #1-6 <!-- mrt:source-occurrence=827 -->
 ## Collects: Guardians of the Galaxy (2015) #6-10
 - [ ] [Guardians of the Galaxy (2015) #6](https://www.marvel.com/comics/issue/55469/guardians_of_the_galaxy_2015_6)
 - [ ] [Guardians of the Galaxy (2015) #7](https://www.marvel.com/comics/issue/55470/guardians_of_the_galaxy_2015_7)
@@ -876,8 +876,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Avengers Standoff: Assault on Pleasant Hill Alpha (2016) #1](https://www.marvel.com/comics/issue/57833/avengers_standoff_assault_on_pleasant_hill_alpha_2016_1)
 - [ ] [Agents of S.H.I.E.L.D. (2016) #3](https://www.marvel.com/comics/issue/56031/agents_of_shield_2016_3)
 - [ ] [Agents of S.H.I.E.L.D. (2016) #4](https://www.marvel.com/comics/issue/56032/agents_of_shield_2016_4)
-- [ ] Uncanny Avengers (2015B) #7-8
-- [ ] Uncanny Avengers (2015B) #7-8
+- [ ] Uncanny Avengers (2015B) #7-8 <!-- mrt:source-occurrence=838 -->
+- [ ] Uncanny Avengers (2015B) #7-8 <!-- mrt:source-occurrence=839 -->
 - [ ] [All-New, All-Different Avengers (2015) #7](https://www.marvel.com/comics/issue/55360/all-new_all-different_avengers_2015_7)
 - [ ] [All-New, All-Different Avengers (2015) #8](https://www.marvel.com/comics/issue/55361/all-new_all-different_avengers_2015_8)
 - [ ] [New Avengers (2015) #8](https://www.marvel.com/comics/issue/58372/new_avengers_2015_8)
@@ -896,16 +896,16 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Uncanny Inhumans (2015) #9](https://www.marvel.com/comics/issue/52867/uncanny_inhumans_2015_9)
 - [ ] [Uncanny Inhumans (2015) #10](https://www.marvel.com/comics/issue/52868/uncanny_inhumans_2015_10)
 ## Collects: Uncanny Avengers (2015B) #7-12
-- [ ] Uncanny Avengers (2015B) #7-12
-- [ ] Uncanny Avengers (2015B) #7-12
-- [ ] Uncanny Avengers (2015B) #7-12
-- [ ] Uncanny Avengers (2015B) #7-12
+- [ ] Uncanny Avengers (2015B) #7-12 <!-- mrt:source-occurrence=858 -->
+- [ ] Uncanny Avengers (2015B) #7-12 <!-- mrt:source-occurrence=859 -->
+- [ ] Uncanny Avengers (2015B) #7-12 <!-- mrt:source-occurrence=860 -->
+- [ ] Uncanny Avengers (2015B) #7-12 <!-- mrt:source-occurrence=861 -->
 ## Collects: Uncanny Avengers (2015B) #13-17
-- [ ] Uncanny Avengers (2015B) #13-17
-- [ ] Uncanny Avengers (2015B) #13-17
-- [ ] Uncanny Avengers (2015B) #13-17
-- [ ] Uncanny Avengers (2015B) #13-17
-- [ ] Uncanny Avengers (2015B) #13-17
+- [ ] Uncanny Avengers (2015B) #13-17 <!-- mrt:source-occurrence=862 -->
+- [ ] Uncanny Avengers (2015B) #13-17 <!-- mrt:source-occurrence=863 -->
+- [ ] Uncanny Avengers (2015B) #13-17 <!-- mrt:source-occurrence=864 -->
+- [ ] Uncanny Avengers (2015B) #13-17 <!-- mrt:source-occurrence=865 -->
+- [ ] Uncanny Avengers (2015B) #13-17 <!-- mrt:source-occurrence=866 -->
 ## Collects: Guardians of the Galaxy (2015) #11-14, Material from Free Comic Book Day 2016 (Civil War II) #1
 - [ ] [Guardians of the Galaxy (2015) #11](https://www.marvel.com/comics/issue/55474/guardians_of_the_galaxy_2015_11)
 - [ ] [Guardians of the Galaxy (2015) #12](https://www.marvel.com/comics/issue/55475/guardians_of_the_galaxy_2015_12)
@@ -925,12 +925,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Infamous Iron Man (2016) #5](https://www.marvel.com/comics/issue/61551/infamous_iron_man_2016_5)
 - [ ] [Infamous Iron Man (2016) #6](https://www.marvel.com/comics/issue/61552/infamous_iron_man_2016_6)
 ## Collects: Uncanny Avengers (2015B) #18-23
-- [ ] Uncanny Avengers (2015B) #18-23
-- [ ] Uncanny Avengers (2015B) #18-23
-- [ ] Uncanny Avengers (2015B) #18-23
-- [ ] Uncanny Avengers (2015B) #18-23
-- [ ] Uncanny Avengers (2015B) #18-23
-- [ ] Uncanny Avengers (2015B) #18-23
+- [ ] Uncanny Avengers (2015B) #18-23 <!-- mrt:source-occurrence=883 -->
+- [ ] Uncanny Avengers (2015B) #18-23 <!-- mrt:source-occurrence=884 -->
+- [ ] Uncanny Avengers (2015B) #18-23 <!-- mrt:source-occurrence=885 -->
+- [ ] Uncanny Avengers (2015B) #18-23 <!-- mrt:source-occurrence=886 -->
+- [ ] Uncanny Avengers (2015B) #18-23 <!-- mrt:source-occurrence=887 -->
+- [ ] Uncanny Avengers (2015B) #18-23 <!-- mrt:source-occurrence=888 -->
 ## Collects: Peter Parker: The Spectacular Spider-Man (2017) #1-6, Material from Free Comic Book Day 2017 (Secret Empire) #1
 - [ ] [Peter Parker: The Spectacular Spider-Man (2017) #1](https://www.marvel.com/comics/issue/63085/peter_parker_the_spectacular_spider-man_2017_1)
 - [ ] [Peter Parker: The Spectacular Spider-Man (2017) #2](https://www.marvel.com/comics/issue/63855/peter_parker_the_spectacular_spider-man_2017_2)
@@ -946,21 +946,21 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Infamous Iron Man (2016) #11](https://www.marvel.com/comics/issue/61557/infamous_iron_man_2016_11)
 - [ ] [Infamous Iron Man (2016) #12](https://www.marvel.com/comics/issue/61558/infamous_iron_man_2016_12)
 ## Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1
-- [ ] Secret Empire: United (2017) #1
+- [ ] Secret Empire: United (2017) #1 <!-- mrt:source-occurrence=902 -->
 - [ ] [Secret Empire: Underground (2017) #1](https://www.marvel.com/comics/issue/63127/secret_empire_underground_2017_1)
 - [ ] [Secret Empire: Uprising (2017) #1](https://www.marvel.com/comics/issue/62837/secret_empire_uprising_2017_1)
-- [ ] Uncanny Avengers (2015B) #24-25
-- [ ] Uncanny Avengers (2015B) #24-25
+- [ ] Uncanny Avengers (2015B) #24-25 <!-- mrt:source-occurrence=905 -->
+- [ ] Uncanny Avengers (2015B) #24-25 <!-- mrt:source-occurrence=906 -->
 - [ ] [All-New Guardians of the Galaxy Annual (2017) #1](https://www.marvel.com/comics/issue/63223/all-new_guardians_of_the_galaxy_annual_2017_1)
 ## Collects: Uncanny Avengers (2015B) #26-30
-- [ ] Uncanny Avengers (2015B) #26-30
-- [ ] Uncanny Avengers (2015B) #26-30
-- [ ] Uncanny Avengers (2015B) #26-30
-- [ ] Uncanny Avengers (2015B) #26-30
-- [ ] Uncanny Avengers (2015B) #26-30
+- [ ] Uncanny Avengers (2015B) #26-30 <!-- mrt:source-occurrence=908 -->
+- [ ] Uncanny Avengers (2015B) #26-30 <!-- mrt:source-occurrence=909 -->
+- [ ] Uncanny Avengers (2015B) #26-30 <!-- mrt:source-occurrence=910 -->
+- [ ] Uncanny Avengers (2015B) #26-30 <!-- mrt:source-occurrence=911 -->
+- [ ] Uncanny Avengers (2015B) #26-30 <!-- mrt:source-occurrence=912 -->
 ## Collects: Marvel Legacy (2017) #1, Marvel Legacy Primer pages, FOOM Magazine (2017)
 - [ ] [Marvel Legacy (2017) #1](https://www.marvel.com/comics/issue/64417/marvel_legacy_2017_1)
-- [ ] FOOM Magazine (2017)
+- [ ] FOOM Magazine (2017) <!-- mrt:source-occurrence=915 -->
 ## Collects: Marvel 2-In-One (2017) #1-6
 - [ ] [Marvel 2-in-One (2017) #1](https://www.marvel.com/comics/issue/65292/marvel_2-in-one_2017_1)
 - [ ] [Marvel 2-in-One (2017) #2](https://www.marvel.com/comics/issue/65915/marvel_2-in-one_2017_2)
@@ -1040,19 +1040,19 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (2018) #19](https://www.marvel.com/comics/issue/77319/fantastic_four_2018_19)
 - [ ] [Fantastic Four (2018) #20](https://www.marvel.com/comics/issue/77320/fantastic_four_2018_20)
 ## Collects: Empyre #0 Fantastic Four (2020), Fantastic Four (2018) #21 to #23, Empyre Fallout: Fantastic Four (2020) #1, Fantastic Four (2018) #24
-- [ ] Empyre #0
+- [ ] Empyre #0 <!-- mrt:source-occurrence=984 -->
 - [ ] [Fantastic Four (2018) #21](https://www.marvel.com/comics/issue/77321/fantastic_four_2018_21)
 - [ ] [Fantastic Four (2018) #22](https://www.marvel.com/comics/issue/77322/fantastic_four_2018_22)
 - [ ] [Fantastic Four (2018) #23](https://www.marvel.com/comics/issue/77323/fantastic_four_2018_23)
 - [ ] [Empyre: Fallout Fantastic Four (2020) #1](https://www.marvel.com/comics/issue/90816/empyre_fallout_fantastic_four_2020_1)
 - [ ] [Fantastic Four (2018) #24](https://www.marvel.com/comics/issue/77324/fantastic_four_2018_24)
 ## Collects: Empyre #1 to #6
-- [ ] Empyre #1 to #6
-- [ ] Empyre #1 to #6
-- [ ] Empyre #1 to #6
-- [ ] Empyre #1 to #6
-- [ ] Empyre #1 to #6
-- [ ] Empyre #1 to #6
+- [ ] Empyre #1 to #6 <!-- mrt:source-occurrence=990 -->
+- [ ] Empyre #1 to #6 <!-- mrt:source-occurrence=991 -->
+- [ ] Empyre #1 to #6 <!-- mrt:source-occurrence=992 -->
+- [ ] Empyre #1 to #6 <!-- mrt:source-occurrence=993 -->
+- [ ] Empyre #1 to #6 <!-- mrt:source-occurrence=994 -->
+- [ ] Empyre #1 to #6 <!-- mrt:source-occurrence=995 -->
 ## Collects: Fantastic Four (2018) #25 to #30
 - [ ] [Fantastic Four (2018) #25](https://www.marvel.com/comics/issue/77325/fantastic_four_2018_25)
 - [ ] [Fantastic Four (2018) #26](https://www.marvel.com/comics/issue/77326/fantastic_four_2018_26)
@@ -1088,12 +1088,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Fantastic Four (2018) #47](https://www.marvel.com/comics/issue/95806/fantastic_four_2018_47)
 - [ ] [Fantastic Four (2018) #48](https://www.marvel.com/comics/issue/95807/fantastic_four_2018_48)
 ## Collects: Fantastic Four: Life Story #1 to #6
-- [ ] Fantastic Four: Life Story #1 to #6
-- [ ] Fantastic Four: Life Story #1 to #6
-- [ ] Fantastic Four: Life Story #1 to #6
-- [ ] Fantastic Four: Life Story #1 to #6
-- [ ] Fantastic Four: Life Story #1 to #6
-- [ ] Fantastic Four: Life Story #1 to #6
+- [ ] Fantastic Four: Life Story #1 to #6 <!-- mrt:source-occurrence=1024 -->
+- [ ] Fantastic Four: Life Story #1 to #6 <!-- mrt:source-occurrence=1025 -->
+- [ ] Fantastic Four: Life Story #1 to #6 <!-- mrt:source-occurrence=1026 -->
+- [ ] Fantastic Four: Life Story #1 to #6 <!-- mrt:source-occurrence=1027 -->
+- [ ] Fantastic Four: Life Story #1 to #6 <!-- mrt:source-occurrence=1028 -->
+- [ ] Fantastic Four: Life Story #1 to #6 <!-- mrt:source-occurrence=1029 -->
 ## Collects: Fantastic Four (2022) #1 to #6
 - [ ] [Fantastic Four (2022) #1](https://www.marvel.com/comics/issue/98724/fantastic_four_2022_1)
 - [ ] [Fantastic Four (2022) #2](https://www.marvel.com/comics/issue/98725/fantastic_four_2022_2)

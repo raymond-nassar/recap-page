@@ -4,6 +4,13 @@ import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  addIssuesToList,
+  createEmptyState,
+  createList,
+} from '../src/js/lib/model.js';
+import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
+import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ledgerPath = path.join(root, 'scripts', 'data', 'cbh-source-ledgers', 'fantastic-four-reading-order.json');
@@ -88,6 +95,39 @@ function digest(value) {
 function readJson(filePath) {
   return readFile(filePath, 'utf8').then((content) => JSON.parse(content));
 }
+
+test('Fantastic Four preserves every unresolved source position through import', async () => {
+  const payload = await readJson(path.join(root, 'src', 'data', 'fantastic_four_reading_order.json'));
+  const checklist = parseChecklist(await readFile(
+    path.join(root, 'src', 'data', 'orders', 'fantastic-four-reading-order.md'),
+    'utf8',
+  ));
+  const placeholders = payload.items.filter((item) => item.placeholder);
+  assert.equal(placeholders.length, 185);
+  assert.deepEqual(
+    checklist.unresolved.map((entry) => entry.sourceKey),
+    payload.unresolved.map((entry) => String(entry.sourcePosition)),
+  );
+  assert.ok(placeholders.every((item) => Number.isInteger(item.issueId) && item.issueId < 0));
+  assert.equal(new Set(placeholders.map((item) => item.issueId)).size, placeholders.length);
+  assert.deepEqual(
+    placeholders.map((item) => item.issueId),
+    checklist.unresolved.map((entry) => (
+      placeholderId(payload.id, entry.title, entry.sourceKey)
+    )),
+  );
+
+  let state = createList(createEmptyState(), { name: 'Fantastic Four' });
+  const listId = state.listOrder[0];
+  const result = addIssuesToList(state, listId, payload.items.map((item) => ({
+    ...item,
+    source: 'curated',
+  })));
+  state = result.state;
+
+  assert.equal(result.added, payload.items.length);
+  assert.deepEqual(state.lists[listId].itemIds, payload.items.map((item) => item.issueId));
+});
 
 function assertFantasticFourSourceLedgerShape(ledger) {
   assert.equal(ledger.sourceBlockCount, ledger.sourceNodes.length, 'sourceBlockCount must match sourceNodes');
