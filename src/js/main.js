@@ -935,7 +935,7 @@ export function sanitizeStoredIssueDescriptions(
     sanitizer.state = migrate(JSON.parse(candidateRaw));
     if (queuedSource && queuedAfter.durableRaw !== currentRaw) {
       sanitizer.state = mergeLaterStateChanges(
-        migrate(JSON.parse(queuedAfter.sourceRaw)),
+        migrate(JSON.parse(queuedAfter.durableRaw)),
         migrate(JSON.parse(currentRaw)),
         sanitizer.state,
       );

@@ -267,6 +267,32 @@ test('queued legacy lineage preserves a current list and read mark before the la
   assert.equal(readerStore.lastError, null);
 });
 
+test('a current edit that reverts a queued legacy value is not silently reversed', () => {
+  const legacyRaw = (title, read) => JSON.stringify({
+    ...createEmptyState(),
+    issues: { 3: { issueId: 3, title, description: `${title} synopsis.` } },
+    read: read ? { 3: 1 } : {},
+  });
+  const first = legacyRaw('First', false);
+  const middle = legacyRaw('Middle', false);
+  const latest = legacyRaw('Latest', true);
+  const storage = fakeStorage({ [KEY]: first });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  dispatchStorageEvent({ key: KEY, newValue: first }, { readerStore });
+
+  storage.setItem(KEY, middle);
+  storage.setItem(KEY, latest);
+  dispatchStorageEvent({ key: KEY, newValue: middle }, { readerStore });
+  assert.equal(isRead(readerStore.state, 3), true);
+  readerStore.update((state) => markRead(state, 3, false));
+  dispatchStorageEvent({ key: KEY, newValue: latest }, { readerStore });
+
+  assert.equal(isRead(readerStore.state, 3), false);
+  assert.equal(isRead(savedState(storage), 3), false);
+  assert.equal(readerStore.lastError, null);
+});
+
 // ----------------------------------------------------------------------------- whole-state routes
 
 test('an erase in another tab is adopted rather than written back over', () => {
