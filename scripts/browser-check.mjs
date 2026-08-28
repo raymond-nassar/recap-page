@@ -2571,18 +2571,21 @@ const SCENARIOS = [
         {
           id: 'marvel-knights-to-planet-x-01',
           name: 'Daredevil & Black Widow Opening Sequence',
+          description: 'This chapter resets Daredevil with sharper emotional stakes and a grounded tone. Black Widow’s stories expand the street-level world and set up the character-driven focus of the era.',
           count: 21,
           first: 'Daredevil (1998) #1',
         },
         {
           id: 'marvel-knights-to-planet-x-37',
           name: 'X-Treme X-Men: X-Pose + Schism',
+          description: 'The team deals with media pressure and internal conflict. The arc explores perception and division.',
           count: 7,
           first: 'X-Treme X-Men (2001) #19',
         },
         {
           id: 'marvel-knights-to-planet-x-78',
           name: 'Planet X Crossover Cluster',
+          description: 'The mutant line converges in a major turning point. The arc reshapes relationships, leadership, and the future of the X-Men.',
           count: 25,
           first: 'New X-Men (2001) #146',
         },
@@ -2616,6 +2619,7 @@ const SCENARIOS = [
         const shown = await page.evaluate(() => ({
           count: document.querySelectorAll('#preview-body .preview-issue-link').length,
           first: document.querySelector('#preview-body .preview-issue-link')?.textContent.trim() ?? '',
+          description: document.querySelector('#preview-desc')?.textContent.trim() ?? '',
           add: document.querySelector('#preview-add [data-act="main"]')?.textContent.trim() ?? '',
         }));
         await click(page, '#preview-add [data-act="main"]');
@@ -2637,6 +2641,7 @@ const SCENARIOS = [
         representativeResults.every((result, index) => (
           result.count === representatives[index].count
             && result.first === representatives[index].first
+            && result.description === representatives[index].description
             && result.add === '+ Add to library'
             && result.savedCount === representatives[index].count
         )),

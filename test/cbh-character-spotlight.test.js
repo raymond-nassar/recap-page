@@ -880,7 +880,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.rows.length, 480);
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
-  assert.equal(report.comparisonCount, 157);
+  assert.equal(report.comparisonCount, 158);
   assert.equal(report.comparisonCount, manifest.lists.length - 5);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
@@ -1463,8 +1463,8 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   }]);
   assert.equal(mapping.rows.length, 527);
   assert.equal(report.candidateCount, 527);
-  assert.equal(report.comparisonCount, 156);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 29);
+  assert.equal(report.comparisonCount, 157);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 30);
   assert.equal(generated.count, 527);
   assert.equal(generated.placeholders, 0);
   assert.deepEqual(generated.unresolved, []);
@@ -2669,10 +2669,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 239);
+  assert.equal(catalog.lists.length, 240);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 35);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 34);
+  assert.equal(characterRuns.length, 36);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 35);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -2835,8 +2835,8 @@ test('Magneto preserves cache-only source accounting through publication', async
     1,
   );
   assert.ok(packet.sourceGaps.every((gap) => gap.auditBasis.includes('Issue #306')));
-  assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisons.filter((entry) => entry.relationship !== 'none').length, 49);
+  assert.equal(report.comparisonCount, 159);
+  assert.equal(report.comparisons.filter((entry) => entry.relationship !== 'none').length, 50);
   assert.equal(mapping.relationshipReview.authorityIdentity, 'GPT-5.6 Terra');
   assert.equal(record?.deliveryStatus, 'shipped');
   assert.equal(manifest.lists.find((entry) => entry.id === magnetoCandidateId)?.expect, 753);

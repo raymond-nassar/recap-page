@@ -21,6 +21,12 @@ Reading Lists, with a comic cover, issue count, description, and the usual actio
 also appears before the Marvel Knights / Heroes Return lists, so either route offers the same place
 to preview or begin it. Nothing you have saved is changed.
 
+### Rewrote the Marvel Knights to Planet X chapter descriptions
+
+In plain English: Each of the 78 Marvel Knights to Planet X chapter previews now explains the
+story focus and tone instead of repeating its chapter number and issue range. Chapter titles,
+comics, reading order and saved progress are unchanged.
+
 ### Added a complete Moon Knight reading guide
 
 In plain English: A complete Moon Knight reading guide is now available from his earliest

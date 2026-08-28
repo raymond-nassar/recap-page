@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-08-27T18:01:26.436Z",
-  "pairCount": 53,
+  "generatedAt": "2026-08-28T01:18:16.457Z",
+  "pairCount": 55,
   "chapterCountWithOverlap": 44,
-  "existingListCount": 14,
-  "sharedOccurrenceCount": 279,
+  "existingListCount": 15,
+  "sharedOccurrenceCount": 293,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "89f987ace565c82c236a81a33fca18091eeac54cba47963cdd7f7be0e5198561",
+  "matrixSha256": "4b24bc2618b4d1ef90f1a3ff7027d662f18eb3dab6b326eeaabfd2a1f6d88b19",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -23,6 +23,10 @@
     {
       "id": "doctor-doom-primer",
       "sharedCount": 1
+    },
+    {
+      "id": "fantastic-four-reading-order",
+      "sharedCount": 14
     },
     {
       "id": "loki-reading-order",
@@ -349,6 +353,20 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-34",
+      "existingListId": "fantastic-four-reading-order",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        15583,
+        15584,
+        15585,
+        15586,
+        15587,
+        15588,
+        15589
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-34",
       "existingListId": "silver-surfer-reading-order",
       "sharedCount": 1,
       "sharedIssueIds": [
@@ -467,6 +485,20 @@
       "sharedCount": 1,
       "sharedIssueIds": [
         15590
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-49",
+      "existingListId": "fantastic-four-reading-order",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        15590,
+        15591,
+        15592,
+        15594,
+        12854,
+        12855,
+        12856
       ]
     },
     {

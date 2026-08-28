@@ -829,5 +829,401 @@
       "timelineYear": 2003,
       "issueIdsSha256": "2c27646512c0f339fb1834fc3f23a19944098dafea65365718d8435b5e586401"
     }
-  ]
+  ],
+  "descriptionCopy": {
+    "ownerAttachmentSha256": "f24a85f558c3c0d9b2856edcf5af753b6fdbb72fad9a0a27494bb9d1891db6ce",
+    "entriesSha256": "dc1e9b712f7782407ac8598cdf97720899b2a912c80dc564aee18e1a77af1bed",
+    "entries": [
+      {
+        "id": "marvel-knights-to-planet-x-01",
+        "sourceHeading": "Daredevil & Black Widow Opening Sequence",
+        "description": "This chapter resets Daredevil with sharper emotional stakes and a grounded tone. Black Widow’s stories expand the street-level world and set up the character-driven focus of the era."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-02",
+        "sourceHeading": "Punisher: Welcome Back Frank",
+        "description": "Frank Castle returns with a brutal, darkly comedic take that redefines the character. The story strips him down to essentials and rebuilds his mission with clarity."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-03",
+        "sourceHeading": "Marvel Boy to Early X-Men Setup",
+        "description": "Marvel Boy introduces a sharp, rebellious energy that signals Marvel’s shift toward modern storytelling. Uncanny X-Men picks up that momentum with a fresh thematic direction."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-04",
+        "sourceHeading": "X-Treme X-Men Launch",
+        "description": "This launch pushes the X-Men into globe-spanning missions with a focus on independence and identity. It sets up a parallel spine to the main mutant titles."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-05",
+        "sourceHeading": "New X-Men Begins",
+        "description": "The X-Men enter a new era with bold ideas and a modern tone. The story reframes mutants as cultural icons and raises the stakes for the entire line."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-06",
+        "sourceHeading": "Daredevil Companion",
+        "description": "These issues deepen Matt’s emotional world and explore the cost of heroism. The tone stays grounded and personal."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-07",
+        "sourceHeading": "Spider-Man: JMS Era Begins",
+        "description": "Spider-Man shifts into a more introspective and mythic style. The story blends street-level challenges with larger mysteries."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-08",
+        "sourceHeading": "Uncanny X-Men: Poptopia",
+        "description": "The X-Men confront fame, culture, and the pressure of being public figures. The arc mixes action with social commentary."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-09",
+        "sourceHeading": "Exiles Launch",
+        "description": "A new team jumps across realities to fix broken timelines. The concept opens the door to constant reinvention."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-10",
+        "sourceHeading": "Wolverine: Origin",
+        "description": "Logan’s past is revealed with a quiet, character-focused story. It adds emotional weight to his mythology."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-11",
+        "sourceHeading": "X-Treme X-Men: Savage Land",
+        "description": "The team faces survival challenges in a hostile environment. The story highlights leadership and trust."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-12",
+        "sourceHeading": "New X-Men: Germ-Free Generation",
+        "description": "The X-Men confront biological threats and ethical dilemmas. The arc pushes the mutant metaphor into new territory."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-13",
+        "sourceHeading": "Punisher: No Limits",
+        "description": "Frank takes on street-level corruption with relentless focus. The story keeps the tone sharp and unforgiving."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-14",
+        "sourceHeading": "X-Treme X-Men: Paradise Lost + Annual",
+        "description": "The team faces political tension and moral conflict. The annual expands the stakes with a supernatural twist."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-15",
+        "sourceHeading": "New X-Men: Imperial",
+        "description": "The X-Men deal with cosmic politics and power struggles. The arc raises the scale without losing emotional focus."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-16",
+        "sourceHeading": "Uncanny X-Men: X-Corps (Prelude)",
+        "description": "The team faces internal fractures and shifting alliances. The setup builds toward a larger conflict."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-17",
+        "sourceHeading": "Hulk: Return of the Monster",
+        "description": "Bruce confronts the monster within through a tense, psychological story. The tone is quiet, eerie, and character-driven."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-18",
+        "sourceHeading": "Exiles: A World Apart",
+        "description": "The team faces a reality that challenges their core values. The arc tests loyalty and purpose."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-19",
+        "sourceHeading": "Punisher: Do Not Fall in New York City",
+        "description": "Frank deals with the fallout of urban decay. The story keeps the focus tight and personal."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-20",
+        "sourceHeading": "Daredevil: Underboss",
+        "description": "Matt faces a power shift in the criminal underworld. The arc sets up long-term consequences."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-21",
+        "sourceHeading": "Spider-Man: Revelations",
+        "description": "Peter confronts hidden truths that reshape his relationships. The tone is emotional and reflective."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-22",
+        "sourceHeading": "Uncanny X-Men: X-Corps (Main Arc)",
+        "description": "The X-Men face a dangerous new mutant organization. The story blends political tension with action."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-23",
+        "sourceHeading": "X-Treme X-Men: Invasion",
+        "description": "The team responds to a global threat with high stakes. The arc emphasizes teamwork and resilience."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-24",
+        "sourceHeading": "Spider-Man: Until the Stars Turn Cold",
+        "description": "Peter faces moral dilemmas and personal loss. The story keeps the focus on responsibility."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-25",
+        "sourceHeading": "Hulk: Boiling Point",
+        "description": "Bruce deals with rising pressure and unstable alliances. The arc pushes him toward a breaking point."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-26",
+        "sourceHeading": "Daredevil: Out",
+        "description": "Matt’s identity crisis becomes public. The story explores consequences and control."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-27",
+        "sourceHeading": "Exiles: Out of Time",
+        "description": "The team confronts a mission that challenges their future. The arc raises emotional stakes."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-28",
+        "sourceHeading": "Spider-Man: Return of the Goblin",
+        "description": "Peter faces a familiar enemy with new complications. The story blends nostalgia with danger."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-29",
+        "sourceHeading": "New X-Men: New Worlds (Part 1)",
+        "description": "The X-Men expand their mission and confront cultural change. The tone is ambitious and forward-looking."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-30",
+        "sourceHeading": "Uncanny X-Men: Identity Crisis",
+        "description": "The team faces personal conflict and shifting loyalties. The arc explores trust and identity."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-31",
+        "sourceHeading": "Hulk: Transfer of Power",
+        "description": "Bruce faces political manipulation and moral pressure. The story tests his control."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-32",
+        "sourceHeading": "New X-Men: New Worlds (Part 2)",
+        "description": "The X-Men push deeper into global influence. The arc builds momentum toward larger themes."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-33",
+        "sourceHeading": "Uncanny X-Men: Hope",
+        "description": "The team deals with loss and renewal. The story focuses on emotional recovery."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-34",
+        "sourceHeading": "Fantastic Four: Imaginauts",
+        "description": "The team embraces exploration and optimism. The arc highlights creativity and family."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-35",
+        "sourceHeading": "Punisher: You Talkin’ To Me?",
+        "description": "Frank confronts street-level chaos with brutal efficiency. The tone stays sharp and direct."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-36",
+        "sourceHeading": "Spider-Man: Life and Death of Spiders",
+        "description": "Peter faces moral choices that test his limits. The story blends action with introspection."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-37",
+        "sourceHeading": "X-Treme X-Men: X-Posé + Schism",
+        "description": "The team deals with media pressure and internal conflict. The arc explores perception and division."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-38",
+        "sourceHeading": "Captain America: Enemy",
+        "description": "Steve faces threats that challenge his ideals. The story keeps the focus on leadership."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-39",
+        "sourceHeading": "Truth: Red, White and Black",
+        "description": "The series confronts the hidden history of the super-soldier program. The tone is serious and reflective."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-40",
+        "sourceHeading": "Uncanny X-Men: Dominant Species",
+        "description": "The team faces biological and ideological threats. The arc pushes the mutant metaphor forward."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-41",
+        "sourceHeading": "Exiles: Legacy",
+        "description": "The team confronts the consequences of their missions. The story explores responsibility."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-42",
+        "sourceHeading": "New X-Men: Riot at Xavier’s",
+        "description": "The school faces rebellion and cultural tension. The arc is sharp, loud, and emotional."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-43",
+        "sourceHeading": "Hulk: Dark Minds, Dark Hearts",
+        "description": "Bruce faces psychological manipulation. The tone stays tense and atmospheric."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-44",
+        "sourceHeading": "Punisher: Brotherhood",
+        "description": "Frank confronts organized crime with precision. The story keeps the stakes personal."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-45",
+        "sourceHeading": "Daredevil: Lowlife",
+        "description": "Matt faces corruption and moral decay. The arc digs into the cost of heroism."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-46",
+        "sourceHeading": "Spider-Man: Unintended Consequences",
+        "description": "Peter deals with fallout from past choices. The story focuses on accountability."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-47",
+        "sourceHeading": "Spider-Man: Blue",
+        "description": "Peter reflects on love and loss. The tone is nostalgic and heartfelt."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-48",
+        "sourceHeading": "Uncanny X-Men: Holy War",
+        "description": "The team faces ideological conflict and spiritual tension. The arc blends action with belief."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-49",
+        "sourceHeading": "Fantastic Four: Unthinkable",
+        "description": "The team confronts a powerful enemy with emotional ties. The story pushes them to their limits."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-50",
+        "sourceHeading": "Avengers: Red Zone + Search for She-Hulk",
+        "description": "The team faces political threats and personal fallout. The arcs highlight teamwork and recovery."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-51",
+        "sourceHeading": "X-Treme X-Men: God Loves, Man Kills II",
+        "description": "The team confronts ideological extremism. The story expands on classic themes."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-52",
+        "sourceHeading": "Punisher: Hidden",
+        "description": "Frank uncovers secrets that reshape his mission. The tone stays tight and focused."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-53",
+        "sourceHeading": "Daredevil: Hardcore",
+        "description": "Matt faces escalating violence and political pressure. The arc tests his resolve."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-54",
+        "sourceHeading": "Hulk: Hide in Plain Sight",
+        "description": "Bruce tries to disappear but cannot escape conflict. The story blends tension with introspection."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-55",
+        "sourceHeading": "Punisher: Streets of Laredo",
+        "description": "Frank confronts violence in a new environment. The arc explores justice outside the city."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-56",
+        "sourceHeading": "Elektra: Introspect",
+        "description": "Elektra faces internal conflict and personal growth. The tone is quiet and sharp."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-57",
+        "sourceHeading": "Wolverine: The Brotherhood",
+        "description": "Logan confronts a violent conspiracy. The story keeps the pace fast and direct."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-58",
+        "sourceHeading": "Elektra: Everything Old Is New Again",
+        "description": "Elektra faces ghosts from her past. The arc blends action with reflection."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-59",
+        "sourceHeading": "Exiles: Unnatural Instincts",
+        "description": "The team faces primal threats and moral tests. The story pushes them into unfamiliar territory."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-60",
+        "sourceHeading": "New Mutants: Back to School",
+        "description": "A new class of mutants learns to work together. The tone is youthful and energetic."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-61",
+        "sourceHeading": "Runaways: Pride and Joy",
+        "description": "A group of teens discovers their parents’ secrets. The story blends adventure with identity."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-62",
+        "sourceHeading": "Fantastic Four: Authoritative Action + Hereafter",
+        "description": "The team takes bold action and faces cosmic consequences. The arcs explore leadership and legacy."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-63",
+        "sourceHeading": "Spider-Man: Happy Birthday",
+        "description": "Peter confronts time, memory, and responsibility. The story mixes celebration with danger."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-64",
+        "sourceHeading": "Spectacular Spider-Man: The Hunger",
+        "description": "Peter faces a predatory threat that tests his limits. The tone is tense and focused."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-65",
+        "sourceHeading": "Hulk: Split Decisions",
+        "description": "Bruce faces choices that reshape his future. The arc blends action with psychology."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-66",
+        "sourceHeading": "Uncanny X-Men: The Draco",
+        "description": "The team confronts a mythic threat with personal ties. The story pushes characters into crisis."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-67",
+        "sourceHeading": "Exiles: Fantastic Voyage",
+        "description": "The team explores new realities with high stakes. The arc emphasizes discovery."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-68",
+        "sourceHeading": "Iron Man: The Best Defense",
+        "description": "Tony faces political and technological pressure. The story focuses on responsibility and innovation."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-69",
+        "sourceHeading": "Daredevil: Echo",
+        "description": "Echo confronts her past and identity. The arc blends action with emotional depth."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-70",
+        "sourceHeading": "Wolverine: Coyote Crossing",
+        "description": "Logan faces a brutal chase across the border. The tone is gritty and fast."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-71",
+        "sourceHeading": "New Mutants: The Ties That Bind",
+        "description": "The team faces emotional and social challenges. The arc deepens their relationships."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-72",
+        "sourceHeading": "Uncanny X-Men: She Lies With Angels",
+        "description": "The team deals with tragedy in a small town. The story blends romance with conflict."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-73",
+        "sourceHeading": "New X-Men: Assault on Weapon Plus",
+        "description": "The X-Men confront the roots of mutant experimentation. The arc is intense and revealing."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-74",
+        "sourceHeading": "X-Treme X-Men: Intifada",
+        "description": "The team faces political unrest and moral conflict. The story pushes them into difficult choices."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-75",
+        "sourceHeading": "Runaways: Teenage Wasteland",
+        "description": "The teens grow into their roles and face new threats. The tone stays sharp and character-driven."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-76",
+        "sourceHeading": "Spider-Man: The Book of Ezekiel",
+        "description": "Peter confronts mystical forces tied to his origin. The arc blends mythology with action."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-77",
+        "sourceHeading": "X-Treme X-Men: Storm - The Arena",
+        "description": "Storm faces a brutal test of strength and leadership. The story is focused and intense."
+      },
+      {
+        "id": "marvel-knights-to-planet-x-78",
+        "sourceHeading": "Planet X Crossover Cluster",
+        "description": "The mutant line converges in a major turning point. The arc reshapes relationships, leadership, and the future of the X-Men."
+      }
+    ]
+  }
 }

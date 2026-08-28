@@ -1022,9 +1022,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // further source-preserving metadata gaps with distinct negative identifiers. Punisher adds 158
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
   // Magneto adds 58 cached-provider gaps. Loki adds 18 distinct source-occurrence gaps. Silver
-  // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, and Moon Knight 18.
-  assert.equal(claimed, 1341, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1341, 'the bundled placeholder total moved; re-derive the figures in the record');
+  // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight 18,
+  // and Fantastic Four 185 individually preserved cache-only provider gaps.
+  assert.equal(claimed, 1526, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1526, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });

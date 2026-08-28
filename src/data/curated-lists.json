@@ -4304,6 +4304,36 @@
       "coverIssueId": 10284
     },
     {
+      "id": "fantastic-four-reading-order",
+      "name": "Fantastic Four",
+      "description": "A complete Fantastic Four character reading order.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "beginner": false,
+      "coverIssueId": 12894,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourcePage": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "fantastic_four_reading_order.json",
+      "characters": [
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Fantastic Four",
+        "Reed Richards",
+        "Sue Storm",
+        "Johnny Storm",
+        "Ben Grimm"
+      ],
+      "expect": 1000,
+      "timeline": null,
+      "sourceFile": "fantastic-four-reading-order.md"
+    },
+    {
       "id": "avengers-disassembled",
       "name": "Avengers Disassembled",
       "description": "The 2004 story that pulls the Avengers apart, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It is four issues of Brian Michael Bendis at the end of the 1998 series plus the one-shot that closes it out, and it is the shortest order in this catalog on purpose. It ends the Busiek, Perez and Johns era and sets up everything the modern Avengers books do next.",
