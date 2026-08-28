@@ -8,7 +8,10 @@ import {
   ADD_VIEWS, LEGACY_VIEW_ALIASES, VIEWS, formatRoute, parseRoute,
 } from '../src/js/lib/route.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
-import { LongAddRunner, longAddStatusLine, mergeLongAddPage } from '../src/js/main.js';
+import {
+  LongAddRunner, longAddStatusLine, mergeLongAddPage, persistLongAddPage,
+} from '../src/js/main.js';
+import { KEY, Store } from '../src/js/storage.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
@@ -82,15 +85,48 @@ test('pagewise long adds preserve existing order and sort only issues owned by t
   let context = { listId, insertAt: 2, ownedIds: [] };
 
   const first = mergeLongAddPage(initial, context, [issue(4), issue(2)]);
-  context = { ...context, ownedIds: first.ownedIds };
+  context = first.context;
   const second = mergeLongAddPage(first.state, context, [issue(3), issue(1), issue(2)]);
 
   assert.deepEqual(second.state.lists[listId].itemIds, [90, 91, 1, 2, 3, 4]);
-  assert.deepEqual(second.ownedIds, [1, 2, 3, 4]);
+  assert.deepEqual(second.context.ownedIds, [1, 2, 3, 4]);
   assert.deepEqual(
     { firstAdded: first.added, secondAdded: second.added, secondSkipped: second.skipped },
     { firstAdded: 2, secondAdded: 2, secondSkipped: 1 },
   );
+});
+
+test('a refused first page rolls list creation and the page back together', () => {
+  const saved = new Map();
+  let writes = 0;
+  const storage = {
+    getItem: (key) => saved.get(key) ?? null,
+    setItem(key, value) {
+      writes += 1;
+      const state = JSON.parse(value);
+      if (Object.values(state.lists).some((list) => list.itemIds.length > 0)) {
+        const error = new Error('full');
+        error.name = 'QuotaExceededError';
+        throw error;
+      }
+      saved.set(key, value);
+    },
+    removeItem: (key) => saved.delete(key),
+  };
+  const store = new Store({ storage });
+  store.load();
+
+  const result = persistLongAddPage(
+    store,
+    [issue(1)],
+    { listId: null, insertAt: 0, ownedIds: [], transition: null },
+  );
+
+  assert.equal(writes, 1, 'first-page setup and merge were split across writes');
+  assert.equal(store.state.listOrder.length, 0, 'a failed first page left an empty list behind');
+  assert.equal(saved.has(KEY), false, 'a failed first page left an empty list on disk');
+  assert.equal(result.ok, false);
+  assert.equal(result.context.listId, null, 'failed setup escaped into the run context');
 });
 
 test('a long add completes with persisted-page counts distinct from received counts', async () => {

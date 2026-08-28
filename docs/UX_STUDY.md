@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:95-100`, `src/js/main.js:5984-6005`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:95-100`, `src/js/main.js:5986-6007`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:5245`, `src/js/main.js:2478-2486`, `src/js/main.js:2505-2521`, against
+Evidence: `src/js/main.js:5247`, `src/js/main.js:2478-2486`, `src/js/main.js:2505-2521`, against
 `src/js/main.js:575-596`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -111,7 +111,7 @@ Severity: 3, single-rater estimate
 Rationale: irreversible, affects data the reader curated by hand, and the inconsistency with
 restore makes the gap harder to anticipate
 Confidence: Observed
-Evidence: `src/js/main.js:2505-2521`, `src/js/main.js:5634-5640`
+Evidence: `src/js/main.js:2505-2521`, `src/js/main.js:5636-5642`
 Source: heuristic 3 sweep, code-only framing
 Impact: deletion is guarded only by a native `confirm()` and there is no undo afterwards. Read
 progress survives, because it is global, but the list name and its curated order do not. Restoring
@@ -252,7 +252,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 * 3.2.2 On Input passes, overturning a tool result. HTML_CodeSniffer flagged `#form-catalog-search`
   under H32.2 for having no submit button on both scanned surfaces. The form is search-as-you-type
   and calls `preventDefault` on submit, results update in place, and no change of context occurs,
-  so the criterion is met. Evidence: `src/index.html:463-469`, `src/js/main.js:5131-5140`.
+  so the criterion is met. Evidence: `src/index.html:463-469`, `src/js/main.js:5133-5142`.
 
 #### UX-A-001: The primary call to action and the accent text fall below 4.5:1
 
@@ -841,7 +841,7 @@ sentence frames rather than quotations. Nobody said these words.
   lookup apart from a comic that does not exist. Traced to `src/js/main.js:3173-3174`.
 * When I have read half of a long order across several sittings, I want to come back and see where
   I stopped, so I can resume without scrolling to find the boundary. Traced to
-  `src/js/main.js:5341-5399`.
+  `src/js/main.js:5343-5401`.
 * When my browser storage is cleared or I move machines, I want my progress back from a file I
   control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1046-1077`.
 * When I follow one crossover, I want its progress counted for that list alone, so I can see how

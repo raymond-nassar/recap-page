@@ -144,8 +144,13 @@ test('every approved list path records only its final cumulative operation resul
   assert.match(MAIN, /return \{ listId: id, ok: true \};/);
   assert.equal(
     [...MAIN.matchAll(/recordNonEmptyListSave\(/g)].length,
-    8,
-    'one definition and the direct add, long add, import, two unresolved, manual, and curated paths must be explicit',
+    7,
+    'one definition and the add, import, two unresolved, manual, and curated paths must be explicit',
+  );
+  assert.match(
+    MAIN,
+    /persistLongAddPage\(store, items, context, recordNonEmptyListSave\)/,
+    'the long-add page path no longer records its completed cumulative result',
   );
   assert.doesNotMatch(MAIN, /const listId = ensureList\(/);
   assert.match(MAIN, /const operationOk = setupOk && store\.lastUpdateOk;/);

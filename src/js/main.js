@@ -3613,12 +3613,23 @@ function wireAdd() {
 
 const NAME_SEARCH_LIMIT = 40;
 
-export function mergeLongAddPage(state, { listId, insertAt, ownedIds = [] }, issues) {
-  const list = state.lists[listId];
-  if (!list) return { state, added: 0, skipped: 0, ownedIds, missing: true };
+export function mergeLongAddPage(state, context, issues) {
+  let { listId, insertAt } = context;
+  const { ownedIds = [] } = context;
+  let next = state;
+  if (!listId) {
+    next = createList(next, { name: DEFAULT_LIST_NAME });
+    listId = next.listOrder[next.listOrder.length - 1];
+    next = setActive(next, listId);
+    insertAt = 0;
+  }
+  const list = next.lists[listId];
+  if (!list) {
+    return { state, added: 0, skipped: 0, context, missing: true };
+  }
 
   const before = new Set(list.itemIds);
-  const merged = addIssuesToList(state, listId, issues);
+  const merged = addIssuesToList(next, listId, issues);
   const mergedList = merged.state.lists[listId];
   const fresh = mergedList.itemIds.filter((id) => !before.has(id));
   const present = new Set(mergedList.itemIds);
@@ -3640,7 +3651,7 @@ export function mergeLongAddPage(state, { listId, insertAt, ownedIds = [] }, iss
     },
     added: merged.added,
     skipped: merged.skipped,
-    ownedIds: nextOwned,
+    context: { ...context, listId, insertAt, ownedIds: nextOwned },
     missing: false,
   };
 }
@@ -3757,46 +3768,37 @@ function longAddContext() {
   };
 }
 
-function saveLongAddPage(items, context) {
-  let nextContext = context;
-  if (!items.length) return { ok: true, added: 0, skipped: 0, context: nextContext };
-
-  if (!nextContext.listId) {
-    const created = store.update((state) => createList(state, { name: DEFAULT_LIST_NAME }));
-    if (!store.lastUpdateOk) return { ok: false, error: store.lastError, context: nextContext };
-    const listId = created.listOrder[created.listOrder.length - 1];
-    store.update((state) => setActive(state, listId));
-    if (!store.lastUpdateOk) return { ok: false, error: store.lastError, context: nextContext };
-    nextContext = { ...nextContext, listId, insertAt: 0 };
-  }
-
-  if (!Object.hasOwn(store.state.lists, nextContext.listId)) {
+export function persistLongAddPage(readerStore, items, context, onSaved = () => null) {
+  if (!items.length) return { ok: true, added: 0, skipped: 0, persisted: 0, context };
+  let merged;
+  readerStore.update((state) => {
+    merged = mergeLongAddPage(state, context, items);
+    return merged.state;
+  });
+  if (merged.missing) {
     return {
       ok: false,
       error: 'The destination list no longer exists. No later pages were added.',
-      context: nextContext,
+      context,
     };
   }
-
-  let merged;
-  store.update((state) => {
-    merged = mergeLongAddPage(state, nextContext, items);
-    return merged.state;
-  });
-  if (!store.lastUpdateOk) {
-    return { ok: false, error: store.lastError, context: nextContext };
+  if (!readerStore.lastUpdateOk) {
+    return { ok: false, error: readerStore.lastError, context };
   }
 
-  const transition = nextContext.transition
-    ?? recordNonEmptyListSave({ ok: true, added: merged.added, listId: nextContext.listId });
-  nextContext = { ...nextContext, ownedIds: merged.ownedIds, transition };
+  const transition = context.transition
+    ?? onSaved({ ok: true, added: merged.added, listId: merged.context.listId });
   return {
     ok: true,
     added: merged.added,
     skipped: merged.skipped,
     persisted: merged.added + merged.skipped,
-    context: nextContext,
+    context: { ...merged.context, transition },
   };
+}
+
+function saveLongAddPage(items, context) {
+  return persistLongAddPage(store, items, context, recordNonEmptyListSave);
 }
 
 export function longAddStatusLine(status, { name, kind }) {

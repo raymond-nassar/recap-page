@@ -95,7 +95,7 @@ view layer itself created and can throw away.
 
 **Two of the five are replaceable at runtime, and they are replaced together.** Saving a new API
 base builds a fresh cache and a fresh client and hands the new client to the hydrator, at
-`src/js/main.js:5657-5659`. The hydrator itself is not rebuilt; only its reference to the client is
+`src/js/main.js:5659-5661`. The hydrator itself is not rebuilt; only its reference to the client is
 swapped. The rate limiter is deliberately not rebuilt either, because the budget it tracks belongs
 to the reader's connection rather than to whichever base URL is configured. The store is never
 replaced at all.
@@ -169,7 +169,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Repainting everything does not mean rebuilding everything.** The callback repaints all seven
-surfaces, the six screens plus the blocked banner, at `src/js/main.js:5984-6005`, but the reading
+surfaces, the six screens plus the blocked banner, at `src/js/main.js:5986-6007`, but the reading
 order compares each row against a cache key built from the whole item and reuses the node when
 nothing about it changed, and the full order
 is skipped entirely while its container is closed. Focus is captured before a rebuild and restored
@@ -191,11 +191,12 @@ chosen overwrite.
 **Long series and creator adds are pagewise transactions.** The API delivers each normalized page
 before it requests the next one, while still returning the complete array to callers that need it,
 at `src/js/api.js:193-230`. The view gives each form its own run owner, at
-`src/js/main.js:3648-3748`, and writes every completed page through the Store, at
-`src/js/main.js:3760-3800`. Cancelling retires that owner before aborting its request, so a response
+`src/js/main.js:3659-3759`. The first nonempty page creates and fills its list inside one Store
+update, and every later completed page uses the same boundary, at `src/js/main.js:3616-3657` and
+`src/js/main.js:3771-3798`. Cancelling retires that owner before aborting its request, so a response
 that arrives late cannot write into a replacement run. The active notice carries the Cancel action;
 when that action disappears while focused, the matching search field receives focus, at
-`src/js/main.js:3836-3867`. A stop before the first page creates no list, while every page already
+`src/js/main.js:3838-3869`. A stop before the first page creates no list, while every page already
 saved remains available after a reload.
 
 ## Where a reader's data lives

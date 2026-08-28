@@ -1526,7 +1526,7 @@
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/api.js:193-230|0": {
     "anchor": "src/js/api.js:193-230",
-    "fp": "483a2fb7c1d14bef",
+    "fp": "c807cc56b5a64c8d",
     "head": "// Pages to completion. Guarded so a misbehaving `has_next` cannot loop forever."
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/hydrate.js:59|0": {
@@ -1559,23 +1559,28 @@
     "fp": "b70cf478e0e33507",
     "head": "function announceIfSaved(msg) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3648-3748|0": {
-    "anchor": "src/js/main.js:3648-3748",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3616-3657|0": {
+    "anchor": "src/js/main.js:3616-3657",
+    "fp": "0b7fa40e6200461e",
+    "head": "export function mergeLongAddPage(state, context, issues) {"
+  },
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3659-3759|0": {
+    "anchor": "src/js/main.js:3659-3759",
     "fp": "5b0a81126933765d",
     "head": "export class LongAddRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3760-3800|0": {
-    "anchor": "src/js/main.js:3760-3800",
-    "fp": "b4c4088a9ef3f244",
-    "head": "function saveLongAddPage(items, context) {"
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3771-3798|0": {
+    "anchor": "src/js/main.js:3771-3798",
+    "fp": "7f29bae3688149eb",
+    "head": "export function persistLongAddPage(readerStore, items, context, onSaved = () => null) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3836-3867|0": {
-    "anchor": "src/js/main.js:3836-3867",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:3838-3869|0": {
+    "anchor": "src/js/main.js:3838-3869",
     "fp": "a28708ff651cc0c5",
     "head": "function renderLongAddStatus(config, runner, status) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5984-6005|0": {
-    "anchor": "src/js/main.js:5984-6005",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:5986-6007|0": {
+    "anchor": "src/js/main.js:5986-6007",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -1624,8 +1629,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5657-5659|0": {
-    "anchor": "src/js/main.js:5657-5659",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5659-5661|0": {
+    "anchor": "src/js/main.js:5659-5661",
     "fp": "8f226e48e15a5fea",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1949,8 +1954,8 @@
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:5341-5399|0": {
-    "anchor": "src/js/main.js:5341-5399",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:5343-5401|0": {
+    "anchor": "src/js/main.js:5343-5401",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
@@ -2014,8 +2019,8 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/main.js:5131-5140|0": {
-    "anchor": "src/js/main.js:5131-5140",
+  "docs/UX_STUDY.md|sweep-result|src/js/main.js:5133-5142|0": {
+    "anchor": "src/js/main.js:5133-5142",
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
@@ -2199,8 +2204,8 @@
     "fp": "840763abad460542",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5984-6005|0": {
-    "anchor": "src/js/main.js:5984-6005",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:5986-6007|0": {
+    "anchor": "src/js/main.js:5986-6007",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -2224,8 +2229,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:5245|0": {
-    "anchor": "src/js/main.js:5245",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:5247|0": {
+    "anchor": "src/js/main.js:5247",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2239,8 +2244,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5634-5640|0": {
-    "anchor": "src/js/main.js:5634-5640",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5636-5642|0": {
+    "anchor": "src/js/main.js:5636-5642",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
@@ -5864,8 +5869,8 @@
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:6218|0": {
-    "anchor": "src/js/main.js:6218",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:6220|0": {
+    "anchor": "src/js/main.js:6220",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
@@ -5964,8 +5969,8 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/main.js:4046-4049|0": {
-    "anchor": "src/js/main.js:4046-4049",
+  "test/passive-announce.test.js|preamble|src/js/main.js:4048-4051|0": {
+    "anchor": "src/js/main.js:4048-4051",
     "fp": "aef17ca5da7c2c9f",
     "head": "announce(withSaveEducation("
   },

@@ -216,7 +216,7 @@ export class MarvelApi {
     const { onPage, ...pageOpts } = opts;
     const items = await this.allPages(`/series/${Number(seriesId)}/issues`, {
       ...pageOpts,
-      onPage: onPage ? (page, progress) => onPage(page.map(toIssue), progress) : undefined,
+      onPage: onPage ? (page, progress) => onPage(page.map(toIssue).filter(Boolean), progress) : undefined,
     });
     return items.map(toIssue);
   }
@@ -225,7 +225,7 @@ export class MarvelApi {
     const { onPage, ...pageOpts } = opts;
     const items = await this.allPages(`/creators/${Number(creatorId)}/issues`, {
       ...pageOpts,
-      onPage: onPage ? (page, progress) => onPage(page.map(toIssue), progress) : undefined,
+      onPage: onPage ? (page, progress) => onPage(page.map(toIssue).filter(Boolean), progress) : undefined,
     });
     // Creator responses omit detailUrl and unlimitedDate; toIssue reconstructs the URL and
     // leaves availability `unknown` rather than implying the issue is not in Unlimited.
