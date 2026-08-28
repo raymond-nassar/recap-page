@@ -493,8 +493,8 @@ const MUTATIONS = [
     breaks: 'cache-generations',
     why: 'a current tab adopts saved-state prose from an old writer without removing it again',
     rewriteMain: (source) => source.replace(
-      / {4}const cleanup = sanitizeStoredIssueDescriptions\(readerStore, event\.newValue\);\r?\n {4}if \(!cleanup\.needed\) readerStore\.adoptForeignWrite\(event\.newValue\);/,
-      '    readerStore.adoptForeignWrite(event.newValue);',
+      '  if (!rawCarriesIssueDescriptions(raw)) return { needed: false, cleared: true };',
+      '  return { needed: false, cleared: true };',
     ),
   },
   {
@@ -4334,6 +4334,16 @@ const SCENARIOS = [
           tx.oncomplete = resolve;
           tx.onabort = () => reject(tx.error);
         });
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 6: { issueId: 6, title: 'Six', description: 'Preloaded legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
       });
 
       await open(page, '/#/settings');
@@ -4342,6 +4352,10 @@ const SCENARIOS = [
         { timeout: 15000 },
       );
       t.check('cleanup reports that older metadata is still waiting on another tab', true);
+      const preloadedState = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2') || '{}'));
+      t.check('saved-state prose is removed before waiting on a blocked legacy deletion',
+        !Object.prototype.hasOwnProperty.call(preloadedState.issues?.['6'] ?? {}, 'description'),
+        JSON.stringify(preloadedState));
 
       await legacy.evaluate(() => {
         localStorage.setItem('mrt.state.v2', JSON.stringify({

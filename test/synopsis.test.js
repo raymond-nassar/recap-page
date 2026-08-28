@@ -812,6 +812,31 @@ test('foreign saved-state prose is removed independently of the cache marker', (
   assert.equal('description' in JSON.parse(storage.getItem(KEY)).issues[7], false);
 });
 
+test('foreign saved-state prose is sanitized without disturbing a blocked recovery incident', () => {
+  const recoveryRaw = JSON.stringify({ schemaVersion: 99, marker: 'recovery bytes' });
+  const storage = memoryStorage({ [KEY]: recoveryRaw });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  assert.equal(readerStore.blocked, true);
+  const salvageKey = readerStore.salvageKey;
+
+  const foreignRaw = JSON.stringify({
+    ...createEmptyState(),
+    issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+  });
+  storage.setItem(KEY, foreignRaw);
+  const failures = [];
+  const result = sanitizeStoredIssueDescriptions(readerStore, foreignRaw, {
+    onFailure: (error) => failures.push(error),
+  });
+
+  assert.deepEqual(result, { needed: true, cleared: true });
+  assert.deepEqual(failures, []);
+  assert.equal(readerStore.blocked, true, 'sanitation cleared the unrelated recovery latch');
+  assert.equal(storage.getItem(salvageKey), recoveryRaw, 'sanitation changed the recovery copy');
+  assert.equal('description' in JSON.parse(storage.getItem(KEY)).issues[7], false);
+});
+
 test('a failed saved-state sanitation is reported and remains retryable', () => {
   const raw = JSON.stringify({
     ...createEmptyState(),

@@ -124,7 +124,9 @@ export function dispatchStorageEvent(
   } = {},
 ) {
   if (event.key === STATE_KEY) {
-    const cleanup = sanitizeStoredIssueDescriptions(readerStore, event.newValue);
+    const cleanup = sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+      onFailure: (error) => notify('#save-report', error, 'error'),
+    });
     if (!cleanup.needed) readerStore.adoptForeignWrite(event.newValue);
     return;
   }
@@ -804,11 +806,31 @@ function rawCarriesIssueDescriptions(raw) {
   ));
 }
 
-export function sanitizeStoredIssueDescriptions(readerStore, raw) {
+export function sanitizeStoredIssueDescriptions(
+  readerStore,
+  raw,
+  { onFailure = () => {} } = {},
+) {
   if (!rawCarriesIssueDescriptions(raw)) return { needed: false, cleared: true };
+  if (readerStore.blocked) {
+    const sanitizer = new Store({ storage: readerStore.storage });
+    sanitizer.load();
+    if (sanitizer.blocked) {
+      const error = sanitizer.blockedReason ?? sanitizer.lastError
+        ?? 'Saved issue summaries written by an older tab could not be read safely.';
+      onFailure(error);
+      return { needed: true, cleared: false };
+    }
+    const cleared = sanitizer.persist();
+    if (!cleared) onFailure(sanitizer.lastError);
+    return { needed: true, cleared };
+  }
   if (!readerStore.adoptForeignWrite(raw)) return { needed: true, cleared: false };
   const cleared = readerStore.persist();
-  if (!cleared) readerStore.onChange?.(readerStore.state, readerStore.lastError);
+  if (!cleared) {
+    readerStore.onChange?.(readerStore.state, readerStore.lastError);
+    onFailure(readerStore.lastError);
+  }
   return { needed: true, cleared };
 }
 
@@ -824,6 +846,9 @@ function reportBlockedLegacyCleanup({ activeCleared }) {
 
 async function runCachePurge() {
   const marker = cachePurgeMark(localStorage);
+  sanitizeStoredIssueDescriptions(store, localStorage.getItem(STATE_KEY), {
+    onFailure: (error) => notify('#save-report', error, 'error'),
+  });
   const result = await maintainCacheGeneration(cache, marker, CACHE_PURGE_VERSION, {
     onLegacyBlocked: reportBlockedLegacyCleanup,
   });
