@@ -310,10 +310,11 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,892 are explicit placeholders for unresolved source positions and 85
+Of the visible records, 1,891 are unopenable placeholders for unresolved source positions and 85
 non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,977 gap positions affect 30 catalog entries: 24 carry placeholders, six carry empty records, and
-none carry both kinds. Placeholder
+1,976 gap positions affect 30 catalog entries: 24 carry placeholders, six carry empty records, and
+none carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
+metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
 their exact source positions rather than guessing or silently shortening a guide.

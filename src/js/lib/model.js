@@ -122,24 +122,24 @@ function refusedOnArrival(input) {
 // about only one of them is left to wonder about the other.
 //
 // A checklist line carrying no Marvel link at all is vendored as a placeholder: a negative id and
-// nothing else, so the app will not offer to open it. A line that carried a link whose lookup was
-// then refused upstream becomes a fully formed record with a real, positive id and every metadata
-// field empty, and nothing on it records what happened. The two look nothing alike to a reader,
-// so they are counted apart and said apart.
+// nothing else, so the app will not offer to open it. One legacy record kept the flag after gaining
+// real identity and launch metadata, so the flag alone cannot mean "unopenable". A line whose lookup
+// was refused upstream becomes a fully formed record with a positive id and every metadata field
+// empty. The two gaps look nothing alike to a reader, so they are counted apart and said apart.
 //
 // Counted from the items rather than read from the payload's own `placeholders` field. That field
-// counts only the first kind, two of the fourteen shipped orders were vendored before it existed and
-// carry no count at all, and a hand-edited file could carry a stale one. The items are what the
-// reader actually receives, so they are what is counted.
+// counts raw flags without asking whether the item later gained metadata, and it carries no count
+// for the second kind. The items are what the reader actually receives, so they are what is counted.
 export function countOrderGaps(order) {
   const items = Array.isArray(order?.items) ? order.items : [];
   let placeholders = 0;
   let empty = 0;
   for (const item of items) {
-    // Exclusive, because a placeholder holds no metadata either and would otherwise be reported
-    // twice, under two different explanations of the same missing issue.
-    if (item?.placeholder === true) placeholders += 1;
-    else if (!hasMetadata(item)) empty += 1;
+    const metadata = hasMetadata(item);
+    // Exclusive, because an unlinked placeholder holds no metadata either and would otherwise be
+    // reported twice. A metadata-bearing legacy flag is neither gap: the issue can be launched.
+    if (item?.placeholder === true && !metadata) placeholders += 1;
+    else if (item?.placeholder !== true && !metadata) empty += 1;
   }
   return { placeholders, empty };
 }
