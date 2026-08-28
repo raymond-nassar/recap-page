@@ -261,21 +261,15 @@
     "url": "https://www.comicbookherald.com/where-do-i-start-with-avengers-trade-collections/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The exact source URL is already represented in the catalog; issue-set identity still requires a frozen mapping before any variant decision.",
+    "disposition": "reuse-existing",
+    "reason": "Owner-approved canonical reuse: Essential Avengers already satisfies the Avengers priority, so no duplicate guide is needed.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
     "catalogIds": [
-      "essential-avengers",
-      "avengers-disassembled",
-      "civil-war-avengers",
-      "dark-reign-avengers",
-      "heroic-age-avengers",
-      "all-new-all-different-avengers",
-      "marvel-fresh-start-avengers"
+      "essential-avengers"
     ],
     "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "centralDisposition": "reuse-existing",
     "labels": [
       "The Avengers"
     ],
@@ -285,7 +279,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "2dac2ec563dc7c93c514b5906f49f6b0edd572e89dca3ee4b0c5a572c9178447",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 9,
@@ -351,7 +345,7 @@
     "catalogIds": [
       "black-panther-reading-order"
     ],
-    "deliveryStatus": "ready",
+    "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
     "labels": [
       "Black Panther"
@@ -371,13 +365,45 @@
     "url": "https://www.comicbookherald.com/black-widow-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The full page boundary is frozen from the intro through Latest Additions. The Stage A occurrence ledger preserves 209 page blocks, 76 issue-bearing blocks, 8 provenance groups, and 773 ordered occurrences split across 566 canonical candidates, 38 true repeats, 0 gaps, and 169 exclusions, so the guide can stay deferred without a mapping or publication artifact.",
+    "disposition": "new-order",
+    "reason": "The frozen full-page guide now publishes 556 exact metadata rows and 14 explicit metadata gaps, preserving 773 source occurrences and 29 current-library relationships without an exact duplicate.",
     "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "agents-of-atlas-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "ant-man-reading-order",
+      "black-panther-reading-order",
+      "bloodties",
+      "captain-marvel-ms-marvel-reading-order",
+      "civil-war-avengers",
+      "daredevil-reading-order",
+      "doctor-doom-primer",
+      "doctor-strange-reading-order",
+      "essential-avengers",
+      "heroic-age-avengers",
+      "hunt-for-wolverine",
+      "infinity-countdown-wars",
+      "loki-reading-order",
+      "magneto-reading-order",
+      "marvel-what-if",
+      "maximum-security",
+      "operation-galactic-storm",
+      "punisher-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "scarlet-witch-best-of",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "venom-reading-order",
+      "war-of-the-realms",
+      "wolverine-reading-order",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "black-widow-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Black Widow"
     ],
@@ -387,7 +413,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "d038b80551132f73436c6fe32608d1d7005c4319f9e94d536c9ffb3bd29f193e",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 13,
@@ -564,7 +590,7 @@
     "catalogIds": [
       "captain-marvel-ms-marvel-reading-order"
     ],
-    "deliveryStatus": "ready",
+    "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
     "labels": [
       "Captain Marvel",
@@ -1013,13 +1039,50 @@
     "url": "https://www.comicbookherald.com/fantastic-four-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The frozen source ledger keeps 133 selected source blocks, including 129 issue-bearing blocks and 4 verified prose or caption blocks, 13 provenance groups, and 1,058 normalized ordered occurrences. It expands 46 source range entries into 267 issue occurrences: 1000 provisional-canonical candidates, 35 exact repeats, 23 semantic exclusions, and 0 identity gaps. 2 candidate occurrences remain source-identifiable named works without invented issue numbers.",
+    "disposition": "new-order",
+    "reason": "The frozen full-page guide now publishes 815 exact metadata rows and 185 explicit metadata gaps, preserving 1,058 source occurrences and 34 current-library relationships without an exact duplicate.",
     "sourceRetrievedAt": "2026-08-27",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "agents-of-atlas-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "black-panther-reading-order",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "daredevil-reading-order",
+      "doctor-doom-primer",
+      "doctor-strange-reading-order",
+      "evolutionary-war",
+      "fall-of-the-mutants",
+      "hickman-full",
+      "house-of-m",
+      "inferno",
+      "judgment-day",
+      "loki-reading-order",
+      "magneto-reading-order",
+      "marvel-knights-to-planet-x",
+      "marvels-best-phoenix-comics",
+      "punisher-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "reckoning-war",
+      "reed-richards-and-sue-storms-wedding",
+      "secret-invasion",
+      "secret-wars-ii",
+      "silver-surfer-reading-order",
+      "thor-best-of",
+      "venom-reading-order",
+      "wandavision",
+      "war-of-the-realms",
+      "white-tiger-ava-ayala",
+      "wolverine-reading-order",
+      "xmen-claremont",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "fantastic-four-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Fantastic Four"
     ],
@@ -1029,7 +1092,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "2300d47b48b391d75c5ac32cd4502aa11c51ef7e6b083f37c7c662a7fed91080",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 36,
@@ -2584,8 +2647,8 @@
     "url": "https://www.comicbookherald.com/marvels-best-phoenix-comics/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "new-order",
-    "reason": "All 53 retained source rows resolve exactly inside the metadata horizon. The guide shares no issues with Phalanx and one source-required issue with the later Thanos guide.",
+    "disposition": "reuse-existing",
+    "reason": "Owner-approved canonical reuse: Phoenix already satisfies the Jean Grey / Phoenix priority, so no duplicate guide is needed.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "thanos-reading-order"
@@ -2593,8 +2656,8 @@
     "catalogIds": [
       "marvels-best-phoenix-comics"
     ],
-    "deliveryStatus": "shipped",
-    "centralDisposition": "pilot-approved",
+    "deliveryStatus": "not-applicable",
+    "centralDisposition": "reuse-existing",
     "labels": [
       "Phoenix"
     ],
@@ -2692,8 +2755,10 @@
     "reason": "A serialized live provider audit verified 480 exact issue identities; the full-page ledger preserves 145 repeats, 158 unresolved metadata gaps, and 74 explicit non-issue exclusions while publication awaits delivery.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "ready",
+    "catalogIds": [
+      "punisher-reading-order"
+    ],
+    "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
     "labels": [
       "Punisher"
@@ -2778,13 +2843,15 @@
     "url": "https://www.comicbookherald.com/scarlet-witch-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "reuse-existing",
+    "reason": "Owner-approved canonical reuse: The Best of the Scarlet Witch already satisfies this priority, so no duplicate guide is needed.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
-    "catalogIds": [],
+    "catalogIds": [
+      "scarlet-witch-best-of"
+    ],
     "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "centralDisposition": "reuse-existing",
     "labels": [
       "Scarlet Witch"
     ],
@@ -2794,7 +2861,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "8646874167ac4d06dbf74a332542b7ce9015e207eb4852dc590e99459339cf65",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 98,
@@ -2882,8 +2949,10 @@
     "reason": "The 426-occurrence source packet is prepared from the settled offline provider cache: 294 exact rows, 17 backward repeats, four explicit metadata gaps tracked in issue #304, and 111 exclusions. Overlap review, catalog generation, and merge remain pending; issue #239 remains the source queue record.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "ready",
+    "catalogIds": [
+      "silver-surfer-reading-order"
+    ],
+    "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
     "labels": [
       "Silver Surfer"
@@ -3172,13 +3241,15 @@
     "url": "https://www.comicbookherald.com/thor-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "reuse-existing",
+    "reason": "Owner-approved canonical reuse: The Best of Thor already satisfies this priority, so no duplicate guide is needed.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
-    "catalogIds": [],
+    "catalogIds": [
+      "thor-best-of"
+    ],
     "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "centralDisposition": "reuse-existing",
     "labels": [
       "Thor"
     ],
@@ -3188,7 +3259,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "fae87087c8271c5f9356764b575fdd07ebc4fabafa7aaf1125d6228faac8b74c",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 113,
@@ -3253,7 +3324,7 @@
     "catalogIds": [
       "venom-reading-order"
     ],
-    "deliveryStatus": "ready",
+    "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
     "labels": [
       "Venom"
@@ -3549,13 +3620,15 @@
     "url": "https://www.comicbookherald.com/the-complete-x-men-reading-order-guide-modern-marvel-comics-era/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "reuse-existing",
+    "reason": "Owner-approved canonical reuse: Modern X-Men Fast Track already satisfies the X-Men priority, so no duplicate guide is needed.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [],
-    "catalogIds": [],
+    "catalogIds": [
+      "modern-x-men-fast-track"
+    ],
     "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "centralDisposition": "reuse-existing",
     "labels": [
       "The X-Men (Modern Era)"
     ],
@@ -3565,7 +3638,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "550e66d9cdc61e4b0e83d9654d6ab52acc8bd61b5b8b6c1d7986ca5366a7c593",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 126,

@@ -377,9 +377,9 @@ test('the Fantastic Four source ledger stays exact through its frozen boundary',
 
   assert.ok(record, 'expected a Fantastic Four inventory record');
   assert.equal(record.sourceContentSha256, ledger.sourceContentSha256);
-  assert.match(record.reason, /129 issue-bearing blocks/i);
-  assert.match(record.reason, /13 provenance groups/i);
-  assert.match(record.reason, /1,058 normalized ordered occurrences/i);
+  assert.match(record.reason, /815 exact metadata rows/i);
+  assert.match(record.reason, /185 explicit metadata gaps/i);
+  assert.match(record.reason, /1,058 source occurrences/i);
   assert.doesNotThrow(() => assertFantasticFourSourceLedgerShape(ledger));
 
   const truncatedNodes = structuredClone(ledger);

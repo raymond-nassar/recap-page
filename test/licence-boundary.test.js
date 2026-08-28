@@ -38,12 +38,12 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 248, `the catalog lists ${orders.length} orders, not 248, so this test's coverage has changed`);
+  assert.equal(orders.length, 250, `the catalog lists ${orders.length} orders, not 250, so this test's coverage has changed`);
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
 });
 
-// The test above reads the catalog, so it sees exactly the two hundred and forty-eight files the catalog names and
+// The test above reads the catalog, so it sees exactly the two hundred and fifty files the catalog names and
 // nothing else. That is the shape of the miss it was written to prevent: the first strip left 41
 // descriptions in design/mockups/mock-data.js, a generated projection of a reading order that no
 // catalog lists and no gate walked. A boundary defined by an enumeration is a boundary someone has
