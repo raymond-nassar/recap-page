@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+
+### Credited community Reading List guides
+
+In plain English: About now thanks the two community sites whose guides were used to compile many
+bundled Reading Lists and links to both. It also explains that every externally guided list links
+to its exact source, while lists assembled in this project come from Marvel series metadata or by hand.
+
 ## 2.0.0
 ### Show complete reading paths in one place
 In plain English: Saved data from version 1.4.0 remains fully compatible with 2.0.0. Home and Browse now lead to one Reading paths screen where each connected sequence can be seen from beginning to end. Choose a path to see every stop in order. A stop shows progress from the matching Reading List already in your library, falls back to another imported version of the same story when needed, and otherwise says Not added. Existing shelf badges and saved progress are unchanged. For maintainers: the generated catalog currently resolves three independent paths with 10, 12 and 78 stops, totaling 100. Selection lives only in the hash route, and the aggregate model remains separate from the shelf's first-path placement.
