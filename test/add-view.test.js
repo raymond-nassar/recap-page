@@ -140,16 +140,18 @@ test('each Add destination sits inside its working card instead of the page head
 
 test('the five Add pages keep exactly five primary buttons between them', () => {
   const worded = allPages.match(/class="btn"/g) ?? [];
-  const iconOnly = allPages.match(/class="btn btn-icon"/g) ?? [];
+  const iconOnly = allPages.match(/class="btn btn-icon[^"]*"/g) ?? [];
   assert.equal(worded.length + iconOnly.length, 5);
   assert.equal(iconOnly.length, 3, 'the three search submits are the icon-only ones');
 });
 
 test('every icon-only primary button carries a name and a tooltip', () => {
-  const buttons = allPages.match(/<button[^>]*class="btn btn-icon"[^>]*>/g) ?? [];
+  const buttons = allPages.match(/<button[^>]*class="btn btn-icon[^"]*"[^>]*>/g) ?? [];
   assert.equal(buttons.length, 3);
   for (const button of buttons) {
-    assert.match(button, /title="Search"/, `no tooltip on ${button}`);
+    assert.match(button, /class="[^"]*\bhas-tooltip\b/, `no tooltip hook on ${button}`);
+    assert.match(button, /data-tooltip="[^"]+"/, `no tooltip on ${button}`);
+    assert.doesNotMatch(button, /\btitle="/, `native title remains on ${button}`);
     assert.match(button, /aria-label="[^"]+"/, `no accessible name on ${button}`);
   }
 });

@@ -12,6 +12,7 @@ test('full-order title and cover reuse the shared issue-focus route while Read s
   assert.match(rows, /issueFocusAnchor\(item, \{\s*context: \{ kind: 'list', id \},\s*surface: 'full-order',\s*control: 'cover'/);
   assert.match(rows, /issueFocusAnchor\(item, \{\s*context: \{ kind: 'list', id \},\s*surface: 'full-order',\s*control: 'title'/);
   assert.match(rows, /className: 'thumb row-focus-cover',\s*tabIndex: '-1'/);
+  assert.match(rows, /tabIndex: '-1', ariaLabel: `Inspect \$\{item\.title\}`/);
   assert.match(rows, /className: 'rt row-focus-title'/);
   assert.match(rows, /data-act: 'open'|act: 'open'/);
   assert.match(rows, /openInReader\(item, e\)/);
