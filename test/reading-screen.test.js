@@ -55,11 +55,68 @@ test('the hero offers one dominant action, and the way out of the app is a link'
   // the app performs. Its element is still an anchor either way; this is about what it looks like.
   const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
   const cta = hero.match(/<div class="cta">[\s\S]*?<\/div>/)[0];
-  assert.match(cta, /class="btn btn-lg" id="btn-hero-read"/);
+  assert.match(cta, /class="btn btn-lg[^"]*" id="btn-hero-read"/);
   assert.match(cta, /class="btn btn-g" id="btn-hero-inspect"/);
-  assert.match(cta, /class="btn btn-g" id="btn-hero-done"/);
+  assert.match(cta, /class="btn btn-g[^"]*" id="btn-hero-done"/);
   assert.match(cta, /class="btn btn-link" id="btn-hero-info"/);
   assert.equal((cta.match(/btn-lg/g) || []).length, 1, 'more than one call to action carries the dominant treatment');
+});
+
+test('reading shortcuts stay discoverable without permanent keycap clutter', () => {
+  const hero = html.match(/<section class="hero" id="hero"[\s\S]*?\n {14}<\/section>/)[0];
+  const cta = hero.match(/<div class="cta">[\s\S]*?<\/div>/)[0];
+  assert.doesNotMatch(cta, /<kbd>/, 'a shortcut keycap is still always visible on a reading action');
+  for (const [id, key, ariaKey] of [['btn-hero-read', 'Enter', 'Enter'], ['btn-hero-done', 'D', 'd']]) {
+    const button = cta.match(new RegExp(`<button[^>]*id="${id}"[^>]*>`))?.[0] ?? '';
+    assert.match(button, /class="[^"]*\bhas-tooltip\b/, `${id} has no tooltip hook`);
+    assert.match(button, new RegExp(`data-tooltip="Keyboard shortcut: ${key}"`), `${id} has no visible shortcut tooltip`);
+    assert.match(button, new RegExp(`aria-keyshortcuts="${ariaKey}"`), `${id} does not expose its shortcut accessibly`);
+  }
+  assert.match(css, /\.has-tooltip:hover::after, \.has-tooltip:focus-visible::after/);
+  const settings = html.match(/<h3>Keyboard shortcuts<\/h3>[\s\S]*?<\/table>/)?.[0] ?? '';
+  assert.equal((settings.match(/<tr>/g) ?? []).length, 3, 'the Settings shortcut reference changed');
+});
+
+test('icon-only controls expose their meaning on hover and keyboard focus', () => {
+  const toggle = html.match(/<button[^>]*id="btn-rail-toggle"[^>]*>/)?.[0] ?? '';
+  assert.match(toggle, /data-tip="Collapse sidebar · Ctrl\+\\"/);
+  assert.match(toggle, /aria-keyshortcuts="Control\+\\"/);
+  assert.doesNotMatch(main, /toggle\.title\s*=/, 'the sidebar shortcut still relies on a native title');
+  assert.match(main, /closest\('\.ri, \.brand, \.pill, \.rail-toggle'\)/);
+
+  for (const id of ['form-search', 'form-series', 'form-creator']) {
+    const form = html.match(new RegExp(`<form id="${id}"[\\s\\S]*?<\\/form>`))?.[0] ?? '';
+    assert.match(form, /class="btn btn-icon has-tooltip"/, `${id} has no styled tooltip`);
+    assert.match(form, /data-tooltip="[^"]+"/, `${id} has no visual tooltip text`);
+    assert.doesNotMatch(form, /\btitle="/, `${id} still relies on a native title`);
+  }
+
+  assert.match(main, /class: 'cb has-tooltip'/);
+  for (const tooltip of [
+    'Open issue page on marvel.com',
+    'Move up',
+    'Move down',
+    'Remove from this list',
+  ]) {
+    assert.ok(main.includes(`tooltip: '${tooltip}'`), `the row controls are missing the ${tooltip} tooltip`);
+  }
+  assert.match(main, /availabilityOverrideAction\(item\.override\)/);
+});
+
+test('narrow reading rows use a labeled disclosure instead of unexplained symbols', () => {
+  assert.match(main, /class: 'row-actions'/);
+  assert.match(main, /class: 'mini row-actions-toggle'[\s\S]*text: 'More actions'/);
+  assert.match(main, /'aria-expanded': 'false'/);
+  assert.match(main, /'aria-controls': panelId/);
+  assert.match(main, /'aria-label': `More actions for \$\{item\.title\}`/);
+  assert.match(main, /text: 'More actions', dataset: \{ key: item\.issueId, act: 'more' \}/);
+  for (const label of ['Move up', 'Move down', 'Change Unlimited status', 'Remove from list']) {
+    assert.ok(main.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
+  }
+
+  assert.match(css, /@media \(max-width: 620px\) \{[\s\S]*?\.row-actions-toggle \{\s*display: flex/);
+  assert.match(css, /\.row-actions:not\(\.is-open\) > \.ract \{ display: none; \}/);
+  assert.match(css, /\.row-actions\.is-open > \.ract \{[\s\S]*?flex-direction: column/);
 });
 
 test('Coming up precedes the one native full Reading List disclosure', () => {

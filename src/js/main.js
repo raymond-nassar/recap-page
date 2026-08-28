@@ -772,14 +772,14 @@ function hueOf(s) {
   return h;
 }
 
-function fallbackHue(issue) {
-  return hueOf(issue?.seriesName || issue?.title || '');
+function fallbackHue(issue, fallbackName = '') {
+  return hueOf(fallbackName || issue?.seriesName || issue?.title || '');
 }
 
 // Wires an <img>/fallback pair. The fallback is shown when there is no cover URL at all, when the
 // image fails to load, or when the reader has cover art switched off.
-function paintCover(img, fb, issue, variant) {
-  paintCoverUrl(img, fb, coverUrl(issue, variant), fallbackHue(issue));
+function paintCover(img, fb, issue, variant, fallbackName = issue?.seriesName || issue?.title || '') {
+  paintCoverUrl(img, fb, coverUrl(issue, variant), fallbackHue(issue, fallbackName), fallbackName);
 }
 
 function paintHeroBackground(target, issue) {
@@ -789,12 +789,13 @@ function paintHeroBackground(target, issue) {
 
 // The hue is passed in rather than derived, because a catalog card's cover belongs to a
 // reading order, not to a single issue.
-function paintCoverUrl(img, fb, url, hue) {
+function paintCoverUrl(img, fb, url, hue, fallbackName = '') {
   // Set the hue as a custom property rather than writing a style attribute. Assigning a
   // style attribute is what `style-src-attr` blocks under the server's Content-Security-
   // Policy, and it fired on every cover paint; setting a property through the CSSOM is
   // not a policy violation, so the gradient in styles.css does the drawing.
   fb.style.setProperty('--h', String(hue));
+  setFallbackInitials(fb, fallbackName);
   // The setting is read here rather than at the five call sites because this line, `img.src = url`,
   // is what makes the request, and hiding what it fetched is not the same as not fetching it. The
   // rules that hide a cover under `body.nocovers` are `display: none`, which suppresses nothing.
@@ -1041,8 +1042,10 @@ function setRailed(next, { announceIt = false, persist = false } = {}) {
   railed = Boolean(next);
   $('#shell').classList.toggle('railed', railed);
   const toggle = $('#btn-rail-toggle');
+  const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
   toggle.setAttribute('aria-expanded', String(!railed));
-  toggle.title = railed ? 'Expand sidebar (Ctrl+\\)' : 'Collapse sidebar (Ctrl+\\)';
+  toggle.setAttribute('aria-label', label);
+  toggle.dataset.tip = `${label} · Ctrl+\\`;
   if (!railed) hideRailTip();
   if (persist) {
     try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch { /* non-fatal */ }
@@ -1091,8 +1094,8 @@ function wireSidebar() {
 function wireRailTips() {
   const rail = $('#sidebar');
   const show = (e) => {
-    const target = e.target instanceof Element ? e.target.closest('.ri, .brand, .pill') : null;
-    if (!target || !railed) return hideRailTip();
+    const target = e.target instanceof Element ? e.target.closest('.ri, .brand, .pill, .rail-toggle') : null;
+    if (!target || (!railed && !target.matches('.rail-toggle'))) return hideRailTip();
     const text = (target.dataset.tip || target.querySelector('.lbl')?.textContent || target.textContent || '').trim();
     if (!text) return hideRailTip();
     const tip = $('#rail-tip');
@@ -1143,12 +1146,12 @@ function openIssueFocus(issueId, context, opener) {
 }
 
 function issueFocusAnchor(issue, {
-  context = null, surface, control = null, className = null, tabIndex = null, children,
+  context = null, surface, control = null, className = null, tabIndex = null, ariaLabel = null, children,
 } = {}) {
   return el('a', {
     class: className,
     href: issueFocusHref(issue.issueId, context),
-    tabindex: tabIndex,
+    tabindex: tabIndex, 'aria-label': ariaLabel,
     dataset: {
       focusSource: surface,
       focusControl: control ?? '',
@@ -1841,7 +1844,7 @@ function renderContinue(populated) {
     // Nothing to open, so the button goes rather than sitting there disabled with no
     // explanation of why it cannot be used.
     $('#btn-chero-read').hidden = true;
-    paintCoverUrl($('#chero-img'), $('#chero-fb'), null, hueOf(list.name));
+    paintCoverUrl($('#chero-img'), $('#chero-fb'), null, hueOf(list.name), list.name);
     $('#chero-fs').textContent = shortTitle(list.name);
     $('#chero-fn').textContent = '';
   }
@@ -2839,7 +2842,7 @@ function renderShelf() {
       // alt="". Left exposed it joins the button's visible label, and its series name and issue
       // number then bracket the caption's title, which is the same split this change exists to
       // remove.
-      const fb = el('div', { class: 'tf', 'aria-hidden': true }, [
+      const fb = el('div', { class: 'tf cover-fallback', 'aria-hidden': true }, [
         el('span', { class: 's', text: seriesOnly(it.seriesName) }),
         el('span', { class: 'n', text: it.number ? `#${it.number}` : '?' }),
       ]);
@@ -3109,7 +3112,7 @@ function renderRows() {
       }[av.state];
 
       const img = el('img', { alt: '', loading: 'lazy' });
-      const fb = el('div', { class: 'rf', text: item.number ? `#${item.number}` : '?' });
+      const fb = el('div', { class: 'rf cover-fallback', 'aria-hidden': true });
       paintCover(img, fb, item, 'portrait_incredible');
 
       const node = el('li', {
@@ -3117,10 +3120,14 @@ function renderRows() {
       }, [
         el('button', {
           type: 'button',
-          class: 'cb',
+          class: 'cb has-tooltip',
           'aria-pressed': String(item.read),
           'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,
-          dataset: { key: item.issueId, act: 'read' },
+          dataset: {
+            key: item.issueId,
+            act: 'read',
+            tooltip: item.read ? 'Mark as unread' : 'Mark as read',
+          },
           onclick: () => {
             const wasRead = isRead(store.state, item.issueId);
             const saved = store.update((s) => toggleRead(s, item.issueId));
@@ -3142,7 +3149,7 @@ function renderRows() {
           surface: 'full-order',
           control: 'cover',
           className: 'thumb row-focus-cover',
-          tabIndex: '-1',
+          tabIndex: '-1', ariaLabel: `Inspect ${item.title}`,
           children: [img, fb],
         }),
         el('div', {}, [
@@ -3190,16 +3197,7 @@ function renderRows() {
             onclick: () => editIssueNote(item),
           }, item.note ? item.note : 'Add a note'),
         ]),
-        el('div', { class: 'ract' }, [
-          el('button', { type: 'button', class: 'mini', 'aria-label': `Read ${item.title} in Marvel Unlimited`, dataset: { key: item.issueId, act: 'open' }, onclick: (e) => openInReader(item, e) }, 'Read'),
-          detailUrl(item)
-            ? el('a', { class: 'mini', href: detailUrl(item), target: '_blank', rel: 'noopener noreferrer', 'aria-label': labelledName('Info', `${item.title} on marvel.com`), dataset: { key: item.issueId, act: 'info' } }, 'Info')
-            : null,
-          el('button', { type: 'button', class: 'mini', 'aria-label': `Move ${item.title} up`, dataset: { key: item.issueId, act: 'up' }, onclick: () => store.update((s) => moveItem(s, id, item.issueId, -1)) }, '↑'),
-          el('button', { type: 'button', class: 'mini', 'aria-label': `Move ${item.title} down`, dataset: { key: item.issueId, act: 'down' }, onclick: () => store.update((s) => moveItem(s, id, item.issueId, 1)) }, '↓'),
-          el('button', { type: 'button', class: 'mini', 'aria-label': `Change availability for ${item.title}`, dataset: { key: item.issueId, act: 'override' }, onclick: () => cycleOverride(item) }, '⚑'),
-          el('button', { type: 'button', class: 'mini mini-danger', 'aria-label': `Remove ${item.title} from this list`, dataset: { key: item.issueId, act: 'remove' }, onclick: () => { store.update((s) => removeFromList(s, id, item.issueId)); announceIfSaved(`Removed ${item.title}.`); } }, '✕'),
-        ]),
+        issueRowActions(item, id),
       ]);
       rowCache.set(item.issueId, { key: rowKey, node });
       desired.push(node);
@@ -3230,6 +3228,99 @@ function cycleOverride(item) {
   const next = item.override === 'available' ? 'unavailable' : item.override === 'unavailable' ? null : 'available';
   store.update((s) => setOverride(s, item.issueId, next));
   announceIfSaved(`${item.title}: ${next ? `marked ${next}` : 'override cleared'}.`);
+}
+
+function availabilityOverrideAction(override) {
+  if (override === 'available') return 'Mark as unavailable';
+  if (override === 'unavailable') return 'Clear availability override';
+  return 'Mark as available';
+}
+
+function issueRowActions(item, listId) {
+  const panelId = `row-actions-${item.issueId}`;
+  const panel = el('div', { class: 'ract', id: panelId }, [
+    el('button', { type: 'button', class: 'mini', 'aria-label': `Read ${item.title} in Marvel Unlimited`, dataset: { key: item.issueId, act: 'open' }, onclick: (e) => openInReader(item, e) }, 'Read'),
+    detailUrl(item)
+      ? el('a', {
+        class: 'mini has-tooltip',
+        href: detailUrl(item),
+        target: '_blank',
+        rel: 'noopener noreferrer',
+        'aria-label': labelledName('Info', `${item.title} on marvel.com`),
+        dataset: { key: item.issueId, act: 'info', tooltip: 'Open issue page on marvel.com' },
+      }, 'Info')
+      : null,
+    el('button', {
+      type: 'button',
+      class: 'mini has-tooltip',
+      'aria-label': `Move ${item.title} up`,
+      dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
+      onclick: () => store.update((s) => moveItem(s, listId, item.issueId, -1)),
+    }, [
+      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↑' }),
+      el('span', { class: 'mini-label', text: 'Move up' }),
+    ]),
+    el('button', {
+      type: 'button',
+      class: 'mini has-tooltip',
+      'aria-label': `Move ${item.title} down`,
+      dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
+      onclick: () => store.update((s) => moveItem(s, listId, item.issueId, 1)),
+    }, [
+      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↓' }),
+      el('span', { class: 'mini-label', text: 'Move down' }),
+    ]),
+    el('button', {
+      type: 'button',
+      class: 'mini has-tooltip',
+      'aria-label': `${availabilityOverrideAction(item.override)} for ${item.title}`,
+      dataset: {
+        key: item.issueId,
+        act: 'override',
+        tooltip: availabilityOverrideAction(item.override),
+      },
+      onclick: () => cycleOverride(item),
+    }, [
+      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '⚑' }),
+      el('span', { class: 'mini-label', text: 'Change Unlimited status' }),
+    ]),
+    el('button', {
+      type: 'button',
+      class: 'mini mini-danger has-tooltip',
+      'aria-label': `Remove ${item.title} from this list`,
+      dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from this list' },
+      onclick: () => {
+        store.update((s) => removeFromList(s, listId, item.issueId));
+        announceIfSaved(`Removed ${item.title}.`);
+      },
+    }, [
+      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '✕' }),
+      el('span', { class: 'mini-label', text: 'Remove from list' }),
+    ]),
+  ]);
+  const toggle = el('button', {
+    type: 'button',
+    class: 'mini row-actions-toggle',
+    'aria-expanded': 'false',
+    'aria-controls': panelId, 'aria-label': `More actions for ${item.title}`,
+    text: 'More actions', dataset: { key: item.issueId, act: 'more' },
+  });
+  const root = el('div', { class: 'row-actions' }, [toggle, panel]);
+  const setOpen = (open) => {
+    root.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+  };
+  toggle.addEventListener('click', () => setOpen(!root.classList.contains('is-open')));
+  root.addEventListener('focusout', (event) => {
+    if (!root.contains(event.relatedTarget)) setOpen(false);
+  });
+  root.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !root.classList.contains('is-open')) return;
+    event.preventDefault();
+    setOpen(false);
+    toggle.focus();
+  });
+  return root;
 }
 
 // The editor is a modal dialog rather than a field in the row. Editing a note changes the item,
@@ -4492,7 +4583,7 @@ function catalogCard(
   const reportTarget = report ?? `#${surface}-report`;
   const title = story.name ?? story.lists[0].name;
   const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
-  const fallback = el('div', { class: 'of', 'aria-hidden': true }, [
+  const fallback = el('div', { class: 'of cover-fallback', 'aria-hidden': true }, [
     el('span', { class: 'ofs', text: shortTitle(title) }),
   ]);
   const desc = el('p', { class: 'catalog-card-desc' });
@@ -4505,7 +4596,7 @@ function catalogCard(
   // One updater for every part that names a reading path. A choice made in Preview repaints the card
   // on close, so Add, the issue count and the Source disclosure cannot describe different paths.
   const paint = (list) => {
-    paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(title));
+    paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(title), title);
     desc.textContent = firstSentence(list.description);
     desc.hidden = !desc.textContent;
     meta.textContent = `${list.count} issue${list.count === 1 ? '' : 's'}`;
@@ -5122,7 +5213,7 @@ function libraryRow(row, v) {
   // The variant the reading rows already request, so no new image size enters the cache, and the
   // fallback is the reading row's bordered tile rather than the larger gradient ones.
   const img = el('img', { class: 'rcov-i', alt: '', loading: 'lazy', decoding: 'async' });
-  const fb = el('div', { class: 'rcov-f', text: row.number ? `#${row.number}` : '?' });
+  const fb = el('div', { class: 'rcov-f cover-fallback', 'aria-hidden': true });
   paintCover(img, fb, row, 'portrait_incredible');
 
   const contents = [
@@ -5857,7 +5948,7 @@ function yoursTile(list, state, read, total, count) {
   const cells = [0, 1, 2].map((i) => {
     const issue = state.issues[ids[i]] ?? null;
     const img = el('img', { class: 'mosaic-i', alt: '', loading: 'lazy', decoding: 'async' });
-    const fb = el('span', { class: 'mosaic-f' });
+    const fb = el('span', { class: 'mosaic-f cover-fallback' });
     // paintCover tolerates a null issue and a coverless one alike, yielding no URL for both, which is
     // the no-cover state a spare cell needs: it hides the image and shows the fallback tile instead.
     paintCover(img, fb, issue, 'portrait_incredible');
@@ -5927,4 +6018,21 @@ function writeOrderStrip(details, all, activeFilter) {
     children.push(el('span', { class: 'order-shown', text: `Showing ${shown} of ${total} issues.` }));
   }
   strip.replaceChildren(...children);
+}
+
+export function fallbackInitials(value) {
+  const words = String(value || '')
+    .replace(/\(\d{4}(?:\s*-\s*\d{4})?\)/g, ' ')
+    .match(/[a-z0-9]+/gi) ?? [];
+  return words
+    .slice(0, 2)
+    .map((word) => word[0].toUpperCase())
+    .join('');
+}
+
+function setFallbackInitials(fallback, value) {
+  const [first = '', second = ''] = fallbackInitials(value);
+  fallback.dataset.initialFirst = first;
+  fallback.dataset.initialSecond = second;
+  fallback.classList.toggle('one-initial', !second);
 }

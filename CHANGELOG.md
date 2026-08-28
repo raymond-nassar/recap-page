@@ -14,6 +14,15 @@ quote in a bug report.
 
 ## Unreleased
 
+### Made cover-off mode easier to scan
+
+In plain English: When cover art is off, each placeholder now fills its tile with layered color and
+carries its comic series' initials as bold split lettering. Reading buttons no longer repeat
+keyboard badges on the page; hover or focus a button to see its shortcut, or use the complete
+shortcut reference in Settings. Compact issue actions and icon-only searches now explain themselves
+on hover or focus, and narrow screens show issue actions in a labeled menu. Saved lists and progress
+are unchanged.
+
 ### Recorded the complete Marvel 2099 publication blocker
 
 In plain English: No Marvel 2099 guide was published because 99 comics could not be matched to exact

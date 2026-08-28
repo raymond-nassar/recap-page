@@ -30,7 +30,8 @@
       -->
       <aside class="rail" id="sidebar">
         <button type="button" class="rail-toggle" id="btn-rail-toggle"
-                aria-expanded="true" aria-controls="sidebar-nav" aria-label="Toggle sidebar">
+                aria-expanded="true" aria-controls="sidebar-nav" aria-label="Collapse sidebar"
+                aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
           <span class="gi" aria-hidden="true">&#xE700;</span>
         </button>
 
@@ -151,7 +152,7 @@
               <div class="chero-in">
                 <div class="art">
                   <img id="chero-img" alt="" />
-                  <div class="fallback" id="chero-fb" aria-hidden="true">
+                  <div class="fallback cover-fallback" id="chero-fb" aria-hidden="true">
                     <span class="fs" id="chero-fs"></span>
                     <span class="fn" id="chero-fn"></span>
                   </div>
@@ -273,7 +274,7 @@
                 <div class="hero-in">
                   <div class="art">
                     <img id="hero-img" alt="" />
-                    <div class="fallback" id="hero-fb" aria-hidden="true">
+                    <div class="fallback cover-fallback" id="hero-fb" aria-hidden="true">
                       <span class="fs" id="hero-fs"></span>
                       <span class="fn" id="hero-fn"></span>
                     </div>
@@ -290,14 +291,14 @@
                     <p class="desc" id="hero-desc"></p>
                     <dl class="facts" id="hero-facts"></dl>
                     <div class="cta">
-                      <button type="button" class="btn btn-lg" id="btn-hero-read">
-                        Open in Marvel Unlimited <kbd>↵</kbd>
+                      <button type="button" class="btn btn-lg has-tooltip" id="btn-hero-read" data-tooltip="Keyboard shortcut: Enter" aria-keyshortcuts="Enter">
+                        Open in Marvel Unlimited
                       </button>
                       <button type="button" class="btn btn-g" id="btn-hero-inspect">
                         Inspect issue
                       </button>
-                      <button type="button" class="btn btn-g" id="btn-hero-done">
-                        Done, next <kbd>D</kbd>
+                      <button type="button" class="btn btn-g has-tooltip" id="btn-hero-done" data-tooltip="Keyboard shortcut: D" aria-keyshortcuts="d">
+                        Done, next
                       </button>
                       <a class="btn btn-link" id="btn-hero-info" target="_blank" rel="noopener noreferrer">
                         Issue page ↗
@@ -360,7 +361,7 @@
               <div class="hero-in">
                 <div class="art">
                   <img id="issue-focus-img" alt="" />
-                  <div class="fallback" id="issue-focus-fb" aria-hidden="true">
+                  <div class="fallback cover-fallback" id="issue-focus-fb" aria-hidden="true">
                     <span class="fs" id="issue-focus-fs"></span>
                     <span class="fn" id="issue-focus-fn"></span>
                   </div>
@@ -589,7 +590,7 @@
                 <label for="search-q">Search issue titles</label>
                 <div class="field-row">
                   <input type="search" id="search-q" placeholder="e.g. Secret Wars" autocomplete="off" />
-                  <button type="submit" class="btn btn-icon" title="Search" aria-label="Search issue titles"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                  <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search issues" aria-label="Search issue titles"><span class="gi" aria-hidden="true">&#xE721;</span></button>
                 </div>
               </form>
               <!--
@@ -644,7 +645,7 @@
                   <label for="series-q">Find a series</label>
                   <div class="field-row">
                     <input type="search" id="series-q" placeholder="e.g. New Avengers (2013)" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon" title="Search" aria-label="Find a series"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search series" aria-label="Find a series"><span class="gi" aria-hidden="true">&#xE721;</span></button>
                   </div>
                 </form>
                 <div id="series-results" class="results"></div>
@@ -659,7 +660,7 @@
                   <label for="creator-q">Find a creator</label>
                   <div class="field-row">
                     <input type="search" id="creator-q" placeholder="e.g. Hickman" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon" title="Search" aria-label="Find a creator"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search creators" aria-label="Find a creator"><span class="gi" aria-hidden="true">&#xE721;</span></button>
                   </div>
                 </form>
                 <div id="creator-results" class="results"></div>
