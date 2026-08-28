@@ -498,7 +498,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-eight spotlights, and prepares seven', async () => {
+test('the character inventory preserves every central disposition, ships twenty-nine spotlights, and prepares six', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -538,6 +538,7 @@ test('the character inventory preserves every central disposition, ships twenty-
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
     'rocket-raccoon-reading-order',
+    'runaways-reading-order',
     starLordInventoryId,
     'the-complete-thanos-reading-order-guide',
     'white-tiger-ava-ayala',
@@ -571,7 +572,7 @@ test('the character inventory preserves every central disposition, ships twenty-
   assert.deepEqual(youngAvengers?.catalogIds, [youngAvengersCandidateId]);
   const runaways = inventory.find((record) => record.id === 'runaways-reading-order');
   assert.equal(runaways?.centralDisposition, 'pilot-approved');
-  assert.equal(runaways?.deliveryStatus, 'ready');
+  assert.equal(runaways?.deliveryStatus, 'shipped');
   assert.deepEqual(runaways?.catalogIds, ['runaways-reading-order']);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get('the-defenders-reading-order').catalogIds, [
