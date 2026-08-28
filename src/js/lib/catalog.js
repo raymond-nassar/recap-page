@@ -1120,24 +1120,29 @@ export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) 
 
 // ------------------------------------------------------------------ shelf sections
 
-// The sentence that points at the "Start here" badge, held apart from every blurb because it is a
-// claim about what is on the screen rather than about what the screen is for. The badge is drawn on
-// one story out of fifty-nine, and narrowing can leave a section full of rows with that one story
-// gone: measured against the shipped catalog on the landing page, four of the seven facet chips
-// hide it while still showing rows, as do the searches "x-men", "civil war" and "spider". A blurb
-// that always said this would point at nothing on screen in exactly the states a lost reader is
-// most likely to have reached.
+// The sentence that names each visible first stop is held apart from every blurb because it is a
+// claim about what is on the screen rather than about what the screen is for. Narrowing can leave a
+// section full of rows with every first stop gone: measured against the shipped catalog on the
+// landing page, four of the seven facet chips do that, as do the searches "x-men", "civil war" and
+// "spider". A blurb that always said where to start would point at nothing on screen in exactly the
+// states a lost reader is most likely to have reached.
 //
 // One sentence rather than a property on a shelf, which is where it used to live and where the
 // split stranded it. Which screen holds the first stop is a fact about the data and it has already
 // moved once: retyping one order took the badge from the events shelf to the character spotlights.
 // A sentence attached to a named screen was silently wrong the moment that happened, so the caller
 // asks the placements it is drawing from instead.
-export function visibleFirstStopGuide(stories, placements, select = defaultPath) {
+export function visibleFirstStopGuides(stories, placements, select = defaultPath) {
   const visible = Array.isArray(stories) ? stories : [];
-  if (!placements || typeof placements.get !== 'function' || typeof select !== 'function') return null;
-  const first = visible.find((story) => placements.get(story?.key)?.previous === null);
-  return first ? select(first) ?? null : null;
+  if (!placements || typeof placements.get !== 'function' || typeof select !== 'function') return [];
+  const starts = [];
+  for (const story of visible) {
+    const placement = placements.get(story?.key);
+    if (placement?.previous !== null) continue;
+    const guide = select(story);
+    if (guide) starts.push({ guide, placement });
+  }
+  return starts;
 }
 
 export function shelfSections(stories) {

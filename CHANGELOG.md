@@ -16,9 +16,9 @@ quote in a bug report.
 
 ### Clarified where a reading path starts
 
-In plain English: A short line above the relevant shelf now names the first guide to read. It
-disappears when searching or filtering hides that guide, and follows changes to the selected guide
-or the shelf where its first stop appears. Nothing you have saved is changed.
+In plain English: A short line above each relevant shelf now names where its reading paths begin. It
+disappears when searching or filtering hides those guides, and follows changes to a selected guide
+or the shelf where a first stop appears. Nothing you have saved is changed.
 
 ### Added cancellation for long series and creator loads
 

@@ -387,6 +387,24 @@ const PUBLISHING_CATALOG = {
   ],
 };
 const EMPTY_CATALOG = { lists: [], paths: [] };
+const MULTI_FIRST_STOP_CATALOG = {
+  ...CATALOG,
+  lists: [
+    ...CATALOG.lists,
+    shelfEntry('parallel-first', 'Parallel First Stop', { timeline: 2004 }),
+    shelfEntry('parallel-last', 'Parallel Last Stop', { type: 'creator-run', timeline: 2012 }),
+  ],
+  paths: [
+    ...CATALOG.paths,
+    {
+      id: 'parallel-path',
+      name: 'Parallel Fixture Path',
+      description: 'A second fixture path that starts on the same shelf.',
+      sourceOrigin: 'Fixture',
+      steps: ['parallel-first', 'parallel-last'],
+    },
+  ],
+};
 const SELECTABLE_FIRST_STOP_CATALOG = {
   ...CATALOG,
   lists: CATALOG.lists.flatMap((list) => (
@@ -715,12 +733,21 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'first-stop-orientation-off',
+    id: 'first-stop-single-only',
     breaks: 'first-stop-orientation',
-    why: 'the catalog suppresses the visible first-stop guide, so the shelf loses its orientation sentence',
+    why: 'the catalog returns only the first visible path start, so another start on the same shelf is omitted',
     rewriteCatalog: (source) => source.replace(
-      '  return first ? select(first) ?? null : null;',
-      '  return null;',
+      '  return starts;',
+      '  return starts.slice(0, 1);',
+    ),
+  },
+  {
+    id: 'first-stop-hidden-marker-copy',
+    breaks: 'first-stop-orientation',
+    why: 'the sentence points to Start here wording that the compact card hides inside its disclosure',
+    rewriteMain: (source) => source.replace(
+      "      text: `${directions.join('; ')}.`,",
+      '      text: `Start with ${firstStops[0].guide.name}, marked Start here below.`,',
     ),
   },
   {
@@ -3893,7 +3920,8 @@ const SCENARIOS = [
     id: 'first-stop-orientation',
     title: 'the visible shelf names the selected guide at its first stop',
     async run(page, t) {
-      const text = 'Start with Browser Check Order, marked Start here below.';
+      const text = 'Start The Fixture Path with Browser Check Order.';
+      const multiple = 'Start The Fixture Path with Browser Check Order; start Parallel Fixture Path with Parallel First Stop.';
       const readOrientation = () => page.evaluate(() => {
         const orientation = document.querySelector('#catalog-results .shelf-orientation');
         const shelf = document.querySelector('#catalog-results .timeline-flow');
@@ -3916,7 +3944,7 @@ const SCENARIOS = [
         };
       });
 
-      await open(page, '/');
+      await open(page, '/?catalog=multiple-first-stops');
       await openBrowseCategory(page, 'timeline');
       await page.waitForSelector('#catalog-results .shelf-orientation', { timeout: 15000 });
 
@@ -3925,8 +3953,11 @@ const SCENARIOS = [
       await page.evaluate(() => document.documentElement.setAttribute('data-theme', 'dark'));
       const dark = await readOrientation();
       t.check('one sentence names the selected first-stop guide before the shelf',
-        light?.count === 1 && light.text === text && light.beforeShelf && !light.inCard,
+        light?.count === 1 && light.text === multiple && light.beforeShelf && !light.inCard,
         JSON.stringify(light));
+      t.check('the sentence points to the visible Start summaries rather than hidden detail wording',
+        light?.text.startsWith('Start The Fixture Path with ') && !light.text.includes('Start here'),
+        light?.text);
       t.check('the sentence stays visible in light and dark themes without entering keyboard order',
         light?.color && dark?.color && light.color !== dark.color && !light.focusable && !dark.focusable,
         JSON.stringify({ light, dark }));
@@ -3935,7 +3966,7 @@ const SCENARIOS = [
       await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
       const narrow = await readOrientation();
       t.check('the sentence stays inside the shelf at the narrow layout',
-        narrow?.text === text && narrow.inside && !narrow.overflow,
+        narrow?.text === multiple && narrow.inside && !narrow.overflow,
         JSON.stringify(narrow));
 
       await page.focus('#catalog-q');
@@ -3995,14 +4026,14 @@ const SCENARIOS = [
       await click(page, '#preview-close');
       await page.waitForFunction(() => (
         document.querySelector('#spotlights-results .shelf-orientation')?.textContent
-          === 'Start with Browser Check Order: Complete, marked Start here below.'
+          === 'Start The Fixture Path with Browser Check Order: Complete.'
       ));
       const selected = await page.$eval(
         '#spotlights-results .shelf-orientation',
         (orientation) => orientation.textContent.trim(),
       );
       t.check('changing the selected guide updates the sentence',
-        selected === 'Start with Browser Check Order: Complete, marked Start here below.',
+        selected === 'Start The Fixture Path with Browser Check Order: Complete.',
         selected);
     },
   },
@@ -6022,6 +6053,7 @@ async function preparePage(page, origin, mutation) {
     {
       publishing: PUBLISHING_CATALOG,
       empty: EMPTY_CATALOG,
+      'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG,
       actual: ACTUAL_CATALOG,
