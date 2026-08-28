@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
   "generatedAt": "2026-08-28T05:48:01.810Z",
-  "pairCount": 58,
-  "chapterCountWithOverlap": 47,
-  "existingListCount": 17,
-  "sharedOccurrenceCount": 309,
+  "pairCount": 67,
+  "chapterCountWithOverlap": 48,
+  "existingListCount": 19,
+  "sharedOccurrenceCount": 357,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "dbcfa7b40472f0ae9b62afa7830c9b0da5fdec179bd5b283efda11fa8f222c85",
+  "matrixSha256": "58e07909b06020d9e0f7fafcadb92303a06564776770a93f3bcf7e8f7337cdbb",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -29,6 +29,10 @@
       "sharedCount": 14
     },
     {
+      "id": "iron-man-reading-order",
+      "sharedCount": 6
+    },
+    {
       "id": "loki-reading-order",
       "sharedCount": 2
     },
@@ -39,6 +43,10 @@
     {
       "id": "marvels-best-phoenix-comics",
       "sharedCount": 9
+    },
+    {
+      "id": "modern-x-men-fast-track",
+      "sharedCount": 42
     },
     {
       "id": "punisher-reading-order",
@@ -132,6 +140,16 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-05",
+      "existingListId": "modern-x-men-fast-track",
+      "sharedCount": 3,
+      "sharedIssueIds": [
+        14933,
+        14934,
+        14935
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-05",
       "existingListId": "wolverine-reading-order",
       "sharedCount": 3,
       "sharedIssueIds": [
@@ -185,6 +203,20 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-12",
+      "existingListId": "modern-x-men-fast-track",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        18997,
+        14936,
+        14937,
+        14938,
+        14939,
+        14940,
+        14941
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-12",
       "existingListId": "wolverine-reading-order",
       "sharedCount": 6,
       "sharedIssueIds": [
@@ -218,6 +250,17 @@
         18960,
         18961,
         18962
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-15",
+      "existingListId": "modern-x-men-fast-track",
+      "sharedCount": 4,
+      "sharedIssueIds": [
+        14942,
+        14943,
+        14944,
+        14945
       ]
     },
     {
@@ -338,6 +381,15 @@
     },
     {
       "chapterId": "marvel-knights-to-planet-x-29",
+      "existingListId": "modern-x-men-fast-track",
+      "sharedCount": 2,
+      "sharedIssueIds": [
+        14946,
+        14947
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-29",
       "existingListId": "wolverine-reading-order",
       "sharedCount": 2,
       "sharedIssueIds": [
@@ -356,6 +408,18 @@
         14447,
         14448,
         14449
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-32",
+      "existingListId": "modern-x-men-fast-track",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        14948,
+        14949,
+        14950,
+        14951,
+        14952
       ]
     },
     {
@@ -422,6 +486,18 @@
       "sharedCount": 1,
       "sharedIssueIds": [
         12817
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-42",
+      "existingListId": "modern-x-men-fast-track",
+      "sharedCount": 5,
+      "sharedIssueIds": [
+        14953,
+        14954,
+        14955,
+        14956,
+        14957
       ]
     },
     {
@@ -666,6 +742,19 @@
       ]
     },
     {
+      "chapterId": "marvel-knights-to-planet-x-68",
+      "existingListId": "iron-man-reading-order",
+      "sharedCount": 6,
+      "sharedIssueIds": [
+        379,
+        350,
+        337,
+        335,
+        378,
+        407
+      ]
+    },
+    {
       "chapterId": "marvel-knights-to-planet-x-69",
       "existingListId": "daredevil-reading-order",
       "sharedCount": 5,
@@ -690,6 +779,20 @@
       "existingListId": "magneto-reading-order",
       "sharedCount": 4,
       "sharedIssueIds": [
+        14961,
+        14962,
+        14963,
+        14964
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-73",
+      "existingListId": "modern-x-men-fast-track",
+      "sharedCount": 7,
+      "sharedIssueIds": [
+        14958,
+        14959,
+        14960,
         14961,
         14962,
         14963,
@@ -764,6 +867,22 @@
     {
       "chapterId": "marvel-knights-to-planet-x-78",
       "existingListId": "marvels-best-phoenix-comics",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        14965,
+        125,
+        136,
+        124,
+        123,
+        122,
+        121,
+        120,
+        420
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-78",
+      "existingListId": "modern-x-men-fast-track",
       "sharedCount": 9,
       "sharedIssueIds": [
         14965,

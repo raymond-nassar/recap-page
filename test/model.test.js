@@ -1006,7 +1006,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // from main, and again the same day after the Amazing Spider-Man complete guide added 106
   // placeholders of its own. The Iron Man guide then added seven owner-confirmed issue ids that
   // the live metadata index does not list. The Abomination guide added two more empty responses,
-  // bringing the total to 78 across five affected orders. Written down as observations rather than
+  // bringing the total to 85 across six affected orders. Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
   //
@@ -1030,8 +1030,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // claiming a metadata match.
   assert.equal(claimed, 1892, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 1892, 'the bundled placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 78);
-  assert.equal(affected, 5);
+  assert.equal(empty, 85);
+  assert.equal(affected, 6);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1231,6 +1231,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
   // adds 23, and Nick Fury and S.H.I.E.L.D. adds 194.
-  assert.equal(refused.length, 1936);
+  assert.equal(refused.length, 1943);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

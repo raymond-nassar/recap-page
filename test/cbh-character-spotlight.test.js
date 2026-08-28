@@ -44,16 +44,131 @@ const xForceCandidateId = 'x-force-reading-order';
 const inhumansCandidateId = 'inhumans-reading-order';
 const youngAvengersCandidateId = 'young-avengers-reading-order';
 const runawaysCandidateId = 'runaways-reading-order';
+const publishedInventoryContracts = [
+  {
+    id: 'black-widow-reading-order',
+    name: 'Black Widow',
+    overlapCount: 29,
+    lifecycle: {
+      disposition: 'new-order',
+      reason: 'The frozen full-page guide now publishes 556 exact metadata rows and 14 explicit metadata gaps, preserving 773 source occurrences and 29 current-library relationships without an exact duplicate.',
+      catalogIds: ['black-widow-reading-order'],
+      deliveryStatus: 'shipped',
+      centralDisposition: 'pilot-approved',
+      metadataHorizonStatus: 'approved',
+    },
+    preserved: {
+      position: 12,
+      id: 'black-widow-reading-order',
+      title: 'Black Widow',
+      url: 'https://www.comicbookherald.com/black-widow-reading-order/',
+      guideType: 'character-run',
+      window: null,
+      sourceRetrievedAt: '2026-08-23',
+      labels: ['Black Widow'],
+      sourcePositions: [12],
+      duplicateFlags: [],
+      sourceContentSha256: 'd038b80551132f73436c6fe32608d1d7005c4319f9e94d536c9ffb3bd29f193e',
+      sourceBoundaryStatus: 'exact-page-snapshot',
+    },
+  },
+  {
+    id: 'fantastic-four-reading-order',
+    name: 'Fantastic Four',
+    overlapCount: 34,
+    lifecycle: {
+      disposition: 'new-order',
+      reason: 'The frozen full-page guide now publishes 815 exact metadata rows and 185 explicit metadata gaps, preserving 1,058 source occurrences and 34 current-library relationships without an exact duplicate.',
+      catalogIds: ['fantastic-four-reading-order'],
+      deliveryStatus: 'shipped',
+      centralDisposition: 'pilot-approved',
+      metadataHorizonStatus: 'approved',
+    },
+    preserved: {
+      position: 35,
+      id: 'fantastic-four-reading-order',
+      title: 'Fantastic Four',
+      url: 'https://www.comicbookherald.com/fantastic-four-reading-order/',
+      guideType: 'character-run',
+      window: null,
+      sourceRetrievedAt: '2026-08-27',
+      labels: ['Fantastic Four'],
+      sourcePositions: [35],
+      duplicateFlags: [],
+      sourceContentSha256: '2300d47b48b391d75c5ac32cd4502aa11c51ef7e6b083f37c7c662a7fed91080',
+      sourceBoundaryStatus: 'exact-page-snapshot',
+    },
+  },
+];
+const publishedLifecycleFields = [
+  'disposition',
+  'reason',
+  'overlapIds',
+  'catalogIds',
+  'deliveryStatus',
+  'centralDisposition',
+  'metadataHorizonStatus',
+];
+const issue239Queue = [
+  { priority: 1, name: 'Spider-Man (Peter Parker)', recordId: 'amazing-spider-man-reading-order-modern-marvel-era', catalogId: 'amazing-spider-man-reading-order-modern-marvel-era', outcome: 'authored' },
+  { priority: 2, name: 'Wolverine', recordId: 'wolverine-reading-order', catalogId: 'wolverine-reading-order', outcome: 'authored' },
+  { priority: 3, name: 'Iron Man', recordId: ironManCandidateId, catalogId: ironManCandidateId, outcome: 'authored' },
+  { priority: 4, name: 'Captain America', recordId: 'captain-america-reading-order-modern-marvel-era', catalogId: 'captain-america-reading-order-modern-marvel-era', outcome: 'authored' },
+  { priority: 5, name: 'Hulk', recordId: hulkCandidateId, catalogId: hulkCandidateId, outcome: 'authored' },
+  { priority: 6, name: 'Thor', recordId: 'thor-reading-order', catalogId: 'thor-best-of', outcome: 'reuse' },
+  { priority: 7, name: 'Deadpool', recordId: 'deadpool-reading-order', catalogId: 'deadpool-best-of', outcome: 'authored' },
+  { priority: 8, name: 'Black Panther', recordId: blackPantherCandidateId, catalogId: blackPantherCandidateId, outcome: 'authored' },
+  { priority: 9, name: 'Doctor Strange', recordId: doctorStrangeCandidateId, catalogId: doctorStrangeCandidateId, outcome: 'authored' },
+  { priority: 10, name: 'Daredevil', recordId: 'daredevil-reading-order', catalogId: 'daredevil-reading-order', outcome: 'authored' },
+  { priority: 11, name: 'Venom', recordId: venomCandidateId, catalogId: venomCandidateId, outcome: 'authored' },
+  { priority: 12, name: 'Scarlet Witch', recordId: 'scarlet-witch-reading-order', catalogId: 'scarlet-witch-best-of', outcome: 'reuse' },
+  { priority: 13, name: 'Captain Marvel (Carol Danvers)', recordId: captainMarvelCandidateId, catalogId: captainMarvelCandidateId, outcome: 'authored' },
+  { priority: 14, name: 'The Punisher', recordId: 'punisher-reading-order', catalogId: 'punisher-reading-order', outcome: 'authored' },
+  { priority: 15, name: 'Magneto', recordId: magnetoCandidateId, catalogId: magnetoCandidateId, outcome: 'authored' },
+  { priority: 16, name: 'Loki', recordId: 'loki-reading-order', catalogId: 'loki-reading-order', outcome: 'authored' },
+  { priority: 17, name: 'Jean Grey / Phoenix', recordId: 'marvels-best-phoenix-comics', catalogId: 'marvels-best-phoenix-comics', outcome: 'reuse' },
+  { priority: 18, name: 'Silver Surfer', recordId: 'silver-surfer-reading-order', catalogId: 'silver-surfer-reading-order', outcome: 'authored' },
+  { priority: 19, name: 'Black Widow', recordId: 'black-widow-reading-order', catalogId: 'black-widow-reading-order', outcome: 'authored' },
+  { priority: 20, name: 'Moon Knight', recordId: moonKnightCandidateId, catalogId: moonKnightCandidateId, outcome: 'authored' },
+  { priority: 21, name: 'Avengers', recordId: 'where-do-i-start-with-avengers-trade-collections', catalogId: 'essential-avengers', outcome: 'reuse' },
+  { priority: 22, name: 'X-Men', recordId: 'the-complete-x-men-reading-order-guide-modern-marvel-comics-era', catalogId: modernXMenCandidateId, outcome: 'reuse' },
+  { priority: 23, name: 'Fantastic Four', recordId: 'fantastic-four-reading-order', catalogId: 'fantastic-four-reading-order', outcome: 'authored' },
+  { priority: 24, name: 'Guardians of the Galaxy', recordId: guardiansCandidateId, catalogId: guardiansCandidateId, outcome: 'authored' },
+  { priority: 25, name: 'Defenders', recordId: 'the-defenders-reading-order', catalogId: 'the-defenders-reading-order', outcome: 'authored' },
+  { priority: 26, name: 'X-Force', recordId: xForceCandidateId, catalogId: xForceCandidateId, outcome: 'authored' },
+  { priority: 27, name: 'S.H.I.E.L.D.', recordId: 'omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d', catalogId: 'nick-fury-reading-order', outcome: 'authored' },
+  { priority: 28, name: 'Inhumans', recordId: inhumansCandidateId, catalogId: inhumansCandidateId, outcome: 'authored' },
+  { priority: 29, name: 'Young Avengers', recordId: youngAvengersCandidateId, catalogId: youngAvengersCandidateId, outcome: 'authored' },
+  { priority: 30, name: 'Runaways', recordId: runawaysCandidateId, catalogId: runawaysCandidateId, outcome: 'authored' },
+];
+const queueReconciliationSourceEvidence = {
+  'black-panther-reading-order': { sourcePositions: [11], sourceContentSha256: 'cce2736b94b0c45abfcd37c345b7c4af91ec5fbab07dc40bdf28f2a71d1bf2a1' },
+  'captain-marvel-ms-marvel-reading-order': { sourcePositions: [19, 77], sourceContentSha256: '7997c83ef09d9f503afe933dbc146b5e64b6826d0a7048e9907a68c164303ba1' },
+  'punisher-reading-order': { sourcePositions: [95], sourceContentSha256: '9fc9fda7924d7837bc1c300135b7dad3893b3714a3f5c7a576a3f18843516367' },
+  'silver-surfer-reading-order': { sourcePositions: [102], sourceContentSha256: 'b9fbb29d0a7fbb0ec7ac59cbdfa90f090e16ab940e1571345f8ec1fec1b5cfef' },
+  'venom-reading-order': { sourcePositions: [115], sourceContentSha256: '1678b4cbf69f9c97f05a6fcc85648bfc9e5ac98391b408cae462aaa23e5551b8' },
+  'thor-reading-order': { sourcePositions: [113], sourceContentSha256: 'fae87087c8271c5f9356764b575fdd07ebc4fabafa7aaf1125d6228faac8b74c' },
+  'scarlet-witch-reading-order': { sourcePositions: [98], sourceContentSha256: '8646874167ac4d06dbf74a332542b7ce9015e207eb4852dc590e99459339cf65' },
+  'marvels-best-phoenix-comics': { sourcePositions: [91], sourceContentSha256: '0a18e6ef50af78738221621b494c66a472417ad582a6109133a86b3271806b2c' },
+  'where-do-i-start-with-avengers-trade-collections': { sourcePositions: [8], sourceContentSha256: '2dac2ec563dc7c93c514b5906f49f6b0edd572e89dca3ee4b0c5a572c9178447' },
+  'the-complete-x-men-reading-order-guide-modern-marvel-comics-era': { sourcePositions: [125], sourceContentSha256: '550e66d9cdc61e4b0e83d9654d6ab52acc8bd61b5b8b6c1d7986ca5366a7c593' },
+};
 
 async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) {
   return buildCurrentReportForMapping(mappingPath, peerPaths, {
     ...options,
     excludedOrderIds: [
       ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
+      ironManCandidateId,
+      modernXMenCandidateId,
       guardiansCandidateId,
       youngAvengersCandidateId,
     ],
   });
+}
+
+function fieldsExcept(value, fields) {
+  return Object.fromEntries(Object.entries(value).filter(([key]) => !fields.includes(key)));
 }
 function issueRange(series, year, from, to) {
   return Array.from({ length: to - from + 1 }, (_, index) => `${series}|${year}|${from + index}`);
@@ -463,6 +578,8 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     'marvel-2099',
     'loki-reading-order',
     'silver-surfer-reading-order',
+    ironManCandidateId,
+    modernXMenCandidateId,
     moonKnightCandidateId,
     'the-defenders-reading-order',
     xForceCandidateId,
@@ -499,7 +616,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-nine spotlights, and prepares six', async () => {
+test('the character inventory preserves every central disposition, ships thirty-five spotlights, and records five approved reuses', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -510,10 +627,11 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 87);
+  assert.equal(dispositionCounts.deferred, 81);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 34);
+  assert.equal(dispositionCounts['pilot-approved'], 35);
+  assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -522,11 +640,15 @@ test('the character inventory preserves every central disposition, ships twenty-
     'agatha-harkness-reading-order',
     'amazing-spider-man-reading-order-modern-marvel-era',
     'ant-man-reading-order',
+    blackPantherCandidateId,
+    'black-widow-reading-order',
     'captain-america-reading-order-modern-marvel-era',
+    captainMarvelCandidateId,
     'daredevil-reading-order',
     'deadpool-reading-order',
     'the-defenders-reading-order',
     'doctor-strange-reading-order',
+    'fantastic-four-reading-order',
     grootCandidateId,
     guardiansCandidateId,
     hulkCandidateId,
@@ -537,11 +659,13 @@ test('the character inventory preserves every central disposition, ships twenty-
     moonKnightCandidateId,
     'omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d',
     'phalanx-reading-order',
-    'marvels-best-phoenix-comics',
+    'punisher-reading-order',
     'rocket-raccoon-reading-order',
     'runaways-reading-order',
+    'silver-surfer-reading-order',
     starLordInventoryId,
     'the-complete-thanos-reading-order-guide',
+    venomCandidateId,
     'white-tiger-ava-ayala',
     'wolverine-reading-order',
     xForceCandidateId,
@@ -549,19 +673,19 @@ test('the character inventory preserves every central disposition, ships twenty-
   ]);
   const ready = inventory.find((record) => record.id === 'black-panther-reading-order');
   assert.equal(ready?.centralDisposition, 'pilot-approved');
-  assert.equal(ready?.deliveryStatus, 'ready');
+  assert.equal(ready?.deliveryStatus, 'shipped');
   const punisher = inventory.find((record) => record.id === 'punisher-reading-order');
   assert.equal(punisher?.centralDisposition, 'pilot-approved');
-  assert.equal(punisher?.deliveryStatus, 'ready');
+  assert.equal(punisher?.deliveryStatus, 'shipped');
   const venom = inventory.find((record) => record.id === venomCandidateId);
   assert.equal(venom?.centralDisposition, 'pilot-approved');
-  assert.equal(venom?.deliveryStatus, 'ready');
+  assert.equal(venom?.deliveryStatus, 'shipped');
   const magneto = inventory.find((record) => record.id === magnetoCandidateId);
   assert.equal(magneto?.centralDisposition, 'pilot-approved');
   assert.equal(magneto?.deliveryStatus, 'shipped');
   const silverSurfer = inventory.find((record) => record.id === 'silver-surfer-reading-order');
   assert.equal(silverSurfer?.centralDisposition, 'pilot-approved');
-  assert.equal(silverSurfer?.deliveryStatus, 'ready');
+  assert.equal(silverSurfer?.deliveryStatus, 'shipped');
   const inhumans = inventory.find((record) => record.id === inhumansCandidateId);
   assert.equal(inhumans?.centralDisposition, 'pilot-approved');
   assert.equal(inhumans?.deliveryStatus, 'shipped');
@@ -626,11 +750,16 @@ test('the character inventory preserves every central disposition, ships twenty-
     'infinity-countdown-wars',
     'war-of-kings',
   ]);
+  const reusedById = new Map(
+    inventory
+      .filter((record) => record.centralDisposition === 'reuse-existing')
+      .map((record) => [record.id, record]),
+  );
   assert.deepEqual(
-    shippedById.get('marvels-best-phoenix-comics').catalogIds,
+    reusedById.get('marvels-best-phoenix-comics').catalogIds,
     ['marvels-best-phoenix-comics'],
   );
-  assert.deepEqual(shippedById.get('marvels-best-phoenix-comics').overlapIds, ['thanos-reading-order']);
+  assert.deepEqual(reusedById.get('marvels-best-phoenix-comics').overlapIds, ['thanos-reading-order']);
   assert.deepEqual(shippedById.get(cosmicCandidateId).catalogIds, [cosmicCandidateId]);
   assert.deepEqual(shippedById.get(cosmicCandidateId).overlapIds, [
     'groot-reading-order',
@@ -647,6 +776,100 @@ test('the character inventory preserves every central disposition, ships twenty-
     'hickman-full',
     'x-men-regenesis',
   ]);
+});
+
+for (const contract of publishedInventoryContracts) {
+  test(`${contract.name} inventory lifecycle matches its accepted complete-library report`, async () => {
+    const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+    const report = await readJson(`scripts/data/cbh-overlaps/${contract.id}.json`);
+    const record = inventory.find((candidate) => candidate.id === contract.id);
+    const expectedOverlapIds = report.comparisons
+      .filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => comparison.orderId);
+
+    assert.ok(record);
+    assert.deepEqual(
+      Object.fromEntries(publishedLifecycleFields.map((field) => [field, record[field]])),
+      { ...contract.lifecycle, overlapIds: expectedOverlapIds },
+    );
+    assert.equal(expectedOverlapIds.length, contract.overlapCount);
+    assert.deepEqual(fieldsExcept(record, publishedLifecycleFields), contract.preserved);
+  });
+}
+
+test('every inventory catalog id resolves to a unique current catalog and manifest entry', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const manifestIds = manifest.lists.map((entry) => entry.id);
+  const catalogIds = catalog.lists.map((entry) => entry.id);
+  const ironMan = inventory.find((record) => record.id === ironManCandidateId);
+
+  assert.equal(new Set(manifestIds).size, manifestIds.length);
+  assert.equal(new Set(catalogIds).size, catalogIds.length);
+  for (const record of inventory) {
+    for (const catalogId of record.catalogIds) {
+      assert.ok(manifestIds.includes(catalogId), `${record.id} has a dangling manifest id ${catalogId}`);
+      assert.ok(catalogIds.includes(catalogId), `${record.id} has a dangling catalog id ${catalogId}`);
+    }
+  }
+  assert.ok(ironMan);
+  assert.deepEqual(ironMan.catalogIds, [ironManCandidateId]);
+  assert.notEqual(ironMan.catalogIds[0], 'iron-man-2020');
+  assert.equal(manifestIds.filter((id) => id === ironManCandidateId).length, 1);
+  assert.equal(catalogIds.filter((id) => id === ironManCandidateId).length, 1);
+});
+
+test('the Issue 239 queue has twenty-five authored guides and five owner-approved reuses', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const inventoryById = new Map(inventory.map((record) => [record.id, record]));
+  const authored = issue239Queue.filter((entry) => entry.outcome === 'authored');
+  const reused = issue239Queue.filter((entry) => entry.outcome === 'reuse');
+
+  assert.deepEqual(issue239Queue.map((entry) => entry.priority), Array.from({ length: 30 }, (_, index) => index + 1));
+  assert.equal(new Set(issue239Queue.map((entry) => entry.recordId)).size, 30);
+  assert.equal(authored.length, 25);
+  assert.equal(reused.length, 5);
+
+  for (const entry of issue239Queue) {
+    const record = inventoryById.get(entry.recordId);
+    const manifestEntries = manifest.lists.filter((candidate) => candidate.id === entry.catalogId);
+    const catalogEntries = catalog.lists.filter((candidate) => candidate.id === entry.catalogId);
+    const expectedLifecycle = entry.outcome === 'authored'
+      ? ['new-order', 'shipped', 'pilot-approved', 'approved']
+      : ['reuse-existing', 'not-applicable', 'reuse-existing', 'approved'];
+
+    assert.ok(record, `${entry.name} must retain its queue inventory record`);
+    assert.deepEqual(record.catalogIds, [entry.catalogId]);
+    assert.deepEqual(
+      [record.disposition, record.deliveryStatus, record.centralDisposition, record.metadataHorizonStatus],
+      expectedLifecycle,
+    );
+    assert.equal(manifestEntries.length, 1, `${entry.name} must have one canonical manifest entry`);
+    assert.equal(catalogEntries.length, 1, `${entry.name} must have one canonical catalog entry`);
+    assert.equal(manifestEntries[0].out, catalogEntries[0].file);
+    const payload = await readJson(`src/data/${manifestEntries[0].out}`);
+    assert.equal(payload.id, entry.catalogId);
+    assert.equal(payload.count, manifestEntries[0].expect);
+    assert.equal(payload.count, catalogEntries[0].count);
+  }
+
+  for (const [id, evidence] of Object.entries(queueReconciliationSourceEvidence)) {
+    const record = inventoryById.get(id);
+    assert.ok(record);
+    assert.deepEqual(record.sourcePositions, evidence.sourcePositions);
+    assert.equal(record.sourceContentSha256, evidence.sourceContentSha256);
+    assert.equal(record.sourceBoundaryStatus, 'exact-page-snapshot');
+  }
+
+  const claremont = inventoryById.get('chris-claremont-era-x-men-reading-order-guide');
+  assert.ok(claremont);
+  assert.deepEqual(
+    [claremont.disposition, claremont.catalogIds, claremont.deliveryStatus, claremont.centralDisposition],
+    ['deferred', [], 'not-applicable', 'deferred'],
+  );
 });
 
 test('Daredevil publishes the audited full-page guide without hiding provider gaps', async () => {
@@ -943,7 +1166,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 13);
+  assert.equal(report.comparisonCount, manifest.lists.length - 15);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -987,7 +1210,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
     () => validateFrozenPacket(duplicateCanonicalPosition),
     /source position .* is used more than once/i,
   );
-  assert.equal(inventoryRecord?.deliveryStatus, 'ready');
+  assert.equal(inventoryRecord?.deliveryStatus, 'shipped');
   assert.equal(inventoryRecord?.centralDisposition, 'pilot-approved');
   assert.match(markdown, /^## Punisher: Back to the War Omnibus$/m);
   assert.match(markdown, /^## Punisher War Journal by Carl Potts & Jim Lee$/m);
@@ -1400,6 +1623,8 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   const expectedOrderIds = manifest.lists
     .map((entry) => entry.id)
     .filter((id) => id !== 'silver-surfer-reading-order'
+     && id !== ironManCandidateId
+     && id !== modernXMenCandidateId
      && id !== moonKnightCandidateId
      && id !== guardiansCandidateId
      && id !== 'the-defenders-reading-order'
@@ -1414,6 +1639,8 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
     manifest,
     [
       'silver-surfer-reading-order',
+      ironManCandidateId,
+      modernXMenCandidateId,
       moonKnightCandidateId,
       'the-defenders-reading-order',
       xForceCandidateId,
@@ -1465,7 +1692,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
     )));
   }
   assert.equal(record?.centralDisposition, 'pilot-approved');
-  assert.equal(record?.deliveryStatus, 'ready');
+  assert.equal(record?.deliveryStatus, 'shipped');
   assert.equal(manifestEntry?.expect, 298);
   assert.equal(catalogEntry?.count, 298);
   assert.equal(generated.count, 298);
@@ -1523,7 +1750,7 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   );
 
   assert.equal(record.centralDisposition, 'pilot-approved');
-  assert.equal(record.deliveryStatus, 'ready');
+  assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.metadataHorizonStatus, 'approved');
   assert.deepEqual(record.catalogIds, [captainMarvelCandidateId]);
   assert.match(
@@ -1655,6 +1882,7 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   assert.equal(record.centralDisposition, 'pilot-approved');
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.metadataHorizonStatus, 'approved');
+  assert.deepEqual(record.catalogIds, [ironManCandidateId]);
   assert.match(record.reason, /815-occurrence source boundary reduces to 811 distinct issues/i);
   for (const required of [
     'Tony Stark: Iron Man (2018) #15/#16',
@@ -1664,8 +1892,26 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   ]) {
     assert.match(record.reason, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   }
-  assert.equal(manifest.lists.some((entry) => entry.id === 'iron-man-2020'), true);
-  assert.equal(catalog.lists.some((entry) => entry.id === 'iron-man-2020'), true);
+  const manifestEntry = manifest.lists.find((entry) => entry.id === ironManCandidateId);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === ironManCandidateId);
+  const ironMan2020ManifestEntry = manifest.lists.find((entry) => entry.id === 'iron-man-2020');
+  const ironMan2020CatalogEntry = catalog.lists.find((entry) => entry.id === 'iron-man-2020');
+  assert.ok(manifestEntry);
+  assert.ok(catalogEntry);
+  assert.ok(ironMan2020ManifestEntry);
+  assert.ok(ironMan2020CatalogEntry);
+  assert.equal(manifestEntry.out, 'iron_man_reading_order.json');
+  assert.equal(manifestEntry.expect, 811);
+  assert.equal(manifestEntry.type, 'character-run');
+  assert.equal(manifestEntry.spotlightKind, 'complete-guide');
+  assert.equal(catalogEntry.file, 'iron_man_reading_order.json');
+  assert.equal(catalogEntry.count, 811);
+  assert.equal(catalogEntry.type, 'character-run');
+  assert.equal(catalogEntry.spotlightKind, 'complete-guide');
+  assert.equal(ironMan2020ManifestEntry.out, 'iron_man_2020.json');
+  assert.equal(ironMan2020ManifestEntry.expect, 18);
+  assert.equal(ironMan2020CatalogEntry.file, 'iron_man_2020.json');
+  assert.equal(ironMan2020CatalogEntry.count, 18);
   for (const relativePath of [
     `scripts/data/cbh-packets/${ironManCandidateId}.json`,
     `scripts/data/cbh-mappings/${ironManCandidateId}.json`,
@@ -1748,11 +1994,8 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-
-  const catalogEntry = catalog.lists.find((entry) => entry.id === 'iron-man-2020');
-  assert.equal(catalogEntry.count, 18);
-  assert.equal(catalogEntry.type, 'event');
-  assert.equal(catalogEntry.depth, 'complete');
+  assert.equal(generated.count, 811);
+  assert.equal(generated.items.length, 811);
 });
 
 test('Hulk preserves all reviewed source positions and distinguishes provider gaps from parser markers', async () => {
@@ -2005,6 +2248,8 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
   const parsed = parseChecklist(markdown);
   const reviewedLibraryDigest = await libraryDigestForScope(manifest, [
     'the-defenders-reading-order',
+    ironManCandidateId,
+    modernXMenCandidateId,
     moonKnightCandidateId,
     xForceCandidateId,
     'nick-fury-reading-order',
@@ -2467,21 +2712,23 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   );
   const starLordIndex = manifest.lists.findIndex((entry) => entry.id === starLordCandidateId);
   assert.equal(manifest.lists[starLordIndex - 1].id, grootCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 1].id, 'thanos-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 2].id, 'ant-man-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 3].id, 'wolverine-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 4].id, hulkCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 5].id, doctorStrangeCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 6].id, 'black-widow-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 7].id, 'daredevil-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 8].id, venomCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 9].id, magnetoCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 10].id, 'loki-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 11].id, moonKnightCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 12].id, guardiansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 13].id, inhumansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 14].id, youngAvengersCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 15].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 1].id, ironManCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 2].id, modernXMenCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 3].id, 'thanos-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 4].id, 'ant-man-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 5].id, 'wolverine-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 6].id, hulkCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 7].id, doctorStrangeCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 8].id, 'black-widow-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 9].id, 'daredevil-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 10].id, venomCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 11].id, magnetoCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 12].id, 'loki-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 13].id, moonKnightCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 14].id, guardiansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 15].id, inhumansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 16].id, youngAvengersCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 17].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -2679,8 +2926,20 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
 
   const manifestEntry = manifest.lists.find((entry) => entry.id === modernXMenCandidateId);
   const catalogEntry = catalog.lists.find((entry) => entry.id === modernXMenCandidateId);
-  assert.equal(manifestEntry, undefined);
-  assert.equal(catalogEntry, undefined);
+  assert.ok(manifestEntry);
+  assert.ok(catalogEntry);
+  assert.equal(manifest.lists.filter((entry) => entry.id === modernXMenCandidateId).length, 1);
+  assert.equal(catalog.lists.filter((entry) => entry.id === modernXMenCandidateId).length, 1);
+  assert.equal(manifestEntry.out, 'modern_x_men_fast_track.json');
+  assert.equal(manifestEntry.expect, 278);
+  assert.equal(manifestEntry.type, 'character-run');
+  assert.equal(manifestEntry.depth, 'selected');
+  assert.equal(manifestEntry.spotlightKind, 'other');
+  assert.equal(catalogEntry.file, 'modern_x_men_fast_track.json');
+  assert.equal(catalogEntry.count, 278);
+  assert.equal(catalogEntry.type, 'character-run');
+  assert.equal(catalogEntry.depth, 'selected');
+  assert.equal(catalogEntry.spotlightKind, 'other');
   assert.deepEqual(
     parsed.entries.map((entry) => String(entry.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
@@ -2689,7 +2948,11 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
     generated.items.map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  assert.equal(manifest.lists.findIndex((entry) => entry.id === modernXMenCandidateId), -1);
+  assert.equal(generated.count, 278);
+  assert.equal(generated.items.length, 278);
+  const modernXMenIndex = manifest.lists.findIndex((entry) => entry.id === modernXMenCandidateId);
+  assert.equal(manifest.lists[modernXMenIndex - 1].id, ironManCandidateId);
+  assert.equal(manifest.lists[modernXMenIndex + 1].id, 'thanos-reading-order');
 });
 
 test('the first character batch stays exact through evidence, catalog, and generated data', async () => {
@@ -2776,10 +3039,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 248);
+  assert.equal(catalog.lists.length, 250);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 43);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 42);
+  assert.equal(characterRuns.length, 45);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 44);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -2796,7 +3059,7 @@ test('Venom preserves every source occurrence through its published guide', asyn
   const reviewedLibraryDigest = report.libraryDigest;
 
   assert.equal(record?.centralDisposition, 'pilot-approved');
-  assert.equal(record?.deliveryStatus, 'ready');
+  assert.equal(record?.deliveryStatus, 'shipped');
   assert.equal(record?.metadataHorizonStatus, 'approved');
   assert.match(record?.reason ?? '', /610 exact provider-resolved comics/i);
   assert.match(record?.reason ?? '', /33 explicit open metadata gaps/i);
@@ -3027,7 +3290,7 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   assert.equal(mapping.candidateMetadata.length, 262);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
   assert.equal(report.candidateCount, 262);
-  assert.equal(report.comparisonCount, manifest.lists.length - 6);
+  assert.equal(report.comparisonCount, manifest.lists.length - 8);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')

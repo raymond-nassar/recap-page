@@ -43,6 +43,7 @@ const CHARACTER_DISPOSITIONS = new Set([
   'excluded',
   'blocked',
   'pilot-approved',
+  'reuse-existing',
 ]);
 const CHARACTER_BOUNDARY_STATUSES = new Set(['exact-page-snapshot']);
 const CHARACTER_HORIZON_STATUSES = new Set([
@@ -931,7 +932,10 @@ export function validateFrozenPacket(packet, {
     if (inventorySourceUrl !== packet.sourceUrl) {
       throw new Error(`${packet.id} source URL differs from inventory record ${packet.inventoryId}`);
     }
-    if (['blocked', 'not-applicable'].includes(inventoryRecord.deliveryStatus)) {
+    const retainedPublishedReuse = inventoryRecord.disposition === 'reuse-existing'
+      && inventoryRecord.catalogIds?.includes(packet.id);
+    if (['blocked', 'not-applicable'].includes(inventoryRecord.deliveryStatus)
+      && !retainedPublishedReuse) {
       throw new Error(`${packet.id} inventory record is not eligible for preparation`);
     }
   }
@@ -1242,6 +1246,7 @@ function validateCharacterInventoryRecord(record) {
     excluded: ['excluded', 'not-applicable', 'blocked-exact-resolution-not-run'],
     blocked: ['deferred', 'blocked', 'blocked-confirmed-post-horizon'],
     'pilot-approved': ['new-order', ['ready', 'shipped'], 'approved'],
+    'reuse-existing': ['reuse-existing', 'not-applicable', 'approved'],
   }[record.centralDisposition];
   const actualState = [record.disposition, record.deliveryStatus, record.metadataHorizonStatus];
   if (actualState.some((value, index) => (
