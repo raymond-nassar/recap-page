@@ -27,6 +27,7 @@ test('the shipped spotlight stories resolve the owner-supplied Top 30 ranks exac
   const expected = new Map([
     ['The Best of Spider-Man', 1],
     ['Wolverine', 2],
+    ['Iron Man', 3],
     ['The Best of Captain America', 4],
     ['The Best of Thor', 6],
     ['Black Panther', 8],
@@ -64,6 +65,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
   assert.deepEqual(sorted, [
     'The Best of Spider-Man',
     'Wolverine',
+    'Iron Man',
     'The Best of Captain America',
     'The Best of Thor',
     'Black Panther',
@@ -96,6 +98,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'The Defenders',
     'Groot',
     'Star-Lord',
+    'Modern X-Men Fast Track',
     'Thanos',
     'Ant-Man',
     'Hulk (and She-Hulk, Red Hulk)',
