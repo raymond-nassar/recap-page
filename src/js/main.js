@@ -124,37 +124,15 @@ export function dispatchStorageEvent(
   } = {},
 ) {
   if (event.key === STATE_KEY) {
-    if (foreignStateSanitation?.coveredUntilRaw) {
-      let currentRaw;
-      try {
-        currentRaw = readerStore.storage?.getItem(STATE_KEY);
-      } catch (err) {
-        foreignStateSanitation = null;
-        notify('#save-report', `Could not read saved data for cleanup (${err.message}).`, 'error');
-        return;
-      }
-      if (currentRaw === foreignStateSanitation?.durableRaw) {
-        if (event.newValue === foreignStateSanitation.coveredUntilRaw) {
-          foreignStateSanitation.coveredUntilRaw = null;
-        }
-        return;
-      }
-      foreignStateSanitation = null;
-    }
-    const cleanup = sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+    const sanitizeCurrent = () => sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
       adoptCurrent: true,
       onFailure: (error) => notify('#save-report', error, 'error'),
-      onSanitized: ({ sourceRaw, durableRaw }) => {
-        foreignStateSanitation = {
-          sourceRaw,
-          durableRaw,
-          coveredUntilRaw: sourceRaw === event.newValue ? null : sourceRaw,
-        };
-      },
-      queuedAfter: foreignStateSanitation,
     });
-    if (!cleanup.needed) {
-      foreignStateSanitation = null;
+    if (readerStore === store) {
+      clearTimeout(foreignStateSanitationTimer);
+      foreignStateSanitationTimer = setTimeout(sanitizeCurrent, 50);
+    } else {
+      sanitizeCurrent();
     }
     return;
   }
@@ -169,6 +147,8 @@ export function dispatchStorageEvent(
     renderEducation();
   }
 }
+
+let foreignStateSanitationTimer = null;
 
 globalThis.addEventListener?.('storage', dispatchStorageEvent);
 
@@ -875,34 +855,12 @@ function verifySavedStateSanitation(storage, onFailure) {
   return Boolean(clean);
 }
 
-function mergeLaterStateChanges(base, current, incoming) {
-  if (JSON.stringify(base) === JSON.stringify(current)) return incoming;
-  const records = [base, current, incoming].every((value) => (
-    value && typeof value === 'object' && !Array.isArray(value)
-  ));
-  if (!records) return structuredClone(current);
-
-  const merged = { ...incoming };
-  for (const key of new Set([...Object.keys(base), ...Object.keys(current)])) {
-    if (!Object.prototype.hasOwnProperty.call(current, key)) {
-      delete merged[key];
-    } else if (!Object.prototype.hasOwnProperty.call(base, key)) {
-      merged[key] = structuredClone(current[key]);
-    } else {
-      merged[key] = mergeLaterStateChanges(base[key], current[key], incoming?.[key]);
-    }
-  }
-  return merged;
-}
-
 export function sanitizeStoredIssueDescriptions(
   readerStore,
   sourceRaw,
   {
     adoptCurrent = false,
     onFailure = () => {},
-    onSanitized = () => {},
-    queuedAfter = null,
     retryConflict = true,
   } = {},
 ) {
@@ -917,14 +875,7 @@ export function sanitizeStoredIssueDescriptions(
       return { needed: rawCarriesIssueDescriptions(sourceRaw), cleared: false };
     }
   }
-  const queuedSource = queuedAfter
-    && !queuedAfter.coveredUntilRaw
-    && queuedAfter.sourceRaw !== sourceRaw
-    && rawCarriesIssueDescriptions(sourceRaw)
-    ? sourceRaw
-    : null;
-  const candidateRaw = queuedSource ?? currentRaw;
-  const needed = rawCarriesIssueDescriptions(candidateRaw);
+  const needed = rawCarriesIssueDescriptions(currentRaw);
   if (!needed) {
     if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(currentRaw);
     return { needed: false, cleared: true };
@@ -932,14 +883,7 @@ export function sanitizeStoredIssueDescriptions(
 
   const sanitizer = new Store({ storage: readerStore.storage });
   try {
-    sanitizer.state = migrate(JSON.parse(candidateRaw));
-    if (queuedSource && queuedAfter.durableRaw !== currentRaw) {
-      sanitizer.state = mergeLaterStateChanges(
-        migrate(JSON.parse(queuedAfter.durableRaw)),
-        migrate(JSON.parse(currentRaw)),
-        sanitizer.state,
-      );
-    }
+    sanitizer.state = migrate(JSON.parse(currentRaw));
   } catch (err) {
     onFailure(`Saved issue summaries written by an older tab could not be read safely (${err.message}).`);
     return { needed: true, cleared: false };
@@ -950,7 +894,6 @@ export function sanitizeStoredIssueDescriptions(
       return sanitizeStoredIssueDescriptions(readerStore, sourceRaw, {
         adoptCurrent,
         onFailure,
-        queuedAfter: null,
         retryConflict: false,
       });
     }
@@ -975,13 +918,10 @@ export function sanitizeStoredIssueDescriptions(
     }
   }
   if (result.cleared) {
-    onSanitized({ sourceRaw: candidateRaw, durableRaw });
     if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(durableRaw);
   }
   return result;
 }
-
-let foreignStateSanitation = null;
 
 function reportBlockedLegacyCleanup({ activeCleared }) {
   notify(

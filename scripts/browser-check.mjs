@@ -511,7 +511,7 @@ const MUTATIONS = [
     breaks: 'cache-generations',
     why: 'a current tab adopts saved-state prose from an old writer without removing it again',
     rewriteMain: (source) => source.replace(
-      '  const needed = rawCarriesIssueDescriptions(candidateRaw);',
+      '  const needed = rawCarriesIssueDescriptions(currentRaw);',
       '  const needed = false;',
     ),
   },
@@ -4405,14 +4405,25 @@ const SCENARIOS = [
           listOrder: [],
           active: null,
         }));
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 9: { issueId: 9, title: 'Nine', description: 'Final legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
       });
       const savedStateStripped = await page.waitForFunction(() => {
         const raw = localStorage.getItem('mrt.state.v2');
         if (!raw) return false;
         const issues = JSON.parse(raw).issues ?? {};
         return !('7' in issues)
-          && issues['8']?.title === 'Eight'
-          && !Object.prototype.hasOwnProperty.call(issues['8'], 'description');
+          && !('8' in issues)
+          && issues['9']?.title === 'Nine'
+          && !Object.prototype.hasOwnProperty.call(issues['9'], 'description');
       }, { polling: 100, timeout: 15000 }).then(() => true, () => false);
       t.check('queued legacy writes sanitize the newest saved state without rolling it back',
         savedStateStripped, await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
