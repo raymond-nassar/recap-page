@@ -1,7 +1,7 @@
 {
   "id": "guardians-of-the-galaxy-reading-order",
   "inventoryId": "guardians-of-the-galaxy-reading-order",
-  "packetDigest": "c3f4794b701c2e2bdab727bba9ebc7a73bf3becab5a0b2ed8fdf55f11092a4d5",
+  "packetDigest": "2d752bbe858973504f1f9a024af6af69b8b7c7f02047eb05ee7242b793974978",
   "sourceUrl": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceProvider": "comic-book-herald",
@@ -746,7 +746,7 @@
           "retrievedAt": "2026-08-27"
         }
       ],
-      "evidenceDigest": "d3cc5b04c998873e637c7c80f3dd4c34c12b27e8c21a428be16618a6e98d41ba"
+      "evidenceDigest": "8423ada82bafaa43f9b6d51a7c4a3eab0c9ee0bcd7cec5bdf84305b747a70f12"
     },
     {
       "sourcePosition": 118,
@@ -777,7 +777,7 @@
           "retrievedAt": "2026-08-27"
         }
       ],
-      "evidenceDigest": "c49ea07a56daf918511f8c00e082e18a8c9ed721327a5366952a5852e47b1faa"
+      "evidenceDigest": "b7923d3762ba03b68dca9996652be65bbafb76bc91502db9ea19cf4759face0a"
     },
     {
       "sourcePosition": 146,
@@ -808,7 +808,7 @@
           "retrievedAt": "2026-08-27"
         }
       ],
-      "evidenceDigest": "580d072712de219f0a671a2734a9d552c4c34e57833380137ff64260f9ea86b8"
+      "evidenceDigest": "89eedeca7f74ab770f0137435be13eafc7f554466d9e235dddad8fe02c296649"
     },
     {
       "sourcePosition": 148,
@@ -1073,7 +1073,7 @@
           "retrievedAt": "2026-08-27"
         }
       ],
-      "evidenceDigest": "add0eb5927c0ff5672dc3c15b02b942b43a616a97395de28baec441e23d5e4cb"
+      "evidenceDigest": "ecad198778dc0ff16656ef9c84efaa0fb0d070dc3288ad6f634042b7bba9ee0a"
     },
     {
       "sourcePosition": 271,
@@ -1104,7 +1104,7 @@
           "retrievedAt": "2026-08-27"
         }
       ],
-      "evidenceDigest": "46bd897f144fd64992f044f65b8a643c5d3d53ba2de52ca995df9929ab7f00f0"
+      "evidenceDigest": "b494d1382f10a7ab7614a77bd9eaeefd5d0b64ea2f082ea8703ed093ad662994"
     },
     {
       "sourcePosition": 290,
@@ -11534,7 +11534,7 @@
       "note": "Catalog, direct series, paginated series issue, and direct issue identities agree."
     }
   ],
-  "mappingDigest": "3ed4a8d6a1f72f962eae02b1242f4753f106731c751b76b1ea63305b888837de",
+  "mappingDigest": "387d8761858022382dd2b2af61313cf1d3eff26223aaa7c7115ab0c21c4eb538",
   "packetReview": "Independent Guardians material review completed 2026-08-27.",
   "approvedManifest": {
     "id": "guardians-of-the-galaxy-reading-order",
@@ -11577,10 +11577,10 @@
     "authorityIdentity": "independent Guardians material review",
     "rationale": "Independent material review accepted the cache-only mapping, all 29 explicit source gaps, and the scope-aware full-library overlap report.",
     "reviewedAt": "2026-08-27T18:40:00Z",
-    "reportDigest": "f9b6a3634af44af33c7c82bdf7addae13683d14b67a8655d4b6467d86ff63ad4",
-    "packetDigest": "c3f4794b701c2e2bdab727bba9ebc7a73bf3becab5a0b2ed8fdf55f11092a4d5",
-    "mappingDigest": "3ed4a8d6a1f72f962eae02b1242f4753f106731c751b76b1ea63305b888837de",
-    "libraryDigest": "41d8bb4ad8c03b7ebe1e78c6fd503645fced2e8139ec6f34254bed4ed40ad58f",
+    "reportDigest": "815e68f5ae354e634a70a1756cbb4e3f758db44e0bc870cc211eb4a4a22eedbd",
+    "packetDigest": "2d752bbe858973504f1f9a024af6af69b8b7c7f02047eb05ee7242b793974978",
+    "mappingDigest": "387d8761858022382dd2b2af61313cf1d3eff26223aaa7c7115ab0c21c4eb538",
+    "libraryDigest": "4a9ea21acf4af9a7091b23e9a4ad69920e39bb4e782ffabaef7287c7578107ba",
     "peerDigests": {},
     "dispositions": [
       {
@@ -11734,6 +11734,15 @@
         "authorityType": "policy",
         "authorityIdentity": "full-library none-overlap policy",
         "rationale": "No shared provider issue id exists.",
+        "reviewedAt": "2026-08-27T18:40:00Z"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "independent Guardians material review",
+        "rationale": "The source is a distinct full Guardians team guide; this overlap is contextual and does not duplicate the candidate sequence.",
         "reviewedAt": "2026-08-27T18:40:00Z"
       },
       {
@@ -12013,6 +12022,15 @@
         "authorityType": "policy",
         "authorityIdentity": "full-library none-overlap policy",
         "rationale": "No shared provider issue id exists.",
+        "reviewedAt": "2026-08-27T18:40:00Z"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "independent Guardians material review",
+        "rationale": "The source is a distinct full Guardians team guide; this overlap is contextual and does not duplicate the candidate sequence.",
         "reviewedAt": "2026-08-27T18:40:00Z"
       },
       {
@@ -12349,6 +12367,15 @@
         "reviewedAt": "2026-08-27T18:40:00Z"
       },
       {
+        "orderId": "moon-knight-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue id exists.",
+        "reviewedAt": "2026-08-27T18:40:00Z"
+      },
+      {
         "orderId": "muir-island-saga",
         "relationship": "none",
         "decision": "approved",
@@ -12607,6 +12634,15 @@
         "authorityType": "policy",
         "authorityIdentity": "full-library none-overlap policy",
         "rationale": "No shared provider issue id exists.",
+        "reviewedAt": "2026-08-27T18:40:00Z"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "independent Guardians material review",
+        "rationale": "The source is a distinct full Guardians team guide; this overlap is contextual and does not duplicate the candidate sequence.",
         "reviewedAt": "2026-08-27T18:40:00Z"
       },
       {
@@ -13015,6 +13051,6 @@
         "reviewedAt": "2026-08-27T18:40:00Z"
       }
     ],
-    "approvalDigest": "0f7774b2df470d5c24cb0d79674aa42ee630ae3f118a6db0cb2691a43ef76fc6"
+    "approvalDigest": "656eb1fb9b8349163bda88065e2fa85d201279922e55baf6abcd186fece2c63b"
   }
 }

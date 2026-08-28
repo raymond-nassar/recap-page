@@ -16,7 +16,8 @@ import {
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping as buildCurrentReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
@@ -38,6 +39,17 @@ const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics
 const modernXMenCandidateId = 'modern-x-men-fast-track';
 const venomCandidateId = 'venom-reading-order';
 const moonKnightCandidateId = 'moon-knight-reading-order';
+const guardiansCandidateId = 'guardians-of-the-galaxy-reading-order';
+
+async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) {
+  return buildCurrentReportForMapping(mappingPath, peerPaths, {
+    ...options,
+    excludedOrderIds: [
+      ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
+      guardiansCandidateId,
+    ],
+  });
+}
 function issueRange(series, year, from, to) {
   return Array.from({ length: to - from + 1 }, (_, index) => `${series}|${year}|${from + index}`);
 }
@@ -424,7 +436,7 @@ async function readJson(relativePath) {
 }
 
 async function libraryDigestForScope(manifest, excludedIds) {
-  const excluded = new Set(excludedIds);
+  const excluded = new Set([...excludedIds, guardiansCandidateId]);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -474,7 +486,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-two spotlights, and prepares five', async () => {
+test('the character inventory preserves every central disposition, ships twenty-three spotlights, and prepares five', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -485,10 +497,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 93);
+  assert.equal(dispositionCounts.deferred, 92);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 27);
+  assert.equal(dispositionCounts['pilot-approved'], 28);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -502,6 +514,7 @@ test('the character inventory preserves every central disposition, ships twenty-
     'deadpool-reading-order',
     'doctor-strange-reading-order',
     grootCandidateId,
+    guardiansCandidateId,
     hulkCandidateId,
     ironManCandidateId,
     'loki-reading-order',
@@ -881,7 +894,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 5);
+  assert.equal(report.comparisonCount, manifest.lists.length - 6);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1012,7 +1025,8 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 4].id, magnetoCandidateId);
   assert.equal(manifest.lists[doctorIndex + 5].id, 'loki-reading-order');
   assert.equal(manifest.lists[doctorIndex + 6].id, moonKnightCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 7].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 7].id, guardiansCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 8].id, 'xmen-claremont');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -1334,7 +1348,9 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   const catalogEntry = catalog.lists.find((entry) => entry.id === 'silver-surfer-reading-order');
   const expectedOrderIds = manifest.lists
     .map((entry) => entry.id)
-    .filter((id) => id !== 'silver-surfer-reading-order' && id !== moonKnightCandidateId)
+    .filter((id) => id !== 'silver-surfer-reading-order'
+      && id !== moonKnightCandidateId
+      && id !== guardiansCandidateId)
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
@@ -2374,7 +2390,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 9].id, magnetoCandidateId);
   assert.equal(manifest.lists[starLordIndex + 10].id, 'loki-reading-order');
   assert.equal(manifest.lists[starLordIndex + 11].id, moonKnightCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 12].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 12].id, guardiansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 13].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -2669,10 +2686,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 240);
+  assert.equal(catalog.lists.length, 241);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 36);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 35);
+  assert.equal(characterRuns.length, 37);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 36);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {

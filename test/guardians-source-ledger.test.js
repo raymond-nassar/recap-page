@@ -635,6 +635,8 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = await readJson('src/data/catalog.json');
   const payload = await readJson('src/data/guardians_of_the_galaxy_reading_order.json');
+  const mapping = await readJson('scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json');
+  const report = await readJson('scripts/data/cbh-overlaps/guardians-of-the-galaxy-reading-order.json');
   const record = inventory.find((entry) => entry.id === ledger.id);
   const guardiansSet = new Set(ledger.issueOccurrences
     .filter((entry) => entry.classification === 'provisional-canonical-candidate')
@@ -657,7 +659,35 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
   const guardiansCatalog = catalog.lists.find((entry) => entry.id === ledger.id);
   assert.ok(guardiansCatalog);
   assert.equal(guardiansCatalog.count, 323);
+  assert.equal(mapping.rows.length, 294);
+  assert.equal(mapping.sourceGaps.length, 29);
+  assert.equal(mapping.repeatedSourceReferences.length, 38);
+  assert.equal(mapping.excludedSourceRows.length, 59);
   assert.equal(payload.placeholders, 29);
+  assert.equal(report.comparisonCount, 163);
+  assert.equal(report.comparisons.length, 163);
+  assert.deepEqual(
+    Object.fromEntries(['none', 'partial', 'existing-subset'].map((relationship) => [
+      relationship,
+      report.comparisons.filter((comparison) => comparison.relationship === relationship).length,
+    ])),
+    { none: 143, partial: 19, 'existing-subset': 1 },
+  );
+  assert.deepEqual(
+    Object.fromEntries([
+      'black-widow-reading-order',
+      'fantastic-four-reading-order',
+      'silver-surfer-reading-order',
+    ].map((orderId) => {
+      const comparison = report.comparisons.find((entry) => entry.orderId === orderId);
+      return [orderId, [comparison?.relationship, comparison?.sharedCount]];
+    })),
+    {
+      'black-widow-reading-order': ['partial', 14],
+      'fantastic-four-reading-order': ['partial', 22],
+      'silver-surfer-reading-order': ['partial', 7],
+    },
+  );
   assert.ok(guardiansSet.has('Marvel Super-Heroes|1967|18'));
   assert.ok(guardiansSet.has('Guardians of the Galaxy|1990|1'));
   assert.ok(guardiansSet.has('Guardians of the Galaxy|2013|1'));

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T01:18:16.457Z",
+  "generatedAt": "2026-08-28T01:41:06.811Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3005,6 +3005,47 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T17:46:34.548Z"
+    },
+    {
+      "id": "guardians-of-the-galaxy-reading-order",
+      "file": "guardians_of_the_galaxy_reading_order.json",
+      "name": "Guardians of the Galaxy",
+      "description": "A complete Guardians of the Galaxy team reading path from the original 1960s team through the modern cosmic era.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 323,
+      "collections": 46,
+      "characters": [
+        "Guardians of the Galaxy",
+        "Star-Lord",
+        "Rocket Raccoon",
+        "Groot",
+        "Gamora",
+        "Drax"
+      ],
+      "keywords": [
+        "Guardians of the Galaxy",
+        "Marvel Cosmic",
+        "Star-Lord",
+        "Rocket Raccoon",
+        "Groot",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 15429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/50b43bbceeb39",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-28T01:41:06.693Z"
     },
     {
       "id": "xmen-claremont",

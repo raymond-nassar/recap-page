@@ -1,8 +1,8 @@
 {
   "candidateId": "guardians-of-the-galaxy-reading-order",
-  "packetDigest": "c3f4794b701c2e2bdab727bba9ebc7a73bf3becab5a0b2ed8fdf55f11092a4d5",
-  "mappingDigest": "3ed4a8d6a1f72f962eae02b1242f4753f106731c751b76b1ea63305b888837de",
-  "libraryDigest": "41d8bb4ad8c03b7ebe1e78c6fd503645fced2e8139ec6f34254bed4ed40ad58f",
+  "packetDigest": "2d752bbe858973504f1f9a024af6af69b8b7c7f02047eb05ee7242b793974978",
+  "mappingDigest": "387d8761858022382dd2b2af61313cf1d3eff26223aaa7c7115ab0c21c4eb538",
+  "libraryDigest": "4a9ea21acf4af9a7091b23e9a4ad69920e39bb4e782ffabaef7287c7578107ba",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 420,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 38
   },
   "candidateCount": 294,
-  "comparisonCount": 159,
+  "comparisonCount": 163,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -120,6 +120,27 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "black-widow-reading-order",
+      "sharedCount": 14,
+      "sharedIds": [
+        "63127",
+        "62837",
+        "63223",
+        "66416",
+        "66684",
+        "67022",
+        "68653",
+        "68656",
+        "67145",
+        "67147",
+        "67148",
+        "67149",
+        "67150",
+        "67151"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "bloodties",
@@ -349,6 +370,35 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 22,
+      "sharedIds": [
+        "55462",
+        "55464",
+        "55466",
+        "55467",
+        "55468",
+        "55469",
+        "55470",
+        "55471",
+        "55472",
+        "55473",
+        "55474",
+        "55475",
+        "55476",
+        "55477",
+        "55478",
+        "55479",
+        "60979",
+        "60980",
+        "60981",
+        "63127",
+        "62837",
+        "63223"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "fatal-attractions",
@@ -649,6 +699,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "moon-knight-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "muir-island-saga",
       "sharedCount": 0,
       "sharedIds": [],
@@ -865,6 +921,20 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 7,
+      "sharedIds": [
+        "66283",
+        "66416",
+        "66684",
+        "67022",
+        "68653",
+        "68656",
+        "66158"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "sins-of-sinister",
@@ -1228,5 +1298,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "f9b6a3634af44af33c7c82bdf7addae13683d14b67a8655d4b6467d86ff63ad4"
+  "reportDigest": "815e68f5ae354e634a70a1756cbb4e3f758db44e0bc870cc211eb4a4a22eedbd"
 }
