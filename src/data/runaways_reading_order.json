@@ -1,0 +1,3301 @@
+{
+  "id": "runaways-reading-order",
+  "name": "Runaways",
+  "description": "A complete Runaways reading path from the original 2003 series through the latest listed additions.",
+  "source": "https://www.comicbookherald.com/runaways-reading-order/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-28T05:48:01.810Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 114,
+  "collections": 5,
+  "placeholders": 0,
+  "unresolved": [],
+  "items": [
+    {
+      "issueId": 15061,
+      "title": "Runaways (2003) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15061/runaways_2003_1",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-04-16T00:00:00+0000",
+      "mu": "2003-04-16T00:00:00+0000",
+      "digitalId": 3146,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/57910e324df34",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Newbold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 15071,
+      "title": "Runaways (2003) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/15071/runaways_2003_2",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-05-21T00:00:00+0000",
+      "mu": "2003-05-21T00:00:00+0000",
+      "digitalId": 3433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/5791149232a1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Newbold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 15072,
+      "title": "Runaways (2003) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/15072/runaways_2003_3",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-06-25T00:00:00+0000",
+      "mu": "2003-06-25T00:00:00+0000",
+      "digitalId": 3434,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/51967d21de9a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Newbold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 15073,
+      "title": "Runaways (2003) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/15073/runaways_2003_4",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-07-16T00:00:00+0000",
+      "mu": "2003-07-16T00:00:00+0000",
+      "digitalId": 3435,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/51967d190a5d4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Newbold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 15074,
+      "title": "Runaways (2003) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/15074/runaways_2003_5",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-08-20T00:00:00+0000",
+      "mu": "2003-08-20T00:00:00+0000",
+      "digitalId": 3436,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/51967d0a131f8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Newbold",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 15075,
+      "title": "Runaways (2003) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/15075/runaways_2003_6",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-09-17T00:00:00+0000",
+      "mu": "2003-09-17T00:00:00+0000",
+      "digitalId": 3437,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/51967d02e5810",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 107,
+      "title": "Runaways (2003) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/107/runaways_2003_7",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-10-08T00:00:00+0000",
+      "mu": "2003-10-08T00:00:00+0000",
+      "digitalId": 3438,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5791338e1e411",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 106,
+      "title": "Runaways (2003) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/106/runaways_2003_8",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-11-19T00:00:00+0000",
+      "mu": "2003-11-19T00:00:00+0000",
+      "digitalId": 3439,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/579229f2015dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 105,
+      "title": "Runaways (2003) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/105/runaways_2003_9",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2003-12-17T00:00:00+0000",
+      "mu": "2003-12-17T00:00:00+0000",
+      "digitalId": 3440,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/579784a032bf3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 110,
+      "title": "Runaways (2003) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/110/runaways_2003_10",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-01-21T00:00:00+0000",
+      "mu": "2004-01-21T00:00:00+0000",
+      "digitalId": 3441,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/57978b20eb4cb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 109,
+      "title": "Runaways (2003) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/109/runaways_2003_11",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-02-04T00:00:00+0000",
+      "mu": "2004-02-04T00:00:00+0000",
+      "digitalId": 6782,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/c0/579793fbd78f2",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 108,
+      "title": "Runaways (2003) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/108/runaways_2003_12",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2004-02-18T00:00:00+0000",
+      "digitalId": 6783,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5797aae048ec8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 423,
+      "title": "Runaways (2003) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/423/runaways_2003_13",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-03-17T00:00:00+0000",
+      "mu": "2004-03-17T00:00:00+0000",
+      "digitalId": 6784,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/5797aec38da69",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 487,
+      "title": "Runaways (2003) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/487/runaways_2003_14",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-04-21T00:00:00+0000",
+      "mu": "2004-04-21T00:00:00+0000",
+      "digitalId": 6786,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5797b5bed5d20",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 655,
+      "title": "Runaways (2003) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/655/runaways_2003_15",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-05-19T00:00:00+0000",
+      "mu": "2004-05-19T00:00:00+0000",
+      "digitalId": 6788,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/57912ce48fda3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 712,
+      "title": "Runaways (2003) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/712/runaways_2003_16",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-06-16T00:00:00+0000",
+      "mu": "2004-06-16T00:00:00+0000",
+      "digitalId": 6789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/57912dfb96c07",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 581,
+      "title": "Runaways (2003) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/581/runaways_2003_17",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-08-04T00:00:00+0000",
+      "mu": "2004-08-04T00:00:00+0000",
+      "digitalId": 6791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/57913bcfa3921",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 757,
+      "title": "Runaways (2003) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/757/runaways_2003_18",
+      "seriesId": 2584,
+      "seriesName": "Runaways (2003 - 2004)",
+      "onSale": "2004-08-18T00:00:00+0000",
+      "mu": "2004-08-18T00:00:00+0000",
+      "digitalId": 6793,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/579142829219c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 1678,
+      "title": "Runaways (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1678/runaways_2005_1",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-02-16T00:00:00+0000",
+      "mu": "2005-02-16T00:00:00+0000",
+      "digitalId": 99,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/515af88eac9f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 1775,
+      "title": "Runaways (2005) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/1775/runaways_2005_2",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-03-23T00:00:00+0000",
+      "mu": "2005-03-23T00:00:00+0000",
+      "digitalId": 597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/515af89dd4848",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 1877,
+      "title": "Runaways (2005) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/1877/runaways_2005_3",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-04-20T00:00:00+0000",
+      "mu": "2005-04-20T00:00:00+0000",
+      "digitalId": 2412,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/515af8a4a2ae6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 1979,
+      "title": "Runaways (2005) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/1979/runaways_2005_4",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-05-25T00:00:00+0000",
+      "mu": "2005-05-25T00:00:00+0000",
+      "digitalId": 2413,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/515af8b22881d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 2082,
+      "title": "Runaways (2005) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/2082/runaways_2005_5",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-06-29T00:00:00+0000",
+      "mu": "2005-06-29T00:00:00+0000",
+      "digitalId": 2414,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/515af8c012d93",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 2192,
+      "title": "Runaways (2005) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/2192/runaways_2005_6",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-07-27T00:00:00+0000",
+      "mu": "2005-07-27T00:00:00+0000",
+      "digitalId": 2415,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/579657dd4c3d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 2987,
+      "title": "Runaways (2005) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/2987/runaways_2005_7",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-08-31T00:00:00+0000",
+      "mu": "2005-08-31T00:00:00+0000",
+      "digitalId": 173,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/c0/5796669d84c2f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 2545,
+      "title": "Runaways (2005) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/2545/runaways_2005_8",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-09-21T00:00:00+0000",
+      "mu": "2005-09-21T00:00:00+0000",
+      "digitalId": 2416,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/515af99aa7e63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 2546,
+      "title": "Runaways (2005) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/2546/runaways_2005_9",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-10-19T00:00:00+0000",
+      "mu": "2005-10-19T00:00:00+0000",
+      "digitalId": 2417,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/515af9ad3fc21",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 3079,
+      "title": "Runaways (2005) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/3079/runaways_2005_10",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-11-16T00:00:00+0000",
+      "mu": "2005-11-16T00:00:00+0000",
+      "digitalId": 2405,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/515af9b21b693",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 3181,
+      "title": "Runaways (2005) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/3181/runaways_2005_11",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2005-12-21T00:00:00+0000",
+      "mu": "2005-12-21T00:00:00+0000",
+      "digitalId": 2406,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/515afa6fd571a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 3387,
+      "title": "Runaways (2005) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/3387/runaways_2005_12",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-01-18T00:00:00+0000",
+      "mu": "2006-01-18T00:00:00+0000",
+      "digitalId": 3937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/a0/515afa7b1c8a0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 3529,
+      "title": "Runaways (2005) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/3529/runaways_2005_13",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-02-15T00:00:00+0000",
+      "mu": "2006-02-15T00:00:00+0000",
+      "digitalId": 3256,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/515afa8707756",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 3933,
+      "title": "Runaways (2005) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/3933/runaways_2005_14",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-03-15T00:00:00+0000",
+      "mu": "2006-03-15T00:00:00+0000",
+      "digitalId": 2407,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/b0/515afa9aeaeb0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 4058,
+      "title": "Runaways (2005) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/4058/runaways_2005_15",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-04-26T00:00:00+0000",
+      "mu": "2006-04-26T00:00:00+0000",
+      "digitalId": 2408,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/80/515afaaabde43",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 4173,
+      "title": "Runaways (2005) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/4173/runaways_2005_16",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-05-31T00:00:00+0000",
+      "mu": "2006-05-31T00:00:00+0000",
+      "digitalId": 6790,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/515afb6c47db3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 4273,
+      "title": "Runaways (2005) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/4273/runaways_2005_17",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-06-28T00:00:00+0000",
+      "mu": "2006-06-28T00:00:00+0000",
+      "digitalId": 6792,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/515afb8023662",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 4429,
+      "title": "Runaways (2005) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/4429/runaways_2005_18",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-07-19T00:00:00+0000",
+      "mu": "2006-07-19T00:00:00+0000",
+      "digitalId": 6794,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/00/515afb8e99af5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 15695,
+      "title": "FREE COMIC BOOK DAY 2006 1 (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/15695/free_comic_book_day_2006_1_2006_1",
+      "seriesId": 2307,
+      "seriesName": "FREE COMIC BOOK DAY 2006 1 (2006)",
+      "onSale": "2006-04-12T00:00:00+0000",
+      "mu": "2006-04-12T00:00:00+0000",
+      "digitalId": 3128,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/4bc46a1c2680b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [],
+      "collectedIn": "I) Brian K. Vaughn and Adrian Alphona's Runaways"
+    },
+    {
+      "issueId": 4500,
+      "title": "Civil War: Young Avengers & Runaways (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/4500/civil_war_young_avengers_runaways_2006_1",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-07-26T00:00:00+0000",
+      "mu": "2006-07-26T00:00:00+0000",
+      "digitalId": 1663,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5718ee6a84c6b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 4821,
+      "title": "Civil War: Young Avengers & Runaways (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/4821/civil_war_young_avengers_runaways_2006_2",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-08-30T00:00:00+0000",
+      "mu": "2006-08-30T00:00:00+0000",
+      "digitalId": 5507,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5718ef23a698a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 5114,
+      "title": "Civil War: Young Avengers & Runaways (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/5114/civil_war_young_avengers_runaways_2006_3",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-09-27T00:00:00+0000",
+      "mu": "2006-09-27T00:00:00+0000",
+      "digitalId": 5508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5718f05fa1f5e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 5267,
+      "title": "Civil War: Young Avengers & Runaways (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/5267/civil_war_young_avengers_runaways_2006_4",
+      "seriesId": 1114,
+      "seriesName": "Civil War: Young Avengers & Runaways (2006)",
+      "onSale": "2006-11-08T00:00:00+0000",
+      "mu": "2006-11-08T00:00:00+0000",
+      "digitalId": 5509,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5718ed9cc636e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 4811,
+      "title": "Runaways (2005) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/4811/runaways_2005_19",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-08-16T00:00:00+0000",
+      "mu": "2007-11-13T00:00:00+0000",
+      "digitalId": 2409,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/515afb9558fa9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 5099,
+      "title": "Runaways (2005) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/5099/runaways_2005_20",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-09-20T00:00:00+0000",
+      "mu": "2010-01-11T00:00:00+0000",
+      "digitalId": 2410,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/515afba1b57fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 5254,
+      "title": "Runaways (2005) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/5254/runaways_2005_21",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-10-18T00:00:00+0000",
+      "mu": "2010-01-25T00:00:00+0000",
+      "digitalId": 2411,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/515afd9c0e67e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 5422,
+      "title": "Runaways (2005) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/5422/runaways_2005_22",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2006-11-22T00:00:00+0000",
+      "mu": "2007-12-14T00:00:00+0000",
+      "digitalId": 6798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/c0/515afdaac519a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 5679,
+      "title": "Runaways (2005) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/5679/runaways_2005_23",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2007-01-10T00:00:00+0000",
+      "mu": "2008-01-03T00:00:00+0000",
+      "digitalId": 8538,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/515afdb15f57a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 5818,
+      "title": "Runaways (2005) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/5818/runaways_2005_24",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2007-02-28T00:00:00+0000",
+      "mu": "2010-02-15T00:00:00+0000",
+      "digitalId": 8539,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/50/515afdbdc9ebe",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adrian Alphona",
+          "role": "penciler"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian K. Vaughan",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 6218,
+      "title": "Runaways (2005) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/6218/runaways_2005_25",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2007-04-04T00:00:00+0000",
+      "mu": "2008-12-22T00:00:00+0000",
+      "digitalId": 8540,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/515afdc9119cd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 13442,
+      "title": "Runaways (2005) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/13442/runaways_2005_26",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2007-05-02T00:00:00+0000",
+      "mu": "2009-06-16T00:00:00+0000",
+      "digitalId": 8541,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/515afe6742a5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 15826,
+      "title": "Runaways (2005) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/15826/runaways_2005_27",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2007-07-05T00:00:00+0000",
+      "mu": "2010-03-16T00:00:00+0000",
+      "digitalId": 8542,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/515afe9181905",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 16127,
+      "title": "Runaways (2005) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/16127/runaways_2005_28",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2007-10-10T00:00:00+0000",
+      "mu": "2010-03-23T00:00:00+0000",
+      "digitalId": 8543,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/515afe9dda695",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 17362,
+      "title": "Runaways (2005) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/17362/runaways_2005_29",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2008-02-20T00:00:00+0000",
+      "mu": "2010-03-30T00:00:00+0000",
+      "digitalId": 8544,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/515afea94d80e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jo Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 20650,
+      "title": "Runaways (2005) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/20650/runaways_2005_30",
+      "seriesId": 843,
+      "seriesName": "Runaways (2005 - 2008)",
+      "onSale": "2008-06-25T00:00:00+0000",
+      "mu": "2008-10-27T00:00:00+0000",
+      "digitalId": 10681,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/515afebe1b7df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roland Paris",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Joss Whedon",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 6096,
+      "title": "Runaways Saga (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/6096/runaways_saga_2007_1",
+      "seriesId": 1874,
+      "seriesName": "Runaways Saga (2007)",
+      "onSale": "2007-03-21T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 43991,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/581b7b46c1e4b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Carlos Cuevas",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "C.B. Cebulski",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 21414,
+      "title": "Secret Invasion: Runaways/Young Avengers (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21414/secret_invasion_runawaysyoung_avengers_2008_1",
+      "seriesId": 5046,
+      "seriesName": "Secret Invasion: Runaways/Young Avengers (2008)",
+      "onSale": "2008-06-25T00:00:00+0000",
+      "mu": "2008-06-25T00:00:00+0000",
+      "digitalId": 11479,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/5151f6dd708aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 21588,
+      "title": "Secret Invasion: Runaways/Young Avengers (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/21588/secret_invasion_runawaysyoung_avengers_2008_2",
+      "seriesId": 5046,
+      "seriesName": "Secret Invasion: Runaways/Young Avengers (2008)",
+      "onSale": "2008-08-13T00:00:00+0000",
+      "mu": "2008-08-13T00:00:00+0000",
+      "digitalId": 11480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5151f6ec6faec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 21785,
+      "title": "Secret Invasion: Runaways/Young Avengers (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/21785/secret_invasion_runawaysyoung_avengers_2008_3",
+      "seriesId": 5046,
+      "seriesName": "Secret Invasion: Runaways/Young Avengers (2008)",
+      "onSale": "2008-09-10T00:00:00+0000",
+      "mu": "2008-09-10T00:00:00+0000",
+      "digitalId": 11481,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5151f6f2ec269",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rick Ketcham",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II) Runaways Meet Marvel Civil War and Secret Invasion, and Joss Whedon Joins"
+    },
+    {
+      "issueId": 16575,
+      "title": "Mystic Arcana (2007) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/16575/mystic_arcana_2007_4",
+      "seriesId": 2525,
+      "seriesName": "Mystic Arcana (2007 - 2008)",
+      "onSale": "2007-11-07T00:00:00+0000",
+      "mu": "2007-11-07T00:00:00+0000",
+      "digitalId": 8429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/5e6024719eedc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Eric Nguyen",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Phil Noto",
+          "role": "penciler"
+        },
+        {
+          "name": "C.B. Cebulski",
+          "role": "writer"
+        },
+        {
+          "name": "David Sexton",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 21760,
+      "title": "Runaways (2008) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/21760/runaways_2008_1",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2008-08-27T00:00:00+0000",
+      "mu": "2008-08-27T00:00:00+0000",
+      "digitalId": 11454,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5797bbb1b9e1f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 21998,
+      "title": "Runaways (2008) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/21998/runaways_2008_2",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2008-09-24T00:00:00+0000",
+      "mu": "2008-09-24T00:00:00+0000",
+      "digitalId": 11455,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5797c67bc72a1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 22327,
+      "title": "Runaways (2008) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/22327/runaways_2008_3",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2008-10-22T00:00:00+0000",
+      "mu": "2008-10-22T00:00:00+0000",
+      "digitalId": 11456,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/5797cde8374ba",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 22523,
+      "title": "Runaways (2008) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/22523/runaways_2008_4",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2008-11-26T00:00:00+0000",
+      "mu": "2008-11-26T00:00:00+0000",
+      "digitalId": 11457,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/5797ce4fe2f95",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 22934,
+      "title": "Runaways (2008) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/22934/runaways_2008_5",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2008-12-24T00:00:00+0000",
+      "mu": "2008-12-24T00:00:00+0000",
+      "digitalId": 11458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5798b49a5027a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 23130,
+      "title": "Runaways (2008) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/23130/runaways_2008_6",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-01-28T00:00:00+0000",
+      "mu": "2009-01-28T00:00:00+0000",
+      "digitalId": 21021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/00/5798bd632e624",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 23622,
+      "title": "Runaways (2008) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/23622/runaways_2008_7",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-02-25T00:00:00+0000",
+      "mu": "2009-02-25T00:00:00+0000",
+      "digitalId": 13532,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/5798c9f83551b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 23777,
+      "title": "Runaways (2008) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/23777/runaways_2008_8",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 19881,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5798cae6c0425",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Humberto Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Norman Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 23973,
+      "title": "Runaways (2008) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/23973/runaways_2008_9",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-04-29T00:00:00+0000",
+      "mu": "2009-04-29T00:00:00+0000",
+      "digitalId": 13627,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5798caf5c3a00",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Humberto Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Roland Paris",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Moore",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 24173,
+      "title": "Runaways (2008) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/24173/runaways_2008_10",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-05-27T00:00:00+0000",
+      "mu": "2009-05-27T00:00:00+0000",
+      "digitalId": 12481,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/5798c64c51f25",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Lafuente",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Emma Rios",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        },
+        {
+          "name": "James Asmus",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 27898,
+      "title": "Runaways (2008) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/27898/runaways_2008_11",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-06-24T00:00:00+0000",
+      "mu": "2009-06-24T00:00:00+0000",
+      "digitalId": 13433,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/5798c76b07096",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Lafuente",
+          "role": "penciler"
+        },
+        {
+          "name": "Kathryn Immonen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 27899,
+      "title": "Runaways (2008) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/27899/runaways_2008_12",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-07-22T00:00:00+0000",
+      "mu": "2009-07-22T00:00:00+0000",
+      "digitalId": 13598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/c0/5798cf7acc788",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lafuente",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kathryn Immonen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 27900,
+      "title": "Runaways (2008) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/27900/runaways_2008_13",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2010-11-01T00:00:00+0000",
+      "digitalId": 16772,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/5798d183b3ac6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Lafuente",
+          "role": "penciler"
+        },
+        {
+          "name": "Kathryn Immonen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 27901,
+      "title": "Runaways (2008) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/27901/runaways_2008_14",
+      "seriesId": 5338,
+      "seriesName": "Runaways (2008 - 2009)",
+      "onSale": "2009-09-30T00:00:00+0000",
+      "mu": "2010-11-15T00:00:00+0000",
+      "digitalId": 16871,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/5798fddf3db1a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Lafuente",
+          "role": "penciler"
+        },
+        {
+          "name": "Kathryn Immonen",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "III) Terry Moore and Stuart Immonen Revive the Runaways Ongoing"
+    },
+    {
+      "issueId": 51798,
+      "title": "Runaways (2015) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/51798/runaways_2015_2",
+      "seriesId": 19416,
+      "seriesName": "Runaways (2015)",
+      "onSale": "2015-07-08T00:00:00+0000",
+      "mu": "2016-01-04T00:00:00+0000",
+      "digitalId": 39239,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/5589ad8d05687",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sanford Greene",
+          "role": "penciler"
+        },
+        {
+          "name": "Noelle Stevenson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "IV) The Runaways of Secret Wars"
+    },
+    {
+      "issueId": 51799,
+      "title": "Runaways (2015) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/51799/runaways_2015_3",
+      "seriesId": 19416,
+      "seriesName": "Runaways (2015)",
+      "onSale": "2015-08-19T00:00:00+0000",
+      "mu": "2016-02-22T00:00:00+0000",
+      "digitalId": 39737,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/55ce50641ee54",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sanford Greene",
+          "role": "penciler"
+        },
+        {
+          "name": "Noelle Stevenson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "IV) The Runaways of Secret Wars"
+    },
+    {
+      "issueId": 51800,
+      "title": "Runaways (2015) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/51800/runaways_2015_4",
+      "seriesId": 19416,
+      "seriesName": "Runaways (2015)",
+      "onSale": "2015-09-23T00:00:00+0000",
+      "mu": "2016-03-28T00:00:00+0000",
+      "digitalId": 40007,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/55f7270931c65",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Sanford Greene",
+          "role": "penciler"
+        },
+        {
+          "name": "Noelle Stevenson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "IV) The Runaways of Secret Wars"
+    },
+    {
+      "issueId": 52479,
+      "title": "Secret Wars: Secret Love (2015) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/52479/secret_wars_secret_love_2015_1",
+      "seriesId": 19657,
+      "seriesName": "Secret Wars: Secret Love (2015)",
+      "onSale": "2015-08-19T00:00:00+0000",
+      "mu": "2016-02-22T00:00:00+0000",
+      "digitalId": 39739,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/90/55ce50326863e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Felipe Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Katie Cook",
+          "role": "penciler"
+        },
+        {
+          "name": "Michel Fiffe",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeremy Whitley",
+          "role": "writer"
+        },
+        {
+          "name": "Marguerite Bennett",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "IV) The Runaways of Secret Wars"
+    },
+    {
+      "issueId": 64431,
+      "title": "Runaways (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64431/runaways_2017_1",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2017-09-13T00:00:00+0000",
+      "mu": "2017-09-13T00:00:00+0000",
+      "digitalId": 45737,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/60/59b04ddcb102a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 64821,
+      "title": "Runaways (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/64821/runaways_2017_2",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2017-10-11T00:00:00+0000",
+      "mu": "2018-04-16T00:00:00+0000",
+      "digitalId": 45993,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/59d53f9bacb8c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 65095,
+      "title": "Runaways (2017) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/65095/runaways_2017_3",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2017-11-08T00:00:00+0000",
+      "mu": "2018-05-14T00:00:00+0000",
+      "digitalId": 46377,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/59fa13159e345",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 65298,
+      "title": "Runaways (2017) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/65298/runaways_2017_4",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2017-12-13T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 46788,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/5a284454884b6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 65708,
+      "title": "Runaways (2017) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/65708/runaways_2017_5",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-01-10T00:00:00+0000",
+      "mu": "2018-07-16T00:00:00+0000",
+      "digitalId": 47049,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/30/5a4fbcf84da1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 66111,
+      "title": "Runaways (2017) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/66111/runaways_2017_6",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-02-07T00:00:00+0000",
+      "mu": "2018-08-13T00:00:00+0000",
+      "digitalId": 47266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/5a7244dfd1489",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 66553,
+      "title": "Runaways (2017) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/66553/runaways_2017_7",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-03-21T00:00:00+0000",
+      "mu": "2018-09-24T00:00:00+0000",
+      "digitalId": 47591,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/5aa96021a80e5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 66744,
+      "title": "Runaways (2017) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/66744/runaways_2017_8",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-04-04T00:00:00+0000",
+      "mu": "2018-04-04T00:00:00+0000",
+      "digitalId": 47703,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/20/5abd658065151",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 67547,
+      "title": "Runaways (2017) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/67547/runaways_2017_9",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-05-09T00:00:00+0000",
+      "mu": "2018-11-12T00:00:00+0000",
+      "digitalId": 47960,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5aea307c87b08",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Craig Yeung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 69418,
+      "title": "Runaways (2017) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/69418/runaways_2017_10",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-06-20T00:00:00+0000",
+      "mu": "2018-12-24T00:00:00+0000",
+      "digitalId": 48304,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5b2187702a7a3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 69419,
+      "title": "Runaways (2017) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/69419/runaways_2017_11",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-07-18T00:00:00+0000",
+      "mu": "2019-01-21T00:00:00+0000",
+      "digitalId": 48598,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5b4673d33edcd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 69420,
+      "title": "Runaways (2017) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/69420/runaways_2017_12",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-08-29T00:00:00+0000",
+      "mu": "2019-03-04T00:00:00+0000",
+      "digitalId": 48921,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5b7ed4286cd8a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 70562,
+      "title": "Runaways (2017) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/70562/runaways_2017_13",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-09-12T00:00:00+0000",
+      "mu": "2019-03-18T00:00:00+0000",
+      "digitalId": 49151,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5b9013e0d41e1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lafuente",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 70563,
+      "title": "Runaways (2017) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/70563/runaways_2017_14",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-10-17T00:00:00+0000",
+      "mu": "2019-04-22T00:00:00+0000",
+      "digitalId": 49527,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5bbe68441cffd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Lafuente",
+          "role": "cover artist"
+        },
+        {
+          "name": "Takeshi Miyazawa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 70564,
+      "title": "Runaways (2017) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/70564/runaways_2017_15",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-11-07T00:00:00+0000",
+      "mu": "2019-05-13T00:00:00+0000",
+      "digitalId": 49730,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5bdb684862a0e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 70565,
+      "title": "Runaways (2017) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/70565/runaways_2017_16",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2018-12-19T00:00:00+0000",
+      "mu": "2019-06-24T00:00:00+0000",
+      "digitalId": 50114,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/d0/5c12b393e2270",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 70566,
+      "title": "Runaways (2017) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/70566/runaways_2017_17",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-01-02T00:00:00+0000",
+      "mu": "2019-07-08T00:00:00+0000",
+      "digitalId": 50379,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5c23eaf0c9a61",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 70567,
+      "title": "Runaways (2017) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/70567/runaways_2017_18",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-02-13T00:00:00+0000",
+      "mu": "2019-02-13T00:00:00+0000",
+      "digitalId": 50612,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/5c5c5420e0640",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 75558,
+      "title": "Runaways (2017) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/75558/runaways_2017_19",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-03-13T00:00:00+0000",
+      "mu": "2019-03-13T00:00:00+0000",
+      "digitalId": 50924,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/5c802adfec779",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 75559,
+      "title": "Runaways (2017) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/75559/runaways_2017_20",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-04-24T00:00:00+0000",
+      "mu": "2019-04-24T00:00:00+0000",
+      "digitalId": 51129,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5cb89d8334a3a",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 75560,
+      "title": "Runaways (2017) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/75560/runaways_2017_21",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-05-22T00:00:00+0000",
+      "mu": "2019-11-25T00:00:00+0000",
+      "digitalId": 51403,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/70/5cd9ce587abaa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 75561,
+      "title": "Runaways (2017) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/75561/runaways_2017_22",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-06-26T00:00:00+0000",
+      "mu": "2019-12-30T00:00:00+0000",
+      "digitalId": 51773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5d08f333d6350",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Niko Henrichon",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 75562,
+      "title": "Runaways (2017) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/75562/runaways_2017_23",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-07-31T00:00:00+0000",
+      "mu": "2020-02-03T00:00:00+0000",
+      "digitalId": 51980,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5d388096ac446",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Niko Henrichon",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 75563,
+      "title": "Runaways (2017) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/75563/runaways_2017_24",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-08-28T00:00:00+0000",
+      "mu": "2020-03-02T00:00:00+0000",
+      "digitalId": 52408,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/10/5d5d4c601febc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 77053,
+      "title": "Runaways (2017) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/77053/runaways_2017_25",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-10-02T00:00:00+0000",
+      "mu": "2020-04-06T00:00:00+0000",
+      "digitalId": 52589,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/50/5d8a2aedd5b65",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 77054,
+      "title": "Runaways (2017) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/77054/runaways_2017_26",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-10-30T00:00:00+0000",
+      "mu": "2020-05-04T00:00:00+0000",
+      "digitalId": 52703,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/e0/5daf697c32c7e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 77055,
+      "title": "Runaways (2017) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/77055/runaways_2017_27",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-11-13T00:00:00+0000",
+      "mu": "2020-05-18T00:00:00+0000",
+      "digitalId": 53016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/5dc092527aab6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 77056,
+      "title": "Runaways (2017) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/77056/runaways_2017_28",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2019-12-18T00:00:00+0000",
+      "mu": "2020-06-22T00:00:00+0000",
+      "digitalId": 53282,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5defb20079763",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 77057,
+      "title": "Runaways (2017) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/77057/runaways_2017_29",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2020-01-15T00:00:00+0000",
+      "mu": "2020-07-20T00:00:00+0000",
+      "digitalId": 53584,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/00/5e149e2982517",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 77058,
+      "title": "Runaways (2017) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/77058/runaways_2017_30",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2020-02-19T00:00:00+0000",
+      "mu": "2020-08-24T00:00:00+0000",
+      "digitalId": 54002,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5e28a3ee94f1d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 84409,
+      "title": "Runaways (2017) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/84409/runaways_2017_31",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2020-03-18T00:00:00+0000",
+      "mu": "2020-09-21T00:00:00+0000",
+      "digitalId": 54315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5e67bead42a01",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 85950,
+      "title": "Runaways (2017) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/85950/runaways_2017_32",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2020-10-28T00:00:00+0000",
+      "mu": "2020-10-28T00:00:00+0000",
+      "digitalId": 54642,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5e865365f09e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Natacha Bustos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 85951,
+      "title": "Runaways (2017) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/85951/runaways_2017_33",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2021-02-03T00:00:00+0000",
+      "mu": "2021-05-10T00:00:00+0000",
+      "digitalId": 54920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/6009e1cf549bc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 85952,
+      "title": "Runaways (2017) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/85952/runaways_2017_34",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2021-03-03T00:00:00+0000",
+      "mu": "2021-06-07T00:00:00+0000",
+      "digitalId": 55112,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/6030353026fce",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 85953,
+      "title": "Runaways (2017) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/85953/runaways_2017_35",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2021-04-07T00:00:00+0000",
+      "mu": "2021-04-07T00:00:00+0000",
+      "digitalId": 56511,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/60/6066108362276",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 85954,
+      "title": "Runaways (2017) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/85954/runaways_2017_36",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2021-05-19T00:00:00+0000",
+      "mu": "2021-05-19T00:00:00+0000",
+      "digitalId": 56815,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/60afe32754945",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 85955,
+      "title": "Runaways (2017) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/85955/runaways_2017_37",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2021-07-07T00:00:00+0000",
+      "mu": "2021-10-11T00:00:00+0000",
+      "digitalId": 57060,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/60e72aa72981e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    },
+    {
+      "issueId": 85956,
+      "title": "Runaways (2017) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/85956/runaways_2017_38",
+      "seriesId": 23461,
+      "seriesName": "Runaways (2017 - 2021)",
+      "onSale": "2021-08-11T00:00:00+0000",
+      "mu": "2021-11-15T00:00:00+0000",
+      "digitalId": 57187,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/6104118fa72b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Adrian Alphona",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andres Genolet",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Rainbow Rowell",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Latest Additions:"
+    }
+  ]
+}

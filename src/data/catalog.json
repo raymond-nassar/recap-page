@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T03:46:03.663Z",
+  "generatedAt": "2026-08-28T05:48:01.810Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2551,6 +2551,41 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T18:44:46.826Z"
+    },
+    {
+      "id": "runaways-reading-order",
+      "file": "runaways_reading_order.json",
+      "name": "Runaways",
+      "description": "A complete Runaways reading path from the original 2003 series through the latest listed additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 114,
+      "collections": 5,
+      "characters": [
+        "Runaways",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "Runaways",
+        "Brian K. Vaughan",
+        "Adrian Alphona",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 15061,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/57910e324df34",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/runaways-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-28T05:48:01.810Z"
     },
     {
       "id": "groot-reading-order",
