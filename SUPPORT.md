@@ -36,9 +36,9 @@ worked on in bursts, so a reply may take a while.
 ## A suspected security problem never goes in an issue
 
 Read [the security policy](SECURITY.md) instead. It explains how to report privately and what
-counts as a vulnerability in an app with no server and no accounts. The short version is that
-anything which silently loses or corrupts saved reading progress is treated as a security issue,
-and that a public report is a disclosure you cannot take back.
+counts as a vulnerability in an app with no hosted backend and no accounts. The short version is
+that anything which silently loses or corrupts saved reading progress is treated as a security
+issue, and that a public report is a disclosure you cannot take back.
 
 ## Things that are somebody else's to fix
 
@@ -54,19 +54,20 @@ are not this project's to fix. Two things are worth separating before you report
 - **An outage** looks like details failing to fill in while the app itself keeps working. That is
   deliberate: the app is written to degrade rather than break when the database is unreachable, and
   it shows a pending state rather than pretending. Waiting is usually the answer. If you want to
-  check whether the app or the database is at fault, run `npm run contract`, which asks the live
-  API directly and reports what it got.
+  check whether the app or the database is at fault from a source checkout, run `npm run contract`,
+  which asks the live API directly and reports what it got. The packaged Windows download does not
+  include this maintainer diagnostic.
 - **Wrong or missing information for a specific issue**, where the database itself has it right, is
   worth reporting here, because that means this project copied it across wrongly.
 
 The database can be self-hosted and the address the app uses is a setting, so if you run your own
 mirror you can point the app at it.
 
-**Comics published after 2025.** These have no cover and no details, and the app says so where it
-shows them. The snapshot the catalogue was built from ends there. That is a documented boundary,
-not a defect, and the app has an entry form for filling those in by hand. A report that a 2026
-issue has no cover will be closed as working as intended. A report about anything published in 2025
-or earlier is worth filing.
+**Comics published after 2025.** The bundled metadata snapshot ends there, so a later comic starts
+without bundled details or a cover. That is a documented boundary, not a defect. The manual entry
+form can look up factual details on Marvel Fandom when you ask it to and can preserve a pasted
+Marvel Unlimited reader link. Report a problem when one of those explicit routes loses or changes
+what you supplied; the absence of a newer comic from the bundled snapshot is working as intended.
 
 ## Asking for a change
 
@@ -79,9 +80,8 @@ merits, which is a short list and a firm one. Reading it first saves everybody a
 
 ## Which version you have
 
-The app shows two numbers in the side rail: the version it is, and the format your saved data is
-in. Both are worth quoting in any report, because without them a report is about an unidentifiable
-copy of the app. A major version number changing means an older build cannot read data saved by a
-newer one, which matters here more than in most software, because your reading progress lives only
-in your own browser and nothing can migrate it for you. [The changelog](CHANGELOG.md) records what
-changed in each one.
+**About this app** shows two numbers: the app version and the format of your saved data. Both are
+worth quoting in any report, because without them a report is about an unidentifiable copy of the
+app. A major version marks a substantial new product generation and is also required when saved
+data changes in a way an older build cannot read. Release notes state whether progress remains
+compatible. [The changelog](CHANGELOG.md) records what changed in each version.

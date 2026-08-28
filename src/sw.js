@@ -24,8 +24,8 @@
 // it touches is reached through `self`, which also lets a test hand it an entire world.
 
 // Prefixed, and only prefixed names are cleaned up on activation. The app's own metadata cache
-// is a localStorage structure and nothing else here uses the Cache API today, but deleting every
-// cache on the origin would be a worker reaching outside its own business.
+// is an IndexedDB structure and nothing else here uses the Cache API today, but deleting every cache
+// on the origin would be a worker reaching outside its own business.
 const CACHE_PREFIX = 'mrt-offline-';
 const CACHE = `${CACHE_PREFIX}v1`;
 

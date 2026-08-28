@@ -11,6 +11,11 @@ import * as upgradeCheck from '../scripts/upgrade-check.mjs';
 
 const runGit = (cwd, ...args) => execFileSync('git', args, { cwd, stdio: 'pipe' });
 
+test('the upgrade journey refuses indistinguishable old and new builds', () => {
+  assert.match(upgradeCheck.upgradeVersionProblem('1.4.0', '1.4.0'), /Bump the candidate version/);
+  assert.equal(upgradeCheck.upgradeVersionProblem('1.4.0', '2.0.0'), null);
+});
+
 test('the historical install is reconstructed from committed Git bytes', async (t) => {
   assert.equal(
     typeof upgradeCheck.installHistorical,

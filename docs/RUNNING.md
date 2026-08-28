@@ -71,9 +71,10 @@ The browser normally opens automatically. If it does not, open this exact addres
 Use Edge, Chrome, Firefox, or Safari. Do not use a preview panel inside an editor. Preview panels
 often block the reader tab that the **Read** button opens.
 
-On a first run, the sidebar says there are no reading orders yet. Choose **Browse the catalog** and
-import one. **API OK** near the bottom of the sidebar means the tracker can reach the metadata
-service. The app still opens without it, but live issue details will be unavailable.
+On a first run, Home asks where you want to start. You can preview the recommended modern-era setup
+guide, browse curated Reading Lists by story or publication age, or open Reading paths from Home or
+Browse to choose a complete journey. Each stop shows matching-list progress, another imported version
+when needed, or **Not added**. Add comics remains available even when live metadata has to wait.
 
 ## Install it as a browser app
 
@@ -81,9 +82,11 @@ Edge and Chrome offer an install icon in the address bar. Safari calls the same 
 Dock**. Installing gives Recap Page its own window and application icon without changing its
 storage.
 
-After the first visit, an installed window can open while the server is stopped because the browser
-keeps the app shell. Saved lists and progress remain available. New covers and metadata lookups need
-the server and network, so starting the app is still recommended.
+After a successful first visit, an installed window can open while the server is stopped because
+the browser keeps the app shell. Saved lists, progress, and bundled content already cached by the
+worker remain available; a Reading List payload never requested before is not guaranteed to be
+there. New covers and metadata lookups need the server and network, so starting the app is still
+recommended.
 
 ## Stop and restart
 
@@ -122,8 +125,9 @@ The app checks GitHub once a day for the latest version number and never install
 automatically. Automatic checks can be switched off under **Backup & settings**. The manual check
 under **About this app** remains available.
 
-Export a backup before upgrading across a major version. In this project, a major version means an
-older build cannot read data written by the newer one.
+Major versions mark a substantial new generation of the app and are also required when saved data
+changes in a way an older build cannot read. Release notes state whether progress remains
+compatible. Export a backup before upgrading.
 
 ## Troubleshooting
 
@@ -181,7 +185,8 @@ metadata remain unavailable until the server starts again.
 
 Open Recap Page in a normal browser window rather than an editor preview. If it is already in a
 normal browser, allow pop-ups for the local address. Reading comics requires your own Marvel
-Unlimited subscription; Recap Page only opens the official reader.
+Unlimited subscription. Recap Page opens the official reader when a direct link is available and
+otherwise opens the issue's official page on marvel.com.
 
 ### Reading progress has disappeared
 

@@ -2,19 +2,19 @@
 
 Every notable change to Recap Page, newest first.
 
-The version number is explained in [`src/js/lib/version.js`](src/js/lib/version.js) and is
-summarised here: **MAJOR** means an older build cannot read data saved by this one, **MINOR**
-adds a feature or changes the interface while leaving saved data readable by the previous
-build, and **PATCH** fixes behaviour without touching either. Because reading progress lives
-only in your own browser and no server can migrate it for you, export a backup before
-upgrading across a MAJOR.
+The version number is explained in [`src/js/lib/version.js`](src/js/lib/version.js). **MAJOR** marks
+a distinct product generation with substantial changes to what readers can do or understand. A
+saved-data change that an older build cannot read also requires a MAJOR. **MINOR** adds compatible
+features or interface changes within the current generation, and **PATCH** fixes compatible
+behaviour. Release notes state saved-data compatibility explicitly; export a backup before any
+upgrade that notes a data change because no server can migrate browser-held progress.
 
-Releases are tagged `v<version>`. The version shown under **About this app** is the one to
-quote in a bug report.
+Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+## 2.0.0
 ### Show complete reading paths in one place
-In plain English: Home and Browse now lead to one Reading paths screen where each connected sequence can be seen from beginning to end. Choose a path to see every stop in order. A stop shows progress from the matching Reading List already in your library, falls back to another imported version of the same story when needed, and otherwise says Not added. Existing shelf badges and saved progress are unchanged. For maintainers: the generated catalog currently resolves three independent paths with 10, 12 and 78 stops, totaling 100. Selection lives only in the hash route, and the aggregate model remains separate from the shelf's first-path placement.
+In plain English: Saved data from version 1.4.0 remains fully compatible with 2.0.0. Home and Browse now lead to one Reading paths screen where each connected sequence can be seen from beginning to end. Choose a path to see every stop in order. A stop shows progress from the matching Reading List already in your library, falls back to another imported version of the same story when needed, and otherwise says Not added. Existing shelf badges and saved progress are unchanged. For maintainers: the generated catalog currently resolves three independent paths with 10, 12 and 78 stops, totaling 100. Selection lives only in the hash route, and the aggregate model remains separate from the shelf's first-path placement.
 ### Disclosed catalog metadata gaps before import
 In plain English: Reading List cards and Preview now say when a guide contains issues with no Marvel
 Unlimited link or issues that arrived without details, cover art or an Unlimited link. The counts

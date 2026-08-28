@@ -28,12 +28,19 @@ import { pathToFileURL } from 'node:url';
 import { promisify } from 'node:util';
 
 const REPO = process.cwd();
-const OLD_REF = 'v1.2.0';
+const OLD_REF = 'v1.4.0';
 const OLD_VERSION = OLD_REF.slice(1);
 const NEW_VERSION = JSON.parse(await readFile(join(REPO, 'package.json'), 'utf8')).version;
 const STATE_KEY = 'mrt.state.v2';
+const OLD_ORDER_ADD = 'button[aria-label="Add to library: House of M: main series"]';
 const execFileAsync = promisify(execFile);
 const HISTORICAL_GIT_ENV = Object.freeze({ ...process.env, GIT_NO_LAZY_FETCH: '1' });
+
+export function upgradeVersionProblem(oldVersion, newVersion) {
+  if (oldVersion !== newVersion) return null;
+  return `The candidate still reports ${newVersion}, the same version as ${OLD_REF}. `
+    + 'Bump the candidate version before running this check so the folder swap can be proved.';
+}
 
 // ------------------------------------------------------------------ mutations
 
@@ -308,11 +315,8 @@ async function runUpgrade({ puppeteer, edge, mutation }) {
 
     // Navigation is by hash throughout. Nothing here may alter the origin, the port included.
     await boot(page, origin, '#/catalog');
-    await page.waitForSelector('button[aria-label^="Import House of M"]', { timeout: 20000 });
-    const label = await page.evaluate(
-      () => document.querySelector('button[aria-label^="Import House of M"]').getAttribute('aria-label'),
-    );
-    await page.evaluate((aria) => document.querySelector(`button[aria-label="${aria}"]`).click(), label);
+    await page.waitForSelector(OLD_ORDER_ADD, { timeout: 20000 });
+    await page.evaluate((selector) => document.querySelector(selector).click(), OLD_ORDER_ADD);
     await page.waitForFunction((stateKey) => {
       const raw = localStorage.getItem(stateKey);
       return raw && Object.keys(JSON.parse(raw).lists ?? {}).length > 0;
@@ -435,6 +439,11 @@ function report(rows, { quiet = false } = {}) {
 
 async function main() {
   const prove = process.argv.includes('--prove');
+  const versionProblem = upgradeVersionProblem(OLD_VERSION, NEW_VERSION);
+  if (versionProblem) {
+    console.error(versionProblem);
+    return 2;
+  }
 
   const driver = findDriver();
   if (!driver) {

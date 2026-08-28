@@ -2,12 +2,13 @@
 
 ## What this project is, because it decides what a vulnerability can be here
 
-Recap Page is a static site that runs from your own machine. There is no server to
-attack, no account to take over and no database holding anyone else's data. The app has no runtime
-dependencies at all, so nothing in `package.json` reaches the browser. Everything it declares is
-development tooling: the four packages listed at `package.json:40-44` are the linter and the three
-packages its configuration needs, and they run only on a maintainer's machine and in CI.
-Your reading progress lives in one browser storage key and never leaves the machine it was made on.
+Recap Page is a static site served by a small loopback server on your own machine. There is no
+hosted backend to attack, no account to take over and no database holding anyone else's data. The
+app has no runtime dependencies at all, so nothing in `package.json` reaches the browser. Everything
+it declares is development tooling: the four packages listed at `package.json:40-44` are the linter
+and the three packages its configuration needs, and they run only on a maintainer's machine and in
+CI. Your reading progress lives in one browser storage key and never leaves the machine it was made
+on.
 
 That shape rules most classic vulnerability categories out and leaves a smaller set that matters a
 great deal. Anything that silently loses or corrupts the reading progress a person has spent months
@@ -16,13 +17,14 @@ rather than an ordinary defect.
 
 ## What is supported
 
-The current state of the default branch. There are no releases, no tags and no published packages,
-so there is nothing older to patch and no back-porting to do. If you are running a copy you cloned
-some time ago, pull before reporting: the fix may already be in.
+Security fixes target the current state of the default branch and the latest published release.
+Older releases and tags are unsupported, and fixes are not backported to them. If you are running
+an older copy, upgrade before reporting unless the problem itself prevents a safe upgrade.
 
-Version numbers here describe stored data rather than features. The rule is written in full at
-`src/js/lib/version.js:5-9`, and the part that matters for upgrading is that a MAJOR change means an
-older build cannot read this build's saved data. Export a backup before crossing one.
+Major versions mark a substantial new product generation. They are also required whenever stored
+data changes in a way an older build cannot read. The rule is written in full at
+`src/js/lib/version.js:5-15`. Release notes state whether saved progress remains compatible, and an
+exported backup is prudent before every upgrade.
 
 ## Reporting a vulnerability
 
@@ -109,15 +111,16 @@ Recorded so a report can start from what is true rather than from what a scanner
 
 - There are no accounts, no cloud services, no analytics and no telemetry. The app does make
   outbound requests: opening it asks a public metadata API whether it is reachable, searching for
-  an issue sends what you typed to that same comics database, it asks that database for comic
-  titles and dates, adding a whole series or a creator's issues asks it for every issue that series
-  or creator lists, and it loads covers from Marvel's own image servers. The requests for details
-  and for covers name the issue being asked about, so both hosts see which issues you are looking
-  at; the reachability check names nothing. Adding an issue by hand sends the words in the title
-  box to the Marvel Fandom wiki, a community site Marvel does not run, and only when you press the
-  lookup button; that wiki sees the title you searched for and is sent no cookie, no referrer and
-  nothing about your library. Your reading progress and your notes are never sent to
-  any of them.
+  an issue sends what you typed to that same comics database, and adding a selected series or
+  creator asks it for every issue in that run. Requests for issue details name the comic, and covers
+  are fetched from Marvel's own image servers, so both receiving hosts can see which issues you are
+  looking at; the reachability check names nothing. Pressing **Read** opens Marvel Unlimited when a
+  direct reader link is known. Otherwise the launch tab may ask the metadata service for that link
+  and falls back to the issue's page on marvel.com. Adding an issue by hand sends the words in the
+  title box to the Marvel Fandom wiki, a community site Marvel does not run, and only when you press
+  the lookup button; that wiki sees the title you searched for and is sent no cookie, no referrer
+  and nothing about your library. An optional update check asks GitHub for the latest release
+  number. Your reading progress and your notes are never sent to any of them.
 - Covers are requested from Marvel's image server and from no other host. The address is reported
   by the metadata service, which is a party the reader chooses and one that could be compromised
   or hostile, so an address naming anything else is refused before a request is made rather than

@@ -2,18 +2,17 @@
 //
 // What the number means, since a version is worthless if nobody knows what it promises:
 //
-//   MAJOR  changes the stored data in a way an older build cannot read. Anyone who has
-//          reading progress saved should export a backup before upgrading across one.
-//   MINOR  adds a feature or changes the interface while leaving stored data readable by
-//          the previous build.
-//   PATCH  fixes behaviour without changing data or the interface.
+//   MAJOR  marks a substantial new product generation. It is also required when stored data
+//          changes in a way an older build cannot read.
+//   MINOR  adds a feature or changes the interface within the current product generation while
+//          leaving stored data readable by the previous build.
+//   PATCH  fixes behaviour without intentionally changing data or the interface.
 //
-// The stored data is the axis that matters here, because the app keeps every user's
-// reading progress in their own browser and there is no server to migrate it for them.
-// `SCHEMA_VERSION` in lib/model.js is the mechanical counterpart: it is what the loader
-// actually checks. The two numbers are not equal and never will be, because the format
-// moved twice while the app was still on 0.x. What the rule means from 1.0.0 onward is
-// that raising SCHEMA_VERSION requires raising MAJOR in the same release.
+// Product generations are a maintainer decision about the experience as a whole, not a count of
+// isolated changes. Stored-data compatibility remains a hard lower bound because reading progress
+// lives only in the reader's browser and no hosted service can migrate it. `SCHEMA_VERSION` in
+// lib/model.js is the mechanical counterpart: raising it requires raising MAJOR in the same release,
+// but a new product generation may keep the existing schema.
 //
 // test/version.test.js asserts this matches package.json, so the two cannot drift.
-export const APP_VERSION = '1.4.0';
+export const APP_VERSION = '2.0.0';

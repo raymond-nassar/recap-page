@@ -547,9 +547,30 @@ is `npm i puppeteer-core`, that is the mistake this paragraph exists to stop.
   `house-of-m` with hyphens but its file is `src/data/house_of_m.json` with underscores, and the
   array inside is `items`, not `issues`. Read the `file` field from `catalog.json` rather than
   deriving a filename from the id.
-- Catalog rows include the variant label, so match `button[aria-label="Import <full name>"]`.
+- Catalog rows include the variant label, so match
+  `button[aria-label="Add to library: <full name>"]`.
 - Home is `.brand[data-view="home"]`, not `.ri[data-view="home"]`. A wrong selector matches nothing
   and the check passes vacuously.
+
+## Keep feature implementation bounded
+
+Plan a bounded test matrix before changing a feature. Name the behavior that is changing, the direct
+compatibility contracts it can affect, and the smallest unit or browser scenario that can prove each
+one. Calculate the command cardinality before starting. If a loop, worker plan, or proof setup
+multiplies into more runs than expected, stop and narrow it before spending the work.
+
+Iterate with the smallest targeted unit and browser checks. Mutation-prove only behavior changed by
+the feature and its direct compatibility contracts. The default ceiling is three mutations, and
+each mutation runs only against the scenario it is aimed at. Never run the Cartesian matrix of every
+mutation against every scenario without explicit owner approval.
+
+Once the candidate is stable, run the full ordinary browser suite once. Run the full repository
+gates once before exact-head review. If that review produces fixes, use only affected checks while
+iterating, then run the required final clean checks once against the final head. Do not replay every
+full suite after every correction.
+
+Read-only research, inspection, and validation can run in parallel. Feature implementation that
+touches a shared file, integration of parallel work, and merges into a shared branch stay serial.
 
 ## Standing product constraints
 

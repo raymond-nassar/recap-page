@@ -1524,6 +1524,31 @@
     "fp": "c727e9b5638b206f",
     "head": "assert.doesNotMatch(code, /MRT_PORT/, `${name} sets a port, which moves the stored progress`);"
   },
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|scripts/vendor-orders.mjs:587-635|0": {
+    "anchor": "scripts/vendor-orders.mjs:587-635",
+    "fp": "98a893895e13e14e",
+    "head": "// Lists we did not rebuild still have to appear in the catalog, so their entries are derived"
+  },
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/api.js:81-120|0": {
+    "anchor": "src/js/api.js:81-120",
+    "fp": "552b51210b97e50b",
+    "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
+  },
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:4730-4740|0": {
+    "anchor": "src/js/main.js:4730-4740",
+    "fp": "3b9b6f6da971803d",
+    "head": "function loadCatalog() {"
+  },
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/reader.js:57-90|0": {
+    "anchor": "src/js/reader.js:57-90",
+    "fp": "ea1b61fd08c125eb",
+    "head": "// Builds the same-origin launch URL. Passing digitalId when we already have it (true for every"
+  },
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/open.js:72-100|0": {
+    "anchor": "src/open.js:72-100",
+    "fp": "944d67fdd5ae5fca",
+    "head": "async function resolveAndGo(id) {"
+  },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/api.js:193-230|0": {
     "anchor": "src/js/api.js:193-230",
     "fp": "c807cc56b5a64c8d",
@@ -1614,6 +1639,66 @@
     "fp": "220bf1eb3736428e",
     "head": "test('a second, unrelated incident is salvaged and offered accurately', () => {"
   },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|scripts/lib/chapter-orders.mjs:377-387|0": {
+    "anchor": "scripts/lib/chapter-orders.mjs:377-387",
+    "fp": "ffcf7e8ddf1cdadb",
+    "head": "return {"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:1410-1462|0": {
+    "anchor": "src/js/lib/catalog.js:1410-1462",
+    "fp": "522f7e7de56991fa",
+    "head": "// The shelf placement map deliberately keeps only the first path that reaches a story. This model"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/catalog.js:685-703|0": {
+    "anchor": "src/js/lib/catalog.js:685-703",
+    "fp": "c223b522bd950f07",
+    "head": "stops.forEach((stop, i) => {"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/lib/route.js:160-195|0": {
+    "anchor": "src/js/lib/route.js:160-195",
+    "fp": "9e182e3c330f02d7",
+    "head": "const FULL_KEY = 'full'; const PATH_KEY = 'path'; const PATH_TOKEN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:122-150|0": {
+    "anchor": "src/js/main.js:122-150",
+    "fp": "72964182d840a14e",
+    "head": "export function dispatchStorageEvent("
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2158-2179|0": {
+    "anchor": "src/js/main.js:2158-2179",
+    "fp": "3145f53d29d523fe",
+    "head": "const categories = availableHomeCategories(groupCatalog(homeCatalog.lists), HOME_CATEGORIES, resolve"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6569-6589|0": {
+    "anchor": "src/js/main.js:6569-6589",
+    "fp": "49e5fec2fb273a5f",
+    "head": "export function readingPathProgress(state, stop) {"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6592-6599|0": {
+    "anchor": "src/js/main.js:6592-6599",
+    "fp": "f91beb7f263f2ae6",
+    "head": "export function refreshReadingPathProgress(state = store.state) {"
+  },
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6635-6674|0": {
+    "anchor": "src/js/main.js:6635-6674",
+    "fp": "f75fea96fd08e692",
+    "head": "async function renderReadingPaths() {"
+  },
+  "docs/ARCHITECTURE.md|routes-and-generated-views|src/js/lib/route.js:1-6|0": {
+    "anchor": "src/js/lib/route.js:1-6",
+    "fp": "78d8dabf5f7c8958",
+    "head": "// The URL scheme. Kept out of main.js so it can be tested in Node: main.js reads `document` at"
+  },
+  "docs/ARCHITECTURE.md|routes-and-generated-views|src/js/lib/route.js:12-27|0": {
+    "anchor": "src/js/lib/route.js:12-27",
+    "fp": "42c70d90b2264eb7",
+    "head": "const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));"
+  },
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/author-cbh-packet.mjs:6|0": {
+    "anchor": "scripts/author-cbh-packet.mjs:6",
+    "fp": "2691c5a6c7db0bcf",
+    "head": "import { parseManifest } from '../src/js/lib/curated.js';"
+  },
   "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|scripts/vendor-orders.mjs:31|0": {
     "anchor": "scripts/vendor-orders.mjs:31",
     "fp": "2691c5a6c7db0bcf",
@@ -1629,15 +1714,20 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5904-5906|0": {
-    "anchor": "src/js/main.js:5904-5906",
-    "fp": "8f226e48e15a5fea",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5904-5918|0": {
+    "anchor": "src/js/main.js:5904-5918",
+    "fp": "f21a6b3303a86b09",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:92-107|0": {
-    "anchor": "src/js/main.js:92-107",
-    "fp": "aa9271359fe868b3",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:92-112|0": {
+    "anchor": "src/js/main.js:92-112",
+    "fp": "9e09e4e89f486a30",
     "head": "const settings = loadSettings();"
+  },
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/synopsis.js:8-15|0": {
+    "anchor": "src/js/synopsis.js:8-15",
+    "fp": "8afb6d479f5f3d20",
+    "head": "// it in a Map that dies with the tab. Nothing here touches mrt.state.v2, nothing here is written to"
   },
   "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:129|0": {
     "anchor": "src/dev-faults.html:129",
@@ -1663,6 +1753,11 @@
     "anchor": "src/js/main.js:698-716",
     "fp": "5f15902e5826b2b6",
     "head": "export async function writeCachePurgeMark("
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-saveeducation-v1|src/js/lib/saveEducation.js:25-74|0": {
+    "anchor": "src/js/lib/saveEducation.js:25-74",
+    "fp": "34a63c10ee7c6918",
+    "head": "export function createSaveEducation({ storage } = {}) {"
   },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives#mrt-settings|src/js/main.js:738-746|0": {
     "anchor": "src/js/main.js:738-746",
@@ -1719,6 +1814,11 @@
     "fp": "16469826d87add0a",
     "head": "export const ACTIVE_DB_NAME = 'mrt-cache-v2';"
   },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/lib/saveEducation.js:1|0": {
+    "anchor": "src/js/lib/saveEducation.js:1",
+    "fp": "610c96e2c8507a76",
+    "head": "export const SAVE_EDUCATION_KEY = 'mrt.saveEducation.v1';"
+  },
   "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/js/main.js:60-62|0": {
     "anchor": "src/js/main.js:60-62",
     "fp": "b150c9694bbc2e50",
@@ -1738,6 +1838,36 @@
     "anchor": "src/open.js:63",
     "fp": "9f4e8a74882b0cdb",
     "head": "const raw = JSON.parse(localStorage.getItem('mrt.settings') || '{}');"
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:44-55|0": {
+    "anchor": "src/sw.js:44-55",
+    "fp": "035a19b83ffda1da",
+    "head": "self.addEventListener('activate', (event) => {"
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:58-70|0": {
+    "anchor": "src/sw.js:58-70",
+    "fp": "c3742c3194952bdf",
+    "head": "self.addEventListener('fetch', (event) => {"
+  },
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|src/sw.js:73-114|0": {
+    "anchor": "src/sw.js:73-114",
+    "fp": "4719c3efca63cca9",
+    "head": "async function networkThenCache(event) {"
+  },
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|scripts/data/marvel-knights-to-planet-x-lists.json:28-40|0": {
+    "anchor": "scripts/data/marvel-knights-to-planet-x-lists.json:28-40",
+    "fp": "ff9ba71742d8b8c0",
+    "head": "\"chapterCount\": 78,"
+  },
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:9446-9571|0": {
+    "anchor": "src/data/catalog.json:9446-9571",
+    "fp": "a679899453ea002c",
+    "head": "\"paths\": ["
+  },
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:5649-5687|0": {
+    "anchor": "src/data/curated-lists.json:5649-5687",
+    "fp": "e2b83d7abbcf68b9",
+    "head": "\"paths\": ["
   },
   "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/main.js:1838|0": {
     "anchor": "src/js/main.js:1838",
@@ -1769,8 +1899,8 @@
     "fp": "a6ceb97902e6f2c0",
     "head": "Two limits worth stating rather than discovering later. Every `required: true` in these forms is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:135-141|0": {
-    "anchor": "SECURITY.md:135-141",
+  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:138-144|0": {
+    "anchor": "SECURITY.md:138-144",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
@@ -1804,13 +1934,13 @@
     "fp": "61fe35744ce7a858",
     "head": "// The publication gate. This repository was published on 2026-08-16, and several of the things that"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-135-141|SECURITY.md:135-141|0": {
-    "anchor": "SECURITY.md:135-141",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-138-144|SECURITY.md:138-144|0": {
+    "anchor": "SECURITY.md:138-144",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-37-42|SECURITY.md:37-42|0": {
-    "anchor": "SECURITY.md:37-42",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-39-44|SECURITY.md:39-44|0": {
+    "anchor": "SECURITY.md:39-44",
     "fp": "a52faa95cf1721d7",
     "head": "If that option is not on the Security tab, it has not been turned on. It is off by default, and on"
   },
@@ -5944,10 +6074,10 @@
     "fp": "785f5b41582f02a1",
     "head": "const CSP = ["
   },
-  "SECURITY.md|what-is-supported|src/js/lib/version.js:5-9|0": {
-    "anchor": "src/js/lib/version.js:5-9",
-    "fp": "3e2c4d78c29c3429",
-    "head": "//   MAJOR  changes the stored data in a way an older build cannot read. Anyone who has"
+  "SECURITY.md|what-is-supported|src/js/lib/version.js:5-15|0": {
+    "anchor": "src/js/lib/version.js:5-15",
+    "fp": "0c786a4a0e0b5b8d",
+    "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
   "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:40-44|0": {
     "anchor": "package.json:40-44",

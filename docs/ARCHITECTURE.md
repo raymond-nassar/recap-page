@@ -34,25 +34,29 @@ import graph below is also the load graph.
 ## The module graph, drawn as ownership
 
 Imports say what a file mentions. Ownership says who made the thing and who can change it, which
-is the question a reader of this app actually has, because almost every module here is a bag of
-pure functions and the interesting state sits in five objects that one file constructs.
-
-Those five are built together at `src/js/main.js:92-107`. Read that block and you have read the
-application's wiring.
+is the question a reader of this app actually has. Most modules expose stateless functions and
+contracts. The controller constructs its core service objects together at
+`src/js/main.js:92-112`; mutable view bookkeeping also lives at module scope. Read that block for
+the application's dependency wiring, not as an exhaustive inventory of every value kept in memory.
 
 ```mermaid
 flowchart TD
   idx["index.html"] --> app["app.js: the entry, calls boot()"]
   app --> view["View layer: every screen and every event handler"]
+  app --> offline["offline.js: registers and warms the app shell"]
+  offline --> worker["sw.js: network first, same-origin cache fallback"]
   opn["open.html"] --> launch["Launch page: resolves the reader link in the new tab"]
   dev["dev-faults.html"] --> harness["Fault harness: development only"]
 
-  subgraph owned["The five instances the view layer constructs and holds"]
+  subgraph owned["Core service objects the view layer constructs and holds"]
     store["Store: the only writer of reading progress"]
     limiter["RateLimiter: queue, rolling windows, pause"]
     cache["ResponseCache: the IndexedDB handle"]
     api["MarvelApi: the metadata client"]
     hydrator["Hydrator: fills in issue details in the background"]
+    education["Save education: one-way browser preference"]
+    synopses["SessionSynopsis: tab-memory prose"]
+    synopsisRunner["SynopsisRunner: cancellable memory-only fetches"]
   end
 
   view ==> store
@@ -60,15 +64,23 @@ flowchart TD
   view ==> cache
   view ==> api
   view ==> hydrator
+  view ==> education
+  view ==> synopses
+  view ==> synopsisRunner
 
   api --> limiter
   api --> cache
   hydrator --> api
   hydrator --> store
+  synopsisRunner --> api
+  synopsisRunner --> store
+  synopsisRunner --> synopses
 
-  subgraph lib["The library: constants and pure functions"]
+  subgraph lib["Browser library: contracts, transforms and policies"]
     model["model: the state shape and every transform of it"]
-    rest["availability, sort, catalog, markdown, route, readingFilters, library, shortcuts, theme, apiBase, nameIndex, cachePolicy, version"]
+    discovery["catalog, route, library, librarySummary, issueFocus"]
+    policy["availability, sort, markdown, filters, shortcuts, theme, API and cover policy"]
+    integrations["name index, update check, wiki parsing, offline registration, version"]
   end
 
   view -.-> lib
@@ -77,6 +89,9 @@ flowchart TD
   api -.-> lib
   cache -.-> lib
   launch -.-> lib
+
+  manifest["curated-list manifest"] --> curated["curated.js: Node-only validation"]
+  curated --> vendor["vendor-orders.mjs"]
 ```
 
 A thick arrow means constructs and holds. A thin arrow means holds a reference to something
@@ -84,36 +99,133 @@ another part constructed. A dotted arrow means calls, and owns nothing.
 
 Four things the picture is making a point of.
 
-**The view layer owns the state, and the library owns none of it.** Twenty-three modules sit under
-`src/js/lib/`, and none of them keeps anything at module scope that changes: what is there is
-constants and lookup tables, read and never written. Where state exists it belongs to an instance
-the view layer made, as the rate limiter's queue and its two rolling windows of recent hits do, set
-up at `src/js/lib/limiter.js:11-20`, so two limiters would be two independent budgets. This is why
-the graph is worth drawing as ownership. An import arrow from the view layer to the rate limiter
-would suggest a dependency on a service. What is actually there is a dependency on an object the
-view layer itself created and can throw away.
+**The view layer owns the state, and the library owns no mutable singleton service.** Where state
+exists it belongs to an instance the view layer made, as the rate limiter's queue and its two
+rolling windows of recent hits do, set up at `src/js/lib/limiter.js:11-20`, so two limiters would be
+two independent budgets. The same is true of the save-education preference and session synopsis
+map. This is why the graph is worth drawing as ownership. An import arrow from the view layer to the
+rate limiter would suggest a dependency on a service. What is actually there is a dependency on an
+object the view layer itself created and can throw away.
 
-**Two of the five are replaceable at runtime, and they are replaced together.** Saving a new API
-base builds a fresh cache and a fresh client and hands the new client to the hydrator, at
-`src/js/main.js:5904-5906`. The hydrator itself is not rebuilt; only its reference to the client is
-swapped. The rate limiter is deliberately not rebuilt either, because the budget it tracks belongs
-to the reader's connection rather than to whichever base URL is configured. The store is never
-replaced at all.
+**The API client and its response cache are replaceable at runtime.** Saving a new API base builds
+a fresh pair and hands the replacement client to both the Hydrator and SynopsisRunner, at
+`src/js/main.js:5904-5918`. An in-flight synopsis run is cancelled and its tab-memory prose is
+cleared rather than carried across services. The rate limiter is deliberately not rebuilt, because
+the budget it tracks belongs to the reader's connection rather than to whichever base URL is
+configured. The Store is not replaced.
 
 **The client can build its own limiter and cache, and in this app never does.** `MarvelApi` falls
 back to constructing both when it is handed neither, at `src/js/api.js:68-69`. That fallback is for
 tests and for any future caller; the running app always passes its own, which is what keeps one
 budget across every request the page makes.
 
-**One of the twenty-three library modules is not in this graph at all.** `src/js/lib/curated.js`
-parses the curated-list manifest, and its only importer outside the tests is the vendoring script,
-at `scripts/vendor-orders.mjs:31`.
-It runs in Node when someone adds a reading list, never in the browser. The same Node-only boundary
-contains `scripts/lib/chapter-orders.mjs`: one noncatalog source order can be validated and emitted
-as ordinary child payloads, catalog entries, a reading path and overlap evidence without teaching
-the browser a partition model. So twenty-two of the twenty-three browser library modules are
-reachable from the page, and a graph drawn from directory listings rather than imports would be
-wrong.
+**Synopsis state is intentionally separate from saved metadata.** `SessionSynopsis` is a tab-memory
+map and `SynopsisRunner` is a cancellable fetch owner. Neither writes through the Store or the
+response cache. The three independent refusal points are recorded at `src/js/synopsis.js:8-15`:
+normalization drops prose, API cache writes strip it, and the request uses `no-store`.
+
+**One library module belongs only to the build-time graph.** `src/js/lib/curated.js` parses the
+curated-list manifest for the vendoring script at `scripts/vendor-orders.mjs:31` and the Comic Book
+Herald packet-authoring script at `scripts/author-cbh-packet.mjs:6`. Both run in Node, never in the
+browser. The same Node-only boundary contains `scripts/lib/chapter-orders.mjs`: one noncatalog
+source order can be validated and emitted as ordinary child payloads, catalog entries, a reading
+path and overlap evidence without teaching the browser a partition model. Every other module under
+`src/js/lib/` is reachable from the browser graph.
+
+## Routes and generated views
+
+The address after `#/` is application state, not decoration. The parser accepts only names in the
+route registry at `src/js/lib/route.js:12-27`. Publishing and custom Home-category routes are
+derived from the same definitions that generate those screens. Static panels and their navigation
+buttons remain separate markup, so adding one requires keeping that markup and the registry in
+step; route tests hold the shipped set together.
+
+```mermaid
+flowchart LR
+  hash["location.hash"] --> parser["route.js: parse and validate"]
+  parser --> apply["main.js: apply route"]
+  apply --> static["static panels in index.html"]
+  apply --> generated["publishing panels generated from catalog registries"]
+  apply --> state["active list, filter, issue context"]
+  static --> crumbs["breadcrumb hierarchy"]
+  generated --> crumbs
+  state --> crumbs
+```
+
+Most panels exist in `index.html`. Publication-age leaves are the exception: `boot()` calls
+`ensurePublishingViews()` before wiring navigation, so every configured publishing route gets a
+panel from the same registry that made it routable. Issue addresses may also carry validated list
+or bundled-order context, which lets Back and the breadcrumb return to the surface that opened the
+details without guessing at browser history.
+
+The hash is load-bearing. A path route would ask the static server for a file it does not have, and
+a different origin would select a different browser storage bucket. The reasons are kept beside the
+parser at `src/js/lib/route.js:1-6`.
+
+## How reading content reaches the browser
+
+Curated content and live metadata take different routes. They can meet transiently on Preview,
+issue details, and issue-focus results, but they enter saved reader data only through the Store.
+The catalog is built before release and carries the exact source and gap decisions already
+reviewed; browsing it does not need the metadata service. With the loopback server stopped, only
+same-origin resources the service worker has already cached are available, so an unvisited payload
+is not guaranteed offline. Live metadata is optional enrichment. Synopsis prose is a third route
+because it is shown without being kept.
+
+```mermaid
+flowchart TD
+  subgraph build["Build time"]
+    sources["source guides and Marvel series facts"] --> evidence["reviewed mappings, ledgers and checklists"]
+    evidence --> vendor["vendor scripts"]
+    vendor --> payloads["pinned order payloads"]
+    vendor --> catalog["catalog.json and reading paths"]
+  end
+
+  subgraph browser["Browser runtime"]
+    catalog --> browse["Home, Browse, Preview and Reading paths"]
+    payloads --> preview["selected bundled Reading List"]
+    browse --> preview
+    preview --> screen["Preview, issue details and reading screen"]
+    preview -->|"Add Reading List"| store["Store and mrt.state.v2"]
+
+    indexes["vendored series and creator indexes"] --> add["local name search"]
+    add --> api["Marvel metadata API"]
+    api --> responseCache["IndexedDB response cache, synopsis stripped"]
+    api --> addWriter["pagewise series and creator add"]
+    addWriter --> store
+    api --> hydrator["Hydrator"]
+    hydrator --> store
+    api --> details["transient issue detail"]
+    details --> screen
+
+    api --> synopsisRunner["SynopsisRunner"]
+    synopsisRunner --> memory["SessionSynopsis in tab memory"]
+    memory --> screen
+
+    covers["Marvel image host"] --> screen
+    read["Read action"] --> launch["same-origin open.html tab"]
+    launch --> reader["Marvel Unlimited reader"]
+    launch --> issuePage["marvel.com issue page fallback"]
+  end
+```
+
+On a targeted run, the vendor reuses pinned payloads for skipped orders before deriving the complete
+catalog. It then atomically writes the output batch assembled by that invocation, including
+`catalog.json` and any generated overlap artifacts, at `scripts/vendor-orders.mjs:587-635`. At
+runtime the catalog is fetched once from the same origin and parsed at
+`src/js/main.js:4730-4740`, so browsing does not depend on the metadata service.
+
+Series and creator names are searched in vendored indexes. Selecting one then pages its issues from
+the API. API responses use `no-store`, and cache writes remove synopsis prose before IndexedDB sees
+them, at `src/js/api.js:81-120`. Hydration sends normalized factual metadata through the same Store
+boundary as a reader edit; synopsis requests instead end in the tab-memory map and disappear when
+the tab closes.
+
+A Read press opens the same-origin launch page synchronously so popup permission is not lost,
+at `src/js/reader.js:57-90`. A known digital ID redirects straight to Marvel Unlimited. Otherwise
+the launch page asks the configured metadata service once and falls back to the official issue page
+when no reader link can be resolved, at `src/open.js:72-100`. The launch page never reads or writes
+reading progress.
 
 ## Marking one issue read
 
@@ -168,13 +280,15 @@ actually stuck, so a screen reader never hears "marked read" for a row that has 
 so the row goes back to how it was and the reason appears in a notice. A change that was not saved
 must never be left on screen looking saved.
 
-**Repainting everything does not mean rebuilding everything.** The callback repaints all seven
-surfaces, the six screens plus the blocked banner, at `src/js/main.js:6246-6267`, but the reading
-order compares each row against a cache key built from the whole item and reuses the node when
-nothing about it changed, and the full order
-is skipped entirely while its container is closed. Focus is captured before a rebuild and restored
-by identity afterwards, at `src/js/main.js:3250`, which is what keeps the keyboard where the reader
-left it. The row list is committed by moving nodes rather than replacing the container, at
+**Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
+refresh fan-out at `src/js/main.js:6246-6267`, including the rail, reading view, Home, Library hub
+and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
+synchronization. Catalog and generated publishing panels render when their routes need them. Inside
+the reading view, each row is compared against a cache key built from the whole item and its node is
+reused when nothing changed, while the full order is skipped entirely when its container is closed.
+Focus is captured before a rebuild and restored by identity afterwards, at
+`src/js/main.js:3250`, which is what keeps the keyboard where the reader left it. The row list is
+committed by moving nodes rather than replacing the container, at
 `src/js/main.js:3138-3146`.
 
 **Background work uses the same door.** Hydration writes each fetched issue through the same
@@ -201,9 +315,11 @@ saved remains available after a reload.
 
 ## Where a reader's data lives
 
-This is the question the product promise turns on, and the answer is more than one key. The store
-declares four at `src/js/storage.js:11-14`, the view layer writes three more of its own at
-`src/js/main.js:60-62`, and the response cache is not in `localStorage` at all.
+This is the question the product promise turns on, and the answer is more than one key. The Store
+declares four names at `src/js/storage.js:11-14`, the controller owns settings, cache-cleanup and
+sidebar preferences at `src/js/main.js:60-62`, and save education owns one more at
+`src/js/lib/saveEducation.js:1`. Metadata responses live in IndexedDB, the offline app shell lives
+in the Cache API, and synopsis prose lives only in memory.
 
 Two of the extra keys belong to restoring a backup, which is a path where nothing has gone wrong.
 One belongs to a failed read, which is a path where something has. Collapsing those into a single
@@ -216,8 +332,11 @@ flowchart TD
     prefs["cover art, theme, API base, chosen filter"] --> settings["mrt.settings"]
     purge["completed cache cleanup generation"] --> marker["mrt.cache-purge.v1"]
     rail["collapsing the sidebar"] --> sidebar["sidebar.collapsed"]
+    education["save-location explanation completed"] --> educationKey["mrt.saveEducation.v1"]
     meta["metadata fetched from the API"] --> idb["IndexedDB database mrt-cache-v2, store responses"]
     old["metadata cached by older code"] --> legacy["legacy IndexedDB database mrt-cache, retired when no old tab keeps it open"]
+    shell["successful same-origin GET responses handled by the worker"] --> offlineCache["Cache API cache mrt-offline-v1"]
+    synopsis["synopsis requested by the reader"] --> sessionMemory["SessionSynopsis, tab memory only"]
   end
 
   subgraph bootpath["Boot, and the one path where something has gone wrong"]
@@ -244,7 +363,7 @@ flowchart TD
   end
 ```
 
-Every name the app writes, and why it exists:
+Every `localStorage` name the tracker writes, and why it exists:
 
 | Key | Written by | Cleared by | Why it exists |
 |---|---|---|---|
@@ -256,10 +375,11 @@ Every name the app writes, and why it exists:
 | `mrt.settings` | the settings form, the cover art switch, the theme control and the reading filter, at `src/js/main.js:738-746` | nothing | Preferences, not data. Deliberately outside the state so a settings write can never fail a progress write. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
 | `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:698-716` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
 | `sidebar.collapsed` | the sidebar toggle, at `src/js/main.js:1274` | nothing | Whether the rail is collapsed. Wrapped in its own try, because losing it is not worth an error. |
+| `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
 
-Eight names in all: seven fixed, and one family whose suffix is the moment it was written. Three of
-the eight belong to the view layer rather than to the store, which is why an enumeration taken from the
-storage module alone would have found four.
+Nine rows in all: eight fixed names, and one family whose suffix is the moment it was written. Four
+belong outside the Store, which is why an enumeration taken from the storage module alone finds only
+the reader-data and recovery names.
 
 The two salvage rows are the only ones whose Cleared by column names a person choosing that copy in
 particular. Nothing in the app removes a salvage copy on its own, because no rule it could apply would
@@ -298,6 +418,20 @@ while an older tab keeps that deletion blocked. That separation is the reason th
 `src/js/cache.js:3-5` records that IndexedDB is restricted on `file://` origins and that
 `file://`, `localhost` and `127.0.0.1` are three separate storage buckets, and the server binds one
 of them at `server.mjs:14-16`.
+
+**The offline shell uses a different browser store for a different job.** Cache API cache
+`mrt-offline-v1` stores successful 200 responses to same-origin GET requests the worker handles,
+including the warmed app shell and later requested bundled payloads. The worker rejects other
+origins before opening that cache, at `src/sw.js:58-70`, so Marvel covers and metadata responses
+cannot enter it. Network is always tried first, and each successful response replaces its cached
+copy; a cached URL is read only when the loopback server cannot answer, at `src/sw.js:73-114`.
+There is no in-app control that clears this cache. Activation removes older `mrt-offline-*`
+generations but leaves the current one in place, at `src/sw.js:44-55`.
+
+**Synopsis prose is deliberately in no browser store.** `SessionSynopsis` keeps it in a Map that
+dies with the tab. The API request uses `no-store`, the response cache strips the field, and saved
+state normalization refuses it. The separate boundaries mean clearing metadata, exporting a backup,
+and reloading all agree that the prose was temporary.
 
 **The launch page writes nothing.** It reads the configured API base out of `mrt.settings` at
 `src/open.js:63` and refuses anything it is not allowed to call. Nothing about the reader's
@@ -339,38 +473,62 @@ The archived name is now checked to be free before it is used. The lesson is the
 was drawn to make: the fault was found by attacking a claim, not by re-reading the code that made
 it.
 
-## What a per-view split does to these diagrams
+## What is intentionally centralized
 
-BL-042 proposes breaking the 5,244 line view file into per-view modules. A diagram drawn at the
-level of function names inside that file would be falsified the day it lands, so each of the three
-above was pitched to survive it. Two do. One survives in shape but has a detail that will need
-rewriting, and it is more useful to say which than to claim all three are safe.
+The application controller still owns route application, event wiring, shared rendering and the
+long-lived objects in the first diagram. That is a description of the current implementation, not a
+proposal to preserve one file at any size. Active architecture work belongs in a repository Issue,
+where a change can state which contracts it keeps and which it deliberately replaces.
 
-**The module graph survives.** Its nodes are responsibilities and owned instances, and the only
-node the split touches is the view layer, which becomes several files that between them do what one
-file does now. What the layer owns does not change, and BL-042's own second task is to keep the
-store wiring in one place, so the single arrow from the view layer to the store is something that
-item is committed to preserving rather than something this drawing assumes.
+The stable boundaries in this document are behavioral:
 
-**The persistence diagram survives.** Every key keeps its name and its writer keeps its reason. Three
-of the eight are written by the view layer, so the split moves the line of code that writes them
-without changing what is written or when. The one citation in the table that would need re-aiming
-is the one that names a line in the view file, which is a citation problem rather than a drawing
-problem.
+- The Store remains the only ordinary writer of reading progress.
+- Routes and panels derive from shared registries rather than duplicate lists.
+- Vendoring finishes before release and writes one atomic generated output set.
+- Cached factual metadata, the offline shell, temporary synopsis prose and reader data remain in
+  separate stores with separate lifetimes.
+- A Read press opens its same-origin launch tab before any asynchronous lookup.
 
-**The reading action survives in shape, with one claim that will not.** The sequence names the
-store's contract and the surfaces that repaint, not the functions that repaint them, so "one
-function fans out to seven" becoming "one module fans out to seven" changes nothing drawn. What is
-genuinely at risk is the claim that the repaint is synchronous inside the write, and the
-announcement gate that depends on it. That is a property of a call made directly from the store's
-change callback, and a split that put a scheduler or a batch in between would falsify it. If BL-042
-lands and the repaint stops being synchronous, this section is wrong and needs rewriting rather
-than re-aiming. It is written down here so that whoever lands the split knows the diagram is
-watching for it.
+A future file split that preserves those contracts changes the ownership diagram's boxes, not the
+data flow. A change that introduces scheduling between a Store update and its repaint, moves
+synopsis prose into durable storage, or makes a reader lookup precede `window.open` changes the
+architecture and must rewrite the relevant section rather than merely re-aim its citations.
+
+## Reading Paths are a catalog projection
+
+Reading Paths add no second content or persistence model. Build-time authoring emits path
+descriptions and ordered Reading List ids into `catalog.json`; the browser treats the paths in that
+parsed generated catalog as the complete authority. `resolveReadingPaths()` resolves every path
+independently against the same catalog stories at `src/js/lib/catalog.js:1410-1462`, including paths
+emitted from a partition ledger rather than declared in the ordinary curated manifest, at
+`scripts/lib/chapter-orders.mjs:377-387`.
+
+That aggregate model is deliberately separate from shelf orientation. Shelf badges keep the first
+path that reaches a story so one row has one stable position, at `src/js/lib/catalog.js:685-703`.
+The aggregate resolver keeps each path's own ordinal and neighbours, so a story shared by future
+paths remains a separate stop in each sequence.
+
+Home and Browse render the same gateway descriptor from the resolved catalog and both open one
+Reading paths view, at `src/js/main.js:2158-2179`. Its selector chooses one complete spine at a
+time. The selected id lives only in the validated `path` query of the hash route, not in saved
+reader state, as enforced at `src/js/lib/route.js:160-195`. The controller keeps that requested id
+while the catalog loads, rejects stale async continuations with a render generation, falls back to
+the first resolved path when the id is absent or invalid, and canonically replaces the address at
+`src/js/main.js:6635-6674`.
+
+Progress is a projection of the Store onto each stop. It prefers the imported list whose catalog id
+exactly matches the stop, then the first imported sibling in catalog order, then reports **Not
+added**, at `src/js/main.js:6569-6589`. Cross-tab state replacement and whole-origin clearing call a
+progress-only repaint at `src/js/main.js:122-150`; that repaint changes only the progress outputs at
+`src/js/main.js:6592-6599`, preserving the selector's DOM identity and keyboard focus.
 
 ## Where to read next
 
 [Why this is a browser app and not an Android emulator](WHY_A_BROWSER_APP.md) records why the app
-sits beside Marvel Unlimited rather than replacing it. [The UX study](UX_STUDY.md) covers the
-interface rather than the structure, and the four documents under `docs/ux` specify individual
-flows.
+sits beside Marvel Unlimited rather than replacing it. [Data provenance](DATA_PROVENANCE.md)
+continues the build-time side of the content flow, and [Maintaining Recap Page](MAINTAINING.md)
+owns the procedures that generate and release it.
+
+The [UX study](UX_STUDY.md) and the documents under `docs/ux` are dated design evidence. They explain
+decisions made during earlier interface passes, but the current README, running guide and tested
+route registries own the behavior a reader should expect now.
