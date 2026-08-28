@@ -38,12 +38,12 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 246, `the catalog lists ${orders.length} orders, not 246, so this test's coverage has changed`);
+  assert.equal(orders.length, 247, `the catalog lists ${orders.length} orders, not 247, so this test's coverage has changed`);
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
 });
 
-// The test above reads the catalog, so it sees exactly the two hundred and thirty-eight files the catalog names and
+// The test above reads the catalog, so it sees exactly the two hundred and forty-seven files the catalog names and
 // nothing else. That is the shape of the miss it was written to prevent: the first strip left 41
 // descriptions in design/mockups/mock-data.js, a generated projection of a reading order that no
 // catalog lists and no gate walked. A boundary defined by an enumeration is a boundary someone has
@@ -54,7 +54,7 @@ test('no shipped reading order carries Marvel description prose', async () => {
 // silently or the test would fail on every script in the repository. That skip is a hole aimed
 // straight at the one file this test exists for: reformat the mockup bundle, or move it, and it
 // leaves the population with nothing said. A floor of two hundred and thirty-two still passes at
-// that point, because the catalog's own files alone clear it. An exact two hundred and forty-four
+// that point, because the catalog's own files alone clear it. An exact two hundred and fifty-three
 // does not.
 //
 // A review suggested pre-filtering on the literal "items" key so that package-lock.json is not
@@ -101,7 +101,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-  assert.equal(scanned, 252, `${scanned} item-bearing files were found, not 252, so this test's coverage has changed`);
+  assert.equal(scanned, 253, `${scanned} item-bearing files were found, not 253, so this test's coverage has changed`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });
 

@@ -459,6 +459,7 @@ async function libraryDigestForScope(manifest, excludedIds) {
 async function historicalReportLibraryDigest(manifest, excludedIds) {
   return libraryDigestForScope(manifest, [
     ...excludedIds,
+    'marvel-2099',
     'loki-reading-order',
     'silver-surfer-reading-order',
     moonKnightCandidateId,
@@ -775,6 +776,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
         xForceCandidateId,
         'nick-fury-reading-order',
         inhumansCandidateId,
+        'marvel-2099',
       ],
     },
   );
@@ -932,7 +934,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 11);
+  assert.equal(report.comparisonCount, manifest.lists.length - 12);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1395,7 +1397,8 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
      && id !== 'nick-fury-reading-order'
      && id !== xForceCandidateId
      && id !== inhumansCandidateId
-     && id !== youngAvengersCandidateId)
+     && id !== youngAvengersCandidateId
+     && id !== 'marvel-2099')
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
@@ -1407,6 +1410,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
       'nick-fury-reading-order',
       inhumansCandidateId,
       youngAvengersCandidateId,
+      'marvel-2099',
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1420,6 +1424,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
         'nick-fury-reading-order',
         inhumansCandidateId,
         youngAvengersCandidateId,
+        'marvel-2099',
       ],
     },
   );
@@ -1993,6 +1998,7 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
     'nick-fury-reading-order',
     inhumansCandidateId,
     youngAvengersCandidateId,
+    'marvel-2099',
   ]);
 
   assert.equal(record.deliveryStatus, 'shipped');
@@ -2757,7 +2763,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 246);
+  assert.equal(catalog.lists.length, 247);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
   assert.equal(characterRuns.length, 42);
   assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 41);
@@ -3008,7 +3014,7 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   assert.equal(mapping.candidateMetadata.length, 262);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
   assert.equal(report.candidateCount, 262);
-  assert.equal(report.comparisonCount, manifest.lists.length - 4);
+  assert.equal(report.comparisonCount, manifest.lists.length - 5);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')

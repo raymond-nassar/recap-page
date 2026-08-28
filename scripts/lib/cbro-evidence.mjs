@@ -41,8 +41,10 @@ export const CBRO_MARVEL_2099_BLOCKER_REASON =
   'Blocked: 99 source rows lack exact configured issue metadata across 13 source series; the complete 271-row alternate-universe order cannot publish.';
 export const CBRO_MARVEL_2099_UNMATCHED_IDENTITY_SHA256 =
   '62344e2d6898b7d8bcd9eab1d7686acc0d3c6adb0fa7a8e60da56b6e2e815aa3';
+export const CBRO_MARVEL_2099_EXCLUSION_SHA256 =
+  'e582db0e2d1edf641ae7a59790459d040c86503e12d33b20cc5744c5a32a6f46';
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  'ccf035562d73169d664e58965f52c7ccd70fc547b7b68aa8404e83bb7152763c';
+  '3a01866b7233ab6e47cdeb15975a8801ef18be4ea87b33daf5df2b542eaafbbb';
 export const CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256 =
   '0fb172f493fff2d6001a9c8c3bf2efaf756c40566056df00373a3f18e58c7316';
 export const CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256 =
@@ -114,6 +116,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'nick-fury-reading-order',
   'inhumans-reading-order',
   'young-avengers-reading-order',
+  'marvel-2099',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([
@@ -239,6 +242,7 @@ export const CBRO_BATCH_NINE_SELECTED_IDS = Object.freeze([
   'hunt-for-xavier',
   'magneto-war',
 ]);
+export const CBRO_MARVEL_2099_SELECTED_IDS = Object.freeze(['marvel-2099']);
 export const CBRO_BATCH_NINE_AUTHOR_IDS = CBRO_BATCH_NINE_SELECTED_IDS;
 export const CBRO_BATCH_NINE_TOUCHED_IDS = Object.freeze([
   'mc2',
@@ -281,6 +285,7 @@ export const CBRO_RELEASE_IDS = Object.freeze({
   continuationBatchSeven: 'mrt-003-c02-b07',
   continuationBatchEight: 'mrt-003-c02-b08',
   continuationBatchNine: 'mrt-003-c02-b09',
+  marvel2099Publication: 'mrt-003-c02-au01-pub',
 });
 export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
   [CBRO_RELEASE_IDS.continuationBatchOne]: Object.freeze([
@@ -491,6 +496,15 @@ export const CBRO_RELATIONSHIP_DECISIONS = Object.freeze({
       rationale: 'The exact nine-issue Phalanx Covenant route has a distinct event purpose inside the broader Phalanx reading order.',
     }),
   ]),
+  [CBRO_RELEASE_IDS.marvel2099Publication]: Object.freeze([
+    Object.freeze({
+      candidateId: 'marvel-2099',
+      orderId: 'fantastic-four-reading-order',
+      relationship: 'partial',
+      sharedIds: Object.freeze(['13243']),
+      rationale: 'The selected alternate-universe Marvel 2099 event route preserves its source order while the broader Fantastic Four guide shares one issue.',
+    }),
+  ]),
 });
 export const CBRO_RELEASES = Object.freeze({
   [CBRO_RELEASE_IDS.original]: Object.freeze({
@@ -573,6 +587,14 @@ export const CBRO_RELEASES = Object.freeze({
     authorityIdentity: 'MRT-003-C02-B09 coordinator',
     relationshipReviewRationale: 'Every current library and selected peer comparison was reviewed; all relationships are none.',
   }),
+  [CBRO_RELEASE_IDS.marvel2099Publication]: Object.freeze({
+    id: CBRO_RELEASE_IDS.marvel2099Publication,
+    sourceIds: CBRO_MARVEL_2099_SELECTED_IDS,
+    authorIds: CBRO_MARVEL_2099_SELECTED_IDS,
+    packetReview: 'MRT-003-C02-AU01-PUB central CBRO source review',
+    authorityIdentity: 'MRT-003-C02-AU01-PUB coordinator',
+    relationshipReviewRationale: 'Every current library comparison was reviewed for the selected alternate-universe Marvel 2099 guide.',
+  }),
 });
 const CBRO_PRE_BATCH_FIVE_SELECTED_IDS = Object.freeze([
   ...CBRO_CONTINUATION_SELECTED_IDS,
@@ -631,10 +653,16 @@ const CBRO_PRE_BATCH_NINE_SELECTED_IDS = Object.freeze([
   ...CBRO_BATCH_EIGHT_SELECTED_IDS,
   CBRO_SELECTED_IDS[4],
 ]);
-export const CBRO_ALL_SELECTED_IDS = Object.freeze([
+const cbroSelectedWithMarvel2099 = [
   ...CBRO_PRE_BATCH_NINE_SELECTED_IDS,
   ...CBRO_BATCH_NINE_SELECTED_IDS,
-]);
+];
+cbroSelectedWithMarvel2099.splice(
+  cbroSelectedWithMarvel2099.indexOf('midnight-massacre'),
+  0,
+  'marvel-2099',
+);
+export const CBRO_ALL_SELECTED_IDS = Object.freeze(cbroSelectedWithMarvel2099);
 
 const INVENTORY_DISPOSITIONS = new Set([
   'selected',
@@ -653,6 +681,10 @@ const INVENTORY_RELATIONSHIPS = new Set([
 ]);
 
 const SELECTED_INVENTORY_RELATIONSHIPS = Object.freeze({
+  'marvel-2099': Object.freeze({
+    relationshipStatus: 'approved-mixed',
+    overlapIds: Object.freeze(['fantastic-four-reading-order']),
+  }),
   'kree-skrull-war': Object.freeze({
     relationshipStatus: 'candidate-subset',
     overlapIds: Object.freeze(['essential-avengers']),
@@ -1023,6 +1055,18 @@ const BATCH_ELEVEN_PREDECESSOR_STATE = Object.freeze({
     deliveryStatus: 'deferred',
   }),
 });
+const MARVEL_2099_PUBLICATION_PREDECESSOR_STATE = Object.freeze({
+  'marvel-2099': Object.freeze({
+    sourceRetrievedAt: '2026-08-28',
+    sourceContentSha256: 'b8a518200e23b182edd779e35c27019c699428925fc3510b2e97c237889de08e',
+    centralDisposition: 'blocked',
+    relationshipStatus: 'unresolved',
+    reason: CBRO_MARVEL_2099_BLOCKER_REASON,
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'blocked',
+  }),
+});
 const INVENTORY_DELIVERY = new Set(['ready', 'shipped', 'deferred', 'blocked', 'not-applicable']);
 
 function assert(condition, message) {
@@ -1058,8 +1102,12 @@ export function cbroBatchNinePredecessorRecord(record) {
   const predecessor = state ? { ...record, ...state } : record;
   const laterState = BATCH_TEN_PREDECESSOR_STATE[predecessor.id];
   const batchTenPredecessor = laterState ? { ...predecessor, ...laterState } : predecessor;
-  const batchElevenState = BATCH_ELEVEN_PREDECESSOR_STATE[batchTenPredecessor.id];
-  return batchElevenState ? { ...batchTenPredecessor, ...batchElevenState } : batchTenPredecessor;
+  const publicationState = MARVEL_2099_PUBLICATION_PREDECESSOR_STATE[batchTenPredecessor.id];
+  const publicationPredecessor = publicationState
+    ? { ...batchTenPredecessor, ...publicationState }
+    : batchTenPredecessor;
+  const batchElevenState = BATCH_ELEVEN_PREDECESSOR_STATE[publicationPredecessor.id];
+  return batchElevenState ? { ...publicationPredecessor, ...batchElevenState } : publicationPredecessor;
 }
 
 export function cbroReleaseForIds(ids, { order = 'source' } = {}) {
@@ -1106,6 +1154,13 @@ export function validateCbroPacket(packet, options = {}) {
       Array.isArray(packet.excludedSourceRows)
         && digestCanonicalJson(packet.excludedSourceRows) === approvedExclusionDigest,
       `${packet.id} packet differs from its approved exclusion ledger`,
+    );
+  }
+  if (packet.id === 'marvel-2099') {
+    assert(
+      Array.isArray(packet.excludedSourceRows)
+        && digestCanonicalJson(packet.excludedSourceRows) === CBRO_MARVEL_2099_EXCLUSION_SHA256,
+      'marvel-2099 packet differs from its approved exclusion ledger',
     );
   }
   const inventoryRecord = options.inventoryRecord;

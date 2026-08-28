@@ -4435,6 +4435,37 @@
       "coverIssueId": 4372
     },
     {
+      "id": "marvel-2099",
+      "name": "Marvel 2099",
+      "description": "A selected 172-issue tour through Marvel 2099, preserving the exact available chapters from the full alternate-universe source order.",
+      "type": "event",
+      "depth": "selected",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "marvel-2099.md",
+      "sourcePage": "https://comicbookreadingorders.com/marvel/events/marvel-2099-reading-order/",
+      "sourceSection": null,
+      "sourceOrigin": "Compiled for this project from Comic Book Reading Orders",
+      "sourceLicense": null,
+      "out": "marvel_2099.json",
+      "characters": [
+        "Spider-Man 2099",
+        "Doctor Doom",
+        "X-Men 2099",
+        "Ghost Rider 2099"
+      ],
+      "keywords": [
+        "Marvel 2099",
+        "alternate universe",
+        "Spider-Man 2099"
+      ],
+      "expect": 172,
+      "timeline": 1992,
+      "coverIssueId": 10865
+    },
+    {
       "id": "maximum-security",
       "name": "Maximum Security",
       "description": "Twenty-eight issues following the 2000 cosmic invasion from Dangerous Planet through the three-part event and its tie-ins.",

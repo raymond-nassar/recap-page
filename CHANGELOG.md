@@ -23,14 +23,15 @@ shortcut reference in Settings. Compact issue actions and icon-only searches now
 on hover or focus, and narrow screens show issue actions in a labeled menu. Saved lists and progress
 are unchanged.
 
-### Recorded the complete Marvel 2099 publication blocker
+### Added a selected Marvel 2099 reading guide
 
-In plain English: No Marvel 2099 guide was published because 99 comics could not be matched to exact
-metadata. The full source order and the confirmed matches are preserved for future resolution.
-Nothing you have saved is affected.
+In plain English: A Marvel 2099 guide now follows 172 comics with exact Marvel links. The source
+also names 98 positions whose Marvel Unlimited details could not be confirmed and repeats one issue;
+those positions remain recorded rather than guessed or hidden. Nothing you have saved is affected.
 
-For maintainers: the blocker record preserves all 271 source positions, including 172 exact results
-and 99 unresolved identities across 13 source series, while retaining the alternate-universe scope.
+For maintainers: the packet conserves all 271 source positions as 172 exact checklist rows, one
+repeat, and 98 owner-approved metadata exclusions tracked in Issue #343. The guide retains
+alternate-universe scope and one approved partial overlap with the Fantastic Four reading order.
 
 ### Added a complete X-Force reading guide
 

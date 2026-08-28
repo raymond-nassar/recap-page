@@ -126,6 +126,8 @@ export function buildCbroMarkdown(mapping) {
   const manifest = manifestEntryForCbroMapping(mapping);
   const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
   const excludedRows = mapping.excludedSourceRows ?? [];
+  const metadataUnavailable = excludedRows.length > 0
+    && excludedRows.every((row) => row.exclusionKind === 'metadata-unavailable');
   const trail = [
     `Generated for this project from the reviewed ${mapping.id} Comic Book Reading Orders packet.`,
     `Source: [Comic Book Reading Orders](${mapping.sourceUrl}).`,
@@ -133,7 +135,11 @@ export function buildCbroMarkdown(mapping) {
     ...(repeatedCount === 0 ? [] : [
       `The frozen source records ${mapping.sourceOccurrenceCount} issue occurrences, including ${repeatedCount} intentional ${repeatedCount === 1 ? 'repeat' : 'repeats'}; this checklist lists each distinct comic once at its first source occurrence.`,
     ]),
-    ...(excludedRows.length === 0 ? [] : [
+    ...(metadataUnavailable ? [
+      `The reviewed source contains ${mapping.sourceOccurrenceCount} issue positions. This selected checklist publishes ${mapping.rows.length} distinct issues with exact configured Marvel Unlimited metadata, represents ${repeatedCount} repeated ${repeatedCount === 1 ? 'occurrence' : 'occurrences'} once, and omits ${excludedRows.length} positions whose exact configured metadata could not be confirmed.`,
+      `The omitted positions remain explicit in the publication evidence: ${excludedRows.map((row) => row.sourceIssueReference).join(', ')}.`,
+      'The linked Comic Book Reading Orders page preserves the full source order.',
+    ] : excludedRows.length === 0 ? [] : [
       `This ${manifest.depth} checklist omits ${excludedRows.length} user-approved, nonessential ${excludedRows.length === 1 ? 'tie-in that is' : 'tie-ins that are'} not discoverable through Marvel Unlimited: ${excludedRows.map((row) => row.sourceIssueReference).join(', ')}.`,
       'The linked Comic Book Reading Orders page preserves the full source order.',
     ]),
@@ -165,7 +171,13 @@ export async function approveCbroMappings(ids = CBRO_AUTHOR_IDS, {
   const reports = [];
   for (const id of ids) {
     const peerPaths = ids.filter((peerId) => peerId !== id).map((peerId) => mappingPaths[peerId]);
-    const report = await buildReportForMapping(mappingPaths[id], peerPaths);
+    const report = await buildReportForMapping(
+      mappingPaths[id],
+      peerPaths,
+      release.id === CBRO_RELEASE_IDS.marvel2099Publication
+        ? { excludedOrderIds: [] }
+        : {},
+    );
     const nonNone = report.comparisons.filter((comparison) => (
       !isApprovedCbroRelationship(id, comparison)
     ));
