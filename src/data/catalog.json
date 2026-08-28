@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T02:42:59.766Z",
+  "generatedAt": "2026-08-28T03:46:03.663Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3085,6 +3085,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-28T02:01:57.031Z"
+    },
+    {
+      "id": "inhumans-reading-order",
+      "file": "inhumans_reading_order.json",
+      "name": "Inhumans",
+      "description": "A complete Inhumans reading path from their earliest Fantastic Four appearances through their modern era.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 259,
+      "collections": 39,
+      "characters": [
+        "Inhumans",
+        "Black Bolt",
+        "Medusa",
+        "Maximus"
+      ],
+      "keywords": [
+        "Inhumans",
+        "Black Bolt",
+        "Medusa",
+        "Marvel Comics",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1965,
+      "coverIssueId": 13183,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5aabdb973e9d9",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/inhumans-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-28T03:46:03.663Z"
     },
     {
       "id": "xmen-claremont",

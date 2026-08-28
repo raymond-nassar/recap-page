@@ -81,7 +81,7 @@ test('batch two preserves the approved queue, exact substitutions, and catalog c
     manifest.lists.length - PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 244);
+  assert.equal(catalog.lists.length, 245);
 
   const manifestPacket = manifest.lists.filter((entry) => PACKET_IDS.includes(entry.id));
   const catalogPacket = catalog.lists.filter((entry) => PACKET_IDS.includes(entry.id));
@@ -258,6 +258,7 @@ test('batch two has no aggregate identity, source, sequence, or pre-publication 
     'nick-fury-reading-order',
     'guardians-of-the-galaxy-reading-order',
     'the-defenders-reading-order',
+    'inhumans-reading-order',
   ]);
   const packetRecords = [];
   const existingRecords = [];

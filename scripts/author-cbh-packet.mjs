@@ -220,7 +220,7 @@ export function selectedIssueIds(mapping) {
 }
 
 function checklistTitleForRow(row) {
-  const title = row.resolvedIssueTitle.trim().replace(/[\u2013\u2014]/g, '-');
+  const title = row.resolvedIssueTitle.trim().replace(/[\u2013\u2014]/g, '-').replace(/\s+/g, ' ');
   const issueNumber = String(row.metadataIssueNumber ?? row.issueNumber).trim();
   const escapedNumber = issueNumber.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(`#\\s*${escapedNumber}(?=\\s|$)`, 'i').test(title)
@@ -262,7 +262,8 @@ export function buildMarkdown(mapping) {
       if (entry.kind === 'exact') {
         return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))}](${entry.value.marvelIssueUrl})`];
       }
-      return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference).replace(TYPHOGRAPHIC_DASHES, '-')} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->`];
+      return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference)
+        .replace(TYPHOGRAPHIC_DASHES, '-').replace(/\s+/g, ' ')} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->`];
     });
   return `# ${manifest.name}: Issue-by-Issue Reading Checklist\n\n${trail}\n\n${checklist.join('\n')}\n`;
 }
