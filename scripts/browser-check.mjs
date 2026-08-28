@@ -469,6 +469,44 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
+    id: 'cache-marker-lock-off',
+    breaks: 'cache-generations',
+    why: 'the purge marker read-max-write step runs while another current tab holds its origin-wide lock',
+    script: () => {
+      Object.defineProperty(Navigator.prototype, 'locks', {
+        configurable: true,
+        get: () => ({ request: (_name, callback) => Promise.resolve(callback()) }),
+      });
+    },
+  },
+  {
+    id: 'cache-marker-coercion-return',
+    breaks: 'cache-generations',
+    why: 'coercible non-number legacy values are accepted as completed cleanup generations',
+    rewriteMain: (source) => source.replace(
+      / {2}if \(typeof value === 'string' && !\/\^\[1-9\]\\d\*\$\/\.test\(value\)\) return 0;\r?\n {2}if \(typeof value !== 'string' && typeof value !== 'number'\) return 0;\r?\n/,
+      '',
+    ),
+  },
+  {
+    id: 'cache-state-sanitize-off',
+    breaks: 'cache-generations',
+    why: 'a current tab adopts saved-state prose from an old writer without removing it again',
+    rewriteMain: (source) => source.replace(
+      / {4}const cleanup = sanitizeStoredIssueDescriptions\(readerStore, event\.newValue\);\r?\n {4}if \(!cleanup\.needed\) readerStore\.adoptForeignWrite\(event\.newValue\);/,
+      '    readerStore.adoptForeignWrite(event.newValue);',
+    ),
+  },
+  {
+    id: 'cache-final-clear-off',
+    breaks: 'cache-generations',
+    why: 'manual cleanup does not clear current metadata that arrived while legacy deletion was blocked',
+    rewriteMain: (source) => source.replace(
+      / {2}const activeCleared = legacy\.blocked\r?\n {4}\? await cacheRef\.clear\(\{ requireAccess: true \}\)\r?\n {4}: firstActiveClear;/,
+      '  const activeCleared = firstActiveClear;',
+    ),
+  },
+  {
     id: 'cache-generation-shared',
     breaks: 'cache-generations',
     why: 'current code opens the legacy database and loses physical isolation from the old writer',
@@ -4305,6 +4343,26 @@ const SCENARIOS = [
       );
       t.check('cleanup reports that older metadata is still waiting on another tab', true);
 
+      await legacy.evaluate(() => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          schemaVersion: 2,
+          issues: { 7: { issueId: 7, title: 'Seven', description: 'Legacy synopsis.' } },
+          read: {},
+          overrides: {},
+          notes: {},
+          lists: {},
+          listOrder: [],
+          active: null,
+        }));
+      });
+      const savedStateStripped = await page.waitForFunction(() => {
+        const raw = localStorage.getItem('mrt.state.v2');
+        if (!raw) return false;
+        return !Object.prototype.hasOwnProperty.call(JSON.parse(raw).issues?.['7'] ?? {}, 'description');
+      }, { timeout: 15000 }).then(() => true, () => false);
+      t.check('a current tab strips saved-state prose written while legacy deletion is blocked',
+        savedStateStripped, await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
+
       const isolated = await page.evaluate(async () => {
         const { ResponseCache } = await import('/js/cache.js');
         const current = new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2 });
@@ -4355,13 +4413,24 @@ const SCENARIOS = [
       t.check('current settings writes no longer serialize the legacy marker field',
         !Object.prototype.hasOwnProperty.call(currentSettings, 'cachePurge'), JSON.stringify(currentSettings));
 
+      const invalidMarker = await page.evaluate(async () => {
+        const { cachePurgeMark } = await import('/js/main.js');
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', JSON.stringify({ cachePurge: true }));
+        const marker = cachePurgeMark(localStorage);
+        localStorage.setItem('mrt.cache-purge.v1', '1');
+        localStorage.setItem('mrt.settings', JSON.stringify({ theme: 'dark' }));
+        return marker;
+      });
+      t.check('coercible non-number marker values cannot suppress cleanup', invalidMarker === 0, invalidMarker);
+
       const beforeCloseReport = await page.$eval('#cache-report', (el) => el.textContent);
       t.check('blocked cleanup does not claim the legacy generation is gone before the old connection closes',
         !beforeCloseReport.includes('Older cached metadata was removed'), beforeCloseReport);
       await legacy.evaluate(() => window.__legacyDb.close());
       const cleanupCompleted = await page.waitForFunction(
         () => document.querySelector('#cache-report')?.textContent.includes('Older cached metadata was removed'),
-        { timeout: 15000 },
+        { polling: 100, timeout: 30000 },
       ).then(() => true, () => false);
       t.check('the final cleanup status waits for confirmed legacy deletion', cleanupCompleted,
         await page.$eval('#cache-report', (el) => el.textContent));
@@ -4384,6 +4453,37 @@ const SCENARIOS = [
         afterClose.marker === '1', afterClose.marker);
 
       await legacy.evaluate(async () => {
+        window.__markerLockHeld = new Promise((resolve) => {
+          navigator.locks.request('mrt.cache-purge.v1', async () => {
+            window.__markerLockEntered = true;
+            await new Promise((release) => { window.__releaseMarkerLock = release; });
+            resolve();
+          });
+        });
+      });
+      await legacy.waitForFunction(() => window.__markerLockEntered === true, { timeout: 15000 });
+      const lowerWrite = page.evaluate(async () => {
+        window.__lowerMarkerWriteStarted = true;
+        const { writeCachePurgeMark } = await import('/js/main.js');
+        return writeCachePurgeMark(localStorage, 3);
+      });
+      const higherWrite = legacy.evaluate(async () => {
+        window.__higherMarkerWriteStarted = true;
+        const { writeCachePurgeMark } = await import('/js/main.js');
+        return writeCachePurgeMark(localStorage, 5);
+      });
+      await page.waitForFunction(() => window.__lowerMarkerWriteStarted === true, { timeout: 15000 });
+      await legacy.waitForFunction(() => window.__higherMarkerWriteStarted === true, { timeout: 15000 });
+      const whileLocked = await page.evaluate(() => localStorage.getItem('mrt.cache-purge.v1'));
+      t.check('current marker writes wait while another tab holds the origin-wide lock',
+        whileLocked === '1', whileLocked);
+      await legacy.evaluate(() => window.__releaseMarkerLock());
+      await Promise.all([lowerWrite, higherWrite, legacy.evaluate(() => window.__markerLockHeld)]);
+      const afterConcurrentMarkers = await page.evaluate(() => localStorage.getItem('mrt.cache-purge.v1'));
+      t.check('concurrent current tabs leave the maximum marker authoritative',
+        afterConcurrentMarkers === '5', afterConcurrentMarkers);
+
+      await legacy.evaluate(async () => {
         window.__legacyDb = await new Promise((resolve, reject) => {
           const request = indexedDB.open('mrt-cache', 1);
           request.onupgradeneeded = () => {
@@ -4396,7 +4496,7 @@ const SCENARIOS = [
       await click(page, '#btn-clear-cache');
       await page.waitForFunction(
         () => document.querySelector('#cache-report')?.textContent.includes('Close other tabs'),
-        { timeout: 15000 },
+        { polling: 100, timeout: 15000 },
       );
       const manualBlocked = await page.evaluate(() => ({
         disabled: document.querySelector('#btn-clear-cache').disabled,
@@ -4406,19 +4506,30 @@ const SCENARIOS = [
         manualBlocked.disabled && manualBlocked.report.includes('used by this version is clear'),
         JSON.stringify(manualBlocked));
 
+      await page.evaluate(async () => {
+        const { ResponseCache } = await import('/js/cache.js');
+        const current = new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2 });
+        await current.set('/during-manual-clear', { id: 'during-manual-clear' });
+      });
       await legacy.evaluate(() => window.__legacyDb.close());
       await page.waitForFunction(
         () => document.querySelector('#cache-report')?.textContent.includes('Cached metadata cleared.'),
-        { timeout: 15000 },
+        { polling: 100, timeout: 15000 },
       );
-      const manualComplete = await page.evaluate(async () => ({
-        disabled: document.querySelector('#btn-clear-cache').disabled,
-        names: (await indexedDB.databases()).map((db) => db.name),
-        report: document.querySelector('#cache-report').textContent,
-      }));
+      const manualComplete = await page.evaluate(async () => {
+        const { ResponseCache } = await import('/js/cache.js');
+        const current = new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2 });
+        return {
+          disabled: document.querySelector('#btn-clear-cache').disabled,
+          names: (await indexedDB.databases()).map((db) => db.name),
+          report: document.querySelector('#cache-report').textContent,
+          during: await current.get('/during-manual-clear'),
+        };
+      });
       t.check('manual clearing claims full success only after the recreated legacy cache is deleted',
         !manualComplete.disabled
         && !manualComplete.names.includes('mrt-cache')
+        && manualComplete.during === null
         && manualComplete.report.includes('Lists and reading progress are untouched.'),
         JSON.stringify(manualComplete));
     },

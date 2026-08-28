@@ -124,7 +124,8 @@ export function dispatchStorageEvent(
   } = {},
 ) {
   if (event.key === STATE_KEY) {
-    readerStore.adoptForeignWrite(event.newValue);
+    const cleanup = sanitizeStoredIssueDescriptions(readerStore, event.newValue);
+    if (!cleanup.needed) readerStore.adoptForeignWrite(event.newValue);
     return;
   }
   if (event.key === SAVE_EDUCATION_KEY) {
@@ -654,6 +655,8 @@ function loadSettings() {
 }
 
 function purgeMarkOf(value) {
+  if (typeof value === 'string' && !/^[1-9]\d*$/.test(value)) return 0;
+  if (typeof value !== 'string' && typeof value !== 'number') return 0;
   const n = Number(value);
   return Number.isSafeInteger(n) && n > 0 ? n : 0;
 }
@@ -678,15 +681,24 @@ export function cachePurgeMark(storage = globalThis.localStorage) {
   return cachePurgeMarks(storage).maximum;
 }
 
-export function writeCachePurgeMark(storage = globalThis.localStorage, marker) {
-  const marks = cachePurgeMarks(storage);
-  const next = Math.max(marks.maximum, purgeMarkOf(marker));
-  if (marks.dedicated >= next) return next;
-  storage.setItem(CACHE_PURGE_KEY, String(next));
-  if (purgeMarkOf(storage.getItem(CACHE_PURGE_KEY)) < next) {
-    throw new Error('The cache cleanup marker write could not be verified.');
+export async function writeCachePurgeMark(
+  storage = globalThis.localStorage,
+  marker,
+  locks = globalThis.navigator?.locks,
+) {
+  if (!locks?.request) {
+    throw new Error('Browser storage locking is unavailable, so cache cleanup cannot be recorded safely.');
   }
-  return next;
+  return locks.request(CACHE_PURGE_KEY, () => {
+    const marks = cachePurgeMarks(storage);
+    const next = Math.max(marks.maximum, purgeMarkOf(marker));
+    if (marks.dedicated >= next) return next;
+    storage.setItem(CACHE_PURGE_KEY, String(next));
+    if (purgeMarkOf(storage.getItem(CACHE_PURGE_KEY)) < next) {
+      throw new Error('The cache cleanup marker write could not be verified.');
+    }
+    return next;
+  });
 }
 
 function updateCheckedAtOf(raw) {
@@ -739,10 +751,13 @@ export async function purgeStaleCache(cacheRef, marker, current = CACHE_PURGE_VE
 }
 
 export async function clearCacheGenerations(cacheRef, { onLegacyBlocked = () => {} } = {}) {
-  const activeCleared = await cacheRef.clear({ requireAccess: true });
+  const firstActiveClear = await cacheRef.clear({ requireAccess: true });
   const legacy = await cacheRef.deleteLegacy({
-    onBlocked: () => onLegacyBlocked({ activeCleared }),
+    onBlocked: () => onLegacyBlocked({ activeCleared: firstActiveClear }),
   });
+  const activeCleared = legacy.blocked
+    ? await cacheRef.clear({ requireAccess: true })
+    : firstActiveClear;
   return { activeCleared, legacy };
 }
 
@@ -750,11 +765,10 @@ export async function maintainCacheGeneration(
   cacheRef,
   marker,
   current = CACHE_PURGE_VERSION,
-  { onActiveSettled = () => {}, onLegacyBlocked = () => {} } = {},
+  { onLegacyBlocked = () => {} } = {},
 ) {
   const purge = await purgeStaleCache(cacheRef, marker, current);
   const activeCleared = !purge.ran || purge.cleared;
-  onActiveSettled({ ran: purge.ran, activeCleared });
   const legacy = await cacheRef.deleteLegacy({
     onBlocked: () => onLegacyBlocked({ activeCleared }),
   });
@@ -764,12 +778,38 @@ export async function maintainCacheGeneration(
 function cleanupFailureMessage(result) {
   const failures = [];
   if (!result.activeCleared) failures.push('Cached metadata used by this version could not be cleared.');
+  if (result.savedStateCleared === false) {
+    failures.push('Saved issue summaries written by an older tab could not be removed.');
+  }
   if (result.legacy.status === 'unavailable') {
     failures.push('Older cached metadata could not be checked because browser storage is unavailable.');
   } else if (result.legacy.status === 'failed') {
     failures.push(`Older cached metadata could not be removed (${result.legacy.error?.message ?? 'unknown error'}).`);
   }
   return failures.join(' ');
+}
+
+function rawCarriesIssueDescriptions(raw) {
+  if (typeof raw !== 'string' || raw === '') return false;
+  let parsed;
+  try {
+    parsed = JSON.parse(raw);
+  } catch (err) {
+    if (err instanceof SyntaxError) return false;
+    throw err;
+  }
+  return Object.values(parsed?.issues ?? {}).some((issue) => (
+    issue && typeof issue === 'object'
+    && Object.prototype.hasOwnProperty.call(issue, 'description')
+  ));
+}
+
+export function sanitizeStoredIssueDescriptions(readerStore, raw) {
+  if (!rawCarriesIssueDescriptions(raw)) return { needed: false, cleared: true };
+  if (!readerStore.adoptForeignWrite(raw)) return { needed: true, cleared: false };
+  const cleared = readerStore.persist();
+  if (!cleared) readerStore.onChange?.(readerStore.state, readerStore.lastError);
+  return { needed: true, cleared };
 }
 
 function reportBlockedLegacyCleanup({ activeCleared }) {
@@ -785,9 +825,6 @@ function reportBlockedLegacyCleanup({ activeCleared }) {
 async function runCachePurge() {
   const marker = cachePurgeMark(localStorage);
   const result = await maintainCacheGeneration(cache, marker, CACHE_PURGE_VERSION, {
-    onActiveSettled: ({ ran }) => {
-      if (ran) store.persist();
-    },
     onLegacyBlocked: reportBlockedLegacyCleanup,
   });
   // The same argument as the cache, one storage layer over. normalizeIssue drops a saved synopsis
@@ -796,12 +833,14 @@ async function runCachePurge() {
   // next click; for one who opens the app, looks at it and closes it, it is never. One forced write
   // closes the gap, and a blocked store refuses it, which is what should happen while it is holding
   // a salvage copy of data it could not read.
-  const cleanupFailure = cleanupFailureMessage(result);
+  const stateCleanup = sanitizeStoredIssueDescriptions(store, localStorage.getItem(STATE_KEY));
+  const complete = { ...result, savedStateCleared: stateCleanup.cleared };
+  const cleanupFailure = cleanupFailureMessage(complete);
   if (cleanupFailure) {
     notify('#cache-report', `${cleanupFailure} The app will try again next time.`, 'warn');
     return;
   }
-  writeCachePurgeMark(localStorage, Math.max(marker, CACHE_PURGE_VERSION));
+  await writeCachePurgeMark(localStorage, Math.max(marker, CACHE_PURGE_VERSION));
   if (result.legacy.blocked) {
     notify('#cache-report', 'Older cached metadata was removed after the other tab closed.', 'ok');
   }
