@@ -2197,6 +2197,36 @@
       "coverIssueId": 17089
     },
     {
+      "id": "runaways-reading-order",
+      "name": "Runaways",
+      "description": "A complete Runaways reading path from the original 2003 series through the latest listed additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "coverIssueId": 15061,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "runaways-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/runaways-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "runaways_reading_order.json",
+      "characters": [
+        "Runaways",
+        "Young Avengers"
+      ],
+      "keywords": [
+        "Runaways",
+        "Brian K. Vaughan",
+        "Adrian Alphona",
+        "Comic Book Herald"
+      ],
+      "expect": 114,
+      "timeline": null
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",

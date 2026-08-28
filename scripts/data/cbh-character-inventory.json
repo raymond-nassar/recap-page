@@ -2747,13 +2747,19 @@
     "url": "https://www.comicbookherald.com/runaways-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The full-page source boundary has 116 preserved issue positions: 114 reader-visible exact provider resolutions and 2 owner-directed availability exclusions recorded in issue #344.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "civil-war",
+      "civil-war-avengers",
+      "secret-invasion"
+    ],
+    "catalogIds": [
+      "runaways-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Runaways"
     ],
@@ -2763,7 +2769,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "825db3ad08b3a34cb39ef3e971523afbe225218f409391ac3ad44975856a24d9",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 97,

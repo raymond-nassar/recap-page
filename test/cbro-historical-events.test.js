@@ -1627,8 +1627,8 @@ test('batch three authoring ships three chronological cards and 48 exact payload
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 170);
-  assert.equal(catalog.lists.length, 247);
+  assert.equal(manifest.lists.length, 171);
+  assert.equal(catalog.lists.length, 248);
   assert.ok(inventory.filter((record) => CBRO_BATCH_THREE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -1997,8 +1997,8 @@ test('batch five authoring ships four chronological cards and 71 exact payload r
     ).map((entry) => entry.id),
     CBRO_BATCH_FIVE_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 170);
-  assert.equal(catalog.lists.length, 247);
+  assert.equal(manifest.lists.length, 171);
+  assert.equal(catalog.lists.length, 248);
   assert.ok(inventory.filter((record) => CBRO_BATCH_FIVE_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2382,8 +2382,8 @@ test('batch six authoring ships four chronological cards and 46 exact payload ro
     ).map((entry) => entry.id),
     CBRO_BATCH_SIX_AUTHOR_IDS,
   );
-  assert.equal(manifest.lists.length, 170);
-  assert.equal(catalog.lists.length, 247);
+  assert.equal(manifest.lists.length, 171);
+  assert.equal(catalog.lists.length, 248);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SIX_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -2939,8 +2939,8 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
   assert.equal(comparisonCount, 544);
   assert.equal(issueIds.length, 45);
   assert.equal(new Set(issueIds).size, 45);
-  assert.equal(manifest.lists.length, 170);
-  assert.equal(catalog.lists.length, 247);
+  assert.equal(manifest.lists.length, 171);
+  assert.equal(catalog.lists.length, 248);
   assert.ok(inventory.filter((record) => CBRO_BATCH_EIGHT_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));
@@ -3093,7 +3093,7 @@ test('Marvel 2099 publishes 172 exact issues while conserving all 271 source pos
   )));
   assert.equal(mapping.rows.length, 172);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 172);
-  assert.equal(report.comparisonCount, 169);
+  assert.equal(report.comparisonCount, 170);
   assert.deepEqual(
     report.comparisons.filter((entry) => entry.relationship !== 'none'),
     [{
@@ -3378,8 +3378,8 @@ test('batch nine product output and maintained records close the sequential sour
   const inventory = await readJson(path.join(root, 'scripts', 'data', 'cbro-historical-inventory.json'));
   const manifest = await readJson(path.join(dataDir, 'curated-lists.json'));
   const catalog = await readJson(path.join(dataDir, 'catalog.json'));
-  assert.equal(manifest.lists.length, 170);
-  assert.equal(catalog.lists.length, 247);
+  assert.equal(manifest.lists.length, 171);
+  assert.equal(catalog.lists.length, 248);
   for (const [id, count] of [['hunt-for-xavier', 6], ['magneto-war', 8]]) {
     const entry = manifest.lists.find((candidate) => candidate.id === id);
     const catalogEntry = catalog.lists.find((candidate) => candidate.id === id);
@@ -3520,8 +3520,8 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
   assert.equal(comparisonCount, 408);
   assert.equal(issueIds.length, 23);
   assert.equal(new Set(issueIds).size, 23);
-  assert.equal(manifest.lists.length, 170);
-  assert.equal(catalog.lists.length, 247);
+  assert.equal(manifest.lists.length, 171);
+  assert.equal(catalog.lists.length, 248);
   assert.ok(inventory.filter((record) => CBRO_BATCH_SEVEN_SELECTED_IDS.includes(record.id))
     .every((record) => record.deliveryStatus === 'shipped'
       && JSON.stringify(record.catalogIds) === JSON.stringify([record.id])));

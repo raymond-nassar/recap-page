@@ -43,6 +43,7 @@ const guardiansCandidateId = 'guardians-of-the-galaxy-reading-order';
 const xForceCandidateId = 'x-force-reading-order';
 const inhumansCandidateId = 'inhumans-reading-order';
 const youngAvengersCandidateId = 'young-avengers-reading-order';
+const runawaysCandidateId = 'runaways-reading-order';
 
 async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) {
   return buildCurrentReportForMapping(mappingPath, peerPaths, {
@@ -467,7 +468,9 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     xForceCandidateId,
     'nick-fury-reading-order',
     inhumansCandidateId,
+    runawaysCandidateId,
     youngAvengersCandidateId,
+    runawaysCandidateId,
   ]);
 }
 
@@ -496,7 +499,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-eight spotlights, and prepares six', async () => {
+test('the character inventory preserves every central disposition, ships twenty-nine spotlights, and prepares six', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -507,10 +510,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 88);
+  assert.equal(dispositionCounts.deferred, 87);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 33);
+  assert.equal(dispositionCounts['pilot-approved'], 34);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -536,6 +539,7 @@ test('the character inventory preserves every central disposition, ships twenty-
     'phalanx-reading-order',
     'marvels-best-phoenix-comics',
     'rocket-raccoon-reading-order',
+    'runaways-reading-order',
     starLordInventoryId,
     'the-complete-thanos-reading-order-guide',
     'white-tiger-ava-ayala',
@@ -567,6 +571,10 @@ test('the character inventory preserves every central disposition, ships twenty-
   assert.equal(youngAvengers?.centralDisposition, 'pilot-approved');
   assert.equal(youngAvengers?.deliveryStatus, 'shipped');
   assert.deepEqual(youngAvengers?.catalogIds, [youngAvengersCandidateId]);
+  const runaways = inventory.find((record) => record.id === 'runaways-reading-order');
+  assert.equal(runaways?.centralDisposition, 'pilot-approved');
+  assert.equal(runaways?.deliveryStatus, 'shipped');
+  assert.deepEqual(runaways?.catalogIds, ['runaways-reading-order']);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get('the-defenders-reading-order').catalogIds, [
     'the-defenders-reading-order',
@@ -777,6 +785,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
         'nick-fury-reading-order',
         inhumansCandidateId,
         'marvel-2099',
+        runawaysCandidateId,
       ],
     },
   );
@@ -934,7 +943,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 12);
+  assert.equal(report.comparisonCount, manifest.lists.length - 13);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1398,7 +1407,8 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
      && id !== xForceCandidateId
      && id !== inhumansCandidateId
      && id !== youngAvengersCandidateId
-     && id !== 'marvel-2099')
+     && id !== 'marvel-2099'
+     && id !== runawaysCandidateId)
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
@@ -1411,6 +1421,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
       inhumansCandidateId,
       youngAvengersCandidateId,
       'marvel-2099',
+      runawaysCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1425,6 +1436,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
         inhumansCandidateId,
         youngAvengersCandidateId,
         'marvel-2099',
+        runawaysCandidateId,
       ],
     },
   );
@@ -1507,7 +1519,7 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   const record = inventory.find((candidate) => candidate.id === captainMarvelCandidateId);
   const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
-    [captainMarvelCandidateId, 'punisher-reading-order', magnetoCandidateId],
+    [captainMarvelCandidateId, 'punisher-reading-order', magnetoCandidateId, runawaysCandidateId],
   );
 
   assert.equal(record.centralDisposition, 'pilot-approved');
@@ -1999,6 +2011,7 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
     inhumansCandidateId,
     youngAvengersCandidateId,
     'marvel-2099',
+    runawaysCandidateId,
   ]);
 
   assert.equal(record.deliveryStatus, 'shipped');
@@ -2763,10 +2776,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 247);
+  assert.equal(catalog.lists.length, 248);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 42);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 41);
+  assert.equal(characterRuns.length, 43);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 42);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -2872,7 +2885,7 @@ test('Magneto preserves cache-only source accounting through publication', async
   const parsed = parseChecklist(markdown);
   const reviewedLibraryDigest = await historicalReportLibraryDigest(
     manifest,
-    [magnetoCandidateId, youngAvengersCandidateId],
+    [magnetoCandidateId, youngAvengersCandidateId, runawaysCandidateId],
   );
   const positions = [
     ...sourcePositionsForPacket(packet),
@@ -3014,7 +3027,7 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   assert.equal(mapping.candidateMetadata.length, 262);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
   assert.equal(report.candidateCount, 262);
-  assert.equal(report.comparisonCount, manifest.lists.length - 5);
+  assert.equal(report.comparisonCount, manifest.lists.length - 6);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')
