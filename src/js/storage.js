@@ -4,12 +4,19 @@
 // write because the response cache grew. The cache is in IndexedDB precisely so the two
 // cannot compete for the same quota.
 
-import { createEmptyState, migrate, exportBackup, validateBackup } from './lib/model.js';
+import {
+  createEmptyState, migrate, exportBackup, validateBackup, withoutIssueDescriptions,
+} from './lib/model.js';
 
 export const KEY = 'mrt.state.v2';
 const TEMP_KEY = 'mrt.state.restore.tmp';
 const PRERESTORE_KEY = 'mrt.state.prerestore';
 const SALVAGE_KEY = 'mrt.state.salvage';
+
+// Recovery values preserve the exact bytes that existed when something went wrong. They can be
+// unreadable or from a newer schema, so only promotion through restore validates and sanitizes them.
+// Pre-restore is replaced by the next restore or removed after a successful erase; salvage remains
+// until the reader explicitly removes it.
 
 // Names this write, so a tab can tell whether the value on disk is still the one its state derives
 // from. Written first, and read back out of a bounded prefix rather than a parse. Measured on this
@@ -364,7 +371,7 @@ export class Store {
   // gate their success messages and navigation on the write actually having happened.
   update(fn) {
     const previous = this.state;
-    const next = fn(previous);
+    const next = withoutIssueDescriptions(fn(previous), 'State update');
     if (next === previous) {
       this.lastUpdateOk = true;
       return previous;

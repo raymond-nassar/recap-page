@@ -5250,7 +5250,7 @@ function exportMarkdown() {
 
 // BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
 //
-// The rule at `src/js/storage.js:329-332` stands: nothing but the reader removes a salvage copy,
+// The rule at `src/js/storage.js:336-339` stands: nothing but the reader removes a salvage copy,
 // because no rule this app could apply would know whether they still want data it could not read
 // itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
 // claiming that it does. They are not undisclosed either way, which is what separates them from

@@ -1112,21 +1112,43 @@ export function validateBackup(raw) {
   }
 }
 
+export function withoutIssueDescriptions(state, boundary, warn = console.warn) {
+  const issues = state?.issues;
+  if (!issues || typeof issues !== 'object') return state;
+
+  let nextIssues = issues;
+  let refused = 0;
+  for (const [id, issue] of Object.entries(issues)) {
+    if (!issue || typeof issue !== 'object'
+      || !Object.prototype.hasOwnProperty.call(issue, 'description')) continue;
+    if (nextIssues === issues) nextIssues = { ...issues };
+    const nextIssue = { ...issue };
+    delete nextIssue.description;
+    nextIssues[id] = nextIssue;
+    refused += 1;
+  }
+  if (refused === 0) return state;
+
+  warn(`${boundary} refused ${refused} issue description field${refused === 1 ? '' : 's'}.`);
+  return { ...state, issues: nextIssues };
+}
+
 export function exportBackup(state) {
+  const clean = withoutIssueDescriptions(state, 'Backup export');
   return {
     schemaVersion: SCHEMA_VERSION,
     exportedAt: new Date().toISOString(),
     app: 'recap-page',
-    issues: state.issues,
-    read: state.read,
-    overrides: state.overrides,
+    issues: clean.issues,
+    read: clean.read,
+    overrides: clean.overrides,
     // Named explicitly, like every other key here. This function does not spread, so a map it
     // does not name never reaches the backup file or localStorage at all. Measured: without this
     // line an issue note was absent from the exported JSON, not merely dropped on the way back in.
-    notes: state.notes ?? {},
-    lists: state.lists,
-    listOrder: state.listOrder,
-    active: state.active,
+    notes: clean.notes ?? {},
+    lists: clean.lists,
+    listOrder: clean.listOrder,
+    active: clean.active,
   };
 }
 

@@ -793,6 +793,29 @@ test('a restore can be undone once, and the snapshot survives a reload', () => {
   assert.ok(isRead(reloaded.state, 1), 'the original progress is back');
 });
 
+test('legacy synopsis prose stays exact in recovery copies and is clean when promoted', () => {
+  const legacyState = JSON.parse(goodBackup());
+  legacyState.issues['1'].description = 'Legacy synopsis.';
+  const legacyRaw = JSON.stringify(legacyState);
+  const storage = fakeStorage({
+    [KEY]: legacyRaw,
+    'mrt.state.prerestore': legacyRaw,
+    'mrt.state.salvage': legacyRaw,
+  });
+  const store = new Store({ storage });
+
+  store.load();
+  assert.equal(store.persist(), true);
+  assert.equal('description' in JSON.parse(storage.getItem(KEY)).issues['1'], false);
+  assert.equal(storage.getItem('mrt.state.prerestore'), legacyRaw, 'pre-restore bytes changed during upgrade');
+  assert.equal(storage.getItem('mrt.state.salvage'), legacyRaw, 'salvage bytes changed during upgrade');
+
+  assert.equal(store.undoRestore().ok, true);
+  assert.equal('description' in store.state.issues['1'], false, 'promotion repopulated live prose');
+  assert.equal('description' in JSON.parse(storage.getItem(KEY)).issues['1'], false);
+  assert.equal(storage.getItem('mrt.state.salvage'), legacyRaw, 'undo removed or rewrote salvage');
+});
+
 test('a successful restore clears a blocked store', () => {
   const storage = fakeStorage({ [KEY]: 'corrupt' });
   const store = new Store({ storage });

@@ -9,7 +9,7 @@ someone who then broke it anyway.
 A local-first static site for tracking progress through curated Marvel reading orders. Vanilla ES
 modules, no build step, no runtime dependencies. `npm ci` installs lint tooling only, and nothing
 it installs reaches the browser. Reading progress lives in one `localStorage` key, `mrt.state.v2`,
-defined at `src/js/storage.js:9`. That module owns the other keys too, including the temporary,
+defined at `src/js/storage.js:11`. That module owns the other keys too, including the temporary,
 pre-restore and salvage keys the recovery paths depend on, so read it before touching persistence.
 
 Serve it with `npm start` and open it in a real browser. Do not try to verify UI behaviour in a

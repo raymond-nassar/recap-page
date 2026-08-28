@@ -14,6 +14,14 @@ quote in a bug report.
 
 ## Unreleased
 
+### Protected synopsis privacy at save and backup boundaries
+
+In plain English: Issue summaries fetched for temporary display are now refused again when reading
+progress is saved or a backup is exported. Copies preserved after a failed read or before a restore
+remain exact so recovery never destroys the only usable data, and restoring one removes any old
+summary before it becomes live saved data. Existing lists, progress, and recovery copies are
+otherwise unchanged.
+
 ### Fixed navigation at narrow window widths
 
 In plain English: At narrow window widths, the reading content now appears immediately below the

@@ -761,18 +761,27 @@ closes. The second is what a browser does on any comics site, and the archived t
 the first hand's own terms said" separate those same two acts: a licence to use the content inside an
 app, against an express refusal of the right to redistribute it or to cache it indefinitely.
 
-Four mechanisms carry that promise, and they are listed because a promise nobody can check is worth
-nothing. The saved-state normalizer does not carry a description field at all, so no path writes one,
-including a restored backup or an imported checklist that had one smuggled into it. The app's own
-response cache is stripped of the field before anything is written to it. Every request carries a
-directive telling the browser not to store the response either, because the browser's cache is on disk
-and outside this app's reach. And the response cache is emptied once on upgrade, since it may already
-hold responses fetched before any of this was true.
+Five mechanisms carry that promise, and they are listed because a promise nobody can check is worth
+nothing. The saved-state normalizer does not carry a description field at all, including for a
+restored backup or an imported checklist that had one smuggled into it. The state update and backup
+export boundaries refuse the field again, so a future writer cannot bypass that normalizer silently.
+The app's own response cache is stripped of the field before anything is written to it. Every request
+carries a directive telling the browser not to store the response either, because the browser's cache
+is on disk and outside this app's reach. And the response cache is emptied once on upgrade, since it
+may already hold responses fetched before any of this was true.
 
-The prose is shown, never stored, and never re-served: this repository ships none of it, and an
-offline copy of the app shows the same absence sentence it showed before BL-134. The provenance notice
-appears every time a fetch run is started rather than once, so the reader is told where the text comes
-from at the moment they ask for it.
+Copies kept specifically for recovery are the narrow exception. A pre-restore snapshot and every
+salvage copy retain the exact bytes they were given, even when those bytes came from an older build or
+cannot be read by this one. Rewriting unknown recovery material could destroy the only usable copy.
+The pre-restore snapshot is replaced by the next restore or removed after a successful full erase.
+Salvage copies remain until the reader explicitly removes them. When either kind is promoted into live
+state, restore validation and the ordinary export boundary remove legacy synopsis prose before writing
+the main saved-state key.
+
+Newly fetched prose is shown, never stored, and never re-served: this repository ships none of it, and
+an offline copy of the app shows the same absence sentence it showed before BL-134. The provenance
+notice appears every time a fetch run is started rather than once, so the reader is told where the
+text comes from at the moment they ask for it.
 
 This changes nothing about the open question above. Marvel's rights in that prose are unaffected by
 where it is displayed, and the service the app fetches from does not hold them either. What it changes
