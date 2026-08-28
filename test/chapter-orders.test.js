@@ -57,6 +57,8 @@ test('the corrected owner ledger pins every chapter field and source position', 
   assert.equal(ledger.issueIdsSha256, '0223bbdca9912019ebe609de5dcdfc6f703682787e6ff59fc7e863bfc52dd00d');
   assert.equal(ledger.chapterContractSha256, '498cdd1fa3183ba9a0d48fa8b85ec4de2bc0f3bf8ca75cb5367782a6a0bc7c35');
   assert.equal(ledger.chapterNamesSha256, '315b0761581e77095e06b08a076f51820521542d77d0c130a230fdf519fbd784');
+  assert.equal(ledger.descriptionCopy.ownerAttachmentSha256, 'f24a85f558c3c0d9b2856edcf5af753b6fdbb72fad9a0a27494bb9d1891db6ce');
+  assert.equal(ledger.descriptionCopy.entriesSha256, 'dc1e9b712f7782407ac8598cdf97720899b2a912c80dc564aee18e1a77af1bed');
   assert.equal(ledger.path.stepsSha256, '0c2c3296ee07bd2a7e3a3878efff6af2f12810cdac27319f921ed34f5bec85b7');
 
   assert.equal(parsed.sourcePositions.length, 99);
@@ -67,6 +69,12 @@ test('the corrected owner ledger pins every chapter field and source position', 
     [4, 87, 8],
   );
   assert.equal(ledger.chapters.length, 78);
+  assert.equal(ledger.descriptionCopy.entries.length, 78);
+  assert.deepEqual(
+    ledger.descriptionCopy.entries.map((entry) => entry.id),
+    ledger.chapters.map((chapter) => chapter.id),
+  );
+  assert.equal(new Set(ledger.descriptionCopy.entries.map((entry) => entry.sourceHeading)).size, 78);
   assert.equal(ledger.chapters.reduce((total, chapter) => total + chapter.ownerBulletCount, 0), 98);
   assert.deepEqual(
     ledger.chapters.flatMap((chapter) => (
@@ -80,6 +88,7 @@ test('the corrected owner ledger pins every chapter field and source position', 
   );
 
   assert.equal(ledger.chapters[3].name, 'X-Treme X-Men: Destiny');
+  assert.equal(ledger.descriptionCopy.entries[3].sourceHeading, 'X-Treme X-Men Launch');
   assert.deepEqual(
     ledger.chapters[36],
     {
@@ -98,7 +107,12 @@ test('the corrected owner ledger pins every chapter field and source position', 
   ]);
   assert.equal(ledger.chapters[38].name, 'Truth: Red, White and Black');
   assert.equal(ledger.chapters[76].name, 'X-Treme X-Men: Storm: The Arena');
+  assert.equal(ledger.descriptionCopy.entries[36].sourceHeading, 'X-Treme X-Men: X-Posé + Schism');
+  assert.equal(ledger.descriptionCopy.entries[76].sourceHeading, 'X-Treme X-Men: Storm - The Arena');
   assert.ok(ledger.chapters.every((chapter) => !/[\u2011\u2013\u2014]/.test(chapter.name)));
+  assert.ok(ledger.descriptionCopy.entries.every(({ sourceHeading, description }) => (
+    !/[\u2011\u2013\u2014]/.test(sourceHeading) && !/[\u2011\u2013\u2014]/.test(description)
+  )));
 });
 
 test('the generator emits 78 ordinary metadata-complete payloads in exact aggregate order', async () => {
@@ -111,11 +125,14 @@ test('the generator emits 78 ordinary metadata-complete payloads in exact aggreg
   assert.equal(digestJson(generatedIds), ledger.issueIdsSha256);
   assert.equal(family.children.reduce((total, child) => total + child.payload.count, 0), 487);
 
-  for (const { chapter, order, payload } of family.children) {
+  for (const [index, { chapter, order, payload }] of family.children.entries()) {
     const onDisk = await readJson(`src/data/${order.out}`);
+    const copy = ledger.descriptionCopy.entries[index];
     assert.equal(payload.id, chapter.id);
     assert.equal(order.id, chapter.id);
     assert.equal(payload.count, chapter.issueCount);
+    assert.equal(payload.description, copy.description);
+    assert.equal(order.description, copy.description);
     assert.equal(payload.collections, 0);
     assert.equal(payload.placeholders, 0);
     assert.deepEqual(payload.unresolved, []);
@@ -156,9 +173,11 @@ test('the generated catalog replaces the parent with every child and the owner-o
 
   for (const { chapter, order } of family.children) {
     const entry = children.find((candidate) => candidate.id === chapter.id);
+    const copy = ledger.descriptionCopy.entries.find((candidate) => candidate.id === chapter.id);
     assert.ok(entry, `${chapter.id} is missing from the catalog`);
     assert.equal(entry.file, order.out);
     assert.equal(entry.name, chapter.name);
+    assert.equal(entry.description, copy.description);
     assert.equal(entry.count, chapter.issueCount);
     assert.equal(entry.collections, 0);
     assert.equal(entry.timeline, chapter.timelineYear);
@@ -244,6 +263,10 @@ test('the generator rejects the smallest ledger and parent-vector mutations', as
   const wrongYear = clone(parentPayload);
   wrongYear.items[0].onSale = '1999-11-01T00:00:00+0000';
   assert.throws(() => build(ledger, wrongYear), /timeline year differs from its first issue/);
+
+  const staleDescription = clone(ledger);
+  staleDescription.descriptionCopy.entries[0].description = 'Wrong chapter copy.';
+  assert.throws(() => build(staleDescription), /description copy digest is stale/i);
 
   assert.throws(
     () => buildChapterFamily({

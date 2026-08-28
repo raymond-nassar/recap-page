@@ -85,6 +85,7 @@ export function validateChapterLedger(value) {
     'path',
     'corrections',
     'chapters',
+    'descriptionCopy',
   ], 'Chapter ledger');
   assert(value.schemaVersion === 1, 'Chapter ledger schemaVersion must be 1');
   assertString(value.parentId, 'Chapter ledger parentId');
@@ -163,6 +164,40 @@ export function validateChapterLedger(value) {
   assert(digestJson(chapterContract(value.chapters)) === value.chapterContractSha256, 'Chapter contract digest is stale');
   assert(digestJson(value.chapters.map((chapter) => chapter.name)) === value.chapterNamesSha256, 'Chapter name digest is stale');
 
+  assert(isObject(value.descriptionCopy), 'Chapter description copy must be an object');
+  assertKeys(
+    value.descriptionCopy,
+    ['ownerAttachmentSha256', 'entriesSha256', 'entries'],
+    'Chapter description copy',
+  );
+  assertHash(
+    value.descriptionCopy.ownerAttachmentSha256,
+    'Chapter description copy ownerAttachmentSha256',
+  );
+  assertHash(value.descriptionCopy.entriesSha256, 'Chapter description copy entriesSha256');
+  assert(
+    Array.isArray(value.descriptionCopy.entries)
+      && value.descriptionCopy.entries.length === value.chapterCount,
+    `Chapter description copy must contain ${value.chapterCount} entries`,
+  );
+  const sourceHeadings = new Set();
+  for (const [index, entry] of value.descriptionCopy.entries.entries()) {
+    const label = `Chapter description ${index + 1}`;
+    assert(isObject(entry), `${label} must be an object`);
+    assertKeys(entry, ['id', 'sourceHeading', 'description'], label);
+    assert(entry.id === value.chapters[index].id, `${label} id must be ${value.chapters[index].id}`);
+    assertString(entry.sourceHeading, `${label} sourceHeading`);
+    assertString(entry.description, `${label} description`);
+    assert(!sourceHeadings.has(entry.sourceHeading), `${label} duplicates source heading "${entry.sourceHeading}"`);
+    sourceHeadings.add(entry.sourceHeading);
+    assert(!PROHIBITED_DASH.test(entry.sourceHeading), `${label} sourceHeading contains a prohibited Unicode dash`);
+    assert(!PROHIBITED_DASH.test(entry.description), `${label} description contains a prohibited Unicode dash`);
+  }
+  assert(
+    digestJson(value.descriptionCopy.entries) === value.descriptionCopy.entriesSha256,
+    'Chapter description copy digest is stale',
+  );
+
   assert(isObject(value.path), 'Chapter ledger path must be an object');
   assertKeys(value.path, ['id', 'name', 'description', 'sourceOrigin', 'stepsSha256'], 'Chapter path');
   for (const key of ['id', 'name', 'description', 'sourceOrigin']) assertString(value.path[key], `Chapter path ${key}`);
@@ -236,13 +271,6 @@ function validateSourceAndParent(order, parsed, parentPayload, ledger) {
   assert(parentPayload.items.every((item) => hasMetadata(item)), `${order.id} parent payload has incomplete issue metadata`);
 }
 
-function chapterDescription(chapter, first, last, total) {
-  const range = first.issueId === last.issueId
-    ? `covering ${first.title}`
-    : `from ${first.title} through ${last.title}`;
-  return `Owner-curated chapter ${chapter.id.slice(-2)} of ${total} in the Marvel Knights to Planet X reading path, ${range}.`;
-}
-
 function chapterSubjects(items) {
   return [...new Set(items.map((item) => (
     String(item.seriesName ?? item.title ?? '')
@@ -278,7 +306,7 @@ export function buildChapterFamily({
     assert(digestJson(ids) === chapter.issueIdsSha256, `${chapter.id} issue vector digest is stale`);
     assert(onSaleYear(sourceItems[0], chapter.id) === chapter.timelineYear, `${chapter.id} timeline year differs from its first issue`);
     const items = sourceItems.map(({ collectedIn: _collectedIn, ...item }) => ({ ...item }));
-    const description = chapterDescription(chapter, items[0], items.at(-1), ledger.chapterCount);
+    const description = ledger.descriptionCopy.entries[index].description;
     const sourceOrigin = 'Compiled for this project from owner-curated source positions and chapter boundaries recorded in GitHub issues #276 and #303';
     const output = chapterFile(order.out, index + 1);
 
