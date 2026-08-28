@@ -1906,7 +1906,7 @@
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:20-31|0": {
     "anchor": "src/js/lib/route.js:20-31",
-    "fp": "4b6e704a35c4a255",
+    "fp": "036741e81935c6a8",
     "head": "export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:60-137|0": {

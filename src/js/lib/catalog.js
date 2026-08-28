@@ -1135,14 +1135,14 @@ export const HOME_CATEGORIES = [
     highlights: ['Movie companions', 'Streaming companions', 'Multiverse picks'],
     select: typeCategory('screen-companion'),
   },
-  MARVEL_AGES_CATEGORY,
+  MARVEL_AGES_CATEGORY, { key: 'reading-paths', route: 'reading-paths', heading: 'Reading paths', label: 'Follow connected stories', icon: 'E8F1', tier: 'secondary', kind: 'reading-paths', singular: 'Reading path', plural: 'Reading paths' },
 ];
 
-export function availableHomeCategories(stories, definitions = HOME_CATEGORIES) {
+export function availableHomeCategories(stories, definitions = HOME_CATEGORIES, paths = []) {
   const all = Array.isArray(stories) ? stories : [];
   return definitions.flatMap(({ select, ...category }) => {
-    const matches = select(all);
-    const count = matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
+    const matches = category.kind === 'reading-paths' ? (Array.isArray(paths) ? paths : []) : select(all);
+    const count = category.kind === 'reading-paths' ? matches.length : matches.reduce((total, story) => total + (story.lists?.length ?? 0), 0);
     return matches.length ? [{ ...category, count }] : [];
   });
 }
@@ -1405,4 +1405,59 @@ export function decadeSections(stories) {
     });
   }
   return sections;
+}
+
+// The shelf placement map deliberately keeps only the first path that reaches a story. This model
+// serves the opposite question: each path owns its complete sequence, so a story shared by future
+// paths remains independently positioned in every one.
+export function resolveReadingPaths(paths, lists) {
+  const all = Array.isArray(lists) ? lists : [];
+  if (!Array.isArray(paths) || !all.length) return [];
+  const byId = new Map();
+  const storyLists = new Map();
+  for (const list of all) {
+    const key = storyKey(list);
+    byId.set(list.id, { key, list });
+    if (!storyLists.has(key)) storyLists.set(key, []);
+    storyLists.get(key).push(list);
+  }
+  const pathIds = new Set();
+  return paths.flatMap((path) => {
+    const id = str(path?.id);
+    const name = str(path?.name);
+    const description = str(path?.description);
+    const sourceOrigin = str(path?.sourceOrigin);
+    if (!id || !name || !description || !sourceOrigin || pathIds.has(id)) return [];
+    pathIds.add(id);
+    const seen = new Set();
+    const stops = [];
+    for (const rawStep of Array.isArray(path?.steps) ? path.steps : []) {
+      const stepId = str(rawStep);
+      const resolved = byId.get(stepId);
+      if (!resolved || seen.has(resolved.key)) continue;
+      seen.add(resolved.key);
+      const siblings = storyLists.get(resolved.key) ?? [];
+      const story = { key: resolved.key, lists: siblings };
+      stops.push({
+        key: resolved.key,
+        stepId,
+        name: siblings[0]?.groupName ?? siblings[0]?.name ?? resolved.list.name,
+        lists: [...siblings],
+        shelf: shelfKey(story),
+        year: storyYear(story),
+      });
+    }
+    if (stops.length < 2) return [];
+    const total = stops.length;
+    return [{
+      id, name, description, sourceOrigin,
+      stops: stops.map((stop, index) => ({
+        ...stop,
+        position: index + 1,
+        total,
+        previous: index > 0 ? stops[index - 1] : null,
+        next: index < total - 1 ? stops[index + 1] : null,
+      })),
+    }];
+  });
 }

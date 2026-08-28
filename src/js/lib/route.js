@@ -11,7 +11,7 @@ import { CATALOG_SHELVES, HOME_CATEGORIES, PUBLISHING_CATEGORIES } from './catal
 
 const PUBLISHING_ROUTES = new Set(PUBLISHING_CATEGORIES.map((category) => category.route));
 const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
-  .filter((category) => !category.shelf && !PUBLISHING_ROUTES.has(category.route))
+  .filter((category) => category.kind !== 'reading-paths' && !category.shelf && !PUBLISHING_ROUTES.has(category.route))
   .map((category) => category.route);
 
 // Every section the app can reach. This lives here rather than in main.js so that one list backs
@@ -19,7 +19,7 @@ const CUSTOM_CATEGORY_ROUTES = HOME_CATEGORIES
 // routable but not showable, or showable but silently unreachable by URL.
 export const ADD_VIEWS = ['add-search', 'add-series', 'add-creator', 'add-import', 'add-manual'];
 export const VIEWS = [
-  'home', 'read', 'issue', 'library', 'browse', 'add', 'catalog', 'lines', 'spotlights', 'progress',
+  'home', 'read', 'issue', 'library', 'browse', 'add', 'catalog', 'lines', 'spotlights', 'progress', 'reading-paths',
   ...PUBLISHING_CATEGORIES.map((category) => category.route),
   ...CUSTOM_CATEGORY_ROUTES,
   ...ADD_VIEWS,
@@ -157,7 +157,7 @@ const SPOTLIGHT_POPULARITY_SORT = 'popularity';
 // intact, assignment fires one hashchange carrying it, no request is made for it, and Back over a
 // filter change returns the previous one.
 const FILTER_KEY = 'filter';
-const FULL_KEY = 'full';
+const FULL_KEY = 'full'; const PATH_KEY = 'path'; const PATH_TOKEN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const ISSUE_CONTEXT_KEYS = new Set(['list', 'order']);
 
 function issueId(value) {
@@ -171,7 +171,7 @@ function issueId(value) {
 // It is one global value, and applyRoute writes it into stored settings exactly as it already
 // writes the active list, so a subset would be a rule to keep in step for no gain.
 export function formatRoute({
-  view, listId, filter, full = false, sort, issueId: rawIssueId, context,
+  view, listId, filter, full = false, sort, pathId, issueId: rawIssueId, context,
 } = {}) {
   const canonical = canonicalView(view);
   if (!VIEWS.includes(canonical)) return '';
@@ -185,14 +185,14 @@ export function formatRoute({
     const search = query.toString();
     return `${PREFIX}issue/${id}${search ? `?${search}` : ''}`;
   }
-  const tail = listId ? `/${encodeURIComponent(listId)}` : '';
+  const tail = canonical !== 'reading-paths' && listId ? `/${encodeURIComponent(listId)}` : '';
   const query = new URLSearchParams();
   // An unknown filter is dropped rather than written through, so a value that could not have come
   // from a radio cannot be put into an address by this app and then read back as if it had.
   const known = READING_FILTERS.some((f) => f.value === filter);
-  if (known && filter !== DEFAULT_FILTER) query.set(FILTER_KEY, filter);
+  if (known && filter !== DEFAULT_FILTER && canonical !== 'reading-paths') query.set(FILTER_KEY, filter);
   if (canonical === 'read' && full === true) query.set(FULL_KEY, '1');
-  if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort);
+  if (canonical === 'spotlights' && sort === SPOTLIGHT_POPULARITY_SORT) query.set(SPOTLIGHT_SORT_KEY, sort); if (canonical === 'reading-paths' && typeof pathId === 'string' && PATH_TOKEN.test(pathId)) query.set(PATH_KEY, pathId);
   const search = query.toString();
   const suffix = search ? `?${search}` : '';
   return `${PREFIX}${encodeURIComponent(canonical)}${tail}${suffix}`;
@@ -228,7 +228,7 @@ export function parseRoute(hash) {
   }
 
   view = canonicalView(view);
-  if (!VIEWS.includes(view)) return null;
+  if (!VIEWS.includes(view) || (view === 'reading-paths' && listId)) return null;
 
   if (view === 'issue') {
     if (parts.length !== 2) return null;
@@ -250,15 +250,15 @@ export function parseRoute(hash) {
   // unknown stored value, because that one is a record only this app writes.
   const params = new URLSearchParams(search);
   const raw = params.get(FILTER_KEY);
-  const filter = READING_FILTERS.some((f) => f.value === raw) && raw !== DEFAULT_FILTER ? raw : null;
-  const fullValues = params.getAll(FULL_KEY);
+  const filter = view !== 'reading-paths' && READING_FILTERS.some((f) => f.value === raw) && raw !== DEFAULT_FILTER ? raw : null;
+  const fullValues = params.getAll(FULL_KEY); const pathValues = view === 'reading-paths' ? params.getAll(PATH_KEY) : [];
   const full = view === 'read' && fullValues.length === 1 && fullValues[0] === '1';
   const rawSort = view === 'spotlights' ? params.get(SPOTLIGHT_SORT_KEY) : null;
   const sort = view === 'spotlights' && rawSort === SPOTLIGHT_POPULARITY_SORT
     ? rawSort
     : null;
 
-  return sort
+  if (view === 'reading-paths') return { view, listId: null, filter: null, full: false, pathId: pathValues.length === 1 && PATH_TOKEN.test(pathValues[0]) ? pathValues[0] : null }; return sort
     ? {
       view, listId: listId || null, filter, full, sort,
     }
