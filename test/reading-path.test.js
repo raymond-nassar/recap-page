@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { parseManifest } from '../src/js/lib/curated.js';
-import { parseCatalog, pathPlacements, timelineLabel, storyKey } from '../src/js/lib/catalog.js';
+import { parseCatalog, pathPlacements, resolveReadingPaths, timelineLabel, storyKey } from '../src/js/lib/catalog.js';
 
 // A minimal valid entry, kept deliberately small: these tests are about the path section, and an
 // entry that carries every optional field would make a failure here read as an entry problem.
@@ -257,4 +257,74 @@ test('no two stops on a shipped path share an issue, at any reading depth', asyn
     }
   }
   assert.equal(pairs, 3114);
+});
+
+test('aggregate paths retain shared stories independently with catalog-ordered siblings', () => {
+  const catalogLists = [
+    shelf('one', { timeline: 2001 }),
+    shelf('shared-main', { group: 'shared', groupName: 'Shared', timeline: 2002 }),
+    shelf('shared-exact', { group: 'shared', groupName: 'Shared', timeline: 2002 }),
+    shelf('other', { timeline: 2003 }),
+  ];
+  const resolved = resolveReadingPaths([
+    path({ id: 'alpha', name: 'Alpha', steps: ['one', 'shared-exact'] }),
+    path({ id: 'beta', name: 'Beta', steps: ['shared-main', 'other'] }),
+  ], catalogLists);
+
+  assert.deepEqual(resolved.map(({ id }) => id), ['alpha', 'beta']);
+  assert.equal(resolved[0].stops[1].position, 2);
+  assert.equal(resolved[1].stops[0].position, 1);
+  assert.equal(resolved[0].stops[1].stepId, 'shared-exact');
+  assert.deepEqual(resolved[0].stops[1].lists.map(({ id }) => id), ['shared-main', 'shared-exact']);
+  assert.equal(resolved[0].stops[1].previous.name, 'one');
+  assert.equal(resolved[1].stops[0].next.name, 'other');
+});
+
+test('aggregate progress prefers the exact import, then catalog-order sibling, then nothing', async () => {
+  const { readingPathProgress } = await import('../src/js/main.js');
+  const stop = resolveReadingPaths(
+    [path({ steps: ['one', 'shared-exact'] })],
+    [
+      shelf('one'),
+      shelf('shared-main', { group: 'shared', groupName: 'Shared' }),
+      shelf('shared-exact', { group: 'shared', groupName: 'Shared' }),
+    ],
+  )[0].stops[1];
+  const imported = (id, catalogId, itemIds) => ({
+    id, name: id, catalogId, itemIds, collectedIn: {},
+  });
+  const state = {
+    lists: {
+      sibling: imported('sibling', 'shared-main', [1, 2, 3]),
+      exact: imported('exact', 'shared-exact', [4, 5]),
+    },
+    listOrder: ['sibling', 'exact'],
+    read: { 1: 1, 2: 1, 3: 1 },
+  };
+
+  assert.deepEqual(readingPathProgress(state, stop), {
+    listId: 'exact',
+    catalogId: 'shared-exact',
+    name: 'exact',
+    read: 0,
+    total: 2,
+    state: 'unstarted',
+    match: 'exact',
+  });
+  const siblingOnly = { ...state, lists: { sibling: state.lists.sibling }, listOrder: ['sibling'] };
+  assert.equal(readingPathProgress(siblingOnly, stop).catalogId, 'shared-main');
+  assert.equal(readingPathProgress(siblingOnly, stop).read, 3);
+  assert.equal(readingPathProgress({ ...state, lists: {}, listOrder: [] }, stop), null);
+});
+
+test('aggregate paths reject duplicate identities and sequences with fewer than two surviving stops', () => {
+  const catalogLists = [shelf('one'), shelf('two')];
+  const resolved = resolveReadingPaths([
+    path({ id: 'kept', steps: ['one', 'missing', 'two'] }),
+    path({ id: 'kept', name: 'Duplicate' }),
+    path({ id: 'short', steps: ['missing', 'one'] }),
+    path({ id: 'uncredited', sourceOrigin: '' }),
+  ], catalogLists);
+  assert.deepEqual(resolved.map(({ id }) => id), ['kept']);
+  assert.deepEqual(resolved[0].stops.map(({ stepId }) => stepId), ['one', 'two']);
 });

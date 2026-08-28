@@ -25,7 +25,7 @@ test('every view the rail can reach survives a round trip', () => {
   for (const view of VIEWS.filter((name) => name !== 'issue')) {
     const parsed = parseRoute(formatRoute({ view }));
     assert.deepEqual(parsed, {
-      view, listId: null, filter: null, full: false,
+      view, listId: null, filter: null, full: false, ...(view === 'reading-paths' ? { pathId: null } : {}),
     }, `round trip failed for ${view}`);
   }
 });
@@ -155,7 +155,7 @@ test('every routable view has one stable hierarchy and Home has none', () => {
     ['progress', ['Home', 'Library', 'Progress by series']],
     ['library-read', ['Home', 'Library', 'Everything read']],
     ['library-manual', ['Home', 'Library', 'Added by hand']],
-    ['browse', ['Home', 'Browse']],
+    ['browse', ['Home', 'Browse']], ['reading-paths', ['Home', 'Browse', 'Reading paths']],
     ['add', ['Home', 'Add comics']],
     ['data', ['Home', 'Backup & settings']],
     ['about', ['Home', 'About this app']],
@@ -515,7 +515,7 @@ test('a passive sync during a traversal writes the address the traversal began f
     'a passive sync formatting with the base rather than the live filter');
   has(body, /const showFilter = filterRunOpen && !push \? filterRunAddressed : filterAddressed;/,
     'a passive sync retaining whether the base filter was explicit');
-  has(body, /formatRoute\(\{[\s\S]*?view,[\s\S]*?listId: activeListId\(\),[\s\S]*?filter: showFilter \? shown : DEFAULT_FILTER,[\s\S]*?full: view === 'read' && \$\('#full'\)\.open,[\s\S]*?sort,/,
+  has(body, /formatRoute\(\{[\s\S]*?view,[\s\S]*?listId: activeListId\(\),[\s\S]*?filter: showFilter \? shown : DEFAULT_FILTER,[\s\S]*?full: view === 'read' && \$\('#full'\)\.open && !\(showFilter && shown !== DEFAULT_FILTER\),[\s\S]*?sort,/,
     'and the route being built from it');
 });
 
@@ -603,7 +603,7 @@ test('route application separates explicit disclosure intent from restored filte
   const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function setFullOrderFromRoute'));
   has(body, /const openFromRoute = route\.full === true \|\| route\.filter !== null;/,
     'opening derived from explicit parsed route fields');
-  has(body, /filterAddressed = route\.filter !== null;\s*setFilter\(route\.filter \?\? filterIfAbsent\);/,
+  has(body, /if \(route\.view !== 'reading-paths'\) \{ filterAddressed = route\.filter !== null;\s*setFilter\(route\.filter \?\? filterIfAbsent\); \}/,
     'route application remembering whether the effective filter was explicit');
   has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
   has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
@@ -629,4 +629,64 @@ test('nothing sets the filter behind setFilter back', () => {
   // unrecognised stored value, which is a job setFilter does not have. Every other write is a bug.
   const writes = [...main.matchAll(/^\s*filter = /gm)];
   assert.equal(writes.length, 2, 'the filter is written somewhere other than setFilter and the restore');
+});
+
+test('one syntactically valid reading path query round trips without unrelated route state', () => {
+  assert.equal(
+    formatRoute({
+      view: 'reading-paths',
+      listId: 'saved-list',
+      filter: 'unread',
+      full: true,
+      sort: 'popularity',
+      pathId: 'x-men-messiah-to-avx',
+    }),
+    '#/reading-paths?path=x-men-messiah-to-avx',
+  );
+  assert.deepEqual(parseRoute('#/reading-paths?path=x-men-messiah-to-avx'), {
+    view: 'reading-paths',
+    listId: null,
+    filter: null,
+    full: false,
+    pathId: 'x-men-messiah-to-avx',
+  });
+});
+
+test('missing empty duplicate and malformed reading path queries select no raw token', () => {
+  for (const hash of [
+    '#/reading-paths',
+    '#/reading-paths?path=',
+    '#/reading-paths?path=one&path=two',
+    '#/reading-paths?path=Uppercase',
+    '#/reading-paths?path=has%20space',
+  ]) {
+    assert.deepEqual(parseRoute(hash), {
+      view: 'reading-paths', listId: null, filter: null, full: false, pathId: null,
+    }, hash);
+  }
+  assert.equal(parseRoute('#/reading-paths/saved-list'), null);
+});
+
+test('an extra query is dropped while a path query on another view is ignored', () => {
+  assert.equal(parseRoute('#/reading-paths?path=modern-avengers&other=value').pathId, 'modern-avengers');
+  assert.deepEqual(parseRoute('#/browse?path=modern-avengers'), {
+    view: 'browse', listId: null, filter: null, full: false,
+  });
+  assert.equal(formatRoute({ view: 'browse', pathId: 'modern-avengers' }), '#/browse');
+});
+
+test('main.js retains path intent through load and permits only the current generation to finish', () => {
+  const main = read('src/js/main.js');
+  has(main, /if \(route\.view === 'reading-paths'\) requestedReadingPathId = route\.pathId/,
+    'route application retaining the raw requested path token');
+  has(main, /const generation = \+\+readingPathGeneration/,
+    'a render generation captured before asynchronous catalog loading');
+  has(main, /view !== 'reading-paths' \|\| generation !== readingPathGeneration/,
+    'stale or hidden render continuations being refused');
+  has(main, /if \(requestedReadingPathId !== selected\.id\)[\s\S]*?syncHash\(\);/,
+    'post-load fallback canonicalized through passive replacement');
+  has(main, /sanitizeStoredIssueDescriptions\(readerStore, event\.newValue,[\s\S]*?\), refreshReadingPathProgress\(\)\);/,
+    'an adopted cross-tab write refreshing only visible reading-path progress');
+  has(main, /readerStore\.adoptForeignWrite\(null\); refreshReadingPathProgress\(\);/,
+    'an adopted cross-tab origin clear removing visible reading-path progress');
 });

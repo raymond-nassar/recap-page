@@ -1807,3 +1807,37 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   .badge-done { border: 1px solid CanvasText; }
   .badge-none { border: 1px dashed CanvasText; }
 }
+
+/* One linear sequence rather than a proportional year axis. The line shows continuity, while every
+   stop keeps its ordinal and progress in text so shape and colour are never the only explanation. */
+.reading-path-controls { display: grid; gap: .35rem; max-width: 32rem; margin: 1rem 0 1.5rem; }
+.reading-path-controls label { color: var(--muted); font-size: var(--t-caption); font-weight: 600; }
+.reading-path-controls select { width: 100%; min-height: 44px; }
+.reading-path-summary { display: flex; align-items: start; justify-content: space-between; gap: 1rem; margin-bottom: 1.2rem; }
+.reading-path-summary h2 { margin: 0 0 .35rem; font-size: var(--t-title); }
+.reading-path-summary p { margin: .2rem 0; }
+.reading-path-count { flex: 0 0 auto; color: var(--muted); font-size: var(--t-caption); }
+.reading-path-spine { list-style: none; margin: 0; padding: 0 0 0 1.2rem; border-left: 2px solid var(--line-2); }
+.reading-path-stop { position: relative; min-width: 0; padding: 0 0 1.5rem 1.35rem; }
+.reading-path-stop:last-child { padding-bottom: .25rem; }
+.reading-path-marker {
+  position: absolute; left: -2.05rem; top: -.1rem; display: grid; place-items: center;
+  width: 1.7rem; height: 1.7rem; border: 2px solid var(--accent-text); border-radius: 50%;
+  background: var(--bg); color: var(--text); font-size: var(--t-caption); font-weight: 700;
+}
+.reading-path-stop-copy { min-width: 0; padding: .75rem .9rem; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+.reading-path-stop h3 { margin: 0; font-size: var(--t-subtitle); overflow-wrap: anywhere; }
+.reading-path-stop-meta, .reading-path-stop-progress { margin: .25rem 0 0; color: var(--muted); font-size: var(--t-caption); }
+.reading-path-stop[data-progress="done"] .reading-path-stop-progress { color: var(--teal); }
+.reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
+@media (max-width: 620px) {
+  .reading-path-summary { display: grid; }
+  .reading-path-spine { padding-left: .85rem; }
+  .reading-path-stop { padding-left: 1rem; }
+  .reading-path-marker { left: -1.72rem; }
+}
+@media (forced-colors: active) {
+  .reading-path-spine { border-color: CanvasText; }
+  .reading-path-marker, .reading-path-stop-copy { border-color: CanvasText; background: Canvas; color: CanvasText; }
+  .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
+}

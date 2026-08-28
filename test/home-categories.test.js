@@ -23,8 +23,8 @@ const source = read('src/js/main.js');
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
 const stories = groupCatalog(catalog.lists);
 
-test('the current gateway offers three primary modes and two secondary gateways', () => {
-  const categories = availableHomeCategories(stories);
+test('the current gateway offers three primary modes and three secondary gateways', () => {
+  const categories = availableHomeCategories(stories, HOME_CATEGORIES, catalog.paths);
   assert.deepEqual(
     categories.map(({ key }) => key),
     [
@@ -32,12 +32,12 @@ test('the current gateway offers three primary modes and two secondary gateways'
       'storylines',
       'character-spotlights',
       'marvel-on-screen',
-      'marvel-ages',
+      'marvel-ages', 'reading-paths',
     ],
   );
   assert.deepEqual(
     categories.map(({ tier }) => tier),
-    ['primary', 'primary', 'primary', 'secondary', 'secondary'],
+    ['primary', 'primary', 'primary', 'secondary', 'secondary', 'secondary'],
   );
 
   for (const category of categories.filter(({ shelf }) => shelf)) {
@@ -49,6 +49,7 @@ test('the current gateway offers three primary modes and two secondary gateways'
   assert.equal(categories.find(({ key }) => key === 'timeline').count, 148);
   assert.equal(categories.find(({ key }) => key === 'marvel-ages').count, 202);
   assert.equal(categories.find(({ key }) => key === 'marvel-on-screen').count, 6);
+  assert.equal(categories.find(({ key }) => key === 'reading-paths').count, 3);
 });
 
 test('an empty category stays hidden while overlapping categories remain independent', () => {
@@ -217,6 +218,30 @@ test('Home and Browse use the same category renderer', () => {
     'the renderer no longer discovers both category gateways',
   );
   assert.doesNotMatch(source, /function renderBrowseCategories/);
+});
+
+test('the shared path entry uses resolved path availability and an explicit path noun', () => {
+  const categories = availableHomeCategories(stories, HOME_CATEGORIES, catalog.paths);
+  const entry = categories.find(({ key }) => key === 'reading-paths');
+  assert.deepEqual(
+    {
+      route: entry.route,
+      tier: entry.tier,
+      count: entry.count,
+      singular: entry.singular,
+      plural: entry.plural,
+    },
+    {
+      route: 'reading-paths',
+      tier: 'secondary',
+      count: 3,
+      singular: 'Reading path',
+      plural: 'Reading paths',
+    },
+  );
+  assert.match(source, /availableHomeCategories\(groupCatalog\(homeCatalog\.lists\), HOME_CATEGORIES, resolveReadingPaths\(homeCatalog\.paths, homeCatalog\.lists\)\)/);
+  assert.match(source, /category\.singular \?\? 'Reading List'/);
+  assert.equal([...markup.matchAll(/data-category-gateway/g)].length, 2);
 });
 
 test('asynchronous category results expose concise polite status updates', () => {

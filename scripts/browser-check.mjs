@@ -2304,7 +2304,7 @@ const SCENARIOS = [
             label: 'Publication history',
             title: 'Marvel Ages',
             count: '16 Reading Lists',
-          },
+          }, { key: 'reading-paths', label: 'Follow connected stories', title: 'Reading paths', count: '3 Reading paths' },
         ]),
         JSON.stringify(context.secondary));
       t.check('the primary paths remain equal choices on one desktop row',
@@ -2323,7 +2323,7 @@ const SCENARIOS = [
         context.statuses.length === 2
         && context.statuses.every(({ role, hidden, visuallyHidden, text }) =>
           role === 'status' && !hidden && visuallyHidden
-          && text === '5 ways to read available.'),
+          && text === '6 ways to read available.'),
         JSON.stringify(context.statuses));
 
       for (const [category, view] of [
@@ -4304,7 +4304,7 @@ const SCENARIOS = [
         && expandedPath.text.includes('Next: Third Stop'),
         JSON.stringify(expandedPath));
 
-      t.check('the compact card keeps the issue count', first?.meta === '3 issues', JSON.stringify(first?.meta));
+      t.check('the compact card keeps the issue count and gap disclosure', first?.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened', JSON.stringify(first?.meta));
       t.check('a dated order carries its year as the Timeline destination', first?.year === '2004', JSON.stringify(first?.year));
 
       await openBrowseCategory(page, 'character-spotlights');
@@ -6079,12 +6079,29 @@ const SCENARIOS = [
         active: document.activeElement?.id ?? '',
         focusInRows: document.querySelector('#rows')?.contains(document.activeElement) ?? false,
       }));
-      t.check('an explicit filter opens once without adding full intent or moving boot focus',
+      await click(page, 'input[name="filter"][value="all"]');
+      await page.waitForFunction(() => location.hash.endsWith('?full=1'));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#rows .row', { timeout: 15000 });
+      const explicitDefault = await page.evaluate(() => ({
+        hash: location.hash,
+        open: document.querySelector('#full')?.open,
+        rows: document.querySelectorAll('#rows .row').length,
+      }));
+      await page.evaluate(() => {
+        const settings = JSON.parse(localStorage.getItem('mrt.settings'));
+        settings.filter = 'unread';
+        localStorage.setItem('mrt.settings', JSON.stringify(settings));
+      });
+      t.check('explicit filters keep the open list address truthful without moving boot focus',
         filterIntent.hash.endsWith('?filter=unread')
           && filterIntent.open
           && filterIntent.rows === 218
-          && !filterIntent.focusInRows,
-        JSON.stringify(filterIntent));
+          && !filterIntent.focusInRows
+          && explicitDefault.hash.endsWith('?full=1')
+          && explicitDefault.open
+          && explicitDefault.rows === 219,
+        JSON.stringify({ filterIntent, explicitDefault }));
 
       await open(page, `/?long=1&boot=plain#/read/${encodeURIComponent(listId)}`);
       const restored = await page.evaluate(() => ({
@@ -6275,7 +6292,304 @@ const SCENARIOS = [
         browserErrors.length === 0, browserErrors.join(' / '));
     },
   },
+  {
+    id: 'reading-paths',
+    title: 'one reading-path view preserves route, progress, overlap and focus',
+    async run(page, t) {
+      const issues = Object.fromEntries(Array.from({ length: 9 }, (_, index) => {
+        const issueId = index + 1;
+        return [issueId, { issueId, title: `Path issue ${issueId}` }];
+      }));
+      const saved = {
+        schemaVersion: 2,
+        issues,
+        read: { 1: 1, 2: 1, 3: 1, 6: 1, 7: 1 },
+        overrides: {},
+        notes: {},
+        lists: {
+          main: { id: 'main', name: 'Earlier main import', description: '', note: '', created: 1, catalogId: 'browser-check-three-main', itemIds: [1, 2, 3], collectedIn: {} },
+          exact: { id: 'exact', name: 'Exact short import', description: '', note: '', created: 2, catalogId: 'browser-check-three-short', itemIds: [4, 5], collectedIn: {} },
+          fallback: { id: 'fallback', name: 'Fallback complete import', description: '', note: '', created: 3, catalogId: 'x-men-complete', itemIds: [6, 7, 8, 9], collectedIn: {} },
+        },
+        listOrder: ['main', 'exact', 'fallback'],
+        active: 'main',
+      };
+      await page.evaluateOnNewDocument((state) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'unread' }));
+      }, saved);
+
+      await open(page, '/?catalog=reading-paths&path-delay=600#/reading-paths?path=bc-path');
+      await page.waitForSelector('#view-reading-paths:not([hidden])');
+      await page.evaluate(() => { location.hash = '#/reading-paths?path=spotlight-arrival'; });
+      await page.waitForFunction(() => document.querySelector('#reading-path-select')?.value === 'spotlight-arrival');
+      const lateRoute = await page.evaluate(() => ({
+        hash: location.hash,
+        selected: document.querySelector('#reading-path-select')?.value,
+        titles: [...document.querySelectorAll('#reading-path-spine h3')].map((node) => node.textContent.trim()),
+      }));
+      t.check('a late earlier catalog continuation cannot overwrite the newer path route',
+        lateRoute.hash === '#/reading-paths?path=spotlight-arrival'
+        && lateRoute.selected === 'spotlight-arrival'
+        && lateRoute.titles.join('|') === 'Third Stop|Off The Path',
+        JSON.stringify(lateRoute));
+
+      await click(page, '.brand[data-view="home"]');
+      await page.waitForSelector('#view-home [data-category="reading-paths"]');
+      const homeEntry = await page.$eval('#view-home [data-category="reading-paths"]', (node) => ({
+        title: node.querySelector('.home-path-title')?.textContent.trim(),
+        count: node.querySelector('.home-path-count')?.textContent.trim(),
+        label: node.getAttribute('aria-label'),
+      }));
+      await click(page, '.ri[data-view="browse"]');
+      await page.waitForSelector('#view-browse [data-category="reading-paths"]');
+      const browseEntry = await page.$eval('#view-browse [data-category="reading-paths"]', (node) => ({
+        title: node.querySelector('.home-path-title')?.textContent.trim(),
+        count: node.querySelector('.home-path-count')?.textContent.trim(),
+        label: node.getAttribute('aria-label'),
+      }));
+      t.check('Home and Browse share one secondary entry with the path count and noun',
+        JSON.stringify(homeEntry) === JSON.stringify(browseEntry)
+        && browseEntry.title === 'Reading paths'
+        && browseEntry.count === '3 Reading paths'
+        && browseEntry.label.includes('3 Reading paths'),
+        JSON.stringify({ homeEntry, browseEntry }));
+
+      await page.focus('#view-browse [data-category="reading-paths"]');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash === '#/reading-paths?path=bc-path');
+      const gatewayArrival = await page.evaluate(() => ({
+        visible: document.querySelector('.view:not([hidden])')?.id,
+        focused: document.activeElement?.id,
+        selected: document.querySelector('#reading-path-select')?.value,
+      }));
+      t.check('keyboard activation reaches one canonical view and focuses its heading',
+        gatewayArrival.visible === 'view-reading-paths'
+        && gatewayArrival.focused === 'reading-paths-h'
+        && gatewayArrival.selected === 'bc-path',
+        JSON.stringify(gatewayArrival));
+
+      const selector = await page.$eval('#reading-path-select', (node) => ({
+        tag: node.tagName,
+        labels: [...node.labels].map((label) => label.textContent.trim()),
+        options: [...node.options].map((option) => option.value),
+        selected: [...node.selectedOptions].map((option) => option.value),
+      }));
+      t.check('one labelled native selector exposes every path and one selected option',
+        selector.tag === 'SELECT'
+        && selector.labels.join('|') === 'Reading path'
+        && selector.options.join('|') === 'bc-path|bc-age-path|spotlight-arrival'
+        && selector.selected.join('|') === 'bc-path',
+        JSON.stringify(selector));
+
+      const firstPath = await page.evaluate(() => ({
+        listCount: document.querySelectorAll('#reading-path-spine').length,
+        ordered: document.querySelector('#reading-path-spine')?.tagName,
+        stops: [...document.querySelectorAll('#reading-path-spine .reading-path-stop')].map((stop) => ({
+          id: stop.dataset.readingPathStop,
+          title: stop.querySelector('h3')?.textContent.trim(),
+          meta: stop.querySelector('.reading-path-stop-meta')?.textContent.trim(),
+          progress: stop.querySelector('.reading-path-stop-progress')?.textContent.trim(),
+        })),
+      }));
+      t.check('the selected spine contains every stop once in source order with ordinals and years',
+        firstPath.listCount === 1
+        && firstPath.ordered === 'OL'
+        && firstPath.stops.map(({ id }) => id).join('|') === 'browser-check|browser-check-two|browser-check-three-short'
+        && firstPath.stops.map(({ meta }) => meta).join('|') === 'Stop 1 of 3 · Starts 2004|Stop 2 of 3 · Starts 2005|Stop 3 of 3 · Starts 2006',
+        JSON.stringify(firstPath));
+      t.check('exact imported progress wins over an earlier catalog sibling',
+        firstPath.stops[2].progress === '0 of 2 issues read in Exact short import. Not started.',
+        firstPath.stops[2].progress);
+      t.check('a stop with no imported sibling says Not added',
+        firstPath.stops[1].progress === 'Not added',
+        firstPath.stops[1].progress);
+
+      await page.evaluate(() => { window.__readingPathSelector = document.querySelector('#reading-path-select'); });
+      await page.focus('#reading-path-select');
+      await page.keyboard.press('ArrowDown');
+      await page.waitForFunction(() => location.hash === '#/reading-paths?path=bc-age-path');
+      const selectorChange = await page.evaluate(() => ({
+        same: window.__readingPathSelector === document.querySelector('#reading-path-select'),
+        focused: document.activeElement === document.querySelector('#reading-path-select'),
+        value: document.querySelector('#reading-path-select')?.value,
+      }));
+      t.check('keyboard selection pushes one route while retaining selector identity and focus',
+        selectorChange.same && selectorChange.focused && selectorChange.value === 'bc-age-path',
+        JSON.stringify(selectorChange));
+      const fallback = await page.$eval(
+        '#reading-path-spine [data-reading-path-stop="x-men-spine"] .reading-path-stop-progress',
+        (node) => node.textContent.trim(),
+      );
+      t.check('the first imported sibling in catalog order supplies fallback progress and its name',
+        fallback === '2 of 4 issues read in Fallback complete import. Reading.',
+        fallback);
+
+      await page.keyboard.press('ArrowDown');
+      await page.waitForFunction(() => location.hash === '#/reading-paths?path=spotlight-arrival');
+      const overlap = await page.evaluate(() => {
+        const stops = [...document.querySelectorAll('#reading-path-spine .reading-path-stop')];
+        return {
+          selected: document.querySelector('#reading-path-select')?.value,
+          first: stops[0]?.dataset.readingPathStop,
+          firstMeta: stops[0]?.querySelector('.reading-path-stop-meta')?.textContent.trim(),
+          next: stops[0]?.nextElementSibling?.querySelector('h3')?.textContent.trim(),
+        };
+      });
+      t.check('a shared story keeps this path own ordinal and neighbour context',
+        overlap.selected === 'spotlight-arrival'
+        && overlap.first === 'browser-check-three-main'
+        && overlap.firstMeta === 'Stop 1 of 2 · Starts 2006'
+        && overlap.next === 'Off The Path',
+        JSON.stringify(overlap));
+
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash === '#/reading-paths?path=bc-age-path'
+        && document.activeElement?.id === 'reading-paths-h');
+      const back = await page.$eval('#reading-path-select', (node) => node.value);
+      await page.evaluate(() => history.forward());
+      await page.waitForFunction(() => location.hash === '#/reading-paths?path=spotlight-arrival'
+        && document.activeElement?.id === 'reading-paths-h');
+      const forward = await page.$eval('#reading-path-select', (node) => ({
+        value: node.value,
+        filter: JSON.parse(localStorage.getItem('mrt.settings')).filter,
+      }));
+      t.check('Back and Forward restore path selection and focus the route heading',
+        back === 'bc-age-path' && forward.value === 'spotlight-arrival' && forward.filter === 'unread',
+        JSON.stringify({ back, forward }));
+
+      const beforeReload = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => document.querySelector('#reading-path-select')?.value === 'spotlight-arrival');
+      const reloaded = await page.evaluate(() => ({
+        hash: location.hash,
+        stops: document.querySelectorAll('#reading-path-spine .reading-path-stop').length,
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      t.check('reload restores the addressed path without storing path selection',
+        reloaded.hash === '#/reading-paths?path=spotlight-arrival'
+        && reloaded.stops === 2
+        && reloaded.state === beforeReload,
+        JSON.stringify({ hash: reloaded.hash, stops: reloaded.stops, stateChanged: reloaded.state !== beforeReload }));
+
+      await page.select('#reading-path-select', 'bc-path');
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      await page.evaluate(() => {
+        const select = document.querySelector('#reading-path-select');
+        window.__readingPathSelector = select;
+        select.focus();
+      });
+      await page.evaluate(async () => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        state.read['4'] = Date.now();
+        const newValue = JSON.stringify(state);
+        localStorage.clear();
+        dispatchEvent(new StorageEvent('storage', {
+          key: null,
+          oldValue: null,
+          newValue: null,
+          storageArea: localStorage,
+          url: location.href,
+        }));
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        window.__readingPathCleared = {
+          same: window.__readingPathSelector === document.querySelector('#reading-path-select'),
+          focused: document.activeElement === document.querySelector('#reading-path-select'),
+          progress: document.querySelector(
+            '#reading-path-spine [data-reading-path-stop="browser-check-three-short"] .reading-path-stop-progress',
+          )?.textContent.trim(),
+        };
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2',
+          oldValue,
+          newValue,
+          storageArea: localStorage,
+          url: location.href,
+        }));
+      });
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      const repainted = await page.evaluate(() => ({
+        same: window.__readingPathSelector === document.querySelector('#reading-path-select'),
+        focused: document.activeElement === document.querySelector('#reading-path-select'),
+        hash: location.hash,
+        progress: document.querySelector(
+          '#reading-path-spine [data-reading-path-stop="browser-check-three-short"] .reading-path-stop-progress',
+        )?.textContent.trim(),
+        cleared: window.__readingPathCleared,
+        storedRead: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2')).read),
+      }));
+      t.check('state repaint updates progress without replacing or blurring the selector',
+        repainted.same && repainted.focused
+        && repainted.hash === '#/reading-paths?path=bc-path'
+        && repainted.cleared.same && repainted.cleared.focused
+        && repainted.cleared.progress === 'Not added'
+        && repainted.progress === '1 of 2 issues read in Exact short import. Reading.',
+        JSON.stringify(repainted));
+
+      await page.setViewport({ width: 390, height: 844 });
+      await page.waitForFunction(() => innerWidth === 390);
+      const narrow = await page.evaluate(() => ({
+        viewport: innerWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+        lefts: [...document.querySelectorAll('#reading-path-spine .reading-path-stop')]
+          .map((stop) => Math.round(stop.getBoundingClientRect().left)),
+        states: [...document.querySelectorAll('.reading-path-stop-progress')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('the narrow spine stays in one readable column without overflow and with state words',
+        narrow.scrollWidth === narrow.viewport
+        && new Set(narrow.lefts).size === 1
+        && narrow.states.some((text) => text.includes('Reading.'))
+        && narrow.states.some((text) => text === 'Not added'),
+        JSON.stringify(narrow));
+
+      if (await page.evaluate(() => matchMedia('(forced-colors: active)').matches)) {
+        const forced = await page.evaluate(() => {
+          const select = getComputedStyle(document.querySelector('#reading-path-select'));
+          const normal = getComputedStyle(document.querySelector('.reading-path-stop-copy'));
+          const absent = getComputedStyle(document.querySelector('.reading-path-stop[data-progress="not-added"] .reading-path-stop-copy'));
+          return {
+            selectBorder: select.borderTopWidth,
+            normalBorder: normal.borderTopWidth,
+            absentStyle: absent.borderTopStyle,
+            text: document.querySelector('.reading-path-stop-progress')?.textContent.trim(),
+          };
+        });
+        t.check('forced colors retain bordered controls, spine stops and visible progress text',
+          forced.selectBorder !== '0px'
+          && forced.normalBorder !== '0px'
+          && forced.absentStyle === 'dashed'
+          && forced.text.length > 0,
+          JSON.stringify(forced));
+      }
+
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results [data-story="list:browser-check"]');
+      const shelf = await page.$eval('#catalog-results [data-story="list:browser-check"]', (card) => ({
+        badge: card.querySelector('.result-path summary')?.textContent.replace(/\s+/g, ' ').trim(),
+        meta: card.querySelector('.catalog-card-meta')?.textContent.replace(/\s+/g, ' ').trim(),
+      }));
+      t.check('the shelf keeps its path badge plus the corrected issue count and gap disclosure',
+        shelf.badge === 'Start · 1/3'
+        && shelf.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened',
+        JSON.stringify(shelf));
+    },
+  },
 ];
+
+MUTATIONS.push({
+  id: 'reading-paths-sibling-first',
+  breaks: 'reading-paths',
+  why: 'an earlier imported sibling is chosen before the exact path step',
+  rewriteMain: (source) => source.replace(
+    / {2}const imported = exact \?\? \(stop\?\.lists \?\? \[\]\)\r?\n {4}\.map\(\(list\) => listForCatalogId\(state, list\.id\)\)\r?\n {4}\.find\(Boolean\);/,
+    `  const imported = (stop?.lists ?? [])
+    .map((list) => listForCatalogId(state, list.id))
+    .find(Boolean) ?? exact;`,
+  ),
+});
 
 // ------------------------------------------------------------------ page helpers
 
@@ -6518,7 +6832,7 @@ async function preparePage(page, origin, mutation) {
               lists: selectedCatalog.lists.map((l) => ({ ...l, type: 'era' })),
             }));
           }
-          return Promise.resolve(json(selectedCatalog));
+          return new URL(location.href).searchParams.has('path-delay') ? new Promise((resolve) => setTimeout(() => resolve(json(selectedCatalog)), Number(new URL(location.href).searchParams.get('path-delay')))) : Promise.resolve(json(selectedCatalog));
         }
         if (url.endsWith(`data/${orderFile}`)) {
           window.__mrtOrderRequests = (window.__mrtOrderRequests ?? 0) + 1;
@@ -6725,7 +7039,7 @@ async function preparePage(page, origin, mutation) {
       empty: EMPTY_CATALOG,
       'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
-      sparse: SPARSE_PUBLISHING_CATALOG,
+      sparse: SPARSE_PUBLISHING_CATALOG, 'reading-paths': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },
       actual: ACTUAL_CATALOG,
     },
     ORDER,
@@ -6866,7 +7180,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);

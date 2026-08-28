@@ -24,7 +24,7 @@ import {
   searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
   sortSpotlightStories, spotlightSortLabel,
   catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
-  pathPlacements, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
+  pathPlacements, resolveReadingPaths, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   firstSentence, storyYear, timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
@@ -128,10 +128,10 @@ export function dispatchStorageEvent(
   } = {},
 ) {
   if (event.key === STATE_KEY) {
-    const sanitizeCurrent = () => sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+    const sanitizeCurrent = () => (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
       adoptCurrent: true,
       onFailure: (error) => notify('#save-report', error, 'error'),
-    });
+    }), refreshReadingPathProgress());
     if (readerStore === store) {
       clearTimeout(foreignStateSanitationTimer);
       foreignStateSanitationTimer = setTimeout(sanitizeCurrent, 50);
@@ -146,7 +146,7 @@ export function dispatchStorageEvent(
     return;
   }
   if (event.key === null) {
-    readerStore.adoptForeignWrite(null);
+    readerStore.adoptForeignWrite(null); refreshReadingPathProgress();
     education.adopt(null);
     renderEducation();
   }
@@ -454,7 +454,7 @@ function isLive(node) {
 const CATALOG_LOAD = 'catalog-load';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
-  ...HOME_CATEGORIES.filter((category) => !category.shelf),
+  ...HOME_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'reading-paths'),
 ].map((category) => [category.route, category]));
 
 // The stored API base is checked once at boot, so the complaint about a bad one is a single
@@ -1501,8 +1501,8 @@ function syncHash({ push = false } = {}) {
       view,
       listId: activeListId(),
       filter: showFilter ? shown : DEFAULT_FILTER,
-      full: view === 'read' && $('#full').open,
-      sort,
+      full: view === 'read' && $('#full').open && !(showFilter && shown !== DEFAULT_FILTER),
+      sort, pathId: view === 'reading-paths' ? requestedReadingPathId : null,
     });
   if (!next || next === location.hash) return;
 
@@ -1575,7 +1575,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     issueFocusLoad?.abort();
     issueFocusLoad = null;
     issueFocusResult = null;
-    issueRoute = null;
+    issueRoute = null; if (route.view === 'reading-paths') requestedReadingPathId = route.pathId;
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
       store.update((s) => setActive(s, route.listId));
     }
@@ -1585,8 +1585,8 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     }
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
-    filterAddressed = route.filter !== null;
-    setFilter(route.filter ?? filterIfAbsent);
+    if (route.view !== 'reading-paths') { filterAddressed = route.filter !== null;
+      setFilter(route.filter ?? filterIfAbsent); }
     // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
     // because the address this route describes is the authoritative one and writing the traversal's
     // would fight it.
@@ -1603,7 +1603,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       setFullOrderFromRoute(openFromRoute);
       if (openFromRoute && rowsPending) renderRows();
     }
-    showView(route.view, { focus });
+    showView(route.view, { focus }); if (route.view === 'reading-paths') void renderReadingPaths();
   } finally {
     applyingRoute = false;
   }
@@ -2155,7 +2155,7 @@ async function renderHomeCategories() {
     notify(report, `${homeCatalog.dropped} catalog ${homeCatalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`, 'warn');
   }
 
-  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists)); const primaryCategories = categories.filter(({ tier }) => tier === 'primary'); const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
+  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists), HOME_CATEGORIES, resolveReadingPaths(homeCatalog.paths, homeCatalog.lists)); const primaryCategories = categories.filter(({ tier }) => tier === 'primary'); const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
   for (const gateway of gateways) {
     const primary = gateway.querySelector('[data-primary-paths]');
     const secondary = gateway.querySelector('[data-secondary-paths]');
@@ -2170,13 +2170,13 @@ async function renderHomeCategories() {
 
 function homeCategoryTile(category) {
   const glyph = String.fromCodePoint(Number.parseInt(category.icon, 16));
-  const count = `${category.count} ${category.count === 1 ? 'Reading List' : 'Reading Lists'}`;
+  const count = `${category.count} ${category.count === 1 ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
   return el('li', {}, el('button', {
     type: 'button',
     class: `home-path home-path-${category.tier}`,
     'aria-label': `${category.heading}. ${category.label}. ${count}.`,
     dataset: { category: category.key },
-    onclick: () => showView(category.route, { push: true }),
+    onclick: () => { if (category.route === 'reading-paths') requestedReadingPathId = null; showView(category.route, { push: true }); if (category.route === 'reading-paths') void renderReadingPaths(); },
   }, [
     el('span', { class: 'gi home-path-icon', 'aria-hidden': 'true', text: glyph }),
     el('span', { class: 'home-path-copy' }, [
@@ -6296,7 +6296,7 @@ export function boot() {
   wireShortcuts();
   wireBlockedBanner();
   for (const shelf of CATALOG_SHELVES) wireCatalogShelfSearch(shelf.key);
-  wireHome();
+  wireHome(); wireReadingPaths();
   wirePreview();
   wireAsk();
   wireProgressScope();
@@ -6559,4 +6559,117 @@ function setFallbackInitials(fallback, value) {
   fallback.dataset.initialFirst = first;
   fallback.dataset.initialSecond = second;
   fallback.classList.toggle('one-initial', !second);
+}
+
+let requestedReadingPathId = null;
+let readingPathGeneration = 0;
+let resolvedReadingPaths = [];
+let selectedReadingPath = null;
+
+export function readingPathProgress(state, stop) {
+  const exact = listForCatalogId(state, stop?.stepId);
+  const imported = exact ?? (stop?.lists ?? [])
+    .map((list) => listForCatalogId(state, list.id))
+    .find(Boolean);
+  if (!imported) return null;
+  const { read, total } = listProgress(state, imported.id);
+  return {
+    listId: imported.id,
+    catalogId: imported.catalogId,
+    name: imported.name,
+    read,
+    total,
+    state: completionState(read, total),
+    match: exact ? 'exact' : 'sibling',
+  };
+}
+
+function readingPathProgressText(progress) {
+  if (!progress) return 'Not added';
+  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${orderWord(progress.state)}.`;
+}
+
+export function refreshReadingPathProgress(state = store.state) {
+  if (view !== 'reading-paths' || !selectedReadingPath) return;
+  for (const output of document.querySelectorAll('[data-reading-path-progress]')) {
+    const stop = selectedReadingPath.stops[Number(output.dataset.readingPathProgress)];
+    const progress = readingPathProgress(state, stop);
+    output.textContent = readingPathProgressText(progress);
+    output.closest('.reading-path-stop').dataset.progress = progress?.state ?? 'not-added';
+  }
+}
+
+function renderReadingPathStructure(path) {
+  selectedReadingPath = path;
+  $('#reading-path-name').textContent = path.name;
+  $('#reading-path-description').textContent = path.description;
+  $('#reading-path-source').textContent = `Source: ${path.sourceOrigin}`;
+  $('#reading-path-count').textContent = `${path.stops.length} stops`;
+  $('#reading-path-spine').replaceChildren(...path.stops.map((stop, index) => el('li', {
+    class: 'reading-path-stop',
+    dataset: { readingPathStop: stop.stepId },
+  }, [
+    el('span', { class: 'reading-path-marker', 'aria-hidden': 'true', text: String(stop.position) }),
+    el('div', { class: 'reading-path-stop-copy' }, [
+      el('h3', { text: stop.name }),
+      el('p', {
+        class: 'reading-path-stop-meta',
+        text: `Stop ${stop.position} of ${stop.total}${stop.year == null ? '' : ` · Starts ${stop.year}`}`,
+      }),
+      el('p', { class: 'reading-path-stop-progress', dataset: { readingPathProgress: index } }),
+    ]),
+  ])));
+  refreshReadingPathProgress();
+}
+
+function setReadingPathOptions(paths, selectedId) {
+  const select = $('#reading-path-select');
+  const signature = paths.map((path) => path.id).join('\n');
+  if (select.dataset.paths !== signature) {
+    select.replaceChildren(...paths.map((path) => el('option', { value: path.id, text: path.name })));
+    select.dataset.paths = signature;
+  }
+  select.value = selectedId;
+}
+
+async function renderReadingPaths() {
+  const generation = ++readingPathGeneration;
+  $('#reading-path-status').textContent = 'Loading reading paths…';
+  $('#reading-path-details').hidden = true;
+  try {
+    const catalog = await loadCatalog();
+    if (view !== 'reading-paths' || generation !== readingPathGeneration) return;
+    resolvedReadingPaths = resolveReadingPaths(catalog.paths, catalog.lists);
+    if (!resolvedReadingPaths.length) {
+      selectedReadingPath = null;
+      $('#reading-path-status').textContent = 'No reading paths are bundled with this build.';
+      return;
+    }
+    const selected = resolvedReadingPaths.find((path) => path.id === requestedReadingPathId)
+      ?? resolvedReadingPaths[0];
+    setReadingPathOptions(resolvedReadingPaths, selected.id);
+    renderReadingPathStructure(selected);
+    $('#reading-path-details').hidden = false;
+    $('#reading-path-status').textContent = `${resolvedReadingPaths.length} Reading paths available.`;
+    if (requestedReadingPathId !== selected.id) {
+      requestedReadingPathId = selected.id;
+      syncHash();
+    }
+    clearNotice(CATALOG_LOAD);
+  } catch (err) {
+    if (view !== 'reading-paths' || generation !== readingPathGeneration) return;
+    selectedReadingPath = null;
+    $('#reading-path-status').textContent = 'Reading paths could not be loaded.';
+    notify('#reading-paths-report', `Reading paths could not be loaded: ${err.message}. Try this view again.`, 'error', CATALOG_LOAD);
+  }
+}
+
+function wireReadingPaths() {
+  $('#reading-path-select').addEventListener('change', (event) => {
+    const selected = resolvedReadingPaths.find((path) => path.id === event.target.value);
+    if (!selected || view !== 'reading-paths') return;
+    requestedReadingPathId = selected.id;
+    renderReadingPathStructure(selected);
+    syncHash({ push: true });
+  });
 }
