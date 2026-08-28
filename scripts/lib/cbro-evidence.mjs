@@ -37,8 +37,12 @@ export const CBRO_SOURCE_PROVIDER = Object.freeze({
 });
 
 export const CBRO_HISTORICAL_COUNT = 58;
+export const CBRO_MARVEL_2099_BLOCKER_REASON =
+  'Blocked: 99 source rows lack exact configured issue metadata across 13 source series; the complete 271-row alternate-universe order cannot publish.';
+export const CBRO_MARVEL_2099_UNMATCHED_IDENTITY_SHA256 =
+  '62344e2d6898b7d8bcd9eab1d7686acc0d3c6adb0fa7a8e60da56b6e2e815aa3';
 export const CBRO_HISTORICAL_IDENTITY_SHA256 =
-  '16b3e4ffe08f68d3dc8d11a9aca7ea6533853a3e33f8d419b46b8e0f535e05bb';
+  'ccf035562d73169d664e58965f52c7ccd70fc547b7b68aa8404e83bb7152763c';
 export const CBRO_BATCH_TWO_NONSELECTED_INVENTORY_SHA256 =
   '0fb172f493fff2d6001a9c8c3bf2efaf756c40566056df00373a3f18e58c7316';
 export const CBRO_BATCH_THREE_NONSELECTED_INVENTORY_SHA256 =
@@ -1006,6 +1010,18 @@ const BATCH_TEN_PREDECESSOR_STATE = Object.freeze({
     deliveryStatus: 'deferred',
   }),
 });
+const BATCH_ELEVEN_PREDECESSOR_STATE = Object.freeze({
+  'marvel-2099': Object.freeze({
+    sourceRetrievedAt: '2026-08-25',
+    sourceContentSha256: 'f304f150c2aa29fc9d28a07ef6e3f6669f5bc849a19ea38ef13005a45c29f45a',
+    centralDisposition: 'deferred',
+    relationshipStatus: 'unresolved',
+    reason: 'Deferred for a separate alternate-universe review requiring explicit product approval.',
+    overlapIds: Object.freeze([]),
+    catalogIds: Object.freeze([]),
+    deliveryStatus: 'deferred',
+  }),
+});
 const INVENTORY_DELIVERY = new Set(['ready', 'shipped', 'deferred', 'blocked', 'not-applicable']);
 
 function assert(condition, message) {
@@ -1040,7 +1056,9 @@ export function cbroBatchNinePredecessorRecord(record) {
   const state = BATCH_NINE_PREDECESSOR_STATE[record.id];
   const predecessor = state ? { ...record, ...state } : record;
   const laterState = BATCH_TEN_PREDECESSOR_STATE[predecessor.id];
-  return laterState ? { ...predecessor, ...laterState } : predecessor;
+  const batchTenPredecessor = laterState ? { ...predecessor, ...laterState } : predecessor;
+  const batchElevenState = BATCH_ELEVEN_PREDECESSOR_STATE[batchTenPredecessor.id];
+  return batchElevenState ? { ...batchTenPredecessor, ...batchElevenState } : batchTenPredecessor;
 }
 
 export function cbroReleaseForIds(ids, { order = 'source' } = {}) {
@@ -1171,6 +1189,22 @@ export function validateCbroBlockerEvidence(evidence, options = {}) {
     `${label} blocker unresolved row count differs from its rows`);
   assert(new Set(exactIssueIds).size === exactIssueIds.length,
     `${label} blocker evidence repeats an exact issue id`);
+  if (evidence.id === 'marvel-2099') {
+    const unmatchedIdentities = evidence.rows
+      .filter((row) => row.resolutionStatus === 'unmatched')
+      .map((row) => ({
+        sourcePosition: row.sourcePosition,
+        sourceIssueReference: row.sourceIssueReference,
+        sourceSeriesTitle: row.sourceSeriesTitle,
+        issueNumber: row.issueNumber,
+        seriesId: row.seriesId,
+      }));
+    assert(evidence.sourceRowCount === 271 && evidence.unresolvedRowCount === 99,
+      `${label} blocker counts changed`);
+    assert(digestCanonicalJson(unmatchedIdentities)
+      === CBRO_MARVEL_2099_UNMATCHED_IDENTITY_SHA256,
+    `${label} unmatched source identities changed`);
+  }
   const digestInput = { ...evidence };
   delete digestInput.blockerDigest;
   assert(isSha256(evidence.blockerDigest)
@@ -1191,6 +1225,13 @@ export function validateCbroBlockerEvidence(evidence, options = {}) {
       && inventoryRecord.deliveryStatus === 'blocked'
       && inventoryRecord.catalogIds.length === 0,
     `${label} blocker inventory state is inconsistent`);
+    if (evidence.id === 'marvel-2099') {
+      assert(inventoryRecord.reason === CBRO_MARVEL_2099_BLOCKER_REASON,
+        `${label} blocker inventory reason changed`);
+      assert(inventoryRecord.universeScope === 'alternate'
+        && inventoryRecord.overlapIds.length === 0,
+      `${label} blocker alternate-universe scope changed`);
+    }
   }
   return true;
 }

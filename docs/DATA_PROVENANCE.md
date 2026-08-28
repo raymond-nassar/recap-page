@@ -220,6 +220,10 @@ Second Clone Saga is blocked with 20 exact metadata gaps across its complete 161
 Its blocker record preserves every source occurrence and exact configured result without publishing a
 partial reading list.
 
+Marvel 2099 is blocked with 99 exact metadata gaps across 13 source series in its complete 271-row
+alternate-universe source order. Its blocker record preserves every source occurrence, including all
+172 exact configured results, without publishing a partial reading list.
+
 Each catalog card uses `Compiled for this project from Comic Book Reading Orders`, links to the exact
 event page, and keeps `sourceLicense` null. The source owner permitted credited and linked derived
 orders except the Marvel Master Reading Order and Patreon-only orders. That permission covers the

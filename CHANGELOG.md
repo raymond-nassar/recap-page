@@ -14,6 +14,15 @@ quote in a bug report.
 
 ## Unreleased
 
+### Recorded the complete Marvel 2099 publication blocker
+
+In plain English: No Marvel 2099 guide was published because 99 comics could not be matched to exact
+metadata. The full source order and the confirmed matches are preserved for future resolution.
+Nothing you have saved is affected.
+
+For maintainers: the blocker record preserves all 271 source positions, including 172 exact results
+and 99 unresolved identities across 13 source series, while retaining the alternate-universe scope.
+
 ### Added a complete X-Force reading guide
 
 In plain English: A complete X-Force reading guide is now available from its early Cable-led team
