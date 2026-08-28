@@ -22,7 +22,7 @@ async function shippedOrders() {
 //
 // The field is Marvel's own prose reproduced verbatim, which is what separates it from every other
 // copied field: an id, a title, a number, a date, a series and a link are all facts about a
-// publication. 798 of 1,473 records carried one, 151,840 characters in all, and the provenance
+// publication. 798 of 1,745 records carried one, 151,840 characters in all, and the provenance
 // record named it as the field to look at hardest. Removing it cost one sentence on one screen.
 test('no shipped reading order carries Marvel description prose', async () => {
   const orders = await shippedOrders();
@@ -38,7 +38,7 @@ test('no shipped reading order carries Marvel description prose', async () => {
     }
   }
 
-  assert.equal(orders.length, 243, `the catalog lists ${orders.length} orders, not 243, so this test's coverage has changed`);
+  assert.equal(orders.length, 244, `the catalog lists ${orders.length} orders, not 244, so this test's coverage has changed`);
   assert.ok(items > 1000, `only ${items} items were checked, so the data tree is not what this test thinks it is`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed again in ${offenders.length} record(s)`);
 });
@@ -101,7 +101,7 @@ test('no file outside node_modules, .git and .copilot-tracking carries an items[
     }
   }
 
-  assert.equal(scanned, 249, `${scanned} item-bearing files were found, not 249, so this test's coverage has changed`);
+  assert.equal(scanned, 250, `${scanned} item-bearing files were found, not 250, so this test's coverage has changed`);
   assert.deepEqual(offenders, [], `Marvel description prose is committed in ${offenders.length} record(s) somewhere in the scanned tree`);
 });
 

@@ -4433,6 +4433,38 @@
       "sourceFile": "fantastic-four-reading-order.md"
     },
     {
+      "id": "nick-fury-reading-order",
+      "name": "Nick Fury and S.H.I.E.L.D.",
+      "description": "A source-ordered guide to Nick Fury and S.H.I.E.L.D. stories, from wartime missions through modern espionage.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "nick-fury-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "nick_fury_reading_order.json",
+      "characters": [
+        "Nick Fury",
+        "S.H.I.E.L.D.",
+        "Dum Dum Dugan"
+      ],
+      "keywords": [
+        "Nick Fury",
+        "S.H.I.E.L.D.",
+        "Howling Commandos",
+        "Marvel",
+        "Comic Book Herald"
+      ],
+      "expect": 272,
+      "timeline": null,
+      "coverIssueId": 10644
+    },
+    {
       "id": "avengers-disassembled",
       "name": "Avengers Disassembled",
       "description": "The 2004 story that pulls the Avengers apart, compiled by hand from a reader's outline of Comic Book Herald's guide to Avengers trade collections. It is four issues of Brian Michael Bendis at the end of the 1998 series plus the one-shot that closes it out, and it is the shortest order in this catalog on purpose. It ends the Busiek, Perez and Johns era and sets up everything the modern Avengers books do next.",

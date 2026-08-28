@@ -8,7 +8,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "All 127 source-defined issues resolve exactly in source order, and the separate Complete guide remains distinct despite three approved partial relationships.",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-28",
     "overlapIds": [
       "atlantis-attacks",
       "essential-avengers",
@@ -2398,13 +2398,18 @@
     "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The full source page and cache-only provider settlement are frozen. Unresolved source identities remain individual open metadata gaps rather than being omitted or substituted.",
+    "sourceRetrievedAt": "2026-08-28",
+    "overlapIds": [
+      "hickman-full",
+      "secret-war"
+    ],
+    "catalogIds": [
+      "nick-fury-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Nick Fury"
     ],
@@ -2412,9 +2417,16 @@
       85
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e",
+    "sourceContentSha256": "60e9ba9b0d28f12572721e14133cd8586f583442e88f2cc57012c2160d74ea4a",
+    "sourceRawRetrieval": {
+      "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+      "retrievedAt": "2026-08-28",
+      "byteLength": 105264,
+      "sha256": "60e9ba9b0d28f12572721e14133cd8586f583442e88f2cc57012c2160d74ea4a"
+    },
+    "canonicalNodeContentSha256": "ae42fa7c2c292277a9065e56617ffa16e8a775741fb3bf9a649a86ccd424aa76",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 85,

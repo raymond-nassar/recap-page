@@ -461,6 +461,7 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     moonKnightCandidateId,
     'the-defenders-reading-order',
     xForceCandidateId,
+    'nick-fury-reading-order',
   ]);
 }
 
@@ -500,10 +501,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 91);
+  assert.equal(dispositionCounts.deferred, 90);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 30);
+  assert.equal(dispositionCounts['pilot-approved'], 31);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -755,6 +756,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
         moonKnightCandidateId,
         'the-defenders-reading-order',
         xForceCandidateId,
+        'nick-fury-reading-order',
       ],
     },
   );
@@ -912,7 +914,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 8);
+  assert.equal(report.comparisonCount, manifest.lists.length - 9);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1370,16 +1372,30 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
      && id !== moonKnightCandidateId
      && id !== guardiansCandidateId
      && id !== 'the-defenders-reading-order'
+     && id !== 'nick-fury-reading-order'
      && id !== xForceCandidateId)
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
-    ['silver-surfer-reading-order', moonKnightCandidateId, 'the-defenders-reading-order', xForceCandidateId],
+    [
+      'silver-surfer-reading-order',
+      moonKnightCandidateId,
+      'the-defenders-reading-order',
+      xForceCandidateId,
+      'nick-fury-reading-order',
+    ],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts/data/cbh-mappings/silver-surfer-reading-order.json'),
     [],
-    { excludedOrderIds: [moonKnightCandidateId, 'the-defenders-reading-order', xForceCandidateId] },
+    {
+      excludedOrderIds: [
+        moonKnightCandidateId,
+        'the-defenders-reading-order',
+        xForceCandidateId,
+        'nick-fury-reading-order',
+      ],
+    },
   );
 
   assert.equal(packet.sourceOccurrenceCount, 426);
@@ -1948,6 +1964,7 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
     'the-defenders-reading-order',
     moonKnightCandidateId,
     xForceCandidateId,
+    'nick-fury-reading-order',
   ]);
 
   assert.equal(record.deliveryStatus, 'shipped');
@@ -2710,10 +2727,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 243);
+  assert.equal(catalog.lists.length, 244);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 39);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 38);
+  assert.equal(characterRuns.length, 40);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 39);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -2961,7 +2978,7 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   assert.equal(mapping.candidateMetadata.length, 262);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
   assert.equal(report.candidateCount, 262);
-  assert.equal(report.comparisonCount, manifest.lists.length - 1);
+  assert.equal(report.comparisonCount, manifest.lists.length - 2);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')

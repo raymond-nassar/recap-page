@@ -15,6 +15,7 @@ import {
   validateReportDigest,
   validateSourceIdentities,
 } from './lib/cbh-inventory.mjs';
+import { CBH_LATER_ORDER_IDS } from './lib/cbro-evidence.mjs';
 import { loadLibrarySnapshot } from './report-order-overlap.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -438,12 +439,16 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     assert(!packetIdSet.has(peerId), `${peerId} cannot be both authored and an external peer`);
   }
   const library = await loadLibrarySnapshot({ manifestFile, payloadDir });
-  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, [...packetIds, ...peerIds]);
+  const excludedOrderIds = [...packetIds, ...peerIds, ...CBH_LATER_ORDER_IDS];
+  const reviewedLibraryDigest = libraryDigestExcludingOrders(library, excludedOrderIds);
   const current = library.manifest;
   const currentLists = Array.isArray(current.lists) ? current.lists : [];
   const existing = existingEntriesForPacket(currentLists, packetIds);
   const externalPeerIdSet = new Set(peerIds);
-  const reviewedExisting = existing.filter((entry) => !externalPeerIdSet.has(entry.id));
+  const laterOrderIdSet = new Set(CBH_LATER_ORDER_IDS);
+  const reviewedExisting = existing.filter((entry) => (
+    !externalPeerIdSet.has(entry.id) && !laterOrderIdSet.has(entry.id)
+  ));
   const externalPeerMappings = await Promise.all(peerIds.map(async (id) => {
     const mapping = JSON.parse(await readFile(path.join(mappingsDir, `${id}.json`), 'utf8'));
     assert(mapping.id === id, `${id} external peer mapping id changed`);

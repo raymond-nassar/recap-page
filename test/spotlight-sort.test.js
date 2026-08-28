@@ -97,5 +97,6 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Captain America: Modern Marvel Era',
     'There is Only Doom',
     'The Best Deadpool Comics To Start With!',
+    'Nick Fury and S.H.I.E.L.D.',
   ]);
 });
