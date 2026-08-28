@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -11,12 +12,14 @@ const EXPECTED = {
   sourceNodeCount: 85,
   sourceOccurrenceCount: 220,
   counts: {
-    exclusion: 58,
-    exact: 162,
+    exclusion: 51,
+    exact: 169,
     repeat: 0,
     gap: 0,
   },
-  sourceContentSha256: '568c8dcf02bd1566cc3c457c4baffdbf517748c70648df276692b930619a78e3',
+  sourceContentSha256: 'b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1',
+  sourceNodeSha256: 'f62928e1cdd6471327716eab1d832ec5322c19d79aa9beb43b7ee2960ef01b61',
+  sourceOccurrenceSha256: '16ceadd5443753110834402f78ff70540416e4040571e43fd27c534d323dcc53',
   sourceIssueBearingBlocksSha256: 'e4c6de73726ffca68ff07aa86d56a14b049d1a012811af113abf5420fa0cf146',
   groupCounts: {
     Prelude: 3,
@@ -26,6 +29,10 @@ const EXPECTED = {
   },
   adjacentExclusions: ['Avengers', 'Hawkeye', 'Scarlet Witch', 'War of the Realms', 'Empyre', 'King in Black'],
 };
+
+function digest(value) {
+  return createHash('sha256').update(value, 'utf8').digest('hex');
+}
 
 function range(length) {
   return Array.from({ length }, (_, index) => index + 1);
@@ -40,8 +47,15 @@ function validateLedger(ledger) {
   assert.equal(ledger.id, 'young-avengers-reading-order');
   assert.equal(ledger.inventoryId, 'young-avengers-reading-order');
   assert.equal(ledger.sourceUrl, 'https://www.comicbookherald.com/young-avengers-reading-order/');
-  assert.equal(ledger.sourceRetrievedAt, '2026-08-23');
+  assert.equal(ledger.sourceRetrievedAt, '2026-08-27');
   assert.equal(ledger.sourceContentSha256, EXPECTED.sourceContentSha256);
+  assert.equal(ledger.sourceNodeSha256, EXPECTED.sourceNodeSha256);
+  assert.equal(ledger.sourceOccurrenceSha256, EXPECTED.sourceOccurrenceSha256);
+  assert.equal(
+    ledger.sourceNodeSha256,
+    digest(ledger.sourceNodes.map((node) => `${node.tag}:${node.text}`).join('\n')),
+  );
+  assert.equal(ledger.sourceOccurrenceSha256, digest(JSON.stringify(ledger.occurrences)));
   assert.equal(ledger.sourceIssueBearingBlocksSha256, EXPECTED.sourceIssueBearingBlocksSha256);
   assert.equal(ledger.sourceGroupCount, 4);
   assert.equal(ledger.sourceNodeCount, EXPECTED.sourceNodeCount);
@@ -73,6 +87,14 @@ function validateLedger(ledger) {
     EXPECTED.groupCounts,
   );
 
+  assert.deepEqual(
+    ledger.occurrences.reduce((counts, row) => {
+      counts[row.disposition] = (counts[row.disposition] || 0) + 1;
+      return counts;
+    }, { exact: 0, exclusion: 0, repeat: 0, gap: 0 }),
+    ledger.counts,
+  );
+
   assert.equal(
     ledger.occurrences.every((row) => row.sourceText && row.sourceText.trim().length > 0),
     true,
@@ -91,6 +113,9 @@ function validateLedger(ledger) {
     assert.equal(typeof row.sourceText, 'string');
     assert.equal(typeof row.sourceReference, 'string');
     assert.equal(['exact', 'exclusion', 'repeat', 'gap'].includes(row.disposition), true);
+    const sourceNode = ledger.sourceNodes[row.sourceBlockPosition - 1];
+    assert.equal(row.sourceGroup, sourceNode.sourceGroup);
+    assert.equal(row.sourceText, sourceNode.text);
 
     if (row.disposition === 'exact') {
       assert.equal(typeof row.sourceRangeReference, 'string');
@@ -128,6 +153,8 @@ function validateLedger(ledger) {
     }
   });
 
+  assert.equal(new Set(ledger.occurrences.map((row) => row.sourceBlockPosition)).size, ledger.sourceNodeCount);
+
   assert.equal(rowsByText(ledger, 'Avengers').some((row) => row.disposition === 'exclusion'), true);
   assert.equal(rowsByText(ledger, 'Hawkeye').some((row) => row.disposition === 'exclusion'), true);
   assert.equal(rowsByText(ledger, 'Scarlet Witch').some((row) => row.disposition === 'exclusion'), true);
@@ -153,6 +180,38 @@ function validateLedger(ledger) {
   assert.equal(rowsByText(ledger, 'Scarlet Witch by Orlando #6').filter((row) => row.disposition === 'exact').length, 1);
   assert.equal(rowsByText(ledger, 'Loki by Watters #3').filter((row) => row.disposition === 'exact').length, 1);
   assert.equal(rowsByText(ledger, 'Guardians of the Galaxy by Kelly #7').filter((row) => row.disposition === 'exact').length, 1);
+
+  assert.deepEqual(
+    ledger.occurrences
+      .filter((row) => (
+        row.sourceClauseKind === 'named-work-label'
+        && row.disposition === 'exact'
+        && row.issueNumber == null
+      ))
+      .map((row) => [row.sourceBlockPosition, row.normalizedSeriesTitle, row.seriesYear, row.issueNumber]),
+    [
+      [9, 'Young Avengers Special', null, null],
+      [25, 'Marvel Now! Point One', null, null],
+      [60, 'Marvel Rising', 2018, null],
+      [70, 'Death’s Head: Clone Drive', null, null],
+      [78, 'Marvel Voices: Pride', 2021, null],
+      [79, 'The Last Annihilation: Wiccan & Hulkling', null, null],
+      [80, 'Hulkling & Wiccan', null, null],
+      [81, 'Marvel Voices: Pride', 2022, null],
+      [82, 'Marvel Voices: Pride', 2023, null],
+    ],
+  );
+
+  const exactIdentities = ledger.occurrences
+    .filter((row) => row.disposition === 'exact' && row.issueNumber != null)
+    .map((row) => `${row.normalizedSeriesTitle}|${row.seriesYear}|${row.issueNumber}`);
+  assert.equal(new Set(exactIdentities).size, exactIdentities.length);
+  assert.equal(
+    ledger.occurrences
+      .filter((row) => row.sourceBlockPosition === 25 && row.normalizedSeriesTitle === 'Young Avengers')
+      .every((row) => row.seriesYear === 2013),
+    true,
+  );
 }
 
 function expectLedgerFailure(ledger, mutator) {
@@ -174,6 +233,32 @@ test('Young Avengers source ledger rejects contrarian mutations', async () => {
     draft.occurrences.pop();
     draft.sourceOccurrenceCount -= 1;
     draft.counts[draft.occurrences[draft.occurrences.length - 1].disposition] -= 1;
+  });
+
+  expectLedgerFailure(ledger, (draft) => {
+    draft.sourceNodes[0].text = 'Changed source text';
+  });
+
+  expectLedgerFailure(ledger, (draft) => {
+    const namedWork = draft.occurrences.find((row) => row.sourceText === 'Marvel Rising (2018)');
+    namedWork.disposition = 'exclusion';
+    delete namedWork.sourceRangeReference;
+    delete namedWork.sourceClauseKind;
+    delete namedWork.normalizedSeriesTitle;
+    delete namedWork.seriesYear;
+    delete namedWork.issueNumber;
+    namedWork.exclusionReason = 'Named-work label without an issue-bearing clause on the page.';
+    draft.counts.exact -= 1;
+    draft.counts.exclusion += 1;
+  });
+
+  expectLedgerFailure(ledger, (draft) => {
+    const relaunch = draft.occurrences.find((row) => (
+      row.sourceBlockPosition === 25
+      && row.normalizedSeriesTitle === 'Young Avengers'
+      && row.issueNumber === '1'
+    ));
+    relaunch.seriesYear = null;
   });
 
   expectLedgerFailure(ledger, (draft) => {

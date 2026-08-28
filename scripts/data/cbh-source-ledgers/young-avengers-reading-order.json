@@ -3,8 +3,10 @@
   "id": "young-avengers-reading-order",
   "inventoryId": "young-avengers-reading-order",
   "sourceUrl": "https://www.comicbookherald.com/young-avengers-reading-order/",
-  "sourceRetrievedAt": "2026-08-23",
-  "sourceContentSha256": "568c8dcf02bd1566cc3c457c4baffdbf517748c70648df276692b930619a78e3",
+  "sourceRetrievedAt": "2026-08-27",
+  "sourceContentSha256": "b3412d7769cf1851534fae82633489621ad95242c197d7886b9022930cbeb2c1",
+  "sourceNodeSha256": "f62928e1cdd6471327716eab1d832ec5322c19d79aa9beb43b7ee2960ef01b61",
+  "sourceOccurrenceSha256": "16ceadd5443753110834402f78ff70540416e4040571e43fd27c534d323dcc53",
   "sourceIssueBearingBlocksSha256": "e4c6de73726ffca68ff07aa86d56a14b049d1a012811af113abf5420fa0cf146",
   "sourceBoundary": {
     "scope": "full page",
@@ -26,8 +28,8 @@
   "sourceNodeCount": 85,
   "sourceOccurrenceCount": 220,
   "counts": {
-    "exclusion": 58,
-    "exact": 162,
+    "exclusion": 51,
+    "exact": 169,
     "repeat": 0,
     "gap": 0
   },
@@ -1215,7 +1217,7 @@
       "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
       "sourceClauseKind": "collect-clause",
       "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
+      "seriesYear": 2013,
       "issueNumber": "1"
     },
     {
@@ -1241,7 +1243,7 @@
       "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
       "sourceClauseKind": "collect-clause",
       "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
+      "seriesYear": 2013,
       "issueNumber": "2"
     },
     {
@@ -1254,7 +1256,7 @@
       "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
       "sourceClauseKind": "collect-clause",
       "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
+      "seriesYear": 2013,
       "issueNumber": "3"
     },
     {
@@ -1267,7 +1269,7 @@
       "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
       "sourceClauseKind": "collect-clause",
       "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
+      "seriesYear": 2013,
       "issueNumber": "4"
     },
     {
@@ -1280,7 +1282,7 @@
       "sourceRangeReference": "Young Avengers #1-5, Marvel Now! Point One",
       "sourceClauseKind": "collect-clause",
       "normalizedSeriesTitle": "Young Avengers",
-      "seriesYear": null,
+      "seriesYear": 2013,
       "issueNumber": "5"
     },
     {
@@ -2570,8 +2572,12 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Marvel Rising (2018)",
       "sourceReference": "Marvel Rising (2018)",
-      "disposition": "exclusion",
-      "exclusionReason": "Named-work label without an issue-bearing clause on the page."
+      "disposition": "exact",
+      "sourceRangeReference": "Marvel Rising (2018)",
+      "sourceClauseKind": "named-work-label",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2018,
+      "issueNumber": null
     },
     {
       "position": 170,
@@ -2867,8 +2873,12 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Death’s Head: Clone Drive",
       "sourceReference": "Death’s Head: Clone Drive",
-      "disposition": "exclusion",
-      "exclusionReason": "Narrative or descriptive prose without an issue identity."
+      "disposition": "exact",
+      "sourceRangeReference": "Death’s Head: Clone Drive",
+      "sourceClauseKind": "named-work-label",
+      "normalizedSeriesTitle": "Death’s Head: Clone Drive",
+      "seriesYear": null,
+      "issueNumber": null
     },
     {
       "position": 195,
@@ -3094,8 +3104,12 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Marvel Voices: Pride (2021)",
       "sourceReference": "Marvel Voices: Pride (2021)",
-      "disposition": "exclusion",
-      "exclusionReason": "Named-work label without an issue-bearing clause on the page."
+      "disposition": "exact",
+      "sourceRangeReference": "Marvel Voices: Pride (2021)",
+      "sourceClauseKind": "named-work-label",
+      "normalizedSeriesTitle": "Marvel Voices: Pride",
+      "seriesYear": 2021,
+      "issueNumber": null
     },
     {
       "position": 214,
@@ -3103,8 +3117,12 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "The Last Annihilation: Wiccan & Hulkling",
       "sourceReference": "The Last Annihilation: Wiccan & Hulkling",
-      "disposition": "exclusion",
-      "exclusionReason": "Named-work label without an issue-bearing clause on the page."
+      "disposition": "exact",
+      "sourceRangeReference": "The Last Annihilation: Wiccan & Hulkling",
+      "sourceClauseKind": "named-work-label",
+      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "seriesYear": null,
+      "issueNumber": null
     },
     {
       "position": 215,
@@ -3112,8 +3130,12 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Hulkling & Wiccan",
       "sourceReference": "Hulkling & Wiccan",
-      "disposition": "exclusion",
-      "exclusionReason": "Named-work label without an issue-bearing clause on the page."
+      "disposition": "exact",
+      "sourceRangeReference": "Hulkling & Wiccan",
+      "sourceClauseKind": "named-work-label",
+      "normalizedSeriesTitle": "Hulkling & Wiccan",
+      "seriesYear": null,
+      "issueNumber": null
     },
     {
       "position": 216,
@@ -3121,8 +3143,12 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Marvel Voices: Pride (2022)",
       "sourceReference": "Marvel Voices: Pride (2022)",
-      "disposition": "exclusion",
-      "exclusionReason": "Named-work label without an issue-bearing clause on the page."
+      "disposition": "exact",
+      "sourceRangeReference": "Marvel Voices: Pride (2022)",
+      "sourceClauseKind": "named-work-label",
+      "normalizedSeriesTitle": "Marvel Voices: Pride",
+      "seriesYear": 2022,
+      "issueNumber": null
     },
     {
       "position": 217,
@@ -3130,8 +3156,12 @@
       "sourceGroup": "Latest Additions:",
       "sourceText": "Marvel Voices: Pride (2023)",
       "sourceReference": "Marvel Voices: Pride (2023)",
-      "disposition": "exclusion",
-      "exclusionReason": "Named-work label without an issue-bearing clause on the page."
+      "disposition": "exact",
+      "sourceRangeReference": "Marvel Voices: Pride (2023)",
+      "sourceClauseKind": "named-work-label",
+      "normalizedSeriesTitle": "Marvel Voices: Pride",
+      "seriesYear": 2023,
+      "issueNumber": null
     },
     {
       "position": 218,
