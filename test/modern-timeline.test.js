@@ -6,12 +6,14 @@ import { fileURLToPath } from 'node:url';
 
 import {
   MODERN_TIMELINE_FEATURED_ID,
+  MODERN_TIMELINE_FEATURED_ROUTES,
   MODERN_TIMELINE_CHAPTER_COUNT,
   MODERN_TIMELINE_CONTINUATION_YEAR,
   MODERN_TIMELINE_START_YEAR,
   eraSections,
   groupCatalog,
   modernTimelineFeaturedList,
+  modernTimelineFeaturedCard,
   modernTimelineLists,
   modernTimelineStories,
   parseCatalog,
@@ -26,6 +28,7 @@ const catalog = parseCatalog(JSON.parse(
 ));
 const stories = groupCatalog(catalog.lists);
 const styles = readFileSync(join(ROOT, 'src', 'styles.css'), 'utf8');
+const mainSource = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
 
 const story = (key, ...lists) => ({ key, lists });
 const list = (id, timeline, extra = {}) => ({
@@ -93,6 +96,28 @@ test('the featured guide resolves the existing catalog entry and no substitute',
   assert.equal(featured?.timeline, null);
   assert.equal(catalog.lists.filter(({ id }) => id === MODERN_TIMELINE_FEATURED_ID).length, 1);
   assert.equal(modernTimelineFeaturedList([]), null);
+});
+
+test('both setup card placements resolve the same existing catalog identity', () => {
+  const featured = modernTimelineFeaturedList(catalog.lists);
+  assert.deepEqual(
+    MODERN_TIMELINE_FEATURED_ROUTES,
+    ['catalog', 'age-marvel-knights-heroes-return'],
+  );
+  for (const route of MODERN_TIMELINE_FEATURED_ROUTES) {
+    assert.equal(modernTimelineFeaturedCard(catalog.lists, route), featured);
+  }
+  assert.equal(modernTimelineFeaturedCard(catalog.lists, 'age-event-era'), null);
+  assert.equal(modernTimelineFeaturedCard([], 'catalog'), null);
+});
+
+test('the setup feature uses the shared card renderer instead of the old plain action', () => {
+  assert.match(
+    mainSource,
+    /catalogCard\(story, null, \{\s*surface,\s*report: `#\$\{surface\}-report`,/,
+  );
+  assert.doesNotMatch(mainSource, /btn-modern-timeline-feature/);
+  assert.doesNotMatch(mainSource, /class: 'notice notice-act modern-timeline-feature'/);
 });
 
 test('the shipped Modern Timeline carries all chapters into the Avengers era', () => {

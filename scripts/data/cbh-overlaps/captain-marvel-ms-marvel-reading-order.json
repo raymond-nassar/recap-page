@@ -2,10 +2,10 @@
   "candidateId": "captain-marvel-ms-marvel-reading-order",
   "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
   "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-  "libraryDigest": "429fccd09a477512544949eda6ef7a9ac2f9f70f26ef82b453857ead19edc6e0",
+  "libraryDigest": "4be0269533fa7aa6307ff80d6d61cd2ce968e629851ac54bba6392f599558ca0",
   "peerDigests": {},
   "candidateCount": 527,
-  "comparisonCount": 156,
+  "comparisonCount": 157,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -451,6 +451,21 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 8,
+      "sharedIds": [
+        "19683",
+        "19684",
+        "7101",
+        "57251",
+        "57255",
+        "57257",
+        "57258",
+        "57259"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "fatal-attractions",
@@ -1331,5 +1346,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "d816d73ecf242d7a223c90fac1609946cfd61de9c4273a766d0b685084201f47"
+  "reportDigest": "50be0b95f0786d8261d9da76fdaf9d11d7acdf9232180b0759cc40fcce40e7c3"
 }

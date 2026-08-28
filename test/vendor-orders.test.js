@@ -140,6 +140,11 @@ function writePartitionFixture(rootPath) {
       issueIdsSha256: digestJson([3]),
     },
   ];
+  const descriptionEntries = chapters.map((chapter, index) => ({
+    id: chapter.id,
+    sourceHeading: index === 0 ? 'First part' : 'Second part',
+    description: index === 0 ? 'The first fixture chapter.' : 'The second fixture chapter.',
+  }));
   const ledger = {
     schemaVersion: 1,
     parentId: 'atomic-parent',
@@ -175,6 +180,11 @@ function writePartitionFixture(rootPath) {
     },
     corrections: [],
     chapters,
+    descriptionCopy: {
+      ownerAttachmentSha256: '2'.repeat(64),
+      entriesSha256: digestJson(descriptionEntries),
+      entries: descriptionEntries,
+    },
   };
   const parent = {
     id: 'atomic-parent',
@@ -400,6 +410,7 @@ test('catalog-only expands a noncatalog parent into ordinary children, a path, a
   assert.deepEqual(catalog.paths.map((entry) => entry.steps), [['atomic-parent-01', 'atomic-parent-02']]);
   const first = JSON.parse(readFileSync(path.join(data, 'atomic_parent_01.json'), 'utf8'));
   assert.equal(first.collections, 0);
+  assert.equal(first.description, 'The first fixture chapter.');
   assert.deepEqual(first.items.map((item) => item.issueId), [1, 2]);
   assert.ok(first.items.every((item) => !Object.hasOwn(item, 'collectedIn')));
   const overlap = JSON.parse(readFileSync(

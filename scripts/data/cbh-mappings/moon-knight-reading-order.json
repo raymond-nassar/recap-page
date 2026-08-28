@@ -8949,10 +8949,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every complete-library comparison, including later guides. The 18 non-none relationships are ordinary shared reading material and no exact duplicate exists. The guide remains independently useful because it preserves Moon Knight source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "96e6ff3d365a0d4e06684dd522cf6db68d3fad6cb40f2cb4fb3f7064abba0e4a",
+    "reportDigest": "c4eb7c8165a66d55b946bd0418d24e874f0d16e1e82c8bb7296b116730aaa8ed",
     "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
     "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-    "libraryDigest": "dea6d11af8d938e756ed14121cf07189c4eb5a6ba6d74ef042af73b3e0b14061",
+    "libraryDigest": "a747c7d88c9a50f07facad86d91f3ff635ebb69c459677bccf0ff2d61dbf8256",
     "peerDigests": {},
     "dispositions": [
       {
@@ -9394,6 +9394,15 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ids were found in the complete-library comparison.",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "The current-library comparison has no shared provider issue ids.",
+        "authorityType": "policy",
+        "authorityIdentity": "current-library none-overlap policy",
         "reviewedAt": "2026-08-27"
       },
       {
@@ -10405,6 +10414,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "90d40425242d62249b1529d9c5ac0f9422cadfc54f3af0d90c85ec0977e33bb6"
+    "approvalDigest": "3301c2bce0f5e6be94c3b603d6df330d618bcfe4071cd4860cf3af06cd24c26f"
   }
 }

@@ -73,7 +73,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "The modern Marvel-era guide ships with explicit unresolved provenance, a representative cover issue, and the same exact source boundary, so the catalog entry can be published without inventing missing rows.",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "captain-america-best-of",
       "doctor-doom-primer",
@@ -132,7 +132,7 @@
     "window": null,
     "disposition": "new-order",
     "reason": "1,937 of 2,043 source-defined issues resolve exactly in source order; the remaining 106 rows ship as explicit plain-text placeholders (no invented Marvel issue ids or links) and are tracked for follow-up research in issue #248. The separate Complete guide remains distinct despite 32 approved partial relationships.",
-    "sourceRetrievedAt": "2026-08-23",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "spider-man-best-of",
       "hickman-full",
@@ -320,8 +320,8 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The 331-occurrence full-page source boundary is exact and yields 268 exact rows, 12 backward repeats, and 51 exclusions. Issue #239 remains the source queue record while the issue rows stay unfrozen against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
     "deliveryStatus": "not-applicable",
@@ -764,13 +764,35 @@
     "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The frozen 331-occurrence full-page guide now publishes 245 exact metadata rows and 23 explicit unresolved placeholders, while preserving 12 backward repeats, 51 semantic exclusions, every source position, and every current-library relationship.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "avengers-defenders-war",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "daredevil-reading-order",
+      "doctor-strange-reading-order",
+      "fantastic-four-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "loki-reading-order",
+      "magneto-reading-order",
+      "moon-knight-reading-order",
+      "punisher-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "scarlet-witch-best-of",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "thanos-war",
+      "white-tiger-ava-ayala",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "the-defenders-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "The Defenders"
     ],
@@ -778,9 +800,9 @@
       26
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "e32b9e54bf662ea54019536acad18c3d2a4c7128f0fad72f47ce5e2841e6e754",
+    "sourceContentSha256": "a160548ac1308afd403c0338e214f14a33097424e26ec10bfe69425d1ac91c83",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 27,
@@ -992,8 +1014,8 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The frozen source ledger keeps 133 selected source blocks, including 129 issue-bearing blocks and 4 verified prose or caption blocks, 13 provenance groups, and 1,058 normalized ordered occurrences. It expands 46 source range entries into 267 issue occurrences: 1000 provisional-canonical candidates, 35 exact repeats, 23 semantic exclusions, and 0 identity gaps. 2 candidate occurrences remain source-identifiable named works without invented issue numbers.",
+    "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [],
     "catalogIds": [],
     "deliveryStatus": "not-applicable",
@@ -1005,7 +1027,7 @@
       35
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "6bc7640dee0b8a2310dcbd2c10c333475acdb12bebeebdc2caa2133fb0e3ac4d",
+    "sourceContentSha256": "2300d47b48b391d75c5ac32cd4502aa11c51ef7e6b083f37c7c662a7fed91080",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "blocked-exact-resolution-not-run"
   },
@@ -1198,13 +1220,35 @@
     "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The frozen full-page guide now publishes 294 exact metadata rows and 29 explicit unresolved placeholders, with every source position and current-library relationship preserved.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "ant-man-reading-order",
+      "avengers-enemy-within",
+      "captain-marvel-ms-marvel-reading-order",
+      "doctor-strange-reading-order",
+      "essential-avengers",
+      "fantastic-four-reading-order",
+      "groot-reading-order",
+      "hunt-for-wolverine",
+      "infinity-countdown-wars",
+      "last-annihilation",
+      "loki-reading-order",
+      "rocket-raccoon-reading-order",
+      "silver-surfer-reading-order",
+      "star-lord-reading-order",
+      "thanos-reading-order",
+      "venom-reading-order",
+      "war-of-kings",
+      "wolverine-reading-order",
+      "x-men-trial-of-jean-grey"
+    ],
+    "catalogIds": [
+      "guardians-of-the-galaxy-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Guardians of the Galaxy"
     ],
@@ -1212,9 +1256,9 @@
       43
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "09c1d8ea66560003c04aed00579b1a51060dac18d725aad9a186cf228cb0accb",
+    "sourceContentSha256": "c6e5f90f6dafd6908640a187fc7da29440055a81521cc2cd50158f3c2d28eef3",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 44,

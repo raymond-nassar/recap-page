@@ -22813,10 +22813,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every complete-library comparison, including later guides. The 14 non-none relationships are ordinary shared reading material, including two existing subsets, and no exact duplicate exists. The guide remains independently useful because it preserves X-Force source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "137ad04e4042e1336dd3291d793d2de38d86f76a6b4f0239f7e0c338ca5ad2fe",
+    "reportDigest": "38cb1c6e3fbd3ac21bb0afd2e03a46d30d4257549f92ad2e167b3ab7244cca4d",
     "packetDigest": "c6e699d843360f98e6acad931130cb1667f6c6501072acf5295f55d54fdcf5e5",
     "mappingDigest": "d8c9eddc35a958a088c098441b1143207c6172df2297411a1240fb0b9deea7aa",
-    "libraryDigest": "35aadbda41a2cfb16d4555a44007140996cab1b85f049b950c9da46063c7c509",
+    "libraryDigest": "c51c7accb95b0957187e402df10d92a87e6cfc1a63c7d3b6890427eaa2fbe62c",
     "peerDigests": {},
     "dispositions": [
       {
@@ -23261,6 +23261,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "fatal-attractions",
         "relationship": "partial",
         "decision": "approved",
@@ -23280,6 +23289,15 @@
       },
       {
         "orderId": "groot-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
+        "reviewedAt": "2026-08-27"
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
@@ -23990,6 +24008,15 @@
         "reviewedAt": "2026-08-27"
       },
       {
+        "orderId": "the-defenders-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
+        "reviewedAt": "2026-08-27"
+      },
+      {
         "orderId": "the-night-gwen-stacy-died",
         "relationship": "none",
         "decision": "approved",
@@ -24278,6 +24305,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "dcc26c0c9c89441d6ee2552c641a7114380f63667725c94bd408137762c8f3c8"
+    "approvalDigest": "7dde85f7bd978129b6ebf8b46c51ea09152d31c04581613333c02784ace8b469"
   }
 }

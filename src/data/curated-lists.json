@@ -2163,6 +2163,40 @@
       "coverIssueId": 13258
     },
     {
+      "id": "the-defenders-reading-order",
+      "name": "The Defenders",
+      "description": "A complete Defenders reading path from the non-team origins through the latest source additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "the-defenders-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/the-defenders-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "the_defenders_reading_order.json",
+      "characters": [
+        "The Defenders",
+        "Doctor Strange",
+        "Hulk",
+        "Namor",
+        "Silver Surfer"
+      ],
+      "keywords": [
+        "The Defenders",
+        "Comic Book Herald",
+        "Doctor Strange",
+        "Hulk",
+        "Marvel"
+      ],
+      "expect": 268,
+      "timeline": null,
+      "coverIssueId": 17089
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",
@@ -2590,6 +2624,42 @@
       "expect": 392,
       "timeline": 1972,
       "coverIssueId": 51010
+    },
+    {
+      "id": "guardians-of-the-galaxy-reading-order",
+      "name": "Guardians of the Galaxy",
+      "description": "A complete Guardians of the Galaxy team reading path from the original 1960s team through the modern cosmic era.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "guardians-of-the-galaxy-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "guardians_of_the_galaxy_reading_order.json",
+      "characters": [
+        "Guardians of the Galaxy",
+        "Star-Lord",
+        "Rocket Raccoon",
+        "Groot",
+        "Gamora",
+        "Drax"
+      ],
+      "keywords": [
+        "Guardians of the Galaxy",
+        "Marvel Cosmic",
+        "Star-Lord",
+        "Rocket Raccoon",
+        "Groot",
+        "Comic Book Herald"
+      ],
+      "expect": 323,
+      "timeline": null,
+      "coverIssueId": 15429
     },
     {
       "id": "xmen-claremont",
@@ -4331,6 +4401,36 @@
       "expect": 28,
       "timeline": 2000,
       "coverIssueId": 10284
+    },
+    {
+      "id": "fantastic-four-reading-order",
+      "name": "Fantastic Four",
+      "description": "A complete Fantastic Four character reading order.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "beginner": false,
+      "coverIssueId": 12894,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourcePage": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "fantastic_four_reading_order.json",
+      "characters": [
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Fantastic Four",
+        "Reed Richards",
+        "Sue Storm",
+        "Johnny Storm",
+        "Ben Grimm"
+      ],
+      "expect": 1000,
+      "timeline": null,
+      "sourceFile": "fantastic-four-reading-order.md"
     },
     {
       "id": "avengers-disassembled",

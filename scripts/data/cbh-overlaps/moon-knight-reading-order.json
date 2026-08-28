@@ -2,7 +2,7 @@
   "candidateId": "moon-knight-reading-order",
   "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
   "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-  "libraryDigest": "dea6d11af8d938e756ed14121cf07189c4eb5a6ba6d74ef042af73b3e0b14061",
+  "libraryDigest": "a747c7d88c9a50f07facad86d91f3ff635ebb69c459677bccf0ff2d61dbf8256",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 414,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 11
   },
   "candidateCount": 374,
-  "comparisonCount": 161,
+  "comparisonCount": 162,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -431,6 +431,12 @@
     },
     {
       "orderId": "fall-of-the-mutants",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "fantastic-four-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -1153,5 +1159,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "96e6ff3d365a0d4e06684dd522cf6db68d3fad6cb40f2cb4fb3f7064abba0e4a"
+  "reportDigest": "c4eb7c8165a66d55b946bd0418d24e874f0d16e1e82c8bb7296b116730aaa8ed"
 }

@@ -2,7 +2,7 @@
   "candidateId": "magneto-reading-order",
   "packetDigest": "c3295cf4a756bbfcd42638712edd5f0dd3386d1924f95ffa94402711d020a1d6",
   "mappingDigest": "74d8d5a2bcf13c4b2034a695fe156c919ff20dcf8fce23819471c45a65709ed5",
-  "libraryDigest": "117338e4d6908d1718f7a0b9093c19c27da46388f486a680c2cf77a80c2db12b",
+  "libraryDigest": "c737140d688ac89d0e8b112b4043d4ca058487e652a8053f0006313046ad299b",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 811,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 47
   },
   "candidateCount": 695,
-  "comparisonCount": 158,
+  "comparisonCount": 159,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -440,6 +440,17 @@
         "10400",
         "10401",
         "8243",
+        "13131"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 4,
+      "sharedIds": [
+        "12898",
+        "12899",
+        "12900",
         "13131"
       ],
       "relationship": "partial"
@@ -1871,5 +1882,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "47005123e2ae853bc4d2c46c7ac0ad24a95647f01e87e49080541599628ef1a9"
+  "reportDigest": "b92f9288625c9967ea3d62640b6417c53ad607e57e47a7c3784cd8a301a1f47f"
 }

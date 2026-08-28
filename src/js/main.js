@@ -25,7 +25,7 @@ import {
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   firstSentence, storyYear, timelineYears,
   catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
-  modernTimelineLists, modernTimelineFeaturedList,
+  modernTimelineLists, modernTimelineFeaturedList, modernTimelineFeaturedCard,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -2007,6 +2007,7 @@ async function renderPublishingCategory(route) {
     renderPublishingIndex(category, allStories);
     return;
   }
+  ensureSetupGuideFeature(catalog.lists, route);
   const stories = typeof category.select === 'function'
     ? category.select(allStories)
     : publishingCategoryStories(allStories, category.key);
@@ -2229,7 +2230,7 @@ function wirePreview() {
     // so a choice made here has to reach the shelf card that sent the reader in.
     if (chose && (CATALOG_SHELVES.some((shelf) => shelf.key === view)
       || generatedCategoryByRoute.has(view))) {
-      const root = $(`#${view}-results`);
+      const root = $(`#view-${view}`);
       const held = captureFocus(root);
       if (generatedCategoryByRoute.has(view)) await renderPublishingCategory(view);
       else await renderCatalogShelf(view);
@@ -4166,33 +4167,46 @@ function announceCatalog(msg) {
   catalogAnnounceTimer = setTimeout(() => announce(msg), 500);
 }
 
-function ensureModernTimelineFeature(lists) {
-  let feature = $('#modern-timeline-feature');
-  if (!feature) {
-    feature = el('section', {
-      id: 'modern-timeline-feature',
-      class: 'notice notice-act modern-timeline-feature',
-      hidden: true,
-      'aria-labelledby': 'modern-timeline-feature-h',
-    }, [
-      el('div', { class: 'grow' }, [
-        el('h2', { id: 'modern-timeline-feature-h', text: 'Start with Setup to Modern Timeline' }),
-        el('p', {
-          text: 'This app chooses 1998 as the start of its Modern Timeline. It is not an official Marvel editorial-era boundary. Preview this setup guide for earlier context.',
-        }),
-      ]),
-      el('button', {
-        type: 'button',
-        id: 'btn-modern-timeline-feature',
-        class: 'btn',
-      }, 'Preview Setup to Modern Timeline'),
-    ]);
-    $('#catalog-results').before(feature);
+function ensureSetupGuideFeature(lists, surface = 'catalog') {
+  const featureId = surface === 'catalog'
+    ? 'modern-timeline-feature'
+    : `${surface}-setup-guide-feature`;
+  const existing = $(`#${featureId}`);
+  const list = modernTimelineFeaturedCard(lists, surface);
+  if (!list) {
+    existing?.remove();
+    return;
   }
 
-  const list = modernTimelineFeaturedList(lists);
-  feature.hidden = !list;
-  if (list) $('#btn-modern-timeline-feature').onclick = () => openPreview(list);
+  const [story] = groupCatalog([list]);
+  const titleId = `${featureId}-h`;
+  const context = surface === 'catalog'
+    ? 'This app chooses 1998 as the start of its Modern Timeline. It is not an official Marvel editorial-era boundary.'
+    : 'Read this orientation guide first for the earlier stories that lead into this age.';
+  const feature = el('section', {
+    id: featureId,
+    class: 'setup-guide-feature',
+    'aria-labelledby': titleId,
+    dataset: { featuredList: list.id },
+  }, [
+    el('div', { class: 'setup-guide-context' }, [
+      el('p', {
+        class: 'eyebrow',
+        text: surface === 'catalog' ? 'Recommended start' : 'Earlier context',
+      }),
+      el('p', { text: context }),
+    ]),
+    el('div', { class: 'catalog-grid setup-guide-grid' }, [
+      catalogCard(story, null, {
+        surface,
+        report: `#${surface}-report`,
+        level: 'h2',
+        titleId,
+      }),
+    ]),
+  ]);
+  if (existing) existing.replaceWith(feature);
+  else $(`#${surface}-results`).before(feature);
 }
 
 // One renderer for all three catalog screens. The shelves differ in what they hold and in what
@@ -4235,7 +4249,7 @@ async function renderCatalogShelf(key) {
     );
   }
 
-  if (key === 'catalog') ensureModernTimelineFeature(catalog.lists);
+  if (key === 'catalog') ensureSetupGuideFeature(catalog.lists, key);
 
   // This shelf's own share of the catalog, taken before anything else looks at it, so the facets
   // count what this screen can show and the search never turns up a row that belongs elsewhere.
@@ -4472,7 +4486,7 @@ function catalogCard(
   story,
   placement,
   {
-    surface = 'catalog', report = null, localStoryKeys = null, level = 'h3',
+    surface = 'catalog', report = null, localStoryKeys = null, level = 'h3', titleId = null,
   } = {},
 ) {
   const reportTarget = report ?? `#${surface}-report`;
@@ -4498,13 +4512,7 @@ function catalogCard(
     source.replaceChildren(...[attributionLine(list)].filter(Boolean));
     const previewText = story.lists.length > 1 ? `${story.lists.length} reading options` : 'Preview';
     actions.replaceChildren(
-      el('button', {
-        class: 'btn',
-        type: 'button',
-        'aria-label': labelledName(CATALOG_ADD, list.name),
-        dataset: { key: list.id, act: 'import' },
-        onclick: (e) => importCurated(list, e.currentTarget, { report: reportTarget }),
-      }, CATALOG_ADD),
+      catalogPrimaryButton(list, reportTarget),
       el('button', {
         class: 'btn btn-g',
         type: 'button',
@@ -4524,7 +4532,7 @@ function catalogCard(
     el('div', { class: 'catalog-card-main' }, [
       el('div', { class: 'ocard-art' }, [img, fallback]),
       el('div', { class: 'catalog-card-text' }, [
-        el(level, { class: 'catalog-card-title', text: title }),
+        el(level, { id: titleId, class: 'catalog-card-title', text: title }),
         desc,
         meta,
         disclosures,
@@ -4532,6 +4540,34 @@ function catalogCard(
     ]),
     actions,
   ]);
+}
+
+function catalogPrimaryButton(list, reportTarget) {
+  const saved = listForCatalogId(store.state, list.id);
+  if (saved) {
+    const text = 'Open →';
+    return el('button', {
+      class: 'btn',
+      type: 'button',
+      'aria-label': labelledName(text, list.name),
+      dataset: { key: list.id, act: 'open' },
+      onclick: () => {
+        store.update((state) => setActive(state, saved.id));
+        if (!store.lastUpdateOk) {
+          notify(reportTarget, `${list.name} could not be opened because that selection could not be saved.`, 'error', `open:${list.id}`);
+          return;
+        }
+        showView('read', { push: true });
+      },
+    }, text);
+  }
+  return el('button', {
+    class: 'btn',
+    type: 'button',
+    'aria-label': labelledName(CATALOG_ADD, list.name),
+    dataset: { key: list.id, act: 'import' },
+    onclick: (event) => importCurated(list, event.currentTarget, { report: reportTarget }),
+  }, CATALOG_ADD);
 }
 
 function pathDisclosure(placement, surface, { localStoryKeys = null } = {}) {

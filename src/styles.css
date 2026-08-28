@@ -1080,7 +1080,10 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 .shelf-section-title { font-size: var(--t-body); font-weight: 700; margin: 0; letter-spacing: .01em; }
 .shelf-section-blurb { color: var(--muted); font-size: var(--t-caption); margin: .2rem 0 0; max-width: 64ch; }
 #catalog-results .timeline-era-head .shelf-section-blurb { max-width: none; }
-.modern-timeline-feature { margin-top: .7rem; }
+.setup-guide-feature { margin-top: .7rem; }
+.setup-guide-context { margin: 0 0 .7rem; max-width: 72ch; }
+.setup-guide-context p { margin: .2rem 0 0; }
+.setup-guide-feature .setup-guide-grid { max-width: 48rem; }
 
 .timeline-flow {
   --timeline-rail: 5rem;
@@ -1513,7 +1516,7 @@ body.nocovers .ocard-art .of, .ocard-art .of.show { display: flex; }
   .ri[aria-current], .ri.on { border: 2px solid Highlight; }
   .breadcrumb a { color: LinkText; }
   .breadcrumb [aria-current="page"] { color: CanvasText; }
-  .home-path, .yours button, .preview { border: 1px solid CanvasText; }
+  .home-path, .yours button, .preview, .catalog-card { border: 1px solid CanvasText; }
   .home-path::before { background: Highlight; }
   .home-path-icon, .home-path-arrow { color: ButtonText; }
   .publishing-range, .publishing-count, .publishing-highlights li { border-color: CanvasText; }

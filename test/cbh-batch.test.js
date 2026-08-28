@@ -379,6 +379,15 @@ test('open source gaps close only as the same exact identity or an availability 
   assert.doesNotThrow(() => validateFrozenPacket(yearlessGap));
   assert.notEqual(yearlessGap.sourceGaps[0].evidenceDigest, openPacket.sourceGaps[0].evidenceDigest);
 
+  const namedWorkGap = structuredClone(openPacket);
+  namedWorkGap.sourceGaps[0].sourceIssueReference = 'Named Source Work';
+  namedWorkGap.sourceGaps[0].normalizedSeriesTitle = 'Named Source Work';
+  namedWorkGap.sourceGaps[0].seriesYear = null;
+  namedWorkGap.sourceGaps[0].issueNumber = null;
+  namedWorkGap.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(namedWorkGap.sourceGaps[0]);
+  namedWorkGap.packetDigest = packetDigestFor(namedWorkGap);
+  assert.doesNotThrow(() => validateFrozenPacket(namedWorkGap));
+
   const unavailablePacket = genericGapPacket('availability-exclusion');
   const unavailableMapping = genericGapMapping(unavailablePacket);
   assert.doesNotThrow(() => assertGapTransition(openPacket, unavailablePacket, unavailableMapping));
@@ -672,6 +681,19 @@ test('excluded source rows conserve exact positions without changing legacy pack
   assert.equal(Object.hasOwn(legacy, 'sourceOccurrenceCount'), false);
   assert.equal(Object.hasOwn(legacy, 'excludedSourceRows'), false);
   assert.deepEqual(sourcePositionsForPacket(legacy), [1, 2]);
+});
+
+test('checklist gap copy normalizes each typographic dash independently', () => {
+  const mapping = genericEvidence().mapping;
+  mapping.sourceGaps = [{
+    sourcePosition: 3,
+    sourceIssueReference: 'Gap \u2013 source \u2014 #1',
+    sourceRangeReference: null,
+  }];
+  assert.match(
+    buildMarkdown(mapping),
+    /- \[ \] Gap - source - #1 <!-- mrt:source-occurrence=3 -->/,
+  );
 });
 
 test('the three blocked source shapes reconstruct one unique first-occurrence sequence', () => {

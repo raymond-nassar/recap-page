@@ -29,6 +29,7 @@ const laterReviewedIds = new Set([
   'silver-surfer-reading-order',
   'venom-reading-order',
   'moon-knight-reading-order',
+  'guardians-of-the-galaxy-reading-order',
 ]);
 const marvelNowPage = 'https://www.comicbookherald.com/the-complete-marvel-reading-order-guide/marvel-now-checklist/';
 const xMenPage = 'https://www.comicbookherald.com/question-of-the-week-ok-what-the-heck-is-the-right-order-for-x-men-events/';
@@ -111,7 +112,7 @@ test('batch four preserves source order and independently verified shelf chronol
     manifest.lists.length - FOURTH_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 240);
+  assert.equal(catalog.lists.length, 243);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(

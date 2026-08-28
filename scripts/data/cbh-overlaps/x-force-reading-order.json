@@ -2,7 +2,7 @@
   "candidateId": "x-force-reading-order",
   "packetDigest": "c6e699d843360f98e6acad931130cb1667f6c6501072acf5295f55d54fdcf5e5",
   "mappingDigest": "d8c9eddc35a958a088c098441b1143207c6172df2297411a1240fb0b9deea7aa",
-  "libraryDigest": "35aadbda41a2cfb16d4555a44007140996cab1b85f049b950c9da46063c7c509",
+  "libraryDigest": "c51c7accb95b0957187e402df10d92a87e6cfc1a63c7d3b6890427eaa2fbe62c",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 409,
@@ -12,7 +12,7 @@
     "repeatedSourceReferenceCount": 81
   },
   "candidateCount": 262,
-  "comparisonCount": 162,
+  "comparisonCount": 165,
   "comparisons": [
     {
       "orderId": "abomination-reading-order",
@@ -323,6 +323,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "fantastic-four-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "fatal-attractions",
       "sharedCount": 1,
       "sharedIds": [
@@ -338,6 +344,12 @@
     },
     {
       "orderId": "groot-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -866,6 +878,12 @@
       "relationship": "none"
     },
     {
+      "orderId": "the-defenders-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
       "orderId": "the-night-gwen-stacy-died",
       "sharedCount": 0,
       "sharedIds": [],
@@ -1143,5 +1161,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "137ad04e4042e1336dd3291d793d2de38d86f76a6b4f0239f7e0c338ca5ad2fe"
+  "reportDigest": "38cb1c6e3fbd3ac21bb0afd2e03a46d30d4257549f92ad2e167b3ab7244cca4d"
 }

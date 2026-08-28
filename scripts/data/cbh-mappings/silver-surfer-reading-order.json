@@ -12483,10 +12483,10 @@
     "coverIssueId": 16096
   },
   "relationshipReview": {
-    "reportDigest": "4e34f4ffaf1b3618d3bd0aacbc5ef56039b009d7471264542e35f36573423b0e",
+    "reportDigest": "e84612d95f849c5c4ad30f39aa96e2cc35067463c32d417f9c882c8120ef7bd7",
     "packetDigest": "ae35c61faaaf15f327de4549138291f718d3bc34e5f2819bca9c35ac9794bf01",
     "mappingDigest": "5bd2edbcb2f842342de7dd508beccd6ef924bb24f43ae0b05d03010ba913208a",
-    "libraryDigest": "ef807b16b4a87237333a977e24d72cc04d217f6c0a20e73212cd1fb91309765f",
+    "libraryDigest": "cc13bd610e18b13e45c765c245ad5561f10ffe1e49a5fedb67c5188bc14dfce4",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
@@ -13140,6 +13140,15 @@
         "reviewedAt": "2026-08-27",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared issues are intentional cross-character or event relationships; this source-derived guide remains distinct.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Terra",
+        "reviewedAt": "2026-08-27"
       },
       {
         "orderId": "fatal-attractions",
@@ -14466,6 +14475,6 @@
         ]
       }
     ],
-    "approvalDigest": "38b382b13b44a10fdd83d302732314db97d1cc8f7ff0a3aa6fb99d1b98e55cc9"
+    "approvalDigest": "75385fce37652ad12b6c66702c0ef2fd16d702f263c2fc8ff5d4e1ab2b066ab8"
   }
 }

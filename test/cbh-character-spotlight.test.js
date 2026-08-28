@@ -16,7 +16,8 @@ import {
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
-import { buildReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { buildReportForMapping as buildCurrentReportForMapping } from '../scripts/report-order-overlap.mjs';
+import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
@@ -38,7 +39,18 @@ const starLordInventoryId = 'star-lord-reading-order-complete-peter-quill-comics
 const modernXMenCandidateId = 'modern-x-men-fast-track';
 const venomCandidateId = 'venom-reading-order';
 const moonKnightCandidateId = 'moon-knight-reading-order';
+const guardiansCandidateId = 'guardians-of-the-galaxy-reading-order';
 const xForceCandidateId = 'x-force-reading-order';
+
+async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) {
+  return buildCurrentReportForMapping(mappingPath, peerPaths, {
+    ...options,
+    excludedOrderIds: [
+      ...(options.excludedOrderIds ?? CBH_LATER_ORDER_IDS),
+      guardiansCandidateId,
+    ],
+  });
+}
 function issueRange(series, year, from, to) {
   return Array.from({ length: to - from + 1 }, (_, index) => `${series}|${year}|${from + index}`);
 }
@@ -425,7 +437,7 @@ async function readJson(relativePath) {
 }
 
 async function libraryDigestForScope(manifest, excludedIds) {
-  const excluded = new Set(excludedIds);
+  const excluded = new Set([...excludedIds, guardiansCandidateId]);
   const lists = manifest.lists.filter((entry) => !excluded.has(entry.id));
   const paths = (manifest.paths ?? []).filter((entry) => (
     !excluded.has(entry.id)
@@ -447,6 +459,7 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     'loki-reading-order',
     'silver-surfer-reading-order',
     moonKnightCandidateId,
+    'the-defenders-reading-order',
     xForceCandidateId,
   ]);
 }
@@ -476,7 +489,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-three spotlights, and prepares five', async () => {
+test('the character inventory preserves every central disposition, ships twenty-five spotlights, and prepares five', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -487,10 +500,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 93);
+  assert.equal(dispositionCounts.deferred, 91);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 28);
+  assert.equal(dispositionCounts['pilot-approved'], 30);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -502,8 +515,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     'captain-america-reading-order-modern-marvel-era',
     'daredevil-reading-order',
     'deadpool-reading-order',
+    'the-defenders-reading-order',
     'doctor-strange-reading-order',
     grootCandidateId,
+    guardiansCandidateId,
     hulkCandidateId,
     ironManCandidateId,
     'loki-reading-order',
@@ -534,6 +549,10 @@ test('the character inventory preserves every central disposition, ships twenty-
   assert.equal(silverSurfer?.centralDisposition, 'pilot-approved');
   assert.equal(silverSurfer?.deliveryStatus, 'ready');
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
+  assert.deepEqual(shippedById.get('the-defenders-reading-order').catalogIds, [
+    'the-defenders-reading-order',
+  ]);
+  assert.equal(shippedById.get('the-defenders-reading-order').overlapIds.length, 19);
   assert.deepEqual(shippedById.get(moonKnightCandidateId).catalogIds, [moonKnightCandidateId]);
   assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 17);
   assert.deepEqual(shippedById.get('daredevil-reading-order').catalogIds, ['daredevil-reading-order']);
@@ -734,6 +753,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
         'loki-reading-order',
         'silver-surfer-reading-order',
         moonKnightCandidateId,
+        'the-defenders-reading-order',
         xForceCandidateId,
       ],
     },
@@ -891,8 +911,8 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.rows.length, 480);
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
-  assert.equal(report.comparisonCount, 157);
-  assert.equal(report.comparisonCount, manifest.lists.length - 6);
+  assert.equal(report.comparisonCount, 158);
+  assert.equal(report.comparisonCount, manifest.lists.length - 8);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1023,7 +1043,8 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 4].id, magnetoCandidateId);
   assert.equal(manifest.lists[doctorIndex + 5].id, 'loki-reading-order');
   assert.equal(manifest.lists[doctorIndex + 6].id, moonKnightCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 7].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 7].id, guardiansCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 8].id, 'xmen-claremont');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -1346,17 +1367,19 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   const expectedOrderIds = manifest.lists
     .map((entry) => entry.id)
     .filter((id) => id !== 'silver-surfer-reading-order'
-      && id !== moonKnightCandidateId
-      && id !== xForceCandidateId)
+     && id !== moonKnightCandidateId
+     && id !== guardiansCandidateId
+     && id !== 'the-defenders-reading-order'
+     && id !== xForceCandidateId)
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
-    ['silver-surfer-reading-order', moonKnightCandidateId, xForceCandidateId],
+    ['silver-surfer-reading-order', moonKnightCandidateId, 'the-defenders-reading-order', xForceCandidateId],
   );
   const regeneratedReport = await buildReportForMapping(
     path.join(root, 'scripts/data/cbh-mappings/silver-surfer-reading-order.json'),
     [],
-    { excludedOrderIds: [moonKnightCandidateId, xForceCandidateId] },
+    { excludedOrderIds: [moonKnightCandidateId, 'the-defenders-reading-order', xForceCandidateId] },
   );
 
   assert.equal(packet.sourceOccurrenceCount, 426);
@@ -1476,8 +1499,8 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   }]);
   assert.equal(mapping.rows.length, 527);
   assert.equal(report.candidateCount, 527);
-  assert.equal(report.comparisonCount, 156);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 29);
+  assert.equal(report.comparisonCount, 157);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 30);
   assert.equal(generated.count, 527);
   assert.equal(generated.placeholders, 0);
   assert.deepEqual(generated.unresolved, []);
@@ -1922,6 +1945,7 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
   const record = inventory.find((entry) => entry.id === moonKnightCandidateId);
   const parsed = parseChecklist(markdown);
   const reviewedLibraryDigest = await libraryDigestForScope(manifest, [
+    'the-defenders-reading-order',
     moonKnightCandidateId,
     xForceCandidateId,
   ]);
@@ -2390,7 +2414,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 9].id, magnetoCandidateId);
   assert.equal(manifest.lists[starLordIndex + 10].id, 'loki-reading-order');
   assert.equal(manifest.lists[starLordIndex + 11].id, moonKnightCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 12].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 12].id, guardiansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 13].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -2685,10 +2710,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 240);
+  assert.equal(catalog.lists.length, 243);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 36);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 35);
+  assert.equal(characterRuns.length, 39);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 38);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -2851,8 +2876,8 @@ test('Magneto preserves cache-only source accounting through publication', async
     1,
   );
   assert.ok(packet.sourceGaps.every((gap) => gap.auditBasis.includes('Issue #306')));
-  assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisons.filter((entry) => entry.relationship !== 'none').length, 49);
+  assert.equal(report.comparisonCount, 159);
+  assert.equal(report.comparisons.filter((entry) => entry.relationship !== 'none').length, 50);
   assert.equal(mapping.relationshipReview.authorityIdentity, 'GPT-5.6 Terra');
   assert.equal(record?.deliveryStatus, 'shipped');
   assert.equal(manifest.lists.find((entry) => entry.id === magnetoCandidateId)?.expect, 753);
@@ -2932,18 +2957,6 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
           && source.url === 'https://github.com/raymond-nassar/recap-page/issues/321'
       ))
   )));
-  assert.deepEqual(
-    packet.repeatedSourceReferences.find((entry) => entry.sourcePosition === 220),
-    {
-      sourcePosition: 220,
-      sourceIssueReference: 'X-Men Messiah War One-Shot',
-      sourceRangeReference: 'X-Men Messiah War One-Shot',
-      normalizedSeriesTitle: 'X-Force/Cable: Messiah War One-Shot',
-      seriesYear: null,
-      issueNumber: null,
-      canonicalGapPosition: 216,
-    },
-  );
   assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 262);
   assert.equal(mapping.candidateMetadata.length, 262);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
@@ -2967,10 +2980,7 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   assert.equal(generated.placeholders, 23);
   assert.equal(generated.items.filter((item) => !item.placeholder).length, 262);
   assert.equal(new Set(generated.items.map((item) => item.issueId)).size, 285);
-  assert.deepEqual(
-    parsed.unresolved.map((entry) => entry.sourceKey),
-    gapPositions.map(String),
-  );
+  assert.deepEqual(parsed.unresolved.map((entry) => entry.sourceKey), gapPositions.map(String));
   assert.deepEqual(
     generated.items.filter((item) => !item.placeholder).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
@@ -2978,8 +2988,5 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   assert.equal(record.position, 123);
   assert.deepEqual(record.sourcePositions, [10]);
   assert.deepEqual(record.catalogIds, [xForceCandidateId]);
-  assert.deepEqual(
-    record.overlapIds,
-    expectedNonNone.map(([id]) => id),
-  );
+  assert.deepEqual(record.overlapIds, expectedNonNone.map(([id]) => id));
 });

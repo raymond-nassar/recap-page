@@ -23,6 +23,28 @@ Nothing you have saved is changed.
 
 For maintainers: the frozen source has 409 occurrences: 262 exact identities, 81 backward repeats,
 23 metadata gaps tracked in Issue #321, and 43 semantic exclusions.
+### Added a complete Guardians of the Galaxy reading guide
+
+In plain English: A complete Guardians team reading guide now follows the original 1960s team through
+the modern cosmic era. It includes 294 comics with verified Marvel links, while 29 source
+recommendations remain visible as placeholders until their identity can be resolved safely. Nothing
+you have saved is changed.
+
+For maintainers: the frozen source record retains 420 occurrences: 294 exact rows, 38 repeats, 29
+open metadata gaps tracked in Issue #316, and 59 exclusions.
+
+### Added the setup guide card to both starting points
+
+In plain English: The Setup to Modern Timeline recommendation now looks and works like the other
+Reading Lists, with a comic cover, issue count, description, and the usual actions. The same guide
+also appears before the Marvel Knights / Heroes Return lists, so either route offers the same place
+to preview or begin it. Nothing you have saved is changed.
+
+### Rewrote the Marvel Knights to Planet X chapter descriptions
+
+In plain English: Each of the 78 Marvel Knights to Planet X chapter previews now explains the
+story focus and tone instead of repeating its chapter number and issue range. Chapter titles,
+comics, reading order and saved progress are unchanged.
 
 ### Added a complete Moon Knight reading guide
 
@@ -37,6 +59,15 @@ For maintainers: the frozen source has 414 occurrences: 374 exact identities, 11
 ### Added a complete Black Widow reading guide
 
 In plain English: A new Black Widow guide follows Natasha Romanoff's comics from her earliest appearances through the latest source-page additions. It has exact Marvel links for 556 comics, while 14 source references stay visible as unresolved placeholders rather than being guessed at or hidden. Nothing you have saved is changed.
+
+### Added a complete Defenders reading guide
+
+In plain English: You can now follow Defenders stories from their earliest team-ups through the
+latest additions. Twenty-three recommendations whose metadata could not be confirmed stay visible
+as placeholders, so the guide preserves their place without guessing or removing them. Nothing you
+have saved is changed.
+For maintainers: the frozen cache-only source record preserves 331 occurrences: 245 exact issue
+rows, 12 repeated references, 23 metadata gaps tracked in Issue #317, and 51 exclusions.
 
 ### Split Marvel Knights to Planet X into shorter Reading Lists
 
