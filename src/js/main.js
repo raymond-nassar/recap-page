@@ -135,8 +135,7 @@ export function dispatchStorageEvent(
       }
       if (currentRaw === foreignStateSanitation?.durableRaw) {
         if (event.newValue === foreignStateSanitation.coveredUntilRaw) {
-          if (!readerStore.blocked) readerStore.adoptForeignWrite(currentRaw);
-          foreignStateSanitation = null;
+          foreignStateSanitation.coveredUntilRaw = null;
         }
         return;
       }
@@ -803,7 +802,7 @@ export async function maintainCacheGeneration(
   const denied = ['SecurityError', 'InvalidStateError', 'NotAllowedError']
     .includes(legacy.error?.name);
   const legacyUnreachable = legacy.status === 'unavailable'
-    || legacy.status === 'deleted'
+    // A confirmed deletion proves the factory was reachable and cannot excuse an active clear failure.
     || (legacy.status === 'failed' && denied);
   const storageUnavailable = cacheRef.available === false && legacyUnreachable;
   let activeCleared = storageUnavailable || !purge.ran || purge.cleared;
@@ -876,6 +875,26 @@ function verifySavedStateSanitation(storage, onFailure) {
   return Boolean(clean);
 }
 
+function mergeLaterStateChanges(base, current, incoming) {
+  if (JSON.stringify(base) === JSON.stringify(current)) return incoming;
+  const records = [base, current, incoming].every((value) => (
+    value && typeof value === 'object' && !Array.isArray(value)
+  ));
+  if (!records) return structuredClone(current);
+
+  const merged = { ...incoming };
+  for (const key of new Set([...Object.keys(base), ...Object.keys(current)])) {
+    if (!Object.prototype.hasOwnProperty.call(current, key)) {
+      delete merged[key];
+    } else if (!Object.prototype.hasOwnProperty.call(base, key)) {
+      merged[key] = structuredClone(current[key]);
+    } else {
+      merged[key] = mergeLaterStateChanges(base[key], current[key], incoming?.[key]);
+    }
+  }
+  return merged;
+}
+
 export function sanitizeStoredIssueDescriptions(
   readerStore,
   sourceRaw,
@@ -898,11 +917,13 @@ export function sanitizeStoredIssueDescriptions(
       return { needed: rawCarriesIssueDescriptions(sourceRaw), cleared: false };
     }
   }
-  const candidateRaw = queuedAfter?.durableRaw === currentRaw
+  const queuedSource = queuedAfter
+    && !queuedAfter.coveredUntilRaw
     && queuedAfter.sourceRaw !== sourceRaw
     && rawCarriesIssueDescriptions(sourceRaw)
     ? sourceRaw
-    : currentRaw;
+    : null;
+  const candidateRaw = queuedSource ?? currentRaw;
   const needed = rawCarriesIssueDescriptions(candidateRaw);
   if (!needed) {
     if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(currentRaw);
@@ -912,6 +933,13 @@ export function sanitizeStoredIssueDescriptions(
   const sanitizer = new Store({ storage: readerStore.storage });
   try {
     sanitizer.state = migrate(JSON.parse(candidateRaw));
+    if (queuedSource && queuedAfter.durableRaw !== currentRaw) {
+      sanitizer.state = mergeLaterStateChanges(
+        migrate(JSON.parse(queuedAfter.durableRaw)),
+        migrate(JSON.parse(currentRaw)),
+        sanitizer.state,
+      );
+    }
   } catch (err) {
     onFailure(`Saved issue summaries written by an older tab could not be read safely (${err.message}).`);
     return { needed: true, cleared: false };

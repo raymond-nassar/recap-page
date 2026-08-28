@@ -469,6 +469,15 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
+    id: 'cache-deleted-means-unreachable',
+    breaks: 'cache-generations',
+    why: 'a successful legacy delete hides an active-cache clear failure during automatic cleanup',
+    rewriteMain: (source) => source.replace(
+      / {2}const legacyUnreachable = legacy\.status === 'unavailable'\r?\n/,
+      "  const legacyUnreachable = legacy.status === 'unavailable'\n    || legacy.status === 'deleted'\n",
+    ),
+  },
+  {
     id: 'cache-unavailable-warning-return',
     breaks: 'cache-generations',
     why: 'automatic cleanup treats unreachable IndexedDB as a permanent failure that can never clear',
@@ -4605,6 +4614,36 @@ const SCENARIOS = [
         unavailableRecorded && !/could not|unavailable/i.test(unavailableReport),
         JSON.stringify({ unavailableRecorded, unavailableReport }));
       await unavailable.close();
+
+      const partlyDenied = await page.browserContext().newPage();
+      await preparePage(partlyDenied, page.__origin, page.__mutation);
+      await partlyDenied.evaluateOnNewDocument(() => {
+        localStorage.removeItem('mrt.cache-purge.v1');
+        localStorage.setItem('mrt.settings', '{}');
+        const real = indexedDB;
+        Object.defineProperty(globalThis, 'indexedDB', {
+          configurable: true,
+          value: {
+            deleteDatabase: real.deleteDatabase.bind(real),
+            open() {
+              throw new DOMException('Active cache access denied.', 'SecurityError');
+            },
+          },
+        });
+      });
+      await open(partlyDenied, '/#/settings');
+      const activeFailureReported = await partlyDenied.waitForFunction(
+        () => document.querySelector('#cache-report')?.textContent.includes('could not be cleared'),
+        { polling: 100, timeout: 15000 },
+      ).then(() => true, () => false);
+      const partialDenial = await partlyDenied.evaluate(() => ({
+        marker: localStorage.getItem('mrt.cache-purge.v1'),
+        report: document.querySelector('#cache-report').textContent,
+      }));
+      t.check('a successful legacy delete cannot hide an active-cache clear failure',
+        activeFailureReported && partialDenial.marker === null,
+        JSON.stringify({ activeFailureReported, ...partialDenial }));
+      await partlyDenied.close();
     },
   },
   {

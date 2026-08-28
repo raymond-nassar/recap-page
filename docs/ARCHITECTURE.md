@@ -95,7 +95,7 @@ view layer itself created and can throw away.
 
 **Two of the five are replaceable at runtime, and they are replaced together.** Saving a new API
 base builds a fresh cache and a fresh client and hands the new client to the hydrator, at
-`src/js/main.js:5920-5922`. The hydrator itself is not rebuilt; only its reference to the client is
+`src/js/main.js:5948-5950`. The hydrator itself is not rebuilt; only its reference to the client is
 swapped. The rate limiter is deliberately not rebuilt either, because the budget it tracks belongs
 to the reader's connection rather than to whichever base URL is configured. The store is never
 replaced at all.
@@ -154,14 +154,14 @@ sequenceDiagram
 The parts of that worth saying in words.
 
 **The transform is pure and the store is the only writer.** The button's handler at
-`src/js/main.js:3382-3396` hands the store a function; the function itself, at
+`src/js/main.js:3410-3424` hands the store a function; the function itself, at
 `src/js/lib/model.js:653-655`, returns a new state and touches nothing. Everything that decides
 whether a write happened, whether it stuck, and what the screen shows next lives in one method,
 `src/js/storage.js:372-399`.
 
 **The repaint is synchronous, and it is inside the write.** By the time `update` returns, the
 change callback has already run and the screen already shows the result. That is why the
-announcement can be gated on the outcome: `src/js/main.js:384-386` speaks only if the write
+announcement can be gated on the outcome: `src/js/main.js:383-385` speaks only if the write
 actually stuck, so a screen reader never hears "marked read" for a row that has already reverted.
 
 **A failed write repaints too.** The rollback path calls the same callback with the previous state,
@@ -169,13 +169,13 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Repainting everything does not mean rebuilding everything.** The callback repaints all seven
-surfaces, the six screens plus the blocked banner, at `src/js/main.js:6262-6283`, but the reading
+surfaces, the six screens plus the blocked banner, at `src/js/main.js:6290-6311`, but the reading
 order compares each row against a cache key built from the whole item and reuses the node when
 nothing about it changed, and the full order
 is skipped entirely while its container is closed. Focus is captured before a rebuild and restored
-by identity afterwards, at `src/js/main.js:3277`, which is what keeps the keyboard where the reader
+by identity afterwards, at `src/js/main.js:3305`, which is what keeps the keyboard where the reader
 left it. The row list is committed by moving nodes rather than replacing the container, at
-`src/js/main.js:3165-3173`.
+`src/js/main.js:3193-3201`.
 
 **Background work uses the same door.** Hydration writes each fetched issue through the same
 `update` call, at `src/js/hydrate.js:59`, so a metadata fill arriving while the reader is reading
@@ -191,12 +191,12 @@ chosen overwrite.
 **Long series and creator adds are pagewise transactions.** The API delivers each normalized page
 before it requests the next one, while still returning the complete array to callers that need it,
 at `src/js/api.js:193-230`. The view gives each form its own run owner, at
-`src/js/main.js:3910-4010`. The first nonempty page creates and fills its list inside one Store
-update, and every later completed page uses the same boundary, at `src/js/main.js:3867-3908` and
-`src/js/main.js:4022-4049`. Cancelling retires that owner before aborting its request, so a response
+`src/js/main.js:3938-4038`. The first nonempty page creates and fills its list inside one Store
+update, and every later completed page uses the same boundary, at `src/js/main.js:3895-3936` and
+`src/js/main.js:4050-4077`. Cancelling retires that owner before aborting its request, so a response
 that arrives late cannot write into a replacement run. The active notice carries the Cancel action;
 when that action disappears while focused, the matching search field receives focus, at
-`src/js/main.js:4089-4120`. A stop before the first page creates no list, while every page already
+`src/js/main.js:4117-4148`. A stop before the first page creates no list, while every page already
 saved remains available after a reload.
 
 ## Where a reader's data lives
@@ -253,9 +253,9 @@ Every name the app writes, and why it exists:
 | `mrt.state.prerestore` | the same restore, one line later | the reader's erase, and `rewindSnapshot()` at `src/js/storage.js:676-693`, in two of its four routes | The snapshot that makes a restore undoable, read back by `src/js/storage.js:695-712`. It outlives a reload, and `startFresh()` deliberately leaves it, because the undo it leaves standing still hands the reader's lists back. A restore that succeeds replaces it. A restore that fails takes one of four routes. It puts back an earlier snapshot it read, so the undo that earlier restore earned survives. It empties the slot when there was no earlier snapshot to put back. It empties the slot when the browser refuses to put one back, rather than leave an offer to swap in what is already on screen. And when the slot could not be read at all it is left alone, still holding the copy this restore minted a moment earlier, which `undoRestore()` then declines because it matches the saved data. Erasing everything is the only route that removes a snapshot still worth having, because only that dialog promises the data behind it is gone. |
 | `mrt.state.salvage` | a failed read, and only when the slot is empty or already holds the same bytes | the reader, from Backup and settings | A copy of data that could not be read, kept because saving is paused and the original must not be overwritten. |
 | `mrt.state.salvage.TIMESTAMP` | a failed read when the slot already holds a different incident, at `src/js/storage.js:175-181` | the reader, from Backup and settings | So a second corruption months later cannot clobber the copy taken for the first one. A `.N` is appended when that name is taken too, which one boot can reach on its own, because starting fresh salvages before it clears. |
-| `mrt.settings` | the settings form, the cover art switch, the theme control and the reading filter, at `src/js/main.js:755-763` | nothing | Preferences, not data. Deliberately outside the state so a settings write can never fail a progress write. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
-| `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:715-733` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
-| `sidebar.collapsed` | the sidebar toggle, at `src/js/main.js:1302` | nothing | Whether the rail is collapsed. Wrapped in its own try, because losing it is not worth an error. |
+| `mrt.settings` | the settings form, the cover art switch, the theme control and the reading filter, at `src/js/main.js:754-762` | nothing | Preferences, not data. Deliberately outside the state so a settings write can never fail a progress write. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
+| `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:714-732` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
+| `sidebar.collapsed` | the sidebar toggle, at `src/js/main.js:1330` | nothing | Whether the rail is collapsed. Wrapped in its own try, because losing it is not worth an error. |
 
 Eight names in all: seven fixed, and one family whose suffix is the moment it was written. Three of
 the eight belong to the view layer rather than to the store, which is why an enumeration taken from the

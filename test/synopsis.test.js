@@ -819,6 +819,25 @@ test('automatic cleanup also completes when the retained IndexedDB factory denie
   assert.match(cacheCleanupFailureMessage(genericFailure), /disk failure/);
 });
 
+test('a successful legacy delete cannot hide an active-cache clear failure', async () => {
+  const cache = {
+    available: false,
+    clears: 0,
+    async clear() {
+      this.clears += 1;
+      return false;
+    },
+    async deleteLegacy() {
+      return { status: 'deleted', blocked: false };
+    },
+  };
+  const result = await maintainCacheGeneration(cache, 0, 1);
+  assert.equal(cache.clears, 2);
+  assert.equal(result.storageUnavailable, undefined);
+  assert.equal(result.activeCleared, false);
+  assert.match(cacheCleanupFailureMessage(result), /could not be cleared/);
+});
+
 test('generation maintenance reports active clear failure, blocked cleanup, and deletion failure', async () => {
   let blocked = 0;
   const partial = cleanupCache({
