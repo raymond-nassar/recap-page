@@ -45,6 +45,7 @@ test('the shipped spotlight stories resolve the owner-supplied Top 30 ranks exac
     ['Fantastic Four', 23],
     ['Guardians of the Galaxy', 24],
     ['X-Force', 26],
+    ['Inhumans', 28],
   ]);
 
   for (const story of spotlights) {
@@ -79,6 +80,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Fantastic Four',
     'Guardians of the Galaxy',
     'X-Force',
+    'Inhumans',
     'Amazing Spider-Man',
     'Agents of Atlas',
     'White Tiger: Ava Ayala',

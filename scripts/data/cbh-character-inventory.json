@@ -1496,13 +1496,32 @@
     "url": "https://www.comicbookherald.com/inhumans-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
-    "sourceRetrievedAt": "2026-08-23",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The frozen full-page guide now publishes 217 exact metadata rows and 42 explicit metadata gaps, preserving every source position and current-library relationship.",
+    "sourceRetrievedAt": "2026-08-27",
+    "overlapIds": [
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "axis",
+      "civil-war-avengers",
+      "doctor-strange-multiverse-of-madness",
+      "fantastic-four-reading-order",
+      "hickman-full",
+      "hickman-minimal",
+      "inhumans-vs-x-men",
+      "loki-reading-order",
+      "magneto-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "secret-invasion",
+      "silent-war",
+      "silver-surfer-reading-order",
+      "war-of-kings",
+      "white-tiger-ava-ayala"
+    ],
+    "catalogIds": [
+      "inhumans-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Inhumans"
     ],
@@ -1510,9 +1529,9 @@
       52
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "6767f154816fffa87ace435c3132e8ebf9842a9a95c402de1fb653ab3bb3341a",
+    "sourceContentSha256": "cd2223a2f58ef03cb7d221e769285b8188790e5f19229ba912710bb225691f9f",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 53,

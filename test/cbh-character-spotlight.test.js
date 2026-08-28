@@ -41,6 +41,7 @@ const venomCandidateId = 'venom-reading-order';
 const moonKnightCandidateId = 'moon-knight-reading-order';
 const guardiansCandidateId = 'guardians-of-the-galaxy-reading-order';
 const xForceCandidateId = 'x-force-reading-order';
+const inhumansCandidateId = 'inhumans-reading-order';
 
 async function buildReportForMapping(mappingPath, peerPaths = [], options = {}) {
   return buildCurrentReportForMapping(mappingPath, peerPaths, {
@@ -462,6 +463,7 @@ async function historicalReportLibraryDigest(manifest, excludedIds) {
     'the-defenders-reading-order',
     xForceCandidateId,
     'nick-fury-reading-order',
+    inhumansCandidateId,
   ]);
 }
 
@@ -490,7 +492,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-six spotlights, and prepares four', async () => {
+test('the character inventory preserves every central disposition, ships twenty-six spotlights, and prepares six', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -501,10 +503,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 90);
+  assert.equal(dispositionCounts.deferred, 89);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 31);
+  assert.equal(dispositionCounts['pilot-approved'], 32);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -550,6 +552,11 @@ test('the character inventory preserves every central disposition, ships twenty-
   const silverSurfer = inventory.find((record) => record.id === 'silver-surfer-reading-order');
   assert.equal(silverSurfer?.centralDisposition, 'pilot-approved');
   assert.equal(silverSurfer?.deliveryStatus, 'ready');
+  const inhumans = inventory.find((record) => record.id === inhumansCandidateId);
+  assert.equal(inhumans?.centralDisposition, 'pilot-approved');
+  assert.equal(inhumans?.deliveryStatus, 'ready');
+  assert.deepEqual(inhumans?.catalogIds, [inhumansCandidateId]);
+  assert.equal(inhumans?.overlapIds.length, 16);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get('the-defenders-reading-order').catalogIds, [
     'the-defenders-reading-order',
@@ -758,6 +765,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
         'the-defenders-reading-order',
         xForceCandidateId,
         'nick-fury-reading-order',
+        inhumansCandidateId,
       ],
     },
   );
@@ -915,7 +923,7 @@ test('the Punisher guide preserves its full source ledger through publication', 
   assert.equal(mapping.approvedSourceCount, 857);
   assert.equal(report.candidateCount, 480);
   assert.equal(report.comparisonCount, 158);
-  assert.equal(report.comparisonCount, manifest.lists.length - 9);
+  assert.equal(report.comparisonCount, manifest.lists.length - 10);
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -1047,7 +1055,8 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.equal(manifest.lists[doctorIndex + 5].id, 'loki-reading-order');
   assert.equal(manifest.lists[doctorIndex + 6].id, moonKnightCandidateId);
   assert.equal(manifest.lists[doctorIndex + 7].id, guardiansCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 8].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 8].id, inhumansCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 9].id, 'xmen-claremont');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -1374,7 +1383,8 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
      && id !== guardiansCandidateId
      && id !== 'the-defenders-reading-order'
      && id !== 'nick-fury-reading-order'
-     && id !== xForceCandidateId)
+     && id !== xForceCandidateId
+     && id !== inhumansCandidateId)
     .sort();
   const reviewedLibraryDigest = await libraryDigestForScope(
     manifest,
@@ -1384,6 +1394,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
       'the-defenders-reading-order',
       xForceCandidateId,
       'nick-fury-reading-order',
+      inhumansCandidateId,
     ],
   );
   const regeneratedReport = await buildReportForMapping(
@@ -1395,6 +1406,7 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
         'the-defenders-reading-order',
         xForceCandidateId,
         'nick-fury-reading-order',
+        inhumansCandidateId,
       ],
     },
   );
@@ -1966,6 +1978,7 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
     moonKnightCandidateId,
     xForceCandidateId,
     'nick-fury-reading-order',
+    inhumansCandidateId,
   ]);
 
   assert.equal(record.deliveryStatus, 'shipped');
@@ -2433,7 +2446,8 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 10].id, 'loki-reading-order');
   assert.equal(manifest.lists[starLordIndex + 11].id, moonKnightCandidateId);
   assert.equal(manifest.lists[starLordIndex + 12].id, guardiansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 13].id, 'xmen-claremont');
+  assert.equal(manifest.lists[starLordIndex + 13].id, inhumansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 14].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);
   const numeric = reordered.rows.slice(65, 77)
@@ -2728,10 +2742,10 @@ test('the first character batch stays exact through evidence, catalog, and gener
 
   const allBatchIds = evidence.flatMap((item) => item.mapping.rows.map((row) => String(row.selectedIssueId)));
   assert.equal(new Set(allBatchIds).size, 81);
-  assert.equal(catalog.lists.length, 244);
+  assert.equal(catalog.lists.length, 245);
   const characterRuns = catalog.lists.filter((entry) => entry.type === 'character-run');
-  assert.equal(characterRuns.length, 40);
-  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 39);
+  assert.equal(characterRuns.length, 41);
+  assert.equal(new Set(characterRuns.map((entry) => entry.group ?? entry.id)).size, 40);
 });
 
 test('Venom preserves every source occurrence through its published guide', async () => {
@@ -2979,7 +2993,7 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   assert.equal(mapping.candidateMetadata.length, 262);
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
   assert.equal(report.candidateCount, 262);
-  assert.equal(report.comparisonCount, manifest.lists.length - 2);
+  assert.equal(report.comparisonCount, manifest.lists.length - 3);
   assert.deepEqual(
     report.comparisons
       .filter((comparison) => comparison.relationship !== 'none')

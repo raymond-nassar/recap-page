@@ -1,0 +1,4568 @@
+{
+  "schemaVersion": 1,
+  "id": "inhumans-reading-order",
+  "inventoryId": "inhumans-reading-order",
+  "sourceUrl": "https://www.comicbookherald.com/inhumans-reading-order/",
+  "sourceRetrievedAt": "2026-08-27",
+  "sourceProvider": "comic-book-herald",
+  "sourceContentSha256": "cd2223a2f58ef03cb7d221e769285b8188790e5f19229ba912710bb225691f9f",
+  "sourceIssueBearingBlocksSha256": "a486e455526a6da4dfc9a721ebbf6837f69049f5eb7bc213944dc13923c0eb10",
+  "sourceBoundary": "The page has no qualifying Best Comics or Essential Comics section, so the full article is the permitted boundary.",
+  "excludedSourceReferences": [
+    "prose marker",
+    "formatting marker",
+    "section marker",
+    "partial material reference",
+    "collection marker",
+    "guide link"
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 1,
+      "sourceIssueReference": "As the Inhumans are destined for an expanded role in the Marvel Cinematic Universe, here’s the ultimate guide to all the Inhuman comics you can read. The saga of Black Bolt, Medusa, and the kingdom of Attilan can be somewhat confusing, so this should help explain how the Inhumans fit into the Marvel Universe!",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 2,
+      "sourceIssueReference": "Formatting marker at source position 2",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 3,
+      "sourceIssueReference": "I) The Origins of the Inhumans",
+      "reason": "section marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 4,
+      "sourceIssueReference": "Formatting marker at source position 4",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 5,
+      "sourceIssueReference": "Inhumans: The Origin of the Inhumans",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Fantastic Four #48",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 23,
+      "sourceIssueReference": "Fantastic Four #50",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 24,
+      "sourceIssueReference": "Fantastic Four #52",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 25,
+      "sourceIssueReference": "Fantastic Four #54",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 26,
+      "sourceIssueReference": "Fantastic Four #55",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 27,
+      "sourceIssueReference": "Fantastic Four #56",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 28,
+      "sourceIssueReference": "Fantastic Four #57",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 29,
+      "sourceIssueReference": "Fantastic Four #58",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 30,
+      "sourceIssueReference": "Fantastic Four #59",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 31,
+      "sourceIssueReference": "Fantastic Four #60",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 32,
+      "sourceIssueReference": "Fantastic Four #61",
+      "reason": "partial material reference",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 33,
+      "sourceIssueReference": "The Fantastic Four Omnibus (Lee & Kirby) Volume 2",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 37,
+      "sourceIssueReference": "Update 8.13.16 – The Origins of the Inhumans selection above is now the most cost-effective collection for these early appearances of the Inhumans!",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Inhumans first appearances in Fantastic Four #45 – #46 (very slight carry over into #47). Medussa and Gorgon actually appear before this in Fantastic Four, but this is our first formal introduction to the Inhumans of the Marvel Universe.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 39,
+      "sourceIssueReference": "Marvel Masterworks: The Mighty Thor Volume 6",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 47,
+      "sourceIssueReference": "Inhumans origins run as back up stories for Thor #146 – #152. Note that only issue #146 features the Inhumans backup feature in Marvel Unlimited.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 48,
+      "sourceIssueReference": "Formatting marker at source position 48",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 49,
+      "sourceIssueReference": "II) Marvel Knights Inhumans for the 2000’s",
+      "reason": "section marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 50,
+      "sourceIssueReference": "Formatting marker at source position 50",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 51,
+      "sourceIssueReference": "Inhumans by Paul Jenkins & Jae Lee",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 64,
+      "sourceIssueReference": "My favorite Inhumans story, and one of my favorite Marvel graphic novels. Collects the 12 issue miniseries from Paul Jenkins and Jae Lee, launching out of the new Marvel Knights imprint in November 1998.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 65,
+      "sourceIssueReference": "Fantastic Four / Inhumans",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 70,
+      "sourceIssueReference": "Another Inhumans miniseries, this time from Carlos Pachecho, Rafael Marin, and Jose Ladronn. This was one of my least favorite reads on the list, but it does carry the distinction of moving the Inhuman’s royal city, Attilan, to an awesome new location.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 71,
+      "sourceIssueReference": "Young Inhumans",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 72,
+      "sourceIssueReference": "Formatting marker at source position 72",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 85,
+      "sourceIssueReference": "Note that this enjoyable look at the young Inhumans is listed simply as “Inhumans (2003 – 2004)” in Marvel Unlimited. Deceptively relevant read for coming Inhumans continuity, and a quality read if you enjoyed the Jenkins and Lee Inhumans.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 86,
+      "sourceIssueReference": "Inhumans 2099",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 88,
+      "sourceIssueReference": "You don’t need to read this persay, but a mildly bonkers 2099 version of Inhumans from Walking Dead creator Robert Kirkman. It’s a relatively quick, fun/horrifying read if you have 10 minutes on Marvel Unlimited.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "III) Inhumans and the Marvel Era of Events",
+      "reason": "section marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 90,
+      "sourceIssueReference": "Formatting marker at source position 90",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 91,
+      "sourceIssueReference": "Son Of M",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 98,
+      "sourceIssueReference": "Son of M is both enormously relevant to Inhumans continuity, and entirely reliant on reading House of M (in fact, the Son of M trade is listed as a Decimation tie-in). While I certainly encourage you to read House of M, it otherwise has virtually no direct impact on the Inhumans.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 99,
+      "sourceIssueReference": "Silent War",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 106,
+      "sourceIssueReference": "Formatting marker at source position 106",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 107,
+      "sourceIssueReference": "A uniquely Inhumans focused event/miniseries. The continuity following the conclusion of this series will get very problematic. Just plow ahead, and I promise by Secret Invasion you’ll feel better.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 108,
+      "sourceIssueReference": "World War Hulk",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 115,
+      "sourceIssueReference": "While this might seem like a Hulk story, it actually delivers major ramifications on the Inhumans, particularly Black Bolt. If you do dive into World War Hulk here, I have two recommendations. The first, is to check out my World War Hulk reading order. And the second is to consider reading both Planet Hulk, and the first issue of New Avengers: Illuminati (below) before WWH.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 116,
+      "sourceIssueReference": "New Avengers: Illuminati",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 122,
+      "sourceIssueReference": "I highly enjoy all 5 issues, but you only need #1 and #5 if you want to fast track your way to Secret Invasion. That said, New Avengers: Illuminati #3 is very Black Bolt focused, and also provides some interesting continuity build for the upcoming Secret Wars.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 123,
+      "sourceIssueReference": "IV) Inhumans… In Space! Cosmic Attilan",
+      "reason": "section marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 124,
+      "sourceIssueReference": "Formatting marker at source position 124",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 125,
+      "sourceIssueReference": "Secret Invasion: Inhumans",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 130,
+      "sourceIssueReference": "These four issues help right the ship for the Inhumans moving forward. If you want the full context of the event, you can dive into the Secret Invasion reading order.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 131,
+      "sourceIssueReference": "Formatting marker at source position 131",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 132,
+      "sourceIssueReference": "Mighty Avengers: The Unspoken",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 134,
+      "sourceIssueReference": "Some bonus, new Inhumans history to add to the mythology.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 135,
+      "sourceIssueReference": "War of Kings",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 142,
+      "sourceIssueReference": "I’ll mostly have to direct you to my War of Kings reading order for this one. Major ramifications of the Inhumans as they take to the Marvel Cosmic stage.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 143,
+      "sourceIssueReference": "Realm of Kings: Inhumans",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 149,
+      "sourceIssueReference": "Black Bolt’s Inhuman cosmic reign continues with the Realm of Kings reading order.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 150,
+      "sourceIssueReference": "Fantastic Four by Jonathan Hickman",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 151,
+      "sourceIssueReference": "Formatting marker at source position 151",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 164,
+      "sourceIssueReference": "As always, I’d recommend you read the entirity of Jonathan Hickman’s Fantastic Four run for both 1) a great comics experience and 2) full understanding of the Inhumans stories within. Nonetheless, if you’re on a crunch, these issues will get you the most directly realted Inhumans pieces of the puzzle.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 165,
+      "sourceIssueReference": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "reason": "section marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 166,
+      "sourceIssueReference": "Formatting marker at source position 166",
+      "reason": "formatting marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 167,
+      "sourceIssueReference": "For the full context of this time period, I recommend Comic Book Herald’s complete Marvel NOW! reading order.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 168,
+      "sourceIssueReference": "New Avengers Volume 1: Everything Dies",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 176,
+      "sourceIssueReference": "Hickman’s New Avengers establishes Black Bolt’s involvement in the larger Marvel Universe leading up to Infinity.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 177,
+      "sourceIssueReference": "Infinity",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 189,
+      "sourceIssueReference": "Most notable issues for the Inhumans are Infinity #4 and New Avengers #12. For a full Infinity reading order.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 190,
+      "sourceIssueReference": "Inhumanity",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 204,
+      "sourceIssueReference": "You can find the proper Inhumanity reading order in the above Infinity guide.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 205,
+      "sourceIssueReference": "Inhuman Volume 1: Genesis",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 212,
+      "sourceIssueReference": "Ms. Marvel Volume 1",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 213,
+      "sourceIssueReference": "Perhaps the greatest character creation of Marvel’s 2000’s, the all-new Ms. Marvel finds her origins in the wake of Inhumanity.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 214,
+      "sourceIssueReference": "For the rest of Kamala Khan’s comics, I recommend Comic Book Herald’s complete Ms. Marvel reading order.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 215,
+      "sourceIssueReference": "Inhuman Volume 2: Axis",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 222,
+      "sourceIssueReference": "VI) All-New All-Different Inhumans",
+      "reason": "section marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 223,
+      "sourceIssueReference": "You can see how the Inhumans fit within the Marvel Universe of this time period with Comic Book Herald’s complete All-New All-Different reading order.",
+      "reason": "prose marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 258,
+      "sourceIssueReference": "Civil War 2 Reading Order",
+      "reason": "guide link",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 259,
+      "sourceIssueReference": "Inhumans vs. X-Men Reading Order",
+      "reason": "guide link",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 260,
+      "sourceIssueReference": "Latest Additions:",
+      "reason": "section marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 261,
+      "sourceIssueReference": "Uncanny Inhumans Vol. 3: Civil War II",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 267,
+      "sourceIssueReference": "Uncanny Inhumans Vol. 4: IvX",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 274,
+      "sourceIssueReference": "Royals Vol. 1: Beyond Inhuman",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 281,
+      "sourceIssueReference": "Royals Vol. 2: Judgement Day",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 290,
+      "sourceIssueReference": "Inhumans: Once & Future Kings",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 296,
+      "sourceIssueReference": "Monsters Unleashed: Battleground",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 305,
+      "sourceIssueReference": "Secret Warriors Vol. 1: Secret Empire",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 311,
+      "sourceIssueReference": "Secret Warriors Vol. 2: If Trouble Must Come",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 319,
+      "sourceIssueReference": "Mosaic Vol. 1: King of the World",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 325,
+      "sourceIssueReference": "Mosaic Vol. 2: Down Below",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 330,
+      "sourceIssueReference": "Black Bolt by Saladin Ahmed",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 343,
+      "sourceIssueReference": "Marvel Universe Avengers: Ultron Revolution Vol. 3",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 348,
+      "sourceIssueReference": "Death of Inhumans",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 354,
+      "sourceIssueReference": "The Darkhold: Black Bolt",
+      "reason": "collection marker",
+      "decisionScope": "source-boundary"
+    }
+  ],
+  "sourceOccurrenceCount": 354,
+  "canonicalSourcePositions": true,
+  "repeatedSourceReferences": [
+    {
+      "sourcePosition": 34,
+      "canonicalRow": 9,
+      "sourceIssueReference": "Fantastic Four #45",
+      "sourceRangeReference": "Fantastic Four #45 To #47",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "45"
+    },
+    {
+      "sourcePosition": 35,
+      "canonicalRow": 10,
+      "sourceIssueReference": "Fantastic Four #46",
+      "sourceRangeReference": "Fantastic Four #45 To #47",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "46"
+    },
+    {
+      "sourcePosition": 36,
+      "canonicalRow": 11,
+      "sourceIssueReference": "Fantastic Four #47",
+      "sourceRangeReference": "Fantastic Four #45 To #47",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "47"
+    },
+    {
+      "sourcePosition": 329,
+      "canonicalRow": 154,
+      "sourceIssueReference": "Uncanny Inhumans #11",
+      "sourceRangeReference": "Collects: Mosaic #6 to #8, Uncanny Inhumans #11",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "11"
+    }
+  ],
+  "sourceGaps": [
+    {
+      "sourcePosition": 73,
+      "sourceIssueReference": "Young Inhumans #1",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "cc7205fe59a7bb4e717eb8acd2eedad976ed564f4520f3ebb20deadb769d2baa"
+    },
+    {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Young Inhumans #2",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "51fb1122d9dd441a324b92ee0db1f412c45dccb63d3991f56421b36f3ced02db"
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Young Inhumans #3",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "8beb605710b73b56f42e8599eaa19b2cd691fdd24c21e2a68b08511991dab1df"
+    },
+    {
+      "sourcePosition": 76,
+      "sourceIssueReference": "Young Inhumans #4",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "5970caccd6a7f1baefc729e6c261557a864db4345b4d156e521c7b221635908d"
+    },
+    {
+      "sourcePosition": 77,
+      "sourceIssueReference": "Young Inhumans #5",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "5a124277594bd3635aab5a697d8ba358ceb0c4262364e4f6101c51a8a9166ea0"
+    },
+    {
+      "sourcePosition": 78,
+      "sourceIssueReference": "Young Inhumans #6",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "b3f6d912b25cf3d9c33eaa90df5bd2c3bfe074e26603b0517f4cc9b9704a63d8"
+    },
+    {
+      "sourcePosition": 79,
+      "sourceIssueReference": "Young Inhumans #7",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "7",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "cc66169271d48796197f10edff4deca52e5bef3f1e1c0bd03b8d914ff2d3efe6"
+    },
+    {
+      "sourcePosition": 80,
+      "sourceIssueReference": "Young Inhumans #8",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "8",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "334db9177f6732c7a7eaada69ed7adc9119fc1d0c54a0df53bfdaac4414e5d93"
+    },
+    {
+      "sourcePosition": 81,
+      "sourceIssueReference": "Young Inhumans #9",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "9",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "5e008ae7906dc571441188ec18257e3214b688cc57dc12cb4f3be468e9fdf000"
+    },
+    {
+      "sourcePosition": 82,
+      "sourceIssueReference": "Young Inhumans #10",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "10",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "7d7a46c416040d4a6bb80045c33ac92a36b177b5ff64acf8f518debf6b2d9780"
+    },
+    {
+      "sourcePosition": 83,
+      "sourceIssueReference": "Young Inhumans #11",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "11",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "660dc1f69f5e85d2836ac5002938c13627b30404d72244232b63c542a4221f11"
+    },
+    {
+      "sourcePosition": 84,
+      "sourceIssueReference": "Young Inhumans #12",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Young Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "12",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "6424d4829142c96ee70f9e5eb6eb2933dd59333387a1062a8ad1319592849f0a"
+    },
+    {
+      "sourcePosition": 87,
+      "sourceIssueReference": "Inhumans 2099 One-Shot",
+      "sourceRangeReference": "Inhumans 2099 One-Shot",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans 2099 One-Shot",
+      "seriesYear": null,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "b43d86f36d8db93c13b1818c9fc0228d8865f7953817b524b2cbcd43ab15b468"
+    },
+    {
+      "sourcePosition": 114,
+      "sourceIssueReference": "World War Hulk #6",
+      "sourceRangeReference": "World War Hulk #1 To #6",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": null,
+      "issueNumber": "6",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "17b14b6398a8ee1a62d0d1a89f86466cfe54aecb59cfcd3aa173f45f3d590ae7"
+    },
+    {
+      "sourcePosition": 133,
+      "sourceIssueReference": "Mighty Avengers #27",
+      "sourceRangeReference": "Mighty Avengers #27",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": null,
+      "issueNumber": "27",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "a26ad826f6008d426412878b666984149c1e22ad2379c3bb14e991df7d0f16a9"
+    },
+    {
+      "sourcePosition": 144,
+      "sourceIssueReference": "Realm Of Kings: Inhumans #1",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "9104b2ba5ec1ee9cf120a86038bbb2250374251704c9ebe9820702575de110bb"
+    },
+    {
+      "sourcePosition": 145,
+      "sourceIssueReference": "Realm Of Kings: Inhumans #2",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "47ee2052abee00928ff581fac2264fd093d6fda9cadd7eb81cdc9c1ed16a2dc3"
+    },
+    {
+      "sourcePosition": 146,
+      "sourceIssueReference": "Realm Of Kings: Inhumans #3",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "4198019a4f910aaa1d32d20b1cda6ae8c99796509324e92225c03c56488dadf6"
+    },
+    {
+      "sourcePosition": 147,
+      "sourceIssueReference": "Realm Of Kings: Inhumans #4",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "seriesYear": null,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "7867ab1d0c3385032d17e6929912f83326e4dd3e11dcb86059b0537efe87275e"
+    },
+    {
+      "sourcePosition": 148,
+      "sourceIssueReference": "Realm Of Kings: Inhumans #5",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "seriesYear": null,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "8a5057201c03c2b7511d0f52319a1deb4a17938cabecaada4e0fda0376108796"
+    },
+    {
+      "sourcePosition": 191,
+      "sourceIssueReference": "Avengers Assemble 21.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Avengers Assemble",
+      "seriesYear": null,
+      "issueNumber": "21.Inh",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "4cec6fca9868d2c13a49d49f79b5601f7ad0a1d7cb196fcca194e208815364ea"
+    },
+    {
+      "sourcePosition": 192,
+      "sourceIssueReference": "Avengers Assemble 22.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Avengers Assemble",
+      "seriesYear": null,
+      "issueNumber": "22.Inh",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "96771512be4a9d8348fd9a35110e19bbdc07e1bc180670bad12a6cc751d0ff0f"
+    },
+    {
+      "sourcePosition": 193,
+      "sourceIssueReference": "Avengers Assemble 23.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Avengers Assemble",
+      "seriesYear": null,
+      "issueNumber": "23.Inh",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "6532576806fa194c6c362763e88062df57884e29a4222259a7cb3dd35edfc453"
+    },
+    {
+      "sourcePosition": 198,
+      "sourceIssueReference": "Uncanny X-Men 15.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": null,
+      "issueNumber": "15.Inh",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "a2b8ffcc0fda4e039e8a927d0e69eab9b7ea68ea8220dea59cf7a9714b8a5555"
+    },
+    {
+      "sourcePosition": 199,
+      "sourceIssueReference": "Indestructible Hulk 17.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Indestructible Hulk",
+      "seriesYear": null,
+      "issueNumber": "17.Inh",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "ada3678c168878971faa969e7506bd97f1b4eb3ee430a575c13bd926207e7dd3"
+    },
+    {
+      "sourcePosition": 200,
+      "sourceIssueReference": "Indestructible Hulk 18.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Indestructible Hulk",
+      "seriesYear": null,
+      "issueNumber": "18.Inh",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "9f233c1628575804e9b43750717a77baeab51ca7aaf98971d3ead250e9ae710b"
+    },
+    {
+      "sourcePosition": 202,
+      "sourceIssueReference": "New Avengers 13.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": null,
+      "issueNumber": "13.Inh",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "13408e2948c856fed39cbbe817d642645a1b8de65af6025922d18b658084dcfe"
+    },
+    {
+      "sourcePosition": 280,
+      "sourceIssueReference": "Inhumans Prime #1",
+      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Inhumans Prime",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "b6b241b7ccb0883f8d95a8785e5eb0cec2349cb10117ebd52a98801f1a3c024f"
+    },
+    {
+      "sourcePosition": 289,
+      "sourceIssueReference": "Inhumans: Judgement Day",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Inhumans: Judgement Day",
+      "seriesYear": null,
+      "issueNumber": null,
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "44de8cd5726501b8e55b93e5daa05c1ed20d6bd76928c66be88d925ebcb977e3"
+    },
+    {
+      "sourcePosition": 291,
+      "sourceIssueReference": "Inhumans: Once & Future Kings #1",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "seriesYear": null,
+      "issueNumber": "1",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "a1fb99ebe2412a38f138b90aea732cab7882b80cfc830bf78d336491762e50d1"
+    },
+    {
+      "sourcePosition": 292,
+      "sourceIssueReference": "Inhumans: Once & Future Kings #2",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "seriesYear": null,
+      "issueNumber": "2",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "c9326c9a040577c1c181aebae32c32a0bae8323e78951fc985669a98d6349ab9"
+    },
+    {
+      "sourcePosition": 293,
+      "sourceIssueReference": "Inhumans: Once & Future Kings #3",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "seriesYear": null,
+      "issueNumber": "3",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "4b101b8fe594fb2770a064232760a9836efdfb64622eec4b61675dbd658ce43e"
+    },
+    {
+      "sourcePosition": 294,
+      "sourceIssueReference": "Inhumans: Once & Future Kings #4",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "seriesYear": null,
+      "issueNumber": "4",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "3348ed517e1cded9f99349dad31895df71a06b38918d2385fb4b4d6da0c8e72a"
+    },
+    {
+      "sourcePosition": 295,
+      "sourceIssueReference": "Inhumans: Once & Future Kings #5",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "seriesYear": null,
+      "issueNumber": "5",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "65c2be9f1b2660bb57073a9ee72439ef87706e98366477166f5a1a35c21f3cdb"
+    },
+    {
+      "sourcePosition": 297,
+      "sourceIssueReference": "Avengers #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "7da1858051e5621b6cf5548ba0bdf1f72cdf8552f4b7286fbdfa81c058852f07"
+    },
+    {
+      "sourcePosition": 298,
+      "sourceIssueReference": "Spider-Man/Deadpool #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Spider-Man/Deadpool",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "09026c9354668de3bfaa54dea9f527654048d4e6ca0024568d25ffc68a47a756"
+    },
+    {
+      "sourcePosition": 299,
+      "sourceIssueReference": "All-New X-Men #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "All-New X-Men",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "3bc2ec68228df38a5cf7ff7d525e02052ba26c996dab475a53d2cc61ffe468f4"
+    },
+    {
+      "sourcePosition": 300,
+      "sourceIssueReference": "Champions #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Champions",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "fcba75dc8a34d1b5be5e878cdc8e415f04c9bbf5140e444a8c4d77301b5388cd"
+    },
+    {
+      "sourcePosition": 301,
+      "sourceIssueReference": "Doctor Strange #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "63b8623b0990a8bcb7bfa923c83793fad30312b76c12d4713ad2afd544893f77"
+    },
+    {
+      "sourcePosition": 302,
+      "sourceIssueReference": "Uncanny Inhumans #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "84a77aae3a03a5da5035d76cdf73a7da61656d7e90bada5bff95ac5dcff8db2a"
+    },
+    {
+      "sourcePosition": 303,
+      "sourceIssueReference": "Guardians of the Galaxy #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "5d941a0f6b3dc74869203288d4c1614a294804a47c4af9274a10620c13c57f62"
+    },
+    {
+      "sourcePosition": 304,
+      "sourceIssueReference": "The Totally Awesome Hulk #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": null,
+      "issueNumber": "1.MU",
+      "kind": "published-metadata-gap",
+      "status": "open",
+      "checkedAt": "2026-08-27",
+      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "evidenceSources": [
+        {
+          "kind": "missing-comics-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-08-27"
+        },
+        {
+          "kind": "source-boundary",
+          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
+          "retrievedAt": "2026-08-27"
+        }
+      ],
+      "evidenceDigest": "5b3c62acccec904a3bfaac5aebb49b87a134f678a98d533a1fd0670b2e4c401a"
+    }
+  ],
+  "expectedCount": 217,
+  "proposedManifest": {
+    "id": "inhumans-reading-order",
+    "name": "Inhumans",
+    "description": "A complete Inhumans reading path from their earliest Fantastic Four appearances through their modern era.",
+    "type": "character-run",
+    "spotlightKind": "complete-guide",
+    "depth": "complete",
+    "beginner": false,
+    "group": null,
+    "groupName": null,
+    "variant": null,
+    "sourceFile": "inhumans-reading-order.md",
+    "sourcePage": "https://www.comicbookherald.com/inhumans-reading-order/",
+    "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+    "sourceLicense": null,
+    "out": "inhumans_reading_order.json",
+    "characters": [
+      "Inhumans",
+      "Black Bolt",
+      "Medusa",
+      "Maximus"
+    ],
+    "keywords": [
+      "Inhumans",
+      "Black Bolt",
+      "Medusa",
+      "Marvel Comics",
+      "Comic Book Herald"
+    ],
+    "expect": 259,
+    "timeline": 1965,
+    "coverIssueId": 13183
+  },
+  "insertionAnchor": {
+    "beforeId": "xmen-claremont"
+  },
+  "sourceReview": {
+    "authorityType": "stronger-model",
+    "authorityIdentity": "Inhumans source-audit coordinator",
+    "rationale": "The coordinator accepted the frozen full-page source audit and exhaustive provider settlement before packet construction.",
+    "reviewedAt": "2026-08-27"
+  },
+  "rows": [
+    {
+      "sourcePosition": 6,
+      "sourceIssueReference": "Fantastic Four #36",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "36",
+      "seriesId": 2121,
+      "candidateIssueId": 13183,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Fantastic Four #38",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "38",
+      "seriesId": 2121,
+      "candidateIssueId": 13205,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 8,
+      "sourceIssueReference": "Fantastic Four #39",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "39",
+      "seriesId": 2121,
+      "candidateIssueId": 13216,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 9,
+      "sourceIssueReference": "Fantastic Four #40",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "40",
+      "seriesId": 2121,
+      "candidateIssueId": 13228,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 10,
+      "sourceIssueReference": "Fantastic Four #41",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "41",
+      "seriesId": 2121,
+      "candidateIssueId": 13239,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 11,
+      "sourceIssueReference": "Fantastic Four #42",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "42",
+      "seriesId": 2121,
+      "candidateIssueId": 13247,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 12,
+      "sourceIssueReference": "Fantastic Four #43",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "43",
+      "seriesId": 2121,
+      "candidateIssueId": 13248,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 13,
+      "sourceIssueReference": "Fantastic Four #44",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "44",
+      "seriesId": 2121,
+      "candidateIssueId": 13249,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 14,
+      "sourceIssueReference": "Fantastic Four #45",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "45",
+      "seriesId": 2121,
+      "candidateIssueId": 13250,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 15,
+      "sourceIssueReference": "Fantastic Four #46",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "46",
+      "seriesId": 2121,
+      "candidateIssueId": 13251,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 16,
+      "sourceIssueReference": "Fantastic Four #47",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "47",
+      "seriesId": 2121,
+      "candidateIssueId": 13252,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 17,
+      "sourceIssueReference": "Fantastic Four #62",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "62",
+      "seriesId": 2121,
+      "candidateIssueId": 13269,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 18,
+      "sourceIssueReference": "Fantastic Four #63",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "63",
+      "seriesId": 2121,
+      "candidateIssueId": 13270,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 19,
+      "sourceIssueReference": "Fantastic Four #64",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "64",
+      "seriesId": 2121,
+      "candidateIssueId": 13271,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 20,
+      "sourceIssueReference": "Fantastic Four #65",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1961,
+      "issueNumber": "65",
+      "seriesId": 2121,
+      "candidateIssueId": 13272,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Fantastic Four Annual #5",
+      "sourceRangeReference": "Fantastic Four #36, #38 to #47, #62 to #65, Fantastic Four Annual #5, partial selections from Fantastic Four #48, #50, #52, #54 to #61",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Fantastic Four Annual",
+      "seriesYear": 1963,
+      "issueNumber": "5",
+      "seriesId": 2012,
+      "candidateIssueId": 8709,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 40,
+      "sourceIssueReference": "Thor #146",
+      "sourceRangeReference": "Thor #146 To #152 (Backup Issues)",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "146",
+      "seriesId": 2083,
+      "candidateIssueId": 11474,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 41,
+      "sourceIssueReference": "Thor #147",
+      "sourceRangeReference": "Thor #146 To #152 (Backup Issues)",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "147",
+      "seriesId": 2083,
+      "candidateIssueId": 11475,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 42,
+      "sourceIssueReference": "Thor #148",
+      "sourceRangeReference": "Thor #146 To #152 (Backup Issues)",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "148",
+      "seriesId": 2083,
+      "candidateIssueId": 11476,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 43,
+      "sourceIssueReference": "Thor #149",
+      "sourceRangeReference": "Thor #146 To #152 (Backup Issues)",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "149",
+      "seriesId": 2083,
+      "candidateIssueId": 11477,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 44,
+      "sourceIssueReference": "Thor #150",
+      "sourceRangeReference": "Thor #146 To #152 (Backup Issues)",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "150",
+      "seriesId": 2083,
+      "candidateIssueId": 11478,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 45,
+      "sourceIssueReference": "Thor #151",
+      "sourceRangeReference": "Thor #146 To #152 (Backup Issues)",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "151",
+      "seriesId": 2083,
+      "candidateIssueId": 11479,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 46,
+      "sourceIssueReference": "Thor #152",
+      "sourceRangeReference": "Thor #146 To #152 (Backup Issues)",
+      "sourceGroup": "I) The Origins of the Inhumans",
+      "normalizedSeriesTitle": "Thor",
+      "seriesYear": 1966,
+      "issueNumber": "152",
+      "seriesId": 2083,
+      "candidateIssueId": 11480,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 52,
+      "sourceIssueReference": "Inhumans #1",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "1",
+      "seriesId": 2026,
+      "candidateIssueId": 9298,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 53,
+      "sourceIssueReference": "Inhumans #2",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "2",
+      "seriesId": 2026,
+      "candidateIssueId": 9302,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 54,
+      "sourceIssueReference": "Inhumans #3",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "3",
+      "seriesId": 2026,
+      "candidateIssueId": 9303,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 55,
+      "sourceIssueReference": "Inhumans #4",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "4",
+      "seriesId": 2026,
+      "candidateIssueId": 9316,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 56,
+      "sourceIssueReference": "Inhumans #5",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "5",
+      "seriesId": 2026,
+      "candidateIssueId": 9305,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 57,
+      "sourceIssueReference": "Inhumans #6",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "6",
+      "seriesId": 2026,
+      "candidateIssueId": 9306,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 58,
+      "sourceIssueReference": "Inhumans #7",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "7",
+      "seriesId": 2026,
+      "candidateIssueId": 9307,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 59,
+      "sourceIssueReference": "Inhumans #8",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "8",
+      "seriesId": 2026,
+      "candidateIssueId": 9308,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 60,
+      "sourceIssueReference": "Inhumans #9",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "9",
+      "seriesId": 2026,
+      "candidateIssueId": 9309,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 61,
+      "sourceIssueReference": "Inhumans #10",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "10",
+      "seriesId": 2026,
+      "candidateIssueId": 9299,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 62,
+      "sourceIssueReference": "Inhumans #11",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "11",
+      "seriesId": 2026,
+      "candidateIssueId": 9300,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 63,
+      "sourceIssueReference": "Inhumans #12",
+      "sourceRangeReference": "Inhumans #1 To #12 (1998 To 1999)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 1998,
+      "issueNumber": "12",
+      "seriesId": 2026,
+      "candidateIssueId": 9301,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 66,
+      "sourceIssueReference": "Inhumans #1",
+      "sourceRangeReference": "Inhumans #1 To #4 (2000)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2000,
+      "issueNumber": "1",
+      "seriesId": 2027,
+      "candidateIssueId": 9322,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 67,
+      "sourceIssueReference": "Inhumans #2",
+      "sourceRangeReference": "Inhumans #1 To #4 (2000)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2000,
+      "issueNumber": "2",
+      "seriesId": 2027,
+      "candidateIssueId": 9323,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 68,
+      "sourceIssueReference": "Inhumans #3",
+      "sourceRangeReference": "Inhumans #1 To #4 (2000)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2000,
+      "issueNumber": "3",
+      "seriesId": 2027,
+      "candidateIssueId": 9324,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 69,
+      "sourceIssueReference": "Inhumans #4",
+      "sourceRangeReference": "Inhumans #1 To #4 (2000)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2000,
+      "issueNumber": "4",
+      "seriesId": 2027,
+      "candidateIssueId": 9325,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 92,
+      "sourceIssueReference": "Son Of M #1",
+      "sourceRangeReference": "Son Of M #1 To #6 (Dec 2005 – May 2006)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Son Of M",
+      "seriesYear": 2005,
+      "issueNumber": "1",
+      "seriesId": 980,
+      "candidateIssueId": 3213,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 93,
+      "sourceIssueReference": "Son Of M #2",
+      "sourceRangeReference": "Son Of M #1 To #6 (Dec 2005 – May 2006)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Son Of M",
+      "seriesYear": 2005,
+      "issueNumber": "2",
+      "seriesId": 980,
+      "candidateIssueId": 3421,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 94,
+      "sourceIssueReference": "Son Of M #3",
+      "sourceRangeReference": "Son Of M #1 To #6 (Dec 2005 – May 2006)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Son Of M",
+      "seriesYear": 2005,
+      "issueNumber": "3",
+      "seriesId": 980,
+      "candidateIssueId": 3536,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 95,
+      "sourceIssueReference": "Son Of M #4",
+      "sourceRangeReference": "Son Of M #1 To #6 (Dec 2005 – May 2006)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Son Of M",
+      "seriesYear": 2005,
+      "issueNumber": "4",
+      "seriesId": 980,
+      "candidateIssueId": 3941,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 96,
+      "sourceIssueReference": "Son Of M #5",
+      "sourceRangeReference": "Son Of M #1 To #6 (Dec 2005 – May 2006)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Son Of M",
+      "seriesYear": 2005,
+      "issueNumber": "5",
+      "seriesId": 980,
+      "candidateIssueId": 4064,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "Son Of M #6",
+      "sourceRangeReference": "Son Of M #1 To #6 (Dec 2005 – May 2006)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Son Of M",
+      "seriesYear": 2005,
+      "issueNumber": "6",
+      "seriesId": 980,
+      "candidateIssueId": 4176,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 100,
+      "sourceIssueReference": "Silent War #1",
+      "sourceRangeReference": "Silent War #1 To #6 (Jan 2007 – June 2007)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Silent War",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 1134,
+      "candidateIssueId": 5861,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 101,
+      "sourceIssueReference": "Silent War #2",
+      "sourceRangeReference": "Silent War #1 To #6 (Jan 2007 – June 2007)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Silent War",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 1134,
+      "candidateIssueId": 6011,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "Silent War #3",
+      "sourceRangeReference": "Silent War #1 To #6 (Jan 2007 – June 2007)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Silent War",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 1134,
+      "candidateIssueId": 6185,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 103,
+      "sourceIssueReference": "Silent War #4",
+      "sourceRangeReference": "Silent War #1 To #6 (Jan 2007 – June 2007)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Silent War",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 1134,
+      "candidateIssueId": 6331,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 104,
+      "sourceIssueReference": "Silent War #5",
+      "sourceRangeReference": "Silent War #1 To #6 (Jan 2007 – June 2007)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Silent War",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 1134,
+      "candidateIssueId": 13480,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 105,
+      "sourceIssueReference": "Silent War #6",
+      "sourceRangeReference": "Silent War #1 To #6 (Jan 2007 – June 2007)",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "Silent War",
+      "seriesYear": 2007,
+      "issueNumber": "6",
+      "seriesId": 1134,
+      "candidateIssueId": 15857,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 109,
+      "sourceIssueReference": "World War Hulk #1",
+      "sourceRangeReference": "World War Hulk #1 To #6",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2400,
+      "candidateIssueId": 15873,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 110,
+      "sourceIssueReference": "World War Hulk #2",
+      "sourceRangeReference": "World War Hulk #1 To #6",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "2",
+      "seriesId": 2400,
+      "candidateIssueId": 15984,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 111,
+      "sourceIssueReference": "World War Hulk #3",
+      "sourceRangeReference": "World War Hulk #1 To #6",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "3",
+      "seriesId": 2400,
+      "candidateIssueId": 16168,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 112,
+      "sourceIssueReference": "World War Hulk #4",
+      "sourceRangeReference": "World War Hulk #1 To #6",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "4",
+      "seriesId": 2400,
+      "candidateIssueId": 16557,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 113,
+      "sourceIssueReference": "World War Hulk #5",
+      "sourceRangeReference": "World War Hulk #1 To #6",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "World War Hulk",
+      "seriesYear": 2007,
+      "issueNumber": "5",
+      "seriesId": 2400,
+      "candidateIssueId": 16560,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 117,
+      "sourceIssueReference": "New Avengers: Illuminati #1",
+      "sourceRangeReference": "New Avengers: Illuminati #1 To #5",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "New Avengers: Illuminati",
+      "seriesYear": 2006,
+      "issueNumber": "1",
+      "seriesId": 1137,
+      "candidateIssueId": 5723,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 118,
+      "sourceIssueReference": "New Avengers: Illuminati #2",
+      "sourceRangeReference": "New Avengers: Illuminati #1 To #5",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "New Avengers: Illuminati",
+      "seriesYear": 2006,
+      "issueNumber": "2",
+      "seriesId": 1137,
+      "candidateIssueId": 5864,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 119,
+      "sourceIssueReference": "New Avengers: Illuminati #3",
+      "sourceRangeReference": "New Avengers: Illuminati #1 To #5",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "New Avengers: Illuminati",
+      "seriesYear": 2006,
+      "issueNumber": "3",
+      "seriesId": 1137,
+      "candidateIssueId": 13481,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "New Avengers: Illuminati #4",
+      "sourceRangeReference": "New Avengers: Illuminati #1 To #5",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "New Avengers: Illuminati",
+      "seriesYear": 2006,
+      "issueNumber": "4",
+      "seriesId": 1137,
+      "candidateIssueId": 15968,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "New Avengers: Illuminati #5",
+      "sourceRangeReference": "New Avengers: Illuminati #1 To #5",
+      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
+      "normalizedSeriesTitle": "New Avengers: Illuminati",
+      "seriesYear": 2006,
+      "issueNumber": "5",
+      "seriesId": 1137,
+      "candidateIssueId": 17254,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 126,
+      "sourceIssueReference": "Secret Invasion: Inhumans #1",
+      "sourceRangeReference": "Secret Invasion: Inhumans #1 To #4",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Secret Invasion: Inhumans",
+      "seriesYear": 2008,
+      "issueNumber": "1",
+      "seriesId": 5352,
+      "candidateIssueId": 21774,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 127,
+      "sourceIssueReference": "Secret Invasion: Inhumans #2",
+      "sourceRangeReference": "Secret Invasion: Inhumans #1 To #4",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Secret Invasion: Inhumans",
+      "seriesYear": 2008,
+      "issueNumber": "2",
+      "seriesId": 5352,
+      "candidateIssueId": 22009,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 128,
+      "sourceIssueReference": "Secret Invasion: Inhumans #3",
+      "sourceRangeReference": "Secret Invasion: Inhumans #1 To #4",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Secret Invasion: Inhumans",
+      "seriesYear": 2008,
+      "issueNumber": "3",
+      "seriesId": 5352,
+      "candidateIssueId": 22340,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 129,
+      "sourceIssueReference": "Secret Invasion: Inhumans #4",
+      "sourceRangeReference": "Secret Invasion: Inhumans #1 To #4",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Secret Invasion: Inhumans",
+      "seriesYear": 2008,
+      "issueNumber": "4",
+      "seriesId": 5352,
+      "candidateIssueId": 22534,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 136,
+      "sourceIssueReference": "War Of Kings #1",
+      "sourceRangeReference": "War Of Kings #1 To #6",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "War Of Kings",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 6972,
+      "candidateIssueId": 23814,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 137,
+      "sourceIssueReference": "War Of Kings #2",
+      "sourceRangeReference": "War Of Kings #1 To #6",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "War Of Kings",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "seriesId": 6972,
+      "candidateIssueId": 24006,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 138,
+      "sourceIssueReference": "War Of Kings #3",
+      "sourceRangeReference": "War Of Kings #1 To #6",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "War Of Kings",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "seriesId": 6972,
+      "candidateIssueId": 24212,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 139,
+      "sourceIssueReference": "War Of Kings #4",
+      "sourceRangeReference": "War Of Kings #1 To #6",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "War Of Kings",
+      "seriesYear": 2009,
+      "issueNumber": "4",
+      "seriesId": 6972,
+      "candidateIssueId": 27059,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 140,
+      "sourceIssueReference": "War Of Kings #5",
+      "sourceRangeReference": "War Of Kings #1 To #6",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "War Of Kings",
+      "seriesYear": 2009,
+      "issueNumber": "5",
+      "seriesId": 6972,
+      "candidateIssueId": 27061,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 141,
+      "sourceIssueReference": "War Of Kings #6",
+      "sourceRangeReference": "War Of Kings #1 To #6",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "War Of Kings",
+      "seriesYear": 2009,
+      "issueNumber": "6",
+      "seriesId": 6972,
+      "candidateIssueId": 27063,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 152,
+      "sourceIssueReference": "Fantastic Four #577",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1998,
+      "issueNumber": "577",
+      "seriesId": 421,
+      "candidateIssueId": 29597,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 153,
+      "sourceIssueReference": "Ff #5",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "FF",
+      "seriesYear": 2011,
+      "issueNumber": "5",
+      "seriesId": 13440,
+      "candidateIssueId": 37402,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 154,
+      "sourceIssueReference": "Ff #6",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "FF",
+      "seriesYear": 2011,
+      "issueNumber": "6",
+      "seriesId": 13440,
+      "candidateIssueId": 37395,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 155,
+      "sourceIssueReference": "Ff #7",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "FF",
+      "seriesYear": 2011,
+      "issueNumber": "7",
+      "seriesId": 13440,
+      "candidateIssueId": 37401,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 156,
+      "sourceIssueReference": "Ff #8",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "FF",
+      "seriesYear": 2011,
+      "issueNumber": "8",
+      "seriesId": 13440,
+      "candidateIssueId": 37397,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 157,
+      "sourceIssueReference": "Ff #9",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "FF",
+      "seriesYear": 2011,
+      "issueNumber": "9",
+      "seriesId": 13440,
+      "candidateIssueId": 38609,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 158,
+      "sourceIssueReference": "Ff #10",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "FF",
+      "seriesYear": 2011,
+      "issueNumber": "10",
+      "seriesId": 13440,
+      "candidateIssueId": 38608,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 159,
+      "sourceIssueReference": "Ff #11",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "FF",
+      "seriesYear": 2011,
+      "issueNumber": "11",
+      "seriesId": 13440,
+      "candidateIssueId": 38607,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 160,
+      "sourceIssueReference": "Fantastic Four #600",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1998,
+      "issueNumber": "600",
+      "seriesId": 421,
+      "candidateIssueId": 37399,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 161,
+      "sourceIssueReference": "Fantastic Four #601",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1998,
+      "issueNumber": "601",
+      "seriesId": 421,
+      "candidateIssueId": 38796,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 162,
+      "sourceIssueReference": "Fantastic Four #602",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1998,
+      "issueNumber": "602",
+      "seriesId": 421,
+      "candidateIssueId": 38795,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 163,
+      "sourceIssueReference": "Fantastic Four #603",
+      "sourceRangeReference": "Fantastic Four #577, Ff #5 To #11, Fantastic Four #600 To #603",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "normalizedSeriesTitle": "Fantastic Four",
+      "seriesYear": 1998,
+      "issueNumber": "603",
+      "seriesId": 421,
+      "candidateIssueId": 38797,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 169,
+      "sourceIssueReference": "New Avengers #1",
+      "sourceRangeReference": "New Avengers #1 To #7",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 16451,
+      "candidateIssueId": 43512,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 170,
+      "sourceIssueReference": "New Avengers #2",
+      "sourceRangeReference": "New Avengers #1 To #7",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 16451,
+      "candidateIssueId": 43516,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 171,
+      "sourceIssueReference": "New Avengers #3",
+      "sourceRangeReference": "New Avengers #1 To #7",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 16451,
+      "candidateIssueId": 43517,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 172,
+      "sourceIssueReference": "New Avengers #4",
+      "sourceRangeReference": "New Avengers #1 To #7",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 16451,
+      "candidateIssueId": 43518,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 173,
+      "sourceIssueReference": "New Avengers #5",
+      "sourceRangeReference": "New Avengers #1 To #7",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "5",
+      "seriesId": 16451,
+      "candidateIssueId": 43519,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 174,
+      "sourceIssueReference": "New Avengers #6",
+      "sourceRangeReference": "New Avengers #1 To #7",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "6",
+      "seriesId": 16451,
+      "candidateIssueId": 43520,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 175,
+      "sourceIssueReference": "New Avengers #7",
+      "sourceRangeReference": "New Avengers #1 To #7",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "7",
+      "seriesId": 16451,
+      "candidateIssueId": 43521,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 178,
+      "sourceIssueReference": "Infinity #1",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Infinity",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 17735,
+      "candidateIssueId": 47120,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 179,
+      "sourceIssueReference": "Infinity #2",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Infinity",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17735,
+      "candidateIssueId": 47123,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 180,
+      "sourceIssueReference": "Infinity #3",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Infinity",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17735,
+      "candidateIssueId": 47124,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 181,
+      "sourceIssueReference": "Infinity #4",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Infinity",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17735,
+      "candidateIssueId": 47125,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 182,
+      "sourceIssueReference": "Infinity #5",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Infinity",
+      "seriesYear": 2013,
+      "issueNumber": "5",
+      "seriesId": 17735,
+      "candidateIssueId": 47126,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 183,
+      "sourceIssueReference": "Infinity #6",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Infinity",
+      "seriesYear": 2013,
+      "issueNumber": "6",
+      "seriesId": 17735,
+      "candidateIssueId": 47127,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 184,
+      "sourceIssueReference": "New Avengers #8",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "8",
+      "seriesId": 16451,
+      "candidateIssueId": 43522,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 185,
+      "sourceIssueReference": "New Avengers #9",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "9",
+      "seriesId": 16451,
+      "candidateIssueId": 43523,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 186,
+      "sourceIssueReference": "New Avengers #10",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "10",
+      "seriesId": 16451,
+      "candidateIssueId": 43524,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 187,
+      "sourceIssueReference": "New Avengers #11",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "11",
+      "seriesId": 16451,
+      "candidateIssueId": 43525,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 188,
+      "sourceIssueReference": "New Avengers #12",
+      "sourceRangeReference": "Infinity #1 To #6, New Avengers #8 To #12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "New Avengers",
+      "seriesYear": 2013,
+      "issueNumber": "12",
+      "seriesId": 16451,
+      "candidateIssueId": 43526,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 194,
+      "sourceIssueReference": "Avengers Assemble 24",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Avengers Assemble",
+      "seriesYear": 2012,
+      "issueNumber": "24",
+      "seriesId": 15373,
+      "candidateIssueId": 48564,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 195,
+      "sourceIssueReference": "Avengers Assemble 25",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Avengers Assemble",
+      "seriesYear": 2012,
+      "issueNumber": "25",
+      "seriesId": 15373,
+      "candidateIssueId": 48565,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 196,
+      "sourceIssueReference": "Inhumanity 1",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhumanity",
+      "seriesYear": 2013,
+      "issueNumber": "1",
+      "seriesId": 18499,
+      "candidateIssueId": 49189,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 197,
+      "sourceIssueReference": "Inhumanity 2",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhumanity",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 18499,
+      "candidateIssueId": 50620,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 201,
+      "sourceIssueReference": "Indestructible Hulk 19",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Indestructible Hulk",
+      "seriesYear": 2012,
+      "issueNumber": "19",
+      "seriesId": 16583,
+      "candidateIssueId": 48654,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 203,
+      "sourceIssueReference": "Iron Man 20",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Iron Man",
+      "seriesYear": 2012,
+      "issueNumber": "20",
+      "seriesId": 16593,
+      "candidateIssueId": 48763,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 206,
+      "sourceIssueReference": "Inhuman #1",
+      "sourceRangeReference": "Inhuman 1-6",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 18065,
+      "candidateIssueId": 47808,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 207,
+      "sourceIssueReference": "Inhuman #2",
+      "sourceRangeReference": "Inhuman 1-6",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "2",
+      "seriesId": 18065,
+      "candidateIssueId": 47810,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 208,
+      "sourceIssueReference": "Inhuman #3",
+      "sourceRangeReference": "Inhuman 1-6",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "3",
+      "seriesId": 18065,
+      "candidateIssueId": 47812,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 209,
+      "sourceIssueReference": "Inhuman #4",
+      "sourceRangeReference": "Inhuman 1-6",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "4",
+      "seriesId": 18065,
+      "candidateIssueId": 47813,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 210,
+      "sourceIssueReference": "Inhuman #5",
+      "sourceRangeReference": "Inhuman 1-6",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "5",
+      "seriesId": 18065,
+      "candidateIssueId": 47814,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 211,
+      "sourceIssueReference": "Inhuman #6",
+      "sourceRangeReference": "Inhuman 1-6",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "6",
+      "seriesId": 18065,
+      "candidateIssueId": 47815,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 216,
+      "sourceIssueReference": "Inhuman #7",
+      "sourceRangeReference": "Inhuman 7-12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "7",
+      "seriesId": 18065,
+      "candidateIssueId": 47816,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 217,
+      "sourceIssueReference": "Inhuman #8",
+      "sourceRangeReference": "Inhuman 7-12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "8",
+      "seriesId": 18065,
+      "candidateIssueId": 47817,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 218,
+      "sourceIssueReference": "Inhuman #9",
+      "sourceRangeReference": "Inhuman 7-12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "9",
+      "seriesId": 18065,
+      "candidateIssueId": 47818,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 219,
+      "sourceIssueReference": "Inhuman #10",
+      "sourceRangeReference": "Inhuman 7-12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "10",
+      "seriesId": 18065,
+      "candidateIssueId": 47819,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 220,
+      "sourceIssueReference": "Inhuman #11",
+      "sourceRangeReference": "Inhuman 7-12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "11",
+      "seriesId": 18065,
+      "candidateIssueId": 47820,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 221,
+      "sourceIssueReference": "Inhuman #12",
+      "sourceRangeReference": "Inhuman 7-12",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "normalizedSeriesTitle": "Inhuman",
+      "seriesYear": 2014,
+      "issueNumber": "12",
+      "seriesId": 18065,
+      "candidateIssueId": 47821,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 224,
+      "sourceIssueReference": "Uncanny Inhumans #0",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 1: Time Crush (Uncanny Inhumans #0 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "0",
+      "seriesId": 19780,
+      "candidateIssueId": 52855,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 225,
+      "sourceIssueReference": "Uncanny Inhumans #1",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 1: Time Crush (Uncanny Inhumans #0 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 19780,
+      "candidateIssueId": 52856,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 226,
+      "sourceIssueReference": "Uncanny Inhumans #2",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 1: Time Crush (Uncanny Inhumans #0 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 19780,
+      "candidateIssueId": 52859,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 227,
+      "sourceIssueReference": "Uncanny Inhumans #3",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 1: Time Crush (Uncanny Inhumans #0 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 19780,
+      "candidateIssueId": 52861,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 228,
+      "sourceIssueReference": "Uncanny Inhumans #4",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 1: Time Crush (Uncanny Inhumans #0 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 19780,
+      "candidateIssueId": 52862,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 229,
+      "sourceIssueReference": "All-New Inhumans #1",
+      "sourceRangeReference": "All-New Inhumans Vol. 1: Global Outreach (All-New Inhumans #1 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20681,
+      "candidateIssueId": 56406,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 230,
+      "sourceIssueReference": "All-New Inhumans #2",
+      "sourceRangeReference": "All-New Inhumans Vol. 1: Global Outreach (All-New Inhumans #1 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20681,
+      "candidateIssueId": 56409,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 231,
+      "sourceIssueReference": "All-New Inhumans #3",
+      "sourceRangeReference": "All-New Inhumans Vol. 1: Global Outreach (All-New Inhumans #1 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20681,
+      "candidateIssueId": 56410,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 232,
+      "sourceIssueReference": "All-New Inhumans #4",
+      "sourceRangeReference": "All-New Inhumans Vol. 1: Global Outreach (All-New Inhumans #1 to #4)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20681,
+      "candidateIssueId": 56411,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 233,
+      "sourceIssueReference": "Karnak #1",
+      "sourceRangeReference": "Karnak Vol. 1: The Flaw in All Things (Karnak #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Karnak",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20258,
+      "candidateIssueId": 54754,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 234,
+      "sourceIssueReference": "Karnak #2",
+      "sourceRangeReference": "Karnak Vol. 1: The Flaw in All Things (Karnak #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Karnak",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20258,
+      "candidateIssueId": 54756,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 235,
+      "sourceIssueReference": "Karnak #3",
+      "sourceRangeReference": "Karnak Vol. 1: The Flaw in All Things (Karnak #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Karnak",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20258,
+      "candidateIssueId": 54758,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 236,
+      "sourceIssueReference": "Karnak #4",
+      "sourceRangeReference": "Karnak Vol. 1: The Flaw in All Things (Karnak #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Karnak",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20258,
+      "candidateIssueId": 54759,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 237,
+      "sourceIssueReference": "Karnak #5",
+      "sourceRangeReference": "Karnak Vol. 1: The Flaw in All Things (Karnak #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Karnak",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20258,
+      "candidateIssueId": 54760,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 238,
+      "sourceIssueReference": "Karnak #6",
+      "sourceRangeReference": "Karnak Vol. 1: The Flaw in All Things (Karnak #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Karnak",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20258,
+      "candidateIssueId": 54761,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 239,
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur #1",
+      "sourceRangeReference": "Moon Girl and Devil Dinosaur Vol. 1: BFF (Moon Girl and Devil Dinosaur #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 20839,
+      "candidateIssueId": 57014,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 240,
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur #2",
+      "sourceRangeReference": "Moon Girl and Devil Dinosaur Vol. 1: BFF (Moon Girl and Devil Dinosaur #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "2",
+      "seriesId": 20839,
+      "candidateIssueId": 57018,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 241,
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur #3",
+      "sourceRangeReference": "Moon Girl and Devil Dinosaur Vol. 1: BFF (Moon Girl and Devil Dinosaur #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "3",
+      "seriesId": 20839,
+      "candidateIssueId": 57019,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 242,
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur #4",
+      "sourceRangeReference": "Moon Girl and Devil Dinosaur Vol. 1: BFF (Moon Girl and Devil Dinosaur #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "4",
+      "seriesId": 20839,
+      "candidateIssueId": 57020,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 243,
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur #5",
+      "sourceRangeReference": "Moon Girl and Devil Dinosaur Vol. 1: BFF (Moon Girl and Devil Dinosaur #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20839,
+      "candidateIssueId": 57021,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 244,
+      "sourceIssueReference": "Moon Girl and Devil Dinosaur #6",
+      "sourceRangeReference": "Moon Girl and Devil Dinosaur Vol. 1: BFF (Moon Girl and Devil Dinosaur #1 to #6)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Moon Girl and Devil Dinosaur",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20839,
+      "candidateIssueId": 57022,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 245,
+      "sourceIssueReference": "Uncanny Inhumans #5",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 2: The Quiet Room (Uncanny Inhumans #5 to #10)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 19780,
+      "candidateIssueId": 52863,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 246,
+      "sourceIssueReference": "Uncanny Inhumans #6",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 2: The Quiet Room (Uncanny Inhumans #5 to #10)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 19780,
+      "candidateIssueId": 52864,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 247,
+      "sourceIssueReference": "Uncanny Inhumans #7",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 2: The Quiet Room (Uncanny Inhumans #5 to #10)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 19780,
+      "candidateIssueId": 52865,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 248,
+      "sourceIssueReference": "Uncanny Inhumans #8",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 2: The Quiet Room (Uncanny Inhumans #5 to #10)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 19780,
+      "candidateIssueId": 52866,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 249,
+      "sourceIssueReference": "Uncanny Inhumans #9",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 2: The Quiet Room (Uncanny Inhumans #5 to #10)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 19780,
+      "candidateIssueId": 52867,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 250,
+      "sourceIssueReference": "Uncanny Inhumans #10",
+      "sourceRangeReference": "Uncanny Inhumans Vol. 2: The Quiet Room (Uncanny Inhumans #5 to #10)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 19780,
+      "candidateIssueId": 52868,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 251,
+      "sourceIssueReference": "All-New Inhumans #5",
+      "sourceRangeReference": "All-New Inhumans Vol. 2: Skyspears (All-New Inhumans #5 to #11)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "5",
+      "seriesId": 20681,
+      "candidateIssueId": 56412,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 252,
+      "sourceIssueReference": "All-New Inhumans #6",
+      "sourceRangeReference": "All-New Inhumans Vol. 2: Skyspears (All-New Inhumans #5 to #11)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "6",
+      "seriesId": 20681,
+      "candidateIssueId": 56413,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 253,
+      "sourceIssueReference": "All-New Inhumans #7",
+      "sourceRangeReference": "All-New Inhumans Vol. 2: Skyspears (All-New Inhumans #5 to #11)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "7",
+      "seriesId": 20681,
+      "candidateIssueId": 56414,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 254,
+      "sourceIssueReference": "All-New Inhumans #8",
+      "sourceRangeReference": "All-New Inhumans Vol. 2: Skyspears (All-New Inhumans #5 to #11)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "8",
+      "seriesId": 20681,
+      "candidateIssueId": 56415,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 255,
+      "sourceIssueReference": "All-New Inhumans #9",
+      "sourceRangeReference": "All-New Inhumans Vol. 2: Skyspears (All-New Inhumans #5 to #11)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "9",
+      "seriesId": 20681,
+      "candidateIssueId": 56416,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 256,
+      "sourceIssueReference": "All-New Inhumans #10",
+      "sourceRangeReference": "All-New Inhumans Vol. 2: Skyspears (All-New Inhumans #5 to #11)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "10",
+      "seriesId": 20681,
+      "candidateIssueId": 56417,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 257,
+      "sourceIssueReference": "All-New Inhumans #11",
+      "sourceRangeReference": "All-New Inhumans Vol. 2: Skyspears (All-New Inhumans #5 to #11)",
+      "sourceGroup": "VI) All-New All-Different Inhumans",
+      "normalizedSeriesTitle": "All-New Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 20681,
+      "candidateIssueId": 56418,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 262,
+      "sourceIssueReference": "Uncanny Inhumans #11",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #11 to #14, Annual #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "11",
+      "seriesId": 19780,
+      "candidateIssueId": 52869,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 263,
+      "sourceIssueReference": "Uncanny Inhumans #12",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #11 to #14, Annual #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "12",
+      "seriesId": 19780,
+      "candidateIssueId": 52870,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 264,
+      "sourceIssueReference": "Uncanny Inhumans #13",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #11 to #14, Annual #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "13",
+      "seriesId": 19780,
+      "candidateIssueId": 55806,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 265,
+      "sourceIssueReference": "Uncanny Inhumans #14",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #11 to #14, Annual #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "14",
+      "seriesId": 19780,
+      "candidateIssueId": 55807,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 266,
+      "sourceIssueReference": "Uncanny Inhumans Annual #1",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #11 to #14, Annual #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans Annual",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 22224,
+      "candidateIssueId": 60337,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 268,
+      "sourceIssueReference": "Uncanny Inhumans #15",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #15 to #20",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "15",
+      "seriesId": 19780,
+      "candidateIssueId": 55808,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 269,
+      "sourceIssueReference": "Uncanny Inhumans #16",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #15 to #20",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "16",
+      "seriesId": 19780,
+      "candidateIssueId": 55809,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 270,
+      "sourceIssueReference": "Uncanny Inhumans #17",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #15 to #20",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "17",
+      "seriesId": 19780,
+      "candidateIssueId": 61107,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 271,
+      "sourceIssueReference": "Uncanny Inhumans #18",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #15 to #20",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "18",
+      "seriesId": 19780,
+      "candidateIssueId": 61108,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 272,
+      "sourceIssueReference": "Uncanny Inhumans #19",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #15 to #20",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "19",
+      "seriesId": 19780,
+      "candidateIssueId": 61109,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 273,
+      "sourceIssueReference": "Uncanny Inhumans #20",
+      "sourceRangeReference": "Collects: Uncanny Inhumans #15 to #20",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "20",
+      "seriesId": 19780,
+      "candidateIssueId": 61110,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 275,
+      "sourceIssueReference": "Royals #1",
+      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23026,
+      "candidateIssueId": 62753,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 276,
+      "sourceIssueReference": "Royals #2",
+      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 23026,
+      "candidateIssueId": 62715,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 277,
+      "sourceIssueReference": "Royals #3",
+      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 23026,
+      "candidateIssueId": 62833,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 278,
+      "sourceIssueReference": "Royals #4",
+      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 23026,
+      "candidateIssueId": 63097,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 279,
+      "sourceIssueReference": "Royals #5",
+      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 23026,
+      "candidateIssueId": 63858,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 282,
+      "sourceIssueReference": "Royals #6",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": 23026,
+      "candidateIssueId": 64215,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 283,
+      "sourceIssueReference": "Royals #7",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "7",
+      "seriesId": 23026,
+      "candidateIssueId": 64600,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 284,
+      "sourceIssueReference": "Royals #8",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "8",
+      "seriesId": 23026,
+      "candidateIssueId": 64599,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 285,
+      "sourceIssueReference": "Royals #9",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23026,
+      "candidateIssueId": 64727,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 286,
+      "sourceIssueReference": "Royals #10",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23026,
+      "candidateIssueId": 65093,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 287,
+      "sourceIssueReference": "Royals #11",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "11",
+      "seriesId": 23026,
+      "candidateIssueId": 65094,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 288,
+      "sourceIssueReference": "Royals #12",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Royals",
+      "seriesYear": 2017,
+      "issueNumber": "12",
+      "seriesId": 23026,
+      "candidateIssueId": 65297,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 306,
+      "sourceIssueReference": "Secret Warriors #1",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23047,
+      "candidateIssueId": 62838,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 307,
+      "sourceIssueReference": "Secret Warriors #2",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 23047,
+      "candidateIssueId": 62839,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 308,
+      "sourceIssueReference": "Secret Warriors #3",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 23047,
+      "candidateIssueId": 63200,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 309,
+      "sourceIssueReference": "Secret Warriors #4",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 23047,
+      "candidateIssueId": 63759,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 310,
+      "sourceIssueReference": "Secret Warriors #5",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 23047,
+      "candidateIssueId": 64286,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 312,
+      "sourceIssueReference": "Secret Warriors #6",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #6 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": 23047,
+      "candidateIssueId": 64577,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 313,
+      "sourceIssueReference": "Secret Warriors #7",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #6 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "7",
+      "seriesId": 23047,
+      "candidateIssueId": 64943,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 314,
+      "sourceIssueReference": "Secret Warriors #8",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #6 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "8",
+      "seriesId": 23047,
+      "candidateIssueId": 65096,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 315,
+      "sourceIssueReference": "Secret Warriors #9",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #6 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23047,
+      "candidateIssueId": 65097,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 316,
+      "sourceIssueReference": "Secret Warriors #10",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #6 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23047,
+      "candidateIssueId": 65299,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 317,
+      "sourceIssueReference": "Secret Warriors #11",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #6 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "11",
+      "seriesId": 23047,
+      "candidateIssueId": 65300,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 318,
+      "sourceIssueReference": "Secret Warriors #12",
+      "sourceRangeReference": "Collects: Secret Warriors (2017) #6 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Secret Warriors",
+      "seriesYear": 2017,
+      "issueNumber": "12",
+      "seriesId": 23047,
+      "candidateIssueId": 65716,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 320,
+      "sourceIssueReference": "Mosaic #1",
+      "sourceRangeReference": "Collects: Mosaic #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "1",
+      "seriesId": 20818,
+      "candidateIssueId": 56935,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 321,
+      "sourceIssueReference": "Mosaic #2",
+      "sourceRangeReference": "Collects: Mosaic #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "2",
+      "seriesId": 20818,
+      "candidateIssueId": 56938,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 322,
+      "sourceIssueReference": "Mosaic #3",
+      "sourceRangeReference": "Collects: Mosaic #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "3",
+      "seriesId": 20818,
+      "candidateIssueId": 56940,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 323,
+      "sourceIssueReference": "Mosaic #4",
+      "sourceRangeReference": "Collects: Mosaic #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "4",
+      "seriesId": 20818,
+      "candidateIssueId": 56941,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 324,
+      "sourceIssueReference": "Mosaic #5",
+      "sourceRangeReference": "Collects: Mosaic #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "5",
+      "seriesId": 20818,
+      "candidateIssueId": 56942,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 326,
+      "sourceIssueReference": "Mosaic #6",
+      "sourceRangeReference": "Collects: Mosaic #6 to #8, Uncanny Inhumans #11",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "6",
+      "seriesId": 20818,
+      "candidateIssueId": 56943,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 327,
+      "sourceIssueReference": "Mosaic #7",
+      "sourceRangeReference": "Collects: Mosaic #6 to #8, Uncanny Inhumans #11",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "7",
+      "seriesId": 20818,
+      "candidateIssueId": 56944,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 328,
+      "sourceIssueReference": "Mosaic #8",
+      "sourceRangeReference": "Collects: Mosaic #6 to #8, Uncanny Inhumans #11",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Mosaic",
+      "seriesYear": 2016,
+      "issueNumber": "8",
+      "seriesId": 20818,
+      "candidateIssueId": 56945,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 331,
+      "sourceIssueReference": "Black Bolt #1",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23121,
+      "candidateIssueId": 63431,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 332,
+      "sourceIssueReference": "Black Bolt #2",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 23121,
+      "candidateIssueId": 63166,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 333,
+      "sourceIssueReference": "Black Bolt #3",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 23121,
+      "candidateIssueId": 63662,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 334,
+      "sourceIssueReference": "Black Bolt #4",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 23121,
+      "candidateIssueId": 64278,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 335,
+      "sourceIssueReference": "Black Bolt #5",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 23121,
+      "candidateIssueId": 64607,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 336,
+      "sourceIssueReference": "Black Bolt #6",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": 23121,
+      "candidateIssueId": 64884,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 337,
+      "sourceIssueReference": "Black Bolt #7",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "7",
+      "seriesId": 23121,
+      "candidateIssueId": 65058,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 338,
+      "sourceIssueReference": "Black Bolt #8",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "8",
+      "seriesId": 23121,
+      "candidateIssueId": 65267,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 339,
+      "sourceIssueReference": "Black Bolt #9",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23121,
+      "candidateIssueId": 65436,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 340,
+      "sourceIssueReference": "Black Bolt #10",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23121,
+      "candidateIssueId": 66268,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 341,
+      "sourceIssueReference": "Black Bolt #11",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "11",
+      "seriesId": 23121,
+      "candidateIssueId": 66533,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 342,
+      "sourceIssueReference": "Black Bolt #12",
+      "sourceRangeReference": "Collects: Black Bolt (2017) #1 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Black Bolt",
+      "seriesYear": 2017,
+      "issueNumber": "12",
+      "seriesId": 23121,
+      "candidateIssueId": 66898,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourcePosition": 344,
+      "sourceIssueReference": "Marvel Universe Avengers: Ultron Revolution #9",
+      "sourceRangeReference": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Universe Avengers: Ultron Revolution",
+      "seriesYear": 2016,
+      "issueNumber": "9",
+      "seriesId": 21698,
+      "candidateIssueId": 59639,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 345,
+      "sourceIssueReference": "Marvel Universe Avengers: Ultron Revolution #10",
+      "sourceRangeReference": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Universe Avengers: Ultron Revolution",
+      "seriesYear": 2016,
+      "issueNumber": "10",
+      "seriesId": 21698,
+      "candidateIssueId": 59640,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 346,
+      "sourceIssueReference": "Marvel Universe Avengers: Ultron Revolution #11",
+      "sourceRangeReference": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Universe Avengers: Ultron Revolution",
+      "seriesYear": 2016,
+      "issueNumber": "11",
+      "seriesId": 21698,
+      "candidateIssueId": 59641,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 347,
+      "sourceIssueReference": "Marvel Universe Avengers: Ultron Revolution #12",
+      "sourceRangeReference": "Collects: Marvel Universe Avengers: Ultron Revolution #9 to #12",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Universe Avengers: Ultron Revolution",
+      "seriesYear": 2016,
+      "issueNumber": "12",
+      "seriesId": 21698,
+      "candidateIssueId": 59642,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 349,
+      "sourceIssueReference": "Death of Inhumans #1",
+      "sourceRangeReference": "Collects: Death of Inhumans #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Death of Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24738,
+      "candidateIssueId": 68250,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 350,
+      "sourceIssueReference": "Death of Inhumans #2",
+      "sourceRangeReference": "Collects: Death of Inhumans #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Death of Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "2",
+      "seriesId": 24738,
+      "candidateIssueId": 68252,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 351,
+      "sourceIssueReference": "Death of Inhumans #3",
+      "sourceRangeReference": "Collects: Death of Inhumans #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Death of Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "3",
+      "seriesId": 24738,
+      "candidateIssueId": 68253,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 352,
+      "sourceIssueReference": "Death of Inhumans #4",
+      "sourceRangeReference": "Collects: Death of Inhumans #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Death of Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "4",
+      "seriesId": 24738,
+      "candidateIssueId": 68254,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourcePosition": 353,
+      "sourceIssueReference": "Death of Inhumans #5",
+      "sourceRangeReference": "Collects: Death of Inhumans #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Death of Inhumans",
+      "seriesYear": 2018,
+      "issueNumber": "5",
+      "seriesId": 24738,
+      "candidateIssueId": 68255,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    }
+  ],
+  "packetDigest": "9f64bff5ac3fb910300f5c96ea976c646fd057a09b4c28e55920cf15b38d49ae"
+}

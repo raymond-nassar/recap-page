@@ -22,6 +22,7 @@ const sharedXMenPage = 'https://www.comicbookherald.com/the-complete-marvel-read
 const laterReviewedIds = new Set([
   'x-men-utopia',
   'guardians-of-the-galaxy-reading-order',
+  'inhumans-reading-order',
 ]);
 
 const EXPECTED_COUNTS = Object.freeze({
@@ -115,7 +116,7 @@ test('batch three preserves the approved source queue and independently verified
     manifest.lists.length - THIRD_PACKET_IDS.length,
   );
   assert.ok(manifest.lists.length >= 66);
-  assert.equal(catalog.lists.length, 244);
+  assert.equal(catalog.lists.length, 245);
 
   const sorted = sortCatalog(parseCatalog(catalog).lists);
   assert.deepEqual(
