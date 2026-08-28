@@ -764,13 +764,35 @@
     "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The 331-occurrence full-page source boundary is exact and yields 268 exact rows, 12 backward repeats, and 51 exclusions. Issue #239 remains the source queue record while the issue rows stay unfrozen against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "new-order",
+    "reason": "The frozen 331-occurrence full-page guide now publishes 245 exact metadata rows and 23 explicit unresolved placeholders, while preserving 12 backward repeats, 51 semantic exclusions, every source position, and every current-library relationship.",
     "sourceRetrievedAt": "2026-08-27",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "agatha-harkness-reading-order",
+      "avengers-defenders-war",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
+      "daredevil-reading-order",
+      "doctor-strange-reading-order",
+      "fantastic-four-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "loki-reading-order",
+      "magneto-reading-order",
+      "moon-knight-reading-order",
+      "punisher-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "scarlet-witch-best-of",
+      "silver-surfer-reading-order",
+      "thanos-reading-order",
+      "thanos-war",
+      "white-tiger-ava-ayala",
+      "xmen-claremont-complete"
+    ],
+    "catalogIds": [
+      "the-defenders-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "The Defenders"
     ],
@@ -780,7 +802,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "a160548ac1308afd403c0338e214f14a33097424e26ec10bfe69425d1ac91c83",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 27,

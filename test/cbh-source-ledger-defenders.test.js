@@ -693,14 +693,17 @@ test('The Defenders inventory row points at the new source evidence', async () =
   assert.equal(record.sourceRetrievedAt, ledger.sourceRetrievedAt);
   assert.equal(record.sourceContentSha256, ledger.sourceBoundary.contentSha256);
   assert.equal(record.sourceBoundaryStatus, 'exact-page-snapshot');
-  assert.equal(record.metadataHorizonStatus, 'blocked-exact-resolution-not-run');
-  assert.equal(record.centralDisposition, 'deferred');
-  assert.equal(record.deliveryStatus, 'not-applicable');
+  assert.equal(record.metadataHorizonStatus, 'approved');
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(record.deliveryStatus, 'shipped');
+  assert.deepEqual(record.catalogIds, ['the-defenders-reading-order']);
+  assert.equal(record.overlapIds.length, 19);
   assert.match(record.reason, /331-occurrence/i);
-  assert.match(record.reason, /268 exact rows/i);
+  assert.match(record.reason, /245 exact metadata rows/i);
+  assert.match(record.reason, /23 explicit unresolved placeholders/i);
   assert.match(record.reason, /12 backward repeats/i);
-  assert.match(record.reason, /51 exclusions/i);
-  assert.match(record.reason, /issue #239/i);
+  assert.match(record.reason, /51 semantic exclusions/i);
+  assert.match(record.reason, /current-library relationship/i);
 });
 
 test('The Defenders source ledger preserves the full boundary and order', async () => {

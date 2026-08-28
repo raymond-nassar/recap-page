@@ -487,7 +487,7 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
-test('the character inventory preserves every central disposition, ships twenty-three spotlights, and prepares five', async () => {
+test('the character inventory preserves every central disposition, ships twenty-four spotlights, and prepares five', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 128);
@@ -498,10 +498,10 @@ test('the character inventory preserves every central disposition, ships twenty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 92);
+  assert.equal(dispositionCounts.deferred, 91);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 28);
+  assert.equal(dispositionCounts['pilot-approved'], 29);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
   assert.deepEqual(shipped.map((record) => record.id), [
@@ -513,6 +513,7 @@ test('the character inventory preserves every central disposition, ships twenty-
     'captain-america-reading-order-modern-marvel-era',
     'daredevil-reading-order',
     'deadpool-reading-order',
+    'the-defenders-reading-order',
     'doctor-strange-reading-order',
     grootCandidateId,
     guardiansCandidateId,
@@ -545,6 +546,10 @@ test('the character inventory preserves every central disposition, ships twenty-
   assert.equal(silverSurfer?.centralDisposition, 'pilot-approved');
   assert.equal(silverSurfer?.deliveryStatus, 'ready');
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
+  assert.deepEqual(shippedById.get('the-defenders-reading-order').catalogIds, [
+    'the-defenders-reading-order',
+  ]);
+  assert.equal(shippedById.get('the-defenders-reading-order').overlapIds.length, 19);
   assert.deepEqual(shippedById.get(moonKnightCandidateId).catalogIds, [moonKnightCandidateId]);
   assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 17);
   assert.deepEqual(shippedById.get('daredevil-reading-order').catalogIds, ['daredevil-reading-order']);
