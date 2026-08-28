@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { ResponseCache } from '../src/js/cache.js';
+import { ACTIVE_DB_NAME, LEGACY_DB_NAME, ResponseCache } from '../src/js/cache.js';
 
 // `src/js/lib/cachePolicy.js` is already covered by `test/cache-reader.test.js`. What was not
 // covered is the class that calls it, because it talks to IndexedDB and IndexedDB is not in Node.
@@ -45,10 +45,22 @@ function settle(fn) {
   queueMicrotask(() => queueMicrotask(fn));
 }
 
-function fakeIndexedDB({ openFails = false, openThrows = false, openBlocked = false, failOps = [], abortOps = [] } = {}) {
+function fakeIndexedDB({
+  openFails = false,
+  openThrows = false,
+  openBlocked = false,
+  deleteFails = false,
+  deleteThrows = false,
+  deleteBlocked = false,
+  failOps = [],
+  abortOps = [],
+} = {}) {
   const stores = new Map();
   const log = [];
+  const openNames = [];
+  const deleteNames = [];
   const failing = new Set(failOps);
+  let pendingDelete = null;
   // Ops whose request succeeds and whose transaction then aborts, which is the shape a commit-time
   // failure takes. Nothing in the request's own callbacks says anything went wrong.
   const aborting = new Set(abortOps);
@@ -97,6 +109,7 @@ function fakeIndexedDB({ openFails = false, openThrows = false, openBlocked = fa
   }
 
   const db = {
+    onversionchange: null,
     objectStoreNames: { contains: (n) => stores.has(n) },
     createObjectStore(name) {
       stores.set(name, new Map());
@@ -108,12 +121,16 @@ function fakeIndexedDB({ openFails = false, openThrows = false, openBlocked = fa
       tx.objectStore = () => storeApi(name, tx);
       return tx;
     },
+    close() {
+      log.push('close');
+    },
   };
 
   const idb = {
-    open() {
+    open(name) {
       if (openThrows) throw new Error('blocked by policy');
       log.push('open');
+      openNames.push(name);
       const req = new FakeRequest();
       req.result = db;
       queueMicrotask(() => {
@@ -124,9 +141,36 @@ function fakeIndexedDB({ openFails = false, openThrows = false, openBlocked = fa
       });
       return req;
     },
+    deleteDatabase(name) {
+      if (deleteThrows) throw new Error('delete blocked by policy');
+      deleteNames.push(name);
+      const req = new FakeRequest();
+      queueMicrotask(() => {
+        if (deleteFails) return req.fail(new Error('delete failed'));
+        if (deleteBlocked) {
+          pendingDelete = req;
+          req.onblocked?.();
+          return;
+        }
+        req.succeed();
+      });
+      return req;
+    },
   };
 
-  return { idb, stores, log };
+  return {
+    idb,
+    stores,
+    log,
+    openNames,
+    deleteNames,
+    triggerVersionchange: () => db.onversionchange?.(),
+    completeDelete: () => {
+      if (!pendingDelete) throw new Error('no blocked deletion is pending');
+      pendingDelete.succeed();
+      pendingDelete = null;
+    },
+  };
 }
 
 // Sets the global for one test and takes it away again, so a test that forgets cannot leave a
@@ -145,14 +189,70 @@ function newCache(over = {}) {
   return new ResponseCache({ baseUrl: 'https://example.test/v1', schemaVersion: 2, ...over });
 }
 
-test('the store is created on first open and reused rather than created again', async () => {
-  await withIdb({}, async ({ stores, log }) => {
+test('the active generation is created on first open and reused rather than created again', async () => {
+  await withIdb({}, async ({ stores, log, openNames }) => {
     const cache = newCache();
     await cache.open();
     assert.equal(stores.has('responses'), true);
     await cache.open();
     assert.equal(log.filter((op) => op === 'open').length, 1, 'the database was opened twice');
+    assert.deepEqual(openNames, [ACTIVE_DB_NAME]);
+    assert.equal(ACTIVE_DB_NAME, 'mrt-cache-v2');
   });
+});
+
+test('a future versionchange closes and retires this cache connection', async () => {
+  await withIdb({}, async ({ log, openNames, triggerVersionchange }) => {
+    const cache = newCache();
+    await cache.open();
+    triggerVersionchange();
+
+    assert.equal(log.filter((op) => op === 'close').length, 1);
+    assert.equal(await cache.open(), null, 'a retired cache instance reopened during a version change');
+    assert.deepEqual(openNames, [ACTIVE_DB_NAME]);
+  });
+});
+
+test('legacy deletion targets only the old database and reports confirmed success', async () => {
+  await withIdb({}, async ({ deleteNames }) => {
+    const result = await newCache().deleteLegacy();
+    assert.deepEqual(result, { status: 'deleted', blocked: false });
+    assert.deepEqual(deleteNames, [LEGACY_DB_NAME]);
+    assert.equal(LEGACY_DB_NAME, 'mrt-cache');
+  });
+});
+
+test('blocked legacy deletion stays pending and reports completion only after the blocker closes', async () => {
+  await withIdb({ deleteBlocked: true }, async ({ completeDelete }) => {
+    let blocked = 0;
+    let settled = false;
+    const pending = newCache().deleteLegacy({ onBlocked: () => { blocked += 1; } })
+      .then((result) => { settled = true; return result; });
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    assert.equal(blocked, 1);
+    assert.equal(settled, false, 'the blocked request was reported as complete');
+
+    completeDelete();
+    assert.deepEqual(await pending, { status: 'deleted', blocked: true });
+  });
+});
+
+test('legacy deletion exposes unavailable, thrown, and request failure states', async () => {
+  assert.deepEqual(await newCache().deleteLegacy(), {
+    status: 'unavailable',
+    blocked: false,
+    error: null,
+  });
+
+  for (const opts of [{ deleteThrows: true }, { deleteFails: true }]) {
+    await withIdb(opts, async () => {
+      const result = await newCache().deleteLegacy();
+      assert.equal(result.status, 'failed');
+      assert.equal(result.blocked, false);
+      assert.match(result.error.message, /delete/);
+    });
+  }
 });
 
 // The four ways opening can fail are four separate branches and each one resolves null rather
@@ -170,6 +270,8 @@ test('a database that refuses to open degrades to no cache rather than an error'
       // "is it empty now" has its answer. Reporting failure here would make the one-time synopsis
       // purge retry on every boot in a browser where it can never succeed.
       assert.equal(await cache.clear(), true);
+      assert.equal(await cache.clear({ requireAccess: true }), false,
+        'authoritative cleanup claimed success without reaching browser storage');
     });
   }
 });

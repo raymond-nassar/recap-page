@@ -37,7 +37,7 @@ Imports say what a file mentions. Ownership says who made the thing and who can 
 is the question a reader of this app actually has, because almost every module here is a bag of
 pure functions and the interesting state sits in five objects that one file constructs.
 
-Those five are built together at `src/js/main.js:87-102`. Read that block and you have read the
+Those five are built together at `src/js/main.js:88-103`. Read that block and you have read the
 application's wiring.
 
 ```mermaid
@@ -95,7 +95,7 @@ view layer itself created and can throw away.
 
 **Two of the five are replaceable at runtime, and they are replaced together.** Saving a new API
 base builds a fresh cache and a fresh client and hands the new client to the hydrator, at
-`src/js/main.js:5669-5671`. The hydrator itself is not rebuilt; only its reference to the client is
+`src/js/main.js:5731-5733`. The hydrator itself is not rebuilt; only its reference to the client is
 swapped. The rate limiter is deliberately not rebuilt either, because the budget it tracks belongs
 to the reader's connection rather than to whichever base URL is configured. The store is never
 replaced at all.
@@ -154,14 +154,14 @@ sequenceDiagram
 The parts of that worth saying in words.
 
 **The transform is pure and the store is the only writer.** The button's handler at
-`src/js/main.js:3131-3145` hands the store a function; the function itself, at
+`src/js/main.js:3193-3207` hands the store a function; the function itself, at
 `src/js/lib/model.js:653-655`, returns a new state and touches nothing. Everything that decides
 whether a write happened, whether it stuck, and what the screen shows next lives in one method,
 `src/js/storage.js:372-399`.
 
 **The repaint is synchronous, and it is inside the write.** By the time `update` returns, the
 change callback has already run and the screen already shows the result. That is why the
-announcement can be gated on the outcome: `src/js/main.js:351-353` speaks only if the write
+announcement can be gated on the outcome: `src/js/main.js:352-354` speaks only if the write
 actually stuck, so a screen reader never hears "marked read" for a row that has already reverted.
 
 **A failed write repaints too.** The rollback path calls the same callback with the previous state,
@@ -169,13 +169,13 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Repainting everything does not mean rebuilding everything.** The callback repaints all seven
-surfaces, the six screens plus the blocked banner, at `src/js/main.js:5996-6017`, but the reading
+surfaces, the six screens plus the blocked banner, at `src/js/main.js:6073-6094`, but the reading
 order compares each row against a cache key built from the whole item and reuses the node when
 nothing about it changed, and the full order
 is skipped entirely while its container is closed. Focus is captured before a rebuild and restored
-by identity afterwards, at `src/js/main.js:3026`, which is what keeps the keyboard where the reader
+by identity afterwards, at `src/js/main.js:3088`, which is what keeps the keyboard where the reader
 left it. The row list is committed by moving nodes rather than replacing the container, at
-`src/js/main.js:2914-2922`.
+`src/js/main.js:2976-2984`.
 
 **Background work uses the same door.** Hydration writes each fetched issue through the same
 `update` call, at `src/js/hydrate.js:59`, so a metadata fill arriving while the reader is reading
@@ -191,19 +191,19 @@ chosen overwrite.
 **Long series and creator adds are pagewise transactions.** The API delivers each normalized page
 before it requests the next one, while still returning the complete array to callers that need it,
 at `src/js/api.js:193-230`. The view gives each form its own run owner, at
-`src/js/main.js:3659-3759`. The first nonempty page creates and fills its list inside one Store
-update, and every later completed page uses the same boundary, at `src/js/main.js:3616-3657` and
-`src/js/main.js:3771-3798`. Cancelling retires that owner before aborting its request, so a response
+`src/js/main.js:3721-3821`. The first nonempty page creates and fills its list inside one Store
+update, and every later completed page uses the same boundary, at `src/js/main.js:3678-3719` and
+`src/js/main.js:3833-3860`. Cancelling retires that owner before aborting its request, so a response
 that arrives late cannot write into a replacement run. The active notice carries the Cancel action;
 when that action disappears while focused, the matching search field receives focus, at
-`src/js/main.js:3838-3869`. A stop before the first page creates no list, while every page already
+`src/js/main.js:3900-3931`. A stop before the first page creates no list, while every page already
 saved remains available after a reload.
 
 ## Where a reader's data lives
 
 This is the question the product promise turns on, and the answer is more than one key. The store
-declares four at `src/js/storage.js:11-14`, the view layer writes two more of its own at
-`src/js/main.js:56-57`, and the response cache is not in `localStorage` at all.
+declares four at `src/js/storage.js:11-14`, the view layer writes three more of its own at
+`src/js/main.js:56-58`, and the response cache is not in `localStorage` at all.
 
 Two of the extra keys belong to restoring a backup, which is a path where nothing has gone wrong.
 One belongs to a failed read, which is a path where something has. Collapsing those into a single
@@ -214,8 +214,10 @@ flowchart TD
   subgraph ordinary["Ordinary saving"]
     change["any change the reader makes"] --> live["mrt.state.v2"]
     prefs["cover art, theme, API base, chosen filter"] --> settings["mrt.settings"]
+    purge["completed cache cleanup generation"] --> marker["mrt.cache-purge.v1"]
     rail["collapsing the sidebar"] --> sidebar["sidebar.collapsed"]
-    meta["metadata fetched from the API"] --> idb["IndexedDB database mrt-cache, store responses"]
+    meta["metadata fetched from the API"] --> idb["IndexedDB database mrt-cache-v2, store responses"]
+    old["metadata cached by older code"] --> legacy["legacy IndexedDB database mrt-cache, retired when no old tab keeps it open"]
   end
 
   subgraph bootpath["Boot, and the one path where something has gone wrong"]
@@ -251,11 +253,12 @@ Every name the app writes, and why it exists:
 | `mrt.state.prerestore` | the same restore, one line later | the reader's erase, and `rewindSnapshot()` at `src/js/storage.js:670-687`, in two of its four routes | The snapshot that makes a restore undoable, read back by `src/js/storage.js:689-706`. It outlives a reload, and `startFresh()` deliberately leaves it, because the undo it leaves standing still hands the reader's lists back. A restore that succeeds replaces it. A restore that fails takes one of four routes. It puts back an earlier snapshot it read, so the undo that earlier restore earned survives. It empties the slot when there was no earlier snapshot to put back. It empties the slot when the browser refuses to put one back, rather than leave an offer to swap in what is already on screen. And when the slot could not be read at all it is left alone, still holding the copy this restore minted a moment earlier, which `undoRestore()` then declines because it matches the saved data. Erasing everything is the only route that removes a snapshot still worth having, because only that dialog promises the data behind it is gone. |
 | `mrt.state.salvage` | a failed read, and only when the slot is empty or already holds the same bytes | the reader, from Backup and settings | A copy of data that could not be read, kept because saving is paused and the original must not be overwritten. |
 | `mrt.state.salvage.TIMESTAMP` | a failed read when the slot already holds a different incident, at `src/js/storage.js:175-181` | the reader, from Backup and settings | So a second corruption months later cannot clobber the copy taken for the first one. A `.N` is appended when that name is taken too, which one boot can reach on its own, because starting fresh salvages before it clears. |
-| `mrt.settings` | the settings form, the cover art switch, the theme control and the reading filter, at `src/js/main.js:703` | nothing | Preferences, not data. Deliberately outside the state so a settings write can never fail a progress write. |
-| `sidebar.collapsed` | the sidebar toggle, at `src/js/main.js:1051` | nothing | Whether the rail is collapsed. Wrapped in its own try, because losing it is not worth an error. |
+| `mrt.settings` | the settings form, the cover art switch, the theme control and the reading filter, at `src/js/main.js:712-720` | nothing | Preferences, not data. Deliberately outside the state so a settings write can never fail a progress write. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
+| `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:681-690` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. |
+| `sidebar.collapsed` | the sidebar toggle, at `src/js/main.js:1113` | nothing | Whether the rail is collapsed. Wrapped in its own try, because losing it is not worth an error. |
 
-Seven names in all: six fixed, and one family whose suffix is the moment it was written. Two of the
-seven belong to the view layer rather than to the store, which is why an enumeration taken from the
+Eight names in all: seven fixed, and one family whose suffix is the moment it was written. Three of
+the eight belong to the view layer rather than to the store, which is why an enumeration taken from the
 storage module alone would have found four.
 
 The two salvage rows are the only ones whose Cleared by column names a person choosing that copy in
@@ -287,9 +290,11 @@ removing the only other record of it.
 
 Three things around the edges of that table.
 
-**The response cache is somewhere else on purpose.** Cached metadata lives in IndexedDB, in a
-database named at `src/js/cache.js:9-11`, so it cannot compete for quota with the reader's
-progress. That separation is the reason the app is pinned to one origin: the comment at
+**The response cache is somewhere else on purpose.** Current cached metadata lives in IndexedDB
+database `mrt-cache-v2`, named at `src/js/cache.js:9-12`, so it cannot compete for quota with the
+reader's progress. Older code can keep writing only to the separate legacy `mrt-cache` database.
+Current code requests its deletion at startup and during manual clearing, but reports partial cleanup
+while an older tab keeps that deletion blocked. That separation is the reason the app is pinned to one origin: the comment at
 `src/js/cache.js:3-5` records that IndexedDB is restricted on `file://` origins and that
 `file://`, `localhost` and `127.0.0.1` are three separate storage buckets, and the server binds one
 of them at `server.mjs:14-16`.
@@ -347,8 +352,8 @@ file does now. What the layer owns does not change, and BL-042's own second task
 store wiring in one place, so the single arrow from the view layer to the store is something that
 item is committed to preserving rather than something this drawing assumes.
 
-**The persistence diagram survives.** Every key keeps its name and its writer keeps its reason. Two
-of the seven are written by the view layer, so the split moves the line of code that writes them
+**The persistence diagram survives.** Every key keeps its name and its writer keeps its reason. Three
+of the eight are written by the view layer, so the split moves the line of code that writes them
 without changing what is written or when. The one citation in the table that would need re-aiming
 is the one that names a line in the view file, which is a citation problem rather than a drawing
 problem.

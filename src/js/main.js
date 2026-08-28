@@ -54,6 +54,7 @@ import {
 } from './lib/saveEducation.js';
 
 const SETTINGS_KEY = 'mrt.settings';
+export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 const SIDEBAR_KEY = 'sidebar.collapsed';
 const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const SHELF_SIZE = 8;
@@ -633,11 +634,6 @@ function loadSettings() {
       // which is why a value of the wrong type is passed through rather than coerced: coercing it
       // would produce something a radio matches, and the repair would never fire.
       filter: raw.filter === undefined ? 'all' : raw.filter,
-      // How far the one-time cache purges have got. An integer rather than a boolean so a later
-      // purge for a different reason can be added without a second field, and so a settings file
-      // written by a newer build downgrades safely: an unreadable or absent value reads as 0, which
-      // means "purge again", and purging twice costs a slower first session rather than data.
-      cachePurge: purgeMarkOf(raw),
       updateChecks: raw.updateChecks !== false,
       updateCheckedAt: updateCheckedAtOf(raw),
       updateSeenVersion: normaliseReleaseVersion(raw.updateSeenVersion) ?? '',
@@ -649,7 +645,6 @@ function loadSettings() {
       covers: true,
       theme: DEFAULT_THEME,
       filter: 'all',
-      cachePurge: 0,
       updateChecks: true,
       updateCheckedAt: 0,
       updateSeenVersion: '',
@@ -658,28 +653,45 @@ function loadSettings() {
   }
 }
 
-// The purge marker as stored, or 0. Kept apart from loadSettings because saveSettings reads it too,
-// from storage rather than from memory, and for a reason that is not obvious: `settings` is loaded
-// once at boot and never re-read, so a tab left open since before the purge holds a snapshot with
-// the marker at 0. Its next unrelated write, a theme toggle or a cover toggle, would send that 0
-// back over the marker the other tab had just written, and the purge would run again on every boot
-// for as long as that tab stayed open.
-function purgeMarkOf(raw) {
-  const n = Number(raw?.cachePurge);
-  return Number.isInteger(n) && n > 0 ? n : 0;
+function purgeMarkOf(value) {
+  const n = Number(value);
+  return Number.isSafeInteger(n) && n > 0 ? n : 0;
+}
+
+function legacyPurgeMark(raw) {
+  if (typeof raw !== 'string' || raw === '') return 0;
+  try {
+    return purgeMarkOf(JSON.parse(raw)?.cachePurge);
+  } catch (err) {
+    if (err instanceof SyntaxError) return 0;
+    throw err;
+  }
+}
+
+function cachePurgeMarks(storage) {
+  const dedicated = purgeMarkOf(storage.getItem(CACHE_PURGE_KEY));
+  const legacy = legacyPurgeMark(storage.getItem(SETTINGS_KEY));
+  return { dedicated, legacy, maximum: Math.max(dedicated, legacy) };
+}
+
+export function cachePurgeMark(storage = globalThis.localStorage) {
+  return cachePurgeMarks(storage).maximum;
+}
+
+export function writeCachePurgeMark(storage = globalThis.localStorage, marker) {
+  const marks = cachePurgeMarks(storage);
+  const next = Math.max(marks.maximum, purgeMarkOf(marker));
+  if (marks.dedicated >= next) return next;
+  storage.setItem(CACHE_PURGE_KEY, String(next));
+  if (purgeMarkOf(storage.getItem(CACHE_PURGE_KEY)) < next) {
+    throw new Error('The cache cleanup marker write could not be verified.');
+  }
+  return next;
 }
 
 function updateCheckedAtOf(raw) {
   const n = Number(raw?.updateCheckedAt);
   return Number.isFinite(n) && n > 0 ? n : 0;
-}
-
-function storedPurgeMark() {
-  try {
-    return purgeMarkOf(JSON.parse(localStorage.getItem(SETTINGS_KEY) || '{}'));
-  } catch {
-    return 0;
-  }
 }
 
 function saveSettings() {
@@ -692,9 +704,6 @@ function saveSettings() {
   // instead, unrecoverably and without saying so: the settings field already shows the fallback,
   // so there would be nothing left on screen holding the old value.
   const apiBase = settings.rejectedApiBase ?? settings.apiBase;
-  // Merged rather than written from this tab's snapshot. See purgeMarkOf.
-  const cachePurge = Math.max(settings.cachePurge ?? 0, storedPurgeMark());
-  settings.cachePurge = cachePurge;
   const updateCheckedAt = updateCheckedAtOf(settings);
   settings.updateCheckedAt = updateCheckedAt;
   const updateSeenVersion = normaliseReleaseVersion(settings.updateSeenVersion) ?? '';
@@ -705,7 +714,6 @@ function saveSettings() {
       covers: settings.covers,
       theme: settings.theme,
       filter: settings.filter,
-      cachePurge,
       updateChecks: settings.updateChecks !== false,
       updateCheckedAt,
       updateSeenVersion,
@@ -726,23 +734,77 @@ const CACHE_PURGE_VERSION = 1;
 // clear now leaves the marker alone and the next boot tries again.
 export async function purgeStaleCache(cacheRef, marker, current = CACHE_PURGE_VERSION) {
   if (marker >= current) return { ran: false, cleared: false };
-  const cleared = await cacheRef.clear();
+  const cleared = await cacheRef.clear({ requireAccess: true });
   return { ran: true, cleared };
 }
 
+export async function clearCacheGenerations(cacheRef, { onLegacyBlocked = () => {} } = {}) {
+  const activeCleared = await cacheRef.clear({ requireAccess: true });
+  const legacy = await cacheRef.deleteLegacy({
+    onBlocked: () => onLegacyBlocked({ activeCleared }),
+  });
+  return { activeCleared, legacy };
+}
+
+export async function maintainCacheGeneration(
+  cacheRef,
+  marker,
+  current = CACHE_PURGE_VERSION,
+  { onActiveSettled = () => {}, onLegacyBlocked = () => {} } = {},
+) {
+  const purge = await purgeStaleCache(cacheRef, marker, current);
+  const activeCleared = !purge.ran || purge.cleared;
+  onActiveSettled({ ran: purge.ran, activeCleared });
+  const legacy = await cacheRef.deleteLegacy({
+    onBlocked: () => onLegacyBlocked({ activeCleared }),
+  });
+  return { ran: purge.ran, activeCleared, legacy };
+}
+
+function cleanupFailureMessage(result) {
+  const failures = [];
+  if (!result.activeCleared) failures.push('Cached metadata used by this version could not be cleared.');
+  if (result.legacy.status === 'unavailable') {
+    failures.push('Older cached metadata could not be checked because browser storage is unavailable.');
+  } else if (result.legacy.status === 'failed') {
+    failures.push(`Older cached metadata could not be removed (${result.legacy.error?.message ?? 'unknown error'}).`);
+  }
+  return failures.join(' ');
+}
+
+function reportBlockedLegacyCleanup({ activeCleared }) {
+  notify(
+    '#cache-report',
+    activeCleared
+      ? 'Cached metadata used by this version is clear. Close other tabs running an older version to finish removing their separate cached metadata.'
+      : 'Cached metadata used by this version could not be cleared, and an older tab is also delaying removal of its separate cached metadata.',
+    'warn',
+  );
+}
+
 async function runCachePurge() {
-  const { ran, cleared } = await purgeStaleCache(cache, settings.cachePurge ?? 0);
-  if (!ran) return;
+  const marker = cachePurgeMark(localStorage);
+  const result = await maintainCacheGeneration(cache, marker, CACHE_PURGE_VERSION, {
+    onActiveSettled: ({ ran }) => {
+      if (ran) store.persist();
+    },
+    onLegacyBlocked: reportBlockedLegacyCleanup,
+  });
   // The same argument as the cache, one storage layer over. normalizeIssue drops a saved synopsis
   // when the state is read, but load() does not write back, so the prose stays in mrt.state.v2 until
   // some unrelated edit happens to rewrite it. For a reader who marks something read that is the
   // next click; for one who opens the app, looks at it and closes it, it is never. One forced write
   // closes the gap, and a blocked store refuses it, which is what should happen while it is holding
   // a salvage copy of data it could not read.
-  store.persist();
-  if (!cleared) return;
-  settings.cachePurge = CACHE_PURGE_VERSION;
-  saveSettings();
+  const cleanupFailure = cleanupFailureMessage(result);
+  if (cleanupFailure) {
+    notify('#cache-report', `${cleanupFailure} The app will try again next time.`, 'warn');
+    return;
+  }
+  writeCachePurgeMark(localStorage, Math.max(marker, CACHE_PURGE_VERSION));
+  if (result.legacy.blocked) {
+    notify('#cache-report', 'Older cached metadata was removed after the other tab closed.', 'ok');
+  }
   refreshCacheUsage();
 }
 
@@ -5687,9 +5749,24 @@ function wireData() {
   });
 
   $('#btn-clear-cache').addEventListener('click', async () => {
-    await cache.clear();
-    await refreshCacheUsage();
-    notify('#cache-report', 'Cached metadata cleared. Lists and reading progress are untouched.', 'ok');
+    const button = $('#btn-clear-cache');
+    button.disabled = true;
+    try {
+      const result = await clearCacheGenerations(cache, {
+        onLegacyBlocked: reportBlockedLegacyCleanup,
+      });
+      await refreshCacheUsage();
+      const failure = cleanupFailureMessage(result);
+      notify(
+        '#cache-report',
+        failure || 'Cached metadata cleared. Lists and reading progress are untouched.',
+        failure ? 'warn' : 'ok',
+      );
+    } catch (err) {
+      notify('#cache-report', `Cached metadata could not be cleared (${err?.message ?? err}).`, 'error');
+    } finally {
+      button.disabled = false;
+    }
   });
 
   $('#btn-wipe').addEventListener('click', async () => {
@@ -6076,7 +6153,13 @@ export function boot() {
   checkHealth();
   refreshCacheUsage();
   // After the first render, because it is slow, it is not urgent, and nothing on screen waits on it.
-  runCachePurge();
+  void runCachePurge().catch((err) => {
+    notify(
+      '#cache-report',
+      `Cache cleanup could not be completed (${err?.message ?? err}). The app will try again next time.`,
+      'error',
+    );
+  });
 
   // Nothing reports store.lastError here. Every writer of it calls onChange in the same step, and
   // that callback already notifies #save-report, so a line here can only repeat what is on screen.
