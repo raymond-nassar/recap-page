@@ -13,6 +13,22 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Added a local x64 Microsoft Store package proof
+
+In plain English: Recap Page can now be built as a Windows package that starts from the Start menu,
+opens the same browser address, and leaves saved progress in the same browser profile. The existing
+public Windows ZIP is unchanged, and this package is not a Store download yet.
+
+The local proof preserved a read marker, the exact loopback address, visible port-conflict guidance,
+and an update from one package generation to the next. The final installed package journey still
+needs an administrator-approved local certificate prompt, and ARM64, certification, Store
+validation, upload, and publication remain pending.
+
+For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 versions `2.0.0.0`
+and `2.0.0.1`. The package uses the exact Partner Center identity and a 5,632-byte console launcher
+compiled by the Windows inbox .NET Framework compiler. All generated packages, runtimes, assets,
+certificates, and proof output remain ignored.
+
 ### Credited community Reading List guides
 
 In plain English: About now thanks the two community sites whose guides were used to compile many

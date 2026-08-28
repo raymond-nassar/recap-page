@@ -29,6 +29,8 @@
     "vendor:index": "node scripts/vendor-index.mjs",
     "icons": "node scripts/build-icons.mjs",
     "pack": "node scripts/pack-windows.mjs",
+    "msix:pack": "node scripts/pack-msix.mjs",
+    "msix:prove": "node scripts/msix-proof.mjs",
     "browser": "node scripts/browser-check.mjs",
     "browser:prove": "node scripts/browser-check.mjs --prove",
     "upgrade": "node scripts/upgrade-check.mjs",

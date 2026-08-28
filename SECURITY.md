@@ -5,7 +5,7 @@
 Recap Page is a static site served by a small loopback server on your own machine. There is no
 hosted backend to attack, no account to take over and no database holding anyone else's data. The
 app has no runtime dependencies at all, so nothing in `package.json` reaches the browser. Everything
-it declares is development tooling: the four packages listed at `package.json:40-44` are the linter
+it declares is development tooling: the four packages listed at `package.json:43-47` are the linter
 and the three packages its configuration needs, and they run only on a maintainer's machine and in
 CI. Your reading progress lives in one browser storage key and never leaves the machine it was made
 on.
@@ -146,3 +146,23 @@ Recorded so a report can start from what is true rather than from what a scanner
 - Every claim of the form `path:line` in every tracked file is fingerprinted against the lines it
   names, so documentation that has drifted from the code fails the build rather than misleading a
   reader.
+
+## Windows package boundary
+
+The x64 MSIX proof declares `runFullTrust` for one reason: its console launcher starts the bundled
+Node runtime, which binds the existing server to `127.0.0.1:8787` and opens the external default
+browser. The launcher performs no network request and does not read browser storage.
+
+The package adds no analytics or telemetry. Package Support Framework was evaluated and rejected
+because Microsoft's NuGet binaries may collect usage telemetry when Windows diagnostic collection
+is enabled. The selected launcher is built from maintained source by the .NET Framework compiler
+included with Windows.
+
+Local package signing uses a generated self-signed certificate only for the proof machine. The
+private PFX and random password are deleted after packaging. The public certificate must be trusted
+with administrator approval before local install and removed by exact thumbprint after the proof.
+No certificate, password, package, runtime download, or generated asset belongs in git.
+
+Package files are read-only and hold no durable reader data. Lists, notes, settings, overrides, and
+read markers remain in the browser profile at the exact loopback origin. The dedicated
+[privacy policy](PRIVACY.md) owns the complete reader-facing disclosure.

@@ -177,4 +177,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   await main();
 }
 
-export { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe };
+export { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, fetchRuntime };

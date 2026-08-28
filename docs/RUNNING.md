@@ -204,3 +204,18 @@ never deleted.
 [The support guide](../SUPPORT.md) explains what to include in a report and which problems belong to
 Marvel or the metadata service. A suspected security problem must follow
 [the security policy](../SECURITY.md) and must not be opened as a public issue.
+
+## Microsoft Store package status
+
+Recap Page is not available from the Microsoft Store yet. The current public Windows download
+remains the ZIP described at the start of this guide.
+
+An x64 MSIX proof now launches from Start, starts the same local server, and opens the same browser
+address. Its loose-layout checks preserved existing browser-profile progress and visible busy-port
+guidance. Full package install and update evidence still needs an administrator-approved local
+certificate trust step. ARM64, certification, Store validation, upload, and publication remain
+pending.
+
+Installing or uninstalling the future package does not move or remove browser-owned progress. The
+same address and browser profile remain the storage location. See the
+[Microsoft Store package guide](MICROSOFT_STORE.md) for the maintainer proof status.
