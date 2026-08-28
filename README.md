@@ -6,12 +6,13 @@ Recap Page turns long comic events and character runs into clear reading session
 reading order, follow it issue by issue, and keep your place without creating an account.
 Everything runs locally in your browser.
 
-It does not include comics, bypass a subscription, or replace Marvel Unlimited. When you press
-**Read**, it opens the official Marvel reader in a new tab. You need your own Marvel Unlimited
-subscription to read the issues.
+It does not include comics, bypass a subscription, or replace Marvel Unlimited. When a direct
+Marvel Unlimited link is available, **Read** opens the official reader in a new tab. Otherwise the
+new tab looks up that link and falls back to the issue's official page on marvel.com when none can
+be resolved. You need your own subscription to read included issues.
 
-![Recap Page empty Home asking where to start and offering its recommended modern event path,
-with cover art off](docs/screenshots/home-1280.png)
+![Recap Page Home recommending Setup to Modern Timeline and showing Reading Paths among its discovery
+choices with cover art off](docs/screenshots/home-1280.png)
 
 ![Avengers Disassembled open at the first issue with no progress marked and cover art
 off](docs/screenshots/avengers-disassembled-reading-1280.png)
@@ -24,9 +25,10 @@ off](docs/screenshots/avengers-disassembled-reading-1280.png)
   progress stay visible.
 - **Read your way.** Choose an issue, mark anything read or unread, add notes, or track a custom
   issue outside the curated catalog.
-- **Move through a whole universe.** Follow connected reading paths and jump between related orders
-  without losing context.
-- **Find anything quickly.** Search orders, series, and creators from the sidebar.
+- **Move through a whole universe.** Open Reading Paths from Home or Browse, choose a journey, and
+  see every stop in order with progress from the matching list, another imported version, or **Not added**.
+- **Find anything quickly.** Search curated Reading Lists under Browse, or find issues, series, and
+  creators under Add comics.
 - **Keep control of availability.** Scheduled, expected, unknown, and both explicit override states
   remain distinct.
 - **Protect your progress.** Export a backup whenever you like and restore it on the same or another
@@ -44,15 +46,19 @@ Reading state, notes, settings, overrides, and custom entries stay in your brows
 Recap Page makes a small number of direct requests so it can show live information:
 
 - When the app starts, it asks the comics database whether the service is reachable.
-- Searching for an issue sends its ID to the comics database and downloads metadata.
+- Searching for an issue sends the words you typed to the comics database and downloads matching
+  metadata.
 - Adding a series or creator asks the comics database for every issue in that run.
 - Cover images load from Marvel's own image servers unless cover art is switched off.
+- Pressing **Read** opens Marvel Unlimited directly when the reader link is known. Otherwise the new
+  tab asks the comics database for that link and falls back to the issue page on marvel.com.
 - Those requests reveal which issues you are looking at to the service receiving them.
-- The hand-entry cover lookup sends the title you typed to the Marvel Fandom wiki only when you press
-  **Check Marvel Fandom**.
+- The hand-entry title lookup sends the title you typed to the Marvel Fandom wiki only when you press
+  **Look up on Marvel Fandom**. It does not fetch a cover.
 - The app can ask GitHub for the latest release number once a day. That check is optional.
 
-Recap Page stores cover URLs only. It never hosts, proxies, caches, or stores comic image bytes.
+Recap Page stores cover URLs only. It never hosts, proxies, or writes comic image bytes to storage
+it controls. The browser may manage its ordinary web cache when it loads an image from Marvel.
 
 ## Run it on your computer
 
@@ -93,9 +99,9 @@ Your progress belongs to that exact browser address, not to the folder you repla
 `127.0.0.1:8787` in the same browser profile keeps it in place.
 
 The app checks GitHub once a day for a newer version number and never installs updates
-automatically. Automatic checks can be switched off. Export a backup before any major-version
-upgrade; in this project, a major version means an older build cannot read data written by the
-newer one.
+automatically. Automatic checks can be switched off. Major versions mark a substantial new
+generation of the app and are also required for any saved-data change an older build cannot read.
+The release notes state whether progress remains compatible. Export a backup before upgrading.
 
 ## Learn more
 

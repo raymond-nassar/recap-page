@@ -39,3 +39,8 @@ test('the packages the policy calls lint tooling are all it declares', () => {
   assert.equal(dev.length, 4, `devDependencies are now ${dev.length}: ${dev.join(', ')}`);
   assert.match(policy, /the four packages listed at/);
 });
+
+test('security fixes target the default branch and latest release without backports', () => {
+  assert.match(policy, /default branch and the latest published release/);
+  assert.match(policy, /fixes are not backported/);
+});

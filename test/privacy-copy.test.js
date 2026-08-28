@@ -127,6 +127,18 @@ const REQUESTS = [
     /adding[^.;]*(?:series|creator)[^.;]*(?:asks|sends|requests)[^.;]*every issue/i,
   ],
   [
+    'opening a reader resolves a missing reader link',
+    /(?:otherwise the (?:new|launch)\s+tab|opening an issue)[^.]*?(?:asks|may ask)[^.]*(?:metadata (?:API|service)|comics database)[^.]*(?:reader link|that link)/i,
+  ],
+  [
+    'reader launch names both Marvel destinations',
+    /(?:pressing (?:\*\*)?Read(?:\*\*)?|opening an issue)[\s\S]{0,300}(?:Marvel Unlimited|Marvel's reader)[\s\S]{0,300}marvel\.com/i,
+  ],
+  [
+    'the optional update check contacts GitHub',
+    /GitHub[^.]*latest\s+(?:release|version)\s+number/i,
+  ],
+  [
     'the requests disclose which issues',
     /(?:sees?|reveals?|discloses?)[^.]*(?:which issues|issues you are looking at|issue numbers)/i,
   ],

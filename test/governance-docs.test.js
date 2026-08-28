@@ -111,8 +111,18 @@ test('the maintainer browser instructions match the runner interface', () => {
   assert.deepEqual([...documented].sort(), ['MRT_EDGE', 'MRT_PUPPETEER']);
   for (const name of documented) assert.ok(supported.has(name), `${name} is not read by the browser runner`);
   assert.match(section, /--only=<scenario-name>/);
-  assert.doesNotMatch(section, /--scenario|127\.0\.0\.1:8787/);
+  assert.doesNotMatch(section, /--scenario/);
   assert.match(section, /ephemeral port/);
+  const fixedPortExpression = /const port = \[([^\]]+)\]\.includes\(only\) \? DEFAULT_PORT : 0;/
+    .exec(browserRunner);
+  assert.ok(fixedPortExpression, 'the browser runner no longer exposes its fixed-port exceptions');
+  const fixedPortScenarios = [...fixedPortExpression[1].matchAll(/'([^']+)'/g)]
+    .map((match) => match[1]);
+  assert.ok(fixedPortScenarios.length > 0, 'the fixed-port exception list is empty');
+  for (const scenario of fixedPortScenarios) {
+    assert.match(section, new RegExp(`\`${scenario}\``), `${scenario} is not documented as a fixed-port run`);
+  }
+  assert.match(section, /127\.0\.0\.1:8787/);
   assert.doesNotMatch(flat['docs/MAINTAINING.md'], /pull request also runs the browser journeys/);
 });
 
@@ -120,8 +130,8 @@ test('the maintainer upgrade instructions match the historical runner contract',
   const section = /## Run the upgrade check([\s\S]*?)## Review pinned GitHub Actions/.exec(text['docs/MAINTAINING.md'])?.[1] ?? '';
 
   assert.ok(section, 'the maintainer guide has no upgrade-check section');
-  assert.match(upgradeRunner, /OLD_REF\s*=\s*'v1\.2\.0'/);
-  assert.match(section, /v1\.2\.0/);
+  assert.match(upgradeRunner, /OLD_REF\s*=\s*'v1\.4\.0'/);
+  assert.match(section, /v1\.4\.0/);
   assert.match(section, /local Git history/);
   assert.doesNotMatch(section, /fixture|--scenario|single scenario/i);
 });
@@ -195,6 +205,18 @@ test('active workflow instructions route future work through Issues, not the his
   assert.doesNotMatch(governance, /Anything a reader or a maintainer would notice/);
   assert.match(paletteRunner, /Issue that owns the correction/);
   assert.doesNotMatch(paletteRunner, /BL-065 backlog block/);
+});
+
+test('feature implementation instructions bound multiplicative validation work', () => {
+  assert.match(copilotInstructions, /Plan a bounded test matrix before changing a feature/);
+  assert.match(copilotInstructions, /Calculate the command cardinality before starting/);
+  assert.match(copilotInstructions, /default ceiling is three mutations/);
+  assert.match(copilotInstructions, /each mutation runs only against the scenario it is aimed at/);
+  assert.match(copilotInstructions, /Never run the Cartesian matrix.*without explicit owner approval/);
+  assert.match(copilotInstructions, /full ordinary browser suite once/);
+  assert.match(copilotInstructions, /full repository gates once before exact-head review/);
+  assert.match(copilotInstructions, /Read-only research, inspection, and validation can run in parallel/);
+  assert.match(copilotInstructions, /touches a shared file.*stay serial/);
 });
 
 test('a concern about the maintainer has a route that does not go through them', () => {

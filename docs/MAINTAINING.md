@@ -100,40 +100,46 @@ The runner launches installed Edge by default and can use an explicit executable
 MRT_EDGE=/absolute/path/to/browser npm run browser
 ```
 
-The check serves the app on an ephemeral port, uses an isolated profile, stubs the catalog network
-before the page loads, and exits nonzero on a failed journey. The port keeps the reading progress at
-the standard app address untouched. Each journey prints its own assertion and timing totals.
+The check normally serves the app on an ephemeral port, uses an isolated profile, stubs the catalog
+network before the page loads, and exits nonzero on a failed journey. The temporary port keeps the
+reading progress at the standard app address untouched. The targeted `cache-generations`,
+`catalog-gaps`, and `reading-paths` journeys are the exceptions because their contracts require
+`http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
+Stop the normal app server before any targeted run so the runner can bind that port. Each journey
+prints its own assertion and timing totals.
 
 ### Prove the browser check detects failures
 
 The proof runner introduces a reversible fault for one journey at a time:
 
 ```text
-npm run browser:prove
-```
-
-It expects the chosen journey to fail for the intended reason, restores the original source, and
-runs that journey again to prove it passes. The full proof run covers every journey.
-
-For a faster local loop:
-
-```text
 npm run browser:prove -- --only=<scenario-name>
 ```
 
+Plan a bounded proof matrix before running it. Default to no more than three mutations, each aimed
+only at the scenario that should detect that changed behavior.
+
+Each run expects that journey to fail for the intended reason, restores the original source, and
+runs the same journey again to prove it passes.
+Never run the all-mutations, all-scenarios matrix
+without explicit owner approval; calculate its command
+cardinality first.
+
 ## Run the upgrade check
 
-The upgrade runner reconstructs the v1.2.0 app from local Git history, runs that historical build,
+The upgrade runner reconstructs the v1.4.0 app from local Git history, runs that historical build,
 and then replaces its folder with the current candidate at the same browser address:
 
 ```text
 npm run upgrade
 ```
 
-The historical server and complete source tree come directly from the local v1.2.0 tag, byte for
+The historical server and complete source tree come directly from the local v1.4.0 tag, byte for
 byte and without a network request. A missing tag or unreadable Git object fails as a prerequisite
 instead of falling back to current source. The old build imports an order and marks one issue read;
 the current build must preserve the order, issue sequence, read marker, and visible nonzero progress.
+Run it only after the candidate version has been bumped: if both builds report 1.4.0, the runner
+stops before opening Edge because it cannot prove that the folder swap loaded the candidate.
 
 ### Prove the upgrade check detects failures
 
@@ -148,8 +154,9 @@ normal runner to pass. The upgrade proof has no single-scenario selector.
 
 ## Review pinned GitHub Actions
 
-The workflow pins each third-party action to a full commit SHA and keeps the release ZIP checksum
-available as a build artifact. Before changing a pin:
+The workflow pins each third-party action to a full commit SHA. It runs deterministic repository
+checks only; the Windows release archive and its checksum are built and reviewed during release
+preparation rather than uploaded from CI. Before changing a pin:
 
 1. Open the action repository's release page.
 2. Confirm the release tag and immutable commit SHA.
@@ -519,8 +526,8 @@ from an unmerged branch commit.
 
 ### 1. Finalize the release record
 
-Move the current changelog entries under a dated version heading. Keep the release notes
-benefit-led and link to the full changelog.
+Move the current changelog entries under a version heading. Keep the release notes benefit-led and
+link to the full changelog.
 
 Update all three version sources together:
 
@@ -529,15 +536,21 @@ npm version <major|minor|patch> --no-git-tag-version
 ```
 
 The npm version lifecycle updates the browser version constant in the same operation. Confirm all
-three values agree and the stored-data schema is still correct. A major version is required when an
-older build cannot read data written by the new build.
+three values agree and the stored-data schema is still correct. Use a major version for a
+substantial new product generation. A major version is also required whenever an older build cannot
+read data written by the new build, but a product-generation release may preserve the existing
+schema. Use a minor version for features within the current generation and a patch for behavior
+fixes that intentionally change neither data nor interface.
 
 ### 2. Run release validation
 
-Repeat the seven deterministic gates from the start of this guide, then run the live contract,
-browser, upgrade, and package checks:
+Repeat the seven deterministic gates from the start of this guide. Fetch the current remote state,
+run the remote publication-surface gate, then run the live contract, browser, upgrade, and package
+checks:
 
 ```text
+git fetch --prune
+npm run publication:surface
 npm run contract
 npm run browser
 npm run upgrade
@@ -584,3 +597,28 @@ Confirm:
 
 Do not delete or move an existing release tag. Correct the release record without changing what the
 tag names.
+
+## Maintain runtime Reading Paths
+
+Treat the parsed generated catalog as the browser's authority for Reading Paths. Ordinary path
+declarations live in `src/data/curated-lists.json`, while a reviewed chapter partition can emit
+another path through `scripts/lib/chapter-orders.mjs`. Reading only the manifest would therefore
+drop a valid generated path. After vendoring, validate the resolved set with:
+
+```text
+node --test test/reading-path.test.js test/modern-timeline.test.js
+```
+
+The aggregate Reading paths screen and shelf badges answer different questions. The aggregate model
+keeps every path independently, including a future story shared by more than one path. Shelf
+placement intentionally keeps the first path for one stable badge. Do not reuse the shelf placement
+map to build the complete screen.
+
+The route has one path-specific query, `path=<validated-id>`. A selection belongs to browser history,
+not saved state or the reading filter. Preserve the requested id while the catalog loads, reject
+stale render continuations, and canonically replace a missing or invalid id after resolution.
+
+Progress for each stop must continue to prefer the exact imported catalog id, then the first imported
+sibling in catalog order, then **Not added**. State replacement from another tab and whole-origin
+clearing update only those progress labels; rebuilding the selector would discard its DOM identity
+and keyboard focus.

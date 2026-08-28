@@ -16,10 +16,11 @@ If you only want to read comics with the app, you do not need any of this. Start
 ## What this project is trying to be
 
 A local-first companion to Marvel Unlimited that keeps your place in long reading orders. It has no
-accounts, no server, no analytics and nothing uploaded anywhere. Your reading progress lives in one
-key in your own browser, and there is no copy of it anywhere else, which is the promise the whole
-design is arranged around and also the reason a defect in saving or restoring it is treated as the
-most serious kind of bug this project can have.
+accounts, no hosted backend, no analytics and nothing uploaded anywhere. A small loopback server
+serves the static files on your own machine. Your reading progress lives in one key in your own
+browser, and there is no copy of it anywhere else, which is the promise the whole design is arranged
+around and also the reason a defect in saving or restoring it is treated as the most serious kind of
+bug this project can have.
 
 ## What will be declined, and why
 
@@ -44,9 +45,10 @@ built, so it is worth checking against the list before you spend an evening on i
 - **Emulating the Marvel Unlimited app.** That was measured and closed, and
   [the reasons](docs/WHY_A_BROWSER_APP.md) are hardware findings rather than preferences.
 
-Comics published after 2025 have no cover and no details, because the metadata snapshot ends there.
-That is a documented boundary with a manual entry form inside the app as its mitigation, not a
-defect to fix.
+The bundled metadata snapshot ends in 2025. A later comic therefore starts with no bundled cover or
+details, and the manual entry form is the mitigation: when the reader explicitly asks, it can look
+up factual details on Marvel Fandom and can preserve a pasted Marvel Unlimited reader link. The
+snapshot boundary itself is not a defect to fix.
 
 ## Before you write anything
 

@@ -61,16 +61,19 @@ avoid.
 
 ## Releases
 
-Versions follow the rule set out in [`src/js/lib/version.js`](src/js/lib/version.js): a major bump
-means a build older than this one cannot read data saved by it. That is a stronger meaning than the
-usual one, and it is chosen because reading progress lives only in the reader's own browser, so
-there is no server-side migration to save anybody.
+Versions follow the rule set out in [`src/js/lib/version.js`](src/js/lib/version.js). A major bump
+marks a substantial new product generation: a coherent change in what the app enables or how a
+reader experiences it, not merely a count of unrelated additions. A major bump is also mandatory
+when stored data changes in a way an older build cannot read. The second rule protects progress
+that lives only in the reader's browser; it is a lower bound on major releases, not their only
+purpose.
 
 The maintainer decides when to cut one. The mechanics are in
-[Cutting a release](docs/MAINTAINING.md#cutting-a-release). One step is not automated on purpose:
-`npm run contract` calls the live metadata API and is deliberately outside CI, because it would
-fail builds for reasons unrelated to the change under test, so it is run by hand before a release
-is trusted.
+[Cutting a release](docs/MAINTAINING.md#cutting-a-release). CI owns the deterministic repository
+gates. Release preparation separately exercises the live metadata contract, installed-browser
+journeys, upgrade compatibility, Windows package, and remote publication surface. Those checks
+depend on a network, installed software, local Git history, or the remote repository, so they do
+not pretend to be ordinary CI coverage.
 
 ## Moderation
 
