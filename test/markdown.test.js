@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   parseChecklist, parseTitleList, serializeChecklist, issueIdFromUrl,
-  digitalIdFromUrl, isSafeMarvelUrl, normalizeTitle, resolveUniqueExact, stripInlineMarkdown,
+  digitalIdFromUrl, readerIssueId, isSafeMarvelUrl, normalizeTitle, resolveUniqueExact, stripInlineMarkdown,
 } from '../src/js/lib/markdown.js';
 
 test('parses the upstream checklist format', () => {
@@ -162,6 +162,53 @@ test('digitalIdFromUrl stops at the twelve digits the launcher will accept', () 
   assert.equal(digitalIdFromUrl('https://read.marvel.com/#/book/1234567890123456'), null);
 });
 
+test('reader book ids map into a stable reserved issue range', () => {
+  const first = readerIssueId(1);
+  const second = readerIssueId(2);
+  const last = readerIssueId(999999999999);
+
+  assert.equal(first, 1 - Number.MAX_SAFE_INTEGER);
+  assert.equal(second, 2 - Number.MAX_SAFE_INTEGER);
+  assert.equal(last, 999999999999 - Number.MAX_SAFE_INTEGER);
+  assert.ok(Number.isSafeInteger(first));
+  assert.ok(Number.isSafeInteger(last));
+  assert.ok(first < -Date.now(), 'reader identities must stay below clock-based manual identities');
+  assert.notEqual(first, second, 'distinct book ids must remain distinct');
+  for (const bad of [null, 0, -1, 1.5, 1000000000000, Number.MAX_SAFE_INTEGER, 'nope']) {
+    assert.equal(readerIssueId(bad), null, `${String(bad)} must not enter the reserved range`);
+  }
+});
+
+test('reader checklist links resolve with stable identity and no stored detail URL', () => {
+  const input = [
+    '- [x] [Future One](https://read.marvel.com/#/book/129648/page/4)',
+    '- [ ] [Future Two](http://read.marvel.com/#/book/1067)',
+    '- [ ] [Future One Again](https://read.marvel.com/#/book/129648)',
+  ].join('\n');
+  const first = parseChecklist(input);
+  const second = parseChecklist(input);
+
+  assert.equal(first.unresolved.length, 0);
+  assert.deepEqual(
+    first.entries.map((entry) => ({
+      issueId: entry.issueId,
+      digitalId: entry.digitalId,
+      url: entry.url,
+      read: entry.read,
+    })),
+    [
+      { issueId: readerIssueId(129648), digitalId: 129648, url: null, read: true },
+      { issueId: readerIssueId(1067), digitalId: 1067, url: null, read: false },
+      { issueId: readerIssueId(129648), digitalId: 129648, url: null, read: false },
+    ],
+  );
+  assert.deepEqual(
+    second.entries.map((entry) => entry.issueId),
+    first.entries.map((entry) => entry.issueId),
+    'repeated imports must present the same ids to model deduplication',
+  );
+});
+
 test('isSafeMarvelUrl rejects other hosts and dangerous schemes', () => {
   assert.ok(isSafeMarvelUrl('https://www.marvel.com/comics/issue/1/x'));
   assert.ok(isSafeMarvelUrl('https://read.marvel.com/#/book/123'));
@@ -181,6 +228,47 @@ test('serialize then parse is lossless for id, title and read state', () => {
     entries.map((e) => ({ issueId: e.issueId, title: e.title, read: e.read })),
     items.map((i) => ({ issueId: i.issueId, title: i.title, read: i.read })),
   );
+});
+
+test('reader entries round-trip through a canonical URL with read and section state', () => {
+  const digitalId = 129648;
+  const issueId = readerIssueId(digitalId);
+  const md = serializeChecklist({
+    name: 'Future issues',
+    items: [{
+      issueId,
+      digitalId,
+      title: 'All-New Spider-Gwen: The Ghost-Spider (2026) #9',
+      url: 'https://www.marvel.com/comics/issue/999/wrong',
+      read: true,
+      collectedIn: 'Ghost-Spider',
+    }],
+  });
+
+  assert.match(md, /\(https:\/\/read\.marvel\.com\/#\/book\/129648\)/);
+  assert.doesNotMatch(md, /comics\/issue\/999/, 'canonical reader export must outrank a stray detail URL');
+  const { entries, unresolved } = parseChecklist(md);
+  assert.equal(unresolved.length, 0);
+  assert.deepEqual(entries, [{
+    issueId,
+    title: 'All-New Spider-Gwen: The Ghost-Spider (2026) #9',
+    url: null,
+    read: true,
+    index: 0,
+    section: 'Ghost-Spider',
+    digitalId,
+  }]);
+});
+
+test('a provider issue carrying a digital id keeps its positive issue identity', () => {
+  const md = serializeChecklist({
+    name: 'Provider issue',
+    items: [{ issueId: 52447, digitalId: 38164, title: 'Secret Wars #1', url: null, read: false }],
+  });
+
+  assert.match(md, /https:\/\/www\.marvel\.com\/comics\/issue\/52447\//);
+  assert.doesNotMatch(md, /read\.marvel\.com/);
+  assert.equal(parseChecklist(md).entries[0].issueId, 52447);
 });
 
 test('serializer escapes brackets so titles cannot break the link syntax', () => {
