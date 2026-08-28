@@ -237,6 +237,36 @@ test('three queued legacy writes cannot roll current state back through middle e
   assert.equal(durable.read[3], true, 'the current edit between queued events was lost');
 });
 
+test('queued legacy lineage preserves a current list and read mark before the last event', () => {
+  const legacyRaw = (id, title) => JSON.stringify({
+    ...createEmptyState(),
+    issues: { [id]: { issueId: id, title, description: `${title} synopsis.` } },
+  });
+  const first = legacyRaw(1, 'One');
+  const middle = legacyRaw(2, 'Two');
+  const latest = legacyRaw(3, 'Three');
+  const storage = fakeStorage({ [KEY]: first });
+  const readerStore = new Store({ storage });
+  readerStore.load();
+  dispatchStorageEvent({ key: KEY, newValue: first }, { readerStore });
+
+  storage.setItem(KEY, middle);
+  storage.setItem(KEY, latest);
+  dispatchStorageEvent({ key: KEY, newValue: middle }, { readerStore });
+  readerStore.update((state) => {
+    const created = createList(state, { name: 'Current tab list' });
+    return markRead(created, 3, true);
+  });
+  dispatchStorageEvent({ key: KEY, newValue: latest }, { readerStore });
+
+  const durable = JSON.parse(storage.getItem(KEY));
+  assert.equal(durable.issues[3].title, 'Three');
+  assert.ok(durable.read[3]);
+  assert.equal(durable.lists[durable.listOrder[0]].name, 'Current tab list');
+  assert.equal(readerStore.state.lists[readerStore.state.listOrder[0]].name, 'Current tab list');
+  assert.equal(readerStore.lastError, null);
+});
+
 // ----------------------------------------------------------------------------- whole-state routes
 
 test('an erase in another tab is adopted rather than written back over', () => {
