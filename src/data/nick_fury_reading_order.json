@@ -1,0 +1,6829 @@
+{
+  "id": "nick-fury-reading-order",
+  "name": "Nick Fury and S.H.I.E.L.D.",
+  "description": "A source-ordered guide to Nick Fury and S.H.I.E.L.D. stories, from wartime missions through modern espionage.",
+  "source": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+  "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+  "sourceLicense": null,
+  "generatedAt": "2026-08-28T02:42:59.318Z",
+  "apiBase": "https://marvel.emreparker.com/v1",
+  "count": 272,
+  "collections": 43,
+  "placeholders": 194,
+  "unresolved": [
+    {
+      "title": "Marvel Spotlight (1971) #31",
+      "url": null,
+      "read": false,
+      "index": 0,
+      "section": "Marvel Spotlight (1971) #31"
+    },
+    {
+      "title": "Sgt. Fury #44",
+      "url": null,
+      "read": false,
+      "index": 44,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #45",
+      "url": null,
+      "read": false,
+      "index": 45,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #46",
+      "url": null,
+      "read": false,
+      "index": 46,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #47",
+      "url": null,
+      "read": false,
+      "index": 47,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #48",
+      "url": null,
+      "read": false,
+      "index": 48,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #49",
+      "url": null,
+      "read": false,
+      "index": 49,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #50",
+      "url": null,
+      "read": false,
+      "index": 50,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #51",
+      "url": null,
+      "read": false,
+      "index": 51,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #52",
+      "url": null,
+      "read": false,
+      "index": 52,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #53",
+      "url": null,
+      "read": false,
+      "index": 53,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #54",
+      "url": null,
+      "read": false,
+      "index": 54,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #55",
+      "url": null,
+      "read": false,
+      "index": 55,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #56",
+      "url": null,
+      "read": false,
+      "index": 56,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #57",
+      "url": null,
+      "read": false,
+      "index": 57,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #58",
+      "url": null,
+      "read": false,
+      "index": 58,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #59",
+      "url": null,
+      "read": false,
+      "index": 59,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #60",
+      "url": null,
+      "read": false,
+      "index": 60,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #61",
+      "url": null,
+      "read": false,
+      "index": 61,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury #62",
+      "url": null,
+      "read": false,
+      "index": 62,
+      "section": "issue #33 to #62"
+    },
+    {
+      "title": "Sgt. Fury Annual #3",
+      "url": null,
+      "read": false,
+      "index": 63,
+      "section": "Sgt. Fury Annual #3"
+    },
+    {
+      "title": "Captain Savage (1967) #1",
+      "url": null,
+      "read": false,
+      "index": 64,
+      "section": "Captain Savage (1967) #1"
+    },
+    {
+      "title": "Sgt. Fury #63",
+      "url": null,
+      "read": false,
+      "index": 65,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #64",
+      "url": null,
+      "read": false,
+      "index": 66,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #65",
+      "url": null,
+      "read": false,
+      "index": 67,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #66",
+      "url": null,
+      "read": false,
+      "index": 68,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #67",
+      "url": null,
+      "read": false,
+      "index": 69,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #68",
+      "url": null,
+      "read": false,
+      "index": 70,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #69",
+      "url": null,
+      "read": false,
+      "index": 71,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #70",
+      "url": null,
+      "read": false,
+      "index": 72,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #71",
+      "url": null,
+      "read": false,
+      "index": 73,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #72",
+      "url": null,
+      "read": false,
+      "index": 74,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #73",
+      "url": null,
+      "read": false,
+      "index": 75,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #74",
+      "url": null,
+      "read": false,
+      "index": 76,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #75",
+      "url": null,
+      "read": false,
+      "index": 77,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #76",
+      "url": null,
+      "read": false,
+      "index": 78,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #77",
+      "url": null,
+      "read": false,
+      "index": 79,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #78",
+      "url": null,
+      "read": false,
+      "index": 80,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #79",
+      "url": null,
+      "read": false,
+      "index": 81,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #80",
+      "url": null,
+      "read": false,
+      "index": 82,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #81",
+      "url": null,
+      "read": false,
+      "index": 83,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #82",
+      "url": null,
+      "read": false,
+      "index": 84,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #83",
+      "url": null,
+      "read": false,
+      "index": 85,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #84",
+      "url": null,
+      "read": false,
+      "index": 86,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #85",
+      "url": null,
+      "read": false,
+      "index": 87,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #86",
+      "url": null,
+      "read": false,
+      "index": 88,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #87",
+      "url": null,
+      "read": false,
+      "index": 89,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #88",
+      "url": null,
+      "read": false,
+      "index": 90,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #89",
+      "url": null,
+      "read": false,
+      "index": 91,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #90",
+      "url": null,
+      "read": false,
+      "index": 92,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #91",
+      "url": null,
+      "read": false,
+      "index": 93,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #92",
+      "url": null,
+      "read": false,
+      "index": 94,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #93",
+      "url": null,
+      "read": false,
+      "index": 95,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #94",
+      "url": null,
+      "read": false,
+      "index": 96,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #95",
+      "url": null,
+      "read": false,
+      "index": 97,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #96",
+      "url": null,
+      "read": false,
+      "index": 98,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #97",
+      "url": null,
+      "read": false,
+      "index": 99,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #98",
+      "url": null,
+      "read": false,
+      "index": 100,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #99",
+      "url": null,
+      "read": false,
+      "index": 101,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #100",
+      "url": null,
+      "read": false,
+      "index": 102,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #101",
+      "url": null,
+      "read": false,
+      "index": 103,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #102",
+      "url": null,
+      "read": false,
+      "index": 104,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #103",
+      "url": null,
+      "read": false,
+      "index": 105,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #104",
+      "url": null,
+      "read": false,
+      "index": 106,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #105",
+      "url": null,
+      "read": false,
+      "index": 107,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #106",
+      "url": null,
+      "read": false,
+      "index": 108,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #107",
+      "url": null,
+      "read": false,
+      "index": 109,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #108",
+      "url": null,
+      "read": false,
+      "index": 110,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #109",
+      "url": null,
+      "read": false,
+      "index": 111,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #110",
+      "url": null,
+      "read": false,
+      "index": 112,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #111",
+      "url": null,
+      "read": false,
+      "index": 113,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #112",
+      "url": null,
+      "read": false,
+      "index": 114,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #113",
+      "url": null,
+      "read": false,
+      "index": 115,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #114",
+      "url": null,
+      "read": false,
+      "index": 116,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #115",
+      "url": null,
+      "read": false,
+      "index": 117,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #116",
+      "url": null,
+      "read": false,
+      "index": 118,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #117",
+      "url": null,
+      "read": false,
+      "index": 119,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #118",
+      "url": null,
+      "read": false,
+      "index": 120,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #119",
+      "url": null,
+      "read": false,
+      "index": 121,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Sgt. Fury #120",
+      "url": null,
+      "read": false,
+      "index": 122,
+      "section": "issue #63 to #120"
+    },
+    {
+      "title": "Marvel Holiday Special 1993",
+      "url": null,
+      "read": false,
+      "index": 126,
+      "section": "Marvel Holiday Special 1993"
+    },
+    {
+      "title": "Captain America/Nick Fury: The Other World War",
+      "url": null,
+      "read": false,
+      "index": 127,
+      "section": "Captain America/Nick Fury: The Other World War"
+    },
+    {
+      "title": "2009?s Sgt. Fury and His Howling Commandos one-shot",
+      "url": null,
+      "read": false,
+      "index": 128,
+      "section": "2009?s Sgt. Fury and His Howling Commandos one-shot"
+    },
+    {
+      "title": "Nick Fury vs SHIELD #1",
+      "url": null,
+      "read": false,
+      "index": 129,
+      "section": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "title": "Nick Fury vs SHIELD #2",
+      "url": null,
+      "read": false,
+      "index": 130,
+      "section": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "title": "Nick Fury vs SHIELD #3",
+      "url": null,
+      "read": false,
+      "index": 131,
+      "section": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "title": "Nick Fury vs SHIELD #4",
+      "url": null,
+      "read": false,
+      "index": 132,
+      "section": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "title": "Nick Fury vs SHIELD #5",
+      "url": null,
+      "read": false,
+      "index": 133,
+      "section": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "title": "Nick Fury vs SHIELD #6",
+      "url": null,
+      "read": false,
+      "index": 134,
+      "section": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #1",
+      "url": null,
+      "read": false,
+      "index": 135,
+      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #2",
+      "url": null,
+      "read": false,
+      "index": 136,
+      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #3",
+      "url": null,
+      "read": false,
+      "index": 137,
+      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #4",
+      "url": null,
+      "read": false,
+      "index": 138,
+      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #5",
+      "url": null,
+      "read": false,
+      "index": 139,
+      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #6",
+      "url": null,
+      "read": false,
+      "index": 140,
+      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "title": "Fury one-shot",
+      "url": null,
+      "read": false,
+      "index": 141,
+      "section": "Fury one-shot"
+    },
+    {
+      "title": "Marvel Two-In-One #26",
+      "url": null,
+      "read": false,
+      "index": 145,
+      "section": "Marvel Two-In-One (1974) #26-27"
+    },
+    {
+      "title": "Marvel Two-In-One #27",
+      "url": null,
+      "read": false,
+      "index": 146,
+      "section": "Marvel Two-In-One (1974) #26-27"
+    },
+    {
+      "title": "Hulk Comic UK #1",
+      "url": null,
+      "read": false,
+      "index": 147,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #2",
+      "url": null,
+      "read": false,
+      "index": 148,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #3",
+      "url": null,
+      "read": false,
+      "index": 149,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #4",
+      "url": null,
+      "read": false,
+      "index": 150,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #5",
+      "url": null,
+      "read": false,
+      "index": 151,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #6",
+      "url": null,
+      "read": false,
+      "index": 152,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #7",
+      "url": null,
+      "read": false,
+      "index": 153,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #8",
+      "url": null,
+      "read": false,
+      "index": 154,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #9",
+      "url": null,
+      "read": false,
+      "index": 155,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #10",
+      "url": null,
+      "read": false,
+      "index": 156,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #11",
+      "url": null,
+      "read": false,
+      "index": 157,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #12",
+      "url": null,
+      "read": false,
+      "index": 158,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #13",
+      "url": null,
+      "read": false,
+      "index": 159,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #14",
+      "url": null,
+      "read": false,
+      "index": 160,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #15",
+      "url": null,
+      "read": false,
+      "index": 161,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #16",
+      "url": null,
+      "read": false,
+      "index": 162,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #17",
+      "url": null,
+      "read": false,
+      "index": 163,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #18",
+      "url": null,
+      "read": false,
+      "index": 164,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Hulk Comic UK #19",
+      "url": null,
+      "read": false,
+      "index": 165,
+      "section": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "title": "Marvel Two-In-One #51",
+      "url": null,
+      "read": false,
+      "index": 166,
+      "section": "Marvel Two-In-One #51"
+    },
+    {
+      "title": "Marvel Team-Up #139",
+      "url": null,
+      "read": false,
+      "index": 171,
+      "section": "Marvel Team-Up #139"
+    },
+    {
+      "title": "Wolverine/Nick Fury: The Scorpio Connection",
+      "url": null,
+      "read": false,
+      "index": 172,
+      "section": "Wolverine/Nick Fury: The Scorpio Connection"
+    },
+    {
+      "title": "Fury (1994) #1",
+      "url": null,
+      "read": false,
+      "index": 173,
+      "section": "Fury (1994) #1"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #7",
+      "url": null,
+      "read": false,
+      "index": 174,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #8",
+      "url": null,
+      "read": false,
+      "index": 175,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #9",
+      "url": null,
+      "read": false,
+      "index": 176,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #10",
+      "url": null,
+      "read": false,
+      "index": 177,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #11",
+      "url": null,
+      "read": false,
+      "index": 178,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #12",
+      "url": null,
+      "read": false,
+      "index": 179,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #13",
+      "url": null,
+      "read": false,
+      "index": 180,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #14",
+      "url": null,
+      "read": false,
+      "index": 181,
+      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #15",
+      "url": null,
+      "read": false,
+      "index": 182,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #16",
+      "url": null,
+      "read": false,
+      "index": 183,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #17",
+      "url": null,
+      "read": false,
+      "index": 184,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #18",
+      "url": null,
+      "read": false,
+      "index": 185,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #19",
+      "url": null,
+      "read": false,
+      "index": 186,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #20",
+      "url": null,
+      "read": false,
+      "index": 187,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #21",
+      "url": null,
+      "read": false,
+      "index": 188,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #22",
+      "url": null,
+      "read": false,
+      "index": 189,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #23",
+      "url": null,
+      "read": false,
+      "index": 190,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #24",
+      "url": null,
+      "read": false,
+      "index": 191,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #25",
+      "url": null,
+      "read": false,
+      "index": 192,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #26",
+      "url": null,
+      "read": false,
+      "index": 193,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #27",
+      "url": null,
+      "read": false,
+      "index": 194,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #28",
+      "url": null,
+      "read": false,
+      "index": 195,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #29",
+      "url": null,
+      "read": false,
+      "index": 196,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #30",
+      "url": null,
+      "read": false,
+      "index": 197,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #31",
+      "url": null,
+      "read": false,
+      "index": 198,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #32",
+      "url": null,
+      "read": false,
+      "index": 199,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #33",
+      "url": null,
+      "read": false,
+      "index": 200,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #34",
+      "url": null,
+      "read": false,
+      "index": 201,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #35",
+      "url": null,
+      "read": false,
+      "index": 202,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #36",
+      "url": null,
+      "read": false,
+      "index": 203,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #37",
+      "url": null,
+      "read": false,
+      "index": 204,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #38",
+      "url": null,
+      "read": false,
+      "index": 205,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #39",
+      "url": null,
+      "read": false,
+      "index": 206,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #40",
+      "url": null,
+      "read": false,
+      "index": 207,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #41",
+      "url": null,
+      "read": false,
+      "index": 208,
+      "section": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "title": "Fury of SHIELD",
+      "url": null,
+      "read": false,
+      "index": 213,
+      "section": "Fury of SHIELD"
+    },
+    {
+      "title": "Fury/Agent 13",
+      "url": null,
+      "read": false,
+      "index": 214,
+      "section": "Fury/Agent 13"
+    },
+    {
+      "title": "Secret War: From the Files of Nick Fury",
+      "url": null,
+      "read": false,
+      "index": 220,
+      "section": "Secret War: From the Files of Nick Fury"
+    },
+    {
+      "title": "Mighty Avengers (2007) #12",
+      "url": null,
+      "read": false,
+      "index": 221,
+      "section": "Mighty Avengers (2007) #12"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #42",
+      "url": null,
+      "read": false,
+      "index": 222,
+      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #43",
+      "url": null,
+      "read": false,
+      "index": 223,
+      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #44",
+      "url": null,
+      "read": false,
+      "index": 224,
+      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #45",
+      "url": null,
+      "read": false,
+      "index": 225,
+      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #46",
+      "url": null,
+      "read": false,
+      "index": 226,
+      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "title": "Nick Fury: Agent of SHIELD #47",
+      "url": null,
+      "read": false,
+      "index": 227,
+      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "title": "Fury of SHIELD #1",
+      "url": null,
+      "read": false,
+      "index": 228,
+      "section": "Fury of SHIELD #1-4"
+    },
+    {
+      "title": "Fury of SHIELD #2",
+      "url": null,
+      "read": false,
+      "index": 229,
+      "section": "Fury of SHIELD #1-4"
+    },
+    {
+      "title": "Fury of SHIELD #3",
+      "url": null,
+      "read": false,
+      "index": 230,
+      "section": "Fury of SHIELD #1-4"
+    },
+    {
+      "title": "Fury of SHIELD #4",
+      "url": null,
+      "read": false,
+      "index": 231,
+      "section": "Fury of SHIELD #1-4"
+    },
+    {
+      "title": "Fury/Agent 13 #1",
+      "url": null,
+      "read": false,
+      "index": 232,
+      "section": "Fury/Agent 13 #1-2"
+    },
+    {
+      "title": "Fury/Agent 13 #2",
+      "url": null,
+      "read": false,
+      "index": 233,
+      "section": "Fury/Agent 13 #1-2"
+    },
+    {
+      "title": "Fury #1",
+      "url": null,
+      "read": false,
+      "index": 234,
+      "section": "Fury (2001) #1-6"
+    },
+    {
+      "title": "Fury #2",
+      "url": null,
+      "read": false,
+      "index": 235,
+      "section": "Fury (2001) #1-6"
+    },
+    {
+      "title": "Fury #3",
+      "url": null,
+      "read": false,
+      "index": 236,
+      "section": "Fury (2001) #1-6"
+    },
+    {
+      "title": "Fury #4",
+      "url": null,
+      "read": false,
+      "index": 237,
+      "section": "Fury (2001) #1-6"
+    },
+    {
+      "title": "Fury #5",
+      "url": null,
+      "read": false,
+      "index": 238,
+      "section": "Fury (2001) #1-6"
+    },
+    {
+      "title": "Fury #6",
+      "url": null,
+      "read": false,
+      "index": 239,
+      "section": "Fury (2001) #1-6"
+    },
+    {
+      "title": "Fury #1",
+      "url": null,
+      "read": false,
+      "index": 246,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #2",
+      "url": null,
+      "read": false,
+      "index": 247,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #3",
+      "url": null,
+      "read": false,
+      "index": 248,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #4",
+      "url": null,
+      "read": false,
+      "index": 249,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #5",
+      "url": null,
+      "read": false,
+      "index": 250,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #6",
+      "url": null,
+      "read": false,
+      "index": 251,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #7",
+      "url": null,
+      "read": false,
+      "index": 252,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #8",
+      "url": null,
+      "read": false,
+      "index": 253,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #9",
+      "url": null,
+      "read": false,
+      "index": 254,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #10",
+      "url": null,
+      "read": false,
+      "index": 255,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #11",
+      "url": null,
+      "read": false,
+      "index": 256,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #12",
+      "url": null,
+      "read": false,
+      "index": 257,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "Fury #13",
+      "url": null,
+      "read": false,
+      "index": 258,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "title": "S.H.I.E.L.D. Infinity",
+      "url": null,
+      "read": false,
+      "index": 265,
+      "section": "S.H.I.E.L.D. Infinity"
+    },
+    {
+      "title": "S.H.I.E.L.D. #5",
+      "url": null,
+      "read": false,
+      "index": 270,
+      "section": "S.H.I.E.L.D. (2018) #5-6"
+    },
+    {
+      "title": "S.H.I.E.L.D. #6",
+      "url": null,
+      "read": false,
+      "index": 271,
+      "section": "S.H.I.E.L.D. (2018) #5-6"
+    }
+  ],
+  "items": [
+    {
+      "issueId": -972249149,
+      "title": "Marvel Spotlight (1971) #31",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Spotlight (1971) #31"
+    },
+    {
+      "issueId": 10644,
+      "title": "Sgt. Fury (1963) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/10644/sgt_fury_1963_1",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1963-05-01T00:00:00+0000",
+      "mu": "1963-05-01T00:00:00+0000",
+      "digitalId": 2431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/59933e964e5fc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10676,
+      "title": "Sgt. Fury (1963) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/10676/sgt_fury_1963_2",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1963-07-01T00:00:00+0000",
+      "mu": "1963-07-01T00:00:00+0000",
+      "digitalId": 4343,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/d0/5df012ca174fd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10687,
+      "title": "Sgt. Fury (1963) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/10687/sgt_fury_1963_3",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1963-09-01T00:00:00+0000",
+      "mu": "1963-09-01T00:00:00+0000",
+      "digitalId": 4344,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5df102b390ae6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10698,
+      "title": "Sgt. Fury (1963) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/10698/sgt_fury_1963_4",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1963-11-01T00:00:00+0000",
+      "mu": "1963-11-01T00:00:00+0000",
+      "digitalId": 4345,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5df10c5532b74",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10709,
+      "title": "Sgt. Fury (1963) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/10709/sgt_fury_1963_5",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-01-01T00:00:00+0000",
+      "mu": "1964-01-01T00:00:00+0000",
+      "digitalId": 4346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/5df11e67a5bf8",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10720,
+      "title": "Sgt. Fury (1963) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/10720/sgt_fury_1963_6",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-03-01T00:00:00+0000",
+      "mu": "1964-03-01T00:00:00+0000",
+      "digitalId": 4347,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/10/5a58eea4b0cde",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10731,
+      "title": "Sgt. Fury (1963) #7",
+      "number": "7",
+      "url": "https://www.marvel.com/comics/issue/10731/sgt_fury_1963_7",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-05-01T00:00:00+0000",
+      "mu": "1964-05-01T00:00:00+0000",
+      "digitalId": 4348,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5df12dcd6c58c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10742,
+      "title": "Sgt. Fury (1963) #8",
+      "number": "8",
+      "url": "https://www.marvel.com/comics/issue/10742/sgt_fury_1963_8",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-07-01T00:00:00+0000",
+      "mu": "1964-07-01T00:00:00+0000",
+      "digitalId": 4349,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/e0/5df146076893b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10753,
+      "title": "Sgt. Fury (1963) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/10753/sgt_fury_1963_9",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-08-01T00:00:00+0000",
+      "mu": "1964-08-01T00:00:00+0000",
+      "digitalId": 4350,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/5df14da6c2fd3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10645,
+      "title": "Sgt. Fury (1963) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/10645/sgt_fury_1963_10",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-09-01T00:00:00+0000",
+      "mu": "1964-09-01T00:00:00+0000",
+      "digitalId": 4339,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5df15847f0711",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10656,
+      "title": "Sgt. Fury (1963) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/10656/sgt_fury_1963_11",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-10-01T00:00:00+0000",
+      "mu": "1964-10-01T00:00:00+0000",
+      "digitalId": 4340,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5df1615c28a49",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10667,
+      "title": "Sgt. Fury (1963) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/10667/sgt_fury_1963_12",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-11-01T00:00:00+0000",
+      "mu": "1964-11-01T00:00:00+0000",
+      "digitalId": 4341,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/5df2543dbc9d1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10669,
+      "title": "Sgt. Fury (1963) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/10669/sgt_fury_1963_13",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1964-12-01T00:00:00+0000",
+      "mu": "1964-12-01T00:00:00+0000",
+      "digitalId": 4342,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5df255ac261a9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10670,
+      "title": "Sgt. Fury (1963) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/10670/sgt_fury_1963_14",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-01-01T00:00:00+0000",
+      "mu": "1965-01-01T00:00:00+0000",
+      "digitalId": 11492,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/90/4bb56adaac24e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10671,
+      "title": "Sgt. Fury (1963) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/10671/sgt_fury_1963_15",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-02-01T00:00:00+0000",
+      "mu": "1965-02-01T00:00:00+0000",
+      "digitalId": 11493,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/4bb56ac928d67",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10672,
+      "title": "Sgt. Fury (1963) #16",
+      "number": "16",
+      "url": "https://www.marvel.com/comics/issue/10672/sgt_fury_1963_16",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-03-01T00:00:00+0000",
+      "mu": "1965-03-01T00:00:00+0000",
+      "digitalId": 11494,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/4bb56abc30c9f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10673,
+      "title": "Sgt. Fury (1963) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/10673/sgt_fury_1963_17",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-04-01T00:00:00+0000",
+      "mu": "1965-04-01T00:00:00+0000",
+      "digitalId": 11495,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/4bb56797a41e4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10674,
+      "title": "Sgt. Fury (1963) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/10674/sgt_fury_1963_18",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-05-01T00:00:00+0000",
+      "mu": "1965-05-01T00:00:00+0000",
+      "digitalId": 11496,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/4bb56789a9130",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10675,
+      "title": "Sgt. Fury (1963) #19",
+      "number": "19",
+      "url": "https://www.marvel.com/comics/issue/10675/sgt_fury_1963_19",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-06-01T00:00:00+0000",
+      "mu": "1965-06-01T00:00:00+0000",
+      "digitalId": 11497,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/4bb567698726f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10677,
+      "title": "Sgt. Fury (1963) #20",
+      "number": "20",
+      "url": "https://www.marvel.com/comics/issue/10677/sgt_fury_1963_20",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-07-01T00:00:00+0000",
+      "mu": "1965-07-01T00:00:00+0000",
+      "digitalId": 11498,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/4bb562d39a738",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10678,
+      "title": "Sgt. Fury (1963) #21",
+      "number": "21",
+      "url": "https://www.marvel.com/comics/issue/10678/sgt_fury_1963_21",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-08-01T00:00:00+0000",
+      "mu": "1965-08-01T00:00:00+0000",
+      "digitalId": 11499,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/4bb562cb81f5c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10679,
+      "title": "Sgt. Fury (1963) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/10679/sgt_fury_1963_22",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-09-01T00:00:00+0000",
+      "mu": "1965-09-01T00:00:00+0000",
+      "digitalId": 11500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/4bb562bbb901b",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury (1963) #1-22"
+    },
+    {
+      "issueId": 10680,
+      "title": "Sgt. Fury (1963) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/10680/sgt_fury_1963_23",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-10-01T00:00:00+0000",
+      "mu": "1965-10-01T00:00:00+0000",
+      "digitalId": 11501,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/4bb562a9e9eee",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10681,
+      "title": "Sgt. Fury (1963) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/10681/sgt_fury_1963_24",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-11-01T00:00:00+0000",
+      "mu": "1965-11-01T00:00:00+0000",
+      "digitalId": 46960,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5d1a26de0f3b3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Frank Giacoia",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10682,
+      "title": "Sgt. Fury (1963) #25",
+      "number": "25",
+      "url": "https://www.marvel.com/comics/issue/10682/sgt_fury_1963_25",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1965-12-01T00:00:00+0000",
+      "mu": "1965-12-01T00:00:00+0000",
+      "digitalId": 46961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5d1fa4c5b5b3d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10683,
+      "title": "Sgt. Fury (1963) #26",
+      "number": "26",
+      "url": "https://www.marvel.com/comics/issue/10683/sgt_fury_1963_26",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-01-01T00:00:00+0000",
+      "mu": "1966-01-01T00:00:00+0000",
+      "digitalId": 46962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/c0/5d1fa4ce8e9ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10684,
+      "title": "Sgt. Fury (1963) #27",
+      "number": "27",
+      "url": "https://www.marvel.com/comics/issue/10684/sgt_fury_1963_27",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-02-01T00:00:00+0000",
+      "mu": "1966-02-01T00:00:00+0000",
+      "digitalId": 46963,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/90/5d1fa4d6ef4df",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10685,
+      "title": "Sgt. Fury (1963) #28",
+      "number": "28",
+      "url": "https://www.marvel.com/comics/issue/10685/sgt_fury_1963_28",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-03-01T00:00:00+0000",
+      "mu": "1966-03-01T00:00:00+0000",
+      "digitalId": 46964,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/5d1fa4e004571",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10686,
+      "title": "Sgt. Fury (1963) #29",
+      "number": "29",
+      "url": "https://www.marvel.com/comics/issue/10686/sgt_fury_1963_29",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-04-01T00:00:00+0000",
+      "mu": "1966-04-01T00:00:00+0000",
+      "digitalId": 46965,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5d1fa4f7a2506",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10688,
+      "title": "Sgt. Fury (1963) #30",
+      "number": "30",
+      "url": "https://www.marvel.com/comics/issue/10688/sgt_fury_1963_30",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-05-01T00:00:00+0000",
+      "mu": "1966-05-01T00:00:00+0000",
+      "digitalId": 46966,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/5d1fa52d30c0f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10689,
+      "title": "Sgt. Fury (1963) #31",
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/10689/sgt_fury_1963_31",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-06-01T00:00:00+0000",
+      "mu": "1966-06-01T00:00:00+0000",
+      "digitalId": 46967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5d1fa5365edbc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10690,
+      "title": "Sgt. Fury (1963) #32",
+      "number": "32",
+      "url": "https://www.marvel.com/comics/issue/10690/sgt_fury_1963_32",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-07-01T00:00:00+0000",
+      "mu": "1966-07-01T00:00:00+0000",
+      "digitalId": 46968,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5d1fa500d50e6",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Sgt. Fury #23-32"
+    },
+    {
+      "issueId": 10691,
+      "title": "Sgt. Fury (1963) #33",
+      "number": "33",
+      "url": "https://www.marvel.com/comics/issue/10691/sgt_fury_1963_33",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-08-01T00:00:00+0000",
+      "mu": "1966-08-01T00:00:00+0000",
+      "digitalId": 47071,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5d1fa5472b808",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10692,
+      "title": "Sgt. Fury (1963) #34",
+      "number": "34",
+      "url": "https://www.marvel.com/comics/issue/10692/sgt_fury_1963_34",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-09-01T00:00:00+0000",
+      "mu": "1966-09-01T00:00:00+0000",
+      "digitalId": 47072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5d1fa513892de",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10693,
+      "title": "Sgt. Fury (1963) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/10693/sgt_fury_1963_35",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-10-01T00:00:00+0000",
+      "mu": "1966-10-01T00:00:00+0000",
+      "digitalId": 47073,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/00/5d1fa56229132",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10694,
+      "title": "Sgt. Fury (1963) #36",
+      "number": "36",
+      "url": "https://www.marvel.com/comics/issue/10694/sgt_fury_1963_36",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-11-01T00:00:00+0000",
+      "mu": "1966-11-01T00:00:00+0000",
+      "digitalId": 47074,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5d1fa5731cb5d",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10695,
+      "title": "Sgt. Fury (1963) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/10695/sgt_fury_1963_37",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1966-12-01T00:00:00+0000",
+      "mu": "1966-12-01T00:00:00+0000",
+      "digitalId": 47075,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5d1fa50a689aa",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10696,
+      "title": "Sgt. Fury (1963) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/10696/sgt_fury_1963_38",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1967-01-01T00:00:00+0000",
+      "mu": "1967-01-01T00:00:00+0000",
+      "digitalId": 47076,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5d1fa56ab3e68",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10697,
+      "title": "Sgt. Fury (1963) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/10697/sgt_fury_1963_39",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1967-02-01T00:00:00+0000",
+      "mu": "1967-02-01T00:00:00+0000",
+      "digitalId": 47077,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5d1fa53f24755",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10699,
+      "title": "Sgt. Fury (1963) #40",
+      "number": "40",
+      "url": "https://www.marvel.com/comics/issue/10699/sgt_fury_1963_40",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1967-03-01T00:00:00+0000",
+      "mu": "1967-03-01T00:00:00+0000",
+      "digitalId": 47078,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/a0/5d1fa51c3ad1f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10700,
+      "title": "Sgt. Fury (1963) #41",
+      "number": "41",
+      "url": "https://www.marvel.com/comics/issue/10700/sgt_fury_1963_41",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1967-04-01T00:00:00+0000",
+      "mu": "1967-04-01T00:00:00+0000",
+      "digitalId": 47079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/5d1fa524eee7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10701,
+      "title": "Sgt. Fury (1963) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/10701/sgt_fury_1963_42",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1967-05-01T00:00:00+0000",
+      "mu": "1967-05-01T00:00:00+0000",
+      "digitalId": 47080,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/30/5d1fa54fefabd",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": 10702,
+      "title": "Sgt. Fury (1963) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/10702/sgt_fury_1963_43",
+      "seriesId": 2067,
+      "seriesName": "Sgt. Fury (1963 - 1974)",
+      "onSale": "1967-06-01T00:00:00+0000",
+      "mu": "1967-06-01T00:00:00+0000",
+      "digitalId": 47081,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5d1fa559813eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dick Ayers",
+          "role": "penciler"
+        },
+        {
+          "name": "Gary Friedrich",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1276554350,
+      "title": "Sgt. Fury #44",
+      "number": "44",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1259776731,
+      "title": "Sgt. Fury #45",
+      "number": "45",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1175888636,
+      "title": "Sgt. Fury #46",
+      "number": "46",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1159111017,
+      "title": "Sgt. Fury #47",
+      "number": "47",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1209443874,
+      "title": "Sgt. Fury #48",
+      "number": "48",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1192666255,
+      "title": "Sgt. Fury #49",
+      "number": "49",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1108778160,
+      "title": "Sgt. Fury #50",
+      "number": "50",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1092000541,
+      "title": "Sgt. Fury #51",
+      "number": "51",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -940509103,
+      "title": "Sgt. Fury #52",
+      "number": "52",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -957286722,
+      "title": "Sgt. Fury #53",
+      "number": "53",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -974064341,
+      "title": "Sgt. Fury #54",
+      "number": "54",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -990841960,
+      "title": "Sgt. Fury #55",
+      "number": "55",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -873398627,
+      "title": "Sgt. Fury #56",
+      "number": "56",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -890176246,
+      "title": "Sgt. Fury #57",
+      "number": "57",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -906953865,
+      "title": "Sgt. Fury #58",
+      "number": "58",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -923731484,
+      "title": "Sgt. Fury #59",
+      "number": "59",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1074730055,
+      "title": "Sgt. Fury #60",
+      "number": "60",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1091507674,
+      "title": "Sgt. Fury #61",
+      "number": "61",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -1041321912,
+      "title": "Sgt. Fury #62",
+      "number": "62",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #33 to #62"
+    },
+    {
+      "issueId": -955661018,
+      "title": "Sgt. Fury Annual #3",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Sgt. Fury Annual #3"
+    },
+    {
+      "issueId": -1140361922,
+      "title": "Captain Savage (1967) #1",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Captain Savage (1967) #1"
+    },
+    {
+      "issueId": -1594988434,
+      "title": "Sgt. Fury #63",
+      "number": "63",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1578210815,
+      "title": "Sgt. Fury #64",
+      "number": "64",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1695654148,
+      "title": "Sgt. Fury #65",
+      "number": "65",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1678876529,
+      "title": "Sgt. Fury #66",
+      "number": "66",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1460620387,
+      "title": "Sgt. Fury #67",
+      "number": "67",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1477398006,
+      "title": "Sgt. Fury #68",
+      "number": "68",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1494175625,
+      "title": "Sgt. Fury #69",
+      "number": "69",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1510953244,
+      "title": "Sgt. Fury #70",
+      "number": "70",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1527730863,
+      "title": "Sgt. Fury #71",
+      "number": "71",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1544508482,
+      "title": "Sgt. Fury #72",
+      "number": "72",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1561286101,
+      "title": "Sgt. Fury #73",
+      "number": "73",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1578063720,
+      "title": "Sgt. Fury #74",
+      "number": "74",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1594841339,
+      "title": "Sgt. Fury #75",
+      "number": "75",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1611618958,
+      "title": "Sgt. Fury #76",
+      "number": "76",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1763110396,
+      "title": "Sgt. Fury #77",
+      "number": "77",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1746332777,
+      "title": "Sgt. Fury #78",
+      "number": "78",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1796665634,
+      "title": "Sgt. Fury #79",
+      "number": "79",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1779888015,
+      "title": "Sgt. Fury #80",
+      "number": "80",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1830220872,
+      "title": "Sgt. Fury #81",
+      "number": "81",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1813443253,
+      "title": "Sgt. Fury #82",
+      "number": "82",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1863776110,
+      "title": "Sgt. Fury #83",
+      "number": "83",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1846998491,
+      "title": "Sgt. Fury #84",
+      "number": "84",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1628889444,
+      "title": "Sgt. Fury #85",
+      "number": "85",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1612111825,
+      "title": "Sgt. Fury #86",
+      "number": "86",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1662246005,
+      "title": "Sgt. Fury #87",
+      "number": "87",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1679023624,
+      "title": "Sgt. Fury #88",
+      "number": "88",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1628690767,
+      "title": "Sgt. Fury #89",
+      "number": "89",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1645468386,
+      "title": "Sgt. Fury #90",
+      "number": "90",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1595135529,
+      "title": "Sgt. Fury #91",
+      "number": "91",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1611913148,
+      "title": "Sgt. Fury #92",
+      "number": "92",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1561580291,
+      "title": "Sgt. Fury #93",
+      "number": "93",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1578357910,
+      "title": "Sgt. Fury #94",
+      "number": "94",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1796466957,
+      "title": "Sgt. Fury #95",
+      "number": "95",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1813244576,
+      "title": "Sgt. Fury #96",
+      "number": "96",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1964736014,
+      "title": "Sgt. Fury #97",
+      "number": "97",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1947958395,
+      "title": "Sgt. Fury #98",
+      "number": "98",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1931180776,
+      "title": "Sgt. Fury #99",
+      "number": "99",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1914403157,
+      "title": "Sgt. Fury #100",
+      "number": "100",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1897625538,
+      "title": "Sgt. Fury #101",
+      "number": "101",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1880847919,
+      "title": "Sgt. Fury #102",
+      "number": "102",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1864070300,
+      "title": "Sgt. Fury #103",
+      "number": "103",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1847292681,
+      "title": "Sgt. Fury #104",
+      "number": "104",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1830515062,
+      "title": "Sgt. Fury #105",
+      "number": "105",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1813737443,
+      "title": "Sgt. Fury #106",
+      "number": "106",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1863923205,
+      "title": "Sgt. Fury #107",
+      "number": "107",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1880700824,
+      "title": "Sgt. Fury #108",
+      "number": "108",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1897478443,
+      "title": "Sgt. Fury #109",
+      "number": "109",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1914256062,
+      "title": "Sgt. Fury #110",
+      "number": "110",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1796812729,
+      "title": "Sgt. Fury #111",
+      "number": "111",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1813590348,
+      "title": "Sgt. Fury #112",
+      "number": "112",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1830367967,
+      "title": "Sgt. Fury #113",
+      "number": "113",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1847145586,
+      "title": "Sgt. Fury #114",
+      "number": "114",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1729702253,
+      "title": "Sgt. Fury #115",
+      "number": "115",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1746479872,
+      "title": "Sgt. Fury #116",
+      "number": "116",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1629529410,
+      "title": "Sgt. Fury #117",
+      "number": "117",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1612751791,
+      "title": "Sgt. Fury #118",
+      "number": "118",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1663084648,
+      "title": "Sgt. Fury #119",
+      "number": "119",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": -1646307029,
+      "title": "Sgt. Fury #120",
+      "number": "120",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "issue #63 to #120"
+    },
+    {
+      "issueId": 10160,
+      "title": "Marvel Comics Presents (1988) #77",
+      "number": "77",
+      "url": "https://www.marvel.com/comics/issue/10160/marvel_comics_presents_1988_77",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-06-05T00:00:00+0000",
+      "mu": "1991-06-05T00:00:00+0000",
+      "digitalId": 6382,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/66c64db2041ec",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Nichols",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gary Martin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rob Campanella",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Miehm",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Gulacy",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Murray",
+          "role": "writer"
+        },
+        {
+          "name": "Gerard Jones",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Comics Presents #77-79"
+    },
+    {
+      "issueId": 10161,
+      "title": "Marvel Comics Presents (1988) #78",
+      "number": "78",
+      "url": "https://www.marvel.com/comics/issue/10161/marvel_comics_presents_1988_78",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-06-30T00:00:00+0000",
+      "mu": "1991-06-30T00:00:00+0000",
+      "digitalId": 6383,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/a0/66c64db2bd75f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Karl Story",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Stelfreeze",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Murray",
+          "role": "writer"
+        },
+        {
+          "name": "Dwight Jon Zimmerman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Comics Presents #77-79"
+    },
+    {
+      "issueId": 10162,
+      "title": "Marvel Comics Presents (1988) #79",
+      "number": "79",
+      "url": "https://www.marvel.com/comics/issue/10162/marvel_comics_presents_1988_79",
+      "seriesId": 2039,
+      "seriesName": "Marvel Comics Presents (1988 - 1995)",
+      "onSale": "1991-07-05T00:00:00+0000",
+      "mu": "1991-07-05T00:00:00+0000",
+      "digitalId": 6384,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/66c64db2d5e5f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Rubinstein",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Byrne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Mckenna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Barry Windsor-Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Geiger",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Lyle",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Murray",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Campanella",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Comics Presents #77-79"
+    },
+    {
+      "issueId": -1579196553,
+      "title": "Marvel Holiday Special 1993",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Holiday Special 1993"
+    },
+    {
+      "issueId": -1763750362,
+      "title": "Captain America/Nick Fury: The Other World War",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Captain America/Nick Fury: The Other World War"
+    },
+    {
+      "issueId": -1746972743,
+      "title": "2009?s Sgt. Fury and His Howling Commandos one-shot",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "2009?s Sgt. Fury and His Howling Commandos one-shot"
+    },
+    {
+      "issueId": -1780675076,
+      "title": "Nick Fury vs SHIELD #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "issueId": -1797452695,
+      "title": "Nick Fury vs SHIELD #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "issueId": -1814230314,
+      "title": "Nick Fury vs SHIELD #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "issueId": -1831007933,
+      "title": "Nick Fury vs SHIELD #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "issueId": -1847785552,
+      "title": "Nick Fury vs SHIELD #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "issueId": -1596121267,
+      "title": "Nick Fury vs SHIELD #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
+    },
+    {
+      "issueId": -1612898886,
+      "title": "Nick Fury: Agent of SHIELD #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "issueId": -542997129,
+      "title": "Nick Fury: Agent of SHIELD #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "issueId": -559774748,
+      "title": "Nick Fury: Agent of SHIELD #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "issueId": -576552367,
+      "title": "Nick Fury: Agent of SHIELD #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "issueId": -593329986,
+      "title": "Nick Fury: Agent of SHIELD #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "issueId": -610107605,
+      "title": "Nick Fury: Agent of SHIELD #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
+    },
+    {
+      "issueId": -626885224,
+      "title": "Fury one-shot",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury one-shot"
+    },
+    {
+      "issueId": 20357,
+      "title": "Defenders (1972) #48",
+      "number": "48",
+      "url": "https://www.marvel.com/comics/issue/20357/defenders_1972_48",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1977-06-10T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 35092,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/57d95e8170601",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "penciler"
+        },
+        {
+          "name": "David Anthony Kraft",
+          "role": "writer"
+        },
+        {
+          "name": "Don Mcgregor",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Defenders (1972) #48-50"
+    },
+    {
+      "issueId": 20358,
+      "title": "Defenders (1972) #49",
+      "number": "49",
+      "url": "https://www.marvel.com/comics/issue/20358/defenders_1972_49",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1977-07-10T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 35095,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/57d9604f8f048",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Royer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "penciler"
+        },
+        {
+          "name": "David Anthony Kraft",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Defenders (1972) #48-50"
+    },
+    {
+      "issueId": 20360,
+      "title": "Defenders (1972) #50",
+      "number": "50",
+      "url": "https://www.marvel.com/comics/issue/20360/defenders_1972_50",
+      "seriesId": 3743,
+      "seriesName": "Defenders (1972 - 1986)",
+      "onSale": "1977-08-10T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 35094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/57d96107f1f7f",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Dave Cockrum",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Tartaglione",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Royer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Keith Giffen",
+          "role": "penciler"
+        },
+        {
+          "name": "David Anthony Kraft",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Defenders (1972) #48-50"
+    },
+    {
+      "issueId": -643809938,
+      "title": "Marvel Two-In-One #26",
+      "number": "26",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Two-In-One (1974) #26-27"
+    },
+    {
+      "issueId": -627032319,
+      "title": "Marvel Two-In-One #27",
+      "number": "27",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Two-In-One (1974) #26-27"
+    },
+    {
+      "issueId": -593477081,
+      "title": "Hulk Comic UK #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -710920414,
+      "title": "Hulk Comic UK #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -694142795,
+      "title": "Hulk Comic UK #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -677365176,
+      "title": "Hulk Comic UK #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -660587557,
+      "title": "Hulk Comic UK #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -509588986,
+      "title": "Hulk Comic UK #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -492811367,
+      "title": "Hulk Comic UK #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -744674333,
+      "title": "Hulk Comic UK #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -761451952,
+      "title": "Hulk Comic UK #9",
+      "number": "9",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -711119095,
+      "title": "Hulk Comic UK #10",
+      "number": "10",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -727896714,
+      "title": "Hulk Comic UK #11",
+      "number": "11",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -677563857,
+      "title": "Hulk Comic UK #12",
+      "number": "12",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -694341476,
+      "title": "Hulk Comic UK #13",
+      "number": "13",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -644008619,
+      "title": "Hulk Comic UK #14",
+      "number": "14",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -660786238,
+      "title": "Hulk Comic UK #15",
+      "number": "15",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -610453381,
+      "title": "Hulk Comic UK #16",
+      "number": "16",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -627231000,
+      "title": "Hulk Comic UK #17",
+      "number": "17",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -308603334,
+      "title": "Hulk Comic UK #18",
+      "number": "18",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -291825715,
+      "title": "Hulk Comic UK #19",
+      "number": "19",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Hulk Comic UK (1979) #1-19"
+    },
+    {
+      "issueId": -342158572,
+      "title": "Marvel Two-In-One #51",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Two-In-One #51"
+    },
+    {
+      "issueId": 19706,
+      "title": "Marvel Team-Up (1972) #82",
+      "number": "82",
+      "url": "https://www.marvel.com/comics/issue/19706/marvel_team-up_1972_82",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1979-06-01T00:00:00+0000",
+      "mu": "2020-02-27T00:00:00+0000",
+      "digitalId": 44182,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5e56de18ba8eb",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rich Buckler",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Team-Up (1972) #82-85"
+    },
+    {
+      "issueId": 19707,
+      "title": "Marvel Team-Up (1972) #83",
+      "number": "83",
+      "url": "https://www.marvel.com/comics/issue/19707/marvel_team-up_1972_83",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1979-07-01T00:00:00+0000",
+      "mu": "1979-07-01T00:00:00+0000",
+      "digitalId": 42790,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/80/5ca380eb4a0b5",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Team-Up (1972) #82-85"
+    },
+    {
+      "issueId": 19708,
+      "title": "Marvel Team-Up (1972) #84",
+      "number": "84",
+      "url": "https://www.marvel.com/comics/issue/19708/marvel_team-up_1972_84",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1979-08-01T00:00:00+0000",
+      "mu": "1979-08-01T00:00:00+0000",
+      "digitalId": 42791,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5ca380528ba78",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Team-Up (1972) #82-85"
+    },
+    {
+      "issueId": 19709,
+      "title": "Marvel Team-Up (1972) #85",
+      "number": "85",
+      "url": "https://www.marvel.com/comics/issue/19709/marvel_team-up_1972_85",
+      "seriesId": 3716,
+      "seriesName": "Marvel Team-Up (1972 - 1985)",
+      "onSale": "1979-09-01T00:00:00+0000",
+      "mu": "1979-09-01T00:00:00+0000",
+      "digitalId": 42792,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/20/5ca380cfac286",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Steve Leialoha",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Marvel Team-Up (1972) #82-85"
+    },
+    {
+      "issueId": -392491429,
+      "title": "Marvel Team-Up #139",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Marvel Team-Up #139"
+    },
+    {
+      "issueId": -442824286,
+      "title": "Wolverine/Nick Fury: The Scorpio Connection",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Wolverine/Nick Fury: The Scorpio Connection"
+    },
+    {
+      "issueId": -493502915,
+      "title": "Fury (1994) #1",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (1994) #1"
+    },
+    {
+      "issueId": -459947677,
+      "title": "Nick Fury: Agent of SHIELD #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -443170058,
+      "title": "Nick Fury: Agent of SHIELD #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -426392439,
+      "title": "Nick Fury: Agent of SHIELD #9",
+      "number": "9",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -409614820,
+      "title": "Nick Fury: Agent of SHIELD #10",
+      "number": "10",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -392837201,
+      "title": "Nick Fury: Agent of SHIELD #11",
+      "number": "11",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -644501486,
+      "title": "Nick Fury: Agent of SHIELD #12",
+      "number": "12",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -627723867,
+      "title": "Nick Fury: Agent of SHIELD #13",
+      "number": "13",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -611093343,
+      "title": "Nick Fury: Agent of SHIELD #14",
+      "number": "14",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
+    },
+    {
+      "issueId": -577538105,
+      "title": "Nick Fury: Agent of SHIELD #15",
+      "number": "15",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -594315724,
+      "title": "Nick Fury: Agent of SHIELD #16",
+      "number": "16",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -678203819,
+      "title": "Nick Fury: Agent of SHIELD #17",
+      "number": "17",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -694981438,
+      "title": "Nick Fury: Agent of SHIELD #18",
+      "number": "18",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -644648581,
+      "title": "Nick Fury: Agent of SHIELD #19",
+      "number": "19",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -661426200,
+      "title": "Nick Fury: Agent of SHIELD #20",
+      "number": "20",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -476872391,
+      "title": "Nick Fury: Agent of SHIELD #21",
+      "number": "21",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -493650010,
+      "title": "Nick Fury: Agent of SHIELD #22",
+      "number": "22",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -711906152,
+      "title": "Nick Fury: Agent of SHIELD #23",
+      "number": "23",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -695128533,
+      "title": "Nick Fury: Agent of SHIELD #24",
+      "number": "24",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -745461390,
+      "title": "Nick Fury: Agent of SHIELD #25",
+      "number": "25",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -728683771,
+      "title": "Nick Fury: Agent of SHIELD #26",
+      "number": "26",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -644795676,
+      "title": "Nick Fury: Agent of SHIELD #27",
+      "number": "27",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -628018057,
+      "title": "Nick Fury: Agent of SHIELD #28",
+      "number": "28",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -678350914,
+      "title": "Nick Fury: Agent of SHIELD #29",
+      "number": "29",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -661573295,
+      "title": "Nick Fury: Agent of SHIELD #30",
+      "number": "30",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -577685200,
+      "title": "Nick Fury: Agent of SHIELD #31",
+      "number": "31",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -560907581,
+      "title": "Nick Fury: Agent of SHIELD #32",
+      "number": "32",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -273275297,
+      "title": "Nick Fury: Agent of SHIELD #33",
+      "number": "33",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -290052916,
+      "title": "Nick Fury: Agent of SHIELD #34",
+      "number": "34",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -306830535,
+      "title": "Nick Fury: Agent of SHIELD #35",
+      "number": "35",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -323608154,
+      "title": "Nick Fury: Agent of SHIELD #36",
+      "number": "36",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -340385773,
+      "title": "Nick Fury: Agent of SHIELD #37",
+      "number": "37",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -357163392,
+      "title": "Nick Fury: Agent of SHIELD #38",
+      "number": "38",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -373941011,
+      "title": "Nick Fury: Agent of SHIELD #39",
+      "number": "39",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -390718630,
+      "title": "Nick Fury: Agent of SHIELD #40",
+      "number": "40",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": -407496249,
+      "title": "Nick Fury: Agent of SHIELD #41",
+      "number": "41",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
+    },
+    {
+      "issueId": 88616,
+      "title": "Wolverine: Inner Fury (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/88616/wolverine_inner_fury_1992_1",
+      "seriesId": 30515,
+      "seriesName": "Wolverine: Inner Fury (1992)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "2020-03-05T00:00:00+0000",
+      "digitalId": 54395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5e56b5971ba32",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        }
+      ],
+      "collectedIn": "Wolverine: Inner Fury"
+    },
+    {
+      "issueId": 66659,
+      "title": "Wolverine/Nick Fury: Scorpio Rising (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66659/wolverinenick_fury_scorpio_rising_1994_1",
+      "seriesId": 24132,
+      "seriesName": "Wolverine/Nick Fury: Scorpio Rising (1994)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2018-04-30T00:00:00+0000",
+      "digitalId": 47633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5ae3414e061dc",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Shawn Mcmanus",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Chaykin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Wolverine/Nick Fury: Scorpio Rising"
+    },
+    {
+      "issueId": 91443,
+      "title": "Fury/Black Widow: Death Duty (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/91443/furyblack_widow_death_duty_1995_1",
+      "seriesId": 31334,
+      "seriesName": "Fury/Black Widow: Death Duty (1995)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "2020-11-05T00:00:00+0000",
+      "digitalId": 55502,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/b0/5fa364aceb501",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 68,
+      "creators": [
+        {
+          "name": "Charlie Adlard",
+          "role": "penciler"
+        },
+        {
+          "name": "Cefn Ridout",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Fury/Black Widow: Death Duty"
+    },
+    {
+      "issueId": 113551,
+      "title": "Captain America/Nick Fury: Blood Truce (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/113551/captain_americanick_fury_blood_truce_1995_1",
+      "seriesId": 38971,
+      "seriesName": "Captain America/Nick Fury: Blood Truce (1995)",
+      "onSale": "1995-02-01T00:00:00+0000",
+      "mu": "2023-09-21T00:00:00+0000",
+      "digitalId": 63984,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/650b555b4b3f4",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andrew Currie",
+          "role": "penciler"
+        },
+        {
+          "name": "Vince Evans",
+          "role": "penciler"
+        },
+        {
+          "name": "Ben Schwartz",
+          "role": "writer"
+        },
+        {
+          "name": "Howard Chaykin",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Captain America/Nick Fury: Blood Truce"
+    },
+    {
+      "issueId": -323755249,
+      "title": "Fury of SHIELD",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury of SHIELD"
+    },
+    {
+      "issueId": -441198582,
+      "title": "Fury/Agent 13",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury/Agent 13"
+    },
+    {
+      "issueId": 104,
+      "title": "Secret War (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/104/secret_war_2004_1",
+      "seriesId": 418,
+      "seriesName": "Secret War (2004 - 2005)",
+      "onSale": "2004-04-01T00:00:00+0000",
+      "mu": "2004-04-01T00:00:00+0000",
+      "digitalId": 3709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/583cae868a052",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret War #1-5"
+    },
+    {
+      "issueId": 668,
+      "title": "Secret War (2004) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/668/secret_war_2004_2",
+      "seriesId": 418,
+      "seriesName": "Secret War (2004 - 2005)",
+      "onSale": "2004-07-01T00:00:00+0000",
+      "mu": "2004-07-01T00:00:00+0000",
+      "digitalId": 3710,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/583caea7918f0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret War #1-5"
+    },
+    {
+      "issueId": 773,
+      "title": "Secret War (2004) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/773/secret_war_2004_3",
+      "seriesId": 418,
+      "seriesName": "Secret War (2004 - 2005)",
+      "onSale": "2004-10-01T00:00:00+0000",
+      "mu": "2004-10-01T00:00:00+0000",
+      "digitalId": 3711,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/583caf5bc20ca",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret War #1-5"
+    },
+    {
+      "issueId": 1708,
+      "title": "Secret War (2004) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/1708/secret_war_2004_4",
+      "seriesId": 418,
+      "seriesName": "Secret War (2004 - 2005)",
+      "onSale": "2005-05-01T00:00:00+0000",
+      "mu": "2005-05-01T00:00:00+0000",
+      "digitalId": 2423,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/583caf44e4f05",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret War #1-5"
+    },
+    {
+      "issueId": 2594,
+      "title": "Secret War (2004) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/2594/secret_war_2004_5",
+      "seriesId": 418,
+      "seriesName": "Secret War (2004 - 2005)",
+      "onSale": "2005-12-01T00:00:00+0000",
+      "mu": "2005-12-01T00:00:00+0000",
+      "digitalId": 2424,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/40/583caec18fcad",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Secret War #1-5"
+    },
+    {
+      "issueId": -2129964628,
+      "title": "Secret War: From the Files of Nick Fury",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Secret War: From the Files of Nick Fury"
+    },
+    {
+      "issueId": -2113187009,
+      "title": "Mighty Avengers (2007) #12",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Mighty Avengers (2007) #12"
+    },
+    {
+      "issueId": -16036220,
+      "title": "Nick Fury: Agent of SHIELD #42",
+      "number": "42",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "issueId": -2146742247,
+      "title": "Nick Fury: Agent of SHIELD #43",
+      "number": "43",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "issueId": -49591458,
+      "title": "Nick Fury: Agent of SHIELD #44",
+      "number": "44",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "issueId": -32813839,
+      "title": "Nick Fury: Agent of SHIELD #45",
+      "number": "45",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "issueId": -83146696,
+      "title": "Nick Fury: Agent of SHIELD #46",
+      "number": "46",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "issueId": -66369077,
+      "title": "Nick Fury: Agent of SHIELD #47",
+      "number": "47",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
+    },
+    {
+      "issueId": -317886267,
+      "title": "Fury of SHIELD #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury of SHIELD #1-4"
+    },
+    {
+      "issueId": -334663886,
+      "title": "Fury of SHIELD #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury of SHIELD #1-4"
+    },
+    {
+      "issueId": -284331029,
+      "title": "Fury of SHIELD #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury of SHIELD #1-4"
+    },
+    {
+      "issueId": -301108648,
+      "title": "Fury of SHIELD #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury of SHIELD #1-4"
+    },
+    {
+      "issueId": -317739172,
+      "title": "Fury/Agent 13 #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury/Agent 13 #1-2"
+    },
+    {
+      "issueId": -300961553,
+      "title": "Fury/Agent 13 #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury/Agent 13 #1-2"
+    },
+    {
+      "issueId": -233652396,
+      "title": "Fury #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2001) #1-6"
+    },
+    {
+      "issueId": -250430015,
+      "title": "Fury #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2001) #1-6"
+    },
+    {
+      "issueId": -267207634,
+      "title": "Fury #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2001) #1-6"
+    },
+    {
+      "issueId": -283985253,
+      "title": "Fury #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2001) #1-6"
+    },
+    {
+      "issueId": -300762872,
+      "title": "Fury #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2001) #1-6"
+    },
+    {
+      "issueId": -317540491,
+      "title": "Fury #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2001) #1-6"
+    },
+    {
+      "issueId": 3476,
+      "title": "Fury: Peacemaker (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/3476/fury_peacemaker_2006_1",
+      "seriesId": 879,
+      "seriesName": "Fury: Peacemaker (2006)",
+      "onSale": "2006-02-01T00:00:00+0000",
+      "mu": "2006-02-01T00:00:00+0000",
+      "digitalId": 1156,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/56b0e49d74d2c",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Fury: Peacemaker #1-6"
+    },
+    {
+      "issueId": 3889,
+      "title": "Fury: Peacemaker (2006) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/3889/fury_peacemaker_2006_2",
+      "seriesId": 879,
+      "seriesName": "Fury: Peacemaker (2006)",
+      "onSale": "2006-03-15T00:00:00+0000",
+      "mu": "2006-03-15T00:00:00+0000",
+      "digitalId": 5992,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/56b0e2a912980",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Fury: Peacemaker #1-6"
+    },
+    {
+      "issueId": 4023,
+      "title": "Fury: Peacemaker (2006) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/4023/fury_peacemaker_2006_3",
+      "seriesId": 879,
+      "seriesName": "Fury: Peacemaker (2006)",
+      "onSale": "2006-04-19T00:00:00+0000",
+      "mu": "2006-04-19T00:00:00+0000",
+      "digitalId": 5993,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/56b0e39cb5ade",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Fury: Peacemaker #1-6"
+    },
+    {
+      "issueId": 4143,
+      "title": "Fury: Peacemaker (2006) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/4143/fury_peacemaker_2006_4",
+      "seriesId": 879,
+      "seriesName": "Fury: Peacemaker (2006)",
+      "onSale": "2006-05-03T00:00:00+0000",
+      "mu": "2006-05-03T00:00:00+0000",
+      "digitalId": 5994,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/56b0e414a4d1e",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Fury: Peacemaker #1-6"
+    },
+    {
+      "issueId": 4254,
+      "title": "Fury: Peacemaker (2006) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/4254/fury_peacemaker_2006_5",
+      "seriesId": 879,
+      "seriesName": "Fury: Peacemaker (2006)",
+      "onSale": "2006-06-07T00:00:00+0000",
+      "mu": "2006-06-07T00:00:00+0000",
+      "digitalId": 5995,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/56b0e4cd7d5e0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Fury: Peacemaker #1-6"
+    },
+    {
+      "issueId": 4414,
+      "title": "Fury: Peacemaker (2006) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/4414/fury_peacemaker_2006_6",
+      "seriesId": 879,
+      "seriesName": "Fury: Peacemaker (2006)",
+      "onSale": "2006-07-05T00:00:00+0000",
+      "mu": "2006-07-05T00:00:00+0000",
+      "digitalId": 5996,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/56b0e7db16d39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [],
+      "collectedIn": "Fury: Peacemaker #1-6"
+    },
+    {
+      "issueId": -402561419,
+      "title": "Fury #1",
+      "number": "1",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -318673324,
+      "title": "Fury #2",
+      "number": "2",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -301895705,
+      "title": "Fury #3",
+      "number": "3",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -352228562,
+      "title": "Fury #4",
+      "number": "4",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -335450943,
+      "title": "Fury #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -251562848,
+      "title": "Fury #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -234785229,
+      "title": "Fury #7",
+      "number": "7",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -284970991,
+      "title": "Fury #8",
+      "number": "8",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -301748610,
+      "title": "Fury #9",
+      "number": "9",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -251415753,
+      "title": "Fury #10",
+      "number": "10",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -268193372,
+      "title": "Fury #11",
+      "number": "11",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -352081467,
+      "title": "Fury #12",
+      "number": "12",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": -368859086,
+      "title": "Fury #13",
+      "number": "13",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "Fury (2012): MAX ? My War Gone By #1-13"
+    },
+    {
+      "issueId": 31599,
+      "title": "S.H.I.E.L.D. (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/31599/shield_2010_1",
+      "seriesId": 8821,
+      "seriesName": "S.H.I.E.L.D. (2010 - 2011)",
+      "onSale": "2010-04-07T00:00:00+0000",
+      "mu": "2011-01-18T00:00:00+0000",
+      "digitalId": 14250,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/b0/5c5894693df39",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2010) #1-6"
+    },
+    {
+      "issueId": 30509,
+      "title": "S.H.I.E.L.D. (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/30509/shield_2010_2",
+      "seriesId": 8821,
+      "seriesName": "S.H.I.E.L.D. (2010 - 2011)",
+      "onSale": "2010-06-09T00:00:00+0000",
+      "mu": "2011-01-28T00:00:00+0000",
+      "digitalId": 14887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5c58a263b6d40",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2010) #1-6"
+    },
+    {
+      "issueId": 30510,
+      "title": "S.H.I.E.L.D. (2010) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/30510/shield_2010_3",
+      "seriesId": 8821,
+      "seriesName": "S.H.I.E.L.D. (2010 - 2011)",
+      "onSale": "2010-08-04T00:00:00+0000",
+      "mu": "2011-07-26T00:00:00+0000",
+      "digitalId": 15508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/b0/5c58aaaa55db1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2010) #1-6"
+    },
+    {
+      "issueId": 30511,
+      "title": "S.H.I.E.L.D. (2010) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/30511/shield_2010_4",
+      "seriesId": 8821,
+      "seriesName": "S.H.I.E.L.D. (2010 - 2011)",
+      "onSale": "2010-10-06T00:00:00+0000",
+      "mu": "2011-10-14T00:00:00+0000",
+      "digitalId": 16517,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/5c59989907494",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2010) #1-6"
+    },
+    {
+      "issueId": 30512,
+      "title": "S.H.I.E.L.D. (2010) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/30512/shield_2010_5",
+      "seriesId": 8821,
+      "seriesName": "S.H.I.E.L.D. (2010 - 2011)",
+      "onSale": "2010-12-29T00:00:00+0000",
+      "mu": "2013-04-08T16:23:19+0000",
+      "digitalId": 18683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5c59a03af3666",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2010) #1-6"
+    },
+    {
+      "issueId": 30774,
+      "title": "S.H.I.E.L.D. (2010) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/30774/shield_2010_6",
+      "seriesId": 8821,
+      "seriesName": "S.H.I.E.L.D. (2010 - 2011)",
+      "onSale": "2011-02-16T00:00:00+0000",
+      "mu": "2017-09-21T00:00:00+0000",
+      "digitalId": 19298,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5c59adc71e3d0",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2010) #1-6"
+    },
+    {
+      "issueId": -133825325,
+      "title": "S.H.I.E.L.D. Infinity",
+      "number": null,
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "S.H.I.E.L.D. Infinity"
+    },
+    {
+      "issueId": 38177,
+      "title": "S.H.I.E.L.D. (2011) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/38177/shield_2011_1",
+      "seriesId": 13744,
+      "seriesName": "S.H.I.E.L.D. (2011 - 2018)",
+      "onSale": "2011-06-01T00:00:00+0000",
+      "mu": "2012-03-23T00:00:00+0000",
+      "digitalId": 21293,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5c59c10b90fa9",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2011) #1-4"
+    },
+    {
+      "issueId": 38179,
+      "title": "S.H.I.E.L.D. (2011) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/38179/shield_2011_2",
+      "seriesId": 13744,
+      "seriesName": "S.H.I.E.L.D. (2011 - 2018)",
+      "onSale": "2011-08-03T00:00:00+0000",
+      "mu": "2012-03-29T00:00:00+0000",
+      "digitalId": 23165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/60/5c59c988e6107",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2011) #1-4"
+    },
+    {
+      "issueId": 38180,
+      "title": "S.H.I.E.L.D. (2011) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/38180/shield_2011_3",
+      "seriesId": 13744,
+      "seriesName": "S.H.I.E.L.D. (2011 - 2018)",
+      "onSale": "2011-10-12T00:00:00+0000",
+      "mu": "2012-08-02T00:00:00+0000",
+      "digitalId": 24264,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/30/5c59e0aa4ffb3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2011) #1-4"
+    },
+    {
+      "issueId": 38178,
+      "title": "S.H.I.E.L.D. (2011) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/38178/shield_2011_4",
+      "seriesId": 13744,
+      "seriesName": "S.H.I.E.L.D. (2011 - 2018)",
+      "onSale": "2011-12-14T00:00:00+0000",
+      "mu": "2012-08-02T00:00:00+0000",
+      "digitalId": 25051,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/b0/5c59ea987c6f7",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerald Parel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "S.H.I.E.L.D. (2011) #1-4"
+    },
+    {
+      "issueId": -318379134,
+      "title": "S.H.I.E.L.D. #5",
+      "number": "5",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "S.H.I.E.L.D. (2018) #5-6"
+    },
+    {
+      "issueId": -301601515,
+      "title": "S.H.I.E.L.D. #6",
+      "number": "6",
+      "url": null,
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "placeholder": true,
+      "collectedIn": "S.H.I.E.L.D. (2018) #5-6"
+    }
+  ]
+}

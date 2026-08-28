@@ -23,6 +23,15 @@ Nothing you have saved is changed.
 
 For maintainers: the frozen source has 409 occurrences: 262 exact identities, 81 backward repeats,
 23 metadata gaps tracked in Issue #321, and 43 semantic exclusions.
+
+### Added a Nick Fury and S.H.I.E.L.D. reading guide
+
+In plain English: A new guide follows Nick Fury and S.H.I.E.L.D. stories in source order. It includes
+78 comics with verified Marvel links, while 194 source references remain visible as placeholders until
+their identities can be confirmed safely. Nothing you have saved is changed.
+
+For maintainers: the frozen source has 370 occurrences: 78 selected issues, 74 backward repeats, 194
+open metadata gaps tracked in Issue #330, and 24 semantic exclusions.
 ### Added a complete Guardians of the Galaxy reading guide
 
 In plain English: A complete Guardians team reading guide now follows the original 1960s team through

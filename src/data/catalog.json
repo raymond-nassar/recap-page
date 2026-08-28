@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T02:01:57.137Z",
+  "generatedAt": "2026-08-28T02:42:59.766Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -7518,6 +7518,43 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-27T18:45:00.000Z"
+    },
+    {
+      "id": "nick-fury-reading-order",
+      "file": "nick_fury_reading_order.json",
+      "name": "Nick Fury and S.H.I.E.L.D.",
+      "description": "A source-ordered guide to Nick Fury and S.H.I.E.L.D. stories, from wartime missions through modern espionage.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 272,
+      "collections": 43,
+      "characters": [
+        "Nick Fury",
+        "S.H.I.E.L.D.",
+        "Dum Dum Dugan"
+      ],
+      "keywords": [
+        "Nick Fury",
+        "S.H.I.E.L.D.",
+        "Howling Commandos",
+        "Marvel",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 10644,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/90/59933e964e5fc",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-28T02:42:59.318Z"
     },
     {
       "id": "avengers-disassembled",

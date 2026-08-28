@@ -2398,13 +2398,18 @@
     "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The source boundary is exact, but issue rows have not been frozen and resolved against the metadata snapshot, so a complete-library relationship cannot be asserted safely.",
+    "disposition": "pilot-approved",
+    "reason": "The full source page and cache-only provider settlement are frozen. Unresolved source identities remain individual open metadata gaps rather than being omitted or substituted.",
     "sourceRetrievedAt": "2026-08-28",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "overlapIds": [
+      "hickman-full",
+      "secret-war"
+    ],
+    "catalogIds": [
+      "nick-fury-reading-order"
+    ],
+    "deliveryStatus": "ready",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Nick Fury"
     ],
@@ -2421,7 +2426,7 @@
     },
     "canonicalNodeContentSha256": "ae42fa7c2c292277a9065e56617ffa16e8a775741fb3bf9a649a86ccd424aa76",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 85,
