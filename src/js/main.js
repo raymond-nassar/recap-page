@@ -11,7 +11,10 @@ import {
   setOverride, pendingIssueIds, coverUrl, listForCatalogId, SCHEMA_VERSION,
   setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, progressSummary, progressGroups, completionState, orderWord, orderStates, heldCount,
 } from './lib/model.js';
-import { parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl, resolveUniqueExact } from './lib/markdown.js';
+import {
+  parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl,
+  readerIssueId, resolveUniqueExact,
+} from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import { availability, describe, localDayString, SHORT, STATE } from './lib/availability.js';
 import { compareIssues } from './lib/sort.js';
@@ -4287,6 +4290,21 @@ async function addCreator(creator) {
   return creatorAddRunner.start(creator, longAddContext());
 }
 
+export function stageChecklistEntry(entry) {
+  // The digital id is not a discriminator by itself: provider issues carry one after hydration.
+  // Only the reserved pair says this identity came from a pasted reader address.
+  const readerOnly = readerIssueId(entry?.digitalId) === Number(entry?.issueId);
+  return {
+    issueId: entry.issueId,
+    title: entry.title,
+    url: readerOnly ? null : entry.url,
+    digitalId: entry.digitalId ?? null,
+    source: readerOnly ? 'manual' : 'import',
+    hydrated: readerOnly,
+    collectedIn: entry.section ?? null,
+  };
+}
+
 function doImport() {
   const text = $('#import-text').value;
   if (!text.trim()) return notify('#import-report', 'Paste a Reading List first.', 'warn');
@@ -4323,14 +4341,7 @@ function doImport() {
   // filled in later rather than guessed at now. The sub-heading each line sat under is the
   // exception: it is structure the reader wrote, not metadata to be looked up, so it comes
   // straight across and a pasted trade order keeps its books.
-  const staged = entries.map((e) => ({
-    issueId: e.issueId,
-    title: e.title,
-    url: e.url,
-    source: 'import',
-    hydrated: false,
-    collectedIn: e.section ?? null,
-  }));
+  const staged = entries.map(stageChecklistEntry);
 
   let added = 0, skipped = 0;
   store.update((s) => {

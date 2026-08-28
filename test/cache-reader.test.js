@@ -4,9 +4,14 @@ import {
   ttlFor, isExpired, selectEvictions, cacheKey, sizeOf, TTL, DEFAULT_BUDGET_BYTES,
 } from '../src/js/lib/cachePolicy.js';
 import { READER_PREFIX, readerUrl, detailUrl, launchUrl, isLaunchable } from '../src/js/reader.js';
-import { digitalIdFromUrl } from '../src/js/lib/markdown.js';
-import { manualDetailUrl } from '../src/js/main.js';
-import { createEmptyState, addIssuesToList, createList } from '../src/js/lib/model.js';
+import {
+  digitalIdFromUrl, parseChecklist, readerIssueId,
+} from '../src/js/lib/markdown.js';
+import { manualDetailUrl, stageChecklistEntry } from '../src/js/main.js';
+import {
+  createEmptyState, addIssuesToList, createList, listItems, markRead,
+  pendingIssueIds, synopsisOrder,
+} from '../src/js/lib/model.js';
 
 // ------------------------------------------------------------------ cache policy
 
@@ -246,4 +251,61 @@ test('a hand-added issue keeps its pasted book id and launches at the reader', (
   assert.equal(u.searchParams.get('d'), '129648');
   assert.equal(u.searchParams.get('i'), null, 'a synthetic id must not be sent to a lookup that cannot resolve it');
   assert.equal(readerUrl(stored.digitalId), 'https://read.marvel.com/#/book/129648');
+});
+
+test('a reader checklist entry keeps its reserved identity and enters no provider queue', () => {
+  const parsed = parseChecklist([
+    '## Ghost-Spider',
+    '- [x] [All-New Spider-Gwen: The Ghost-Spider (2026) #9](https://read.marvel.com/#/book/129648/page/4)',
+  ].join('\n'));
+  const entry = parsed.entries[0];
+  const staged = stageChecklistEntry(entry);
+
+  assert.deepEqual(staged, {
+    issueId: readerIssueId(129648),
+    title: 'All-New Spider-Gwen: The Ghost-Spider (2026) #9',
+    url: null,
+    digitalId: 129648,
+    source: 'manual',
+    hydrated: true,
+    collectedIn: 'Ghost-Spider',
+  });
+
+  let state = createList(createEmptyState(), { name: 'Future issues' });
+  const listId = state.listOrder[0];
+  const first = addIssuesToList(state, listId, [staged, staged], {});
+  assert.deepEqual({ added: first.added, skipped: first.skipped }, { added: 1, skipped: 1 });
+  state = entry.read ? markRead(first.state, entry.issueId, true, 1234) : first.state;
+  const repeated = addIssuesToList(state, listId, [staged], {});
+  assert.deepEqual({ added: repeated.added, skipped: repeated.skipped }, { added: 0, skipped: 1 });
+
+  const stored = listItems(repeated.state, listId)[0];
+  assert.equal(stored.read, true);
+  assert.equal(stored.collectedIn, 'Ghost-Spider');
+  assert.equal(stored.url, null);
+  assert.equal(detailUrl(stored), null);
+  assert.deepEqual(pendingIssueIds(repeated.state), []);
+  assert.deepEqual(synopsisOrder(repeated.state, listId, () => true), []);
+
+  const launch = new URL(launchUrl(stored, 'http://127.0.0.1:8787'));
+  assert.equal(launch.searchParams.get('d'), '129648');
+  assert.equal(launch.searchParams.get('i'), null);
+});
+
+test('digital id presence alone does not classify a provider issue as reader-only', () => {
+  assert.deepEqual(stageChecklistEntry({
+    issueId: 52447,
+    digitalId: 38164,
+    title: 'Secret Wars (2015) #1',
+    url: 'https://www.marvel.com/comics/issue/52447/secret_wars',
+    section: null,
+  }), {
+    issueId: 52447,
+    title: 'Secret Wars (2015) #1',
+    url: 'https://www.marvel.com/comics/issue/52447/secret_wars',
+    digitalId: 38164,
+    source: 'import',
+    hydrated: false,
+    collectedIn: null,
+  });
 });

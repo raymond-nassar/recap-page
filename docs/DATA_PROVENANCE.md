@@ -706,9 +706,9 @@ app renders that state today rather than hypothetically. Those 675 do not render
 606 carry a series or digital id and get the sentence saying no synopsis is recorded, while 69 hold
 neither and get the sentence saying the snapshot has no record of the issue at all, which is the
 distinction drawn further up this document and worth keeping in view. The shared presentation
-reaches the interface in the reading hero at `src/js/main.js:3022` and the issue-details view at
-`src/js/main.js:1834`. The function behind both already answers for the absence at
-`src/js/main.js:3209-3218`, with a test asserting the sentence it returns. It is also reversible:
+reaches the interface in the reading hero at `src/js/main.js:3025` and the issue-details view at
+`src/js/main.js:1837`. The function behind both already answers for the absence at
+`src/js/main.js:3212-3221`, with a test asserting the sentence it returns. It is also reversible:
 the project this repository fetched from still serves the field,
 the contract check having run on 2026-08-15 with 33 of 33 assumptions holding, so the vendoring
 script can fetch it again if a review comes back permissive.

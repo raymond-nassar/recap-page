@@ -43,6 +43,7 @@ import {
   availablePublishingCategories, decadeSections, eraSections, groupCatalog, publishingAgeGroups,
   shelfSections,
 } from '../src/js/lib/catalog.js';
+import { readerIssueId } from '../src/js/lib/markdown.js';
 
 // Exit 2 rather than 1 for a missing prerequisite. A failed assertion and an uninstalled browser
 // driver are different answers to different questions, and a caller that cannot tell them apart
@@ -120,6 +121,8 @@ const COVER_PIXEL = Buffer.from(
   'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=',
   'base64',
 );
+const READER_DIGITAL_ID = 129648;
+const READER_ISSUE_ID = readerIssueId(READER_DIGITAL_ID);
 
 function legacyMarvelKnightsState() {
   const items = ACTUAL_MARVEL_KNIGHTS_PARENT.items;
@@ -1160,6 +1163,23 @@ const MUTATIONS = [
         }
       };
     },
+  },
+  {
+    id: 'reader-import-source-off',
+    breaks: 'reader-round-trip',
+    why: 'the imported reader record loses the manual source classification that identifies it as having no provider record',
+    rewriteMain: (source) => source.replace(
+      "    source: readerOnly ? 'manual' : 'import',",
+      "    source: 'import',",
+    ),
+  },
+  {
+    id: 'reader-provider-queues-on',
+    breaks: 'reader-round-trip',
+    why: 'generic pending staging sends the imported reader record to provider hydration and synopsis work',
+    rewriteMain: (source) => source
+      .replace("    source: readerOnly ? 'manual' : 'import',", "    source: 'import',")
+      .replace('    hydrated: readerOnly,', '    hydrated: false,'),
   },
   {
     id: 'unlink-hint',
@@ -5221,6 +5241,133 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'reader-round-trip',
+    title: 'an imported reader address survives export and reload without provider requests',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'refuse'; });
+      await open(page, '/');
+      await click(page, '[data-view="add-import"]');
+
+      const source = [
+        '# Future issues',
+        '',
+        '## Ghost-Spider',
+        '',
+        '- [x] [All-New Spider-Gwen: The Ghost-Spider (2026) #9](http://read.marvel.com/#/book/129648/page/4)',
+      ].join('\n');
+      await page.evaluate((text) => {
+        document.querySelector('#import-text').value = text;
+        document.querySelector('#import-new-list').checked = false;
+        document.querySelector('#form-import').requestSubmit();
+      }, source);
+      await page.waitForFunction(
+        () => /^Imported 1 issue/.test(document.querySelector('#import-report')?.textContent.trim() ?? ''),
+        { timeout: 15000 },
+      );
+
+      await page.evaluate(() => document.querySelector('#form-import').requestSubmit());
+      await page.waitForFunction(
+        () => /Imported 0 issues, 1 already present/.test(document.querySelector('#import-report')?.textContent ?? ''),
+        { timeout: 15000 },
+      );
+
+      const first = await page.evaluate((issueId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const list = state.lists[state.active];
+        const issue = state.issues[issueId];
+        return {
+          issue,
+          itemIds: list?.itemIds ?? [],
+          read: Object.hasOwn(state.read, issueId),
+          section: list?.collectedIn?.[issueId] ?? null,
+          requests: window.__mrtIssueRequests ?? 0,
+          hydrateHidden: document.querySelector('#btn-hydrate')?.hidden ?? null,
+        };
+      }, READER_ISSUE_ID);
+      t.check('the pasted address is one reserved URL-null reader record',
+        first.issue?.issueId === READER_ISSUE_ID
+          && first.issue?.digitalId === READER_DIGITAL_ID
+          && first.issue?.url === null
+          && first.issue?.source === 'manual'
+          && first.issue?.hydrated === true
+          && first.itemIds.length === 1,
+        JSON.stringify(first));
+      t.check('repeat import keeps its read mark and collected edition',
+        first.read && first.section === 'Ghost-Spider', JSON.stringify(first));
+      t.check('hydration offers and requests nothing for the reader record',
+        first.hydrateHidden && first.requests === 0, JSON.stringify(first));
+
+      await click(page, '#list-nav button[data-act="open"]');
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await openFullOrder(page);
+      const actions = await page.evaluate((issueId) => ({
+        read: Boolean(document.querySelector(`button[data-act="open"][data-key="${issueId}"]`)),
+        info: Boolean(document.querySelector(`a[data-act="info"][data-key="${issueId}"]`)),
+      }), READER_ISSUE_ID);
+      t.check('the row offers Read and no duplicate Info destination',
+        actions.read && !actions.info, JSON.stringify(actions));
+
+      await page.evaluate(() => { window.__opened = []; });
+      await click(page, `button[data-act="open"][data-key="${READER_ISSUE_ID}"]`);
+      const opened = await page.evaluate(() => window.__opened);
+      const launch = new URL(opened[0]?.url ?? '', page.__origin);
+      t.check('Read launches directly with the book id and no provider issue lookup',
+        launch.searchParams.get('d') === String(READER_DIGITAL_ID)
+          && launch.searchParams.get('i') === null,
+        JSON.stringify(opened));
+
+      await click(page, '#btn-synopsis');
+      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
+      await click(page, '#ask-ok');
+      await new Promise((resolve) => setTimeout(resolve, 550));
+      const synopsisRequests = await page.evaluate(() => window.__mrtIssueRequests ?? 0);
+      t.check('a synopsis run makes zero provider requests for the reader record',
+        synopsisRequests === 0, String(synopsisRequests));
+
+      await click(page, '#btn-export-md');
+      await page.waitForFunction(() => (window.__mrtDownloads ?? []).length > 0, { timeout: 15000 });
+      const markdown = await page.evaluate(() => window.__mrtDownloads.at(-1)?.text ?? '');
+      t.check('export writes the canonical HTTPS reader address',
+        markdown.includes(`https://read.marvel.com/#/book/${READER_DIGITAL_ID}`)
+          && !markdown.includes('http://read.marvel.com'),
+        markdown);
+
+      await page.evaluate(() => localStorage.removeItem('mrt.state.v2'));
+      await open(page, '/');
+      await click(page, '[data-view="add-import"]');
+      await page.evaluate((text) => {
+        document.querySelector('#import-text').value = text;
+        document.querySelector('#import-new-list').checked = true;
+        document.querySelector('#form-import').requestSubmit();
+      }, markdown);
+      await page.waitForFunction(
+        () => /^Imported 1 issue/.test(document.querySelector('#import-report')?.textContent.trim() ?? ''),
+        { timeout: 15000 },
+      );
+      await page.reload({ waitUntil: 'load' });
+
+      const restored = await page.evaluate((issueId) => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const list = state.lists[state.active];
+        return {
+          issue: state.issues[issueId],
+          read: Object.hasOwn(state.read, issueId),
+          section: list?.collectedIn?.[issueId] ?? null,
+          requests: window.__mrtIssueRequests ?? 0,
+        };
+      }, READER_ISSUE_ID);
+      t.check('re-import and reload preserve identity, book id, read state, and section',
+        restored.issue?.issueId === READER_ISSUE_ID
+          && restored.issue?.digitalId === READER_DIGITAL_ID
+          && restored.issue?.url === null
+          && restored.read
+          && restored.section === 'Ghost-Spider',
+        JSON.stringify(restored));
+      t.check('re-import and reload still make zero provider requests',
+        restored.requests === 0, JSON.stringify(restored));
+    },
+  },
+  {
     id: 'undo-delete-dismiss',
     // The reported defect was that this message never went away. It is held for the session on
     // purpose, because a timer would take the way back while the reader was still deciding, so
@@ -6456,6 +6603,14 @@ async function preparePage(page, origin, mutation) {
         // both slow and a request to a third party this repository has no business making.
         void realOpen;
         return null;
+      };
+      window.__mrtDownloads = [];
+      const realCreateObjectUrl = URL.createObjectURL.bind(URL);
+      URL.createObjectURL = (blob) => {
+        Promise.resolve(blob?.text?.()).then((text) => {
+          window.__mrtDownloads.push({ text: text ?? '', type: blob?.type ?? '' });
+        });
+        return realCreateObjectUrl(blob);
       };
     },
     CATALOG,

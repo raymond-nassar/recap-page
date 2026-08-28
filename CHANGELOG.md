@@ -14,6 +14,13 @@ quote in a bug report.
 
 ## Unreleased
 
+### Preserved imported Marvel Unlimited reader links
+
+In plain English: A Marvel Unlimited reader address pasted into a Reading List now stays attached
+to the same comic after exporting, importing again, or reopening the app. Repeating the import does
+not add a duplicate, Read opens the book directly, and the tracker does not waste metadata requests
+on a comic whose reader address already supplied everything it can use.
+
 ### Isolated cached metadata written by older tabs
 
 In plain English: A tab left open on an older version can keep running, but its cached metadata now
