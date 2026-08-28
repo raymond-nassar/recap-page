@@ -36,8 +36,8 @@ const expectedAllowedClassifications = new Set([
 ]);
 const expectedBoundaryProofTypes = [
   'live-url',
-  'retrieval-date',
-  'content-hash',
+  'raw-response-retrieval',
+  'canonical-node-content-hash',
   'issue-bearing-block-hash',
   'first-included-block',
   'last-included-block',
@@ -90,7 +90,19 @@ function assertLedgerShape(ledger) {
   assert.equal(ledger.sourceUrl, 'https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/');
   assert.equal(ledger.sourceRetrievedAt, '2026-08-28');
   assert.equal(ledger.sourcePageTitle, 'Omnibussin: Nick Fury, from World War II to S.H.I.E.L.D.');
-  assert.equal(ledger.sourceContentSha256, '2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e');
+  assert.equal(ledger.sourceContentSha256, '60e9ba9b0d28f12572721e14133cd8586f583442e88f2cc57012c2160d74ea4a');
+  assert.deepEqual(ledger.sourceRawRetrieval, {
+    url: ledger.sourceUrl,
+    retrievedAt: '2026-08-28',
+    byteLength: 105264,
+    sha256: ledger.sourceContentSha256,
+  });
+  assert.equal(
+    ledger.canonicalNodeContentSha256,
+    digestCanonicalJson(ledger.sourceNodes.map(nodeDigest)),
+  );
+  assert.equal(ledger.canonicalNodeContentSha256, ledger.sourceNodeOrderDigest);
+  assert.notEqual(ledger.canonicalNodeContentSha256, ledger.sourceContentSha256);
   assert.equal(ledger.sourceNodeCount, 25);
   assert.equal(ledger.sourceBlockCount, 25);
   assert.equal(ledger.provenanceGroupCount, 7);
@@ -103,6 +115,8 @@ function assertLedgerShape(ledger) {
   assert.equal(ledger.sourceBoundary.canonicalUrl, ledger.sourceUrl);
   assert.equal(ledger.sourceBoundary.pageTitle, ledger.sourcePageTitle);
   assert.equal(ledger.sourceBoundary.browserTitle, 'Complete Nick Fury Omnibus Reading Order!');
+  assert.deepEqual(ledger.sourceBoundary.rawRetrieval, ledger.sourceRawRetrieval);
+  assert.equal(ledger.sourceBoundary.canonicalNodeContentSha256, ledger.canonicalNodeContentSha256);
   assert.equal(ledger.sourceBoundary.blockCount, 25);
   assert.equal(ledger.sourceBoundary.headingCount, 0);
   assert.equal(ledger.sourceBoundary.firstIncludedBlock.sourceNode, 1);
@@ -118,8 +132,14 @@ function assertLedgerShape(ledger) {
   assert.equal(ledger.sourceNodes.filter((node) => node.countsTowardIssueBearingBlocks).length, ledger.issueBearingBlockCount);
   assert.deepEqual(ledger.sourceBoundary.boundaryProof.map((entry) => entry.type), expectedBoundaryProofTypes);
   assert.equal(ledger.sourceBoundary.boundaryProof[0].url, ledger.sourceUrl);
-  assert.equal(ledger.sourceBoundary.boundaryProof[1].retrievedAt, ledger.sourceRetrievedAt);
-  assert.equal(ledger.sourceBoundary.boundaryProof[2].sha256, ledger.sourceContentSha256);
+  assert.deepEqual(ledger.sourceBoundary.boundaryProof[1], {
+    type: 'raw-response-retrieval',
+    ...ledger.sourceRawRetrieval,
+  });
+  assert.deepEqual(ledger.sourceBoundary.boundaryProof[2], {
+    type: 'canonical-node-content-hash',
+    sha256: ledger.canonicalNodeContentSha256,
+  });
   assert.equal(ledger.sourceBoundary.boundaryProof[3].sha256, ledger.sourceIssueBearingBlocksSha256);
   assert.ok(ledger.sourceBoundary.firstIncludedBlock.sourceText.startsWith('Nick Fury must be a difficult character'));
   assert.ok(ledger.sourceBoundary.lastIncludedBlock.sourceText.startsWith('That'));
@@ -272,6 +292,10 @@ test('Nick Fury source ledger preserves the frozen source boundary and order', a
   assert.ok(inventoryRecord);
   assert.equal(inventoryRecord.title, 'Nick Fury');
   assert.equal(inventoryRecord.url, ledger.sourceUrl);
+  assert.equal(inventoryRecord.sourceRetrievedAt, ledger.sourceRetrievedAt);
+  assert.equal(inventoryRecord.sourceContentSha256, ledger.sourceContentSha256);
+  assert.deepEqual(inventoryRecord.sourceRawRetrieval, ledger.sourceRawRetrieval);
+  assert.equal(inventoryRecord.canonicalNodeContentSha256, ledger.canonicalNodeContentSha256);
   validateLedger(ledger);
 });
 
@@ -318,6 +342,12 @@ test('Nick Fury source ledger rejects structural mutations', async () => {
     }],
     ['named-work as gap', (draft) => {
       draft.occurrences[84].classification = 'unresolved-included-identity-gap';
+    }],
+    ['raw response conflated with canonical node content', (draft) => {
+      draft.canonicalNodeContentSha256 = draft.sourceContentSha256;
+    }],
+    ['raw response byte-length drift', (draft) => {
+      draft.sourceRawRetrieval.byteLength += 1;
     }],
   ];
 

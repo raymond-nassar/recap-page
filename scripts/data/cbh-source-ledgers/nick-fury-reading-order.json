@@ -6,7 +6,14 @@
   "sourceUrl": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
   "sourcePageTitle": "Omnibussin: Nick Fury, from World War II to S.H.I.E.L.D.",
   "sourceRetrievedAt": "2026-08-28",
-  "sourceContentSha256": "2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e",
+  "sourceContentSha256": "60e9ba9b0d28f12572721e14133cd8586f583442e88f2cc57012c2160d74ea4a",
+  "sourceRawRetrieval": {
+    "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+    "retrievedAt": "2026-08-28",
+    "byteLength": 105264,
+    "sha256": "60e9ba9b0d28f12572721e14133cd8586f583442e88f2cc57012c2160d74ea4a"
+  },
+  "canonicalNodeContentSha256": "ae42fa7c2c292277a9065e56617ffa16e8a775741fb3bf9a649a86ccd424aa76",
   "sourceIssueBearingBlocksSha256": "b8acd3a2c0f66ed79ea7eae8e13f5d407283ab1a21581066e3739270374b4ee5",
   "sourceBoundary": {
     "status": "exact-page-snapshot",
@@ -14,8 +21,13 @@
     "pageTitle": "Omnibussin: Nick Fury, from World War II to S.H.I.E.L.D.",
     "browserTitle": "Complete Nick Fury Omnibus Reading Order!",
     "sourceRetrievedAt": "2026-08-28",
-    "contentSha256": "2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e",
-    "contentLength": 41123,
+    "rawRetrieval": {
+      "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+      "retrievedAt": "2026-08-28",
+      "byteLength": 105264,
+      "sha256": "60e9ba9b0d28f12572721e14133cd8586f583442e88f2cc57012c2160d74ea4a"
+    },
+    "canonicalNodeContentSha256": "ae42fa7c2c292277a9065e56617ffa16e8a775741fb3bf9a649a86ccd424aa76",
     "blockCount": 25,
     "headingCount": 0,
     "firstHeading": null,
@@ -43,12 +55,15 @@
         "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/"
       },
       {
-        "type": "retrieval-date",
-        "retrievedAt": "2026-08-28"
+        "type": "raw-response-retrieval",
+        "url": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
+        "retrievedAt": "2026-08-28",
+        "byteLength": 105264,
+        "sha256": "60e9ba9b0d28f12572721e14133cd8586f583442e88f2cc57012c2160d74ea4a"
       },
       {
-        "type": "content-hash",
-        "sha256": "2ede127daa81d8358e9dc9a3c3795e817b4cc18739163dc7eadb56e0102e093e"
+        "type": "canonical-node-content-hash",
+        "sha256": "ae42fa7c2c292277a9065e56617ffa16e8a775741fb3bf9a649a86ccd424aa76"
       },
       {
         "type": "issue-bearing-block-hash",
@@ -66,7 +81,7 @@
       }
     ]
   },
-  "sourceBoundaryDigest": "e56a22472ebafea11c5f8de2e32c348779e9c1ba7e162348e701cdf9b5fa4d95",
+  "sourceBoundaryDigest": "8168e6c0f599e77813f5a5f6cdf92053ff594192550731b501ba5a337e53f38a",
   "sourceNodeCount": 25,
   "sourceBlockCount": 25,
   "provenanceGroupCount": 7,
