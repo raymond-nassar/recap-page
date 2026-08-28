@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-27T18:01:26.436Z",
+  "generatedAt": "2026-08-28T01:18:16.457Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -7369,6 +7369,41 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-21T15:16:57.157Z"
+    },
+    {
+      "id": "fantastic-four-reading-order",
+      "file": "fantastic_four_reading_order.json",
+      "name": "Fantastic Four",
+      "description": "A complete Fantastic Four character reading order.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 1000,
+      "collections": 0,
+      "characters": [
+        "Fantastic Four"
+      ],
+      "keywords": [
+        "Fantastic Four",
+        "Reed Richards",
+        "Sue Storm",
+        "Johnny Storm",
+        "Ben Grimm"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 12894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/519b7424af23c",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/fantastic-four-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-08-27T18:45:00.000Z"
     },
     {
       "id": "avengers-disassembled",

@@ -8,6 +8,11 @@ export function issueIdsFromValue(value) {
   if (!value || typeof value !== 'object') {
     return [];
   }
+  if (value.placeholder === true
+    && typeof value.issueId !== 'number'
+    && typeof value.issueId !== 'string') {
+    return [];
+  }
 
   const knownContainers = ['items', 'issues', 'rows', 'issueIds'];
   for (const key of knownContainers) {
