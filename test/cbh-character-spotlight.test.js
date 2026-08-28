@@ -540,6 +540,7 @@ test('the character inventory preserves every central disposition, ships twenty-
     'white-tiger-ava-ayala',
     'wolverine-reading-order',
     xForceCandidateId,
+    youngAvengersCandidateId,
   ]);
   const ready = inventory.find((record) => record.id === 'black-panther-reading-order');
   assert.equal(ready?.centralDisposition, 'pilot-approved');
@@ -563,7 +564,7 @@ test('the character inventory preserves every central disposition, ships twenty-
   assert.equal(inhumans?.overlapIds.length, 16);
   const youngAvengers = inventory.find((record) => record.id === youngAvengersCandidateId);
   assert.equal(youngAvengers?.centralDisposition, 'pilot-approved');
-  assert.equal(youngAvengers?.deliveryStatus, 'ready');
+  assert.equal(youngAvengers?.deliveryStatus, 'shipped');
   assert.deepEqual(youngAvengers?.catalogIds, [youngAvengersCandidateId]);
   const shippedById = new Map(shipped.map((record) => [record.id, record]));
   assert.deepEqual(shippedById.get('the-defenders-reading-order').catalogIds, [
