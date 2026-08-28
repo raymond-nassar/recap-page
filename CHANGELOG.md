@@ -14,6 +14,12 @@ quote in a bug report.
 
 ## Unreleased
 
+### Fixed navigation at narrow window widths
+
+In plain English: At narrow window widths, the reading content now appears immediately below the
+navigation pane instead of being pushed below a full screen of empty space. The wider layout and
+everything you have saved are unchanged.
+
 ### Added a complete Runaways reading guide
 
 In plain English: A complete Runaways reading guide now follows the original 2003 series through

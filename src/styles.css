@@ -258,11 +258,6 @@ a { color: var(--blue); }
    away and the tab order is unchanged. See docs/ux/sidebar-flow.md. */
 .shell.railed { grid-template-columns: 48px 1fr; }
 
-@media (max-width: 880px) {
-  .shell, .shell.railed { grid-template-columns: 1fr; }
-  .rail { position: static; height: auto; }
-}
-
 /* ============================================================ rail */
 
 .rail {
@@ -271,6 +266,11 @@ a { color: var(--blue); }
   padding: .8rem .8rem 1rem;
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   display: flex; flex-direction: column;
+}
+
+@media (max-width: 880px) {
+  .shell, .shell.railed { grid-template-columns: 1fr; }
+  .rail { position: static; height: auto; }
 }
 /* The rail used to scroll as one column, so everything past the fold went with it. The reading
    orders and the task shortcuts scroll; the app group and the status pills are pinned, which is

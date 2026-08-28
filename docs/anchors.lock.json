@@ -1479,8 +1479,8 @@
     "fp": "d06960e1a6a4cd39",
     "head": "export function compareIssueSets(candidateIds, existingIds) {"
   },
-  ".github/copilot-instructions.md|browser-verification|docs/UX_STUDY.md:931-933|0": {
-    "anchor": "docs/UX_STUDY.md:931-933",
+  ".github/copilot-instructions.md|browser-verification|docs/UX_STUDY.md:929-931|0": {
+    "anchor": "docs/UX_STUDY.md:929-931",
     "fp": "1e64d83a8ff9a25f",
     "head": "**Puppeteer was installed outside the repository, deliberately.** `node_modules/` is not covered by"
   },
@@ -1789,13 +1789,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3280-3291|0": {
-    "anchor": "CHANGELOG.md:3280-3291",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3286-3297|0": {
+    "anchor": "CHANGELOG.md:3286-3297",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3293-3303|0": {
-    "anchor": "CHANGELOG.md:3293-3303",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3299-3309|0": {
+    "anchor": "CHANGELOG.md:3299-3309",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2154,15 +2154,15 @@
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
-  "docs/UX_STUDY.md|ux-d-001-the-mobile-layout-rule-never-takes-effe|src/styles.css:261-264|0": {
-    "anchor": "src/styles.css:261-264",
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:263-269|0": {
+    "anchor": "src/styles.css:263-269",
+    "fp": "74d05f1ebb86f1aa",
+    "head": ".rail {"
+  },
+  "docs/UX_STUDY.md|ux-d-001-resolved-the-mobile-layout-rule-was-ove|src/styles.css:271-274|0": {
+    "anchor": "src/styles.css:271-274",
     "fp": "6c6878ef6f032cfe",
     "head": "@media (max-width: 880px) {"
-  },
-  "docs/UX_STUDY.md|ux-d-001-the-mobile-layout-rule-never-takes-effe|src/styles.css:268-272|0": {
-    "anchor": "src/styles.css:268-272",
-    "fp": "296bd727f51c2837",
-    "head": ".rail {"
   },
   "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/index.html:300-301|0": {
     "anchor": "src/index.html:300-301",

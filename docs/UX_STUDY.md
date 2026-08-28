@@ -678,28 +678,26 @@ false all-clear. It was re-run against the reading view, and that is the data re
 | 1280 | 1280 | No | none | sticky | y = 0 |
 | 1920 | 1920 | No | none | sticky | y = 0 |
 
-#### UX-D-001: The mobile layout rule never takes effect, because a later rule overrides it
+#### UX-D-001: Resolved, the mobile layout rule was overridden by a later base rule
 
 Surface: every viewport at or below 880 pixels
 Criterion: information architecture and heuristic 8
 Severity: 4, single-rater estimate
-Rationale: catastrophic in its category. It defeats the entire mobile layout on every load, on the
-device class the product is explicitly meant to be used beside, and it will never be noticed by
-reading the media query alone because the media query is correct
+Rationale: catastrophic in its category. It defeated the entire mobile layout on every load, on the
+device class the product is explicitly meant to be used beside, and escaped notice when the media
+query was read alone because that rule itself was correct
 Confidence: Measured
-Evidence: `src/styles.css:261-264`, `src/styles.css:268-272`,
+Evidence: `src/styles.css:263-269`, `src/styles.css:271-274`,
 `docs/ux-artifacts/viewport-sweep-reading.json`
 Source: mobile viewport framing, viewport sweep
-Impact: the stylesheet contains a media query that collapses the rail to `position: static` and
-`height: auto` below 880 pixels. It is dead code. The base `.rail` rule that sets
-`position: sticky` and `height: 100vh` is declared afterwards at equal specificity, and media
-queries add no specificity, so the later rule wins at every width. Measured at 320, 390 and 768
-pixels, the rail computes to `position: sticky` with a height of 900 pixels and main content begins
-at y = 900. Every mobile visitor must scroll past a full screen of navigation, on every load,
-before reaching the reading list. The intended mobile layout has never shipped.
-Recommendation: move the media query below the base rule, or raise its specificity, and add a
-check that pins the computed rail position at a narrow width so the regression cannot return
-silently
+Historical impact: the stylesheet contained a media query that collapsed the rail to
+`position: static` and `height: auto` below 880 pixels, followed by a base `.rail` rule that set
+`position: sticky` and `height: 100vh` at equal specificity. Measured at 320, 390 and 768 pixels,
+the rail computed to `position: sticky` with a height of 900 pixels and main content began at
+y = 900. Every mobile visitor had to scroll past a full screen of navigation before reaching the
+reading list.
+Resolution: issue 194 moved the media query after the base rule so the narrow values win, and added
+a source-order check so the regression cannot return silently.
 Backlog item: BL-028
 
 #### UX-D-002: The reading view scrolls horizontally at 320 and 390 pixels

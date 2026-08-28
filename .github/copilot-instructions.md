@@ -534,7 +534,7 @@ Checks are written with `puppeteer-core` driving installed Edge, at
 
 **`puppeteer-core` is deliberately not a dependency of this repository and must not become one.**
 It is installed in a scratch directory outside the tree and imported by absolute path from there,
-ending in `lib/puppeteer/puppeteer-core.js`. `docs/UX_STUDY.md:931-933` records that choice and the
+ending in `lib/puppeteer/puppeteer-core.js`. `docs/UX_STUDY.md:929-931` records that choice and the
 reason: nothing was added to `package.json` and no dependency was introduced. If your first instinct
 is `npm i puppeteer-core`, that is the mistake this paragraph exists to stop.
 
