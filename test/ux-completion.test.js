@@ -74,6 +74,19 @@ test('one shared breadcrumb renderer covers routed views but never Home or dialo
   assert.match(styles, /\.breadcrumb li\s*\{[^}]*overflow-wrap:\s*anywhere;/s);
 });
 
+test('the narrow rail override follows the base rule it must replace', () => {
+  const baseRail = styles.match(/\.rail\s*\{[^}]*position:\s*sticky;[^}]*height:\s*100vh;[^}]*\}/s);
+  const narrowRail = styles.match(
+    /@media \(max-width:\s*880px\)\s*\{\s*\.shell, \.shell\.railed\s*\{[^}]*grid-template-columns:\s*1fr;[^}]*\}\s*\.rail\s*\{[^}]*position:\s*static;[^}]*height:\s*auto;[^}]*\}\s*\}/s,
+  );
+  assert.ok(baseRail, 'the base rail no longer owns the wide sticky viewport');
+  assert.ok(narrowRail, 'the 880px layout no longer restores document flow');
+  assert.ok(
+    narrowRail.index > baseRail.index,
+    'the base rail overrides the earlier narrow rule at equal specificity',
+  );
+});
+
 test('product copy uses Reading List everywhere and capitalizes both words', () => {
   const terms = productCopy
     .replace(/Comic Book Reading Orders/g, '')

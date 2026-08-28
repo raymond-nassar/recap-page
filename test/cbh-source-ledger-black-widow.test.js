@@ -300,8 +300,8 @@ test('the Black Widow source ledger preserves the frozen boundary and occurrence
   const inventory = await readInventory();
   const record = inventory.find((entry) => entry.id === 'black-widow-reading-order');
   assert.equal(record.reason.includes('773'), true);
-  assert.equal(record.centralDisposition, 'deferred');
-  assert.equal(record.deliveryStatus, 'not-applicable');
+  assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(record.deliveryStatus, 'shipped');
 });
 
 test('the Black Widow source ledger rejects the contrarian mutations', async () => {
