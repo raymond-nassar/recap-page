@@ -1026,9 +1026,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // and X-Force adds 23 source-position metadata gaps.
   // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight 18,
   // Fantastic Four adds 185 individually preserved cache-only provider gaps, Guardians adds 29,
-  // and Defenders adds 23 without substituting a source identity.
-  assert.equal(claimed, 1601, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1601, 'the bundled placeholder total moved; re-derive the figures in the record');
+  // and Defenders adds 23 without substituting a source identity. Nick Fury and S.H.I.E.L.D. adds
+  // 194 individually preserved source-position gaps without claiming a metadata match.
+  assert.equal(claimed, 1795, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1795, 'the bundled placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 78);
   assert.equal(affected, 5);
 });
@@ -1229,7 +1230,7 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, and X-Force adds 23.
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, Fantastic Four adds 185,
-  // Guardians adds 29, and Defenders adds 23.
-  assert.equal(refused.length, 1645);
+  // Guardians adds 29, Defenders adds 23, and Nick Fury and S.H.I.E.L.D. adds 194.
+  assert.equal(refused.length, 1839);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
