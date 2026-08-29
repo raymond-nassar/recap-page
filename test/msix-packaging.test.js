@@ -140,9 +140,33 @@ test('package removal fails if the exact identity remains registered', async () 
       },
       getPackageInfo: () => remaining,
     }),
-    /package identity remains registered/,
+    (error) => error instanceof AggregateError
+      && error.errors.some((failure) => /package identity remains registered/.test(failure.message)),
   );
   assert.equal(removalCalls, 1);
+});
+
+test('package absence is verified even when the removal command fails', async () => {
+  const { removePackage } = await import('../scripts/msix-proof.mjs');
+  let verified = false;
+  assert.throws(
+    () => removePackage(
+      'PanelStackLabs.RecapPage',
+      'PanelStackLabs.RecapPage_we33aa8nvkpcc',
+      {
+        runPowerShell: () => {
+          throw new Error('removal failed');
+        },
+        getPackageInfo: () => {
+          verified = true;
+          return null;
+        },
+      },
+    ),
+    (error) => error instanceof AggregateError
+      && /removal or absence verification failed/.test(error.message),
+  );
+  assert.equal(verified, true);
 });
 
 test('the proof fails when either canonical ready guidance line is absent', async () => {

@@ -36,7 +36,9 @@ function psLiteral(value) {
 
 function packageInfo(runPowerShell = powershell) {
   const raw = runPowerShell(
-    `$p = Get-AppxPackage -Name ${psLiteral(PACKAGE_NAME)} | Sort-Object Version -Descending | Select-Object -First 1; `
+    `$p = Get-AppxPackage -Name ${psLiteral(PACKAGE_NAME)} | `
+    + `Where-Object PackageFamilyName -eq ${psLiteral(PACKAGE_FAMILY)} | `
+    + 'Sort-Object Version -Descending | Select-Object -First 1; '
     + 'if (-not $p) { "null"; exit 0 }; '
     + '$p | Select-Object Name,PackageFullName,PackageFamilyName,InstallLocation,Version | ConvertTo-Json -Compress',
   );
@@ -106,13 +108,25 @@ function removePackage(
   if (packageName !== PACKAGE_NAME || packageFamily !== PACKAGE_FAMILY) {
     throw new Error('refusing to remove a package outside the exact Recap Page identity');
   }
-  runPowerShell(
-    `$packages = @(Get-AppxPackage -Name ${psLiteral(packageName)} | Where-Object PackageFamilyName -eq ${psLiteral(packageFamily)}); `
-    + 'foreach ($p in $packages) { Remove-AppxPackage -Package $p.PackageFullName }',
-  );
-  const remaining = getPackageInfo();
-  if (remaining?.Name === PACKAGE_NAME && remaining?.PackageFamilyName === PACKAGE_FAMILY) {
-    throw new Error(`package identity remains registered: ${remaining.PackageFullName}`);
+  const failures = [];
+  try {
+    runPowerShell(
+      `$packages = @(Get-AppxPackage -Name ${psLiteral(packageName)} | Where-Object PackageFamilyName -eq ${psLiteral(packageFamily)}); `
+      + 'foreach ($p in $packages) { Remove-AppxPackage -Package $p.PackageFullName }',
+    );
+  } catch (error) {
+    failures.push(error);
+  }
+  try {
+    const remaining = getPackageInfo();
+    if (remaining) {
+      failures.push(new Error(`package identity remains registered: ${remaining.PackageFullName}`));
+    }
+  } catch (error) {
+    failures.push(error);
+  }
+  if (failures.length) {
+    throw new AggregateError(failures, 'package removal or absence verification failed');
   }
 }
 
