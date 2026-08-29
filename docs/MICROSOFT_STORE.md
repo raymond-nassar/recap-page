@@ -22,11 +22,24 @@ The built candidate hashes are:
 
 | Artifact | SHA-256 |
 |---|---|
-| x64 MSIX | `46EAA19738BEAE10D08439CBFF3F73E8AB956C88C27CDA6F7B4A9D26DD624017` |
-| ARM64 MSIX | `07B1F9515624ABA9E00300DA3EBA14515F8EC2BA902CD66B8D98578947B48798` |
-| x64/ARM64 bundle | `9446326CBC3748B46C8C6D629C46B3D62AA9942440A1BFE23CA45E7C24227A12` |
+| x64 MSIX | `4B07E7A8987201DD04329156F2B0AD390CAFFF3C73790D2B8524A65CEF69CF6F` |
+| ARM64 MSIX | `5EB43A7FEB0D04030079BA6C5FF02B1A59645F3366433D378AD22C11EA0CE0DF` |
+| x64/ARM64 bundle | `E1E60C46CECE9BDAA165701DFB4686AE2F7DAC3E3A6421CCE6BBC9BED52B66FA` |
 
-The current candidate was installed with only corrected certificate thumbprint
+These hashes name the post-review build that removes every casing of the two origin-changing
+environment names. Its generated certificate has thumbprint
+`ECD962B70BC9A556651CE7F06E04BBB70ED65F22`. It was temporarily trusted for one bounded proof, and
+the corrected artifacts passed all four aimed installed scenarios:
+
+- The x64 package started at the canonical origin with complete ready guidance.
+- The x64 package refused an occupied port with complete safe guidance, no browser-window change,
+  and a witnessed server-child exit.
+- Installing the final bundle on Windows 11 ARM64 selected its ARM64 slice and started at the
+  canonical origin with complete ready guidance.
+- The ARM64 slice refused an occupied port with complete safe guidance, no browser-window change,
+  and a witnessed server-child exit.
+
+The earlier candidate was installed with only certificate thumbprint
 `E36EBC5FA20DA01A8D73E30B7C6EB25FAFAD188E` temporarily trusted in LocalMachine
 TrustedPeople. All five installed scenarios passed:
 
@@ -41,13 +54,11 @@ TrustedPeople. All five installed scenarios passed:
 - The ARM64 slice selected from the final bundle refused an occupied port, retained every safe
   guidance line, exited its server child, and left the browser-window digest unchanged.
 
-An earlier attempt at the ARM64 busy-port scenario reported both scenario and cleanup failure, but
-the old formatter did not retain either nested cause. It left no package, process, or listener
-residue, and the exact ARM64 bundle payload then reproduced all required guidance outside
-installation. After the formatter was corrected to preserve every nested cause, the authorized
-installed repeat passed.
+The earlier update journey did not repeat because package version flow and browser behavior did not
+change. It remains evidence for version selection and state continuity rather than for the corrected
+launcher bytes.
 
-After the five-scenario run, the exact certificate was removed. CurrentUser Root and LocalMachine
+After each installed proof, the exact certificate was removed. CurrentUser Root and LocalMachine
 Root returned to 49 certificates with digest
 `CBEABFC3A4AED45E67ECB54F4FE73E74CEE39F4C95A9849C883CCDA6C9A6543D`.
 CurrentUser TrustedPeople and LocalMachine TrustedPeople returned to one certificate with digest
@@ -137,9 +148,9 @@ bundle slices. A second native toolchain or launcher runtime would add another s
 
 The selected launcher therefore uses the official Node executable already required by each package.
 The maintained JavaScript supervisor validates the packaged server, starts it with the package root
-as its working directory, inherits the visible console, waits for Node to exit, and keeps the output
-visible until a key is pressed. It does not bind a port, open the browser, read browser storage, or
-write package files.
+as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, inherits the visible
+console, waits for Node to exit, and keeps the output visible until a key is pressed. It does not
+bind a port, open the browser, read browser storage, or write package files.
 
 Three activation routes were measured or evaluated:
 
@@ -231,7 +242,9 @@ The update scenario is x64-only because its `2.0.0.1` package is local proof mat
 package and final bundle contain only Store-safe version `2.0.0.0`.
 
 The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
-cleanup errors preserves each cause before any decision to repeat it.
+cleanup errors preserves each cause before any decision to repeat it. Busy-port child exit is
+witnessed by the known supervisor PID plus the child parent PID, executable name, and package path.
+Missing ownership metadata is unknown and cannot report success.
 
 ## Run Windows App Certification Kit
 

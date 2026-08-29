@@ -56,18 +56,37 @@ function assertNoPreexistingPackage(getPackageInfo = packageInfo) {
   }
 }
 
-function packageProcesses(installed, since = new Date(0), runPowerShell = powershell) {
+function retainPackageProcess(process, installRoot, parentProcessId = 0) {
+  const inPackage = typeof process.ExecutablePath === 'string'
+    && process.ExecutablePath.toLowerCase().startsWith(installRoot.toLowerCase());
+  const directChild = Number.isInteger(parentProcessId)
+    && parentProcessId > 0
+    && process.ParentProcessId === parentProcessId;
+  return inPackage || directChild;
+}
+
+function packageProcesses(
+  installed,
+  since = new Date(0),
+  {
+    parentProcessId = 0,
+    runPowerShell = powershell,
+  } = {},
+) {
+  const parent = Number.isInteger(parentProcessId) && parentProcessId > 0
+    ? parentProcessId
+    : 0;
   const raw = runPowerShell(
-    `$root = ${psLiteral(installed.InstallLocation)}; `
-    + `$since = [datetime]${psLiteral(since.toISOString())}; `
-    + '$rows = Get-CimInstance Win32_Process | Where-Object { '
-    + '$_.ExecutablePath -and $_.ExecutablePath.StartsWith($root, [System.StringComparison]::OrdinalIgnoreCase) '
-    + '} | ForEach-Object { $created = [datetime]$_.CreationDate; '
+    `$since = [datetime]${psLiteral(since.toISOString())}; `
+    + '$rows = Get-CimInstance Win32_Process | ForEach-Object { $created = [datetime]$_.CreationDate; '
     + 'if ($created -ge $since) { [pscustomobject]@{ Name = $_.Name; ProcessId = $_.ProcessId; ParentProcessId = $_.ParentProcessId; ExecutablePath = $_.ExecutablePath; CreationDate = $created.ToString("o"); CommandLine = $_.CommandLine } } }; '
     + '@($rows) | ConvertTo-Json -Compress',
   );
   const parsed = JSON.parse(raw || '[]');
-  return Array.isArray(parsed) ? parsed : [parsed];
+  const processes = Array.isArray(parsed) ? parsed : [parsed];
+  return processes.filter((process) => (
+    retainPackageProcess(process, installed.InstallLocation, parent)
+  ));
 }
 
 function stopPids(pids, runPowerShell = powershell) {
@@ -320,6 +339,37 @@ async function waitForProcess(
   );
 }
 
+function serverChildExited(processes, supervisor) {
+  if (!Number.isInteger(supervisor?.ProcessId)
+    || typeof supervisor.Name !== 'string'
+    || typeof supervisor.ExecutablePath !== 'string') {
+    return false;
+  }
+
+  const liveSupervisor = processes.find((process) => process.ProcessId === supervisor.ProcessId);
+  if (!liveSupervisor
+    || liveSupervisor.Name?.toLowerCase() !== supervisor.Name.toLowerCase()
+    || liveSupervisor.ExecutablePath?.toLowerCase() !== supervisor.ExecutablePath.toLowerCase()) {
+    return false;
+  }
+
+  for (const process of processes) {
+    if (process.ProcessId === supervisor.ProcessId) continue;
+    if (!Number.isInteger(process.ProcessId)
+      || !Number.isInteger(process.ParentProcessId)
+      || typeof process.Name !== 'string'
+      || typeof process.ExecutablePath !== 'string') {
+      return false;
+    }
+    if (process.ParentProcessId === supervisor.ProcessId
+      && process.Name.toLowerCase() === supervisor.Name.toLowerCase()
+      && process.ExecutablePath.toLowerCase() === supervisor.ExecutablePath.toLowerCase()) {
+      return false;
+    }
+  }
+  return true;
+}
+
 async function waitForNewTerminal(baseline) {
   return waitFor(
     () => terminalWindows().find((window) => !baseline.has(window.hwnd)) ?? null,
@@ -416,8 +466,12 @@ async function busyPortRefusal(architecture, source) {
       'the visible console did not retain the busy-port guidance',
     );
     await waitFor(
-      () => packageProcesses(context.installed, context.since)
-        .every((process) => !process.CommandLine?.includes('server.mjs')),
+      () => serverChildExited(
+        packageProcesses(context.installed, context.since, {
+          parentProcessId: launcher.ProcessId,
+        }),
+        launcher,
+      ),
       'the busy-port server child did not exit',
     );
     const browserAfter = browserSnapshotDigest();
@@ -534,6 +588,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 
 export {
   assertNoPreexistingPackage, assertReadyGuidance, cleanupPackage, generation, installPackage,
-  formatProofError, packageInfo, packageProcesses, removePackage, runInstalledScenario, stopPids,
-  waitForProcess,
+  formatProofError, packageInfo, packageProcesses, removePackage, retainPackageProcess,
+  runInstalledScenario, stopPids, serverChildExited, waitForProcess,
 };

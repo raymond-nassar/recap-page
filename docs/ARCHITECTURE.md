@@ -538,8 +538,9 @@ route registries own the behavior a reader should expect now.
 The x64 and ARM64 MSIX packages add a small JavaScript supervisor around the existing browser
 companion. They do not add another application runtime or persistence model. Start launches the
 architecture-matched packaged Node executable with `Launcher.mjs`, which starts a second invocation
-of that same Node executable with `server.mjs`, waits for it, and keeps any exit guidance visible.
-The server still owns the loopback bind, port conflict, external browser, and exact URL.
+of that same Node executable with `server.mjs`, removes every casing of the two environment values
+that can change the origin or suppress browser opening, waits for it, and keeps any exit guidance
+visible. The server still owns the loopback bind, port conflict, external browser, and exact URL.
 
 Direct manifest activation of Node was measured first. It started the right command and served the
 right origin, but its console closed immediately when Node refused an occupied port. Package Support

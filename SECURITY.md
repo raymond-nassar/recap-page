@@ -152,7 +152,8 @@ Recorded so a report can start from what is true rather than from what a scanner
 The x64 and ARM64 MSIX packages declare `runFullTrust` for one reason: their native Node entry
 process runs a small local supervisor, which starts the unchanged server at `127.0.0.1:8787` and
 opens the external default browser. The supervisor performs no network request and does not read
-browser storage.
+browser storage. It removes `MRT_PORT` and `MRT_NO_OPEN` case-insensitively before starting the
+server because Windows environment names are case-insensitive.
 
 The package adds no analytics or telemetry. Package Support Framework was evaluated and rejected
 because Microsoft's NuGet binaries may collect usage telemetry when Windows diagnostic collection
