@@ -149,11 +149,18 @@ npm run msix:prove -- --scenario=update-state-continuity
 ```
 
 Each scenario owns its package installation and refuses to run when that package identity is already
-registered. It removes only the exact package full name it installed.
+registered. Cleanup re-queries and removes only the exact Recap Page identity, then fails if that
+identity remains registered. Process enumeration, process stopping, package removal, and any
+scenario-specific cleanup are attempted independently so one cleanup failure cannot skip another.
 
 The same-profile journey must back up existing state before adding its non-sensitive sentinel and
 must restore that backup afterwards. Proof output records only digests, byte lengths, process IDs,
 the sentinel, and package generations. It must not record lists, notes, or raw storage.
+
+The runner automates package installation, Start activation, console guidance, process ownership,
+the exact origin, busy-port refusal, and package generation changes. Browser profile selection,
+synchronous reader-tab behavior, and saved-state continuity are manual checkpoints recorded beside
+the automated run; the runner does not claim to observe them.
 
 After the proof, remove the exact package:
 

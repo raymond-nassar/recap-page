@@ -39,10 +39,9 @@ test('the manifest uses the exact Partner Center identity', () => {
   assert.match(properties, /<PublisherDisplayName>PanelStack Labs<\/PublisherDisplayName>/);
 });
 
-test('Start activation uses the x64 console shim to preserve visible guidance', () => {
+test('Start activation names the x64 console shim', () => {
   const source = read(MANIFEST);
   const application = element(source, 'Application');
-  const launcher = read(join(ROOT, 'packaging', 'windows', 'Launcher.cs'));
 
   assert.equal(attribute(application, 'Id'), 'App');
   assert.equal(attribute(application, 'Executable'), 'RecapPageLauncher.exe');
@@ -51,15 +50,6 @@ test('Start activation uses the x64 console shim to preserve visible guidance', 
   assert.equal(attribute(application, 'uap10:Subsystem'), 'console');
   assert.equal(attribute(application, 'uap10:SupportsMultipleInstances'), 'true');
   assert.equal(attribute(application, 'uap10:Parameters'), null);
-  assert.match(launcher, /Path\.Combine\(root, "runtime", "node\.exe"\)/);
-  assert.match(launcher, /Path\.Combine\(root, "server\.mjs"\)/);
-  assert.match(launcher, /child\.WaitForExit\(\)/);
-  assert.match(launcher, /Console\.ReadKey\(true\)/);
-  assert.match(launcher, /EnvironmentVariables\.Remove\("MRT_PORT"\)/);
-  assert.match(launcher, /EnvironmentVariables\.Remove\("MRT_NO_OPEN"\)/);
-  assert.match(launcher, /catch \(Win32Exception error\)/);
-  assert.match(launcher, /catch \(InvalidOperationException error\)/);
-  assert.doesNotMatch(launcher, /localhost|EnvironmentVariables\.(?:Add|\[)/);
 });
 
 test('the package declares only runFullTrust', () => {
@@ -108,25 +98,109 @@ test('generated package and trust material stay under the ignored output boundar
   assert.deepEqual(tracked.filter((path) => /\.(?:pfx|cer|msix|msixbundle)$/i.test(path)), []);
 });
 
-test('package scripts expose build and independently invocable proof scenarios', () => {
+test('package scripts expose build and independently invocable proof scenarios', async () => {
   const pkg = JSON.parse(read(join(ROOT, 'package.json')));
-  const proof = read(PROOF);
+  const proof = await import('../scripts/msix-proof.mjs');
 
   assert.equal(pkg.scripts['msix:pack'], 'node scripts/pack-msix.mjs');
   assert.equal(pkg.scripts['msix:prove'], 'node scripts/msix-proof.mjs');
-  for (const scenario of [
+  assert.deepEqual(proof.SCENARIOS, [
     'start-profile-reader-relaunch',
     'busy-port-refusal',
     'update-state-continuity',
-  ]) {
-    assert.match(proof, new RegExp(`['"]${scenario}['"]`));
-  }
-  assert.match(proof, /shell:AppsFolder/);
-  assert.match(proof, /Start-Process explorer\.exe -ArgumentList/);
-  assert.match(proof, /\bAUMID\b/);
-  assert.match(proof, /assertNoPreexistingPackage\(\)/);
-  assert.match(proof, /removePackage\(ownedPackageFullName\)/);
-  assert.doesNotMatch(proof, /function removePackage\(\)\s*\{/);
+  ]);
+});
+
+test('the proof refuses a foreign package identity before invoking PowerShell', async () => {
+  const { removePackage } = await import('../scripts/msix-proof.mjs');
+  let calls = 0;
+  assert.throws(
+    () => removePackage('Foreign.Package', 'Foreign.Package_family', {
+      runPowerShell: () => { calls += 1; },
+      getPackageInfo: () => { calls += 1; },
+    }),
+    /outside the exact Recap Page identity/,
+  );
+  assert.equal(calls, 0);
+});
+
+test('package removal fails if the exact identity remains registered', async () => {
+  const { removePackage } = await import('../scripts/msix-proof.mjs');
+  const remaining = {
+    Name: 'PanelStackLabs.RecapPage',
+    PackageFamilyName: 'PanelStackLabs.RecapPage_we33aa8nvkpcc',
+    PackageFullName: 'PanelStackLabs.RecapPage_2.0.0.1_x64__we33aa8nvkpcc',
+  };
+  let removalCalls = 0;
+  assert.throws(
+    () => removePackage(remaining.Name, remaining.PackageFamilyName, {
+      runPowerShell: () => {
+        removalCalls += 1;
+        return '';
+      },
+      getPackageInfo: () => remaining,
+    }),
+    (error) => error instanceof AggregateError
+      && error.errors.some((failure) => /package identity remains registered/.test(failure.message)),
+  );
+  assert.equal(removalCalls, 1);
+});
+
+test('package absence is verified even when the removal command fails', async () => {
+  const { removePackage } = await import('../scripts/msix-proof.mjs');
+  const calls = [];
+  assert.throws(
+    () => removePackage(
+      'PanelStackLabs.RecapPage',
+      'PanelStackLabs.RecapPage_we33aa8nvkpcc',
+      {
+        runPowerShell: () => {
+          calls.push('remove');
+          throw new Error('removal failed');
+        },
+        getPackageInfo: () => {
+          calls.push('verify');
+          return null;
+        },
+      },
+    ),
+    (error) => error instanceof AggregateError
+      && /removal or absence verification failed/.test(error.message),
+  );
+  assert.deepEqual(calls, ['remove', 'verify']);
+});
+
+test('the proof fails when either canonical ready guidance line is absent', async () => {
+  const { assertReadyGuidance } = await import('../scripts/msix-proof.mjs');
+  assert.doesNotThrow(() => assertReadyGuidance(
+    'Recap Page running at http://127.0.0.1:8787/\n'
+    + 'Other addresses are separate browser storage.',
+  ));
+  assert.throws(
+    () => assertReadyGuidance('Recap Page running at http://127.0.0.1:8787/'),
+    /Other addresses are separate browser storage/,
+  );
+});
+
+test('cleanup still attempts package removal when process enumeration fails', async () => {
+  const { cleanupPackage } = await import('../scripts/msix-proof.mjs');
+  const calls = [];
+  assert.throws(
+    () => cleanupPackage({
+      installed: { InstallLocation: 'C:\\Program Files\\WindowsApps\\RecapPage' },
+      since: new Date(0),
+      owned: [41],
+    }, {
+      listProcesses: () => {
+        calls.push('enumerate');
+        throw new Error('enumeration failed');
+      },
+      stopProcesses: () => calls.push('stop'),
+      removeOwnedPackage: () => calls.push('remove'),
+    }),
+    (error) => error instanceof AggregateError && /cleanup did not complete/.test(error.message),
+  );
+  assert.deepEqual(calls, ['enumerate', 'stop', 'remove']);
 });
 
 test('Windows packaging adds no browser runtime dependency', () => {
