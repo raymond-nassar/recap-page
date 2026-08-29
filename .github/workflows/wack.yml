@@ -55,8 +55,9 @@ jobs:
             -OutFile $installer
 
           $signature = Get-AuthenticodeSignature -FilePath $installer
-          if ($signature.Status -ne 'Valid'
-            -or $signature.SignerCertificate.Subject -notmatch '(^|, )O=Microsoft Corporation(,|$)') {
+          $signedByMicrosoft = $signature.SignerCertificate.Subject `
+            -match '(^|, )O=Microsoft Corporation(,|$)'
+          if ($signature.Status -ne 'Valid' -or -not $signedByMicrosoft) {
             throw "The current SDK installer is not validly signed by Microsoft Corporation."
           }
           $installerVersion = (Get-Item -LiteralPath $installer).VersionInfo.FileVersion
