@@ -154,9 +154,17 @@ normal runner to pass. The upgrade proof has no single-scenario selector.
 
 ## Review pinned GitHub Actions
 
-The workflow pins each third-party action to a full commit SHA. It runs deterministic repository
-checks only; the Windows release archive and its checksum are built and reviewed during release
-preparation rather than uploaded from CI. Before changing a pin:
+The workflows pin each third-party action to a full commit SHA. The ordinary CI workflow runs
+deterministic repository checks only; the Windows release archive and its checksum are built and
+reviewed during release preparation rather than uploaded from CI.
+
+The separate Windows App Certification Kit workflow runs only when its own automation changes in a
+pull request or when a maintainer dispatches it manually after merge. It uses the supported
+Windows Server 2022 x64 command-line host, a read-only token, telemetry opt-out, and ephemeral
+randomly signed packages. It uploads no package, certificate, installer, raw output, or WACK report.
+The maintained Store guide records its bounded result and cleanup contract.
+
+Before changing an action pin:
 
 1. Open the action repository's release page.
 2. Confirm the release tag and immutable commit SHA.

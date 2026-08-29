@@ -107,12 +107,31 @@ up and was not repeated. It establishes that non-admin trust is insufficient for
 The earlier loose registration remains useful architecture evidence but is not counted as
 installation evidence.
 
-Windows App Certification Kit could not run on this ARM64 host. The official Windows SDK
-10.0.28000.2705 installer completed with WACK as the only selected top-level feature, plus
-prerequisites it enforced. Its package plan restricted every WACK executable and native-component
-package to x86 or amd64 hosts. On ARM64 it installed only the supported-API XML list and no
-`appcert.exe`. No WACK report exists, so this is an environmental certification blocker rather than
-a package pass or failure. Nothing has been associated, uploaded, submitted, or published.
+Windows App Certification Kit completed on a supported x64 Windows Server 2022 command-line host in
+[the 2026-08-28 hosted run](https://github.com/raymond-nassar/recap-page/actions/runs/33241209349).
+The runner used image `win22 20260824.284.2`, AMD64, an elevated process in active session 2, and a
+validly Microsoft-signed WACK `10.0.26100.7705`.
+
+The x64 package and x64/ARM64 bundle each completed 24 test categories: 22 passed, `Blocked
+executables` produced the documented optional Desktop Bridge failure, and `DPIAwarenessValidation`
+produced a warning. WACK therefore reported `WARNING` with `PARTIAL_RUN=FALSE` for both inputs. The
+blocked executable is the architecture-matched official Node runtime, the package's only executable
+payload, and Microsoft says that optional result may be ignored when the executable is part of the
+app. The DPI warning applies to that console runtime; the app's visual surface remains the external
+browser. Neither result warrants altering the published Node binary or its verified hash.
+
+The hosted proof rebuilt randomly signed inputs, so their hashes differ from the accepted installed
+candidate. A source-continuity gate proved that every package-copied input remains identical to the
+merged corrected build. The accepted local hashes above remain the package handoff. The hosted
+inputs were x64
+`43A9A2C736E38272926DC0DA8DCCA05310B2376278110035C67422807976A56C`, ARM64
+`D54CFE3DB3124451FDB1653057160F4FB71BA2BAA3085BCF3928B15F0A36955B`, and bundle
+`073790FAD4245E25EBBDC0E9D2A541E013F1534ED67680FCC336EE52E89A9FEF`.
+
+The workflow uploaded no package, certificate, installer, log, or report artifact. Its public output
+contains only allowlisted host facts, hashes, test names, and result categories. Raw WACK output and
+reports, the randomly generated package inputs, exact package registration, and temporary
+certificate trust were removed. Nothing has been associated, uploaded, submitted, or published.
 
 ## Production identity
 
@@ -248,45 +267,36 @@ Missing ownership metadata is unknown and cannot report success.
 
 ## Run Windows App Certification Kit
 
-Install the current Windows App Certification Kit from the official Windows SDK only after an owner
-checkpoint. Microsoft documents the kit as an installed SDK component and requires an elevated
-command window in an active user session. An SDK download layout is installation media, not a
-supported portable certification environment, so copied binaries are not accepted as WACK evidence.
+WACK is deprecated and no longer maintained, but Microsoft still recommends it as an optional local
+pre-submission check. Partner Center performs the official certification after submission.
 
-After approval, run WACK against the x64 package and the final bundle on a supported x64 host. The
-x64 run can exercise the changed x64 entry payload, and the bundle run validates the submitted
-container and both package manifests. It does not prove ARM64 runtime behavior on x64 hardware; the
-installed ARM64 scenario on Windows on Arm is the separate runtime proof.
+The durable workflow uses the standard `windows-2022` x64 runner. Microsoft lists Windows Server 2022
+as a supported command-line Windows SDK host; the no-cost Server 2025 runner is deliberately not
+used because the current SDK requirements do not list it. The workflow also refuses Session0, a
+non-administrator token, a non-AMD64 process, an absent kit, and an `appcert.exe` without a valid
+Microsoft signature.
 
-```text
-appcert.exe reset
-appcert.exe test -appxpackagepath <x64-msix> -reportoutputpath <temporary-x64-report>
-appcert.exe reset
-appcert.exe test -appxpackagepath <msixbundle> -reportoutputpath <temporary-bundle-report>
-```
+The workflow runs automatically only when its own workflow or WACK runner changes in a pull request.
+Once merged, it is also available by manual dispatch. Ordinary application and documentation pull
+requests do not pay for WACK. It uses a read-only repository token, pinned actions, telemetry opt-out,
+and no secrets or artifact upload.
 
-Treat manifest, binary architecture, capability, and package-content failures as package defects.
-Treat missing kit components, lack of elevation or an active session, and machine policy failures as
-environmental blockers. On this ARM64 host, the official 10.0.28000.2705 installer installs no WACK
-executable, so another supported host is required. Performance results remain host-dependent and
-must still meet the current Store policy. Keep reports outside the repository and delete any report
-containing machine paths after recording only the test names and outcomes.
+Each run rebuilds randomly signed proof inputs without changing the maintained package sources. It
+then temporarily trusts only that run's certificate and applies Microsoft's command-line sequence:
+`appcert.exe reset`, followed by `appcert.exe test -appxpackagepath ... -reportoutputpath ...`, once
+for the x64 package and once for the final bundle. The x64 run covers the x64 entry payload; the
+bundle run covers the submitted container and both package manifests. ARM64 runtime behavior remains
+owned by the installed Windows on Arm proof above.
 
-After the proof, remove the exact package:
+Only `Blocked executables=FAIL` and `DPIAwarenessValidation=WARNING` are accepted as known optional
+results. Any other non-pass category, explicit partial run, explicit outdated-kit marker, malformed
+report, command failure, or cleanup residue fails the workflow. The parser disables DTD and external
+resolution, caps the report at 16 MiB, emits no descriptions or paths, and deletes raw XML, HTML,
+stdout, and stderr after extracting allowlisted fields.
 
-```text
-Get-AppxPackage -Name PanelStackLabs.RecapPage | Remove-AppxPackage
-```
-
-Remove the temporary trusted certificate in an elevated terminal, using the exact thumbprint from the CER:
-
-```text
-$thumbprint = (Get-PfxCertificate .\dist\msix\RecapPage-local-proof.cer).Thumbprint
-Remove-Item "Cert:\LocalMachine\TrustedPeople\$thumbprint"
-```
-
-Confirm port 8787 is free and no `PanelStackLabs.RecapPage` package remains before deleting
-`dist/msix/`.
+Cleanup independently removes the exact `PanelStackLabs.RecapPage` registration, the run's exact
+certificate thumbprint, all WACK reports, and every generated package. A second always-run workflow
+step repeats those boundaries if the main runner is interrupted.
 
 ## Browser storage and uninstall behavior
 
@@ -303,8 +313,6 @@ certification passes and the owner explicitly changes release policy.
 
 ## Remaining Store gates
 
-- Run the Windows App Certification Kit against the changed x64 package and final bundle on a
-  supported host that receives `appcert.exe`.
 - Approve the `runFullTrust` explanation in Partner Center.
 - Use the dedicated [privacy policy](../PRIVACY.md) URL and review every listing disclosure.
 - Complete Partner Center package validation.
@@ -323,5 +331,9 @@ accepts terms, reserves a name, uploads a package, or submits a listing.
 - [Add Arm support to a Windows app](https://learn.microsoft.com/windows/arm/add-arm-support)
 - [MSIX package and bundle requirements](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/app-package-requirements)
 - [Windows App Certification Kit](https://learn.microsoft.com/windows/uwp/debug-test-perf/windows-app-certification-kit)
+- [Windows Desktop Bridge WACK tests](https://learn.microsoft.com/windows/uwp/debug-test-perf/windows-desktop-bridge-app-tests)
+- [Windows SDK supported hosts](https://learn.microsoft.com/windows/apps/windows-sdk/)
+- [GitHub-hosted runner architecture and cost](https://docs.github.com/actions/reference/runners/github-hosted-runners)
+- [GitHub token permissions](https://docs.github.com/actions/tutorials/authenticate-with-github_token)
 - [winapp CLI multi-architecture bundles](https://learn.microsoft.com/windows/apps/dev-tools/winapp-cli/usage#multi-architecture-bundles)
 - [Node v24.19.0 published checksums](https://nodejs.org/dist/v24.19.0/SHASUMS256.txt)

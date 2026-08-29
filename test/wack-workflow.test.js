@@ -6,14 +6,14 @@ const workflow = readFileSync(new URL('../.github/workflows/wack.yml', import.me
 const runner = readFileSync(new URL('../scripts/run-wack.ps1', import.meta.url), 'utf8');
 
 test('WACK is manual except when its own automation changes', () => {
-  assert.match(workflow, /^  workflow_dispatch:\s*$/m);
-  assert.match(workflow, /^  pull_request:\s*$/m);
-  const paths = workflow.match(/    paths:\r?\n((?:      - .+\r?\n)+)/)?.[1] ?? '';
+  assert.match(workflow, /^ {2}workflow_dispatch:\s*$/m);
+  assert.match(workflow, /^ {2}pull_request:\s*$/m);
+  const paths = workflow.match(/ {4}paths:\r?\n((?: {6}- .+\r?\n)+)/)?.[1] ?? '';
   assert.deepEqual(
-    [...paths.matchAll(/      - (.+)/g)].map((match) => match[1]),
+    [...paths.matchAll(/ {6}- (.+)/g)].map((match) => match[1]),
     ['.github/workflows/wack.yml', 'scripts/run-wack.ps1'],
   );
-  assert.doesNotMatch(workflow, /pull_request_target|schedule:|^  push:/m);
+  assert.doesNotMatch(workflow, /pull_request_target|schedule:|^ {2}push:/m);
 });
 
 test('WACK uses the supported no-cost x64 host and least privilege', () => {
@@ -22,8 +22,8 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
     [...workflow.matchAll(/^\s*runs-on:\s*(\S+)\s*$/gm)].map((match) => match[1]),
     ['windows-2022'],
   );
-  assert.match(workflow, /^permissions:\r?\n  contents: read\s*$/m);
-  assert.match(workflow, /^  WINAPP_CLI_TELEMETRY_OPTOUT: '1'\s*$/m);
+  assert.match(workflow, /^permissions:\r?\n {2}contents: read\s*$/m);
+  assert.match(workflow, /^ {2}WINAPP_CLI_TELEMETRY_OPTOUT: '1'\s*$/m);
   assert.match(workflow, /\$output = @\(winapp --version\)/);
   assert.match(workflow, /\$output\[-1\]\.Trim\(\) -ne '0\.6\.0'/);
   assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write|secrets\./);

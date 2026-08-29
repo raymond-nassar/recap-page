@@ -18,9 +18,11 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 In plain English: Recap Page can now be built as one Windows Store bundle for both common 64-bit
 computers and Windows computers powered by Arm. Inspection confirms that each version contains and
 runs the intended processor-specific runtime. The Arm package also installed from the bundle and
-started the same browser address, and safely refused an occupied port. Windows certification could
-not run on this Arm machine. The existing public Windows ZIP is unchanged, and this package is not a
-Store download yet.
+started the same browser address, and safely refused an occupied port. Windows certification then
+completed on a supported common 64-bit host for both the common 64-bit package and the final bundle.
+All required categories passed; two optional checks reported the expected Node runtime and console
+window warnings. The existing public Windows ZIP is unchanged, and this package is not a Store
+download yet.
 
 The local proof preserved a read marker, the exact loopback address, visible port-conflict guidance,
 and a signed installed update from one package generation to the next. Temporary certificate trust
@@ -31,7 +33,7 @@ native x64 and ARM64 launcher and server processes. All five installed scenarios
 bundle. A later review found two proof-boundary defects, so corrected package bytes now remove
 origin-changing environment names case-insensitively and refuse to count unreadable process metadata
 as a child exit. Those corrected bytes passed x64 and ARM64 start and safe occupied-port scenarios.
-Certification, Store validation, upload, and publication remain pending.
+Partner Center validation, upload, and publication remain pending.
 
 For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 and ARM64 version
 `2.0.0.0` packages and their bundle. The x64 `2.0.0.1` update package remains isolated as local proof
@@ -39,7 +41,10 @@ material and cannot enter the Store bundle. Both Node archives are checked again
 SHA-256 values. The package supervisor removes every casing of origin-changing environment names,
 and busy-port proof requires a readable parent-process and executable-path witness rather than
 treating missing process metadata as an exit. All generated packages, runtimes, assets, certificates,
-and proof output remain ignored.
+and proof output remain ignored. A separate narrowly triggered workflow now rebuilds ephemeral
+certification inputs on Microsoft's supported x64 command-line host, keeps repository permissions
+read-only, disables winapp telemetry, retains only redacted result categories, and removes every
+generated package, report, registration, and temporary certificate.
 
 ### Credited community Reading List guides
 

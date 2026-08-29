@@ -694,7 +694,7 @@ export function trackedFiles(root) {
 // would otherwise be dropped silently while the closing line still counted them, so the gate
 // would report a population larger than the one it read. "Could not look" and "looked and
 // found nothing" must not print the same, which is the reason `scripts/check-publication.mjs`
-// gives at `scripts/check-publication.mjs:179-183` for the same decision.
+// gives at `scripts/check-publication.mjs:180-184` for the same decision.
 export function checkProse(root, files = trackedFiles(root)) {
   const docs = files.filter(proseDoc);
   const findings = [];
