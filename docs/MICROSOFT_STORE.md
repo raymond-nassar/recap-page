@@ -107,10 +107,8 @@ up and was not repeated. It establishes that non-admin trust is insufficient for
 The earlier loose registration remains useful architecture evidence but is not counted as
 installation evidence.
 
-Windows App Certification Kit completed on a supported x64 Windows Server 2022 command-line host in
-[the 2026-08-28 hosted run](https://github.com/raymond-nassar/recap-page/actions/runs/33241209349).
-The runner used image `win22 20260824.284.2`, AMD64, an elevated process in active session 2, and a
-validly Microsoft-signed WACK `10.0.26100.7705`.
+Windows App Certification Kit completed on a supported x64 Windows Server 2022 command-line host
+using an elevated process in an active session and a validly Microsoft-signed WACK.
 
 The x64 package and x64/ARM64 bundle each completed 24 test categories: 22 passed, `Blocked
 executables` produced the documented optional Desktop Bridge failure, and `DPIAwarenessValidation`
@@ -120,13 +118,10 @@ payload, and Microsoft says that optional result may be ignored when the executa
 app. The DPI warning applies to that console runtime; the app's visual surface remains the external
 browser. Neither result warrants altering the published Node binary or its verified hash.
 
-The hosted proof rebuilt randomly signed inputs, so their hashes differ from the accepted installed
-candidate. A source-continuity gate proved that every package-copied input remains identical to the
-merged corrected build. The accepted local hashes above remain the package handoff. The hosted
-inputs were x64
-`43A9A2C736E38272926DC0DA8DCCA05310B2376278110035C67422807976A56C`, ARM64
-`D54CFE3DB3124451FDB1653057160F4FB71BA2BAA3085BCF3928B15F0A36955B`, and bundle
-`073790FAD4245E25EBBDC0E9D2A541E013F1534ED67680FCC336EE52E89A9FEF`.
+A source-continuity gate proves that every package-copied input remains identical to the merged
+corrected build. Random hosted signing changes the workflow's proof hashes on every run, so those
+run-specific values belong in the delivery pull request rather than this maintained document. The
+accepted local hashes above remain the stable package handoff.
 
 The workflow uploaded no package, certificate, installer, log, or report artifact. Its public output
 contains only allowlisted host facts, hashes, test names, and result categories. Raw WACK output and

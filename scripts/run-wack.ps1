@@ -16,17 +16,14 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+. (Join-Path $PSScriptRoot 'wack-report.ps1')
+
 $packageName = 'PanelStackLabs.RecapPage'
 $packageFamily = 'PanelStackLabs.RecapPage_we33aa8nvkpcc'
 $publisher = 'CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472'
 $reportRoot = Join-Path $env:TEMP "recap-page-wack-$([guid]::NewGuid())"
 $trustedPeople = 'Cert:\LocalMachine\TrustedPeople'
 $importedThumbprint = $null
-$allowedOptionalResults = @{
-  'Blocked executables' = 'FAIL'
-  'DPIAwarenessValidation' = 'WARNING'
-}
-
 function ConvertTo-PowerShellLiteral {
   param(
     [Parameter(Mandatory)]
@@ -170,104 +167,6 @@ function Start-CapturedProcess {
   $process.ExitCode
 }
 
-function Read-WackReport {
-  param(
-    [Parameter(Mandatory)]
-    [string]$Path,
-
-    [Parameter(Mandatory)]
-    [string]$Label,
-
-    [Parameter(Mandatory)]
-    [string]$Sha256
-  )
-
-  if (-not (Test-Path -LiteralPath $Path -PathType Leaf)) {
-    throw "WACK did not create the $Label report."
-  }
-  if ((Get-Item -LiteralPath $Path).Length -gt 16MB) {
-    throw "The $Label WACK report exceeded the 16 MiB parser boundary."
-  }
-
-  $settings = [Xml.XmlReaderSettings]::new()
-  $settings.DtdProcessing = [Xml.DtdProcessing]::Prohibit
-  $settings.XmlResolver = $null
-  $settings.MaxCharactersInDocument = 16MB
-  $reader = [Xml.XmlReader]::Create($Path, $settings)
-  try {
-    $document = [Xml.XmlDocument]::new()
-    $document.XmlResolver = $null
-    $document.Load($reader)
-  } finally {
-    $reader.Dispose()
-  }
-
-  $root = $document.DocumentElement
-  if ($null -eq $root -or $root.LocalName -ne 'REPORT') {
-    throw "The $Label report does not have the expected REPORT root."
-  }
-
-  $overall = $root.GetAttribute('OVERALL_RESULT').Trim().ToUpperInvariant()
-  $partial = $root.GetAttribute('PARTIAL_RUN').Trim().ToUpperInvariant()
-  $latest = $root.GetAttribute('LATEST_VERSION').Trim().ToUpperInvariant()
-  if (-not $partial) {
-    $partial = 'NOT REPORTED'
-  }
-  if (-not $latest) {
-    $latest = 'NOT REPORTED'
-  }
-  $safeSummary = $overall -match '^[A-Z][A-Z _-]{0,31}$' `
-    -and $partial -match '^[A-Z][A-Z _-]{0,31}$' `
-    -and $latest -match '^[A-Z][A-Z _-]{0,31}$'
-  if (-not $safeSummary) {
-    throw "The $Label report has missing or unsafe summary fields."
-  }
-
-  $tests = @()
-  foreach ($test in $root.SelectNodes('.//TEST')) {
-    $name = $test.GetAttribute('NAME').Trim()
-    $resultNode = $test.SelectSingleNode('./RESULT')
-    $result = if ($null -eq $resultNode) { '' } else { $resultNode.InnerText.Trim() }
-    $result = $result.ToUpperInvariant()
-    $safeTest = $name -match "^[A-Za-z0-9][A-Za-z0-9 &()+,.'_-]{0,159}$" `
-      -and $result -match '^[A-Z][A-Z _-]{0,31}$'
-    if (-not $safeTest) {
-      throw "The $Label report contains an unsafe test summary."
-    }
-    $tests += [pscustomobject]@{ Name = $name; Result = $result }
-  }
-  if ($tests.Count -eq 0) {
-    throw "The $Label report contains no test results."
-  }
-
-  $nonPass = @($tests | Where-Object Result -ne 'PASS')
-  $optionalOnly = $nonPass.Count -gt 0
-  foreach ($test in $nonPass) {
-    $allowedResult = $allowedOptionalResults.ContainsKey($test.Name) `
-      -and $allowedOptionalResults[$test.Name] -eq $test.Result
-    if (-not $allowedResult) {
-      $optionalOnly = $false
-    }
-  }
-  $disposition = if ($overall -eq 'PASS' -and $nonPass.Count -eq 0) {
-    'PASS'
-  } elseif ($overall -eq 'WARNING' -and $optionalOnly) {
-    'PASS WITH OPTIONAL WARNINGS'
-  } else {
-    'REJECT'
-  }
-
-  [pscustomobject]@{
-    Label = $Label
-    Sha256 = $Sha256
-    Overall = $overall
-    PartialRun = $partial
-    LatestVersion = $latest
-    Disposition = $disposition
-    Tests = $tests
-  }
-}
-
 function Write-WackSummary {
   param(
     [Parameter(Mandatory)]
@@ -343,12 +242,6 @@ function Invoke-Wack {
 
   if ($testExit -ne 0) {
     throw "$Label appcert.exe test exited with code $testExit."
-  }
-  $acceptedReport = $summary.Disposition -ne 'REJECT' `
-    -and $summary.PartialRun -ne 'TRUE' `
-    -and $summary.LatestVersion -ne 'FALSE'
-  if (-not $acceptedReport) {
-    throw "$Label contains a blocking, partial, or explicitly outdated WACK result."
   }
 }
 

@@ -5,13 +5,34 @@ import { readFileSync } from 'node:fs';
 const workflow = readFileSync(new URL('../.github/workflows/wack.yml', import.meta.url), 'utf8');
 const runner = readFileSync(new URL('../scripts/run-wack.ps1', import.meta.url), 'utf8');
 
+function topLevelMap(source, key) {
+  const lines = source.split(/\r?\n/);
+  const start = lines.findIndex((line) => line === `${key}:`);
+  assert.notEqual(start, -1, `${key} top-level map is missing`);
+  const entries = [];
+  for (let index = start + 1; index < lines.length; index += 1) {
+    const line = lines[index];
+    if (line && !line.startsWith(' ')) break;
+    if (!line.trim() || line.trimStart().startsWith('#')) continue;
+    const pair = /^ {2}([A-Za-z0-9_-]+):\s*(\S+)\s*$/.exec(line);
+    assert.ok(pair, `${key} contains an unreadable entry: ${line}`);
+    entries.push([pair[1], pair[2]]);
+  }
+  return Object.fromEntries(entries);
+}
+
 test('WACK is manual except when its own automation changes', () => {
   assert.match(workflow, /^ {2}workflow_dispatch:\s*$/m);
   assert.match(workflow, /^ {2}pull_request:\s*$/m);
   const paths = workflow.match(/ {4}paths:\r?\n((?: {6}- .+\r?\n)+)/)?.[1] ?? '';
   assert.deepEqual(
     [...paths.matchAll(/ {6}- (.+)/g)].map((match) => match[1]),
-    ['.github/workflows/wack.yml', 'scripts/run-wack.ps1'],
+    [
+      '.github/workflows/wack.yml',
+      'scripts/run-wack.ps1',
+      'scripts/test-wack-report.ps1',
+      'scripts/wack-report.ps1',
+    ],
   );
   assert.doesNotMatch(workflow, /pull_request_target|schedule:|^ {2}push:/m);
 });
@@ -22,7 +43,7 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
     [...workflow.matchAll(/^\s*runs-on:\s*(\S+)\s*$/gm)].map((match) => match[1]),
     ['windows-2022'],
   );
-  assert.match(workflow, /^permissions:\r?\n {2}contents: read\s*$/m);
+  assert.deepEqual(topLevelMap(workflow, 'permissions'), { contents: 'read' });
   assert.match(workflow, /^ {2}WINAPP_CLI_TELEMETRY_OPTOUT: '1'\s*$/m);
   assert.match(workflow, /\$output = @\(winapp --version\)/);
   assert.match(workflow, /\$output\[-1\]\.Trim\(\) -ne '0\.6\.0'/);
@@ -30,6 +51,14 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
   assert.match(runner, /PROCESSOR_ARCHITECTURE -ne 'AMD64'/);
   assert.match(runner, /SessionId/);
   assert.match(runner, /10\.0\.20348/);
+});
+
+test('the supported Windows job executes parser fixtures before certification', () => {
+  const fixtures = workflow.indexOf('run: ./scripts/test-wack-report.ps1');
+  const certification = workflow.indexOf('./scripts/run-wack.ps1');
+  assert.ok(fixtures > 0, 'the executable PowerShell fixture suite is not run');
+  assert.ok(certification > fixtures, 'certification runs before its parser fixture suite');
+  assert.match(runner, /\. \(Join-Path \$PSScriptRoot 'wack-report\.ps1'\)/);
 });
 
 test('WACK preserves the accepted corrected package source boundary', () => {
@@ -55,21 +84,4 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
   assert.match(workflow, /Remove-Item -LiteralPath \.\/dist/);
   assert.match(runner, /Remove-Item -LiteralPath \$reportRoot -Recurse -Force/);
   assert.doesNotMatch(runner, /Get-Content -LiteralPath .*(stdout|stderr)/);
-});
-
-test('WACK fails closed on tool identity, incomplete reports, and cleanup residue', () => {
-  assert.match(runner, /O=Microsoft Corporation/);
-  assert.match(runner, /System32\\WindowsPowerShell\\v1\.0\\powershell\.exe/);
-  assert.match(runner, /DtdProcessing = \[Xml\.DtdProcessing\]::Prohibit/);
-  assert.match(runner, /'Blocked executables' = 'FAIL'/);
-  assert.match(runner, /'DPIAwarenessValidation' = 'WARNING'/);
-  assert.match(runner, /\$summary\.Disposition -ne 'REJECT'/);
-  assert.match(runner, /\$summary\.PartialRun -ne 'TRUE'/);
-  assert.match(runner, /\$summary\.LatestVersion -ne 'FALSE'/);
-  assert.match(runner, /\$partial = 'NOT REPORTED'/);
-  assert.match(runner, /\$latest = 'NOT REPORTED'/);
-  assert.match(runner, /if \(-not \$acceptedReport\)/);
-  assert.match(runner, /package identity remains after WACK cleanup/);
-  assert.match(runner, /temporary WACK certificate remains trusted after cleanup/);
-  assert.match(runner, /raw WACK report directory remains after cleanup/);
 });

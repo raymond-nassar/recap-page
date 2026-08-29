@@ -7,6 +7,8 @@ on:
     paths:
       - .github/workflows/wack.yml
       - scripts/run-wack.ps1
+      - scripts/test-wack-report.ps1
+      - scripts/wack-report.ps1
 
 # WACK needs no repository write, package publication, identity token, or secret.
 permissions:
@@ -79,6 +81,11 @@ jobs:
       - name: Run focused packaging and WACK tests
         timeout-minutes: 2
         run: node --test test/msix-packaging.test.js test/wack-workflow.test.js
+
+      - name: Run WACK report parser fixtures
+        timeout-minutes: 2
+        shell: pwsh
+        run: ./scripts/test-wack-report.ps1
 
       - name: Build ephemeral certification packages
         timeout-minutes: 15
