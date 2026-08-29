@@ -12,6 +12,9 @@ on:
 permissions:
   contents: read
 
+env:
+  WINAPP_CLI_TELEMETRY_OPTOUT: '1'
+
 concurrency:
   group: wack-${{ github.ref }}
   cancel-in-progress: true
