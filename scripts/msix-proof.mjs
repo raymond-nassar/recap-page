@@ -514,14 +514,26 @@ async function main() {
   if (scenario === SCENARIOS[2]) await updateStateContinuity(architecture, source);
 }
 
+function formatProofError(error, indent = '') {
+  const text = error?.stack ?? String(error);
+  const lines = [`${indent}${text}`];
+  if (error instanceof AggregateError) {
+    for (const nested of error.errors) {
+      lines.push(formatProofError(nested, `${indent}  `));
+    }
+  }
+  return lines.join('\n');
+}
+
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   main().catch((err) => {
-    console.error(err?.stack ?? err);
+    console.error(formatProofError(err));
     process.exit(1);
   });
 }
 
 export {
   assertNoPreexistingPackage, assertReadyGuidance, cleanupPackage, generation, installPackage,
-  packageInfo, packageProcesses, removePackage, runInstalledScenario, stopPids, waitForProcess,
+  formatProofError, packageInfo, packageProcesses, removePackage, runInstalledScenario, stopPids,
+  waitForProcess,
 };

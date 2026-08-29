@@ -17,17 +17,21 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 In plain English: Recap Page can now be built as one Windows Store bundle for both common 64-bit
 computers and Windows computers powered by Arm. Inspection confirms that each version contains and
-runs the intended processor-specific runtime. Installation of the new bundle still needs its
-separate owner-approved proof. The existing public Windows ZIP is unchanged, and this package is not
-a Store download yet.
+runs the intended processor-specific runtime. The Arm package also installed from the bundle and
+started the same browser address. Its installed busy-port check remains incomplete, and Windows
+certification could not run on this Arm machine. The existing public Windows ZIP is unchanged, and
+this package is not a Store download yet.
 
 The local proof preserved a read marker, the exact loopback address, visible port-conflict guidance,
 and a signed installed update from one package generation to the next. Temporary certificate trust
 was removed after the proof, the certificate store returned to its baseline, and private browser
 state was restored exactly apart from its regenerated export timestamp. The new package entry point
 uses the official Node runtime already present in each architecture package, and inspection measured
-native x64 and ARM64 launcher and server processes. Certification, Store validation, upload, and
-publication remain pending.
+native x64 and ARM64 launcher and server processes. Four of five installed scenarios passed. The
+exact unpacked ARM64 payload retained all safe occupied-port guidance, but its installed scenario
+failed without preserving the nested reason. The proof runner now preserves all scenario and cleanup
+causes for the required repeat. Certification, Store validation, upload, and publication remain
+pending.
 
 For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 and ARM64 version
 `2.0.0.0` packages and their bundle. The x64 `2.0.0.1` update package remains isolated as local proof

@@ -236,6 +236,23 @@ test('package absence is verified even when the removal command fails', async ()
   assert.deepEqual(calls, ['remove', 'verify']);
 });
 
+test('aggregate proof failures retain every scenario and cleanup cause', async () => {
+  const { formatProofError } = await import('../scripts/msix-proof.mjs');
+  const error = new AggregateError(
+    [
+      new Error('scenario failed'),
+      new AggregateError([new Error('cleanup failed')], 'cleanup aggregate'),
+    ],
+    'scenario and cleanup failed',
+  );
+
+  const output = formatProofError(error);
+  assert.match(output, /scenario and cleanup failed/);
+  assert.match(output, /scenario failed/);
+  assert.match(output, /cleanup aggregate/);
+  assert.match(output, /cleanup failed/);
+});
+
 test('the proof fails when either canonical ready guidance line is absent', async () => {
   const { assertReadyGuidance } = await import('../scripts/msix-proof.mjs');
   assert.doesNotThrow(() => assertReadyGuidance(

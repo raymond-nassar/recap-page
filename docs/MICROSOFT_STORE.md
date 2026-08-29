@@ -26,6 +26,33 @@ The built candidate hashes are:
 | ARM64 MSIX | `07B1F9515624ABA9E00300DA3EBA14515F8EC2BA902CD66B8D98578947B48798` |
 | x64/ARM64 bundle | `9446326CBC3748B46C8C6D629C46B3D62AA9942440A1BFE23CA45E7C24227A12` |
 
+The current candidate was installed with only corrected certificate thumbprint
+`E36EBC5FA20DA01A8D73E30B7C6EB25FAFAD188E` temporarily trusted in LocalMachine
+TrustedPeople. Four installed scenarios passed:
+
+- The x64 package started at the production AUMID, served `proof-2.0.0.0` at the canonical origin,
+  and retained both ready-guidance lines.
+- The x64 package refused an occupied port, retained all safe guidance, exited its server child, and
+  left the browser-window digest unchanged.
+- The x64 proof-only update changed the served generation from `proof-2.0.0.0` to
+  `proof-2.0.0.1`.
+- Installing the final bundle on Windows 11 ARM64 selected its ARM64 slice, started native ARM64
+  supervisor and server processes, served `proof-2.0.0.0`, and retained ready guidance.
+
+The installed ARM64 busy-port scenario reported both a scenario failure and cleanup failure, but the
+old formatter did not retain either nested cause. Manual inspection immediately afterwards found no
+package, package-owned process, or listener. The exact ARM64 package extracted from the same bundle
+then exited with code 1 under an occupied port and printed every safe guidance line, so the packaged
+payload behavior passed while the installed scenario remains inconclusive. The runner now prints
+every nested scenario and cleanup cause before a future repeat.
+
+After the five-scenario run, the exact certificate was removed. CurrentUser Root and LocalMachine
+Root returned to 49 certificates with digest
+`CBEABFC3A4AED45E67ECB54F4FE73E74CEE39F4C95A9849C883CCDA6C9A6543D`.
+CurrentUser TrustedPeople and LocalMachine TrustedPeople returned to one certificate with digest
+`6BA56A5FAA86B42F5D081EFC34FCA3D22748B3C57AB0912D90D6784BD029B3FD`.
+Neither the current nor earlier proof thumbprint remains in those stores.
+
 The earlier signed x64 package installed on Windows 11 ARM64 under x64 emulation and proved:
 
 - Start activation launched the earlier x64 package entry point.
@@ -66,15 +93,14 @@ but `Add-AppxPackage` failed with `0x800B0109` / `CERT_E_UNTRUSTEDROOT`. That ex
 up and was not repeated. It establishes that non-admin trust is insufficient for this full package.
 
 The earlier loose registration remains useful architecture evidence but is not counted as
-installation evidence. Because the current package entry point differs from the installed x64
-proof, its x64 and ARM64 installed scenarios require a new explicit trust checkpoint.
+installation evidence.
 
-The Windows App Certification Kit is not installed on this machine. Microsoft requires installing
-the kit from the Windows SDK and running its command line from an elevated active user session.
-One owner-approved attempt to install only that feature from the official SDK 10.0.28000.2705
-installer returned success but installed no kit and created no installed-product record. It showed
-no UAC prompt. The attempt was not repeated without a new checkpoint, so WACK and installed ARM64
-behavior remain unverified. Nothing has been associated, uploaded, submitted, or published.
+Windows App Certification Kit could not run on this ARM64 host. The official Windows SDK
+10.0.28000.2705 installer completed with WACK as the only selected top-level feature, plus
+prerequisites it enforced. Its package plan restricted every WACK executable and native-component
+package to x86 or amd64 hosts. On ARM64 it installed only the supported-API XML list and no
+`appcert.exe`. No WACK report exists, so this is an environmental certification blocker rather than
+a package pass or failure. Nothing has been associated, uploaded, submitted, or published.
 
 ## Production identity
 
@@ -203,6 +229,9 @@ the automated run; the runner does not claim to observe them.
 The update scenario is x64-only because its `2.0.0.1` package is local proof material. The ARM64
 package and final bundle contain only Store-safe version `2.0.0.0`.
 
+The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
+cleanup errors must preserve each cause before any decision to repeat it.
+
 ## Run Windows App Certification Kit
 
 Install the current Windows App Certification Kit from the official Windows SDK only after an owner
@@ -210,9 +239,10 @@ checkpoint. Microsoft documents the kit as an installed SDK component and requir
 command window in an active user session. An SDK download layout is installation media, not a
 supported portable certification environment, so copied binaries are not accepted as WACK evidence.
 
-After approval, run WACK against the x64 package and the final bundle. The x64 run covers the changed
-x64 entry payload. On this ARM64 host, the bundle run selects and exercises the native ARM64 slice
-while also validating the submitted bundle container.
+After approval, run WACK against the x64 package and the final bundle on a supported x64 host. The
+x64 run can exercise the changed x64 entry payload, and the bundle run validates the submitted
+container and both package manifests. It does not prove ARM64 runtime behavior on x64 hardware; the
+installed ARM64 scenario on Windows on Arm is the separate runtime proof.
 
 ```text
 appcert.exe reset
@@ -223,9 +253,10 @@ appcert.exe test -appxpackagepath <msixbundle> -reportoutputpath <temporary-bund
 
 Treat manifest, binary architecture, capability, and package-content failures as package defects.
 Treat missing kit components, lack of elevation or an active session, and machine policy failures as
-environmental blockers. Performance results remain host-dependent and must still meet the current
-Store policy. Keep reports outside the repository and delete any report containing machine paths
-after recording only the test names and outcomes.
+environmental blockers. On this ARM64 host, the official 10.0.28000.2705 installer installs no WACK
+executable, so another supported host is required. Performance results remain host-dependent and
+must still meet the current Store policy. Keep reports outside the repository and delete any report
+containing machine paths after recording only the test names and outcomes.
 
 After the proof, remove the exact package:
 
@@ -258,8 +289,9 @@ certification passes and the owner explicitly changes release policy.
 
 ## Remaining Store gates
 
-- Approve the temporary local certificate trust and installed x64 and ARM64 scenarios.
-- Install and run the Windows App Certification Kit against the changed x64 package and final bundle.
+- Repeat only the installed ARM64 busy-port scenario with the nested-error formatter.
+- Run the Windows App Certification Kit against the changed x64 package and final bundle on a
+  supported host that receives `appcert.exe`.
 - Approve the `runFullTrust` explanation in Partner Center.
 - Use the dedicated [privacy policy](../PRIVACY.md) URL and review every listing disclosure.
 - Complete Partner Center package validation.
