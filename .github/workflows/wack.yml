@@ -1,0 +1,154 @@
+name: Windows App Certification Kit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/wack.yml
+      - scripts/run-wack.ps1
+      - scripts/test-wack-report.ps1
+      - scripts/wack-report.ps1
+
+# WACK needs no repository write, package publication, identity token, or secret.
+permissions:
+  contents: read
+
+env:
+  WINAPP_CLI_TELEMETRY_OPTOUT: '1'
+
+concurrency:
+  group: wack-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  certify:
+    name: WACK on supported x64 Windows
+    # Microsoft's current SDK requirements list Server 2022 for command-line tools.
+    # The standard x64 runner is free for this public repository. Server 2025 is not
+    # in that supported-host list, so windows-latest is deliberately not used.
+    runs-on: windows-2022
+    timeout-minutes: 100
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+          cache: npm
+
+      # Microsoft documents this action as the CI installation route. Its version
+      # input fixes the same winapp release required by the package builder.
+      - uses: microsoft/setup-WinAppCli@b93bbddc1f7abc061ca0d3a8119e3a0c7dd71495 # v0.2.0
+        timeout-minutes: 4
+        with:
+          version: v0.6.0
+
+      - name: Initialize telemetry-disabled WinApp CLI
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $output = @(winapp --version)
+          if ($LASTEXITCODE -ne 0 -or $output[-1].Trim() -ne '0.6.0') {
+            throw 'The pinned WinApp CLI did not initialize as version 0.6.0.'
+          }
+          'WinApp CLI 0.6.0 initialized with telemetry disabled.'
+
+      - name: Install repository tooling
+        timeout-minutes: 4
+        run: npm ci --ignore-scripts
+
+      - name: Prove package source continuity
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          git diff --exit-code c5cd22f4351265a9429230572149d72494eb515e HEAD -- `
+            LICENSE `
+            packaging/windows `
+            scripts/pack-msix.mjs `
+            scripts/pack-windows.mjs `
+            server.mjs `
+            src
+          if ($LASTEXITCODE -ne 0) {
+            throw 'Package-copied input changed after the accepted corrected build.'
+          }
+
+      - name: Run focused packaging and WACK tests
+        timeout-minutes: 2
+        run: node --test test/msix-packaging.test.js test/wack-workflow.test.js
+
+      - name: Run WACK report parser fixtures
+        timeout-minutes: 2
+        shell: pwsh
+        run: ./scripts/test-wack-report.ps1
+
+      - name: Build ephemeral certification packages
+        timeout-minutes: 15
+        run: npm run msix:pack
+
+      - name: Run WACK without retaining raw reports
+        timeout-minutes: 55
+        shell: pwsh
+        run: |
+          ./scripts/run-wack.ps1 `
+            -X64Package ./dist/msix/RecapPage_2.0.0.0_x64.msix `
+            -Bundle ./dist/msix/RecapPage_2.0.0.0_x64_arm64.msixbundle `
+            -Certificate ./dist/msix/RecapPage-local-proof.cer
+
+      - name: Remove generated certification material
+        if: always()
+        timeout-minutes: 5
+        shell: powershell
+        run: |
+          $failures = @()
+          try {
+            $packages = @(Get-AppxPackage -Name PanelStackLabs.RecapPage |
+              Where-Object PackageFamilyName -eq `
+                'PanelStackLabs.RecapPage_we33aa8nvkpcc')
+            foreach ($package in $packages) {
+              Remove-AppxPackage -Package $package.PackageFullName
+            }
+          } catch {
+            $failures += $_.Exception
+          }
+          try {
+            $cer = './dist/msix/RecapPage-local-proof.cer'
+            if (Test-Path -LiteralPath $cer) {
+              $certificate = [Security.Cryptography.X509Certificates.X509Certificate2]::new(
+                (Resolve-Path -LiteralPath $cer).Path
+              )
+              $trusted = "Cert:\LocalMachine\TrustedPeople\$($certificate.Thumbprint)"
+              Remove-Item -LiteralPath $trusted -ErrorAction SilentlyContinue
+              if (Test-Path -LiteralPath $trusted) {
+                throw 'The temporary WACK certificate remains trusted.'
+              }
+            }
+          } catch {
+            $failures += $_.Exception
+          }
+          try {
+            Get-ChildItem -Path $env:TEMP `
+              -Filter 'recap-page-wack-*' `
+              -ErrorAction SilentlyContinue |
+              ForEach-Object {
+                Remove-Item -LiteralPath $_.FullName -Recurse -Force
+              }
+          } catch {
+            $failures += $_.Exception
+          }
+          try {
+            Remove-Item -LiteralPath ./dist -Recurse -Force -ErrorAction SilentlyContinue
+          } catch {
+            $failures += $_.Exception
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new(
+              'One or more WACK cleanup boundaries failed.',
+              [Exception[]]$failures
+            )
+          }

@@ -104,6 +104,7 @@ const STORE_PUBLISHER_FILES = [
   'docs/MICROSOFT_STORE.md',
   'packaging/windows/Package.appxmanifest',
   'scripts/pack-msix.mjs',
+  'scripts/run-wack.ps1',
   'test/msix-packaging.test.js',
 ];
 export const ALLOWED = new Map([
