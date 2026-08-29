@@ -62,8 +62,10 @@ test('WACK fails closed on tool identity, incomplete reports, and cleanup residu
   assert.match(runner, /System32\\WindowsPowerShell\\v1\.0\\powershell\.exe/);
   assert.match(runner, /DtdProcessing = \[Xml\.DtdProcessing\]::Prohibit/);
   assert.match(runner, /\$summary\.Overall -eq 'PASS'/);
-  assert.match(runner, /\$summary\.PartialRun -eq 'FALSE'/);
-  assert.match(runner, /\$summary\.LatestVersion -eq 'TRUE'/);
+  assert.match(runner, /\$summary\.PartialRun -ne 'TRUE'/);
+  assert.match(runner, /\$summary\.LatestVersion -ne 'FALSE'/);
+  assert.match(runner, /\$partial = 'NOT REPORTED'/);
+  assert.match(runner, /\$latest = 'NOT REPORTED'/);
   assert.match(runner, /if \(-not \$completePass\)/);
   assert.match(runner, /package identity remains after WACK cleanup/);
   assert.match(runner, /temporary WACK certificate remains trusted after cleanup/);

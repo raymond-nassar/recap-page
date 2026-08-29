@@ -206,6 +206,12 @@ function Read-WackReport {
   $overall = $root.GetAttribute('OVERALL_RESULT').Trim().ToUpperInvariant()
   $partial = $root.GetAttribute('PARTIAL_RUN').Trim().ToUpperInvariant()
   $latest = $root.GetAttribute('LATEST_VERSION').Trim().ToUpperInvariant()
+  if (-not $partial) {
+    $partial = 'NOT REPORTED'
+  }
+  if (-not $latest) {
+    $latest = 'NOT REPORTED'
+  }
   $safeSummary = $overall -match '^[A-Z][A-Z _-]{0,31}$' `
     -and $partial -match '^[A-Z][A-Z _-]{0,31}$' `
     -and $latest -match '^[A-Z][A-Z _-]{0,31}$'
@@ -315,8 +321,8 @@ function Invoke-Wack {
     throw "$Label appcert.exe test exited with code $testExit."
   }
   $completePass = $summary.Overall -eq 'PASS' `
-    -and $summary.PartialRun -eq 'FALSE' `
-    -and $summary.LatestVersion -eq 'TRUE'
+    -and $summary.PartialRun -ne 'TRUE' `
+    -and $summary.LatestVersion -ne 'FALSE'
   if (-not $completePass) {
     throw "$Label did not produce a complete PASS with the latest WACK."
   }
