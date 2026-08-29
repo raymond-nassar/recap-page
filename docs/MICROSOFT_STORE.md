@@ -28,8 +28,16 @@ The built candidate hashes are:
 
 These hashes name the post-review build that removes every casing of the two origin-changing
 environment names. Its generated certificate has thumbprint
-`ECD962B70BC9A556651CE7F06E04BBB70ED65F22`. It has not been trusted and none of these corrected
-packages has been installed.
+`ECD962B70BC9A556651CE7F06E04BBB70ED65F22`. It was temporarily trusted for one bounded proof, and
+the corrected artifacts passed all four aimed installed scenarios:
+
+- The x64 package started at the canonical origin with complete ready guidance.
+- The x64 package refused an occupied port with complete safe guidance, no browser-window change,
+  and a witnessed server-child exit.
+- Installing the final bundle on Windows 11 ARM64 selected its ARM64 slice and started at the
+  canonical origin with complete ready guidance.
+- The ARM64 slice refused an occupied port with complete safe guidance, no browser-window change,
+  and a witnessed server-child exit.
 
 The earlier candidate was installed with only certificate thumbprint
 `E36EBC5FA20DA01A8D73E30B7C6EB25FAFAD188E` temporarily trusted in LocalMachine
@@ -46,10 +54,11 @@ TrustedPeople. All five installed scenarios passed:
 - The ARM64 slice selected from the final bundle refused an occupied port, retained every safe
   guidance line, exited its server child, and left the browser-window digest unchanged.
 
-That evidence applies to the earlier package bytes. The corrected supervisor input changes both
-architecture packages and requires a fresh installed proof before Store submission.
+The earlier update journey did not repeat because package version flow and browser behavior did not
+change. It remains evidence for version selection and state continuity rather than for the corrected
+launcher bytes.
 
-After the five-scenario run, the exact certificate was removed. CurrentUser Root and LocalMachine
+After each installed proof, the exact certificate was removed. CurrentUser Root and LocalMachine
 Root returned to 49 certificates with digest
 `CBEABFC3A4AED45E67ECB54F4FE73E74CEE39F4C95A9849C883CCDA6C9A6543D`.
 CurrentUser TrustedPeople and LocalMachine TrustedPeople returned to one certificate with digest
@@ -294,10 +303,6 @@ certification passes and the owner explicitly changes release policy.
 
 ## Remaining Store gates
 
-- Trust only corrected certificate thumbprint `ECD962B70BC9A556651CE7F06E04BBB70ED65F22` for one
-  bounded installed proof: x64 start and busy-port refusal, then ARM64 bundle start and busy-port
-  refusal. Remove the exact certificate and package residue afterwards. The update journey need not
-  repeat because package version flow and browser behavior did not change.
 - Run the Windows App Certification Kit against the changed x64 package and final bundle on a
   supported host that receives `appcert.exe`.
 - Approve the `runFullTrust` explanation in Partner Center.
