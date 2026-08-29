@@ -7,6 +7,10 @@ and the settings it asks for are on, both under BL-133. The one thing that did n
 legal review named in the first section, which remains an accepted risk rather than an answered
 question.
 
+Microsoft Store publication is a separate later event. Its maintained
+[submission packet](MICROSOFT_STORE_SUBMISSION.md) keeps Store listing, certification, asset, and
+owner-approval gates out of this spent repository-publication record.
+
 Twenty-one passages in this repository are true only while it is private, spread over ten files. They
 say so plainly, which was the right way to write them: a security policy that describes a reporting
 route nobody can use is more use than one that pretends the route is there. The cost is that
@@ -152,8 +156,8 @@ that must not be rewritten, for the same reason the dated tracking artifacts are
 - `PRODUCT_BACKLOG.md:7071-7076`, why blank issues stay enabled.
 - `PRODUCT_BACKLOG.md:7114-7118`, why `required: true` collects nothing today.
 - `PRODUCT_BACKLOG.md:9219-9224`, the three settings named as refused on this repository today.
-- `CHANGELOG.md:3370-3381`, the released note that secret scanning cannot be turned on.
-- `CHANGELOG.md:3383-3393`, the released note that the private channel is not switched on.
+- `CHANGELOG.md:3384-3395`, the released note that secret scanning cannot be turned on.
+- `CHANGELOG.md:3397-3407`, the released note that the private channel is not switched on.
 
 The twelfth was live and did have to change: the introduction at `PRODUCT_BACKLOG.md:30-42` listed
 BL-089, BL-096 and BL-098 among the items whose acceptance could not be met, and once they were met

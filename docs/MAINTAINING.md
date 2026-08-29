@@ -164,6 +164,32 @@ Windows Server 2022 x64 command-line host, a read-only token, telemetry opt-out,
 randomly signed packages. It uploads no package, certificate, installer, raw output, or WACK report.
 The maintained Store guide records its bounded result and cleanup contract.
 
+### Check the Microsoft Store submission packet
+
+The maintained submission packet keeps the proposed Partner Center fields, owner-only stop points,
+and sanitized listing assets reviewable without entering Partner Center:
+
+```text
+npm run store:check
+```
+
+The check requires five 1920 by 1080 Desktop screenshots, the exact 300 by 300 purple panels tile,
+field-limit-safe listing copy, public HTTPS URLs, and the capability and publication stop points.
+It reads no account data and makes no network request.
+
+Regenerate the assets only with installed Edge and the same scratch `puppeteer-core` boundary as the
+browser checks:
+
+```text
+$env:MRT_PUPPETEER='C:\path\to\scratch-directory'
+npm run store:assets
+```
+
+The generator uses an isolated temporary browser profile, turns cover art and update checks off,
+captures fixed synthetic progress, audits the visible text and layout before each image, and removes
+the profile afterwards. Review every generated image before committing it. Package icons and
+package-copied files are not changed.
+
 Before changing an action pin:
 
 1. Open the action repository's release page.

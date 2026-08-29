@@ -115,6 +115,7 @@ The release notes state whether progress remains compatible. Export a backup bef
 - [Security policy](SECURITY.md): supported versions and private reporting
 - [Privacy policy](PRIVACY.md): browser storage, direct requests, and Windows package permissions
 - [Microsoft Store package status](docs/MICROSOFT_STORE.md): local x64 proof and remaining publication gates
+- [Microsoft Store submission packet](docs/MICROSOFT_STORE_SUBMISSION.md): owner-reviewed listing fields, certification notes, and sanitized assets
 - [Changelog](CHANGELOG.md): what changed in each release
 
 ## Disclaimer

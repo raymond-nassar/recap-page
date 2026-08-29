@@ -308,6 +308,8 @@ certification passes and the owner explicitly changes release policy.
 
 ## Remaining Store gates
 
+- Review the maintained [submission packet](MICROSOFT_STORE_SUBMISSION.md), its sanitized assets,
+  and every owner-only stop point.
 - Approve the `runFullTrust` explanation in Partner Center.
 - Use the dedicated [privacy policy](../PRIVACY.md) URL and review every listing disclosure.
 - Complete Partner Center package validation.

@@ -13,6 +13,20 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Prepared the Microsoft Store submission packet
+
+In plain English: the owner can now review the exact Store description, privacy and support links,
+age-rating draft, permission explanation, certification notes, and publication stop points before
+opening Partner Center. Five clean Store screenshots show the real app with cover art off and only
+fixed demonstration progress. The existing Windows ZIP, saved reader data, and Store publication
+state are unchanged.
+
+For maintainers, `npm run store:check` validates the field contract, image inventory, dimensions,
+field limits, public links, and owner-only stops. `npm run store:assets` recreates the five
+1920-by-1080 screenshots and 300-by-300 tile through installed Edge and an external scratch browser
+driver. No package-copied byte, MSIX artifact, credential, private contact, or Partner Center state
+is part of this change.
+
 ### Added a local Microsoft Store package and architecture bundle proof
 
 In plain English: Recap Page can now be built as one Windows Store bundle for both common 64-bit
