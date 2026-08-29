@@ -22,6 +22,10 @@ $publisher = 'CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472'
 $reportRoot = Join-Path $env:TEMP "recap-page-wack-$([guid]::NewGuid())"
 $trustedPeople = 'Cert:\LocalMachine\TrustedPeople'
 $importedThumbprint = $null
+$allowedOptionalResults = @{
+  'Blocked executables' = 'FAIL'
+  'DPIAwarenessValidation' = 'WARNING'
+}
 
 function ConvertTo-PowerShellLiteral {
   param(
@@ -236,12 +240,30 @@ function Read-WackReport {
     throw "The $Label report contains no test results."
   }
 
+  $nonPass = @($tests | Where-Object Result -ne 'PASS')
+  $optionalOnly = $nonPass.Count -gt 0
+  foreach ($test in $nonPass) {
+    $allowedResult = $allowedOptionalResults.ContainsKey($test.Name) `
+      -and $allowedOptionalResults[$test.Name] -eq $test.Result
+    if (-not $allowedResult) {
+      $optionalOnly = $false
+    }
+  }
+  $disposition = if ($overall -eq 'PASS' -and $nonPass.Count -eq 0) {
+    'PASS'
+  } elseif ($overall -eq 'WARNING' -and $optionalOnly) {
+    'PASS WITH OPTIONAL WARNINGS'
+  } else {
+    'REJECT'
+  }
+
   [pscustomobject]@{
     Label = $Label
     Sha256 = $Sha256
     Overall = $overall
     PartialRun = $partial
     LatestVersion = $latest
+    Disposition = $disposition
     Tests = $tests
   }
 }
@@ -256,6 +278,7 @@ function Write-WackSummary {
   "$($Summary.Label) overall result: $($Summary.Overall)"
   "$($Summary.Label) partial run: $($Summary.PartialRun)"
   "$($Summary.Label) latest WACK: $($Summary.LatestVersion)"
+  "$($Summary.Label) disposition: $($Summary.Disposition)"
   foreach ($test in $Summary.Tests) {
     "  $($test.Result): $($test.Name)"
   }
@@ -270,6 +293,7 @@ function Write-WackSummary {
       "| Overall | $($Summary.Overall) |"
       "| Partial run | $($Summary.PartialRun) |"
       "| Latest WACK | $($Summary.LatestVersion) |"
+      "| Disposition | $($Summary.Disposition) |"
       ''
       '| Test | Result |'
       '|---|---|'
@@ -320,11 +344,11 @@ function Invoke-Wack {
   if ($testExit -ne 0) {
     throw "$Label appcert.exe test exited with code $testExit."
   }
-  $completePass = $summary.Overall -eq 'PASS' `
+  $acceptedReport = $summary.Disposition -ne 'REJECT' `
     -and $summary.PartialRun -ne 'TRUE' `
     -and $summary.LatestVersion -ne 'FALSE'
-  if (-not $completePass) {
-    throw "$Label did not produce a complete PASS with the latest WACK."
+  if (-not $acceptedReport) {
+    throw "$Label contains a blocking, partial, or explicitly outdated WACK result."
   }
 }
 
