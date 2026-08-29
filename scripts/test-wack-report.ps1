@@ -122,6 +122,27 @@ try {
     -MessagePattern 'outside the exact optional allowlist' `
     -Action { Read-Fixture $unknown }
 
+  $duplicate = Write-Fixture -Name 'duplicate-missing' -Xml @'
+<REPORT OVERALL_RESULT="WARNING" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'duplicate Blocked with missing DPI' `
+    -MessagePattern 'outside the exact optional allowlist' `
+    -Action { Read-Fixture $duplicate }
+
+  $missing = Write-Fixture -Name 'single-missing' -Xml @'
+<REPORT OVERALL_RESULT="WARNING" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'single missing optional member' `
+    -MessagePattern 'outside the exact optional allowlist' `
+    -Action { Read-Fixture $missing }
+
   $partial = Write-Fixture -Name 'partial-run' -Xml @'
 <REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="TRUE" LATEST_VERSION="TRUE">
   <TEST NAME="App manifest"><RESULT>PASS</RESULT></TEST>
@@ -165,10 +186,10 @@ try {
     -MessagePattern 'no RESULT' `
     -Action { Read-Fixture $missingResult }
 
-  if ($passed -ne 9) {
-    throw "Expected 9 fixture tests, observed $passed."
+  if ($passed -ne 11) {
+    throw "Expected 11 fixture tests, observed $passed."
   }
-  '9 WACK report parser fixture tests passed.'
+  '11 WACK report parser fixture tests passed.'
 } finally {
   Remove-Item -LiteralPath $scratch -Recurse -Force -ErrorAction SilentlyContinue
 }

@@ -93,10 +93,21 @@ function Read-WackReport {
 
   $nonPass = @($tests | Where-Object Result -ne 'PASS')
   $optionalOnly = $nonPass.Count -eq $script:wackAllowedOptionalResults.Count
+  $seenOptionalNames = [Collections.Generic.HashSet[string]]::new(
+    [StringComparer]::Ordinal
+  )
   foreach ($test in $nonPass) {
-    $allowedResult = $script:wackAllowedOptionalResults.Contains($test.Name) `
-      -and $script:wackAllowedOptionalResults[$test.Name] -eq $test.Result
+    $expected = @($script:wackAllowedOptionalResults.GetEnumerator() |
+      Where-Object Key -CEQ $test.Name)
+    $allowedResult = $expected.Count -eq 1 `
+      -and $expected[0].Value -ceq $test.Result `
+      -and $seenOptionalNames.Add($test.Name)
     if (-not $allowedResult) {
+      $optionalOnly = $false
+    }
+  }
+  foreach ($expected in $script:wackAllowedOptionalResults.GetEnumerator()) {
+    if (-not $seenOptionalNames.Contains($expected.Key)) {
       $optionalOnly = $false
     }
   }
