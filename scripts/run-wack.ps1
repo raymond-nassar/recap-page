@@ -23,6 +23,55 @@ $reportRoot = Join-Path $env:TEMP "recap-page-wack-$([guid]::NewGuid())"
 $trustedPeople = 'Cert:\LocalMachine\TrustedPeople'
 $importedThumbprint = $null
 
+function ConvertTo-PowerShellLiteral {
+  param(
+    [Parameter(Mandatory)]
+    [string]$Value
+  )
+
+  "'$($Value.Replace("'", "''"))'"
+}
+
+function Invoke-WindowsPowerShell {
+  param(
+    [Parameter(Mandatory)]
+    [string]$Script
+  )
+
+  $powershell = Join-Path $env:SystemRoot `
+    'System32\WindowsPowerShell\v1.0\powershell.exe'
+  $output = & $powershell -NoProfile -NonInteractive -Command $Script 2>&1
+  if ($LASTEXITCODE -ne 0) {
+    throw 'The inbox Windows PowerShell package or certificate operation failed.'
+  }
+  $output
+}
+
+function Get-RecapPackageCount {
+  $name = ConvertTo-PowerShellLiteral $packageName
+  $family = ConvertTo-PowerShellLiteral $packageFamily
+  $output = Invoke-WindowsPowerShell `
+    "@(Get-AppxPackage -Name $name | Where-Object PackageFamilyName -eq $family).Count"
+  [int]@($output)[-1]
+}
+
+function Remove-RecapPackages {
+  $name = ConvertTo-PowerShellLiteral $packageName
+  $family = ConvertTo-PowerShellLiteral $packageFamily
+  $script = @"
+`$packages = @(Get-AppxPackage -Name $name |
+  Where-Object PackageFamilyName -eq $family)
+foreach (`$package in `$packages) {
+  Remove-AppxPackage -Package `$package.PackageFullName
+}
+if (@(Get-AppxPackage -Name $name |
+  Where-Object PackageFamilyName -eq $family).Count -ne 0) {
+  throw 'The exact Recap Page package identity remains after WACK cleanup.'
+}
+"@
+  $null = Invoke-WindowsPowerShell $script
+}
+
 function Assert-SupportedHost {
   if ($env:PROCESSOR_ARCHITECTURE -ne 'AMD64') {
     throw "WACK requires the supported x64 host; found $env:PROCESSOR_ARCHITECTURE."
@@ -288,9 +337,7 @@ try {
   $bundlePath = (Resolve-Path -LiteralPath $Bundle).Path
   $certificatePath = (Resolve-Path -LiteralPath $Certificate).Path
 
-  $preexisting = @(Get-AppxPackage -Name $packageName |
-    Where-Object PackageFamilyName -eq $packageFamily)
-  if ($preexisting.Count -ne 0) {
+  if ((Get-RecapPackageCount) -ne 0) {
     throw 'The WACK host already has the exact Recap Page package identity registered.'
   }
 
@@ -305,10 +352,11 @@ try {
     throw 'The generated proof certificate was already trusted before this run.'
   }
 
-  $imported = Import-Certificate `
-    -FilePath $certificatePath `
-    -CertStoreLocation $trustedPeople
-  if ($imported.Thumbprint -ne $thumbprint) {
+  $certificateLiteral = ConvertTo-PowerShellLiteral $certificatePath
+  $storeLiteral = ConvertTo-PowerShellLiteral $trustedPeople
+  $imported = Invoke-WindowsPowerShell `
+    "(Import-Certificate -FilePath $certificateLiteral -CertStoreLocation $storeLiteral).Thumbprint"
+  if (@($imported)[-1].Trim() -ne $thumbprint) {
     throw 'The trusted proof certificate thumbprint changed during import.'
   }
   $importedThumbprint = $thumbprint
@@ -326,26 +374,21 @@ try {
   $primaryFailure = $_.Exception
 } finally {
   try {
-    $packages = @(Get-AppxPackage -Name $packageName |
-      Where-Object PackageFamilyName -eq $packageFamily)
-    foreach ($package in $packages) {
-      Remove-AppxPackage -Package $package.PackageFullName
-    }
-    $remaining = @(Get-AppxPackage -Name $packageName |
-      Where-Object PackageFamilyName -eq $packageFamily)
-    if ($remaining.Count -ne 0) {
-      throw 'The exact Recap Page package identity remains after WACK cleanup.'
-    }
+    Remove-RecapPackages
   } catch {
     $cleanupFailures += $_.Exception
   }
 
   if ($null -ne $importedThumbprint) {
     try {
-      Remove-Item -LiteralPath "$trustedPeople\$importedThumbprint"
-      if (Test-Path -LiteralPath "$trustedPeople\$importedThumbprint") {
-        throw 'The temporary WACK certificate remains trusted after cleanup.'
-      }
+      $trustedLiteral = ConvertTo-PowerShellLiteral `
+        "$trustedPeople\$importedThumbprint"
+      $null = Invoke-WindowsPowerShell @"
+Remove-Item -LiteralPath $trustedLiteral
+if (Test-Path -LiteralPath $trustedLiteral) {
+  throw 'The temporary WACK certificate remains trusted after cleanup.'
+}
+"@
     } catch {
       $cleanupFailures += $_.Exception
     }

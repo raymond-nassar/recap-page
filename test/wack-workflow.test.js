@@ -30,7 +30,7 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
 });
 
 test('WACK preserves the accepted corrected package source boundary', () => {
-  assert.match(workflow, /d2d3c8bb05364598d763c51a45e1cc401761868a HEAD/);
+  assert.match(workflow, /c5cd22f4351265a9429230572149d72494eb515e HEAD/);
   for (const input of [
     'LICENSE',
     'packaging/windows',
@@ -56,6 +56,7 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
 
 test('WACK fails closed on tool identity, incomplete reports, and cleanup residue', () => {
   assert.match(runner, /O=Microsoft Corporation/);
+  assert.match(runner, /System32\\WindowsPowerShell\\v1\.0\\powershell\.exe/);
   assert.match(runner, /DtdProcessing = \[Xml\.DtdProcessing\]::Prohibit/);
   assert.match(runner, /\$summary\.Overall -eq 'PASS'/);
   assert.match(runner, /\$summary\.PartialRun -eq 'FALSE'/);

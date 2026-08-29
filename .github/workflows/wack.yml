@@ -52,7 +52,7 @@ jobs:
         timeout-minutes: 2
         shell: pwsh
         run: |
-          git diff --exit-code d2d3c8bb05364598d763c51a45e1cc401761868a HEAD -- `
+          git diff --exit-code c5cd22f4351265a9429230572149d72494eb515e HEAD -- `
             LICENSE `
             packaging/windows `
             scripts/pack-msix.mjs `
@@ -83,7 +83,7 @@ jobs:
       - name: Remove generated certification material
         if: always()
         timeout-minutes: 5
-        shell: pwsh
+        shell: powershell
         run: |
           $failures = @()
           try {
