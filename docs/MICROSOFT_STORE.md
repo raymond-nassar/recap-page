@@ -28,7 +28,7 @@ The built candidate hashes are:
 
 The current candidate was installed with only corrected certificate thumbprint
 `E36EBC5FA20DA01A8D73E30B7C6EB25FAFAD188E` temporarily trusted in LocalMachine
-TrustedPeople. Four installed scenarios passed:
+TrustedPeople. All five installed scenarios passed:
 
 - The x64 package started at the production AUMID, served `proof-2.0.0.0` at the canonical origin,
   and retained both ready-guidance lines.
@@ -38,13 +38,14 @@ TrustedPeople. Four installed scenarios passed:
   `proof-2.0.0.1`.
 - Installing the final bundle on Windows 11 ARM64 selected its ARM64 slice, started native ARM64
   supervisor and server processes, served `proof-2.0.0.0`, and retained ready guidance.
+- The ARM64 slice selected from the final bundle refused an occupied port, retained every safe
+  guidance line, exited its server child, and left the browser-window digest unchanged.
 
-The installed ARM64 busy-port scenario reported both a scenario failure and cleanup failure, but the
-old formatter did not retain either nested cause. Manual inspection immediately afterwards found no
-package, package-owned process, or listener. The exact ARM64 package extracted from the same bundle
-then exited with code 1 under an occupied port and printed every safe guidance line, so the packaged
-payload behavior passed while the installed scenario remains inconclusive. The runner now prints
-every nested scenario and cleanup cause before a future repeat.
+An earlier attempt at the ARM64 busy-port scenario reported both scenario and cleanup failure, but
+the old formatter did not retain either nested cause. It left no package, process, or listener
+residue, and the exact ARM64 bundle payload then reproduced all required guidance outside
+installation. After the formatter was corrected to preserve every nested cause, the authorized
+installed repeat passed.
 
 After the five-scenario run, the exact certificate was removed. CurrentUser Root and LocalMachine
 Root returned to 49 certificates with digest
@@ -230,7 +231,7 @@ The update scenario is x64-only because its `2.0.0.1` package is local proof mat
 package and final bundle contain only Store-safe version `2.0.0.0`.
 
 The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
-cleanup errors must preserve each cause before any decision to repeat it.
+cleanup errors preserves each cause before any decision to repeat it.
 
 ## Run Windows App Certification Kit
 
@@ -289,7 +290,6 @@ certification passes and the owner explicitly changes release policy.
 
 ## Remaining Store gates
 
-- Repeat only the installed ARM64 busy-port scenario with the nested-error formatter.
 - Run the Windows App Certification Kit against the changed x64 package and final bundle on a
   supported host that receives `appcert.exe`.
 - Approve the `runFullTrust` explanation in Partner Center.
