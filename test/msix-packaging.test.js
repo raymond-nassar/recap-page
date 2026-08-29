@@ -122,6 +122,7 @@ test('package scripts expose build and independently invocable proof scenarios',
     assert.match(proof, new RegExp(`['"]${scenario}['"]`));
   }
   assert.match(proof, /shell:AppsFolder/);
+  assert.match(proof, /Start-Process explorer\.exe -ArgumentList/);
   assert.match(proof, /\bAUMID\b/);
   assert.match(proof, /assertNoPreexistingPackage\(\)/);
   assert.match(proof, /removePackage\(ownedPackageFullName\)/);

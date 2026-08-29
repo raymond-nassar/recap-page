@@ -103,7 +103,7 @@ function removePackage(packageFullName) {
 }
 
 function activate() {
-  execFileSync('explorer.exe', [`shell:AppsFolder\\${AUMID}`], { windowsHide: false });
+  powershell(`Start-Process explorer.exe -ArgumentList ${psLiteral(`shell:AppsFolder\\${AUMID}`)}`);
 }
 
 function winappJson(args) {

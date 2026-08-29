@@ -651,7 +651,7 @@ npm run msix:prove -- --scenario=update-state-continuity
 
 Loose registration is useful for activation debugging but is not installation evidence. Record it
 as such. The final proof must remove the exact package, its recorded processes, and the temporary
-trusted root, then confirm port 8787 is free.
+TrustedPeople certificate, then confirm port 8787 is free.
 
 `npm run pack` remains the GitHub ZIP build. Do not merge the ZIP and MSIX paths or rename the stable
 ZIP asset. The Store package cannot replace that release until certification passes and the owner

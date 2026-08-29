@@ -5,21 +5,48 @@ Recap Page. It describes a local x64 proof, not a published Store release.
 
 ## Current status
 
-The repository can build two signed x64 MSIX proof packages for an update journey. Loose package
-registration has proved all of these behaviors on Windows 11 ARM64 under x64 emulation:
+The repository builds two signed x64 MSIX proof packages for an update journey. A signed install on
+Windows 11 ARM64 under x64 emulation has proved all of these behaviors:
 
 - Start activation launches the x64 package entry point.
 - The package starts its bundled x64 Node runtime and the unchanged local server.
 - The server binds and opens exactly <http://127.0.0.1:8787/>.
 - Existing reading state remains visible in the same Edge Personal profile.
-- A read marker survives launcher stop, relaunch, and a registered package generation change.
+- A read marker survives package stop and an installed package generation change.
 - An occupied port leaves the existing safe guidance visible and opens no alternate origin.
 - The original browser state can be restored with every field equal; only the backup export
   timestamp changes between exports.
 
-The `.msix` install and update journey remains blocked on one local machine step: trusting the
-temporary proof certificate requires an administrator-approved UAC prompt. The owner was unavailable
-when that prompt was reached. Loose registration is not presented as a substitute for installation.
+One explicitly approved UAC prompt temporarily added only the expected public certificate to
+LocalMachine TrustedPeople. Versions `2.0.0.0` and `2.0.0.1` installed and the three bounded package
+scenarios passed. The package, listeners, launcher processes, private backups, and that exact
+thumbprint were removed afterwards; the TrustedPeople store returned to its baseline digest.
+
+The installed scenarios recorded:
+
+- `start-profile-reader-relaunch`: production AUMID activation started the 5,632-byte launcher and
+  its x64 Node child, served `proof-2.0.0.0`, displayed the exact ready guidance, and opened the
+  current Edge Personal profile with its 1-of-1 read sentinel.
+- `busy-port-refusal`: the package Node child exited, the launcher retained the complete existing
+  safe guidance, and the browser-window digest did not change.
+- `update-state-continuity`: the installed generation changed from `proof-2.0.0.0` to
+  `proof-2.0.0.1` at the same origin while the same-profile sentinel remained 1 of 1 read.
+
+The browser backup was restored afterwards. Excluding the regenerated `exportedAt` timestamp, the
+pre-proof and restored JSON both had SHA-256
+`723fb65b670b9eff25253b4c82e472272465e07d5983e499dccbc03a27135343`.
+
+The TrustedPeople baseline contained one certificate with digest
+`6BA56A5FAA86B42F5D081EFC34FCA3D22748B3C57AB0912D90D6784BD029B3FD`.
+During the proof it contained that baseline plus only thumbprint
+`50B43BE6C1ED610A7E86E7786E589A0AB5581494`. After cleanup the count and digest matched the baseline.
+
+Before owner authorization, importing the same public CER to CurrentUser TrustedPeople succeeded,
+but `Add-AppxPackage` failed with `0x800B0109` / `CERT_E_UNTRUSTEDROOT`. That experiment was cleaned
+up and was not repeated. It establishes that non-admin trust is insufficient for this full package.
+
+The scoped x64 packaging foundation is complete. The earlier loose registration remains useful
+architecture evidence but is not counted as installation evidence.
 
 The package has not passed the Windows App Certification Kit or Partner Center validation. There is
 no ARM64 package or bundle. Nothing has been associated, uploaded, submitted, or published.
@@ -107,10 +134,10 @@ under ignored `dist/msix/`. Do not commit packages, certificates, logs, or proof
 
 ## Complete the installed proof
 
-Open an elevated terminal and trust the public proof certificate:
+Open an elevated terminal and trust only the public proof certificate in TrustedPeople:
 
 ```text
-winapp cert install .\dist\msix\RecapPage-local-proof.cer --force
+Import-Certificate -FilePath .\dist\msix\RecapPage-local-proof.cer -CertStoreLocation Cert:\LocalMachine\TrustedPeople
 ```
 
 Then return to a normal terminal:
@@ -134,11 +161,11 @@ After the proof, remove the exact package:
 Get-AppxPackage -Name PanelStackLabs.RecapPage | Remove-AppxPackage
 ```
 
-Remove the temporary trusted root in an elevated terminal, using the exact thumbprint from the CER:
+Remove the temporary trusted certificate in an elevated terminal, using the exact thumbprint from the CER:
 
 ```text
 $thumbprint = (Get-PfxCertificate .\dist\msix\RecapPage-local-proof.cer).Thumbprint
-Remove-Item "Cert:\LocalMachine\Root\$thumbprint"
+Remove-Item "Cert:\LocalMachine\TrustedPeople\$thumbprint"
 ```
 
 Confirm port 8787 is free and no `PanelStackLabs.RecapPage` package remains before deleting
@@ -162,7 +189,6 @@ certification passes and the owner explicitly changes release policy.
 - Approve the `runFullTrust` explanation in Partner Center.
 - Build and measure an ARM64 launcher and matching official ARM64 Node runtime.
 - Produce and inspect the x64 and ARM64 MSIX bundle.
-- Complete the administrator-approved installed x64 package and update journeys.
 - Run the Windows App Certification Kit.
 - Use the dedicated [privacy policy](../PRIVACY.md) URL and review every listing disclosure.
 - Complete Partner Center package validation.

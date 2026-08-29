@@ -20,9 +20,10 @@ opens the same browser address, and leaves saved progress in the same browser pr
 public Windows ZIP is unchanged, and this package is not a Store download yet.
 
 The local proof preserved a read marker, the exact loopback address, visible port-conflict guidance,
-and an update from one package generation to the next. The final installed package journey still
-needs an administrator-approved local certificate prompt, and ARM64, certification, Store
-validation, upload, and publication remain pending.
+and a signed installed update from one package generation to the next. Temporary certificate trust
+was removed after the proof, the certificate store returned to its baseline, and private browser
+state was restored exactly apart from its regenerated export timestamp. ARM64, certification,
+Store validation, upload, and publication remain pending.
 
 For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 versions `2.0.0.0`
 and `2.0.0.1`. The package uses the exact Partner Center identity and a 5,632-byte console launcher
