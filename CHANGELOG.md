@@ -13,22 +13,27 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
-### Added a local x64 Microsoft Store package proof
+### Added a local Microsoft Store package and architecture bundle proof
 
-In plain English: Recap Page can now be built as a Windows package that starts from the Start menu,
-opens the same browser address, and leaves saved progress in the same browser profile. The existing
-public Windows ZIP is unchanged, and this package is not a Store download yet.
+In plain English: Recap Page can now be built as one Windows Store bundle for both common 64-bit
+computers and Windows computers powered by Arm. Inspection confirms that each version contains and
+runs the intended processor-specific runtime. Installation of the new bundle still needs its
+separate owner-approved proof. The existing public Windows ZIP is unchanged, and this package is not
+a Store download yet.
 
 The local proof preserved a read marker, the exact loopback address, visible port-conflict guidance,
 and a signed installed update from one package generation to the next. Temporary certificate trust
 was removed after the proof, the certificate store returned to its baseline, and private browser
-state was restored exactly apart from its regenerated export timestamp. ARM64, certification,
-Store validation, upload, and publication remain pending.
+state was restored exactly apart from its regenerated export timestamp. The new package entry point
+uses the official Node runtime already present in each architecture package, and inspection measured
+native x64 and ARM64 launcher and server processes. Certification, Store validation, upload, and
+publication remain pending.
 
-For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 versions `2.0.0.0`
-and `2.0.0.1`. The package uses the exact Partner Center identity and a 5,632-byte console launcher
-compiled by the Windows inbox .NET Framework compiler. All generated packages, runtimes, assets,
-certificates, and proof output remain ignored.
+For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 and ARM64 version
+`2.0.0.0` packages and their bundle. The x64 `2.0.0.1` update package remains isolated as local proof
+material and cannot enter the Store bundle. Both Node archives are checked against their published
+SHA-256 values. All generated packages, runtimes, assets, certificates, and proof output remain
+ignored.
 
 ### Credited community Reading List guides
 

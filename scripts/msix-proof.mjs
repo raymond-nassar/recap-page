@@ -6,7 +6,8 @@ import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import {
-  AUMID, PACKAGE_FAMILY, PACKAGE_NAME, PACKAGE_VERSIONS, packagePath,
+  AUMID, PACKAGE_ARCHITECTURES, PACKAGE_FAMILY, PACKAGE_NAME, PACKAGE_VERSIONS,
+  STORE_PACKAGE_VERSION, bundlePath, packagePath, proofPackagePath,
 } from './pack-msix.mjs';
 
 export const SCENARIOS = Object.freeze([
@@ -16,6 +17,7 @@ export const SCENARIOS = Object.freeze([
 ]);
 
 const ORIGIN = 'http://127.0.0.1:8787';
+const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
 const READY_GUIDANCE = Object.freeze([
   'Recap Page running at http://127.0.0.1:8787/',
@@ -82,8 +84,24 @@ function stopPids(pids, runPowerShell = powershell) {
   }
 }
 
-function installPackage(version) {
-  const path = packagePath(version);
+function installPackage(version, architecture = 'x64', source = 'package') {
+  if (!ARCHITECTURES.includes(architecture)) {
+    throw new Error(`unsupported package architecture: ${architecture}`);
+  }
+  if (!['package', 'bundle'].includes(source)) {
+    throw new Error(`unsupported package source: ${source}`);
+  }
+  if (source === 'bundle' && version !== STORE_PACKAGE_VERSION) {
+    throw new Error('the Store bundle contains only the Store package version');
+  }
+  if (version !== STORE_PACKAGE_VERSION && architecture !== 'x64') {
+    throw new Error('the proof-only update package exists only for x64');
+  }
+  const path = source === 'bundle'
+    ? bundlePath()
+    : version === STORE_PACKAGE_VERSION
+      ? packagePath(architecture)
+      : proofPackagePath(version);
   if (!existsSync(path)) throw new Error(`missing package: ${path}`);
   powershell(`Add-AppxPackage -Path ${psLiteral(path)} -ForceApplicationShutdown`);
   const installed = packageInfo();
@@ -93,6 +111,9 @@ function installPackage(version) {
   }
   if (installed.Name !== PACKAGE_NAME || installed.PackageFamilyName !== PACKAGE_FAMILY) {
     throw new Error(`installed identity differs: ${installed.Name}, ${installed.PackageFamilyName}`);
+  }
+  if (!String(installed.PackageFullName).toLowerCase().includes(`_${architecture}__`)) {
+    throw new Error(`installed architecture differs: ${installed.PackageFullName}`);
   }
   return installed;
 }
@@ -282,10 +303,20 @@ async function waitFor(check, message, timeout = 15000) {
   throw new Error(`${message}${lastError ? `: ${lastError.message}` : ''}`);
 }
 
-async function waitForProcess(installed, since, name = 'node.exe') {
+async function waitForProcess(
+  installed,
+  since,
+  name = 'node.exe',
+  commandLineFragment,
+  listProcesses = packageProcesses,
+) {
   return waitFor(
-    () => packageProcesses(installed, since).find((process) => process.Name === name) ?? null,
-    `registered activation did not create a new package-owned ${name} process`,
+    () => listProcesses(installed, since).find((process) => (
+      process.Name === name
+      && (!commandLineFragment || process.CommandLine?.includes(commandLineFragment))
+    )) ?? null,
+    `registered activation did not create a new package-owned ${name}`
+      + `${commandLineFragment ? ` running ${commandLineFragment}` : ''} process`,
   );
 }
 
@@ -302,20 +333,26 @@ async function generation() {
   return response.json();
 }
 
-async function startProfileReaderRelaunch() {
+async function startProfileReaderRelaunch(architecture, source) {
   await runInstalledScenario(async (context) => {
     assertNoPreexistingPackage();
     context.cleanupAuthorized = true;
-    context.installed = installPackage(PACKAGE_VERSIONS[0]);
+    context.installed = installPackage(PACKAGE_VERSIONS[0], architecture, source);
     context.since = new Date();
     const terminals = new Set(terminalWindows().map((window) => window.hwnd));
     activate();
-    const process = await waitForProcess(context.installed, context.since);
+    const process = await waitForProcess(
+      context.installed,
+      context.since,
+      'node.exe',
+      'server.mjs',
+    );
     context.owned.push(process.ProcessId);
     const launcher = await waitForProcess(
       context.installed,
       context.since,
-      'RecapPageLauncher.exe',
+      'node.exe',
+      'Launcher.mjs',
     );
     context.owned.push(launcher.ProcessId);
     const terminal = await waitForNewTerminal(terminals);
@@ -333,6 +370,8 @@ async function startProfileReaderRelaunch() {
     assertReadyGuidance(readyText);
     console.log(JSON.stringify({
       scenario: SCENARIOS[0],
+      architecture,
+      source,
       aumid: AUMID,
       launcherProcessId: launcher.ProcessId,
       processId: process.ProcessId,
@@ -345,7 +384,7 @@ async function startProfileReaderRelaunch() {
   });
 }
 
-async function busyPortRefusal() {
+async function busyPortRefusal(architecture, source) {
   const holder = createServer();
   await new Promise((resolve, reject) => {
     holder.once('error', reject);
@@ -355,7 +394,7 @@ async function busyPortRefusal() {
   await runInstalledScenario(async (context) => {
     assertNoPreexistingPackage();
     context.cleanupAuthorized = true;
-    context.installed = installPackage(PACKAGE_VERSIONS[0]);
+    context.installed = installPackage(PACKAGE_VERSIONS[0], architecture, source);
     context.since = new Date();
     const terminals = new Set(terminalWindows().map((window) => window.hwnd));
     const browserBefore = browserSnapshotDigest();
@@ -364,7 +403,8 @@ async function busyPortRefusal() {
     const launcher = await waitForProcess(
       context.installed,
       context.since,
-      'RecapPageLauncher.exe',
+      'node.exe',
+      'Launcher.mjs',
     );
     context.owned.push(launcher.ProcessId);
     const terminal = await waitForNewTerminal(terminals);
@@ -377,8 +417,8 @@ async function busyPortRefusal() {
     );
     await waitFor(
       () => packageProcesses(context.installed, context.since)
-        .every((process) => process.Name !== 'node.exe'),
-      'the busy-port Node child did not exit',
+        .every((process) => !process.CommandLine?.includes('server.mjs')),
+      'the busy-port server child did not exit',
     );
     const browserAfter = browserSnapshotDigest();
     if (browserAfter !== browserBefore) {
@@ -394,6 +434,8 @@ async function busyPortRefusal() {
     }
     console.log(JSON.stringify({
       scenario: SCENARIOS[1],
+      architecture,
+      source,
       aumid: AUMID,
       holderProcessId: process.pid,
       launcherProcessId: launcher.ProcessId,
@@ -407,26 +449,33 @@ async function busyPortRefusal() {
   });
 }
 
-async function updateStateContinuity() {
+async function updateStateContinuity(architecture, source) {
+  if (architecture !== 'x64' || source !== 'package') {
+    throw new Error('the historical package-update proof is x64 only');
+  }
   await runInstalledScenario(async (context) => {
     assertNoPreexistingPackage();
     context.cleanupAuthorized = true;
-    context.installed = installPackage(PACKAGE_VERSIONS[0]);
+    context.installed = installPackage(PACKAGE_VERSIONS[0], architecture);
     context.since = new Date();
     activate();
-    context.owned.push((await waitForProcess(context.installed, context.since)).ProcessId);
     context.owned.push((
-      await waitForProcess(context.installed, context.since, 'RecapPageLauncher.exe')
+      await waitForProcess(context.installed, context.since, 'node.exe', 'server.mjs')
+    ).ProcessId);
+    context.owned.push((
+      await waitForProcess(context.installed, context.since, 'node.exe', 'Launcher.mjs')
     ).ProcessId);
     const before = await waitFor(generation, 'version N did not answer');
     stopPids(context.owned.splice(0));
 
-    context.installed = installPackage(PACKAGE_VERSIONS[1]);
+    context.installed = installPackage(PACKAGE_VERSIONS[1], architecture);
     context.since = new Date();
     activate();
-    context.owned.push((await waitForProcess(context.installed, context.since)).ProcessId);
     context.owned.push((
-      await waitForProcess(context.installed, context.since, 'RecapPageLauncher.exe')
+      await waitForProcess(context.installed, context.since, 'node.exe', 'server.mjs')
+    ).ProcessId);
+    context.owned.push((
+      await waitForProcess(context.installed, context.since, 'node.exe', 'Launcher.mjs')
     ).ProcessId);
     const after = await waitFor(generation, 'version N+1 did not answer');
     if (before.packageVersion !== PACKAGE_VERSIONS[0] || after.packageVersion !== PACKAGE_VERSIONS[1]) {
@@ -434,6 +483,8 @@ async function updateStateContinuity() {
     }
     console.log(JSON.stringify({
       scenario: SCENARIOS[2],
+      architecture,
+      source,
       aumid: AUMID,
       origin: ORIGIN,
       before: before.generation,
@@ -445,12 +496,22 @@ async function updateStateContinuity() {
 
 async function main() {
   const scenario = process.argv.find((arg) => arg.startsWith('--scenario='))?.slice(11);
+  const architecture = process.argv.find((arg) => arg.startsWith('--architecture='))
+    ?.slice(15) ?? 'x64';
+  const source = process.argv.find((arg) => arg.startsWith('--source='))
+    ?.slice(9) ?? 'package';
   if (!SCENARIOS.includes(scenario)) {
     throw new Error(`choose --scenario=${SCENARIOS.join('|')}`);
   }
-  if (scenario === SCENARIOS[0]) await startProfileReaderRelaunch();
-  if (scenario === SCENARIOS[1]) await busyPortRefusal();
-  if (scenario === SCENARIOS[2]) await updateStateContinuity();
+  if (!ARCHITECTURES.includes(architecture)) {
+    throw new Error(`choose --architecture=${ARCHITECTURES.join('|')}`);
+  }
+  if (!['package', 'bundle'].includes(source)) {
+    throw new Error('choose --source=package|bundle');
+  }
+  if (scenario === SCENARIOS[0]) await startProfileReaderRelaunch(architecture, source);
+  if (scenario === SCENARIOS[1]) await busyPortRefusal(architecture, source);
+  if (scenario === SCENARIOS[2]) await updateStateContinuity(architecture, source);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

@@ -210,11 +210,11 @@ Marvel or the metadata service. A suspected security problem must follow
 Recap Page is not available from the Microsoft Store yet. The current public Windows download
 remains the ZIP described at the start of this guide.
 
-An x64 MSIX proof now installs, launches from Start, starts the same local server, and opens the same
-browser address. The signed install preserved existing browser-profile progress and visible
-busy-port guidance through an update from `2.0.0.0` to `2.0.0.1`. Its temporary local certificate
-trust was removed after the proof, and the certificate store returned to its pre-proof state.
-ARM64, certification, Store validation, upload, and publication remain pending.
+An earlier x64 MSIX proof installed, launched from Start, started the same local server, and opened
+the same browser address. The signed install preserved existing browser-profile progress and visible
+busy-port guidance through an update from `2.0.0.0` to `2.0.0.1`. The current Store candidate adds a
+native ARM64 package and an x64/ARM64 bundle while keeping `2.0.0.1` outside the Store output.
+Certification, Store validation, upload, and publication remain pending.
 
 Installing or uninstalling the future package does not move or remove browser-owned progress. The
 same address and browser profile remain the storage location. See the
