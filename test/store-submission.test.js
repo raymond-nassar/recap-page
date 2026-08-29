@@ -30,20 +30,42 @@ test('listing copy stays within the Store field limits', () => {
   assert.ok(short, 'short description is missing');
   assert.ok(short.length <= 270, `short description is ${short.length} characters`);
 
-  const features = /### Feature fields\r?\n\r?\n([\s\S]*?)\r?\n\r?\n### Search terms/.exec(packet)?.[1]
+  const features = /### Feature fields\r?\n\r?\n([\s\S]*?)\r?\n\r?\n### (?:Keywords|Search terms)/.exec(packet)?.[1]
     .split(/\r?\n/)
     .filter((line) => /^\d+\. /.test(line))
     .map((line) => line.replace(/^\d+\. /, ''));
   assert.ok(features.length > 0 && features.length <= 20);
   assert.ok(features.every((feature) => feature.length <= 200));
 
-  const terms = /### Search terms\r?\n\r?\n([\s\S]*?)\r?\n\r?\n### Copyright/.exec(packet)?.[1]
+  const terms = /### (?:Keywords|Search terms)\r?\n\r?\n([\s\S]*?)\r?\n\r?\n### Copyright/.exec(packet)?.[1]
     .split(/\r?\n/)
     .filter((line) => /^\d+\. `/.test(line))
     .map((line) => line.replace(/^\d+\. `|`$/g, ''));
   assert.equal(terms.length, 7);
   assert.ok(terms.every((term) => term.length <= 40));
   assert.ok(new Set(terms.flatMap((term) => term.split(/\s+/))).size <= 21);
+});
+
+test('copyright and developer fields stay within their Store limits', () => {
+  const packet = readFileSync(PACKET, 'utf8');
+  const copyright = /### Copyright and trademark information\r?\n\r?\n([\s\S]*?)\r?\n\r?\nUse \*\*/.exec(packet)?.[1]
+    .replace(/\s+/g, ' ').trim();
+  assert.ok(copyright, 'copyright and trademark information is missing');
+  assert.ok(copyright.length <= 200, `copyright and trademark information is ${copyright.length} characters`);
+
+  const developer = /Use \*\*([^*]+)\*\* for \*\*Developed by\*\*/.exec(packet)?.[1];
+  assert.ok(developer, 'Developed by value is missing');
+  assert.ok(developer.length <= 255, `Developed by is ${developer.length} characters`);
+});
+
+test('the current Keywords field and its exact official source are named', () => {
+  const packet = readFileSync(PACKET, 'utf8');
+  assert.match(packet, /^### Keywords$/m);
+  assert.doesNotMatch(packet, /^### Search terms$/m);
+  assert.match(
+    packet,
+    /https:\/\/learn\.microsoft\.com\/windows\/apps\/publish\/publish-your-app\/msix\/add-additional-information/,
+  );
 });
 
 test('every public handoff URL uses HTTPS and every screenshot has a caption', () => {

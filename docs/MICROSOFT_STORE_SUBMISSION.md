@@ -185,7 +185,7 @@ or Disney. Marvel names and marks belong to their respective owners.
 7. Direct links to official Marvel reading pages
 8. No account, ads, analytics, or telemetry
 
-### Search terms
+### Keywords
 
 1. `comic reading tracker`
 2. `reading order`
@@ -195,13 +195,13 @@ or Disney. Marvel names and marks belong to their respective owners.
 6. `comic events`
 7. `comic books`
 
-Each term is below Microsoft's 40-character limit. Together they use fewer than 21 unique words.
+Keywords were formerly called Search terms. Each keyword is below Microsoft's 40-character limit.
+Together they use fewer than 21 unique words.
 
 ### Copyright and trademark information
 
-Copyright (c) 2026 Raymond Nassar. Recap Page is an unofficial fan companion, not affiliated with or
-endorsed by Marvel Entertainment or Disney. Marvel names and marks belong to their respective
-owners.
+Copyright (c) 2026 Raymond Nassar. Unofficial fan companion, not affiliated with or endorsed by
+Marvel Entertainment or Disney. Marvel names and marks belong to their respective owners.
 
 Use **PanelStack Labs** for **Developed by**. Leave **What's new in this version** blank because this
 is the first Store submission. Leave short title, sort title, and voice title blank.
@@ -408,6 +408,7 @@ Retrieved 2026-08-29:
 - [Package upload](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/upload-app-packages)
 - [Package requirements](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/app-package-requirements)
 - [Store listing fields](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/add-and-edit-store-listing-info)
+- [Keywords, copyright, license terms, and Developed by](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/add-additional-information)
 - [Screenshots and images](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/screenshots-and-images)
 - [Submission options](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/manage-submission-options)
 - [Restricted capabilities](https://learn.microsoft.com/windows/apps/package-and-deploy/app-capability-declarations)
