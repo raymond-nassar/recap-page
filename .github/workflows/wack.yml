@@ -26,7 +26,7 @@ jobs:
     # The standard x64 runner is free for this public repository. Server 2025 is not
     # in that supported-host list, so windows-latest is deliberately not used.
     runs-on: windows-2022
-    timeout-minutes: 95
+    timeout-minutes: 100
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
@@ -46,6 +46,16 @@ jobs:
         timeout-minutes: 4
         with:
           version: v0.6.0
+
+      - name: Initialize telemetry-disabled WinApp CLI
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $output = @(winapp --version)
+          if ($LASTEXITCODE -ne 0 -or $output[-1].Trim() -ne '0.6.0') {
+            throw 'The pinned WinApp CLI did not initialize as version 0.6.0.'
+          }
+          'WinApp CLI 0.6.0 initialized with telemetry disabled.'
 
       - name: Install repository tooling
         timeout-minutes: 4

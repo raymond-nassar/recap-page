@@ -24,6 +24,8 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
   );
   assert.match(workflow, /^permissions:\r?\n  contents: read\s*$/m);
   assert.match(workflow, /^  WINAPP_CLI_TELEMETRY_OPTOUT: '1'\s*$/m);
+  assert.match(workflow, /\$output = @\(winapp --version\)/);
+  assert.match(workflow, /\$output\[-1\]\.Trim\(\) -ne '0\.6\.0'/);
   assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write|secrets\./);
   assert.match(runner, /PROCESSOR_ARCHITECTURE -ne 'AMD64'/);
   assert.match(runner, /SessionId/);
