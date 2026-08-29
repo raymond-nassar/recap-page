@@ -5,7 +5,7 @@
 Recap Page is a static site served by a small loopback server on your own machine. There is no
 hosted backend to attack, no account to take over and no database holding anyone else's data. The
 app has no runtime dependencies at all, so nothing in `package.json` reaches the browser. Everything
-it declares is development tooling: the four packages listed at `package.json:44-48` are the linter
+it declares is development tooling: the four packages listed at `package.json:46-50` are the linter
 and the three packages its configuration needs, and they run only on a maintainer's machine and in
 CI. Your reading progress lives in one browser storage key and never leaves the machine it was made
 on.

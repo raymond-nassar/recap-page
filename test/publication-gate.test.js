@@ -233,7 +233,9 @@ test('every allowance still covers a hit that is really there, in a file that is
     assert.ok(why && why.length > 20, `${key} records why it is allowed`);
     assert.ok(tracked.has(file), `${file} is tracked, so the allowance still names something`);
     assert.ok(named.has(pattern), `${pattern} is a pattern the gate carries`);
-    const text = git(['show', `HEAD:${file}`]);
+    // ls-files describes the index, so read the same population. This also keeps a newly added,
+    // already staged allowance testable before its first commit instead of requiring a red commit.
+    const text = git(['show', `:${file}`]);
     const hits = new Set((text.match(named.get(pattern)) || []).map((h) => h.trim()));
     assert.ok(hits.has(hit), `${file} still contains the allowed hit for ${pattern}`);
   }
@@ -264,12 +266,15 @@ test('an unplanned second occurrence of an allowed shape is still reported', () 
 
 const STORE_PUBLISHER_FILES = [
   'docs/MICROSOFT_STORE.md',
+  'docs/MICROSOFT_STORE_SUBMISSION.md',
   'packaging/windows/Package.appxmanifest',
   'scripts/pack-msix.mjs',
+  'scripts/run-wack.ps1',
+  'scripts/check-store-submission.mjs',
   'test/msix-packaging.test.js',
 ];
 
-test('the public Store publisher GUID is allowed only at its four intended identity sites', () => {
+test('the public Store publisher GUID is allowed only at its seven intended identity sites', () => {
   const entries = [...ALLOWED.keys()]
     .map((key) => key.split('|'))
     .filter(([file, pattern]) => (

@@ -102,9 +102,11 @@ const FIXTURES_FILE = 'test/publication-gate.test.js';
 const STORE_PUBLISHER = 'F6D9045B-46F0-4EAC-' + '9524-4BFC8A75A472';
 const STORE_PUBLISHER_FILES = [
   'docs/MICROSOFT_STORE.md',
+  'docs/MICROSOFT_STORE_SUBMISSION.md',
   'packaging/windows/Package.appxmanifest',
   'scripts/pack-msix.mjs',
   'scripts/run-wack.ps1',
+  'scripts/check-store-submission.mjs',
   'test/msix-packaging.test.js',
 ];
 export const ALLOWED = new Map([

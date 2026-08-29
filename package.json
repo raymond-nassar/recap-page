@@ -32,6 +32,8 @@
     "msix:pack": "node scripts/pack-msix.mjs",
     "msix:inspect": "node scripts/inspect-msix.mjs",
     "msix:prove": "node scripts/msix-proof.mjs",
+    "store:assets": "node scripts/capture-store-assets.mjs",
+    "store:check": "node scripts/check-store-submission.mjs",
     "browser": "node scripts/browser-check.mjs",
     "browser:prove": "node scripts/browser-check.mjs --prove",
     "upgrade": "node scripts/upgrade-check.mjs",

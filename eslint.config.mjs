@@ -111,7 +111,11 @@ export default [
     // undefined globals for code that is correct, and linting it as browser alone would hide a
     // real mistake in the Node half. Both sets is the honest description of what the file is.
     // The upgrade check is the same shape for the same reason.
-    files: ['scripts/browser-check.mjs', 'scripts/upgrade-check.mjs'],
+    files: [
+      'scripts/browser-check.mjs',
+      'scripts/capture-store-assets.mjs',
+      'scripts/upgrade-check.mjs',
+    ],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
 ];
