@@ -327,7 +327,7 @@ test('busy-port exit fails closed when package process ownership metadata is mis
   assert.equal(serverChildExited([supervisor, unknown], supervisor), false);
 });
 
-test('package process enumeration retains direct children with unreadable paths', async () => {
+test('package process enumeration applies package-root or direct-child retention behavior', async () => {
   const { packageProcesses, serverChildExited } = await import('../scripts/msix-proof.mjs');
   const supervisor = {
     Name: 'node.exe',
@@ -340,22 +340,34 @@ test('package process enumeration retains direct children with unreadable paths'
     new Date(0),
     {
       parentProcessId: supervisor.ProcessId,
-      runPowerShell: (script) => {
-        assert.match(script, /\$_.ParentProcessId -eq \$parent/);
-        return JSON.stringify([
-          supervisor,
-          {
-            Name: 'node.exe',
-            ProcessId: 42,
-            ParentProcessId: supervisor.ProcessId,
-            ExecutablePath: null,
-            CommandLine: null,
-          },
-        ]);
-      },
+      runPowerShell: () => JSON.stringify([
+        supervisor,
+        {
+          Name: 'node.exe',
+          ProcessId: 42,
+          ParentProcessId: supervisor.ProcessId,
+          ExecutablePath: null,
+          CommandLine: null,
+        },
+        {
+          Name: 'unrelated.exe',
+          ProcessId: 43,
+          ParentProcessId: 9,
+          ExecutablePath: null,
+          CommandLine: null,
+        },
+        {
+          Name: 'helper.exe',
+          ProcessId: 44,
+          ParentProcessId: 9,
+          ExecutablePath: 'C:\\Program Files\\WindowsApps\\RecapPage\\helper.exe',
+          CommandLine: null,
+        },
+      ]),
     },
   );
 
+  assert.deepEqual(processes.map(({ ProcessId }) => ProcessId), [41, 42, 44]);
   assert.equal(serverChildExited(processes, supervisor), false);
 });
 

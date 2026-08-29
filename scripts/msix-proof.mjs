@@ -56,6 +56,15 @@ function assertNoPreexistingPackage(getPackageInfo = packageInfo) {
   }
 }
 
+function retainPackageProcess(process, installRoot, parentProcessId = 0) {
+  const inPackage = typeof process.ExecutablePath === 'string'
+    && process.ExecutablePath.toLowerCase().startsWith(installRoot.toLowerCase());
+  const directChild = Number.isInteger(parentProcessId)
+    && parentProcessId > 0
+    && process.ParentProcessId === parentProcessId;
+  return inPackage || directChild;
+}
+
 function packageProcesses(
   installed,
   since = new Date(0),
@@ -68,18 +77,16 @@ function packageProcesses(
     ? parentProcessId
     : 0;
   const raw = runPowerShell(
-    `$root = ${psLiteral(installed.InstallLocation)}; `
-    + `$since = [datetime]${psLiteral(since.toISOString())}; `
-    + `$parent = ${parent}; `
-    + '$rows = Get-CimInstance Win32_Process | Where-Object { '
-    + '$_.ExecutablePath -and $_.ExecutablePath.StartsWith($root, [System.StringComparison]::OrdinalIgnoreCase) '
-    + '-or ($parent -gt 0 -and $_.ParentProcessId -eq $parent) '
-    + '} | ForEach-Object { $created = [datetime]$_.CreationDate; '
+    `$since = [datetime]${psLiteral(since.toISOString())}; `
+    + '$rows = Get-CimInstance Win32_Process | ForEach-Object { $created = [datetime]$_.CreationDate; '
     + 'if ($created -ge $since) { [pscustomobject]@{ Name = $_.Name; ProcessId = $_.ProcessId; ParentProcessId = $_.ParentProcessId; ExecutablePath = $_.ExecutablePath; CreationDate = $created.ToString("o"); CommandLine = $_.CommandLine } } }; '
     + '@($rows) | ConvertTo-Json -Compress',
   );
   const parsed = JSON.parse(raw || '[]');
-  return Array.isArray(parsed) ? parsed : [parsed];
+  const processes = Array.isArray(parsed) ? parsed : [parsed];
+  return processes.filter((process) => (
+    retainPackageProcess(process, installed.InstallLocation, parent)
+  ));
 }
 
 function stopPids(pids, runPowerShell = powershell) {
@@ -581,6 +588,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 
 export {
   assertNoPreexistingPackage, assertReadyGuidance, cleanupPackage, generation, installPackage,
-  formatProofError, packageInfo, packageProcesses, removePackage, runInstalledScenario, stopPids,
-  serverChildExited, waitForProcess,
+  formatProofError, packageInfo, packageProcesses, removePackage, retainPackageProcess,
+  runInstalledScenario, stopPids, serverChildExited, waitForProcess,
 };
