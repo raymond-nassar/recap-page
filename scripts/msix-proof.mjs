@@ -15,14 +15,12 @@ export const SCENARIOS = Object.freeze([
   'update-state-continuity',
 ]);
 
-export const MUTATIONS = Object.freeze({
-  'canonical-origin': 'start-profile-reader-relaunch',
-  'synchronous-reader': 'start-profile-reader-relaunch',
-  'update-state': 'update-state-continuity',
-});
-
 const ORIGIN = 'http://127.0.0.1:8787';
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
+const READY_GUIDANCE = Object.freeze([
+  'Recap Page running at http://127.0.0.1:8787/',
+  'Other addresses are separate browser storage.',
+]);
 
 function powershell(script) {
   return execFileSync(
@@ -36,8 +34,8 @@ function psLiteral(value) {
   return `'${String(value).replaceAll("'", "''")}'`;
 }
 
-function packageInfo() {
-  const raw = powershell(
+function packageInfo(runPowerShell = powershell) {
+  const raw = runPowerShell(
     `$p = Get-AppxPackage -Name ${psLiteral(PACKAGE_NAME)} | Sort-Object Version -Descending | Select-Object -First 1; `
     + 'if (-not $p) { "null"; exit 0 }; '
     + '$p | Select-Object Name,PackageFullName,PackageFamilyName,InstallLocation,Version | ConvertTo-Json -Compress',
@@ -45,8 +43,8 @@ function packageInfo() {
   return JSON.parse(raw);
 }
 
-function assertNoPreexistingPackage() {
-  const installed = packageInfo();
+function assertNoPreexistingPackage(getPackageInfo = packageInfo) {
+  const installed = getPackageInfo();
   if (installed) {
     throw new Error(
       `refusing to replace pre-existing package ${installed.PackageFullName}; remove it explicitly first`,
@@ -54,8 +52,8 @@ function assertNoPreexistingPackage() {
   }
 }
 
-function packageProcesses(installed, since = new Date(0)) {
-  const raw = powershell(
+function packageProcesses(installed, since = new Date(0), runPowerShell = powershell) {
+  const raw = runPowerShell(
     `$root = ${psLiteral(installed.InstallLocation)}; `
     + `$since = [datetime]${psLiteral(since.toISOString())}; `
     + '$rows = Get-CimInstance Win32_Process | Where-Object { '
@@ -68,9 +66,17 @@ function packageProcesses(installed, since = new Date(0)) {
   return Array.isArray(parsed) ? parsed : [parsed];
 }
 
-function stopPids(pids) {
+function stopPids(pids, runPowerShell = powershell) {
+  const failures = [];
   for (const pid of [...new Set(pids)].filter((value) => Number.isInteger(value) && value > 0)) {
-    powershell(`$p = Get-Process -Id ${pid} -ErrorAction SilentlyContinue; if ($p) { Stop-Process -Id ${pid}; Wait-Process -Id ${pid} -ErrorAction SilentlyContinue }`);
+    try {
+      runPowerShell(`$p = Get-Process -Id ${pid} -ErrorAction SilentlyContinue; if ($p) { Stop-Process -Id ${pid}; Wait-Process -Id ${pid} -ErrorAction SilentlyContinue }`);
+    } catch (error) {
+      failures.push(error);
+    }
+  }
+  if (failures.length) {
+    throw new AggregateError(failures, 'one or more package processes could not be stopped');
   }
 }
 
@@ -89,17 +95,109 @@ function installPackage(version) {
   return installed;
 }
 
-function removePackage(packageFullName) {
-  if (
-    typeof packageFullName !== 'string'
-    || !packageFullName.startsWith(`${PACKAGE_NAME}_`)
-  ) {
-    throw new Error('refusing to remove a package without its exact owned full name');
+function removePackage(
+  packageName = PACKAGE_NAME,
+  packageFamily = PACKAGE_FAMILY,
+  {
+    runPowerShell = powershell,
+    getPackageInfo = () => packageInfo(runPowerShell),
+  } = {},
+) {
+  if (packageName !== PACKAGE_NAME || packageFamily !== PACKAGE_FAMILY) {
+    throw new Error('refusing to remove a package outside the exact Recap Page identity');
   }
-  powershell(
-    `$p = Get-AppxPackage -Name ${psLiteral(PACKAGE_NAME)} | Where-Object PackageFullName -eq ${psLiteral(packageFullName)}; `
-    + 'if ($p) { Remove-AppxPackage -Package $p.PackageFullName }',
+  runPowerShell(
+    `$packages = @(Get-AppxPackage -Name ${psLiteral(packageName)} | Where-Object PackageFamilyName -eq ${psLiteral(packageFamily)}); `
+    + 'foreach ($p in $packages) { Remove-AppxPackage -Package $p.PackageFullName }',
   );
+  const remaining = getPackageInfo();
+  if (remaining?.Name === PACKAGE_NAME && remaining?.PackageFamilyName === PACKAGE_FAMILY) {
+    throw new Error(`package identity remains registered: ${remaining.PackageFullName}`);
+  }
+}
+
+function assertReadyGuidance(text) {
+  for (const expected of READY_GUIDANCE) {
+    if (!text?.includes(expected)) throw new Error(`ready guidance omitted: ${expected}`);
+  }
+}
+
+function cleanupPackage(
+  {
+    installed,
+    since,
+    owned,
+  },
+  {
+    listProcesses = packageProcesses,
+    stopProcesses = stopPids,
+    removeOwnedPackage = removePackage,
+  } = {},
+) {
+  const failures = [];
+  if (installed && since) {
+    try {
+      owned.push(...listProcesses(installed, since).map((entry) => entry.ProcessId));
+    } catch (error) {
+      failures.push(error);
+    }
+  }
+  try {
+    stopProcesses(owned);
+  } catch (error) {
+    failures.push(error);
+  }
+  try {
+    removeOwnedPackage(PACKAGE_NAME, PACKAGE_FAMILY);
+  } catch (error) {
+    failures.push(error);
+  }
+  if (failures.length) {
+    throw new AggregateError(failures, 'installed scenario cleanup did not complete');
+  }
+}
+
+async function runInstalledScenario(body, { afterCleanup } = {}) {
+  const context = {
+    cleanupAuthorized: false,
+    installed: null,
+    owned: [],
+    since: null,
+  };
+  let result;
+  let scenarioFailure;
+  try {
+    result = await body(context);
+  } catch (error) {
+    scenarioFailure = error;
+  }
+
+  const cleanupFailures = [];
+  if (context.cleanupAuthorized) {
+    try {
+      cleanupPackage(context);
+    } catch (error) {
+      cleanupFailures.push(error);
+    }
+  }
+  if (afterCleanup) {
+    try {
+      await afterCleanup();
+    } catch (error) {
+      cleanupFailures.push(error);
+    }
+  }
+  if (scenarioFailure && cleanupFailures.length) {
+    throw new AggregateError(
+      [scenarioFailure, ...cleanupFailures],
+      'installed scenario and its cleanup both failed',
+    );
+  }
+  if (scenarioFailure) throw scenarioFailure;
+  if (cleanupFailures.length) {
+    throw new AggregateError(cleanupFailures, 'installed scenario cleanup failed');
+  }
+  return result;
 }
 
 function activate() {
@@ -191,21 +289,21 @@ async function generation() {
 }
 
 async function startProfileReaderRelaunch() {
-  const owned = [];
-  let ownedPackageFullName = null;
-  let installed;
-  let since;
-  try {
+  await runInstalledScenario(async (context) => {
     assertNoPreexistingPackage();
-    installed = installPackage(PACKAGE_VERSIONS[0]);
-    ownedPackageFullName = installed.PackageFullName;
-    since = new Date();
+    context.cleanupAuthorized = true;
+    context.installed = installPackage(PACKAGE_VERSIONS[0]);
+    context.since = new Date();
     const terminals = new Set(terminalWindows().map((window) => window.hwnd));
     activate();
-    const process = await waitForProcess(installed, since);
-    owned.push(process.ProcessId);
-    const launcher = await waitForProcess(installed, since, 'RecapPageLauncher.exe');
-    owned.push(launcher.ProcessId);
+    const process = await waitForProcess(context.installed, context.since);
+    context.owned.push(process.ProcessId);
+    const launcher = await waitForProcess(
+      context.installed,
+      context.since,
+      'RecapPageLauncher.exe',
+    );
+    context.owned.push(launcher.ProcessId);
     const terminal = await waitForNewTerminal(terminals);
     const readyText = await waitFor(
       () => {
@@ -218,6 +316,7 @@ async function startProfileReaderRelaunch() {
     if (marker.packageVersion !== PACKAGE_VERSIONS[0]) {
       throw new Error(`served ${marker.packageVersion}, expected ${PACKAGE_VERSIONS[0]}`);
     }
+    assertReadyGuidance(readyText);
     console.log(JSON.stringify({
       scenario: SCENARIOS[0],
       aumid: AUMID,
@@ -226,16 +325,10 @@ async function startProfileReaderRelaunch() {
       terminalHwnd: terminal.hwnd,
       origin: ORIGIN,
       generation: marker.generation,
-      readyGuidanceVisible: readyText.includes('Other addresses are separate browser storage.'),
-      witnessedCheckpoint: 'required in the browser Windows opened',
+      readyGuidanceVisible: true,
+      manualBrowserCheckpoint: 'profile, reader tab, and saved-state observations are not automated',
     }, null, 2));
-  } finally {
-    if (installed && since) {
-      owned.push(...packageProcesses(installed, since).map((process) => process.ProcessId));
-    }
-    stopPids(owned);
-    if (ownedPackageFullName) removePackage(ownedPackageFullName);
-  }
+  });
 }
 
 async function busyPortRefusal() {
@@ -245,21 +338,21 @@ async function busyPortRefusal() {
     holder.listen(8787, '127.0.0.1', resolve);
   });
 
-  const owned = [];
-  let ownedPackageFullName = null;
-  let installed;
-  let since;
-  try {
+  await runInstalledScenario(async (context) => {
     assertNoPreexistingPackage();
-    installed = installPackage(PACKAGE_VERSIONS[0]);
-    ownedPackageFullName = installed.PackageFullName;
-    since = new Date();
+    context.cleanupAuthorized = true;
+    context.installed = installPackage(PACKAGE_VERSIONS[0]);
+    context.since = new Date();
     const terminals = new Set(terminalWindows().map((window) => window.hwnd));
     const browserBefore = browserSnapshotDigest();
     activate();
 
-    const launcher = await waitForProcess(installed, since, 'RecapPageLauncher.exe');
-    owned.push(launcher.ProcessId);
+    const launcher = await waitForProcess(
+      context.installed,
+      context.since,
+      'RecapPageLauncher.exe',
+    );
+    context.owned.push(launcher.ProcessId);
     const terminal = await waitForNewTerminal(terminals);
     const guidance = await waitFor(
       () => {
@@ -269,7 +362,8 @@ async function busyPortRefusal() {
       'the visible console did not retain the busy-port guidance',
     );
     await waitFor(
-      () => packageProcesses(installed, since).every((process) => process.Name !== 'node.exe'),
+      () => packageProcesses(context.installed, context.since)
+        .every((process) => process.Name !== 'node.exe'),
       'the busy-port Node child did not exit',
     );
     const browserAfter = browserSnapshotDigest();
@@ -294,38 +388,32 @@ async function busyPortRefusal() {
       safeGuidanceVisible: true,
       browserWindowDigestUnchanged: true,
     }, null, 2));
-  } finally {
-    if (installed && since) {
-      owned.push(...packageProcesses(installed, since).map((process) => process.ProcessId));
-    }
-    stopPids(owned);
-    if (ownedPackageFullName) removePackage(ownedPackageFullName);
-    await new Promise((resolve) => holder.close(resolve));
-  }
+  }, {
+    afterCleanup: () => new Promise((resolve) => holder.close(resolve)),
+  });
 }
 
 async function updateStateContinuity() {
-  const owned = [];
-  let installed;
-  let since;
-  let ownedPackageFullName = null;
-  try {
+  await runInstalledScenario(async (context) => {
     assertNoPreexistingPackage();
-    installed = installPackage(PACKAGE_VERSIONS[0]);
-    ownedPackageFullName = installed.PackageFullName;
-    since = new Date();
+    context.cleanupAuthorized = true;
+    context.installed = installPackage(PACKAGE_VERSIONS[0]);
+    context.since = new Date();
     activate();
-    owned.push((await waitForProcess(installed, since)).ProcessId);
-    owned.push((await waitForProcess(installed, since, 'RecapPageLauncher.exe')).ProcessId);
+    context.owned.push((await waitForProcess(context.installed, context.since)).ProcessId);
+    context.owned.push((
+      await waitForProcess(context.installed, context.since, 'RecapPageLauncher.exe')
+    ).ProcessId);
     const before = await waitFor(generation, 'version N did not answer');
-    stopPids(owned.splice(0));
+    stopPids(context.owned.splice(0));
 
-    installed = installPackage(PACKAGE_VERSIONS[1]);
-    ownedPackageFullName = installed.PackageFullName;
-    since = new Date();
+    context.installed = installPackage(PACKAGE_VERSIONS[1]);
+    context.since = new Date();
     activate();
-    owned.push((await waitForProcess(installed, since)).ProcessId);
-    owned.push((await waitForProcess(installed, since, 'RecapPageLauncher.exe')).ProcessId);
+    context.owned.push((await waitForProcess(context.installed, context.since)).ProcessId);
+    context.owned.push((
+      await waitForProcess(context.installed, context.since, 'RecapPageLauncher.exe')
+    ).ProcessId);
     const after = await waitFor(generation, 'version N+1 did not answer');
     if (before.packageVersion !== PACKAGE_VERSIONS[0] || after.packageVersion !== PACKAGE_VERSIONS[1]) {
       throw new Error(`generation mismatch: ${before.packageVersion} then ${after.packageVersion}`);
@@ -336,15 +424,9 @@ async function updateStateContinuity() {
       origin: ORIGIN,
       before: before.generation,
       after: after.generation,
-      witnessedCheckpoint: 'same-profile sentinel and restore required',
+      manualBrowserCheckpoint: 'same-profile saved-state continuity is not automated',
     }, null, 2));
-  } finally {
-    if (installed && since) {
-      owned.push(...packageProcesses(installed, since).map((process) => process.ProcessId));
-    }
-    stopPids(owned);
-    if (ownedPackageFullName) removePackage(ownedPackageFullName);
-  }
+  });
 }
 
 async function main() {
@@ -365,6 +447,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 }
 
 export {
-  assertNoPreexistingPackage, generation, installPackage, packageInfo, packageProcesses,
-  removePackage, stopPids, waitForProcess,
+  assertNoPreexistingPackage, assertReadyGuidance, cleanupPackage, generation, installPackage,
+  packageInfo, packageProcesses, removePackage, runInstalledScenario, stopPids, waitForProcess,
 };
