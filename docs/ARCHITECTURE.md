@@ -532,3 +532,21 @@ owns the procedures that generate and release it.
 The [UX study](UX_STUDY.md) and the documents under `docs/ux` are dated design evidence. They explain
 decisions made during earlier interface passes, but the current README, running guide and tested
 route registries own the behavior a reader should expect now.
+
+## The Windows package is a launch envelope
+
+The x64 MSIX proof adds a small console launcher around the existing browser companion. It does not
+add another application runtime or persistence model. Start launches the console executable, which
+starts the packaged x64 Node runtime with `server.mjs`, waits for it, and keeps any exit guidance
+visible. The server still owns the loopback bind, port conflict, external browser, and exact URL.
+
+Direct manifest activation of Node was measured first. It started the right command and served the
+right origin, but its console closed immediately when Node refused an occupied port. Package Support
+Framework kept the existing command wrapper visible, but Microsoft's distributed binaries may send
+usage telemetry when Windows diagnostic collection is enabled. The selected 5 KB launcher preserves
+the visible guidance without that privacy trade or a downloaded launcher runtime.
+
+Package files remain read-only. Browser state remains under `mrt.state.v2` and the other stores
+described above, in the external browser's exact origin and profile. The package never reads or
+writes those stores. [The Microsoft Store package guide](MICROSOFT_STORE.md) owns build, proof,
+identity, cleanup, and remaining publication gates.

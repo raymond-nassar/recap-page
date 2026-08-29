@@ -622,3 +622,37 @@ Progress for each stop must continue to prefer the exact imported catalog id, th
 sibling in catalog order, then **Not added**. State replacement from another tab and whole-origin
 clearing update only those progress labels; rebuilding the selector would discard its DOM identity
 and keyboard focus.
+
+## Build and prove the x64 MSIX
+
+[The Microsoft Store package guide](MICROSOFT_STORE.md) owns the exact production identity, activation
+decision, local trust procedure, proof matrix, cleanup, and remaining Store gates.
+
+Use winapp CLI 0.6.0 exactly. The packer stops on any other version:
+
+```text
+winapp --version
+npm run msix:pack
+```
+
+The packer writes two signed x64 packages under ignored `dist/msix/`. It fetches and checksum-checks
+the same Node runtime as the ZIP packer, compiles the console launcher with the Windows inbox .NET
+Framework compiler, generates package assets, signs both versions with one transient certificate,
+and deletes the private key and password. Never commit anything under `dist/`.
+
+The public CER requires an administrator-approved trust step before `.msix` installation. No owner
+credential or Store signing secret is used. Run the three proof scenarios only after that trust step:
+
+```text
+npm run msix:prove -- --scenario=start-profile-reader-relaunch
+npm run msix:prove -- --scenario=busy-port-refusal
+npm run msix:prove -- --scenario=update-state-continuity
+```
+
+Loose registration is useful for activation debugging but is not installation evidence. Record it
+as such. The final proof must remove the exact package, its recorded processes, and the temporary
+TrustedPeople certificate, then confirm port 8787 is free.
+
+`npm run pack` remains the GitHub ZIP build. Do not merge the ZIP and MSIX paths or rename the stable
+ZIP asset. The Store package cannot replace that release until certification passes and the owner
+changes release policy explicitly.

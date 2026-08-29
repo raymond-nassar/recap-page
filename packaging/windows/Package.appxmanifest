@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap10 rescap">
+  <Identity
+    Name="PanelStackLabs.RecapPage"
+    Publisher="CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472"
+    Version="2.0.0.0"
+    ProcessorArchitecture="x64" />
+
+  <Properties>
+    <DisplayName>Recap Page</DisplayName>
+    <PublisherDisplayName>PanelStack Labs</PublisherDisplayName>
+    <Description>A private reading companion that runs in your browser.</Description>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Dependencies>
+    <TargetDeviceFamily
+      Name="Windows.Desktop"
+      MinVersion="10.0.19041.0"
+      MaxVersionTested="10.0.26200.0" />
+  </Dependencies>
+
+  <Applications>
+    <Application
+      Id="App"
+      Executable="RecapPageLauncher.exe"
+      uap10:RuntimeBehavior="packagedClassicApp"
+      uap10:TrustLevel="mediumIL"
+      uap10:Subsystem="console"
+      uap10:SupportsMultipleInstances="true">
+      <uap:VisualElements
+        DisplayName="Recap Page"
+        Description="A private reading companion that runs in your browser."
+        BackgroundColor="transparent"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile
+          Wide310x150Logo="Assets\Wide310x150Logo.png"
+          Square310x310Logo="Assets\Square310x310Logo.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>

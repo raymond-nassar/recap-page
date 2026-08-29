@@ -113,6 +113,8 @@ The release notes state whether progress remains compatible. Export a backup bef
 - [Support](SUPPORT.md): where to ask for help
 - [Contributing](CONTRIBUTING.md): standards and pull request expectations
 - [Security policy](SECURITY.md): supported versions and private reporting
+- [Privacy policy](PRIVACY.md): browser storage, direct requests, and Windows package permissions
+- [Microsoft Store package status](docs/MICROSOFT_STORE.md): local x64 proof and remaining publication gates
 - [Changelog](CHANGELOG.md): what changed in each release
 
 ## Disclaimer
