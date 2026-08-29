@@ -32,7 +32,7 @@ const ARCHIVE = join(DIST, 'marvel-reading-tracker-windows.zip');
 const PAYLOAD_NAME = 'recap-page';
 
 const base = `https://nodejs.org/dist/${NODE_VERSION}`;
-const runtimeZip = `node-${NODE_VERSION}-${NODE_ARCH}.zip`;
+const runtimeArchiveName = (architecture = NODE_ARCH) => `node-${NODE_VERSION}-${architecture}.zip`;
 
 const say = (line) => process.stdout.write(`${line}\n`);
 
@@ -56,7 +56,8 @@ async function download(url) {
 // who signed the list, only that the bytes match the list, so a compromised nodejs.org would defeat
 // it. Saying so is the point: the check is worth having and is not worth more confidence than it
 // earns.
-async function fetchRuntime() {
+async function fetchRuntime(architecture = NODE_ARCH) {
+  const runtimeZip = runtimeArchiveName(architecture);
   say(`fetching ${runtimeZip}`);
   const [archive, sums] = await Promise.all([
     download(`${base}/${runtimeZip}`),
@@ -130,6 +131,7 @@ async function main() {
   const runtimeOut = join(payload, 'runtime');
 
   try {
+    const runtimeZip = runtimeArchiveName();
     const archive = await fetchRuntime();
     const runtimeZipPath = join(staging, runtimeZip);
     await writeFile(runtimeZipPath, archive);
@@ -177,4 +179,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   await main();
 }
 
-export { NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, fetchRuntime };
+export {
+  NODE_VERSION, NODE_ARCH, PAYLOAD_NAME, appFiles, ARCHIVE, readMe, fetchRuntime,
+  runtimeArchiveName,
+};

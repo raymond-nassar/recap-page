@@ -1,14 +1,62 @@
-# Microsoft Store package proof
+# Microsoft Store package and certification proof
 
 This document owns the current Windows MSIX packaging and Microsoft Store delivery status for
-Recap Page. It describes a local x64 proof, not a published Store release.
+Recap Page. It describes local package evidence, not a published Store release.
 
 ## Current status
 
-The repository builds two signed x64 MSIX proof packages for an update journey. A signed install on
-Windows 11 ARM64 under x64 emulation has proved all of these behaviors:
+The repository builds signed x64 and ARM64 version `2.0.0.0` packages and one x64/ARM64 bundle. A
+separate x64 version `2.0.0.1` remains outside the Store output for the earlier update proof.
 
-- Start activation launches the x64 package entry point.
+Structural inspection on Windows 11 ARM64 proved:
+
+- Both package manifests use the exact production identity and Store-safe version `2.0.0.0`.
+- The bundle contains exactly one x64 package and one ARM64 package at that version.
+- Each package contains one executable payload: its architecture-matched official Node runtime.
+- The package entry process and its server child reported x64 for the x64 package and ARM64 for the
+  ARM64 package.
+- The packaged x64 and ARM64 Node executables match Node's published SHA-256 values.
+- The proof-only x64 version `2.0.0.1` is outside `dist/msix/` and absent from the bundle.
+
+The built candidate hashes are:
+
+| Artifact | SHA-256 |
+|---|---|
+| x64 MSIX | `46EAA19738BEAE10D08439CBFF3F73E8AB956C88C27CDA6F7B4A9D26DD624017` |
+| ARM64 MSIX | `07B1F9515624ABA9E00300DA3EBA14515F8EC2BA902CD66B8D98578947B48798` |
+| x64/ARM64 bundle | `9446326CBC3748B46C8C6D629C46B3D62AA9942440A1BFE23CA45E7C24227A12` |
+
+The current candidate was installed with only corrected certificate thumbprint
+`E36EBC5FA20DA01A8D73E30B7C6EB25FAFAD188E` temporarily trusted in LocalMachine
+TrustedPeople. All five installed scenarios passed:
+
+- The x64 package started at the production AUMID, served `proof-2.0.0.0` at the canonical origin,
+  and retained both ready-guidance lines.
+- The x64 package refused an occupied port, retained all safe guidance, exited its server child, and
+  left the browser-window digest unchanged.
+- The x64 proof-only update changed the served generation from `proof-2.0.0.0` to
+  `proof-2.0.0.1`.
+- Installing the final bundle on Windows 11 ARM64 selected its ARM64 slice, started native ARM64
+  supervisor and server processes, served `proof-2.0.0.0`, and retained ready guidance.
+- The ARM64 slice selected from the final bundle refused an occupied port, retained every safe
+  guidance line, exited its server child, and left the browser-window digest unchanged.
+
+An earlier attempt at the ARM64 busy-port scenario reported both scenario and cleanup failure, but
+the old formatter did not retain either nested cause. It left no package, process, or listener
+residue, and the exact ARM64 bundle payload then reproduced all required guidance outside
+installation. After the formatter was corrected to preserve every nested cause, the authorized
+installed repeat passed.
+
+After the five-scenario run, the exact certificate was removed. CurrentUser Root and LocalMachine
+Root returned to 49 certificates with digest
+`CBEABFC3A4AED45E67ECB54F4FE73E74CEE39F4C95A9849C883CCDA6C9A6543D`.
+CurrentUser TrustedPeople and LocalMachine TrustedPeople returned to one certificate with digest
+`6BA56A5FAA86B42F5D081EFC34FCA3D22748B3C57AB0912D90D6784BD029B3FD`.
+Neither the current nor earlier proof thumbprint remains in those stores.
+
+The earlier signed x64 package installed on Windows 11 ARM64 under x64 emulation and proved:
+
+- Start activation launched the earlier x64 package entry point.
 - The package starts its bundled x64 Node runtime and the unchanged local server.
 - The server binds and opens exactly <http://127.0.0.1:8787/>.
 - Existing reading state remains visible in the same Edge Personal profile.
@@ -17,12 +65,12 @@ Windows 11 ARM64 under x64 emulation has proved all of these behaviors:
 - The original browser state can be restored with every field equal; only the backup export
   timestamp changes between exports.
 
-One explicitly approved UAC prompt temporarily added only the expected public certificate to
+One explicitly approved UAC prompt for that earlier proof temporarily added only its public certificate to
 LocalMachine TrustedPeople. Versions `2.0.0.0` and `2.0.0.1` installed and the three bounded package
 scenarios passed. The package, listeners, launcher processes, private backups, and that exact
 thumbprint were removed afterwards; the TrustedPeople store returned to its baseline digest.
 
-The installed scenarios recorded:
+Those installed scenarios recorded:
 
 - `start-profile-reader-relaunch`: production AUMID activation started the 5,632-byte launcher and
   its x64 Node child, served `proof-2.0.0.0`, displayed the exact ready guidance, and opened the
@@ -45,11 +93,15 @@ Before owner authorization, importing the same public CER to CurrentUser Trusted
 but `Add-AppxPackage` failed with `0x800B0109` / `CERT_E_UNTRUSTEDROOT`. That experiment was cleaned
 up and was not repeated. It establishes that non-admin trust is insufficient for this full package.
 
-The scoped x64 packaging foundation is complete. The earlier loose registration remains useful
-architecture evidence but is not counted as installation evidence.
+The earlier loose registration remains useful architecture evidence but is not counted as
+installation evidence.
 
-The package has not passed the Windows App Certification Kit or Partner Center validation. There is
-no ARM64 package or bundle. Nothing has been associated, uploaded, submitted, or published.
+Windows App Certification Kit could not run on this ARM64 host. The official Windows SDK
+10.0.28000.2705 installer completed with WACK as the only selected top-level feature, plus
+prerequisites it enforced. Its package plan restricted every WACK executable and native-component
+package to x86 or amd64 hosts. On ARM64 it installed only the supported-API XML list and no
+`appcert.exe`. No WACK report exists, so this is an environmental certification blocker rather than
+a package pass or failure. Nothing has been associated, uploaded, submitted, or published.
 
 ## Production identity
 
@@ -71,19 +123,21 @@ planning boundary derived from the reservation date, not as a portal-confirmed e
 
 ```mermaid
 flowchart LR
-  Start["Start menu"] --> Shim["5 KB x64 console launcher"]
-  Shim --> Node["bundled x64 node.exe"]
+  Start["Start menu"] --> Launcher["architecture-matched node.exe and Launcher.mjs"]
+  Launcher --> Node["same architecture-matched node.exe"]
   Node --> Server["unchanged loopback server"]
   Server --> Browser["external default browser"]
   Browser --> Origin["127.0.0.1:8787 browser storage"]
 ```
 
-The launcher is compiled from the maintained C# source by the .NET Framework compiler included with
-Windows. The package floor is Windows 10 version 2004, which includes .NET Framework 4.8. Current
-Windows 11 versions include .NET Framework 4.8.1. The launcher adds no downloaded runtime.
+The Windows inbox .NET Framework compiler cannot target ARM64. An AnyCPU executable also runs under
+x64 emulation on Windows on Arm unless it uses a Windows 11 24H2-only application-manifest setting.
+That choice would either leave older package targets emulated or raise the Windows floor for both
+bundle slices. A second native toolchain or launcher runtime would add another supply-chain surface.
 
-The launcher validates the packaged runtime and server, starts Node with the package root as its
-working directory, inherits the visible console, waits for Node to exit, and keeps the output
+The selected launcher therefore uses the official Node executable already required by each package.
+The maintained JavaScript supervisor validates the packaged server, starts it with the package root
+as its working directory, inherits the visible console, waits for Node to exit, and keeps the output
 visible until a key is pressed. It does not bind a port, open the browser, read browser storage, or
 write package files.
 
@@ -95,8 +149,9 @@ Three activation routes were measured or evaluated:
 - **Package Support Framework** preserved the existing command wrapper and guidance. It was rejected
   because Microsoft states that the official NuGet binaries can send usage telemetry when Windows
   diagnostic collection is enabled. That conflicts with this app's no-telemetry promise.
-- **The selected console shim** preserves guidance without PSF, a downloaded SDK, or another runtime.
-  A native C++ shim was not built because the proof machine has no supported C++ toolchain.
+- **The selected Node supervisor** preserves guidance without PSF, a downloaded launcher runtime, or
+  an emulated entry process. The x64 and ARM64 package entry executables are the official native Node
+  binaries already needed by the server.
 
 The manifest declares only `runFullTrust`. It is needed because the package starts a classic desktop
 process at medium integrity. Partner Center must review and approve that restricted capability.
@@ -111,7 +166,7 @@ Prerequisites:
 - Windows Developer Mode for loose registration
 - Administrator consent to trust the local proof certificate for `.msix` installation
 
-Build both x64 package versions:
+Build the x64 and ARM64 Store packages, their bundle, and the isolated x64 update-proof package:
 
 ```text
 npm run msix:pack
@@ -119,18 +174,26 @@ npm run msix:pack
 
 The build:
 
-1. Fetches the same pinned official x64 Node runtime as the ZIP packer.
-2. Verifies the runtime against Node's published SHA-256 list.
-3. Compiles the 5 KB x64 console launcher with the Windows inbox .NET Framework compiler.
-4. Generates MSIX image assets from the maintained app icon.
-5. Stages versions `2.0.0.0` and `2.0.0.1` with distinct generation markers.
+1. Fetches pinned official x64 and ARM64 Node runtimes.
+2. Verifies both archives against Node's published SHA-256 list.
+3. Stages native x64 and ARM64 version `2.0.0.0` package layouts.
+4. Stages x64 version `2.0.0.1` under a separate proof-only output boundary.
+5. Generates MSIX image assets from the maintained app icon.
 6. Generates one random-password development certificate from the manifest.
-7. Signs both packages with that certificate.
+7. Signs both Store packages, the bundle, and the proof-only update with that certificate.
 8. Deletes the private PFX and password, leaving only the public CER for local trust.
 
-The package layouts, runtime download, generated assets, and launcher binary are staged under the
-system temporary directory and removed after packaging. Only the two packages and public CER remain
-under ignored `dist/msix/`. Do not commit packages, certificates, logs, or proof reports.
+The package layouts, runtime downloads, generated assets, and launcher inputs are staged under the
+system temporary directory and removed after packaging. Only Store-safe version `2.0.0.0` artifacts
+and the public CER remain under ignored `dist/msix/`; version `2.0.0.1` remains under ignored
+`dist/msix-proof/`. Do not commit packages, certificates, logs, or proof reports.
+
+Inspect the two packages, both bundle slices, PE machine fields, official Node executable hashes,
+and live process architectures without installing anything:
+
+```text
+npm run msix:inspect
+```
 
 ## Complete the installed proof
 
@@ -146,6 +209,8 @@ Then return to a normal terminal:
 npm run msix:prove -- --scenario=start-profile-reader-relaunch
 npm run msix:prove -- --scenario=busy-port-refusal
 npm run msix:prove -- --scenario=update-state-continuity
+npm run msix:prove -- --architecture=arm64 --source=bundle --scenario=start-profile-reader-relaunch
+npm run msix:prove -- --architecture=arm64 --source=bundle --scenario=busy-port-refusal
 ```
 
 Each scenario owns its package installation and refuses to run when that package identity is already
@@ -161,6 +226,38 @@ The runner automates package installation, Start activation, console guidance, p
 the exact origin, busy-port refusal, and package generation changes. Browser profile selection,
 synchronous reader-tab behavior, and saved-state continuity are manual checkpoints recorded beside
 the automated run; the runner does not claim to observe them.
+
+The update scenario is x64-only because its `2.0.0.1` package is local proof material. The ARM64
+package and final bundle contain only Store-safe version `2.0.0.0`.
+
+The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
+cleanup errors preserves each cause before any decision to repeat it.
+
+## Run Windows App Certification Kit
+
+Install the current Windows App Certification Kit from the official Windows SDK only after an owner
+checkpoint. Microsoft documents the kit as an installed SDK component and requires an elevated
+command window in an active user session. An SDK download layout is installation media, not a
+supported portable certification environment, so copied binaries are not accepted as WACK evidence.
+
+After approval, run WACK against the x64 package and the final bundle on a supported x64 host. The
+x64 run can exercise the changed x64 entry payload, and the bundle run validates the submitted
+container and both package manifests. It does not prove ARM64 runtime behavior on x64 hardware; the
+installed ARM64 scenario on Windows on Arm is the separate runtime proof.
+
+```text
+appcert.exe reset
+appcert.exe test -appxpackagepath <x64-msix> -reportoutputpath <temporary-x64-report>
+appcert.exe reset
+appcert.exe test -appxpackagepath <msixbundle> -reportoutputpath <temporary-bundle-report>
+```
+
+Treat manifest, binary architecture, capability, and package-content failures as package defects.
+Treat missing kit components, lack of elevation or an active session, and machine policy failures as
+environmental blockers. On this ARM64 host, the official 10.0.28000.2705 installer installs no WACK
+executable, so another supported host is required. Performance results remain host-dependent and
+must still meet the current Store policy. Keep reports outside the repository and delete any report
+containing machine paths after recording only the test names and outcomes.
 
 After the proof, remove the exact package:
 
@@ -193,10 +290,9 @@ certification passes and the owner explicitly changes release policy.
 
 ## Remaining Store gates
 
+- Run the Windows App Certification Kit against the changed x64 package and final bundle on a
+  supported host that receives `appcert.exe`.
 - Approve the `runFullTrust` explanation in Partner Center.
-- Build and measure an ARM64 launcher and matching official ARM64 Node runtime.
-- Produce and inspect the x64 and ARM64 MSIX bundle.
-- Run the Windows App Certification Kit.
 - Use the dedicated [privacy policy](../PRIVACY.md) URL and review every listing disclosure.
 - Complete Partner Center package validation.
 - Review markets, age rating, listing copy, screenshots, legal terms, and certification notes.
@@ -211,4 +307,8 @@ accepts terms, reserves a name, uploads a package, or submits a listing.
 - [App capability declarations](https://learn.microsoft.com/windows/apps/package-and-deploy/app-capability-declarations)
 - [MSIX app package requirements](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/app-package-requirements)
 - [Package Support Framework](https://learn.microsoft.com/windows/msix/psf/package-support-framework)
-- [.NET Framework on Windows](https://learn.microsoft.com/dotnet/framework/install/on-windows-and-server)
+- [Add Arm support to a Windows app](https://learn.microsoft.com/windows/arm/add-arm-support)
+- [MSIX package and bundle requirements](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/app-package-requirements)
+- [Windows App Certification Kit](https://learn.microsoft.com/windows/uwp/debug-test-perf/windows-app-certification-kit)
+- [winapp CLI multi-architecture bundles](https://learn.microsoft.com/windows/apps/dev-tools/winapp-cli/usage#multi-architecture-bundles)
+- [Node v24.19.0 published checksums](https://nodejs.org/dist/v24.19.0/SHASUMS256.txt)

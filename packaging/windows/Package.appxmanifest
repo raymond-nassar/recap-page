@@ -32,11 +32,12 @@
   <Applications>
     <Application
       Id="App"
-      Executable="RecapPageLauncher.exe"
+      Executable="runtime\node.exe"
       uap10:RuntimeBehavior="packagedClassicApp"
       uap10:TrustLevel="mediumIL"
       uap10:Subsystem="console"
-      uap10:SupportsMultipleInstances="true">
+      uap10:SupportsMultipleInstances="true"
+      uap10:Parameters="&quot;$(package.effectivePath)\Launcher.mjs&quot;">
       <uap:VisualElements
         DisplayName="Recap Page"
         Description="A private reading companion that runs in your browser."

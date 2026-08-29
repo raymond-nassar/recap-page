@@ -49,8 +49,8 @@ subscription and happens on Marvel's service.
 
 ## Windows package permissions
 
-The Microsoft Store package declares `runFullTrust` so its small desktop launcher can start the
-bundled local Node server and open your configured default browser. The package binds only to
+The Microsoft Store package declares `runFullTrust` so its bundled Node supervisor can start the
+local server and open your configured default browser. The package binds only to
 `127.0.0.1:8787`. It does not listen on the network, request elevation during ordinary use, add an
 account, or add telemetry.
 

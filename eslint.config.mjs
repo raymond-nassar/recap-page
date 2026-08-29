@@ -97,7 +97,7 @@ export default [
   },
   {
     // The server, the build scripts and the tests run in Node.
-    files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.js'],
+    files: ['server.mjs', 'scripts/**/*.mjs', 'test/**/*.js', 'packaging/windows/**/*.mjs'],
     languageOptions: { globals: globals.node },
   },
   {

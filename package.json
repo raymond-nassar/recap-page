@@ -30,6 +30,7 @@
     "icons": "node scripts/build-icons.mjs",
     "pack": "node scripts/pack-windows.mjs",
     "msix:pack": "node scripts/pack-msix.mjs",
+    "msix:inspect": "node scripts/inspect-msix.mjs",
     "msix:prove": "node scripts/msix-proof.mjs",
     "browser": "node scripts/browser-check.mjs",
     "browser:prove": "node scripts/browser-check.mjs --prove",

@@ -623,7 +623,7 @@ sibling in catalog order, then **Not added**. State replacement from another tab
 clearing update only those progress labels; rebuilding the selector would discard its DOM identity
 and keyboard focus.
 
-## Build and prove the x64 MSIX
+## Build and prove the Microsoft Store bundle
 
 [The Microsoft Store package guide](MICROSOFT_STORE.md) owns the exact production identity, activation
 decision, local trust procedure, proof matrix, cleanup, and remaining Store gates.
@@ -635,10 +635,19 @@ winapp --version
 npm run msix:pack
 ```
 
-The packer writes two signed x64 packages under ignored `dist/msix/`. It fetches and checksum-checks
-the same Node runtime as the ZIP packer, compiles the console launcher with the Windows inbox .NET
-Framework compiler, generates package assets, signs both versions with one transient certificate,
-and deletes the private key and password. Never commit anything under `dist/`.
+The packer writes signed x64 and ARM64 version `2.0.0.0` packages plus their bundle under ignored
+`dist/msix/`. It also writes the x64 `2.0.0.1` update artifact under `dist/msix-proof/`, where it
+cannot enter the Store bundle. Both official Node archives are checked against Node's published
+SHA-256 list. Each package uses its native Node executable to run the maintained supervisor and the
+unchanged server. Package assets are generated and all outputs are signed with one transient
+certificate before the private key and password are deleted. Never commit anything under `dist/`.
+
+Inspect every package, both bundle slices, the Node hashes, PE machine fields, and live process
+architectures:
+
+```text
+npm run msix:inspect
+```
 
 The public CER requires an administrator-approved trust step before `.msix` installation. No owner
 credential or Store signing secret is used. Run the three proof scenarios only after that trust step:
@@ -648,6 +657,11 @@ npm run msix:prove -- --scenario=start-profile-reader-relaunch
 npm run msix:prove -- --scenario=busy-port-refusal
 npm run msix:prove -- --scenario=update-state-continuity
 ```
+
+Those commands default to the standalone x64 package. Add
+`--architecture=arm64 --source=bundle` to the first two scenarios to prove that Windows selects the
+ARM64 slice from the final bundle. The update journey remains x64 because version `2.0.0.1` is
+proof-only and never belongs in the Store bundle.
 
 Loose registration is useful for activation debugging but is not installation evidence. Record it
 as such. The final proof must remove the exact package, its recorded processes, and the temporary

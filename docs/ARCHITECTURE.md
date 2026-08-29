@@ -535,16 +535,19 @@ route registries own the behavior a reader should expect now.
 
 ## The Windows package is a launch envelope
 
-The x64 MSIX proof adds a small console launcher around the existing browser companion. It does not
-add another application runtime or persistence model. Start launches the console executable, which
-starts the packaged x64 Node runtime with `server.mjs`, waits for it, and keeps any exit guidance
-visible. The server still owns the loopback bind, port conflict, external browser, and exact URL.
+The x64 and ARM64 MSIX packages add a small JavaScript supervisor around the existing browser
+companion. They do not add another application runtime or persistence model. Start launches the
+architecture-matched packaged Node executable with `Launcher.mjs`, which starts a second invocation
+of that same Node executable with `server.mjs`, waits for it, and keeps any exit guidance visible.
+The server still owns the loopback bind, port conflict, external browser, and exact URL.
 
 Direct manifest activation of Node was measured first. It started the right command and served the
 right origin, but its console closed immediately when Node refused an occupied port. Package Support
 Framework kept the existing command wrapper visible, but Microsoft's distributed binaries may send
-usage telemetry when Windows diagnostic collection is enabled. The selected 5 KB launcher preserves
-the visible guidance without that privacy trade or a downloaded launcher runtime.
+usage telemetry when Windows diagnostic collection is enabled. An x64 C# launcher proved the
+installed behavior, but the Windows inbox compiler cannot emit ARM64. The selected supervisor uses
+the official Node runtime already in each package, so both entry processes are native to their slice
+without a second runtime or a higher Windows version floor.
 
 Package files remain read-only. Browser state remains under `mrt.state.v2` and the other stores
 described above, in the external browser's exact origin and profile. The package never reads or
