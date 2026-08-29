@@ -1,0 +1,95 @@
+name: Windows App Certification Kit
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/wack.yml
+
+permissions: {}
+
+concurrency:
+  group: wack-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  probe:
+    name: Probe supported WACK host
+    runs-on: windows-2025
+    timeout-minutes: 12
+    steps:
+      - name: Measure host and current SDK installer
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sessionId = [System.Diagnostics.Process]::GetCurrentProcess().SessionId
+          $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
+          $principal = [Security.Principal.WindowsPrincipal]::new($identity)
+          $isAdmin = $principal.IsInRole(
+            [Security.Principal.WindowsBuiltInRole]::Administrator
+          )
+          $os = Get-CimInstance Win32_OperatingSystem
+
+          "Runner image: $env:ImageOS $env:ImageVersion"
+          "Runner OS: $($os.Caption) $($os.Version)"
+          "Runner architecture: $env:PROCESSOR_ARCHITECTURE"
+          "PowerShell process session: $sessionId"
+          "Administrator token: $isAdmin"
+
+          $appcert = Join-Path ${env:ProgramFiles(x86)} `
+            'Windows Kits\10\App Certification Kit\appcert.exe'
+          if (Test-Path -LiteralPath $appcert) {
+            $version = (Get-Item -LiteralPath $appcert).VersionInfo.FileVersion
+            "Preinstalled appcert.exe: yes, version $version"
+          } else {
+            'Preinstalled appcert.exe: no'
+          }
+
+          $probe = Join-Path $env:RUNNER_TEMP 'wack-installer-probe'
+          New-Item -ItemType Directory -Path $probe | Out-Null
+          $installer = Join-Path $probe 'winsdksetup.exe'
+          Invoke-WebRequest `
+            -Uri 'https://go.microsoft.com/fwlink/?linkid=2376217' `
+            -OutFile $installer
+
+          $signature = Get-AuthenticodeSignature -FilePath $installer
+          if ($signature.Status -ne 'Valid'
+            -or $signature.SignerCertificate.Subject -notmatch '(^|, )O=Microsoft Corporation(,|$)') {
+            throw "The current SDK installer is not validly signed by Microsoft Corporation."
+          }
+          $installerVersion = (Get-Item -LiteralPath $installer).VersionInfo.FileVersion
+          "SDK installer version: $installerVersion"
+          "SDK installer signature: $($signature.Status), Microsoft Corporation"
+
+          foreach ($argument in @('/?', '/list')) {
+            $label = $argument.TrimStart('/').Replace('?', 'help')
+            $stdout = Join-Path $probe "$label-stdout.txt"
+            $stderr = Join-Path $probe "$label-stderr.txt"
+            $process = Start-Process `
+              -FilePath $installer `
+              -ArgumentList $argument `
+              -RedirectStandardOutput $stdout `
+              -RedirectStandardError $stderr `
+              -PassThru
+            if (-not $process.WaitForExit(120000)) {
+              Stop-Process -Id $process.Id -Force
+              throw "SDK installer $argument probe did not exit within two minutes."
+            }
+            "SDK installer $argument exit code: $($process.ExitCode)"
+            $safe = @(
+              Get-Content -LiteralPath $stdout, $stderr -ErrorAction SilentlyContinue |
+                Where-Object {
+                  $_ -match '(?i)(feature|optionid|certification|logo|quiet|list)'
+                  -and $_ -notmatch '[A-Za-z]:\\'
+                } |
+                ForEach-Object { $_.Trim() } |
+                Where-Object { $_ } |
+                Select-Object -Unique
+            )
+            "SDK installer $argument safe matching lines: $($safe.Count)"
+            $safe | ForEach-Object { "  $_" }
+          }
+
+          Remove-Item -LiteralPath $probe -Recurse -Force
