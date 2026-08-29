@@ -39,9 +39,10 @@ if (!existsSync(server)) {
   console.error('Reinstall the app, then start it again.');
   pauseThenExit(1);
 } else {
-  const env = { ...process.env };
-  delete env.MRT_PORT;
-  delete env.MRT_NO_OPEN;
+  const blocked = new Set(['MRT_PORT', 'MRT_NO_OPEN']);
+  const env = Object.fromEntries(
+    Object.entries(process.env).filter(([key]) => !blocked.has(key.toUpperCase())),
+  );
 
   const child = spawn(process.execPath, [server], {
     cwd: root,

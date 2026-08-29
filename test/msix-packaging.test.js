@@ -115,28 +115,34 @@ test('the MSIX lane adds ARM64 without changing the ZIP runtime target', () => {
   assert.match(zip, /marvel-reading-tracker-windows\.zip/);
 });
 
-test('the package supervisor clears origin-changing environment values', () => {
-  const working = mkdtempSync(join(tmpdir(), 'recap-page-launcher-test-'));
-  try {
-    copyFileSync(LAUNCHER, join(working, 'Launcher.mjs'));
-    writeFileSync(
-      join(working, 'server.mjs'),
-      'console.log(JSON.stringify({ port: process.env.MRT_PORT ?? null, '
-      + 'open: process.env.MRT_NO_OPEN ?? null })); process.exitCode = 7;\n',
-    );
-    const result = spawnSync(process.execPath, [join(working, 'Launcher.mjs')], {
-      cwd: working,
-      encoding: 'utf8',
-      env: { ...process.env, MRT_PORT: '8788', MRT_NO_OPEN: '1' },
-    });
+test('the package supervisor clears origin-changing environment values case-insensitively', () => {
+  for (const blocked of [
+    { MRT_PORT: '8788', MRT_NO_OPEN: '1' },
+    { mrt_port: '8788', mrt_no_open: '1' },
+    { Mrt_Port: '8788', Mrt_No_Open: '1' },
+  ]) {
+    const working = mkdtempSync(join(tmpdir(), 'recap-page-launcher-test-'));
+    try {
+      copyFileSync(LAUNCHER, join(working, 'Launcher.mjs'));
+      writeFileSync(
+        join(working, 'server.mjs'),
+        'const blocked = Object.keys(process.env).filter((key) => '
+        + '/^(MRT_PORT|MRT_NO_OPEN)$/i.test(key)); '
+        + 'console.log(JSON.stringify(blocked)); process.exitCode = 7;\n',
+      );
+      const result = spawnSync(process.execPath, [join(working, 'Launcher.mjs')], {
+        cwd: working,
+        encoding: 'utf8',
+        env: { ...process.env, ...blocked },
+      });
 
-    assert.equal(result.status, 7);
-    assert.match(result.stdout, /"port":null/);
-    assert.match(result.stdout, /"open":null/);
-    assert.match(result.stdout, /reading progress is saved in your browser and is not lost/);
-    assert.match(result.stdout, /Press any key to close\./);
-  } finally {
-    rmSync(working, { recursive: true, force: true });
+      assert.equal(result.status, 7);
+      assert.match(result.stdout, /^\[\]/);
+      assert.match(result.stdout, /reading progress is saved in your browser and is not lost/);
+      assert.match(result.stdout, /Press any key to close\./);
+    } finally {
+      rmSync(working, { recursive: true, force: true });
+    }
   }
 });
 
@@ -279,6 +285,78 @@ test('the proof distinguishes the Node supervisor from its server child', async 
     () => processes,
   );
   assert.equal(original.ProcessId, 41);
+});
+
+test('busy-port exit uses supervisor-child ownership when CommandLine is unreadable', async () => {
+  const { serverChildExited } = await import('../scripts/msix-proof.mjs');
+  const supervisor = {
+    Name: 'node.exe',
+    ProcessId: 41,
+    ParentProcessId: 7,
+    ExecutablePath: 'C:\\Program Files\\WindowsApps\\RecapPage\\runtime\\node.exe',
+    CommandLine: 'node.exe Launcher.mjs',
+  };
+  const child = {
+    Name: 'NODE.EXE',
+    ProcessId: 42,
+    ParentProcessId: 41,
+    ExecutablePath: supervisor.ExecutablePath.toUpperCase(),
+    CommandLine: null,
+  };
+
+  assert.equal(serverChildExited([supervisor, child], supervisor), false);
+  assert.equal(serverChildExited([supervisor], supervisor), true);
+});
+
+test('busy-port exit fails closed when package process ownership metadata is missing', async () => {
+  const { serverChildExited } = await import('../scripts/msix-proof.mjs');
+  const supervisor = {
+    Name: 'node.exe',
+    ProcessId: 41,
+    ParentProcessId: 7,
+    ExecutablePath: 'C:\\Program Files\\WindowsApps\\RecapPage\\runtime\\node.exe',
+  };
+  const unknown = {
+    Name: 'node.exe',
+    ProcessId: 42,
+    ParentProcessId: null,
+    ExecutablePath: supervisor.ExecutablePath,
+    CommandLine: null,
+  };
+
+  assert.equal(serverChildExited([supervisor, unknown], supervisor), false);
+});
+
+test('package process enumeration retains direct children with unreadable paths', async () => {
+  const { packageProcesses, serverChildExited } = await import('../scripts/msix-proof.mjs');
+  const supervisor = {
+    Name: 'node.exe',
+    ProcessId: 41,
+    ParentProcessId: 7,
+    ExecutablePath: 'C:\\Program Files\\WindowsApps\\RecapPage\\runtime\\node.exe',
+  };
+  const processes = packageProcesses(
+    { InstallLocation: 'C:\\Program Files\\WindowsApps\\RecapPage' },
+    new Date(0),
+    {
+      parentProcessId: supervisor.ProcessId,
+      runPowerShell: (script) => {
+        assert.match(script, /\$_.ParentProcessId -eq \$parent/);
+        return JSON.stringify([
+          supervisor,
+          {
+            Name: 'node.exe',
+            ProcessId: 42,
+            ParentProcessId: supervisor.ProcessId,
+            ExecutablePath: null,
+            CommandLine: null,
+          },
+        ]);
+      },
+    },
+  );
+
+  assert.equal(serverChildExited(processes, supervisor), false);
 });
 
 test('cleanup still attempts package removal when process enumeration fails', async () => {

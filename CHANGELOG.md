@@ -27,15 +27,19 @@ and a signed installed update from one package generation to the next. Temporary
 was removed after the proof, the certificate store returned to its baseline, and private browser
 state was restored exactly apart from its regenerated export timestamp. The new package entry point
 uses the official Node runtime already present in each architecture package, and inspection measured
-native x64 and ARM64 launcher and server processes. All five installed scenarios passed, including
-ARM64 activation from the final bundle and safe occupied-port refusal. Certification, Store
+native x64 and ARM64 launcher and server processes. All five installed scenarios passed on the first
+bundle. A later review found two proof-boundary defects, so corrected package bytes now remove
+origin-changing environment names case-insensitively and refuse to count unreadable process metadata
+as a child exit. Those corrected bytes await a bounded installed repeat. Certification, Store
 validation, upload, and publication remain pending.
 
 For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 and ARM64 version
 `2.0.0.0` packages and their bundle. The x64 `2.0.0.1` update package remains isolated as local proof
 material and cannot enter the Store bundle. Both Node archives are checked against their published
-SHA-256 values. All generated packages, runtimes, assets, certificates, and proof output remain
-ignored.
+SHA-256 values. The package supervisor removes every casing of origin-changing environment names,
+and busy-port proof requires a readable parent-process and executable-path witness rather than
+treating missing process metadata as an exit. All generated packages, runtimes, assets, certificates,
+and proof output remain ignored.
 
 ### Credited community Reading List guides
 
