@@ -125,7 +125,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:998-1005`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:1002-1009`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -623,6 +623,11 @@ body.nocovers .fallback, .fallback.show { display: flex; }
 .btn:hover { filter: brightness(1.1); }
 .btn:disabled { opacity: .5; cursor: default; filter: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }
+.btn-danger {
+  background: rgb(var(--red-line) / 7.059%); color: var(--red-fg);
+  border-color: rgb(var(--red-line) / 40%);
+}
+.btn-danger:hover { background: rgb(var(--red-line) / 12.157%); filter: none; }
 /* No opacity here. The shortcut hint sits on the primary button, and dimming it to
    75% took it to a measured 3.03:1. It is set apart by its border and its size
    instead, both of which cost nothing in contrast. */
@@ -915,6 +920,10 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%);
   margin: 0; max-width: 13rem;
 }
+.setting-action {
+  min-width: 12rem; min-height: 44px; padding: .68rem 1.25rem !important;
+  justify-content: center; text-align: center;
+}
 .setting > .setting-desc { margin: 0; max-width: 62ch; }
 
 /* The long form of a setting's explanation. Every word of it is still in the page and still in the
@@ -997,6 +1006,13 @@ input[type="file"]::file-selector-button {
   margin-right: .6rem; cursor: pointer;
 }
 input[type="file"]::file-selector-button:hover { color: var(--text); background: rgb(var(--tint-base) / 5.098%); }
+#view-data input[type="file"]::file-selector-button {
+  min-height: 44px; padding: .68rem 1.25rem; border-radius: 12px;
+  background: rgb(var(--tint-base) / 5.882%); color: var(--text); font-weight: 600;
+}
+#view-data input[type="file"]::file-selector-button:hover {
+  background: rgb(var(--tint-base) / 9.804%);
+}
 
 .addpri { border-color: rgb(var(--tint-base) / 20%); background: rgb(var(--tint-base) / 3.922%); }
 .addpri h2, #view-data .addpri h3 { font-size: var(--t-subtitle); }

@@ -38,6 +38,9 @@ import { APP_VERSION } from '../src/js/lib/version.js';
 import {
   LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
 } from '../src/js/lib/updateCheck.js';
+import {
+  LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE, LOCAL_SERVER_HEALTH_PATH,
+} from '../src/js/lib/localServer.js';
 import { DEFAULT_BASE } from '../src/js/api.js';
 import {
   availablePublishingCategories, decadeSections, eraSections, groupCatalog, publishingAgeGroups,
@@ -887,6 +890,24 @@ const MUTATIONS = [
     script: () => {
       window.__mrtMutation = 'import-fail';
     },
+  },
+  {
+    id: 'local-health-trusts-any-204',
+    breaks: 'local-server-recovery',
+    why: 'a response from the wrong process is trusted without the Recap Page identity header',
+    rewriteLocalServer: (source) => source.replace(
+      'return response?.status === 204 && identity === LOCAL_SERVER_HEADER_VALUE',
+      'return response?.status === 204',
+    ),
+  },
+  {
+    id: 'local-operation-retry-dropped',
+    breaks: 'local-server-recovery',
+    why: 'Try again withdraws the stale offer but never reruns the failed bundled-data operation',
+    rewriteMain: (source) => source.replace(
+      / {6}clearNotice\(LOCAL_CONNECTION_NOTICE\);\r?\n {6}void retry\(\);/,
+      "      clearNotice(LOCAL_CONNECTION_NOTICE);\n      if (label === 'Try again') return;\n      void retry();",
+    ),
   },
   {
     id: 'persist-noop',
@@ -4380,6 +4401,243 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'local-server-recovery',
+    title: 'a stopped local app connection explains recovery and retries the interrupted work',
+    async run(page, t) {
+      const setMode = (target, kind, mode) => target.evaluate((key, value) => {
+        window.__mrtLocalModes[key] = value;
+      }, kind, mode);
+      const settle = (target, kind, outcome) => target.evaluate(
+        (key, value) => window.__mrtSettleLocalRequest(key, value),
+        kind,
+        outcome,
+      );
+      await open(page, '/?local-health=wrong');
+      await page.waitForFunction(
+        () => document.querySelector('#app-report')?.textContent.includes('local app connection'),
+        { timeout: 3000 },
+      ).catch(() => {});
+      const startup = await page.$eval('#app-report', (report) => ({
+        text: report.textContent.replace(/\s+/g, ' ').trim(),
+        action: report.querySelector('button')?.textContent.trim() ?? null,
+      }));
+      const startupReady = startup.text.includes('lists and reading progress are safe')
+        && startup.action === 'Check again';
+      t.check('a wrong-process response produces plain recovery with a Check again action',
+        startupReady, JSON.stringify(startup));
+      if (!startupReady) return;
+
+      await click(page, '.ri[data-view="data"]');
+      const settings = await page.$eval(
+        '#local-connection-status',
+        (status) => ({
+          text: status.textContent.trim(),
+          describedBy: document.querySelector('#btn-check-local-connection')
+            ?.getAttribute('aria-describedby'),
+          help: document.querySelector('#local-connection-help')?.textContent
+            .replace(/\s+/g, ' ').trim(),
+        }),
+      );
+      t.check('Backup and settings reports the local connection separately and explains recovery',
+        settings.text === 'The local app connection needs attention.'
+        && settings.describedBy === 'local-connection-status local-connection-help'
+        && settings.help.includes('browser-installed app cannot start that separate copy itself'),
+        JSON.stringify(settings));
+
+      await setMode(page, 'health', 'pending');
+      await click(page, '#app-report button');
+      const checkPending = await page.evaluate(() => ({
+        offer: Boolean(document.querySelector('#app-report button')),
+        pending: window.__mrtLocalPending.health.length,
+      }));
+      t.check('Check again withdraws its stale offer before the replacement probe settles',
+        !checkPending.offer && checkPending.pending === 1, JSON.stringify(checkPending));
+      await setMode(page, 'health', 'ready');
+      await settle(page, 'health', 'ready');
+      await page.waitForFunction(
+        () => document.querySelector('#local-connection-status')?.textContent
+          === 'Connected to the local app.',
+      );
+      t.check('a restored explicit check reports connected and leaves no global recovery offer',
+        await page.$eval('#app-report', (report) => !report.querySelector('button')
+          && report.textContent.trim() === ''));
+
+      await setMode(page, 'health', 'pending');
+      await click(page, '#btn-check-local-connection');
+      await page.waitForFunction(() => window.__mrtLocalPending.health.length === 1);
+      await setMode(page, 'health', 'ready');
+      await click(page, '#btn-check-local-connection');
+      await page.waitForFunction(
+        () => document.querySelector('#local-connection-status')?.textContent
+          === 'Connected to the local app.',
+      );
+      await settle(page, 'health', 'wrong');
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      const overlap = await page.evaluate(() => ({
+        status: document.querySelector('#local-connection-status')?.textContent.trim(),
+        report: document.querySelector('#local-connection-report')?.textContent.trim(),
+        global: document.querySelector('#app-report')?.textContent.trim(),
+      }));
+      t.check('an older probe settling last cannot overwrite the newer explicit result',
+        overlap.status === 'Connected to the local app.'
+        && overlap.report === 'The local app connection is ready.'
+        && overlap.global === '',
+        JSON.stringify(overlap));
+
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results [data-act="preview"]');
+      await setMode(page, 'health', 'down');
+      await setMode(page, 'order', 'down');
+      await click(page, '#catalog-results [data-act="preview"]');
+      await page.waitForSelector('#preview[open] #preview-body .notice');
+      const passiveDown = await page.evaluate(() => ({
+        status: document.querySelector('#local-connection-status')?.textContent.trim(),
+        report: document.querySelector('#local-connection-report')?.textContent.trim(),
+      }));
+      t.check('a current failed operation probe removes an obsolete connected result',
+        passiveDown.status === 'The local app connection needs attention.'
+        && passiveDown.report === '',
+        JSON.stringify(passiveDown));
+      await click(page, '#preview-close');
+
+      await click(page, '.ri[data-view="data"]');
+      await click(page, '#btn-check-local-connection');
+      await page.waitForSelector('#app-report .notice button');
+      await setMode(page, 'health', 'ready');
+      await openBrowseCategory(page, 'timeline');
+      await click(page, '#catalog-results [data-act="preview"]');
+      await page.waitForFunction(
+        () => document.querySelector('#preview[open] #preview-body')?.textContent
+          .includes('The issue list could not be loaded:'),
+      );
+      const passiveReady = await page.evaluate(() => ({
+        status: document.querySelector('#local-connection-status')?.textContent.trim(),
+        global: document.querySelector('#app-report')?.textContent.trim(),
+      }));
+      t.check('a current healthy operation probe removes an obsolete stopped-connection warning',
+        passiveReady.status === 'Connected to the local app.'
+        && passiveReady.global === '',
+        JSON.stringify(passiveReady));
+      await click(page, '#preview-close');
+
+      const race = await page.browserContext().newPage();
+      await preparePage(race, page.__origin, page.__mutation);
+      await open(race, '/?local-health=pending&local-catalog=down');
+      await race.waitForFunction(() => window.__mrtLocalPending.health.length === 1);
+      await setMode(race, 'catalog', 'ready');
+      await click(race, '.ri[data-view="browse"]');
+      await race.waitForSelector('#view-browse [data-category="timeline"]');
+      await settle(race, 'health', 'down');
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      const staleCatalog = await race.evaluate(() => ({
+        buttons: [...document.querySelectorAll('#app-report button')]
+          .map((button) => button.textContent.trim()),
+        text: document.querySelector('#app-report')?.textContent.replace(/\s+/g, ' ').trim(),
+      }));
+      t.check('an older failed catalog render cannot publish after a newer render succeeds',
+        !staleCatalog.buttons.includes('Try again')
+        && !staleCatalog.text.includes('catalog could not be loaded'),
+        JSON.stringify(staleCatalog));
+      await race.close();
+
+      const work = await page.browserContext().newPage();
+      await preparePage(work, page.__origin, page.__mutation);
+      await open(work, '/?local-health=down&local-catalog=down');
+      await work.waitForSelector('#home-cat-report .notice button');
+      const catalogFailure = await work.$eval('#home-cat-report .notice', (notice) => ({
+        text: notice.textContent.replace(/\s+/g, ' ').trim(),
+        action: notice.querySelector('button')?.textContent.trim(),
+        state: localStorage.getItem('mrt.state.v2'),
+      }));
+      t.check('a refused catalog load offers Try again without changing saved data',
+        catalogFailure.text.includes('catalog could not be loaded')
+        && catalogFailure.action === 'Try again',
+        JSON.stringify(catalogFailure));
+
+      await setMode(work, 'health', 'ready');
+      await setMode(work, 'catalog', 'pending');
+      await click(work, '#home-cat-report button');
+      const catalogPending = await work.evaluate(() => ({
+        offer: Boolean(document.querySelector('#home-cat-report button')),
+        pending: window.__mrtLocalPending.catalog.length,
+      }));
+      t.check('catalog Try again withdraws the offer and reruns only the catalog request',
+        !catalogPending.offer && catalogPending.pending === 1, JSON.stringify(catalogPending));
+      if (catalogPending.pending !== 1) return;
+      await setMode(work, 'catalog', 'ready');
+      await settle(work, 'catalog', 'ready');
+      await work.waitForSelector('#home-primary-paths .home-path');
+      t.check('the restored catalog retry paints Home without changing saved data',
+        await work.evaluate((before) => localStorage.getItem('mrt.state.v2') === before,
+          catalogFailure.state));
+
+      await openBrowseCategory(work, 'timeline');
+      await work.waitForSelector('#catalog-results [data-act="preview"]');
+      await setMode(work, 'health', 'down');
+      await setMode(work, 'order', 'down');
+      await click(work, '#catalog-results [data-act="preview"]');
+      await work.waitForSelector('#preview[open] #preview-body .notice button');
+      const previewFailure = await work.$eval('#preview-body .notice', (notice) => ({
+        action: notice.querySelector('button')?.textContent.trim(),
+        fallback: notice.textContent.includes('You can still add the Reading List.'),
+      }));
+      t.check('Preview keeps its safe fallback and offers Try again',
+        previewFailure.action === 'Try again' && previewFailure.fallback,
+        JSON.stringify(previewFailure));
+
+      await setMode(work, 'health', 'ready');
+      await setMode(work, 'order', 'pending');
+      await click(work, '#preview-body .notice button');
+      const previewPending = await work.evaluate(() => ({
+        offer: Boolean(document.querySelector('#preview-body .notice button')),
+        pending: window.__mrtLocalPending.order.length,
+      }));
+      t.check('Preview Try again disappears before its replacement request settles',
+        !previewPending.offer && previewPending.pending === 1, JSON.stringify(previewPending));
+      await setMode(work, 'order', 'ready');
+      await settle(work, 'order', 'ready');
+      await work.waitForSelector('#preview[open] .preview-issue-link');
+
+      await setMode(work, 'health', 'down');
+      await setMode(work, 'order', 'down');
+      const beforeImport = await readState(work);
+      await click(work, '#preview-add [data-act="main"]');
+      await work.waitForSelector('#preview-report .notice button');
+      const importFailure = await work.$eval('#preview-report .notice', (notice) => ({
+        action: notice.querySelector('button')?.textContent.trim(),
+        text: notice.textContent.replace(/\s+/g, ' ').trim(),
+      }));
+      const afterFailure = await readState(work);
+      t.check('a refused import offers Try again and writes no partial Reading List',
+        importFailure.action === 'Try again'
+        && importFailure.text.includes('Browser Check Order could not be loaded')
+        && Object.keys(afterFailure?.lists ?? {}).length === Object.keys(beforeImport?.lists ?? {}).length,
+        JSON.stringify({ importFailure, lists: Object.keys(afterFailure?.lists ?? {}) }));
+
+      await setMode(work, 'health', 'ready');
+      await setMode(work, 'order', 'pending');
+      await click(work, '#preview-report .notice button');
+      await work.evaluate(() => document.querySelector('#preview-add [data-act="main"]').click());
+      const importPending = await work.evaluate(() => ({
+        offer: Boolean(document.querySelector('#preview-report .notice button')),
+        pending: window.__mrtLocalPending.order.length,
+      }));
+      t.check('import Try again is single-flight and removes the obsolete offer while pending',
+        !importPending.offer && importPending.pending === 1, JSON.stringify(importPending));
+      await setMode(work, 'order', 'ready');
+      await settle(work, 'order', 'ready');
+      await work.waitForFunction(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state.listOrder.length === 1;
+      });
+      const imported = await readState(work);
+      const saved = imported.lists[imported.listOrder[0]];
+      t.check('the fresh import retry writes one complete Reading List',
+        imported.listOrder.length === 1 && saved.itemIds.length === ORDER_COUNT,
+        JSON.stringify({ lists: imported.listOrder.length, items: saved.itemIds.length }));
+    },
+  },
+  {
     id: 'import',
     title: 'a curated order can be imported from the catalog',
     async run(page, t) {
@@ -4810,7 +5068,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:844` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:849` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -6759,6 +7017,7 @@ async function preparePage(page, origin, mutation) {
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
+    ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
   ]) {
     if (!rewrite) continue;
@@ -6795,14 +7054,57 @@ async function preparePage(page, origin, mutation) {
     (
       catalog, catalogFixtures, order, longOrder, negativeOrderItem, orderFile,
       appVersion, updateApiUrl, defaultApiBase,
+      localHealthPath, localHeaderName, localHeaderValue,
     ) => {
       const real = window.fetch.bind(window);
       const json = (body, status = 200) => new Response(JSON.stringify(body), {
         status,
         headers: { 'content-type': 'application/json' },
       });
+      const params = new URL(location.href).searchParams;
+      const requestedLocalModes = {
+        health: params.get('local-health'),
+        catalog: params.get('local-catalog'),
+        order: params.get('local-order'),
+      };
+      window.__mrtLocalFixture = Object.values(requestedLocalModes).some((mode) => mode !== null);
+      window.__mrtLocalModes = Object.fromEntries(
+        Object.entries(requestedLocalModes).map(([kind, mode]) => [kind, mode ?? 'ready']),
+      );
+      window.__mrtLocalPending = { health: [], catalog: [], order: [] };
+      window.__mrtSettleLocalRequest = (kind, outcome = 'ready') => {
+        const pending = window.__mrtLocalPending[kind]?.shift();
+        if (!pending) return false;
+        if (outcome === 'down') pending.reject(new TypeError('Local fixture refused the request'));
+        else if (outcome === 'wrong') pending.resolve(pending.wrong());
+        else pending.resolve(pending.ready());
+        return true;
+      };
+      const localRequest = (kind, ready, wrong = ready) => {
+        if (!window.__mrtLocalFixture) return null;
+        const mode = window.__mrtLocalModes[kind];
+        if (mode === 'down') return Promise.reject(new TypeError('Local fixture refused the request'));
+        if (mode === 'wrong') return Promise.resolve(wrong());
+        if (mode === 'pending') {
+          return new Promise((resolve, reject) => {
+            window.__mrtLocalPending[kind].push({ resolve, reject, ready, wrong });
+          });
+        }
+        return Promise.resolve(ready());
+      };
       window.fetch = (input, init) => {
         const url = typeof input === 'string' ? input : input?.url ?? '';
+        const requestUrl = new URL(url, location.href);
+        if (requestUrl.pathname === localHealthPath && window.__mrtLocalFixture) {
+          return localRequest(
+            'health',
+            () => new Response(null, {
+              status: 204,
+              headers: { [localHeaderName]: localHeaderValue },
+            }),
+            () => new Response(null, { status: 204 }),
+          );
+        }
         const longAdd = new URL(location.href).searchParams.get('long-add') === '1';
         if (longAdd && !window.__mrtLongAdd) {
           window.__mrtLongAdd = { requests: [], settled: [], fetches: [] };
@@ -6823,6 +7125,12 @@ async function preparePage(page, origin, mutation) {
               lists: selectedCatalog.lists.map((l) => ({ ...l, groupName: null })),
             }));
           }
+          const controlled = localRequest(
+            'catalog',
+            () => json(selectedCatalog),
+            () => json({ error: 'wrong local catalog response' }, 500),
+          );
+          if (controlled) return controlled;
           // Aimed at the section rule through its input rather than at the function, which the page
           // cannot reach. One type everywhere puts every story on one side, so the empty section is
           // dropped and the shelf paints a single heading.
@@ -6840,7 +7148,14 @@ async function preparePage(page, origin, mutation) {
           if (sessionStorage.getItem('mrt.issue-focus.negative') === '1') {
             return Promise.resolve(json({ ...order, items: [...order.items, negativeOrderItem] }));
           }
-          return Promise.resolve(json(new URL(location.href).searchParams.get('long') === '1' ? longOrder : order));
+          const selectedOrder = new URL(location.href).searchParams.get('long') === '1' ? longOrder : order;
+          const controlled = localRequest(
+            'order',
+            () => json(selectedOrder),
+            () => json({ error: 'wrong local order response' }, 500),
+          );
+          if (controlled) return controlled;
+          return Promise.resolve(json(selectedOrder));
         }
         if (url === `${defaultApiBase}/health`) {
           return Promise.resolve(json({ issue_count: 1 }));
@@ -6853,7 +7168,6 @@ async function preparePage(page, origin, mutation) {
           if (mode === 'older') return Promise.resolve(json({ tag_name: 'v1.0.0' }));
           return Promise.resolve(json({ tag_name: `v${appVersion}` }));
         }
-        const requestUrl = new URL(url, location.href);
         const longAddPath = /\/(series|creators)\/(\d+)\/issues$/.exec(requestUrl.pathname);
         if (longAdd && longAddPath) {
           const [, kind, id] = longAddPath;
@@ -7049,6 +7363,9 @@ async function preparePage(page, origin, mutation) {
     APP_VERSION,
     LATEST_RELEASE_API_URL,
     DEFAULT_BASE,
+    LOCAL_SERVER_HEALTH_PATH,
+    LOCAL_SERVER_HEADER_NAME,
+    LOCAL_SERVER_HEADER_VALUE,
   );
   // Handed to puppeteer as a function rather than stringified and passed to `new Function`, which
   // the app's own CSP refuses: server.mjs sends `script-src 'self'` with no 'unsafe-eval'. A

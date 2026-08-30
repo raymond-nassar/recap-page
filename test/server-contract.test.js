@@ -6,6 +6,11 @@ import { readFileSync } from 'node:fs';
 import { sep } from 'node:path';
 
 import { CSP, DEFAULT_PORT, HOST, browserCommand, createStaticServer, parsePort, safePath } from '../server.mjs';
+import {
+  LOCAL_SERVER_HEADER_NAME,
+  LOCAL_SERVER_HEADER_VALUE,
+  LOCAL_SERVER_HEALTH_PATH,
+} from '../src/js/lib/localServer.js';
 
 // The server is the install and runtime boundary and nothing started it. A Windows smoke run during
 // the UX study proved it boots on one machine, which rejects a startup defect and says nothing about
@@ -198,10 +203,28 @@ test('a HEAD gets the headers and no body', async () => {
 
 test('anything other than GET or HEAD is refused and says what is allowed', async () => {
   await withServer(async (port) => {
-    for (const method of ['POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']) {
-      const res = await fetchPath(port, '/', { method });
-      assert.equal(res.status, 405, method);
-      assert.equal(res.headers.allow, 'GET, HEAD', method);
+    for (const path of ['/', LOCAL_SERVER_HEALTH_PATH]) {
+      for (const method of ['POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']) {
+        const res = await fetchPath(port, path, { method });
+        assert.equal(res.status, 405, `${method} ${path}`);
+        assert.equal(res.headers.allow, 'GET, HEAD', `${method} ${path}`);
+      }
+    }
+  });
+});
+
+test('the local health response is identifiable and cannot be cached by the worker', async () => {
+  await withServer(async (port) => {
+    for (const method of ['GET', 'HEAD']) {
+      const res = await fetchPath(port, LOCAL_SERVER_HEALTH_PATH, { method });
+      assert.equal(res.status, 204, method);
+      assert.equal(res.headers['cache-control'], 'no-store', method);
+      assert.equal(
+        res.headers[LOCAL_SERVER_HEADER_NAME.toLowerCase()],
+        LOCAL_SERVER_HEADER_VALUE,
+        method,
+      );
+      assert.equal(res.body.length, 0, method);
     }
   });
 });

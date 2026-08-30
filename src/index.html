@@ -746,7 +746,7 @@
                 <p class="rail-hint">A snapshot of your current data is kept, so a restore can be undone once.</p>
                 <div class="field-row">
                   <input type="file" id="restore-file" accept="application/json,.json" aria-label="Backup file to restore" />
-                  <button type="button" id="btn-undo-restore" class="quiet" hidden>Undo last restore</button>
+                  <button type="button" id="btn-undo-restore" class="btn btn-g" hidden>Undo last restore</button>
                 </div>
                 <div id="restore-report" class="results"></div>
               </div>
@@ -805,6 +805,26 @@
 
             <section class="setgroup">
               <h2>Connectivity</h2>
+              <div class="card card-static setting">
+                <h3>Local app connection</h3>
+                <p id="local-connection-status" class="rail-hint setting-desc">Checking the local app connection…</p>
+                <button
+                  type="button"
+                  id="btn-check-local-connection"
+                  class="btn setting-ctl setting-action"
+                  aria-describedby="local-connection-status local-connection-help"
+                >Check connection</button>
+                <details class="setting-more">
+                  <summary>If the connection needs attention</summary>
+                  <p id="local-connection-help" class="rail-hint">
+                    Leave this window open. Start Recap Page from the copy you downloaded or installed
+                    from the Microsoft Store, then return here and check again. A browser-installed app
+                    cannot start that separate copy itself.
+                  </p>
+                </details>
+                <div id="local-connection-report" class="results"></div>
+              </div>
+
               <div class="card card-static">
                 <h3>Metadata source</h3>
                 <form id="form-settings" class="stack">
@@ -841,7 +861,7 @@
               <div class="card card-static setting">
                 <h3>Cached metadata</h3>
                 <p id="cache-usage" class="rail-hint setting-desc">Checking cache size…</p>
-                <button type="button" id="btn-clear-cache" class="quiet setting-ctl">Clear cached metadata</button>
+                <button type="button" id="btn-clear-cache" class="btn btn-g setting-ctl setting-action">Clear cached metadata</button>
                 <details class="setting-more">
                   <summary>What clearing removes</summary>
                   <p class="rail-hint">Clearing the cache never touches your lists or reading progress.</p>
@@ -853,7 +873,7 @@
             <div class="card card-static card-danger setting">
               <h2>Danger zone</h2>
               <p class="rail-hint setting-desc">Erasing removes every list, all progress and every note from this browser.</p>
-              <button type="button" id="btn-wipe" class="quiet quiet-danger setting-ctl">Erase all local data</button>
+              <button type="button" id="btn-wipe" class="btn btn-danger setting-ctl setting-action">Erase all local data</button>
             </div>
           </section>
 

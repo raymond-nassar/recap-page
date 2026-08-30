@@ -12,7 +12,7 @@ const VIEW = sliceElement(
   openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'view-data')?.start,
 );
 
-const HEADING_LEVELS = [1, 2, 3, 4, 3, 2, 3, 3, 2, 3, 3, 2, 3, 2];
+const HEADING_LEVELS = [1, 2, 3, 4, 3, 2, 3, 3, 2, 3, 3, 3, 2, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
   'btn-export-json',
@@ -23,6 +23,10 @@ const REQUIRED_IDS = [
   'opt-update-checks',
   'opt-theme',
   'api-base',
+  'btn-check-local-connection',
+  'local-connection-status',
+  'local-connection-help',
+  'local-connection-report',
   'btn-clear-cache',
   'btn-wipe',
   'form-settings',
@@ -173,7 +177,7 @@ test('the danger card is the last card in the view', () => {
   assert.equal(cards.filter((card) => hasClass(card.open, 'card-danger')).length, 1);
 });
 
-test('the API and cache report panes stay with the controls they report for', () => {
+test('the local connection, API and cache reports stay with the controls they report for', () => {
   const cards = elementsWithClass(VIEW, 'div', 'card');
   const containingCard = (id) => {
     const at = idPosition(VIEW, id);
@@ -181,14 +185,19 @@ test('the API and cache report panes stay with the controls they report for', ()
   };
   const apiCard = containingCard('api-base');
   const apiReportCard = containingCard('api-report');
+  const localCard = containingCard('btn-check-local-connection');
+  const localReportCard = containingCard('local-connection-report');
   const cacheCard = containingCard('btn-clear-cache');
   const cacheReportCard = containingCard('cache-report');
 
   assert.ok(apiCard, 'expected the API base URL control to sit inside a card');
+  assert.ok(localCard, 'expected the local connection control to sit inside a card');
   assert.ok(cacheCard, 'expected the cache clear control to sit inside a card');
   assert.equal(apiCard, apiReportCard);
+  assert.equal(localCard, localReportCard);
   assert.equal(cacheCard, cacheReportCard);
   assert.equal(headingText(apiCard.html, 3), 'Metadata source');
+  assert.equal(headingText(localCard.html, 3), 'Local app connection');
   assert.equal(headingText(cacheCard.html, 3), 'Cached metadata');
 });
 
@@ -196,9 +205,47 @@ test('each report pane hears only about the control it sits with', () => {
   // A cache clear used to overwrite a restore refusal, because all three shared one pane.
   assert.equal(noticeTarget('That API URL is not usable'), '#api-report');
   assert.equal(noticeTarget('API URL saved.'), '#api-report');
+  assert.equal(noticeTarget('The local app connection is ready.'), '#local-connection-report');
   assert.equal(noticeTarget('Cached metadata cleared.'), '#cache-report');
   assert.equal(noticeTarget('Restored. Your previous data was snapshotted'), '#restore-report');
   assert.equal(noticeTarget('Restore undone.'), '#restore-report');
+});
+
+test('the local connection control names its status and recovery guidance', () => {
+  const button = openingTags(VIEW, 'button')
+    .find((entry) => getAttribute(entry.open, 'id') === 'btn-check-local-connection');
+  assert.ok(button, 'expected the local connection button');
+  assert.equal(
+    getAttribute(button.open, 'aria-describedby'),
+    'local-connection-status local-connection-help',
+  );
+  assert.equal(hasClass(button.open, 'btn'), true);
+  assert.equal(hasClass(button.open, 'quiet'), false);
+  assert.equal(hasClass(button.open, 'setting-action'), true);
+});
+
+test('settings actions use full-size buttons while preserving their hierarchy', () => {
+  const expected = new Map([
+    ['btn-export-json', ['btn']],
+    ['btn-export-md-2', ['btn', 'btn-g']],
+    ['btn-undo-restore', ['btn', 'btn-g']],
+    ['btn-check-local-connection', ['btn', 'setting-action']],
+    ['btn-clear-cache', ['btn', 'btn-g', 'setting-action']],
+    ['btn-wipe', ['btn', 'btn-danger', 'setting-action']],
+  ]);
+  const buttons = openingTags(VIEW, 'button');
+
+  for (const [id, classes] of expected) {
+    const button = buttons.find((entry) => getAttribute(entry.open, 'id') === id);
+    assert.ok(button, `expected ${id}`);
+    for (const className of classes) {
+      assert.equal(hasClass(button.open, className), true, `${id} should use ${className}`);
+    }
+    assert.equal(hasClass(button.open, 'quiet'), false, `${id} should not use compact button sizing`);
+  }
+
+  assert.match(MAIN, /class: 'btn btn-g',\s+dataset: \{ act: 'download'/);
+  assert.match(MAIN, /class: 'btn btn-danger',\s+dataset: \{ act: 'forget'/);
 });
 
 test('every settings binding id still appears exactly once in the shipped markup', () => {

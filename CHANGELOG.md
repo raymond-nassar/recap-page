@@ -13,6 +13,15 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Added local app connection recovery
+
+In plain English: if a browser-installed Recap Page opens while its separate local copy is not
+running, the app now explains that saved lists and progress are safe and shows how to reconnect.
+Readers can check the connection under Backup & settings or retry a Reading List where it failed,
+without needing to understand server processes. Microsoft Store packaging and saved data are
+unchanged. Actions on the settings screen now use consistent full-size buttons while keeping
+primary, secondary, and destructive choices visually distinct.
+
 ### Prepared the Microsoft Store submission packet
 
 In plain English: the owner can now review the exact Store description, privacy and support links,
@@ -1649,7 +1658,7 @@ their reading sat at 8787. `test/launcher.test.js:77` already forbids the launch
 `MRT_PORT` for precisely this reason. The rule was enforced on the launcher and not on the message
 printed beside it.
 
-Both messages moved out of the error branch into `server.mjs:214-235` and are returned as lines
+Both messages moved out of the error branch into `server.mjs:228-249` and are returned as lines
 rather than printed, for the same reason `browserCommand` is a table: a branch that runs only when
 a socket is taken is a branch nobody reads. `test/startup-messages.test.js` checks the words without
 binding a port. Five of its seven assertions were run against the shipped strings and fail on them.
