@@ -2848,31 +2848,31 @@
       "sourceIssueReference": "Ghost Rider #59",
       "sourceRangeReference": "Sewer War",
       "normalizedSeriesTitle": "Ghost Rider",
-      "seriesYear": 0,
+      "seriesYear": 1973,
       "issueNumber": "59",
-      "seriesId": 6255,
-      "candidateIssueId": 22695,
+      "seriesId": 2013,
+      "candidateIssueId": 8768,
       "candidateIssueIds": [
-        22695
+        8768
       ],
-      "selectedIssueId": 22695,
+      "selectedIssueId": 8768,
       "selectedIssueIds": [
-        22695
+        8768
       ],
       "resolutionStatus": "exact",
       "status": "exact",
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "title": "Ghost Rider",
-      "apiSeriesName": "Ghost Rider",
-      "issueTitle": "Ghost Rider (0) #59",
-      "resolvedIssueTitle": "Ghost Rider (0) #59",
-      "detailUrl": "https://www.marvel.com/comics/issue/22695/",
-      "marvelIssueUrl": "https://www.marvel.com/comics/issue/22695/",
-      "onSaleDate": null,
-      "unlimitedDate": null,
-      "yearPage": 0,
-      "note": "Marvel series 6255 (Ghost Rider) is the reviewed metadata series for this source reference."
+      "apiSeriesName": "Ghost Rider (1973 - 1983)",
+      "issueTitle": "Ghost Rider (1973) #59",
+      "resolvedIssueTitle": "Ghost Rider (1973) #59",
+      "detailUrl": "https://www.marvel.com/comics/issue/8768/ghost_rider_1973_59",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/8768/ghost_rider_1973_59",
+      "onSaleDate": "1981-08-01T00:00:00+0000",
+      "unlimitedDate": "1981-08-01T00:00:00+0000",
+      "yearPage": 1981,
+      "note": "Marvel series 2013 (Ghost Rider (1973 - 1983)) is the reviewed metadata series for this source reference."
     },
     {
       "sourcePosition": 91,
@@ -4022,5 +4022,5 @@
       "note": "Marvel series 24125 (Incredible Hulk Annual (2001)) is the reviewed metadata series for this source reference."
     }
   ],
-  "packetDigest": "dd7a839a63aec8212fba45ce1c438ac1852034ea7c949ce6457c8aa5c4d497cd"
+  "packetDigest": "d3c2add3e3a87d50f0b78ae848a7db7efd9df08bdffaefd4aecc58ffdaa7bb29"
 }

@@ -22680,10 +22680,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The repaired complete library was compared with all 156 published orders using cached evidence only. Every 10 non-none relationship was independently reviewed and approved for this full guide.",
     "reviewedAt": "2026-08-27T14:57:51.400Z",
-    "reportDigest": "1e261a814ba4830574c8f64301fb942b823080d0d709514b6bae9b90a25b52ff",
+    "reportDigest": "d6c5d6f3648b13a8d3fdfc3fe7c079b14eeb8e12c2638fa1558dd006e2c5f3ff",
     "packetDigest": "ff88a21e032af67bf42c2c4a6424ed8e0eebc08b02710cac8f2eba92feaafb42",
     "mappingDigest": "ca9165c8db00878066426b13090acb92fb79fcd17d59ee129a51d5b6e1c26b80",
-    "libraryDigest": "6fb4e169edb70283b72e72fa0ddaea11c7e4d1372b7a8b4dbbf06211aba5a372",
+    "libraryDigest": "b8559ed645e01a3db12006e18a76c3a5b562d11bee8b1084cb44e9828a34d20c",
     "peerDigests": {},
     "dispositions": [
       {
@@ -24562,6 +24562,6 @@
         "sharedIds": []
       }
     ],
-    "approvalDigest": "963c80d4aba4894a9c8e950e7f98205332b4f1ecfd907d997779aa022d88d18b"
+    "approvalDigest": "353b9011ed1501027b04aab0f3f66fcca60621f25bc03b2fd2b4423348d61e34"
   }
 }

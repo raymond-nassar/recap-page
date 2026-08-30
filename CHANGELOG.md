@@ -24,6 +24,13 @@ pairing for review, and apply accepts only the exact reviewed bytes against the 
 corpus. Missing, malformed, unavailable, stale, duplicate, or incomplete history fails before the
 ordinary anchor lock can be checked or blessed.
 
+### Corrected Abomination guide metadata
+
+In plain English: Ghost Rider #59 in the Abomination Reading List now opens the exact 1981 comic
+and shows its available cover and details. Incredible Hulk Annual #17 stays in the same position
+with its official issue link, but its optional details remain empty because the metadata provider
+still has no record for it. Saved Reading Lists and progress are unchanged.
+
 ### Aligned Reading List card actions
 
 In plain English: Browse cards now keep their action buttons aligned along the bottom edge, even

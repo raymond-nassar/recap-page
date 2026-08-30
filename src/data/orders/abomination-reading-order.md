@@ -94,7 +94,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Incredible Hulk (1962) #389](https://www.marvel.com/comics/issue/9200/incredible_hulk_1962_389)
 - [ ] [Incredible Hulk Annual (1976) #17](https://www.marvel.com/comics/issue/16874/)
 - [ ] [Incredible Hulk Annual (1976) #20](https://www.marvel.com/comics/issue/16877/incredible_hulk_annual_1976_20)
-- [ ] [Ghost Rider (0) #59](https://www.marvel.com/comics/issue/22695/)
+- [ ] [Ghost Rider (1973) #59](https://www.marvel.com/comics/issue/8768/ghost_rider_1973_59)
 - [ ] [Incredible Hulk (1962) #420](https://www.marvel.com/comics/issue/9231/incredible_hulk_1962_420)
 - [ ] [Incredible Hulk (1962) #421](https://www.marvel.com/comics/issue/9232/incredible_hulk_1962_421)
 - [ ] [Incredible Hulk (1962) #422](https://www.marvel.com/comics/issue/9233/incredible_hulk_1962_422)
