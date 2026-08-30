@@ -990,7 +990,7 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
 }
 
 export function assertGapTransition(previousPacket, proposedPacket, proposedMapping) {
-  validateFrozenPacket(previousPacket);
+  validateFrozenPacket(previousPacket, { enforceApprovedResolutionDigest: false });
   validateFrozenPacket(proposedPacket);
   assertMappingMatchesPacketOccurrences(proposedPacket, proposedMapping);
   const previousGaps = previousPacket.sourceGaps ?? [];
@@ -1224,6 +1224,7 @@ export function validateFrozenPacket(packet, {
   inventoryRecord = null,
   catalogEntries = [],
   provider = CBH_SOURCE_PROVIDER,
+  enforceApprovedResolutionDigest = true,
 } = {}) {
   if (!isPlainObject(packet)) throw new Error('Frozen packet must be an object');
   const unexpected = Object.keys(packet).filter((field) => !PACKET_FIELDS.has(field));
@@ -1293,7 +1294,8 @@ export function validateFrozenPacket(packet, {
   packet.rows.forEach((row, index) => assertPacketRow(row, index));
   sourcePositionsForPacket(packet);
   const approvedResolutionDigest = APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS[packet.id];
-  if (approvedResolutionDigest
+  if (enforceApprovedResolutionDigest
+    && approvedResolutionDigest
     && digestCanonicalJson(packet.sourceGapResolutions ?? []) !== approvedResolutionDigest) {
     throw new Error(`${packet.id} source gap resolution ledger differs from its approved transition evidence`);
   }

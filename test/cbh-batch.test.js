@@ -377,6 +377,26 @@ function packetForOccurrenceShape(uniqueCount, repeated) {
 
 test('open source gaps close only as the same exact identity, a reviewed repeat, or an availability exclusion', () => {
   const openPacket = genericGapPacket();
+  const historicalDaredevilPacket = structuredClone(openPacket);
+  historicalDaredevilPacket.id = 'daredevil-reading-order';
+  historicalDaredevilPacket.inventoryId = historicalDaredevilPacket.id;
+  historicalDaredevilPacket.sourceUrl =
+    'https://www.comicbookherald.com/daredevil-reading-order/';
+  historicalDaredevilPacket.proposedManifest.id = historicalDaredevilPacket.id;
+  historicalDaredevilPacket.proposedManifest.sourceFile = 'daredevil-reading-order.md';
+  historicalDaredevilPacket.proposedManifest.sourcePage =
+    historicalDaredevilPacket.sourceUrl;
+  historicalDaredevilPacket.proposedManifest.out = 'daredevil_reading_order.json';
+  historicalDaredevilPacket.packetDigest = packetDigestFor(historicalDaredevilPacket);
+  assert.throws(
+    () => validateFrozenPacket(historicalDaredevilPacket),
+    /resolution ledger differs from its approved transition evidence/i,
+  );
+  assert.doesNotThrow(() => validateFrozenPacket(
+    historicalDaredevilPacket,
+    { enforceApprovedResolutionDigest: false },
+  ));
+
   const legacyPacketWithResolution = genericPacket();
   delete legacyPacketWithResolution.sourceOccurrenceCount;
   delete legacyPacketWithResolution.repeatedSourceReferences;
