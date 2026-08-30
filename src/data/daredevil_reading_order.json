@@ -7,60 +7,10 @@
   "sourceLicense": null,
   "generatedAt": "2026-08-27T13:18:34.558Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 875,
+  "count": 869,
   "collections": 11,
-  "placeholders": 7,
-  "unresolved": [
-    {
-      "title": "Marvel Holiday Special #2",
-      "url": null,
-      "read": false,
-      "index": 317,
-      "section": "Daredevil Epic Collection Vol. 16: Dead Man's Hand"
-    },
-    {
-      "title": "Daredevil/Deadpool Annual '97",
-      "url": null,
-      "read": false,
-      "index": 383,
-      "section": "Daredevil Epic Collection: Widow's Kiss"
-    },
-    {
-      "title": "Typhoid Fever: Daredevil 1",
-      "url": null,
-      "read": false,
-      "index": 725,
-      "section": "Typhoid Fever"
-    },
-    {
-      "title": "Marvel Team-Up #56",
-      "url": null,
-      "read": false,
-      "index": 842,
-      "section": "Greatest Spider-Man and Daredevil Team-Ups"
-    },
-    {
-      "title": "Daredevil and the Punisher: Child's Play (OGN)",
-      "url": null,
-      "read": false,
-      "index": 846,
-      "section": "Daredevil and the Punisher: Child's Play | Jan 1988 | Miller"
-    },
-    {
-      "title": "Daredevil/Bullseye: The Target (OGN)",
-      "url": null,
-      "read": false,
-      "index": 850,
-      "section": "Daredevil/Bullseye: The Target"
-    },
-    {
-      "title": "Defenders #11",
-      "url": null,
-      "read": false,
-      "index": 874,
-      "section": "Defenders Vol. 2: Kingpins of New York"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 8073,
@@ -10367,23 +10317,6 @@
       "collectedIn": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
     },
     {
-      "issueId": -752596065,
-      "title": "Marvel Holiday Special #2",
-      "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
-    },
-    {
       "issueId": 8310,
       "title": "Daredevil (1964) #312",
       "number": "312",
@@ -12628,10 +12561,10 @@
       "collectedIn": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
     },
     {
-      "issueId": -1183319887,
-      "title": "Daredevil/Deadpool Annual '97",
-      "number": null,
-      "url": null,
+      "issueId": 43192,
+      "title": "Daredevil/Deadpool Annual (1997) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -12641,7 +12574,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
     },
     {
@@ -22390,23 +22323,6 @@
       "collectedIn": "VIII) All-New All-Different Daredevil by Charles Soule"
     },
     {
-      "issueId": -926887278,
-      "title": "Typhoid Fever: Daredevil 1",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "VIII) All-New All-Different Daredevil by Charles Soule"
-    },
-    {
       "issueId": 71875,
       "title": "Typhoid Fever: X-Men (2018) #1",
       "number": "1",
@@ -26355,23 +26271,6 @@
       "collectedIn": "X) Team-Ups & Guest Spots"
     },
     {
-      "issueId": -2036913974,
-      "title": "Marvel Team-Up #56",
-      "number": "56",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) Team-Ups & Guest Spots"
-    },
-    {
       "issueId": 19696,
       "title": "Marvel Team-Up (1972) #73",
       "number": "73",
@@ -26472,23 +26371,6 @@
       "collectedIn": "X) Team-Ups & Guest Spots"
     },
     {
-      "issueId": -2095183851,
-      "title": "Daredevil and the Punisher: Child's Play (OGN)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) Team-Ups & Guest Spots"
-    },
-    {
       "issueId": 73597,
       "title": "Venom: On Trial (1997) #1",
       "number": "1",
@@ -26582,23 +26464,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "X) Team-Ups & Guest Spots"
-    },
-    {
-      "issueId": -1907726369,
-      "title": "Daredevil/Bullseye: The Target (OGN)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "X) Team-Ups & Guest Spots"
     },
     {
@@ -27311,23 +27176,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "X) Team-Ups & Guest Spots"
-    },
-    {
-      "issueId": -696033575,
-      "title": "Defenders #11",
-      "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "X) Team-Ups & Guest Spots"
     }
   ]

@@ -13,13 +13,13 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
-### Resolved a duplicate Daredevil placeholder
+### Resolved Daredevil Reading List metadata gaps
 
-In plain English: the Daredevil Reading List no longer shows its standalone Spider-Man team-up as
-an unresolved comic in the later team-up section. Provider evidence identifies that source entry as
-another mention of the same one-shot already listed earlier, so the duplicate placeholder is gone
-without adding or removing a comic. Seven source entries still lack exact provider identities and
-remain visible rather than being guessed or substituted.
+In plain English: the Daredevil Reading List now links its 1997 Deadpool annual and no longer shows
+unavailable or nonexistent comics as unresolved rows. Its standalone Spider-Man team-up is another
+mention of the same one-shot already listed earlier. Six omitted source entries remain recorded for
+provenance, so nothing is guessed, substituted, or silently deleted. Nothing you have saved is
+changed.
 
 ### Aligned Reading List card actions
 

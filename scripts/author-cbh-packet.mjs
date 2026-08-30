@@ -13,6 +13,7 @@ import {
   validateFrozenPacket,
   validateMappingDigest,
   validateReportDigest,
+  sourceCountsForPacket,
   validateSourceIdentities,
 } from './lib/cbh-inventory.mjs';
 import { CBH_LATER_ORDER_IDS } from './lib/cbro-evidence.mjs';
@@ -211,7 +212,12 @@ export function selectedIssueIds(mapping) {
   return rows.map((row, index) => {
     assert(row?.resolutionStatus === 'exact', `${mapping.id} row ${index + 1} is not exact`);
     assert(Number.isInteger(Number(row.selectedIssueId)), `${mapping.id} row ${index + 1} has no selected issue id`);
-    assert(/^https:\/\/www\.marvel\.com\/comics\/issue\/\d+\//.test(String(row.marvelIssueUrl)), `${mapping.id} row ${index + 1} has no exact Marvel issue URL`);
+    const issueUrlMatch = String(row.marvelIssueUrl).match(
+      /^https:\/\/www\.marvel\.com\/comics\/issue\/(\d+)(?:\/|$)/,
+    );
+    assert(issueUrlMatch, `${mapping.id} row ${index + 1} has no exact Marvel issue URL`);
+    assert(Number(issueUrlMatch[1]) === Number(row.selectedIssueId),
+      `${mapping.id} row ${index + 1} Marvel issue URL differs from selected issue id`);
     assert(typeof row.resolvedIssueTitle === 'string' && row.resolvedIssueTitle.trim(), `${mapping.id} row ${index + 1} has no resolved title`);
     assert(String(row.metadataIssueNumber ?? row.issueNumber ?? '').trim(),
       `${mapping.id} row ${index + 1} has no reviewed issue number`);
@@ -348,6 +354,14 @@ export function assertApprovedRelationshipReview({
   assert(report.packetDigest === packet.packetDigest, `${candidateId} report packet digest is stale`);
   assert(report.mappingDigest === mapping.mappingDigest, `${candidateId} report mapping digest is stale`);
   assert(report.libraryDigest === currentLibraryDigest, `${candidateId} library changed since relationship review`);
+  if ((packet.sourceGapResolutions?.length ?? 0) > 0) {
+    const expectedSourceCounts = sourceCountsForPacket(packet);
+    assert(canonicalJson(report.sourceCounts) === canonicalJson(expectedSourceCounts),
+      `${candidateId} report source counts differ from its frozen packet`);
+    assert(canonicalJson(mapping.relationshipReview?.sourceCounts)
+      === canonicalJson(expectedSourceCounts),
+    `${candidateId} approved source counts differ from its frozen packet`);
+  }
 
   const expectedPeerDigests = Object.fromEntries(peerMappings
     .map((peer) => {

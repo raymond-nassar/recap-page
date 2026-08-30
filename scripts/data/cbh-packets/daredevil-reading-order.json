@@ -7,11 +7,12 @@
   "sourceProvider": "comic-book-herald",
   "sourceContentSha256": "3322ffae13d23ce743399af9dc957666b744a2d609bef6db758d551508292e81",
   "sourceIssueBearingBlocksSha256": "19cef9d7a494311a5cf65242f4ac7cd453aa4a67554da929edbc08150f8edc93",
-  "sourceBoundary": "The full Daredevil page, from I) Daredevil's Origins through X) Team-Ups & Guest Spots. It retains every source-defined issue occurrence and records each unresolved source identity as an explicit source gap.",
+  "sourceBoundary": "The full Daredevil page, from I) Daredevil's Origins through X) Team-Ups & Guest Spots. It retains every source-defined issue occurrence and preserves owner-authorized Marvel Unlimited omissions as explicit source exclusions.",
   "excludedSourceReferences": [
     "Prose, cross-links, affiliate links, images, and collected-edition titles without source-defined issue identities",
     "Marvel Knights 20th Anniversary has an empty Collects field",
-    "War of the Realms directs readers to a separate event guide instead of providing issue rows"
+    "War of the Realms directs readers to a separate event guide instead of providing issue rows",
+    "Six owner-reviewed source issues unavailable or nonexistent in Marvel Unlimited remain explicit in excludedSourceRows."
   ],
   "sourceOccurrenceCount": 909,
   "repeatedSourceReferences": [
@@ -215,7 +216,7 @@
     },
     {
       "sourcePosition": 816,
-      "canonicalRow": 786,
+      "canonicalRow": 787,
       "sourceIssueReference": "Elektra (2022) #100",
       "sourceRangeReference": "Daredevil & Echo\nCollects: Daredevil & Echo (2023) #1 to #4, Elektra (2022) #100",
       "normalizedSeriesTitle": "Elektra",
@@ -260,7 +261,7 @@
     },
     {
       "sourcePosition": 879,
-      "canonicalRow": 423,
+      "canonicalRow": 424,
       "sourceIssueReference": "Daredevil/Spider-Man (OGN)",
       "sourceRangeReference": "Daredevil/Spider-Man\nCollects: Ogn",
       "normalizedSeriesTitle": "Spider-Man/Daredevil",
@@ -269,7 +270,7 @@
     },
     {
       "sourcePosition": 893,
-      "canonicalRow": 493,
+      "canonicalRow": 494,
       "sourceIssueReference": "Daredevil (1998) 51",
       "sourceRangeReference": "Marvel Knights Daredevil: Unusual Suspects\nCollects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1",
       "normalizedSeriesTitle": "Daredevil",
@@ -278,7 +279,7 @@
     },
     {
       "sourcePosition": 894,
-      "canonicalRow": 494,
+      "canonicalRow": 495,
       "sourceIssueReference": "Daredevil (1998) 52",
       "sourceRangeReference": "Marvel Knights Daredevil: Unusual Suspects\nCollects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1",
       "normalizedSeriesTitle": "Daredevil",
@@ -287,7 +288,7 @@
     },
     {
       "sourcePosition": 895,
-      "canonicalRow": 495,
+      "canonicalRow": 496,
       "sourceIssueReference": "Daredevil (1998) 53",
       "sourceRangeReference": "Marvel Knights Daredevil: Unusual Suspects\nCollects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1",
       "normalizedSeriesTitle": "Daredevil",
@@ -296,7 +297,7 @@
     },
     {
       "sourcePosition": 896,
-      "canonicalRow": 496,
+      "canonicalRow": 497,
       "sourceIssueReference": "Daredevil (1998) 54",
       "sourceRangeReference": "Marvel Knights Daredevil: Unusual Suspects\nCollects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1",
       "normalizedSeriesTitle": "Daredevil",
@@ -305,7 +306,7 @@
     },
     {
       "sourcePosition": 897,
-      "canonicalRow": 497,
+      "canonicalRow": 498,
       "sourceIssueReference": "Daredevil (1998) 55",
       "sourceRangeReference": "Marvel Knights Daredevil: Unusual Suspects\nCollects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1",
       "normalizedSeriesTitle": "Daredevil",
@@ -314,7 +315,7 @@
     },
     {
       "sourcePosition": 898,
-      "canonicalRow": 423,
+      "canonicalRow": 424,
       "sourceIssueReference": "Spider-Man/Daredevil 1",
       "sourceRangeReference": "Marvel Knights Daredevil: Unusual Suspects\nCollects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1",
       "normalizedSeriesTitle": "Spider-Man/Daredevil",
@@ -322,191 +323,7 @@
       "issueNumber": "1"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 335,
-      "sourceIssueReference": "Marvel Holiday Special #2",
-      "sourceRangeReference": "Daredevil Epic Collection Vol. 16: Dead Man's Hand\nCollects: Daredevil #301-311, Annual #8, Nomad #4-6, Punisher War Journal #45-47; material from Marvel Holiday Special #2.",
-      "normalizedSeriesTitle": "Marvel Holiday Special",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source supplies issue 2 without a year. The maintained provider search returns no matching Marvel Holiday Special issue 2, so no issue id is inferred.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel%20Holiday%20Special%202&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "19b43bf5bb556dacf03bcf3a711997ab22b855a6a58e2907519cf48dd72bdf8d",
-      "sourceGroup": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
-    },
-    {
-      "sourcePosition": 406,
-      "sourceIssueReference": "Daredevil/Deadpool Annual '97",
-      "sourceRangeReference": "Daredevil Epic Collection: Widow's Kiss\nCollects: Daredevil #365 to #380, Daredevil/Deadpool Annual '97",
-      "normalizedSeriesTitle": "Daredevil/Deadpool Annual",
-      "seriesYear": 1997,
-      "issueNumber": "Annual '97",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source labels this item as an annual but provides no provider-resolvable issue identity. The maintained provider search returns no matching record, so no issue id is invented.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%20Deadpool%20Annual%201997&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "b0d6a2595f5b34f6121882c4a539945b8cacaa697264bec076c958bed72249e2",
-      "sourceGroup": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
-    },
-    {
-      "sourcePosition": 748,
-      "sourceIssueReference": "Typhoid Fever: Daredevil 1",
-      "sourceRangeReference": "Typhoid Fever\nCollects: Typhoid Fever: Spider-Man 1, Typhoid Fever: Daredevil 1, Typhoid Fever: X-Men 1",
-      "normalizedSeriesTitle": "Typhoid Fever: Daredevil",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source names a Daredevil issue. The maintained provider has the matching Spider-Man and X-Men issues plus an Iron Fist issue, but no Typhoid Fever: Daredevil record, so no substitute is selected.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Typhoid%20Fever%20Daredevil%201&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "1c2e8c797ceffaa4faf78b4b2fa034b2f3d3b54e961566c9a1657e780c9d5a77",
-      "sourceGroup": "VIII) All-New All-Different Daredevil by Charles Soule"
-    },
-    {
-      "sourcePosition": 867,
-      "sourceIssueReference": "Marvel Team-Up #56",
-      "sourceRangeReference": "Greatest Spider-Man and Daredevil Team-Ups\nCollects: Collects The Amazing Spider-Man #'S 16, 396, Daredevil #270, Marvel Team-Up #'S 56, 73, The Spectacular Spider-Man #'S 26, 27, 28, 219.",
-      "normalizedSeriesTitle": "Marvel Team-Up",
-      "seriesYear": 1972,
-      "issueNumber": "56",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source includes Marvel Team-Up #56. The maintained provider series has no issue 56 record, so no issue id is inferred.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel%20Team-Up%2056&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "622905455fa837a17789bba5978c9a46608874fb0031801044545ec719cc2bd1",
-      "sourceGroup": "X) Team-Ups & Guest Spots"
-    },
-    {
-      "sourcePosition": 873,
-      "sourceIssueReference": "Daredevil and the Punisher: Child's Play (OGN)",
-      "sourceRangeReference": "Daredevil and the Punisher: Child's Play | Jan 1988 | Miller\nCollects: Ogn",
-      "normalizedSeriesTitle": "Daredevil and the Punisher: Child's Play",
-      "seriesYear": 1988,
-      "issueNumber": "OGN",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source supplies only an OGN label. The maintained provider search returns no matching issue record, so no issue id or number is inferred.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%20and%20Punisher%20Childs%20Play&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "d63c3d7eefa34914f9fc41da6cd483147566d6321298b3fff2251c2ee16cc8d4",
-      "sourceGroup": "X) Team-Ups & Guest Spots"
-    },
-    {
-      "sourcePosition": 878,
-      "sourceIssueReference": "Daredevil/Bullseye: The Target (OGN)",
-      "sourceRangeReference": "Daredevil/Bullseye: The Target\nCollects: Ogn",
-      "normalizedSeriesTitle": "Daredevil/Bullseye: The Target",
-      "seriesYear": null,
-      "issueNumber": "OGN",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source supplies only an OGN label and no year. The maintained provider search returns no matching issue record, so no issue id or number is inferred.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%20Bullseye%20Target&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "f2f98e81534e1f1e50c2858e520a26308a70636ca30dec86badc078c68148280",
-      "sourceGroup": "X) Team-Ups & Guest Spots"
-    },
-    {
-      "sourcePosition": 909,
-      "sourceIssueReference": "Defenders #11",
-      "sourceRangeReference": "Defenders Vol. 2: Kingpins of New York\nCollects: Defenders 6-11",
-      "normalizedSeriesTitle": "Defenders",
-      "seriesYear": 2017,
-      "issueNumber": "11",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source includes Defenders #11. The maintained provider series contains issues 1 through 10 only, so no issue id is inferred.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Defenders%202017%2011&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "41985ec13cc8e28b180788f3cde4a8e2a0718029003edc09238bfcdca93cce24",
-      "sourceGroup": "X) Team-Ups & Guest Spots"
-    }
-  ],
-  "expectedCount": 868,
+  "expectedCount": 869,
   "proposedManifest": {
     "id": "daredevil-reading-order",
     "name": "Daredevil",
@@ -537,7 +354,7 @@
       "Hell's Kitchen",
       "Comic Book Herald"
     ],
-    "expect": 875,
+    "expect": 869,
     "timeline": null,
     "coverIssueId": 8073
   },
@@ -5135,6 +4952,18 @@
       "candidateIssueId": null,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
+      "sourceGroup": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
+    },
+    {
+      "sourceIssueReference": "Daredevil/Deadpool Annual '97",
+      "sourceRangeReference": "Daredevil Epic Collection: Widow's Kiss\nCollects: Daredevil #365 to #380, Daredevil/Deadpool Annual '97",
+      "normalizedSeriesTitle": "Daredevil/Deadpool Annual",
+      "seriesYear": 1997,
+      "issueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 43192,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The owner supplied the exact official Marvel Unlimited issue page.",
       "sourceGroup": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
     },
     {
@@ -10972,8 +10801,166 @@
       "sourceGroup": "X) Team-Ups & Guest Spots"
     }
   ],
-  "packetDigest": "33b3e1b95901929cada0901cfbd71035e509e1cbc0caeb79a157e1e6fd9dd251",
+  "packetDigest": "1f399b15d14d4d755371b7438459a54e1b1026890b21872136abcac29631d0b3",
   "sourceGapResolutions": [
+    {
+      "sourcePosition": 335,
+      "previousSourceIssueReference": "Marvel Holiday Special #2",
+      "previousSourceRangeReference": "Daredevil Epic Collection Vol. 16: Dead Man's Hand\nCollects: Daredevil #301-311, Annual #8, Nomad #4-6, Punisher War Journal #45-47; material from Marvel Holiday Special #2.",
+      "previousNormalizedSeriesTitle": "Marvel Holiday Special",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed the 1992 Marvel Holiday Special source item is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue page is available.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel%20Holiday%20Special%201992&limit=50",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/287",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "checkedAt": "2026-08-30",
+      "evidenceDigest": "aefb8aa4286ca849ddedaf37e30aefa9defe17c5af4ab68bfe0c5eb88bb7836c"
+    },
+    {
+      "sourcePosition": 406,
+      "previousSourceIssueReference": "Daredevil/Deadpool Annual '97",
+      "previousSourceRangeReference": "Daredevil Epic Collection: Widow's Kiss\nCollects: Daredevil #365 to #380, Daredevil/Deadpool Annual '97",
+      "previousNormalizedSeriesTitle": "Daredevil/Deadpool Annual",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "Annual '97",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 43192,
+      "resolvedNormalizedSeriesTitle": "Daredevil/Deadpool Annual",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "The owner supplied the exact official Marvel issue page and confirmed that this annual is available through Marvel Unlimited.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/287",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "checkedAt": "2026-08-30",
+      "evidenceDigest": "88ab227b951d16ab112140884543ea1c10496589347c3072683c27206e2aafdc"
+    },
+    {
+      "sourcePosition": 748,
+      "previousSourceIssueReference": "Typhoid Fever: Daredevil 1",
+      "previousSourceRangeReference": "Typhoid Fever\nCollects: Typhoid Fever: Spider-Man 1, Typhoid Fever: Daredevil 1, Typhoid Fever: X-Men 1",
+      "previousNormalizedSeriesTitle": "Typhoid Fever: Daredevil",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed that no Typhoid Fever: Daredevil issue exists in the 2018 event.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "auditBasis": "The reviewed event contains Spider-Man, X-Men, and Iron Fist issues only, so no neighboring issue may substitute for the source title.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Typhoid%20Fever&limit=50",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/287",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "checkedAt": "2026-08-30",
+      "evidenceDigest": "6c652c040cd9b80b7cc8500fcadc92c92dc2d216a1a2e4050017770fb3005a42"
+    },
+    {
+      "sourcePosition": 867,
+      "previousSourceIssueReference": "Marvel Team-Up #56",
+      "previousSourceRangeReference": "Greatest Spider-Man and Daredevil Team-Ups\nCollects: Collects The Amazing Spider-Man #'S 16, 396, Daredevil #270, Marvel Team-Up #'S 56, 73, The Spectacular Spider-Man #'S 26, 27, 28, 219.",
+      "previousNormalizedSeriesTitle": "Marvel Team-Up",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "56",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marvel Team-Up #56 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue page is available.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/3716/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/287",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "checkedAt": "2026-08-30",
+      "evidenceDigest": "198056d5691713bb514d0e18963860bbb97a520bda097b1a1ca8282b9064df90"
+    },
+    {
+      "sourcePosition": 873,
+      "previousSourceIssueReference": "Daredevil and the Punisher: Child's Play (OGN)",
+      "previousSourceRangeReference": "Daredevil and the Punisher: Child's Play | Jan 1988 | Miller\nCollects: Ogn",
+      "previousNormalizedSeriesTitle": "Daredevil and the Punisher: Child's Play",
+      "previousSeriesYear": 1988,
+      "previousIssueNumber": "OGN",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Daredevil and the Punisher: Child's Play is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue page is available.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%20Punisher%20Childs%20Play&limit=50",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/287",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "checkedAt": "2026-08-30",
+      "evidenceDigest": "663b541d20992dcc15a20cdcffcfda25a27318eee8f53ce2091fdeca205a7047"
+    },
+    {
+      "sourcePosition": 878,
+      "previousSourceIssueReference": "Daredevil/Bullseye: The Target (OGN)",
+      "previousSourceRangeReference": "Daredevil/Bullseye: The Target\nCollects: Ogn",
+      "previousNormalizedSeriesTitle": "Daredevil/Bullseye: The Target",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "OGN",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Daredevil/Bullseye: The Target #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after confirming that Marvel Unlimited contains zero of the one published issue.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%20Bullseye%20Target&limit=50",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/287",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "checkedAt": "2026-08-30",
+      "evidenceDigest": "2b22165a034341bc2bdd82f9bbc4e51aa81427987bd3c3acab8352030c603f1c"
+    },
     {
       "sourcePosition": 879,
       "previousSourceIssueReference": "Daredevil/Spider-Man (OGN)",
@@ -10982,7 +10969,7 @@
       "previousSeriesYear": null,
       "previousIssueNumber": "OGN",
       "resolutionKind": "canonical-repeat",
-      "canonicalRow": 423,
+      "canonicalRow": 424,
       "selectedIssueId": 18826,
       "checkedAt": "2026-08-30",
       "auditBasis": "The source names one OGN occurrence, while the provider exposes one 2002 Spider-Man/Daredevil issue and separately exposes the four 2001 Daredevil/Spider-Man issues that the source lists later. The singular source occurrence therefore repeats the 2002 one-shot already published at its first source occurrence.",
@@ -11003,7 +10990,76 @@
           "retrievedAt": "2026-08-30"
         }
       ],
-      "evidenceDigest": "1e1471fe9ac0812491448da024dcdcc2bee7d281b186737081490486726a9e0c"
+      "evidenceDigest": "44726ecb67157c6d85c03724b1d87e6d911b72cec4b8519bd6cb451cb49218e2"
+    },
+    {
+      "sourcePosition": 909,
+      "previousSourceIssueReference": "Defenders #11",
+      "previousSourceRangeReference": "Defenders Vol. 2: Kingpins of New York\nCollects: Defenders 6-11",
+      "previousNormalizedSeriesTitle": "Defenders",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "11",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed that Defenders (2017) ends at #10 and source issue #11 does not exist.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "auditBasis": "The official and metadata series listings end at issue #10, so no issue may substitute for source issue #11.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-api",
+          "url": "https://marvel.emreparker.com/v1/series/23074/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "official-marvel-series",
+          "url": "https://www.marvel.com/comics/series/23074/defenders_2017_-_present",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/287",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "checkedAt": "2026-08-30",
+      "evidenceDigest": "0ccd4cf38703bd794ed17a684db68bad105f3b87b8b7b585c0d0b2ada5d2493c"
+    }
+  ],
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 335,
+      "sourceIssueReference": "Marvel Holiday Special #2",
+      "reason": "The owner confirmed the 1992 Marvel Holiday Special source item is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 748,
+      "sourceIssueReference": "Typhoid Fever: Daredevil 1",
+      "reason": "The owner confirmed that no Typhoid Fever: Daredevil issue exists in the 2018 event.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion"
+    },
+    {
+      "sourcePosition": 867,
+      "sourceIssueReference": "Marvel Team-Up #56",
+      "reason": "The owner confirmed Marvel Team-Up #56 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 873,
+      "sourceIssueReference": "Daredevil and the Punisher: Child's Play (OGN)",
+      "reason": "The owner confirmed Daredevil and the Punisher: Child's Play is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 878,
+      "sourceIssueReference": "Daredevil/Bullseye: The Target (OGN)",
+      "reason": "The owner confirmed Daredevil/Bullseye: The Target #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 909,
+      "sourceIssueReference": "Defenders #11",
+      "reason": "The owner confirmed that Defenders (2017) ends at #10 and source issue #11 does not exist.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion"
     }
   ]
 }
