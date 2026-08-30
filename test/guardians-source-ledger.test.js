@@ -655,6 +655,12 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
   assert.ok(record);
   assert.deepEqual(record.catalogIds, ['guardians-of-the-galaxy-reading-order']);
   assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.deepEqual(
+    record.overlapIds,
+    report.comparisons
+      .filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => comparison.orderId),
+  );
   assert.ok(manifest.lists.some((entry) => entry.id === ledger.id));
   const guardiansCatalog = catalog.lists.find((entry) => entry.id === ledger.id);
   assert.ok(guardiansCatalog);

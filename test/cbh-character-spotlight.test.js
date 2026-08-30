@@ -705,7 +705,7 @@ test('the character inventory preserves every central disposition, ships thirty-
   ]);
   assert.equal(shippedById.get('the-defenders-reading-order').overlapIds.length, 19);
   assert.deepEqual(shippedById.get(moonKnightCandidateId).catalogIds, [moonKnightCandidateId]);
-  assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 17);
+  assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 18);
   assert.deepEqual(shippedById.get('daredevil-reading-order').catalogIds, ['daredevil-reading-order']);
   assert.deepEqual(shippedById.get(abominationCandidateId).catalogIds, [abominationCandidateId]);
   assert.deepEqual(shippedById.get(abominationCandidateId).overlapIds, [
@@ -2261,6 +2261,12 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
 
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.deepEqual(
+    record.overlapIds,
+    report.comparisons
+      .filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => comparison.orderId),
+  );
   assert.equal(packet.sourceOccurrenceCount, 414);
   assert.equal(packet.rows.length, 374);
   assert.equal(packet.repeatedSourceReferences.length, 11);
