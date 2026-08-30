@@ -2,7 +2,7 @@
 
 Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen daredevil-reading-order issue mapping.
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
-The frozen source records 909 issue occurrences, including 33 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
+The frozen source records 909 issue occurrences, including 34 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
 No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
@@ -1045,9 +1045,6 @@ Collects: Venom On Trial #1-3
 ## Daredevil/Bullseye: The Target
 Collects: Ogn
 - [ ] Daredevil/Bullseye: The Target (OGN)
-## Daredevil/Spider-Man
-Collects: Ogn
-- [ ] Daredevil/Spider-Man (OGN)
 ## Marvel Knights Daredevil: Unusual Suspects
 Collects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1
 - [ ] [Daredevil Ninja (2000) #1](https://www.marvel.com/comics/issue/75104/daredevil_ninja_2000_1)

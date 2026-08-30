@@ -106,13 +106,17 @@ none is substituted or silently removed.
 
 The Daredevil Character Spotlight guide follows the full page because it has no separate qualifying
 Best Comics or Essential Comics section. Its frozen source preserves 909 occurrences: 868 exact
-issue identities, 33 repeated occurrences, and 8 explicit provider gaps. The published checklist
-keeps each gap at its source position as a non-linked placeholder: Marvel Holiday Special #2;
-Daredevil/Deadpool Annual '97; Typhoid Fever: Daredevil #1; Marvel Team-Up #56; Daredevil and the
-Punisher: Child's Play (OGN); Daredevil/Bullseye: The Target (OGN); Daredevil/Spider-Man (OGN); and
-Defenders #11. The separate [gap follow-up issue](https://github.com/raymond-nassar/recap-page/issues/287)
-holds only future one-to-one identity research. The source range, source position, and unresolved
-status remain intact unless exact provider evidence resolves an identity.
+issue identities, 34 repeated occurrences, and 7 explicit provider gaps. A provider recheck on
+2026-08-30 identified the source's singular Daredevil/Spider-Man OGN reference as the
+[Spider-Man/Daredevil (2002) #1](https://marvel.emreparker.com/v1/issues/18826) one-shot already
+published at its first source occurrence, so the later source position remains in repeat provenance
+without producing a duplicate checklist row. The published checklist keeps every remaining gap at
+its source position as a non-linked placeholder: Marvel Holiday Special #2; Daredevil/Deadpool
+Annual '97; Typhoid Fever: Daredevil #1; Marvel Team-Up #56; Daredevil and the Punisher: Child's
+Play (OGN); Daredevil/Bullseye: The Target (OGN); and Defenders #11. The separate
+[gap follow-up issue](https://github.com/raymond-nassar/recap-page/issues/287) holds one-to-one
+identity research. The source range, source position, and unresolved status remain intact unless
+exact provider evidence resolves an identity.
 
 The complete-library report compares Daredevil with 153 reading lists. It records 19 approved
 partial relationships, 1 approved existing-subset relationship, and 133 relationships with no

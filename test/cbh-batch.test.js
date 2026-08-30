@@ -25,11 +25,13 @@ import {
 import {
   approvalDigestFor,
   assertGapTransition,
+  assertMappingMatchesPacketOccurrences,
   gapEvidenceDigestFor,
   libraryDigestFor,
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
+  sourceGapResolutionDigestFor,
   sourceOccurrenceCountFor,
   sourcePositionsForPacket,
   validateBatchNoDuplicates,
@@ -205,6 +207,9 @@ function genericMapping(packet, id = packet.id) {
       : {
         sourceOccurrenceCount: packet.sourceOccurrenceCount,
         repeatedSourceReferences: structuredClone(packet.repeatedSourceReferences),
+        ...(packet.sourceGapResolutions == null
+          ? {}
+          : { sourceGapResolutions: structuredClone(packet.sourceGapResolutions) }),
       }),
     proposedManifest: packet.proposedManifest,
     candidateMetadata: [],
@@ -366,11 +371,167 @@ function packetForOccurrenceShape(uniqueCount, repeated) {
   return packet;
 }
 
-test('open source gaps close only as the same exact identity or an availability exclusion', () => {
+test('open source gaps close only as the same exact identity, a reviewed repeat, or an availability exclusion', () => {
   const openPacket = genericGapPacket();
+  const legacyPacketWithResolution = genericPacket();
+  delete legacyPacketWithResolution.sourceOccurrenceCount;
+  delete legacyPacketWithResolution.repeatedSourceReferences;
+  legacyPacketWithResolution.sourceGapResolutions = [{ entirely: 'invalid and unauthenticated' }];
+  legacyPacketWithResolution.packetDigest = packetDigestFor(legacyPacketWithResolution);
+  assert.throws(
+    () => validateFrozenPacket(legacyPacketWithResolution),
+    /sourceOccurrenceCount and supplemental source rows must appear together/i,
+  );
+
   const exactPacket = genericPacket();
   const exactMapping = genericMapping(exactPacket);
   assert.doesNotThrow(() => assertGapTransition(openPacket, exactPacket, exactMapping));
+
+  const aliasedGapPacket = genericGapPacket();
+  Object.assign(aliasedGapPacket.sourceGaps[0], {
+    sourceIssueReference: 'Daredevil/Spider-Man (OGN)',
+    sourceRangeReference: 'Daredevil/Spider-Man\nCollects: Ogn',
+    normalizedSeriesTitle: 'Daredevil/Spider-Man',
+    seriesYear: null,
+    issueNumber: 'OGN',
+  });
+  aliasedGapPacket.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(
+    aliasedGapPacket.sourceGaps[0],
+  );
+  aliasedGapPacket.packetDigest = packetDigestFor(aliasedGapPacket);
+
+  const repeatedPacket = structuredClone(aliasedGapPacket);
+  delete repeatedPacket.sourceGaps;
+  Object.assign(repeatedPacket.rows[0], {
+    sourceIssueReference: 'Spider-Man/Daredevil #1',
+    normalizedSeriesTitle: 'Spider-Man/Daredevil',
+    seriesYear: 2002,
+    issueNumber: '1',
+    seriesId: 3687,
+    candidateIssueId: 18826,
+  });
+  repeatedPacket.repeatedSourceReferences = [{
+    sourcePosition: 2,
+    canonicalRow: 1,
+    sourceIssueReference: aliasedGapPacket.sourceGaps[0].sourceIssueReference,
+    sourceRangeReference: aliasedGapPacket.sourceGaps[0].sourceRangeReference,
+    normalizedSeriesTitle: repeatedPacket.rows[0].normalizedSeriesTitle,
+    seriesYear: repeatedPacket.rows[0].seriesYear,
+    issueNumber: repeatedPacket.rows[0].issueNumber,
+  }];
+  repeatedPacket.sourceGapResolutions = [{
+    sourcePosition: 2,
+    previousSourceIssueReference: aliasedGapPacket.sourceGaps[0].sourceIssueReference,
+    previousSourceRangeReference: aliasedGapPacket.sourceGaps[0].sourceRangeReference,
+    previousNormalizedSeriesTitle: aliasedGapPacket.sourceGaps[0].normalizedSeriesTitle,
+    previousSeriesYear: aliasedGapPacket.sourceGaps[0].seriesYear,
+    previousIssueNumber: aliasedGapPacket.sourceGaps[0].issueNumber,
+    resolutionKind: 'canonical-repeat',
+    canonicalRow: 1,
+    selectedIssueId: 18826,
+    checkedAt: '2026-08-30',
+    auditBasis: 'The provider identifies the reversed-title source alias as this canonical one-shot.',
+    evidenceSources: [{
+      kind: 'metadata-api-issue',
+      url: 'https://marvel.emreparker.com/v1/issues/18826',
+      retrievedAt: '2026-08-30',
+    }],
+  }];
+  repeatedPacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
+    repeatedPacket.sourceGapResolutions[0],
+  );
+  repeatedPacket.packetDigest = packetDigestFor(repeatedPacket);
+  const repeatedMapping = genericMapping(repeatedPacket);
+  repeatedMapping.rows = repeatedMapping.rows.slice(0, 1);
+  Object.assign(repeatedMapping.rows[0], {
+    sourceIssueReference: repeatedPacket.rows[0].sourceIssueReference,
+    normalizedSeriesTitle: repeatedPacket.rows[0].normalizedSeriesTitle,
+    seriesYear: repeatedPacket.rows[0].seriesYear,
+    issueNumber: repeatedPacket.rows[0].issueNumber,
+    seriesId: repeatedPacket.rows[0].seriesId,
+    candidateIssueId: repeatedPacket.rows[0].candidateIssueId,
+    candidateIssueIds: ['18826'],
+    selectedIssueId: 18826,
+    marvelIssueUrl: 'https://www.marvel.com/comics/issue/18826/spider-mandaredevil_2002_1',
+    resolvedIssueTitle: 'Spider-Man/Daredevil (2002) #1',
+  });
+  repeatedMapping.mappingDigest = mappingDigestFor(repeatedMapping);
+  assert.doesNotThrow(() => assertGapTransition(
+    aliasedGapPacket,
+    repeatedPacket,
+    repeatedMapping,
+  ));
+
+  const mismatchedIssuePacket = structuredClone(repeatedPacket);
+  mismatchedIssuePacket.sourceGapResolutions[0].selectedIssueId = 999999;
+  mismatchedIssuePacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
+    mismatchedIssuePacket.sourceGapResolutions[0],
+  );
+  mismatchedIssuePacket.packetDigest = packetDigestFor(mismatchedIssuePacket);
+  const mismatchedIssueMapping = structuredClone(repeatedMapping);
+  mismatchedIssueMapping.packetDigest = mismatchedIssuePacket.packetDigest;
+  mismatchedIssueMapping.sourceGapResolutions = structuredClone(
+    mismatchedIssuePacket.sourceGapResolutions,
+  );
+  mismatchedIssueMapping.mappingDigest = mappingDigestFor(mismatchedIssueMapping);
+  assert.throws(
+    () => assertMappingMatchesPacketOccurrences(
+      mismatchedIssuePacket,
+      mismatchedIssueMapping,
+    ),
+    /selectedIssueId differs from its canonical mapping row/i,
+  );
+
+  for (const field of ['sourceIssueReference', 'sourceRangeReference']) {
+    const changedRepeatPacket = structuredClone(repeatedPacket);
+    changedRepeatPacket.repeatedSourceReferences[0][field] += ' changed';
+    changedRepeatPacket.packetDigest = packetDigestFor(changedRepeatPacket);
+    assert.throws(
+      () => assertGapTransition(aliasedGapPacket, changedRepeatPacket, repeatedMapping),
+      /does not match its resolved repeated source reference/i,
+    );
+  }
+
+  const missingResolutionPacket = structuredClone(repeatedPacket);
+  delete missingResolutionPacket.sourceGapResolutions;
+  missingResolutionPacket.packetDigest = packetDigestFor(missingResolutionPacket);
+  const missingResolutionMapping = structuredClone(repeatedMapping);
+  delete missingResolutionMapping.sourceGapResolutions;
+  missingResolutionMapping.packetDigest = missingResolutionPacket.packetDigest;
+  missingResolutionMapping.mappingDigest = mappingDigestFor(missingResolutionMapping);
+  assert.throws(
+    () => assertGapTransition(
+      aliasedGapPacket,
+      missingResolutionPacket,
+      missingResolutionMapping,
+    ),
+    /cannot become a canonical repeat/i,
+  );
+
+  const unrelatedGapPacket = structuredClone(aliasedGapPacket);
+  Object.assign(unrelatedGapPacket.sourceGaps[0], {
+    sourceIssueReference: 'Defenders #11',
+    sourceRangeReference: 'Defenders Vol. 2\nCollects: Defenders 6-11',
+    normalizedSeriesTitle: 'Defenders',
+    seriesYear: 2017,
+    issueNumber: '11',
+  });
+  unrelatedGapPacket.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(
+    unrelatedGapPacket.sourceGaps[0],
+  );
+  unrelatedGapPacket.packetDigest = packetDigestFor(unrelatedGapPacket);
+  assert.throws(
+    () => assertGapTransition(unrelatedGapPacket, repeatedPacket, repeatedMapping),
+    /mismatched repeat resolution evidence/i,
+  );
+
+  const invalidRepeatPacket = structuredClone(repeatedPacket);
+  invalidRepeatPacket.repeatedSourceReferences[0].canonicalRow = 2;
+  invalidRepeatPacket.packetDigest = packetDigestFor(invalidRepeatPacket);
+  assert.throws(
+    () => assertGapTransition(aliasedGapPacket, invalidRepeatPacket, repeatedMapping),
+    /canonicalRow must name a canonical packet row/i,
+  );
 
   const yearlessGap = structuredClone(openPacket);
   yearlessGap.sourceGaps[0].seriesYear = null;

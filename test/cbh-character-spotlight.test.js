@@ -7,6 +7,7 @@ import {
   approvalDigestFor,
   libraryDigestFor,
   packetDigestFor,
+  sourceGapResolutionDigestFor,
   sourcePositionsForPacket,
   validateFrozenPacket,
   validateInventoryState,
@@ -889,7 +890,7 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   assert.equal(record.centralDisposition, 'pilot-approved');
   assert.deepEqual(record.catalogIds, [id]);
   assert.equal(manifest.lists.some((entry) => entry.id === id), true);
-  assert.equal(catalog.lists.find((entry) => entry.id === id).count, 876);
+  assert.equal(catalog.lists.find((entry) => entry.id === id).count, 875);
   assert.equal(catalog.lists.find((entry) => entry.id === id).coverIssueId, 8073);
   assert.equal(Object.hasOwn(packet, 'sourceGroups'), false);
   assert.equal(Object.hasOwn(mapping, 'sourceGroups'), false);
@@ -898,8 +899,139 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   assert.equal(mapping.approvedManifest.coverIssueId, 8073);
   assert.equal(packet.sourceOccurrenceCount, 909);
   assert.equal(packet.rows.length, 868);
-  assert.equal(packet.repeatedSourceReferences.length, 33);
-  assert.equal(packet.sourceGaps.length, 8);
+  assert.equal(packet.repeatedSourceReferences.length, 34);
+  assert.equal(packet.sourceGaps.length, 7);
+  assert.deepEqual(report.sourceCounts, {
+    sourceOccurrenceCount: 909,
+    sourceIdentityCount: 875,
+    includedIssueCount: 868,
+    sourceGapCount: 7,
+    repeatedSourceReferenceCount: 34,
+  });
+  assert.deepEqual(mapping.relationshipReview.sourceCounts, report.sourceCounts);
+  assert.deepEqual(
+    packet.sourceGaps.map((gap) => ({
+      sourcePosition: gap.sourcePosition,
+      sourceIssueReference: gap.sourceIssueReference,
+      sourceRangeReference: gap.sourceRangeReference,
+      normalizedSeriesTitle: gap.normalizedSeriesTitle,
+      seriesYear: gap.seriesYear,
+      issueNumber: gap.issueNumber,
+    })),
+    [
+      {
+        sourcePosition: 335,
+        sourceIssueReference: 'Marvel Holiday Special #2',
+        sourceRangeReference: "Daredevil Epic Collection Vol. 16: Dead Man's Hand\nCollects: Daredevil #301-311, Annual #8, Nomad #4-6, Punisher War Journal #45-47; material from Marvel Holiday Special #2.",
+        normalizedSeriesTitle: 'Marvel Holiday Special',
+        seriesYear: null,
+        issueNumber: '2',
+      },
+      {
+        sourcePosition: 406,
+        sourceIssueReference: "Daredevil/Deadpool Annual '97",
+        sourceRangeReference: "Daredevil Epic Collection: Widow's Kiss\nCollects: Daredevil #365 to #380, Daredevil/Deadpool Annual '97",
+        normalizedSeriesTitle: 'Daredevil/Deadpool Annual',
+        seriesYear: 1997,
+        issueNumber: "Annual '97",
+      },
+      {
+        sourcePosition: 748,
+        sourceIssueReference: 'Typhoid Fever: Daredevil 1',
+        sourceRangeReference: 'Typhoid Fever\nCollects: Typhoid Fever: Spider-Man 1, Typhoid Fever: Daredevil 1, Typhoid Fever: X-Men 1',
+        normalizedSeriesTitle: 'Typhoid Fever: Daredevil',
+        seriesYear: 2018,
+        issueNumber: '1',
+      },
+      {
+        sourcePosition: 867,
+        sourceIssueReference: 'Marvel Team-Up #56',
+        sourceRangeReference: "Greatest Spider-Man and Daredevil Team-Ups\nCollects: Collects The Amazing Spider-Man #'S 16, 396, Daredevil #270, Marvel Team-Up #'S 56, 73, The Spectacular Spider-Man #'S 26, 27, 28, 219.",
+        normalizedSeriesTitle: 'Marvel Team-Up',
+        seriesYear: 1972,
+        issueNumber: '56',
+      },
+      {
+        sourcePosition: 873,
+        sourceIssueReference: "Daredevil and the Punisher: Child's Play (OGN)",
+        sourceRangeReference: "Daredevil and the Punisher: Child's Play | Jan 1988 | Miller\nCollects: Ogn",
+        normalizedSeriesTitle: "Daredevil and the Punisher: Child's Play",
+        seriesYear: 1988,
+        issueNumber: 'OGN',
+      },
+      {
+        sourcePosition: 878,
+        sourceIssueReference: 'Daredevil/Bullseye: The Target (OGN)',
+        sourceRangeReference: 'Daredevil/Bullseye: The Target\nCollects: Ogn',
+        normalizedSeriesTitle: 'Daredevil/Bullseye: The Target',
+        seriesYear: null,
+        issueNumber: 'OGN',
+      },
+      {
+        sourcePosition: 909,
+        sourceIssueReference: 'Defenders #11',
+        sourceRangeReference: 'Defenders Vol. 2: Kingpins of New York\nCollects: Defenders 6-11',
+        normalizedSeriesTitle: 'Defenders',
+        seriesYear: 2017,
+        issueNumber: '11',
+      },
+    ],
+  );
+  assert.deepEqual(
+    packet.repeatedSourceReferences.find((reference) => reference.sourcePosition === 879),
+    {
+      sourcePosition: 879,
+      canonicalRow: 423,
+      sourceIssueReference: 'Daredevil/Spider-Man (OGN)',
+      sourceRangeReference: 'Daredevil/Spider-Man\nCollects: Ogn',
+      normalizedSeriesTitle: 'Spider-Man/Daredevil',
+      seriesYear: 2002,
+      issueNumber: '1',
+    },
+  );
+  const gapResolution = packet.sourceGapResolutions.find(
+    (resolution) => resolution.sourcePosition === 879,
+  );
+  assert.deepEqual(
+    {
+      ...gapResolution,
+      evidenceDigest: undefined,
+    },
+    {
+      sourcePosition: 879,
+      previousSourceIssueReference: 'Daredevil/Spider-Man (OGN)',
+      previousSourceRangeReference: 'Daredevil/Spider-Man\nCollects: Ogn',
+      previousNormalizedSeriesTitle: 'Daredevil/Spider-Man',
+      previousSeriesYear: null,
+      previousIssueNumber: 'OGN',
+      resolutionKind: 'canonical-repeat',
+      canonicalRow: 423,
+      selectedIssueId: 18826,
+      checkedAt: '2026-08-30',
+      auditBasis: 'The source names one OGN occurrence, while the provider exposes one 2002 Spider-Man/Daredevil issue and separately exposes the four 2001 Daredevil/Spider-Man issues that the source lists later. The singular source occurrence therefore repeats the 2002 one-shot already published at its first source occurrence.',
+      evidenceSources: [
+        {
+          kind: 'bibliographic-record',
+          url: 'https://www.comics.org/issue/113207/',
+          retrievedAt: '2026-08-30',
+        },
+        {
+          kind: 'metadata-api-issue',
+          url: 'https://marvel.emreparker.com/v1/issues/18826',
+          retrievedAt: '2026-08-30',
+        },
+        {
+          kind: 'metadata-api-search',
+          url: 'https://marvel.emreparker.com/v1/search/issues?q=Spider-Man%20Daredevil&limit=50',
+          retrievedAt: '2026-08-30',
+        },
+      ],
+      evidenceDigest: undefined,
+    },
+  );
+  assert.equal(gapResolution.evidenceDigest, sourceGapResolutionDigestFor(gapResolution));
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.equal(mapping.rows[422].selectedIssueId, 18826);
   assert.equal(report.comparisonCount, 154);
   assert.equal(mapping.relationshipReview.dispositions.length, 154);
   assert.ok(packet.rows.every((row) => typeof row.sourceGroup === 'string' && row.sourceGroup));
@@ -919,13 +1051,17 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
     parsed.entries.map((entry) => String(entry.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
+  assert.equal(parsed.entries.filter((entry) => entry.issueId === 18826).length, 1);
+  assert.doesNotMatch(markdown, /Daredevil\/Spider-Man \(OGN\)/);
   assert.deepEqual(
     generated.items.filter((item) => !item.placeholder).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
   assert.equal(generated.items.find((item) => item.issueId === 8073).cover.path.length > 0, true);
-  assert.equal(generated.count, 876);
-  assert.equal(generated.placeholders, 8);
+  assert.equal(generated.count, 875);
+  assert.equal(generated.collections, 11);
+  assert.equal(generated.placeholders, 7);
+  assert.equal(generated.items.filter((item) => item.issueId === 18826).length, 1);
   assert.deepEqual(
     generated.unresolved.map((gap) => gap.title),
     packet.sourceGaps.map((gap) => gap.sourceIssueReference),

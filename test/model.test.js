@@ -1039,7 +1039,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Deadpool guide adds two provider-metadata gaps with official issue identities. Black Panther
   // adds four source-preserving metadata gaps with distinct negative identifiers. Doctor Strange
   // adds 39 source-preserving metadata gaps with distinct negative identifiers. Daredevil adds
-  // eight more source-preserving metadata gaps with distinct negative identifiers. Venom adds 33
+  // seven more source-preserving metadata gaps with distinct negative identifiers. Venom adds 33
   // further source-preserving metadata gaps with distinct negative identifiers. Punisher adds 158
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
   // Magneto adds 58 cached-provider gaps. Loki adds 18 distinct source-occurrence gaps. Silver
@@ -1049,8 +1049,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // provider gaps, Guardians adds 29, and Defenders adds 23 without substituting a source identity.
   // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
   // claiming a metadata match.
-  assert.equal(claimed, 1892, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1891, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1891, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1890, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 85);
   assert.equal(affected, 6);
 });
@@ -1246,12 +1246,12 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // America adds 69 placeholders, 68 of which are new negative identifiers because its cover
   // record already has a pinned Marvel issue id. Deadpool adds two official issue identities
   // that the provider also cannot answer. Black Panther adds four negative placeholder identifiers.
-  // Doctor Strange adds 39 more negative placeholder identifiers. Venom adds 33 more negative
-  // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
+  // Doctor Strange adds 39 more negative placeholder identifiers. Daredevil adds seven, Venom adds
+  // 33 more negative placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
   // adds 23, and Nick Fury and S.H.I.E.L.D. adds 194.
-  assert.equal(refused.length, 1943);
+  assert.equal(refused.length, 1942);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

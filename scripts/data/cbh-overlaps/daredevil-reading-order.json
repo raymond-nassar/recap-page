@@ -1,15 +1,15 @@
 {
   "candidateId": "daredevil-reading-order",
-  "packetDigest": "38e20060c4273a817c3c1d6133c13461ce0520332feb981bb4d156d7f778f36f",
-  "mappingDigest": "4ecb083c6de5089b754d8322e21d95c369a9988023f9d4930e192364b89a8683",
+  "packetDigest": "33b3e1b95901929cada0901cfbd71035e509e1cbc0caeb79a157e1e6fd9dd251",
+  "mappingDigest": "f4c2f91adb56e78de9528abc1ae079a58a0d91295ae145df18367edd504cd9db",
   "libraryDigest": "417871293e4a3afd39c4fb7c847969a191d606d23b7560487bb49d25ec439781",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 909,
-    "sourceIdentityCount": 876,
+    "sourceIdentityCount": 875,
     "includedIssueCount": 868,
-    "sourceGapCount": 8,
-    "repeatedSourceReferenceCount": 33
+    "sourceGapCount": 7,
+    "repeatedSourceReferenceCount": 34
   },
   "candidateCount": 868,
   "comparisonCount": 154,
@@ -1212,5 +1212,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "3b100d97b3d2a0f7fa8331efdfc267de7e5444fa7f9533773638c045ec7c0b0e"
+  "reportDigest": "d7e92eae6219e4f98110c0e38dea7ee899d905844e89b54fcda5ed7d421c0dd8"
 }

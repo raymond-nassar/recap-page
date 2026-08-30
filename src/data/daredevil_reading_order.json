@@ -7,65 +7,58 @@
   "sourceLicense": null,
   "generatedAt": "2026-08-27T13:18:34.558Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 876,
+  "count": 875,
   "collections": 11,
-  "placeholders": 8,
+  "placeholders": 7,
   "unresolved": [
     {
       "title": "Marvel Holiday Special #2",
       "url": null,
       "read": false,
       "index": 317,
-      "section": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
+      "section": "Daredevil Epic Collection Vol. 16: Dead Man's Hand"
     },
     {
       "title": "Daredevil/Deadpool Annual '97",
       "url": null,
       "read": false,
       "index": 383,
-      "section": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
+      "section": "Daredevil Epic Collection: Widow's Kiss"
     },
     {
       "title": "Typhoid Fever: Daredevil 1",
       "url": null,
       "read": false,
       "index": 725,
-      "section": "VIII) All-New All-Different Daredevil by Charles Soule"
+      "section": "Typhoid Fever"
     },
     {
       "title": "Marvel Team-Up #56",
       "url": null,
       "read": false,
       "index": 842,
-      "section": "X) Team-Ups & Guest Spots"
+      "section": "Greatest Spider-Man and Daredevil Team-Ups"
     },
     {
       "title": "Daredevil and the Punisher: Child's Play (OGN)",
       "url": null,
       "read": false,
       "index": 846,
-      "section": "X) Team-Ups & Guest Spots"
+      "section": "Daredevil and the Punisher: Child's Play | Jan 1988 | Miller"
     },
     {
       "title": "Daredevil/Bullseye: The Target (OGN)",
       "url": null,
       "read": false,
       "index": 850,
-      "section": "X) Team-Ups & Guest Spots"
-    },
-    {
-      "title": "Daredevil/Spider-Man (OGN)",
-      "url": null,
-      "read": false,
-      "index": 851,
-      "section": "X) Team-Ups & Guest Spots"
+      "section": "Daredevil/Bullseye: The Target"
     },
     {
       "title": "Defenders #11",
       "url": null,
       "read": false,
-      "index": 875,
-      "section": "X) Team-Ups & Guest Spots"
+      "index": 874,
+      "section": "Defenders Vol. 2: Kingpins of New York"
     }
   ],
   "items": [
@@ -26594,23 +26587,6 @@
     {
       "issueId": -1907726369,
       "title": "Daredevil/Bullseye: The Target (OGN)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) Team-Ups & Guest Spots"
-    },
-    {
-      "issueId": -851019746,
-      "title": "Daredevil/Spider-Man (OGN)",
       "number": null,
       "url": null,
       "seriesId": null,

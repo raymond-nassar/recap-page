@@ -259,6 +259,15 @@
       "issueNumber": "OGN"
     },
     {
+      "sourcePosition": 879,
+      "canonicalRow": 423,
+      "sourceIssueReference": "Daredevil/Spider-Man (OGN)",
+      "sourceRangeReference": "Daredevil/Spider-Man\nCollects: Ogn",
+      "normalizedSeriesTitle": "Spider-Man/Daredevil",
+      "seriesYear": 2002,
+      "issueNumber": "1"
+    },
+    {
       "sourcePosition": 893,
       "canonicalRow": 493,
       "sourceIssueReference": "Daredevil (1998) 51",
@@ -471,32 +480,6 @@
       "sourceGroup": "X) Team-Ups & Guest Spots"
     },
     {
-      "sourcePosition": 879,
-      "sourceIssueReference": "Daredevil/Spider-Man (OGN)",
-      "sourceRangeReference": "Daredevil/Spider-Man\nCollects: Ogn",
-      "normalizedSeriesTitle": "Daredevil/Spider-Man",
-      "seriesYear": null,
-      "issueNumber": "OGN",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source supplies only an OGN label. The separately named Daredevil/Spider-Man #1-4 run appears later, but no source evidence permits treating this collection label as any one of those issues.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%20Spider-Man%20OGN&limit=50",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/daredevil-reading-order/",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "a58461a520cf137d6f6d1093f6dd673d4c36aedff6dae0dfb173dbc75254a4cd",
-      "sourceGroup": "X) Team-Ups & Guest Spots"
-    },
-    {
       "sourcePosition": 909,
       "sourceIssueReference": "Defenders #11",
       "sourceRangeReference": "Defenders Vol. 2: Kingpins of New York\nCollects: Defenders 6-11",
@@ -554,7 +537,7 @@
       "Hell's Kitchen",
       "Comic Book Herald"
     ],
-    "expect": 876,
+    "expect": 875,
     "timeline": null,
     "coverIssueId": 8073
   },
@@ -10989,5 +10972,38 @@
       "sourceGroup": "X) Team-Ups & Guest Spots"
     }
   ],
-  "packetDigest": "38e20060c4273a817c3c1d6133c13461ce0520332feb981bb4d156d7f778f36f"
+  "packetDigest": "33b3e1b95901929cada0901cfbd71035e509e1cbc0caeb79a157e1e6fd9dd251",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 879,
+      "previousSourceIssueReference": "Daredevil/Spider-Man (OGN)",
+      "previousSourceRangeReference": "Daredevil/Spider-Man\nCollects: Ogn",
+      "previousNormalizedSeriesTitle": "Daredevil/Spider-Man",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "OGN",
+      "resolutionKind": "canonical-repeat",
+      "canonicalRow": 423,
+      "selectedIssueId": 18826,
+      "checkedAt": "2026-08-30",
+      "auditBasis": "The source names one OGN occurrence, while the provider exposes one 2002 Spider-Man/Daredevil issue and separately exposes the four 2001 Daredevil/Spider-Man issues that the source lists later. The singular source occurrence therefore repeats the 2002 one-shot already published at its first source occurrence.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-record",
+          "url": "https://www.comics.org/issue/113207/",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "metadata-api-issue",
+          "url": "https://marvel.emreparker.com/v1/issues/18826",
+          "retrievedAt": "2026-08-30"
+        },
+        {
+          "kind": "metadata-api-search",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Spider-Man%20Daredevil&limit=50",
+          "retrievedAt": "2026-08-30"
+        }
+      ],
+      "evidenceDigest": "1e1471fe9ac0812491448da024dcdcc2bee7d281b186737081490486726a9e0c"
+    }
+  ]
 }
