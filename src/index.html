@@ -805,6 +805,26 @@
 
             <section class="setgroup">
               <h2>Connectivity</h2>
+              <div class="card card-static setting">
+                <h3>Local app connection</h3>
+                <p id="local-connection-status" class="rail-hint setting-desc">Checking the local app connection…</p>
+                <button
+                  type="button"
+                  id="btn-check-local-connection"
+                  class="quiet setting-ctl"
+                  aria-describedby="local-connection-status local-connection-help"
+                >Check connection</button>
+                <details class="setting-more">
+                  <summary>If the connection needs attention</summary>
+                  <p id="local-connection-help" class="rail-hint">
+                    Leave this window open. Start Recap Page from the copy you downloaded or installed
+                    from the Microsoft Store, then return here and check again. A browser-installed app
+                    cannot start that separate copy itself.
+                  </p>
+                </details>
+                <div id="local-connection-report" class="results"></div>
+              </div>
+
               <div class="card card-static">
                 <h3>Metadata source</h3>
                 <form id="form-settings" class="stack">

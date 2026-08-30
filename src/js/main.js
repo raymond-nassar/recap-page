@@ -56,6 +56,7 @@ import { askConfirm, askText, askNote, wireAsk } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
 } from './lib/saveEducation.js';
+import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -452,6 +453,9 @@ function isLive(node) {
 // whichever pane the reader is at. Keying it by the condition rather than by the pane is what lets
 // a later success clear it wherever it was placed.
 const CATALOG_LOAD = 'catalog-load';
+const LOCAL_CONNECTION_NOTICE = 'local-app-connection';
+const LOCAL_CONNECTION_STEPS = 'Your lists and reading progress are safe. Leave this window open, '
+  + 'start Recap Page from the copy you downloaded or installed from the Microsoft Store, then return here.';
 const generatedCategoryByRoute = new Map([
   ...PUBLISHING_CATEGORIES,
   ...HOME_CATEGORIES.filter((category) => !category.shelf && category.kind !== 'reading-paths'),
@@ -1954,6 +1958,8 @@ function renderRail() {
 // The parsed catalog is shared by later Home renders. Category availability changes only when the
 // bundled data changes, so a library update does not need to fetch or rebuild it.
 let homeCatalog = null;
+let homeCategoriesGeneration = 0;
+let publishingCategoryGeneration = 0;
 // Catalog ids that were just added, so the button can show "✓ In library" for a beat before
 // settling into "Open →". Transient by design; a reload shows the settled state.
 const justAdded = new Set();
@@ -2132,8 +2138,10 @@ function ensureHomeFirstRun() {
 }
 
 async function renderHomeCategories() {
+  const generation = ++homeCategoriesGeneration;
   const gateways = [...document.querySelectorAll('[data-category-gateway]')]; for (const label of document.querySelectorAll('[data-marvel-copyright]')) label.textContent = `© ${new Date().getFullYear()} MARVEL`;
   if (!homeCatalog) {
+    clearNotice(CATALOG_LOAD);
     for (const gateway of gateways) { const status = gateway.querySelector('[data-paths-status]'); status.classList.remove('visually-hidden'); status.hidden = false; status.textContent = 'Loading ways to read…'; }
     try {
       homeCatalog = await loadCatalog();
@@ -2141,7 +2149,15 @@ async function renderHomeCategories() {
       for (const gateway of gateways) {
         gateway.querySelector('[data-primary-paths]').hidden = true; gateway.querySelector('[data-more-paths]').hidden = true; gateway.querySelector('[data-paths-status]').hidden = true;
       }
-      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report'; notify(report, `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
+      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
+      await reportBundledLoadFailure({
+        report,
+        failure: `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
+        key: CATALOG_LOAD,
+        subject: 'the catalog',
+        retry: renderHomeCategories,
+        isCurrent: () => generation === homeCategoriesGeneration,
+      });
       return;
     }
     clearNotice(CATALOG_LOAD);
@@ -2203,6 +2219,7 @@ function renderPublishingIndex(category, allStories) {
 async function renderPublishingCategory(route) {
   const category = generatedCategoryByRoute.get(route);
   if (!category) return;
+  const generation = ++publishingCategoryGeneration;
   const box = $(`#${route}-results`);
   const periods = $(`#${route}-categories`);
   const periodList = $(`#${route}-category-list`);
@@ -2219,12 +2236,14 @@ async function renderPublishingCategory(route) {
     catalog = await loadCatalog();
   } catch (err) {
     box.replaceChildren();
-    notify(
-      `#${route}-report`,
-      `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
-      'error',
-      CATALOG_LOAD,
-    );
+    await reportBundledLoadFailure({
+      report: `#${route}-report`,
+      failure: `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
+      key: CATALOG_LOAD,
+      subject: 'the catalog',
+      retry: () => renderPublishingCategory(route),
+      isCurrent: () => generation === publishingCategoryGeneration,
+    });
     return;
   }
 
@@ -2405,7 +2424,7 @@ async function addFromCatalog(list, btn) {
   // preview dialog, so focus is captured from that stable slot rather than from the retired Home grid.
   const held = captureFocus($('#preview-add'));
   justAdded.add(list.id);
-  const listId = await importCurated(list, btn, { navigate: false, report: '#home-cat-report' });
+  const listId = await importCurated(list, btn, { navigate: false, report: '#preview-report' });
   if (!listId) {
     justAdded.delete(list.id);
     syncPreviewAdd();
@@ -2541,6 +2560,19 @@ async function loadPreviewIssues(list) {
     $('#preview-body').replaceChildren(el('ol', { class: 'preview-list' }, nodes));
   } catch (err) {
     if (previewLoad !== token) return;
+    const result = await runLocalConnectionProbe();
+    if (previewLoad !== token) return;
+    if (result.current && result.status !== LOCAL_SERVER_STATUS.READY) {
+      $('#preview-body').replaceChildren(noticeEl({
+        msg: `The local app connection is not available, so the issue list could not be loaded. ${LOCAL_CONNECTION_STEPS} You can still add the Reading List.`,
+        kind: 'warn',
+        action: {
+          label: 'Try again',
+          onClick: () => { void loadPreviewIssues(list); },
+        },
+      }));
+      return;
+    }
     $('#preview-body').replaceChildren(el('p', {
       class: 'rail-hint',
       text: `The issue list could not be loaded: ${err.message}. You can still add the order.`,
@@ -4721,6 +4753,7 @@ const shelfState = new Map(CATALOG_SHELVES.map((shelf) => [
   shelf.key,
   { facet: 'all', query: '', spotlight: 'all', sort: null },
 ]));
+const shelfRenderGeneration = new Map();
 let catalogAnnounceTimer = null;
 
 // Typing in the search box re-renders on every keystroke, so a slow first load could otherwise
@@ -4796,6 +4829,8 @@ function ensureSetupGuideFeature(lists, surface = 'catalog') {
 // three times is how the three screens would drift apart, and the first thing to drift would be
 // whichever of them the next change forgot.
 async function renderCatalogShelf(key) {
+  const generation = (shelfRenderGeneration.get(key) ?? 0) + 1;
+  shelfRenderGeneration.set(key, generation);
   const shelf = CATALOG_SHELVES.find((s) => s.key === key);
   const state = shelfState.get(key);
   const box = $(`#${key}-results`);
@@ -4816,7 +4851,14 @@ async function renderCatalogShelf(key) {
     $(`#${key}-filters`).hidden = true;
     $(`#${key}-filters`).replaceChildren();
     $(`#form-${key}-search`).hidden = true;
-    notify(`#${key}-report`, `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`, 'error', CATALOG_LOAD);
+    await reportBundledLoadFailure({
+      report: `#${key}-report`,
+      failure: `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
+      key: CATALOG_LOAD,
+      subject: 'the catalog',
+      retry: () => renderCatalogShelf(key),
+      isCurrent: () => generation === shelfRenderGeneration.get(key),
+    });
     return;
   }
 
@@ -5475,6 +5517,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
   // the same failure the other entry point would report. Keying by pane left the reader looking at
   // the list open in front of them under a banner saying it could not be loaded.
   const importKey = `import:${catalogId}`;
+  clearNotice(importKey);
   importing = file;
   const label = btn?.textContent;
   if (btn) {
@@ -5554,7 +5597,18 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     announce(withSaveEducation(parts.join(' '), transition));
     return listId;
   } catch (err) {
-    notify(report, `Could not load ${list.name}: ${err.message}. Your lists are unchanged.`, 'error', importKey);
+    const failureReport = report === '#preview-report' && !$('#preview').open
+      ? '#home-cat-report'
+      : report;
+    await reportBundledLoadFailure({
+      report: failureReport,
+      failure: `Could not load ${list.name}: ${err.message}. Your lists are unchanged.`,
+      key: importKey,
+      subject: list.name,
+      retry: () => (navigate
+        ? importCurated(list, btn, { navigate, report })
+        : addFromCatalog(list, $('#preview-add [data-act="main"]'))),
+    });
     return null;
   } finally {
     importing = null;
@@ -5831,6 +5885,9 @@ function wireData() {
   $('#opt-update-checks').addEventListener('change', (e) => setUpdateChecks(e.target.checked));
   $('#opt-theme').addEventListener('change', (e) => setTheme(e.target.value));
   $('#btn-check-updates').addEventListener('click', runExplicitUpdateCheck);
+  $('#btn-check-local-connection').addEventListener('click', () => {
+    void refreshLocalConnection({ explicit: true });
+  });
 
   $('#btn-export-json').addEventListener('click', () => {
     download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json');
@@ -6163,6 +6220,101 @@ function slug(s) {
 
 // ------------------------------------------------------------------ status
 
+let localConnectionGeneration = 0;
+let localConnectionInFlight = null;
+
+function paintLocalConnectionStatus(status) {
+  const line = $('#local-connection-status');
+  if (!line) return;
+  if (status === LOCAL_SERVER_STATUS.READY) {
+    line.textContent = 'Connected to the local app.';
+    return;
+  }
+  if (status === 'checking') {
+    line.textContent = 'Checking the local app connection…';
+    return;
+  }
+  line.textContent = 'The local app connection needs attention.';
+}
+
+function runLocalConnectionProbe({ fresh = false } = {}) {
+  if (!fresh && localConnectionInFlight) return localConnectionInFlight;
+  const generation = ++localConnectionGeneration;
+  const request = checkLocalServer()
+    .then((status) => {
+      const current = generation === localConnectionGeneration;
+      if (current) {
+        paintLocalConnectionStatus(status);
+        if (status === LOCAL_SERVER_STATUS.READY) clearNotice(LOCAL_CONNECTION_NOTICE);
+        else $('#local-connection-report')?.replaceChildren();
+      }
+      return { status, current, generation };
+    });
+  const tracked = request.finally(() => {
+    if (localConnectionInFlight === tracked) localConnectionInFlight = null;
+  });
+  localConnectionInFlight = tracked;
+  return tracked;
+}
+
+function localRecoveryAction(label, key, retry) {
+  return {
+    label,
+    onClick: () => {
+      clearNotice(key);
+      clearNotice(LOCAL_CONNECTION_NOTICE);
+      void retry();
+    },
+  };
+}
+
+async function refreshLocalConnection({ explicit = false } = {}) {
+  if (explicit) {
+    clearNotice(LOCAL_CONNECTION_NOTICE);
+    $('#local-connection-report').replaceChildren();
+  }
+  paintLocalConnectionStatus('checking');
+  const result = await runLocalConnectionProbe({ fresh: explicit });
+  if (!result.current) return result;
+
+  if (result.status === LOCAL_SERVER_STATUS.READY) {
+    clearNotice(LOCAL_CONNECTION_NOTICE);
+    if (explicit) notify('#local-connection-report', 'The local app connection is ready.', 'ok');
+  } else {
+    notify(
+      '#app-report',
+      `The local app connection is not available. ${LOCAL_CONNECTION_STEPS} Then check again.`,
+      'warn',
+      LOCAL_CONNECTION_NOTICE,
+      localRecoveryAction(
+        'Check again',
+        LOCAL_CONNECTION_NOTICE,
+        () => refreshLocalConnection({ explicit: true }),
+      ),
+    );
+  }
+  return result;
+}
+
+async function reportBundledLoadFailure({
+  report, failure, key, subject, retry, isCurrent = () => true,
+}) {
+  const result = await runLocalConnectionProbe();
+  if (!isCurrent()) return false;
+  if (!result.current || result.status === LOCAL_SERVER_STATUS.READY) {
+    notify(report, failure, 'error', key);
+    return false;
+  }
+  notify(
+    report,
+    `The local app connection is not available, so ${subject} could not be loaded. ${LOCAL_CONNECTION_STEPS}`,
+    'warn',
+    key,
+    localRecoveryAction('Try again', key, retry),
+  );
+  return true;
+}
+
 async function checkHealth() {
   const pill = $('#api-status');
   pill.className = 'pill pill-muted';
@@ -6324,6 +6476,7 @@ export function boot() {
     if (route) applyRoute(route, { focus: true, filterIfAbsent: DEFAULT_FILTER });
   });
   checkHealth();
+  void refreshLocalConnection();
   refreshCacheUsage();
   // After the first render, because it is slow, it is not urgent, and nothing on screen waits on it.
   void runCachePurge().catch((err) => {
@@ -6634,6 +6787,7 @@ function setReadingPathOptions(paths, selectedId) {
 
 async function renderReadingPaths() {
   const generation = ++readingPathGeneration;
+  clearNotice(CATALOG_LOAD);
   $('#reading-path-status').textContent = 'Loading reading paths…';
   $('#reading-path-details').hidden = true;
   try {
@@ -6660,7 +6814,14 @@ async function renderReadingPaths() {
     if (view !== 'reading-paths' || generation !== readingPathGeneration) return;
     selectedReadingPath = null;
     $('#reading-path-status').textContent = 'Reading paths could not be loaded.';
-    notify('#reading-paths-report', `Reading paths could not be loaded: ${err.message}. Try this view again.`, 'error', CATALOG_LOAD);
+    await reportBundledLoadFailure({
+      report: '#reading-paths-report',
+      failure: `Reading paths could not be loaded: ${err.message}. Try this view again.`,
+      key: CATALOG_LOAD,
+      subject: 'Reading paths',
+      retry: renderReadingPaths,
+      isCurrent: () => view === 'reading-paths' && generation === readingPathGeneration,
+    });
   }
 }
 

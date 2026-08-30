@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-// `server.mjs:13` resolves the served root to src/, so src/ is what "shipped" means here.
+// `server.mjs:18` resolves the served root to src/, so src/ is what "shipped" means here.
 // Walked rather than listed: the six files that exist today would be an enumeration someone
 // has to keep complete, and a seventh added later is exactly what would be missed.
 const SHIPPED = join(ROOT, 'src');

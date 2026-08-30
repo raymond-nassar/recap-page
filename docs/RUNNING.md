@@ -85,8 +85,14 @@ storage.
 After a successful first visit, an installed window can open while the server is stopped because
 the browser keeps the app shell. Saved lists, progress, and bundled content already cached by the
 worker remain available; a Reading List payload never requested before is not guaranteed to be
-there. New covers and metadata lookups need the server and network, so starting the app is still
-recommended.
+there. Recap Page now checks its local app connection and explains how to restore it when an
+uncached Reading List needs the separate local copy.
+
+Leave the browser-installed window open. Start Recap Page with **Start on Windows.cmd**,
+**Start on macOS.command**, or the future Microsoft Store installation. Return to the browser app
+and choose **Check again** in its notice, or open **Backup & settings**, **Local app connection**,
+and choose **Check connection**. Browser security does not allow the installed website to start
+that separate local program by itself.
 
 ## Stop and restart
 
@@ -179,7 +185,9 @@ steps above.
 
 Check that the start window is still open and shows the running address. Type the complete address,
 including `http://`. A previously installed copy may show its cached shell while live covers and
-metadata remain unavailable until the server starts again.
+metadata remain unavailable until the local app connection is restored. If the shell opens, follow
+its connection notice or use **Backup & settings**, **Local app connection**. Your lists and reading
+progress stay in the browser while the connection is stopped.
 
 ### The Read button does nothing
 

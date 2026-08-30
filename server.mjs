@@ -9,6 +9,11 @@ import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { COVER_IMAGE_HOST } from './src/js/lib/coverHost.js';
+import {
+  LOCAL_SERVER_HEADER_NAME,
+  LOCAL_SERVER_HEADER_VALUE,
+  LOCAL_SERVER_HEALTH_PATH,
+} from './src/js/lib/localServer.js';
 
 const ROOT = resolve(fileURLToPath(new URL('./src', import.meta.url)));
 const HOST = '127.0.0.1';
@@ -103,6 +108,15 @@ export function createStaticServer() {
 async function handle(req, res) {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405, { allow: 'GET, HEAD' }).end('Method Not Allowed');
+    return;
+  }
+
+  if ((req.url || '/').split('?')[0].split('#')[0] === LOCAL_SERVER_HEALTH_PATH) {
+    res.writeHead(204, {
+      'cache-control': 'no-store',
+      [LOCAL_SERVER_HEADER_NAME]: LOCAL_SERVER_HEADER_VALUE,
+    });
+    res.end();
     return;
   }
 

@@ -128,8 +128,8 @@ Recorded so a report can start from what is true rather than from what a scanner
   the normalizer that decides which cover addresses may be built and by the `img-src` directive
   the development server sends, so the rule and the policy that enforces it cannot drift apart.
 - The development server sends a content security policy on every response that serves a file,
-  built at `server.mjs:53-64`, alongside `nosniff`, `no-referrer` and `X-Frame-Options: DENY`, set
-  at `server.mjs:129-139`. Its error responses carry none of the four, which is recorded here
+  built at `server.mjs:58-69`, alongside `nosniff`, `no-referrer` and `X-Frame-Options: DENY`, set
+  at `server.mjs:143-153`. Its error responses carry none of the four, which is recorded here
   because this list is meant to be what is true rather than what was intended.
 - The repository holds no secrets. Nothing in the scripts or the workflow reads a credential, and
   the metadata API needs no key.
