@@ -129,6 +129,34 @@ ranked table, and `npm run sizes` recounts any file a sentence states the length
 palette` checks colour contrast. `npm run publication` checks that nothing in the history or the
 tracked files would be a problem if this repository were made public.
 
+### Historical evidence anchors
+
+Ordinary citations still describe the tree being checked. A small set of frozen claims instead uses
+the required historical registry. Each registry entry keeps the existing citation and occurrence key
+but binds it to one full commit id, literal repository path, line range, exact content SHA-256, and
+normalized claim SHA-256. The checker never fetches, follows a rename, searches for similar text,
+trusts the generated lock as provenance, or falls back to current content. Missing, malformed,
+unavailable, duplicate, stale, or partial history stops both check and bless.
+
+The registry is canonical JSON and normal blessing cannot change it. Prepare a new sealed target only
+after every source, test, and documentation edit is final:
+
+```text
+npm run anchors -- --prepare-history <target-path> --output <absolute-path-outside-worktree>
+npm run anchors -- --apply-history <candidate-path> --approved-sha256 <candidate-sha256>
+```
+
+Generate the candidate twice on the unchanged tree and require byte-identical files. Read every
+printed claim against its immutable line, record the candidate digest, then apply exactly those
+bytes. Any tracked-file or occurrence change invalidates approval and requires a new candidate.
+Apply atomically replaces only the historical registry. Run the ordinary anchor inspection and
+bless cycle afterwards; a clean final check still means zero drifted, zero new, and zero removed.
+
+Historical checks require full local Git history. A shallow clone, missing object, noncommit object,
+nonancestor source, missing or binary path, invalid range, blank range edge, content mismatch, claim
+mismatch, orphan entry, or incomplete sealed target is a broken evidence state, not a reason to
+weaken the check.
+
 ```
 npm run contract
 ```

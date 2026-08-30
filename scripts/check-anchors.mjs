@@ -23,10 +23,24 @@
 // same line is the shape that got a false claim blessed here once already.
 import { execFileSync, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { readFileSync, writeFileSync } from 'node:fs';
+import {
+  existsSync, lstatSync, readFileSync, readlinkSync, realpathSync, renameSync, rmSync, writeFileSync,
+} from 'node:fs';
+import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const LOCK = 'docs/anchors.lock.json';
+const HISTORY = 'docs/anchors.history.json';
+const HASH = /^[0-9a-f]{64}$/;
+const COMMIT = /^[0-9a-f]{40}$/;
+const PATH = /^[A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)*$/;
+const HISTORY_TOKEN = /^git:([0-9a-f]{40}):([A-Za-z0-9_.-]+(?:\/[A-Za-z0-9_.-]+)*)#L([1-9][0-9]*)(?:-L([1-9][0-9]*))?$/;
+const GIT_ENV = {
+  ...process.env,
+  GIT_NO_LAZY_FETCH: '1',
+  GIT_NO_REPLACE_OBJECTS: '1',
+};
+const codeUnitCompare = (a, b) => a < b ? -1 : a > b ? 1 : 0;
 
 // Backticked path:line or path:start-end.
 const ANCHOR = /`([A-Za-z0-9_./-]+\.(?:js|mjs|css|html|json|yml|md)):(\d+)(?:-(\d+))?`/g;
@@ -131,12 +145,284 @@ const NEAR_MISS = [
 ];
 
 
-const args = process.argv.slice(2);
-const bless = args.includes('--bless');
-const ref = args.includes('--ref') ? args[args.indexOf('--ref') + 1] : null;
-const ACTIVE_SOURCE = ref;
+export function parseArguments(args) {
+  const values = new Map();
+  let blessFlag = false;
+  const valued = new Set([
+    '--ref', '--prepare-history', '--output', '--apply-history', '--approved-sha256',
+  ]);
+
+  for (let i = 0; i < args.length; i += 1) {
+    const arg = args[i];
+    if (arg === '--bless') {
+      if (blessFlag) throw new Error('--bless may appear only once');
+      blessFlag = true;
+      continue;
+    }
+    if (!valued.has(arg)) throw new Error(`unknown argument ${arg}`);
+    if (values.has(arg)) throw new Error(`${arg} may appear only once`);
+    const value = args[i + 1];
+    if (value === undefined || value === '' || value.startsWith('--')) {
+      throw new Error(`${arg} requires exactly one value`);
+    }
+    values.set(arg, value);
+    i += 1;
+  }
+
+  const selectedRef = values.get('--ref') ?? null;
+  const prepareTarget = values.get('--prepare-history') ?? null;
+  const output = values.get('--output') ?? null;
+  const candidate = values.get('--apply-history') ?? null;
+  const approved = values.get('--approved-sha256') ?? null;
+  if (blessFlag && selectedRef !== null) throw new Error('--bless cannot be combined with --ref');
+
+  if (prepareTarget !== null) {
+    if (blessFlag || selectedRef !== null || candidate !== null || approved !== null || output === null) {
+      throw new Error('--prepare-history requires --output and cannot be combined with another mode');
+    }
+    return { mode: 'prepare', ref: null, target: prepareTarget, output };
+  }
+  if (candidate !== null) {
+    if (blessFlag || selectedRef !== null || prepareTarget !== null || output !== null || approved === null) {
+      throw new Error('--apply-history requires --approved-sha256 and cannot be combined with another mode');
+    }
+    if (!HASH.test(approved)) throw new Error('--approved-sha256 must be 64 lowercase hex characters');
+    return { mode: 'apply', ref: null, candidate, approved };
+  }
+  if (output !== null || approved !== null) {
+    throw new Error('--output and --approved-sha256 require their matching history mode');
+  }
+  return { mode: blessFlag ? 'bless' : 'check', ref: selectedRef };
+}
+
+let options = { mode: 'check', ref: null };
+let bless = false;
+let ref = null;
+let ACTIVE_SOURCE = null;
 const EXPLICIT_SOURCE_TOKEN = '<!-- anchors:source';
 const EXPLICIT_SOURCE_LINE = /^<!-- anchors:source=([0-9a-f]{40}) -->$/;
+
+const sha256 = (value) => createHash('sha256').update(value).digest('hex');
+
+function exactKeys(value, keys, label) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    throw new Error(`${label} must be an object`);
+  }
+  const actual = Object.keys(value);
+  if (actual.length !== keys.length || keys.some((key) => !Object.hasOwn(value, key))) {
+    throw new Error(`${label} must contain exactly ${keys.join(', ')}`);
+  }
+}
+
+function normalizedPath(value, label) {
+  if (typeof value !== 'string' || !PATH.test(value)) {
+    throw new Error(`${label} must be a normalized repository-relative path`);
+  }
+  const parts = value.split('/');
+  if (parts.some((part) => part === '.' || part === '..')) {
+    throw new Error(`${label} cannot contain dot or traversal segments`);
+  }
+  return value;
+}
+
+function positiveInteger(value, label) {
+  if (!/^[1-9][0-9]*$/.test(value)) throw new Error(`${label} must be a positive base-10 integer`);
+  const number = Number(value);
+  if (!Number.isSafeInteger(number)) throw new Error(`${label} exceeds the safe integer range`);
+  return number;
+}
+
+export function parseHistoricalToken(value) {
+  if (typeof value !== 'string') throw new Error('historical target must be a string');
+  const match = HISTORY_TOKEN.exec(value);
+  if (!match) throw new Error('historical target has invalid syntax');
+  const path = normalizedPath(match[2], 'historical target path');
+  const start = positiveInteger(match[3], 'historical target start');
+  const end = match[4] ? positiveInteger(match[4], 'historical target end') : start;
+  if (end < start) throw new Error('historical target range is reversed');
+  return { commit: match[1], path, start, end };
+}
+
+function parseSite(value, label) {
+  if (typeof value !== 'string') throw new Error(`${label} must be a string`);
+  const parts = value.split('|');
+  if (parts.length !== 4 || parts.slice(0, 3).some((part) => part.length === 0)) {
+    throw new Error(`${label} must contain document, scope, anchor, and ordinal`);
+  }
+  normalizedPath(parts[0], `${label} document`);
+  if (!/^(?:0|[1-9][0-9]*)$/.test(parts[3]) || !Number.isSafeInteger(Number(parts[3]))) {
+    throw new Error(`${label} ordinal must be a nonnegative safe integer`);
+  }
+  return { document: parts[0], scope: parts[1], anchor: parts[2], ordinal: Number(parts[3]) };
+}
+
+function canonicalEntry(value, index, candidate = false) {
+  const base = ['site', 'historical', 'contentSha256', 'claimSha256'];
+  const fields = candidate ? [...base, 'document', 'claim', 'head', 'tail'] : base;
+  exactKeys(value, fields, `${candidate ? 'candidate ' : ''}entry ${index}`);
+  const site = parseSite(value.site, `entry ${index} site`);
+  const target = parseHistoricalToken(value.historical);
+  if (!HASH.test(value.contentSha256)) throw new Error(`entry ${index} contentSha256 is invalid`);
+  if (!HASH.test(value.claimSha256)) throw new Error(`entry ${index} claimSha256 is invalid`);
+  const out = {
+    site: value.site,
+    historical: value.historical,
+    contentSha256: value.contentSha256,
+    claimSha256: value.claimSha256,
+  };
+  if (candidate) {
+    if (value.document !== site.document) throw new Error(`entry ${index} document does not match its site`);
+    if (typeof value.claim !== 'string' || typeof value.head !== 'string') {
+      throw new Error(`entry ${index} review fields must be strings`);
+    }
+    if (value.tail !== null && typeof value.tail !== 'string') {
+      throw new Error(`entry ${index} tail must be a string or null`);
+    }
+    Object.assign(out, {
+      document: value.document,
+      claim: value.claim,
+      head: value.head,
+      tail: value.tail,
+    });
+  }
+  return { out, site, target };
+}
+
+function orderedUnique(values, label) {
+  for (let i = 0; i < values.length; i += 1) {
+    if (i > 0 && codeUnitCompare(values[i - 1], values[i]) >= 0) {
+      throw new Error(`${label} must be unique and sorted by code unit`);
+    }
+  }
+}
+
+function canonicalRegistry(value) {
+  exactKeys(
+    value,
+    ['version', 'migrationBaseline', 'corpusSha256', 'sealedTargets', 'expectedCount', 'entries'],
+    'historical registry',
+  );
+  if (value.version !== 1 || !Number.isSafeInteger(value.version)) {
+    throw new Error('historical registry version must be the safe integer 1');
+  }
+  if (!COMMIT.test(value.migrationBaseline)) throw new Error('migrationBaseline must be 40 lowercase hex');
+  if (!HASH.test(value.corpusSha256)) throw new Error('corpusSha256 must be 64 lowercase hex');
+  if (!Array.isArray(value.sealedTargets) || value.sealedTargets.length === 0) {
+    throw new Error('sealedTargets must be a nonempty array');
+  }
+  const sealedTargets = value.sealedTargets.map((path, i) => normalizedPath(path, `sealedTargets[${i}]`));
+  orderedUnique(sealedTargets, 'sealedTargets');
+  if (!Number.isSafeInteger(value.expectedCount) || value.expectedCount < 0) {
+    throw new Error('expectedCount must be a nonnegative safe integer');
+  }
+  if (!Array.isArray(value.entries) || value.expectedCount !== value.entries.length) {
+    throw new Error('expectedCount must equal entries.length');
+  }
+  const entries = value.entries.map((entry, i) => canonicalEntry(entry, i).out);
+  orderedUnique(entries.map((entry) => entry.site), 'entry sites');
+  for (let i = 0; i < entries.length; i += 1) {
+    const target = parseHistoricalToken(entries[i].historical);
+    if (!sealedTargets.includes(target.path)) {
+      throw new Error(`entry ${i} target is not named by sealedTargets`);
+    }
+  }
+  return {
+    version: 1,
+    migrationBaseline: value.migrationBaseline,
+    corpusSha256: value.corpusSha256,
+    sealedTargets,
+    expectedCount: entries.length,
+    entries,
+  };
+}
+
+function canonicalCandidate(value) {
+  exactKeys(
+    value,
+    [
+      'candidateVersion', 'migrationBaseline', 'corpusSha256', 'target',
+      'existingRegistrySha256', 'expectedCount', 'entries',
+    ],
+    'historical candidate',
+  );
+  if (value.candidateVersion !== 1 || !Number.isSafeInteger(value.candidateVersion)) {
+    throw new Error('candidateVersion must be the safe integer 1');
+  }
+  if (!COMMIT.test(value.migrationBaseline)) throw new Error('candidate migrationBaseline is invalid');
+  if (!HASH.test(value.corpusSha256)) throw new Error('candidate corpusSha256 is invalid');
+  const target = normalizedPath(value.target, 'candidate target');
+  if (value.existingRegistrySha256 !== null && !HASH.test(value.existingRegistrySha256)) {
+    throw new Error('existingRegistrySha256 must be null or 64 lowercase hex');
+  }
+  if (!Number.isSafeInteger(value.expectedCount) || value.expectedCount < 0) {
+    throw new Error('candidate expectedCount must be a nonnegative safe integer');
+  }
+  if (!Array.isArray(value.entries) || value.expectedCount !== value.entries.length) {
+    throw new Error('candidate expectedCount must equal entries.length');
+  }
+  const entries = value.entries.map((entry, i) => canonicalEntry(entry, i, true).out);
+  orderedUnique(entries.map((entry) => entry.site), 'candidate entry sites');
+  return {
+    candidateVersion: 1,
+    migrationBaseline: value.migrationBaseline,
+    corpusSha256: value.corpusSha256,
+    target,
+    existingRegistrySha256: value.existingRegistrySha256,
+    expectedCount: entries.length,
+    entries,
+  };
+}
+
+const canonicalBytes = (value) => Buffer.from(`${JSON.stringify(value, null, 2)}\n`, 'utf8');
+
+function parseCanonicalBytes(raw, canonicalize, label) {
+  let parsed;
+  try {
+    parsed = JSON.parse(raw.toString('utf8'));
+  } catch {
+    throw new Error(`${label} is not valid JSON`);
+  }
+  const value = canonicalize(parsed);
+  if (!raw.equals(canonicalBytes(value))) {
+    throw new Error(`${label} is not canonical UTF-8 JSON`);
+  }
+  return { value, raw, sha256: sha256(raw) };
+}
+
+function parseCanonicalFile(path, canonicalize, label, allowMissing = false) {
+  let raw;
+  try {
+    raw = readFileSync(path);
+  } catch (error) {
+    if (allowMissing && error?.code === 'ENOENT') return null;
+    throw new Error(`${label} ${path} is missing or unreadable`, { cause: error });
+  }
+  return parseCanonicalBytes(raw, canonicalize, `${label} ${path}`);
+}
+
+export function historyRegistryBytes(value) {
+  return canonicalBytes(canonicalRegistry(value));
+}
+
+export function parseHistoryRegistryBytes(value) {
+  const raw = Buffer.isBuffer(value) ? value : Buffer.from(value, 'utf8');
+  return parseCanonicalBytes(raw, canonicalRegistry, 'historical registry').value;
+}
+
+export function contentSha256For(lines) {
+  return sha256(Buffer.from(lines.join('\n'), 'utf8'));
+}
+
+export function claimSha256For(claim) {
+  return sha256(Buffer.from(claim, 'utf8'));
+}
+
+export function historicalGitEnvironment() {
+  return {
+    GIT_NO_LAZY_FETCH: GIT_ENV.GIT_NO_LAZY_FETCH,
+    GIT_NO_REPLACE_OBJECTS: GIT_ENV.GIT_NO_REPLACE_OBJECTS,
+  };
+}
 
 // A NUL byte means the file is not text, which is how git itself decides. Deciding by
 // extension instead would be the enumeration `docs` above refuses, and it would have
@@ -162,6 +448,7 @@ const read = (path, source = ACTIVE_SOURCE) => {
     try {
       const value = execFileSync('git', ['show', `${source}:${path}`], {
         encoding: 'utf8',
+        env: GIT_ENV,
         maxBuffer: 64 * 1024 * 1024,
         stdio: ['ignore', 'pipe', 'ignore'],
       });
@@ -213,11 +500,13 @@ function fingerprint(file, start, end, source = ACTIVE_SOURCE) {
   const lines = linesOf(file, source);
   if (lines === null) return { fp: null, why: 'file missing' };
   if (end > lines.length) return { fp: null, why: `out of range, file has ${lines.length} lines` };
-  const body = lines.slice(start - 1, end).map((s) => s.trim()).filter(Boolean).join('\n');
+  const selected = lines.slice(start - 1, end);
+  const body = selected.map((s) => s.trim()).filter(Boolean).join('\n');
   if (!body) return { fp: null, why: 'resolves to blank lines only' };
   const kept = body.split('\n');
   return {
     fp: createHash('sha256').update(body).digest('hex').slice(0, 16),
+    contentSha256: sha256(Buffer.from(selected.join('\n'), 'utf8')),
     head: kept[0].slice(0, 100),
     tail: kept.length > 1 ? kept[kept.length - 1].slice(0, 100) : null,
     blankEdge: blankEdgeOf(lines, start, end),
@@ -257,10 +546,14 @@ function documentInventory() {
     ? ['ls-files']
     : ['ls-tree', '-r', '--name-only', ref];
   try {
-    const canonical = execFileSync('git', cmd, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+    const canonical = execFileSync('git', cmd, {
+      encoding: 'utf8',
+      env: GIT_ENV,
+      maxBuffer: 64 * 1024 * 1024,
+    })
       .split('\n')
       .map((s) => s.trim())
-      .filter((s) => s.length > 0 && s !== LOCK);
+      .filter((s) => s.length > 0 && s !== LOCK && s !== HISTORY);
     let localOnly = [];
     if (ref === null) {
       localOnly = execFileSync(
@@ -336,6 +629,7 @@ function sourceFiles(source = ACTIVE_SOURCE) {
       files = new Set(
         execFileSync('git', ['ls-tree', '-r', '--name-only', source], {
           encoding: 'utf8',
+          env: GIT_ENV,
           maxBuffer: 64 * 1024 * 1024,
           stdio: ['ignore', 'pipe', 'ignore'],
         })
@@ -375,12 +669,16 @@ function validatedExplicitSource(doc, text) {
   const key = `${doc}\0${source}\0${ref ?? 'HEAD'}`;
   if (explicitSourceCache.has(key)) return explicitSourceCache.get(key);
 
-  const type = spawnSync('git', ['cat-file', '-t', source], { encoding: 'utf8' });
+  const type = spawnSync('git', ['cat-file', '-t', source], { encoding: 'utf8', env: GIT_ENV });
   if (type.status !== 0) throw new Error(`${doc} document source ${source} is unavailable`);
   if (type.stdout.trim() !== 'commit') throw new Error(`${doc} document source ${source} is not a commit object`);
 
   const selectedTree = ref ?? 'HEAD';
-  const ancestor = spawnSync('git', ['merge-base', '--is-ancestor', source, selectedTree], { encoding: 'utf8' });
+  const ancestor = spawnSync(
+    'git',
+    ['merge-base', '--is-ancestor', source, selectedTree],
+    { encoding: 'utf8', env: GIT_ENV },
+  );
   if (ancestor.status === 1) throw new Error(`${doc} document source ${source} is not reachable from ${selectedTree}`);
   if (ancestor.status !== 0) throw new Error(`cannot compare ${doc} document source ${source} with ${selectedTree}`);
   if (!sourceFiles(source).has(doc)) throw new Error(`${doc} is missing from document source ${source}`);
@@ -409,6 +707,7 @@ function lineSources(doc, text) {
   try {
     output = execFileSync('git', cmd, {
       encoding: 'utf8',
+      env: GIT_ENV,
       maxBuffer: 64 * 1024 * 1024,
       stdio: ['ignore', 'pipe', 'ignore'],
     });
@@ -801,7 +1100,7 @@ function rowScope(line, heading) {
 // Everything here decides print only, never membership or fingerprint, so a heuristic
 // is safe the same way the scope heuristic is: the worst it can do is print an uglier
 // claim, and the claim is still printed beside its line.
-export function claimBefore(lines, i, at, syntax = PROSE) {
+function claimSelection(lines, i, at, syntax = PROSE) {
   const flatten = (s) => s.replace(/`/g, '').replace(/\s+/g, ' ').trim();
   const bare = (s) => (syntax.prose || !syntax.strip
     ? s
@@ -811,15 +1110,13 @@ export function claimBefore(lines, i, at, syntax = PROSE) {
     || (!syntax.prose && (!marked(s) || !flatten(bare(s))));
 
   let text = bare(lines[i].slice(0, at));
-  for (let j = i - 1; j >= 0 && flatten(text).length < 90; j -= 1) {
+  for (let j = i - 1; j >= 0; j -= 1) {
     const prev = lines[j];
     if (ends(prev)) break;
     if (lines[i].startsWith('|')) break;
     text = `${bare(prev)} ${text}`;
   }
   const flat = flatten(text);
-  if (flat.length >= 20) return flat.slice(Math.max(0, flat.length - 90));
-
   // A citation in prose usually closes a sentence, so the words before it are the claim.
   // One in a comment routinely opens the sentence instead, and then everything before it
   // is the marker: the citation of the served root in the shipped-copy test printed a
@@ -840,12 +1137,43 @@ export function claimBefore(lines, i, at, syntax = PROSE) {
   const self = rest.match(/^`?[A-Za-z0-9_./-]+\.[A-Za-z][A-Za-z0-9]*:\d+(?:-\d+)?`?/);
   let after = bare(self ? rest.slice(self[0].length) : rest);
   if (row) [after] = after.split('|');
-  for (let j = i + 1; !row && j < lines.length && flatten(after).length < 90; j += 1) {
+  for (let j = i + 1; !row && j < lines.length; j += 1) {
     if (ends(lines[j])) break;
     after = `${after} ${bare(lines[j])}`;
   }
   const tail = flatten(after);
-  return tail.length > flat.length ? tail.slice(0, 90) : flat.slice(Math.max(0, flat.length - 90));
+  const display = flat.length >= 20
+    ? flat.slice(Math.max(0, flat.length - 90))
+    : tail.length > flat.length
+      ? tail.slice(0, 90)
+      : flat.slice(Math.max(0, flat.length - 90));
+  if (row) {
+    return { full: flatten(`${text} ${after}`), display };
+  }
+  const combined = flatten(`${flat} ${tail}`);
+  const join = flat.length + (flat && tail ? 1 : 0);
+  const bounds = [0];
+  for (const match of combined.matchAll(SENTENCE_BREAK)) bounds.push(match.index + match[0].length);
+  bounds.push(combined.length);
+  let start = 0;
+  let end = combined.length;
+  for (let b = 0; b + 1 < bounds.length; b += 1) {
+    if (join >= bounds[b] && join <= bounds[b + 1]) {
+      start = bounds[b];
+      end = bounds[b + 1];
+      break;
+    }
+  }
+  return { full: combined.slice(start, end).trim(), display };
+}
+
+export function fullClaimBefore(lines, i, at, syntax = PROSE) {
+  return claimSelection(lines, i, at, syntax).full;
+}
+
+export function claimBefore(lines, i, at, syntax = PROSE) {
+  const selected = claimSelection(lines, i, at, syntax);
+  return selected.display;
 }
 
 // The scope is what makes a key survive renumbering. Rows are keyed by their story
@@ -910,13 +1238,22 @@ function collect() {
         const ordinal = ordinals.get(bucket) ?? 0;
         ordinals.set(bucket, ordinal + 1);
         captured += 1;
+        const local = isLocalOnlyDocument(doc);
         const occurrence = {
           key: `${bucket}|${ordinal}`,
           anchor,
+          document: doc,
+          scope,
+          ordinal,
+          file: c.file,
+          start: c.start,
+          end: c.end,
           claim: claimBefore(lines, i, c.at, syntax),
+          fullClaim: fullClaimBefore(lines, i, c.at, syntax),
+          legacySource: source,
           ...fingerprint(c.file, c.start, c.end, source),
         };
-        (isLocalOnlyDocument(doc) ? localOnly : found).push(occurrence);
+        (local ? localOnly : found).push(occurrence);
       }
       offset += line.length + 1;
     }
@@ -924,6 +1261,354 @@ function collect() {
     coverage.push({ doc, scanned, captured, localOnly: isLocalOnlyDocument(doc) });
   }
   return { found, localOnly, coverage, exempted };
+}
+
+const commitTypes = new Map();
+const ancestry = new Map();
+
+function requireCommit(commit, label) {
+  if (commitTypes.has(commit)) {
+    if (commitTypes.get(commit) !== 'commit') throw new Error(`${label} is not a commit object`);
+    return;
+  }
+  const type = spawnSync('git', ['cat-file', '-t', commit], {
+    encoding: 'utf8',
+    env: GIT_ENV,
+  });
+  if (type.status !== 0) throw new Error(`${label} ${commit} is unavailable`);
+  const kind = type.stdout.trim();
+  commitTypes.set(commit, kind);
+  if (kind !== 'commit') throw new Error(`${label} ${commit} is not a commit object`);
+}
+
+function requireAncestor(commit, tree, label) {
+  const key = `${commit}\0${tree}`;
+  if (ancestry.has(key)) {
+    if (!ancestry.get(key)) throw new Error(`${label} ${commit} is not an ancestor of ${tree}`);
+    return;
+  }
+  const result = spawnSync('git', ['merge-base', '--is-ancestor', commit, tree], {
+    encoding: 'utf8',
+    env: GIT_ENV,
+  });
+  if (result.status !== 0 && result.status !== 1) {
+    throw new Error(`cannot compare ${label} ${commit} with ${tree}`);
+  }
+  ancestry.set(key, result.status === 0);
+  if (result.status === 1) throw new Error(`${label} ${commit} is not an ancestor of ${tree}`);
+}
+
+function headCommit() {
+  try {
+    return execFileSync('git', ['rev-parse', '--verify', 'HEAD^{commit}'], {
+      encoding: 'utf8',
+      env: GIT_ENV,
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim();
+  } catch {
+    throw new Error('cannot resolve HEAD to a commit');
+  }
+}
+
+function validateRegistryAuthority(registry) {
+  requireCommit(registry.migrationBaseline, 'migration baseline');
+  if (ref === null) requireAncestor(registry.migrationBaseline, 'HEAD', 'migration baseline');
+}
+
+function immutableFingerprint(entry, occurrence, selectedTree) {
+  const target = parseHistoricalToken(entry.historical);
+  if (
+    target.path !== occurrence.file
+    || target.start !== occurrence.start
+    || target.end !== occurrence.end
+  ) {
+    throw new Error(`${entry.site} historical target does not match its live anchor`);
+  }
+  requireCommit(target.commit, `${entry.site} historical source`);
+  requireAncestor(target.commit, selectedTree, `${entry.site} historical source`);
+  const resolved = fingerprint(target.path, target.start, target.end, target.commit);
+  if (resolved.fp === null) throw new Error(`${entry.site} historical target ${resolved.why}`);
+  if (resolved.blankEdge) throw new Error(`${entry.site} historical target ${resolved.blankEdge}`);
+  if (resolved.contentSha256 !== entry.contentSha256) {
+    throw new Error(`${entry.site} historical content SHA-256 does not match`);
+  }
+  return resolved;
+}
+
+function claimDigest(occurrence) {
+  return sha256(Buffer.from(occurrence.fullClaim, 'utf8'));
+}
+
+function applyHistoryRegistry(result, registry) {
+  if (registry === null) return;
+  validateRegistryAuthority(registry.value);
+  const all = [...result.found, ...result.localOnly];
+  const bySite = new Map();
+  for (const occurrence of all) {
+    if (bySite.has(occurrence.key)) throw new Error(`duplicate occurrence site ${occurrence.key}`);
+    bySite.set(occurrence.key, occurrence);
+  }
+  const registered = new Map(registry.value.entries.map((entry) => [entry.site, entry]));
+  const selectedTree = ref ?? 'HEAD';
+
+  for (const entry of registry.value.entries) {
+    const occurrence = bySite.get(entry.site);
+    if (!occurrence) {
+      if (ref === null) throw new Error(`orphan historical registry site ${entry.site}`);
+      continue;
+    }
+    const claimSha256 = claimDigest(occurrence);
+    if (claimSha256 !== entry.claimSha256) {
+      if (ref === null) throw new Error(`${entry.site} historical claim SHA-256 does not match`);
+      continue;
+    }
+    if (ref === null && occurrence.legacySource === ACTIVE_SOURCE) {
+      throw new Error(`${entry.site} is registered as history but is a live occurrence`);
+    }
+    Object.assign(occurrence, immutableFingerprint(entry, occurrence, selectedTree));
+    occurrence.historical = entry.historical;
+  }
+
+  if (ref !== null) return;
+  const sealed = new Set(registry.value.sealedTargets);
+  for (const occurrence of result.found) {
+    if (
+      sealed.has(occurrence.file)
+      && occurrence.legacySource !== ACTIVE_SOURCE
+      && !registered.has(occurrence.key)
+    ) {
+      throw new Error(`sealed target ${occurrence.file} is missing registry site ${occurrence.key}`);
+    }
+  }
+}
+
+function worktreeRoot() {
+  try {
+    return realpathSync(resolve(execFileSync('git', ['rev-parse', '--show-toplevel'], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).trim()));
+  } catch {
+    throw new Error('cannot resolve the worktree root');
+  }
+}
+
+function physicalPath(path) {
+  const destination = resolve(path);
+  if (existsSync(destination)) return realpathSync(destination);
+  let parent = dirname(destination);
+  while (!existsSync(parent)) {
+    const next = dirname(parent);
+    if (next === parent) throw new Error(`cannot resolve an existing parent for ${destination}`);
+    parent = next;
+  }
+  return resolve(realpathSync(parent), relative(parent, destination));
+}
+
+function outsideWorktree(path, label) {
+  if (!isAbsolute(path)) throw new Error(`${label} must be an absolute path outside the worktree`);
+  const root = worktreeRoot();
+  const destination = physicalPath(path);
+  const comparableRoot = process.platform === 'win32' ? root.toLowerCase() : root;
+  const comparableDestination = process.platform === 'win32'
+    ? destination.toLowerCase()
+    : destination;
+  const rel = relative(comparableRoot, comparableDestination);
+  if (rel === '' || (rel !== '..' && !rel.startsWith(`..${sep}`) && !isAbsolute(rel))) {
+    throw new Error(`${label} must resolve outside the worktree`);
+  }
+  return destination;
+}
+
+function corpusSha256() {
+  const entries = execFileSync('git', ['ls-files', '-s', '-z'], {
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  })
+    .split('\0')
+    .filter(Boolean)
+    .map((entry) => {
+      const match = /^(\d{6}) [0-9a-f]+ \d+\t([\s\S]+)$/.exec(entry);
+      if (!match) throw new Error(`cannot parse tracked entry ${entry}`);
+      return { mode: match[1], path: match[2] };
+    })
+    .filter(({ path }) => path !== LOCK && path !== HISTORY)
+    .sort((a, b) => codeUnitCompare(a.path, b.path));
+  const hash = createHash('sha256');
+  hash.update(Buffer.from('anchor-corpus-v1\0', 'ascii'));
+  const framed = (bytes) => {
+    const length = Buffer.alloc(8);
+    length.writeBigUInt64BE(BigInt(bytes.length));
+    hash.update(length);
+    hash.update(bytes);
+  };
+  for (const { mode, path } of entries) {
+    const bytes = mode === '120000'
+      ? Buffer.from(readlinkSync(path), 'utf8')
+      : readFileSync(path);
+    framed(Buffer.from(mode, 'ascii'));
+    framed(Buffer.from(path, 'utf8'));
+    framed(bytes);
+  }
+  return hash.digest('hex');
+}
+
+function historyToken(occurrence) {
+  const end = occurrence.end === occurrence.start ? '' : `-L${occurrence.end}`;
+  return `git:${occurrence.legacySource}:${occurrence.file}#L${occurrence.start}${end}`;
+}
+
+function reviewEntry(entry, occurrence) {
+  return {
+    ...entry,
+    document: occurrence.document,
+    claim: occurrence.fullClaim,
+    head: occurrence.head,
+    tail: occurrence.tail,
+  };
+}
+
+function buildCandidate(target, registry, result) {
+  const normalizedTarget = normalizedPath(target, 'history migration target');
+  if (registry?.value.sealedTargets.includes(normalizedTarget)) {
+    throw new Error(`history migration target ${normalizedTarget} is already sealed`);
+  }
+  const selected = result.found.filter(
+    (occurrence) =>
+      occurrence.file === normalizedTarget && occurrence.legacySource !== ACTIVE_SOURCE,
+  );
+  if (selected.length === 0) {
+    throw new Error(`history migration target ${normalizedTarget} has no qualifying occurrences`);
+  }
+  const bySite = new Map(result.found.map((occurrence) => [occurrence.key, occurrence]));
+  const entries = [];
+
+  for (const entry of registry?.value.entries ?? []) {
+    const occurrence = bySite.get(entry.site);
+    if (!occurrence) throw new Error(`cannot review existing registry site ${entry.site}`);
+    entries.push(reviewEntry(entry, occurrence));
+  }
+  for (const occurrence of selected) {
+    if (!COMMIT.test(occurrence.legacySource)) {
+      throw new Error(`${occurrence.key} does not have an immutable source commit`);
+    }
+    const historical = historyToken(occurrence);
+    const resolved = immutableFingerprint(
+      {
+        site: occurrence.key,
+        historical,
+        contentSha256: occurrence.contentSha256,
+      },
+      occurrence,
+      'HEAD',
+    );
+    const entry = {
+      site: occurrence.key,
+      historical,
+      contentSha256: resolved.contentSha256,
+      claimSha256: claimDigest(occurrence),
+    };
+    entries.push(reviewEntry(entry, { ...occurrence, ...resolved }));
+  }
+  entries.sort((a, b) => codeUnitCompare(a.site, b.site));
+  orderedUnique(entries.map((entry) => entry.site), 'candidate entry sites');
+  return {
+    candidateVersion: 1,
+    migrationBaseline: headCommit(),
+    corpusSha256: corpusSha256(),
+    target: normalizedTarget,
+    existingRegistrySha256: registry?.sha256 ?? null,
+    expectedCount: entries.length,
+    entries,
+  };
+}
+
+function printCandidate(candidate, path) {
+  const migrated = candidate.entries.filter(
+    (entry) => parseHistoricalToken(entry.historical).path === candidate.target,
+  );
+  console.log(
+    `${migrated.length} historical occurrence(s) qualify for ${candidate.target}; `
+    + `${candidate.entries.length} total registry entry or entries.`,
+  );
+  console.log('Read every claim against its immutable line:');
+  for (const entry of candidate.entries) {
+    const span = entry.tail === null ? entry.head : `${entry.head}  ...  ${entry.tail}`;
+    console.log(`  ${entry.site}`);
+    console.log(`    claim : ${entry.claim || '(no preceding prose)'}`);
+    console.log(`    target: ${entry.historical}`);
+    console.log(`    line  : ${span}`);
+  }
+  console.log(`Candidate: ${path}`);
+  console.log(`Candidate SHA-256: ${sha256(canonicalBytes(candidate))}`);
+  console.log(`Corpus SHA-256: ${candidate.corpusSha256}`);
+}
+
+function registryFromCandidate(candidate, existing) {
+  const sealedTargets = [
+    ...(existing?.value.sealedTargets ?? []),
+    candidate.target,
+  ].sort(codeUnitCompare);
+  orderedUnique(sealedTargets, 'sealedTargets');
+  const entries = candidate.entries.map((entry) => ({
+    site: entry.site,
+    historical: entry.historical,
+    contentSha256: entry.contentSha256,
+    claimSha256: entry.claimSha256,
+  }));
+  return canonicalRegistry({
+    version: 1,
+    migrationBaseline: candidate.migrationBaseline,
+    corpusSha256: candidate.corpusSha256,
+    sealedTargets,
+    expectedCount: entries.length,
+    entries,
+  });
+}
+
+function atomicWrite(path, bytes) {
+  const temporary = resolve(dirname(path), `.anchors-history-${process.pid}-${Date.now()}.tmp`);
+  try {
+    writeFileSync(temporary, bytes, { flag: 'wx' });
+    if (process.env.MRT_ANCHORS_FAIL_BEFORE_HISTORY_RENAME === '1') {
+      throw new Error('injected failure before historical registry rename');
+    }
+    renameSync(temporary, path);
+  } finally {
+    rmSync(temporary, { force: true });
+  }
+}
+
+function prepareHistory(path, target, registry, result) {
+  const destination = outsideWorktree(path, 'candidate output');
+  if (existsSync(destination)) throw new Error('candidate output must not already exist');
+  const candidate = canonicalCandidate(buildCandidate(target, registry, result));
+  const bytes = canonicalBytes(candidate);
+  writeFileSync(destination, bytes);
+  printCandidate(candidate, destination);
+}
+
+function applyHistory(path, approved, registry, result) {
+  const candidatePath = outsideWorktree(path, 'candidate path');
+  if (!existsSync(candidatePath) || !lstatSync(candidatePath).isFile()) {
+    throw new Error('candidate path must name a readable file');
+  }
+  const loaded = parseCanonicalFile(
+    candidatePath,
+    canonicalCandidate,
+    'historical candidate',
+  );
+  if (loaded.sha256 !== approved) throw new Error('approved candidate SHA-256 does not match');
+  if ((registry?.sha256 ?? null) !== loaded.value.existingRegistrySha256) {
+    throw new Error('historical registry changed after candidate review');
+  }
+  const current = canonicalCandidate(buildCandidate(loaded.value.target, registry, result));
+  if (!loaded.raw.equals(canonicalBytes(current))) {
+    throw new Error('candidate is stale because the reviewed corpus or derived occurrences changed');
+  }
+  const next = registryFromCandidate(current, registry);
+  atomicWrite(HISTORY, canonicalBytes(next));
+  console.log(`Applied ${next.entries.length} historical occurrence(s) -> ${HISTORY}`);
 }
 
 // Every citation whose blessed line is about to change, one record per citation.
@@ -1295,11 +1980,42 @@ function reportLocalOnly(found) {
 
 function main() {
   try {
+    options = parseArguments(process.argv.slice(2));
+    bless = options.mode === 'bless';
+    ref = options.ref;
+    ACTIVE_SOURCE = ref;
+  } catch (error) {
+    console.error(`FATAL: ${error.message}`);
+    process.exit(2);
+  }
+
+  let registry;
+  try {
+    registry = parseCanonicalFile(
+      HISTORY,
+      canonicalRegistry,
+      'historical registry',
+      options.mode === 'prepare' || options.mode === 'apply',
+    );
+    if (registry === null && (options.mode === 'check' || options.mode === 'bless')) {
+      throw new Error(`historical registry ${HISTORY} is missing`);
+    }
+  } catch (error) {
+    console.error(`FATAL: ${error.message}`);
+    process.exit(2);
+  }
+
+  try {
     const shallow = execFileSync('git', ['rev-parse', '--is-shallow-repository'], {
       encoding: 'utf8',
       stdio: ['ignore', 'pipe', 'ignore'],
     }).trim() === 'true';
-    if (shallow && (hasCommittedHistory() || hasExplicitDocumentSource())) {
+    const needsHistory = options.mode === 'prepare'
+      || options.mode === 'apply'
+      || (registry?.value.entries.length ?? 0) > 0
+      || hasCommittedHistory()
+      || hasExplicitDocumentSource();
+    if (shallow && needsHistory) {
       console.error('FATAL: a shallow clone cannot establish historical evidence provenance; use full history.');
       process.exit(2);
     }
@@ -1334,6 +2050,7 @@ function main() {
   let result;
   try {
     result = collect();
+    applyHistoryRegistry(result, registry);
   } catch (error) {
     console.error(`FATAL: ${error.message}`);
     process.exit(2);
@@ -1453,6 +2170,26 @@ function main() {
       console.error(`  ${f.key}  ${f.anchor}  (${f.blankEdge ?? f.why})`);
     }
     process.exit(2);
+  }
+
+  if (options.mode === 'prepare') {
+    try {
+      prepareHistory(options.output, options.target, registry, result);
+      process.exit(0);
+    } catch (error) {
+      console.error(`FATAL: ${error.message}`);
+      process.exit(2);
+    }
+  }
+
+  if (options.mode === 'apply') {
+    try {
+      applyHistory(options.candidate, options.approved, registry, result);
+      process.exit(0);
+    } catch (error) {
+      console.error(`FATAL: ${error.message}`);
+      process.exit(2);
+    }
   }
 
   if (bless) {
