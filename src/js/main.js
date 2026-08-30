@@ -6112,7 +6112,7 @@ function renderSalvage() {
         el('div', { class: 'field-row' }, [
           el('button', {
             type: 'button',
-            class: 'quiet',
+            class: 'btn btn-g',
             dataset: { act: 'download', key: c.key },
             'aria-label': `Download the ${when ? `copy taken on ${when}` : 'copy with no date recorded'}`,
             text: 'Download',
@@ -6132,7 +6132,7 @@ function renderSalvage() {
             })
             : el('button', {
               type: 'button',
-              class: 'quiet quiet-danger',
+              class: 'btn btn-danger',
               dataset: { act: 'forget', key: c.key },
               'aria-label': `Remove the ${when ? `copy taken on ${when}` : 'copy with no date recorded'}`,
               text: 'Remove',

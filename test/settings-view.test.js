@@ -219,6 +219,33 @@ test('the local connection control names its status and recovery guidance', () =
     getAttribute(button.open, 'aria-describedby'),
     'local-connection-status local-connection-help',
   );
+  assert.equal(hasClass(button.open, 'btn'), true);
+  assert.equal(hasClass(button.open, 'quiet'), false);
+  assert.equal(hasClass(button.open, 'setting-action'), true);
+});
+
+test('settings actions use full-size buttons while preserving their hierarchy', () => {
+  const expected = new Map([
+    ['btn-export-json', ['btn']],
+    ['btn-export-md-2', ['btn', 'btn-g']],
+    ['btn-undo-restore', ['btn', 'btn-g']],
+    ['btn-check-local-connection', ['btn', 'setting-action']],
+    ['btn-clear-cache', ['btn', 'btn-g', 'setting-action']],
+    ['btn-wipe', ['btn', 'btn-danger', 'setting-action']],
+  ]);
+  const buttons = openingTags(VIEW, 'button');
+
+  for (const [id, classes] of expected) {
+    const button = buttons.find((entry) => getAttribute(entry.open, 'id') === id);
+    assert.ok(button, `expected ${id}`);
+    for (const className of classes) {
+      assert.equal(hasClass(button.open, className), true, `${id} should use ${className}`);
+    }
+    assert.equal(hasClass(button.open, 'quiet'), false, `${id} should not use compact button sizing`);
+  }
+
+  assert.match(MAIN, /class: 'btn btn-g',\s+dataset: \{ act: 'download'/);
+  assert.match(MAIN, /class: 'btn btn-danger',\s+dataset: \{ act: 'forget'/);
 });
 
 test('every settings binding id still appears exactly once in the shipped markup', () => {

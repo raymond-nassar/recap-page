@@ -1949,13 +1949,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3392-3403|0": {
-    "anchor": "CHANGELOG.md:3392-3403",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3393-3404|0": {
+    "anchor": "CHANGELOG.md:3393-3404",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3405-3415|0": {
-    "anchor": "CHANGELOG.md:3405-3415",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3406-3416|0": {
+    "anchor": "CHANGELOG.md:3406-3416",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2099,8 +2099,8 @@
     "fp": "d52c5acfb3ad6365",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((f) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:701|0": {
-    "anchor": "src/styles.css:701",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:706|0": {
+    "anchor": "src/styles.css:706",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2159,8 +2159,8 @@
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1535-1537|0": {
-    "anchor": "src/styles.css:1535-1537",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1551-1553|0": {
+    "anchor": "src/styles.css:1551-1553",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2179,8 +2179,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1535-1537|0": {
-    "anchor": "src/styles.css:1535-1537",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1551-1553|0": {
+    "anchor": "src/styles.css:1551-1553",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2204,18 +2204,18 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:629|0": {
-    "anchor": "src/styles.css:629",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:634|0": {
+    "anchor": "src/styles.css:634",
     "fp": "3a6460e8dae6367c",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:770-771|0": {
-    "anchor": "src/styles.css:770-771",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:775-776|0": {
+    "anchor": "src/styles.css:775-776",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:773|0": {
-    "anchor": "src/styles.css:773",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:778|0": {
+    "anchor": "src/styles.css:778",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -2229,8 +2229,8 @@
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:787-790|0": {
-    "anchor": "src/styles.css:787-790",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:792-795|0": {
+    "anchor": "src/styles.css:792-795",
     "fp": "713b8b6372bfe540",
     "head": ".cb {"
   },
@@ -2239,13 +2239,13 @@
     "fp": "e2487f340315f2a7",
     "head": "function issueRowActions(item, listId) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:844-845|0": {
-    "anchor": "src/styles.css:844-845",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:849-850|0": {
+    "anchor": "src/styles.css:849-850",
     "fp": "0874e4ac50b18fce",
     "head": ".row-actions { position: relative; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:856-873|0": {
-    "anchor": "src/styles.css:856-873",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:861-878|0": {
+    "anchor": "src/styles.css:861-878",
     "fp": "055ddff8cdf01f77",
     "head": "@media (max-width: 620px) {"
   },
@@ -2294,8 +2294,8 @@
     "fp": "49408e8173086b6e",
     "head": "for (const btn of document.querySelectorAll('.ri[data-view]')) {"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1535-1537|0": {
-    "anchor": "src/styles.css:1535-1537",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1551-1553|0": {
+    "anchor": "src/styles.css:1551-1553",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -5954,8 +5954,8 @@
     "fp": "1e32540f481bdd17",
     "head": "test('every stop is listed on the screen its own link names', () => {"
   },
-  "scripts/browser-check.mjs|preamble|src/styles.css:844|0": {
-    "anchor": "src/styles.css:844",
+  "scripts/browser-check.mjs|preamble|src/styles.css:849|0": {
+    "anchor": "src/styles.css:849",
     "fp": "bad6625aa1fb228f",
     "head": ".row-actions { position: relative; }"
   },
@@ -6009,13 +6009,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1567|0": {
-    "anchor": "src/styles.css:1567",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1583|0": {
+    "anchor": "src/styles.css:1583",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1591|0": {
-    "anchor": "src/styles.css:1591",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1607|0": {
+    "anchor": "src/styles.css:1607",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6044,13 +6044,13 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:789|0": {
-    "anchor": "src/styles.css:789",
+  "scripts/check-palette.mjs|preamble|src/styles.css:794|0": {
+    "anchor": "src/styles.css:794",
     "fp": "ab1b965d8a6c63ba",
     "head": "background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-ca"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:791|0": {
-    "anchor": "src/styles.css:791",
+  "scripts/check-palette.mjs|preamble|src/styles.css:796|0": {
+    "anchor": "src/styles.css:796",
     "fp": "66318b8a9bc87d06",
     "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },

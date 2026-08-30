@@ -19,7 +19,8 @@ In plain English: if a browser-installed Recap Page opens while its separate loc
 running, the app now explains that saved lists and progress are safe and shows how to reconnect.
 Readers can check the connection under Backup & settings or retry a Reading List where it failed,
 without needing to understand server processes. Microsoft Store packaging and saved data are
-unchanged.
+unchanged. Actions on the settings screen now use consistent full-size buttons while keeping
+primary, secondary, and destructive choices visually distinct.
 
 ### Prepared the Microsoft Store submission packet
 
