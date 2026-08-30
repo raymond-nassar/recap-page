@@ -2,7 +2,7 @@
 
 Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen daredevil-reading-order issue mapping.
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
-The frozen source records 909 issue occurrences, including 33 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
+The frozen source records 909 issue occurrences, including 34 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
 No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata or reviewed official Marvel issue pages after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
@@ -361,7 +361,6 @@ Collects: Daredevil #301-311, Annual #8, Nomad #4-6, Punisher War Journal #45-47
 - [ ] [Punisher War Journal (1988) #45](https://www.marvel.com/comics/issue/22201/punisher_war_journal_1988_45)
 - [ ] [Punisher War Journal (1988) #46](https://www.marvel.com/comics/issue/22202/punisher_war_journal_1988_46)
 - [ ] [Punisher War Journal (1988) #47](https://www.marvel.com/comics/issue/22203/punisher_war_journal_1988_47)
-- [ ] Marvel Holiday Special #2
 ## Daredevil Epic Collection Vol. 17: Into the Fire
 Collects: Daredevil (1964) #312-318, Annual #9, Daredevil/Black Widow: Abattoir, Daredevil: The Man Without Fear #1-5.
 - [ ] [Daredevil (1964) #312](https://www.marvel.com/comics/issue/8310/daredevil_1964_312)
@@ -437,7 +436,7 @@ Collects: Daredevil #365 to #380, Daredevil/Deadpool Annual '97
 - [ ] [Daredevil (1964) #378](https://www.marvel.com/comics/issue/8382/daredevil_1964_378)
 - [ ] [Daredevil (1964) #379](https://www.marvel.com/comics/issue/8383/daredevil_1964_379)
 - [ ] [Daredevil (1964) #380](https://www.marvel.com/comics/issue/8385/daredevil_1964_380)
-- [ ] Daredevil/Deadpool Annual '97
+- [ ] [Daredevil/Deadpool Annual (1997) #1](https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1)
 ## Daredevil: Guardian Devil
 Daredevil #1 - #8
 - [ ] [Daredevil (1998) #1](https://www.marvel.com/comics/issue/15609/daredevil_1998_1)
@@ -865,7 +864,6 @@ Collects: Daredevil 595-600
 ## Typhoid Fever
 Collects: Typhoid Fever: Spider-Man 1, Typhoid Fever: Daredevil 1, Typhoid Fever: X-Men 1
 - [ ] [Typhoid Fever: Spider-Man (2018) #1](https://www.marvel.com/comics/issue/71874/typhoid_fever_spider-man_2018_1)
-- [ ] Typhoid Fever: Daredevil 1
 - [ ] [Typhoid Fever: X-Men (2018) #1](https://www.marvel.com/comics/issue/71875/typhoid_fever_x-men_2018_1)
 ## Hunt for Wolverine: Weapon Lost
 Collects: Collects Hunt For Wolverine (2018) #1 And Hunt For Wolverine: Weapon Lost (2018) #1-4.
@@ -1030,24 +1028,14 @@ Collects: Daredevil: Cold Day in Hell (2025) #1-3.
 Collects: Collects The Amazing Spider-Man #'S 16, 396, Daredevil #270, Marvel Team-Up #'S 56, 73, The Spectacular Spider-Man #'S 26, 27, 28, 219.
 - [ ] [The Amazing Spider-Man (1963) #16](https://www.marvel.com/comics/issue/6549/the_amazing_spider-man_1963_16)
 - [ ] [The Amazing Spider-Man (1963) #396](https://www.marvel.com/comics/issue/6811/the_amazing_spider-man_1963_396)
-- [ ] Marvel Team-Up #56
 - [ ] [Marvel Team-Up (1972) #73](https://www.marvel.com/comics/issue/19696/marvel_team-up_1972_73)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #26](https://www.marvel.com/comics/issue/14720/peter_parker_the_spectacular_spider-man_1976_26)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #219](https://www.marvel.com/comics/issue/14675/peter_parker_the_spectacular_spider-man_1976_219)
-## Daredevil and the Punisher: Child's Play | Jan 1988 | Miller
-Collects: Ogn
-- [ ] Daredevil and the Punisher: Child's Play (OGN)
 ## Venom on Trial
 Collects: Venom On Trial #1-3
 - [ ] [Venom: On Trial (1997) #1](https://www.marvel.com/comics/issue/73597/venom_on_trial_1997_1)
 - [ ] [Venom: On Trial (1997) #2](https://www.marvel.com/comics/issue/73601/venom_on_trial_1997_2)
 - [ ] [Venom: On Trial (1997) #3](https://www.marvel.com/comics/issue/73602/venom_on_trial_1997_3)
-## Daredevil/Bullseye: The Target
-Collects: Ogn
-- [ ] Daredevil/Bullseye: The Target (OGN)
-## Daredevil/Spider-Man
-Collects: Ogn
-- [ ] Daredevil/Spider-Man (OGN)
 ## Marvel Knights Daredevil: Unusual Suspects
 Collects: Daredevil: Ninja 1-3; Daredevil/Spider-Man 1-4; Daredevil (1998) 20-25, 51-55; Spider-Man/Daredevil 1
 - [ ] [Daredevil Ninja (2000) #1](https://www.marvel.com/comics/issue/75104/daredevil_ninja_2000_1)
@@ -1077,4 +1065,3 @@ Collects: Defenders 6-11
 - [ ] [Defenders (2017) #8](https://www.marvel.com/comics/issue/65275/defenders_2017_8)
 - [ ] [Defenders (2017) #9](https://www.marvel.com/comics/issue/65511/defenders_2017_9)
 - [ ] [Defenders (2017) #10](https://www.marvel.com/comics/issue/66276/defenders_2017_10)
-- [ ] Defenders #11

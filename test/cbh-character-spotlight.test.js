@@ -7,6 +7,7 @@ import {
   approvalDigestFor,
   libraryDigestFor,
   packetDigestFor,
+  sourceGapResolutionDigestFor,
   sourcePositionsForPacket,
   validateFrozenPacket,
   validateInventoryState,
@@ -918,7 +919,7 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   assert.equal(record.centralDisposition, 'pilot-approved');
   assert.deepEqual(record.catalogIds, [id]);
   assert.equal(manifest.lists.some((entry) => entry.id === id), true);
-  assert.equal(catalog.lists.find((entry) => entry.id === id).count, 876);
+  assert.equal(catalog.lists.find((entry) => entry.id === id).count, 869);
   assert.equal(catalog.lists.find((entry) => entry.id === id).coverIssueId, 8073);
   assert.equal(Object.hasOwn(packet, 'sourceGroups'), false);
   assert.equal(Object.hasOwn(mapping, 'sourceGroups'), false);
@@ -926,17 +927,135 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   assert.equal(packet.proposedManifest.coverIssueId, 8073);
   assert.equal(mapping.approvedManifest.coverIssueId, 8073);
   assert.equal(packet.sourceOccurrenceCount, 909);
-  assert.equal(packet.rows.length, 868);
-  assert.equal(packet.repeatedSourceReferences.length, 33);
-  assert.equal(packet.sourceGaps.length, 8);
-  assert.equal(report.comparisonCount, 154);
-  assert.equal(mapping.relationshipReview.dispositions.length, 154);
-  assert.ok(packet.rows.every((row) => typeof row.sourceGroup === 'string' && row.sourceGroup));
-  assert.ok(packet.sourceGaps.every((gap) => typeof gap.sourceGroup === 'string' && gap.sourceGroup));
-  assert.equal(
-    packet.sourceGaps.find((gap) => gap.sourcePosition === 867).sourceIssueReference,
-    'Marvel Team-Up #56',
+  assert.equal(packet.rows.length, 869);
+  assert.equal(packet.repeatedSourceReferences.length, 34);
+  assert.equal(packet.sourceGaps, undefined);
+  assert.equal(packet.excludedSourceRows.length, 6);
+  assert.equal(packet.sourceGapResolutions.length, 8);
+  assert.deepEqual(
+    packet.sourceGapResolutions.map((resolution) => [
+      resolution.sourcePosition,
+      resolution.resolutionKind,
+    ]),
+    [
+      [335, 'source-exclusion'],
+      [406, 'exact-issue'],
+      [748, 'source-exclusion'],
+      [867, 'source-exclusion'],
+      [873, 'source-exclusion'],
+      [878, 'source-exclusion'],
+      [879, 'canonical-repeat'],
+      [909, 'source-exclusion'],
+    ],
   );
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.evidenceDigest === sourceGapResolutionDigestFor(resolution)
+  )));
+  const missingResolutionLedger = structuredClone(packet);
+  delete missingResolutionLedger.sourceGapResolutions;
+  missingResolutionLedger.packetDigest = packetDigestFor(missingResolutionLedger);
+  assert.throws(
+    () => validateFrozenPacket(missingResolutionLedger),
+    /resolution ledger differs from its approved transition evidence/i,
+  );
+  assert.deepEqual(report.sourceCounts, {
+    sourceOccurrenceCount: 909,
+    sourceIdentityCount: 869,
+    includedIssueCount: 869,
+    sourceGapCount: 0,
+    repeatedSourceReferenceCount: 34,
+    excludedSourceRowCount: 6,
+  });
+  assert.deepEqual(mapping.relationshipReview.sourceCounts, report.sourceCounts);
+  assert.deepEqual(
+    packet.excludedSourceRows.map((row) => [
+      row.sourcePosition,
+      row.sourceIssueReference,
+      row.decisionScope,
+    ]),
+    [
+      [335, 'Marvel Holiday Special #2', 'Owner-authorized Marvel Unlimited exclusion'],
+      [748, 'Typhoid Fever: Daredevil 1', 'Owner-authorized nonexistent-identity exclusion'],
+      [867, 'Marvel Team-Up #56', 'Owner-authorized Marvel Unlimited exclusion'],
+      [873, "Daredevil and the Punisher: Child's Play (OGN)", 'Owner-authorized Marvel Unlimited exclusion'],
+      [878, 'Daredevil/Bullseye: The Target (OGN)', 'Owner-authorized Marvel Unlimited exclusion'],
+      [909, 'Defenders #11', 'Owner-authorized nonexistent-identity exclusion'],
+    ],
+  );
+  assert.deepEqual(
+    packet.repeatedSourceReferences.find((reference) => reference.sourcePosition === 879),
+    {
+      sourcePosition: 879,
+      canonicalRow: 424,
+      sourceIssueReference: 'Daredevil/Spider-Man (OGN)',
+      sourceRangeReference: 'Daredevil/Spider-Man\nCollects: Ogn',
+      normalizedSeriesTitle: 'Spider-Man/Daredevil',
+      seriesYear: 2002,
+      issueNumber: '1',
+    },
+  );
+  const gapResolution = packet.sourceGapResolutions.find(
+    (resolution) => resolution.sourcePosition === 879,
+  );
+  assert.deepEqual(
+    {
+      ...gapResolution,
+      evidenceDigest: undefined,
+    },
+    {
+      sourcePosition: 879,
+      previousSourceIssueReference: 'Daredevil/Spider-Man (OGN)',
+      previousSourceRangeReference: 'Daredevil/Spider-Man\nCollects: Ogn',
+      previousNormalizedSeriesTitle: 'Daredevil/Spider-Man',
+      previousSeriesYear: null,
+      previousIssueNumber: 'OGN',
+      resolutionKind: 'canonical-repeat',
+      canonicalRow: 424,
+      selectedIssueId: 18826,
+      resolvedNormalizedSeriesTitle: 'Spider-Man/Daredevil',
+      resolvedSeriesYear: 2002,
+      resolvedIssueNumber: '1',
+      checkedAt: '2026-08-30',
+      auditBasis: 'The source names one OGN occurrence, while the provider exposes one 2002 Spider-Man/Daredevil issue and separately exposes the four 2001 Daredevil/Spider-Man issues that the source lists later. The singular source occurrence therefore repeats the 2002 one-shot already published at its first source occurrence.',
+      evidenceSources: [
+        {
+          kind: 'bibliographic-record',
+          url: 'https://www.comics.org/issue/113207/',
+          retrievedAt: '2026-08-30',
+        },
+        {
+          kind: 'metadata-api-issue',
+          url: 'https://marvel.emreparker.com/v1/issues/18826',
+          retrievedAt: '2026-08-30',
+        },
+        {
+          kind: 'metadata-api-search',
+          url: 'https://marvel.emreparker.com/v1/search/issues?q=Spider-Man%20Daredevil&limit=50',
+          retrievedAt: '2026-08-30',
+        },
+      ],
+      evidenceDigest: undefined,
+    },
+  );
+  assert.equal(gapResolution.evidenceDigest, sourceGapResolutionDigestFor(gapResolution));
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.equal(mapping.rows[423].selectedIssueId, 18826);
+  const annual = mapping.rows.find((row) => row.sourcePosition === 406);
+  assert.deepEqual(
+    [annual.selectedIssueId, annual.resolvedIssueTitle, annual.marvelIssueUrl],
+    [
+      43192,
+      'Daredevil/Deadpool Annual (1997) #1',
+      'https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1',
+    ],
+  );
+  assert.equal(report.comparisonCount, 138);
+  assert.equal(mapping.relationshipReview.dispositions.length, 138);
+  assert.deepEqual(record.overlapIds, report.comparisons
+    .filter((comparison) => comparison.relationship !== 'none')
+    .map((comparison) => comparison.orderId));
+  assert.ok(packet.rows.every((row) => typeof row.sourceGroup === 'string' && row.sourceGroup));
+  assert.equal(mapping.candidateMetadata.length, 869);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: id,
     inventoryRecord: record,
@@ -944,21 +1063,38 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   }));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
+  const currentReport = await buildCurrentReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
+  );
+  assert.deepEqual(currentReport, report);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: report.libraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
   assert.deepEqual(
     parsed.entries.map((entry) => String(entry.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
+  assert.equal(parsed.entries.filter((entry) => entry.issueId === 18826).length, 1);
+  assert.doesNotMatch(markdown, /Daredevil\/Spider-Man \(OGN\)/);
   assert.deepEqual(
     generated.items.filter((item) => !item.placeholder).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
   assert.equal(generated.items.find((item) => item.issueId === 8073).cover.path.length > 0, true);
-  assert.equal(generated.count, 876);
-  assert.equal(generated.placeholders, 8);
-  assert.deepEqual(
-    generated.unresolved.map((gap) => gap.title),
-    packet.sourceGaps.map((gap) => gap.sourceIssueReference),
-  );
+  assert.equal(parsed.entries.length, 869);
+  assert.deepEqual(parsed.unresolved, []);
+  assert.equal(generated.count, 869);
+  assert.equal(generated.collections, 11);
+  assert.equal(generated.placeholders, 0);
+  assert.deepEqual(generated.unresolved, []);
+  assert.equal(generated.items.filter((item) => item.issueId === 18826).length, 1);
+  const annualItem = generated.items.find((item) => item.issueId === 43192);
+  assert.equal(annualItem.detailsRefused, true);
+  assert.equal(annualItem.url, 'https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1');
 });
 
 test('the Black Panther packet preserves the full source ledger through publication evidence', async () => {

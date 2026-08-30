@@ -3137,9 +3137,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 876,
-      "placeholderCount": 8,
-      "emptyRecordCount": 0,
+      "count": 869,
+      "placeholderCount": 0,
+      "emptyRecordCount": 1,
       "collections": 11,
       "characters": [
         "Daredevil",

@@ -25,11 +25,13 @@ import {
 import {
   approvalDigestFor,
   assertGapTransition,
+  assertMappingMatchesPacketOccurrences,
   gapEvidenceDigestFor,
   libraryDigestFor,
   mappingDigestFor,
   packetDigestFor,
   reportDigestFor,
+  sourceGapResolutionDigestFor,
   sourceOccurrenceCountFor,
   sourcePositionsForPacket,
   validateBatchNoDuplicates,
@@ -205,9 +207,16 @@ function genericMapping(packet, id = packet.id) {
       : {
         sourceOccurrenceCount: packet.sourceOccurrenceCount,
         repeatedSourceReferences: structuredClone(packet.repeatedSourceReferences),
+        ...(packet.sourceGapResolutions == null
+          ? {}
+          : { sourceGapResolutions: structuredClone(packet.sourceGapResolutions) }),
       }),
     proposedManifest: packet.proposedManifest,
-    candidateMetadata: [],
+    candidateMetadata: rows.map((row) => ({
+      id: row.selectedIssueId,
+      issueTitle: row.resolvedIssueTitle,
+      detailUrl: row.marvelIssueUrl,
+    })),
     rows,
   };
   mapping.mappingDigest = mappingDigestFor(mapping);
@@ -366,11 +375,343 @@ function packetForOccurrenceShape(uniqueCount, repeated) {
   return packet;
 }
 
-test('open source gaps close only as the same exact identity or an availability exclusion', () => {
+test('open source gaps close only as the same exact identity, a reviewed repeat, or an availability exclusion', () => {
   const openPacket = genericGapPacket();
+  const historicalDaredevilPacket = structuredClone(openPacket);
+  historicalDaredevilPacket.id = 'daredevil-reading-order';
+  historicalDaredevilPacket.inventoryId = historicalDaredevilPacket.id;
+  historicalDaredevilPacket.sourceUrl =
+    'https://www.comicbookherald.com/daredevil-reading-order/';
+  historicalDaredevilPacket.proposedManifest.id = historicalDaredevilPacket.id;
+  historicalDaredevilPacket.proposedManifest.sourceFile = 'daredevil-reading-order.md';
+  historicalDaredevilPacket.proposedManifest.sourcePage =
+    historicalDaredevilPacket.sourceUrl;
+  historicalDaredevilPacket.proposedManifest.out = 'daredevil_reading_order.json';
+  historicalDaredevilPacket.packetDigest = packetDigestFor(historicalDaredevilPacket);
+  assert.throws(
+    () => validateFrozenPacket(historicalDaredevilPacket),
+    /resolution ledger differs from its approved transition evidence/i,
+  );
+  assert.doesNotThrow(() => validateFrozenPacket(
+    historicalDaredevilPacket,
+    { enforceApprovedResolutionDigest: false },
+  ));
+
+  const legacyPacketWithResolution = genericPacket();
+  delete legacyPacketWithResolution.sourceOccurrenceCount;
+  delete legacyPacketWithResolution.repeatedSourceReferences;
+  legacyPacketWithResolution.sourceGapResolutions = [{ entirely: 'invalid and unauthenticated' }];
+  legacyPacketWithResolution.packetDigest = packetDigestFor(legacyPacketWithResolution);
+  assert.throws(
+    () => validateFrozenPacket(legacyPacketWithResolution),
+    /sourceOccurrenceCount and supplemental source rows must appear together/i,
+  );
+
   const exactPacket = genericPacket();
   const exactMapping = genericMapping(exactPacket);
   assert.doesNotThrow(() => assertGapTransition(openPacket, exactPacket, exactMapping));
+
+  const aliasedGapPacket = genericGapPacket();
+  Object.assign(aliasedGapPacket.sourceGaps[0], {
+    sourceIssueReference: 'Daredevil/Spider-Man (OGN)',
+    sourceRangeReference: 'Daredevil/Spider-Man\nCollects: Ogn',
+    normalizedSeriesTitle: 'Daredevil/Spider-Man',
+    seriesYear: null,
+    issueNumber: 'OGN',
+  });
+  aliasedGapPacket.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(
+    aliasedGapPacket.sourceGaps[0],
+  );
+  aliasedGapPacket.packetDigest = packetDigestFor(aliasedGapPacket);
+
+  const repeatedPacket = structuredClone(aliasedGapPacket);
+  delete repeatedPacket.sourceGaps;
+  Object.assign(repeatedPacket.rows[0], {
+    sourceIssueReference: 'Spider-Man/Daredevil #1',
+    normalizedSeriesTitle: 'Spider-Man/Daredevil',
+    seriesYear: 2002,
+    issueNumber: '1',
+    seriesId: 3687,
+    candidateIssueId: 18826,
+  });
+  repeatedPacket.repeatedSourceReferences = [{
+    sourcePosition: 2,
+    canonicalRow: 1,
+    sourceIssueReference: aliasedGapPacket.sourceGaps[0].sourceIssueReference,
+    sourceRangeReference: aliasedGapPacket.sourceGaps[0].sourceRangeReference,
+    normalizedSeriesTitle: repeatedPacket.rows[0].normalizedSeriesTitle,
+    seriesYear: repeatedPacket.rows[0].seriesYear,
+    issueNumber: repeatedPacket.rows[0].issueNumber,
+  }];
+  repeatedPacket.sourceGapResolutions = [{
+    sourcePosition: 2,
+    previousSourceIssueReference: aliasedGapPacket.sourceGaps[0].sourceIssueReference,
+    previousSourceRangeReference: aliasedGapPacket.sourceGaps[0].sourceRangeReference,
+    previousNormalizedSeriesTitle: aliasedGapPacket.sourceGaps[0].normalizedSeriesTitle,
+    previousSeriesYear: aliasedGapPacket.sourceGaps[0].seriesYear,
+    previousIssueNumber: aliasedGapPacket.sourceGaps[0].issueNumber,
+    resolutionKind: 'canonical-repeat',
+    canonicalRow: 1,
+    selectedIssueId: 18826,
+    resolvedNormalizedSeriesTitle: 'Spider-Man/Daredevil',
+    resolvedSeriesYear: 2002,
+    resolvedIssueNumber: '1',
+    checkedAt: '2026-08-30',
+    auditBasis: 'The provider identifies the reversed-title source alias as this canonical one-shot.',
+    evidenceSources: [{
+      kind: 'metadata-api-issue',
+      url: 'https://marvel.emreparker.com/v1/issues/18826',
+      retrievedAt: '2026-08-30',
+    }],
+  }];
+  repeatedPacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
+    repeatedPacket.sourceGapResolutions[0],
+  );
+  repeatedPacket.packetDigest = packetDigestFor(repeatedPacket);
+  const repeatedMapping = genericMapping(repeatedPacket);
+  repeatedMapping.rows = repeatedMapping.rows.slice(0, 1);
+  Object.assign(repeatedMapping.rows[0], {
+    sourceIssueReference: repeatedPacket.rows[0].sourceIssueReference,
+    normalizedSeriesTitle: repeatedPacket.rows[0].normalizedSeriesTitle,
+    seriesYear: repeatedPacket.rows[0].seriesYear,
+    issueNumber: repeatedPacket.rows[0].issueNumber,
+    seriesId: repeatedPacket.rows[0].seriesId,
+    candidateIssueId: repeatedPacket.rows[0].candidateIssueId,
+    candidateIssueIds: ['18826'],
+    selectedIssueId: 18826,
+    marvelIssueUrl: 'https://www.marvel.com/comics/issue/18826/spider-mandaredevil_2002_1',
+    resolvedIssueTitle: 'Spider-Man/Daredevil (2002) #1',
+  });
+  repeatedMapping.candidateMetadata = [{
+    id: 18826,
+    issueTitle: 'Spider-Man/Daredevil (2002) #1',
+    seriesTitle: 'Spider-Man/Daredevil',
+    seriesYear: 2002,
+    issueNumber: '1',
+    detailUrl: 'https://www.marvel.com/comics/issue/18826/spider-mandaredevil_2002_1',
+  }];
+  repeatedMapping.mappingDigest = mappingDigestFor(repeatedMapping);
+  assert.doesNotThrow(() => assertGapTransition(
+    aliasedGapPacket,
+    repeatedPacket,
+    repeatedMapping,
+  ));
+
+  const mismatchedIssuePacket = structuredClone(repeatedPacket);
+  mismatchedIssuePacket.sourceGapResolutions[0].selectedIssueId = 999999;
+  mismatchedIssuePacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
+    mismatchedIssuePacket.sourceGapResolutions[0],
+  );
+  mismatchedIssuePacket.packetDigest = packetDigestFor(mismatchedIssuePacket);
+  const mismatchedIssueMapping = structuredClone(repeatedMapping);
+  mismatchedIssueMapping.packetDigest = mismatchedIssuePacket.packetDigest;
+  mismatchedIssueMapping.sourceGapResolutions = structuredClone(
+    mismatchedIssuePacket.sourceGapResolutions,
+  );
+  mismatchedIssueMapping.mappingDigest = mappingDigestFor(mismatchedIssueMapping);
+  assert.throws(
+    () => assertMappingMatchesPacketOccurrences(
+      mismatchedIssuePacket,
+      mismatchedIssueMapping,
+    ),
+    /selectedIssueId differs from its canonical mapping row/i,
+  );
+  const mismatchedRepeatIdentity = structuredClone(repeatedMapping);
+  mismatchedRepeatIdentity.rows[0].normalizedSeriesTitle = 'Completely Different Comic';
+  mismatchedRepeatIdentity.candidateMetadata[0].seriesTitle = 'Completely Different Comic';
+  mismatchedRepeatIdentity.mappingDigest = mappingDigestFor(mismatchedRepeatIdentity);
+  assert.throws(
+    () => assertMappingMatchesPacketOccurrences(repeatedPacket, mismatchedRepeatIdentity),
+    /selectedIssueId differs from its canonical mapping row/i,
+  );
+
+  for (const field of ['sourceIssueReference', 'sourceRangeReference']) {
+    const changedRepeatPacket = structuredClone(repeatedPacket);
+    changedRepeatPacket.repeatedSourceReferences[0][field] += ' changed';
+    changedRepeatPacket.packetDigest = packetDigestFor(changedRepeatPacket);
+    assert.throws(
+      () => assertGapTransition(aliasedGapPacket, changedRepeatPacket, repeatedMapping),
+      /does not match its resolved repeated source reference/i,
+    );
+  }
+
+  const missingResolutionPacket = structuredClone(repeatedPacket);
+  delete missingResolutionPacket.sourceGapResolutions;
+  missingResolutionPacket.packetDigest = packetDigestFor(missingResolutionPacket);
+  const missingResolutionMapping = structuredClone(repeatedMapping);
+  delete missingResolutionMapping.sourceGapResolutions;
+  missingResolutionMapping.packetDigest = missingResolutionPacket.packetDigest;
+  missingResolutionMapping.mappingDigest = mappingDigestFor(missingResolutionMapping);
+  assert.throws(
+    () => assertGapTransition(
+      aliasedGapPacket,
+      missingResolutionPacket,
+      missingResolutionMapping,
+    ),
+    /cannot become a canonical repeat/i,
+  );
+
+  const unrelatedGapPacket = structuredClone(aliasedGapPacket);
+  Object.assign(unrelatedGapPacket.sourceGaps[0], {
+    sourceIssueReference: 'Defenders #11',
+    sourceRangeReference: 'Defenders Vol. 2\nCollects: Defenders 6-11',
+    normalizedSeriesTitle: 'Defenders',
+    seriesYear: 2017,
+    issueNumber: '11',
+  });
+  unrelatedGapPacket.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(
+    unrelatedGapPacket.sourceGaps[0],
+  );
+  unrelatedGapPacket.packetDigest = packetDigestFor(unrelatedGapPacket);
+  assert.throws(
+    () => assertGapTransition(unrelatedGapPacket, repeatedPacket, repeatedMapping),
+    /mismatched repeat resolution evidence/i,
+  );
+
+  const annualGapPacket = genericGapPacket();
+  Object.assign(annualGapPacket.sourceGaps[0], {
+    sourceIssueReference: "Daredevil/Deadpool Annual '97",
+    sourceRangeReference: "Daredevil Epic Collection: Widow's Kiss\nCollects: Daredevil #365 to #380, Daredevil/Deadpool Annual '97",
+    normalizedSeriesTitle: 'Daredevil/Deadpool Annual',
+    seriesYear: 1997,
+    issueNumber: "Annual '97",
+  });
+  annualGapPacket.sourceGaps[0].evidenceDigest = gapEvidenceDigestFor(
+    annualGapPacket.sourceGaps[0],
+  );
+  annualGapPacket.packetDigest = packetDigestFor(annualGapPacket);
+  const annualPacket = genericPacket();
+  Object.assign(annualPacket.rows[1], {
+    sourceIssueReference: "Daredevil/Deadpool Annual '97",
+    sourceRangeReference: annualGapPacket.sourceGaps[0].sourceRangeReference,
+    normalizedSeriesTitle: 'Daredevil/Deadpool Annual',
+    seriesYear: 1997,
+    issueNumber: '1',
+    seriesId: null,
+    candidateIssueId: 43192,
+    manualSeriesSelectionApproved: true,
+    selectionNote: 'The owner supplied the exact official Marvel Unlimited issue page.',
+  });
+  annualPacket.sourceGapResolutions = [{
+    sourcePosition: 2,
+    previousSourceIssueReference: annualGapPacket.sourceGaps[0].sourceIssueReference,
+    previousSourceRangeReference: annualGapPacket.sourceGaps[0].sourceRangeReference,
+    previousNormalizedSeriesTitle: annualGapPacket.sourceGaps[0].normalizedSeriesTitle,
+    previousSeriesYear: annualGapPacket.sourceGaps[0].seriesYear,
+    previousIssueNumber: annualGapPacket.sourceGaps[0].issueNumber,
+    resolutionKind: 'exact-issue',
+    selectedIssueId: 43192,
+    resolvedNormalizedSeriesTitle: 'Daredevil/Deadpool Annual',
+    resolvedSeriesYear: 1997,
+    resolvedIssueNumber: '1',
+    checkedAt: '2026-08-30',
+    auditBasis: 'The owner supplied the exact official Marvel Unlimited issue page.',
+    evidenceSources: [{
+      kind: 'official-marvel-issue',
+      url: 'https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1',
+      retrievedAt: '2026-08-30',
+    }],
+  }];
+  annualPacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
+    annualPacket.sourceGapResolutions[0],
+  );
+  annualPacket.sourceOccurrenceCount = 2;
+  annualPacket.packetDigest = packetDigestFor(annualPacket);
+  const annualMapping = genericMapping(annualPacket);
+  Object.assign(annualMapping.rows[1], {
+    sourceIssueReference: annualPacket.rows[1].sourceIssueReference,
+    sourceRangeReference: annualPacket.rows[1].sourceRangeReference,
+    normalizedSeriesTitle: annualPacket.rows[1].normalizedSeriesTitle,
+    seriesYear: annualPacket.rows[1].seriesYear,
+    issueNumber: annualPacket.rows[1].issueNumber,
+    seriesId: null,
+    candidateIssueId: 43192,
+    manualSeriesSelectionApproved: true,
+    selectionNote: 'The owner supplied the exact official Marvel Unlimited issue page.',
+    candidateIssueIds: ['43192'],
+    selectedIssueId: 43192,
+    marvelIssueUrl: 'https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1',
+    resolvedIssueTitle: 'Daredevil/Deadpool Annual (1997) #1',
+  });
+  annualMapping.candidateMetadata[1] = {
+    id: 43192,
+    issueTitle: 'Daredevil/Deadpool Annual (1997) #1',
+    seriesTitle: 'Daredevil/Deadpool Annual',
+    seriesYear: 1997,
+    issueNumber: '1',
+    detailUrl: 'https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1',
+  };
+  annualMapping.mappingDigest = mappingDigestFor(annualMapping);
+  assert.doesNotThrow(() => assertGapTransition(
+    annualGapPacket,
+    annualPacket,
+    annualMapping,
+  ));
+  const mismatchedAnnualUrl = structuredClone(annualMapping);
+  mismatchedAnnualUrl.rows[1].marvelIssueUrl =
+    'https://www.marvel.com/comics/issue/18826/spider-mandaredevil_2002_1';
+  mismatchedAnnualUrl.mappingDigest = mappingDigestFor(mismatchedAnnualUrl);
+  assert.throws(
+    () => assertMappingMatchesPacketOccurrences(annualPacket, mismatchedAnnualUrl),
+    /Marvel issue URL differs from selectedIssueId/i,
+  );
+  const mismatchedAnnualIdentity = structuredClone(annualMapping);
+  mismatchedAnnualIdentity.rows[1].normalizedSeriesTitle = 'Completely Different Comic';
+  mismatchedAnnualIdentity.mappingDigest = mappingDigestFor(mismatchedAnnualIdentity);
+  assert.throws(
+    () => assertMappingMatchesPacketOccurrences(annualPacket, mismatchedAnnualIdentity),
+    /differs from its resolved packet and mapping identity/i,
+  );
+
+  const exclusionPacket = structuredClone(openPacket);
+  const excludedGap = exclusionPacket.sourceGaps.pop();
+  delete exclusionPacket.sourceGaps;
+  exclusionPacket.excludedSourceRows = [{
+    sourcePosition: excludedGap.sourcePosition,
+    sourceIssueReference: excludedGap.sourceIssueReference,
+    reason: 'The owner confirmed this source issue is unavailable on Marvel Unlimited.',
+    decisionScope: 'Owner-authorized Marvel Unlimited exclusion',
+  }];
+  exclusionPacket.sourceGapResolutions = [{
+    sourcePosition: excludedGap.sourcePosition,
+    previousSourceIssueReference: excludedGap.sourceIssueReference,
+    previousSourceRangeReference: excludedGap.sourceRangeReference,
+    previousNormalizedSeriesTitle: excludedGap.normalizedSeriesTitle,
+    previousSeriesYear: excludedGap.seriesYear,
+    previousIssueNumber: excludedGap.issueNumber,
+    resolutionKind: 'source-exclusion',
+    exclusionReason: exclusionPacket.excludedSourceRows[0].reason,
+    decisionScope: exclusionPacket.excludedSourceRows[0].decisionScope,
+    checkedAt: '2026-08-30',
+    auditBasis: 'The owner authorized omission of issues unavailable on Marvel Unlimited.',
+    evidenceSources: [{
+      kind: 'owner-availability-review',
+      url: 'https://github.com/raymond-nassar/recap-page/issues/287',
+      retrievedAt: '2026-08-30',
+    }],
+  }];
+  exclusionPacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
+    exclusionPacket.sourceGapResolutions[0],
+  );
+  exclusionPacket.packetDigest = packetDigestFor(exclusionPacket);
+  const exclusionMapping = genericGapMapping(exclusionPacket);
+  delete exclusionMapping.sourceGaps;
+  exclusionMapping.excludedSourceRows = structuredClone(exclusionPacket.excludedSourceRows);
+  exclusionMapping.sourceGapResolutions = structuredClone(exclusionPacket.sourceGapResolutions);
+  exclusionMapping.mappingDigest = mappingDigestFor(exclusionMapping);
+  assert.doesNotThrow(() => assertGapTransition(
+    openPacket,
+    exclusionPacket,
+    exclusionMapping,
+  ));
+
+  const invalidRepeatPacket = structuredClone(repeatedPacket);
+  invalidRepeatPacket.repeatedSourceReferences[0].canonicalRow = 2;
+  invalidRepeatPacket.packetDigest = packetDigestFor(invalidRepeatPacket);
+  assert.throws(
+    () => assertGapTransition(aliasedGapPacket, invalidRepeatPacket, repeatedMapping),
+    /canonicalRow must name a canonical packet row/i,
+  );
 
   const yearlessGap = structuredClone(openPacket);
   yearlessGap.sourceGaps[0].seriesYear = null;

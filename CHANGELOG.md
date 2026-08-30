@@ -13,6 +13,14 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Resolved Daredevil Reading List metadata gaps
+
+In plain English: the Daredevil Reading List now links its 1997 Deadpool annual and no longer shows
+unavailable or nonexistent comics as unresolved rows. Its standalone Spider-Man team-up is another
+mention of the same one-shot already listed earlier. Six omitted source entries remain recorded for
+provenance, so nothing is guessed, substituted, or silently deleted. Nothing you have saved is
+changed.
+
 ### Added immutable historical evidence anchors
 
 In plain English: nothing in the app or in saved reading progress changes. Maintainers can now move

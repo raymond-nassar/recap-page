@@ -2,7 +2,7 @@
   "candidateId": "magneto-reading-order",
   "packetDigest": "c3295cf4a756bbfcd42638712edd5f0dd3386d1924f95ffa94402711d020a1d6",
   "mappingDigest": "74d8d5a2bcf13c4b2034a695fe156c919ff20dcf8fce23819471c45a65709ed5",
-  "libraryDigest": "864080354ca81b3d451e82350cb20e1fe5bcec0768327c663abef62a81041254",
+  "libraryDigest": "ea1ffe475f8cf0e586ada1dbf85c72a51e26ccef32b293bfbc70a4a175bc1d65",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 811,
@@ -1882,5 +1882,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "e5b00c93b4cc1ce3fd356cc5e9854db2fc5d361f1f6e9c169d0ab7f000106018"
+  "reportDigest": "980a82fd008b0034ffa691fd55154136c5039478f4c47d473e61fff709d30119"
 }
