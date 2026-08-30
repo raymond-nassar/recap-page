@@ -13,6 +13,11 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 ## Unreleased
 
+### Aligned Reading List card actions
+
+In plain English: Browse cards now keep their action buttons aligned along the bottom edge, even
+when their descriptions have different lengths. Saved Reading Lists and progress are unchanged.
+
 ### Added local app connection recovery
 
 In plain English: if a browser-installed Recap Page opens while its separate local copy is not

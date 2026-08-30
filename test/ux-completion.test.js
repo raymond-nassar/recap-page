@@ -121,6 +121,11 @@ test('browse screens render safe cover-led cards with one-sentence summaries', (
   assert.match(body, /class: 'catalog-card'/);
   assert.match(body, /attributionLine\(list\)/, 'Source disclosure left the clean card');
   assert.doesNotMatch(body, /pathChooser\(/, 'variant radios are still standing on every card');
+  assert.match(
+    styles,
+    /\.catalog-card-actions\s*\{[^}]*margin-top:\s*auto;/s,
+    'card actions no longer stay aligned at the bottom of equal-height cards',
+  );
 });
 
 test('the timeline is a vertical chronology rather than a separate year navigator', () => {

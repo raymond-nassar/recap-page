@@ -1625,6 +1625,13 @@ const SCENARIOS = [
 
       const vertical = await page.evaluate(() => {
         const rows = [...document.querySelectorAll('.timeline-year-row:not(.is-empty)')];
+        const varied = rows
+          .find((row) => row.querySelectorAll('.catalog-card-desc').length > 1)
+          ?.querySelectorAll('.catalog-card-desc');
+        if (varied) {
+          varied[0].textContent = 'A deliberately long summary that wraps across several lines to prove the card layout does not depend on matching description lengths. '.repeat(3);
+          varied[1].textContent = 'A short summary.';
+        }
         const clearance = (row) => {
           const marker = row.querySelector('.timeline-year-marker');
           const label = row.querySelector('.timeline-year-label');
@@ -1636,13 +1643,19 @@ const SCENARIOS = [
         };
         return {
           flow: Boolean(document.querySelector('.timeline-flow')),
+          variedCopy: Boolean(varied),
           oldNavigator: Boolean(document.querySelector('#catalog-timeline')),
           sticky: rows.map((row) => getComputedStyle(row.querySelector('.timeline-year-marker')).position),
           clearances: rows.map(clearance),
           groups: rows.map((row) => ({
             year: row.querySelector('.timeline-year-label')?.textContent.trim() ?? '',
             cards: [...row.querySelectorAll('.catalog-card')].map((card) => card.dataset.year),
-            heights: [...row.querySelectorAll('.catalog-card')].map((card) => Math.round(card.getBoundingClientRect().height)),
+            heights: [...row.querySelectorAll('.catalog-card')]
+              .map((card) => Math.round(card.getBoundingClientRect().height)),
+            actionOffsets: [...row.querySelectorAll('.catalog-card')].map((card) => Math.round(
+              card.getBoundingClientRect().bottom
+                - card.querySelector('.catalog-card-actions').getBoundingClientRect().bottom,
+            )),
           })),
         };
       });
@@ -1652,8 +1665,11 @@ const SCENARIOS = [
         vertical.groups.length > 0
         && vertical.groups.every((group) => group.cards.length > 0 && group.cards.every((year) => year === group.year)),
         JSON.stringify(vertical.groups));
-      t.check('cards within each year use one height',
-        vertical.groups.every((group) => Math.max(...group.heights) - Math.min(...group.heights) <= 1),
+      t.check('cards within each year use one height and align their actions',
+        vertical.variedCopy && vertical.groups.every((group) => (
+          Math.max(...group.heights) - Math.min(...group.heights) <= 1
+          && Math.max(...group.actionOffsets) <= 1
+        )),
         JSON.stringify(vertical.groups));
       t.check('each year label clears the circle beside it',
         vertical.clearances.every((gap) => gap >= 4), JSON.stringify(vertical.clearances));

@@ -1235,7 +1235,7 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
 }
 .catalog-card-actions {
   display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem;
-  padding: 0 .85rem .85rem;
+  margin-top: auto; padding: 0 .85rem .85rem;
 }
 .catalog-card-actions .btn { justify-content: center; min-height: 44px; }
 
