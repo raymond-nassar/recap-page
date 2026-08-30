@@ -54,7 +54,7 @@ const CHARACTER_HORIZON_STATUSES = new Set([
 
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
-  'daredevil-reading-order': '70960d67307c5d1a2a2da8fc38e78cbf98dbefaf43460d7b389ef57cb7b416ac',
+  'daredevil-reading-order': '6d4e6890f7423dc9319aa32c4c323922a2c51871f278b1f822604c7520e87e85',
 });
 const PACKET_FIELDS = new Set([
   'schemaVersion',
@@ -504,6 +504,17 @@ function assertSourceGapResolution(
       || Object.hasOwn(resolution, 'decisionScope')) {
       throw new Error(`${label} canonical-repeat cannot contain exclusion fields`);
     }
+    assertNonEmptyString(
+      resolution.resolvedNormalizedSeriesTitle,
+      `${label} resolvedNormalizedSeriesTitle`,
+    );
+    if (!Number.isInteger(resolution.resolvedSeriesYear)) {
+      throw new Error(`${label} resolvedSeriesYear must be an integer`);
+    }
+    assertNonEmptyString(
+      String(resolution.resolvedIssueNumber ?? ''),
+      `${label} resolvedIssueNumber`,
+    );
     const repeated = repeatsByPosition.get(resolution.sourcePosition);
     if (!repeated
       || repeated.canonicalRow !== resolution.canonicalRow
@@ -898,7 +909,13 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
       const canonicalPacket = packet.rows[resolution.canonicalRow - 1];
       const canonicalMapping = mappingRows[resolution.canonicalRow - 1];
       if (Number(canonicalMapping?.selectedIssueId) !== resolution.selectedIssueId
-        || sourceIdentityKey(canonicalMapping) !== sourceIdentityKey(canonicalPacket)) {
+        || sourceIdentityKey(canonicalMapping) !== sourceIdentityKey(canonicalPacket)
+        || canonicalPacket.normalizedSeriesTitle !== resolution.resolvedNormalizedSeriesTitle
+        || canonicalMapping.normalizedSeriesTitle !== resolution.resolvedNormalizedSeriesTitle
+        || canonicalPacket.seriesYear !== resolution.resolvedSeriesYear
+        || canonicalMapping.seriesYear !== resolution.resolvedSeriesYear
+        || String(canonicalPacket.issueNumber) !== String(resolution.resolvedIssueNumber)
+        || String(canonicalMapping.issueNumber) !== String(resolution.resolvedIssueNumber)) {
         throw new Error(`${packetId} source gap resolution at position ${resolution.sourcePosition} selectedIssueId differs from its canonical mapping row`);
       }
       if (issueIdFromMarvelUrl(canonicalMapping.marvelIssueUrl) !== resolution.selectedIssueId) {
@@ -909,9 +926,9 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
       ));
       if (!candidate
         || issueIdFromMarvelUrl(candidate.detailUrl) !== resolution.selectedIssueId
-        || candidate.seriesTitle !== canonicalPacket.normalizedSeriesTitle
-        || candidate.seriesYear !== canonicalPacket.seriesYear
-        || String(candidate.issueNumber) !== String(canonicalPacket.issueNumber)) {
+        || candidate.seriesTitle !== resolution.resolvedNormalizedSeriesTitle
+        || candidate.seriesYear !== resolution.resolvedSeriesYear
+        || String(candidate.issueNumber) !== String(resolution.resolvedIssueNumber)) {
         throw new Error(`${packetId} canonical repeat resolution at position ${resolution.sourcePosition} has no matching candidate metadata`);
       }
     } else if (resolution.resolutionKind === 'exact-issue') {

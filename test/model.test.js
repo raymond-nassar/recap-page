@@ -1028,9 +1028,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // WandaVision, Spider-Man: Far From Home, and the Modern X-Men Fast Track order merged in
   // from main, and again the same day after the Amazing Spider-Man complete guide added 106
   // placeholders of its own. The Iron Man guide then added seven owner-confirmed issue ids that
-  // the live metadata index does not list. The Abomination guide added two more empty responses,
-  // bringing the total to 85 across six affected orders. Daredevil's exact annual URL adds one
-  // provider-refused record, bringing the current total to 86 across seven affected orders. Written down as observations rather than
+  // the live metadata index does not list. The Abomination guide retains one empty response after
+  // its Ghost Rider identity was corrected, bringing the total to 84 across six affected orders.
+  // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
   //
@@ -1052,7 +1052,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // claiming a metadata match.
   assert.equal(claimed, 1884, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 1883, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 86);
+  assert.equal(empty, 85);
   assert.equal(affected, 7);
 });
 
@@ -1243,16 +1243,18 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // owner-confirmed issue ids that the live metadata index does not list, and none repeat an id
   // already present in the bundled catalog.
   //
-  // The Abomination guide adds two more exact issue pages with no metadata response. Captain
+  // The Abomination guide retains one exact issue page with no metadata response after its
+  // Ghost Rider identity was corrected. Captain
   // America adds 69 placeholders, 68 of which are new negative identifiers because its cover
   // record already has a pinned Marvel issue id. Deadpool adds two official issue identities
   // that the provider also cannot answer. Black Panther adds four negative placeholder identifiers.
   // Doctor Strange adds 39 more negative placeholder identifiers. Daredevil now adds none after
-  // its availability settlement. Venom adds 33. Punisher adds 158 distinct placeholders while retaining 23 repeated
+  // its availability settlement. Venom adds 33 more negative
+  // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
   // adds 23, and Nick Fury and S.H.I.E.L.D. adds 194.
-  assert.equal(refused.length, 1936);
+  assert.equal(refused.length, 1935);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

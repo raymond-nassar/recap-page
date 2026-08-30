@@ -617,6 +617,34 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
+test('Abomination preserves the unresolved Hulk annual and selects the exact 1981 Ghost Rider issue', async () => {
+  const [packet, mapping] = await Promise.all([
+    readJson('scripts/data/cbh-packets/abomination-reading-order.json'),
+    readJson('scripts/data/cbh-mappings/abomination-reading-order.json'),
+  ]);
+
+  for (const evidence of [packet, mapping]) {
+    const hulkAnnual = evidence.rows.find((row) => row.sourcePosition === 88);
+    const ghostRider = evidence.rows.find((row) => row.sourcePosition === 90);
+    assert.deepEqual(
+      {
+        selectedIssueId: hulkAnnual?.selectedIssueId,
+        seriesId: hulkAnnual?.seriesId,
+        seriesYear: hulkAnnual?.seriesYear,
+      },
+      { selectedIssueId: 16874, seriesId: 2983, seriesYear: 1976 },
+    );
+    assert.deepEqual(
+      {
+        selectedIssueId: ghostRider?.selectedIssueId,
+        seriesId: ghostRider?.seriesId,
+        seriesYear: ghostRider?.seriesYear,
+      },
+      { selectedIssueId: 8768, seriesId: 2013, seriesYear: 1973 },
+    );
+  }
+});
+
 test('the character inventory preserves every central disposition, ships thirty-five spotlights, and records five approved reuses', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
@@ -706,13 +734,14 @@ test('the character inventory preserves every central disposition, ships thirty-
   ]);
   assert.equal(shippedById.get('the-defenders-reading-order').overlapIds.length, 19);
   assert.deepEqual(shippedById.get(moonKnightCandidateId).catalogIds, [moonKnightCandidateId]);
-  assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 17);
+  assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 18);
   assert.deepEqual(shippedById.get('daredevil-reading-order').catalogIds, ['daredevil-reading-order']);
   assert.deepEqual(shippedById.get(abominationCandidateId).catalogIds, [abominationCandidateId]);
   assert.deepEqual(shippedById.get(abominationCandidateId).overlapIds, [
     'atlantis-attacks',
     'essential-avengers',
     'maximum-security',
+    'silver-surfer-reading-order',
   ]);
   assert.deepEqual(
     shippedById.get('amazing-spider-man-reading-order-modern-marvel-era').catalogIds,
@@ -983,6 +1012,9 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
       resolutionKind: 'canonical-repeat',
       canonicalRow: 424,
       selectedIssueId: 18826,
+      resolvedNormalizedSeriesTitle: 'Spider-Man/Daredevil',
+      resolvedSeriesYear: 2002,
+      resolvedIssueNumber: '1',
       checkedAt: '2026-08-30',
       auditBasis: 'The source names one OGN occurrence, while the provider exposes one 2002 Spider-Man/Daredevil issue and separately exposes the four 2001 Daredevil/Spider-Man issues that the source lists later. The singular source occurrence therefore repeats the 2002 one-shot already published at its first source occurrence.',
       evidenceSources: [
@@ -1017,8 +1049,11 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
       'https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1',
     ],
   );
-  assert.equal(report.comparisonCount, 154);
-  assert.equal(mapping.relationshipReview.dispositions.length, 154);
+  assert.equal(report.comparisonCount, 138);
+  assert.equal(mapping.relationshipReview.dispositions.length, 138);
+  assert.deepEqual(record.overlapIds, report.comparisons
+    .filter((comparison) => comparison.relationship !== 'none')
+    .map((comparison) => comparison.orderId));
   assert.ok(packet.rows.every((row) => typeof row.sourceGroup === 'string' && row.sourceGroup));
   assert.equal(mapping.candidateMetadata.length, 869);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -1028,6 +1063,17 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   }));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
+  const currentReport = await buildCurrentReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
+  );
+  assert.deepEqual(currentReport, report);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: report.libraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
   assert.deepEqual(
     parsed.entries.map((entry) => String(entry.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
@@ -2380,6 +2426,12 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
 
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.deepEqual(
+    record.overlapIds,
+    report.comparisons
+      .filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => comparison.orderId),
+  );
   assert.equal(packet.sourceOccurrenceCount, 414);
   assert.equal(packet.rows.length, 374);
   assert.equal(packet.repeatedSourceReferences.length, 11);

@@ -1,7 +1,7 @@
 {
   "id": "daredevil-reading-order",
   "inventoryId": "daredevil-reading-order",
-  "packetDigest": "1f399b15d14d4d755371b7438459a54e1b1026890b21872136abcac29631d0b3",
+  "packetDigest": "043fddf12a941b45b5fae48f5d0a6671dec59b1211b284529d1f152f264222f2",
   "sourceUrl": "https://www.comicbookherald.com/daredevil-reading-order/",
   "sourceRetrievedAt": "2026-08-26",
   "sourceContentSha256": "3322ffae13d23ce743399af9dc957666b744a2d609bef6db758d551508292e81",
@@ -33388,7 +33388,7 @@
       ]
     }
   ],
-  "mappingDigest": "44431f2e2eb14752333412adf42ef04164e9f45dfb6d5aa74f7e8339c88fbced",
+  "mappingDigest": "2133078e961b849b0ef68d39cc0aa498c0a0346d932e840fac859134475cf67f",
   "packetReview": "The full page was independently checked against the current source. Source groups, collection expansions, repeat positions, source errors, and published metadata gaps are preserved.",
   "approvedManifest": {
     "id": "daredevil-reading-order",
@@ -33425,29 +33425,20 @@
     "coverIssueId": 8073
   },
   "relationshipReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "GPT-5.6 Terra independently reviewed all current catalog comparisons. The full-page source boundary has no exact duplicate, and every partial or subset relationship retains the complete source-selected sequence.",
-    "reviewedAt": "2026-08-27",
-    "reportDigest": "07f205d7630f57d99a74e4e4312f91954083262907d678936ecd6e1b8adf7063",
-    "packetDigest": "1f399b15d14d4d755371b7438459a54e1b1026890b21872136abcac29631d0b3",
-    "mappingDigest": "44431f2e2eb14752333412adf42ef04164e9f45dfb6d5aa74f7e8339c88fbced",
-    "libraryDigest": "417871293e4a3afd39c4fb7c847969a191d606d23b7560487bb49d25ec439781",
+    "reportDigest": "424be43515c85993c65f0020cb8b29908e2e86e82297882659a89875b6a98b7e",
+    "packetDigest": "043fddf12a941b45b5fae48f5d0a6671dec59b1211b284529d1f152f264222f2",
+    "mappingDigest": "2133078e961b849b0ef68d39cc0aa498c0a0346d932e840fac859134475cf67f",
+    "libraryDigest": "bd3e15c55272dd5bfc7d6637ec76d4d1845f7858c9253d62aade473fcf446052",
     "peerDigests": {},
+    "sourceCounts": {
+      "sourceOccurrenceCount": 909,
+      "sourceIdentityCount": 869,
+      "includedIssueCount": 869,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 34,
+      "excludedSourceRowCount": 6
+    },
     "dispositions": [
-      {
-        "orderId": "abomination-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison confirms a partial relationship with 1 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 1,
-        "sharedIds": [
-          "16873"
-        ]
-      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -33455,18 +33446,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33477,18 +33457,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "agents-of-atlas-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33499,30 +33468,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison confirms a partial relationship with 9 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 9,
-        "sharedIds": [
-          "35491",
-          "36513",
-          "39253",
-          "39941",
-          "40507",
-          "6870",
-          "6549",
-          "6811",
-          "14675"
-        ]
       },
       {
         "orderId": "annihilation",
@@ -33531,7 +33479,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33542,22 +33490,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison confirms a partial relationship with 1 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 1,
-        "sharedIds": [
-          "40500"
-        ]
       },
       {
         "orderId": "apocalypse-wars",
@@ -33566,7 +33501,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33577,7 +33512,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 1 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 1,
         "sharedIds": [
           "65046"
@@ -33590,7 +33525,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33601,7 +33536,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33612,7 +33547,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33623,24 +33558,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 3 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 3,
         "sharedIds": [
           "51062",
           "51087",
           "51174"
         ]
-      },
-      {
-        "orderId": "black-panther-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The complete-library comparison was independently reviewed; the full Daredevil source sequence remains complete.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
       },
       {
         "orderId": "black-widow-reading-order",
@@ -33777,7 +33701,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-30"
       },
       {
         "orderId": "bloodties",
@@ -33786,7 +33710,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33797,18 +33721,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33819,7 +33732,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33830,7 +33743,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33841,7 +33754,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33852,7 +33765,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33863,7 +33776,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33874,7 +33787,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33885,7 +33798,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33896,7 +33809,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33907,7 +33820,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33918,7 +33831,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33929,7 +33842,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33940,7 +33853,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33951,7 +33864,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -33962,7 +33875,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a existing-subset relationship with 9 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 9,
         "sharedIds": [
           "8304",
@@ -33977,24 +33890,13 @@
         ]
       },
       {
-        "orderId": "deadpool-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The complete-library comparison was independently reviewed; the full Daredevil source sequence remains complete.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
         "orderId": "death-of-doctor-strange",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34005,7 +33907,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 3 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 3,
         "sharedIds": [
           "98676",
@@ -34020,7 +33922,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34031,18 +33933,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "doctor-strange-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The complete-library comparison was independently reviewed; the full Daredevil source sequence remains complete.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34053,7 +33944,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34064,7 +33955,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34075,7 +33966,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34086,7 +33977,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34097,7 +33988,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34108,7 +33999,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 1 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 1,
         "sharedIds": [
           "8243"
@@ -34121,7 +34012,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34132,7 +34023,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34143,9 +34034,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issue identity requires an exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-08-30"
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -34154,7 +34054,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34165,7 +34065,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34176,7 +34076,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34187,18 +34087,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "hickman-x-men",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34209,7 +34098,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34220,7 +34109,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34231,7 +34120,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 5 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 5,
         "sharedIds": [
           "66912",
@@ -34248,7 +34137,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34259,7 +34148,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 3 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 3,
         "sharedIds": [
           "8254",
@@ -34274,7 +34163,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34285,7 +34174,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34296,7 +34185,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34307,7 +34196,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34318,7 +34207,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34329,7 +34218,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34340,7 +34229,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34351,7 +34240,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34362,7 +34251,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34373,7 +34262,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34384,94 +34273,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "marvel-knights-to-planet-x",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The complete-library comparison was independently reviewed; the full Daredevil source sequence remains complete.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 73,
-        "sharedIds": [
-          "15609",
-          "15620",
-          "15631",
-          "15642",
-          "15653",
-          "15664",
-          "15675",
-          "15686",
-          "4618",
-          "4619",
-          "4620",
-          "4622",
-          "4623",
-          "18958",
-          "18959",
-          "18960",
-          "18961",
-          "18962",
-          "18963",
-          "18964",
-          "15694",
-          "15610",
-          "15611",
-          "15612",
-          "15613",
-          "15614",
-          "15615",
-          "15616",
-          "15617",
-          "15618",
-          "15619",
-          "15627",
-          "15628",
-          "15629",
-          "15630",
-          "15632",
-          "15633",
-          "15634",
-          "15635",
-          "15636",
-          "15637",
-          "15638",
-          "15639",
-          "15640",
-          "15641",
-          "15643",
-          "20054",
-          "20055",
-          "20056",
-          "20057",
-          "20058",
-          "20059",
-          "20060",
-          "20061",
-          "20062",
-          "20064",
-          "20065",
-          "20066",
-          "15644",
-          "15645",
-          "15646",
-          "15647",
-          "15648",
-          "15649",
-          "15650",
-          "15651",
-          "15652",
-          "15654",
-          "15655",
-          "15656",
-          "326",
-          "358",
-          "327"
-        ]
       },
       {
         "orderId": "marvel-multiverse",
@@ -34480,7 +34284,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34491,7 +34295,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34502,7 +34306,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34513,7 +34317,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34524,7 +34328,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 1 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 1,
         "sharedIds": [
           "16066"
@@ -34537,7 +34341,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34548,7 +34352,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34559,7 +34363,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34570,7 +34374,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34581,7 +34385,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34592,7 +34396,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34603,7 +34407,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 1 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 1,
         "sharedIds": [
           "8227"
@@ -34616,7 +34420,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34627,7 +34431,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34638,7 +34442,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34649,7 +34453,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34660,7 +34464,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34671,7 +34475,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34682,7 +34486,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34693,7 +34497,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34704,7 +34508,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34715,7 +34519,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34726,22 +34530,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The complete-library comparison was independently reviewed; the full Daredevil source sequence remains complete.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 1,
-        "sharedIds": [
-          "16873"
-        ]
       },
       {
         "orderId": "reckoning-war",
@@ -34750,7 +34541,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34761,7 +34552,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34772,7 +34563,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34783,7 +34574,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34794,7 +34585,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34805,7 +34596,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34816,7 +34607,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34827,7 +34618,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34838,7 +34629,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34849,7 +34640,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34860,18 +34651,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34882,7 +34662,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34893,9 +34673,18 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The complete Daredevil and Silver Surfer character guides share issue 46002 but preserve distinct source-defined character scopes.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-08-30"
       },
       {
         "orderId": "sins-of-sinister",
@@ -34904,7 +34693,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34915,7 +34704,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34926,7 +34715,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34937,23 +34726,12 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 2 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 2,
         "sharedIds": [
           "6870",
           "6549"
         ]
-      },
-      {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -34962,7 +34740,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34973,7 +34751,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34984,7 +34762,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -34995,7 +34773,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35006,7 +34784,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35017,7 +34795,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35028,7 +34806,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 2 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 2,
         "sharedIds": [
           "8080",
@@ -35042,7 +34820,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35053,7 +34831,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35064,7 +34842,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35075,18 +34853,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35097,18 +34864,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "wandavision",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35119,7 +34875,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35130,7 +34886,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35141,7 +34897,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 1 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 1,
         "sharedIds": [
           "65511"
@@ -35154,26 +34910,9 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "wolverine-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison confirms a partial relationship with 5 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 5,
-        "sharedIds": [
-          "66912",
-          "67019",
-          "68605",
-          "68606",
-          "68608"
-        ]
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -35182,7 +34921,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35193,7 +34932,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35204,7 +34943,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35215,7 +34954,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35226,7 +34965,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35237,7 +34976,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35248,7 +34987,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35259,7 +34998,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35270,7 +35009,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35281,7 +35020,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35292,7 +35031,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35303,7 +35042,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35314,7 +35053,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35325,18 +35064,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35347,7 +35075,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35358,7 +35086,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35369,7 +35097,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison has no shared issue ids, so this independent guide may be published.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -35380,7 +35108,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 2 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 2,
         "sharedIds": [
           "65346",
@@ -35394,7 +35122,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The factual comparison confirms a partial relationship with 3 shared issue ids. The full-page guide retains every source-selected issue and does not replace the existing order.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-08-30",
         "sharedCount": 3,
         "sharedIds": [
           "65346",
@@ -35403,15 +35131,11 @@
         ]
       }
     ],
-    "approvalDigest": "3650644ba61772b6c5af188b392fb7957aec6aafd26ed9e72a3e697295098419",
-    "sourceCounts": {
-      "sourceOccurrenceCount": 909,
-      "sourceIdentityCount": 869,
-      "includedIssueCount": 869,
-      "sourceGapCount": 0,
-      "repeatedSourceReferenceCount": 34,
-      "excludedSourceRowCount": 6
-    }
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The current-main library comparison was independently reviewed after the Daredevil availability settlement. Every retained partial or subset relationship preserves a distinct source-defined guide scope.",
+    "reviewedAt": "2026-08-30",
+    "approvalDigest": "b8e3c5cd5871c3a67207e5e9492c5e3c81fe69fc4e5fc035c87e6ab65d29d210"
   },
   "sourceGapResolutions": [
     {
@@ -35582,6 +35306,9 @@
       "resolutionKind": "canonical-repeat",
       "canonicalRow": 424,
       "selectedIssueId": 18826,
+      "resolvedNormalizedSeriesTitle": "Spider-Man/Daredevil",
+      "resolvedSeriesYear": 2002,
+      "resolvedIssueNumber": "1",
       "checkedAt": "2026-08-30",
       "auditBasis": "The source names one OGN occurrence, while the provider exposes one 2002 Spider-Man/Daredevil issue and separately exposes the four 2001 Daredevil/Spider-Man issues that the source lists later. The singular source occurrence therefore repeats the 2002 one-shot already published at its first source occurrence.",
       "evidenceSources": [
@@ -35601,7 +35328,7 @@
           "retrievedAt": "2026-08-30"
         }
       ],
-      "evidenceDigest": "44726ecb67157c6d85c03724b1d87e6d911b72cec4b8519bd6cb451cb49218e2"
+      "evidenceDigest": "c5d7386f6173d0803978c50fbf3c2d7ea151eb67cbd4fda85e082c5f21e10e33"
     },
     {
       "sourcePosition": 909,

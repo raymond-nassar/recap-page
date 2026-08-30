@@ -13,12 +13,44 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync, spawnSync } from 'node:child_process';
-import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import {
+  cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-import { PROSE, blameSources, blankEdgeOf, citations, claimBefore, collisions, commentSyntax, explicitSourceMarker, failing, firstTime, nearMisses, pairingLines, pairings, proseRuns, relativeCitations, relativeVerdict, repeatVerdict, repeatedCitations, scopeRenames } from '../scripts/check-anchors.mjs';
+import {
+  PROSE,
+  blameSources,
+  blankEdgeOf,
+  citations,
+  claimBefore,
+  claimSha256For,
+  collisions,
+  commentSyntax,
+  contentSha256For,
+  explicitSourceMarker,
+  failing,
+  firstTime,
+  fullClaimBefore,
+  historicalGitEnvironment,
+  historyRegistryBytes,
+  nearMisses,
+  pairingLines,
+  pairings,
+  parseArguments,
+  parseHistoricalToken,
+  parseHistoryRegistryBytes,
+  proseRuns,
+  relativeCitations,
+  relativeVerdict,
+  repeatVerdict,
+  repeatedCitations,
+  scopeRenames,
+} from '../scripts/check-anchors.mjs';
 
 const JS = commentSyntax('a.mjs');
 const ROOT = fileURLToPath(new URL('../', import.meta.url));
@@ -944,7 +976,126 @@ test('a repeat counts in prose and not in code', () => {
   assert.equal(repeatedCitations(text, JS).length, 0);
 });
 
-function anchorRepo() {
+test('historical registry bytes and schema are canonical', () => {
+  const registry = historyRegistry('a'.repeat(40));
+  const bytes = historyRegistryBytes(registry);
+  assert.deepEqual(parseHistoryRegistryBytes(bytes), registry);
+  assert.throws(() => parseHistoryRegistryBytes(bytes.subarray(0, -1)), /not canonical/);
+  assert.throws(
+    () => parseHistoryRegistryBytes(Buffer.concat([Buffer.from([0xef, 0xbb, 0xbf]), bytes])),
+    /not valid JSON/,
+  );
+  assert.throws(
+    () => parseHistoryRegistryBytes(bytes.toString('utf8').replace(/\n/g, '\r\n')),
+    /not canonical/,
+  );
+  assert.throws(() => historyRegistryBytes({ ...registry, extra: true }), /contain exactly/);
+  assert.throws(
+    () => historyRegistryBytes({ ...registry, sealedTargets: ['z.js', 'a.js'] }),
+    /sorted by code unit/,
+  );
+  const duplicateMember = bytes.toString('utf8').replace(
+    '  "version": 1,\n',
+    '  "version": 1,\n  "version": 1,\n',
+  );
+  assert.throws(() => parseHistoryRegistryBytes(duplicateMember), /not canonical/);
+});
+
+test('historical tokens and modes are strict and disjoint from live anchors', () => {
+  const commit = 'a'.repeat(40);
+  const token = `git:${commit}:src/js/main.js#L12-L14`;
+  assert.deepEqual(
+    parseHistoricalToken(token),
+    { commit, path: 'src/js/main.js', start: 12, end: 14 },
+  );
+  assert.equal(citations(cite(token)).length, 0);
+  for (const invalid of [
+    `git:${'A'.repeat(40)}:src/js/main.js#L12`,
+    `git:${'a'.repeat(39)}:src/js/main.js#L12`,
+    `git:${commit}:../src/js/main.js#L12`,
+    `git:${commit}:src//main.js#L12`,
+    `git:${commit}:src\\main.js#L12`,
+    `git:${commit}:src/main.js#L0`,
+    `git:${commit}:src/main.js#L14-L12`,
+    `git:${commit}:src/main.js#L12 trailing`,
+  ]) {
+    assert.throws(() => parseHistoricalToken(invalid));
+  }
+  assert.throws(() => parseArguments(['--unknown']), /unknown argument/);
+  assert.throws(() => parseArguments(['--ref']), /requires exactly one value/);
+  assert.throws(() => parseArguments(['--bless', '--ref', 'HEAD']), /cannot be combined/);
+  assert.throws(
+    () => parseArguments(['--prepare-history', 'target.js']),
+    /requires --output/,
+  );
+  assert.deepEqual(
+    historicalGitEnvironment(),
+    { GIT_NO_LAZY_FETCH: '1', GIT_NO_REPLACE_OBJECTS: '1' },
+  );
+});
+
+test('historical content and claim hashes use complete exact preimages', () => {
+  const lines = [
+    'A complete claim starts here and remains part of the immutable review record',
+    `before the citation at ${cite('target.js:1')}`,
+  ];
+  const at = lines[1].indexOf('`');
+  const full = fullClaimBefore(lines, 1, at);
+  assert.equal(
+    full,
+    'A complete claim starts here and remains part of the immutable review record before the citation at',
+  );
+  assert.equal(claimBefore(lines, 1, at), full.slice(-90));
+  assert.equal(
+    claimSha256For(full),
+    createHash('sha256').update(Buffer.from(full, 'utf8')).digest('hex'),
+  );
+  assert.equal(
+    contentSha256For(['first', ' second ']),
+    createHash('sha256').update(Buffer.from('first\n second ', 'utf8')).digest('hex'),
+  );
+  const middle = `The registry at ${cite('target.js:1')} preserves every historical claim.`;
+  const middleAt = middle.indexOf('`');
+  assert.equal(
+    fullClaimBefore([middle], 0, middleAt),
+    'The registry at preserves every historical claim.',
+  );
+  const row = `| C1 | Complete table claim | ${cite('target.js:1')} |`;
+  assert.match(fullClaimBefore([row], 0, row.indexOf('`')), /Complete table claim/);
+});
+
+test('historical registry cardinality is per occurrence, not per target', () => {
+  const historical = `git:${'a'.repeat(40)}:target.js#L1`;
+  const entry = (ordinal) => ({
+    site: `a.md|scope|target.js:1|${ordinal}`,
+    historical,
+    contentSha256: 'b'.repeat(64),
+    claimSha256: 'c'.repeat(64),
+  });
+  const registry = historyRegistry('a'.repeat(40), [entry(0), entry(1)], ['target.js']);
+  assert.equal(parseHistoryRegistryBytes(historyRegistryBytes(registry)).entries.length, 2);
+  assert.throws(
+    () => historyRegistryBytes({ ...registry, entries: [entry(0), entry(0)] }),
+    /unique and sorted/,
+  );
+});
+
+function historyRegistry(baseline, entries = [], sealedTargets = ['sealed.js']) {
+  return {
+    version: 1,
+    migrationBaseline: baseline,
+    corpusSha256: '0'.repeat(64),
+    sealedTargets,
+    expectedCount: entries.length,
+    entries,
+  };
+}
+
+function emptyHistoryRegistry(baseline) {
+  return historyRegistryBytes(historyRegistry(baseline));
+}
+
+function anchorRepo({ history = true } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'mrt-anchors-'));
   const git = (args, options = {}) => execFileSync(
     'git',
@@ -960,13 +1111,15 @@ function anchorRepo() {
     git(['add', '-A']);
     git(['commit', '--quiet', '-m', message]);
   };
-  const checker = (...args) => spawnSync(
+  const checkerWith = (args, environment = {}) => spawnSync(
     process.execPath,
     ['scripts/check-anchors.mjs', ...args],
-    { cwd: root, encoding: 'utf8' },
+    { cwd: root, encoding: 'utf8', env: { ...process.env, ...environment } },
   );
+  const checker = (...args) => checkerWith(args);
 
   git(['init', '--quiet']);
+  write('.gitattributes', 'docs/anchors.history.json -text\n');
   write('.gitignore', '.copilot-tracking/\nscripts/check-anchors.mjs\n');
   write('docs/.keep', '');
   write('target.js', 'old target\nsame head\nsame head\n');
@@ -976,14 +1129,434 @@ function anchorRepo() {
   write('CURRENT.md', `Current claim ${cite('target.js:1')}\n`);
   git(['add', '-f', '.copilot-tracking']);
   commit('source');
+  if (history) write('docs/anchors.history.json', emptyHistoryRegistry(git(['rev-parse', 'HEAD']).trim()));
   mkdirSync(join(root, 'scripts'), { recursive: true });
   cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), join(root, 'scripts', 'check-anchors.mjs'));
-  return { root, git, write, commit, checker };
+  return { root, git, write, commit, checker, checkerWith };
 }
 
 function disposeAnchorRepo(repo) {
   rmSync(repo.root, { recursive: true, force: true });
 }
+
+function readHistory(repo) {
+  return JSON.parse(readFileSync(join(repo.root, 'docs', 'anchors.history.json'), 'utf8'));
+}
+
+function writeHistory(repo, value) {
+  repo.write('docs/anchors.history.json', historyRegistryBytes(value));
+}
+
+function prepareAndApply(repo, target = 'target.js') {
+  const output = join(tmpdir(), `mrt-anchor-candidate-${process.pid}-${Date.now()}-${Math.random()}.json`);
+  try {
+    const prepared = repo.checker('--prepare-history', target, '--output', output);
+    assert.equal(prepared.status, 0, `${prepared.stdout}\n${prepared.stderr}`);
+    const bytes = readFileSync(output);
+    const approved = createHash('sha256').update(bytes).digest('hex');
+    const applied = repo.checker('--apply-history', output, '--approved-sha256', approved);
+    assert.equal(applied.status, 0, `${applied.stdout}\n${applied.stderr}`);
+    return { approved, candidate: JSON.parse(bytes.toString('utf8')), output: prepared.stdout };
+  } finally {
+    rmSync(output, { force: true });
+  }
+}
+
+test('check and bless require the canonical historical registry', () => {
+  const repo = anchorRepo();
+  try {
+    const blessed = repo.checker('--bless');
+    assert.equal(blessed.status, 0, `${blessed.stdout}\n${blessed.stderr}`);
+    unlinkSync(join(repo.root, 'docs', 'anchors.history.json'));
+
+    for (const args of [[], ['--bless']]) {
+      const run = repo.checker(...args);
+      assert.equal(run.status, 2, `${run.stdout}\n${run.stderr}`);
+      assert.match(`${run.stdout}\n${run.stderr}`, /anchors\.history\.json.*missing/is);
+    }
+  } finally {
+    disposeAnchorRepo(repo);
+  }
+});
+
+test('history candidate and apply modes require exact reviewed bytes', () => {
+  const repo = anchorRepo();
+  const output = join(tmpdir(), `mrt-anchor-candidate-${process.pid}-${Date.now()}-one.json`);
+  const second = join(tmpdir(), `mrt-anchor-candidate-${process.pid}-${Date.now()}-two.json`);
+  try {
+    const before = repo.git(['status', '--short']).trim();
+    const prepared = repo.checker('--prepare-history', 'target.js', '--output', output);
+    assert.equal(prepared.status, 0, `${prepared.stdout}\n${prepared.stderr}`);
+    assert.ok(existsSync(output));
+    assert.equal(repo.git(['status', '--short']).trim(), before);
+
+    const bytes = readFileSync(output);
+    const preparedAgain = repo.checker('--prepare-history', 'target.js', '--output', second);
+    assert.equal(preparedAgain.status, 0, `${preparedAgain.stdout}\n${preparedAgain.stderr}`);
+    assert.deepEqual(readFileSync(second), bytes);
+    assert.match(prepared.stdout, /2 historical occurrence/);
+    const approved = createHash('sha256').update(bytes).digest('hex');
+
+    let rejected = repo.checker(
+      '--apply-history',
+      output,
+      '--approved-sha256',
+      'f'.repeat(64),
+    );
+    assert.equal(rejected.status, 2);
+    const oldRegistry = readFileSync(join(repo.root, 'docs', 'anchors.history.json'));
+
+    repo.write('CURRENT.md', `Changed current claim ${cite('target.js:1')}\n`);
+    rejected = repo.checker('--apply-history', output, '--approved-sha256', approved);
+    assert.equal(rejected.status, 2);
+    assert.match(`${rejected.stdout}\n${rejected.stderr}`, /candidate is stale/);
+    repo.write('CURRENT.md', `Current claim ${cite('target.js:1')}\n`);
+
+    repo.git(['update-index', '--chmod=+x', 'CURRENT.md']);
+    rejected = repo.checker('--apply-history', output, '--approved-sha256', approved);
+    assert.equal(rejected.status, 2);
+    assert.match(`${rejected.stdout}\n${rejected.stderr}`, /candidate is stale/);
+    repo.git(['update-index', '--chmod=-x', 'CURRENT.md']);
+
+    rejected = repo.checkerWith(
+      ['--apply-history', output, '--approved-sha256', approved],
+      { MRT_ANCHORS_FAIL_BEFORE_HISTORY_RENAME: '1' },
+    );
+    assert.equal(rejected.status, 2);
+    assert.deepEqual(readFileSync(join(repo.root, 'docs', 'anchors.history.json')), oldRegistry);
+
+    const applied = repo.checker('--apply-history', output, '--approved-sha256', approved);
+    assert.equal(applied.status, 0, `${applied.stdout}\n${applied.stderr}`);
+    const registry = readHistory(repo);
+    assert.deepEqual(registry.sealedTargets, ['sealed.js', 'target.js']);
+    assert.equal(registry.entries.length, 2);
+
+    const inTree = repo.checker(
+      '--prepare-history',
+      'other.js',
+      '--output',
+      join(repo.root, 'candidate.json'),
+    );
+    assert.equal(inTree.status, 2);
+    assert.match(`${inTree.stdout}\n${inTree.stderr}`, /outside the worktree/);
+
+    const redirected = mkdtempSync(join(tmpdir(), 'mrt-anchor-redirect-'));
+    try {
+      const link = join(redirected, 'inside');
+      symlinkSync(repo.root, link, process.platform === 'win32' ? 'junction' : 'dir');
+      const viaLink = repo.checker(
+        '--prepare-history',
+        'other.js',
+        '--output',
+        join(link, 'candidate.json'),
+      );
+      assert.equal(viaLink.status, 2);
+      assert.match(`${viaLink.stdout}\n${viaLink.stderr}`, /outside the worktree/);
+    } finally {
+      rmSync(redirected, { recursive: true, force: true });
+    }
+  } finally {
+    rmSync(output, { force: true });
+    rmSync(second, { force: true });
+    disposeAnchorRepo(repo);
+  }
+});
+
+test('registered history survives a live move while live drift and claim changes remain fatal', () => {
+  const repo = anchorRepo();
+  try {
+    const originalSource = repo.git(['rev-parse', 'HEAD']).trim();
+    repo.write('target.js', 'new target\nsame head\nsame head\n');
+    repo.commit('change target before claim');
+    repo.write(
+      '.copilot-tracking/research/2026-08-21/direct.md',
+      `Updated historical claim at ${cite('target.js:1-2')} preserves data.\n`,
+    );
+    repo.commit('change historical claim source');
+    prepareAndApply(repo);
+    const registry = readHistory(repo);
+    const directIndex = registry.entries.findIndex(
+      (entry) => entry.site.includes('/2026-08-21/direct.md|'),
+    );
+    registry.entries[directIndex] = {
+      ...registry.entries[directIndex],
+      historical: `git:${originalSource}:target.js#L1-L2`,
+      contentSha256: contentSha256For(['old target', 'same head']),
+    };
+    writeHistory(repo, registry);
+    const blessed = repo.checker('--bless');
+    assert.equal(blessed.status, 0, `${blessed.stdout}\n${blessed.stderr}`);
+    const lock = JSON.parse(readFileSync(join(repo.root, 'docs', 'anchors.lock.json'), 'utf8'));
+    const directSite = registry.entries[directIndex].site;
+    assert.equal(
+      lock[directSite].fp,
+      createHash('sha256').update('old target\nsame head').digest('hex').slice(0, 16),
+    );
+    repo.commit('sealed history');
+
+    repo.git(['rm', '--quiet', 'target.js']);
+    repo.commit('move live target');
+    const moved = repo.checker();
+    const output = `${moved.stdout}\n${moved.stderr}`;
+    assert.equal(moved.status, 1, output);
+    assert.match(output, /DRIFT\s+CURRENT\.md\|/);
+    assert.doesNotMatch(output, /DRIFT\s+\.copilot-tracking\/research\//);
+
+    repo.write(
+      '.copilot-tracking/research/2026-08-21/direct.md',
+      `Updated historical claim at ${cite('target.js:1-2')} deletes data.\n`,
+    );
+    const changedClaim = repo.checker();
+    assert.equal(changedClaim.status, 2);
+    assert.match(`${changedClaim.stdout}\n${changedClaim.stderr}`, /claim SHA-256 does not match/);
+  } finally {
+    disposeAnchorRepo(repo);
+  }
+});
+
+test('sealed history rejects missing, orphaned, duplicate, and copied occurrences', () => {
+  const repo = anchorRepo();
+  try {
+    prepareAndApply(repo);
+    assert.equal(repo.checker('--bless').status, 0);
+    repo.commit('sealed history');
+    const original = readHistory(repo);
+
+    writeHistory(repo, {
+      ...original,
+      expectedCount: original.entries.length - 1,
+      entries: original.entries.slice(1),
+    });
+    let run = repo.checker();
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /missing registry site/);
+
+    const orphan = {
+      ...original.entries[0],
+      site: 'missing.md|scope|target.js:1-2|0',
+    };
+    writeHistory(repo, {
+      ...original,
+      expectedCount: original.entries.length + 1,
+      entries: [...original.entries, orphan].sort((a, b) => a.site < b.site ? -1 : 1),
+    });
+    run = repo.checker();
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /orphan historical registry site/);
+
+    repo.write(
+      'docs/anchors.history.json',
+      `${JSON.stringify({
+        ...original,
+        expectedCount: original.entries.length + 1,
+        entries: [original.entries[0], original.entries[0], ...original.entries.slice(1)],
+      }, null, 2)}\n`,
+    );
+    run = repo.checker();
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /entry sites must be unique/);
+
+    writeHistory(repo, original);
+    repo.write(
+      '.copilot-tracking/research/2026-08-21/direct.md',
+      `Direct claim ${cite('target.js:1-2')}\n\nCopied claim ${cite('target.js:1')}\n`,
+    );
+    repo.commit('copy historical citation');
+    run = repo.checker();
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /missing registry site/);
+
+    repo.write(
+      '.copilot-tracking/research/2026-08-22/local.md',
+      `Local current claim ${cite('target.js:1')}\n`,
+    );
+    repo.write('target.js', 'old target\nsame head\nsame head\n');
+    repo.write(
+      '.copilot-tracking/research/2026-08-21/direct.md',
+      `Direct claim ${cite('target.js:1-2')}\n`,
+    );
+    const local = repo.checker();
+    assert.equal(local.status, 0, `${local.stdout}\n${local.stderr}`);
+    assert.match(`${local.stdout}\n${local.stderr}`, /Validated 1 local-only citation/);
+  } finally {
+    disposeAnchorRepo(repo);
+  }
+});
+
+test('immutable history rejects invalid sources, targets, ranges, hashes, and replacements', () => {
+  const repo = anchorRepo();
+  try {
+    prepareAndApply(repo);
+    assert.equal(repo.checker('--bless').status, 0);
+    repo.commit('sealed history');
+    const original = readHistory(repo);
+    const changed = (entry) => {
+      const sealedTargets = [
+        ...new Set([...original.sealedTargets, parseHistoricalToken(entry.historical).path]),
+      ].sort();
+      writeHistory(repo, {
+        ...original,
+        sealedTargets,
+        entries: [entry, ...original.entries.slice(1)].sort((a, b) => a.site < b.site ? -1 : 1),
+      });
+    };
+    const fails = (entry, pattern) => {
+      changed(entry);
+      const run = repo.checker();
+      assert.equal(run.status, 2, `${run.stdout}\n${run.stderr}`);
+      assert.match(`${run.stdout}\n${run.stderr}`, pattern);
+    };
+    const first = original.entries[0];
+    const target = parseHistoricalToken(first.historical);
+    const token = (commit, path = target.path) =>
+      `git:${commit}:${path}#L${target.start}${target.end === target.start ? '' : `-L${target.end}`}`;
+
+    fails({ ...first, historical: token('f'.repeat(40)) }, /historical source .* unavailable/);
+    const blob = repo.git(['hash-object', '-w', 'target.js']).trim();
+    fails({ ...first, historical: token(blob) }, /not a commit object/);
+    const outside = repo.git(['commit-tree', 'HEAD^{tree}', '-m', 'outside']).trim();
+    fails({ ...first, historical: token(outside) }, /not an ancestor/);
+    fails({ ...first, historical: token(target.commit, 'renamed.js') }, /does not match its live anchor/);
+    fails({ ...first, contentSha256: 'f'.repeat(64) }, /content SHA-256 does not match/);
+
+    writeHistory(repo, original);
+    const source = target.commit;
+    repo.write('target.js', 'replacement target\nsame head\nsame head\n');
+    repo.commit('replacement source');
+    const replacement = repo.git(['rev-parse', 'HEAD']).trim();
+    repo.git(['replace', source, replacement]);
+    const replaced = repo.checker();
+    assert.equal(replaced.status, 1, `${replaced.stdout}\n${replaced.stderr}`);
+    assert.doesNotMatch(`${replaced.stdout}\n${replaced.stderr}`, /historical content SHA-256/);
+  } finally {
+    disposeAnchorRepo(repo);
+  }
+
+  const missing = anchorRepo();
+  try {
+    missing.write(
+      '.copilot-tracking/research/2026-08-21/direct.md',
+      `Missing file claim ${cite('missing.js:1')}\n`,
+    );
+    missing.commit('missing target claim');
+    const source = missing.git(['rev-parse', 'HEAD']).trim();
+    writeHistory(missing, historyRegistry(source, [{
+      site: '.copilot-tracking/research/2026-08-21/direct.md|preamble|missing.js:1|0',
+      historical: `git:${source}:missing.js#L1`,
+      contentSha256: '0'.repeat(64),
+      claimSha256: claimSha256For('Missing file claim'),
+    }], ['missing.js']));
+    const run = missing.checker();
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /historical target file missing/);
+  } finally {
+    disposeAnchorRepo(missing);
+  }
+
+  const blank = anchorRepo();
+  try {
+    blank.write('blank.js', 'first\n\nlast\n');
+    blank.write(
+      '.copilot-tracking/research/2026-08-21/direct.md',
+      `Blank edge claim ${cite('blank.js:1-2')}\n`,
+    );
+    blank.commit('blank range claim');
+    const source = blank.git(['rev-parse', 'HEAD']).trim();
+    writeHistory(blank, historyRegistry(source, [{
+      site: '.copilot-tracking/research/2026-08-21/direct.md|preamble|blank.js:1-2|0',
+      historical: `git:${source}:blank.js#L1-L2`,
+      contentSha256: contentSha256For(['first', '']),
+      claimSha256: claimSha256For('Blank edge claim'),
+    }], ['blank.js']));
+    const run = blank.checker();
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /ends on a blank line/);
+  } finally {
+    disposeAnchorRepo(blank);
+  }
+});
+
+test('history modes are strict and named refs apply only intersecting declarations', () => {
+  const strict = anchorRepo();
+  try {
+    for (const args of [
+      ['--unknown'],
+      ['--ref'],
+      ['--ref', 'HEAD', '--ref', 'HEAD'],
+      ['--bless', '--ref', 'HEAD'],
+      ['--prepare-history', 'target.js'],
+      ['--apply-history', 'candidate.json'],
+      ['--prepare-history', 'target.js', '--output', 'candidate.json', '--bless'],
+    ]) {
+      const run = strict.checker(...args);
+      assert.equal(run.status, 2, `${args.join(' ')}\n${run.stdout}\n${run.stderr}`);
+    }
+  } finally {
+    disposeAnchorRepo(strict);
+  }
+
+  const repo = anchorRepo();
+  try {
+    const oldRef = repo.git(['rev-parse', 'HEAD']).trim();
+    repo.write(
+      '.copilot-tracking/research/2026-08-21/direct.md',
+      `Updated historical claim ${cite('target.js:1-2')}\n`,
+    );
+    repo.commit('change historical claim');
+    const later = '.copilot-tracking/research/2026-08-22/later.md';
+    repo.write(later, `Later claim ${cite('target.js:3')}\n`);
+    repo.git(['add', '-f', later]);
+    repo.commit('add later historical site');
+    prepareAndApply(repo);
+    assert.equal(repo.checker('--bless').status, 0);
+    repo.commit('seal current history');
+    const original = readHistory(repo);
+
+    let run = repo.checker('--ref', oldRef);
+    assert.equal(run.status, 1, `${run.stdout}\n${run.stderr}`);
+    assert.doesNotMatch(`${run.stdout}\n${run.stderr}`, /claim SHA-256|unavailable/);
+
+    const emptyTree = repo.git(['mktree'], { input: '' }).trim();
+    const emptyCommit = repo.git(['commit-tree', emptyTree, '-m', 'empty replacement']).trim();
+    repo.git(['replace', oldRef, emptyCommit]);
+    run = repo.checker('--ref', oldRef);
+    assert.equal(run.status, 1, `${run.stdout}\n${run.stderr}`);
+    assert.match(`${run.stdout}\n${run.stderr}`, /coverage: .*CURRENT\.md/s);
+    repo.git(['replace', '-d', oldRef]);
+
+    const laterIndex = original.entries.findIndex((entry) => entry.site.startsWith(`${later}|`));
+    assert.notEqual(laterIndex, -1);
+    const nonintersecting = structuredClone(original);
+    nonintersecting.entries[laterIndex].historical =
+      nonintersecting.entries[laterIndex].historical.replace(/git:[0-9a-f]{40}:/, `git:${'f'.repeat(40)}:`);
+    writeHistory(repo, nonintersecting);
+    run = repo.checker('--ref', oldRef);
+    assert.equal(run.status, 1, `${run.stdout}\n${run.stderr}`);
+    assert.doesNotMatch(`${run.stdout}\n${run.stderr}`, /historical source .* unavailable/);
+
+    repo.write(
+      'docs/anchors.history.json',
+      `${readFileSync(join(repo.root, 'docs', 'anchors.history.json'), 'utf8')} `,
+    );
+    run = repo.checker('--ref', oldRef);
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /not canonical/);
+
+    const intersecting = structuredClone(original);
+    const nestedIndex = intersecting.entries.findIndex(
+      (entry) => entry.site.includes('/subagents/2026-08-21/nested.md|'),
+    );
+    const outside = repo.git(['commit-tree', 'HEAD^{tree}', '-m', 'outside ref']).trim();
+    intersecting.entries[nestedIndex].historical =
+      intersecting.entries[nestedIndex].historical.replace(/git:[0-9a-f]{40}:/, `git:${outside}:`);
+    writeHistory(repo, intersecting);
+    run = repo.checker('--ref', oldRef);
+    assert.equal(run.status, 2);
+    assert.match(`${run.stdout}\n${run.stderr}`, /not an ancestor/);
+  } finally {
+    disposeAnchorRepo(repo);
+  }
+});
 
 test('document source marker grammar is exact and singular', () => {
   const source = 'a'.repeat(40);
@@ -1214,7 +1787,13 @@ test('historical provenance passes with full history and refuses a shallow clone
     assert.equal(repo.checker().status, 0);
 
     clone = join(tmpdir(), `mrt-anchors-shallow-${process.pid}-${Date.now()}`);
-    execFileSync('git', ['clone', '--quiet', '--depth', '1', new URL(`file:///${repo.root.replaceAll('\\', '/')}`).href, clone]);
+    execFileSync(
+      'git',
+      [
+        'clone', '--quiet', '--depth', '1',
+        new URL(`file:///${repo.root.replaceAll('\\', '/')}`).href, clone,
+      ],
+    );
     mkdirSync(join(clone, 'scripts'), { recursive: true });
     cpSync(join(ROOT, 'scripts', 'check-anchors.mjs'), join(clone, 'scripts', 'check-anchors.mjs'));
     const run = spawnSync(process.execPath, ['scripts/check-anchors.mjs'], { cwd: clone, encoding: 'utf8' });

@@ -7,12 +7,13 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "All 127 source-defined issues resolve exactly in source order, and the separate Complete guide remains distinct despite three approved partial relationships.",
+    "reason": "All 127 source-defined issues resolve exactly in source order, and the separate Complete guide remains distinct despite four approved partial relationships.",
     "sourceRetrievedAt": "2026-08-28",
     "overlapIds": [
       "atlantis-attacks",
       "essential-avengers",
-      "maximum-security"
+      "maximum-security",
+      "silver-surfer-reading-order"
     ],
     "catalogIds": [
       "abomination-reading-order"
@@ -694,11 +695,9 @@
     "reason": "The full current page preserves 909 source occurrences across 869 exact rows, 34 repeats, and 6 owner-authorized source exclusions. The guide has no distinct qualifying Best of or Essential Comics section, so the approved complete guide follows the full page.",
     "sourceRetrievedAt": "2026-08-26",
     "overlapIds": [
-      "abomination-reading-order",
-      "amazing-spider-man-reading-order-modern-marvel-era",
-      "ant-man-reading-order",
       "atlantis-attacks",
       "axis",
+      "black-widow-reading-order",
       "dead-mans-hand",
       "devils-reign",
       "fall-of-the-mutants",
@@ -706,10 +705,10 @@
       "inferno",
       "maximum-security",
       "mutant-massacre",
+      "silver-surfer-reading-order",
       "spider-man-best-of",
       "thanos-reading-order",
       "white-tiger-ava-ayala",
-      "wolverine-reading-order",
       "xmen-claremont",
       "xmen-claremont-complete"
     ],
@@ -1289,6 +1288,7 @@
     "overlapIds": [
       "ant-man-reading-order",
       "avengers-enemy-within",
+      "black-widow-reading-order",
       "captain-marvel-ms-marvel-reading-order",
       "doctor-strange-reading-order",
       "essential-avengers",
@@ -2243,6 +2243,7 @@
       "amazing-spider-man-reading-order-modern-marvel-era",
       "ant-man-reading-order",
       "atlantis-attacks",
+      "black-widow-reading-order",
       "damnation",
       "daredevil-reading-order",
       "devils-reign",

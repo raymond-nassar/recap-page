@@ -11,6 +11,7 @@
 # and bury this in a formatting commit.
 *.cmd text eol=crlf
 *.command text eol=lf
+docs/anchors.history.json -text
 
 # Derived reports and regenerated indexes are reviewable through their source inputs and checks.
 # Reviewed mappings, packets, issue data and order pages remain visible in diffs.

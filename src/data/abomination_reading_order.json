@@ -5,7 +5,7 @@
   "source": "https://www.comicbookherald.com/abomination-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-26T07:11:31.019Z",
+  "generatedAt": "2026-08-30T17:24:08.331Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 127,
   "collections": 0,
@@ -2951,20 +2951,35 @@
       ]
     },
     {
-      "issueId": 22695,
-      "title": "Ghost Rider (0) #59",
+      "issueId": 8768,
+      "title": "Ghost Rider (1973) #59",
       "number": "59",
-      "url": "https://www.marvel.com/comics/issue/22695/",
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/8768/ghost_rider_1973_59",
+      "seriesId": 2013,
+      "seriesName": "Ghost Rider (1973 - 1983)",
+      "onSale": "1981-08-01T00:00:00+0000",
+      "mu": "1981-08-01T00:00:00+0000",
+      "digitalId": 63505,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/64f8dedddd8f8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "detailsRefused": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Don Perlin",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Fleisher",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 9231,

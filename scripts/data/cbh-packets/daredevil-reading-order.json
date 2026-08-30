@@ -10801,7 +10801,7 @@
       "sourceGroup": "X) Team-Ups & Guest Spots"
     }
   ],
-  "packetDigest": "1f399b15d14d4d755371b7438459a54e1b1026890b21872136abcac29631d0b3",
+  "packetDigest": "043fddf12a941b45b5fae48f5d0a6671dec59b1211b284529d1f152f264222f2",
   "sourceGapResolutions": [
     {
       "sourcePosition": 335,
@@ -10971,6 +10971,9 @@
       "resolutionKind": "canonical-repeat",
       "canonicalRow": 424,
       "selectedIssueId": 18826,
+      "resolvedNormalizedSeriesTitle": "Spider-Man/Daredevil",
+      "resolvedSeriesYear": 2002,
+      "resolvedIssueNumber": "1",
       "checkedAt": "2026-08-30",
       "auditBasis": "The source names one OGN occurrence, while the provider exposes one 2002 Spider-Man/Daredevil issue and separately exposes the four 2001 Daredevil/Spider-Man issues that the source lists later. The singular source occurrence therefore repeats the 2002 one-shot already published at its first source occurrence.",
       "evidenceSources": [
@@ -10990,7 +10993,7 @@
           "retrievedAt": "2026-08-30"
         }
       ],
-      "evidenceDigest": "44726ecb67157c6d85c03724b1d87e6d911b72cec4b8519bd6cb451cb49218e2"
+      "evidenceDigest": "c5d7386f6173d0803978c50fbf3c2d7ea151eb67cbd4fda85e082c5f21e10e33"
     },
     {
       "sourcePosition": 909,
