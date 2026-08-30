@@ -467,6 +467,22 @@ test('open source gaps close only as the same exact identity, a reviewed repeat,
   repeatedPacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
     repeatedPacket.sourceGapResolutions[0],
   );
+  const legacyResolutionPacket = structuredClone(repeatedPacket);
+  delete legacyResolutionPacket.sourceGapResolutions[0].resolvedNormalizedSeriesTitle;
+  delete legacyResolutionPacket.sourceGapResolutions[0].resolvedSeriesYear;
+  delete legacyResolutionPacket.sourceGapResolutions[0].resolvedIssueNumber;
+  legacyResolutionPacket.sourceGapResolutions[0].evidenceDigest = sourceGapResolutionDigestFor(
+    legacyResolutionPacket.sourceGapResolutions[0],
+  );
+  legacyResolutionPacket.packetDigest = packetDigestFor(legacyResolutionPacket);
+  assert.throws(
+    () => validateFrozenPacket(legacyResolutionPacket),
+    /resolvedNormalizedSeriesTitle/i,
+  );
+  assert.doesNotThrow(() => validateFrozenPacket(legacyResolutionPacket, {
+    enforceApprovedResolutionDigest: false,
+    allowLegacySourceGapResolutions: true,
+  }));
   repeatedPacket.packetDigest = packetDigestFor(repeatedPacket);
   const repeatedMapping = genericMapping(repeatedPacket);
   repeatedMapping.rows = repeatedMapping.rows.slice(0, 1);

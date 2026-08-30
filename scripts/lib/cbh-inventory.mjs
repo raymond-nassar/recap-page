@@ -457,6 +457,7 @@ function assertSourceGapResolution(
   rows,
   repeatsByPosition,
   exclusionsByPosition,
+  allowLegacyResolvedIdentity = false,
 ) {
   const label = `Source gap resolution ${index + 1}`;
   if (!isPlainObject(resolution)) throw new Error(`${label} must be an object`);
@@ -504,17 +505,19 @@ function assertSourceGapResolution(
       || Object.hasOwn(resolution, 'decisionScope')) {
       throw new Error(`${label} canonical-repeat cannot contain exclusion fields`);
     }
-    assertNonEmptyString(
-      resolution.resolvedNormalizedSeriesTitle,
-      `${label} resolvedNormalizedSeriesTitle`,
-    );
-    if (!Number.isInteger(resolution.resolvedSeriesYear)) {
-      throw new Error(`${label} resolvedSeriesYear must be an integer`);
+    if (!allowLegacyResolvedIdentity) {
+      assertNonEmptyString(
+        resolution.resolvedNormalizedSeriesTitle,
+        `${label} resolvedNormalizedSeriesTitle`,
+      );
+      if (!Number.isInteger(resolution.resolvedSeriesYear)) {
+        throw new Error(`${label} resolvedSeriesYear must be an integer`);
+      }
+      assertNonEmptyString(
+        String(resolution.resolvedIssueNumber ?? ''),
+        `${label} resolvedIssueNumber`,
+      );
     }
-    assertNonEmptyString(
-      String(resolution.resolvedIssueNumber ?? ''),
-      `${label} resolvedIssueNumber`,
-    );
     const repeated = repeatsByPosition.get(resolution.sourcePosition);
     if (!repeated
       || repeated.canonicalRow !== resolution.canonicalRow
@@ -532,17 +535,19 @@ function assertSourceGapResolution(
       || Object.hasOwn(resolution, 'decisionScope')) {
       throw new Error(`${label} exact-issue contains unsupported disposition fields`);
     }
-    assertNonEmptyString(
-      resolution.resolvedNormalizedSeriesTitle,
-      `${label} resolvedNormalizedSeriesTitle`,
-    );
-    if (!Number.isInteger(resolution.resolvedSeriesYear)) {
-      throw new Error(`${label} resolvedSeriesYear must be an integer`);
+    if (!allowLegacyResolvedIdentity) {
+      assertNonEmptyString(
+        resolution.resolvedNormalizedSeriesTitle,
+        `${label} resolvedNormalizedSeriesTitle`,
+      );
+      if (!Number.isInteger(resolution.resolvedSeriesYear)) {
+        throw new Error(`${label} resolvedSeriesYear must be an integer`);
+      }
+      assertNonEmptyString(
+        String(resolution.resolvedIssueNumber ?? ''),
+        `${label} resolvedIssueNumber`,
+      );
     }
-    assertNonEmptyString(
-      String(resolution.resolvedIssueNumber ?? ''),
-      `${label} resolvedIssueNumber`,
-    );
   } else {
     if (Object.hasOwn(resolution, 'canonicalRow')
       || Object.hasOwn(resolution, 'selectedIssueId')) {
@@ -633,7 +638,9 @@ function assertSourceGap(gap, index) {
   if (gapEvidenceDigestFor(gap) !== gap.evidenceDigest) throw new Error(`${label} evidence digest is stale`);
 }
 
-export function sourcePositionsForPacket(packet) {
+export function sourcePositionsForPacket(packet, {
+  allowLegacySourceGapResolutions = false,
+} = {}) {
   const packetId = String(packet?.id ?? 'Frozen packet');
   const rows = Array.isArray(packet?.rows) ? packet.rows : [];
   assertCanonicalPacketRows(rows, packetId);
@@ -728,6 +735,7 @@ export function sourcePositionsForPacket(packet) {
       rows,
       repeatsByPosition,
       exclusionsByPosition,
+      allowLegacySourceGapResolutions,
     );
     if (resolution.sourcePosition <= previousResolutionPosition) {
       throw new Error(`${packetId} sourceGapResolutions must be in sourcePosition order`);
@@ -990,7 +998,10 @@ export function assertMappingMatchesPacketOccurrences(packet, mapping) {
 }
 
 export function assertGapTransition(previousPacket, proposedPacket, proposedMapping) {
-  validateFrozenPacket(previousPacket, { enforceApprovedResolutionDigest: false });
+  validateFrozenPacket(previousPacket, {
+    enforceApprovedResolutionDigest: false,
+    allowLegacySourceGapResolutions: true,
+  });
   validateFrozenPacket(proposedPacket);
   assertMappingMatchesPacketOccurrences(proposedPacket, proposedMapping);
   const previousGaps = previousPacket.sourceGaps ?? [];
@@ -1225,6 +1236,7 @@ export function validateFrozenPacket(packet, {
   catalogEntries = [],
   provider = CBH_SOURCE_PROVIDER,
   enforceApprovedResolutionDigest = true,
+  allowLegacySourceGapResolutions = false,
 } = {}) {
   if (!isPlainObject(packet)) throw new Error('Frozen packet must be an object');
   const unexpected = Object.keys(packet).filter((field) => !PACKET_FIELDS.has(field));
@@ -1292,7 +1304,7 @@ export function validateFrozenPacket(packet, {
     throw new Error(`${packet.id} rows must be a non-empty array`);
   }
   packet.rows.forEach((row, index) => assertPacketRow(row, index));
-  sourcePositionsForPacket(packet);
+  sourcePositionsForPacket(packet, { allowLegacySourceGapResolutions });
   const approvedResolutionDigest = APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS[packet.id];
   if (enforceApprovedResolutionDigest
     && approvedResolutionDigest
