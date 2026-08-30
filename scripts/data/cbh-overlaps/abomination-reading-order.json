@@ -1,11 +1,11 @@
 {
   "candidateId": "abomination-reading-order",
-  "packetDigest": "dd7a839a63aec8212fba45ce1c438ac1852034ea7c949ce6457c8aa5c4d497cd",
-  "mappingDigest": "8dff0a5405f015083ddcb118d441b7c0cc42d53b91e8cc40a2ef7fb2c4447831",
-  "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
+  "packetDigest": "d3c2add3e3a87d50f0b78ae848a7db7efd9df08bdffaefd4aecc58ffdaa7bb29",
+  "mappingDigest": "8c54c6d1308c3be1a5d55a2affedd96da4a3e2abf0b72dd4ddd1a5a0bc087a72",
+  "libraryDigest": "bd3e15c55272dd5bfc7d6637ec76d4d1845f7858c9253d62aade473fcf446052",
   "peerDigests": {},
   "candidateCount": 127,
-  "comparisonCount": 136,
+  "comparisonCount": 138,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -89,12 +89,6 @@
     },
     {
       "orderId": "captain-america-best-of",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
-    },
-    {
-      "orderId": "captain-america-reading-order-modern-marvel-era",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -259,6 +253,12 @@
     },
     {
       "orderId": "groot-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -602,6 +602,16 @@
       "relationship": "none"
     },
     {
+      "orderId": "silver-surfer-reading-order",
+      "sharedCount": 3,
+      "sharedIds": [
+        "11440",
+        "11441",
+        "17148"
+      ],
+      "relationship": "partial"
+    },
+    {
       "orderId": "sins-of-sinister",
       "sharedCount": 0,
       "sharedIds": [],
@@ -657,6 +667,12 @@
     },
     {
       "orderId": "thanos-imperative",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
+    },
+    {
+      "orderId": "thanos-reading-order",
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
@@ -830,5 +846,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "73cf103bcb17577194c321aadc69237a98a79e51cfb7484b60ffeddb2230eb83"
+  "reportDigest": "ff702d76514847b4db70bb66fb1f95f71c19635984e275d11da8a66d48e9f808"
 }

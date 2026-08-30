@@ -616,6 +616,34 @@ test('spotlight taxonomy does not rewrite frozen issue-library evidence', () => 
   );
 });
 
+test('Abomination preserves the unresolved Hulk annual and selects the exact 1981 Ghost Rider issue', async () => {
+  const [packet, mapping] = await Promise.all([
+    readJson('scripts/data/cbh-packets/abomination-reading-order.json'),
+    readJson('scripts/data/cbh-mappings/abomination-reading-order.json'),
+  ]);
+
+  for (const evidence of [packet, mapping]) {
+    const hulkAnnual = evidence.rows.find((row) => row.sourcePosition === 88);
+    const ghostRider = evidence.rows.find((row) => row.sourcePosition === 90);
+    assert.deepEqual(
+      {
+        selectedIssueId: hulkAnnual?.selectedIssueId,
+        seriesId: hulkAnnual?.seriesId,
+        seriesYear: hulkAnnual?.seriesYear,
+      },
+      { selectedIssueId: 16874, seriesId: 2983, seriesYear: 1976 },
+    );
+    assert.deepEqual(
+      {
+        selectedIssueId: ghostRider?.selectedIssueId,
+        seriesId: ghostRider?.seriesId,
+        seriesYear: ghostRider?.seriesYear,
+      },
+      { selectedIssueId: 8768, seriesId: 2013, seriesYear: 1973 },
+    );
+  }
+});
+
 test('the character inventory preserves every central disposition, ships thirty-five spotlights, and records five approved reuses', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
@@ -712,6 +740,7 @@ test('the character inventory preserves every central disposition, ships thirty-
     'atlantis-attacks',
     'essential-avengers',
     'maximum-security',
+    'silver-surfer-reading-order',
   ]);
   assert.deepEqual(
     shippedById.get('amazing-spider-man-reading-order-modern-marvel-era').catalogIds,

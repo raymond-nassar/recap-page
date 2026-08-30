@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-28T05:48:01.810Z",
+  "generatedAt": "2026-08-30T17:24:08.331Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2583,7 +2583,7 @@
       "spotlightKind": "complete-guide",
       "count": 127,
       "placeholderCount": 0,
-      "emptyRecordCount": 2,
+      "emptyRecordCount": 1,
       "collections": 0,
       "characters": [
         "Abomination",
@@ -2607,7 +2607,7 @@
       "source": "https://www.comicbookherald.com/abomination-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T07:11:31.019Z"
+      "updatedAt": "2026-08-30T17:24:08.331Z"
     },
     {
       "id": "black-panther-reading-order",
