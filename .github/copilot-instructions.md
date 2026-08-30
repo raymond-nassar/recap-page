@@ -144,7 +144,7 @@ Every `path:line` citation in every tracked file, this one included, is fingerpr
 the **content** of the lines it names, not by the numbers. Editing code moves lines and breaks
 fingerprints. That is the gate working.
 
-Do not narrow that to a list of filenames. `scripts/check-anchors.mjs:229-234` explains why in the
+Do not narrow that to a list of filenames. `scripts/check-anchors.mjs:518-523` explains why in the
 script itself: an enumeration is a list someone has to keep complete, and every anchor defect the
 gate exists to catch was caused by exactly that.
 
@@ -188,7 +188,7 @@ by a review on 2026-08-17, after it had already survived a full anchors cycle:
   12 of the workflow file", never in the citation form.
 - **The `absent:` exemption reaches past its own clause, and what it swallows is dropped in
   silence.** A backticked `absent:` token exempts only itself, but an unbackticked table cell
-  beginning with the marker exempts the **whole cell**, at `scripts/check-anchors.mjs:472`. So a
+  beginning with the marker exempts the **whole cell**, at `scripts/check-anchors.mjs:771`. So a
   live citation written after an absence clause in the same cell is not drifted and not lost. It is
   never enrolled at all, and the run reports 0 drifted, 0 new and 0 removed while the claim is
   watched by nothing. BL-145's evidence row was written that way and passed a complete cycle before
@@ -291,6 +291,41 @@ which stopped being true when the entry vanished; nothing in the anchors round i
 grep the diff for any citation that is not a path, a colon, digits, and optionally a hyphen and more
 digits, and treat the total citation count as a figure to re-derive rather than one to assume is
 preserved.
+
+**Immutable historical entries are separate from ordinary blessing.** The required
+`docs/anchors.history.json` registry binds an existing occurrence key and full normalized claim to
+one token shaped as `git:<40-lowercase-hex>:<repo-relative-path>#L<start>[-L<end>]`, plus the exact
+content and claim SHA-256 values. The source document and its ordinary citation text stay unchanged.
+Normal `npm run anchors:bless` cannot create, remove or update these declarations.
+
+Prepare a sealed target only after every checker, test, instruction and changelog edit is final:
+
+```
+npm run anchors -- --prepare-history <target-path> --output <absolute-path-outside-worktree>
+npm run anchors -- --apply-history <candidate-path> --approved-sha256 <candidate-sha256>
+```
+
+The candidate path must stay outside the worktree. Generate it twice without changing the tree and
+require byte-identical output. Read every printed occurrence, even when several share one immutable
+target, then approve the exact candidate-file digest. The apply command recomputes the current HEAD,
+tracked-file corpus, occurrence sites, claims, source commits, paths, ranges and hashes before it
+atomically replaces the registry. The corpus digest frames each tracked entry's Git mode, path and
+raw working-tree bytes, so a file-type or executable-mode change invalidates approval too. Any
+digest-covered change after review discards the candidate.
+
+Check and bless fail when the registry is missing or noncanonical. They also fail before lock
+comparison for a shallow clone, unavailable or noncommit source, nonancestor commit, missing or
+binary path, invalid or blank-edged range, hash mismatch, changed claim, duplicate or orphan site,
+or incomplete sealed target. They never fetch, follow rename history, search by head text, use the
+lock as provenance or fall back to the working tree. Under `--ref`, only an exact site-plus-claim
+intersection uses a current declaration; unrelated later entries leave the old revision on its
+legacy behavior.
+
+The registry's corpus digest protects migration approval, not every future check. Enforcing that
+snapshot forever would reject the later source movement the registry exists to permit. Before any
+dependent controller extraction merges, this feature can be rolled back as one complete revert.
+After dependent extractions merge, revert them newest to oldest before reverting the registry
+capability, then run the repository gates on the resulting merge commit.
 
 ## Claims the gates do not check
 

@@ -1,0 +1,1223 @@
+{
+  "version": 1,
+  "migrationBaseline": "b293db50ac1bbce1f1496e4f3b965c5cc492a887",
+  "corpusSha256": "a93c17361c705a88cce4eb77e85094a0583fa5a220bbaad359d3ad7a4358e585",
+  "sealedTargets": [
+    "src/js/main.js"
+  ],
+  "expectedCount": 202,
+  "entries": [
+    {
+      "site": ".copilot-tracking/changes/2026-08-21/add-issues-progressive-disclosure-changes.md|chg-006-two-claims-this-change-made-false-and-on|src/js/main.js:4022|0",
+      "historical": "git:f683c8707263b166a1c532a4d9214d8a56fbd893:src/js/main.js#L4022",
+      "contentSha256": "9446f0f359f2fd8cdfa5eae33f669b5f45f9045f0d471185d28efb51831c1fd3",
+      "claimSha256": "df6349bd3f28a3adfafae0f2b1d397f52f7379028826db050f027f214966296c"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-20/modern-marvel-continuity-guides-research.md|codebase-evidence#c12|src/js/main.js:3308-3364|0",
+      "historical": "git:f683c8707263b166a1c532a4d9214d8a56fbd893:src/js/main.js#L3308-L3364",
+      "contentSha256": "c9fde29f819fdc3e8157da0c95a780da60dada83a6da05298cff0ca6338d10a1",
+      "claimSha256": "0165b51bfc9f096f1b09f2ae64a5ed86a6728ba5dd7a304478b8d5acbdb3475e"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-20/reading-screen-modernization-research.md|what-the-screen-is-made-of|src/js/main.js:2357-2370|0",
+      "historical": "git:44a11138a6c2ba2e9518187f2010c282b75b2ca2:src/js/main.js#L2357-L2370",
+      "contentSha256": "cd5acd8263c0e758c2d3fce781caeb5e6e9592ef20864a0e8fa1fdbd9a3130d6",
+      "claimSha256": "cc8cb1bd82d2d68c27f674d11eb0bfb7d311965995f59db259ab51ea9c9c0710"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-20/reading-screen-modernization-research.md|what-the-screen-is-made-of|src/js/main.js:2401-2466|0",
+      "historical": "git:44a11138a6c2ba2e9518187f2010c282b75b2ca2:src/js/main.js#L2401-L2466",
+      "contentSha256": "7045c539d44dad67b03a87d86f75c34316f1d94479a8964e317bad1d1e1927ca",
+      "claimSha256": "5ff3b89a2b16c84b956b9e2c1b06091bd080b1d9c0ce9ff83bbf952dfc67a7b6"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-20/reading-screen-modernization-research.md|what-the-screen-is-made-of|src/js/main.js:2475-2536|0",
+      "historical": "git:44a11138a6c2ba2e9518187f2010c282b75b2ca2:src/js/main.js#L2475-L2536",
+      "contentSha256": "7496c3f01454b0a4eac4d5c6ae99d709691d72344403336905a34c1ddbb84347",
+      "claimSha256": "03514437d1444d5aba1cc0a04564ff1e278b8256c63bf07f1c0b0f5b4ec56098"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-20/reading-screen-modernization-research.md|what-the-screen-is-made-of|src/js/main.js:2577-2579|0",
+      "historical": "git:44a11138a6c2ba2e9518187f2010c282b75b2ca2:src/js/main.js#L2577-L2579",
+      "contentSha256": "d52e94de54789ec91f30ca928c20c014e69e554f3feed4af58ec9fe28c0c801f",
+      "claimSha256": "c07ea4f9506269c374e600059e64f64fc3283ca18189f860fa35cc673bdc70d7"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-20/reading-screen-modernization-research.md|what-the-screen-is-made-of|src/js/main.js:2661-2839|0",
+      "historical": "git:44a11138a6c2ba2e9518187f2010c282b75b2ca2:src/js/main.js#L2661-L2839",
+      "contentSha256": "b607e7fe5a26bd65a1f012c457ac0146c2fc9b98d53d2239c4c47772c9299e9d",
+      "claimSha256": "6d884e9de2a19127e220c9aa764a61e867e35edaa62fb9ed2b8a8616622d70f8"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-23/character-spotlight-filter-research.md|codebase-evidence#c19|src/js/main.js:3776-3797|0",
+      "historical": "git:57acfba8fbbeecfc866c49118d970ed8c8cb5b3a:src/js/main.js#L3776-L3797",
+      "contentSha256": "0a909700633bacf76ca6921617ac53f14142a56e1a49cdd343a7c7f4a9a7e2ef",
+      "claimSha256": "73f81ab36afa346ebfc67f80e9aa49d32a796cb610b5359a309abbaf1c072c0e"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-23/character-spotlight-filter-research.md|codebase-evidence#c2|src/js/main.js:3691-3697|0",
+      "historical": "git:57acfba8fbbeecfc866c49118d970ed8c8cb5b3a:src/js/main.js#L3691-L3697",
+      "contentSha256": "45839959b813c5023dadcc851a14b9d922ab325c48d82c9339a4e10657fb8c90",
+      "claimSha256": "3334b275d3081b66f69b97a66127b5140760d164b179e2579364a967d19068ea"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-23/character-spotlight-filter-research.md|codebase-evidence#c3|src/js/main.js:3764-3848|0",
+      "historical": "git:57acfba8fbbeecfc866c49118d970ed8c8cb5b3a:src/js/main.js#L3764-L3848",
+      "contentSha256": "834057c7c610a71184afa39cc207300618d953cd9191e5c3c64a93c7953d94b0",
+      "claimSha256": "d48af7efd7b8ab2046a705a4991568ce3fccdfe8cd02aee0b42911bbaafa21d8"
+    },
+    {
+      "site": ".copilot-tracking/research/2026-08-23/character-spotlight-filter-research.md|codebase-evidence#c5|src/js/main.js:4215-4257|0",
+      "historical": "git:57acfba8fbbeecfc866c49118d970ed8c8cb5b3a:src/js/main.js#L4215-L4257",
+      "contentSha256": "9e284e8899e73141952bca85bb89ffc898b4d1111fb62ed18d60ce865dcd99cc",
+      "claimSha256": "9e06e0294944fe442b02beea2e331d12a20d6bf4ba95e396326cb631768016be"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|1-functional-suitability|src/js/main.js:1816-1849|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1816-L1849",
+      "contentSha256": "50bdfdc654d0f5d5f89822a4c6797438919aa47febd5ca77465adf25af4d2ca3",
+      "claimSha256": "3b404a068913e64bca8f90040590bead691c9ad6da061b429170fa2ed927655e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|1-functional-suitability|src/js/main.js:4322-4380|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4322-L4380",
+      "contentSha256": "2aa39acba5554a44f1abf9d0d08a8951e9b0f30458567524565b55c55ddcd463",
+      "claimSha256": "0e7c04e13097db15702274018cf176cb41faf45e5558bf940f318b163ddef59f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|2-performance-efficiency|src/js/main.js:2565-2743|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2565-L2743",
+      "contentSha256": "87c896665d699f28a6e036f2f6c7d5693a3cafc3235c685e772c807322e0c262",
+      "claimSha256": "eeed3459a69948ca01faabecc2a012ca5f611047ea533d006e30ac80b0d0e616"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|2-performance-efficiency|src/js/main.js:4958-4978|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4958-L4978",
+      "contentSha256": "7021468feecf15f3eb0c4bb64ee4a7574be68e9008e1cbd3d3879d7d0ea1cb93",
+      "claimSha256": "2f14495f9c8536fd8962f24c68d52b77bd8649ade95168bede41727b9f7641b5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|2-performance-efficiency|src/js/main.js:86-91|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L86-L91",
+      "contentSha256": "ea82739fa84ae475b62120355736e5c069099f74553bf7c2e2939bd0294c155a",
+      "claimSha256": "38045b0ca58909d3a9ac6fa92ae68dbcee6c0d69d8c6254dcd66defa3f1fe673"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2191-2220|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2191-L2220",
+      "contentSha256": "ae55ee7b09e9d9ed9780da88f6b4950d7fbe43c228b07801bfcc8a1a70461990",
+      "claimSha256": "979756279a95156d829c4abd954e3a083c248c4f530970542aeb32e0a7da3014"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2685-2690|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2685-L2690",
+      "contentSha256": "aa0030cee106bc5410e4dbfc6e91f50dd30a5d84327f8756c91865e7afb9caef",
+      "claimSha256": "9e882cf0147ec00c60a00ab4fd787215bfad440d27ae4cbd0fe62cc6bc572d71"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:2745-2750|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2745-L2750",
+      "contentSha256": "11159721a6f903d2d743671f3b0ffc7b8b50485d944815ab1c0bf4b1b58881ca",
+      "claimSha256": "5a86cc8f073619ee456706414a4da536ad826678cf73863276f5cf54b8f255c3"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|4-interaction-capability|src/js/main.js:4608-4614|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4608-L4614",
+      "contentSha256": "ab6a5adc8839eb184d821dd3a49b3791b78002d43d10907c684986008f332b31",
+      "claimSha256": "616d78b98702fba23c096cabefe8e50a9c96eb2b89ca6386f6b7f17236dada71"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|7-maintainability|src/js/main.js:1212-1253|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1212-L1253",
+      "contentSha256": "4a059a5d22a54274149cf3704cc53df77bcb7b8d088465eef98579e9d7815261",
+      "claimSha256": "171968e29e08de63eeaf8d6b24411bded659201cec6d1d95a410cef5252baa03"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|7-maintainability|src/js/main.js:5247|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L5247",
+      "contentSha256": "d10b36aa74a59bcf4a88185837f658afaf3646eff2bb16c3928d0e9335e945d2",
+      "claimSha256": "8fb296825be541ade4abc414ec0a75c55618a131baf3f84f6651df6a4d43cc16"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|8-flexibility|src/js/main.js:4616-4649|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4616-L4649",
+      "contentSha256": "b656ef1c8d791b51b10d50ffd665b1ab1c80d36162769a6c96b77f986f068e94",
+      "claimSha256": "769c9070a9e7c51ccff2953a5e937abe4ee85aca66d21db91512acdcdc0e266a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|case-2-bl-007-is-labelled-p1-but-sits-near-the-b|src/js/main.js:1816-1849|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1816-L1849",
+      "contentSha256": "50bdfdc654d0f5d5f89822a4c6797438919aa47febd5ca77465adf25af4d2ca3",
+      "claimSha256": "9e882cf0147ec00c60a00ab4fd787215bfad440d27ae4cbd0fe62cc6bc572d71"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1230|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1230",
+      "contentSha256": "e9ae55aad70ff19ec6bc9c54390d5d56ba0de15fef6b1eb4e2b3f169f78d9983",
+      "claimSha256": "bc6f1a29839082504aaacd99706f5ecad8b9460cfc262396488da53fec72ac48"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1234|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1234",
+      "contentSha256": "691460fbf217e55c48c5bccea1767658fc820e698641927d5e74164ac5e200fd",
+      "claimSha256": "13bb58b4e03ea61ea7b7e95cbf59c0c9400ced24cdcf5c4bb142e2fb47e9193c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1276|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1276",
+      "contentSha256": "7c7d2de9e5a21899d570beaa23abbb33a8a46e41a321d52fef620b267e819e22",
+      "claimSha256": "bf7523a615fcd6e878dabfc37d95dc65ddd41fa82905abed904dc5ca547cb7a7"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1283|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1283",
+      "contentSha256": "31d356041ab6158c46761ed506114766739de0702cb7bf7339558967fa53a30b",
+      "claimSha256": "02dd5cdd1cf3f2d4682a5a63a7870b8a8de522918408a8d61304d9a05a5a4eef"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1296|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1296",
+      "contentSha256": "f44af3516490537a8441686007a7d04f048a56e1590604adcbc6d849577ecc99",
+      "claimSha256": "09ca44416a503c01fa9c8be857dac0c67e384ef7eb55b89512c27b52a98d2d0b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1296|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1296",
+      "contentSha256": "f44af3516490537a8441686007a7d04f048a56e1590604adcbc6d849577ecc99",
+      "claimSha256": "4ca872d7aa5e15ac652a0c3f072388b499e2b6f43d1c7b6045f9fe3cfc54b883"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:137-156|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L137-L156",
+      "contentSha256": "10edf36cc5d3898b1b7dcbb8b48fabb1d85ef25fbf0421455918d6acfb770935",
+      "claimSha256": "3a5ef8134a2618646c451409da22f8d60a91aec01e22efd0c6bdcb2b2bbca1d7"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1449|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1449",
+      "contentSha256": "f81a6bf94623a84c742676ad5a055f6a04d52cdacfec565903083a94f6ffabd7",
+      "claimSha256": "7ce55a3449da194fce57299c64151acd84cd0f2474e3ea2c20e71d89e8031c95"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1462-1476|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1462-L1476",
+      "contentSha256": "eb7728bb00a4b00059f0e4799795e1b177af8dfe22dcf1675566b19b048c19ee",
+      "claimSha256": "01f4fc2cca3c2be8ef7900c4e32dbd794f3e9f6414f9986bda4d1e9a0d7d137e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1462-1476|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1462-L1476",
+      "contentSha256": "eb7728bb00a4b00059f0e4799795e1b177af8dfe22dcf1675566b19b048c19ee",
+      "claimSha256": "cde2c8c53a55f8cc06021b4bbe106a2a69628f21fe1dad781346f51d50d1611e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1474|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1474",
+      "contentSha256": "b6e36f9edf667b77a887c5ee6c36787d49596a2251fed5caa851fdbbe584d3eb",
+      "claimSha256": "d34e427456a60ea9b6ec9e9fc55eb89e3dfb8626c1a2b16fee2c1dfca168210f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:168-180|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L168-L180",
+      "contentSha256": "b8c9cc883e80d564432007a84ebbb84b6c73611684f6ac647229b26a09c45bb9",
+      "claimSha256": "6353f27cee86cb7cbf439395aea0a33b0b2f7b9b9a1c80a80ff2614e996323b6"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1751-1777|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1751-L1777",
+      "contentSha256": "a694d50864c1bd2f8c6001e45dee24a3d27b243428a51e4ec34d37f9a93e0627",
+      "claimSha256": "5f3d0309005404758fa685c59edc803c4c2fd107dbb65ad8f9a426207d5eee0e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1917-1971|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1917-L1971",
+      "contentSha256": "af388bac206f7443e3dd760da30eeec4e9aac133f97acd0f274d952add0be5fb",
+      "claimSha256": "c0a50948e974624799040ab27183f706cb08ffcff23e717371d3041626a9674d"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1929-1933|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1929-L1933",
+      "contentSha256": "ddb7aaf44afc1bb1c38ffc9899f34add0446dbc81552ab428d1beb7daed8b094",
+      "claimSha256": "da502d54d4006374aa6c7f1bd37be74f168d702c837553c609625f8b9c575139"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1934-1937|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1934-L1937",
+      "contentSha256": "af1c484f2b06976bc2679cf946c73e8c4efb1ca6e8d12723b1532cd64d23468e",
+      "claimSha256": "f0a8b15e5c6dc9b33a28f6e0b28043db44ca793883de4954a62f7d004062a945"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1942-1943|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1942-L1943",
+      "contentSha256": "a8a58f2145ebedaf8d34f93756e3b97047f48b24b1d5816964796e40f168a781",
+      "claimSha256": "e49c8b3972b3faffe0521e03f236cdc13e7894c7c39b814dfc892c1846a971b7"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2158-2161|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2158-L2161",
+      "contentSha256": "0f936cd668758a0a7418579db09df9e370d5a9bf544a90b0ef074c164ac6aeef",
+      "claimSha256": "0bf3ee5721e8b8d363e24a374df3ef677e64315c0df4ef2c7200df281694659b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2158-2161|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2158-L2161",
+      "contentSha256": "0f936cd668758a0a7418579db09df9e370d5a9bf544a90b0ef074c164ac6aeef",
+      "claimSha256": "e6b38224ea75ba37c34ff825a13ecf4f60efc0fa43bda8424279afcd72657773"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2181-2189|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2181-L2189",
+      "contentSha256": "41d4b1310e5898b5d35fac0eb69760dd3b37893165838618e0c4bd674a27ab14",
+      "claimSha256": "c095237e2f383df9068ff47adeaa9b1be1150a6a26a64c4b94cb150bc2cdd30e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2181-2189|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2181-L2189",
+      "contentSha256": "41d4b1310e5898b5d35fac0eb69760dd3b37893165838618e0c4bd674a27ab14",
+      "claimSha256": "09e22156b144d3d95cd2389de379dbd59d50dffe04e0c2e5f6d1696ceba563d1"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2184|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2184",
+      "contentSha256": "0b0cbd31c2e4827d8521fb156214c9141fc47c63306c97341e9f0890f83f1b6a",
+      "claimSha256": "2588a6506e3c11ff79d8f33c879cc8592a4b8aa19c3a8ef5f35e810c28f759ae"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2200|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2200",
+      "contentSha256": "7bec8d6c57a1d2424746cd8c938cbd2dab857452837203d77b660245103c8b8d",
+      "claimSha256": "daa63ad49b948af7536853655b18f8af08c0bb5feca4d093f3460625186c2c25"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2204-2214|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2204-L2214",
+      "contentSha256": "5d7e5a56d4883f00396c344c38b8c50e576d008da9954b3f6c98b895c3238a33",
+      "claimSha256": "a1058f91f6a6b52992ea00605c6c673b712a44d9f9a8e1966579ced173730e87"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2204-2214|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2204-L2214",
+      "contentSha256": "5d7e5a56d4883f00396c344c38b8c50e576d008da9954b3f6c98b895c3238a33",
+      "claimSha256": "f508d63b747602a3be0ad7572b2dfc430fb069c8e10358d3a119d2205bf0e89b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:221-225|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L221-L225",
+      "contentSha256": "d373f73dc14174dd5f7abbd15d9c27b920cd6e4ccf6f3d41c0eb61cba849acd2",
+      "claimSha256": "b2c48a746933525d39f7e9c2c25342444e0e23f2bc2b4a9f9816d02768b10803"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2217|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2217",
+      "contentSha256": "0b0cbd31c2e4827d8521fb156214c9141fc47c63306c97341e9f0890f83f1b6a",
+      "claimSha256": "27d8c5833e9deab27c36b91461a32804b6f3ec9f8b97c2450f6afe704e52cf4e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2327|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2327",
+      "contentSha256": "b8a61e6dc37ecb5f02128ad3627514e400e0da669694cff40605f0accc67a2b4",
+      "claimSha256": "819449f476912fe6e35afa818a2e0c0f613aacfc012a5d996a3ecc8df8de2e98"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2327|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2327",
+      "contentSha256": "b8a61e6dc37ecb5f02128ad3627514e400e0da669694cff40605f0accc67a2b4",
+      "claimSha256": "89ef761cd821b7cf37efb750d6f2d6b18153faec699b06ee06ae601d9cfa8125"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2346|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2346",
+      "contentSha256": "345d7726959aa97a7f99abbc042b4ab5d2e7672c3aa2d1b1393fe0e094293748",
+      "claimSha256": "022d922e3054fbe9af21ccfada1dee0a60b2b39c52528dfb2075b4839ad006a8"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2433|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2433",
+      "contentSha256": "58711dccd87ecc663e095ae541a2d8f06852fd5594c4d3e1aff31d149af1c367",
+      "claimSha256": "f1ce5e18a9701900290d35675c9cff9c5e82f49a68842ff5ef8f623b023cbe1f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2458-2466|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2458-L2466",
+      "contentSha256": "52b1ede11ca6a230cb83b5040d612337b95017642ab6a2502041c3369889eb25",
+      "claimSha256": "89019dbfec1dde9fd580c23a63525f776d881d1ed3dabb64d38a01d0c62173e4"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2468-2483|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2468-L2483",
+      "contentSha256": "e819c12325ff832a297e470a2db0a2d6d3f264ea81bad0b8a1baafb798917835",
+      "claimSha256": "b128223a22d865e8261eb7db75e4a91477b7cd11b91d8a63cd8997215da1a126"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2482|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2482",
+      "contentSha256": "b765ba6f14da72fb1b7a52bef45ce5cfe20bfaa551abc6e5ad48223561b86f71",
+      "claimSha256": "61d6185f429dba5b7db913ec91f47cc58b61cf74c79fa6f4be0cf1103b80d719"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2534-2543|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2534-L2543",
+      "contentSha256": "d7ed125ea288ccde2b769f101dd4edea141cfd8d3fdf81ef0946b9c345318fed",
+      "claimSha256": "1579a22b8106a61efdb5c5db0acc5141dcb148bf1a3ecfbdcd95c40dc3143e0b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2593|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2593",
+      "contentSha256": "31c52065714a353f4052da8ca59138248cb0528e8641b2d936a3aa59fb4f2b65",
+      "claimSha256": "4b142fe18254aa89d0d363523c4451e1807b3a0e879ca3ca3713376b48fe56e6"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2669|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2669",
+      "contentSha256": "f9acf20ae03aa18867e0c488a77066c3ae7f077c8aafde637acbd4842c186224",
+      "claimSha256": "f6eee81284af722eca4f4f1e73146cdd7e4c6731837d0b6eef06d4de24037916"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:266|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L266",
+      "contentSha256": "d1af2a9559aeb1bf2d83a36c4e16e7ce303d1a02f3e0d4af3b8c9d763579f4f4",
+      "claimSha256": "96983e8b3a5b50fcacb595168873a7647da01ef87a5071529311dc0b575ae179"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2685-2690|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2685-L2690",
+      "contentSha256": "aa0030cee106bc5410e4dbfc6e91f50dd30a5d84327f8756c91865e7afb9caef",
+      "claimSha256": "fda4c9ef87ad783cde1222e8650041ce1e2e249e75c512c231b99921c7a4fc74"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2685-2690|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2685-L2690",
+      "contentSha256": "aa0030cee106bc5410e4dbfc6e91f50dd30a5d84327f8756c91865e7afb9caef",
+      "claimSha256": "91b04e94f60118f117e9aad054e254fd6d8191a447e9a86d981847044328f5d1"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2736|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2736",
+      "contentSha256": "127ebda503514ebdb0f3330d275e827cb9147db6ddc60cf2a16330735ab4e9a6",
+      "claimSha256": "55f474da8758c19475a769f21fe366ef7107dddcd8484c5117cef00e48e8641b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2745-2750|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2745-L2750",
+      "contentSha256": "11159721a6f903d2d743671f3b0ffc7b8b50485d944815ab1c0bf4b1b58881ca",
+      "claimSha256": "b785894b5dc549d89b1c51c582e8f0ccbe0467afac457eb6f37ced638d014559"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2777|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2777",
+      "contentSha256": "c54e3ea376df8dcf8b17b34b77636f978dc7b912e4bfc76a2802c3362475eff4",
+      "claimSha256": "e6ce36c1551a88e598b2a7a0b294b74dfc088ae3081eb6ecab332e56927c6700"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2832-2841|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2832-L2841",
+      "contentSha256": "5323d8024bbe13475928c8dd2469f3472d607365ed728c87adb512468b189863",
+      "claimSha256": "b1524fefb756324ead74bc575a883e2c58482eff1a5df40ad9f619644eb4807b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:284-299|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L284-L299",
+      "contentSha256": "17e1a0c7e58ab6c47a79009bd735439301417022ab93be0e9383b6bcb04a81e3",
+      "claimSha256": "f3e7517f0632cbbd9d61393cce0330819bde2c124b02dbb1bc0707034e752b99"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:2881|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2881",
+      "contentSha256": "91c3c8709391a2294bd182b58dcc5513bb89bd812aed53336b9777608cde64a3",
+      "claimSha256": "98a842deb71c1277ad41c05aa9b4f9bd96d6c6510e526c730387da295cf1008e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3170|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3170",
+      "contentSha256": "9545668545553d96ce8a05dd5278fb1a42d0b4f82a1fbd86af1a9ddf3f9f43fc",
+      "claimSha256": "868dbecc1825903256c6c9aa959bd2e9e4c48477a1e54a210e50f1894cdd2ca0"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3177|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3177",
+      "contentSha256": "44f05f22dd0f3a50fca397522bb092dbd5089c5d8ce1e2774c0d479da08cc185",
+      "claimSha256": "a3a573bc5aedbaba763e6e891ed29319923690ff6b0a71a5e5d9eeb81b58b53f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3185|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3185",
+      "contentSha256": "d2de161a382e330c58a253e2ddf080bb7bf1d6428312567ab26d1681525dac62",
+      "claimSha256": "77ddcabc9d4511c813129454a8a3de9057cff1ebb13bfd1c361068ae5582a74e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3201|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3201",
+      "contentSha256": "c6fa722fead1d6af895e6a49595a892810c988e1a3ac8c340ee3b2a3b578d7e7",
+      "claimSha256": "e78f4871ac2d6a1b7374fd5e6758e03c699e5c328470aba45b4c01e4d382ac36"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3231|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3231",
+      "contentSha256": "45a8a2f606688b038a209ccfbf748a864de129e2bb34a13fe60fcb25d93fbd27",
+      "claimSha256": "5a0f5751c11d9f00e2329c0134a1367bec905a3ebf4291a62da9023a9ef9811a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:329-336|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L329-L336",
+      "contentSha256": "2fe6dfd5f5f43bc7865de245a9f05b8e3c1ee7719c0795863449fe941d41434c",
+      "claimSha256": "a16bbdcdf9c271eded9cfee08893e88d1f9b3402e221b8f8fa62bfd9866cd53d"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3294|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3294",
+      "contentSha256": "98844d54a98cba05f23175893e48adf4fd0f694eb2563340c98408e50ece8c6f",
+      "claimSha256": "b113c775537e34099ad0a52b9160fae9e56ecb09bb0e0d8f51d1b4fbf8d59010"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:342-344|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L342-L344",
+      "contentSha256": "c9b1da0e36fee3d3114a0026421dc0302441ff7799e613eee2997784b8a7032e",
+      "claimSha256": "9f3e05f2c3dbb3a6a6b058d0f56f0a1ab2e3102c2f2f7c78462c3376250d878c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3480|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3480",
+      "contentSha256": "a435a20e9ea3e9aaf08d8f4b7b219a3d77988c14a78d966c6616f51f4ccdb9ba",
+      "claimSha256": "fb9e284cdbda154b71330caa979aa8399c1ab8ff37acfa04e20c176fb2ed162f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:354-361|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L354-L361",
+      "contentSha256": "4d589730d343d7c31685d14cca3f1d99cdccfb2f7651762662af0a4a1227830d",
+      "claimSha256": "b722b938ba6ed065422fcf56db96d1c1ede92605698ef6a0c1dd49b0b81ff5a1"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:366|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L366",
+      "contentSha256": "3bbc6dc7c75496e22392e4db7296ef619d6b603d9400cba70cba6b29864352f2",
+      "claimSha256": "1869aec08e737caec96ed67c40adfd6abd08ef4f623d2aefbe3ddd4cc12803d7"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3892|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3892",
+      "contentSha256": "a0d5b6bf0065eddb4b1655af6930c0782ee7c8d51ae5958f3d3c414cb7a0b2c5",
+      "claimSha256": "d9329cadd7e93b5315e94c13ad4f0d4c490ec997d4823ac89791dd23c0781d09"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:389|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L389",
+      "contentSha256": "77007c4861c2ec0037b619278f2a53723de1bdee00c2bc830c17ddbc6752ff22",
+      "claimSha256": "679bedbada76d5c663157910a1d3478eb89a12833b7cbd7e03bba48ef368028c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:3922|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3922",
+      "contentSha256": "0262a35eee1113911da13991251285a09ecf17a509b73fcaab925abb3570a456",
+      "claimSha256": "3f3c4d9725d7e73b21df68e2a29087ff89520d815daffc64e182e3503fe081fc"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:398-438|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L398-L438",
+      "contentSha256": "02393401a5ae8f6004f1a421111453ad3fa1849ceabccb2c3ebb3f4e2fd68621",
+      "claimSha256": "f2a49e3463543d7a1eb7381a0fcd679f03d3cb1171f35751f284b98dd942f993"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:406-419|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L406-L419",
+      "contentSha256": "d49785424d8bff1d968e956e5696b2c60cdcc48cfba1947a9b54c3b71d3d0a1b",
+      "claimSha256": "4cf41f4e4b9f1d6f48ce22a9673ea774320bbe89d4e5334ddcab5298637a2a46"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:406-419|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L406-L419",
+      "contentSha256": "d49785424d8bff1d968e956e5696b2c60cdcc48cfba1947a9b54c3b71d3d0a1b",
+      "claimSha256": "3af27f33349c8268a571faf78c49e43266262a7d5cac5e54b7c984d5936b9221"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4224|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4224",
+      "contentSha256": "9446f0f359f2fd8cdfa5eae33f669b5f45f9045f0d471185d28efb51831c1fd3",
+      "claimSha256": "05ae71d636a4b10f750b1312af91e0f42d60218f2ea2b74b294aa84e4953619d"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4241-4247|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4241-L4247",
+      "contentSha256": "a228e959f8d61bb3629898f4ebb66cd85135dda1088c3b4d98b19fb6a02db331",
+      "claimSha256": "13a4c9e92ac00f49a60e3ebf82986ffe1cb6b9b96b102909df5df4a157b74439"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4251-4262|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4251-L4262",
+      "contentSha256": "ce02fe3132e17e93ab0e7575008bac4722fff06ea5d287d980b7a63c51d01d25",
+      "claimSha256": "dafb63dfa81f9c4f53b12f64354d3d2348b4d3d39ee6e94df0a150f0067ce415"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4251-4262|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4251-L4262",
+      "contentSha256": "ce02fe3132e17e93ab0e7575008bac4722fff06ea5d287d980b7a63c51d01d25",
+      "claimSha256": "b2a4b357257e3af648b68b423c6cbb81823e36e1684fc5e2a8df1e4abb5eb4c5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4273-4279|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4273-L4279",
+      "contentSha256": "cc294d53648e14efa2cf3589906739e543244ae7433f020901a75e60040b99e1",
+      "claimSha256": "0781def9b7d4778e7925a63ecbe718abe4d5aa030071d5a44471e108b8b4ecc7"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4282|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4282",
+      "contentSha256": "0a507652e3d8f8fb92d40e6a8cd3256b1788a7674c0ba3e7cfdb099eab4bee18",
+      "claimSha256": "b203d83d14f401066ae00806b3c2db64a83b8ef50de22cd266342521e32dadb4"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4282|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4282",
+      "contentSha256": "0a507652e3d8f8fb92d40e6a8cd3256b1788a7674c0ba3e7cfdb099eab4bee18",
+      "claimSha256": "6f484f8fa251f1fde5739d48e7ce0669b2dfd1db32139977de8b7d1c7a0ada89"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4282|2",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4282",
+      "contentSha256": "0a507652e3d8f8fb92d40e6a8cd3256b1788a7674c0ba3e7cfdb099eab4bee18",
+      "claimSha256": "0f4c383928f28f478dfe91f152d286466eaa8d36ac7b34726ce1908d964a4d2c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4288|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4288",
+      "contentSha256": "abe14eb5cf39fff178c965afd47a2105ffbedc4b54c4aa813868b0785e80ee86",
+      "claimSha256": "9e882cf0147ec00c60a00ab4fd787215bfad440d27ae4cbd0fe62cc6bc572d71"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4293-4301|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4293-L4301",
+      "contentSha256": "fe9ad134d00250b829fe8c3b46e928ad432b1cbbce884e1bd310504255eb9160",
+      "claimSha256": "669c24b7dcbe9071d846d04e3d096f6fc1dae27ef9abc974e9c7748f7039b0be"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4336-4338|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4336-L4338",
+      "contentSha256": "5365ee0001a480d141671fbc73ce6e32348dc19555fc46b24f150bbd1a46a6a4",
+      "claimSha256": "f215cab5659113a949cdd5341d7f714e0c3e58af689de8ec7cbfee8f7d255eea"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4387-4425|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4387-L4425",
+      "contentSha256": "cfba86d69a417aebec3f582cd7e8ed83e60af9089a391f26221e78092132a572",
+      "claimSha256": "801ba6885381432d5ad3288cd63d985fbbbda1d854fc44fa75062c065b71d4cd"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4569-4597|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4569-L4597",
+      "contentSha256": "fd492c05c7387747545fb2ba646f9bbb40b137820c368c91273e618ac86e5657",
+      "claimSha256": "2231a2104d3e8b30728712ed81d093aaadb4d5acedb1755037fadf67874fb6e7"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4569-4597|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4569-L4597",
+      "contentSha256": "fd492c05c7387747545fb2ba646f9bbb40b137820c368c91273e618ac86e5657",
+      "claimSha256": "3a535093236a75bbc7b02495748d1ebad81cd904ea8367b041897b33a361173c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4592|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4592",
+      "contentSha256": "467eca7537810968fc7881a510bc3c3d71ae483368ef145c6fb15901fb290000",
+      "claimSha256": "03c48d9b0477deaba7682bb44272a4d6ea64fd67426bfef6b9fe34b365f7d186"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4592|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4592",
+      "contentSha256": "467eca7537810968fc7881a510bc3c3d71ae483368ef145c6fb15901fb290000",
+      "claimSha256": "b2b790b60ba88550baed7adffead4cac6bf9f05930e9ffe4a25afb70a84a29d9"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4592|2",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4592",
+      "contentSha256": "467eca7537810968fc7881a510bc3c3d71ae483368ef145c6fb15901fb290000",
+      "claimSha256": "ea7d2b20e0376f3692053aa08294013ae8fea289f98c8b2d9594d61cff9da13a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4608-4614|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4608-L4614",
+      "contentSha256": "ab6a5adc8839eb184d821dd3a49b3791b78002d43d10907c684986008f332b31",
+      "claimSha256": "1624492ccac30f673ee1b2b42bf3f0e3628ab499e7f37599d015cdce232cbaf2"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4608-4614|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4608-L4614",
+      "contentSha256": "ab6a5adc8839eb184d821dd3a49b3791b78002d43d10907c684986008f332b31",
+      "claimSha256": "b7a0d761abf5d25e80afc6293291ea0cb512920f100cdb837e2be927ff26b54f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4613|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4613",
+      "contentSha256": "d6f9c0c6ce04607f98f7bcaeeeebc48838e468fcece04bffe1ccb610256b9550",
+      "claimSha256": "7e235a8a1b6c2cab6cbe7cab0e0ab174431c82993f44571f7c7016aee356479f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4613|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4613",
+      "contentSha256": "d6f9c0c6ce04607f98f7bcaeeeebc48838e468fcece04bffe1ccb610256b9550",
+      "claimSha256": "a9e56c3d2ca5a9ec5d40b16cea00633b935c3809d579355fdf78ec1e12105daf"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4619-4620|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4619-L4620",
+      "contentSha256": "7a9a827b9d47302dd2751a81522b441ab6ab6e0be5f8c2a8bf07963d29844132",
+      "claimSha256": "6657639a0bb46aca391c8e5aab7f4582460307c2a26f233f6f01f81c82006b7a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4631-4633|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4631-L4633",
+      "contentSha256": "681470e1f184a8245e46d0a161f50412c63c611adb0785bf2fd649e9a72c7e87",
+      "claimSha256": "ce2aa139ac686110d0f7f8ddb27b49ab95ccebe05cfcb1485fe7795260ef4cb6"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4657-4694|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4657-L4694",
+      "contentSha256": "aee616e69ae6a1f46948eac4d3c031658804833ab90fdc663fa41cbdd95d8b0d",
+      "claimSha256": "4c3fe27d9fe5a4ed57c335dcabd479e9b7708d6ac24f626eb6c2bfc0ae62c07e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4657-4694|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4657-L4694",
+      "contentSha256": "aee616e69ae6a1f46948eac4d3c031658804833ab90fdc663fa41cbdd95d8b0d",
+      "claimSha256": "056870e449dce78e17839697fc8380f5e8187515814597a55e1b8670d2c1f308"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4668-4693|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4668-L4693",
+      "contentSha256": "da61902c4d65767e24ecff67f83efee977d5245e223b9f1a161fa89aae8d58df",
+      "claimSha256": "54c4d339ffaf630026adec7c181cb0f0d483ce15d7c47f9c344c768e3329b1c9"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4668|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4668",
+      "contentSha256": "7bec8d6c57a1d2424746cd8c938cbd2dab857452837203d77b660245103c8b8d",
+      "claimSha256": "dc4c8618e7b64d51b8ed8df51ffb1e25fff0fa92350a017882bccac4a6511055"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4668|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4668",
+      "contentSha256": "7bec8d6c57a1d2424746cd8c938cbd2dab857452837203d77b660245103c8b8d",
+      "claimSha256": "80b1c470c709b7c956a6d5e9a5e132a353aa61f16595ab452212f3a621e094b1"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4668|2",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4668",
+      "contentSha256": "7bec8d6c57a1d2424746cd8c938cbd2dab857452837203d77b660245103c8b8d",
+      "claimSha256": "cbbcc50d5c4cbfc5febf5c291c013934194b0b4806155c6e82ba2acc0e7594d2"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:47-48|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L47-L48",
+      "contentSha256": "9179653f1e66ad0df102bd1fcb4344750c035aff1cbc33c9e067590c63fcbecf",
+      "claimSha256": "6df9b3ddd9e30e1098198e0f9817b7df8df2d4bf572faa632d70c9b282de6948"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4781-4787|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4781-L4787",
+      "contentSha256": "65c8c98418a165fd768a19e41c931864a39d276bdb711d188b308501e020f1e5",
+      "claimSha256": "5bf9ed7b0a71b02d04a1ec3fb08f343fdf83050643b104c55fa4faa99100d372"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4878-4941|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4878-L4941",
+      "contentSha256": "81677ac44dcd28cbaf0d49f24b81eca1b31a5caa875c500a95744026aa9291bc",
+      "claimSha256": "84ddc4b8e6ec0c754f8ef98d43e4946083eb55c493b315f19b4511f369ef8de5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4913-4927|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4913-L4927",
+      "contentSha256": "42803e37ab5afa54239122c77bca0543bb6d4ba84aa5e14e924ec183cf973047",
+      "claimSha256": "7664315f22f83e95796c3c43f03fd988c4d9db6e8c55213054a4b4181ddf0dc2"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4931-4934|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4931-L4934",
+      "contentSha256": "6b8db47d918faef608f9d2b0e0ad37b2bbd486689dc9d13baf7a6318a574ab52",
+      "claimSha256": "b5cd426d59a931ebe396f2595b748ebf49c0903bf8fb2cee2afd48022397d6f6"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4958|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4958",
+      "contentSha256": "badb42e555d676d125e7213e91c693b044a7fa877157a2a996de3557f6c3001a",
+      "claimSha256": "447db3473125e521ede17d973dc962b9ab027c6bca59fc6ed8ea6e0a7dfd8f0d"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4991-5013|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4991-L5013",
+      "contentSha256": "d9ccaefbfa932790e0f786d905be8f43781af2d60c25f1a6c0e169f21f3c3d9a",
+      "claimSha256": "2caf382c30696fc80468172040743dcd1cb58f4ede7d142602ea9888cf74fce4"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:4991|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4991",
+      "contentSha256": "ae8c800634b48bfe99023a3bfb7a0543e0a92fc8652a272ae755c795d01c3156",
+      "claimSha256": "2beb8e83a03096b98bd56276bb4b842a5c33855e9bb8b9a577f6103a017736b8"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:503-513|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L503-L513",
+      "contentSha256": "85c65e7d1142cfd71ce012103df282e7b6f2d238a705960cd85481ae587b81e1",
+      "claimSha256": "ca4aea1f565c4a0045c8438f153144711c7428003ff8c76e4d236aa25e77c5d3"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:503|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L503",
+      "contentSha256": "e0e16e13d46c495c51d9c17fed58cf58cb3cfc9311e7287519f2c6c9596f360d",
+      "claimSha256": "0208a4cde10ff4f66dd6ff6bc0f913c405a6d6e6ed9835dca1ceb0e59449fbd5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:503|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L503",
+      "contentSha256": "e0e16e13d46c495c51d9c17fed58cf58cb3cfc9311e7287519f2c6c9596f360d",
+      "claimSha256": "03d530d94692ed9358856a7024bc38938dc01418e1e58b337f6d261ac7829822"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:5041-5045|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L5041-L5045",
+      "contentSha256": "26a92b73c25e79de4469d3156d0c304c95fa6f58fbe2b0a9b040b1505921b51c",
+      "claimSha256": "cd9cace80f34881f9491945eb54c6f7cfa94a5c9d27c3896051d92e8aacb7ccb"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:526-534|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L526-L534",
+      "contentSha256": "1c712a9e547d38a6a755c135cad371e9a4395b02d0fdfb87cf1b85ed7c282236",
+      "claimSha256": "eee96a917386d60ebcd966ea2a7c7c9263839e92e0bdeba9cb79fb247e769790"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:526-534|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L526-L534",
+      "contentSha256": "1c712a9e547d38a6a755c135cad371e9a4395b02d0fdfb87cf1b85ed7c282236",
+      "claimSha256": "3973a188e0bce2db6a150740a901e62352847dd417b2f7c3df44cb18d7a66422"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:541-573|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L541-L573",
+      "contentSha256": "a34aed744da37d40fd1c172913add37661872d8db7e4ed30431a690dc0fff26a",
+      "claimSha256": "e742e3e1e056672702d6b5bbdd28dcba69ed0d2c09908b4fe3a17d4b9df699e1"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:613-642|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L613-L642",
+      "contentSha256": "a854dc77462d5d327d511c45d34a210e82242cfc3266f62665f2f5c3d3a8ebb6",
+      "claimSha256": "ea3ec6bf26a61205704dfda625211b617b62b554c1c5b793dbdb5646de0e6bad"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:655|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L655",
+      "contentSha256": "dfdb91c820874641a5d9d4672348ff4d154ec1d39d2102ccf6011fd6192865e4",
+      "claimSha256": "a0807c886dd699dcbcbecf5332b80810ce091551ca8a9719e1dc07118b7a605e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:661|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L661",
+      "contentSha256": "18cb6dd4b5c6c3fc276753520d0c83c5eabdc105711d348c7f3425d82e8228f6",
+      "claimSha256": "9d9f9cc467713ec7acbdbda8da3be2e52d04bfe052666e66dfa964c04cf7796f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:703-704|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L703-L704",
+      "contentSha256": "ccb3020832024e2a0266c9b6425461d7940e3005eb773b72dcb587631485cf29",
+      "claimSha256": "f52b552e48718e676134ace69c2f0751e948192a56d49abd4b7765e5354d4d33"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:730-734|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L730-L734",
+      "contentSha256": "2d00ab224df8521d80b0ff1316ce7db9e4fe6d1ce02f92df44ef43cce8f20eb6",
+      "claimSha256": "9e882cf0147ec00c60a00ab4fd787215bfad440d27ae4cbd0fe62cc6bc572d71"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:739|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L739",
+      "contentSha256": "2ac28e614056cb8e5c377d28032111f3c8917720b969b792005b67f3376c26be",
+      "claimSha256": "425c37a83efc5a7ecd9ae126c01ce22f2d6f5809e6c2bbbbdfc6d9ae6d78454e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:742-743|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L742-L743",
+      "contentSha256": "8fe1d2957d96fa5d18c1daeab568545ebd1c806c0f69d657c398cb51a2f55a5d",
+      "claimSha256": "8f4ddbc8243d9ad3e62d7398894996e52c63ae9afc8ce49e398fc5d88d38cace"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:749|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L749",
+      "contentSha256": "537cf55f66a52cdbda4c31c4ddb3d3ab95c8e083a161f4482ac9722aac630d0e",
+      "claimSha256": "854e9a8836f7ecb1eec539766076c99084dac2f8065e4845de52b75b9aa00653"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:765|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L765",
+      "contentSha256": "bdeb88fb93d5900a659360d49375629a8daa69283bfa2fd604586e277f5beb6d",
+      "claimSha256": "897484650c638ff1091270313d83265dd3b8d121f8f06e46c8d616bf8fe58d8c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:768-784|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L768-L784",
+      "contentSha256": "25212cc2a8b7be7b9395adbc3df09473e2cf3bc4d4b3ab05cf058a1b612d2a7c",
+      "claimSha256": "95ad34ad80b94470c9e219889e90e1a7ba06abc73acb930472bcd2b4c313c67e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:78-91|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L78-L91",
+      "contentSha256": "f1963b1ac41a86de3d212a9bc2959eb79dc849d78a9ccaaf61a58093fba3a12f",
+      "claimSha256": "0942a8e70496684592e38f1bf68d96230784d557924964e80facae24043ebb6c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:790-817|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L790-L817",
+      "contentSha256": "200b4491381381b2f0f056b12b8568032bb5a15ac66eb8991e108a5e435ccecb",
+      "claimSha256": "427fa17397c1e10efef75713cff3a93012ea0b37ff8487f0aa2d45bf0d40b6b5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:847-858|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L847-L858",
+      "contentSha256": "76bd37f2692e6f1c5dfc6eabe0df3b9a0734dd34ed7a67be579c4185429d7c38",
+      "claimSha256": "ed78183052978ecda7ee05b498970fd25e6dbeb6c8e53bae8f68183fdfb37d4a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:86-91|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L86-L91",
+      "contentSha256": "ea82739fa84ae475b62120355736e5c069099f74553bf7c2e2939bd0294c155a",
+      "claimSha256": "678cd8c7402196d4877ca54b960689c7a6eee86da1f860dd189293c6e85c6a5c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:86-91|1",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L86-L91",
+      "contentSha256": "ea82739fa84ae475b62120355736e5c069099f74553bf7c2e2939bd0294c155a",
+      "claimSha256": "49e8f368f0d358b06680b789049305d7e28c07e279deb16fbad7f32db8e21865"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:870-907|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L870-L907",
+      "contentSha256": "bdfa3869db24a65213298f756d10c11f28e059669367e67687a08c87d8ce7900",
+      "claimSha256": "4c3b3e80520f5e103e5d30e5601649d96cecef353fdb9982e9e4346286efef07"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:968|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L968",
+      "contentSha256": "e8b4ca3be331b8e9fa942627ac384d99a31b82fb6eb90580da5ff0b52c65ce51",
+      "claimSha256": "f9e63a7ce37aef4bce78a6f0398baaa8eaddd83efbae2d3036a38aeccfbb082a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:99-110|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L99-L110",
+      "contentSha256": "e912fa6280105192220a67765710da524ceece4bc1611d26bcde2922fb3d2c16",
+      "claimSha256": "befac8e43d00e6f440ec54a73dc0651eea3933b75170690abe86451ad646cb37"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|orientation-disagreements|src/js/main.js:5247|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L5247",
+      "contentSha256": "d10b36aa74a59bcf4a88185837f658afaf3646eff2bb16c3928d0e9335e945d2",
+      "claimSha256": "3d730a1a0397d6b3f37ab57ee463b7db0f881579efdf98880ca3f4396e7fc7be"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|parked|src/js/main.js:3634|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3634",
+      "contentSha256": "6aad7e8f0558c2fae802811ec5a2de38f5251227f5a6dfce56106ec133807d6d",
+      "claimSha256": "ec6ca25fa53e26e61efa84c86014a9d5af2ec91d1ca3071bbe954c699e1989ee"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-001|src/js/main.js:3866-3930|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3866-L3930",
+      "contentSha256": "d0ac3194a6628bd9de1ccbb078eeb5dea75af1b069edf75152d74d0d9647f6c2",
+      "claimSha256": "41119b7dde8ee05f9918c830a1857840c021677568ada8088009303543318cce"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-002|src/js/main.js:19|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L19",
+      "contentSha256": "60cac966caf792c7fd7bec167942c372cead5b59a6d841a99204131c6ce2ed78",
+      "claimSha256": "6002658a431c7d6466b2a8f67d1943c34e8a54e0a76dcde07a6e4e50338b6d64"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-003|src/js/main.js:4128-4152|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4128-L4152",
+      "contentSha256": "a51ed4a2d6b8650f6462982aec7fdcf65e35582ba6b1748446522af1ed652e07",
+      "claimSha256": "59275f2d06d5115ab56fa69a1b9830cc6c8e4154c15aa3a15a774ee783a42514"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-004|src/js/main.js:1816-1848|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1816-L1848",
+      "contentSha256": "31863165024d9fb3af8ca0b197475368f0864b6586b5e8490a0aa315d5720d54",
+      "claimSha256": "1a6b2580d782d61f6af45ea17713cfa665f1c6743620dbd8e94564054fb5e601"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-006|src/js/main.js:4090-4126|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4090-L4126",
+      "contentSha256": "8089db1bea8696c82ea35fc2ca44f4fe0d596fa01ac4dfa036b7d6a33fd75589",
+      "claimSha256": "ff67b10790086b78f2e805db98c6092dba6faeafcf13bb903d1f1ddca6c9e9f5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-009|src/js/main.js:3220-3275|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3220-L3275",
+      "contentSha256": "7f909d10c3aae7f4b3232d0328a66a1b757f12ca6cd3325acd3a1cf38a83311c",
+      "claimSha256": "ddcf312c5266906ecf2c2e1f900d50ed55691bd46756db31a6e149855f6b312a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-010|src/js/main.js:3284-3352|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3284-L3352",
+      "contentSha256": "b7c534bbe1b980e8cc9b08ec8f0aedcc0e2b9b14506d81edf7f88cfd0109a6df",
+      "claimSha256": "e5b84bd661d72a827a886b05ed633183dc95a2891cf8ea9c07c931ddb9f4bad5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-011|src/js/main.js:3182-3199|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3182-L3199",
+      "contentSha256": "d826813b452499aef50066f095686e0fd979304edc83167718315522412a4a51",
+      "claimSha256": "02f8099b711ad13d01ba7ca7bd66771a8741d605da635d847b38516fa3dd0bf0"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-011|src/js/main.js:3469-3588|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3469-L3588",
+      "contentSha256": "890d5d93b501e51b643ad1495f7143567cb5dc79c4440d0e2ca480a614f16a4b",
+      "claimSha256": "509ee8fdf582272e8fa357060dd7f47d84b0c7b83dfd86040216cd3e91308ed3"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-012|src/js/main.js:2080-2099|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2080-L2099",
+      "contentSha256": "3bf02dc23c0133dfa02d132dfcb57af50c5e7818096eff0e2d4a050cbdc9bd94",
+      "claimSha256": "58b9f172d2c374191745a61e28cf489594beafbada1fdb9417cdac8e1218f408"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-013|src/js/main.js:1276-1311|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1276-L1311",
+      "contentSha256": "09cd180611ab28f394ebd0dd3f59db643d030718b4efa8a10a54258690e002e3",
+      "claimSha256": "55bcbac632a95b74a2cb6e90c9e26ed3d58f0dafb2b494bc499ab0072bb13041"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-014|src/js/main.js:4322-4380|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4322-L4380",
+      "contentSha256": "2aa39acba5554a44f1abf9d0d08a8951e9b0f30458567524565b55c55ddcd463",
+      "claimSha256": "8db2d667eb34dad42d59867bc0eea35a4dc1b4215f2d902d6ae114244e0948af"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-014|src/js/main.js:4336-4338|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4336-L4338",
+      "contentSha256": "5365ee0001a480d141671fbc73ce6e32348dc19555fc46b24f150bbd1a46a6a4",
+      "claimSha256": "ff09a45c04793d705121a43f647078a39fe062934536ea17226f84d58ece5965"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-015|src/js/main.js:2593|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2593",
+      "contentSha256": "31c52065714a353f4052da8ca59138248cb0528e8641b2d936a3aa59fb4f2b65",
+      "claimSha256": "d10f16faf865ceb778f74bf39f17423f4004cadf7d5249c86377fccf3e5c92e5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-018|src/js/main.js:2685-2690|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2685-L2690",
+      "contentSha256": "aa0030cee106bc5410e4dbfc6e91f50dd30a5d84327f8756c91865e7afb9caef",
+      "claimSha256": "a68f600952884f81c9040239f539c11d6be0373a86bc01279ed9b5723c5bf068"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-019|src/js/main.js:2745-2749|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2745-L2749",
+      "contentSha256": "bcad72e89a64023c84e81d251ab4d1ccd1ae1ac4ad4660f372cb254bf8956520",
+      "claimSha256": "70b024d4e5f30918901d97c27c90df022f9e0fbf0b2ab4ca5c45b9b75c58e524"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-020|src/js/main.js:3546|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3546",
+      "contentSha256": "fedd9f063913bd152df2edaa56268d61971e43b3d11a2147c5814cdb6fb4036c",
+      "claimSha256": "7d57da97cfc410512c5a9630522a4ae54aec748d7ea21b70432cebe97d6032d5"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-023|src/js/main.js:4608-4614|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4608-L4614",
+      "contentSha256": "ab6a5adc8839eb184d821dd3a49b3791b78002d43d10907c684986008f332b31",
+      "claimSha256": "50fd4e353342cd4152bcf753245d72f1bcf0f21b7ceaba8b8545abcb4df262b0"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-026|src/js/main.js:2776-2798|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2776-L2798",
+      "contentSha256": "a343f388930c81777f284ef76c296322eeda6e3a8d6ce59d2fbcaba6876d2359",
+      "claimSha256": "5ed74a116659601ae4e206e331ea082903cb80612f984a6857594fed7404c9d3"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-027|src/js/main.js:348-360|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L348-L360",
+      "contentSha256": "02b787c0f6fbda486ab3337dc0b9cf6abcb6292dec9aab7dae3b640ec1c043b2",
+      "claimSha256": "00970ed4645f4db440be6f1707e5d96107e566ebb564795e38616b1349ff6993"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|reconciliation-against-shipped-code#BL-027|src/js/main.js:503-524|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L503-L524",
+      "contentSha256": "3ad39dfa2d55865e2e948c7152dafa7dfde8fc0f43ef4d985d92d92474108bed",
+      "claimSha256": "5838198b1786f2f9121472f59da2554c235e0e21549ae8d301a666065a7cb30e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#BL-030|src/js/main.js:4619-4620|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4619-L4620",
+      "contentSha256": "7a9a827b9d47302dd2751a81522b441ab6ab6e0be5f8c2a8bf07963d29844132",
+      "claimSha256": "01f5e4ef0b22d99b5157bcb0a309335fdd684f4a9e6e6832479ec69301172cef"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#BL-030|src/js/main.js:541-573|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L541-L573",
+      "contentSha256": "a34aed744da37d40fd1c172913add37661872d8db7e4ed30431a690dc0fff26a",
+      "claimSha256": "b83d1a1e70da49fd86b40dec8c5b9f3af8a7c339ee22f067f97fb0533b833b08"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:365-519|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L365-L519",
+      "contentSha256": "c421b3d285ff9814d9882a02eebe7468c86a75c249128c7282b7a1d7a8c77e37",
+      "claimSha256": "0b3a4634125f8af2382fd02e0821cd8967468026eb343c76b29c67ba1fc3d899"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4234-4236|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4234-L4236",
+      "contentSha256": "16a6d46797e35b615d42197c5a4c2ded06649f434cfac70d929e1e24e3de7e5d",
+      "claimSha256": "a32736d488ab78f391cb6cb3f7543e57107f49fb28d3678d931bebb0d4010f8c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4258-4261|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4258-L4261",
+      "contentSha256": "6de4aa351f7cfbfa718bbe1599687df4cfca539efdd347cadb4ace8eb66ae6dd",
+      "claimSha256": "00933c21dbeca0ec5f85782c056bc8af72ecdf374fb32dca5345fbb3feee4e1f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#BL-034|src/js/main.js:4290-4292|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4290-L4292",
+      "contentSha256": "bccd1f65f9bb538f369bd4b68f02d97ae377864adcb6caa44f18d5aa99cd059c",
+      "claimSha256": "e7a50ca0286a94f99d237d2db3f4335b6273ae569082802fb8d1fd1f74e73abf"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#data-durability-and-export|src/js/main.js:4608-4614|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4608-L4614",
+      "contentSha256": "ab6a5adc8839eb184d821dd3a49b3791b78002d43d10907c684986008f332b31",
+      "claimSha256": "175103ee57b61be7047cba2ef780cc66a9e4a2753b8c81783f3524e813bcefa8"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#licensing|src/js/main.js:4090-4126|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4090-L4126",
+      "contentSha256": "8089db1bea8696c82ea35fc2ca44f4fe0d596fa01ac4dfa036b7d6a33fd75589",
+      "claimSha256": "db113d55ba08ee0694ff01abbc293b30f2d76db572d2886e8943e6c85d344a8f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#observability|src/js/main.js:4931-4934|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4931-L4934",
+      "contentSha256": "6b8db47d918faef608f9d2b0e0ad37b2bbd486689dc9d13baf7a6318a574ab52",
+      "claimSha256": "a5a8764da935714ad9c0f5fba53f3168249bce93462a6a17ba26a7a0fb7663de"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|table-stakes-categories#offline-behavior|src/js/main.js:2685-2690|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2685-L2690",
+      "contentSha256": "aa0030cee106bc5410e4dbfc6e91f50dd30a5d84327f8756c91865e7afb9caef",
+      "claimSha256": "8731b4fbf434f13e04567f6b55f8ef47c8877165e8a87b125772bfce479dc799"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-014|src/js/main.js:4322-4380|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4322-L4380",
+      "contentSha256": "2aa39acba5554a44f1abf9d0d08a8951e9b0f30458567524565b55c55ddcd463",
+      "claimSha256": "04af7ca22d1501ac08ac8d6ed88648f10d0d3e2e53ddd8b45701fd83174746b2"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-027|src/js/main.js:503-524|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L503-L524",
+      "contentSha256": "3ad39dfa2d55865e2e948c7152dafa7dfde8fc0f43ef4d985d92d92474108bed",
+      "claimSha256": "e9cb3974cb7e5bab48b5c356fa4a0e363ac751c5b5353ba47ad8480afae98414"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-033|src/js/main.js:4958-4978|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4958-L4978",
+      "contentSha256": "7021468feecf15f3eb0c4bb64ee4a7574be68e9008e1cbd3d3879d7d0ea1cb93",
+      "claimSha256": "e702c9978a2acb303803f9abb383b3a5a87064863772547cdabb8b0c168481be"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-035|src/js/main.js:2191-2220|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2191-L2220",
+      "contentSha256": "ae55ee7b09e9d9ed9780da88f6b4950d7fbe43c228b07801bfcc8a1a70461990",
+      "claimSha256": "b1612cbf4be86afeace3d135169ab486524e4e5a1969188da802b711421e9f42"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-037|src/js/main.js:117|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L117",
+      "contentSha256": "b7554b1d675a5f56ee43e7bc848ca770da2024696c29cb69661752aa577fbf55",
+      "claimSha256": "f21b3526b28500d9afa6a1b4782032ea57c442566ec6c226fb4723f77fecb2a9"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-042|src/js/main.js:4958-4978|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4958-L4978",
+      "contentSha256": "7021468feecf15f3eb0c4bb64ee4a7574be68e9008e1cbd3d3879d7d0ea1cb93",
+      "claimSha256": "4fbb703db39de63c62d76d21a35ca46059fc1bfaf41b0dbe79698e9595175dce"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-054|src/js/main.js:266|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L266",
+      "contentSha256": "d1af2a9559aeb1bf2d83a36c4e16e7ce303d1a02f3e0d4af3b8c9d763579f4f4",
+      "claimSha256": "84d84eb1f255083f134caa269ce213c129e17f6b4dba6333572706eab4c7bf2c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-085|src/js/main.js:4569-4606|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4569-L4606",
+      "contentSha256": "efbd5d11caf322e68354e939d0a187367668ff22511cc07f3ead28bc304447da",
+      "claimSha256": "c83d6e54b8e2afa5ba74f66cf85c4c5db8e4b30d45ef64cae1fe8c7103fb6a2a"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-090|src/js/main.js:4878-4941|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4878-L4941",
+      "contentSha256": "81677ac44dcd28cbaf0d49f24b81eca1b31a5caa875c500a95744026aa9291bc",
+      "claimSha256": "dda752518b154c7b52f46e043486ff3164cb9b51e6370e281e4f0b1e32a3091b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-101|src/js/main.js:4657-4694|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4657-L4694",
+      "contentSha256": "aee616e69ae6a1f46948eac4d3c031658804833ab90fdc663fa41cbdd95d8b0d",
+      "claimSha256": "d9d8409692a869558ab8063303920b9319a0d28991279b0b4466b39e86eda14e"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-108|src/js/main.js:730-734|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L730-L734",
+      "contentSha256": "2d00ab224df8521d80b0ff1316ce7db9e4fe6d1ce02f92df44ef43cce8f20eb6",
+      "claimSha256": "f5cb97f1152b45feb93066d1adc165547fa4ff1832f843b5f84f32a793e354af"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-110|src/js/main.js:4279|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4279",
+      "contentSha256": "6bd89af11752138f178acfbec66898706e177657b8cc0918eea65d6dc4e54d8f",
+      "claimSha256": "3993916910227adde70412e39831edceee1b64208d5d89e84c71571c229c9f6c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-114|src/js/main.js:1462-1476|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1462-L1476",
+      "contentSha256": "eb7728bb00a4b00059f0e4799795e1b177af8dfe22dcf1675566b19b048c19ee",
+      "claimSha256": "60ebcecd8a48b1c722559db87b770aa56e13513aa40e80970fb58c9565ad71fa"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-119|src/js/main.js:3892|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3892",
+      "contentSha256": "a0d5b6bf0065eddb4b1655af6930c0782ee7c8d51ae5958f3d3c414cb7a0b2c5",
+      "claimSha256": "2e37caad66e3e8b254c8e65973ba13282161aa82abd9e5c9166426c4fd291e39"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-124|src/js/main.js:4931-4934|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4931-L4934",
+      "contentSha256": "6b8db47d918faef608f9d2b0e0ad37b2bbd486689dc9d13baf7a6318a574ab52",
+      "claimSha256": "153a6e30cbc728d155cd4491bb88d8bbf59cabb064b72469570bac448dc8a40c"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-130|src/js/main.js:2534-2543|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L2534-L2543",
+      "contentSha256": "d7ed125ea288ccde2b769f101dd4edea141cfd8d3fdf81ef0946b9c345318fed",
+      "claimSha256": "08e5caf3ed574936df79a9699cd87033b01650bad16ad50c11725f3bda57d14b"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-137|src/js/main.js:661|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L661",
+      "contentSha256": "18cb6dd4b5c6c3fc276753520d0c83c5eabdc105711d348c7f3425d82e8228f6",
+      "claimSha256": "76635a92c006074cfb0dce7bb6f618288578e9aaf2bbe3b6c6eee412d6a4068f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-150|src/js/main.js:3511-3523|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3511-L3523",
+      "contentSha256": "ac9746f0b3da14149b6477e21fe25b19e353588db22b086d062183ca98ef842f",
+      "claimSha256": "0fd914663ba375553ba043754ba22467807490f727be2e322c1704c5f8c2db6f"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-155|src/js/main.js:3981-4007|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3981-L4007",
+      "contentSha256": "8b5b89bff7b6a1b8884cf9c85660da5332f6e1616dbc4711669a3e4ff15d65a2",
+      "claimSha256": "b3b057fad0f3d49bf14d6ddc40af42d30fe2329a8ec4c8213eed92bda13363ff"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-191|src/js/main.js:4016-4033|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L4016-L4033",
+      "contentSha256": "4c347f88d5374708015ad1eaaee35c53532e92cfe970f881a30b389e3d44dbb9",
+      "claimSha256": "23eb6b903f5b53852564247319a9c360ca1000899a1f891ff9ff66292b5e7d42"
+    }
+  ]
+}
