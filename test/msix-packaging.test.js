@@ -570,6 +570,10 @@ test('package scripts expose build and independently invocable proof scenarios',
   ]);
   assert.match(read(PROOF), /const STORYLINES_ROUTE = '#\/lines'/);
   assert.doesNotMatch(read(PROOF), /#\/storylines/);
+  assert.equal(
+    [...read(PROOF).matchAll(/waitForCatalogCard\(page, 'House of M'\)/g)].length,
+    2,
+  );
 });
 
 test('busy-port proof captures the installed supervisor without Windows Terminal', async () => {
@@ -636,6 +640,8 @@ test('proof cleanup force-stops only its exact recorded process IDs', async () =
   assert.equal(scripts.length, 1);
   assert.match(scripts[0], /Get-Process -Id 41/);
   assert.match(scripts[0], /Stop-Process -Id 41 -Force -ErrorAction Stop/);
+  assert.match(scripts[0], /\$p\.WaitForExit\(10000\)/);
+  assert.doesNotMatch(scripts[0], /if \(Get-Process -Id 41.*remains after stop/);
   assert.doesNotMatch(scripts[0], /Stop-Process -Name|taskkill/);
 });
 

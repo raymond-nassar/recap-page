@@ -97,9 +97,7 @@ function stopPids(pids, runPowerShell = powershell) {
       runPowerShell(
         `$p = Get-Process -Id ${pid} -ErrorAction SilentlyContinue; `
         + `if ($p) { Stop-Process -Id ${pid} -Force -ErrorAction Stop; `
-        + `Wait-Process -Id ${pid} -Timeout 10 -ErrorAction SilentlyContinue }; `
-        + `if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { `
-        + `throw "process ${pid} remains after stop" }`,
+        + `if (-not $p.WaitForExit(10000)) { throw "process ${pid} remains after stop" } }`,
       );
     } catch (error) {
       failures.push(error);
@@ -459,6 +457,15 @@ async function searchName(page, kind, query, expected) {
   );
 }
 
+async function waitForCatalogCard(page, title) {
+  await page.waitForFunction(
+    (expected) => [...document.querySelectorAll('#lines-results .catalog-card-title')]
+      .some((node) => node.textContent.trim() === expected),
+    { timeout: 15000 },
+    title,
+  );
+}
+
 async function removeCachedPaths(page, paths) {
   await page.evaluate(async (targets) => {
     for (const name of await caches.keys()) {
@@ -537,7 +544,7 @@ async function certificationFunctionality(architecture, source) {
         return true;
       });
       await setRoute(page, STORYLINES_ROUTE);
-      await page.waitForSelector('#lines-results .catalog-card');
+      await waitForCatalogCard(page, 'House of M');
       const opened = await page.evaluate(() => {
         const card = [...document.querySelectorAll('#lines-results .catalog-card')]
           .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
@@ -591,7 +598,7 @@ async function certificationFunctionality(architecture, source) {
       );
 
       await setRoute(page, STORYLINES_ROUTE);
-      await page.waitForSelector('#lines-results .catalog-card');
+      await waitForCatalogCard(page, 'House of M');
       const previewOpened = await page.evaluate(() => {
         const card = [...document.querySelectorAll('#lines-results .catalog-card')]
           .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
