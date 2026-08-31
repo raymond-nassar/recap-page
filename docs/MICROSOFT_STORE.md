@@ -289,18 +289,20 @@ the sentinel result, and package generations. It must not record real lists, not
 
 The runner automates package installation, Start activation, coordinator exit, background process
 ownership, exact-generation health, the exact origin, essential local data, browser functionality,
-busy-port refusal, package generation changes, and live removal. The busy-port scenario executes
-the installed supervisor bytes directly and captures their output, so it does not depend on which
-Windows console host is installed. A temporary Edge profile verifies browser-owned state continuity
-during the x64 update proof. Synchronous reader-tab behavior remains owned by the ordinary browser
-suite because the installed proof does not contact Marvel.
+busy-port refusal, package generation changes, and live removal. The busy-port scenario copies only
+the exact installed runtime, coordinator, server entry, and generation marker to a temporary layout,
+executes those bytes, captures their output, and removes the layout. This avoids depending on either
+the Windows console host or direct execution permission in the protected Server 2022 package
+directory. A temporary Edge profile verifies browser-owned state continuity during the x64 update
+proof. Synchronous reader-tab behavior remains owned by the ordinary browser suite because the
+installed proof does not contact Marvel.
 
 The update scenario is x64-only because its `2.0.0.1` package is local proof material. The ARM64
 package and final bundle contain only Store-safe version `2.0.0.0`.
 
 The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
 cleanup errors preserves each cause before any decision to repeat it. Busy-port refusal captures the
-installed supervisor's guidance and requires that no package server child was created. Missing
+installed coordinator's guidance and requires that no package server child was created. Missing
 ownership metadata is unknown and cannot report success.
 
 ## Run Windows App Certification Kit

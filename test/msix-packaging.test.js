@@ -588,6 +588,7 @@ test('package scripts expose build and independently invocable proof scenarios',
 test('busy-port proof captures the installed supervisor without Windows Terminal', async () => {
   const { startInstalledLauncher } = await import('../scripts/msix-proof.mjs');
   const installLocation = 'C:\\Program Files\\WindowsApps\\RecapPage';
+  const stagingRoot = 'C:\\Temp\\recap-page-installed-launcher';
   const child = fakeChild(73);
   child.stdout = new EventEmitter();
   child.stderr = new EventEmitter();
@@ -596,6 +597,15 @@ test('busy-port proof captures the installed supervisor without Windows Terminal
     { InstallLocation: installLocation },
     {
       environment: { PATH: 'C:\\Windows' },
+      stageLauncher: (installed) => {
+        assert.equal(installed.InstallLocation, installLocation);
+        return {
+          root: stagingRoot,
+          executable: join(stagingRoot, 'runtime', 'node.exe'),
+          launcher: join(stagingRoot, 'Launcher.mjs'),
+          files: ['runtime\\node.exe', 'Launcher.mjs', 'server.mjs', 'src\\msix-generation.json'],
+        };
+      },
       spawnImpl: (...args) => {
         invocation = args;
         return child;
@@ -605,10 +615,10 @@ test('busy-port proof captures the installed supervisor without Windows Terminal
   child.stderr.emit('data', Buffer.from('Port 8787 is already in use.\n'));
 
   assert.deepEqual(invocation, [
-    join(installLocation, 'runtime', 'node.exe'),
-    [join(installLocation, 'Launcher.mjs')],
+    join(stagingRoot, 'runtime', 'node.exe'),
+    [join(stagingRoot, 'Launcher.mjs')],
     {
-      cwd: installLocation,
+      cwd: stagingRoot,
       env: { PATH: 'C:\\Windows' },
       stdio: ['ignore', 'pipe', 'pipe'],
       windowsHide: true,
@@ -617,6 +627,58 @@ test('busy-port proof captures the installed supervisor without Windows Terminal
   assert.equal(launched.child, child);
   assert.equal(launched.output.join(''), 'Port 8787 is already in use.\n');
   assert.equal(launched.error(), null);
+  assert.equal(launched.stagingRoot, stagingRoot);
+});
+
+test('busy-port proof stages only the exact installed launcher inputs', async () => {
+  const { stageInstalledLauncher } = await import('../scripts/msix-proof.mjs');
+  const installLocation = 'C:\\Program Files\\WindowsApps\\RecapPage';
+  const stagingRoot = 'C:\\Temp\\recap-page-installed-launcher';
+  const copies = [];
+  const directories = [];
+  const staged = stageInstalledLauncher(
+    { InstallLocation: installLocation },
+    {
+      createTemp: () => stagingRoot,
+      makeDirectory: (...args) => directories.push(args),
+      copyFile: (...args) => copies.push(args),
+    },
+  );
+
+  const relativeFiles = [
+    ['runtime', 'node.exe'],
+    ['Launcher.mjs'],
+    ['server.mjs'],
+    ['src', 'msix-generation.json'],
+  ];
+  assert.deepEqual(copies, relativeFiles.map((parts) => [
+    join(installLocation, ...parts),
+    join(stagingRoot, ...parts),
+  ]));
+  assert.equal(directories.length, relativeFiles.length);
+  assert.equal(staged.root, stagingRoot);
+  assert.equal(staged.executable, join(stagingRoot, 'runtime', 'node.exe'));
+  assert.equal(staged.launcher, join(stagingRoot, 'Launcher.mjs'));
+});
+
+test('staged installed launcher cleanup stops the child before removing its files', async () => {
+  const { removeStagedLauncher } = await import('../scripts/msix-proof.mjs');
+  const calls = [];
+  removeStagedLauncher(
+    { child: { pid: 73 }, stagingRoot: 'C:\\Temp\\recap-page-installed-launcher' },
+    {
+      stopProcesses: (processIds) => calls.push(['stop', processIds]),
+      removeTree: (path, options) => calls.push(['remove', path, options]),
+    },
+  );
+  assert.deepEqual(calls, [
+    ['stop', [73]],
+    [
+      'remove',
+      'C:\\Temp\\recap-page-installed-launcher',
+      { recursive: true, force: true },
+    ],
+  ]);
 });
 
 test('certification proof selects the process that actually owns port 8787', async () => {

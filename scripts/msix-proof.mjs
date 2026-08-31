@@ -2,11 +2,11 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  existsSync, mkdtempSync, rmSync,
+  copyFileSync, existsSync, mkdirSync, mkdtempSync, rmSync,
 } from 'node:fs';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import {
@@ -346,21 +346,63 @@ async function generation() {
   return response.json();
 }
 
+const INSTALLED_LAUNCHER_FILES = Object.freeze([
+  Object.freeze(['runtime', 'node.exe']),
+  Object.freeze(['Launcher.mjs']),
+  Object.freeze(['server.mjs']),
+  Object.freeze(['src', 'msix-generation.json']),
+]);
+
+function stageInstalledLauncher(
+  installed,
+  {
+    createTemp = mkdtempSync,
+    makeDirectory = mkdirSync,
+    copyFile = copyFileSync,
+    removeTree = rmSync,
+  } = {},
+) {
+  const root = createTemp(join(tmpdir(), 'recap-page-installed-launcher-'));
+  try {
+    for (const parts of INSTALLED_LAUNCHER_FILES) {
+      const destination = join(root, ...parts);
+      makeDirectory(dirname(destination), { recursive: true });
+      copyFile(join(installed.InstallLocation, ...parts), destination);
+    }
+    return {
+      root,
+      executable: join(root, 'runtime', 'node.exe'),
+      launcher: join(root, 'Launcher.mjs'),
+      files: INSTALLED_LAUNCHER_FILES.map((parts) => join(...parts)),
+    };
+  } catch (error) {
+    removeTree(root, { recursive: true, force: true });
+    throw error;
+  }
+}
+
 function startInstalledLauncher(
   installed,
   {
     spawnImpl = spawn,
     environment = process.env,
+    stageLauncher = stageInstalledLauncher,
+    removeTree = rmSync,
   } = {},
 ) {
-  const executable = join(installed.InstallLocation, 'runtime', 'node.exe');
-  const launcher = join(installed.InstallLocation, 'Launcher.mjs');
-  const child = spawnImpl(executable, [launcher], {
-    cwd: installed.InstallLocation,
-    env: environment,
-    stdio: ['ignore', 'pipe', 'pipe'],
-    windowsHide: true,
-  });
+  const staged = stageLauncher(installed);
+  let child;
+  try {
+    child = spawnImpl(staged.executable, [staged.launcher], {
+      cwd: staged.root,
+      env: environment,
+      stdio: ['ignore', 'pipe', 'pipe'],
+      windowsHide: true,
+    });
+  } catch (error) {
+    removeTree(staged.root, { recursive: true, force: true });
+    throw error;
+  }
   const output = [];
   let error = null;
   child.stdout.on('data', (chunk) => output.push(chunk.toString()));
@@ -372,7 +414,33 @@ function startInstalledLauncher(
     child,
     output,
     error: () => error,
+    stagingRoot: staged.root,
+    stagedFiles: staged.files,
   };
+}
+
+function removeStagedLauncher(
+  launched,
+  {
+    stopProcesses = stopPids,
+    removeTree = rmSync,
+  } = {},
+) {
+  if (!launched) return;
+  const failures = [];
+  try {
+    stopProcesses([launched.child.pid]);
+  } catch (error) {
+    failures.push(error);
+  }
+  try {
+    removeTree(launched.stagingRoot, { recursive: true, force: true });
+  } catch (error) {
+    failures.push(error);
+  }
+  if (failures.length) {
+    throw new AggregateError(failures, 'staged installed launcher cleanup failed');
+  }
 }
 
 async function fetchEssentialJson() {
@@ -692,6 +760,7 @@ async function certificationFunctionality(architecture, source) {
 
 async function busyPortRefusal(architecture, source) {
   const holder = createServer();
+  let launched = null;
   await new Promise((resolve, reject) => {
     holder.once('error', reject);
     holder.listen(8787, '127.0.0.1', resolve);
@@ -703,7 +772,7 @@ async function busyPortRefusal(architecture, source) {
     context.installed = installPackage(STORE_PACKAGE_VERSION, architecture, source);
     context.since = new Date();
     const browserBefore = browserSnapshotDigest();
-    const launched = startInstalledLauncher(context.installed);
+    launched = startInstalledLauncher(context.installed);
     const guidance = await waitFor(
       () => {
         if (launched.error()) throw launched.error();
@@ -736,12 +805,30 @@ async function busyPortRefusal(architecture, source) {
       aumid: AUMID,
       holderProcessId: process.pid,
       launcherProcessId: launched.child.pid,
+      stagedInstalledFiles: launched.stagedFiles,
       serverChildrenStarted: 0,
       safeGuidanceVisible: true,
       browserWindowDigestUnchanged: true,
     }, null, 2));
   }, {
-    afterCleanup: () => new Promise((resolve) => holder.close(resolve)),
+    afterCleanup: async () => {
+      const failures = [];
+      try {
+        removeStagedLauncher(launched);
+      } catch (error) {
+        failures.push(error);
+      }
+      try {
+        await new Promise((resolve, reject) => {
+          holder.close((error) => (error ? reject(error) : resolve()));
+        });
+      } catch (error) {
+        failures.push(error);
+      }
+      if (failures.length) {
+        throw new AggregateError(failures, 'busy-port fixture cleanup failed');
+      }
+    },
   });
 }
 
@@ -879,6 +966,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 export {
   assertNoPreexistingPackage, cleanupPackage, generation, installPackage,
   formatProofError, listenerPid, packageInfo, packageProcesses, removePackage, retainPackageProcess,
-  runInstalledScenario, selectListenerServer, startInstalledLauncher, stopPids,
+  removeStagedLauncher, runInstalledScenario, selectListenerServer, stageInstalledLauncher,
+  startInstalledLauncher, stopPids,
   serverChildExited, waitForProcess,
 };
