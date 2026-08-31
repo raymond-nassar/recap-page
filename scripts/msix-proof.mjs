@@ -23,6 +23,8 @@ export const SCENARIOS = Object.freeze([
 const ORIGIN = 'http://127.0.0.1:8787';
 const CATALOG_ROUTE = '#/catalog';
 const CATALOG_RESULTS = '#catalog-results';
+const CATALOG_LIST_ID = 'house-of-m';
+const CATALOG_ITEM_COUNT = 20;
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -556,13 +558,22 @@ async function certificationFunctionality(architecture, source) {
       }, CATALOG_RESULTS);
       if (!opened) throw new Error('House of M was not available to preview');
       await page.waitForSelector('#preview[open] .preview-issue-link');
+      await page.$eval(
+        `#preview input[data-act="path-preview"][data-key="${CATALOG_LIST_ID}"]`,
+        (radio) => radio.click(),
+      );
+      await page.waitForFunction(
+        (count) => document.querySelectorAll('#preview-body .preview-issue-link').length === count,
+        {},
+        CATALOG_ITEM_COUNT,
+      );
       await page.$eval('#preview-add [data-act="main"]', (button) => button.click());
-      await page.waitForFunction(() => {
+      await page.waitForFunction((catalogId, count) => {
         const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
         return Object.values(state?.lists ?? {}).some((list) => (
-          list.catalogId === 'house-of-m' && list.itemIds?.length === 20
+          list.catalogId === catalogId && list.itemIds?.length === count
         ));
-      });
+      }, {}, CATALOG_LIST_ID, CATALOG_ITEM_COUNT);
       await page.$eval('#preview-close', (button) => button.click());
       await searchName(page, 'creator', 'Hickman', 'Hickman');
       await searchName(page, 'series', 'House of M', 'House of M');
