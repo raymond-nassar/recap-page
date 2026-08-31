@@ -47,7 +47,7 @@ test('the manifest uses the exact Partner Center identity', () => {
 
   assert.equal(attribute(identity, 'Name'), 'PanelStackLabs.RecapPage');
   assert.equal(attribute(identity, 'Publisher'), 'CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472');
-  assert.equal(attribute(identity, 'Version'), '2.0.0.0');
+  assert.equal(attribute(identity, 'Version'), '2.0.1.0');
   assert.equal(attribute(identity, 'ProcessorArchitecture'), 'x64');
   assert.match(properties, /<DisplayName>Recap Page<\/DisplayName>/);
   assert.match(properties, /<PublisherDisplayName>PanelStack Labs<\/PublisherDisplayName>/);
@@ -84,9 +84,9 @@ test('the packer separates the Store bundle from its proof-only update', async (
   assert.ok(existsSync(PACK), 'the MSIX packer is missing');
   const packer = await import('../scripts/pack-msix.mjs');
 
-  assert.deepEqual(packer.PACKAGE_VERSIONS, ['2.0.0.0', '2.0.0.1']);
-  assert.equal(packer.STORE_PACKAGE_VERSION, '2.0.0.0');
-  assert.equal(packer.PROOF_UPDATE_VERSION, '2.0.0.1');
+  assert.deepEqual(packer.PACKAGE_VERSIONS, ['2.0.1.0', '2.0.1.1']);
+  assert.equal(packer.STORE_PACKAGE_VERSION, '2.0.1.0');
+  assert.equal(packer.PROOF_UPDATE_VERSION, '2.0.1.1');
   assert.deepEqual(
     packer.PACKAGE_ARCHITECTURES.map(({ id, node }) => ({ id, node })),
     [
@@ -103,12 +103,12 @@ test('the packer separates the Store bundle from its proof-only update', async (
     '0.6.0',
   ].join('\n')), '0.6.0');
   assert.equal(packer.winAppCliVersion('Windows App Development CLI - Version 0.6.0'), null);
-  assert.match(packer.packagePath('x64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.0\.0_x64\.msix$/);
-  assert.match(packer.packagePath('arm64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.0\.0_arm64\.msix$/);
-  assert.match(packer.bundlePath(), /RecapPage_2\.0\.0\.0_x64_arm64\.msixbundle$/);
+  assert.match(packer.packagePath('x64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.1\.0_x64\.msix$/);
+  assert.match(packer.packagePath('arm64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.1\.0_arm64\.msix$/);
+  assert.match(packer.bundlePath(), /RecapPage_2\.0\.1\.0_x64_arm64\.msixbundle$/);
   assert.match(
-    packer.proofPackagePath('2.0.0.1'),
-    /dist[\\/]msix-proof[\\/]RecapPage_2\.0\.0\.1_x64\.msix$/,
+    packer.proofPackagePath('2.0.1.1'),
+    /dist[\\/]msix-proof[\\/]RecapPage_2\.0\.1\.1_x64\.msix$/,
   );
 });
 
@@ -192,12 +192,12 @@ test('the coordinator accepts only a full package-input generation digest', asyn
   const { readPackageGeneration } = await import('../packaging/windows/Launcher.mjs');
   const digest = 'a'.repeat(64);
   assert.equal(readPackageGeneration('C:\\Package', () => JSON.stringify({
-    packageVersion: '2.0.0.0',
+    packageVersion: '2.0.1.0',
     generation: digest,
   })), digest);
   assert.equal(readPackageGeneration('C:\\Package', () => JSON.stringify({
-    packageVersion: '2.0.0.0',
-    generation: 'proof-2.0.0.0',
+    packageVersion: '2.0.1.0',
+    generation: 'proof-2.0.1.0',
   })), null);
 });
 
@@ -747,7 +747,7 @@ test('package removal fails if the exact identity remains registered', async () 
   const remaining = {
     Name: 'PanelStackLabs.RecapPage',
     PackageFamilyName: 'PanelStackLabs.RecapPage_we33aa8nvkpcc',
-    PackageFullName: 'PanelStackLabs.RecapPage_2.0.0.1_x64__we33aa8nvkpcc',
+    PackageFullName: 'PanelStackLabs.RecapPage_2.0.1.1_x64__we33aa8nvkpcc',
   };
   let removalCalls = 0;
   assert.throws(

@@ -17,12 +17,12 @@ launcher instead starts a hidden detached server, verifies the exact package gen
 uncacheable local health response, opens the browser only after readiness, and then exits. A later
 local-data failure checks that health response and gives direct reconnection guidance.
 
-The repository continues to build signed x64 and ARM64 version `2.0.0.0` proof packages, one
-x64/ARM64 bundle, and an isolated x64 `2.0.0.1` update package. Final release versioning and Store
-submission are separate owner-controlled steps after this runtime fix is merged and the release
-baseline is frozen.
+The repository now builds signed x64 and ARM64 version `2.0.1.0` proof packages, one x64/ARM64
+bundle, and an isolated x64 `2.0.1.1` update package. The release integration uses the frozen
+certification-fix baseline. Store submission and publication remain separate owner-controlled
+steps.
 
-Structural inspection on Windows 11 ARM64 proved:
+The earlier 2.0.0 structural inspection on Windows 11 ARM64 proved:
 
 - Both package manifests use the exact production identity and Store-safe version `2.0.0.0`.
 - The bundle contains exactly one x64 package and one ARM64 package at that version.
@@ -137,7 +137,7 @@ browser. Neither result warrants altering the published Node binary or its verif
 A source-continuity gate proves that every package-copied input remains identical to the merged
 corrected build. Random hosted signing changes the workflow's proof hashes on every run, so those
 run-specific values belong in the delivery pull request rather than this maintained document. The
-accepted local hashes above remain the stable package handoff.
+hashes above identify only the rejected 2.0.0 submission and must not be reused for its replacement.
 
 The workflow uploaded no package, certificate, installer, log, or report artifact. Its public output
 contains only allowlisted host facts, hashes, test names, and result categories. Raw WACK output and
@@ -224,16 +224,16 @@ The build:
 
 1. Fetches pinned official x64 and ARM64 Node runtimes.
 2. Verifies both archives against Node's published SHA-256 list.
-3. Stages native x64 and ARM64 version `2.0.0.0` package layouts.
-4. Stages x64 version `2.0.0.1` under a separate proof-only output boundary.
+3. Stages native x64 and ARM64 version `2.0.1.0` package layouts.
+4. Stages x64 version `2.0.1.1` under a separate proof-only output boundary.
 5. Generates MSIX image assets from the maintained app icon.
 6. Generates one random-password development certificate from the manifest.
 7. Signs both Store packages, the bundle, and the proof-only update with that certificate.
 8. Deletes the private PFX and password, leaving only the public CER for local trust.
 
 The package layouts, runtime downloads, generated assets, and launcher inputs are staged under the
-system temporary directory and removed after packaging. Only Store-safe version `2.0.0.0` artifacts
-and the public CER remain under ignored `dist/msix/`; version `2.0.0.1` remains under ignored
+system temporary directory and removed after packaging. Only Store-safe version `2.0.1.0` artifacts
+and the public CER remain under ignored `dist/msix/`; version `2.0.1.1` remains under ignored
 `dist/msix-proof/`. Do not commit packages, certificates, logs, or proof reports.
 
 Inspect the two packages, both bundle slices, PE machine fields, official Node executable hashes,
@@ -297,8 +297,8 @@ directory. A temporary Edge profile verifies browser-owned state continuity duri
 proof. Synchronous reader-tab behavior remains owned by the ordinary browser suite because the
 installed proof does not contact Marvel.
 
-The update scenario is x64-only because its `2.0.0.1` package is local proof material. The ARM64
-package and final bundle contain only Store-safe version `2.0.0.0`.
+The update scenario is x64-only because its `2.0.1.1` package is local proof material. The ARM64
+package and final bundle contain only Store-safe version `2.0.1.0`.
 
 The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
 cleanup errors preserves each cause before any decision to repeat it. Busy-port refusal captures the

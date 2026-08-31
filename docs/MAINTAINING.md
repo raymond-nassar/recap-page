@@ -676,8 +676,8 @@ winapp --version
 npm run msix:pack
 ```
 
-The packer writes signed x64 and ARM64 version `2.0.0.0` packages plus their bundle under ignored
-`dist/msix/`. It also writes the x64 `2.0.0.1` update artifact under `dist/msix-proof/`, where it
+The packer writes signed x64 and ARM64 version `2.0.1.0` packages plus their bundle under ignored
+`dist/msix/`. It also writes the x64 `2.0.1.1` update artifact under `dist/msix-proof/`, where it
 cannot enter the Store bundle. Both official Node archives are checked against Node's published
 SHA-256 list. Each package uses its native Node executable to run the maintained supervisor and the
 unchanged server. Package assets are generated and all outputs are signed with one transient
@@ -701,7 +701,7 @@ npm run msix:prove -- --scenario=update-state-continuity
 
 Those commands default to the standalone x64 package. Add
 `--architecture=arm64 --source=bundle` to the first two scenarios to prove that Windows selects the
-ARM64 slice from the final bundle. The update journey remains x64 because version `2.0.0.1` is
+ARM64 slice from the final bundle. The update journey remains x64 because version `2.0.1.1` is
 proof-only and never belongs in the Store bundle.
 
 Loose registration is useful for activation debugging but is not installation evidence. Record it

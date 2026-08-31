@@ -12,14 +12,14 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
-
+## 2.0.1
 ### Resolved Daredevil Reading List metadata gaps
 
-In plain English: the Daredevil Reading List now links its 1997 Deadpool annual and no longer shows
-unavailable or nonexistent comics as unresolved rows. Its standalone Spider-Man team-up is another
-mention of the same one-shot already listed earlier. Six omitted source entries remain recorded for
-provenance, so nothing is guessed, substituted, or silently deleted. Nothing you have saved is
-changed.
+In plain English: Saved data from version 2.0.0 remains fully compatible with 2.0.1. The Daredevil
+Reading List now links its 1997 Deadpool annual and no longer shows unavailable or nonexistent
+comics as unresolved rows. Its standalone Spider-Man team-up is another mention of the same one-shot
+already listed earlier. Six omitted source entries remain recorded for provenance, so nothing is
+guessed, substituted, or silently deleted. Lists, notes, settings, and read markers stay unchanged.
 
 ### Kept the Microsoft Store server alive after launch
 
@@ -106,7 +106,7 @@ as a child exit. Those corrected bytes passed x64 and ARM64 start and safe occup
 Partner Center validation, upload, and publication remain pending.
 
 For maintainers, `npm run msix:pack` uses winapp CLI 0.6.0 to create signed x64 and ARM64 version
-`2.0.0.0` packages and their bundle. The x64 `2.0.0.1` update package remains isolated as local proof
+`2.0.1.0` packages and their bundle. The x64 `2.0.1.1` update package remains isolated as local proof
 material and cannot enter the Store bundle. Both Node archives are checked against their published
 SHA-256 values. The package supervisor removes every casing of origin-changing environment names,
 and busy-port proof requires a readable parent-process and executable-path witness rather than

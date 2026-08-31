@@ -81,7 +81,7 @@ export function validateSubmission() {
     'available and discoverable',
     "Don't publish this submission until I select Publish now",
     'English (United States)',
-    '2.0.0.0',
+    '2.0.1.0',
     '127.0.0.1:8787',
     'runFullTrust',
     '`PASS` categories',
