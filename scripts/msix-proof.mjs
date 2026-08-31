@@ -187,7 +187,6 @@ function cleanupPackage(
   {
     installed,
     since,
-    owned,
   },
   {
     listProcesses = packageProcesses,
@@ -196,17 +195,20 @@ function cleanupPackage(
   } = {},
 ) {
   const failures = [];
+  let currentProcessIds = [];
   if (installed && since) {
     try {
-      owned.push(...listProcesses(installed, since).map((entry) => entry.ProcessId));
+      currentProcessIds = listProcesses(installed, since).map((entry) => entry.ProcessId);
     } catch (error) {
       failures.push(error);
     }
   }
-  try {
-    stopProcesses(owned);
-  } catch (error) {
-    failures.push(error);
+  if (currentProcessIds.length) {
+    try {
+      stopProcesses(currentProcessIds);
+    } catch (error) {
+      failures.push(error);
+    }
   }
   try {
     removeOwnedPackage(PACKAGE_NAME, PACKAGE_FAMILY);
@@ -222,7 +224,6 @@ async function runInstalledScenario(body, { afterCleanup } = {}) {
   const context = {
     cleanupAuthorized: false,
     installed: null,
-    owned: [],
     since: null,
   };
   let result;
@@ -483,11 +484,11 @@ function processExists(pid) {
   return powershell(`if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { "true" } else { "false" }`) === 'true';
 }
 
-function listenerPid() {
-  const raw = powershell(
-    '$row = Get-NetTCPConnection -LocalAddress 127.0.0.1 -LocalPort 8787 '
-    + '-State Listen -ErrorAction SilentlyContinue | Select-Object -First 1 -ExpandProperty OwningProcess; '
-    + 'if ($row) { $row }',
+function listenerPid(runPowerShell = powershell) {
+  const raw = runPowerShell(
+    '$row = Get-NetTCPConnection -State Listen -ErrorAction Stop | '
+    + "Where-Object { $_.LocalAddress -eq '127.0.0.1' -and $_.LocalPort -eq 8787 } | "
+    + 'Select-Object -First 1; if ($row) { $row.OwningProcess }',
   );
   return raw ? Number(raw) : null;
 }
@@ -522,7 +523,6 @@ async function certificationFunctionality(architecture, source) {
       ),
       `listener PID ${settledListenerPid} was not owned by the installed package`,
     );
-    context.owned.push(serverProcess.ProcessId);
     await waitFor(
       () => !packageProcesses(context.installed, context.since)
         .some((process) => process.CommandLine?.includes('Launcher.mjs')),
@@ -652,7 +652,6 @@ async function certificationFunctionality(architecture, source) {
       await catalogPage.close();
     });
 
-    context.owned.splice(context.owned.indexOf(serverProcess.ProcessId), 1);
     context.since = new Date();
     activate();
     const relaunched = await waitForProcess(
@@ -661,7 +660,6 @@ async function certificationFunctionality(architecture, source) {
       'node.exe',
       'server.mjs',
     );
-    context.owned.push(relaunched.ProcessId);
     await waitFor(generation, 'the package did not relaunch after deliberate server stop');
 
     const livePid = relaunched.ProcessId;
@@ -671,7 +669,6 @@ async function certificationFunctionality(architecture, source) {
       'live package removal left registration, server process, or listener behind',
     );
     context.installed = null;
-    context.owned.splice(context.owned.indexOf(livePid), 1);
 
     console.log(JSON.stringify({
       scenario: SCENARIOS[0],
@@ -707,7 +704,6 @@ async function busyPortRefusal(architecture, source) {
     context.since = new Date();
     const browserBefore = browserSnapshotDigest();
     const launched = startInstalledLauncher(context.installed);
-    context.owned.push(launched.child.pid);
     const guidance = await waitFor(
       () => {
         if (launched.error()) throw launched.error();
@@ -760,7 +756,6 @@ async function updateStateContinuity(architecture, source) {
     context.since = new Date();
     activate();
     const oldServer = await waitForProcess(context.installed, context.since, 'node.exe', 'server.mjs');
-    context.owned.push(oldServer.ProcessId);
     const before = await waitFor(generation, 'version N did not answer');
 
     await withBrowser(async (browser) => {
@@ -811,12 +806,10 @@ async function updateStateContinuity(architecture, source) {
         () => !processExists(oldServer.ProcessId) && listenerPid() === null,
         `the live ${STORE_PACKAGE_VERSION} server survived package update`,
       );
-      context.owned.splice(context.owned.indexOf(oldServer.ProcessId), 1);
 
       context.since = new Date();
       activate();
-      const newServer = await waitForProcess(context.installed, context.since, 'node.exe', 'server.mjs');
-      context.owned.push(newServer.ProcessId);
+      await waitForProcess(context.installed, context.since, 'node.exe', 'server.mjs');
       const after = await waitFor(generation, 'version N+1 did not answer');
       await page.reload({ waitUntil: 'networkidle0' });
       const restored = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2')));
@@ -885,7 +878,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 
 export {
   assertNoPreexistingPackage, cleanupPackage, generation, installPackage,
-  formatProofError, packageInfo, packageProcesses, removePackage, retainPackageProcess,
+  formatProofError, listenerPid, packageInfo, packageProcesses, removePackage, retainPackageProcess,
   runInstalledScenario, selectListenerServer, startInstalledLauncher, stopPids,
   serverChildExited, waitForProcess,
 };

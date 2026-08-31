@@ -654,6 +654,19 @@ test('proof cleanup force-stops only its exact recorded process IDs', async () =
   assert.doesNotMatch(scripts[0], /Stop-Process -Name|taskkill/);
 });
 
+test('listener lookup treats an absent exact endpoint as a normal null result', async () => {
+  const { listenerPid } = await import('../scripts/msix-proof.mjs');
+  let script;
+  assert.equal(listenerPid((value) => {
+    script = value;
+    return '';
+  }), null);
+  assert.match(script, /Get-NetTCPConnection -State Listen -ErrorAction Stop/);
+  assert.match(script, /Where-Object .*LocalAddress.*LocalPort/);
+  assert.doesNotMatch(script, /-LocalPort 8787|-ExpandProperty OwningProcess/);
+  assert.equal(listenerPid(() => '41'), 41);
+});
+
 test('the proof refuses a foreign package identity before invoking PowerShell', async () => {
   const { removePackage } = await import('../scripts/msix-proof.mjs');
   let calls = 0;
@@ -848,7 +861,24 @@ test('cleanup still attempts package removal when process enumeration fails', as
     }),
     (error) => error instanceof AggregateError && /cleanup did not complete/.test(error.message),
   );
-  assert.deepEqual(calls, ['enumerate', 'stop', 'remove']);
+  assert.deepEqual(calls, ['enumerate', 'remove']);
+});
+
+test('cleanup stops only processes freshly verified inside the package', async () => {
+  const { cleanupPackage } = await import('../scripts/msix-proof.mjs');
+  let stopped;
+  cleanupPackage({
+    installed: { InstallLocation: 'C:\\Program Files\\WindowsApps\\RecapPage' },
+    since: new Date(0),
+    owned: [41],
+  }, {
+    listProcesses: () => [{ ProcessId: 42 }],
+    stopProcesses: (processIds) => {
+      stopped = processIds;
+    },
+    removeOwnedPackage: () => {},
+  });
+  assert.deepEqual(stopped, [42]);
 });
 
 test('Windows packaging adds no browser runtime dependency', () => {
