@@ -100,4 +100,8 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
   assert.match(workflow, /--scenario=busy-port-refusal/);
   assert.match(workflow, /--scenario=update-state-continuity/);
   assert.match(workflow, /runner: windows-11-arm/);
+  const installedCleanup = workflow.match(
+    /- name: Remove installed proof material[\s\S]*?shell: (.+)\r?\n/,
+  )?.[1];
+  assert.equal(installedCleanup, 'powershell');
 });

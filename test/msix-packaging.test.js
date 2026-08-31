@@ -98,6 +98,11 @@ test('the packer separates the Store bundle from its proof-only update', async (
   assert.equal(packer.PACKAGE_FAMILY, 'PanelStackLabs.RecapPage_we33aa8nvkpcc');
   assert.equal(packer.AUMID, 'PanelStackLabs.RecapPage_we33aa8nvkpcc!App');
   assert.equal(packer.LAUNCHER_NAME, 'Launcher.mjs');
+  assert.equal(packer.winAppCliVersion([
+    'Windows App Development CLI - Version 0.6.0',
+    '0.6.0',
+  ].join('\n')), '0.6.0');
+  assert.equal(packer.winAppCliVersion('Windows App Development CLI - Version 0.6.0'), null);
   assert.match(packer.packagePath('x64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.0\.0_x64\.msix$/);
   assert.match(packer.packagePath('arm64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.0\.0_arm64\.msix$/);
   assert.match(packer.bundlePath(), /RecapPage_2\.0\.0\.0_x64_arm64\.msixbundle$/);
@@ -567,12 +572,13 @@ test('package scripts expose build and independently invocable proof scenarios',
 
 test('busy-port proof captures the installed supervisor without Windows Terminal', async () => {
   const { startInstalledLauncher } = await import('../scripts/msix-proof.mjs');
+  const installLocation = 'C:\\Program Files\\WindowsApps\\RecapPage';
   const child = fakeChild(73);
   child.stdout = new EventEmitter();
   child.stderr = new EventEmitter();
   let invocation;
   const launched = startInstalledLauncher(
-    { InstallLocation: 'C:\\Program Files\\WindowsApps\\RecapPage' },
+    { InstallLocation: installLocation },
     {
       environment: { PATH: 'C:\\Windows' },
       spawnImpl: (...args) => {
@@ -584,10 +590,10 @@ test('busy-port proof captures the installed supervisor without Windows Terminal
   child.stderr.emit('data', Buffer.from('Port 8787 is already in use.\n'));
 
   assert.deepEqual(invocation, [
-    'C:\\Program Files\\WindowsApps\\RecapPage\\runtime\\node.exe',
-    ['C:\\Program Files\\WindowsApps\\RecapPage\\Launcher.mjs'],
+    join(installLocation, 'runtime', 'node.exe'),
+    [join(installLocation, 'Launcher.mjs')],
     {
-      cwd: 'C:\\Program Files\\WindowsApps\\RecapPage',
+      cwd: installLocation,
       env: { PATH: 'C:\\Windows' },
       stdio: ['ignore', 'pipe', 'pipe'],
       windowsHide: true,

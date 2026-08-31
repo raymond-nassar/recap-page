@@ -45,6 +45,11 @@ function run(command, args, options = {}) {
   });
 }
 
+export function winAppCliVersion(output) {
+  const lines = String(output).split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  return lines.find((line) => /^\d+\.\d+\.\d+$/.test(line)) ?? null;
+}
+
 function powershell(script) {
   return run('powershell', ['-NoProfile', '-NonInteractive', '-Command', script]);
 }
@@ -168,7 +173,7 @@ function packageLayout(layout, output, password) {
 }
 
 async function build() {
-  const version = run('winapp', ['--version']).trim();
+  const version = winAppCliVersion(run('winapp', ['--version']));
   if (version !== '0.6.0') {
     throw new Error(`winapp 0.6.0 is required for this build; found ${version || 'no version'}`);
   }

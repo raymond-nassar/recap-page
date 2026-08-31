@@ -272,7 +272,7 @@ jobs:
       - name: Remove installed proof material
         if: always()
         timeout-minutes: 5
-        shell: pwsh
+        shell: powershell
         run: |
           $failures = @()
           try {
