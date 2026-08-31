@@ -10,15 +10,21 @@ import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { COVER_IMAGE_HOST } from './src/js/lib/coverHost.js';
 import {
+  LOCAL_SERVER_GENERATION_HEADER_NAME,
   LOCAL_SERVER_HEADER_NAME,
   LOCAL_SERVER_HEADER_VALUE,
   LOCAL_SERVER_HEALTH_PATH,
+  LOCAL_SERVER_PROCESS_HEADER_NAME,
 } from './src/js/lib/localServer.js';
 
 const ROOT = resolve(fileURLToPath(new URL('./src', import.meta.url)));
 const HOST = '127.0.0.1';
 const DEFAULT_PORT = 8787;
 const PORT = parsePort(process.env.MRT_PORT);
+const PACKAGE_GENERATION = await readFile(
+  resolve(fileURLToPath(new URL('./src/msix-generation.json', import.meta.url))),
+  'utf8',
+).then((source) => JSON.parse(source).generation).catch(() => 'development');
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -115,6 +121,8 @@ async function handle(req, res) {
     res.writeHead(204, {
       'cache-control': 'no-store',
       [LOCAL_SERVER_HEADER_NAME]: LOCAL_SERVER_HEADER_VALUE,
+      [LOCAL_SERVER_GENERATION_HEADER_NAME]: PACKAGE_GENERATION,
+      [LOCAL_SERVER_PROCESS_HEADER_NAME]: String(process.pid),
     });
     res.end();
     return;
@@ -281,4 +289,6 @@ function start() {
 // machine running it.
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) start();
 
-export { CSP, DEFAULT_PORT, HOST, safePath };
+export {
+  CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, safePath,
+};

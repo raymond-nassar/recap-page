@@ -5,31 +5,47 @@ Recap Page. It describes local package evidence, not a published Store release.
 
 ## Current status
 
-The repository builds signed x64 and ARM64 version `2.0.0.0` packages and one x64/ARM64 bundle. A
-separate x64 version `2.0.0.1` remains outside the Store output for the earlier update proof.
+The first x64/ARM64 version `2.0.0.0` bundle was submitted on 2026-08-29 and failed certification
+under technical requirement 10.1.2.10 Functionality. The tester could launch the browser shell, but
+Browse, Find a creator, Find a series, and Add to library later encountered `Failed to fetch`.
+Reproduction showed that the service worker could keep the shell visible after the package's local
+server stopped.
+
+The rejected package tied its server child to a visible console. Closing that console terminates
+both attached Node processes while leaving already cached browser resources available. The corrected
+launcher instead starts a hidden detached server, verifies the exact package generation through an
+uncacheable local health response, opens the browser only after readiness, and then exits. A later
+local-data failure checks that health response and gives direct reconnection guidance.
+
+The repository continues to build signed x64 and ARM64 version `2.0.0.0` proof packages, one
+x64/ARM64 bundle, and an isolated x64 `2.0.0.1` update package. Final release versioning and Store
+submission are separate owner-controlled steps after this runtime fix is merged and the release
+baseline is frozen.
 
 Structural inspection on Windows 11 ARM64 proved:
 
 - Both package manifests use the exact production identity and Store-safe version `2.0.0.0`.
 - The bundle contains exactly one x64 package and one ARM64 package at that version.
 - Each package contains one executable payload: its architecture-matched official Node runtime.
-- The package entry process and its server child reported x64 for the x64 package and ARM64 for the
-  ARM64 package.
+- The packaged runtime executable reported x64 for the x64 package and ARM64 for the ARM64 package.
 - The packaged x64 and ARM64 Node executables match Node's published SHA-256 values.
 - The proof-only x64 version `2.0.0.1` is outside `dist/msix/` and absent from the bundle.
 
-The built candidate hashes are:
+The exact submitted artifact hashes are:
 
 | Artifact | SHA-256 |
 |---|---|
-| x64 MSIX | `4B07E7A8987201DD04329156F2B0AD390CAFFF3C73790D2B8524A65CEF69CF6F` |
-| ARM64 MSIX | `5EB43A7FEB0D04030079BA6C5FF02B1A59645F3366433D378AD22C11EA0CE0DF` |
-| x64/ARM64 bundle | `E1E60C46CECE9BDAA165701DFB4686AE2F7DAC3E3A6421CCE6BBC9BED52B66FA` |
+| x64 MSIX | `BF0F1C87E4EE30821C87F80F08A670D0954B2D6CE06CF92542E2359F17AFCEAE` |
+| ARM64 MSIX | `352CC645DD294C29425E0B8428F8A873B17295BF4BBEF37383226AA80CA57E58` |
+| x64/ARM64 bundle | `EB5A6655882B261F87255F3A5D438B69A0233E55996B67F48410FE0200A52C1B` |
 
-These hashes name the post-review build that removes every casing of the two origin-changing
-environment names. Its generated certificate has thumbprint
-`ECD962B70BC9A556651CE7F06E04BBB70ED65F22`. It was temporarily trusted for one bounded proof, and
-the corrected artifacts passed all four aimed installed scenarios:
+The submitted bundle contained 544 files in each architecture slice. Every packaged `src/` file and
+the server matched source commit `3e6c578c6bac2e913c53f2730364fe6ba4306fb3`; both creator and
+series indexes, the catalog, and a representative Reading List were present and valid JSON. Its
+signer thumbprint was `11BBD6369437CBB8682279C167CF802D0FD41116`; it is not trusted in any
+checked CurrentUser or LocalMachine certificate store.
+
+The earlier corrected artifacts, before Store submission, passed four aimed installed scenarios:
 
 - The x64 package started at the canonical origin with complete ready guidance.
 - The x64 package refused an occupied port with complete safe guidance, no browser-window change,
@@ -148,9 +164,12 @@ planning boundary derived from the reservation date, not as a portal-confirmed e
 
 ```mermaid
 flowchart LR
-  Start["Start menu"] --> Launcher["architecture-matched node.exe and Launcher.mjs"]
-  Launcher --> Node["same architecture-matched node.exe"]
+  Start["Start menu"] --> Coordinator["short-lived architecture-matched Node coordinator"]
+  Coordinator --> Health["exact-generation local health check"]
+  Health -->|"not ready"| Node["detached hidden architecture-matched Node"]
   Node --> Server["unchanged loopback server"]
+  Health -->|"matching server"| Browser
+  Server --> Health
   Server --> Browser["external default browser"]
   Browser --> Origin["127.0.0.1:8787 browser storage"]
 ```
@@ -161,10 +180,12 @@ That choice would either leave older package targets emulated or raise the Windo
 bundle slices. A second native toolchain or launcher runtime would add another supply-chain surface.
 
 The selected launcher therefore uses the official Node executable already required by each package.
-The maintained JavaScript supervisor validates the packaged server, starts it with the package root
-as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, inherits the visible
-console, waits for Node to exit, and keeps the output visible until a key is pressed. It does not
-bind a port, open the browser, read browser storage, or write package files.
+The maintained JavaScript coordinator validates the packaged server and generation, starts it with
+the package root as its working directory, removes every casing of `MRT_PORT` and `MRT_NO_OPEN`, and
+gives the server independent hidden process and stream ownership. It waits for the exact-generation
+health response before opening the browser, then exits. Another activation reuses only that matching
+server. It does not bind a port, read browser storage, write package files, or make an external
+network request.
 
 Three activation routes were measured or evaluated:
 
@@ -174,9 +195,10 @@ Three activation routes were measured or evaluated:
 - **Package Support Framework** preserved the existing command wrapper and guidance. It was rejected
   because Microsoft states that the official NuGet binaries can send usage telemetry when Windows
   diagnostic collection is enabled. That conflicts with this app's no-telemetry promise.
-- **The selected Node supervisor** preserves guidance without PSF, a downloaded launcher runtime, or
-  an emulated entry process. The x64 and ARM64 package entry executables are the official native Node
-  binaries already needed by the server.
+- **The selected Node coordinator** keeps startup failure guidance without PSF, a downloaded launcher
+  runtime, or an emulated entry process. Successful launch leaves no console to close. The x64 and
+  ARM64 package entry executables are the official native Node binaries already needed by the
+  server.
 
 The manifest declares only `runFullTrust`. It is needed because the package starts a classic desktop
 process at medium integrity. Partner Center must review and approve that restricted capability.
@@ -190,6 +212,7 @@ Prerequisites:
 - winapp CLI 0.6.0
 - Windows Developer Mode for loose registration
 - Administrator consent to trust the local proof certificate for `.msix` installation
+- `puppeteer-core` installed outside the repository, with `MRT_PUPPETEER` pointing to its entry file
 
 Build the x64 and ARM64 Store packages, their bundle, and the isolated x64 update-proof package:
 
@@ -231,34 +254,56 @@ Import-Certificate -FilePath .\dist\msix\RecapPage-local-proof.cer -CertStoreLoc
 Then return to a normal terminal:
 
 ```text
-npm run msix:prove -- --scenario=start-profile-reader-relaunch
+npm run msix:prove -- --scenario=certification-functionality
 npm run msix:prove -- --scenario=busy-port-refusal
 npm run msix:prove -- --scenario=update-state-continuity
-npm run msix:prove -- --architecture=arm64 --source=bundle --scenario=start-profile-reader-relaunch
+npm run msix:prove -- --architecture=arm64 --source=bundle --scenario=certification-functionality
 npm run msix:prove -- --architecture=arm64 --source=bundle --scenario=busy-port-refusal
 ```
 
+On PowerShell, point the installed browser journey at the same external scratch driver used by the
+ordinary browser suite:
+
+```text
+$env:MRT_PUPPETEER='C:\path\to\scratch\node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
+```
+
+For the corrected runtime, use `certification-functionality` in place of
+`start-profile-reader-relaunch`. That scenario starts the package twice across the pre-ready window,
+requires one settled server, fetches and parses the creator index, series index, catalog, and House
+of M payload, exercises Browse and both name searches in Edge, distinguishes an external metadata
+failure, removes uncached local payloads, stops the server, verifies direct recovery guidance, and
+relaunches it. It then removes the package while the server is live and requires Windows to end the
+exact process and release port 8787 before fallback cleanup.
+
 Each scenario owns its package installation and refuses to run when that package identity is already
-registered. Cleanup re-queries and removes only the exact Recap Page identity, then fails if that
-identity remains registered. Process enumeration, process stopping, package removal, and any
-scenario-specific cleanup are attempted independently so one cleanup failure cannot skip another.
+registered. The functionality scenario first asks Windows to remove the package while its background
+server is live and requires the exact process, listener, and registration to disappear. Recovery
+cleanup runs only after that product assertion and reports the failure rather than turning it into a
+pass. Process enumeration, exact-PID stopping, package removal, and scenario-specific cleanup are
+attempted independently so one cleanup failure cannot skip another.
 
-The same-profile journey must back up existing state before adding its non-sensitive sentinel and
-must restore that backup afterwards. Proof output records only digests, byte lengths, process IDs,
-the sentinel, and package generations. It must not record lists, notes, or raw storage.
+Browser-backed scenarios use an isolated temporary Edge profile and a fixed non-sensitive sentinel.
+The profile is removed after the run. Proof output records only digests, byte lengths, process IDs,
+the sentinel result, and package generations. It must not record real lists, notes, or raw storage.
 
-The runner automates package installation, Start activation, console guidance, process ownership,
-the exact origin, busy-port refusal, and package generation changes. Browser profile selection,
-synchronous reader-tab behavior, and saved-state continuity are manual checkpoints recorded beside
-the automated run; the runner does not claim to observe them.
+The runner automates package installation, Start activation, coordinator exit, background process
+ownership, exact-generation health, the exact origin, essential local data, browser functionality,
+busy-port refusal, package generation changes, and live removal. The busy-port scenario copies only
+the exact installed runtime, coordinator, server entry, and generation marker to a temporary layout,
+executes those bytes, captures their output, and removes the layout. This avoids depending on either
+the Windows console host or direct execution permission in the protected Server 2022 package
+directory. A temporary Edge profile verifies browser-owned state continuity during the x64 update
+proof. Synchronous reader-tab behavior remains owned by the ordinary browser suite because the
+installed proof does not contact Marvel.
 
 The update scenario is x64-only because its `2.0.0.1` package is local proof material. The ARM64
 package and final bundle contain only Store-safe version `2.0.0.0`.
 
 The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
-cleanup errors preserves each cause before any decision to repeat it. Busy-port child exit is
-witnessed by the known supervisor PID plus the child parent PID, executable name, and package path.
-Missing ownership metadata is unknown and cannot report success.
+cleanup errors preserves each cause before any decision to repeat it. Busy-port refusal captures the
+installed coordinator's guidance and requires that no package server child was created. Missing
+ownership metadata is unknown and cannot report success.
 
 ## Run Windows App Certification Kit
 
@@ -271,10 +316,11 @@ used because the current SDK requirements do not list it. The workflow also refu
 non-administrator token, a non-AMD64 process, an absent kit, and an `appcert.exe` without a valid
 Microsoft signature.
 
-The workflow runs automatically only when its own workflow or WACK runner changes in a pull request.
-Once merged, it is also available by manual dispatch. Ordinary application and documentation pull
-requests do not pay for WACK. It uses a read-only repository token, pinned actions, telemetry opt-out,
-and no secrets or artifact upload.
+The workflow runs when package behavior, package proof, or its own WACK automation changes in a pull
+request, and it is also available by manual dispatch. Its installed jobs use architecture-native
+x64 and Windows on Arm hosts for the certification journey. The WACK job remains on the supported
+Windows Server 2022 x64 command-line host. Every job uses a read-only repository token, pinned
+actions, telemetry opt-out, and no secrets or artifact upload.
 
 Each run rebuilds randomly signed proof inputs without changing the maintained package sources. It
 then temporarily trusts only that run's certificate and applies Microsoft's command-line sequence:

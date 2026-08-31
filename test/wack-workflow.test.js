@@ -21,7 +21,7 @@ function topLevelMap(source, key) {
   return Object.fromEntries(entries);
 }
 
-test('WACK is manual except when its own automation changes', () => {
+test('WACK and installed proof run when package behavior changes', () => {
   assert.match(workflow, /^ {2}workflow_dispatch:\s*$/m);
   assert.match(workflow, /^ {2}pull_request:\s*$/m);
   const paths = workflow.match(/ {4}paths:\r?\n((?: {6}- .+\r?\n)+)/)?.[1] ?? '';
@@ -29,9 +29,19 @@ test('WACK is manual except when its own automation changes', () => {
     [...paths.matchAll(/ {6}- (.+)/g)].map((match) => match[1]),
     [
       '.github/workflows/wack.yml',
+      '.github/browser-proof/**',
+      'packaging/windows/**',
+      'server.mjs',
+      'src/**',
+      'scripts/inspect-msix.mjs',
+      'scripts/msix-proof.mjs',
+      'scripts/pack-msix.mjs',
+      'scripts/pack-windows.mjs',
       'scripts/run-wack.ps1',
       'scripts/test-wack-report.ps1',
       'scripts/wack-report.ps1',
+      'test/msix-packaging.test.js',
+      'test/server-contract.test.js',
     ],
   );
   assert.doesNotMatch(workflow, /pull_request_target|schedule:|^ {2}push:/m);
@@ -39,10 +49,8 @@ test('WACK is manual except when its own automation changes', () => {
 
 test('WACK uses the supported no-cost x64 host and least privilege', () => {
   assert.match(workflow, /runs-on: windows-2022/);
-  assert.deepEqual(
-    [...workflow.matchAll(/^\s*runs-on:\s*(\S+)\s*$/gm)].map((match) => match[1]),
-    ['windows-2022'],
-  );
+  assert.match(workflow, /runner: windows-11-arm/);
+  assert.match(workflow, /runs-on: \$\{\{ matrix\.runner \}\}/);
   assert.deepEqual(topLevelMap(workflow, 'permissions'), { contents: 'read' });
   assert.match(workflow, /^ {2}WINAPP_CLI_TELEMETRY_OPTOUT: '1'\s*$/m);
   assert.match(workflow, /\$output = @\(winapp --version\)/);
@@ -61,8 +69,9 @@ test('the supported Windows job executes parser fixtures before certification', 
   assert.match(runner, /\. \(Join-Path \$PSScriptRoot 'wack-report\.ps1'\)/);
 });
 
-test('WACK preserves the accepted corrected package source boundary', () => {
-  assert.match(workflow, /c5cd22f4351265a9429230572149d72494eb515e HEAD/);
+test('WACK builds exact clean package inputs without a stale commit pin', () => {
+  assert.doesNotMatch(workflow, /c5cd22f4351265a9429230572149d72494eb515e HEAD/);
+  assert.match(workflow, /git diff --exit-code --/);
   for (const input of [
     'LICENSE',
     'packaging/windows',
@@ -84,4 +93,15 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
   assert.match(workflow, /Remove-Item -LiteralPath \.\/dist/);
   assert.match(runner, /Remove-Item -LiteralPath \$reportRoot -Recurse -Force/);
   assert.doesNotMatch(runner, /Get-Content -LiteralPath .*(stdout|stderr)/);
+  assert.match(workflow, /\.github\/browser-proof/);
+  assert.match(workflow, /npm ci --prefix \$root --ignore-scripts/);
+  assert.doesNotMatch(workflow, /npm install .*puppeteer-core/);
+  assert.match(workflow, /--scenario=certification-functionality/);
+  assert.match(workflow, /--scenario=busy-port-refusal/);
+  assert.match(workflow, /--scenario=update-state-continuity/);
+  assert.match(workflow, /runner: windows-11-arm/);
+  const installedCleanup = workflow.match(
+    /- name: Remove installed proof material[\s\S]*?shell: (.+)\r?\n/,
+  )?.[1];
+  assert.equal(installedCleanup, 'powershell');
 });

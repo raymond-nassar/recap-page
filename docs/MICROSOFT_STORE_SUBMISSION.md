@@ -12,7 +12,7 @@ authoritative when its live wording or validation differs from this packet.
 
 | Decision | Recommended value | Owner action |
 |---|---|---|
-| Product | Recap Page 2.0.0, package version `2.0.0.0` | Confirm |
+| Product | Rejected first submission: Recap Page 2.0.0, package `2.0.0.0`. Replacement target: app 2.0.1, package `2.0.1.0`; release integration applies it. | Confirm after the release freeze |
 | Publisher display | PanelStack Labs | Confirm |
 | Initial market | United States only | Approve or replace |
 | Price | Free, no trial, no sale | Confirm |
@@ -40,7 +40,7 @@ listing copy to improvise.
 | Package publisher | `CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472` | Package manifest |
 | Publisher display name | PanelStack Labs | Package manifest |
 | Package family | `PanelStackLabs.RecapPage_we33aa8nvkpcc` | Partner Center identity |
-| Package version | `2.0.0.0` | Bundle package manifests |
+| Package version | Rejected: `2.0.0.0`. Replacement target: `2.0.1.0` after release integration. | Bundle package manifests |
 | Architectures | x64 and ARM64 | Bundle package manifests |
 | Device family | Windows Desktop | Package manifest |
 | Minimum Windows version | Windows 10 version 2004, build `10.0.19041.0` | Package manifest |
@@ -273,16 +273,22 @@ Paste this after updating the date if submission occurs later:
 > Prepared 2026-08-29.
 >
 > Recap Page is a packaged classic desktop app. Launching it starts the bundled
-> architecture-matched official Node runtime, binds a local server only to `127.0.0.1:8787`, and
-> opens the installed default browser at that address. No account or test credentials are required.
+> architecture-matched official Node runtime as a hidden local server bound only to
+> `127.0.0.1:8787`. The short-lived launch coordinator waits for that exact package generation,
+> opens the installed default browser at that address, and then exits. No console must be kept open.
+> No account or test credentials are required.
 >
 > Core test path:
 >
 > 1. Launch Recap Page from Start.
-> 2. Confirm the console reports the local address and the default browser opens it.
-> 3. Choose a curated Reading List, mark an issue read, and optionally add a note.
-> 4. Close and relaunch the package. The same browser profile retains that state.
-> 5. The Read action opens Marvel Unlimited when a direct reader link is known, or the official
+> 2. Confirm the default browser opens `http://127.0.0.1:8787/`. A successful launch does not leave
+>    a console open.
+> 3. Open Browse and preview House of M.
+> 4. Under Add comics, find creator Jonathan Hickman and series House of M. These searches use
+>    indexes bundled inside the package.
+> 5. Add a curated Reading List, mark an issue read, and optionally add a note.
+> 6. Close the browser and launch Recap Page again. The same browser profile retains that state.
+> 7. The Read action opens Marvel Unlimited when a direct reader link is known, or the official
 >    issue page when it is not. Reading requires the tester's own subscription, but list tracking
 >    does not.
 >
@@ -291,19 +297,25 @@ Paste this after updating the date if submission occurs later:
 > Marvel Fandom lookup, and an optional GitHub release check. Saved lists, notes, progress, settings,
 > and backups are never uploaded.
 >
-> Pre-submission Windows App Certification Kit testing on the exact package inputs completed with 22
-> `PASS` categories, one optional `FAIL`, and one `WARNING` for both the x64 package and x64/ARM64 bundle.
-> The optional Blocked executables test identified the package's only executable payload, the
+> [Before pasting, replace this bracketed line with the exact replacement-candidate WACK run URL,
+> package-input commit, and result counts. The rejected package's result is historical evidence only.]
+>
+> The optional Blocked executables test may identify the package's only executable payload, the
 > required official Node runtime. Microsoft's Desktop Bridge test documentation says this optional
 > result may be ignored when the executable is part of the app.
 > DPIAwarenessValidation warned on the Node console process. The customer interface is the external
 > browser, and altering Node's embedded manifest would change the vendor executable and invalidate
 > its published hash. Partner Center certification remains authoritative.
 >
-> The package requests only `runFullTrust`. It does not request elevation or background execution.
+> The package requests only `runFullTrust`. It does not request elevation or a background-task
+> capability.
 
 The WACK wording reports measurements and Microsoft's optional-test documentation. It does not claim
 that Partner Center has accepted the package or capability.
+
+The rejected package's historical WACK record contained 22 `PASS` categories, one optional
+`FAIL`, and one `WARNING`. Those counts are not evidence for the replacement package and must not be
+copied into the bracketed line above.
 
 ## Listing assets
 
@@ -343,27 +355,29 @@ different safe-area rules, not a stretched version of the purple app icon.
 
 ## Final upload handoff
 
-This lane does not change package-copied bytes, so it does not rebuild the accepted package or repeat
-installed proofs. Before the owner uploads:
+The first submitted bundle failed certification and must not be reused. The runtime-fix pull request
+changes package-copied bytes but deliberately leaves final versioning and release integration to the
+release lane. Before the owner uploads a replacement:
 
-1. Confirm the submission packet commit is based on the final default branch and the tree is clean.
-2. Run lint, tests, counts, sizes, anchors, palette, publication, and the Store packet check.
-3. Confirm no package-copied input differs from the accepted package input commit.
-4. Confirm the merged WACK workflow result applies to those exact package-copied bytes.
-5. Locate the accepted x64/ARM64 `2.0.0.0` bundle outside git.
+1. Freeze the final default branch after every intended release pull request has merged.
+2. Set the application version to `2.0.1` and the Store package version to `2.0.1.0`.
+3. Confirm the submission packet commit is based on that exact branch and the tree is clean.
+4. Run lint, tests, counts, sizes, anchors, palette, publication, and the Store packet check.
+5. Confirm the installed x64 and ARM64 certification journeys and WACK apply to those exact
+   package-copied bytes.
 6. Run structural inspection and verify identity, publisher, version, Desktop family, minimum OS,
-   `en-us`, x64 and ARM64 slices, only `runFullTrust`, executable count, PE machines, official Node
-   hashes, and absence of proof-only `2.0.0.1`.
-7. Compute SHA-256 and record the bundle file name, byte length, hash, package input commit, inspection
+   `en-us`, x64 and ARM64 slices, only `runFullTrust`, executable count, PE machines, and official
+   Node hashes.
+7. Compute SHA-256 and record the replacement bundle file name, byte length, hash, package input commit, inspection
    time, and WACK run URL in the private transfer handoff.
 8. Transfer only the bundle to the owner. Do not transfer a development PFX, password, raw WACK
    report, runtime download, or machine-path log.
 9. After upload, require Partner Center validation to show the expected identity, version,
    architectures, language, Desktop family, and capability before saving the package section.
 
-The accepted pre-submission bundle previously measured SHA-256
-`E1E60C46CECE9BDAA165701DFB4686AE2F7DAC3E3A6421CCE6BBC9BED52B66FA`. Recompute the file presented to
-the owner rather than trusting that record. Microsoft re-signs Store MSIX packages after
+The rejected submission measured SHA-256
+`EB5A6655882B261F87255F3A5D438B69A0233E55996B67F48410FE0200A52C1B`. That value identifies evidence
+only and must not appear as the replacement candidate. Microsoft re-signs Store MSIX packages after
 certification, so a local development signature is not a production-signing claim.
 
 ## Owner-only stop points

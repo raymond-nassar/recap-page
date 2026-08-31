@@ -158,11 +158,18 @@ The workflows pin each third-party action to a full commit SHA. The ordinary CI 
 deterministic repository checks only; the Windows release archive and its checksum are built and
 reviewed during release preparation rather than uploaded from CI.
 
-The separate Windows App Certification Kit workflow runs only when its own automation changes in a
-pull request or when a maintainer dispatches it manually after merge. It uses the supported
-Windows Server 2022 x64 command-line host, a read-only token, telemetry opt-out, and ephemeral
-randomly signed packages. It uploads no package, certificate, installer, raw output, or WACK report.
-The maintained Store guide records its bounded result and cleanup contract.
+The separate Windows package workflow runs when package behavior or its own automation changes in a
+pull request, and it remains manually dispatchable. Its WACK job uses the supported Windows Server
+2022 x64 command-line host. Architecture-native installed jobs exercise the certification journey on
+x64 and Windows on Arm. Every job uses a read-only token, telemetry opt-out, and ephemeral randomly
+signed packages. The browser driver is installed outside the repository and does not become a
+dependency. The workflow uploads no package, certificate, installer, browser profile, raw output, or
+WACK report. The maintained Store guide records its bounded result and cleanup contract.
+
+The installed proof's `puppeteer-core` graph is pinned in `.github/browser-proof/package-lock.json`.
+The workflow copies that manifest and lock into its temporary directory and runs `npm ci` there. It
+never adds the driver to the root package, so browser runtime dependencies remain zero and the proof
+does not execute a newly resolved transitive graph on every run.
 
 ### Check the Microsoft Store submission packet
 
@@ -687,7 +694,7 @@ The public CER requires an administrator-approved trust step before `.msix` inst
 credential or Store signing secret is used. Run the three proof scenarios only after that trust step:
 
 ```text
-npm run msix:prove -- --scenario=start-profile-reader-relaunch
+npm run msix:prove -- --scenario=certification-functionality
 npm run msix:prove -- --scenario=busy-port-refusal
 npm run msix:prove -- --scenario=update-state-continuity
 ```

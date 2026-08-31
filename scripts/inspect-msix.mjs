@@ -1,7 +1,7 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile,
+  mkdir, mkdtemp, readFile, readdir, rm,
 } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
@@ -20,10 +20,6 @@ function run(command, args) {
     encoding: 'utf8',
     maxBuffer: 64e6,
   });
-}
-
-function powershell(script) {
-  return run('powershell', ['-NoProfile', '-NonInteractive', '-Command', script]).trim();
 }
 
 function makeAppx(args) {
@@ -76,22 +72,6 @@ async function publishedNodeHashes() {
   return hashes;
 }
 
-async function waitForChild(parentPid, executable, timeout = 10000) {
-  const expected = executable.replaceAll("'", "''");
-  const until = Date.now() + timeout;
-  while (Date.now() < until) {
-    const raw = powershell(
-      `$row = Get-CimInstance Win32_Process -Filter "ParentProcessId = ${parentPid}" | `
-      + `Where-Object { $_.ExecutablePath -eq '${expected}' } | `
-      + 'Select-Object -First 1 ProcessId,ExecutablePath; '
-      + 'if ($row) { $row | ConvertTo-Json -Compress }',
-    );
-    if (raw) return JSON.parse(raw);
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-  throw new Error(`launcher ${parentPid} did not create its Node child`);
-}
-
 async function waitForOutput(output, pattern, timeout = 10000) {
   const until = Date.now() + timeout;
   while (Date.now() < until) {
@@ -101,19 +81,6 @@ async function waitForOutput(output, pattern, timeout = 10000) {
     await new Promise((resolve) => setTimeout(resolve, 100));
   }
   throw new Error(`process output did not match ${pattern}`);
-}
-
-async function waitForExit(pid, timeout = 10000) {
-  const until = Date.now() + timeout;
-  while (Date.now() < until) {
-    try {
-      process.kill(pid, 0);
-    } catch {
-      return;
-    }
-    await new Promise((resolve) => setTimeout(resolve, 100));
-  }
-  throw new Error(`process ${pid} remained after cleanup`);
 }
 
 async function removeTree(path) {
@@ -130,70 +97,39 @@ async function removeTree(path) {
   throw lastError;
 }
 
-function stopPid(pid) {
-  powershell(
-    `$process = Get-Process -Id ${pid} -ErrorAction SilentlyContinue; `
-    + `if ($process) { Stop-Process -Id ${pid} -Force; `
-    + `Wait-Process -Id ${pid} -ErrorAction SilentlyContinue }`,
-  );
-}
-
-async function measureProcesses(layout, expectedArchitecture) {
-  const measurement = await mkdtemp(join(tmpdir(), 'recap-page-arch-'));
-  const runtime = join(measurement, 'runtime');
-  await mkdir(runtime, { recursive: true });
-  await cp(join(layout, 'runtime', 'node.exe'), join(runtime, 'node.exe'));
-  await cp(join(layout, LAUNCHER_NAME), join(measurement, LAUNCHER_NAME));
-  await writeFile(
-    join(measurement, 'server.mjs'),
-    'console.log(`child=${process.arch}`);\nsetInterval(() => {}, 1000);\n',
-  );
-
-  const executable = join(runtime, 'node.exe');
-  const launcher = spawn(executable, [join(measurement, LAUNCHER_NAME)], {
-    cwd: measurement,
-    env: { ...process.env, MRT_PACKAGE_ARCH_PROBE: '1' },
+async function measureRuntime(
+  layout,
+  expectedArchitecture,
+  { spawnImpl = spawn, waitForOutputImpl = waitForOutput } = {},
+) {
+  const executable = join(layout, 'runtime', 'node.exe');
+  const launcher = spawnImpl(executable, ['-e', 'console.log(`runtime=${process.arch}`)'], {
+    cwd: layout,
+    env: process.env,
     stdio: ['ignore', 'pipe', 'pipe'],
     windowsHide: true,
+  });
+  const exitPromise = new Promise((resolveExit, rejectExit) => {
+    launcher.once('error', rejectExit);
+    launcher.once('exit', resolveExit);
   });
   const output = [];
   launcher.stdout.on('data', (chunk) => output.push(chunk.toString()));
   launcher.stderr.on('data', (chunk) => output.push(chunk.toString()));
-  let child;
 
-  try {
-    child = await waitForChild(launcher.pid, executable);
-    const launcherArchitecture = await waitForOutput(output, /launcher=(\w+)/);
-    const nodeArchitecture = await waitForOutput(output, /child=(\w+)/);
-    if (launcherArchitecture !== expectedArchitecture
-      || nodeArchitecture !== expectedArchitecture) {
-      throw new Error(
-        `runtime architecture mismatch: launcher ${launcherArchitecture}, `
-        + `child ${nodeArchitecture}, expected ${expectedArchitecture}`,
-      );
-    }
-    return {
-      launcher: launcherArchitecture,
-      node: nodeArchitecture,
-      childOutput: output.join('').trim(),
-    };
-  } finally {
-    if (child?.ProcessId) {
-      try {
-        stopPid(child.ProcessId);
-      } catch {
-        // The child may have already exited after an earlier failure.
-      }
-    }
-    try {
-      stopPid(launcher.pid);
-    } catch {
-      // The launcher may have already exited after an earlier failure.
-    }
-    if (child?.ProcessId) await waitForExit(child.ProcessId);
-    await waitForExit(launcher.pid);
-    await removeTree(measurement);
+  const [architecture, exit] = await Promise.all([
+    waitForOutputImpl(output, /runtime=(\w+)/),
+    exitPromise,
+  ]);
+  if (exit !== 0 || architecture !== expectedArchitecture) {
+    throw new Error(
+      `runtime architecture mismatch: ${architecture}, expected ${expectedArchitecture}, exit ${exit}`,
+    );
   }
+  return {
+    runtime: architecture,
+    output: output.join('').trim(),
+  };
 }
 
 async function inspectPackage(path, target, hashes, { measure = false } = {}) {
@@ -242,6 +178,13 @@ async function inspectPackage(path, target, hashes, { measure = false } = {}) {
     if (nodeHash !== hashes.get(target.id)) {
       throw new Error(`${basename(path)} Node hash does not match Node's published ${target.id} hash`);
     }
+    const generation = JSON.parse(
+      await readFile(join(unpacked, 'src', 'msix-generation.json'), 'utf8'),
+    );
+    if (generation.packageVersion !== STORE_PACKAGE_VERSION
+      || !/^[0-9a-f]{64}$/.test(generation.generation)) {
+      throw new Error(`${basename(path)} has an invalid package generation marker`);
+    }
 
     return {
       file: basename(path),
@@ -253,7 +196,8 @@ async function inspectPackage(path, target, hashes, { measure = false } = {}) {
       executablePayloads: ['runtime\\node.exe'],
       nodePeMachine: `0x${nodeMachine.toString(16)}`,
       nodeSha256: nodeHash,
-      processes: measure ? await measureProcesses(unpacked, target.id) : undefined,
+      generation,
+      runtimeProcess: measure ? await measureRuntime(unpacked, target.id) : undefined,
     };
   } finally {
     await removeTree(unpacked);
@@ -281,7 +225,6 @@ async function inspectBundle(path, hashes) {
     if (manifest.includes(PROOF_UPDATE_VERSION)) {
       throw new Error(`bundle includes proof-only version ${PROOF_UPDATE_VERSION}`);
     }
-
     const files = await filesUnder(unpacked);
     const innerPaths = files.filter((file) => /\.msix$/i.test(file));
     const signed = files.some((file) => basename(file).toLowerCase() === 'appxsignature.p7x');
@@ -338,4 +281,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   });
 }
 
-export { inspectBundle, inspectPackage };
+export { inspectBundle, inspectPackage, measureRuntime };

@@ -1,6 +1,8 @@
 export const LOCAL_SERVER_HEALTH_PATH = '/__recap_page_health__';
 export const LOCAL_SERVER_HEADER_NAME = 'X-Recap-Page-Server';
 export const LOCAL_SERVER_HEADER_VALUE = '1';
+export const LOCAL_SERVER_GENERATION_HEADER_NAME = 'X-Recap-Page-Generation';
+export const LOCAL_SERVER_PROCESS_HEADER_NAME = 'X-Recap-Page-Process';
 export const LOCAL_SERVER_TIMEOUT_MS = 2500;
 
 export const LOCAL_SERVER_STATUS = Object.freeze({

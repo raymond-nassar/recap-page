@@ -1514,8 +1514,8 @@
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:228-249|0": {
-    "anchor": "server.mjs:228-249",
+  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:236-257|0": {
+    "anchor": "server.mjs:236-257",
     "fp": "4875091a9f41cacf",
     "head": "export function badPortMessage(raw) {"
   },
@@ -1534,8 +1534,8 @@
     "fp": "552b51210b97e50b",
     "head": "async get(path, { signal, cache = true, attempt = 0 } = {}) {"
   },
-  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:4763-4773|0": {
-    "anchor": "src/js/main.js:4763-4773",
+  "docs/ARCHITECTURE.md|how-reading-content-reaches-the-browser|src/js/main.js:4770-4780|0": {
+    "anchor": "src/js/main.js:4770-4780",
     "fp": "3b9b6f6da971803d",
     "head": "function loadCatalog() {"
   },
@@ -1604,8 +1604,8 @@
     "fp": "a28708ff651cc0c5",
     "head": "function renderLongAddStatus(config, runner, status) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:6398-6419|0": {
-    "anchor": "src/js/main.js:6398-6419",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:6405-6426|0": {
+    "anchor": "src/js/main.js:6405-6426",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -1669,18 +1669,18 @@
     "fp": "3145f53d29d523fe",
     "head": "const categories = availableHomeCategories(groupCatalog(homeCatalog.lists), HOME_CATEGORIES, resolve"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6722-6742|0": {
-    "anchor": "src/js/main.js:6722-6742",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6729-6749|0": {
+    "anchor": "src/js/main.js:6729-6749",
     "fp": "49e5fec2fb273a5f",
     "head": "export function readingPathProgress(state, stop) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6745-6752|0": {
-    "anchor": "src/js/main.js:6745-6752",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6752-6759|0": {
+    "anchor": "src/js/main.js:6752-6759",
     "fp": "f91beb7f263f2ae6",
     "head": "export function refreshReadingPathProgress(state = store.state) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6788-6835|0": {
-    "anchor": "src/js/main.js:6788-6835",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:6795-6842|0": {
+    "anchor": "src/js/main.js:6795-6842",
     "fp": "0ae298f07b9d11e5",
     "head": "async function renderReadingPaths() {"
   },
@@ -1714,8 +1714,8 @@
     "fp": "ba2f2ef80f02d08a",
     "head": "export class RateLimiter {"
   },
-  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5961-5975|0": {
-    "anchor": "src/js/main.js:5961-5975",
+  "docs/ARCHITECTURE.md|the-module-graph-drawn-as-ownership|src/js/main.js:5968-5982|0": {
+    "anchor": "src/js/main.js:5968-5982",
     "fp": "f21a6b3303a86b09",
     "head": "cache = new ResponseCache({ baseUrl: value });"
   },
@@ -1794,8 +1794,8 @@
     "fp": "d1cd028d4d972b4e",
     "head": "try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch { /* non-fatal */ }"
   },
-  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|server.mjs:19-21|0": {
-    "anchor": "server.mjs:19-21",
+  "docs/ARCHITECTURE.md|where-a-reader-s-data-lives|server.mjs:21-23|0": {
+    "anchor": "server.mjs:21-23",
     "fp": "f60a0fe0ecaeb2b7",
     "head": "const HOST = '127.0.0.1';"
   },
@@ -1949,13 +1949,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3424-3435|0": {
-    "anchor": "CHANGELOG.md:3424-3435",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3440-3451|0": {
+    "anchor": "CHANGELOG.md:3440-3451",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3437-3447|0": {
-    "anchor": "CHANGELOG.md:3437-3447",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3453-3463|0": {
+    "anchor": "CHANGELOG.md:3453-3463",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2089,8 +2089,8 @@
     "fp": "c4badc70c9aad76e",
     "head": "detailsBadge(item),"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/main.js:5642-5700|0": {
-    "anchor": "src/js/main.js:5642-5700",
+  "docs/UX_STUDY.md|job-stories|src/js/main.js:5649-5707|0": {
+    "anchor": "src/js/main.js:5649-5707",
     "fp": "79b5cea527fa18be",
     "head": "function renderProgress() {"
   },
@@ -2154,8 +2154,8 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/main.js:5420-5429|0": {
-    "anchor": "src/js/main.js:5420-5429",
+  "docs/UX_STUDY.md|sweep-result|src/js/main.js:5427-5436|0": {
+    "anchor": "src/js/main.js:5427-5436",
     "fp": "63bbb0187f80cd11",
     "head": "function wireCatalogShelfSearch(key) {"
   },
@@ -2344,8 +2344,8 @@
     "fp": "179d485d49b3bd60",
     "head": "const store = new Store({"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:6398-6419|0": {
-    "anchor": "src/js/main.js:6398-6419",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:6405-6426|0": {
+    "anchor": "src/js/main.js:6405-6426",
     "fp": "233e7df448ac2cc8",
     "head": "function renderAll() {"
   },
@@ -2364,8 +2364,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:5535|0": {
-    "anchor": "src/js/main.js:5535",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/main.js:5542|0": {
+    "anchor": "src/js/main.js:5542",
     "fp": "8ab27e651ace604e",
     "head": "notify(report, `${order.name} could not be saved, so nothing was imported.`, 'error', importKey);"
   },
@@ -2379,8 +2379,8 @@
     "fp": "6cbc2f6bdb1dc112",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5938-5944|0": {
-    "anchor": "src/js/main.js:5938-5944",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/main.js:5945-5951|0": {
+    "anchor": "src/js/main.js:5945-5951",
     "fp": "8e57ce8810ab55d4",
     "head": "$('#btn-undo-restore').addEventListener('click', () => {"
   },
@@ -6004,8 +6004,8 @@
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
-  "scripts/check-palette.mjs|preamble|src/js/main.js:6639|0": {
-    "anchor": "src/js/main.js:6639",
+  "scripts/check-palette.mjs|preamble|src/js/main.js:6646|0": {
+    "anchor": "src/js/main.js:6646",
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
@@ -6064,13 +6064,13 @@
     "fp": "32e71035ced922be",
     "head": "export function isAllowedApiBase(value) {"
   },
-  "SECURITY.md|what-already-reduces-risk-here|server.mjs:143-153|0": {
-    "anchor": "server.mjs:143-153",
+  "SECURITY.md|what-already-reduces-risk-here|server.mjs:151-161|0": {
+    "anchor": "server.mjs:151-161",
     "fp": "6cd80fc67836d175",
     "head": "const headers = {"
   },
-  "SECURITY.md|what-already-reduces-risk-here|server.mjs:58-69|0": {
-    "anchor": "server.mjs:58-69",
+  "SECURITY.md|what-already-reduces-risk-here|server.mjs:64-75|0": {
+    "anchor": "server.mjs:64-75",
     "fp": "785f5b41582f02a1",
     "head": "const CSP = ["
   },
@@ -6104,13 +6104,13 @@
     "fp": "307982fb4a5a2d23",
     "head": "this.onProgress(this.status('running'));"
   },
-  "test/passive-announce.test.js|preamble|src/js/main.js:4304-4307|0": {
-    "anchor": "src/js/main.js:4304-4307",
+  "test/passive-announce.test.js|preamble|src/js/main.js:4311-4314|0": {
+    "anchor": "src/js/main.js:4311-4314",
     "fp": "aef17ca5da7c2c9f",
     "head": "announce(withSaveEducation("
   },
-  "test/shipped-copy.test.js|preamble|server.mjs:18|0": {
-    "anchor": "server.mjs:18",
+  "test/shipped-copy.test.js|preamble|server.mjs:20|0": {
+    "anchor": "server.mjs:20",
     "fp": "c03f3efe7acb81be",
     "head": "const ROOT = resolve(fileURLToPath(new URL('./src', import.meta.url)));"
   }

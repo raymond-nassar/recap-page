@@ -109,7 +109,7 @@ object the view layer itself created and can throw away.
 
 **The API client and its response cache are replaceable at runtime.** Saving a new API base builds
 a fresh pair and hands the replacement client to both the Hydrator and SynopsisRunner, at
-`src/js/main.js:5961-5975`. An in-flight synopsis run is cancelled and its tab-memory prose is
+`src/js/main.js:5968-5982`. An in-flight synopsis run is cancelled and its tab-memory prose is
 cleared rather than carried across services. The rate limiter is deliberately not rebuilt, because
 the budget it tracks belongs to the reader's connection rather than to whichever base URL is
 configured. The Store is not replaced.
@@ -213,7 +213,7 @@ On a targeted run, the vendor reuses pinned payloads for skipped orders before d
 catalog. It then atomically writes the output batch assembled by that invocation, including
 `catalog.json` and any generated overlap artifacts, at `scripts/vendor-orders.mjs:587-635`. At
 runtime the catalog is fetched once from the same origin and parsed at
-`src/js/main.js:4763-4773`, so browsing does not depend on the metadata service.
+`src/js/main.js:4770-4780`, so browsing does not depend on the metadata service.
 
 Series and creator names are searched in vendored indexes. Selecting one then pages its issues from
 the API. API responses use `no-store`, and cache writes remove synopsis prose before IndexedDB sees
@@ -281,7 +281,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:6398-6419`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:6405-6426`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -417,7 +417,7 @@ Current code requests its deletion at startup and during manual clearing, but re
 while an older tab keeps that deletion blocked. That separation is the reason the app is pinned to one origin: the comment at
 `src/js/cache.js:3-5` records that IndexedDB is restricted on `file://` origins and that
 `file://`, `localhost` and `127.0.0.1` are three separate storage buckets, and the server binds one
-of them at `server.mjs:19-21`.
+of them at `server.mjs:21-23`.
 
 **The offline shell uses a different browser store for a different job.** Cache API cache
 `mrt-offline-v1` stores successful 200 responses to same-origin GET requests the worker handles,
@@ -514,13 +514,13 @@ time. The selected id lives only in the validated `path` query of the hash route
 reader state, as enforced at `src/js/lib/route.js:160-195`. The controller keeps that requested id
 while the catalog loads, rejects stale async continuations with a render generation, falls back to
 the first resolved path when the id is absent or invalid, and canonically replaces the address at
-`src/js/main.js:6788-6835`.
+`src/js/main.js:6795-6842`.
 
 Progress is a projection of the Store onto each stop. It prefers the imported list whose catalog id
 exactly matches the stop, then the first imported sibling in catalog order, then reports **Not
-added**, at `src/js/main.js:6722-6742`. Cross-tab state replacement and whole-origin clearing call a
+added**, at `src/js/main.js:6729-6749`. Cross-tab state replacement and whole-origin clearing call a
 progress-only repaint at `src/js/main.js:123-151`; that repaint changes only the progress outputs at
-`src/js/main.js:6745-6752`, preserving the selector's DOM identity and keyboard focus.
+`src/js/main.js:6752-6759`, preserving the selector's DOM identity and keyboard focus.
 
 ## Where to read next
 
@@ -535,20 +535,30 @@ route registries own the behavior a reader should expect now.
 
 ## The Windows package is a launch envelope
 
-The x64 and ARM64 MSIX packages add a small JavaScript supervisor around the existing browser
+The x64 and ARM64 MSIX packages add a small JavaScript coordinator around the existing browser
 companion. They do not add another application runtime or persistence model. Start launches the
-architecture-matched packaged Node executable with `Launcher.mjs`, which starts a second invocation
-of that same Node executable with `server.mjs`, removes every casing of the two environment values
-that can change the origin or suppress browser opening, waits for it, and keeps any exit guidance
-visible. The server still owns the loopback bind, port conflict, external browser, and exact URL.
+architecture-matched packaged Node executable with `Launcher.mjs`. The coordinator removes every
+casing of the two environment values that can change the origin or suppress browser opening, starts
+the same Node executable with `server.mjs` as a hidden detached process, and waits for a cache-proof
+health response naming the digest of the exact package inputs. It also verifies that the listener is
+the current package's Node executable running the current packaged server command. Only then does it
+open the external browser. Another activation applies the same checks before reuse. A foreign or
+older listener, launch failure, or readiness timeout remains visible with corrective guidance.
 
 Direct manifest activation of Node was measured first. It started the right command and served the
 right origin, but its console closed immediately when Node refused an occupied port. Package Support
-Framework kept the existing command wrapper visible, but Microsoft's distributed binaries may send
+Framework kept the command wrapper visible, but Microsoft's distributed binaries may send
 usage telemetry when Windows diagnostic collection is enabled. An x64 C# launcher proved the
-installed behavior, but the Windows inbox compiler cannot emit ARM64. The selected supervisor uses
+installed behavior, but the Windows inbox compiler cannot emit ARM64. The selected coordinator uses
 the official Node runtime already in each package, so both entry processes are native to their slice
 without a second runtime or a higher Windows version floor.
+
+The background server normally lasts until the Windows session ends, the package is updated or
+removed, or the reader explicitly ends it in Task Manager. Closing the browser does not stop it.
+This is intentional: the first Store certification run proved that tying the server to a visible
+console can leave the service worker showing a cached shell after the server has died. The shell
+cannot safely imply that uncached local data remains available, so its cache-proof health probe also
+drives recovery guidance for catalog, Reading List, creator-index, and series-index failures.
 
 Package files remain read-only. Browser state remains under `mrt.state.v2` and the other stores
 described above, in the external browser's exact origin and profile. The package never reads or

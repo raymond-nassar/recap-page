@@ -1,7 +1,7 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import {
-  copyFile, mkdir, mkdtemp, readFile, rm, stat, writeFile,
+  copyFile, mkdir, mkdtemp, readFile, readdir, rm, stat, writeFile,
 } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
@@ -43,6 +43,11 @@ function run(command, args, options = {}) {
     maxBuffer: 64e6,
     ...options,
   });
+}
+
+export function winAppCliVersion(output) {
+  const lines = String(output).split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  return lines.find((line) => /^\d+\.\d+\.\d+$/.test(line)) ?? null;
 }
 
 function powershell(script) {
@@ -87,6 +92,27 @@ async function copyApp(layout) {
   }
 }
 
+async function filesUnder(root, prefix = '') {
+  const files = [];
+  for (const entry of await readdir(root, { withFileTypes: true })) {
+    const relative = prefix ? `${prefix}/${entry.name}` : entry.name;
+    if (entry.isDirectory()) files.push(...await filesUnder(join(root, entry.name), relative));
+    else files.push(relative);
+  }
+  return files;
+}
+
+async function layoutGeneration(layout) {
+  const digest = createHash('sha256');
+  for (const relative of (await filesUnder(layout)).sort()) {
+    digest.update(relative);
+    digest.update('\0');
+    digest.update(await readFile(join(layout, ...relative.split('/'))));
+    digest.update('\0');
+  }
+  return digest.digest('hex');
+}
+
 async function prepareLayout(staging, version, target, runtimeDir) {
   const layout = layoutPath(staging, version, target.id);
   await mkdir(layout, { recursive: true });
@@ -103,9 +129,10 @@ async function prepareLayout(staging, version, target, runtimeDir) {
   await copyFile(join(runtimeDir, 'node.exe'), join(runtimeOut, 'node.exe'));
   await copyFile(join(runtimeDir, 'LICENSE'), join(runtimeOut, 'LICENSE-node.txt'));
 
+  const generation = await layoutGeneration(layout);
   await writeFile(
     join(layout, 'src', 'msix-generation.json'),
-    `${JSON.stringify({ packageVersion: version, generation: `proof-${version}` }, null, 2)}\n`,
+    `${JSON.stringify({ packageVersion: version, generation }, null, 2)}\n`,
   );
 
   run('winapp', [
@@ -146,7 +173,7 @@ function packageLayout(layout, output, password) {
 }
 
 async function build() {
-  const version = run('winapp', ['--version']).trim();
+  const version = winAppCliVersion(run('winapp', ['--version']));
   if (version !== '0.6.0') {
     throw new Error(`winapp 0.6.0 is required for this build; found ${version || 'no version'}`);
   }
@@ -182,7 +209,6 @@ async function build() {
       x64,
       runtimeDirectories.get(x64.id),
     );
-
     const password = randomBytes(32).toString('hex');
     run('winapp', [
       'cert', 'generate',
@@ -234,4 +260,4 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   await build();
 }
 
-export { build };
+export { build, layoutGeneration };

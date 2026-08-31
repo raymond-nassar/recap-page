@@ -4147,7 +4147,7 @@ const creatorAddRunner = createLongAddRunner({
 });
 
 function wireNameSearch({
-  section: _section, form, input, results, kind, many, btnClass, search, onAdd, active,
+  section, form, input, results, kind, many, btnClass, search, onAdd, active,
 }) {
   $(form).addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -4198,7 +4198,14 @@ function wireNameSearch({
         ]));
       }
     } catch (err) {
-      notify(results, friendly(err), 'error');
+      await reportBundledLoadFailure({
+        report: results,
+        failure: friendly(err),
+        key: `${kind}-index-load`,
+        subject: `${kind === 'series' ? 'series' : 'creator'} search`,
+        retry: () => $(form).requestSubmit(),
+        isCurrent: () => $(section).closest('.view')?.hidden === false,
+      });
     }
   });
 }

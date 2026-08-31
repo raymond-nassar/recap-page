@@ -21,6 +21,22 @@ mention of the same one-shot already listed earlier. Six omitted source entries 
 provenance, so nothing is guessed, substituted, or silently deleted. Nothing you have saved is
 changed.
 
+### Kept the Microsoft Store server alive after launch
+
+In plain English: the first Store certification run could open Recap Page and then leave a cached
+screen behind after its local server stopped. Browse, Find a creator, Find a series, and Add to
+library then failed even though their bundled data was present. Store startup now keeps the server
+independent of the short-lived launch window, waits until the exact packaged version is ready before
+opening the browser, and reuses only that version on another launch. If the local connection is lost
+later, creator and series search now give the same direct restart guidance as bundled Reading Lists.
+Saved lists, notes, settings, and read markers remain in the same browser storage.
+
+For maintainers, package proof now exercises the certification journey on x64 and ARM64: launch
+settling, package-generation identity, creator and series indexes, catalog and a representative
+Reading List, Browse and both name searches, external-service failure, deliberate server loss,
+relaunch, live package removal, and exact cleanup. WACK remains on its supported x64 host and keeps
+all generated packages, certificates, browser profiles, and raw reports out of artifacts.
+
 ### Added immutable historical evidence anchors
 
 In plain English: nothing in the app or in saved reading progress changes. Maintainers can now move
@@ -1689,7 +1705,7 @@ their reading sat at 8787. `test/launcher.test.js:77` already forbids the launch
 `MRT_PORT` for precisely this reason. The rule was enforced on the launcher and not on the message
 printed beside it.
 
-Both messages moved out of the error branch into `server.mjs:228-249` and are returned as lines
+Both messages moved out of the error branch into `server.mjs:236-257` and are returned as lines
 rather than printed, for the same reason `browserCommand` is a table: a branch that runs only when
 a socket is taken is a branch nobody reads. `test/startup-messages.test.js` checks the words without
 binding a port. Five of its seven assertions were run against the shipped strings and fail on them.

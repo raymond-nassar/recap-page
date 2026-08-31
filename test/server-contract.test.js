@@ -5,11 +5,15 @@ import { connect } from 'node:net';
 import { readFileSync } from 'node:fs';
 import { sep } from 'node:path';
 
-import { CSP, DEFAULT_PORT, HOST, browserCommand, createStaticServer, parsePort, safePath } from '../server.mjs';
 import {
+  CSP, DEFAULT_PORT, HOST, PACKAGE_GENERATION, browserCommand, createStaticServer, parsePort, safePath,
+} from '../server.mjs';
+import {
+  LOCAL_SERVER_GENERATION_HEADER_NAME,
   LOCAL_SERVER_HEADER_NAME,
   LOCAL_SERVER_HEADER_VALUE,
   LOCAL_SERVER_HEALTH_PATH,
+  LOCAL_SERVER_PROCESS_HEADER_NAME,
 } from '../src/js/lib/localServer.js';
 
 // The server is the install and runtime boundary and nothing started it. A Windows smoke run during
@@ -222,6 +226,16 @@ test('the local health response is identifiable and cannot be cached by the work
       assert.equal(
         res.headers[LOCAL_SERVER_HEADER_NAME.toLowerCase()],
         LOCAL_SERVER_HEADER_VALUE,
+        method,
+      );
+      assert.equal(
+        res.headers[LOCAL_SERVER_GENERATION_HEADER_NAME.toLowerCase()],
+        PACKAGE_GENERATION,
+        method,
+      );
+      assert.equal(
+        res.headers[LOCAL_SERVER_PROCESS_HEADER_NAME.toLowerCase()],
+        String(process.pid),
         method,
       );
       assert.equal(res.body.length, 0, method);

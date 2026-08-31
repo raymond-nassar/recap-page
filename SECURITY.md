@@ -128,8 +128,8 @@ Recorded so a report can start from what is true rather than from what a scanner
   the normalizer that decides which cover addresses may be built and by the `img-src` directive
   the development server sends, so the rule and the policy that enforces it cannot drift apart.
 - The development server sends a content security policy on every response that serves a file,
-  built at `server.mjs:58-69`, alongside `nosniff`, `no-referrer` and `X-Frame-Options: DENY`, set
-  at `server.mjs:143-153`. Its error responses carry none of the four, which is recorded here
+  built at `server.mjs:64-75`, alongside `nosniff`, `no-referrer` and `X-Frame-Options: DENY`, set
+  at `server.mjs:151-161`. Its error responses carry none of the four, which is recorded here
   because this list is meant to be what is true rather than what was intended.
 - The repository holds no secrets. Nothing in the scripts or the workflow reads a credential, and
   the metadata API needs no key.
@@ -150,14 +150,23 @@ Recorded so a report can start from what is true rather than from what a scanner
 ## Windows package boundary
 
 The x64 and ARM64 MSIX packages declare `runFullTrust` for one reason: their native Node entry
-process runs a small local supervisor, which starts the unchanged server at `127.0.0.1:8787` and
-opens the external default browser. The supervisor performs no network request and does not read
-browser storage. It removes `MRT_PORT` and `MRT_NO_OPEN` case-insensitively before starting the
-server because Windows environment names are case-insensitive.
+process runs a small local coordinator, which starts the unchanged server at `127.0.0.1:8787` and
+opens the external default browser. The coordinator requests only the local cache-proof health
+endpoint, performs no external network request, and does not read browser storage. It removes
+`MRT_PORT` and `MRT_NO_OPEN` case-insensitively before starting the server because Windows
+environment names are case-insensitive.
+
+The package server is detached from the short-lived console and has independent standard streams.
+That keeps closing the launch console from silently stopping local data access. Reuse requires the
+Recap Page server identity, a digest of the exact package inputs, and a listening process whose
+executable and server command both resolve inside the current package. An older or foreign process
+on the fixed port cannot be accepted as the current app. Package update and removal own termination
+of the background process; proof cleanup terminates only exact recorded process IDs if those
+operations fail.
 
 The package adds no analytics or telemetry. Package Support Framework was evaluated and rejected
 because Microsoft's NuGet binaries may collect usage telemetry when Windows diagnostic collection
-is enabled. The selected supervisor is maintained JavaScript executed by the same checksum-verified
+is enabled. The selected coordinator is maintained JavaScript executed by the same checksum-verified
 official Node runtime the package already needs.
 
 Local package signing uses a generated self-signed certificate only for the proof machine. The
