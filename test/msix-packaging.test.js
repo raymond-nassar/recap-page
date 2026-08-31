@@ -568,6 +568,8 @@ test('package scripts expose build and independently invocable proof scenarios',
     'busy-port-refusal',
     'update-state-continuity',
   ]);
+  assert.match(read(PROOF), /const STORYLINES_ROUTE = '#\/lines'/);
+  assert.doesNotMatch(read(PROOF), /#\/storylines/);
 });
 
 test('busy-port proof captures the installed supervisor without Windows Terminal', async () => {
@@ -621,6 +623,20 @@ test('certification proof selects the process that actually owns port 8787', asy
     () => selectListenerServer([{ ProcessId: 82, CommandLine: '"node.exe" "Launcher.mjs"' }], 82),
     /did not run the package server/,
   );
+});
+
+test('proof cleanup force-stops only its exact recorded process IDs', async () => {
+  const { stopPids } = await import('../scripts/msix-proof.mjs');
+  const scripts = [];
+  stopPids([41, 41, 0, null], (script) => {
+    scripts.push(script);
+    return '';
+  });
+
+  assert.equal(scripts.length, 1);
+  assert.match(scripts[0], /Get-Process -Id 41/);
+  assert.match(scripts[0], /Stop-Process -Id 41 -Force -ErrorAction Stop/);
+  assert.doesNotMatch(scripts[0], /Stop-Process -Name|taskkill/);
 });
 
 test('the proof refuses a foreign package identity before invoking PowerShell', async () => {

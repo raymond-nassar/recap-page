@@ -21,6 +21,7 @@ export const SCENARIOS = Object.freeze([
 ]);
 
 const ORIGIN = 'http://127.0.0.1:8787';
+const STORYLINES_ROUTE = '#/lines';
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -95,7 +96,7 @@ function stopPids(pids, runPowerShell = powershell) {
     try {
       runPowerShell(
         `$p = Get-Process -Id ${pid} -ErrorAction SilentlyContinue; `
-        + `if ($p) { Stop-Process -Id ${pid} -ErrorAction Stop; `
+        + `if ($p) { Stop-Process -Id ${pid} -Force -ErrorAction Stop; `
         + `Wait-Process -Id ${pid} -Timeout 10 -ErrorAction SilentlyContinue }; `
         + `if (Get-Process -Id ${pid} -ErrorAction SilentlyContinue) { `
         + `throw "process ${pid} remains after stop" }`,
@@ -535,7 +536,7 @@ async function certificationFunctionality(architecture, source) {
         await navigator.serviceWorker.ready;
         return true;
       });
-      await setRoute(page, '#/storylines');
+      await setRoute(page, STORYLINES_ROUTE);
       await page.waitForSelector('#lines-results .catalog-card');
       const opened = await page.evaluate(() => {
         const card = [...document.querySelectorAll('#lines-results .catalog-card')]
@@ -589,7 +590,7 @@ async function certificationFunctionality(architecture, source) {
         'the deliberate server stop did not release the canonical port',
       );
 
-      await setRoute(page, '#/storylines');
+      await setRoute(page, STORYLINES_ROUTE);
       await page.waitForSelector('#lines-results .catalog-card');
       const previewOpened = await page.evaluate(() => {
         const card = [...document.querySelectorAll('#lines-results .catalog-card')]
@@ -623,7 +624,7 @@ async function certificationFunctionality(architecture, source) {
       await stalePage.close();
 
       const catalogPage = await browser.newPage();
-      await catalogPage.goto(`${ORIGIN}/#/storylines`, { waitUntil: 'domcontentloaded' });
+      await catalogPage.goto(`${ORIGIN}${STORYLINES_ROUTE}`, { waitUntil: 'domcontentloaded' });
       await catalogPage.waitForFunction(
         () => document.querySelector('#lines-report')?.textContent
           .includes('The local app connection is not available'),
