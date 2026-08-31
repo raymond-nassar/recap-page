@@ -6,9 +6,19 @@ on:
     branches: [main]
     paths:
       - .github/workflows/wack.yml
+      - .github/browser-proof/**
+      - packaging/windows/**
+      - server.mjs
+      - src/**
+      - scripts/inspect-msix.mjs
+      - scripts/msix-proof.mjs
+      - scripts/pack-msix.mjs
+      - scripts/pack-windows.mjs
       - scripts/run-wack.ps1
       - scripts/test-wack-report.ps1
       - scripts/wack-report.ps1
+      - test/msix-packaging.test.js
+      - test/server-contract.test.js
 
 # WACK needs no repository write, package publication, identity token, or secret.
 permissions:
@@ -63,11 +73,11 @@ jobs:
         timeout-minutes: 4
         run: npm ci --ignore-scripts
 
-      - name: Prove package source continuity
+      - name: Prove packaging leaves tracked inputs unchanged
         timeout-minutes: 2
         shell: pwsh
         run: |
-          git diff --exit-code c5cd22f4351265a9429230572149d72494eb515e HEAD -- `
+          git diff --exit-code -- `
             LICENSE `
             packaging/windows `
             scripts/pack-msix.mjs `
@@ -75,7 +85,7 @@ jobs:
             server.mjs `
             src
           if ($LASTEXITCODE -ne 0) {
-            throw 'Package-copied input changed after the accepted corrected build.'
+            throw 'Packaging inputs were dirty before the exact-head build.'
           }
 
       - name: Run focused packaging and WACK tests
@@ -111,7 +121,10 @@ jobs:
               Where-Object PackageFamilyName -eq `
                 'PanelStackLabs.RecapPage_we33aa8nvkpcc')
             foreach ($package in $packages) {
-              Remove-AppxPackage -Package $package.PackageFullName
+              Remove-AppxPackage -Package $package.PackageFullName -ErrorAction Stop
+            }
+            if (Get-AppxPackage -Name PanelStackLabs.RecapPage) {
+              throw 'The WACK package remains registered.'
             }
           } catch {
             $failures += $_.Exception
@@ -123,7 +136,9 @@ jobs:
                 (Resolve-Path -LiteralPath $cer).Path
               )
               $trusted = "Cert:\LocalMachine\TrustedPeople\$($certificate.Thumbprint)"
-              Remove-Item -LiteralPath $trusted -ErrorAction SilentlyContinue
+              if (Test-Path -LiteralPath $trusted) {
+                Remove-Item -LiteralPath $trusted -ErrorAction Stop
+              }
               if (Test-Path -LiteralPath $trusted) {
                 throw 'The temporary WACK certificate remains trusted.'
               }
@@ -136,19 +151,183 @@ jobs:
               -Filter 'recap-page-wack-*' `
               -ErrorAction SilentlyContinue |
               ForEach-Object {
-                Remove-Item -LiteralPath $_.FullName -Recurse -Force
+                Remove-Item -LiteralPath $_.FullName -Recurse -Force -ErrorAction Stop
               }
           } catch {
             $failures += $_.Exception
           }
           try {
-            Remove-Item -LiteralPath ./dist -Recurse -Force -ErrorAction SilentlyContinue
+            if (Test-Path -LiteralPath ./dist) {
+              Remove-Item -LiteralPath ./dist -Recurse -Force -ErrorAction Stop
+            }
+            if (Test-Path -LiteralPath ./dist) {
+              throw 'Generated WACK package material remains.'
+            }
           } catch {
             $failures += $_.Exception
           }
           if ($failures.Count -ne 0) {
             throw [AggregateException]::new(
               'One or more WACK cleanup boundaries failed.',
+              [Exception[]]$failures
+            )
+          }
+
+  installed:
+    name: Installed functionality on ${{ matrix.architecture }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: x64
+            runner: windows-2022
+            source: package
+          - architecture: arm64
+            runner: windows-11-arm
+            source: bundle
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - uses: microsoft/setup-WinAppCli@b93bbddc1f7abc061ca0d3a8119e3a0c7dd71495 # v0.2.0
+        timeout-minutes: 4
+        with:
+          version: v0.6.0
+
+      - name: Install repository tooling
+        timeout-minutes: 4
+        run: npm ci --ignore-scripts
+
+      - name: Install external browser driver
+        timeout-minutes: 4
+        shell: pwsh
+        run: |
+          $root = Join-Path $env:RUNNER_TEMP 'recap-page-puppeteer'
+          Copy-Item -LiteralPath ./.github/browser-proof -Destination $root -Recurse
+          npm ci --prefix $root --ignore-scripts
+          if ($LASTEXITCODE -ne 0) {
+            throw 'The external browser driver could not be installed.'
+          }
+          $entry = Join-Path $root 'node_modules\puppeteer-core\lib\puppeteer\puppeteer-core.js'
+          if (-not (Test-Path -LiteralPath $entry)) {
+            throw 'The external browser driver entry file is missing.'
+          }
+          "MRT_PUPPETEER=$entry" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Build ephemeral packages
+        timeout-minutes: 15
+        run: npm run msix:pack
+
+      - name: Trust exact ephemeral certificate
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $source = [Security.Cryptography.X509Certificates.X509Certificate2]::new(
+            (Resolve-Path -LiteralPath ./dist/msix/RecapPage-local-proof.cer).Path
+          )
+          "MRT_PROOF_THUMBPRINT=$($source.Thumbprint)" |
+            Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          $certificate = Import-Certificate `
+            -FilePath ./dist/msix/RecapPage-local-proof.cer `
+            -CertStoreLocation Cert:\LocalMachine\TrustedPeople
+          if ($certificate.Thumbprint -ne $source.Thumbprint) {
+            throw 'The trusted proof certificate differs from the generated CER.'
+          }
+
+      - name: Exercise installed certification journey
+        timeout-minutes: 25
+        shell: pwsh
+        run: |
+          npm run msix:prove -- `
+            --architecture=${{ matrix.architecture }} `
+            --source=${{ matrix.source }} `
+            --scenario=certification-functionality
+          if ($LASTEXITCODE -ne 0) {
+            throw 'The installed certification journey failed.'
+          }
+          npm run msix:prove -- `
+            --architecture=${{ matrix.architecture }} `
+            --source=${{ matrix.source }} `
+            --scenario=busy-port-refusal
+          if ($LASTEXITCODE -ne 0) {
+            throw 'The installed busy-port journey failed.'
+          }
+          if ('${{ matrix.architecture }}' -eq 'x64') {
+            npm run msix:prove -- --scenario=update-state-continuity
+            if ($LASTEXITCODE -ne 0) {
+              throw 'The installed update journey failed.'
+            }
+          }
+
+      - name: Remove installed proof material
+        if: always()
+        timeout-minutes: 5
+        shell: pwsh
+        run: |
+          $failures = @()
+          try {
+            $packages = @(Get-AppxPackage -Name PanelStackLabs.RecapPage |
+              Where-Object PackageFamilyName -eq `
+                'PanelStackLabs.RecapPage_we33aa8nvkpcc')
+            foreach ($package in $packages) {
+              Remove-AppxPackage -Package $package.PackageFullName -ErrorAction Stop
+            }
+            if (Get-AppxPackage -Name PanelStackLabs.RecapPage) {
+              throw 'The proof package remains registered.'
+            }
+          } catch {
+            $failures += $_.Exception
+          }
+          try {
+            $thumbprint = $env:MRT_PROOF_THUMBPRINT
+            $cer = './dist/msix/RecapPage-local-proof.cer'
+            if (-not $thumbprint -and (Test-Path -LiteralPath $cer)) {
+              $certificate = [Security.Cryptography.X509Certificates.X509Certificate2]::new(
+                (Resolve-Path -LiteralPath $cer).Path
+              )
+              $thumbprint = $certificate.Thumbprint
+            }
+            if ($thumbprint) {
+              $trusted = "Cert:\LocalMachine\TrustedPeople\$thumbprint"
+              if (Test-Path -LiteralPath $trusted) {
+                Remove-Item -LiteralPath $trusted -ErrorAction Stop
+              }
+              if (Test-Path -LiteralPath $trusted) {
+                throw 'The temporary proof certificate remains trusted.'
+              }
+            }
+          } catch {
+            $failures += $_.Exception
+          }
+          try {
+            $paths = @(
+              './dist',
+              (Join-Path $env:RUNNER_TEMP 'recap-page-puppeteer')
+            )
+            foreach ($path in $paths) {
+              if (Test-Path -LiteralPath $path) {
+                Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
+              }
+              if (Test-Path -LiteralPath $path) {
+                throw "Proof material remains at $path"
+              }
+            }
+          } catch {
+            $failures += $_.Exception
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new(
+              'One or more installed-proof cleanup boundaries failed.',
               [Exception[]]$failures
             )
           }

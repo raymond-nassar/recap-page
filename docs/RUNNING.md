@@ -220,9 +220,17 @@ remains the ZIP described at the start of this guide.
 
 An earlier x64 MSIX proof installed, launched from Start, started the same local server, and opened
 the same browser address. The signed install preserved existing browser-profile progress and visible
-busy-port guidance through an update from `2.0.0.0` to `2.0.0.1`. The current Store candidate adds a
-native ARM64 package and an x64/ARM64 bundle while keeping `2.0.0.1` outside the Store output.
-Certification, Store validation, upload, and publication remain pending.
+busy-port guidance through an update from `2.0.0.0` to `2.0.0.1`. The first x64/ARM64 Store
+submission then failed certification because its visible launch console could be closed with the
+server attached. A cached browser shell remained, but uncached bundled data could no longer load.
+
+The corrected package starts the server independently in the background and closes its launch
+console after the exact package generation answers a health check. Closing the browser does not stop
+that server. Starting Recap Page again reuses the matching server and opens the same address.
+Updating or uninstalling the package ends its background process. If browser opening fails, the
+launch window keeps the exact address visible so it can be opened manually.
+
+A replacement Store package has not been uploaded, submitted, certified, or published.
 
 Installing or uninstalling the future package does not move or remove browser-owned progress. The
 same address and browser profile remain the storage location. See the

@@ -1042,6 +1042,15 @@ const MUTATIONS = [
     ),
   },
   {
+    id: 'local-name-diagnosis-off',
+    breaks: 'local-server-recovery',
+    why: 'creator and series index rejection falls back to the generic fetch error after the local server stops',
+    rewriteMain: (source) => source.replace(
+      / {4}\} catch \(err\) \{\r?\n {6}await reportBundledLoadFailure\(\{\r?\n {8}report: results,\r?\n {8}failure: friendly\(err\),\r?\n {8}key: `\$\{kind\}-index-load`,\r?\n {8}subject: `\$\{kind === 'series' \? 'series' : 'creator'\} search`,\r?\n {8}retry: \(\) => \$\(form\)\.requestSubmit\(\),\r?\n {8}isCurrent: \(\) => \$\(section\)\.closest\('\.view'\)\?\.hidden === false,\r?\n {6}\}\);\r?\n {4}\}/,
+      "    } catch (err) {\n      notify(results, friendly(err), 'error');\n    }",
+    ),
+  },
+  {
     id: 'issue-focus-writes-state',
     breaks: 'issue-focus',
     why: 'opening issue details mutates saved progress, violating the URL-only selection contract',
@@ -4651,6 +4660,45 @@ const SCENARIOS = [
       t.check('the fresh import retry writes one complete Reading List',
         imported.listOrder.length === 1 && saved.itemIds.length === ORDER_COUNT,
         JSON.stringify({ lists: imported.listOrder.length, items: saved.itemIds.length }));
+
+      const names = await page.browserContext().newPage();
+      await preparePage(names, page.__origin, page.__mutation);
+      await open(names, '/?local-health=down&local-creator=down&local-series=down#/add-creator');
+      await names.waitForSelector('#view-add-creator:not([hidden])');
+      await names.$eval('#creator-q', (field) => { field.value = 'Hickman'; });
+      await click(names, '#form-creator button[type="submit"]');
+      await names.waitForFunction(
+        () => document.querySelector('#creator-results')?.textContent
+          .includes('The local app connection is not available'),
+        { timeout: 3000 },
+      ).catch(() => {});
+      const creatorFailure = await names.$eval('#creator-results', (result) => ({
+        text: result.textContent.replace(/\s+/g, ' ').trim(),
+        action: result.querySelector('button')?.textContent.trim() ?? null,
+      }));
+      t.check('a refused creator index names the local connection and offers Try again',
+        creatorFailure.text.includes('creator search could not be loaded')
+        && creatorFailure.action === 'Try again',
+        JSON.stringify(creatorFailure));
+
+      await names.evaluate(() => { location.hash = '#/add-series'; });
+      await names.waitForSelector('#view-add-series:not([hidden])');
+      await names.$eval('#series-q', (field) => { field.value = 'House of M'; });
+      await click(names, '#form-series button[type="submit"]');
+      await names.waitForFunction(
+        () => document.querySelector('#series-results')?.textContent
+          .includes('The local app connection is not available'),
+        { timeout: 3000 },
+      ).catch(() => {});
+      const seriesFailure = await names.$eval('#series-results', (result) => ({
+        text: result.textContent.replace(/\s+/g, ' ').trim(),
+        action: result.querySelector('button')?.textContent.trim() ?? null,
+      }));
+      t.check('a refused series index names the local connection and offers Try again',
+        seriesFailure.text.includes('series search could not be loaded')
+        && seriesFailure.action === 'Try again',
+        JSON.stringify(seriesFailure));
+      await names.close();
     },
   },
   {
@@ -7082,12 +7130,16 @@ async function preparePage(page, origin, mutation) {
         health: params.get('local-health'),
         catalog: params.get('local-catalog'),
         order: params.get('local-order'),
+        creator: params.get('local-creator'),
+        series: params.get('local-series'),
       };
       window.__mrtLocalFixture = Object.values(requestedLocalModes).some((mode) => mode !== null);
       window.__mrtLocalModes = Object.fromEntries(
         Object.entries(requestedLocalModes).map(([kind, mode]) => [kind, mode ?? 'ready']),
       );
-      window.__mrtLocalPending = { health: [], catalog: [], order: [] };
+      window.__mrtLocalPending = {
+        health: [], catalog: [], order: [], creator: [], series: [],
+      };
       window.__mrtSettleLocalRequest = (kind, outcome = 'ready') => {
         const pending = window.__mrtLocalPending[kind]?.shift();
         if (!pending) return false;
@@ -7109,7 +7161,11 @@ async function preparePage(page, origin, mutation) {
         return Promise.resolve(ready());
       };
       window.fetch = (input, init) => {
-        const url = typeof input === 'string' ? input : input?.url ?? '';
+        const url = typeof input === 'string'
+          ? input
+          : input instanceof URL
+            ? input.href
+            : input?.url ?? '';
         const requestUrl = new URL(url, location.href);
         if (requestUrl.pathname === localHealthPath && window.__mrtLocalFixture) {
           return localRequest(
@@ -7172,6 +7228,28 @@ async function preparePage(page, origin, mutation) {
           );
           if (controlled) return controlled;
           return Promise.resolve(json(selectedOrder));
+        }
+        if (url.endsWith('data/creators-index.json')) {
+          const controlled = localRequest(
+            'creator',
+            () => json({
+              generatedAt: '2026-01-01T00:00:00.000Z',
+              total: 1,
+              entries: [{ id: 11743, name: 'Jonathan Hickman', issueCount: 2 }],
+            }),
+          );
+          if (controlled) return controlled;
+        }
+        if (url.endsWith('data/series-index.json')) {
+          const controlled = localRequest(
+            'series',
+            () => json({
+              generatedAt: '2026-01-01T00:00:00.000Z',
+              total: 1,
+              entries: [{ id: 855, name: 'House of M (2005)', issueCount: 4 }],
+            }),
+          );
+          if (controlled) return controlled;
         }
         if (url === `${defaultApiBase}/health`) {
           return Promise.resolve(json({ issue_count: 1 }));
