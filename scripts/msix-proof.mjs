@@ -21,7 +21,8 @@ export const SCENARIOS = Object.freeze([
 ]);
 
 const ORIGIN = 'http://127.0.0.1:8787';
-const STORYLINES_ROUTE = '#/lines';
+const CATALOG_ROUTE = '#/catalog';
+const CATALOG_RESULTS = '#catalog-results';
 const ARCHITECTURES = Object.freeze(PACKAGE_ARCHITECTURES.map(({ id }) => id));
 const ROOT = join(fileURLToPath(new URL('..', import.meta.url)));
 
@@ -459,9 +460,10 @@ async function searchName(page, kind, query, expected) {
 
 async function waitForCatalogCard(page, title) {
   await page.waitForFunction(
-    (expected) => [...document.querySelectorAll('#lines-results .catalog-card-title')]
+    (selector, expected) => [...document.querySelectorAll(`${selector} .catalog-card-title`)]
       .some((node) => node.textContent.trim() === expected),
     { timeout: 15000 },
+    CATALOG_RESULTS,
     title,
   );
 }
@@ -543,15 +545,15 @@ async function certificationFunctionality(architecture, source) {
         await navigator.serviceWorker.ready;
         return true;
       });
-      await setRoute(page, STORYLINES_ROUTE);
+      await setRoute(page, CATALOG_ROUTE);
       await waitForCatalogCard(page, 'House of M');
-      const opened = await page.evaluate(() => {
-        const card = [...document.querySelectorAll('#lines-results .catalog-card')]
+      const opened = await page.evaluate((selector) => {
+        const card = [...document.querySelectorAll(`${selector} .catalog-card`)]
           .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
         const button = card?.querySelector('button[data-act="preview"]');
         button?.click();
         return Boolean(button);
-      });
+      }, CATALOG_RESULTS);
       if (!opened) throw new Error('House of M was not available to preview');
       await page.waitForSelector('#preview[open] .preview-issue-link');
       await page.$eval('#preview-add [data-act="main"]', (button) => button.click());
@@ -597,15 +599,15 @@ async function certificationFunctionality(architecture, source) {
         'the deliberate server stop did not release the canonical port',
       );
 
-      await setRoute(page, STORYLINES_ROUTE);
+      await setRoute(page, CATALOG_ROUTE);
       await waitForCatalogCard(page, 'House of M');
-      const previewOpened = await page.evaluate(() => {
-        const card = [...document.querySelectorAll('#lines-results .catalog-card')]
+      const previewOpened = await page.evaluate((selector) => {
+        const card = [...document.querySelectorAll(`${selector} .catalog-card`)]
           .find((candidate) => candidate.querySelector('.catalog-card-title')?.textContent.trim() === 'House of M');
         const button = card?.querySelector('button[data-act="preview"]');
         button?.click();
         return Boolean(button);
-      });
+      }, CATALOG_RESULTS);
       if (!previewOpened) throw new Error('House of M was not available to preview');
       await page.waitForFunction(
         () => document.querySelector('#preview-body')?.textContent
@@ -631,9 +633,9 @@ async function certificationFunctionality(architecture, source) {
       await stalePage.close();
 
       const catalogPage = await browser.newPage();
-      await catalogPage.goto(`${ORIGIN}${STORYLINES_ROUTE}`, { waitUntil: 'domcontentloaded' });
+      await catalogPage.goto(`${ORIGIN}${CATALOG_ROUTE}`, { waitUntil: 'domcontentloaded' });
       await catalogPage.waitForFunction(
-        () => document.querySelector('#lines-report')?.textContent
+        () => document.querySelector('#catalog-report')?.textContent
           .includes('The local app connection is not available'),
       );
       await catalogPage.close();

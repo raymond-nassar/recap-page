@@ -559,6 +559,8 @@ test('generated package and trust material stay under the ignored output boundar
 test('package scripts expose build and independently invocable proof scenarios', async () => {
   const pkg = JSON.parse(read(join(ROOT, 'package.json')));
   const proof = await import('../scripts/msix-proof.mjs');
+  const houseOfM = JSON.parse(read(join(ROOT, 'src', 'data', 'catalog.json'))).lists
+    .find((list) => list.id === 'house-of-m');
 
   assert.equal(pkg.scripts['msix:pack'], 'node scripts/pack-msix.mjs');
   assert.equal(pkg.scripts['msix:inspect'], 'node scripts/inspect-msix.mjs');
@@ -568,7 +570,9 @@ test('package scripts expose build and independently invocable proof scenarios',
     'busy-port-refusal',
     'update-state-continuity',
   ]);
-  assert.match(read(PROOF), /const STORYLINES_ROUTE = '#\/lines'/);
+  assert.match(read(PROOF), /const CATALOG_ROUTE = '#\/catalog'/);
+  assert.match(read(PROOF), /const CATALOG_RESULTS = '#catalog-results'/);
+  assert.equal(houseOfM?.type, 'event');
   assert.doesNotMatch(read(PROOF), /#\/storylines/);
   assert.equal(
     [...read(PROOF).matchAll(/waitForCatalogCard\(page, 'House of M'\)/g)].length,
