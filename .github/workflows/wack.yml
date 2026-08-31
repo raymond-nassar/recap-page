@@ -106,8 +106,8 @@ jobs:
         shell: pwsh
         run: |
           ./scripts/run-wack.ps1 `
-            -X64Package ./dist/msix/RecapPage_2.0.0.0_x64.msix `
-            -Bundle ./dist/msix/RecapPage_2.0.0.0_x64_arm64.msixbundle `
+            -X64Package ./dist/msix/RecapPage_2.0.1.0_x64.msix `
+            -Bundle ./dist/msix/RecapPage_2.0.1.0_x64_arm64.msixbundle `
             -Certificate ./dist/msix/RecapPage-local-proof.cer
 
       - name: Remove generated certification material

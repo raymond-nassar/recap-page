@@ -1,7 +1,7 @@
 # Microsoft Store submission packet
 
-This packet prepares the reviewable values and assets for the first Microsoft Store submission of
-Recap Page. It does not authorize an account change, legal acceptance, capability request, upload,
+This packet prepares the reviewable values and assets for Recap Page's replacement Microsoft Store
+submission. It does not authorize an account change, legal acceptance, capability request, upload,
 submission, publication, or change to the existing GitHub ZIP release. The owner performs every
 Partner Center action.
 
@@ -12,7 +12,7 @@ authoritative when its live wording or validation differs from this packet.
 
 | Decision | Recommended value | Owner action |
 |---|---|---|
-| Product | Rejected first submission: Recap Page 2.0.0, package `2.0.0.0`. Replacement target: app 2.0.1, package `2.0.1.0`; release integration applies it. | Confirm after the release freeze |
+| Product | Rejected first submission: Recap Page 2.0.0, package `2.0.0.0`. Replacement release: Recap Page 2.0.1, package `2.0.1.0`. | Confirm the exact release candidate |
 | Publisher display | PanelStack Labs | Confirm |
 | Initial market | United States only | Approve or replace |
 | Price | Free, no trial, no sale | Confirm |
@@ -40,7 +40,7 @@ listing copy to improvise.
 | Package publisher | `CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472` | Package manifest |
 | Publisher display name | PanelStack Labs | Package manifest |
 | Package family | `PanelStackLabs.RecapPage_we33aa8nvkpcc` | Partner Center identity |
-| Package version | Rejected: `2.0.0.0`. Replacement target: `2.0.1.0` after release integration. | Bundle package manifests |
+| Package version | Rejected: `2.0.0.0`. Replacement: `2.0.1.0`. | Bundle package manifests |
 | Architectures | x64 and ARM64 | Bundle package manifests |
 | Device family | Windows Desktop | Package manifest |
 | Minimum Windows version | Windows 10 version 2004, build `10.0.19041.0` | Package manifest |
@@ -203,8 +203,8 @@ Together they use fewer than 21 unique words.
 Copyright (c) 2026 Raymond Nassar. Unofficial fan companion, not affiliated with or endorsed by
 Marvel Entertainment or Disney. Marvel names and marks belong to their respective owners.
 
-Use **PanelStack Labs** for **Developed by**. Leave **What's new in this version** blank because this
-is the first Store submission. Leave short title, sort title, and voice title blank.
+Use **PanelStack Labs** for **Developed by**. Leave **What's new in this version** blank because no
+Store version has been published. Leave short title, sort title, and voice title blank.
 
 Leave **Additional license terms** blank. Microsoft's Store license terms govern acquisition of the
 Store package, while the source repository separately publishes its code under MIT. Pasting the MIT
@@ -342,11 +342,11 @@ Reviewed asset measurements:
 
 | File | Dimensions | Bytes | SHA-256 |
 |---|---:|---:|---|
-| `01-home-discovery.png` | 1920 x 1080 | 224663 | `E0826E12AFE66942D58BAC16770EB0C9EC37EE0C4E8734C95DA3C0C8C5393D96` |
-| `02-browse-reading-lists.png` | 1920 x 1080 | 176531 | `427884872D9266504B11D84C4D2C99DDFFA26CD66E4985EFE0E4E4FE9F282699` |
+| `01-home-discovery.png` | 1920 x 1080 | 224602 | `A4EC38FB5CA9D8E7E99995BF00DCB42C21E59EF97145504DEEB495E75A9AF0C6` |
+| `02-browse-reading-lists.png` | 1920 x 1080 | 176653 | `4F710F86B8D8558ED064D3F38A6C4D4B54D2EBF90B98BD95DD6E9E8F6BF5F19E` |
 | `03-reading-paths.png` | 1920 x 1080 | 93419 | `A65510D3E503A02E4ACD8197A2A94F8A18088B417B8D9DFA4BA15F1713F8E5DA` |
 | `04-reading-progress.png` | 1920 x 1080 | 307843 | `CCFBB0EBE0EE94450D852FDA992F5D5A1AF0C4471B8F5019B131B3B3CC00080E` |
-| `05-about-privacy.png` | 1920 x 1080 | 119965 | `F8A1B68AE8760346C01D0F09B96FEE554AB5A11E176D0E232FCADECEF09F4A07` |
+| `05-about-privacy.png` | 1920 x 1080 | 119850 | `516E602C3776AF2FF5C37B421714080BA68460A199A18755463AAF2E34DF10A0` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
 
 Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holographic art. The
@@ -355,12 +355,12 @@ different safe-area rules, not a stretched version of the purple app icon.
 
 ## Final upload handoff
 
-The first submitted bundle failed certification and must not be reused. The runtime-fix pull request
-changes package-copied bytes but deliberately leaves final versioning and release integration to the
-release lane. Before the owner uploads a replacement:
+The first submitted bundle failed certification and must not be reused. The runtime fix is merged,
+and release integration packages those exact corrected bytes at the final replacement version.
+Before the owner uploads a replacement:
 
 1. Freeze the final default branch after every intended release pull request has merged.
-2. Set the application version to `2.0.1` and the Store package version to `2.0.1.0`.
+2. Confirm the application version is `2.0.1` and the Store package version is `2.0.1.0`.
 3. Confirm the submission packet commit is based on that exact branch and the tree is clean.
 4. Run lint, tests, counts, sizes, anchors, palette, publication, and the Store packet check.
 5. Confirm the installed x64 and ARM64 certification journeys and WACK apply to those exact

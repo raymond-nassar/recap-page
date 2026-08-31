@@ -130,7 +130,7 @@ async function installDeterministicBrowserState(page, state) {
       // without advertising the one-item test stub used by the ordinary browser suite.
       if (url.endsWith('/health')) return Promise.resolve(json({ issue_count: 37526 }));
       if (url.includes('api.github.com/repos/raymond-nassar/recap-page/releases/latest')) {
-        return Promise.resolve(json({ tag_name: 'v2.0.0' }));
+        return Promise.resolve(json({ tag_name: 'v2.0.1' }));
       }
       return Promise.resolve(json({ items: [], total: 0, has_next: false }));
     };
