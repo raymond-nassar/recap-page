@@ -74,6 +74,15 @@ const CSP = [
   "frame-ancestors 'none'",
 ].join('; ');
 
+// frame-ancestors above is the modern control; X-Frame-Options is its companion for anything that
+// still honours only the older one.
+const SECURITY_HEADERS = Object.freeze({
+  'x-content-type-options': 'nosniff',
+  'referrer-policy': 'no-referrer',
+  'content-security-policy': CSP,
+  'x-frame-options': 'DENY',
+});
+
 function safePath(urlPath) {
   // decodeURIComponent throws URIError on a malformed escape such as "/%" or "/a%2". This runs
   // before the request handler's try block, so an unhandled rejection would terminate the whole
@@ -96,16 +105,22 @@ function safePath(urlPath) {
 
 // A server that is not listening yet. Separating construction from binding is what lets a test
 // drive the contract below on an ephemeral port without taking 8787, and without this module
-// opening a browser the moment it is imported.
-export function createStaticServer() {
+// opening a browser the moment it is imported. The optional handler makes the outer fail-closed
+// response testable without manufacturing a filesystem race.
+export function createStaticServer(requestHandler = handle) {
   return createServer(async (req, res) => {
     try {
-      await handle(req, res);
+      await requestHandler(req, res);
     } catch (err) {
       // A request must never be able to kill the process. Without this, any throw in the handler
       // becomes an unhandled rejection and Node exits, taking the user's session with it.
       console.error(`Request failed: ${req.method} ${req.url}: ${err?.message ?? err}`);
-      if (!res.headersSent) res.writeHead(500, { 'content-type': 'text/plain; charset=utf-8' });
+      if (!res.headersSent) {
+        res.writeHead(500, {
+          ...SECURITY_HEADERS,
+          'content-type': 'text/plain; charset=utf-8',
+        });
+      }
       if (!res.writableEnded) res.end('Internal error');
     }
   });
@@ -113,12 +128,17 @@ export function createStaticServer() {
 
 async function handle(req, res) {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
-    res.writeHead(405, { allow: 'GET, HEAD' }).end('Method Not Allowed');
+    res.writeHead(405, {
+      ...SECURITY_HEADERS,
+      'content-type': 'text/plain; charset=utf-8',
+      allow: 'GET, HEAD',
+    }).end('Method Not Allowed');
     return;
   }
 
   if ((req.url || '/').split('?')[0].split('#')[0] === LOCAL_SERVER_HEALTH_PATH) {
     res.writeHead(204, {
+      ...SECURITY_HEADERS,
       'cache-control': 'no-store',
       [LOCAL_SERVER_HEADER_NAME]: LOCAL_SERVER_HEADER_VALUE,
       [LOCAL_SERVER_GENERATION_HEADER_NAME]: PACKAGE_GENERATION,
@@ -130,7 +150,10 @@ async function handle(req, res) {
 
   const target = safePath(req.url || '/');
   if (!target) {
-    res.writeHead(403).end('Forbidden');
+    res.writeHead(403, {
+      ...SECURITY_HEADERS,
+      'content-type': 'text/plain; charset=utf-8',
+    }).end('Forbidden');
     return;
   }
 
@@ -149,14 +172,9 @@ async function handle(req, res) {
     // and the stat above has already paid for them.
     const etag = info ? `"${info.size.toString(16)}-${Math.round(info.mtimeMs).toString(16)}"` : null;
     const headers = {
+      ...SECURITY_HEADERS,
       'content-type': TYPES[extname(file).toLowerCase()] ?? 'application/octet-stream',
       'cache-control': 'no-cache',
-      'x-content-type-options': 'nosniff',
-      'referrer-policy': 'no-referrer',
-      'content-security-policy': CSP,
-      // frame-ancestors above is the modern control; this is the companion header for
-      // anything that still honours only the older one.
-      'x-frame-options': 'DENY',
       ...(etag ? { etag } : {}),
     };
 
@@ -177,7 +195,10 @@ async function handle(req, res) {
     // res.end it stops being free.
     res.end(req.method === 'HEAD' ? undefined : body);
   } catch {
-    res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }).end('Not found');
+    res.writeHead(404, {
+      ...SECURITY_HEADERS,
+      'content-type': 'text/plain; charset=utf-8',
+    }).end('Not found');
   }
 }
 
