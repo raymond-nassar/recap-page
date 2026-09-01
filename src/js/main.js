@@ -30,9 +30,6 @@ import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
 import { openIssue as openIssueTab, detailUrl } from './reader.js';
 import { APP_VERSION } from './lib/version.js';
-import {
-  UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL, checkForUpdate, compareVersions, normaliseReleaseVersion,
-} from './lib/updateCheck.js';
 import { isAllowedApiBase } from './lib/apiBase.js';
 import { shortcutAllowed } from './lib/shortcuts.js';
 import { lookupIssue } from './lib/wiki.js';
@@ -73,8 +70,6 @@ const RAIL_BREAKPOINT = 1000;
 // that state, so this is never read aloud or seen; it exists so the heading is never empty.
 // It has to match the text in index.html, which is what the document starts out holding.
 const HERO_NO_ISSUE = 'Nothing up next';
-const UPDATE_NOTICE_KEY = 'update-available';
-const UPDATE_CHECK_BUTTON_TEXT = 'Check for updates';
 
 const $ = (sel) => document.querySelector(sel);
 // Read on use rather than at module load. This one query was the only thing this module did to
@@ -160,8 +155,6 @@ let filter = DEFAULT_FILTER;
 let view = 'read';
 let issueRoute = null;
 let issueSynopsisId = null;
-let updateNoticeDismissed = false;
-let updateCheckInFlight = false;
 
 // ------------------------------------------------------------------ unreadable-data recovery
 
@@ -479,15 +472,6 @@ function noticeControlEl(control, dismiss) {
   const props = {
     class: closing ? 'quiet notice-dismiss' : 'quiet',
   };
-  if (control.href) {
-    return el('a', {
-      ...props,
-      href: control.href,
-      target: control.target ?? '_blank',
-      rel: control.rel ?? 'noopener noreferrer',
-      onclick: control.onClick,
-    }, control.label);
-  }
   return el('button', {
     ...props,
     type: 'button',
@@ -499,8 +483,8 @@ function noticeControlEl(control, dismiss) {
   }, control.label);
 }
 
-export function noticeEl({ msg, kind, action, dismiss, links = [] }) {
-  const controls = [action, ...links, dismiss].filter(Boolean);
+export function noticeEl({ msg, kind, action, dismiss }) {
+  const controls = [action, dismiss].filter(Boolean);
   return el('p', { class: `notice notice-${kind}${controls.length ? ' notice-act' : ''}` }, [
     el('span', { class: 'grow', text: msg }),
     ...controls.map((c) => noticeControlEl(c, dismiss)),
@@ -525,7 +509,7 @@ function focusAfterDismiss(inDialog) {
 // after a delete. `dismiss` puts a second one there for a message the reader can be finished with
 // before anything replaces it, which is the only way a notice under a long-lived key ever leaves
 // the screen: these panes hold what they are given until something clears them.
-function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null, links = []) {
+function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {
   const own = $(sel);
   if (!own) return;
   // Only the general notice panes move. #save-report sits above every view and is assertive
@@ -533,27 +517,31 @@ function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null,
   // form that filled them, so relocating either would lose the context that makes it actionable
   // and would quietly change which channel it goes out on.
   if (!own.classList.contains('report')) {
-    own.replaceChildren(noticeEl({ msg, kind, action, dismiss, links }));
-    if (!isLive(own)) announce(spoken(msg, action, dismiss, links));
+    own.replaceChildren(noticeEl({
+      msg, kind, action, dismiss,
+    }));
+    if (!isLive(own)) announce(spoken(msg, action, dismiss));
     return;
   }
   // Re-inserted rather than overwritten in place, because a Map keeps a key at its original
   // position and arrival order is what decides the newest message.
   notices.delete(key);
-  notices.set(key, { sel, msg, kind, action, dismiss, links });
+  notices.set(key, {
+    sel, msg, kind, action, dismiss,
+  });
   const box = placeNotices().get(sel) ?? own;
   // Nothing else scrolls a pane into view, and "nearest" is a no-op once it is fully visible, so
   // this moves the page only when the message would otherwise be missed.
   box.scrollIntoView?.({ block: 'nearest' });
-  if (!isLive(box)) announce(spoken(msg, action, dismiss, links));
+  if (!isLive(box)) announce(spoken(msg, action, dismiss));
 }
 
 // A button that is never spoken is a button a screen reader user cannot know to look for, and the
 // undo is the whole point of the message it sits in. The same argument reaches the dismiss, for the
 // opposite reason: a message that stays until it is closed is one a reader has to be told they can
 // close, and a notice held for a whole session is exactly the one where not knowing costs the most.
-export function spoken(msg, action, dismiss, links = []) {
-  const labels = [action, ...links, dismiss].filter(Boolean).map((c) => c.label);
+export function spoken(msg, action, dismiss) {
+  const labels = [action, dismiss].filter(Boolean).map((c) => c.label);
   if (!labels.length) return msg;
   return `${msg} ${labels.join(' and ')} ${labels.length > 1 ? 'are' : 'is'} available.`;
 }
@@ -586,9 +574,6 @@ function loadSettings() {
       // which is why a value of the wrong type is passed through rather than coerced: coercing it
       // would produce something a radio matches, and the repair would never fire.
       filter: raw.filter === undefined ? 'all' : raw.filter,
-      updateChecks: raw.updateChecks !== false,
-      updateCheckedAt: updateCheckedAtOf(raw),
-      updateSeenVersion: normaliseReleaseVersion(raw.updateSeenVersion) ?? '',
       rejectedApiBase: ok ? null : stored,
     };
   } catch {
@@ -597,9 +582,6 @@ function loadSettings() {
       covers: true,
       theme: DEFAULT_THEME,
       filter: 'all',
-      updateChecks: true,
-      updateCheckedAt: 0,
-      updateSeenVersion: '',
       rejectedApiBase: null,
     };
   }
@@ -652,11 +634,6 @@ export async function writeCachePurgeMark(
   });
 }
 
-function updateCheckedAtOf(raw) {
-  const n = Number(raw?.updateCheckedAt);
-  return Number.isFinite(n) && n > 0 ? n : 0;
-}
-
 function saveSettings() {
   // Only the real settings are written. rejectedApiBase is a report about this boot, and
   // persisting it would turn a one-off complaint into part of the stored record.
@@ -667,19 +644,12 @@ function saveSettings() {
   // instead, unrecoverably and without saying so: the settings field already shows the fallback,
   // so there would be nothing left on screen holding the old value.
   const apiBase = settings.rejectedApiBase ?? settings.apiBase;
-  const updateCheckedAt = updateCheckedAtOf(settings);
-  settings.updateCheckedAt = updateCheckedAt;
-  const updateSeenVersion = normaliseReleaseVersion(settings.updateSeenVersion) ?? '';
-  settings.updateSeenVersion = updateSeenVersion;
   try {
     localStorage.setItem(SETTINGS_KEY, JSON.stringify({
       apiBase,
       covers: settings.covers,
       theme: settings.theme,
       filter: settings.filter,
-      updateChecks: settings.updateChecks !== false,
-      updateCheckedAt,
-      updateSeenVersion,
     }));
   } catch { /* non-fatal */ }
 }
@@ -1001,147 +971,6 @@ function setCovers(on) {
   homeView.render();
   libraryView.render();
   announce(settings.covers ? 'Cover art on.' : 'Cover art off. Covers are shown as text tiles.');
-}
-
-function applyUpdateCheckSetting() {
-  const opt = $('#opt-update-checks');
-  if (opt) opt.checked = settings.updateChecks !== false;
-}
-
-function setUpdateChecks(on) {
-  settings.updateChecks = Boolean(on);
-  saveSettings();
-  applyUpdateCheckSetting();
-  if (!settings.updateChecks) {
-    updateNoticeDismissed = true;
-    clearNotice(UPDATE_NOTICE_KEY);
-  }
-  announce(settings.updateChecks
-    ? 'Update checks on. The app will ask GitHub once a day for the latest version number.'
-    : 'Update checks off. The app will not ask GitHub for updates unless you press Check for updates.');
-}
-
-function updateIsNewer(version) {
-  return compareVersions(version, APP_VERSION) > 0;
-}
-
-function updateNoticeMessage(latestVersion) {
-  return `Version ${latestVersion} is available. You have ${APP_VERSION}. Unzip it anywhere and double-click "Start on Windows.cmd" inside. Your reading progress is saved by your browser rather than in this folder, so it will all still be here. Once the new version opens, you can delete the old folder.`;
-}
-
-function updateLinks(latestVersion) {
-  return {
-    action: { label: `Download version ${latestVersion}`, href: UPDATE_DOWNLOAD_URL },
-    links: [{ label: 'What changed', href: UPDATE_RELEASE_NOTES_URL }],
-  };
-}
-
-function dismissUpdateNotice() {
-  updateNoticeDismissed = true;
-  clearNotice(UPDATE_NOTICE_KEY);
-}
-
-function showUpdateNotice(latestVersion) {
-  if (updateNoticeDismissed || !updateIsNewer(latestVersion)) return;
-  const { action, links } = updateLinks(latestVersion);
-  notify(
-    '#app-report',
-    updateNoticeMessage(latestVersion),
-    'warn',
-    UPDATE_NOTICE_KEY,
-    action,
-    { label: 'Dismiss', onClick: dismissUpdateNotice },
-    links,
-  );
-}
-
-function renderUpdateReport(note, { announceIt = true } = {}) {
-  const box = $('#update-check-report');
-  if (!box) return;
-  if (!note) {
-    box.replaceChildren();
-    return;
-  }
-  box.replaceChildren(noticeEl(note));
-  if (announceIt) announce(spoken(note.msg, note.action, note.dismiss, note.links));
-}
-
-function showStoredUpdateResult({ announceReport = false, notice = true } = {}) {
-  const latestVersion = settings.updateSeenVersion;
-  if (!updateIsNewer(latestVersion)) return;
-  const { action, links } = updateLinks(latestVersion);
-  const note = { msg: updateNoticeMessage(latestVersion), kind: 'warn', action, links, dismiss: null };
-  renderUpdateReport(note, { announceIt: announceReport });
-  if (notice) showUpdateNotice(latestVersion);
-}
-
-function rememberUpdateResult(result) {
-  if (result.status === 'not-due') return;
-  if (Number.isFinite(result.checkedAt) && result.checkedAt > 0) settings.updateCheckedAt = result.checkedAt;
-  if (result.latestVersion) settings.updateSeenVersion = result.latestVersion;
-  saveSettings();
-}
-
-async function runAutomaticUpdateCheck() {
-  if (settings.updateChecks === false) return;
-  const result = await checkForUpdate({
-    fetchImpl: globalThis.fetch?.bind(globalThis),
-    now: () => Date.now(),
-    lastCheckedAt: settings.updateCheckedAt,
-  });
-  rememberUpdateResult(result);
-  if (result.available) {
-    showStoredUpdateResult({ announceReport: false, notice: true });
-  }
-}
-
-function updateFailureNote() {
-  return {
-    msg: 'The update check could not be completed. You can visit the releases page directly.',
-    kind: 'warn',
-    action: { label: 'Open releases', href: UPDATE_RELEASE_NOTES_URL },
-    links: [],
-    dismiss: null,
-  };
-}
-
-async function runExplicitUpdateCheck() {
-  if (updateCheckInFlight) return;
-  const button = $('#btn-check-updates');
-  updateCheckInFlight = true;
-  if (button) {
-    button.disabled = true;
-    button.textContent = 'Checking...';
-  }
-  renderUpdateReport({ msg: 'Checking GitHub for the latest version...', kind: 'ok', action: null, links: [], dismiss: null });
-  try {
-    const result = await checkForUpdate({
-      fetchImpl: globalThis.fetch?.bind(globalThis),
-      now: () => Date.now(),
-      lastCheckedAt: settings.updateCheckedAt,
-      force: true,
-    });
-    rememberUpdateResult(result);
-    if (result.available) {
-      showStoredUpdateResult({ announceReport: true, notice: false });
-    } else if (result.status === 'current') {
-      renderUpdateReport({
-        msg: `This is the latest version. You have ${APP_VERSION}.`,
-        kind: 'ok',
-        action: null,
-        links: [],
-        dismiss: null,
-      });
-    } else {
-      renderUpdateReport(updateFailureNote());
-    }
-  } finally {
-    updateCheckInFlight = false;
-    if (button) {
-      button.disabled = false;
-      button.textContent = UPDATE_CHECK_BUTTON_TEXT;
-    }
-  }
 }
 
 // ------------------------------------------------------------------ theme
@@ -3344,9 +3173,7 @@ const dataView = createDataView({
   elements: () => ({
     apiBase: $('#api-base'),
     optCovers: $('#opt-covers'),
-    optUpdateChecks: $('#opt-update-checks'),
     optTheme: $('#opt-theme'),
-    btnCheckUpdates: $('#btn-check-updates'),
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
     btnExportMd: $('#btn-export-md-2'),
@@ -3382,9 +3209,7 @@ const dataView = createDataView({
     return res;
   },
   onSetCovers: (on) => setCovers(on),
-  onSetUpdateChecks: (on) => setUpdateChecks(on),
   onSetTheme: (value) => setTheme(value),
-  onRunUpdateCheck: runExplicitUpdateCheck,
   onCheckLocalConnection: () => refreshLocalConnection({ explicit: true }),
   onApiBaseSubmit: (value) => {
     settings.apiBase = value;
@@ -3673,12 +3498,10 @@ function renderAll() {
 // not hoist the way function declarations do.
 export function boot() {
   setInterval(renderQueue, 1000);
-  void runAutomaticUpdateCheck();
 
   progressView.wire();
   store.load();
   applyCoversSetting();
-  applyUpdateCheckSetting();
   applyThemeSetting();
   ensurePublishingViews();
   wireSidebar();
@@ -3757,7 +3580,6 @@ export function boot() {
   // has touched anything.
   $('#about-version').textContent = APP_VERSION;
   $('#about-schema').textContent = String(SCHEMA_VERSION);
-  showStoredUpdateResult({ announceReport: false, notice: true });
 }
 
 // ------------------------------------------------------------------ library and progress bands

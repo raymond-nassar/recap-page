@@ -1,11 +1,12 @@
 {
   "version": 1,
-  "migrationBaseline": "b293db50ac1bbce1f1496e4f3b965c5cc492a887",
-  "corpusSha256": "a93c17361c705a88cce4eb77e85094a0583fa5a220bbaad359d3ad7a4358e585",
+  "migrationBaseline": "cccf8f7e01fc149ccab9f4f599f4eb9f5fb9099e",
+  "corpusSha256": "20fa7141b73af28125e66ee4283df80f2d4eb049eb59634ba5c773f4d499514c",
   "sealedTargets": [
+    "src/js/lib/updateCheck.js",
     "src/js/main.js"
   ],
-  "expectedCount": 202,
+  "expectedCount": 206,
   "entries": [
     {
       "site": ".copilot-tracking/changes/2026-08-21/add-issues-progressive-disclosure-changes.md|chg-006-two-claims-this-change-made-false-and-on|src/js/main.js:4022|0",
@@ -150,6 +151,24 @@
       "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L1816-L1849",
       "contentSha256": "50bdfdc654d0f5d5f89822a4c6797438919aa47febd5ca77465adf25af4d2ca3",
       "claimSha256": "9e882cf0147ec00c60a00ab4fd787215bfad440d27ae4cbd0fe62cc6bc572d71"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/lib/updateCheck.js:3-4|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/lib/updateCheck.js#L3-L4",
+      "contentSha256": "14908896cd03ce43427d2ccb65750e8da8bd2274f4e2675afa4d6dde06026f26",
+      "claimSha256": "008879d3d754db103a8f8cfd510b92ab8d109a95d96c42d52a39e7be3825ca91"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/lib/updateCheck.js:4|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/lib/updateCheck.js#L4",
+      "contentSha256": "907a6336435cb8d12223f90c6ea4979765a67ace384f66e01d9ca57e2314a0d7",
+      "claimSha256": "77ee358255a077c291898cbc20a53ee6d112374308a08a90b80438dafa48c496"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|item-details|src/js/lib/updateCheck.js:55-95|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/lib/updateCheck.js#L55-L95",
+      "contentSha256": "11a5af4052528865a993e98c5ea80d527ed666002a46386943817781d355afa3",
+      "claimSha256": "6074e3e8f12970d62abda0a5a37e6eb0fabeb9893f76936d9032b5cf7cea31f2"
     },
     {
       "site": "PRODUCT_BACKLOG.md|item-details|src/js/main.js:1230|0",
@@ -1212,6 +1231,12 @@
       "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/main.js#L3981-L4007",
       "contentSha256": "8b5b89bff7b6a1b8884cf9c85660da5332f6e1616dbc4711669a3e4ff15d65a2",
       "claimSha256": "b3b057fad0f3d49bf14d6ddc40af42d30fe2329a8ec4c8213eed92bda13363ff"
+    },
+    {
+      "site": "PRODUCT_BACKLOG.md|the-backlog#BL-164|src/js/lib/updateCheck.js:4|0",
+      "historical": "git:e0ef811d53eef803df1752f9ba38d9e25cded729:src/js/lib/updateCheck.js#L4",
+      "contentSha256": "907a6336435cb8d12223f90c6ea4979765a67ace384f66e01d9ca57e2314a0d7",
+      "claimSha256": "89f90371a37cbfd7c8ca17d8368cf6d4bd6eafc03f0dd2960ccbc1a050f26f66"
     },
     {
       "site": "PRODUCT_BACKLOG.md|the-backlog#BL-191|src/js/main.js:4016-4033|0",

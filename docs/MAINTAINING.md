@@ -194,8 +194,8 @@ $env:MRT_PUPPETEER='C:\path\to\scratch-directory'
 npm run store:assets
 ```
 
-The generator uses an isolated temporary browser profile, turns cover art and update checks off,
-captures fixed synthetic progress, audits the visible text and layout before each image, and removes
+The generator uses an isolated temporary browser profile, turns cover art off, captures fixed
+synthetic progress, audits the visible text and layout before each image, and removes
 the profile afterwards. Review every generated image before committing it. Package icons and
 package-copied files are not changed.
 
@@ -678,19 +678,23 @@ winapp --version
 npm run msix:pack
 ```
 
-The packer writes signed x64 and ARM64 version `2.0.1.0` packages plus their bundle under ignored
-`dist/msix/`. It also writes the x64 `2.0.1.1` update artifact under `dist/msix-proof/`, where it
+The packer writes signed x64 and ARM64 version `2.0.2.0` packages plus their bundle under ignored
+`dist/msix/`. It also writes the x64 `2.0.2.1` update artifact under `dist/msix-proof/`, where it
 cannot enter the Store bundle. Both official Node archives are checked against Node's published
 SHA-256 list. Each package uses its native Node executable to run the maintained supervisor and the
 unchanged server. Package assets are generated and all outputs are signed with one transient
 certificate before the private key and password are deleted. Never commit anything under `dist/`.
 
-Inspect every package, both bundle slices, the Node hashes, PE machine fields, and live process
-architectures:
+On any build host, inspect every package and both bundle slices for identity, updater absence, Node
+hashes, and PE machine fields without starting a foreign runtime:
 
 ```text
-npm run msix:inspect
+npm run msix:inspect -- --structural
 ```
+
+On Windows on Arm, `npm run msix:inspect` also measures the x64-emulated and native ARM64 runtime
+processes. Certification workflows use the structural form, then leave native execution to the
+matching installed-proof host.
 
 The public CER requires an administrator-approved trust step before `.msix` installation. No owner
 credential or Store signing secret is used. Run the three proof scenarios only after that trust step:
@@ -703,7 +707,7 @@ npm run msix:prove -- --scenario=update-state-continuity
 
 Those commands default to the standalone x64 package. Add
 `--architecture=arm64 --source=bundle` to the first two scenarios to prove that Windows selects the
-ARM64 slice from the final bundle. The update journey remains x64 because version `2.0.1.1` is
+ARM64 slice from the final bundle. The update journey remains x64 because version `2.0.2.1` is
 proof-only and never belongs in the Store bundle.
 
 Loose registration is useful for activation debugging but is not installation evidence. Record it

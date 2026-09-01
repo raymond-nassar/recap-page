@@ -17,10 +17,15 @@ launcher instead starts a hidden detached server, verifies the exact package gen
 uncacheable local health response, opens the browser only after readiness, and then exits. A later
 local-data failure checks that health response and gives direct reconnection guidance.
 
-The repository now builds signed x64 and ARM64 version `2.0.1.0` proof packages, one x64/ARM64
-bundle, and an isolated x64 `2.0.1.1` update package. The release integration uses the frozen
-certification-fix baseline. Store submission and publication remain separate owner-controlled
-steps.
+The corrected version `2.0.1.0` bundle was then submitted and failed certification again. The
+[certification report](https://partner.microsoft.com/en-us/dashboard/products/9PDJ7XR9Q40Q/certification/reports/a7a59863-de07-4444-ac07-19e770c49f49)
+states that the product updates outside Microsoft Store. The submitted browser app checked GitHub by
+default, offered a direct standalone ZIP, and told readers to replace the old folder. The next
+candidate removes that path from the one shared app and adds exact package-content inspection.
+
+The repository now builds signed x64 and ARM64 version `2.0.2.0` proof packages, one x64/ARM64
+bundle, and an isolated x64 `2.0.2.1` update package. Store submission and publication remain
+separate actions.
 
 The earlier 2.0.0 structural inspection on Windows 11 ARM64 proved:
 
@@ -142,7 +147,8 @@ hashes above identify only the rejected 2.0.0 submission and must not be reused 
 The workflow uploaded no package, certificate, installer, log, or report artifact. Its public output
 contains only allowlisted host facts, hashes, test names, and result categories. Raw WACK output and
 reports, the randomly generated package inputs, exact package registration, and temporary
-certificate trust were removed. Nothing has been associated, uploaded, submitted, or published.
+certificate trust were removed. The later Partner Center submission was an owner action outside that
+workflow; nothing has been certified or published.
 
 ## Production identity
 
@@ -224,24 +230,28 @@ The build:
 
 1. Fetches pinned official x64 and ARM64 Node runtimes.
 2. Verifies both archives against Node's published SHA-256 list.
-3. Stages native x64 and ARM64 version `2.0.1.0` package layouts.
-4. Stages x64 version `2.0.1.1` under a separate proof-only output boundary.
+3. Stages native x64 and ARM64 version `2.0.2.0` package layouts.
+4. Stages x64 version `2.0.2.1` under a separate proof-only output boundary.
 5. Generates MSIX image assets from the maintained app icon.
 6. Generates one random-password development certificate from the manifest.
 7. Signs both Store packages, the bundle, and the proof-only update with that certificate.
 8. Deletes the private PFX and password, leaving only the public CER for local trust.
 
 The package layouts, runtime downloads, generated assets, and launcher inputs are staged under the
-system temporary directory and removed after packaging. Only Store-safe version `2.0.1.0` artifacts
-and the public CER remain under ignored `dist/msix/`; version `2.0.1.1` remains under ignored
+system temporary directory and removed after packaging. Only Store-safe version `2.0.2.0` artifacts
+and the public CER remain under ignored `dist/msix/`; version `2.0.2.1` remains under ignored
 `dist/msix-proof/`. Do not commit packages, certificates, logs, or proof reports.
 
-Inspect the two packages, both bundle slices, PE machine fields, official Node executable hashes,
-and live process architectures without installing anything:
+On any build host, inspect the two packages and both bundle slices for identity, updater absence,
+PE machine fields, and official Node executable hashes without starting a foreign runtime:
 
 ```text
-npm run msix:inspect
+npm run msix:inspect -- --structural
 ```
+
+On Windows on Arm, `npm run msix:inspect` adds live x64-emulated and native ARM64 runtime
+measurements. The architecture-neutral form is the required workflow gate; installed x64 and ARM64
+jobs own native execution evidence on matching hosts.
 
 ## Complete the installed proof
 
@@ -297,8 +307,8 @@ directory. A temporary Edge profile verifies browser-owned state continuity duri
 proof. Synchronous reader-tab behavior remains owned by the ordinary browser suite because the
 installed proof does not contact Marvel.
 
-The update scenario is x64-only because its `2.0.1.1` package is local proof material. The ARM64
-package and final bundle contain only Store-safe version `2.0.1.0`.
+The update scenario is x64-only because its `2.0.2.1` package is local proof material. The ARM64
+package and final bundle contain only Store-safe version `2.0.2.0`.
 
 The runner recursively prints every nested `AggregateError`. A failure that combines scenario and
 cleanup errors preserves each cause before any decision to repeat it. Busy-port refusal captures the
@@ -349,8 +359,9 @@ Stopping, updating, uninstalling, or reinstalling the package does not remove th
 state. Clearing site data for `127.0.0.1:8787`, using another browser profile, changing the hostname,
 or changing the port selects or destroys a different browser storage bucket.
 
-The GitHub ZIP remains the public Windows download. The MSIX does not replace it until Store
-certification passes and the owner explicitly changes release policy.
+The GitHub ZIP remains a manual standalone Windows download while certification is pending. The app
+does not check that channel or direct readers to it. Microsoft Store is the primary discovery channel
+and the only update channel for Store installations.
 
 ## Remaining Store gates
 
@@ -360,9 +371,10 @@ certification passes and the owner explicitly changes release policy.
 - Use the dedicated [privacy policy](../PRIVACY.md) URL and review every listing disclosure.
 - Complete Partner Center package validation.
 - Review markets, age rating, listing copy, screenshots, legal terms, and certification notes.
-- Upload and submit only after explicit owner approval.
+- Replace the failed package and submit only if every maintained field and package check matches the
+  2026-09-01 owner authorization.
 
-The owner owns every Partner Center action. Repository automation never requests credentials,
+Publication remains a separate owner action. Repository automation never requests credentials,
 accepts terms, reserves a name, uploads a package, or submits a listing.
 
 ## Official references

@@ -1,7 +1,7 @@
 // Backup/Data and Settings view presentation.
 //
 // Owns the event wiring for every control on the Backup & Settings screen: export, restore,
-// undo, cover art, theme, update checks, API base, cache clear, and erase. Each handler
+// undo, cover art, theme, API base, cache clear, and erase. Each handler
 // validates locally and delegates the actual state change to an injected callback, so this
 // module never touches the Store, cache, API, Hydrator, or SynopsisRunner.
 
@@ -97,9 +97,7 @@ export function createDataView({
   onRestore,
   onUndoRestore,
   onSetCovers,
-  onSetUpdateChecks,
   onSetTheme,
-  onRunUpdateCheck,
   onCheckLocalConnection,
   onApiBaseSubmit,
   onClearCache,
@@ -137,9 +135,7 @@ export function createDataView({
     const nodes = elements();
     nodes.apiBase.value = getApiBase();
     nodes.optCovers.addEventListener('change', (e) => onSetCovers(e.target.checked));
-    nodes.optUpdateChecks.addEventListener('change', (e) => onSetUpdateChecks(e.target.checked));
     nodes.optTheme.addEventListener('change', (e) => onSetTheme(e.target.value));
-    nodes.btnCheckUpdates.addEventListener('click', onRunUpdateCheck);
     nodes.btnCheckLocalConnection.addEventListener('click', () => {
       void onCheckLocalConnection();
     });

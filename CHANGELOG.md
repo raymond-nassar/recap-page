@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Made Microsoft Store the only in-app update channel
+
+In plain English: Recap Page no longer checks GitHub for new releases or sends readers to a
+standalone download from inside the app. Microsoft Store installations now have one update path:
+Microsoft Store. The same app can still be run from the standalone archive or source, but those
+copies must be updated manually. Nothing saved in the browser is moved or changed.
+
+For maintainers, the removed controls and request are held by negative source, privacy, cache and
+installed-browser checks. Final MSIX inspection also rejects the retired updater path, endpoints,
+archive link, interface markers and replacement instructions before a package reaches certification.
+
 ### Kept recovery downloads specific to one incident
 
 In plain English: If saved data becomes unreadable more than once without reloading the app, a copy

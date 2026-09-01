@@ -27,7 +27,7 @@
 // is an IndexedDB structure and nothing else here uses the Cache API today, but deleting every cache
 // on the origin would be a worker reaching outside its own business.
 const CACHE_PREFIX = 'mrt-offline-';
-const CACHE = `${CACHE_PREFIX}v1`;
+const CACHE = `${CACHE_PREFIX}v2`;
 
 self.addEventListener('install', () => {
   // Nothing is fetched here on purpose. A precache is a list of files somebody has to keep
