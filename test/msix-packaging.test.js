@@ -47,7 +47,7 @@ test('the manifest uses the exact Partner Center identity', () => {
 
   assert.equal(attribute(identity, 'Name'), 'PanelStackLabs.RecapPage');
   assert.equal(attribute(identity, 'Publisher'), 'CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472');
-  assert.equal(attribute(identity, 'Version'), '2.0.1.0');
+  assert.equal(attribute(identity, 'Version'), '2.0.2.0');
   assert.equal(attribute(identity, 'ProcessorArchitecture'), 'x64');
   assert.match(properties, /<DisplayName>Recap Page<\/DisplayName>/);
   assert.match(properties, /<PublisherDisplayName>PanelStack Labs<\/PublisherDisplayName>/);
@@ -83,10 +83,11 @@ test('the package declares only runFullTrust', () => {
 test('the packer separates the Store bundle from its proof-only update', async () => {
   assert.ok(existsSync(PACK), 'the MSIX packer is missing');
   const packer = await import('../scripts/pack-msix.mjs');
+  const inspector = await import('../scripts/inspect-msix.mjs');
 
-  assert.deepEqual(packer.PACKAGE_VERSIONS, ['2.0.1.0', '2.0.1.1']);
-  assert.equal(packer.STORE_PACKAGE_VERSION, '2.0.1.0');
-  assert.equal(packer.PROOF_UPDATE_VERSION, '2.0.1.1');
+  assert.deepEqual(packer.PACKAGE_VERSIONS, ['2.0.2.0', '2.0.2.1']);
+  assert.equal(packer.STORE_PACKAGE_VERSION, '2.0.2.0');
+  assert.equal(packer.PROOF_UPDATE_VERSION, '2.0.2.1');
   assert.deepEqual(
     packer.PACKAGE_ARCHITECTURES.map(({ id, node }) => ({ id, node })),
     [
@@ -103,13 +104,73 @@ test('the packer separates the Store bundle from its proof-only update', async (
     '0.6.0',
   ].join('\n')), '0.6.0');
   assert.equal(packer.winAppCliVersion('Windows App Development CLI - Version 0.6.0'), null);
-  assert.match(packer.packagePath('x64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.1\.0_x64\.msix$/);
-  assert.match(packer.packagePath('arm64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.1\.0_arm64\.msix$/);
-  assert.match(packer.bundlePath(), /RecapPage_2\.0\.1\.0_x64_arm64\.msixbundle$/);
+  assert.match(packer.packagePath('x64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.2\.0_x64\.msix$/);
+  assert.match(packer.packagePath('arm64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.2\.0_arm64\.msix$/);
+  assert.match(packer.bundlePath(), /RecapPage_2\.0\.2\.0_x64_arm64\.msixbundle$/);
   assert.match(
-    packer.proofPackagePath('2.0.1.1'),
-    /dist[\\/]msix-proof[\\/]RecapPage_2\.0\.1\.1_x64\.msix$/,
+    packer.proofPackagePath('2.0.2.1'),
+    /dist[\\/]msix-proof[\\/]RecapPage_2\.0\.2\.1_x64\.msix$/,
   );
+  assert.deepEqual(inspector.parseInspectArguments([]), { measureRuntimes: true });
+  assert.deepEqual(inspector.parseInspectArguments(['--structural']), { measureRuntimes: false });
+  assert.throws(() => inspector.parseInspectArguments(['--unknown']), /unknown argument/);
+});
+
+test('the MSIX inspector rejects every external updater marker', async () => {
+  const { externalUpdaterFindings } = await import('../scripts/inspect-msix.mjs');
+  const findings = externalUpdaterFindings([
+    { path: 'src/js/lib/updateCheck.js', bytes: '' },
+    {
+      path: 'src/js/main.js',
+      bytes: [
+        'api.github.com/repos/raymond-nassar/recap-page/releases',
+        'github.com/raymond-nassar/recap-page/releases',
+        'marvel-reading-tracker-windows.zip',
+        'runAutomaticUpdateCheck',
+        'runExplicitUpdateCheck',
+        'opt-update-checks',
+        'btn-check-updates',
+        'update-check-report',
+        'Unzip it anywhere',
+        'delete the old folder',
+        'ms-appinstaller:',
+      ].join('\n'),
+    },
+    { path: 'RecapPage.appinstaller', bytes: '<AppInstaller />' },
+  ]);
+
+  assert.deepEqual(
+    new Set(findings.map(({ reason }) => reason)),
+    new Set([
+      'retired updater module',
+      'GitHub release API',
+      'GitHub release page',
+      'standalone Windows archive',
+      'automatic update function',
+      'manual update function',
+      'update preference control',
+      'manual update control',
+      'update result region',
+      'standalone extraction instruction',
+      'standalone replacement instruction',
+      'App Installer URI',
+      'App Installer file',
+    ]),
+  );
+});
+
+test('the MSIX inspector permits legitimate GitHub provenance and Store-neutral update words', async () => {
+  const { externalUpdaterFindings } = await import('../scripts/inspect-msix.mjs');
+  assert.deepEqual(externalUpdaterFindings([
+    {
+      path: 'src/index.html',
+      bytes: 'https://github.com/emreparker/marvel-comics',
+    },
+    {
+      path: 'src/js/storage.js',
+      bytes: 'function updateStoredReadingProgress() {}',
+    },
+  ]), []);
 });
 
 test('the MSIX lane adds ARM64 without changing the ZIP runtime target', () => {
@@ -192,12 +253,12 @@ test('the coordinator accepts only a full package-input generation digest', asyn
   const { readPackageGeneration } = await import('../packaging/windows/Launcher.mjs');
   const digest = 'a'.repeat(64);
   assert.equal(readPackageGeneration('C:\\Package', () => JSON.stringify({
-    packageVersion: '2.0.1.0',
+    packageVersion: '2.0.2.0',
     generation: digest,
   })), digest);
   assert.equal(readPackageGeneration('C:\\Package', () => JSON.stringify({
-    packageVersion: '2.0.1.0',
-    generation: 'proof-2.0.1.0',
+    packageVersion: '2.0.2.0',
+    generation: 'proof-2.0.2.0',
   })), null);
 });
 
@@ -747,7 +808,7 @@ test('package removal fails if the exact identity remains registered', async () 
   const remaining = {
     Name: 'PanelStackLabs.RecapPage',
     PackageFamilyName: 'PanelStackLabs.RecapPage_we33aa8nvkpcc',
-    PackageFullName: 'PanelStackLabs.RecapPage_2.0.1.1_x64__we33aa8nvkpcc',
+    PackageFullName: 'PanelStackLabs.RecapPage_2.0.2.1_x64__we33aa8nvkpcc',
   };
   let removalCalls = 0;
   assert.throws(

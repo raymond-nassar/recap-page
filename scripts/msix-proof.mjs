@@ -868,7 +868,7 @@ async function updateStateContinuity(architecture, source) {
         },
         read: { 900001: 1 },
         overrides: {},
-        notes: { 900001: '2.0.1.0 to 2.0.1.1 continuity' },
+        notes: { 900001: '2.0.2.0 to 2.0.2.1 continuity' },
         lists: {
           certification: {
             id: 'certification',

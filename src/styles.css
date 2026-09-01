@@ -142,7 +142,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:935-942`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:905-912`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -1304,9 +1304,8 @@ code { background: rgb(var(--tint-base) / 5.098%); border-radius: 6px; padding: 
    because it is a real destination for a finger and not a piece of the message. */
 .notice-act { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
 .notice-act .grow { flex: 1; }
-.notice-act :is(button, a.quiet) {
+.notice-act button {
   min-height: 44px; padding-inline: var(--space-6); display: inline-flex; align-items: center;
-  text-decoration: none;
 }
 
 /* Dismiss is the lesser of the two when a notice carries both, so it reads as secondary by losing

@@ -32,7 +32,6 @@ Recap Page makes these direct requests when the related feature is used:
   marvel.com when no reader link can be resolved.
 - The optional hand-entry lookup sends the title you entered to the Marvel Fandom wiki only after
   you press its lookup button.
-- The optional update check asks GitHub for the latest Recap Page release number.
 
 The receiving service can observe the request, network address, and issue or search information
 needed to answer it. Recap Page does not send your saved lists, notes, read markers, settings, or
@@ -55,7 +54,8 @@ local server and open your configured default browser. The package binds only to
 account, or add telemetry.
 
 Microsoft Store packaging and update delivery do not change the browser storage boundary described
-above.
+above. Recap Page does not contact an external software update service. Store package updates are
+delivered only through Microsoft Store.
 
 ## Control and deletion
 

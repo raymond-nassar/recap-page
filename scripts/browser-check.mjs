@@ -34,10 +34,6 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-import { APP_VERSION } from '../src/js/lib/version.js';
-import {
-  LATEST_RELEASE_API_URL, UPDATE_DOWNLOAD_URL, UPDATE_RELEASE_NOTES_URL,
-} from '../src/js/lib/updateCheck.js';
 import {
   LOCAL_SERVER_HEADER_NAME, LOCAL_SERVER_HEADER_VALUE, LOCAL_SERVER_HEALTH_PATH,
 } from '../src/js/lib/localServer.js';
@@ -52,6 +48,7 @@ import { readerIssueId } from '../src/js/lib/markdown.js';
 // driver are different answers to different questions, and a caller that cannot tell them apart
 // reports "the app is broken" when the truth is "the driver is not here".
 const EXIT_PREREQ = 2;
+const RETIRED_UPDATE_API_URL = 'https://api.github.com/repos/raymond-nassar/recap-page/releases/latest';
 
 // ------------------------------------------------------------------ prerequisites
 
@@ -1431,69 +1428,13 @@ const MUTATIONS = [
     },
   },
   {
-    id: 'update-default-newer',
+    id: 'update-request-reintroduced',
     breaks: 'updates',
-    why: 'the default release answer becomes newer, so an unchanged app would start warning every scenario',
-    script: () => {
-      window.__mrtUpdate = 'newer';
-    },
-  },
-  {
-    id: 'update-suppressed',
-    breaks: 'updates',
-    why: 'the update endpoint keeps reporting the running version, so the newer-release assertion has to notice the missing offer',
-    script: () => {
-      window.__mrtUpdate = 'current';
-    },
-  },
-  {
-    id: 'update-download-wrong',
-    breaks: 'updates',
-    why: 'the primary action is pointed at the release page instead of the stable zip download',
-    script: () => {
-      document.addEventListener('DOMContentLoaded', () => {
-        const rewrite = () => {
-          const target = 'https://github.com/raymond-nassar/recap-page/releases/latest';
-          for (const link of document.querySelectorAll('#app-report .notice a')) {
-            if (/Download version/.test(link.textContent ?? '')) {
-              if (link.href !== target) link.href = target;
-            }
-          }
-        };
-        new MutationObserver(rewrite).observe(document.body, { childList: true, subtree: true });
-        rewrite();
-      });
-    },
-  },
-  {
-    id: 'update-notes-missing',
-    breaks: 'updates',
-    why: 'the secondary release-notes link is removed while the download stays present',
-    script: () => {
-      document.addEventListener('DOMContentLoaded', () => {
-        const remove = () => {
-          for (const link of document.querySelectorAll('#app-report .notice a')) {
-            if ((link.textContent ?? '').trim() === 'What changed') link.remove();
-          }
-        };
-        new MutationObserver(remove).observe(document.body, { childList: true, subtree: true });
-        remove();
-      });
-    },
-  },
-  {
-    id: 'update-await',
-    breaks: 'updates',
-    why: 'the boot path waits for the update check, so a hanging release request keeps the app from drawing',
-    script: () => {
-      document.addEventListener('DOMContentLoaded', () => {
-        if (sessionStorage.getItem('mrt.update.stub') !== 'hang') return;
-        for (const view of document.querySelectorAll('.view')) view.hidden = true;
-      });
-    },
-    rewriteMain: (source) => source
-      .replace('export function boot() {', 'export async function boot() {')
-      .replace('  void runAutomaticUpdateCheck();', '  await runAutomaticUpdateCheck();'),
+    why: 'boot contacts the retired GitHub release endpoint, so the Store-only scenario has to notice',
+    rewriteMain: (source) => source.replace(
+      'export function boot() {',
+      `export function boot() {\n  void fetch('${RETIRED_UPDATE_API_URL}');`,
+    ),
   },
   {
     id: 'setup-guide-card-route-off',
@@ -4066,8 +4007,8 @@ const SCENARIOS = [
       })));
       const theme = settings.find((card) => card.heading === 'Theme');
       const updates = settings.find((card) => card.heading === 'Update checks');
-      t.check('Settings controls no longer repeat themselves in adjacent descriptions',
-        theme?.standing === null && updates?.standing === null && updates?.control === 'Check once a day',
+      t.check('Settings controls stay concise and the retired update card is absent',
+        theme?.standing === null && updates === undefined,
         JSON.stringify({ theme, updates }));
 
       const libraryHeads = await page.$$eval(
@@ -6435,72 +6376,54 @@ const SCENARIOS = [
   },
   {
     id: 'updates',
-    title: 'a release notice offers the zip without blocking startup',
+    title: 'the shared app exposes no external update path',
     async run(page, t) {
+      const legacySettings = JSON.stringify({
+        covers: false,
+        filter: 'all',
+        updateChecks: true,
+        updateCheckedAt: 1,
+        updateSeenVersion: '9.9.9',
+      });
+      await page.evaluateOnNewDocument((value) => {
+        localStorage.setItem('mrt.settings', value);
+      }, legacySettings);
       await open(page, '/');
-      const currentAsked = await page.waitForFunction(() => (window.__mrtUpdateRequests ?? 0) >= 1, { timeout: 15000 })
-        .then(() => true, () => false);
-      const current = await readUpdateNotice(page);
-      t.check('the running version makes one local stub request and paints no update notice',
-        currentAsked && current.notice === null, JSON.stringify(current));
+      await page.waitForSelector('#view-home:not([hidden])', { timeout: 15000 });
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      const observed = await page.evaluate(() => {
+        const text = document.body.textContent.replace(/\s+/g, ' ').trim();
+        return {
+          requests: window.__mrtUpdateRequests ?? 0,
+          settings: localStorage.getItem('mrt.settings'),
+          controls: [
+            'opt-update-checks',
+            'btn-check-updates',
+            'update-check-report',
+          ].filter((id) => document.getElementById(id)),
+          hasUpdateCopy: /Download version|What changed|delete the old folder|Unzip it anywhere/.test(text),
+        };
+      });
+      t.check('boot makes no GitHub release request', observed.requests === 0, JSON.stringify(observed));
+      t.check(
+        'legacy updater settings stay byte-for-byte unchanged',
+        observed.settings === legacySettings,
+        JSON.stringify(observed.settings),
+      );
+      t.check(
+        'settings and About expose no updater controls',
+        observed.controls.length === 0,
+        JSON.stringify(observed.controls),
+      );
+      t.check(
+        'the interface contains no download or replacement guidance',
+        !observed.hasUpdateCopy,
+        JSON.stringify(observed),
+      );
 
       await click(page, '[data-view="about"]');
-      await click(page, '#btn-check-updates');
-      const currentReportReady = await page.waitForFunction(
-        () => /This is the latest version/.test(document.querySelector('#update-check-report')?.textContent ?? ''),
-        { timeout: 15000 },
-      ).then(() => true, () => false);
-      const currentReport = await readUpdateReport(page);
-      t.check('the explicit check says the running version is current',
-        currentReportReady && currentReport.text.includes(`You have ${APP_VERSION}`), JSON.stringify(currentReport));
-
-      await setUpdateMode(page, 'newer');
-      await open(page, '/');
-      const appeared = await page.waitForSelector('#app-report .notice', { timeout: 15000 })
-        .then(() => true, () => false);
-      const newer = await readUpdateNotice(page);
-      t.check('a newer release paints the update notice', appeared && newer.notice !== null, JSON.stringify(newer));
-      t.check('the update notice names both versions',
-        newer.text.includes('Version 9.9.9 is available') && newer.text.includes(`You have ${APP_VERSION}`),
-        JSON.stringify(newer.text));
-      t.check('the update notice download uses the stable zip link',
-        newer.download === UPDATE_DOWNLOAD_URL, JSON.stringify(newer.links));
-      t.check('the release notes link is present',
-        newer.notes === UPDATE_RELEASE_NOTES_URL, JSON.stringify(newer.links));
-      t.check('the copy says reading progress stays in the browser',
-        /reading progress is saved by your browser/.test(newer.text), JSON.stringify(newer.text));
-      t.check('the copy says the old folder can be deleted',
-        /delete the old folder/.test(newer.text), JSON.stringify(newer.text));
-
-      await setUpdateMode(page, 'newer', { updateChecks: false });
-      await open(page, '/');
-      const off = await readUpdateNotice(page);
-      t.check('switching automatic checks off prevents the boot request',
-        off.requests === 0 && off.updateChecked === false && off.notice === null, JSON.stringify(off));
-
-      await click(page, '[data-view="about"]');
-      await click(page, '#btn-check-updates');
-      const manualReady = await page.waitForFunction(
-        () => /Version 9\.9\.9 is available/.test(document.querySelector('#update-check-report')?.textContent ?? ''),
-        { timeout: 15000 },
-      ).then(() => true, () => false);
-      const manual = await readUpdateReport(page);
-      t.check('the explicit check still works when automatic checks are off',
-        manualReady && manual.download === UPDATE_DOWNLOAD_URL && manual.notes === UPDATE_RELEASE_NOTES_URL,
-        JSON.stringify(manual));
-
-      await setUpdateMode(page, 'hang');
-      await open(page, '/');
-      const rendered = await page.waitForSelector('#view-home:not([hidden])', { timeout: 4000 })
-        .then(() => true, () => false);
-      t.check('a hanging update check still lets the app render', rendered, await visibleView(page));
-
-      let navigated = false;
-      if (rendered) {
-        await click(page, '[data-view="about"]');
-        navigated = await visibleView(page) === 'view-about';
-      }
-      t.check('and the rendered app remains usable while the request is unsettled', navigated, await visibleView(page));
+      const currentView = await visibleView(page);
+      t.check('the app remains usable without an updater', currentView === 'view-about', currentView);
     },
   },
   {
@@ -7968,48 +7891,6 @@ async function manualReport(page) {
   );
 }
 
-async function setUpdateMode(page, mode, settings = { updateChecks: true, updateCheckedAt: 0 }) {
-  await page.evaluate((nextMode, nextSettings) => {
-    sessionStorage.setItem('mrt.update.stub', nextMode);
-    localStorage.setItem('mrt.settings', JSON.stringify(nextSettings));
-  }, mode, settings);
-}
-
-async function readUpdateNotice(page) {
-  return page.evaluate(() => {
-    const notice = document.querySelector('#app-report .notice');
-    const links = [...document.querySelectorAll('#app-report .notice a')].map((a) => ({
-      label: a.textContent.trim(),
-      href: a.href,
-    }));
-    return {
-      requests: window.__mrtUpdateRequests ?? 0,
-      updateChecked: document.querySelector('#opt-update-checks')?.checked ?? null,
-      notice: notice ? notice.textContent.replace(/\s+/g, ' ').trim() : null,
-      text: notice?.querySelector('.grow')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
-      links,
-      download: links.find((a) => /^Download version /.test(a.label))?.href ?? null,
-      notes: links.find((a) => a.label === 'What changed')?.href ?? null,
-    };
-  });
-}
-
-async function readUpdateReport(page) {
-  return page.evaluate(() => {
-    const report = document.querySelector('#update-check-report');
-    const links = [...document.querySelectorAll('#update-check-report a')].map((a) => ({
-      label: a.textContent.trim(),
-      href: a.href,
-    }));
-    return {
-      text: report?.textContent.replace(/\s+/g, ' ').trim() ?? '',
-      links,
-      download: links.find((a) => /^Download version /.test(a.label))?.href ?? null,
-      notes: links.find((a) => a.label === 'What changed')?.href ?? null,
-    };
-  });
-}
-
 // The stub is installed with evaluateOnNewDocument rather than after load, because the catalog is
 // memoized on first read: a stub installed afterwards is a stub the app has already gone past.
 async function preparePage(page, origin, mutation) {
@@ -8064,7 +7945,7 @@ async function preparePage(page, origin, mutation) {
   await page.evaluateOnNewDocument(
     (
       catalog, catalogFixtures, order, longOrder, negativeOrderItem, orderFile,
-      appVersion, updateApiUrl, defaultApiBase,
+      retiredUpdateApiUrl, defaultApiBase,
       localHealthPath, localHeaderName, localHeaderValue,
     ) => {
       const real = window.fetch.bind(window);
@@ -8206,13 +8087,9 @@ async function preparePage(page, origin, mutation) {
           && requestUrl.pathname === '/v1/health') {
           return Promise.resolve(json({ issue_count: 1 }));
         }
-        if (url === updateApiUrl) {
+        if (url === retiredUpdateApiUrl) {
           window.__mrtUpdateRequests = (window.__mrtUpdateRequests ?? 0) + 1;
-          const mode = window.__mrtUpdate ?? sessionStorage.getItem('mrt.update.stub') ?? 'current';
-          if (mode === 'hang') return new Promise(() => {});
-          if (mode === 'newer') return Promise.resolve(json({ tag_name: 'v9.9.9' }));
-          if (mode === 'older') return Promise.resolve(json({ tag_name: 'v1.0.0' }));
-          return Promise.resolve(json({ tag_name: `v${appVersion}` }));
+          return Promise.resolve(json({ tag_name: 'v9.9.9' }));
         }
         const longAddPath = /\/(series|creators)\/(\d+)\/issues$/.exec(requestUrl.pathname);
         if (longAdd && longAddPath) {
@@ -8432,8 +8309,7 @@ async function preparePage(page, origin, mutation) {
     LONG_ORDER,
     NEGATIVE_ORDER_ITEM,
     ORDER_FILE,
-    APP_VERSION,
-    LATEST_RELEASE_API_URL,
+    RETIRED_UPDATE_API_URL,
     DEFAULT_BASE,
     LOCAL_SERVER_HEALTH_PATH,
     LOCAL_SERVER_HEADER_NAME,

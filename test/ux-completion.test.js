@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -244,7 +244,16 @@ test('standing explanations move behind disclosures or become compact labels', (
   assert.match(html, /<summary>What lookup sends<\/summary>/);
   assert.doesNotMatch(html, /Follow your system setting, or pick one and keep it/);
   assert.doesNotMatch(html, /Once a day, the app can ask GitHub/);
-  assert.match(html, /id="opt-update-checks" \/> Check once a day/);
+  assert.equal(existsSync(join(ROOT, 'src', 'js', 'lib', 'updateCheck.js')), false);
+  assert.doesNotMatch(html, /opt-update-checks|btn-check-updates|update-check-report/);
+  assert.doesNotMatch(
+    main,
+    /updateChecks|updateCheckedAt|updateSeenVersion|runAutomaticUpdateCheck|runExplicitUpdateCheck/,
+  );
+  assert.doesNotMatch(
+    `${html}\n${main}`,
+    /api\.github\.com\/repos\/raymond-nassar\/recap-page\/releases|marvel-reading-tracker-windows\.zip|delete the old folder|Unzip it anywhere/,
+  );
   assert.match(libraryView, /class: 'library-sort', text: view\.sort/);
   assert.match(main, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
 });

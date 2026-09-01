@@ -1,9 +1,10 @@
 # Microsoft Store submission packet
 
 This packet prepares the reviewable values and assets for Recap Page's replacement Microsoft Store
-submission. It does not authorize an account change, legal acceptance, capability request, upload,
-submission, publication, or change to the existing GitHub ZIP release. The owner performs every
-Partner Center action.
+submission. On 2026-09-01 the owner authorized replacing the failed package and selecting **Submit
+for certification** after every gate in this packet passes against the exact accepted source and
+bundle. That direction does not authorize an account change, new legal acceptance, capability
+change, publication, or change to the existing GitHub ZIP release.
 
 Official requirements and public URLs were rechecked on 2026-08-29. Partner Center remains
 authoritative when its live wording or validation differs from this packet.
@@ -12,7 +13,7 @@ authoritative when its live wording or validation differs from this packet.
 
 | Decision | Recommended value | Owner action |
 |---|---|---|
-| Product | Rejected first submission: Recap Page 2.0.0, package `2.0.0.0`. Replacement release: Recap Page 2.0.1, package `2.0.1.0`. | Confirm the exact release candidate |
+| Product | Rejected packages: `2.0.0.0` and `2.0.1.0`. Replacement release: Recap Page 2.0.2, package `2.0.2.0`. | Confirm the exact release candidate |
 | Publisher display | PanelStack Labs | Confirm |
 | Initial market | United States only | Approve or replace |
 | Price | Free, no trial, no sale | Confirm |
@@ -25,8 +26,9 @@ authoritative when its live wording or validation differs from this packet.
 | Age rating | Live IARC questionnaire required | Review every current question and generated rating |
 | Restricted capability | `runFullTrust` | Approve the justification in the live request |
 | Package | Final x64 and ARM64 MSIX bundle only | Verify hash before upload |
+| Product update channel | Microsoft Store only; no in-app products | Confirmed 2026-09-01 |
 
-The owner must stop before every action named in [Owner-only stop points](#owner-only-stop-points).
+Stop for every unresolved action named in [Live-review stop points](#live-review-stop-points).
 
 ## Product identity and package-derived fields
 
@@ -40,7 +42,7 @@ listing copy to improvise.
 | Package publisher | `CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472` | Package manifest |
 | Publisher display name | PanelStack Labs | Package manifest |
 | Package family | `PanelStackLabs.RecapPage_we33aa8nvkpcc` | Partner Center identity |
-| Package version | Rejected: `2.0.0.0`. Replacement: `2.0.1.0`. | Bundle package manifests |
+| Package version | Rejected: `2.0.0.0` and `2.0.1.0`. Replacement: `2.0.2.0`. | Bundle package manifests |
 | Architectures | x64 and ARM64 | Bundle package manifests |
 | Device family | Windows Desktop | Package manifest |
 | Minimum Windows version | Windows 10 version 2004, build `10.0.19041.0` | Package manifest |
@@ -134,8 +136,7 @@ policy text, paste the same maintained policy there as well as supplying the URL
 Add these customer-facing requirements:
 
 1. A supported default web browser.
-2. Internet access for live metadata, optional cover art, external reading links, and optional
-   update checks.
+2. Internet access for live metadata, optional cover art, and external reading links.
 3. A Marvel Unlimited subscription is required only to read subscription comics.
 
 ## English (United States) Store listing
@@ -166,7 +167,7 @@ Unlimited subscription.
 
 Recap Page contains no comic pages. Cover art is optional and loads directly from Marvel image
 hosts. Search and issue details use a community metadata service. An optional manual lookup can open
-Marvel Fandom, and an optional update check can contact GitHub.
+Marvel Fandom.
 
 Curated lists credit Comic Book Herald and Comic Book Reading Orders where their guides supply the
 factual issue selection and sequence.
@@ -270,7 +271,7 @@ owner-only action and may add certification time.
 
 Paste this after updating the date if submission occurs later:
 
-> Prepared 2026-08-29.
+> Prepared 2026-09-01.
 >
 > Recap Page is a packaged classic desktop app. Launching it starts the bundled
 > architecture-matched official Node runtime as a hidden local server bound only to
@@ -294,8 +295,12 @@ Paste this after updating the date if submission occurs later:
 >
 > The app includes no comic pages. Cover art can be disabled under Backup & settings. It makes
 > direct requests to a community comics metadata service, Marvel image and reader hosts, an optional
-> Marvel Fandom lookup, and an optional GitHub release check. Saved lists, notes, progress, settings,
-> and backups are never uploaded.
+> Marvel Fandom lookup, and no software update service. Saved lists, notes, progress, settings, and
+> backups are never uploaded.
+>
+> Recap Page has no in-app products. The app contains no external updater, release check, download
+> link, or replacement instruction. Product updates are installed and updated only through
+> Microsoft Store.
 >
 > [Before pasting, replace this bracketed line with the exact replacement-candidate WACK run URL,
 > package-input commit, and result counts. The rejected package's result is historical evidence only.]
@@ -320,10 +325,10 @@ copied into the bracketed line above.
 ## Listing assets
 
 The five screenshots were captured at 1920 x 1080 from installed Edge with an isolated temporary
-profile. Cover art and update checks were off. The first two views use empty state. The remaining
-views use one synthetic House of M import with the first five of 20 issues marked read at fixed
-January 2026 timestamps and no notes. No private browser profile, progress, path, email, or account
-data entered the captures.
+profile. Cover art was off, and the app contains no update controls. The first two views use empty
+state. The remaining views use one synthetic House of M import with the first five of 20 issues
+marked read at fixed January 2026 timestamps and no notes. No private browser profile, progress,
+path, email, or account data entered the captures.
 
 | File | Caption for Partner Center |
 |---|---|
@@ -346,7 +351,7 @@ Reviewed asset measurements:
 | `02-browse-reading-lists.png` | 1920 x 1080 | 176653 | `4F710F86B8D8558ED064D3F38A6C4D4B54D2EBF90B98BD95DD6E9E8F6BF5F19E` |
 | `03-reading-paths.png` | 1920 x 1080 | 93419 | `A65510D3E503A02E4ACD8197A2A94F8A18088B417B8D9DFA4BA15F1713F8E5DA` |
 | `04-reading-progress.png` | 1920 x 1080 | 307843 | `CCFBB0EBE0EE94450D852FDA992F5D5A1AF0C4471B8F5019B131B3B3CC00080E` |
-| `05-about-privacy.png` | 1920 x 1080 | 119850 | `516E602C3776AF2FF5C37B421714080BA68460A199A18755463AAF2E34DF10A0` |
+| `05-about-privacy.png` | 1920 x 1080 | 122777 | `ED6CAD829AE0A1F3EBC04249CEBB90C16135D8DE6D7D598E5B385D6224302C94` |
 | `store-tile-300.png` | 300 x 300 | 3060 | `F61B2F972D66CEF3ECBB6723FBE222ADA2C9234A83B4CEB1A8F90336C95C3ECF` |
 
 Omit trailers, 16:9 Super hero art, game poster art, box art, Xbox art, and Holographic art. The
@@ -360,7 +365,7 @@ and release integration packages those exact corrected bytes at the final replac
 Before the owner uploads a replacement:
 
 1. Freeze the final default branch after every intended release pull request has merged.
-2. Confirm the application version is `2.0.1` and the Store package version is `2.0.1.0`.
+2. Confirm the application version is `2.0.2` and the Store package version is `2.0.2.0`.
 3. Confirm the submission packet commit is based on that exact branch and the tree is clean.
 4. Run lint, tests, counts, sizes, anchors, palette, publication, and the Store packet check.
 5. Confirm the installed x64 and ARM64 certification journeys and WACK apply to those exact
@@ -380,9 +385,11 @@ The rejected submission measured SHA-256
 only and must not appear as the replacement candidate. Microsoft re-signs Store MSIX packages after
 certification, so a local development signature is not a production-signing claim.
 
-## Owner-only stop points
+## Live-review stop points
 
-Stop and obtain the owner's live review before each of these:
+The 2026-09-01 direction authorizes replacing the package and selecting **Submit for
+certification** only when all maintained values remain unchanged and every package gate passes.
+Stop for live review before any of these:
 
 1. Selecting or changing markets, audience, discoverability, pricing, or publication timing.
 2. Entering private regulatory contact details or changing notification recipients.
@@ -390,15 +397,13 @@ Stop and obtain the owner's live review before each of these:
 4. Answering each live IARC question and accepting the generated regional ratings.
 5. Approving final listing copy, legal terms, screenshots, tile, and URLs.
 6. Requesting approval for `runFullTrust`.
-7. Uploading the exact bundle.
-8. Saving a package section whose validation result has not been compared with this packet.
-9. Selecting **Submit for certification**.
-10. Changing the existing GitHub ZIP release policy.
-11. Selecting **Publish now** after certification.
+7. Saving a package section whose validation result does not match this packet.
+8. Changing the existing GitHub ZIP release policy.
+9. Selecting **Publish now** after certification.
 
-Do not upload. Do not submit for certification. Do not publish without the owner present and
-explicitly approving that action. Do not close issues #188, #360, or #368 from this preparation
-work.
+Do not upload or submit a package that differs from the accepted source, reviewed hash, or maintained
+fields. Do not publish without a separate explicit direction. Do not close issues #188, #360, or
+#368 from this preparation work.
 
 Issue #188 can close only after the owner sees the final Partner Center listing and confirms that
 the title is exactly **Recap Page**, Marvel appears only as accurate descriptive copy, and the

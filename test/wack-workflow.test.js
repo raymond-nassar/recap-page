@@ -63,9 +63,24 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
 
 test('the supported Windows job executes parser fixtures before certification', () => {
   const fixtures = workflow.indexOf('run: ./scripts/test-wack-report.ps1');
+  const builds = [...workflow.matchAll(/run: npm run msix:pack/g)].map((match) => match.index);
+  const inspections = [...workflow.matchAll(
+    /run: npm run msix:inspect -- --structural/g,
+  )].map((match) => match.index);
   const certification = workflow.indexOf('./scripts/run-wack.ps1');
+  const installedProof = workflow.indexOf('npm run msix:prove --');
   assert.ok(fixtures > 0, 'the executable PowerShell fixture suite is not run');
   assert.ok(certification > fixtures, 'certification runs before its parser fixture suite');
+  assert.equal(builds.length, 2, 'each proof lane should build one package set');
+  assert.equal(inspections.length, 2, 'each proof lane should inspect one package set');
+  assert.ok(
+    builds[0] < inspections[0] && inspections[0] < certification,
+    'WACK consumes packages before structural inspection',
+  );
+  assert.ok(
+    builds[1] < inspections[1] && inspections[1] < installedProof,
+    'installed proof consumes packages before structural inspection',
+  );
   assert.match(runner, /\. \(Join-Path \$PSScriptRoot 'wack-report\.ps1'\)/);
 });
 
@@ -99,6 +114,7 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
   assert.match(workflow, /--scenario=certification-functionality/);
   assert.match(workflow, /--scenario=busy-port-refusal/);
   assert.match(workflow, /--scenario=update-state-continuity/);
+  assert.match(workflow, /npm run msix:inspect -- --structural/);
   assert.match(workflow, /runner: windows-11-arm/);
   const installedCleanup = workflow.match(
     /- name: Remove installed proof material[\s\S]*?shell: (.+)\r?\n/,

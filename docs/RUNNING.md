@@ -6,10 +6,16 @@ reading progress.
 
 ## Choose how to run it
 
-Both routes open the same app at the same address. You can switch between them without moving or
+All three routes open the same app at the same address. You can switch between them without moving or
 losing progress.
 
-### Windows download
+### Microsoft Store
+
+[Open Recap Page in Microsoft Store](https://apps.microsoft.com/detail/9PDJ7XR9Q40Q). Microsoft Store
+is the primary Windows discovery and installation channel and delivers all updates for Store
+installations. The listing may not offer installation until its current certification completes.
+
+### Standalone Windows archive
 
 1. [Download the Windows
    archive](https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip).
@@ -89,7 +95,7 @@ there. Recap Page now checks its local app connection and explains how to restor
 uncached Reading List needs the separate local copy.
 
 Leave the browser-installed window open. Start Recap Page with **Start on Windows.cmd**,
-**Start on macOS.command**, or the future Microsoft Store installation. Return to the browser app
+**Start on macOS.command**, or the Microsoft Store installation. Return to the browser app
 and choose **Check again** in its notice, or open **Backup & settings**, **Local app connection**,
 and choose **Check connection**. Browser security does not allow the installed website to start
 that separate local program by itself.
@@ -123,13 +129,12 @@ show progress saved in Edge, and it does not remove the Edge copy.
 
 ## Upgrade safely
 
-Download the latest archive or source copy, stop the old copy, and start the new one at
-<http://127.0.0.1:8787/>. Progress carries over because it belongs to that browser address, not to
-the folder being replaced.
+Microsoft Store installations receive product updates only through Microsoft Store. Recap Page has
+no in-app route to another update channel.
 
-The app checks GitHub once a day for the latest version number and never installs anything
-automatically. Automatic checks can be switched off under **Backup & settings**. The manual check
-under **About this app** remains available.
+For a standalone archive or source copy, download the replacement manually, stop the old copy, and
+start the new one at <http://127.0.0.1:8787/>. Progress carries over because it belongs to that
+browser address, not to the folder being replaced.
 
 Major versions mark a substantial new generation of the app and are also required when saved data
 changes in a way an older build cannot read. Release notes state whether progress remains
@@ -224,13 +229,15 @@ busy-port guidance through an update from `2.0.0.0` to `2.0.0.1`. The first x64/
 submission then failed certification because its visible launch console could be closed with the
 server attached. A cached browser shell remained, but uncached bundled data could no longer load.
 
-The corrected package starts the server independently in the background and closes its launch
+The corrected launcher starts the server independently in the background and closes its launch
 console after the exact package generation answers a health check. Closing the browser does not stop
 that server. Starting Recap Page again reuses the matching server and opens the same address.
 Updating or uninstalling the package ends its background process. If browser opening fails, the
 launch window keeps the exact address visible so it can be opened manually.
 
-A replacement Store package has not been uploaded, submitted, certified, or published.
+That corrected replacement was submitted and failed certification because the shared app still
+offered a GitHub ZIP as an update. The next replacement removes that route globally and adds final
+package inspection for Store-only updates. It has not yet been submitted, certified, or published.
 
 Installing or uninstalling the future package does not move or remove browser-owned progress. The
 same address and browser profile remain the storage location. See the
