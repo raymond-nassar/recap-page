@@ -251,8 +251,8 @@ test('every issue-bearing surface uses the shared focus route without replacing 
   assert.match(search, /surface: 'search'/);
   assert.match(search, /btn\.addEventListener\('click'/);
 
-  const library = main.slice(main.indexOf('function libraryRow'), main.indexOf('// ------------------------------------------------------------------ data view'));
-  assert.match(library, /v\.value === 'library-read'/);
+  const library = read('src/js/views/library.js');
+  assert.match(library, /view\.value === 'library-read'/);
   assert.match(library, /surface: 'everything-read'/);
   assert.doesNotMatch(library, /kind: 'list'/);
 });

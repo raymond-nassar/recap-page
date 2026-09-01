@@ -9,7 +9,7 @@ import {
   createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList, removeFromList, moveItem,
   toggleRead, markRead, isRead, upNext, listProgress, listItems, exportBackup, migrate,
   setOverride, pendingIssueIds, coverUrl, listForCatalogId, SCHEMA_VERSION,
-  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, completionState, orderWord, orderStates, heldCount,
+  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, completionState, orderWord, heldCount,
 } from './lib/model.js';
 import {
   parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl,
@@ -56,7 +56,10 @@ import { askConfirm, askText, askNote, wireAsk } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
 } from './lib/saveEducation.js';
-import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js'; import { createProgressView } from './views/progress.js';
+import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js';
+import { createLibraryView } from './views/library.js';
+import { createProgressView } from './views/progress.js';
+import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -1066,7 +1069,7 @@ function setCovers(on) {
   // a cover too, and paintCoverUrl set no src while covers were off, so those rows need repainting.
   renderReading();
   renderHome();
-  renderLibrary();
+  libraryView.render();
   announce(settings.covers ? 'Cover art on.' : 'Cover art off. Covers are shown as text tiles.');
 }
 
@@ -1982,7 +1985,7 @@ function renderHome() {
   firstRun.hidden = populated;
 
   renderContinue(populated);
-  renderYours(populated);
+  renderYours();
   renderHomeCategories();
 
   // The attribution is required wherever Marvel data is shown, and the year has to be the
@@ -2080,43 +2083,15 @@ function renderContinue(populated) {
   $('#btn-chero-open').setAttribute('aria-label', labelledName($('#btn-chero-open').textContent, list.name));
 }
 
-function renderYours(populated) {
+function renderYours() {
   const sec = $('#home-yours');
-  sec.hidden = !populated;
-  if (sec.hidden) return;
-
-  // The section heading gains a one line summary of the whole shelf: how many orders there are
-  // and how far along they are, written once beside the heading before the tiles are read.
-  writeYoursSummary(sec, store.state);
-
-  const box = $('#home-yours-list');
-  box.replaceChildren(...savedListTiles());
-}
-
-function savedListTiles() {
-  return store.state.listOrder.map((id) => {
-    const list = store.state.lists[id];
-    const { read, total } = listProgress(store.state, id);
-    // The tile prints the count as "3 / 20" and the old name said "3 of 20", so the inserted
-    // word split the run the tile shows. The name is built from that painted text, and gains
-    // the state word now painted on the tile, which is what a visible label must also carry.
-    const count = `${read} / ${total}`;
-    const context = `issues read, ${orderWord(completionState(read, total))}. Open this list`;
-    return el('li', {}, el('button', {
-      type: 'button',
-      'aria-label': labelledName(`${list.name} ${count}`, context),
-      onclick: () => { store.update((s) => setActive(s, id)); showView('read', { push: true }); },
-    }, yoursTile(list, store.state, read, total, count)));
-  });
+  savedLists.render(sec, $('#home-yours-list'));
 }
 
 function renderLibraryHub() {
-  const populated = store.state.listOrder.length > 0;
-  $('#library-yours').hidden = !populated;
-  $('#library-empty').hidden = populated;
-  if (!populated) return;
-  writeYoursSummary($('#library-yours'), store.state);
-  $('#library-yours-list').replaceChildren(...savedListTiles());
+  const yours = $('#library-yours');
+  savedLists.render(yours, $('#library-yours-list'));
+  $('#library-empty').hidden = !yours.hidden;
 }
 
 function ensureHomeFirstRun() {
@@ -5629,96 +5604,6 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
   }
 }
 
-// ------------------------------------------------------------------ library sub-views
-
-// Both sub-views are rendered by one function reading LIBRARY_VIEWS, rather than one function
-// each. Two renderers would be two places for a heading, a subtitle and an empty state to be
-// written, and the second view would be the one that quietly stopped matching the first.
-function renderLibrary() {
-  for (const v of LIBRARY_VIEWS) {
-    const section = $(`#view-${v.value}`);
-    section.querySelector('h1').textContent = v.label;
-
-    const box = section.querySelector('.results');
-    const rows = v.select(store.state);
-    // These views gained the first focusable control they have ever held, the show-more button, so
-    // the whole-container rebuild that ran silently until now can drop focus to the body. The pair
-    // it restores by is written onto the button below; without it a press would lose the reader.
-    let countLine = null;
-    preservingFocus(box, () => {
-      box.replaceChildren();
-      if (!rows.length) {
-        // .empty-state is reused rather than a second rule written: its dashed edge is a shape
-        // difference, not a colour one, so the view reads as deliberately empty under forced colours.
-        box.append(el('div', { class: 'empty-state' }, [
-          el('div', { class: 'empty-glyph', 'aria-hidden': 'true', text: '☐' }),
-          el('p', { text: v.empty }),
-          ...(v.emptyAction ? [emptyAction(v.emptyAction)] : []),
-        ]));
-        return;
-      }
-      const shown = Math.min(listShown.get(v.value) ?? LIBRARY_CAP, rows.length);
-      const slice = rows.slice(0, shown);
-      box.append(el('p', { class: 'library-sort', text: v.sort }));
-      box.append(summaryBand(v.summarise(rows)));
-      if (rows.length > LIBRARY_CAP) countLine = box.appendChild(shownLine(shown, rows.length));
-      if (rows.length < GROUP_MIN) {
-        for (const row of slice) box.append(libraryRow(row, v));
-      } else {
-        for (const group of v.group(slice, Date.now())) {
-          box.append(groupSection(group, (row) => libraryRow(row, v)));
-        }
-      }
-      if (shown < rows.length) box.append(moreButton(v.value, rows.length - shown, renderLibrary));
-    }, { primary: 'more', fallback: () => countLine });
-  }
-}
-
-// "In no list" is said out loud rather than left blank. An issue can be read, or added by hand,
-// and belong to nothing: deleting a list keeps both the issue record and its read state, by the
-// deliberate choice `deleteList` records, and until these views there was no screen anywhere in
-// the app on which such an issue appeared. A blank where the list names go would read as a
-// rendering fault rather than as the fact it is.
-function libraryRow(row, v) {
-  const meta = [
-    row.readAt ? `Read ${new Date(row.readAt).toLocaleDateString()}` : null,
-    row.seriesName ? seriesOnly(row.seriesName) : null,
-    row.lists.length ? `In ${row.lists.join(', ')}` : 'In no list',
-  ].filter(Boolean).join(' · ');
-
-  // The same badge the reading view puts on a hand-added row, so an entry is recognisable as the
-  // same thing in both places. A badge marks a row as unlike its neighbours, which is why the
-  // view where every row is hand-added switches it off rather than repeating it down the page.
-  const badge = v.markHandAdded && row.source === 'manual'
-    ? [' ', el('span', { class: 'badge badge-unknown' }, 'by hand')]
-    : [];
-
-  // No chip repeats this. The meta line already says "In no list" in words, so a chip saying it
-  // again is heard twice by a screen reader and, on the hand-added view where every row is in no
-  // list, prints a column that distinguishes nothing.
-
-  // The variant the reading rows already request, so no new image size enters the cache, and the
-  // fallback is the reading row's bordered tile rather than the larger gradient ones.
-  const img = el('img', { class: 'rcov-i', alt: '', loading: 'lazy', decoding: 'async' });
-  const fb = el('div', { class: 'rcov-f cover-fallback', 'aria-hidden': true });
-  paintCover(img, fb, row, 'portrait_incredible');
-
-  const contents = [
-    el('div', { class: 'rcov' }, [img, fb]),
-    el('div', { class: 'result-main' }, [
-      el('div', { class: 'result-title', text: row.title }),
-      el('div', { class: 'result-meta' }, [el('span', { text: meta }), ...badge]),
-    ]),
-  ];
-  return v.value === 'library-read'
-    ? issueFocusAnchor(row, {
-      surface: 'everything-read',
-      className: 'result result-cov result-focus',
-      children: contents,
-    })
-    : el('div', { class: 'result result-cov' }, contents);
-}
-
 // ------------------------------------------------------------------ data view
 
 function exportMarkdown() {
@@ -6331,7 +6216,7 @@ function renderAll() {
   renderHome();
   renderLibraryHub();
   progressView.render();
-  renderLibrary();
+  libraryView.render();
   renderQueue();
   for (const target of document.querySelectorAll('.add-target')) {
     target.textContent = addDestination();
@@ -6459,20 +6344,6 @@ export function boot() {
 // next 120, so a several-hundred issue read history opens instantly rather than laying out at once.
 const LIBRARY_CAP = 120;
 
-// Below this, the rows are rendered in one run with no headings. The library groupings are derived
-// buckets rather than states: by date read, and by first letter. On a short collection they degrade
-// into a heading per row, which is not a grouping, it is the same list with twice the vertical
-// space and a count of 1 printed beside every entry. Measured on the hand-added view with four
-// entries: four headings, four counts, all of them 1. The progress groupings are deliberately not
-// subject to this, because there the group is the state itself and "Not started" is worth saying
-// about one series.
-const GROUP_MIN = 12;
-
-// Keyed by the view value for the library, and by "scope:listId" for progress, which cannot
-// collide because a library value is never of that shape. The count is not persisted: a fresh
-// visit to a long list starts at the cap, which is the honest default for a glance.
-const listShown = new Map();
-
 // A cell's figure is a count unless it is already a phrase, as the progress band's "read of
 // tracked" cell is, so a number is given its thousands separator and a string is left alone.
 function summaryBand(cells) {
@@ -6496,7 +6367,7 @@ function shownLine(shown, total) {
 // The act and key pair is what restoreFocus matches on, so a button that survives its own press is
 // re-focused in the rebuilt DOM rather than dropping focus to the body. rerender is passed in so
 // the one builder serves both views, each re-rendering itself.
-function moreButton(key, rest, rerender, shownByKey = listShown) {
+function moreButton(key, rest, rerender, shownByKey) {
   return el('button', {
     type: 'button',
     class: 'btn btn-g',
@@ -6544,48 +6415,39 @@ const progressView = createProgressView({
   preservingFocus,
 });
 
-// ------------------------------------------------------------------ landing page order tiles
+const savedLists = createSavedListsPresenter({
+  el,
+  getState: () => store.state,
+  openList: (id) => {
+    store.update((state) => setActive(state, id));
+    showView('read', { push: true });
+  },
+  paintCover,
+});
 
-// A restrained three cover mosaic, then the name, bar, count and a state word. The mosaic is
-// recognition rather than information, so it is aria-hidden and the tile's own name carries every
-// word. Always three cells, so a tile does not change height with the data: a list of fewer than
-// three issues, or covers switched off, shows the fallback tile in the spare cells rather than a gap.
-function yoursTile(list, state, read, total, count) {
-  const pct = total ? (read / total) * 100 : 0;
-  const ids = list.itemIds.slice(0, 3);
-  const cells = [0, 1, 2].map((i) => {
-    const issue = state.issues[ids[i]] ?? null;
-    const img = el('img', { class: 'mosaic-i', alt: '', loading: 'lazy', decoding: 'async' });
-    const fb = el('span', { class: 'mosaic-f cover-fallback' });
-    // paintCover tolerates a null issue and a coverless one alike, yielding no URL for both, which is
-    // the no-cover state a spare cell needs: it hides the image and shows the fallback tile instead.
-    paintCover(img, fb, issue, 'portrait_incredible');
-    return el('span', { class: 'mosaic-c' }, [img, fb]);
-  });
-  const cstate = completionState(read, total);
-  return [
-    el('span', { class: 'mosaic', 'aria-hidden': 'true' }, cells),
-    el('span', { class: 'yours-name', text: list.name }),
-    el('span', { class: 'pbar', 'aria-hidden': 'true' }, el('i', { style: { width: `${pct.toFixed(1)}%` } })),
-    el('span', { class: 'yours-count', text: count }),
-    el('span', { class: `badge${cstate === 'done' ? ' badge-done' : cstate === 'unstarted' ? ' badge-none' : ''}`, text: orderWord(cstate) }),
-  ];
-}
-
-// The one line beside the shelf heading. orderStates is written as a middle dot separated sentence:
-// the order count always, then each non-zero state, so a shelf of finished orders carries no zeroes.
-// The span is created once and its text rewritten, because the heading it sits in is static markup
-// the render leaves in place, and appending a fresh note on every render would stack them.
-function writeYoursSummary(sec, state) {
-  const head = sec.querySelector('.sec-h');
-  const note = head.querySelector('.sec-note') ?? head.appendChild(el('span', { class: 'sec-note' }));
-  const s = orderStates(state.listOrder.map((id) => listProgress(state, id)));
-  const parts = [`${s.orders} ${s.orders === 1 ? 'order' : 'orders'}`];
-  if (s.active) parts.push(`${s.active} in progress`);
-  if (s.done) parts.push(`${s.done} finished`);
-  if (s.unstarted) parts.push(`${s.unstarted} not started`);
-  note.textContent = parts.join(' · ');
-}
+const libraryView = createLibraryView({
+  el,
+  elements: (entry) => {
+    const section = $(`#view-${entry.value}`);
+    return {
+      heading: section.querySelector('h1'),
+      results: section.querySelector('.results'),
+    };
+  },
+  emptyAction,
+  getState: () => store.state,
+  issueFocusAnchor,
+  listUi: {
+    cap: LIBRARY_CAP,
+    groupSection,
+    moreButton,
+    shownLine,
+    summaryBand,
+  },
+  paintCover,
+  preservingFocus,
+  seriesOnly,
+});
 
 // The full order summary in its <summary>, on screen whether or not the order is open. An empty
 // order is said plainly rather than as "0 of 0 read", which reads as a fault, not as the fact it is.

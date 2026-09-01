@@ -729,6 +729,30 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'library-extraction-render-off',
+    breaks: 'library-view-extraction',
+    why: 'the controller stops delegating Library report rendering to the extracted view',
+    rewriteMain: (source) => source.replaceAll('  libraryView.render();', ''),
+  },
+  {
+    id: 'saved-list-second-opens-first',
+    breaks: 'library-view-extraction',
+    why: 'the shared presenter opens the first saved list instead of the tile that was pressed',
+    rewriteSavedLists: (source) => source.replace(
+      'onclick: () => openList(id),',
+      'onclick: () => openList(state.listOrder[0]),',
+    ),
+  },
+  {
+    id: 'everything-read-invents-list-context',
+    breaks: 'library-view-extraction',
+    why: 'Everything read invents saved-list context for an issue-wide result',
+    rewriteLibrary: (source) => source.replace(
+      "surface: 'everything-read',",
+      "surface: 'everything-read', context: { kind: 'list', id: 'first' },",
+    ),
+  },
+  {
     id: 'settings-copy-return',
     breaks: 'copy-density',
     why: 'a Settings card repeats what its control already says',
@@ -4104,6 +4128,104 @@ const SCENARIOS = [
         && all.method === 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.'
         && all.row === initial.row,
         JSON.stringify(all));
+    },
+  },
+  {
+    id: 'library-view-extraction',
+    title: 'Library reports and saved-list shelves keep their composed behavior',
+    async run(page, t) {
+      const issues = Object.fromEntries(ORDER.items.map((issue) => [
+        issue.issueId,
+        { ...issue, source: 'curated', hydrated: true },
+      ]));
+      const state = {
+        schemaVersion: 2,
+        issues,
+        read: { [ORDER.items[0].issueId]: 1000 },
+        overrides: {},
+        notes: {},
+        lists: {
+          first: {
+            id: 'first',
+            name: 'First Browser List',
+            description: '',
+            note: '',
+            created: 1,
+            catalogId: null,
+            itemIds: [ORDER.items[0].issueId, ORDER.items[1].issueId],
+            collectedIn: {},
+          },
+          second: {
+            id: 'second',
+            name: 'Second Browser List',
+            description: '',
+            note: '',
+            created: 2,
+            catalogId: null,
+            itemIds: [ORDER.items[2].issueId],
+            collectedIn: {},
+          },
+        },
+        listOrder: ['first', 'second'],
+        active: 'first',
+      };
+      await page.evaluateOnNewDocument((saved) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+      }, state);
+      await open(page, '/');
+      await click(page, '.brand[data-view="home"]');
+      const home = await page.$eval('#home-yours', (section) => ({
+        summary: section.querySelector('.sec-note')?.textContent.trim(),
+        tiles: [...section.querySelectorAll('#home-yours-list button')]
+          .map((button) => button.getAttribute('aria-label')),
+      }));
+
+      await click(page, '.ri[data-view="library"]');
+      const library = await page.$eval('#library-yours', (section) => ({
+        summary: section.querySelector('.sec-note')?.textContent.trim(),
+        tiles: [...section.querySelectorAll('#library-yours-list button')]
+          .map((button) => button.getAttribute('aria-label')),
+      }));
+      t.check('Home and Library receive the same saved-list presentation',
+        home.summary === library.summary
+          && JSON.stringify(home.tiles) === JSON.stringify(library.tiles)
+          && home.tiles.length === 2,
+        JSON.stringify({ home, library }));
+
+      await click(page, '#library-yours-list li:nth-child(2) button');
+      const libraryOpen = await page.evaluate(() => ({
+        active: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
+        hash: location.hash,
+      }));
+      t.check('the Library shelf opens and persists the saved list that was pressed',
+        libraryOpen.active === 'second' && libraryOpen.hash === '#/read/second',
+        JSON.stringify(libraryOpen));
+
+      await click(page, '.brand[data-view="home"]');
+      await click(page, '#home-yours-list li:first-child button');
+      const homeOpen = await page.evaluate(() => ({
+        active: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
+        hash: location.hash,
+      }));
+      t.check('the Home shelf opens and persists the saved list that was pressed',
+        homeOpen.active === 'first' && homeOpen.hash === '#/read/first',
+        JSON.stringify(homeOpen));
+
+      await click(page, '.ri[data-view="library"]');
+      await click(page, '#view-library [data-view="library-read"]');
+      const report = await page.$eval('#view-library-read', (section) => ({
+        heading: section.querySelector('h1')?.textContent.trim(),
+        rows: section.querySelectorAll('.result-focus').length,
+        sort: section.querySelector('.library-sort')?.textContent.trim(),
+      }));
+      t.check('the controller delegates populated Everything read presentation',
+        report.heading === 'Everything read' && report.rows === 1 && report.sort === 'Newest first',
+        JSON.stringify(report));
+
+      await click(page, '#view-library-read .result-focus');
+      const focus = await page.evaluate(() => location.hash);
+      t.check('Everything read remains issue-only after extraction',
+        focus === `#/issue/${ORDER.items[0].issueId}`, focus);
     },
   },
   {
@@ -7899,6 +8021,8 @@ async function preparePage(page, origin, mutation) {
   for (const [path, rewrite] of [
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
+    ['/js/views/library.js', mutation?.rewriteLibrary],
+    ['/js/views/shared/saved-lists.js', mutation?.rewriteSavedLists],
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],

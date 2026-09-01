@@ -20,6 +20,11 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const markup = read('src/index.html');
 const source = read('src/js/main.js');
+const presentationSource = [
+  source,
+  read('src/js/views/library.js'),
+  read('src/js/views/shared/saved-lists.js'),
+].join('\n');
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
 const stories = groupCatalog(catalog.lists);
 
@@ -289,7 +294,7 @@ test('successful additions point people to Library rather than the fixed rail', 
 });
 
 test('every cover the app builds remains lazy after Home stops drawing catalog cards', () => {
-  const images = [...source.matchAll(/el\('img',\s*\{([^}]*)\}/g)].map((match) => match[1]);
+  const images = [...presentationSource.matchAll(/el\('img',\s*\{([^}]*)\}/g)].map((match) => match[1]);
   assert.ok(images.length >= 4, `expected the app to build at least four images, saw ${images.length}`);
   const eager = images.filter((attributes) => !/loading:\s*'lazy'/.test(attributes));
   assert.deepEqual(eager, [], `these images are fetched before they are wanted: ${eager.join(' | ')}`);
