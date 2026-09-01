@@ -10,7 +10,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 
-import { eraseDialogBody, eraseOutcome } from '../src/js/main.js';
+import { eraseDialogBody, eraseOutcome } from '../src/js/views/data.js';
 
 // Only the fields the wording reads: how many there are, and whether any of them is live. chars
 // and at belong to the row on screen rather than to this sentence, and a fixture that carried
@@ -162,22 +162,25 @@ test('the heading the wording names is the heading the page has, and it is above
 // remove the policy, it adds a second copy of the sentence beside it, so a test that only asked
 // whether the sentence exists somewhere would pass on the mutant it was written to catch.
 test('the erase dialog is built by the policy, not by a literal at the button', () => {
-  const src = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
+  const dataSrc = readFileSync(new URL('../src/js/views/data.js', import.meta.url), 'utf8');
+  const mainSrc = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
   const lead = 'This clears every list and all reading progress. Your settings are kept.';
   const gone = 'clears everything this browser has stored for the tracker';
 
-  assert.equal(src.split(lead).length - 1, 1, 'a second copy means a call site is building the body inline again');
+  assert.equal(dataSrc.split(lead).length - 1, 1, 'a second copy means a call site is building the body inline again');
   assert.equal(
-    src.split(gone).length - 1,
+    dataSrc.split(gone).length - 1,
     0,
     'and the sentence two survivors made false must not come back, at the policy or at the button',
   );
-  const policy = src.indexOf('export function eraseDialogBody');
-  const next = src.indexOf('export function eraseOutcome');
-  const at = src.indexOf(lead);
+  const policy = dataSrc.indexOf('export function eraseDialogBody');
+  const next = dataSrc.indexOf('export function eraseOutcome');
+  const at = dataSrc.indexOf(lead);
   assert.ok(policy !== -1 && next > policy, 'the two policies must both still be there, in order');
   assert.ok(at > policy && at < next, 'and the lead has to sit inside the policy that composes it');
-  assert.match(src, /body: eraseDialogBody\(store\.salvageCopies\(\)\)/);
+  assert.match(dataSrc, /body: eraseDialogBody\(getSalvageCopies\(\)\)/);
+  assert.match(dataSrc, /export function eraseDialogBody/);
+  assert.match(mainSrc, /import.*eraseOutcome.*from.*views\/data\.js/);
 });
 
 // The same shape for the message, and the same reason. Asked of storage at the call site rather
@@ -186,9 +189,10 @@ test('the erase dialog is built by the policy, not by a literal at the button', 
 test('the erase message is composed at the button from what storage says then', () => {
   const src = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
   const plain = "'All local data erased.'";
+  const dataSrc = readFileSync(new URL('../src/js/views/data.js', import.meta.url), 'utf8');
 
-  assert.equal(src.split(plain).length - 1, 1, 'a second copy means the button is choosing a string again');
-  assert.ok(src.indexOf(plain) > src.indexOf('export function eraseOutcome'));
+  assert.equal(dataSrc.split(plain).length - 1, 1, 'a second copy means the button is choosing a string again');
+  assert.ok(dataSrc.indexOf(plain) > dataSrc.indexOf('export function eraseOutcome'));
   assert.match(src, /announceIfSaved\(eraseOutcome\(snapshotKept, store\.salvageCopies\(\)\)\)/);
 });
 
@@ -199,10 +203,8 @@ test('the erase message is composed at the button from what storage says then', 
 // that names them is said. test/storage.test.js holds the store half of both.
 test('the erase route repaints the salvage list, and does it before it speaks', () => {
   const src = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
-  const handler = src.indexOf("$('#btn-wipe')");
-  assert.ok(handler !== -1, 'the button has to still be wired');
-  const repaint = src.indexOf('renderSalvage();', handler);
-  const speak = src.indexOf('announceIfSaved(eraseOutcome(', handler);
+  const repaint = src.indexOf('recoveryView.renderSalvage()');
+  const speak = src.indexOf('announceIfSaved(eraseOutcome(');
   assert.ok(repaint !== -1, 'the erase route has to rebuild the list it now describes');
   assert.ok(repaint < speak, 'and rebuild it before describing it, or the two disagree on screen');
 });

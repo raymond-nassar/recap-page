@@ -58,6 +58,8 @@ import { createCatalogView } from './views/catalog.js';
 import { createPreviewView } from './views/preview.js';
 import { createReadingPathsView } from './views/reading-paths.js';
 import { createAddView, persistLongAddPage } from './views/add.js';
+import { createDataView, eraseOutcome } from './views/data.js';
+import { createRecoveryView } from './views/recovery.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -162,65 +164,6 @@ let updateNoticeDismissed = false;
 let updateCheckInFlight = false;
 
 // ------------------------------------------------------------------ unreadable-data recovery
-
-// Set once the user has saved a copy of the unreadable data to disk themselves. It is the only
-// way out when the browser is too full to hold a second copy, which is exactly the situation
-// where the automatic salvage fails.
-let downloadedSalvage = false;
-
-// The banner as the last render left it, so its withdrawal can take the notices that were about
-// it. While the banner is up, everything the save report can hold is about the block: a refused
-// write, the refusal to start fresh, and the empty-download warning are its only writers in that
-// state. So the moment saving works again, whatever is still in there points at a banner that is
-// no longer on screen. A restore is the path that exposed this, because it reports its own
-// success to the restore pane and leaves the save report untouched.
-let blockedBannerWasUp = false;
-
-function renderBlocked() {
-  const banner = $('#blocked-banner');
-  banner.hidden = !store.blocked;
-  // Painted from the reason the read failed rather than from the newest error, so a write
-  // refused while blocked no longer displaces the one thing on this screen that the standing
-  // copy cannot know. Written only when it differs, because this runs on every render and
-  // assigning an identical string still replaces the text node inside a role="alert", which
-  // invites the same sentence to be read out again on every save the reader makes.
-  const why = $('#blocked-why');
-  const reason = store.blockedReason ?? '';
-  if (why.textContent !== reason) why.textContent = reason;
-  // Below the hide, so a cleared reason is never on screen: the banner has already gone by the
-  // time the text it held is emptied.
-  if (blockedBannerWasUp && !store.blocked) $('#save-report').replaceChildren();
-  blockedBannerWasUp = store.blocked;
-  // The pre-restore snapshot outlives a reload, so the undo affordance must be restored on
-  // boot rather than only after the restore that created it.
-  const undo = $('#btn-undo-restore');
-  if (undo) undo.hidden = !store.hasPreRestoreSnapshot();
-}
-
-function wireBlockedBanner() {
-  $('#btn-download-salvage').addEventListener('click', () => {
-    const raw = store.salvagedRaw();
-    if (!raw) return notify('#save-report', 'There was nothing left to download.', 'warn');
-    const when = new Date().toISOString().slice(0, 10);
-    download(`recap-page-unreadable-${when}.json`, raw, 'application/json');
-    downloadedSalvage = true;
-    announce('Downloaded a copy of the unreadable data.');
-  });
-
-  $('#btn-start-fresh').addEventListener('click', async () => {
-    const yes = await askConfirm({
-      title: 'Start fresh?',
-      body: 'This replaces the unreadable saved data with an empty tracker. Download a copy first if you have not already.',
-      confirmLabel: 'Start fresh',
-    });
-    if (!yes) return;
-    // Not reported on failure: both failing exits assign lastError and then call onChange,
-    // which already notifies here. Measured in Edge, 2 identical strings per refusal, now 1.
-    if (store.startFresh({ confirmedDownloaded: downloadedSalvage })) {
-      notify('#save-report', 'Started fresh. Saving is working again.', 'ok');
-    }
-  });
-}
 
 // ------------------------------------------------------------------ helpers
 
@@ -1652,7 +1595,7 @@ function showView(next, { focus = true, push = false } = {}) {
   // another tab. Rebuilding it on arrival covers all three and leaves renderAll's fan-out alone.
   // Erasing everything is a fourth, and the one arrival cannot cover, because it happens on this
   // screen rather than before reaching it, so that route repaints at its own call site.
-  if (next === 'data') renderSalvage();
+  if (next === 'data') recoveryView.renderSalvage();
   window.scrollTo({ top: 0 });
   // After the scroll to the top, so that bringing a message into view is not undone. Which pane
   // each outstanding notice belongs in has just changed, because a different view is showing.
@@ -3372,150 +3315,78 @@ function exportMarkdown() {
   announce('Markdown checklist downloaded.');
 }
 
-// BL-113's decision, and the reason it is a pair of sentences rather than a wider erase.
-//
-// The rule at `src/js/storage.js:336-339` stands: nothing but the reader removes a salvage copy,
-// because no rule this app could apply would know whether they still want data it could not read
-// itself. So the erase is not widened to reach those copies, and the wording is narrowed to stop
-// claiming that it does. They are not undisclosed either way, which is what separates them from
-// the undo snapshot BL-101 did withdraw: they are listed on this same screen, directly above this
-// button, each with its own Remove.
-//
-// Narrowing is also the half of the choice that can be taken back. A dialog that overstates can be
-// corrected later against copies that still exist; an erase that has already destroyed the last
-// record of data nobody could open cannot be.
-//
-// Three answers rather than two, the same three renderSalvage() gives and for the same reason. A
-// browser that will not enumerate its own storage has not said there is nothing, it has declined
-// to say, and promising that everything is gone on the strength of a refusal is the one answer
-// that can be wrong in the direction that matters.
-//
-// A fourth thing to read, and the one the first version of this got wrong: whether a copy is
-// live. renderSalvage() puts a note where the Remove button would be on a live copy, so naming
-// that button while one is live sends the reader to a control the screen is withholding, and it
-// does it in the state where a copy is likeliest to exist at all. Location is claimed either
-// way, because that half is true either way; only the button is conditional.
-//
-// Settings are named because they outlive every one of these answers. Nothing in the app removes
-// mrt.settings or sidebar.collapsed, so this branch's old sentence, that the route clears
-// everything this browser has stored for the tracker, was false for any reader who had ever
-// changed the theme. docs/ARCHITECTURE.md holds the whole list and calls those two preferences
-// rather than data, which is why the message said afterwards still reports all local data erased
-// and only the promise made beforehand had to be narrowed.
-export function eraseDialogBody(copies) {
-  const tail = ' Export a backup first if you are not sure. It cannot be undone.';
-  const lead = 'This clears every list and all reading progress. Your settings are kept.';
-  if (copies === null) {
-    return `${lead} This browser will not let the app list what else it has stored, so anything `
-      + `kept aside after a failed read is not reached and stays where it is.${tail}`;
-  }
-  if (copies.length === 0) return `${lead}${tail}`;
-  const one = copies.length === 1;
-  const where = `${lead} `
-    + `${one ? 'One copy' : `${copies.length} copies`} of data this app could not read `
-    + `${one ? 'is' : 'are'} kept aside, and this does not reach ${one ? 'it' : 'them'}. `
-    + `${one ? 'It stays' : 'They stay'} under "Copies kept after a failed read" above`;
-  if (copies.some((c) => c.live)) {
-    return `${where}, and only you can remove ${one ? 'it' : 'them'}.${tail}`;
-  }
-  return `${where}, with ${one ? 'its' : 'their'} own Remove button.${tail}`;
-}
+const recoveryView = createRecoveryView({
+  el,
+  elements: () => ({
+    banner: $('#blocked-banner'),
+    blockedWhy: $('#blocked-why'),
+    saveReport: $('#save-report'),
+    undoRestore: $('#btn-undo-restore'),
+    btnDownloadSalvage: $('#btn-download-salvage'),
+    btnStartFresh: $('#btn-start-fresh'),
+    salvageList: $('#salvage-list'),
+  }),
+  isBlocked: () => store.blocked,
+  blockedReason: () => store.blockedReason,
+  hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
+  salvagedRaw: () => store.salvagedRaw(),
+  salvageCopies: () => store.salvageCopies(),
+  salvageRawAt: (key) => store.salvageRawAt(key),
+  forgetSalvage: (key) => store.forgetSalvage(key),
+  startFresh: (opts) => store.startFresh(opts),
+  notify,
+  announce,
+  askConfirm,
+  download,
+});
 
-// What is said once the erase has landed, composed rather than chosen, because the snapshot and
-// the salvage copies survive independently and either, both or neither can be left. The plain
-// sentence is kept for the case where nothing was, so an ordinary erase still reports plainly.
-//
-// Every clause is said only when it is true. A storage that refuses the removal leaves a whole
-// copy of the tracker behind a live button, after a dialog that promised nothing would survive,
-// and the reader can act on that only if they are told which button it is. The same holds for the
-// copies this route deliberately does not reach: naming where they are is the difference between
-// disclosing them and merely not having lied.
-export function eraseOutcome(snapshotKept, copies) {
-  const notes = [];
-  if (snapshotKept) {
-    notes.push('One copy could not be removed and is still in this browser, behind "Undo last restore".');
-  }
-  if (copies === null) {
-    notes.push('This browser will not list what else it has stored, so anything kept aside after a failed read is still here.');
-  } else if (copies.length === 1) {
-    notes.push('One copy kept after a failed read is still here, under "Copies kept after a failed read".');
-  } else if (copies.length > 1) {
-    notes.push(`${copies.length} copies kept after a failed read are still here, under "Copies kept after a failed read".`);
-  }
-  if (notes.length === 0) return 'All local data erased.';
-  return ['Lists and reading progress erased.', ...notes].join(' ');
-}
-
-function wireData() {
-  $('#api-base').value = settings.apiBase;
-  $('#opt-covers').addEventListener('change', (e) => setCovers(e.target.checked));
-  $('#opt-update-checks').addEventListener('change', (e) => setUpdateChecks(e.target.checked));
-  $('#opt-theme').addEventListener('change', (e) => setTheme(e.target.value));
-  $('#btn-check-updates').addEventListener('click', runExplicitUpdateCheck);
-  $('#btn-check-local-connection').addEventListener('click', () => {
-    void refreshLocalConnection({ explicit: true });
-  });
-
-  $('#btn-export-json').addEventListener('click', () => {
+const dataView = createDataView({
+  elements: () => ({
+    apiBase: $('#api-base'),
+    optCovers: $('#opt-covers'),
+    optUpdateChecks: $('#opt-update-checks'),
+    optTheme: $('#opt-theme'),
+    btnCheckUpdates: $('#btn-check-updates'),
+    btnCheckLocalConnection: $('#btn-check-local-connection'),
+    btnExportJson: $('#btn-export-json'),
+    btnExportMd: $('#btn-export-md-2'),
+    restoreFile: $('#restore-file'),
+    undoRestore: $('#btn-undo-restore'),
+    formSettings: $('#form-settings'),
+    btnClearCache: $('#btn-clear-cache'),
+    btnWipe: $('#btn-wipe'),
+    cacheUsage: $('#cache-usage'),
+    localConnectionReport: $('#local-connection-report'),
+    localConnectionStatus: $('#local-connection-status'),
+  }),
+  getApiBase: () => settings.apiBase,
+  getSalvageCopies: () => store.salvageCopies(),
+  hasPreRestoreSnapshot: () => store.hasPreRestoreSnapshot(),
+  isAllowedApiBase,
+  backupFileRefusal,
+  askConfirm,
+  notify,
+  onExportJson: () => {
     download('recap-page-backup.json', JSON.stringify(exportBackup(store.state), null, 2), 'application/json');
     announce('Backup downloaded.');
-  });
-
-  $('#btn-export-md-2').addEventListener('click', exportMarkdown);
-
-  $('#restore-file').addEventListener('change', async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    // Asked of the file's declared size, so a file picked by mistake is refused before `text()`
-    // pulls it into memory. The check is here rather than in the store because by the time the
-    // store sees a backup it is already a string, which is the cost this avoids.
-    const refusal = backupFileRefusal(file);
-    if (refusal) {
-      notify('#restore-report', refusal, 'error');
-      e.target.value = '';
-      return;
-    }
-    const text = await file.text();
+  },
+  onExportMarkdown: exportMarkdown,
+  onRestore: (text) => {
     const res = store.restore(text);
-    if (res.ok) {
-      notify('#restore-report', 'Restored. Your previous data was snapshotted, so this can be undone once.', 'ok');
-      // Asked of the store rather than assumed from the success. A first restore into an empty
-      // tracker snapshots an empty main key, which is no snapshot at all, and this line used to
-      // un-hide the button anyway, after the repaint had correctly hidden it. Clicking it answered
-      // "No pre-restore snapshot available."
-      $('#btn-undo-restore').hidden = !store.hasPreRestoreSnapshot();
-      // The buffered list belongs to the data the restore has just replaced. Offering it back
-      // would splice a list out of the old tracker into the restored one.
-      forgetDeleted();
-    } else {
-      // The lead sentence comes from what the store found in storage, not from this call site.
-      // It used to read "nothing was changed" whatever had happened, including after a swap that
-      // had already landed.
-      const lead = res.changed === null
-        ? 'Restore did not finish, and this browser will not say what your saved data now holds. Reload the page.'
-        : 'Restore refused, nothing was changed.';
-      notify('#restore-report', `${lead} ${res.errors.join(' ')}`, 'error');
-      // Whether an undo is offered is a question about the snapshot slot, which these failures
-      // leave in three different states, so it is asked rather than inferred from the failure.
-      $('#btn-undo-restore').hidden = !store.hasPreRestoreSnapshot();
-    }
-    e.target.value = '';
-  });
-
-  $('#btn-undo-restore').addEventListener('click', () => {
-    const res = store.undoRestore();
-    notify('#restore-report', res.ok ? 'Restore undone.' : `Could not undo: ${res.errors.join(' ')}`, res.ok ? 'ok' : 'error');
-    // Undoing a restore swaps the whole state back, exactly as the restore did, so the buffered
-    // list belongs to data that is no longer here in this direction too.
     if (res.ok) forgetDeleted();
-  });
-  // Measured at 200 per cent zoom, the API notice landed 658 px above view, and cache clearing replaced a restore refusal.
-  $('#form-settings').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const value = $('#api-base').value.trim().replace(/\/+$/, '');
-    if (!isAllowedApiBase(value)) {
-      return notify('#api-report', 'That API URL is not usable: use https, or http against localhost.', 'error');
-    }
+    return res;
+  },
+  onUndoRestore: () => {
+    const res = store.undoRestore();
+    if (res.ok) forgetDeleted();
+    return res;
+  },
+  onSetCovers: (on) => setCovers(on),
+  onSetUpdateChecks: (on) => setUpdateChecks(on),
+  onSetTheme: (value) => setTheme(value),
+  onRunUpdateCheck: runExplicitUpdateCheck,
+  onCheckLocalConnection: () => refreshLocalConnection({ explicit: true }),
+  onApiBaseSubmit: (value) => {
     settings.apiBase = value;
     // Cleared before the write, not after. saveSettings() prefers the refused value precisely so
     // that an unrelated write cannot discard it, which would also discard this one if the order
@@ -3528,14 +3399,10 @@ function wireData() {
     cache = new ResponseCache({ baseUrl: value });
     api = new MarvelApi({ baseUrl: value, limiter, cache, onStatus: onApiStatus });
     hydrator.api = api;
-    // The synopsis runner holds its own reference for the same reason the hydrator does, so it needs
-    // the same rebinding. Without it a run started after this point would go on asking the service
-    // the reader has just stopped using, telling it which issues they are reading, which is the one
-    // failure the base URL check exists to prevent.
-    //
-    // A run already in flight is stopped rather than switched, and what it fetched is dropped: the
-    // reader agreed to a dialog naming the old service, and that agreement does not carry over to a
-    // different one. Prose on screen has to have come from the service the reader was told about.
+    // The synopsis runner holds its own reference for the same reason the hydrator does, so it
+    // needs the same rebinding. A run already in flight is stopped rather than switched, and what
+    // it fetched is dropped: the reader agreed to a dialog naming the old service, and that
+    // agreement does not carry over to a different one.
     if (synopsisRunner.active) synopsisRunner.cancel();
     synopsisRunner.api = api;
     sessionSynopsis.clear();
@@ -3543,11 +3410,8 @@ function wireData() {
     renderHero();
     notify('#api-report', 'API URL saved. Cached data from the previous URL is kept separate.', 'ok');
     checkHealth();
-  });
-
-  $('#btn-clear-cache').addEventListener('click', async () => {
-    const button = $('#btn-clear-cache');
-    button.disabled = true;
+  },
+  onClearCache: async () => {
     try {
       const result = await clearCacheGenerations(cache, {
         onLegacyBlocked: reportBlockedLegacyCleanup,
@@ -3561,201 +3425,27 @@ function wireData() {
       );
     } catch (err) {
       notify('#cache-report', `Cached metadata could not be cleared (${err?.message ?? err}).`, 'error');
-    } finally {
-      button.disabled = false;
     }
-  });
-
-  $('#btn-wipe').addEventListener('click', async () => {
-    const yes = await askConfirm({
-      title: 'Erase every list and all reading progress?',
-      body: eraseDialogBody(store.salvageCopies()),
-      confirmLabel: 'Erase everything',
-    });
-    if (!yes) return;
+  },
+  onErase: () => {
     const { snapshotKept } = store.eraseAll();
     cache.clear();
     // The undo buffer points at a list from the data that has just been erased, so putting it
     // back would resurrect one list out of a tracker the reader asked to be emptied.
     forgetDeleted();
-    // The button's visibility belongs to renderBlocked(), and the withdrawal happens after the
-    // repaint the erase itself triggered, so the question is put again here rather than left to
-    // whatever unrelated render comes next.
-    renderBlocked();
-    // The fourth trigger, and the one arrival cannot cover, because this button sits on the screen
-    // that list is already showing. Both outcomes move a row, in opposite directions.
-    //
-    // An erase that lands replaces the bytes a live copy was taken of, so that copy stops being
-    // live and trades its note for a Remove button. This was written here first as unreachable, on
-    // the grounds that an erase cannot land while a copy is live, and that was wrong: persist()
-    // compares write tokens rather than bytes and a token is read from the head of the value, so a
-    // tab that wrote it still matches after something truncates the tail. A schema downgrade is the
-    // everyday shape of that, and the tab that shortened the value is not the tab that cannot read
-    // it afterwards.
-    //
-    // An erase that is refused moves a row the other way. The refusal rolls back by re-reading, the
-    // read fails on the bytes that caused it, and the failure salvages, so this press can create the
-    // first copy this browser has ever held on a screen that is at that moment saying nothing is
-    // being kept aside. Nothing announces then, because nothing was saved, which leaves this and
-    // the banner as the only surfaces carrying it.
-    renderSalvage();
+    // The button's visibility belongs to recoveryView.render(), and the withdrawal happens after
+    // the repaint the erase itself triggered, so the question is put again here rather than left
+    // to whatever unrelated render comes next.
+    recoveryView.render();
+    // Both outcomes move a row, in opposite directions: an erase that lands makes a live copy
+    // removable, and an erase that is refused can create the first copy this browser has held.
+    recoveryView.renderSalvage();
     // Asked of storage again rather than reused from what the dialog was built with: the dialog
-    // sits open for as long as the reader leaves it, and another tab can take a copy or remove one
-    // in that time. Same reason snapshotKept is read back rather than inferred from the removal.
+    // sits open for as long as the reader leaves it, and another tab can take a copy or remove
+    // one in that time.
     announceIfSaved(eraseOutcome(snapshotKept, store.salvageCopies()));
-  });
-}
-
-// Measured in Edge rather than assumed, and the first attempt at this comment got it wrong. The
-// largest value a cleared page accepted under a one-character key was 5,242,879 characters, which
-// with the key is 5,242,880, and that is 10 MiB at two bytes per character rather than the 5 MiB
-// first written here. Two runs filling the same room with 'x' and with an accented character were
-// accepted to the identical character, so the cost is per character and does not depend on the
-// content. So a copy occupies twice its length, and reporting the length alone would have
-// understated every figure by half on the one screen whose subject is running out of room.
-const salvageKb = (chars) => Math.max(1, Math.round((chars * 2) / 1024));
-
-// Date and time to the second, not date alone. Copies are keyed to the millisecond and two can be
-// taken on one day, and the reader choosing between them in a dialog that calls the removal
-// unrecoverable has only this string to choose with. Measured: two copies a few milliseconds apart
-// both rendered "Copy taken on 9 August 2026", with identical accessible names and an identical
-// confirmation. Seconds separate two incidents; two copies inside one second still read alike, and
-// those are the collision case freeArchiveKey() handles, where the copies are moments apart and
-// the millisecond that distinguishes them is in the key rather than in anything worth showing.
-//
-// Compared against null rather than tested for truth, because a copy stamped at the epoch is a
-// real case a device with a dead clock produces, and the layer below reports 0 and null as
-// different values on purpose. Treating 0 as absent would discard that in the last step.
-const salvageWhen = (at) => (at === null || at === undefined
-  ? null
-  : new Date(at).toLocaleString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  }));
-
-// The reader's view of what is being kept on their behalf. Read from storage on every call rather
-// than from anything held in memory, because another tab can have taken a copy or removed one
-// since this tab booted, and a stale list here offers a Remove for a copy that is already gone.
-function renderSalvage() {
-  const box = $('#salvage-list');
-  if (!box) return;
-  const copies = store.salvageCopies();
-
-  // Three answers, not two. A browser that will not enumerate its own storage has not told us
-  // there is nothing; it has declined to say, and a reader whose copies are all still there must
-  // not be shown an empty list. The download in the recovery banner is unaffected either way,
-  // because it reads one known key rather than walking them.
-  if (copies === null) {
-    box.replaceChildren(el('p', {
-      class: 'rail-hint',
-      text: 'This browser will not let the app list what it has stored, so any copies it is holding '
-        + 'cannot be shown here. Nothing has been removed.',
-    }));
-    return;
-  }
-  if (copies.length === 0) {
-    box.replaceChildren(el('p', { class: 'rail-hint', text: 'Nothing is being kept aside. Your saved data has always been readable.' }));
-    return;
-  }
-
-  const total = copies.reduce((n, c) => n + c.chars, 0);
-  box.replaceChildren(
-    el('p', {
-      class: 'rail-hint',
-      text: `${copies.length} ${copies.length === 1 ? 'copy is' : 'copies are'} being kept, `
-        + `taking about ${salvageKb(total)} KB.`,
-    }),
-    el('ul', { class: 'rows' }, copies.map((c) => {
-      const when = salvageWhen(c.at);
-      return el('li', { class: 'salvage-row' }, [
-        el('div', { class: 'salvage-what' }, [
-          el('span', { class: 'salvage-when', text: when ? `Copy taken on ${when}` : 'Copy with no date recorded' }),
-          el('span', { class: 'salvage-size', text: `about ${salvageKb(c.chars)} KB` }),
-        ]),
-        el('div', { class: 'field-row' }, [
-          el('button', {
-            type: 'button',
-            class: 'btn btn-g',
-            dataset: { act: 'download', key: c.key },
-            'aria-label': `Download the ${when ? `copy taken on ${when}` : 'copy with no date recorded'}`,
-            text: 'Download',
-          }),
-          // The offer is withdrawn rather than refused: while this copy is the last record of data
-          // the app cannot read, removing it is the one thing that would leave the reader with
-          // nothing, and a button that explains itself only after the click has already asked them
-          // to try. The sentence depends on whether this tab is the one that is blocked, because
-          // liveness is a property of storage and the banner is a property of the tab: a second
-          // tab that read the data before it went bad shows the row with no warning above it.
-          c.live
-            ? el('span', {
-              class: 'rail-hint',
-              text: store.blocked
-                ? 'Kept until the warning above is resolved'
-                : 'Kept while the data it copies is still saved here',
-            })
-            : el('button', {
-              type: 'button',
-              class: 'btn btn-danger',
-              dataset: { act: 'forget', key: c.key },
-              'aria-label': `Remove the ${when ? `copy taken on ${when}` : 'copy with no date recorded'}`,
-              text: 'Remove',
-            }),
-        ]),
-      ]);
-    })),
-  );
-}
-
-function wireSalvage() {
-  // One listener on the container, because the rows are rebuilt after every removal and listeners
-  // bound to the buttons would go with them.
-  $('#salvage-list').addEventListener('click', async (e) => {
-    const btn = e.target.closest('[data-act]');
-    if (!btn) return;
-    const { act, key } = btn.dataset;
-    const copies = store.salvageCopies();
-    const copy = copies?.find((c) => c.key === key);
-    if (!copy) {
-      renderSalvage();
-      // Two reasons the copy is not in the list, and only one of them means it is gone. A browser
-      // that declined to enumerate has not told us anything was removed, and saying so would be
-      // the one wrong thing to say on the screen whose subject is what is still being kept.
-      return notify('#salvage-report', copies === null
-        ? 'This browser will not let the app list what it has stored, so that copy cannot be acted on here. Nothing has been removed.'
-        : 'That copy is no longer there. The list has been refreshed.', 'warn');
-    }
-    const when = salvageWhen(copy.at);
-    const named = when ? `taken on ${when}` : 'with no date recorded';
-
-    if (act === 'download') {
-      const raw = store.salvageRawAt(key);
-      if (!raw) return notify('#salvage-report', 'That copy could not be read back, so nothing was downloaded.', 'warn');
-      // To the second, for the same reason the row is: two copies taken on one day would otherwise
-      // arrive as one name and a browser-appended (1), leaving the reader unable to tell which is
-      // which after the screen that could have told them is closed.
-      const stamp = copy.at === null ? 'undated' : new Date(copy.at).toISOString().slice(0, 19).replace(/:/g, '-');
-      download(`recap-page-unreadable-${stamp}.json`, raw, 'application/json');
-      return notify('#salvage-report', `Downloaded the copy ${named}. It is still being kept here as well.`, 'ok');
-    }
-
-    const yes = await askConfirm({
-      title: 'Remove this copy?',
-      body: `This deletes the copy ${named}. It is a copy of saved data this app could not read, so `
-        + 'there is nothing else to recover it from. Download it first if you are not sure.',
-      confirmLabel: 'Remove copy',
-    });
-    if (!yes) return;
-    const gone = store.forgetSalvage(key);
-    renderSalvage();
-    notify('#salvage-report', gone
-      ? `Removed the copy ${named}, freeing about ${salvageKb(copy.chars)} KB.`
-      : 'That copy could not be removed, so it is still being kept.', gone ? 'ok' : 'warn');
-  });
-}
+  },
+});
 
 // Deliberately not announced and not a live region. The only change here worth hearing is the one
 // after Clear cached metadata, and that handler already speaks through notify(), so a live region
@@ -3763,12 +3453,9 @@ function wireSalvage() {
 // about yet.
 async function refreshCacheUsage() {
   try {
-    const u = await cache.usage();
-    $('#cache-usage').textContent = u.count
-      ? `${u.count} cached responses, about ${(u.bytes / 1024 / 1024).toFixed(2)} MB of a ${(u.budget / 1024 / 1024).toFixed(0)} MB budget.`
-      : 'Nothing cached yet.';
+    dataView.renderCacheUsage(await cache.usage());
   } catch {
-    $('#cache-usage').textContent = 'Cache unavailable in this browser. The app still works, just with more network requests.';
+    dataView.renderCacheUsage(null);
   }
 }
 
@@ -3791,17 +3478,7 @@ let localConnectionGeneration = 0;
 let localConnectionInFlight = null;
 
 function paintLocalConnectionStatus(status) {
-  const line = $('#local-connection-status');
-  if (!line) return;
-  if (status === LOCAL_SERVER_STATUS.READY) {
-    line.textContent = 'Connected to the local app.';
-    return;
-  }
-  if (status === 'checking') {
-    line.textContent = 'Checking the local app connection…';
-    return;
-  }
-  line.textContent = 'The local app connection needs attention.';
+  dataView.renderLocalConnectionStatus(status, LOCAL_SERVER_STATUS.READY);
 }
 
 function runLocalConnectionProbe({ fresh = false } = {}) {
@@ -3813,7 +3490,7 @@ function runLocalConnectionProbe({ fresh = false } = {}) {
       if (current) {
         paintLocalConnectionStatus(status);
         if (status === LOCAL_SERVER_STATUS.READY) clearNotice(LOCAL_CONNECTION_NOTICE);
-        else $('#local-connection-report')?.replaceChildren();
+        else dataView.clearLocalConnectionReport();
       }
       return { status, current, generation };
     });
@@ -3838,7 +3515,7 @@ function localRecoveryAction(label, key, retry) {
 async function refreshLocalConnection({ explicit = false } = {}) {
   if (explicit) {
     clearNotice(LOCAL_CONNECTION_NOTICE);
-    $('#local-connection-report').replaceChildren();
+    dataView.clearLocalConnectionReport();
   }
   paintLocalConnectionStatus('checking');
   const result = await runLocalConnectionProbe({ fresh: explicit });
@@ -3974,7 +3651,7 @@ function renderAll() {
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
-  renderBlocked();
+  recoveryView.render();
   renderBreadcrumbs();
   // The active list changes at more than a dozen places that never navigate, among them
   // duplicating a list and restoring a backup. This is the one point every one of them passes
@@ -4009,10 +3686,9 @@ export function boot() {
   wireReading();
   issueView.wire();
   addView.wire();
-  wireData();
-  wireSalvage();
+  dataView.wire();
+  recoveryView.wire();
   wireShortcuts();
-  wireBlockedBanner();
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
   homeView.wire();
   readingPathsView.wire();

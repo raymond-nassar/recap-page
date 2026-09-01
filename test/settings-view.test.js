@@ -5,6 +5,9 @@ import { readFileSync } from 'node:fs';
 const HTML = readFileSync(new URL('../src/index.html', import.meta.url), 'utf8');
 const CSS = readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8');
 const MAIN = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
+const DATA_VIEW = readFileSync(new URL('../src/js/views/data.js', import.meta.url), 'utf8');
+const RECOVERY_VIEW = readFileSync(new URL('../src/js/views/recovery.js', import.meta.url), 'utf8');
+const ALL_SOURCE = MAIN + DATA_VIEW + RECOVERY_VIEW;
 
 const VIEW = sliceElement(
   HTML,
@@ -109,16 +112,14 @@ function idPosition(text, id) {
 // Keyed on the message rather than on a count of pane names, so moving a handler or adding an
 // unrelated notice cannot turn this red, and re-routing one of these messages cannot turn it green.
 function noticeTarget(message) {
-  const at = MAIN.indexOf(message);
-  assert.notEqual(at, -1, `expected the message ${JSON.stringify(message)} to be in main.js`);
-  const call = MAIN.slice(0, at).lastIndexOf('notify(');
+  const at = ALL_SOURCE.indexOf(message);
+  assert.notEqual(at, -1, `expected the message ${JSON.stringify(message)} to be in the source`);
+  const call = ALL_SOURCE.slice(0, at).lastIndexOf('notify(');
   assert.notEqual(call, -1, `expected ${JSON.stringify(message)} to be passed to notify()`);
-  const target = MAIN.slice(call).match(/^notify\(\s*'([^']+)'/);
+  const target = ALL_SOURCE.slice(call).match(/^notify\(\s*'([^']+)'/);
   assert.ok(target, `expected a literal pane selector in the notify() call for ${JSON.stringify(message)}`);
-  // A message built above its call site, such as one assembled in a ternary, would otherwise match
-  // whichever notify() came before it and pass while asserting nothing about its own routing.
   assert.ok(
-    closingParen(MAIN, call + 'notify('.length - 1) > at,
+    closingParen(ALL_SOURCE, call + 'notify('.length - 1) > at,
     `${JSON.stringify(message)} is not inside the notify() call this test matched it to`,
   );
   return target[1];
@@ -244,8 +245,8 @@ test('settings actions use full-size buttons while preserving their hierarchy', 
     assert.equal(hasClass(button.open, 'quiet'), false, `${id} should not use compact button sizing`);
   }
 
-  assert.match(MAIN, /class: 'btn btn-g',\s+dataset: \{ act: 'download'/);
-  assert.match(MAIN, /class: 'btn btn-danger',\s+dataset: \{ act: 'forget'/);
+  assert.match(ALL_SOURCE, /class: 'btn btn-g',\s+dataset: \{ act: 'download'/);
+  assert.match(ALL_SOURCE, /class: 'btn btn-danger',\s+dataset: \{ act: 'forget'/);
 });
 
 test('every settings binding id still appears exactly once in the shipped markup', () => {

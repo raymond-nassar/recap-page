@@ -586,10 +586,16 @@ test('the restore handler clears the picker when it refuses, so the same file ca
 });
 
 function restoreHandlerSource() {
-  const main = readMain();
-  const at = main.indexOf("$('#restore-file').addEventListener");
-  assert.ok(at > 0, 'the restore file picker handler was not found, so this proves nothing');
-  return main.slice(at);
+  const src = readFileSync(new URL('../src/js/views/data.js', import.meta.url), 'utf8');
+  const at = src.indexOf('nodes.restoreFile.addEventListener');
+  if (at < 0) {
+    // Fall back to main.js in case the handler has not been extracted.
+    const main = readMain();
+    const mainAt = main.indexOf("$('#restore-file').addEventListener");
+    assert.ok(mainAt > 0, 'the restore file picker handler was not found, so this proves nothing');
+    return main.slice(mainAt);
+  }
+  return src.slice(at);
 }
 
 function readMain() {
