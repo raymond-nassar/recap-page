@@ -177,12 +177,13 @@ test('aborted order and API work is propagated', async () => {
 });
 
 test('presentation derives shared facts without up-next or progress actions', () => {
+  const futureMuDate = `${new Date().getFullYear() + 1}-09-01`;
   const shown = issuePresentation({
     ...issue(42, 'Shared facts'),
     number: '7',
     onSale: '2026-08-26T00:00:00Z',
     pageCount: 24,
-    mu: '2026-09-01',
+    mu: futureMuDate,
     url: 'https://www.marvel.com/comics/issue/42/test',
     creators: [
       { name: 'Writer One', role: 'writer' },
@@ -198,7 +199,7 @@ test('presentation derives shared facts without up-next or progress actions', ()
   assert.equal(shown.byline, 'Test Series · Writer One & Artist One');
   assert.equal(shown.description, 'Held for this tab.');
   assert.deepEqual(shown.facts.map(({ key, value }) => [key, value]), [
-    ['In Unlimited', 'soon Scheduled 2026-09-01'],
+    ['In Unlimited', `soon Scheduled ${futureMuDate}`],
     ['Pages', '24'],
     ['Released', '2026-08-26'],
     ['Position', '2 of 5'],
