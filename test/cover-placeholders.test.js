@@ -11,6 +11,8 @@ const read = (path) => readFileSync(join(here, '..', path), 'utf8');
 const html = read('src/index.html');
 const css = read('src/styles.css');
 const main = read('src/js/main.js');
+const libraryView = read('src/js/views/library.js');
+const savedListsView = read('src/js/views/shared/saved-lists.js');
 
 test('fallback initials use the first two comic title words', () => {
   assert.equal(fallbackInitials('Avengers Disassembled'), 'AD');
@@ -29,7 +31,11 @@ test('fallback initials tolerate titles with no usable words', () => {
 test('every cover fallback opts into the shared split-initial artwork', () => {
   for (const className of ['fallback', 'tf', 'rf', 'of', 'rcov-f', 'mosaic-f']) {
     const pattern = new RegExp(`class(?::|=)[^\\n]*['"][^'"]*\\b${className}\\b[^'"]*\\bcover-fallback\\b`);
-    assert.match(`${html}\n${main}`, pattern, `${className} does not use the shared artwork`);
+    assert.match(
+      `${html}\n${main}\n${libraryView}\n${savedListsView}`,
+      pattern,
+      `${className} does not use the shared artwork`,
+    );
   }
   assert.match(css, /linear-gradient\(117deg,[^;]*var\(--on-accent\)/);
   assert.match(css, /\.cover-fallback\.cover-fallback::before/);

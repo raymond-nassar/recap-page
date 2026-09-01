@@ -11,6 +11,7 @@ const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
 const library = read('src/js/lib/library.js');
+const libraryView = read('src/js/views/library.js');
 const styles = read('src/styles.css');
 function filesUnder(relativeDir, extension) {
   const out = [];
@@ -237,6 +238,6 @@ test('standing explanations move behind disclosures or become compact labels', (
   assert.doesNotMatch(html, /Follow your system setting, or pick one and keep it/);
   assert.doesNotMatch(html, /Once a day, the app can ask GitHub/);
   assert.match(html, /id="opt-update-checks" \/> Check once a day/);
-  assert.match(main, /class: 'library-sort', text: v\.sort/);
+  assert.match(libraryView, /class: 'library-sort', text: view\.sort/);
   assert.match(main, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
 });
