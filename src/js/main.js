@@ -60,10 +60,6 @@ const SIDEBAR_KEY = 'sidebar.collapsed';
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
-// What the hero's heading says when there is no next issue to name. The hero is hidden in
-// that state, so this is never read aloud or seen; it exists so the heading is never empty.
-// It has to match the text in index.html, which is what the document starts out holding.
-const HERO_NO_ISSUE = 'Nothing up next';
 
 const $ = (sel) => document.querySelector(sel);
 // Read on use rather than at module load. This one query was the only thing this module did to

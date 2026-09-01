@@ -129,6 +129,8 @@ export function createReadingView({
   withSaveEducation,
   ymd,
 }) {
+  // The hero is hidden when there is no next issue, but its heading stays non-empty so the
+  // document never holds an invalid heading state. This must match the initial text in index.html.
   const HERO_NO_ISSUE = 'Nothing up next';
   const SHELF_SIZE = 8;
 
