@@ -635,6 +635,19 @@ const MUTATIONS = [
     ),
   },
   {
+    id: 'far-from-home-open-blocked',
+    breaks: 'far-from-home-actual-data',
+    why: 'the imported Far From Home card no longer opens its saved Reading List',
+    script: () => {
+      addEventListener('click', (event) => {
+        const button = event.target instanceof Element
+          && event.target.closest('#preview-add [data-act="main"]');
+        if (!button?.textContent.includes('In library')) return;
+        event.preventDefault(); event.stopImmediatePropagation();
+      }, true);
+    },
+  },
+  {
     id: 'gateway-status-silent',
     breaks: 'home-category-gateway',
     why: 'asynchronous Home and Browse categories lose their polite completion status',
@@ -2483,6 +2496,118 @@ const SCENARIOS = [
         && new Set(narrow.map(({ top }) => top)).size === 3
         && narrow.every(({ width }) => width > 400 && width < 620),
         JSON.stringify(narrow));
+    },
+  },
+  {
+    id: 'far-from-home-actual-data',
+    title: 'the actual Far From Home guide previews, imports, opens, and returns',
+    async run(page, t) {
+      const browserErrors = [];
+      const externalRequests = [];
+      const expectedTitles = [
+        'The Amazing Spider-Man (1963) #66', 'The Amazing Spider-Man (1963) #67',
+        'Peter Parker, the Spectacular Spider-Man (1976) #50',
+        'Peter Parker, the Spectacular Spider-Man (1976) #51',
+        'Amazing Spider-Man (1999) #618', 'Amazing Spider-Man (1999) #619',
+        'Amazing Spider-Man (1999) #620', 'Friendly Neighborhood Spider-Man (2019) #6',
+      ];
+      page.on('console', (message) => { if (message.type() === 'error') browserErrors.push(message.text()); });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'marvel-on-screen');
+      const cardSelector = '#marvel-on-screen-results [data-story="list:spider-man-far-from-home"]';
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const screen = await page.evaluate((selector) => ({
+        hash: location.hash,
+        count: document.querySelector('#marvel-on-screen-count')?.textContent.trim(),
+        titles: [...document.querySelectorAll('#marvel-on-screen-results .catalog-card-title')]
+          .map((node) => node.textContent.trim()),
+        cards: document.querySelectorAll(selector).length,
+        path: Boolean(document.querySelector(`${selector} .result-path`)),
+        orientation: Boolean(document.querySelector('#marvel-on-screen-results .shelf-orientation')),
+      }), cardSelector);
+      t.check('actual MCU Prep discovers Far From Home once in six-guide source order',
+        screen.hash === '#/marvel-on-screen'
+        && screen.count === '6 Reading Lists'
+        && screen.cards === 1
+        && screen.titles.join('|') === [
+          'Doctor Strange: Multiverse of Madness', 'Spider-Man: No Way Home',
+          'Marvel Multiverse', 'Marvel What If?', 'WandaVision', 'Spider-Man: Far From Home',
+        ].join('|'),
+        JSON.stringify(screen));
+      t.check('Far From Home has no reading-path or first-stop orientation',
+        !screen.path && !screen.orientation, JSON.stringify(screen));
+
+      const preview = `${cardSelector} [data-act="preview"]`;
+      await page.focus(preview);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() =>
+        document.querySelectorAll('#preview[open] #preview-body .preview-issue-link').length === 8);
+      const previewTitles = await page.$$eval('#preview-body .preview-issue-link',
+        (links) => links.map((link) => link.textContent.trim()));
+      t.check('Preview renders the exact eight issues in order',
+        previewTitles.join('|') === expectedTitles.join('|'), JSON.stringify(previewTitles));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists)
+          .filter((candidate) => candidate.catalogId === 'spider-man-far-from-home');
+        const list = matches[0];
+        return {
+          catalogId: list?.catalogId, matches: matches.length, listCount: state.listOrder.length,
+          titles: (list?.itemIds ?? []).map((id) => state.issues[id]?.title),
+          previewOpen: document.querySelector('#preview')?.open,
+          openAction: document.querySelector('#preview-add [data-act="main"]')?.textContent.trim(),
+        };
+      });
+      t.check('import saves one catalog-bound eight-issue list without opening it',
+        imported.catalogId === 'spider-man-far-from-home'
+        && imported.matches === 1 && imported.listCount === 1
+        && imported.titles.join('|') === expectedTitles.join('|')
+        && imported.previewOpen
+        && imported.openAction.includes('In library'),
+        JSON.stringify(imported));
+      const openSelector = '#preview-add [data-act="main"]';
+      await page.focus(openSelector);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim()
+          === 'Spider-Man: Far From Home');
+      await openFullOrder(page);
+      const readingTitles = await page.$$eval('#rows .row .rt',
+        (rows) => rows.map((row) => row.textContent.trim()));
+      t.check('Open reaches the matching Reading List with all eight rows in order',
+        readingTitles.join('|') === expectedTitles.join('|'), JSON.stringify(readingTitles));
+
+      const savedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => location.hash.startsWith('#/marvel-on-screen/')
+        && document.activeElement?.id === 'marvel-on-screen-h');
+      const returned = await page.evaluate((state, selector) => ({
+        hash: location.hash,
+        sameState: localStorage.getItem('mrt.state.v2') === state,
+        focus: document.activeElement?.id,
+        action: document.querySelector(`${selector} button`)?.dataset.act,
+      }), savedState, cardSelector);
+      t.check('browser Back restores MCU Prep, its card, focus, and saved state',
+        returned.sameState && returned.hash.startsWith('#/marvel-on-screen/')
+        && returned.focus === 'marvel-on-screen-h' && returned.action === 'open',
+        JSON.stringify(returned));
+      t.check('the actual-data journey makes no external request and raises no browser error',
+        externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({ externalRequests, browserErrors }));
     },
   },
   {
