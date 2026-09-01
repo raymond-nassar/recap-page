@@ -129,15 +129,11 @@ async function installDeterministicBrowserState(page, state) {
       // Fixed to the public health response observed on 2026-08-29 so the captures are deterministic
       // without advertising the one-item test stub used by the ordinary browser suite.
       if (url.endsWith('/health')) return Promise.resolve(json({ issue_count: 37526 }));
-      if (url.includes('api.github.com/repos/raymond-nassar/recap-page/releases/latest')) {
-        return Promise.resolve(json({ tag_name: 'v2.0.1' }));
-      }
       return Promise.resolve(json({ items: [], total: 0, has_next: false }));
     };
     localStorage.setItem('mrt.settings', JSON.stringify({
       covers: false,
       filter: 'all',
-      updateChecks: false,
     }));
     if (demo) localStorage.setItem('mrt.state.v2', JSON.stringify(demo));
     else localStorage.removeItem('mrt.state.v2');

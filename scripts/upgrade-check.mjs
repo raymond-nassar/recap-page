@@ -70,10 +70,10 @@ const MUTATIONS = [
     breaks: 'new-paints',
     why: 'the new build discards every read marker while loading, so the order survives but its progress returns to zero',
     patchNew: (source) => source.replace(
-      'this.state = raw ? migrate(JSON.parse(raw)) : createEmptyState();',
-      'this.state = raw ? { ...migrate(JSON.parse(raw)), read: {} } : createEmptyState();',
+      / {4}read,(\r?\n) {4}overrides,/,
+      '    read: {},$1    overrides,',
     ),
-    patchNewPath: join('src', 'js', 'storage.js'),
+    patchNewPath: join('src', 'js', 'lib', 'model.js'),
   },
   {
     id: 'origin-hop',

@@ -174,7 +174,7 @@ test('a same-origin request is answered from the network and the answer is kept'
 test('a page that is in the cache is still fetched afresh while the server is answering', async () => {
   const stale = makeResponse(200, 'yesterday');
   const fresh = makeResponse(200, 'today');
-  const caches = makeCaches({ 'mrt-offline-v1': { [`${ORIGIN}/`]: stale } });
+  const caches = makeCaches({ 'mrt-offline-v2': { [`${ORIGIN}/`]: stale } });
   let fetched = 0;
   const world = await loadWorker(makeWorld({
     caches,
@@ -185,7 +185,7 @@ test('a page that is in the cache is still fetched afresh while the server is an
   assert.equal(fetched, 1, 'the network was never asked');
   assert.equal(got.body, 'today', 'the cached copy was served while the server was running');
   await settle(world);
-  assert.equal(caches.named.get('mrt-offline-v1').get(`${ORIGIN}/`).body, 'today', 'the stored copy was left stale');
+  assert.equal(caches.named.get('mrt-offline-v2').get(`${ORIGIN}/`).body, 'today', 'the stored copy was left stale');
 });
 
 test('a reply that is not a 200 is returned but not kept', async () => {
@@ -200,7 +200,7 @@ test('a reply that is not a 200 is returned but not kept', async () => {
 
 test('with the server stopped, the page comes back from the cache', async () => {
   const saved = makeResponse(200, 'yesterday');
-  const caches = makeCaches({ 'mrt-offline-v1': { [`${ORIGIN}/`]: saved } });
+  const caches = makeCaches({ 'mrt-offline-v2': { [`${ORIGIN}/`]: saved } });
   const world = await loadWorker(makeWorld({
     caches,
     fetch: async () => { throw new TypeError('Failed to fetch'); },
@@ -270,13 +270,17 @@ test('the page is handed back without waiting for it to be written to the cache'
 test('activation clears this worker\'s old caches and nothing else on the origin', async () => {
   const caches = makeCaches({
     'mrt-offline-v0': { [`${ORIGIN}/old`]: makeResponse() },
-    'mrt-offline-v1': { [`${ORIGIN}/`]: makeResponse() },
+    'mrt-offline-v1': {
+      [`${ORIGIN}/js/lib/updateCheck.js`]: makeResponse(200, 'retired updater'),
+    },
+    'mrt-offline-v2': { [`${ORIGIN}/`]: makeResponse() },
     'something-else': { [`${ORIGIN}/other`]: makeResponse() },
   });
   const world = await loadWorker(makeWorld({ caches }));
   await fireActivate(world);
 
-  assert.deepEqual(caches.calls.deleted, ['mrt-offline-v0']);
+  assert.deepEqual(caches.calls.deleted, ['mrt-offline-v0', 'mrt-offline-v1']);
+  assert.ok(caches.named.has('mrt-offline-v2'), 'the current cache was deleted');
   assert.ok(caches.named.has('something-else'), 'a cache belonging to something else was deleted');
   assert.ok(world.claimed, 'the worker did not take over the open page');
 });

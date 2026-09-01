@@ -67,7 +67,7 @@ export function validateSubmission() {
     '## Notes for certification',
     '## Listing assets',
     '## Final upload handoff',
-    '## Owner-only stop points',
+    '## Live-review stop points',
     '## Official sources',
   ]) requireText(packet, heading, findings);
 
@@ -80,8 +80,9 @@ export function validateSubmission() {
     'Public audience',
     'available and discoverable',
     "Don't publish this submission until I select Publish now",
+    'Microsoft Store only; no in-app products',
     'English (United States)',
-    '2.0.1.0',
+    '2.0.2.0',
     '127.0.0.1:8787',
     'runFullTrust',
     '`PASS` categories',
@@ -96,8 +97,8 @@ export function validateSubmission() {
     'There is no account, advertising, analytics, or telemetry',
     'Leave **Additional license terms** blank',
     'add-additional-information',
-    'Do not upload',
-    'Do not submit for certification',
+    'owner authorized replacing the failed package',
+    'Do not upload or submit a package that differs',
     'Do not publish',
   ]) requireText(packet, value, findings);
 

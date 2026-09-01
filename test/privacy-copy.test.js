@@ -135,10 +135,6 @@ const REQUESTS = [
     /(?:pressing (?:\*\*)?Read(?:\*\*)?|opening an issue)[\s\S]{0,300}(?:Marvel Unlimited|Marvel's reader)[\s\S]{0,300}marvel\.com/i,
   ],
   [
-    'the optional update check contacts GitHub',
-    /GitHub[^.]*latest\s+(?:release|version)\s+number/i,
-  ],
-  [
     'the requests disclose which issues',
     /(?:sees?|reveals?|discloses?)[^.]*(?:which issues|issues you are looking at|issue numbers)/i,
   ],
@@ -166,6 +162,11 @@ test('every surface that makes the privacy claim keeps the promises and names th
     for (const [what, said] of REQUESTS) {
       assert.match(text, said, `${where} promises without saying ${what}, which is the absolute`);
     }
+    assert.doesNotMatch(
+      text,
+      /GitHub[^.]*latest\s+(?:release|version)\s+number/i,
+      `${where} still describes the retired GitHub update request`,
+    );
   }
 });
 

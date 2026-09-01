@@ -55,14 +55,22 @@ Recap Page makes a small number of direct requests so it can show live informati
 - Those requests reveal which issues you are looking at to the service receiving them.
 - The hand-entry title lookup sends the title you typed to the Marvel Fandom wiki only when you press
   **Look up on Marvel Fandom**. It does not fetch a cover.
-- The app can ask GitHub for the latest release number once a day. That check is optional.
 
 Recap Page stores cover URLs only. It never hosts, proxies, or writes comic image bytes to storage
 it controls. The browser may manage its ordinary web cache when it loads an image from Marvel.
 
 ## Run it on your computer
 
-### Download for Windows
+### Install from Microsoft Store
+
+[Open Recap Page in Microsoft Store](https://apps.microsoft.com/detail/9PDJ7XR9Q40Q). The Store is
+the primary Windows discovery and installation channel and is the only channel the app uses for
+product updates. The listing may not offer installation until the current certification completes.
+
+### Standalone Windows archive
+
+The standalone archive remains available for manual installs and testing. The app does not check
+for, download, or direct updates from this channel.
 
 1. [Download the latest Windows
    archive](https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip).
@@ -90,18 +98,19 @@ stopping and restarting, safe ports, and troubleshooting.
 
 ## Upgrade without losing progress
 
+Microsoft Store installations receive product updates only through Microsoft Store.
+
+For a standalone archive or source copy:
+
 1. Export a backup from **Backup & settings**.
 2. Stop the old copy.
 3. Download the latest archive or source.
 4. Start the new copy at <http://127.0.0.1:8787/>.
 
-Your progress belongs to that exact browser address, not to the folder you replace. Staying on
-`127.0.0.1:8787` in the same browser profile keeps it in place.
-
-The app checks GitHub once a day for a newer version number and never installs updates
-automatically. Automatic checks can be switched off. Major versions mark a substantial new
-generation of the app and are also required for any saved-data change an older build cannot read.
-The release notes state whether progress remains compatible. Export a backup before upgrading.
+Your progress belongs to that exact browser address, not to the package or folder you replace.
+Staying on `127.0.0.1:8787` in the same browser profile keeps it in place. Major versions mark a
+substantial new generation of the app and are also required for any saved-data change an older
+build cannot read. Release notes state whether progress remains compatible.
 
 ## Learn more
 
@@ -114,7 +123,7 @@ The release notes state whether progress remains compatible. Export a backup bef
 - [Contributing](CONTRIBUTING.md): standards and pull request expectations
 - [Security policy](SECURITY.md): supported versions and private reporting
 - [Privacy policy](PRIVACY.md): browser storage, direct requests, and Windows package permissions
-- [Microsoft Store package status](docs/MICROSOFT_STORE.md): local x64 proof and remaining publication gates
+- [Microsoft Store package status](docs/MICROSOFT_STORE.md): package proof, certification, and publication status
 - [Microsoft Store submission packet](docs/MICROSOFT_STORE_SUBMISSION.md): owner-reviewed listing fields, certification notes, and sanitized assets
 - [Changelog](CHANGELOG.md): what changed in each release
 

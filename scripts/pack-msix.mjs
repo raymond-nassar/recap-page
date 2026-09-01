@@ -15,8 +15,8 @@ export const PACKAGE_NAME = 'PanelStackLabs.RecapPage';
 export const PACKAGE_PUBLISHER = 'CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472';
 export const PACKAGE_FAMILY = 'PanelStackLabs.RecapPage_we33aa8nvkpcc';
 export const AUMID = `${PACKAGE_FAMILY}!App`;
-export const STORE_PACKAGE_VERSION = '2.0.1.0';
-export const PROOF_UPDATE_VERSION = '2.0.1.1';
+export const STORE_PACKAGE_VERSION = '2.0.2.0';
+export const PROOF_UPDATE_VERSION = '2.0.2.1';
 export const PACKAGE_VERSIONS = Object.freeze([STORE_PACKAGE_VERSION, PROOF_UPDATE_VERSION]);
 export const PACKAGE_ARCHITECTURES = Object.freeze([
   Object.freeze({ id: 'x64', node: NODE_ARCH, peMachine: 0x8664 }),

@@ -842,18 +842,6 @@
                 <div id="api-report" class="results"></div>
               </div>
 
-              <div class="card card-static setting">
-                <h3>Update checks</h3>
-                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-update-checks" /> Check once a day</label>
-                <details class="setting-more">
-                  <summary>What the check sends</summary>
-                  <p class="rail-hint">
-                    That request sends no Reading List, progress, note or identifier. If a newer version
-                    exists, the app shows a link to download it, but it never downloads or installs
-                    anything by itself.
-                  </p>
-                </details>
-              </div>
             </section>
 
             <section class="setgroup">
@@ -958,9 +946,7 @@
                   reader, or to marvel.com whenever no reader link can be resolved.
                   Adding an issue by hand sends the words in the title box to the Marvel Fandom wiki
                   only when you press the lookup button; the wiki sees that title, but no picture is fetched.
-                  Using Check for updates, or leaving daily update checks switched on, asks GitHub
-                  for the latest release number. These requests include no part of your lists,
-                  progress, or notes.
+                  These requests include no part of your lists, progress, or notes.
                 </p>
               </details>
 
@@ -973,10 +959,6 @@
                 A change to the data format means an older build cannot read data saved by this one,
                 so export a backup before upgrading across one.
               </p>
-              <div class="field-row">
-                <button type="button" id="btn-check-updates" class="quiet">Check for updates</button>
-              </div>
-              <div id="update-check-report" class="results" aria-live="polite"></div>
             </div>
           </section>
           <section id="view-reading-paths" class="view" hidden aria-labelledby="reading-paths-h"><div class="head"><div class="head-left"><h1 id="reading-paths-h">Reading paths</h1><p class="sub">See each connected sequence in one place.</p></div></div><div id="reading-paths-report" class="report"></div><p id="reading-path-status" class="rail-hint" role="status">Loading reading paths…</p><div class="reading-path-controls"><label for="reading-path-select">Reading path</label><select id="reading-path-select"></select></div><section id="reading-path-details" hidden aria-labelledby="reading-path-name"><div class="reading-path-summary"><div><h2 id="reading-path-name">Reading path</h2><p id="reading-path-description"></p><p id="reading-path-source" class="rail-hint"></p></div><strong id="reading-path-count" class="reading-path-count"></strong></div><ol id="reading-path-spine" class="reading-path-spine"></ol></section></section>

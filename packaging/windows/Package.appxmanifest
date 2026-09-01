@@ -8,7 +8,7 @@
   <Identity
     Name="PanelStackLabs.RecapPage"
     Publisher="CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472"
-    Version="2.0.1.0"
+    Version="2.0.2.0"
     ProcessorArchitecture="x64" />
 
   <Properties>

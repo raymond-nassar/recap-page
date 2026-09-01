@@ -4,7 +4,9 @@ import {
   mkdir, mkdtemp, readFile, readdir, rm,
 } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { basename, dirname, join } from 'node:path';
+import {
+  basename, dirname, join, relative,
+} from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   LAUNCHER_NAME, PACKAGE_ARCHITECTURES, PACKAGE_NAME, PACKAGE_PUBLISHER,
@@ -13,6 +15,47 @@ import {
 import { NODE_VERSION } from './pack-windows.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const EXTERNAL_UPDATER_MARKERS = Object.freeze([
+  ['GitHub release API', 'api.github.com/repos/raymond-nassar/recap-page/releases'],
+  ['GitHub release page', 'github.com/raymond-nassar/recap-page/releases'],
+  ['standalone Windows archive', 'marvel-reading-tracker-windows.zip'],
+  ['automatic update function', 'runAutomaticUpdateCheck'],
+  ['manual update function', 'runExplicitUpdateCheck'],
+  ['update preference control', 'opt-update-checks'],
+  ['manual update control', 'btn-check-updates'],
+  ['update result region', 'update-check-report'],
+  ['standalone extraction instruction', 'Unzip it anywhere'],
+  ['standalone replacement instruction', 'delete the old folder'],
+  ['App Installer URI', 'ms-appinstaller:'],
+]);
+
+export function parseInspectArguments(args) {
+  let structural = false;
+  for (const arg of args) {
+    if (arg === '--structural') structural = true;
+    else throw new Error(`unknown argument: ${arg}`);
+  }
+  return { measureRuntimes: !structural };
+}
+
+export function externalUpdaterFindings(entries) {
+  const findings = [];
+  for (const entry of entries) {
+    const path = String(entry.path).replaceAll('\\', '/');
+    const lowerPath = path.toLowerCase();
+    if (lowerPath === 'src/js/lib/updatecheck.js') {
+      findings.push({ path, reason: 'retired updater module' });
+    }
+    if (lowerPath.endsWith('.appinstaller')) {
+      findings.push({ path, reason: 'App Installer file' });
+    }
+    const bytes = Buffer.isBuffer(entry.bytes) ? entry.bytes : Buffer.from(String(entry.bytes));
+    for (const [name, marker] of EXTERNAL_UPDATER_MARKERS) {
+      if (bytes.includes(Buffer.from(marker))) findings.push({ path, reason: name });
+    }
+  }
+  return findings;
+}
 
 function run(command, args) {
   return execFileSync(command, args, {
@@ -59,6 +102,19 @@ async function filesUnder(root) {
 async function unpackPackage(path, destination) {
   await mkdir(destination, { recursive: true });
   makeAppx(['unpack', '/p', path, '/d', destination, '/o']);
+}
+
+async function assertNoExternalUpdater(root, files, packageName) {
+  const entries = await Promise.all(files.map(async (path) => ({
+    path: relative(root, path),
+    bytes: await readFile(path),
+  })));
+  const findings = externalUpdaterFindings(entries);
+  if (findings.length === 0) return;
+  throw new Error(
+    `${packageName} contains an external updater: `
+    + findings.map((finding) => `${finding.path} (${finding.reason})`).join(', '),
+  );
 }
 
 async function publishedNodeHashes() {
@@ -162,6 +218,7 @@ async function inspectPackage(path, target, hashes, { measure = false } = {}) {
     }
 
     const files = await filesUnder(unpacked);
+    await assertNoExternalUpdater(unpacked, files, basename(path));
     const payloads = files.filter((file) => /\.(?:exe|dll|node)$/i.test(file));
     const signed = files.some((file) => basename(file).toLowerCase() === 'appxsignature.p7x');
     if (!signed) throw new Error(`${basename(path)} has no AppxSignature.p7x`);
@@ -253,7 +310,7 @@ async function inspectBundle(path, hashes) {
   }
 }
 
-async function main() {
+async function main({ measureRuntimes = true } = {}) {
   const hashes = await publishedNodeHashes();
   for (const target of PACKAGE_ARCHITECTURES) {
     if (!hashes.has(target.id)) {
@@ -267,7 +324,7 @@ async function main() {
       packagePath(target.id),
       target,
       hashes,
-      { measure: true },
+      { measure: measureRuntimes },
     ));
   }
   const bundle = await inspectBundle(bundlePath(), hashes);
@@ -275,7 +332,7 @@ async function main() {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  main().catch((error) => {
+  main(parseInspectArguments(process.argv.slice(2))).catch((error) => {
     console.error(error?.stack ?? error);
     process.exit(1);
   });
