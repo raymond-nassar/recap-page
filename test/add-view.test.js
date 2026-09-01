@@ -17,6 +17,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
+const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
 
 function prose(text) {
   return text
@@ -307,7 +308,7 @@ test('the Add hub groups five routes with five dedicated pages', () => {
 });
 
 test('the destination rename does not alter Add action labels', () => {
-  assert.match(main, /const CATALOG_ADD = '\+ Add to library'/);
+  assert.match(catalogPresentation, /const CATALOG_ADD = '\+ Add to library'/);
   assert.match(allPages, />Add issue<\/button>/);
   assert.match(main, /\}, 'Add all issues'\)/);
   assert.match(main, /\}, 'Add'\);/);

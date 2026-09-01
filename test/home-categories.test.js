@@ -21,7 +21,9 @@ const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const markup = read('src/index.html');
 const mainSource = read('src/js/main.js');
 const homeSource = read('src/js/views/home.js');
-const source = [mainSource, homeSource].join('\n');
+const previewSource = read('src/js/views/preview.js');
+const catalogPresentationSource = read('src/js/views/shared/catalog-presentation.js');
+const source = [mainSource, homeSource, previewSource, catalogPresentationSource].join('\n');
 const presentationSource = [
   source,
   read('src/js/views/library.js'),
@@ -282,11 +284,12 @@ test('rendered categories navigate explicitly instead of relying on boot-time bi
 });
 
 test('Preview Open closes its modal before navigating to an existing Reading List', () => {
-  const start = source.indexOf('function addButton');
+  const start = previewSource.indexOf('function addButton');
   assert.notEqual(start, -1, 'the catalog action renderer is missing');
-  const body = source.slice(start, source.indexOf('async function addFromCatalog', start));
+  const body = previewSource.slice(start, previewSource.indexOf('function syncAdd', start));
+  assert.match(body, /onclick: \(\) => onOpen\(list, inLibrary\)/);
   assert.match(
-    body,
+    mainSource,
     /if \(\$\('#preview'\)\.open\) \$\('#preview'\)\.close\(\);\s*showView\('read',\s*\{\s*push:\s*true\s*\}\)/,
     'Preview remains open over the Reading List it navigates to',
   );

@@ -175,7 +175,13 @@ test('the connect directive stays wide, because the API base really is user-conf
 // backticks to say what the line below it does, and a matcher reading the file raw counts that
 // prose as a second assignment site.
 test('nothing paints a cover except from a vetted builder', () => {
-  const main = read('src/js/main.js')
+  const main = [
+    'src/js/main.js',
+    'src/js/views/catalog.js',
+    'src/js/views/preview.js',
+    'src/js/views/reading-paths.js',
+    'src/js/views/shared/catalog-presentation.js',
+  ].map(read).join('\n')
     .split(/\r?\n/)
     .filter((l) => !/^\s*(?:\/\/|\*|\/\*)/.test(l))
     .join('\n');

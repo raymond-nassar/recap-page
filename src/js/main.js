@@ -9,7 +9,7 @@ import {
   createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList, removeFromList, moveItem,
   toggleRead, markRead, isRead, upNext, listProgress, listItems, exportBackup, migrate,
   setOverride, pendingIssueIds, coverUrl, listForCatalogId, SCHEMA_VERSION,
-  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, completionState, orderWord, heldCount,
+  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, heldCount,
 } from './lib/model.js';
 import {
   parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl,
@@ -19,17 +19,12 @@ import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import { availability, describe, localDayString, SHORT, STATE } from './lib/availability.js';
 import { compareIssues } from './lib/sort.js';
 import {
-  parseCatalog, depthLabel, catalogFacets, filterByFacet, facetLabel,
-  filterBySpotlightKind, spotlightKindLabel, resetCatalogNarrowing,
-  searchCatalog, groupCatalog, variantLabel, sourceLink, sourceLabel, updatedLabel,
-  sortSpotlightStories, spotlightSortLabel,
-  catalogCoverUrl, readingTimeLabel, collectionsLabel, pickPath, countStories,
-  pathPlacements, resolveReadingPaths, eraSections, decadeSections, availableHomeCategories, HOME_CATEGORIES,
+  parseCatalog, groupCatalog, updatedLabel,
+  pathPlacements, resolveReadingPaths, availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
-  firstSentence, storyYear, timelineYears,
-  catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES, shelfLists,
-  modernTimelineLists, modernTimelineFeaturedList, modernTimelineFeaturedCard, visibleFirstStopGuides,
-  catalogGapLabels,
+  timelineYears,
+  catalogListShelf, CATALOG_SHELVES, PUBLISHING_CATEGORIES,
+  modernTimelineFeaturedList, modernTimelineFeaturedCard,
 } from './lib/catalog.js';
 import { Store, KEY as STATE_KEY } from './storage.js';
 import { MarvelApi, DEFAULT_BASE } from './api.js';
@@ -62,18 +57,16 @@ import { createProgressView } from './views/progress.js';
 import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createIssueView } from './views/issue.js';
 import { createHomeView } from './views/home.js';
+import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
+import { createCatalogView } from './views/catalog.js';
+import { createPreviewView } from './views/preview.js';
+import { createReadingPathsView } from './views/reading-paths.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 const SIDEBAR_KEY = 'sidebar.collapsed';
 const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const SHELF_SIZE = 8;
-// One binding for the words the catalog uses to add an order, shared by the home card and the
-// catalog row. They rendered two different labels for one behaviour before, which is how they
-// drifted apart in the first place.
-const CATALOG_ADD = '+ Add to library';
-// Above this many orders, scanning a browse shelf stops being enough and the reader needs to type.
-const CATALOG_FILTER_THRESHOLD = 12;
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
@@ -134,7 +127,7 @@ export function dispatchStorageEvent(
     const sanitizeCurrent = () => (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
       adoptCurrent: true,
       onFailure: (error) => notify('#save-report', error, 'error'),
-    }), refreshReadingPathProgress());
+    }), readingPathsView.refreshProgress());
     if (readerStore === store) {
       clearTimeout(foreignStateSanitationTimer);
       foreignStateSanitationTimer = setTimeout(sanitizeCurrent, 50);
@@ -149,7 +142,7 @@ export function dispatchStorageEvent(
     return;
   }
   if (event.key === null) {
-    readerStore.adoptForeignWrite(null); refreshReadingPathProgress();
+    readerStore.adoptForeignWrite(null); readingPathsView.refreshProgress();
     education.adopt(null);
     renderEducation();
   }
@@ -1497,8 +1490,7 @@ function syncHash({ push = false } = {}) {
   // every store.update reaches renderAll, which syncs.
   const shown = filterRunOpen && !push ? filterRunBase : filter;
   const showFilter = filterRunOpen && !push ? filterRunAddressed : filterAddressed;
-  const spotlightState = shelfState.get('spotlights');
-  const sort = view === 'spotlights' && spotlightState ? spotlightState.sort : null;
+  const sort = view === 'spotlights' ? catalogView.sort() : null;
   const next = view === 'issue' && issueRoute
     ? formatRoute(issueRoute)
     : formatRoute({
@@ -1581,10 +1573,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
       store.update((s) => setActive(s, route.listId));
     }
-    const spotlightState = shelfState.get('spotlights');
-    if (route.view === 'spotlights' && spotlightState) {
-      spotlightState.sort = route.sort === 'popularity' ? 'popularity' : null;
-    }
+    if (route.view === 'spotlights') catalogView.setSort(route.sort);
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
     if (route.view !== 'reading-paths') { filterAddressed = route.filter !== null;
@@ -1605,7 +1594,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       setFullOrderFromRoute(openFromRoute);
       if (openFromRoute && rowsPending) renderRows();
     }
-    showView(route.view, { focus }); if (route.view === 'reading-paths') void renderReadingPaths();
+    showView(route.view, { focus }); if (route.view === 'reading-paths') void readingPathsView.render();
   } finally {
     applyingRoute = false;
   }
@@ -1654,7 +1643,7 @@ function showView(next, { focus = true, push = false } = {}) {
   }
   renderRail();
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
-  if (shelf) renderCatalogShelf(shelf.key);
+  if (shelf) void catalogView.render(shelf.key);
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
   if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
@@ -1760,7 +1749,7 @@ async function restoreIssueFocusOpener(sourceView) {
     try {
       const catalog = await loadCatalog();
       const list = catalog.lists.find((entry) => entry.id === opener.contextId);
-      if (list) await openPreview(list);
+      if (list) await previewView.open(list);
     } catch {
       focusViewHeading(sourceView);
       return;
@@ -1838,9 +1827,6 @@ function renderRail() {
 // ------------------------------------------------------------------ landing page
 
 let publishingCategoryGeneration = 0;
-// Catalog ids that were just added, so the button can show "✓ In library" for a beat before
-// settling into "Open →". Transient by design; a reload shows the settled state.
-const justAdded = new Set();
 
 // Category panels are generated from the same registry the router reads. Repeating twelve hidden
 // sections in the document would create a second list of routes, headings and ids that could drift
@@ -1930,7 +1916,7 @@ async function renderPublishingCategory(route) {
     renderPublishingIndex(category, allStories);
     return;
   }
-  ensureSetupGuideFeature(catalog.lists, route);
+  catalogPresentation.ensureSetupGuideFeature(catalog.lists, route, modernTimelineFeaturedCard);
   const stories = typeof category.select === 'function'
     ? category.select(allStories)
     : publishingCategoryStories(allStories, category.key);
@@ -1964,7 +1950,7 @@ async function renderPublishingCategory(route) {
   const localStoryKeys = new Set(stories.map((story) => story.key));
   if (isPublishingCategoryLeaf(category)) {
     const years = timelineYears(stories);
-    renderTimelineSections(box, [{
+    catalogPresentation.renderTimelineSections(box, [{
       ...category, stories, from: years[0].year, to: years[years.length - 1].year,
     }], placements, {
       idPrefix: route, showEmptyYears: true, sectionBlurb: false,
@@ -1978,284 +1964,11 @@ async function renderPublishingCategory(route) {
   }
   const grid = el('div', { class: 'catalog-grid publishing-grid' });
   for (const story of stories) {
-    grid.append(catalogCard(story, placements.get(story.key), {
+    grid.append(catalogPresentation.catalogCard(story, placements.get(story.key), {
       surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
     }));
   }
   box.append(grid);
-}
-
-// Which reading path the reader has chosen through a story, keyed by the story rather than by the
-// card, so a choice made in the preview is the one the catalog then shows. Deliberately not
-// persisted: it is a decision about what to add next, not a setting, and it stops meaning anything
-// the moment the order is in the library.
-const pathChoice = new Map();
-
-function chosenPath(story) {
-  return pickPath(story, pathChoice.get(story.key), (l) => !!listForCatalogId(store.state, l.id));
-}
-
-// What one reading path is called in a chooser, plus whether it is already in the library.
-// Ownership is said inside the label rather than beside it, so it is part of the radio's
-// accessible name. It is information, not prevention: keeping both the main series and the
-// complete order is a reasonable thing to want, and this only stops a reader adding the same
-// path twice without noticing.
-function pathLabel(list) {
-  return listForCatalogId(store.state, list.id)
-    ? `${variantLabel(list)} · in your library`
-    : variantLabel(list);
-}
-
-// The choice between reading paths through one story. Native radios in a fieldset, so the group,
-// its name and its checked state are what a screen reader already knows how to read, and the arrow
-// keys move between paths without a line of ARIA re-implementing any of it.
-//
-// `scope` is what keeps the radio name unique per surface. The catalog pane and the preview dialog
-// are both in the document at once, so a name shared between them would join two separate choosers
-// into one radio group, and choosing a path in one would silently uncheck the other.
-function pathChooser(story, scope, paint) {
-  if (story.lists.length < 2) return null;
-  const selected = chosenPath(story);
-  return el('fieldset', {
-    class: 'paths',
-    // The legend says what the choice is but not what it is about, and the catalog pane shows six
-    // of these at once. Three bundled stories offer paths labelled identically, so without the
-    // story in the group's name a reader hears "The main series only, 1 of 2, Pick how much you
-    // want to read" three times with nothing to tell the three apart. Every other control in the
-    // row already carries the story this way.
-    'aria-label': labelledName('Pick how much you want to read', story.name),
-  }, [
-    el('legend', { text: 'Pick how much you want to read' }),
-    ...story.lists.map((list) => el('label', { class: 'fp path' }, [
-      el('input', {
-        type: 'radio',
-        name: `${scope}-path-${story.key}`,
-        checked: list === selected,
-        // Keyed by the path, not the story: the key is what focus restoration matches on, and
-        // keying every radio in the group alike would put focus back on the first of them.
-        dataset: { key: list.id, act: `path-${scope}` },
-        onchange: () => {
-          pathChoice.set(story.key, list.id);
-          paint(list);
-        },
-      }),
-      el('span', { text: pathLabel(list) }),
-    ])),
-  ]);
-}
-
-// Ownership is written into the labels a chooser already has, rather than the chooser being
-// rebuilt. Rebuilding a radio group destroys the radio holding focus, and a group that loses its
-// focused radio hands focus to the first one, which silently looks like the choice moving.
-function markOwnedPaths(root, story) {
-  if (!story) return;
-  for (const input of root.querySelectorAll('input[type="radio"]')) {
-    const list = story.lists.find((l) => l.id === input.dataset.key);
-    if (list) input.nextElementSibling.textContent = pathLabel(list);
-  }
-}
-
-// One card, now one story rather than one reading path. Where a story has a single path this is the
-// card it always was; where it has several, the card says so and the choice itself is made in the
-// preview dialog, which is full width and is where a reader goes once they are interested.
-//
-// The chooser used to sit here. Measured in Edge at 1280x900 with storage cleared: it cost 123px on
-// a 277px card, took the grid from 1149px to 1458px, the tallest card from 293px to 445px and the
-// grid's focusable controls from 24 to 33, and it asked four times on one screen a question the
-// reader will answer at most once. Moving it left the grid at 1169px and 24 controls, which is the
-// density the shelf had before any of this.
-//
-// The title is a heading and the description is a <p>, so neither can sit inside a button: that is
-function addButton(list, inLibrary) {
-  // One act name for both states because it is the slot that persists, not the action. Adding
-  // replaces this button with "✓ In library" and then with "Open →", and the reader who pressed
-  // it should land on whatever the card's main control has become.
-  if (inLibrary) {
-    const settled = !justAdded.has(list.id);
-    const text = settled ? 'Open →' : '✓ In library';
-    return el('button', {
-      type: 'button',
-      class: settled ? 'btn btn-g' : 'btn btn-added',
-      'aria-label': labelledName(text, list.name),
-      dataset: { key: list.id, act: 'main' },
-      onclick: () => {
-        store.update((s) => setActive(s, inLibrary.id));
-        if ($('#preview').open) $('#preview').close();
-        showView('read', { push: true });
-      },
-    }, text);
-  }
-  const text = CATALOG_ADD;
-  return el('button', {
-    type: 'button',
-    class: 'btn',
-    // Read out of context, "Add to library" says nothing about which order, so the name adds it
-    // after the label rather than inside it, which is what left the label unsayable before.
-    'aria-label': labelledName(text, list.name),
-    dataset: { key: list.id, act: 'main' },
-    onclick: (e) => addFromCatalog(list, e.currentTarget),
-  }, text);
-}
-
-async function addFromCatalog(list, btn) {
-  // Read before importCurated disables this button. The only shared Add button now lives in the
-  // preview dialog, so focus is captured from that stable slot rather than from the retired Home grid.
-  const held = captureFocus($('#preview-add'));
-  justAdded.add(list.id);
-  const listId = await importCurated(list, btn, { navigate: false, report: '#preview-report' });
-  if (!listId) {
-    justAdded.delete(list.id);
-    syncPreviewAdd();
-    returnFocus(held);
-    return;
-  }
-  syncPreviewAdd();
-  returnFocus(held);
-  setTimeout(() => {
-    const settleFocus = captureFocus($('#preview-add'));
-    justAdded.delete(list.id);
-    syncPreviewAdd();
-    returnFocus(settleFocus);
-  }, 1500);
-}
-
-// A rebuild can finish after the reader has moved. BODY is the state left by disabling a focused
-// button; any other active element is somewhere the reader chose, so it must not be replaced.
-function returnFocus(held) {
-  if (document.activeElement !== document.body) return;
-  restoreFocus(held, { primary: 'main' });
-}
-
-// ------------------------------------------------------------------ preview
-
-let previewLoad = null;
-let previewList = null;
-let previewStory = null;
-
-function syncPreviewAdd() {
-  if (!previewList || !$('#preview').open) return;
-  $('#preview-add').replaceChildren(addButton(previewList, listForCatalogId(store.state, previewList.id)));
-  markOwnedPaths($('#preview-paths'), previewStory);
-}
-
-function wirePreview() {
-  $('#preview-close').addEventListener('click', () => $('#preview').close());
-  // Clicking the backdrop closes, matching the Escape key that <dialog> gives us free.
-  $('#preview').addEventListener('click', (e) => {
-    if (e.target === $('#preview')) $('#preview').close();
-  });
-  $('#preview').addEventListener('close', async () => {
-    const chose = previewStory;
-    previewList = null;
-    previewStory = null;
-    placeNotices();
-    // The card behind the dialog names one path, and the dialog is where that choice is now made,
-    // so a choice made here has to reach the shelf card that sent the reader in.
-    if (chose && (CATALOG_SHELVES.some((shelf) => shelf.key === view)
-      || generatedCategoryByRoute.has(view))) {
-      const root = $(`#view-${view}`);
-      const held = captureFocus(root);
-      if (generatedCategoryByRoute.has(view)) await renderPublishingCategory(view);
-      else await renderCatalogShelf(view);
-      returnFocus(held);
-    }
-  });
-}
-
-async function openPreview(list, story = null) {
-  const dlg = $('#preview');
-  previewStory = story && story.lists.length > 1 ? story : null;
-  // Built once, outside the repaint below, because rebuilding a radio group destroys the radio the
-  // reader just activated, and a group with no focused radio hands focus to its first one.
-  $('#preview-paths').replaceChildren(...(previewStory
-    ? [pathChooser(previewStory, 'preview', (next) => {
-      paintPreview(next);
-      loadPreviewIssues(next);
-    })]
-    : []));
-  paintPreview(list);
-  dlg.showModal();
-  await loadPreviewIssues(list);
-}
-
-// Everything in the dialog that describes one reading path. Split from openPreview so that choosing
-// a different path repaints the dialog rather than reopening it, which would close and reshow a
-// modal the reader is already inside.
-function paintPreview(list) {
-  previewList = list;
-  $('#preview-h').textContent = previewStory ? previewStory.name : list.name;
-  const readingTime = readingTimeLabel(list.count);
-  $('#preview-meta').textContent = [
-    // With a chooser present the heading is the story, so the path has to be named somewhere or
-    // the dialog would describe a reading path it never identifies.
-    previewStory ? variantLabel(list) : null,
-    `${list.count} issue${list.count === 1 ? '' : 's'}`,
-    ...catalogGapLabels(list),
-    collectionsLabel(list),
-    readingTime,
-    depthLabel(list.depth),
-  ].filter(Boolean).join(' · ');
-  $('#preview-desc').textContent = list.description || '';
-  $('#preview-add').replaceChildren(addButton(list, listForCatalogId(store.state, list.id)));
-}
-
-async function loadPreviewIssues(list) {
-  $('#preview-body').replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the issue list…' }));
-  // A second preview opened while the first is still loading would otherwise race it and
-  // could paint the wrong order's issues into the dialog. A path chosen in the dialog starts
-  // another load against the same guard, so arrowing quickly through the paths cannot leave the
-  // issues of one path under the heading of another.
-  const token = {};
-  previewLoad = token;
-  try {
-    const res = await fetch(`./data/${list.file}`, { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const order = await res.json();
-    if (previewLoad !== token) return;
-    // Sub-headings for a trade order, so the reader can see the books before importing, which
-    // is the whole reason to pick this variant over the issue-by-issue one. The number keeps
-    // counting across a heading because it numbers the reading order, not the book.
-    let shown = null;
-    const nodes = [];
-    order.items.forEach((item, i) => {
-      const edition = typeof item.collectedIn === 'string' ? item.collectedIn : null;
-      if (edition && edition !== shown) {
-        shown = edition;
-        nodes.push(el('li', { class: 'preview-group' }, [el('h4', { text: edition })]));
-      }
-      nodes.push(el('li', {}, [
-        // Numbered because the order is the point; the reading order is what the reader came
-        // to the preview to see.
-        el('span', { class: 'pn', text: String(i + 1) }),
-        issueFocusAnchor(item, {
-          context: { kind: 'order', id: list.id },
-          surface: 'preview',
-          className: 'preview-issue-link',
-          children: item.title || 'Untitled issue',
-        }),
-      ]));
-    });
-    $('#preview-body').replaceChildren(el('ol', { class: 'preview-list' }, nodes));
-  } catch (err) {
-    if (previewLoad !== token) return;
-    const result = await runLocalConnectionProbe();
-    if (previewLoad !== token) return;
-    if (result.current && result.status !== LOCAL_SERVER_STATUS.READY) {
-      $('#preview-body').replaceChildren(noticeEl({
-        msg: `The local app connection is not available, so the issue list could not be loaded. ${LOCAL_CONNECTION_STEPS} You can still add the Reading List.`,
-        kind: 'warn',
-        action: {
-          label: 'Try again',
-          onClick: () => { void loadPreviewIssues(list); },
-        },
-      }));
-      return;
-    }
-    $('#preview-body').replaceChildren(el('p', {
-      class: 'rail-hint',
-      text: `The issue list could not be loaded: ${err.message}. You can still add the order.`,
-    }));
-  }
 }
 
 // ------------------------------------------------------------------ reading view
@@ -4423,16 +4136,6 @@ function doManual() {
 // ------------------------------------------------------------------ curated orders
 
 let catalogLoad = null;
-// One search box and one facet choice per shelf, rather than one shared by all three. The shelves
-// hold different kinds of reading, so a query typed to find an event says nothing about which
-// character spotlight is wanted, and carrying it across would empty the screen a reader had just
-// arrived at. Keyed by the table so a new shelf needs no state added here.
-const shelfState = new Map(CATALOG_SHELVES.map((shelf) => [
-  shelf.key,
-  { facet: 'all', query: '', spotlight: 'all', sort: null },
-]));
-const shelfRenderGeneration = new Map();
-let catalogAnnounceTimer = null;
 
 // Typing in the search box re-renders on every keystroke, so a slow first load could otherwise
 // start a second fetch while the first is still in flight and let the two renders finish out of
@@ -4451,726 +4154,9 @@ function loadCatalog() {
   return catalogLoad;
 }
 
-// The catalog re-renders on every keystroke, so announcing each render would read a fresh result
-// count into a screen reader for every letter typed, and each announcement would cut off the one
-// before it. Waiting for a pause means the reader hears the result of what they actually typed.
-function announceCatalog(msg) {
-  clearTimeout(catalogAnnounceTimer);
-  catalogAnnounceTimer = setTimeout(() => announce(msg), 500);
-}
-
-function ensureSetupGuideFeature(lists, surface = 'catalog') {
-  const featureId = surface === 'catalog'
-    ? 'modern-timeline-feature'
-    : `${surface}-setup-guide-feature`;
-  const existing = $(`#${featureId}`);
-  const list = modernTimelineFeaturedCard(lists, surface);
-  if (!list) {
-    existing?.remove();
-    return;
-  }
-
-  const [story] = groupCatalog([list]);
-  const titleId = `${featureId}-h`;
-  const context = surface === 'catalog'
-    ? 'This app chooses 1998 as the start of its Modern Timeline. It is not an official Marvel editorial-era boundary.'
-    : 'Read this orientation guide first for the earlier stories that lead into this age.';
-  const feature = el('section', {
-    id: featureId,
-    class: 'setup-guide-feature',
-    'aria-labelledby': titleId,
-    dataset: { featuredList: list.id },
-  }, [
-    el('div', { class: 'setup-guide-context' }, [
-      el('p', {
-        class: 'eyebrow',
-        text: surface === 'catalog' ? 'Recommended start' : 'Earlier context',
-      }),
-      el('p', { text: context }),
-    ]),
-    el('div', { class: 'catalog-grid setup-guide-grid' }, [
-      catalogCard(story, null, {
-        surface,
-        report: `#${surface}-report`,
-        level: 'h2',
-        titleId,
-      }),
-    ]),
-  ]);
-  if (existing) existing.replaceWith(feature);
-  else $(`#${surface}-results`).before(feature);
-}
-
-// One renderer for all three catalog screens. The shelves differ in what they hold and in what
-// they are called, and in nothing else, so the differences live in `CATALOG_SHELVES` and the
-// element ids are derived from the shelf key rather than written out three times. Writing this
-// three times is how the three screens would drift apart, and the first thing to drift would be
-// whichever of them the next change forgot.
-async function renderCatalogShelf(key) {
-  const generation = (shelfRenderGeneration.get(key) ?? 0) + 1;
-  shelfRenderGeneration.set(key, generation);
-  const shelf = CATALOG_SHELVES.find((s) => s.key === key);
-  const state = shelfState.get(key);
-  const box = $(`#${key}-results`);
-  box.replaceChildren(el('p', { class: 'rail-hint', text: 'Loading the catalog…' }));
-  // Cleared by condition rather than by pane, because the same load failure may have been placed
-  // in the shared pane above the views. Emptying only this pane left the reader looking at a
-  // loaded catalog under a banner saying it could not be loaded.
-  clearNotice(CATALOG_LOAD);
-  // Tied to the query rather than to a successful load, so the button cannot be left behind
-  // offering to clear a search box that an empty or failed catalog still shows.
-  $(`#${key}-clear`).hidden = !state.query;
-
-  let catalog;
-  try {
-    catalog = await loadCatalog();
-  } catch (err) {
-    box.replaceChildren();
-    $(`#${key}-filters`).hidden = true;
-    $(`#${key}-filters`).replaceChildren();
-    $(`#form-${key}-search`).hidden = true;
-    await reportBundledLoadFailure({
-      report: `#${key}-report`,
-      failure: `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
-      key: CATALOG_LOAD,
-      subject: 'the catalog',
-      retry: () => renderCatalogShelf(key),
-      isCurrent: () => generation === shelfRenderGeneration.get(key),
-    });
-    return;
-  }
-
-  // A dropped entry means the bundled data is wrong, not that the list does not exist. Saying
-  // so is better than showing a shorter catalog that looks complete.
-  if (catalog.dropped) {
-    notify(
-      `#${key}-report`,
-      `${catalog.dropped} catalog ${catalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`,
-      'warn',
-    );
-  }
-
-  if (key === 'catalog') ensureSetupGuideFeature(catalog.lists, key);
-
-  // This shelf's own share of the catalog, taken before anything else looks at it, so the facets
-  // count what this screen can show and the search never turns up a row that belongs elsewhere.
-  const mine = key === 'catalog'
-    ? modernTimelineLists(catalog.lists)
-    : shelfLists(catalog.lists, key);
-
-  box.replaceChildren();
-  if (!mine.length) {
-    $(`#${key}-filters`).hidden = true;
-    $(`#form-${key}-search`).hidden = true;
-    box.append(el('p', { class: 'rail-hint', text: shelf.empty }));
-    return;
-  }
-
-  // The same rule the landing page uses, and for the same reason: scanning works up to about a
-  // dozen orders, and below that a search box is a control with nothing to do. Applied per shelf
-  // rather than to the catalog as a whole, because a reader on a six-row screen has no use for a
-  // box just because a different screen is long. The owner intends to grow all three, so the box
-  // appears on its own when a shelf passes the threshold rather than having to be added then.
-  const totalStories = countStories(mine);
-  const searchable = totalStories > CATALOG_FILTER_THRESHOLD;
-  $(`#form-${key}-search`).hidden = !searchable;
-  if (!searchable && state.query) {
-    state.query = '';
-    $(`#${key}-q`).value = '';
-    $(`#${key}-clear`).hidden = true;
-  }
-
-  // The facets describe the whole shelf, not the current search, so searching never
-  // makes a filter vanish from under the reader's cursor.
-  renderCatalogShelfFilters(key, mine, searchable);
-  if (key === 'spotlights') syncCatalogShelfSort(key);
-
-  // Character Spotlight's editorial subset is applied before every generic narrowing step. It is
-  // separate from the generic facets because it is always available on this one shelf, including
-  // while the shelf remains below the size threshold that reveals search and category controls.
-  const inSpotlight = key === 'spotlights'
-    ? filterBySpotlightKind(mine, state.spotlight)
-    : mine;
-
-  // Filtering narrows which lists are shown; every list that is shown keeps the full detail a
-  // reader needs to choose, so searching or switching filters never hides a description,
-  // reading depth, or issue count.
-  const inFacet = filterByFacet(inSpotlight, state.facet);
-  const shown = searchCatalog(inFacet, state.query);
-
-  const sortSentence = key === 'spotlights'
-    ? ` Sorted by ${spotlightSortLabel(state.sort).toLowerCase()}.`
-    : '';
-
-  if (!shown.length) {
-    const where = catalogNarrowingLabel(key, mine, state);
-    const msg = state.query
-      ? `No Reading Lists match “${state.query}”${where}.`
-      : `No Reading Lists${where || ' in that category'}.`;
-    box.append(el('p', { class: 'rail-hint', text: msg }));
-    announceCatalog(`${msg}${sortSentence}`);
-    return;
-  }
-
-  const stories = key === 'spotlights'
-    ? sortSpotlightStories(groupCatalog(shown), state.sort)
-    : groupCatalog(shown);
-  // Resolved once for the whole shelf rather than per row: nineteen rows each searching every
-  // path is the same work nineteen times, and the answer cannot differ between them. Resolved
-  // against the whole catalog rather than this shelf, because a path runs through orders this
-  // screen does not list and a placement computed from a slice of it would number the stops wrong.
-  const placements = pathPlacements(catalog.paths, catalog.lists);
-  const firstStops = visibleFirstStopGuides(stories, placements, chosenPath);
-  if (firstStops.length) {
-    const directions = firstStops.map(({ guide, placement }, index) => (
-      `${index === 0 ? 'Start' : 'start'} ${placement.pathName} with ${guide.name}`
-    ));
-    box.append(el('p', {
-      class: 'rail-hint shelf-orientation',
-      text: `${directions.join('; ')}.`,
-    }));
-  }
-  const sections = shelf.sections === 'eras'
-    ? eraSections(stories)
-    : shelf.sections === 'decades'
-      ? decadeSections(stories)
-      : [{ ...shelf, stories }];
-  const grouped = Boolean(shelf.sections);
-  if (key === 'catalog') {
-    renderTimelineSections(box, sections, placements, {
-      idPrefix: 'timeline',
-      showEmptyYears: state.facet === 'all' && !state.query,
-      sectionBlurb: true,
-      sectionLevel: 'h2',
-      yearLevel: 'h3',
-      cardLevel: 'h4',
-      undatedCardLevel: 'h3',
-      cardOptions: { surface: 'catalog' },
-    });
-  }
-  for (const section of sections) {
-    if (key === 'catalog') break;
-    // A shelf that is not divided draws no heading over its single group: the screen's own h1 and
-    // cards already say what is on it, and a lone section title repeating them would be a second
-    // heading standing over the same thing. Decade headings need no sentence restating the decade.
-    if (grouped) box.append(shelfSectionHead(section, { blurb: false }));
-    const grid = el('div', { class: 'catalog-grid' });
-    for (const story of section.stories) {
-      grid.append(catalogCard(story, placements.get(story.key), {
-        surface: key,
-        level: grouped ? 'h3' : 'h2',
-      }));
-    }
-    box.append(grid);
-  }
-
-  // The dropped-entry warning already announced itself; a second announcement would replace it.
-  if (!catalog.dropped) {
-    const where = catalogNarrowingLabel(key, mine, state);
-    const match = state.query ? ` matching “${state.query}”` : '';
-    announceCatalog(`${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.${sortSentence}`);
-  }
-}
-
-// The divider over one part of the shelf. A heading rather than a styled line, because the thing a
-// reader needs here is navigable.
-//
-// The level is passed in rather than fixed, because the same head is drawn on two screens at two
-// depths. On the browse screen it sits directly under the view's h1, so it is an h2 and closes a
-// heading skip that was there before the sections were. On the landing page it sits inside a
-// section that already has an h2, so it is an h3 and the cards under it are h4. Hard-coding h2
-// would have put two same-level headings in a parent-child relationship on the landing page.
-function shelfSectionHead(
-  section,
-  {
-    level = 'h2', className = 'shelf-section', blurb = true, headingId = null,
-  } = {},
-) {
-  const children = [el(level, {
-    id: headingId, class: 'shelf-section-title', text: section.heading,
-  })];
-  if (blurb) children.push(el('p', { class: 'shelf-section-blurb', text: section.blurb }));
-  return el('div', { class: className }, children);
-}
-
-// The Timeline is content now, not a separate strip of links. Era milestones, year markers and
-// cards share one vertical axis, so the chronology stays beside the stories it describes.
-function emptyTimelineYear(year) {
-  return el('div', { class: 'timeline-year-row is-empty' }, [
-    el('div', { class: 'timeline-year-marker is-empty' }, [
-      el('span', { 'aria-hidden': 'true', text: `${year}` }),
-      el('span', { class: 'visually-hidden', text: `${year}, no Reading Lists` }),
-    ]),
-  ]);
-}
-
-function renderTimelineSections(box, sections, placements, {
-  idPrefix = 'timeline', showEmptyYears, sectionBlurb = true,
-  sectionLevel = 'h2', yearLevel = 'h3', cardLevel = 'h4', undatedCardLevel = 'h3',
-  cardOptions = {},
-}) {
-  const flow = el('div', { class: 'timeline-flow' });
-  let previousYear = null;
-  for (const section of sections) {
-    const byYear = new Map();
-    for (const story of section.stories) {
-      const year = storyYear(story);
-      if (year === null) continue;
-      if (!byYear.has(year)) byYear.set(year, []);
-      byYear.get(year).push(story);
-    }
-
-    const years = showEmptyYears && Number.isInteger(section.from) && Number.isInteger(section.to)
-      ? Array.from({ length: section.to - section.from + 1 }, (_, offset) => section.from + offset)
-      : [...byYear.keys()].sort((a, b) => a - b);
-    if (showEmptyYears && Number.isInteger(section.from) && previousYear !== null && years[0] > previousYear + 1) {
-      const gap = el('div', { class: 'timeline-year-list' });
-      for (let year = previousYear + 1; year < years[0]; year += 1) {
-        gap.append(emptyTimelineYear(year));
-      }
-      flow.append(gap);
-    }
-
-    const sectionId = `${idPrefix}-era-${section.key}`;
-    const era = el('section', {
-      class: 'timeline-era',
-      'aria-labelledby': sectionId,
-    }, [
-      el('div', { class: 'timeline-era-node', 'aria-hidden': 'true' }),
-      shelfSectionHead(section, {
-        className: 'shelf-section timeline-era-head',
-        level: sectionLevel,
-        blurb: sectionBlurb,
-        headingId: sectionId,
-      }),
-    ]);
-
-    const yearList = el('div', { class: 'timeline-year-list' });
-    for (const year of years) {
-      const yearStories = byYear.get(year) ?? [];
-      if (!yearStories.length) {
-        yearList.append(emptyTimelineYear(year));
-        continue;
-      }
-
-      const yearId = `${idPrefix}-year-${year}`;
-      const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
-      for (const story of yearStories) {
-        grid.append(catalogCard(story, placements.get(story.key), {
-          ...cardOptions, level: cardLevel,
-        }));
-      }
-      yearList.append(el('section', {
-        class: 'timeline-year-row',
-        'aria-labelledby': yearId,
-      }, [
-        el('div', { class: 'timeline-year-marker' }, [
-          el(yearLevel, { id: yearId, class: 'timeline-year-label', text: `${year}` }),
-        ]),
-        grid,
-      ]));
-    }
-
-    if (!years.length) {
-      const grid = el('div', { class: 'catalog-grid timeline-year-cards' });
-      for (const story of section.stories) {
-        grid.append(catalogCard(story, placements.get(story.key), {
-          ...cardOptions, level: undatedCardLevel,
-        }));
-      }
-      yearList.append(grid);
-    }
-    era.append(yearList);
-    flow.append(era);
-    if (Number.isInteger(section.from) && Number.isInteger(section.to)) previousYear = years[years.length - 1];
-  }
-  box.append(flow);
-}
-
-// One card per story. The complete description, collection metadata and reading-path choice remain
-// in the preview dialog; this surface carries only what is needed to decide whether to open it.
-//
-// `surface` is the shelf this row is being drawn on. The report pane is derived from it rather
-// than passed alongside it, because the two were separate arguments and a row reporting an import
-// into another screen's pane is a failure with no symptom on the screen the reader is looking at.
-function catalogCard(
-  story,
-  placement,
-  {
-    surface = 'catalog', report = null, localStoryKeys = null, level = 'h3', titleId = null,
-  } = {},
-) {
-  const reportTarget = report ?? `#${surface}-report`;
-  const title = story.name ?? story.lists[0].name;
-  const img = el('img', { alt: '', loading: 'lazy', decoding: 'async' });
-  const fallback = el('div', { class: 'of cover-fallback', 'aria-hidden': true }, [
-    el('span', { class: 'ofs', text: shortTitle(title) }),
-  ]);
-  const desc = el('p', { class: 'catalog-card-desc' });
-  const meta = el('p', { class: 'catalog-card-meta' });
-  const source = el('div', { class: 'result-source' });
-  const path = pathDisclosure(placement, surface, { localStoryKeys });
-  const disclosures = el('div', { class: 'catalog-card-disclosures' }, [path, source].filter(Boolean));
-  const actions = el('div', { class: 'catalog-card-actions' });
-
-  // One updater for every part that names a reading path. A choice made in Preview repaints the card
-  // on close, so Add, the issue count and the Source disclosure cannot describe different paths.
-  const paint = (list) => {
-    paintCoverUrl(img, fallback, catalogCoverUrl(list), hueOf(title), title);
-    desc.textContent = firstSentence(list.description);
-    desc.hidden = !desc.textContent;
-    meta.textContent = [
-      `${list.count} issue${list.count === 1 ? '' : 's'}`,
-      ...catalogGapLabels(list),
-    ].join(' · ');
-    source.replaceChildren(...[attributionLine(list)].filter(Boolean));
-    const previewText = story.lists.length > 1 ? `${story.lists.length} reading options` : 'Preview';
-    actions.replaceChildren(
-      catalogPrimaryButton(list, reportTarget),
-      el('button', {
-        class: 'btn btn-g',
-        type: 'button',
-        'aria-label': labelledName(previewText, title),
-        dataset: { key: story.key, act: 'preview' },
-        onclick: () => openPreview(list, story),
-      }, previewText),
-    );
-  };
-  paint(chosenPath(story));
-
-  const year = storyYear(story);
-  return el('article', {
-    class: 'catalog-card',
-    dataset: { story: story.key, year: year ?? '' },
-  }, [
-    el('div', { class: 'catalog-card-main' }, [
-      el('div', { class: 'ocard-art' }, [img, fallback]),
-      el('div', { class: 'catalog-card-text' }, [
-        el(level, { id: titleId, class: 'catalog-card-title', text: title }),
-        desc,
-        meta,
-        disclosures,
-      ]),
-    ]),
-    actions,
-  ]);
-}
-
-function catalogPrimaryButton(list, reportTarget) {
-  const saved = listForCatalogId(store.state, list.id);
-  if (saved) {
-    const text = 'Open →';
-    return el('button', {
-      class: 'btn',
-      type: 'button',
-      'aria-label': labelledName(text, list.name),
-      dataset: { key: list.id, act: 'open' },
-      onclick: () => {
-        store.update((state) => setActive(state, saved.id));
-        if (!store.lastUpdateOk) {
-          notify(reportTarget, `${list.name} could not be opened because that selection could not be saved.`, 'error', `open:${list.id}`);
-          return;
-        }
-        showView('read', { push: true });
-      },
-    }, text);
-  }
-  return el('button', {
-    class: 'btn',
-    type: 'button',
-    'aria-label': labelledName(CATALOG_ADD, list.name),
-    dataset: { key: list.id, act: 'import' },
-    onclick: (event) => importCurated(list, event.currentTarget, { report: reportTarget }),
-  }, CATALOG_ADD);
-}
-
-function pathDisclosure(placement, surface, { localStoryKeys = null } = {}) {
-  if (!placement) return null;
-  const opens = placement.previous === null;
-  const summary = opens ? `Start · 1/${placement.total}` : `Step ${placement.position}/${placement.total}`;
-  return el('details', { class: 'result-path' }, [
-    el('summary', {
-      'aria-label': `${summary}. Show path details for ${placement.pathName}`,
-    }, summary),
-    pathLine(placement, surface, { showBadge: false, localStoryKeys }),
-  ]);
-}
-
-// Where this story sits on a named reading path, when it sits on one. Built outside `paint`
-// because it is keyed on the story rather than on the reading the chooser has selected: House of
-// M is the third stop whichever of its two readings a reader picks, so repainting the row must
-// not be able to recompute it into a different answer.
-//
-// The badge on the first stop reads "Start here" rather than "Step 1 of 10". A reader who does
-// not know where to begin is the entire reason this exists, and a position only answers them if
-// something on the shelf is the answer at a glance rather than after reading a sentence.
-//
-// It does not say what comes before. On a single shelf sorted by year a stop's predecessor was
-// almost always the row directly above it, and printing it made the longest element on the line a
-// restatement of the previous one. What a reader cannot get by looking up is what comes next.
-//
-// Splitting the catalog into three screens by kind of reading gave that half a boundary condition
-// rather than falsifying it. The one bundled path runs through all three screens, so seven of its
-// nine hops still have the predecessor directly above and two of them do not. A backward stop link
-// on those two was costed and declined: the orientation it buys is bought instead by the path's
-// own name, which is already printed on all ten rows, so the same gap closes for no added words.
-//
-// Two links, one rule. "Next" is a link on exactly the hops that cross a screen, and the path name
-// is a link to the first stop on exactly the rows drawn away from it, so both go through stopLink
-// rather than through two functions holding one idea. Where the screen already holds the stop, a
-// link would land the reader at the top of the screen they are standing on, which is further from
-// the row than they started. Measured against the shipped path: nine rows take a linked name and
-// two take a linked "Next", and one row, step five, takes both.
-//
-// The words are identical either way. Nothing is appended to say where either link goes, because
-// the screen it lands on says that on arrival and the complaint this whole change answers was that
-// these screens carry too much text. Both links sit inside one span rather than beside the badge,
-// because .path-step is a flex row and a link parented directly by it becomes an item with a gap
-// each side, which reads as a control strip rather than as a sentence.
-//
-// The <p> takes no aria-label: every word of it is already on screen, and `aria-label` on a <p>
-// has no role to attach to, so it is markup that reads correctly in a review and is dropped by the
-// accessibility tree. An <a> is the opposite case, and the path name is the one that needs it,
-// because "The Modern Avengers" alone does not say that pressing it goes to the start. Its name is
-// built out of the visible words rather than beside them, which is what accname.js exists to hold.
-export function pathLine(
-  placement,
-  surface,
-  { showBadge = true, localStoryKeys = null } = {},
-) {
-  if (!placement) return null;
-  const opens = placement.previous === null;
-  const start = stopLink(placement.first, surface, {
-    text: placement.pathName,
-    label: labelledName(placement.pathName, `Start at ${placement.first.name}`),
-    localStoryKeys,
-  });
-  const link = placement.next ? stopLink(placement.next, surface, { localStoryKeys }) : null;
-  const lead = opens ? ` · Step 1 of ${placement.total} · ` : ' · ';
-  const badge = showBadge ? el('span', {
-    class: opens ? 'pill pill-start' : 'pill',
-    text: opens ? 'Start here' : `Step ${placement.position} of ${placement.total}`,
-  }) : null;
-  return el('p', { class: 'result-meta path-step' }, [
-    badge,
-    el('span', {}, [
-      start ?? placement.pathName,
-      lead,
-      ...(placement.next ? ['Next: ', link ?? placement.next.name] : ['Last stop']),
-    ]),
-  ].filter(Boolean));
-}
-
-// Null when the stop is on the screen already showing this row, which is what keeps the offer
-// honest: a link is only drawn where pressing it takes the reader somewhere they are not.
-//
-// An <a> with a real hash href rather than a button, so the destination is in the status bar,
-// middle-click opens it, and Back returns to the row that named it without this code owning any of
-// that. Constraint 5 makes the origin load-bearing, so the address it writes is a fragment and
-// nothing else. The click is taken over only to clear the destination's narrowing first.
-function stopLink(
-  stop,
-  surface,
-  {
-    text = stop.name, label = null, localStoryKeys = null,
-  } = {},
-) {
-  const dest = stop.shelf;
-  if (dest === surface || localStoryKeys?.has(stop.key)) return null;
-  const href = { view: dest };
-  if (dest === 'spotlights') {
-    const spotlightState = shelfState.get(dest);
-    href.sort = spotlightState ? spotlightState.sort : null;
-  }
-  return el('a', {
-    href: formatRoute(href),
-    'aria-label': label,
-    onclick: (e) => {
-      e.preventDefault();
-      goToStop(stop);
-    },
-  }, text);
-}
-
-// Following the path across a screen boundary. Clearing the destination's narrowing is the
-// decision this function exists to make rather than a tidy-up, and it is the dangerous part of
-// this change: a reader who presses a control naming one specific order and lands on a screen that
-// does not contain it has been told something untrue, which is worse than never having been
-// offered the link.
-//
-// The hazard is live rather than theoretical. Browse-by-era holds 46 stories, passes the search
-// threshold of 12 and so ships a search box and facet chips, and a query or a chip left behind
-// from an earlier visit survives until that screen is rendered again. Measured against the shipped
-// catalog, three of its facet chips and most queries drop the row a crossing lands on.
-//
-// Withdrawing the offer instead was the alternative and it is the weaker one, because the offer is
-// good and only the leftover state is not. Arriving by a path link is an explicit new intent, so
-// clearing makes the offer true; refusing would make a working link vanish for a reason the reader
-// cannot see. What this cannot fix is a stop no screen holds, and nothing can be: the shelf a stop
-// names is computed from the whole catalog by the same rule the renderer uses, so the row is on
-// the destination by construction, and `catalog.test.js` holds that for every stop of every path.
 function goToStop(stop) {
-  const dest = stop.shelf;
-  clearNarrowing(dest);
-  // Pushed rather than replaced: this is a place the reader chose to go, so Back returns them to
-  // the row they pressed. Focus goes to the destination's heading, which is where every other
-  // arrival in this app puts it, so a screen reader is told which screen it is now on rather than
-  // being moved silently. showView draws the destination shelf itself, after the clearing above.
-  showView(dest, { focus: true, push: true });
-}
-
-// The destination's search box and facet chips, put back to showing everything. Only a catalogue
-// shelf is ever the destination: a link is drawn only when the next stop is on another screen, and
-// the landing page is another screen only when the reader is not already on it, which is a
-// direction no link points. So this addresses a shelf and nothing else.
-function clearNarrowing(dest) {
-  const state = shelfState.get(dest);
-  if (!state) return;
-  resetCatalogNarrowing(state);
-  $(`#${dest}-q`).value = '';
-  $(`#${dest}-clear`).hidden = true;
-  for (const radio of document.querySelectorAll(`input[name="${dest}-kind"]`)) {
-    radio.checked = radio.value === state.spotlight;
-  }
-}
-
-function syncCatalogShelfSort(key) {
-  if (key !== 'spotlights') return;
-  const state = shelfState.get(key);
-  if (!state) return;
-  const checked = state.sort === 'popularity' ? 'popularity' : 'current-order';
-  for (const radio of document.querySelectorAll('input[name="spotlights-sort"]')) {
-    radio.checked = radio.value === checked;
-  }
-}
-
-function catalogNarrowingLabel(key, lists, state) {
-  const labels = [];
-  if (key === 'spotlights' && state.spotlight !== 'all') {
-    labels.push(spotlightKindLabel(state.spotlight));
-  }
-  if (state.facet !== 'all') labels.push(facetLabel(lists, state.facet));
-  return labels.length ? ` in ${labels.join(' and ')}` : '';
-}
-
-// Where an order came from and when it was pinned. A reader deciding whether to trust a curated
-// order needs both: the credit tells them who made it, the date bounds how recent it can be.
-// The stamp is when the vendor script fetched the order, not when its curator last revised it,
-// so it is labelled as a snapshot rather than claiming the list itself was updated that day.
-function attributionLine(list) {
-  const label = sourceLabel(list);
-  const href = sourceLink(list);
-  const section = typeof list.sourceSection === 'string' && list.sourceSection.trim()
-    ? list.sourceSection.trim()
-    : null;
-  const updated = updatedLabel(list);
-  if (!label && !section && !updated) return null;
-
-  const parts = [];
-  if (label) {
-    parts.push('Source: ');
-    parts.push(href
-      ? el('a', {
-        href,
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        'aria-label': `Source of ${list.name}: ${label}${section ? `, section ${section}` : ''}`,
-      }, label)
-      : el('span', { text: label }));
-  }
-  if (section) parts.push(el('span', { text: `${label ? ' · ' : ''}Section: ${section}` }));
-  if (updated) parts.push(el('span', { text: `${label || section ? ' · ' : ''}Snapshot taken ${updated}` }));
-  // Folded away rather than printed. Provenance is a thing a reader checks once about one order,
-  // never a thing they read on every row, and measured on the Timeline screen at 1280x900 the 46
-  // rows each carrying this line put 267 small-font nodes on one screen. A disclosure rather than a
-  // hover tooltip, because a tooltip reaches neither the keyboard nor touch, and Chromium expands a
-  // closed details for find-in-page, so the text stays findable while it is out of the way.
-  //
-  // The summary names the order it belongs to. Forty-six controls all announcing "Source" and
-  // nothing else is a list a screen reader user cannot navigate; the visible word stays inside the
-  // spoken name, so the two do not disagree.
-  return el('details', { class: 'result-src' }, [
-    el('summary', { 'aria-label': `Source of ${list.name}` }, 'Source'),
-    el('p', { class: 'result-meta result-source' }, parts),
-  ]);
-}
-
-function wireCatalogShelfSearch(key) {
-  const state = shelfState.get(key);
-  const input = $(`#${key}-q`);
-  // Submitting is a no-op because results already track what has been typed; without this the
-  // form would reload the page and throw the reader back to an empty catalog.
-  $(`#form-${key}-search`).addEventListener('submit', (e) => e.preventDefault());
-  input.addEventListener('input', () => {
-    state.query = input.value.trim();
-    renderCatalogShelf(key);
-  });
-  $(`#${key}-clear`).addEventListener('click', () => {
-    input.value = '';
-    state.query = '';
-    input.focus();
-    renderCatalogShelf(key);
-  });
-  if (key === 'spotlights') {
-    for (const radio of document.querySelectorAll('input[name="spotlights-kind"]')) {
-      radio.addEventListener('change', () => {
-        state.spotlight = radio.value;
-        renderCatalogShelf(key);
-      });
-    }
-    for (const radio of document.querySelectorAll('input[name="spotlights-sort"]')) {
-      radio.addEventListener('change', () => {
-        state.sort = radio.value === 'popularity' ? 'popularity' : null;
-        renderCatalogShelf(key);
-        syncHash({ push: true });
-      });
-    }
-  }
-}
-
-// `searchable` rather than a second look at the count: the search box and the chips are both
-// controls for narrowing a long shelf, and a shelf short enough not to need typing does not need
-// chips either. Tying them to one answer keeps a screen from offering half of a way to narrow.
-function renderCatalogShelfFilters(key, lists, searchable) {
-  const state = shelfState.get(key);
-  const box = $(`#${key}-filters`);
-  const options = catalogFacets(lists);
-
-  // One option is no choice at all, so the filter would only add noise.
-  box.hidden = !searchable || options.length < 2;
-  if (box.hidden) {
-    state.facet = 'all';
-    return;
-  }
-
-  // A facet can disappear when the bundled data changes; falling back to "all" keeps the
-  // reader looking at a populated catalog instead of a permanently empty one.
-  if (state.facet !== 'all' && !options.some((c) => c.key === state.facet)) {
-    state.facet = 'all';
-  }
-
-  // Selecting a filter re-renders the view. Rebuilding the radios then would destroy the
-  // one the reader just activated and drop keyboard focus out of the filter, so when the
-  // options are unchanged we only move the selection.
-  const existing = [...box.querySelectorAll(`input[name="${key}-category"]`)];
-  if (existing.length === options.length && existing.every((r, i) => r.value === options[i].key)) {
-    for (const radio of existing) radio.checked = radio.value === state.facet;
-    return;
-  }
-
-  box.replaceChildren(
-    el('legend', { class: 'visually-hidden', text: 'Filter the catalog by category' }),
-    ...options.map(({ key: facet, label, count }) => el('label', { class: 'fp' }, [
-      el('input', {
-        type: 'radio',
-        name: `${key}-category`,
-        value: facet,
-        checked: facet === state.facet,
-        onchange: () => { state.facet = facet; renderCatalogShelf(key); },
-      }),
-      el('span', { text: `${label} (${count})` }),
-    ])),
-  );
+  catalogView.clearNarrowing(stop.shelf);
+  showView(stop.shelf, { focus: true, push: true });
 }
 
 // A second click while the first import is still fetching runs the whole import again and mints a
@@ -5285,7 +4271,10 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
       subject: list.name,
       retry: () => (navigate
         ? importCurated(list, btn, { navigate, report })
-        : addFromCatalog(list, $('#preview-add [data-act="main"]'))),
+        : importCurated(list, $('#preview-add [data-act="main"]'), {
+          navigate: false,
+          report: '#preview-report',
+        })),
     });
     return null;
   } finally {
@@ -5959,9 +4948,10 @@ export function boot() {
   wireSalvage();
   wireShortcuts();
   wireBlockedBanner();
-  for (const shelf of CATALOG_SHELVES) wireCatalogShelfSearch(shelf.key);
-  homeView.wire(); wireReadingPaths();
-  wirePreview();
+  for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
+  homeView.wire();
+  readingPathsView.wire();
+  previewView.wire();
   wireAsk();
   renderAll();
   // The address bar is now allowed to be written, but not before: renderAll has just run once, and
@@ -6225,11 +5215,11 @@ const homeView = createHomeView({
   onNavigateCategory: (category) => {
     if (category.route === 'reading-paths') requestedReadingPathId = null;
     showView(category.route, { push: true });
-    if (category.route === 'reading-paths') void renderReadingPaths();
+    if (category.route === 'reading-paths') void readingPathsView.render();
   },
   onOpen: () => showView('read', { push: true }),
   onRead: openInReader,
-  openPreview,
+  openPreview: (list, story) => previewView.open(list, story),
   paintCover,
   paintCoverUrl,
   recommendedList: modernTimelineFeaturedList,
@@ -6261,6 +5251,164 @@ const libraryView = createLibraryView({
   paintCover,
   preservingFocus,
   seriesOnly,
+});
+
+let requestedReadingPathId = null;
+
+const catalogPresentation = createCatalogPresentation({
+  el,
+  elements: { query: $ },
+  hueOf,
+  isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
+  onAdd: (list, button, report) => importCurated(list, button, { report }),
+  onGoToStop: goToStop,
+  onOpen: (list, saved, report) => {
+    store.update((state) => setActive(state, saved.id));
+    if (!store.lastUpdateOk) {
+      notify(
+        report,
+        `${list.name} could not be opened because that selection could not be saved.`,
+        'error',
+        `open:${list.id}`,
+      );
+      return;
+    }
+    showView('read', { push: true });
+  },
+  onPreview: (list, story) => previewView.open(list, story),
+  pathHref: (stop) => formatRoute({
+    view: stop.shelf,
+    sort: stop.shelf === 'spotlights' ? catalogView.sort() : null,
+  }),
+  paintCoverUrl,
+  shortTitle,
+});
+
+const catalogView = createCatalogView({
+  announce,
+  clearLoadNotice: () => clearNotice(CATALOG_LOAD),
+  el,
+  elements: {
+    shelf: (key) => ({
+      clear: $(`#${key}-clear`),
+      filters: $(`#${key}-filters`),
+      query: $(`#${key}-q`),
+      results: $(`#${key}-results`),
+      search: $(`#form-${key}-search`),
+    }),
+    spotlightKinds: () => document.querySelectorAll('input[name="spotlights-kind"]'),
+    spotlightSorts: () => document.querySelectorAll('input[name="spotlights-sort"]'),
+  },
+  loadCatalog,
+  notifyDropped: (key, count) => notify(
+    `#${key}-report`,
+    `${count} catalog ${count === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`,
+    'warn',
+  ),
+  onLoadFailure: ({ error, key, retry, isCurrent }) => reportBundledLoadFailure({
+    report: `#${key}-report`,
+    failure: `The catalog could not be loaded: ${error.message}. Your lists are unchanged.`,
+    key: CATALOG_LOAD,
+    subject: 'the catalog',
+    retry,
+    isCurrent,
+  }),
+  onSortChange: () => syncHash({ push: true }),
+  presentation: catalogPresentation,
+});
+
+const previewView = createPreviewView({
+  captureFocus,
+  el,
+  elements: () => ({
+    add: $('#preview-add'),
+    body: $('#preview-body'),
+    close: $('#preview-close'),
+    description: $('#preview-desc'),
+    dialog: $('#preview'),
+    heading: $('#preview-h'),
+    meta: $('#preview-meta'),
+    paths: $('#preview-paths'),
+  }),
+  isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
+  issueFocusAnchor,
+  loadOrder: loadBundledOrder,
+  onAdd: (list, button) => importCurated(list, button, {
+    navigate: false,
+    report: '#preview-report',
+  }),
+  onClose: async (chose) => {
+    placeNotices();
+    if (!chose || (!CATALOG_SHELVES.some((shelf) => shelf.key === view)
+      && !generatedCategoryByRoute.has(view))) return;
+    const root = $(`#view-${view}`);
+    const held = captureFocus(root);
+    if (generatedCategoryByRoute.has(view)) await renderPublishingCategory(view);
+    else await catalogView.render(view);
+    if (document.activeElement === document.body) restoreFocus(held, { primary: 'main' });
+  },
+  onIssueLoadFailure: async ({
+    error, list: _list, isCurrent, retry,
+  }) => {
+    const result = await runLocalConnectionProbe();
+    if (!isCurrent()) return;
+    if (result.current && result.status !== LOCAL_SERVER_STATUS.READY) {
+      $('#preview-body').replaceChildren(noticeEl({
+        msg: `The local app connection is not available, so the issue list could not be loaded. ${LOCAL_CONNECTION_STEPS} You can still add the Reading List.`,
+        kind: 'warn',
+        action: { label: 'Try again', onClick: () => { void retry(); } },
+      }));
+      return;
+    }
+    $('#preview-body').replaceChildren(el('p', {
+      class: 'rail-hint',
+      text: `The issue list could not be loaded: ${error.message}. You can still add the order.`,
+    }));
+  },
+  onOpen: (_list, saved) => {
+    store.update((state) => setActive(state, saved.id));
+    if ($('#preview').open) $('#preview').close();
+    showView('read', { push: true });
+  },
+  presentation: catalogPresentation,
+  restoreFocus,
+});
+
+const readingPathsView = createReadingPathsView({
+  clearLoadNotice: () => clearNotice(CATALOG_LOAD),
+  el,
+  elements: () => ({
+    count: $('#reading-path-count'),
+    description: $('#reading-path-description'),
+    details: $('#reading-path-details'),
+    name: $('#reading-path-name'),
+    progressOutputs: () => document.querySelectorAll('[data-reading-path-progress]'),
+    select: $('#reading-path-select'),
+    source: $('#reading-path-source'),
+    spine: $('#reading-path-spine'),
+    status: $('#reading-path-status'),
+  }),
+  getRequestedPathId: () => requestedReadingPathId,
+  getState: () => store.state,
+  isCurrent: () => view === 'reading-paths',
+  loadCatalog,
+  onCanonicalPath: (pathId) => {
+    requestedReadingPathId = pathId;
+    syncHash();
+    clearNotice(CATALOG_LOAD);
+  },
+  onLoadFailure: ({ error, retry, isCurrent }) => reportBundledLoadFailure({
+    report: '#reading-paths-report',
+    failure: `Reading paths could not be loaded: ${error.message}. Try this view again.`,
+    key: CATALOG_LOAD,
+    subject: 'Reading paths',
+    retry,
+    isCurrent,
+  }),
+  onSelectedPath: (pathId) => {
+    requestedReadingPathId = pathId;
+    syncHash({ push: true });
+  },
 });
 
 // The full order summary in its <summary>, on screen whether or not the order is open. An empty
@@ -6319,125 +5467,4 @@ function setFallbackInitials(fallback, value) {
   fallback.dataset.initialFirst = first;
   fallback.dataset.initialSecond = second;
   fallback.classList.toggle('one-initial', !second);
-}
-
-let requestedReadingPathId = null;
-let readingPathGeneration = 0;
-let resolvedReadingPaths = [];
-let selectedReadingPath = null;
-
-export function readingPathProgress(state, stop) {
-  const exact = listForCatalogId(state, stop?.stepId);
-  const imported = exact ?? (stop?.lists ?? [])
-    .map((list) => listForCatalogId(state, list.id))
-    .find(Boolean);
-  if (!imported) return null;
-  const { read, total } = listProgress(state, imported.id);
-  return {
-    listId: imported.id,
-    catalogId: imported.catalogId,
-    name: imported.name,
-    read,
-    total,
-    state: completionState(read, total),
-    match: exact ? 'exact' : 'sibling',
-  };
-}
-
-function readingPathProgressText(progress) {
-  if (!progress) return 'Not added';
-  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${orderWord(progress.state)}.`;
-}
-
-export function refreshReadingPathProgress(state = store.state) {
-  if (view !== 'reading-paths' || !selectedReadingPath) return;
-  for (const output of document.querySelectorAll('[data-reading-path-progress]')) {
-    const stop = selectedReadingPath.stops[Number(output.dataset.readingPathProgress)];
-    const progress = readingPathProgress(state, stop);
-    output.textContent = readingPathProgressText(progress);
-    output.closest('.reading-path-stop').dataset.progress = progress?.state ?? 'not-added';
-  }
-}
-
-function renderReadingPathStructure(path) {
-  selectedReadingPath = path;
-  $('#reading-path-name').textContent = path.name;
-  $('#reading-path-description').textContent = path.description;
-  $('#reading-path-source').textContent = `Source: ${path.sourceOrigin}`;
-  $('#reading-path-count').textContent = `${path.stops.length} stops`;
-  $('#reading-path-spine').replaceChildren(...path.stops.map((stop, index) => el('li', {
-    class: 'reading-path-stop',
-    dataset: { readingPathStop: stop.stepId },
-  }, [
-    el('span', { class: 'reading-path-marker', 'aria-hidden': 'true', text: String(stop.position) }),
-    el('div', { class: 'reading-path-stop-copy' }, [
-      el('h3', { text: stop.name }),
-      el('p', {
-        class: 'reading-path-stop-meta',
-        text: `Stop ${stop.position} of ${stop.total}${stop.year == null ? '' : ` · Starts ${stop.year}`}`,
-      }),
-      el('p', { class: 'reading-path-stop-progress', dataset: { readingPathProgress: index } }),
-    ]),
-  ])));
-  refreshReadingPathProgress();
-}
-
-function setReadingPathOptions(paths, selectedId) {
-  const select = $('#reading-path-select');
-  const signature = paths.map((path) => path.id).join('\n');
-  if (select.dataset.paths !== signature) {
-    select.replaceChildren(...paths.map((path) => el('option', { value: path.id, text: path.name })));
-    select.dataset.paths = signature;
-  }
-  select.value = selectedId;
-}
-
-async function renderReadingPaths() {
-  const generation = ++readingPathGeneration;
-  clearNotice(CATALOG_LOAD);
-  $('#reading-path-status').textContent = 'Loading reading paths…';
-  $('#reading-path-details').hidden = true;
-  try {
-    const catalog = await loadCatalog();
-    if (view !== 'reading-paths' || generation !== readingPathGeneration) return;
-    resolvedReadingPaths = resolveReadingPaths(catalog.paths, catalog.lists);
-    if (!resolvedReadingPaths.length) {
-      selectedReadingPath = null;
-      $('#reading-path-status').textContent = 'No reading paths are bundled with this build.';
-      return;
-    }
-    const selected = resolvedReadingPaths.find((path) => path.id === requestedReadingPathId)
-      ?? resolvedReadingPaths[0];
-    setReadingPathOptions(resolvedReadingPaths, selected.id);
-    renderReadingPathStructure(selected);
-    $('#reading-path-details').hidden = false;
-    $('#reading-path-status').textContent = `${resolvedReadingPaths.length} Reading paths available.`;
-    if (requestedReadingPathId !== selected.id) {
-      requestedReadingPathId = selected.id;
-      syncHash();
-    }
-    clearNotice(CATALOG_LOAD);
-  } catch (err) {
-    if (view !== 'reading-paths' || generation !== readingPathGeneration) return;
-    selectedReadingPath = null;
-    $('#reading-path-status').textContent = 'Reading paths could not be loaded.';
-    await reportBundledLoadFailure({
-      report: '#reading-paths-report',
-      failure: `Reading paths could not be loaded: ${err.message}. Try this view again.`,
-      key: CATALOG_LOAD,
-      subject: 'Reading paths',
-      retry: renderReadingPaths,
-      isCurrent: () => view === 'reading-paths' && generation === readingPathGeneration,
-    });
-  }
-}
-
-function wireReadingPaths() {
-  $('#reading-path-select').addEventListener('change', (event) => {
-    const selected = resolvedReadingPaths.find((path) => path.id === event.target.value);
-    if (!selected || view !== 'reading-paths') return;
-    requestedReadingPathId = selected.id;
-    renderReadingPathStructure(selected);
-    syncHash({ push: true });
-  });
 }

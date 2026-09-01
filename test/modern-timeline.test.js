@@ -28,7 +28,10 @@ const catalog = parseCatalog(JSON.parse(
 ));
 const stories = groupCatalog(catalog.lists);
 const styles = readFileSync(join(ROOT, 'src', 'styles.css'), 'utf8');
-const mainSource = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
+const catalogPresentationSource = readFileSync(
+  join(ROOT, 'src', 'js', 'views', 'shared', 'catalog-presentation.js'),
+  'utf8',
+);
 
 const story = (key, ...lists) => ({ key, lists });
 const list = (id, timeline, extra = {}) => ({
@@ -113,11 +116,11 @@ test('both setup card placements resolve the same existing catalog identity', ()
 
 test('the setup feature uses the shared card renderer instead of the old plain action', () => {
   assert.match(
-    mainSource,
+    catalogPresentationSource,
     /catalogCard\(story, null, \{\s*surface,\s*report: `#\$\{surface\}-report`,/,
   );
-  assert.doesNotMatch(mainSource, /btn-modern-timeline-feature/);
-  assert.doesNotMatch(mainSource, /class: 'notice notice-act modern-timeline-feature'/);
+  assert.doesNotMatch(catalogPresentationSource, /btn-modern-timeline-feature/);
+  assert.doesNotMatch(catalogPresentationSource, /class: 'notice notice-act modern-timeline-feature'/);
 });
 
 test('the shipped Modern Timeline carries all chapters into the Avengers era', () => {
