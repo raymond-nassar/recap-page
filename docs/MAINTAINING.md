@@ -587,11 +587,15 @@ fixes that intentionally change neither data nor interface.
 
 ### 2. Run release validation
 
-Repeat the seven deterministic gates from the start of this guide. Fetch the current remote state,
-run the remote publication-surface gate, then run the live contract, browser, upgrade, and package
-checks:
+Repeat the seven deterministic gates from the start of this guide. Check that every advertised
+branch is either the default or the head of an open pull request in this repository, then fetch the
+current remote state and run the full publication-surface gate. The branch-only check uses the
+public GitHub API without a token in a local clone; set `GITHUB_TOKEN` when checking a private fork
+or when the public unauthenticated rate limit is unavailable. Then run the live contract, browser,
+upgrade, and package checks:
 
 ```text
+npm run publication:branches
 git fetch --prune
 npm run publication:surface
 npm run contract

@@ -15,6 +15,7 @@ import {
   findings,
   decode,
   excluded,
+  advertisedBranchPolicy,
 } from '../scripts/check-publication.mjs';
 
 // The publication gate answered a question that only gets asked once, and it was asked on
@@ -355,6 +356,105 @@ test('the workflow runs the publication gate in a job that checks out the full h
   assert.match(owner, /fetch-depth:\s*0/, 'and it asks for the whole history, which the gate needs to answer at all');
 });
 
+test('advertised branch policy identifies the default and rejects only unowned heads', async () => {
+  const advertisement = [
+    'ref: refs/heads/trunk\tHEAD',
+    'a'.repeat(40) + '\tHEAD',
+    'a'.repeat(40) + '\trefs/heads/trunk',
+    'b'.repeat(40) + '\trefs/heads/review-head',
+    'c'.repeat(40) + '\trefs/heads/never-a-pull-request',
+    'd'.repeat(40) + '\trefs/heads/closed-without-merge',
+  ].join('\n');
+  const runGit = (args) => {
+    if (args[0] === 'ls-remote') return advertisement;
+    if (args.join(' ') === 'remote get-url origin') return 'https://github.com/example/project.git\n';
+    throw new Error(`unexpected git call: ${args.join(' ')}`);
+  };
+  const fetchImpl = async (url, options) => {
+    assert.match(String(url), /state=open&per_page=100&page=1/);
+    assert.equal(options.headers.Authorization, 'Bearer fixture-token');
+    return {
+      ok: true,
+      status: 200,
+      json: async () => [
+        { head: { ref: 'review-head', repo: { full_name: 'example/project' } } },
+        { head: { ref: 'fork-head', repo: { full_name: 'somebody/fork' } } },
+      ],
+    };
+  };
+
+  const finding = await advertisedBranchPolicy({
+    runGit,
+    fetchImpl,
+    env: { GITHUB_TOKEN: 'fixture-token' },
+  });
+  assert.equal(finding.code, 1);
+  assert.equal(finding.defaultBranch, 'trunk', 'the remote HEAD symref, not a hard-coded name, owns the default');
+  assert.deepEqual(finding.openHeads, ['review-head'], 'only heads stored in this repository are allowed');
+  assert.deepEqual(finding.unexpected, ['closed-without-merge', 'never-a-pull-request']);
+  const clean = await advertisedBranchPolicy({
+    runGit: (args) => args[0] === 'ls-remote'
+      ? advertisement.replace(/\n[bcde].*/g, '')
+      : 'https://github.com/example/project.git\n',
+    fetchImpl: async () => ({ ok: true, status: 200, json: async () => [] }),
+    env: {},
+  });
+  assert.equal(clean.code, 0, 'a remote advertising only its non-main default is clean');
+  assert.deepEqual(clean.unexpected, []);
+});
+
+test('advertised branch policy reports Git and API failures as unanswered', async () => {
+  const gitFailure = await advertisedBranchPolicy({
+    runGit: () => { throw new Error('fixture remote is offline'); },
+    fetchImpl: async () => { throw new Error('fetch must not run'); },
+    env: { GITHUB_REPOSITORY: 'example/project' },
+  });
+  assert.equal(gitFailure.code, 2);
+  assert.match(gitFailure.message, /remote.*offline/i);
+
+  const advertisement = [
+    'ref: refs/heads/main\tHEAD',
+    'a'.repeat(40) + '\trefs/heads/main',
+  ].join('\n');
+  const apiFailure = await advertisedBranchPolicy({
+    runGit: () => advertisement,
+    fetchImpl: async () => ({ ok: false, status: 503 }),
+    env: { GITHUB_REPOSITORY: 'example/project' },
+  });
+  assert.equal(apiFailure.code, 2);
+  assert.match(apiFailure.message, /HTTP 503/);
+  assert.doesNotMatch(apiFailure.message, /clean/i);
+
+  const missingDefault = await advertisedBranchPolicy({
+    runGit: () => 'a'.repeat(40) + '\trefs/heads/main\n',
+    fetchImpl: async () => { throw new Error('fetch must not run'); },
+    env: { GITHUB_REPOSITORY: 'example/project' },
+  });
+  assert.equal(missingDefault.code, 2);
+  assert.match(missingDefault.message, /default branch.*no branch symref/i);
+});
+
+test('published branch workflow is periodic and manual without joining CI', () => {
+  const workflow = readFileSync(new URL('../.github/workflows/published-branches.yml', import.meta.url), 'utf8');
+  assert.match(workflow, /^ {2}workflow_dispatch:\s*$/m);
+  assert.match(workflow, /^ {2}schedule:\s*\r?\n {4}- cron: '17 13 \* \* 1'$/m);
+  assert.doesNotMatch(workflow, /^ {2}(?:push|pull_request|create):/m);
+  assert.match(workflow, /^ {2}contents: read$/m);
+  assert.match(workflow, /^ {2}pull-requests: read$/m);
+  assert.match(workflow, /actions\/checkout@[0-9a-f]{40} # v\d+\.\d+\.\d+/);
+  assert.match(workflow, /actions\/setup-node@[0-9a-f]{40} # v\d+\.\d+\.\d+/);
+  assert.match(workflow, /persist-credentials: false/);
+  assert.match(workflow, /node-version: '24'/);
+  assert.match(workflow, /run: npm run publication:branches/);
+  assert.match(workflow, /GITHUB_TOKEN: \$\{\{ secrets\.GITHUB_TOKEN \}\}/);
+  assert.doesNotMatch(workflow, /npm ci|npm install/);
+  assert.deepEqual(
+    [...workflow.matchAll(/timeout-minutes: (\d+)/g)].map((match) => Number(match[1])),
+    [9, 2, 4, 2],
+    'the job deadline stays one minute beyond all three step deadlines',
+  );
+});
+
 // A shallow clone is the state the gate cannot answer from, so it is the state worth owning a test.
 // Built rather than cloned from here: a depth-1 clone of this repository takes fifteen seconds, and
 // a suite slow enough to notice is one somebody eventually stops running. Two commits and a depth of
@@ -442,10 +542,15 @@ test('the gate reports what it could not read rather than reporting it clean', (
     run(['clone', '--quiet', pathToFileURL(origin).href, full], dir);
     mkdirSync(join(full, 'scripts'), { recursive: true });
     cpSync(fileURLToPath(new URL('../scripts/check-publication.mjs', import.meta.url)), join(full, 'scripts', 'check-publication.mjs'));
+    run(['symbolic-ref', 'HEAD', 'refs/heads/default-not-advertised'], origin);
     const fresh = spawnSync(process.execPath, ['scripts/check-publication.mjs', '--surface'], { cwd: full, encoding: 'utf8' });
-    assert.equal(fresh.status, 0, `a current view of the remote answers:\n${fresh.stdout}${fresh.stderr}`);
+    assert.equal(
+      fresh.status,
+      0,
+      `surface mode needs advertised heads, not a remote default symref:\n${fresh.stdout}${fresh.stderr}`,
+    );
 
-    run(['branch', 'pushed-since-you-last-looked'], origin);
+    run(['branch', 'pushed-since-you-last-looked', 'main'], origin);
     const stale = spawnSync(process.execPath, ['scripts/check-publication.mjs', '--surface'], { cwd: full, encoding: 'utf8' });
     assert.equal(stale.status, 2, `a stale view of the remote is unanswered:\n${stale.stdout}${stale.stderr}`);
     assert.match(stale.stderr, /never fetched/, 'and it says which way it is out of date');

@@ -1954,18 +1954,18 @@
     "fp": "a52faa95cf1721d7",
     "head": "If that option is not on the Security tab, it has not been turned on. It is off by default, and on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#test-publication-gate-test-js-20-24|test/publication-gate.test.js:20-24|0": {
-    "anchor": "test/publication-gate.test.js:20-24",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#test-publication-gate-test-js-21-25|test/publication-gate.test.js:21-25|0": {
+    "anchor": "test/publication-gate.test.js:21-25",
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3501-3512|0": {
-    "anchor": "CHANGELOG.md:3501-3512",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3511-3522|0": {
+    "anchor": "CHANGELOG.md:3511-3522",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3514-3524|0": {
-    "anchor": "CHANGELOG.md:3514-3524",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3524-3534|0": {
+    "anchor": "CHANGELOG.md:3524-3534",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -5994,8 +5994,8 @@
     "fp": "2a5f696a4a2adc8e",
     "head": "be a heuristic about significance, and a heuristic about which anchors are worth counting is exactly"
   },
-  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:182-186|0": {
-    "anchor": "scripts/check-publication.mjs:182-186",
+  "scripts/check-counts.mjs|preamble|scripts/check-publication.mjs:183-187|0": {
+    "anchor": "scripts/check-publication.mjs:183-187",
     "fp": "36abce5861d613b7",
     "head": "// A file git could not read is not a file that read clean. Read from the index enumerated by"
   },
@@ -6094,8 +6094,8 @@
     "fp": "0c786a4a0e0b5b8d",
     "head": "//   MAJOR  marks a substantial new product generation. It is also required when stored data"
   },
-  "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:47-51|0": {
-    "anchor": "package.json:47-51",
+  "SECURITY.md|what-this-project-is-because-it-decides-what-a-v|package.json:48-52|0": {
+    "anchor": "package.json:48-52",
     "fp": "051de519e73751f9",
     "head": "\"devDependencies\": {"
   },
