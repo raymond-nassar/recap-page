@@ -7,7 +7,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { commitRows, rowCacheKey, detailsState, synopsisFallback, DETAILS_BADGE } from '../src/js/main.js';
+import { commitRows, rowCacheKey, detailsState, synopsisFallback, DETAILS_BADGE } from '../src/js/views/reading.js';
 import { NO_SYNOPSIS } from '../src/js/synopsis.js';
 
 // The smallest node that commitRows actually uses: childNodes, remove() and insertBefore().

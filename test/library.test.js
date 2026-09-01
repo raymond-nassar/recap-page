@@ -13,6 +13,7 @@ import {
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
+const reading = read('src/js/views/reading.js');
 
 // A state holding one curated list of two issues and one hand-added entry, which is the smallest
 // shape that tells the two selectors apart: each has to find one thing the other must not.
@@ -297,7 +298,6 @@ test('each Library hub choice carries the label its view is rendered with', () =
 // mechanism in two files and neither half means anything alone. Removing the listener leaves an
 // order that silently never fills, and nothing in the console says so.
 test('the full order is skipped while closed and filled when it is opened', () => {
-  const main = read('src/js/main.js');
   const html = read('src/index.html');
 
   assert.match(html, /<details class="full" id="full">/, 'the markup no longer holds the details the guard names');
@@ -307,17 +307,17 @@ test('the full order is skipped while closed and filled when it is opened', () =
     'the order now starts open, so the skip would never be the first thing a reader meets',
   );
   assert.match(
-    main,
+    reading,
     /if \(!\$\('#full'\)\.open\) \{ rowsPending = true; return; \}/,
     'renderRows no longer skips the rows while the order is closed',
   );
   assert.match(
-    main,
+    reading,
     /\$\('#full > summary'\)\.addEventListener\('click', \(\) => \{[\s\S]*?queueMicrotask\([\s\S]*?rowsPending[\s\S]*?renderRows\(\);/,
     'summary activation no longer fills pending rows before the first animation frame',
   );
   assert.match(
-    main,
+    reading,
     /\$\('#full'\)\.addEventListener\('toggle', \(\) => \{[\s\S]*?syncHash\(\);/,
     'the native disclosure no longer synchronizes its settled open state to the route',
   );
@@ -327,8 +327,7 @@ test('the full order is skipped while closed and filled when it is opened', () =
 // has to be written on the side of the guard that still runs. Moving it back below the return
 // would freeze it at whatever it read when the reader last had the order open.
 test('the unread count is written before the closed-order return, not after it', () => {
-  const main = read('src/js/main.js');
-  const body = main.slice(main.indexOf('function renderRows()'));
+  const body = reading.slice(reading.indexOf('function renderRows()'));
   const count = body.indexOf('writeFullSummary(all, unread)');
   const guard = body.indexOf("if (!$('#full').open)");
   assert.ok(count !== -1 && guard !== -1, 'renderRows no longer holds both the count and the guard');
@@ -336,8 +335,7 @@ test('the unread count is written before the closed-order return, not after it',
 });
 
 test('the full Reading List summary keeps action and state copy separate', () => {
-  const main = read('src/js/main.js');
-  const body = main.slice(main.indexOf('function writeFullSummary'), main.indexOf('function writeOrderStrip'));
+  const body = reading.slice(reading.indexOf('function writeFullSummary'), reading.indexOf('function writeOrderStrip'));
   assert.match(body, /Hide full Reading List/);
   assert.match(body, /View all \$\{total\} issue/);
   assert.match(body, /No issues yet/);
@@ -358,24 +356,23 @@ test('the full Reading List summary keeps action and state copy separate', () =>
 // judgements, so every row in one pass is scored against one date, and that the setting it hands
 // the key is the one the paint reads.
 test('a cached row is keyed by the whole item, not by a list of fields', () => {
-  const main = read('src/js/main.js');
   assert.match(
-    main,
+    reading,
     /return `\$\{JSON\.stringify\(item\)\}\|\$\{item\.issueId === currentId\}\|\$\{today\}\|\$\{covers !== false\}`;/,
     'the row cache key no longer covers every field of the item plus the up-next marker, the day and the cover setting',
   );
   assert.match(
-    main,
-    /const rowKey = rowCacheKey\(item, currentId, today, settings\.covers\);/,
+    reading,
+    /const rowKey = rowCacheKey\(item, currentId, today, getSettings\(\)\.covers\);/,
     'renderRows no longer keys its rows through rowCacheKey, so the tested key may not be the used one',
   );
   assert.match(
-    main,
+    reading,
     /const today = localDayString\(\);/,
     'renderRows no longer reads the day once, so rows in one pass can be judged against different days',
   );
   for (const call of [/availability\(item, \{ override, today \}\)/, /describe\(item, \{ override, today \}\)/]) {
-    assert.match(main, call, `a row no longer passes the day it was keyed on into ${call}`);
+    assert.match(reading, call, `a row no longer passes the day it was keyed on into ${call}`);
   }
 });
 
@@ -385,19 +382,18 @@ test('a cached row is keyed by the whole item, not by a list of fields', () => {
 // The list reset is the same shape but worse than staleness, because a reused row's move and remove
 // handlers close over the id of the list it was built for.
 test('the row cache is invalidated, not merely populated', () => {
-  const main = read('src/js/main.js');
   assert.match(
-    main,
+    reading,
     /if \(cached && cached\.key === rowKey\) \{ desired\.push\(cached\.node\); continue; \}/,
     'a cached row is no longer compared against its key, so every row is reused whatever changed',
   );
   assert.match(
-    main,
+    reading,
     /if \(cachedHead && cachedHead\.key === headKey\) desired\.push\(cachedHead\.node\);/,
     'a cached edition heading is no longer compared against its key, so its "n of m read" freezes',
   );
   assert.match(
-    main,
+    reading,
     /if \(id !== rowCacheListId\) \{ rowCache = new Map\(\); rowCacheListId = id; \}/,
     'the cache no longer resets between lists, so rows leak across lists with the wrong list id bound',
   );
@@ -407,8 +403,7 @@ test('the row cache is invalidated, not merely populated', () => {
 // node left in front of the reused ones shifts every later index by one, so one rebuilt row moves
 // all the rest. Measured in Edge on the 219 issue list, that was 219 moves rather than 2.
 test('the reconciler drops unwanted nodes before it places the wanted ones', () => {
-  const main = read('src/js/main.js');
-  const fn = main.slice(main.indexOf('function commitRows('));
+  const fn = reading.slice(reading.indexOf('export function commitRows('));
   const drop = fn.indexOf('if (!wanted.has(node)) node.remove()');
   const place = fn.indexOf('container.insertBefore(node');
   assert.ok(drop !== -1 && place !== -1, 'commitRows no longer both drops and places nodes');

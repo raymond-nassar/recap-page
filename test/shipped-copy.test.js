@@ -48,6 +48,7 @@ test('current shipped identity and short attribution use Recap Page', () => {
   const html = readFileSync(join(SHIPPED, 'index.html'), 'utf8');
   const manifest = JSON.parse(readFileSync(join(SHIPPED, 'manifest.webmanifest'), 'utf8'));
   const main = readFileSync(join(SHIPPED, 'js', 'main.js'), 'utf8');
+  const reading = readFileSync(join(SHIPPED, 'js', 'views', 'reading.js'), 'utf8');
 
   assert.match(html, /<title>Recap Page<\/title>/);
   assert.match(html, /<b class="lbl">Recap&nbsp;Page<\/b>/);
@@ -61,7 +62,7 @@ test('current shipped identity and short attribution use Recap Page', () => {
     /<footer class="app-footer">[\s\S]*Unofficial fan project\. Metadata and links only\.[\s\S]*Read the full disclaimers[\s\S]*Marvel metadata via marvel\.emreparker\.com\./,
   );
   assert.match(main, /download\('recap-page-backup\.json'/);
-  assert.match(main, /textContent = 'Recap Page'/);
+  assert.match(reading, /textContent = 'Recap Page'/);
 });
 
 test('no en or em dash reaches the screen through markup or styling', () => {

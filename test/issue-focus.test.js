@@ -230,24 +230,24 @@ test('an issue route branches before list adoption and never calls setActive', (
 });
 
 test('every issue-bearing surface uses the shared focus route without replacing Read or Add', () => {
-  const main = read('src/js/main.js');
+  const reading = read('src/js/views/reading.js');
   const add = read('src/js/views/add.js');
   const previewView = read('src/js/views/preview.js');
-  const shelf = main.slice(main.indexOf('function renderShelf'), main.indexOf('// Rows are kept'));
+  const shelf = reading.slice(reading.indexOf('function renderShelf'), reading.indexOf('function renderRows'));
   assert.match(shelf, /surface: 'coming'/);
   assert.match(shelf, /class: 'tile-read'/);
-  assert.match(shelf, /openInReader\(it, e\)/);
+  assert.match(shelf, /launch\(item, e\)/);
 
   const preview = previewView.slice(previewView.indexOf('async function loadIssues'), previewView.indexOf('async function open'));
   assert.match(preview, /kind: 'order', id: list\.id/);
   assert.match(preview, /surface: 'preview'/);
 
-  const rows = main.slice(main.indexOf('function renderRows'), main.indexOf('function openInReader'));
+  const rows = reading.slice(reading.indexOf('function renderRows'));
   assert.match(rows, /surface: 'full-order'/);
   assert.match(rows, /kind: 'list', id/);
   assert.match(rows, /control: 'cover'/);
   assert.match(rows, /control: 'title'/);
-  assert.match(rows, /openInReader\(item, e\)/);
+  assert.match(rows, /launch\(item, e\)/);
 
   const search = add.slice(add.indexOf('function renderResults'), add.indexOf('async function addSeries'));
   assert.match(search, /surface: 'search'/);
@@ -268,7 +268,7 @@ test('same-tab focus navigation stores an ephemeral opener and pushes exactly on
   const restore = main.slice(main.indexOf('async function restoreIssueFocusOpener'), main.indexOf('function loadBundledOrder'));
   assert.match(restore, /target\.focus\(\{ preventScroll: true \}\)/);
   assert.match(restore, /focusViewHeading\(view\)/);
-  const sync = main.slice(main.indexOf('function syncHash'), main.indexOf('function endFilterRun'));
+  const sync = main.slice(main.indexOf('function syncHash'), main.indexOf('function applyRoute'));
   assert.match(sync, /delete current\.issueFocusOpener/);
   assert.match(sync, /history\.replaceState\(Object\.keys\(current\)\.length \? current : null/);
 });

@@ -6,14 +6,11 @@
 // replaced by a typographic tile.
 
 import {
-  createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList, removeFromList, moveItem,
-  toggleRead, markRead, isRead, upNext, listProgress, listItems, exportBackup, migrate,
-  setOverride, pendingIssueIds, coverUrl, listForCatalogId, SCHEMA_VERSION,
-  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences,
+  createList, deleteList, setActive, addIssuesToList, isRead, upNext, listProgress, listItems, exportBackup, migrate,
+  coverUrl, listForCatalogId, SCHEMA_VERSION, MAX_BACKUP_BYTES, orderGapSentences,
 } from './lib/model.js';
 import { serializeChecklist } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
-import { availability, describe, localDayString, SHORT, STATE } from './lib/availability.js';
 import {
   parseCatalog, groupCatalog,
   pathPlacements, resolveReadingPaths, availableHomeCategories, HOME_CATEGORIES,
@@ -31,15 +28,13 @@ import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
 import { openIssue as openIssueTab, detailUrl } from './reader.js';
 import { APP_VERSION } from './lib/version.js';
 import { isAllowedApiBase } from './lib/apiBase.js';
-import { shortcutAllowed } from './lib/shortcuts.js';
 import { lookupIssue } from './lib/wiki.js';
-import { READING_FILTERS, DEFAULT_FILTER, matchesReadingFilter } from './lib/readingFilters.js';
+import { DEFAULT_FILTER } from './lib/readingFilters.js';
 import { DEFAULT_THEME, themeAttribute, normaliseTheme } from './lib/theme.js';
 import {
   ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute,
 } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
-import { issuePresentation } from './lib/issueFocus.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
@@ -49,6 +44,7 @@ import { createLibraryView } from './views/library.js';
 import { createProgressView } from './views/progress.js';
 import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createIssueView } from './views/issue.js';
+import { createReadingView, synopsisFallback } from './views/reading.js';
 import { createHomeView } from './views/home.js';
 import { createCatalogPresentation } from './views/shared/catalog-presentation.js';
 import { createCatalogView } from './views/catalog.js';
@@ -61,8 +57,6 @@ import { createRecoveryView } from './views/recovery.js';
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
 const SIDEBAR_KEY = 'sidebar.collapsed';
-const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
-const SHELF_SIZE = 8;
 // Below this viewport width the rail collapses on its own; a manual toggle then wins until
 // the breakpoint is crossed again.
 const RAIL_BREAKPOINT = 1000;
@@ -94,12 +88,12 @@ const store = new Store({
   },
 });
 const saveEducation = createSaveEducation({ storage: globalThis.localStorage });
-const hydrator = new Hydrator({ api, store, onProgress: renderHydration });
+const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // One store for the tab, deliberately module-level and deliberately not persisted. It is passed to
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
 // thing that fetches it.
 const sessionSynopsis = new SessionSynopsis();
-const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis, onProgress: renderSynopsis });
+const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis, onProgress: onSynopsisStatus });
 
 // One key, every tab. A save in another tab is news here, and taking it is what keeps two tabs
 // ordinary: this tab re-renders on their save, so its next edit is built on what is actually stored
@@ -146,12 +140,6 @@ let foreignStateSanitationTimer = null;
 
 globalThis.addEventListener?.('storage', dispatchStorageEvent);
 
-// One filter, shared by every list, and it now survives a reload. Per list was considered and
-// rejected: the filter already crossed lists within a session, so making it per list would have
-// changed behaviour a reader has today as well as adding state that grows with the library. A
-// reader who sets Unread has said how they want to read, not how they want to read one order.
-// Its restored value is applied in wireReading(), which runs before the first render.
-let filter = DEFAULT_FILTER;
 let view = 'read';
 let issueRoute = null;
 let issueSynopsisId = null;
@@ -967,7 +955,7 @@ function setCovers(on) {
   // renderReading has no hidden-view check and repaints regardless, which covers the reading rows;
   // renderHome repaints the landing mosaics. renderLibrary is added because a library row now holds
   // a cover too, and paintCoverUrl set no src while covers were off, so those rows need repainting.
-  renderReading();
+  readingView.render();
   homeView.render();
   libraryView.render();
   announce(settings.covers ? 'Cover art on.' : 'Cover art off. Covers are shown as text tiles.');
@@ -1212,7 +1200,6 @@ async function newEmptyList() {
 // reader arrived on.
 let routeReady = false;
 let applyingRoute = false;
-let applyingRouteToDisclosure = false;
 
 // `push` separates a deliberate navigation from a passive correction, and the distinction is what
 // keeps Back usable. A reader who marks twenty issues read must not have to press Back twenty times
@@ -1228,27 +1215,6 @@ let applyingRouteToDisclosure = false;
 //
 // The compare against the current hash is not an optimisation. pushState given the address already
 // showing would stack a duplicate entry, so Back would appear to do nothing once per navigation.
-// True while a keyboard traversal of the filter group is open, meaning the reader is part way
-// through choosing and the address has deliberately not been written yet. Kept beside syncHash
-// rather than inside wireReading because syncHash and applyRoute both have to see it.
-//
-// The first design pushed on the traversal's first stop and replaced on every stop after it. Review
-// found that a traversal returning to the filter it started from then replaced the top entry with a
-// copy of the one below it, and a same-document Back between two identical fragments fires no
-// hashchange at all, so the press did nothing. Measured on that tree: ArrowRight then ArrowLeft left
-// history ["#/read/list-a", "#/read/list-a"] and the following Back reported 0 hashchange events
-// with the rows unmoved. That is the very failure the paragraph above says the guard exists to
-// prevent, reached from the other side. A replace cannot remove an entry the run has already
-// pushed, and history.back() is async and races the next arrow press, so the write is held until
-// the traversal ends instead.
-let filterRunOpen = false;
-// What the address claims while a traversal is open, which is the filter in force when it began.
-// Not the same as `filter`, which follows the rows immediately.
-let filterRunBase = null;
-let filterRunAddressed = false;
-// A restored setting can filter closed rows without turning a plain address into opening intent.
-// Only a route token or a filter choice makes the current filter part of the address.
-let filterAddressed = false;
 
 function syncHash({ push = false } = {}) {
   if (!routeReady || applyingRoute) return;
@@ -1257,8 +1223,7 @@ function syncHash({ push = false } = {}) {
   // window would otherwise replace it with the half-chosen address and destroy it. That is reachable
   // rather than theoretical: background hydration writes through store.update on its own timer, and
   // every store.update reaches renderAll, which syncs.
-  const shown = filterRunOpen && !push ? filterRunBase : filter;
-  const showFilter = filterRunOpen && !push ? filterRunAddressed : filterAddressed;
+  const { shown, showFilter } = readingView.filterTraversalSnapshot({ push });
   const sort = view === 'spotlights' ? catalogView.sort() : null;
   const next = view === 'issue' && issueRoute
     ? formatRoute(issueRoute)
@@ -1286,21 +1251,6 @@ function syncHash({ push = false } = {}) {
     history.pushState(null, '', next);
   }
   else history.replaceState(null, '', next);
-}
-
-// Committing writes the traversal's one entry; discarding drops it because something else has
-// already decided the address. A commit that lands back on the address the traversal started from
-// meets the compare in syncHash and correctly writes nothing, which is why the whole sweep can
-// leave zero entries as well as one.
-function endFilterRun({ commit }) {
-  if (!filterRunOpen) return;
-  filterRunOpen = false;
-  filterRunBase = null;
-  filterRunAddressed = false;
-  if (commit) {
-    filterAddressed = true;
-    syncHash({ push: true });
-  }
 }
 
 // Adopting the list first means the redirect inside showView sees the list the URL asked for
@@ -1332,7 +1282,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       issueSynopsisId = null;
     }
     if (route.view === 'issue') {
-      endFilterRun({ commit: false });
+      readingView.endFilterRun({ commit: false });
       issueRoute = route;
       showView('issue', { focus });
       return;
@@ -1345,8 +1295,8 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     if (route.view === 'spotlights') catalogView.setSort(route.sort);
     // Before showView, so the passive sync at the end of showView computes the address this route
     // already describes and returns early rather than writing one and being corrected a moment later.
-    if (route.view !== 'reading-paths') { filterAddressed = route.filter !== null;
-      setFilter(route.filter ?? filterIfAbsent); }
+    if (route.view !== 'reading-paths') { readingView.setFilterAddressed(route.filter !== null);
+      readingView.setFilter(route.filter ?? filterIfAbsent); }
     // A traversal cannot span a navigation, and Back is a navigation. Discarded rather than committed,
     // because the address this route describes is the authoritative one and writing the traversal's
     // would fight it.
@@ -1357,28 +1307,17 @@ function applyRoute(route, { focus, filterIfAbsent }) {
     // ArrowRight once, then Alt+Left leaves the address saying pending over rows showing all, and puts
     // the same address in two adjacent entries, which is the dead Back this whole design exists to
     // close.
-    endFilterRun({ commit: false });
+    readingView.endFilterRun({ commit: false });
     if (route.view === 'read') {
       const openFromRoute = route.full === true || route.filter !== null;
-      setFullOrderFromRoute(openFromRoute);
-      if (openFromRoute && rowsPending) renderRows();
+      readingView.setFullOrderFromRoute(openFromRoute);
+      if (openFromRoute && readingView.hasRowsPending()) readingView.renderRows();
     }
     showView(route.view, { focus }); if (route.view === 'reading-paths') void readingPathsView.render();
   } finally {
     applyingRoute = false;
   }
   if (focus) void restoreIssueFocusOpener(route.view);
-}
-
-function setFullOrderFromRoute(open) {
-  const full = $('#full');
-  if (full.open === open) return;
-  const active = document.activeElement;
-  if (!open && active && full.contains(active) && active !== full.querySelector('summary')) {
-    full.querySelector('summary').focus({ preventScroll: true });
-  }
-  applyingRouteToDisclosure = true;
-  full.open = open;
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -1511,8 +1450,8 @@ async function restoreIssueFocusOpener(sourceView) {
   const opener = history.state?.issueFocusOpener;
   if (!opener || opener.view !== sourceView) return;
   if (opener.surface === 'full-order') {
-    $('#full').open = true;
-    renderRows();
+    readingView.setFullOrderFromRoute(true);
+    readingView.renderRows();
   }
   if (opener.surface === 'preview' && opener.contextId) {
     try {
@@ -1593,645 +1532,6 @@ function renderRail() {
 
 // ------------------------------------------------------------------ reading view
 
-// ------------------------------------------------------------------ landing page
-
-let publishingCategoryGeneration = 0;
-
-// Category panels are generated from the same registry the router reads. Repeating twelve hidden
-// sections in the document would create a second list of routes, headings and ids that could drift
-// while still leaving every individual panel looking valid.
-function ensurePublishingViews() {
-  const root = $('#main .wrap');
-  for (const category of generatedCategoryByRoute.values()) {
-    if ($(`#view-${category.route}`)) continue;
-    root.insertBefore(el('section', {
-      id: `view-${category.route}`,
-      class: 'view view-wide publishing-view',
-      hidden: true,
-      'aria-labelledby': `${category.route}-h`,
-    }, [
-      el('div', { class: 'head' }, [
-        el('div', { class: 'head-left' }, [
-          el('h1', { id: `${category.route}-h`, text: `Browse ${category.heading}` }),
-        ]),
-      ]),
-      el('div', { class: 'publishing-meta' }, [
-        el('span', { class: 'publishing-range', text: category.label }),
-        el('span', {
-          id: `${category.route}-count`,
-          class: 'publishing-count',
-          role: 'status',
-          text: 'Loading Reading Lists',
-        }),
-      ]),
-      el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
-        category.highlights.map((highlight) => el('li', { text: highlight }))),
-      el('div', { id: `${category.route}-report`, class: 'report' }),
-      ...(category.kind === 'publishing-index' ? [] : [el('section', { id: `${category.route}-categories`, class: 'publishing-periods', hidden: true, 'aria-labelledby': `${category.route}-categories-h` }, [
-        el('div', { class: 'sec-h' }, el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' })),
-        el('ul', { id: `${category.route}-category-list`, class: 'home-paths home-paths-secondary' })])]),
-      el('div', { id: `${category.route}-results`, class: 'results' }),
-    ]), $('.app-footer'));
-  }
-}
-
-function renderLibraryHub() {
-  const yours = $('#library-yours');
-  savedLists.render(yours, $('#library-yours-list'));
-  $('#library-empty').hidden = !yours.hidden;
-}
-
-function renderPublishingIndex(category, allStories) {
-  const box = $(`#${category.route}-results`); const { count, earlier, modern, modernChildren } = publishingAgeGroups(allStories);
-  $(`#${category.route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`; box.replaceChildren();
-  if (count === 0) { box.append(el('p', { class: 'rail-hint publishing-empty', text: 'No Reading Lists are published by age yet.' })); return; }
-  if (earlier.length) box.append(el('section', { id: 'marvel-ages-earlier', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-earlier-h' }, [el('div', { class: 'sec-h' }, el('h2', { id: 'marvel-ages-earlier-h', text: 'Earlier Marvel' })), el('ul', { id: 'marvel-ages-earlier-list', class: 'home-paths home-paths-secondary' }, earlier.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' })))]));
-  if (modern) { const aggregateLabel = labelledName('Browse all Modern Age Reading Lists', `${modern.label}, ${modern.count} Reading Lists`); box.append(el('section', { id: 'marvel-ages-modern', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-modern-h' }, [el('div', { class: 'sec-h' }, [el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }), el('button', { id: 'marvel-ages-modern-all', type: 'button', class: 'quiet', text: 'Browse all Modern Age Reading Lists', 'aria-label': aggregateLabel, onclick: () => showView('age-modern', { push: true }) })]), el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' })))])); }
-}
-
-async function renderPublishingCategory(route) {
-  const category = generatedCategoryByRoute.get(route);
-  if (!category) return;
-  const generation = ++publishingCategoryGeneration;
-  const box = $(`#${route}-results`);
-  const periods = $(`#${route}-categories`);
-  const periodList = $(`#${route}-category-list`);
-  box.replaceChildren(el('p', {
-    class: 'rail-hint',
-    'aria-hidden': 'true',
-    text: 'Loading Reading Lists…',
-  }));
-  if (periods) periods.hidden = true; if (periodList) periodList.replaceChildren();
-  clearNotice(CATALOG_LOAD);
-
-  let catalog;
-  try {
-    catalog = await loadCatalog();
-  } catch (err) {
-    box.replaceChildren();
-    await reportBundledLoadFailure({
-      report: `#${route}-report`,
-      failure: `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
-      key: CATALOG_LOAD,
-      subject: 'the catalog',
-      retry: () => renderPublishingCategory(route),
-      isCurrent: () => generation === publishingCategoryGeneration,
-    });
-    return;
-  }
-
-  const allStories = groupCatalog(catalog.lists);
-  if (category.kind === 'publishing-index') {
-    renderPublishingIndex(category, allStories);
-    return;
-  }
-  catalogPresentation.ensureSetupGuideFeature(catalog.lists, route, modernTimelineFeaturedCard);
-  const stories = typeof category.select === 'function'
-    ? category.select(allStories)
-    : publishingCategoryStories(allStories, category.key);
-  const count = stories.reduce((total, story) => total + story.lists.length, 0);
-  $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
-
-  const children = availablePublishingCategories(allStories, category.key);
-  const isPublishingCategory = PUBLISHING_CATEGORIES.some(
-    (candidate) => candidate.key === category.key && candidate.route === category.route,
-  );
-  if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
-    box.replaceChildren();
-    periodList.replaceChildren(...children.map((child) => homeView.categoryTile({
-      ...child,
-      tier: 'secondary',
-    })));
-    periods.hidden = false;
-    return;
-  }
-
-  box.replaceChildren();
-  if (!stories.length) {
-    box.append(el('p', {
-      class: 'rail-hint publishing-empty',
-      text: 'No Reading Lists are published for this period yet.',
-    }));
-    return;
-  }
-
-  const placements = pathPlacements(catalog.paths, catalog.lists);
-  const localStoryKeys = new Set(stories.map((story) => story.key));
-  if (isPublishingCategoryLeaf(category)) {
-    const years = timelineYears(stories);
-    catalogPresentation.renderTimelineSections(box, [{
-      ...category, stories, from: years[0].year, to: years[years.length - 1].year,
-    }], placements, {
-      idPrefix: route, showEmptyYears: true, sectionBlurb: false,
-      cardOptions: {
-        surface: route,
-        report: `#${route}-report`,
-        localStoryKeys,
-      },
-    });
-    return;
-  }
-  const grid = el('div', { class: 'catalog-grid publishing-grid' });
-  for (const story of stories) {
-    grid.append(catalogPresentation.catalogCard(story, placements.get(story.key), {
-      surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
-    }));
-  }
-  box.append(grid);
-}
-
-// ------------------------------------------------------------------ reading view
-
-// The one way the filter in force changes, whether the reader chose a radio, arrived on a link, or
-// pressed Back. Three copies of this were the alternative, and the copies would have differed:
-// setting it from a route has to move the radio, and setting it from the radio has to store it.
-//
-// The filter is stored wherever it comes from, including from an address. That matches what
-// applyRoute already does with the active list, which setActive writes into persisted state, and it
-// is what makes Back consistent: if pressing Back moved the rows but not the preference, closing
-// the tab and reopening it would show something other than what was last on screen.
-//
-// Returns early when nothing changed, so navigating between views does not rewrite settings on
-// every hop or rebuild rows that are already correct.
-function setFilter(next) {
-  const wanted = READING_FILTERS.some((f) => f.value === next) ? next : DEFAULT_FILTER;
-  if (wanted === filter) return;
-  filter = wanted;
-  settings.filter = wanted;
-  saveSettings();
-  const radio = [...document.querySelectorAll('input[name="filter"]')].find((r) => r.value === wanted);
-  if (radio) radio.checked = true;
-  renderRows();
-}
-
-function wireReading() {
-  // Rendered from READING_FILTERS rather than authored in index.html, so the labels a reader can
-  // choose from and the predicates that decide a row are one list and cannot disagree. Rendered
-  // once, here, and never from renderRows(): rebuilding a radio group destroys the radio the
-  // reader just activated and drops the keyboard out of the filter, which is the defect BL-054
-  // fixed for the rows below and the reason the catalog's own filters are left alone on re-render.
-  //
-  // A radio written into the markup by hand would otherwise survive this append and sit beside the
-  // rendered five, offering a filter with no predicate and no listener behind it, which is the
-  // failure this item exists to end rather than one to reintroduce here. Measured on the tree
-  // before this change, with a sixth radio authored into the fieldset: selecting it showed all 8
-  // rows of an 8 row fixture, stored itself as the active filter, and threw nothing.
-  const stray = [...document.querySelectorAll('input[name="filter"]')];
-  if (stray.length) {
-    throw new Error(`The document holds reading filters (${stray.map((r) => r.value).join(', ')}). `
-      + 'They are rendered from READING_FILTERS in src/js/lib/readingFilters.js; add it there instead.');
-  }
-  $('#reading-filters').append(...READING_FILTERS.map((f) => el('label', { class: 'fp' }, [
-    el('input', { type: 'radio', name: 'filter', value: f.value }),
-    el('span', { text: f.label }),
-  ])));
-  $('#save-education-settings').addEventListener('click', () => showView('data', { push: true }));
-
-  // The native toggle event may be delivered after an animation frame that was already queued by
-  // the activation. The click microtask runs after the summary's default action has opened the
-  // details and fills pending rows before that frame. Toggle remains the source of URL state.
-  $('#full > summary').addEventListener('click', () => {
-    queueMicrotask(() => { if ($('#full').open && rowsPending) renderRows(); });
-  });
-  $('#full').addEventListener('toggle', () => {
-    const routeDriven = applyingRouteToDisclosure;
-    applyingRouteToDisclosure = false;
-    renderRows();
-    if (!routeDriven) syncHash();
-  });
-
-  const radios = [...document.querySelectorAll('input[name="filter"]')];
-  // Set by a keydown just before the change the same press produces, and read by that change to
-  // tell one stop of a traversal from a decision.
-  let arrowing = false;
-
-  // A stored value is honoured only when the list offers it. There is no longer a second
-  // enumeration for it to disagree with, but the check earns its place for a reason the markup
-  // never covered: settings are a file the reader can edit and an older build could have written
-  // a filter this one has since dropped. The group cannot be empty here, because it was just
-  // filled from a list that is checked at load for holding the default, so a document missing the
-  // fieldset fails at that append rather than arriving as a value quietly corrected in storage.
-  const wanted = radios.find((r) => r.value === settings.filter);
-  filter = wanted ? wanted.value : DEFAULT_FILTER;
-  // An unrecognised value is corrected in storage rather than left there. It is unlike a refused
-  // API base, which is kept because a reader typed it and may want to repair a typo; no control
-  // here can produce this, none can show it, and nothing would ever clear it, so it would sit in
-  // the record being ignored on every boot.
-  if (!wanted) {
-    settings.filter = filter;
-    saveSettings();
-  }
-  // The control is set from the state rather than left to the browser's own form restoration on a
-  // reload, which restores it without telling this module. The rendered group starts with nothing
-  // checked, so this is also what puts the first mark on the filter in force.
-  const active = radios.find((r) => r.value === filter);
-  if (active) active.checked = true;
-
-  for (const radio of radios) {
-    // Arrow keys move a radio group one stop at a time and fire change at every stop. Measured in
-    // Edge on this tree: three presses of ArrowRight left three history entries, and one Back
-    // landed two filters short of where the reader began, walking them back through filters they
-    // only passed over on the way to the one they wanted. So a traversal writes nothing until it
-    // ends and then writes one entry, which leaves the address the reader arrived on underneath it.
-    // A change that no arrow key produced is a decision on its own and writes immediately, so two
-    // pointer clicks still get an entry each.
-    //
-    // Modifiers are excluded because the radio group does not consume them, so no change follows and
-    // the flag would survive into whatever came next. Measured in Edge on this tree: Ctrl+ArrowRight
-    // on a checked radio left the selection where it was and fired no change.
-    radio.addEventListener('keydown', (e) => {
-      if (e.key.startsWith('Arrow') && !e.ctrlKey && !e.altKey && !e.metaKey) arrowing = true;
-    });
-    radio.addEventListener('change', (e) => {
-      if (arrowing) {
-        // Captured before setFilter moves it, because this is the address the traversal has to be
-        // able to return to and what a passive sync must keep claiming while it runs.
-        if (!filterRunOpen) {
-          filterRunBase = filter;
-          filterRunAddressed = filterAddressed;
-          filterRunOpen = true;
-        }
-        setFilter(e.target.value);
-      } else {
-        // Commits before adopting the new filter, so the traversal's entry records the filter the
-        // traversal actually reached rather than the one replacing it. A pointer press has already
-        // committed through pointerdown and finds nothing to do here; a click with no pointerdown,
-        // which is what assistive technology activating a radio produces, reaches it here instead.
-        // Both routes therefore leave the same two entries.
-        endFilterRun({ commit: true });
-        setFilter(e.target.value);
-        // Pushes rather than replaces. Choosing a filter is a deliberate act, like clicking the
-        // rail, and pushing is the whole of what "Back works across filter changes" means. The
-        // passive paths still replace, so marking twenty issues read does not put twenty entries in
-        // the way.
-        filterAddressed = true;
-        syncHash({ push: true });
-      }
-      arrowing = false;
-    });
-  }
-
-  // The traversal ends when the reader leaves the group or reaches for the pointer, and that is when
-  // its one entry is written. focusout bubbles, so moving between two radios inside the group would
-  // otherwise end it at the first stop; relatedTarget outside the group is what distinguishes
-  // leaving from traversing, and a missing one is a window or address bar blur, which is leaving.
-  //
-  // pointerdown is not redundant with the change handler above. Pressing the radio that is already
-  // checked fires no change and does not move focus out of the group, so neither of the other two
-  // would ever run and the traversal would stay open behind a press the reader has plainly finished
-  // making.
-  const group = $('#reading-filters');
-  group.addEventListener('pointerdown', () => {
-    arrowing = false;
-    endFilterRun({ commit: true });
-  });
-  group.addEventListener('focusout', (e) => {
-    if (e.relatedTarget && group.contains(e.relatedTarget)) return;
-    arrowing = false;
-    endFilterRun({ commit: true });
-  });
-
-  $('#btn-rename-list').addEventListener('click', async () => {
-    const id = activeListId();
-    const list = store.state.lists[id];
-    if (!list) return;
-    const name = await askText({ title: 'Rename list', label: 'List name', value: list.name });
-    if (!name) return;
-    store.update((s) => renameList(s, id, name));
-    announceIfSaved(`Renamed to ${name}.`);
-  });
-
-  $('#btn-list-note').addEventListener('click', async () => {
-    const id = activeListId();
-    const list = store.state.lists[id];
-    if (!list) return;
-    const note = await askNote({
-      title: `Note on "${list.name}"`,
-      body: 'Only you see this. It is saved on this device and travels in your backup file.',
-      label: 'Your note about this Reading List',
-      value: list.note || '',
-    });
-    // null is backing out, "" is deleting the note. askText folds those together; askNote does
-    // not, which is the whole reason it exists.
-    if (note === null) return;
-    store.update((s) => setListNote(s, id, note));
-    announceIfSaved(note ? 'Note saved.' : 'Note removed.');
-  });
-
-  $('#btn-delete-list').addEventListener('click', async () => {
-    const id = activeListId();
-    const list = store.state.lists[id];
-    if (!list) return;
-    const yes = await askConfirm({
-      title: `Delete "${list.name}"?`,
-      body: 'Your read progress is kept, and only the list is removed. This can be undone.',
-      confirmLabel: 'Delete list',
-    });
-    if (!yes) return;
-    // Captured before the delete, because the state afterwards is the one thing that no longer
-    // knows either the list or where in the rail it sat.
-    const deleted = { list, index: store.state.listOrder.indexOf(id), wasActive: store.state.active === id };
-    store.update((s) => deleteList(s, id));
-    if (!store.lastUpdateOk) return;
-    offerUndoDelete(deleted);
-  });
-
-  $('#btn-duplicate-list').addEventListener('click', () => {
-    const id = activeListId();
-    const list = store.state.lists[id];
-    if (!list) return;
-    // The updater runs exactly once, before the write, so capturing the id here is safe. It is
-    // still only trustworthy after lastUpdateOk confirms the write survived.
-    let copyId = null;
-    const next = store.update((s) => {
-      const res = duplicateList(s, id);
-      copyId = res.listId;
-      return res.state;
-    });
-    if (!store.lastUpdateOk || !copyId) {
-      return announce('That copy could not be saved, so nothing changed.');
-    }
-    store.update((s) => setActive(s, copyId));
-    // Saying where you landed matters more than usual here: the rail now holds two lists with
-    // near-identical names, and the shared read progress surprises people who expect a copy to
-    // start empty.
-    announceIfSaved(`Duplicated as ${next.lists[copyId].name}. You are now editing the copy, and read progress stays shared with the original.`);
-  });
-
-  $('#btn-export-md').addEventListener('click', exportMarkdown);
-  $('#btn-hydrate').addEventListener('click', () => hydrator.start(activeListId()));
-  $('#btn-cancel-hydrate').addEventListener('click', () => hydrator.cancel());
-  $('#btn-synopsis').addEventListener('click', startSynopsisRun);
-  $('#btn-cancel-synopsis').addEventListener('click', () => synopsisRunner.cancel());
-
-  $('#btn-hero-read').addEventListener('click', (e) => {
-    const issue = upNext(store.state, activeListId());
-    if (issue) openInReader(issue, e);
-  });
-  $('#btn-hero-inspect').addEventListener('click', () => {
-    const issue = upNext(store.state, activeListId());
-    const listId = activeListId();
-    if (issue && listId) {
-      openIssueFocus(issue.issueId, { kind: 'list', id: listId }, {
-        view: 'read',
-        surface: 'hero',
-        issueId: issue.issueId,
-        contextId: listId,
-      });
-    }
-  });
-
-  $('#btn-hero-done').addEventListener('click', () => markCurrentRead());
-}
-
-// A deleted list is held for the rest of the session rather than for a few seconds. The undo
-// notice sits above the views because deleting the list you were reading moves you elsewhere,
-// and a timer would take the only way back at the moment the reader was still deciding.
-//
-// What a timer was doing badly, though, still needed doing. Nothing withdrew the offer except
-// taking it, so a reader who had moved on kept the banner on every screen for as long as the tab
-// stayed open: reported here after hours of it. The answer is to let the reader end it rather than
-// to let a clock end it for them. The undo lives exactly as long as it did, and the reader decides
-// when that is over, which is the one judgement a timer was never in a position to make.
-//
-// Dismissing spends the undo rather than only hiding the words, because a live buffer behind a
-// notice the reader has closed is an offer they can no longer see and cannot take, and it would
-// still speak up later: putting the same order back from the catalog raises a message about a
-// deletion they had already finished with.
-//
-// Only the most recent delete is held. Keeping every one would offer to restore a list the
-// reader has since deliberately replaced, and nothing here can tell those two cases apart.
-const UNDO_DELETE = 'undo-delete';
-let lastDeleted = null;
-
-// Every message under this key outlives the screen it was raised on, so every one of them carries
-// the same way out. Built here rather than written at each call so the four cannot drift apart.
-const dismissUndoDelete = { label: 'Dismiss', onClick: forgetDeleted };
-
-// The same withdrawal under an honest name, for the one message that is not settled. A reader
-// looking at "could not be put back" has already asked for the list, and the buffer behind the
-// retry is the only copy of it left. "Dismiss" there would name closing an error while spending
-// that copy, which is a destructive act wearing the label of a tidy-up. The other three report
-// something already finished, where being done with the message and being done with the offer are
-// the same sentence and one word can carry both.
-const giveUpUndoDelete = { label: 'Give up', onClick: forgetDeleted };
-
-function offerUndoDelete(deleted) {
-  lastDeleted = deleted;
-  notify('#app-report', `Deleted ${deleted.list.name}. Reading progress was kept.`, 'ok', UNDO_DELETE, {
-    label: 'Undo delete',
-    onClick: undoDelete,
-  }, dismissUndoDelete);
-}
-
-// Wholesale replacements of the state, erasing and restoring, drop the offer rather than
-// leaving it pointing into data that is no longer there.
-function forgetDeleted() {
-  lastDeleted = null;
-  clearNotice(UNDO_DELETE);
-}
-
-// An order that is back in the sidebar does not need an offer to bring back the deleted copy of
-// it. Taking that offer would leave two lists answering to one catalog entry, which is the state
-// `duplicateList` clears `catalogId` to avoid: "in library" and "Continue reading" would both
-// resolve to whichever came first in the rail, and the rail would show two entries with the same
-// name and the same progress.
-//
-// It must not be withdrawn in silence. Deleting the list you were reading hands you to the home
-// view, where the card for that order has already reverted to "+ Add to library", so the wrong
-// way back and the right one sit on the same screen. A reader who had renamed or reordered their
-// copy would press it, be told the order is in their sidebar, and lose the route back to that copy
-// in the same tick with nothing said about it. The sentence is returned as well as shown, so the
-// caller can fold it into the announcement it is about to make: two announcements in one tick
-// leave only the last.
-//
-// Both names are needed. What came back is the order under its own name; what cannot be put back
-// is the reader's copy, which they may have renamed. Naming the copy as the thing that returned
-// would report the loss and deny it in the same breath, and send the reader looking in the rail
-// for a list that is not there.
-function forgetDeletedFor(catalogId, orderName) {
-  if (!catalogId || lastDeleted?.list?.catalogId !== catalogId) return null;
-  const { name } = lastDeleted.list;
-  forgetDeleted();
-  const mine = name === orderName ? 'The copy you deleted' : `Your copy, ${name},`;
-  const msg = `${orderName} is back from the catalog. ${mine} with any changes you had made to it, cannot be put back now.`;
-  notify('#app-report', msg, 'ok', UNDO_DELETE, null, dismissUndoDelete);
-  return msg;
-}
-
-function undoDelete() {
-  if (!lastDeleted) return;
-  const { list, index, wasActive } = lastDeleted;
-  // `restoreList` refuses rather than overwrite a live list, and a refusal returns the state
-  // unchanged, which a successful write is indistinguishable from once it is done. So the
-  // blocker is looked for first: reading back afterwards would report the list that blocked
-  // the restore as the list the restore put there.
-  const blocker = store.state.lists[list.id] ?? listForCatalogId(store.state, list.catalogId);
-  if (blocker) {
-    forgetDeleted();
-    notify('#app-report', `${list.name} was not put back: ${blocker.name} is in your sidebar already.`, 'ok', UNDO_DELETE, null, dismissUndoDelete);
-    return;
-  }
-  store.update((s) => restoreList(s, list, { index, active: wasActive }));
-  if (!store.lastUpdateOk) {
-    // The buffer is deliberately kept, and the notice keeps a button, because a write that failed
-    // for want of space can succeed after the reader frees some. Dropping the offer here would
-    // make a recoverable failure permanent. Giving up does drop it, which is not the same thing:
-    // that is the reader saying the retry is not wanted, rather than the app deciding for them,
-    // and the word says so rather than promising only to take the message away.
-    notify('#app-report', `${list.name} could not be put back: that change could not be saved.`, 'error', UNDO_DELETE, {
-      label: 'Try again',
-      onClick: undoDelete,
-    }, giveUpUndoDelete);
-    return;
-  }
-  forgetDeleted();
-  if (wasActive) showView('read');
-  announce(`${list.name} is back in your sidebar, in the position it had.`);
-}
-
-function markCurrentRead() {
-  const issue = upNext(store.state, activeListId());
-  if (!issue) return;
-  const wasRead = isRead(store.state, issue.issueId);
-  // Only announce success if the write actually stuck, because store.update rolls back on failure
-  // and the error is surfaced separately by the onChange handler.
-  const saved = store.update((s) => markRead(s, issue.issueId, true));
-  const transition = recordDirectProgressSave({ wasRead, state: saved, issueId: issue.issueId });
-  if (!transition) return;
-  const next = upNext(store.state, activeListId());
-  announce(withSaveEducation(next
-    ? `${issue.title} marked read. Next up: ${next.title}.`
-    : `${issue.title} marked read. That is the whole order finished.`, transition));
-  // The hero's own buttons are static markup that the re-render leaves in place, so pressing D
-  // from the hero keeps focus and stays live on the next press. The shelf and the full order are
-  // rebuilt with replaceChildren, which used to destroy a control focused there and drop focus to
-  // <body>; preservingFocus now restores it by identity, on the click route as well, which is what
-  // BL-054 closed. Finishing the order hides the whole
-  // hero, which drops the focused button out of the document and sends focus back to <body>,
-  // silently and at the top of the page. The heading that replaced it is the honest place to
-  // land: it is what the reader needs to hear, and it is where the remaining actions are. The
-  // render has already run, synchronously, inside store.update.
-  if (!next) $('#all-read-h').focus({ preventScroll: true });
-}
-
-function renderReading() {
-  const id = activeListId();
-  const list = store.state.lists[id];
-
-  $('#reading-body').hidden = !list;
-  $('#ring-wrap').hidden = !list;
-  renderSaveEducation();
-
-  if (!list) {
-    // Reaching the reading view with no list means the last one was just deleted. The
-    // landing page is the honest place to be, so hand over rather than sit on an empty frame.
-    $('#order-name').textContent = 'Recap Page';
-    $('#order-sub').textContent = 'Curated Reading Lists, tracked locally, linked into the Unlimited reader.';
-    if (view === 'read') showView('home');
-    return;
-  }
-
-  const { read, total } = listProgress(store.state, id);
-  const seriesCount = new Set(
-    list.itemIds.map((i) => store.state.issues[i]?.seriesName).filter(Boolean),
-  ).size;
-
-  $('#order-name').textContent = list.name;
-  // Facts only. The description used to be welded onto the end of this line, which made a single
-  // 543 character run of the subtitle: three sentences of blurb inside a 62ch column, with the
-  // right two fifths of the header band empty beside it. It has its own disclosure below now.
-  $('#order-sub').textContent = [
-    `${total} issue${total === 1 ? '' : 's'}`,
-    seriesCount ? `${seriesCount} series` : null,
-  ].filter(Boolean).join(' · ');
-  const desc = $('#order-desc');
-  const descText = $('#order-desc-text');
-  descText.textContent = list.description || '';
-  desc.hidden = !list.description;
-  if (!list.description) desc.open = false;
-
-  const pct = total ? read / total : 0;
-  const listNote = $('#list-note');
-  listNote.textContent = list.note || '';
-  listNote.hidden = !list.note;
-  $('#btn-list-note').textContent = list.note ? 'Edit note' : 'Note';
-  $('#ring-arc').setAttribute('stroke-dashoffset', String(RING_CIRCUMFERENCE * (1 - pct)));
-  // One statement, not two. The ring used to read "0 of 120 read" over "120 to go · 0%", which is
-  // the same fact said twice and subtracted once, in a 44px circle.
-  //
-  // The word "read" stays in the second line even though the first line is now a percentage. The
-  // svg is aria-hidden, so these two spans are the whole programmatic statement of progress: drop
-  // the verb and a screen reader announces "13%, 12 of 89" with nothing saying what was counted.
-  $('#ring-label').textContent = total ? `${Math.round(pct * 100)}%` : '';
-  $('#ring-sub').textContent = !total ? 'Nothing in this list' : read === total ? 'All read' : `${read} of ${total} read`;
-
-  renderHero();
-  renderShelf();
-  renderRows();
-  renderHydrateButton();
-  renderSynopsisButtons();
-}
-
-function renderHero() {
-  const id = activeListId();
-  const issue = upNext(store.state, id);
-  const finished = !issue;
-
-  $('#hero').hidden = finished;
-  $('#all-read').hidden = !finished;
-  $('#shelf-sec').hidden = finished;
-  // The hero is hidden rather than emptied, so its heading has to be given text back. A
-  // heading with no content fails whether or not it is on screen, and the tools that say so
-  // read the document, not what is painted.
-  if (finished) {
-    $('#hero-title').textContent = HERO_NO_ISSUE;
-    return;
-  }
-
-  const override = store.state.overrides[issue.issueId];
-  const position = (store.state.lists[id]?.itemIds.indexOf(issue.issueId) ?? -1) + 1;
-  const total = store.state.lists[id]?.itemIds.length ?? 0;
-  const presentation = issuePresentation(issue, {
-    override,
-    position,
-    total,
-    description: synopsisFallback(issue, sessionSynopsis.get(issue.issueId)),
-  });
-
-  paintCover($('#hero-img'), $('#hero-fb'), issue, 'portrait_uncanny');
-  $('#hero-img').alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
-  $('#hero-fs').textContent = seriesOnly(issue.seriesName);
-  $('#hero-fn').textContent = issue.number ? `#${issue.number}` : '';
-
-  paintHeroBackground($('#hero-bg'), issue);
-
-  $('#hero-title').textContent = issue.title;
-  const inspect = $('#btn-hero-inspect');
-  inspect.dataset.focusSource = 'hero';
-  inspect.dataset.issueId = String(issue.issueId);
-  inspect.dataset.contextId = id;
-
-  $('#hero-by').textContent = presentation.byline;
-
-  // Three states, not two. "Details have not been fetched yet" is a promise that something is
-  // coming, and for an issue the snapshot has no record of, nothing is.
-  $('#hero-desc').textContent = presentation.description;
-  $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
-    fact(item.key, item.value, item.className)
-  )));
-
-  const info = $('#btn-hero-info');
-  const infoHref = presentation.detailUrl;
-  info.hidden = !infoHref;
-  if (infoHref) {
-    info.href = infoHref;
-    info.setAttribute('aria-label', labelledName(info.textContent, `${issue.title} on marvel.com`));
-  } else {
-    info.removeAttribute('href');
-  }
-}
-
 function fact(key, value, cls = '') {
   return el('div', {}, [
     el('dt', { text: key }),
@@ -2239,575 +1539,8 @@ function fact(key, value, cls = '') {
   ]);
 }
 
-function renderShelf() {
-  const id = activeListId();
-  const shelf = $('#shelf');
-
-  const upcoming = listItems(store.state, id).filter((it) => !it.read).slice(1, SHELF_SIZE + 1);
-  $('#shelf-sec').hidden = upcoming.length === 0;
-  $('#shelf-note').textContent = `${upcoming.length} ${upcoming.length === 1 ? 'issue' : 'issues'}`;
-
-  preservingFocus(shelf, () => {
-    shelf.replaceChildren();
-
-    for (const it of upcoming) {
-      const img = el('img', { alt: '', loading: 'lazy' });
-      // The fallback is drawn whenever the cover is missing, either because it failed to load or
-      // because the reader turned cover art off, so it is a first-class state rather than an error
-      // path. Either way it stands in for an image the markup already declares decorative with
-      // alt="". Left exposed it joins the button's visible label, and its series name and issue
-      // number then bracket the caption's title, which is the same split this change exists to
-      // remove.
-      const fb = el('div', { class: 'tf cover-fallback', 'aria-hidden': true }, [
-        el('span', { class: 's', text: seriesOnly(it.seriesName) }),
-        el('span', { class: 'n', text: it.number ? `#${it.number}` : '?' }),
-      ]);
-      paintCover(img, fb, it, 'portrait_incredible');
-
-      // The tile prints the title with its year stripped out and then prints the year separately,
-      // so a name built from the unshortened title splices "(2005)" back into the middle. The year
-      // is absent for 34 of the Ultimate order's 138 issues, so it joins rather than interpolates.
-      const short = shortTitle(it.title);
-      const year = ymd(it.onSale).slice(0, 4);
-      const label = [short, year].filter(Boolean).join(' ');
-      const readContext = 'Open in Marvel Unlimited';
-      // The tooltip is painted text, so it carries the label exactly as the caption prints it.
-      // Only the accessible name goes through labelWords, and its symbol stripping is licensed
-      // for names rather than for anything visible: a tooltip reading "House of M 1 2005" two
-      // pixels above a caption reading "House of M #1" would be a fresh mismatch of the same
-      // kind this change removes. Both are built from one binding so they cannot drift apart.
-      const readName = labelledName(label, readContext);
-      const context = { kind: 'list', id };
-
-      shelf.append(el('li', { class: 'tile' }, [
-        issueFocusAnchor(it, {
-          context,
-          surface: 'coming',
-          className: 'tile-focus',
-          children: [
-            el('div', { class: 'ph' }, [img, fb]),
-            el('div', { class: 'lab' }, [
-              el('b', { text: short }),
-              year,
-            ]),
-          ] }),
-        el('button', {
-          type: 'button',
-          class: 'tile-read',
-          title: `${label}: ${readContext}`,
-          'aria-label': readName,
-          dataset: { key: it.issueId, act: 'open' },
-          onclick: (e) => openInReader(it, e),
-        }, 'Read'),
-      ]));
-    }
-  }, {
-    primary: 'open',
-    // The shelf empties when at most one unread issue is left, and the section is hidden with it,
-    // so there is nothing inside to land on. "Done, next" continues the same activity and is the
-    // control the shelf was helping the reader reach. When the order is finished the hero is hidden
-    // too, and markCurrentRead claims the heading that replaced it when store.update later returns.
-    fallback: () => ($('#hero').hidden ? null : $('#btn-hero-done')),
-  });
-}
-
-// Rows are kept and reused unless their own data changed, because rebuilding all of them to
-// record that one was ticked is most of the cost of ticking it. Measured in Edge on the 219 issue
-// Hickman list with the order open: a read toggle replaced 219 of 219 rows and the handler ran for
-// 14.8ms. Reusing them takes it to 2 rows and 2.8ms, the two being the ticked row and the one that
-// becomes "up next".
-let rowCache = new Map();
-let rowCacheListId = null;
-// Set when a render was skipped because the full order was closed, so that opening it renders
-// what the reader missed. Without it, opening the details after any change shows the order as it
-// stood when it was last open.
-let rowsPending = false;
-
-// Nodes already in the right place are left where they are. Whatever the new order does not ask
-// for is removed first, because a stale node left in front of the reused ones shifts every later
-// index by one and turns a single rebuilt row into a move of all the rest. insertBefore then moves
-// a node already in the tree rather than copying it, so a reordered item costs one move.
-export function commitRows(container, desired) {
-  const wanted = new Set(desired);
-  for (const node of [...container.childNodes]) if (!wanted.has(node)) node.remove();
-  let i = 0;
-  for (const node of desired) {
-    if (container.childNodes[i] !== node) container.insertBefore(node, container.childNodes[i] ?? null);
-    i += 1;
-  }
-}
-
-// The key is the whole item rather than a list of the fields a row happens to read. An
-// enumerated list is one somebody has to keep complete, and a field left out of it is a row
-// that silently stops updating, which is the defect this cache would otherwise buy.
-//
-// Two inputs are not in the item and so have to be named: whether this is the up next row,
-// and today's date, which is what decides whether a badge reads "soon" or "MU". Without the
-// date a tab left open across midnight reuses the row it built yesterday for good.
-//
-// The cover setting is the third, and it is here because BL-108 made the setting decide whether
-// the row's <img> is given a src at all. Before that it decided only whether the image was
-// painted over, so a reused row was correct either way; now a row built with covers off carries
-// an image that was never requested, and reusing it after the setting comes back on is what
-// would make the switch one way until a reload.
-export function rowCacheKey(item, currentId, today, covers) {
-  return `${JSON.stringify(item)}|${item.issueId === currentId}|${today}|${covers !== false}`;
-}
-
-// Three states where a row had two, split out from the row builder so the decision can be measured
-// directly rather than through a DOM. There is nothing pending about an issue upstream has already
-// answered about, and saying "details pending" over it was a promise the app could not keep: the
-// same 404 arrives every time it is asked again.
-//
-// The visible text carries the state and the hidden half carries the reason, which is the same
-// division the availability badge beside it uses. Both are short enough not to wrap a row at 320
-// pixels, and "no details held" is deliberately about the snapshot rather than about the issue: the
-// comic exists, the record of it does not.
-//
-// A held record answers before a refusal does. normalizeIssue keeps the two apart, but the merge
-// does not: hydrated is OR-preserved across an upsert while detailsRefused is last write wins, so
-// an issue can carry both after it is added twice from unlike sources. Asking the refusal first
-// then reported "no record" over a record the tracker was holding. Reproduced by adding issue 7
-// from a search and then importing an Ultimate order whose entry for it is empty.
-export function detailsState(item) {
-  if (item?.hydrated) return null;
-  if (item?.detailsRefused) return 'norecord';
-  if (item?.source !== 'manual') return 'pending';
-  return null;
-}
-
-export const DETAILS_BADGE = {
-  norecord: {
-    text: 'no details held',
-    hint: 'The metadata snapshot has no record of this issue, so there are no details to fetch.',
-  },
-  pending: { text: 'details pending', hint: 'Details have not been fetched yet.' },
-};
-
-function detailsBadge(item) {
-  const state = detailsState(item);
-  if (!state) return null;
-  const { text, hint } = DETAILS_BADGE[state];
-  return el('span', { class: `badge badge-${state}` }, [
-    text,
-    el('span', { class: 'visually-hidden', text: `. ${hint}` }),
-  ]);
-}
-
-// The same three states on the issue page, where the sentence stands alone rather than beside a
-// label. "Details have not been fetched yet" told a reader to wait for something that was never
-// coming, which is the whole of what this item was about. The order matches detailsState for the
-// same reason: a record the tracker holds is not one the snapshot has no record of.
-//
-// `sessionText` is a synopsis fetched during this session. It is passed in rather than read off the
-// issue because it is not on the issue and must never be: nothing stored carries prose any more, so
-// there is no `issue.description` branch here either. A run that asked and got nothing back is the
-// same answer as a snapshot that holds nothing, so it falls through to the existing sentences.
-export function synopsisFallback(issue, sessionEntry = null) {
-  if (typeof sessionEntry === 'string' && sessionEntry.trim()) return sessionEntry;
-  // A run that asked and was told there is nothing has answered the question. Falling through to
-  // "Details have not been fetched yet" would send the reader to wait for a fetch that has already
-  // happened, which is the exact sentence this function was written to stop saying.
-  if (sessionEntry === NO_SYNOPSIS) return 'No synopsis is recorded for this issue.';
-  if (issue?.hydrated) return 'No synopsis is recorded for this issue.';
-  if (issue?.detailsRefused) return DETAILS_BADGE.norecord.hint;
-  return 'Details have not been fetched yet.';
-}
-
-// Sizes appear in a refusal, which is the one place a reader has to be able to compare two numbers
-// at a glance, so both sides of the sentence are written in the same unit and to one decimal. A
-// megabyte here is the 1,048,576 the file manager shows, not the round million.
-export function describeSize(bytes) {
-  const n = Number(bytes);
-  if (!Number.isFinite(n) || n < 0) return 'an unknown size';
-  if (n < 1024) return `${Math.round(n)} bytes`;
-  if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
-  return `${(n / (1024 * 1024)).toFixed(1)} MB`;
-}
-
-// Returns the sentence to show, or null to go ahead and read the file. Split out from the handler
-// so the decision can be measured directly: a test that reads the handler's source instead would
-// still pass with the comparison deleted, because the constant's name survives in the import list.
-export function backupFileRefusal(file) {
-  const size = Number(file?.size);
-  if (!Number.isFinite(size) || size <= MAX_BACKUP_BYTES) return null;
-  return `That file is ${describeSize(size)}. A backup this app writes is far smaller than the ${describeSize(MAX_BACKUP_BYTES)} limit, so this one was not read and nothing was changed.`;
-}
-
-function renderRows() {
-  const id = activeListId();
-  const rows = $('#rows');
-  if (id !== rowCacheListId) { rowCache = new Map(); rowCacheListId = id; }
-
-  preservingFocus(rows, () => {
-    const desired = [];
-    const list = store.state.lists[id];
-    if (!list) { commitRows(rows, desired); return; }
-
-    const all = listItems(store.state, id);
-    const unread = all.length - all.filter((it) => it.read).length;
-    // The count lives in the <summary>, which is on screen whether or not the order below it is,
-    // so it is written before the early return rather than alongside the rows it counts.
-    writeFullSummary(all, unread);
-
-    // The full order is inside a <details> that starts closed, so on a first visit every one of
-    // these rows is built for a container the reader has not opened. Measured in Edge on the 219
-    // issue Hickman list with the order closed: marking one issue read spent 12.7ms building 219
-    // rows that were never shown. Reopening the details renders them, so nothing is lost by
-    // waiting until then.
-    if (!$('#full').open) { rowsPending = true; return; }
-    rowsPending = false; writeOrderStrip($('#full'), all, filter);
-
-    const currentId = upNext(store.state, id)?.issueId ?? null;
-    // Read once per render and passed in rather than defaulted per call, so that every row in one
-    // pass is judged against the same day and the day is a value the cache key can name.
-    const today = localDayString();
-    const items = all.filter((it) => matchesReadingFilter(filter, it));
-
-    // Collected editions, as runs of consecutive items. Progress is counted over every item in
-    // the run and not over the filtered rows below it, because a book is a fixed thing you own:
-    // "2 of 6 read" has to mean the same under every filter, or the heading becomes a second,
-    // quieter reading filter that the reader never set.
-    const runs = [];
-    const runOf = new Map();
-    for (const it of all) {
-      const last = runs[runs.length - 1];
-      if (last && last.name === it.collectedIn) {
-        last.total += 1;
-        if (it.read) last.read += 1;
-      } else {
-        runs.push({ name: it.collectedIn, total: 1, read: it.read ? 1 : 0 });
-      }
-      runOf.set(it.issueId, runs.length - 1);
-    }
-    const hasEditions = runs.some((r) => r.name);
-
-    if (!items.length) {
-      desired.push(el('li', { class: 'rail-hint', text: 'Nothing matches this filter.' }));
-      commitRows(rows, desired);
-      return;
-    }
-
-    let shownRun = -1;
-    for (const item of items) {
-      const runIndex = runOf.get(item.issueId);
-      if (hasEditions && runIndex !== shownRun) {
-        shownRun = runIndex;
-        const run = runs[runIndex];
-        // An item with no edition gets no heading rather than a heading saying so. In a trade
-        // order that only happens to something the reader added by hand, and inventing a book
-        // to put it in would be a claim about what Marvel collected.
-        if (run.name) {
-          const headKey = `${run.name}|${run.read}|${run.total}`;
-          const cachedHead = rowCache.get(`heading:${runIndex}`);
-          if (cachedHead && cachedHead.key === headKey) desired.push(cachedHead.node);
-          else {
-            const head = el('li', { class: `row-group${run.read === run.total ? ' is-done' : ''}` }, [
-              el('h3', { class: 'rg-name', text: run.name }),
-              el('span', { class: 'rg-count', text: `${run.read} of ${run.total} read` }),
-              el('progress', { value: String(run.read), max: String(run.total), 'aria-hidden': 'true' }),
-            ]);
-            rowCache.set(`heading:${runIndex}`, { key: headKey, node: head });
-            desired.push(head);
-          }
-        }
-      }
-
-      const rowKey = rowCacheKey(item, currentId, today, settings.covers);
-      const cached = rowCache.get(item.issueId);
-      if (cached && cached.key === rowKey) { desired.push(cached.node); continue; }
-
-      const override = item.override;
-      const av = availability(item, { override, today });
-      const badgeClass = {
-        [STATE.EXPECTED]: 'badge-expected',
-        [STATE.SCHEDULED]: 'badge-scheduled',
-        [STATE.UNKNOWN]: 'badge-unknown',
-        [STATE.OVERRIDE_AVAILABLE]: 'badge-override-available',
-        [STATE.OVERRIDE_UNAVAILABLE]: 'badge-override-unavailable',
-      }[av.state];
-
-      const img = el('img', { alt: '', loading: 'lazy' });
-      const fb = el('div', { class: 'rf cover-fallback', 'aria-hidden': true });
-      paintCover(img, fb, item, 'portrait_incredible');
-
-      const node = el('li', {
-        class: `row${item.read ? ' is-read' : ''}${item.issueId === currentId ? ' now' : ''}`,
-      }, [
-        el('button', {
-          type: 'button',
-          class: 'cb has-tooltip',
-          'aria-pressed': String(item.read),
-          'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,
-          dataset: {
-            key: item.issueId,
-            act: 'read',
-            tooltip: item.read ? 'Mark as unread' : 'Mark as read',
-          },
-          onclick: () => {
-            const wasRead = isRead(store.state, item.issueId);
-            const saved = store.update((s) => toggleRead(s, item.issueId));
-            const transition = recordDirectProgressSave({
-              wasRead,
-              state: saved,
-              issueId: item.issueId,
-            });
-            if (transition) {
-              announce(withSaveEducation(
-                `${item.title} ${isRead(saved, item.issueId) ? 'marked read' : 'marked unread'}.`,
-                transition,
-              ));
-            }
-          },
-        }, item.read ? '✓' : ''),
-        issueFocusAnchor(item, {
-          context: { kind: 'list', id },
-          surface: 'full-order',
-          control: 'cover',
-          className: 'thumb row-focus-cover',
-          tabIndex: '-1', ariaLabel: `Inspect ${item.title}`,
-          children: [img, fb],
-        }),
-        el('div', {}, [
-          issueFocusAnchor(item, {
-            context: { kind: 'list', id },
-            surface: 'full-order',
-            control: 'title',
-            className: 'rt row-focus-title',
-            children: item.title,
-          }),
-          el('div', { class: 'rm' }, [
-            item.seriesName ? el('span', { text: seriesOnly(item.seriesName) }) : null,
-            // The full availability wording is text inside the badge, not a title attribute.
-            // A title is not reachable by touch, is skipped by several screen readers, and
-            // here it was the only place the hedge behind a two-word badge was written down,
-            // so "Not in Unlimited" read as a fact rather than as what the snapshot shows.
-            el('span', { class: `badge ${badgeClass}` }, [
-              `${SHORT[av.state]} ${av.state === STATE.EXPECTED ? 'Unlimited' : SHORT_LABEL[av.state] ?? 'unknown'}`,
-              el('span', { class: 'visually-hidden', text: `. ${describe(item, { override, today })}.` }),
-            ]),
-            detailsBadge(item),
-            item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,
-            ymd(item.onSale) ? el('span', { text: ymd(item.onSale) }) : null,
-          ]),
-          // The note control sits in the text column, not in `.ract`, which already carries six
-          // buttons and wraps at 320 pixels. One control both shows the note and opens the
-          // editor, so a row with a note is not a row with an extra thing beside it.
-          //
-          // The note is repeated into the label rather than left to name the button by its
-          // contents, because an aria-label replaces the contents in the accessible name. With
-          // the label naming only the action, a screen reader announced "Edit your note on X"
-          // and never the note, so the one reader who cannot see the row would have had to open
-          // the editor on every issue to find out what they had written.
-          //
-          // The note goes last because it is the one part the app does not punctuate. A note
-          // typed as "Wanda breaks reality." read as "here.. Select to edit it." with the action
-          // trailing, so the action leads instead and nothing follows the user's own words.
-          el('button', {
-            type: 'button',
-            class: `rnote${item.note ? ' has-note' : ''}`,
-            'aria-label': item.note
-              ? `Edit your note on ${item.title}. It says: ${item.note}`
-              : `Add a note on ${item.title}`,
-            dataset: { key: item.issueId, act: 'note' },
-            onclick: () => editIssueNote(item),
-          }, item.note ? item.note : 'Add a note'),
-        ]),
-        issueRowActions(item, id),
-      ]);
-      rowCache.set(item.issueId, { key: rowKey, node });
-      desired.push(node);
-    }
-
-    if (items.length !== all.length) {
-      desired.push(el('li', { class: 'rail-hint', text: `Showing ${items.length} of ${all.length}.` }));
-    }
-    commitRows(rows, desired);
-  }, {
-    primary: 'read',
-    // Nothing is left to land on only when the filter now excludes everything, which is usually
-    // the reader's own act of marking the last matching issue read. The checked filter is both the
-    // reason the list is empty and the control that undoes it, and it sits inside the same
-    // disclosure, so focus stays where the reader was working.
-    fallback: () => [...document.querySelectorAll('input[name="filter"]')].find((r) => r.checked),
-  });
-}
-
-const SHORT_LABEL = {
-  [STATE.SCHEDULED]: 'scheduled',
-  [STATE.UNKNOWN]: 'unknown',
-  [STATE.OVERRIDE_AVAILABLE]: 'yours: available',
-  [STATE.OVERRIDE_UNAVAILABLE]: 'yours: not in MU',
-};
-
-function cycleOverride(item) {
-  const next = item.override === 'available' ? 'unavailable' : item.override === 'unavailable' ? null : 'available';
-  store.update((s) => setOverride(s, item.issueId, next));
-  announceIfSaved(`${item.title}: ${next ? `marked ${next}` : 'override cleared'}.`);
-}
-
-function availabilityOverrideAction(override) {
-  if (override === 'available') return 'Mark as unavailable';
-  if (override === 'unavailable') return 'Clear availability override';
-  return 'Mark as available';
-}
-
-function issueRowActions(item, listId) {
-  const panelId = `row-actions-${item.issueId}`;
-  const panel = el('div', { class: 'ract', id: panelId }, [
-    el('button', { type: 'button', class: 'mini', 'aria-label': `Read ${item.title} in Marvel Unlimited`, dataset: { key: item.issueId, act: 'open' }, onclick: (e) => openInReader(item, e) }, 'Read'),
-    detailUrl(item)
-      ? el('a', {
-        class: 'mini has-tooltip',
-        href: detailUrl(item),
-        target: '_blank',
-        rel: 'noopener noreferrer',
-        'aria-label': labelledName('Info', `${item.title} on marvel.com`),
-        dataset: { key: item.issueId, act: 'info', tooltip: 'Open issue page on marvel.com' },
-      }, 'Info')
-      : null,
-    el('button', {
-      type: 'button',
-      class: 'mini has-tooltip',
-      'aria-label': `Move ${item.title} up`,
-      dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
-      onclick: () => store.update((s) => moveItem(s, listId, item.issueId, -1)),
-    }, [
-      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↑' }),
-      el('span', { class: 'mini-label', text: 'Move up' }),
-    ]),
-    el('button', {
-      type: 'button',
-      class: 'mini has-tooltip',
-      'aria-label': `Move ${item.title} down`,
-      dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
-      onclick: () => store.update((s) => moveItem(s, listId, item.issueId, 1)),
-    }, [
-      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↓' }),
-      el('span', { class: 'mini-label', text: 'Move down' }),
-    ]),
-    el('button', {
-      type: 'button',
-      class: 'mini has-tooltip',
-      'aria-label': `${availabilityOverrideAction(item.override)} for ${item.title}`,
-      dataset: {
-        key: item.issueId,
-        act: 'override',
-        tooltip: availabilityOverrideAction(item.override),
-      },
-      onclick: () => cycleOverride(item),
-    }, [
-      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '⚑' }),
-      el('span', { class: 'mini-label', text: 'Change Unlimited status' }),
-    ]),
-    el('button', {
-      type: 'button',
-      class: 'mini mini-danger has-tooltip',
-      'aria-label': `Remove ${item.title} from this list`,
-      dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from this list' },
-      onclick: () => {
-        store.update((s) => removeFromList(s, listId, item.issueId));
-        announceIfSaved(`Removed ${item.title}.`);
-      },
-    }, [
-      el('span', { class: 'mini-icon', 'aria-hidden': true, text: '✕' }),
-      el('span', { class: 'mini-label', text: 'Remove from list' }),
-    ]),
-  ]);
-  const toggle = el('button', {
-    type: 'button',
-    class: 'mini row-actions-toggle',
-    'aria-expanded': 'false',
-    'aria-controls': panelId, 'aria-label': `More actions for ${item.title}`,
-    text: 'More actions', dataset: { key: item.issueId, act: 'more' },
-  });
-  const root = el('div', { class: 'row-actions' }, [toggle, panel]);
-  const setOpen = (open) => {
-    root.classList.toggle('is-open', open);
-    toggle.setAttribute('aria-expanded', String(open));
-  };
-  toggle.addEventListener('click', () => setOpen(!root.classList.contains('is-open')));
-  root.addEventListener('focusout', (event) => {
-    if (!root.contains(event.relatedTarget)) setOpen(false);
-  });
-  root.addEventListener('keydown', (event) => {
-    if (event.key !== 'Escape' || !root.classList.contains('is-open')) return;
-    event.preventDefault();
-    setOpen(false);
-    toggle.focus();
-  });
-  return root;
-}
-
-// The editor is a modal dialog rather than a field in the row. Editing a note changes the item,
-// so `renderRows` rebuilds that row, and `preservingFocus` restores focus by key and act alone,
-// not the caret or an uncommitted value, so an inline field would lose whatever had been typed
-// into it the moment anything else changed.
-async function editIssueNote(item) {
-  const note = await askNote({
-    title: `Note on "${item.title}"`,
-    body: 'Only you see this. It is saved on this device and travels in your backup file.',
-    label: 'Your note about this issue',
-    value: item.note || '',
-  });
-  if (note === null) return;
-  store.update((s) => setIssueNote(s, item.issueId, note));
-  announceIfSaved(note ? `Note saved on ${item.title}.` : `Note removed from ${item.title}.`);
-}
-
-// ------------------------------------------------------------------ shortcuts
-
-function wireShortcuts() {
-  document.addEventListener('keydown', (e) => {
-    if (view !== 'read' || e.metaKey || e.ctrlKey || e.altKey) return;
-    // A modal dialog makes the rest of the document inert, but a keydown raised inside it still
-    // bubbles to here, and the view behind the backdrop is still 'read'. Refusing every
-    // interactive element used to block this by accident; asking the narrower question exposes
-    // it. Measured in Edge: D at the "Delete list?" prompt, where showModal() has put focus on
-    // Cancel, marked an issue read behind the backdrop and swallowed the key.
-    if ($('dialog[open]')) return;
-    const t = document.activeElement;
-    // Only text entry silences a shortcut outright, and Enter is left to whatever the browser
-    // would activate. Refusing every interactive element, as this once did, killed the D the
-    // hero advertises for the rest of the session the moment the reader clicked "Done, next".
-    if (!shortcutAllowed(t, e.key)) return;
-    if (!store.state.lists[activeListId()]) return;
-
-    if (e.key === 'Enter') {
-      const issue = upNext(store.state, activeListId());
-      if (!issue) return;
-      e.preventDefault();
-      openInReader(issue, e);
-    } else if (e.key === 'd' || e.key === 'D') {
-      e.preventDefault();
-      markCurrentRead();
-    }
-  });
-}
-
-// ------------------------------------------------------------------ reader deep links
-
-function openInReader(issue, event) {
-  event?.preventDefault();
-  // window.open must happen synchronously inside the gesture. The digitalId lookup, when one
-  // is needed, happens in the opened tab rather than here. See reader.js.
-  const res = openIssueTab(issue);
-  if (!res.ok) {
-    announce(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
-    return;
-  }
-  announce(res.target === 'reader'
-    ? `Opening ${issue.title} in Marvel Unlimited in a new tab.`
-    : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
-}
-
-// ------------------------------------------------------------------ hydration
-
-function renderHydrateButton() {
-  const pending = pendingIssueIds(store.state).length;
-  $('#btn-hydrate').hidden = pending === 0 || hydrator.active;
-  $('#btn-hydrate').textContent = `Fetch details for ${pending} issue${pending === 1 ? '' : 's'}`;
-  $('#btn-cancel-hydrate').hidden = !hydrator.active;
+function onHydrationStatus(status) {
+  readingView.renderHydration(status);
 }
 
 // The phase a run is in, and what a reader should hear on reaching it, kept apart from the DOM
@@ -2824,32 +1557,24 @@ export function hydrationAnnouncement(status) {
   return { state: 'complete', msg: 'All issue details fetched.' };
 }
 
-function renderHydration(status) {
-  const box = $('#hydration-status');
-  const said = hydrationAnnouncement(status);
-  // Above the early return, so the key follows the hydrator's phase even through the reports that
-  // write nothing. It is not what unblocks the next run: 'complete' and 'running' already differ.
-  announceState('hydration', said.state, said.msg);
-  if (!status || status.phase === 'idle') { box.hidden = true; renderHydrateButton(); return; }
-  box.hidden = false;
-  if (status.phase === 'running') {
-    box.textContent = `Fetching details ${status.done} of ${status.total}…`;
-  } else if (status.phase === 'cancelled') {
-    box.textContent = `Stopped after ${status.done} of ${status.total}. Progress was kept.`;
-  } else {
-    box.textContent = 'All details fetched.';
+// ------------------------------------------------------------------ reader deep links
+
+function openInReader(issue, event) {
+  event?.preventDefault();
+  const res = openIssueTab(issue);
+  if (!res.ok) {
+    announce(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
+    return;
   }
-  renderHydrateButton();
+  announce(res.target === 'reader'
+    ? `Opening ${issue.title} in Marvel Unlimited in a new tab.`
+    : `Opening ${issue.title} in a new tab and looking up its Unlimited link.`);
 }
 
 // ------------------------------------------------------------------ synopsis fetching
 
 export const SYNOPSIS_SERVICE_FALLBACK = 'the community Marvel metadata service';
 
-// Names the service the run will actually contact, rather than the one this file was written
-// against. The API base is the reader's to change, and a dialog whose whole job is to say where the
-// prose comes from is worse than no dialog at all when it names a third party the request will not
-// go to.
 export function synopsisServiceName(baseUrl) {
   try {
     return new URL(String(baseUrl)).host || SYNOPSIS_SERVICE_FALLBACK;
@@ -2858,16 +1583,12 @@ export function synopsisServiceName(baseUrl) {
   }
 }
 
-// Said in full every time a run is started, not once and then remembered. The reader is being asked
-// to agree to text arriving from somewhere else, and an agreement recorded months ago in a settings
-// file is not the reader agreeing now. It costs one press of a button they only reach by choosing
-// to press another one.
 export function synopsisDisclaimer(baseUrl) {
   return {
     title: 'Fetch synopses from the community metadata service?',
     body: 'Issue synopses are not part of this tracker. They come from the community Marvel metadata '
       + `service at ${synopsisServiceName(baseUrl)}, which is not affiliated with Marvel, and the text `
-      + 'itself is Marvel\u2019s. Nothing fetched is saved: the synopses are held for this browser tab '
+      + 'itself is Marvel’s. Nothing fetched is saved: the synopses are held for this browser tab '
       + 'only, they are not written into your lists, they are not included in a backup, and they are '
       + 'gone when you reload. Fetching a whole Reading List takes a few minutes and uses your '
       + 'request allowance.',
@@ -2897,36 +1618,15 @@ export function synopsisAnnouncement(status) {
   return { state: 'complete', msg: 'All synopses fetched. They are held for this tab only.' };
 }
 
-function renderSynopsisButtons() {
-  // Offered on any list with issues in it, unlike the hydrate button, which is offered only while
-  // something is pending. There is no pending count to show here: what has been fetched is not
-  // recorded anywhere the button could count, which is the point of the feature.
-  const list = store.state.lists[activeListId()];
-  const has = (list?.itemIds ?? []).length > 0;
-  $('#btn-synopsis').hidden = !has || synopsisRunner.active;
-  $('#btn-cancel-synopsis').hidden = !synopsisRunner.active;
-}
-
 export function synopsisStatusLine(status) {
-  // done counts attempts, not answers, so every branch below that reports a count subtracts the
-  // failures and names them. Doing it in only some of them is worse than doing it in none: while
-  // the running line reported attempts and the endings reported answers, pressing stop on a run
-  // that had lost two of three rewrote 3 to 1 in front of the reader, and the number appeared to
-  // go backwards at the one moment they were looking at it.
   const phase = status?.phase;
-  // renderSynopsis hides the box without setting any text for these, so the empty string is what
-  // this function has always effectively returned for them. It is exported now, and a caller that
-  // did not replicate that guard would otherwise be told a run that never started had finished.
   if (!status || phase === 'idle') return '';
   if (phase === 'running') {
     const failed = Number(status.failed ?? 0);
-    const line = `Fetching synopses ${status.done - failed} of ${status.total}\u2026`;
+    const line = `Fetching synopses ${status.done - failed} of ${status.total}…`;
     return failed ? `${line} ${failed} could not be reached.` : line;
   }
   if (phase === 'cancelled') {
-    // A stop after three requests of which two were refused would otherwise read "Stopped after 3
-    // of 5" beside a hero still saying no synopsis is recorded, which is the same untruth the
-    // partial ending was added to stop telling. Same subtraction it makes.
     const failed = Number(status.failed ?? 0);
     if (!failed) return `Stopped after ${status.done} of ${status.total}.`;
     return `Stopped after ${status.done - failed} of ${status.total}. ${failed} could not be reached.`;
@@ -2937,24 +1637,12 @@ export function synopsisStatusLine(status) {
   return 'All synopses fetched, for this tab only.';
 }
 
-function renderSynopsis(status) {
-  const box = $('#synopsis-status');
-  const said = synopsisAnnouncement(status);
-  announceState('synopsis', said.state, said.msg);
-  if (!status || status.phase === 'idle') { box.hidden = true; renderSynopsisButtons(); return; }
-  box.hidden = false;
-  box.textContent = synopsisStatusLine(status);
-  renderSynopsisButtons();
-  // The hero is showing a sentence that may have just been answered, and nothing else repaints on a
-  // synopsis arriving: none of this is in the store, so no update() fires.
-  renderHero();
+function onSynopsisStatus(status) {
+  readingView.renderSynopsis(status);
   if (view === 'issue') issueView.repaintSynopsis(status);
 }
 
 async function startSynopsisRun() {
-  // The list is captured before the question, not after. Nothing can move the reader while a modal
-  // dialog is open, but starting a run against whatever is active when the answer arrives would be
-  // the wrong shape regardless: they agreed to fetch this order.
   const list = store.state.lists[activeListId()];
   if (!list) return;
   const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
@@ -3091,7 +1779,7 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
     parts.push(...orderGapSentences(order));
     parts.push('Any issues you had already read stay read.');
     if (!navigate) parts.push('It is now in your Library.');
-    const withdrawn = forgetDeletedFor(catalogId, order.name);
+    const withdrawn = readingView.forgetDeletedFor(catalogId, order.name);
     if (withdrawn) parts.push(withdrawn);
     // A failure from a previous attempt would otherwise sit under a successful import,
     // contradicting it. Cleared by the order's key, not by this pane, so an attempt that failed
@@ -3129,6 +1817,23 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
 }
 
 // ------------------------------------------------------------------ data view
+
+export function describeSize(bytes) {
+  const n = Number(bytes);
+  if (!Number.isFinite(n) || n < 0) return 'an unknown size';
+  if (n < 1024) return `${Math.round(n)} bytes`;
+  if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
+  return `${(n / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+// Returns the sentence to show, or null to go ahead and read the file. Split out from the handler
+// so the decision can be measured directly: a test that reads the handler's source instead would
+// still pass with the comparison deleted, because the constant's name survives in the import list.
+export function backupFileRefusal(file) {
+  const size = Number(file?.size);
+  if (!Number.isFinite(size) || size <= MAX_BACKUP_BYTES) return null;
+  return `That file is ${describeSize(size)}. A backup this app writes is far smaller than the ${describeSize(MAX_BACKUP_BYTES)} limit, so this one was not read and nothing was changed.`;
+}
 
 function exportMarkdown() {
   const id = activeListId();
@@ -3200,12 +1905,12 @@ const dataView = createDataView({
   onExportMarkdown: exportMarkdown,
   onRestore: (text) => {
     const res = store.restore(text);
-    if (res.ok) forgetDeleted();
+    if (res.ok) readingView.forgetDeleted();
     return res;
   },
   onUndoRestore: () => {
     const res = store.undoRestore();
-    if (res.ok) forgetDeleted();
+    if (res.ok) readingView.forgetDeleted();
     return res;
   },
   onSetCovers: (on) => setCovers(on),
@@ -3231,8 +1936,8 @@ const dataView = createDataView({
     if (synopsisRunner.active) synopsisRunner.cancel();
     synopsisRunner.api = api;
     sessionSynopsis.clear();
-    renderSynopsis(null);
-    renderHero();
+    readingView.renderSynopsis(null);
+    readingView.renderHero();
     notify('#api-report', 'API URL saved. Cached data from the previous URL is kept separate.', 'ok');
     checkHealth();
   },
@@ -3257,7 +1962,7 @@ const dataView = createDataView({
     cache.clear();
     // The undo buffer points at a list from the data that has just been erased, so putting it
     // back would resurrect one list out of a tracker the reader asked to be emptied.
-    forgetDeleted();
+    readingView.forgetDeleted();
     // The button's visibility belongs to recoveryView.render(), and the withdrawal happens after
     // the repaint the erase itself triggered, so the question is put again here rather than left
     // to whatever unrelated render comes next.
@@ -3462,11 +2167,195 @@ function friendly(err) {
   return err?.message || 'Something went wrong.';
 }
 
+let publishingCategoryGeneration = 0;
+
+// Category panels are generated from the same registry the router reads. Repeating twelve hidden
+// sections in the document would create a second list of routes, headings and ids that could drift
+// while still leaving every individual panel looking valid.
+function ensurePublishingViews() {
+  const root = $('#main .wrap');
+  for (const category of generatedCategoryByRoute.values()) {
+    if ($(`#view-${category.route}`)) continue;
+    root.insertBefore(el('section', {
+      id: `view-${category.route}`,
+      class: 'view view-wide publishing-view',
+      hidden: true,
+      'aria-labelledby': `${category.route}-h`,
+    }, [
+      el('div', { class: 'head' }, [
+        el('div', { class: 'head-left' }, [
+          el('h1', { id: `${category.route}-h`, text: `Browse ${category.heading}` }),
+        ]),
+      ]),
+      el('div', { class: 'publishing-meta' }, [
+        el('span', { class: 'publishing-range', text: category.label }),
+        el('span', {
+          id: `${category.route}-count`,
+          class: 'publishing-count',
+          role: 'status',
+          text: 'Loading Reading Lists',
+        }),
+      ]),
+      el('ul', { class: 'publishing-highlights', 'aria-label': `${category.heading} highlights` },
+        category.highlights.map((highlight) => el('li', { text: highlight }))),
+      el('div', { id: `${category.route}-report`, class: 'report' }),
+      ...(category.kind === 'publishing-index' ? [] : [el('section', {
+        id: `${category.route}-categories`,
+        class: 'publishing-periods',
+        hidden: true,
+        'aria-labelledby': `${category.route}-categories-h`,
+      }, [
+        el('div', { class: 'sec-h' }, el('h2', { id: `${category.route}-categories-h`, text: 'Choose a Period' })),
+        el('ul', { id: `${category.route}-category-list`, class: 'home-paths home-paths-secondary' }),
+      ])]),
+      el('div', { id: `${category.route}-results`, class: 'results' }),
+    ]), $('.app-footer'));
+  }
+}
+
+function renderLibraryHub() {
+  const yours = $('#library-yours');
+  savedLists.render(yours, $('#library-yours-list'));
+  $('#library-empty').hidden = !yours.hidden;
+}
+
+function renderPublishingIndex(category, allStories) {
+  const box = $(`#${category.route}-results`);
+  const { count, earlier, modern, modernChildren } = publishingAgeGroups(allStories);
+  $(`#${category.route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
+  box.replaceChildren();
+  if (count === 0) {
+    box.append(el('p', { class: 'rail-hint publishing-empty', text: 'No Reading Lists are published by age yet.' }));
+    return;
+  }
+  if (earlier.length) box.append(el('section', {
+    id: 'marvel-ages-earlier',
+    class: 'publishing-periods marvel-ages-group',
+    'aria-labelledby': 'marvel-ages-earlier-h',
+  }, [
+    el('div', { class: 'sec-h' }, el('h2', { id: 'marvel-ages-earlier-h', text: 'Earlier Marvel' })),
+    el('ul', { id: 'marvel-ages-earlier-list', class: 'home-paths home-paths-secondary' }, earlier.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' }))),
+  ]));
+  if (modern) {
+    const aggregateLabel = labelledName('Browse all Modern Age Reading Lists', `${modern.label}, ${modern.count} Reading Lists`);
+    box.append(el('section', {
+      id: 'marvel-ages-modern',
+      class: 'publishing-periods marvel-ages-group',
+      'aria-labelledby': 'marvel-ages-modern-h',
+    }, [
+      el('div', { class: 'sec-h' }, [
+        el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }),
+        el('button', {
+          id: 'marvel-ages-modern-all',
+          type: 'button',
+          class: 'quiet',
+          text: 'Browse all Modern Age Reading Lists',
+          'aria-label': aggregateLabel,
+          onclick: () => showView('age-modern', { push: true }),
+        }),
+      ]),
+      el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' }))),
+    ]));
+  }
+}
+
+async function renderPublishingCategory(route) {
+  const category = generatedCategoryByRoute.get(route);
+  if (!category) return;
+  const generation = ++publishingCategoryGeneration;
+  const box = $(`#${route}-results`);
+  const periods = $(`#${route}-categories`);
+  const periodList = $(`#${route}-category-list`);
+  box.replaceChildren(el('p', {
+    class: 'rail-hint',
+    'aria-hidden': 'true',
+    text: 'Loading Reading Lists…',
+  }));
+  if (periods) periods.hidden = true;
+  if (periodList) periodList.replaceChildren();
+  clearNotice(CATALOG_LOAD);
+
+  let catalog;
+  try {
+    catalog = await loadCatalog();
+  } catch (err) {
+    box.replaceChildren();
+    await reportBundledLoadFailure({
+      report: `#${route}-report`,
+      failure: `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
+      key: CATALOG_LOAD,
+      subject: 'the catalog',
+      retry: () => renderPublishingCategory(route),
+      isCurrent: () => generation === publishingCategoryGeneration,
+    });
+    return;
+  }
+
+  const allStories = groupCatalog(catalog.lists);
+  if (category.kind === 'publishing-index') {
+    renderPublishingIndex(category, allStories);
+    return;
+  }
+  catalogPresentation.ensureSetupGuideFeature(catalog.lists, route, modernTimelineFeaturedCard);
+  const stories = typeof category.select === 'function'
+    ? category.select(allStories)
+    : publishingCategoryStories(allStories, category.key);
+  const count = stories.reduce((total, story) => total + story.lists.length, 0);
+  $(`#${route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`;
+
+  const children = availablePublishingCategories(allStories, category.key);
+  const isPublishingCategory = PUBLISHING_CATEGORIES.some(
+    (candidate) => candidate.key === category.key && candidate.route === category.route,
+  );
+  if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
+    box.replaceChildren();
+    periodList.replaceChildren(...children.map((child) => homeView.categoryTile({
+      ...child,
+      tier: 'secondary',
+    })));
+    periods.hidden = false;
+    return;
+  }
+
+  box.replaceChildren();
+  if (!stories.length) {
+    box.append(el('p', {
+      class: 'rail-hint publishing-empty',
+      text: 'No Reading Lists are published for this period yet.',
+    }));
+    return;
+  }
+
+  const placements = pathPlacements(catalog.paths, catalog.lists);
+  const localStoryKeys = new Set(stories.map((story) => story.key));
+  if (isPublishingCategoryLeaf(category)) {
+    const years = timelineYears(stories);
+    catalogPresentation.renderTimelineSections(box, [{
+      ...category, stories, from: years[0].year, to: years[years.length - 1].year,
+    }], placements, {
+      idPrefix: route, showEmptyYears: true, sectionBlurb: false,
+      cardOptions: {
+        surface: route,
+        report: `#${route}-report`,
+        localStoryKeys,
+      },
+    });
+    return;
+  }
+  const grid = el('div', { class: 'catalog-grid publishing-grid' });
+  for (const story of stories) {
+    grid.append(catalogPresentation.catalogCard(story, placements.get(story.key), {
+      surface: route, report: `#${route}-report`, localStoryKeys, level: 'h2',
+    }));
+  }
+  box.append(grid);
+}
+
 // ------------------------------------------------------------------ render
 
 function renderAll() {
   renderRail();
-  renderReading();
+  readingView.render();
   homeView.render();
   renderLibraryHub();
   progressView.render();
@@ -3506,12 +2395,12 @@ export function boot() {
   ensurePublishingViews();
   wireSidebar();
   wireNav();
-  wireReading();
+  readingView.wireShortcuts();
   issueView.wire();
   addView.wire();
   dataView.wire();
   recoveryView.wire();
-  wireShortcuts();
+  readingView.wire();
   for (const shelf of CATALOG_SHELVES) catalogView.wire(shelf.key);
   homeView.wire();
   readingPathsView.wire();
@@ -3527,7 +2416,7 @@ export function boot() {
   // a reload land where they say they will. focus:false either way, so arriving at the page never
   // takes focus off the document the reader has not started interacting with yet.
   const bootRoute = parseRoute(location.hash);
-  if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: filter });
+  if (bootRoute) applyRoute(bootRoute, { focus: false, filterIfAbsent: readingView.currentFilter() });
   else showView(store.state.lists[activeListId()] ? 'read' : 'home', { focus: false });
 
   // Back and Forward arrive here, as does anyone editing the address by hand. A hash that is not one
@@ -3685,6 +2574,56 @@ const addView = createAddView({
     return { ok: store.lastUpdateOk, state };
   },
   warmNameIndex: (kind) => api.warmNameIndex(kind),
+  withSaveEducation,
+  ymd,
+});
+
+const readingView = createReadingView({
+  $,
+  activeListId,
+  announce,
+  announceIfSaved,
+  announceState,
+  askConfirm,
+  askNote,
+  askText,
+  clearNotice,
+  detailUrl,
+  el,
+  fact,
+  getSettings: () => settings,
+  getState: () => store.state,
+  getSynopsis: (issueId) => sessionSynopsis.get(issueId),
+  hydrationAnnouncement,
+  isCurrent: () => view === 'read',
+  isHydrationActive: () => hydrator.active,
+  isSynopsisActive: () => synopsisRunner.active,
+  issueFocusAnchor,
+  launch: openInReader,
+  noSynopsisMarker: NO_SYNOPSIS,
+  notify,
+  onCancelHydrate: () => hydrator.cancel(),
+  onCancelSynopsis: () => synopsisRunner.cancel(),
+  onExportMarkdown: exportMarkdown,
+  onHydrate: (listId) => hydrator.start(listId),
+  onStartSynopsis: startSynopsisRun,
+  openIssueFocus,
+  paintCover,
+  paintHeroBackground,
+  preservingFocus,
+  recordDirectProgressSave,
+  renderSaveEducation,
+  saveSettings,
+  seriesOnly,
+  shortTitle,
+  showView,
+  syncHash,
+  synopsisAnnouncement,
+  synopsisStatusLine,
+  updateState: (updater) => {
+    const state = store.update(updater);
+    return { ok: store.lastUpdateOk, state };
+  },
   withSaveEducation,
   ymd,
 });
@@ -4020,47 +2959,6 @@ const readingPathsView = createReadingPathsView({
     syncHash({ push: true });
   },
 });
-
-// The full order summary in its <summary>, on screen whether or not the order is open. An empty
-// order is said plainly rather than as "0 of 0 read", which reads as a fault, not as the fact it is.
-// The unread half used to be spelled out beside the read half. It is the same fact subtracted, and
-// this line is the fifth place on the screen that the same fact appears, so it says one of them.
-function writeFullSummary(all, unread) {
-  const total = all.length;
-  $('#full-action').textContent = $('#full').open
-    ? 'Hide full Reading List'
-    : `View all ${total} issue${total === 1 ? '' : 's'}`;
-  $('#full-count').textContent = !total ? 'No issues yet' : unread ? `${unread} unread` : 'All read';
-}
-
-// A quiet row above the reading filters: a bar for the whole order and its percentage, and, when a
-// filter is set, how much of the order it is showing. The percentage is of the whole order and not
-// of the filtered rows, for the same reason a collected-edition heading counts its whole run: a
-// figure that changes meaning when a filter is set is a second filter the reader never chose. The
-// node is built once and its children rewritten, because it sits outside the container
-// preservingFocus watches and holds nothing focusable, so an insert on every render would be churn.
-function writeOrderStrip(details, all, activeFilter) {
-  const filters = details.querySelector('#reading-filters');
-  let strip = details.querySelector('.order-strip');
-  if (!strip) strip = details.insertBefore(el('div', { class: 'order-strip' }), filters);
-  const total = all.length;
-  // No denominator when the order is empty: the percentage would be NaN, and the summary above
-  // already says "No issues yet", which is the whole of what there is to say.
-  if (!total) { strip.hidden = true; return; }
-  strip.hidden = false;
-  const read = all.filter((it) => it.read).length;
-  const pct = Math.round((read / total) * 100);
-  const children = [
-    el('span', { class: 'pbar', 'aria-hidden': 'true' }, el('i', { style: { width: `${pct}%` } })),
-    el('span', { class: 'order-pct', text: `${pct}% read` }),
-  ];
-  // The all-issues filter is removed rather than left saying something trivially true.
-  if (activeFilter !== DEFAULT_FILTER) {
-    const shown = all.filter((it) => matchesReadingFilter(activeFilter, it)).length;
-    children.push(el('span', { class: 'order-shown', text: `Showing ${shown} of ${total} issues.` }));
-  }
-  strip.replaceChildren(...children);
-}
 
 export function fallbackInitials(value) {
   const words = String(value || '')

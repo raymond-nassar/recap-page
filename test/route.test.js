@@ -15,6 +15,7 @@ import { READING_FILTERS, DEFAULT_FILTER } from '../src/js/lib/readingFilters.js
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
+const reading = read('src/js/views/reading.js');
 
 // assert.match prints the whole subject on failure, and main.js is 120 KB, which buries the run.
 // These say what was looked for instead.
@@ -478,8 +479,7 @@ test('main.js writes the hash passively with replaceState, not by assignment', (
 // and the path that reaches this is a click carrying no pointerdown, which is what assistive
 // technology produces and the only reason the commit is here.
 test('main.js commits, then sets, then pushes when a filter is chosen', () => {
-  const main = read('src/js/main.js');
-  const handler = main.slice(main.indexOf("radio.addEventListener('change'"), main.indexOf("const group = $('#reading-filters')"));
+  const handler = reading.slice(reading.indexOf("radio.addEventListener('change'"), reading.indexOf("const group = $('#reading-filters')"));
   has(
     handler,
     /endFilterRun\(\{ commit: true \}\);[\s\S]*?setFilter\(e\.target\.value\);[\s\S]*?syncHash\(\{ push: true \}\);/,
@@ -492,10 +492,9 @@ test('main.js commits, then sets, then pushes when a filter is chosen', () => {
 // Edge on this tree before the fix: three presses of ArrowRight left three entries and one Back
 // landed two filters short. The traversal now writes nothing until it ends and then writes one.
 test('a keyboard traversal holds its write until it ends', () => {
-  const main = read('src/js/main.js');
-  has(main, /radio\.addEventListener\('keydown', \(e\) => \{\s*if \(e\.key\.startsWith\('Arrow'\) && !e\.ctrlKey && !e\.altKey && !e\.metaKey\) arrowing = true;/,
+  has(reading, /radio\.addEventListener\('keydown', \(e\) => \{\s*if \(e\.key\.startsWith\('Arrow'\) && !e\.ctrlKey && !e\.altKey && !e\.metaKey\) arrowing = true;/,
     'an arrow key with no modifier setting the traversal flag before the change it produces');
-  const handler = main.slice(main.indexOf("radio.addEventListener('change'"), main.indexOf("const group = $('#reading-filters')"));
+  const handler = reading.slice(reading.indexOf("radio.addEventListener('change'"), reading.indexOf("const group = $('#reading-filters')"));
   has(handler, /if \(arrowing\) \{/, 'the handler branching on whether an arrow key produced the change');
   has(handler, /filterRunBase = filter;\s*filterRunAddressed = filterAddressed;\s*filterRunOpen = true;/,
     'the traversal recording the filter and its address origin before the first stop moves it');
@@ -510,31 +509,29 @@ test('a keyboard traversal holds its write until it ends', () => {
 // on with the half-chosen address and destroy the thing Back exists to return to.
 test('a passive sync during a traversal writes the address the traversal began from', () => {
   const main = read('src/js/main.js');
-  const body = main.slice(main.indexOf('function syncHash'), main.indexOf('function endFilterRun'));
-  has(body, /const shown = filterRunOpen && !push \? filterRunBase : filter;/,
-    'a passive sync formatting with the base rather than the live filter');
-  has(body, /const showFilter = filterRunOpen && !push \? filterRunAddressed : filterAddressed;/,
-    'a passive sync retaining whether the base filter was explicit');
+  const body = main.slice(main.indexOf('function syncHash'), main.indexOf('function applyRoute'));
+  has(body, /const \{ shown, showFilter \} = readingView\.filterTraversalSnapshot\(\{ push \}\);/,
+    'a passive sync asking the reading view for the base filter rather than reading transient state itself');
+  lacks(body, /const currentFilter = readingView\.currentFilter\(\);/,
+    'a passive sync not consulting the transient filter after taking its traversal snapshot');
   has(body, /formatRoute\(\{[\s\S]*?view,[\s\S]*?listId: activeListId\(\),[\s\S]*?filter: showFilter \? shown : DEFAULT_FILTER,[\s\S]*?full: view === 'read' && \$\('#full'\)\.open && !\(showFilter && shown !== DEFAULT_FILTER\),[\s\S]*?sort,/,
-    'and the route being built from it');
+    'both filter and disclosure state being built from the same traversal snapshot');
 });
 
 // A traversal that is left and returned to is two traversals, and moving between radios inside the
 // group is not leaving it, so the check has to look at where focus went. Leaving is also when the
 // traversal's one entry gets written, so these listeners commit rather than discard.
 test('leaving the filter group commits the traversal, and moving inside it does not', () => {
-  const main = read('src/js/main.js');
-  has(main, /group\.addEventListener\('focusout', \(e\) => \{\s*if \(e\.relatedTarget && group\.contains\(e\.relatedTarget\)\) return;\s*arrowing = false;\s*endFilterRun\(\{ commit: true \}\);/,
+  has(reading, /group\.addEventListener\('focusout', \(e\) => \{\s*if \(e\.relatedTarget && group\.contains\(e\.relatedTarget\)\) return;\s*arrowing = false;\s*endFilterRun\(\{ commit: true \}\);/,
     'a focusout that commits the run only when focus left the group');
-  has(main, /group\.addEventListener\('pointerdown', \(\) => \{\s*arrowing = false;\s*endFilterRun\(\{ commit: true \}\);/,
+  has(reading, /group\.addEventListener\('pointerdown', \(\) => \{\s*arrowing = false;\s*endFilterRun\(\{ commit: true \}\);/,
     'a pointer press committing the run, which is the only listener a press on the checked radio reaches');
 });
 
 // Committing is what writes the traversal's entry, so it has to push. Discarding must not write at
 // all, because the only caller that discards is applyRoute, where the address is already correct.
 test('ending a traversal writes one entry when it commits and none when it does not', () => {
-  const main = read('src/js/main.js');
-  const body = main.slice(main.indexOf('function endFilterRun'), main.indexOf('function endFilterRun') + 400);
+  const body = reading.slice(reading.indexOf('function endFilterRun'), reading.indexOf('function wire()'));
   has(body, /if \(!filterRunOpen\) return;/, 'ending a traversal that is not open doing nothing');
   has(body, /filterRunOpen = false;\s*filterRunBase = null;\s*filterRunAddressed = false;/,
     'all traversal variables being cleared');
@@ -556,7 +553,7 @@ test('applyRoute discards any open traversal, and does it before showView', () =
   const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function showView'));
   has(
     body,
-    /setFilter\([\s\S]*?endFilterRun\(\{ commit: false \}\);[\s\S]*?showView\(route\.view/,
+    /readingView\.setFilter\([\s\S]*?readingView\.endFilterRun\(\{ commit: false \}\);[\s\S]*?showView\(route\.view/,
     'applyRoute discarding the run after setFilter and before showView',
   );
 });
@@ -577,13 +574,14 @@ test('a list id naming a prototype member cannot be adopted from an address', ()
   // count is asserted so one added on the address path cannot hide among them. The destination-copy
   // simplification removed one redundant lookup from renderAll and left the shared formatter's
   // lookup in place, reducing this count from seven without changing which ids can reach storage.
-  // Progress now receives the stored id and state from the controller, so its equivalent lookup is
-  // counted in the extracted view rather than disappearing from this contract.
+  // Progress and Reading now receive the stored id and state from the controller, so their
+  // equivalent lookups are counted in the extracted views rather than in main.js alone.
   const bare = [...main.matchAll(/store\.state\.lists\[activeListId\(\)\]/g)];
   const addBare = [...add.matchAll(/getState\(\)\.lists\[getActiveListId\(\)\]/g)];
   const progressBare = [...progress.matchAll(/state\.lists\[activeId\]/g)];
+  const readingBare = [...reading.matchAll(/getState\(\)\.lists\[activeListId\(\)\]/g)];
   assert.equal(
-    bare.length + addBare.length + progressBare.length,
+    bare.length + addBare.length + progressBare.length + readingBare.length,
     6,
     'a bare list lookup was added or removed without deciding about BL-068',
   );
@@ -604,25 +602,25 @@ test('main.js pushes with pushState rather than by assigning the hash', () => {
 // before any of this shipped, where absent means nothing at all and the stored setting stands.
 test('main.js reads an absent filter as All on Back but as the stored one at boot', () => {
   const main = read('src/js/main.js');
-  has(main, /applyRoute\(bootRoute, \{ focus: false, filterIfAbsent: filter \}\)/, 'boot falling back to the restored filter');
+  has(main, /applyRoute\(bootRoute, \{ focus: false, filterIfAbsent: readingView\.currentFilter\(\) \}\)/, 'boot falling back to the restored filter');
   has(main, /applyRoute\(route, \{ focus: true, filterIfAbsent: DEFAULT_FILTER \}\)/, 'hashchange falling back to the default');
 });
 
 test('route application separates explicit disclosure intent from restored filter state', () => {
   const main = read('src/js/main.js');
-  const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function setFullOrderFromRoute'));
+  const body = main.slice(main.indexOf('function applyRoute'), main.indexOf('function showView'));
   has(body, /const openFromRoute = route\.full === true \|\| route\.filter !== null;/,
     'opening derived from explicit parsed route fields');
-  has(body, /if \(route\.view !== 'reading-paths'\) \{ filterAddressed = route\.filter !== null;\s*setFilter\(route\.filter \?\? filterIfAbsent\); \}/,
+  has(body, /if \(route\.view !== 'reading-paths'\) \{ readingView\.setFilterAddressed\(route\.filter !== null\);\s*readingView\.setFilter\(route\.filter \?\? filterIfAbsent\); \}/,
     'route application remembering whether the effective filter was explicit');
   has(body, /if \(route\.view === 'read'\)/, 'disclosure changes restricted to the reading route');
   has(main, /if \(!routeReady \|\| applyingRoute\) return;/,
     'history synchronization suppressed during route application');
-  has(main, /applyingRouteToDisclosure = true;\s*full\.open = open;/,
+  has(reading, /applyingRouteToDisclosure = true;\s*full\.open = open;/,
     'a route-origin marker set before changing native disclosure state');
   has(main, /filter: showFilter \? shown : DEFAULT_FILTER,/,
     'passive synchronization omitting a restored-only filter');
-  const toggle = main.slice(main.indexOf("$('#full').addEventListener('toggle'"), main.indexOf('const radios ='));
+  const toggle = reading.slice(reading.indexOf("$('#full').addEventListener('toggle'"), reading.indexOf('const radios ='));
   has(toggle, /const routeDriven = applyingRouteToDisclosure;/, 'toggle origin captured');
   has(toggle, /if \(!routeDriven\) syncHash\(\);/, 'only a user toggle synchronizing the URL');
 });
@@ -630,14 +628,13 @@ test('route application separates explicit disclosure intent from restored filte
 // One path in and out of the filter, so a route cannot move the rows without moving the radio, and
 // a radio cannot move the rows without storing the choice.
 test('nothing sets the filter behind setFilter back', () => {
-  const main = read('src/js/main.js');
-  const body = main.slice(main.indexOf('function setFilter'), main.indexOf('function wireReading'));
-  has(body, /settings\.filter = wanted;/, 'setFilter storing the choice');
+  const body = reading.slice(reading.indexOf('function setFilter'), reading.indexOf('function endFilterRun'));
+  has(body, /getSettings\(\)\.filter = wanted;/, 'setFilter storing the choice');
   has(body, /radio\.checked = true;/, 'setFilter moving the radio');
   has(body, /renderRows\(\);/, 'setFilter re-rendering the rows');
-  // wireReading restores from settings before any radio exists to read, and corrects an
+  // wire restores from settings before any radio exists to read, and corrects an
   // unrecognised stored value, which is a job setFilter does not have. Every other write is a bug.
-  const writes = [...main.matchAll(/^\s*filter = /gm)];
+  const writes = [...reading.matchAll(/^\s*filter = /gm)];
   assert.equal(writes.length, 2, 'the filter is written somewhere other than setFilter and the restore');
 });
 

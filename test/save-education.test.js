@@ -11,6 +11,7 @@ import {
 const { UNSEEN, EXPLAINING, COMPLETE } = SAVE_EDUCATION_STATE;
 const MAIN = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
 const ADD = readFileSync(new URL('../src/js/views/add.js', import.meta.url), 'utf8');
+const READING = readFileSync(new URL('../src/js/views/reading.js', import.meta.url), 'utf8');
 
 function fakeStorage(seed = {}) {
   const values = new Map(Object.entries(seed));
@@ -192,9 +193,14 @@ test('both direct progress handlers require saved before and after state', () =>
   );
   assert.equal(
     [...MAIN.matchAll(/recordDirectProgressSave\(\{/g)].length,
-    3,
-    'one definition and two direct handlers must remain',
+    1,
+    'only the definition remains in main.js; the two direct handlers moved to the Reading view',
   );
-  assert.match(MAIN, /const wasRead = isRead\(store\.state, issue\.issueId\);/);
-  assert.match(MAIN, /const wasRead = isRead\(store\.state, item\.issueId\);/);
+  assert.equal(
+    [...READING.matchAll(/recordDirectProgressSave\(\{/g)].length,
+    2,
+    'the Reading view must still call both direct handlers',
+  );
+  assert.match(READING, /const wasRead = isRead\(getState\(\), issue\.issueId\);/);
+  assert.match(READING, /const wasRead = isRead\(getState\(\), item\.issueId\);/);
 });

@@ -6,16 +6,17 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const main = readFileSync(join(ROOT, 'src/js/main.js'), 'utf8');
+const reading = readFileSync(join(ROOT, 'src/js/views/reading.js'), 'utf8');
 
 test('full-order title and cover reuse the shared issue-focus route while Read stays separate', () => {
-  const rows = main.slice(main.indexOf('function renderRows'), main.indexOf('function openInReader'));
+  const rows = reading.slice(reading.indexOf('function renderRows'));
   assert.match(rows, /issueFocusAnchor\(item, \{\s*context: \{ kind: 'list', id \},\s*surface: 'full-order',\s*control: 'cover'/);
   assert.match(rows, /issueFocusAnchor\(item, \{\s*context: \{ kind: 'list', id \},\s*surface: 'full-order',\s*control: 'title'/);
   assert.match(rows, /className: 'thumb row-focus-cover',\s*tabIndex: '-1'/);
   assert.match(rows, /tabIndex: '-1', ariaLabel: `Inspect \$\{item\.title\}`/);
   assert.match(rows, /className: 'rt row-focus-title'/);
   assert.match(rows, /data-act: 'open'|act: 'open'/);
-  assert.match(rows, /openInReader\(item, e\)/);
+  assert.match(rows, /launch\(item, e\)/);
 });
 
 test('the issue-focus opener stores only stable source identity', () => {
@@ -40,7 +41,7 @@ test('Back restores exact full-order focus and uses the accepted fallback order'
   assert.ok(exact >= 0 && exact < checked, 'exact source is not the first return target');
   assert.ok(checked < summary, 'the checked filter is not before the summary fallback');
   assert.ok(summary < heading, 'the summary is not before the view-heading fallback');
-  assert.match(restore, /\$\('#full'\)\.open = true;\s*renderRows\(\);/);
+  assert.match(restore, /readingView\.setFullOrderFromRoute\(true\);\s*readingView\.renderRows\(\);/);
   assert.match(restore, /target\.focus\(\{ preventScroll: true \}\)/);
   assert.doesNotMatch(restore, /localStorage|DOMNode|HTMLElement/);
 });
