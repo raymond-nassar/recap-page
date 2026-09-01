@@ -118,6 +118,7 @@ export const CBH_LATER_ORDER_IDS = Object.freeze([
   'young-avengers-reading-order',
   'marvel-2099',
   'runaways-reading-order',
+  'adam-warlock-reading-order',
 ]);
 export const CBRO_PACKET_REVIEW = 'MRT-003 central CBRO source review';
 export const CBRO_SELECTED_IDS = Object.freeze([

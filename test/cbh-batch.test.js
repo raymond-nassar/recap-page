@@ -18,6 +18,8 @@ import {
   authorIdsFromArgs,
   buildMarkdown,
   existingEntriesForPacket,
+  includeLaterFromArgs,
+  laterOrderIdsForAuthor,
   manifestEntryForMapping,
   mergePacketEntries,
   peerIdsFromArgs,
@@ -38,6 +40,7 @@ import {
   validateFrozenPacket,
 } from '../scripts/lib/cbh-inventory.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
+import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = path.join(root, 'src', 'data');
@@ -1293,6 +1296,15 @@ test('approved generic evidence stays current through named chronology insertion
   assert.doesNotThrow(() => assertApprovedRelationshipReview(evidence));
   assert.deepEqual(authorIdsFromArgs(['--only=future-event']), ['future-event']);
   assert.deepEqual(peerIdsFromArgs(['--peer=peer-event']), ['peer-event']);
+  assert.equal(includeLaterFromArgs(['--only=future-event']), false);
+  assert.equal(includeLaterFromArgs(['--only=future-event', '--include-later']), true);
+  assert.deepEqual(laterOrderIdsForAuthor(true), []);
+  assert.equal(laterOrderIdsForAuthor(false), CBH_LATER_ORDER_IDS);
+  assert.throws(
+    () => includeLaterFromArgs(['--include-later', '--include-later']),
+    /at most once/i,
+  );
+  assert.throws(() => includeLaterFromArgs(['--unknown']), /unknown author option/i);
   const entry = manifestEntryForMapping(evidence.mapping);
   const merged = mergePacketEntries(
     [{ id: 'before' }, { id: 'chronology-anchor' }, { id: 'after' }],

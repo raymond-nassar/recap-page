@@ -1869,13 +1869,13 @@
     "fp": "ff9ba71742d8b8c0",
     "head": "\"chapterCount\": 78,"
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:9446-9571|0": {
-    "anchor": "src/data/catalog.json:9446-9571",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/catalog.json:9484-9609|0": {
+    "anchor": "src/data/catalog.json:9484-9609",
     "fp": "a679899453ea002c",
     "head": "\"paths\": ["
   },
-  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:5649-5687|0": {
-    "anchor": "src/data/curated-lists.json:5649-5687",
+  "docs/DATA_PROVENANCE.md|reading-path-provenance|src/data/curated-lists.json:5680-5718|0": {
+    "anchor": "src/data/curated-lists.json:5680-5718",
     "fp": "e2b83d7abbcf68b9",
     "head": "\"paths\": ["
   },
@@ -1959,13 +1959,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3511-3522|0": {
-    "anchor": "CHANGELOG.md:3511-3522",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3522-3533|0": {
+    "anchor": "CHANGELOG.md:3522-3533",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3524-3534|0": {
-    "anchor": "CHANGELOG.md:3524-3534",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3535-3545|0": {
+    "anchor": "CHANGELOG.md:3535-3545",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },

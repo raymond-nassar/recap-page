@@ -438,6 +438,10 @@ export function mergePacketEntries(existing, entries, insertionAnchors = {}) {
   return merged;
 }
 
+export function laterOrderIdsForAuthor(includeLater = false) {
+  return includeLater ? [] : CBH_LATER_ORDER_IDS;
+}
+
 export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   mappingsDir = MAPPINGS_DIR,
   overlapsDir = OVERLAPS_DIR,
@@ -446,6 +450,7 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
   manifestFile = MANIFEST_PATH,
   payloadDir = path.dirname(MANIFEST_PATH),
   peerIds = [],
+  includeLater = false,
 } = {}) {
   assertNoDuplicates(packetIds, 'authored packet id');
   assertNoDuplicates(peerIds, 'external peer id');
@@ -454,13 +459,14 @@ export async function authorPacket(packetIds = FOURTH_PACKET_IDS, {
     assert(!packetIdSet.has(peerId), `${peerId} cannot be both authored and an external peer`);
   }
   const library = await loadLibrarySnapshot({ manifestFile, payloadDir });
-  const excludedOrderIds = [...packetIds, ...peerIds, ...CBH_LATER_ORDER_IDS];
+  const laterOrderIds = laterOrderIdsForAuthor(includeLater);
+  const excludedOrderIds = [...packetIds, ...peerIds, ...laterOrderIds];
   const reviewedLibraryDigest = libraryDigestExcludingOrders(library, excludedOrderIds);
   const current = library.manifest;
   const currentLists = Array.isArray(current.lists) ? current.lists : [];
   const existing = existingEntriesForPacket(currentLists, packetIds);
   const externalPeerIdSet = new Set(peerIds);
-  const laterOrderIdSet = new Set(CBH_LATER_ORDER_IDS);
+  const laterOrderIdSet = new Set(laterOrderIds);
   const reviewedExisting = existing.filter((entry) => (
     !externalPeerIdSet.has(entry.id) && !laterOrderIdSet.has(entry.id)
   ));
@@ -578,10 +584,25 @@ export function peerIdsFromArgs(args) {
   return ids;
 }
 
+export function includeLaterFromArgs(args) {
+  const includeLaterArgs = args.filter((arg) => arg === '--include-later');
+  if (includeLaterArgs.length > 1) throw new Error('Use --include-later at most once');
+  const unknown = args.filter((arg) => (
+    arg !== '--include-later'
+    && !arg.startsWith('--only=')
+    && !arg.startsWith('--peer=')
+  ));
+  if (unknown.length) throw new Error(`Unknown author option: ${unknown[0]}`);
+  return includeLaterArgs.length === 1;
+}
+
 const thisFile = fileURLToPath(import.meta.url);
 if (process.argv[1] && path.resolve(process.argv[1]) === path.resolve(thisFile)) {
   const args = process.argv.slice(2);
-  authorPacket(authorIdsFromArgs(args), { peerIds: peerIdsFromArgs(args) }).then((summary) => {
+  authorPacket(authorIdsFromArgs(args), {
+    peerIds: peerIdsFromArgs(args),
+    includeLater: includeLaterFromArgs(args),
+  }).then((summary) => {
     console.log(`Authored ${summary.guides} guides with ${summary.rows} rows; manifest now has ${summary.manifestEntries} entries.`);
   }).catch((error) => {
     console.error(error.message);

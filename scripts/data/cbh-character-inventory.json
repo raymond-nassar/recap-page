@@ -39,18 +39,32 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The modern Marvel-era guide now ships with 69 source rows, 13 resolved items, and 56 explicit placeholders, so the remaining metadata gaps are preserved as provenance instead of blocking publication.",
-    "sourceRetrievedAt": "2026-08-23",
+    "reason": "The complete source page preserves 253 issue occurrences across 228 identities: 224 exact rows, four open metadata gaps, and 25 repeated occurrences. The complete-library report has 20 approved partial relationships and no exact or subset duplicate.",
+    "sourceRetrievedAt": "2026-09-01",
     "overlapIds": [
-      "captain-america-best-of",
+      "abomination-reading-order",
+      "agatha-harkness-reading-order",
+      "amazing-spider-man-reading-order-modern-marvel-era",
+      "annihilation-conquest",
+      "black-widow-reading-order",
+      "captain-marvel-ms-marvel-reading-order",
       "doctor-doom-primer",
-      "essential-avengers",
-      "heroic-age-avengers",
-      "iron-man-reading-order",
-      "marvel-super-heroes-secret-wars"
+      "doctor-strange-reading-order",
+      "fantastic-four-reading-order",
+      "groot-reading-order",
+      "guardians-of-the-galaxy-reading-order",
+      "loki-reading-order",
+      "question-of-the-week-do-you-have-a-hulk-reading-order",
+      "rocket-raccoon-reading-order",
+      "silver-surfer-reading-order",
+      "star-lord-reading-order",
+      "thanos-imperative",
+      "thanos-reading-order",
+      "thor-best-of",
+      "war-of-kings"
     ],
     "catalogIds": [
-      "captain-america-reading-order-modern-marvel-era"
+      "adam-warlock-reading-order"
     ],
     "deliveryStatus": "shipped",
     "centralDisposition": "pilot-approved",
@@ -61,7 +75,7 @@
       2
     ],
     "duplicateFlags": [],
-    "sourceContentSha256": "ecec1c32719085c216b4f0bd1a599b1b3e58dc3777bdbca92445b7dedf70de36",
+    "sourceContentSha256": "94ff457dc0432d82844609da99a2ac88a1c7eb0936ad42e89dabcd7be8c75a02",
     "sourceBoundaryStatus": "exact-page-snapshot",
     "metadataHorizonStatus": "approved"
   },

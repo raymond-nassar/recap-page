@@ -648,6 +648,14 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'adam-warlock-hidden',
+    breaks: 'adam-warlock-actual-data',
+    why: 'the actual catalog loses Adam Warlock, so its Complete-guide journey cannot begin',
+    script: () => {
+      window.__mrtMutation = 'adam-warlock-hidden';
+    },
+  },
+  {
     id: 'gateway-status-silent',
     breaks: 'home-category-gateway',
     why: 'asynchronous Home and Browse categories lose their polite completion status',
@@ -2606,6 +2614,161 @@ const SCENARIOS = [
         && returned.focus === 'marvel-on-screen-h' && returned.action === 'open',
         JSON.stringify(returned));
       t.check('the actual-data journey makes no external request and raises no browser error',
+        externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({ externalRequests, browserErrors }));
+    },
+  },
+  {
+    id: 'adam-warlock-actual-data',
+    title: 'the actual Adam Warlock guide is complete, discoverable, importable, and ordered',
+    async run(page, t) {
+      const browserErrors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') browserErrors.push(message.text()); });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      const cardSelector = '#spotlights-results [data-story="list:adam-warlock-reading-order"]';
+      const readSubset = async (kind) => {
+        await click(page, `input[name="spotlights-kind"][value="${kind}"]`);
+        await page.waitForFunction(
+          (expected) => (
+            document.querySelector('input[name="spotlights-kind"]:checked')?.value === expected
+            && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+          ),
+          {},
+          kind,
+        );
+        return page.evaluate(async (selector, selectedKind) => {
+          const catalog = await fetch('/data/catalog.json').then((response) => response.json());
+          const mod = await import('/js/lib/catalog.js');
+          const all = mod.shelfLists(mod.parseCatalog(catalog).lists, 'spotlights');
+          const shown = mod.filterBySpotlightKind(all, selectedKind);
+          return {
+            kind: document.querySelector('input[name="spotlights-kind"]:checked')?.value,
+            readings: shown.length,
+            stories: mod.groupCatalog(shown).length,
+            cards: document.querySelectorAll('#spotlights-results .catalog-card').length,
+            adamCards: document.querySelectorAll(selector).length,
+          };
+        }, cardSelector, kind);
+      };
+
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const desktop = {
+        all: await readSubset('all'),
+        complete: await readSubset('complete-guide'),
+        bestOf: await readSubset('best-of'),
+      };
+      t.check('desktop All, Complete, and Best of counts classify Adam exactly once',
+        desktop.all.readings === 46 && desktop.all.stories === 45
+        && desktop.all.cards === 45 && desktop.all.adamCards === 1
+        && desktop.complete.readings === 34 && desktop.complete.stories === 34
+        && desktop.complete.cards === 34 && desktop.complete.adamCards === 1
+        && desktop.bestOf.readings === 6 && desktop.bestOf.stories === 6
+        && desktop.bestOf.cards === 6 && desktop.bestOf.adamCards === 0,
+        JSON.stringify(desktop));
+
+      await page.setViewport({ width: 390, height: 844 });
+      const narrow = {
+        all: await readSubset('all'),
+        complete: await readSubset('complete-guide'),
+        bestOf: await readSubset('best-of'),
+        overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
+      };
+      t.check('narrow All, Complete, and Best of counts preserve Adam without horizontal overflow',
+        narrow.all.readings === 46 && narrow.all.stories === 45
+        && narrow.all.cards === 45 && narrow.all.adamCards === 1
+        && narrow.complete.readings === 34 && narrow.complete.stories === 34
+        && narrow.complete.cards === 34 && narrow.complete.adamCards === 1
+        && narrow.bestOf.readings === 6 && narrow.bestOf.stories === 6
+        && narrow.bestOf.cards === 6 && narrow.bestOf.adamCards === 0
+        && !narrow.overflow,
+        JSON.stringify(narrow));
+
+      await readSubset('all');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Adam Warlock';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForFunction(() => (
+        document.querySelectorAll('#spotlights-results .catalog-card').length > 0
+        && !document.querySelector('#spotlights-results')?.textContent.includes('Loading the catalog')
+      ));
+      const card = await page.$eval(cardSelector, (node) => ({
+        title: node.querySelector('.catalog-card-title')?.textContent.trim(),
+        count: node.textContent.includes('228 issues'),
+        addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
+        sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
+        sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
+        path: Boolean(node.querySelector('.result-path')),
+        orientation: document.querySelector('#spotlights-results .shelf-orientation')?.textContent ?? '',
+      }));
+      t.check('All search exposes the exact Adam card, source, controls, and no false first stop',
+        card.title === 'Adam Warlock' && card.count
+        && card.addName === 'Add to library: Adam Warlock'
+        && card.sourceName === "Source of Adam Warlock: Compiled for this project from Comic Book Herald's guide"
+        && card.sourceHref === 'https://www.comicbookherald.com/adam-warlock-reading-order/'
+        && !card.path && !card.orientation.includes('Adam Warlock'),
+        JSON.stringify(card));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForSelector('#preview[open]', { timeout: 15000 });
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const matches = Object.values(state.lists)
+          .filter((candidate) => candidate.catalogId === 'adam-warlock-reading-order');
+        const list = matches[0];
+        const titles = (list?.itemIds ?? []).map((id) => state.issues[id]?.title);
+        return {
+          matches: matches.length,
+          count: titles.length,
+          first: titles[0],
+          last: titles.at(-1),
+          gaps: titles.filter((title) => [
+            'Silver Surfer Annual #5',
+            'Marvel Holiday Special #2',
+            'Marvel Swimsuit Special #2',
+            'Warlock Chronicles #8',
+          ].includes(title)),
+        };
+      });
+      t.check('import preserves 228 positions, both boundaries, and all four gaps',
+        imported.matches === 1 && imported.count === 228
+        && imported.first === 'Fantastic Four (1961) #66'
+        && imported.last === 'Thanos Annual (2014) #1'
+        && imported.gaps.join('|') === [
+          'Silver Surfer Annual #5',
+          'Marvel Holiday Special #2',
+          'Marvel Swimsuit Special #2',
+          'Warlock Chronicles #8',
+        ].join('|'),
+        JSON.stringify(imported));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => (
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim() === 'Adam Warlock'
+      ));
+      const savedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => document.querySelector('#order-name')?.textContent.trim() === 'Adam Warlock');
+      t.check('guide navigation and reload keep the complete imported order',
+        await page.evaluate((state) => localStorage.getItem('mrt.state.v2') === state, savedState));
+      t.check('the Adam actual-data journey makes no external request and raises no browser error',
         externalRequests.length === 0 && browserErrors.length === 0,
         JSON.stringify({ externalRequests, browserErrors }));
     },
@@ -8148,6 +8311,12 @@ async function preparePage(page, origin, mutation) {
             return Promise.resolve(json({
               ...selectedCatalog,
               lists: selectedCatalog.lists.map((l) => ({ ...l, groupName: null })),
+            }));
+          }
+          if (window.__mrtMutation === 'adam-warlock-hidden') {
+            return Promise.resolve(json({
+              ...selectedCatalog,
+              lists: selectedCatalog.lists.filter((list) => list.id !== 'adam-warlock-reading-order'),
             }));
           }
           const controlled = localRequest(
