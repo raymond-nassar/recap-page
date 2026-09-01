@@ -1514,8 +1514,8 @@
     "fp": "8b1350d747d08b62",
     "head": "export const KEY = 'mrt.state.v2';"
   },
-  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:236-257|0": {
-    "anchor": "server.mjs:236-257",
+  "CHANGELOG.md|stop-the-startup-failure-messages-naming-a-tool-|server.mjs:257-278|0": {
+    "anchor": "server.mjs:257-278",
     "fp": "4875091a9f41cacf",
     "head": "export function badPortMessage(raw) {"
   },
@@ -1899,8 +1899,8 @@
     "fp": "a6ceb97902e6f2c0",
     "head": "Two limits worth stating rather than discovering later. Every `required: true` in these forms is"
   },
-  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:138-144|0": {
-    "anchor": "SECURITY.md:138-144",
+  "docs/PUBLICATION_RUNBOOK.md|settings-that-only-become-available-on-the-day|SECURITY.md:139-145|0": {
+    "anchor": "SECURITY.md:139-145",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
@@ -1934,8 +1934,8 @@
     "fp": "61fe35744ce7a858",
     "head": "// The publication gate. This repository was published on 2026-08-16, and several of the things that"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-138-144|SECURITY.md:138-144|0": {
-    "anchor": "SECURITY.md:138-144",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true#security-md-139-145|SECURITY.md:139-145|0": {
+    "anchor": "SECURITY.md:139-145",
     "fp": "8d555b25204faa9d",
     "head": "Secret scanning is on, and so is push protection, both enabled on 2026-08-16 once publication"
   },
@@ -1949,13 +1949,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3475-3486|0": {
-    "anchor": "CHANGELOG.md:3475-3486",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3481-3492|0": {
+    "anchor": "CHANGELOG.md:3481-3492",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3488-3498|0": {
-    "anchor": "CHANGELOG.md:3488-3498",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3494-3504|0": {
+    "anchor": "CHANGELOG.md:3494-3504",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -6064,15 +6064,20 @@
     "fp": "32e71035ced922be",
     "head": "export function isAllowedApiBase(value) {"
   },
-  "SECURITY.md|what-already-reduces-risk-here|server.mjs:151-161|0": {
-    "anchor": "server.mjs:151-161",
-    "fp": "6cd80fc67836d175",
-    "head": "const headers = {"
-  },
   "SECURITY.md|what-already-reduces-risk-here|server.mjs:64-75|0": {
     "anchor": "server.mjs:64-75",
     "fp": "785f5b41582f02a1",
     "head": "const CSP = ["
+  },
+  "SECURITY.md|what-already-reduces-risk-here|server.mjs:79-84|0": {
+    "anchor": "server.mjs:79-84",
+    "fp": "b4d25fd001f72a5a",
+    "head": "const SECURITY_HEADERS = Object.freeze({"
+  },
+  "SECURITY.md|what-already-reduces-risk-here|test/server-contract.test.js:254-295|0": {
+    "anchor": "test/server-contract.test.js:254-295",
+    "fp": "7e7a6a6822d82b78",
+    "head": "test('every application response carries the security headers', async () => {"
   },
   "SECURITY.md|what-is-supported|src/js/lib/version.js:5-15|0": {
     "anchor": "src/js/lib/version.js:5-15",

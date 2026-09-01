@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Sent security headers on every application response
+
+In plain English: Nothing in the app or its saved data changes. The local server now keeps the same
+browser protections when it refuses a request, cannot find a file, or reports an internal error,
+and its short refusal messages identify themselves as plain text.
+
 ### Made fault-harness results accessible
 
 In plain English: Nothing in the app or its saved data changes. The developer screen for safely
@@ -1740,7 +1746,7 @@ their reading sat at 8787. `test/launcher.test.js:77` already forbids the launch
 `MRT_PORT` for precisely this reason. The rule was enforced on the launcher and not on the message
 printed beside it.
 
-Both messages moved out of the error branch into `server.mjs:236-257` and are returned as lines
+Both messages moved out of the error branch into `server.mjs:257-278` and are returned as lines
 rather than printed, for the same reason `browserCommand` is a table: a branch that runs only when
 a socket is taken is a branch nobody reads. `test/startup-messages.test.js` checks the words without
 binding a port. Five of its seven assertions were run against the shipped strings and fail on them.

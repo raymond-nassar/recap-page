@@ -127,10 +127,11 @@ Recorded so a report can start from what is true rather than from what a scanner
   fetched and hidden. The host is written once, in `src/js/lib/coverHost.js`, and imported both by
   the normalizer that decides which cover addresses may be built and by the `img-src` directive
   the development server sends, so the rule and the policy that enforces it cannot drift apart.
-- The development server sends a content security policy on every response that serves a file,
-  built at `server.mjs:64-75`, alongside `nosniff`, `no-referrer` and `X-Frame-Options: DENY`, set
-  at `server.mjs:151-161`. Its error responses carry none of the four, which is recorded here
-  because this list is meant to be what is true rather than what was intended.
+- The development server sends its content security policy on every application-generated
+  response, built at `server.mjs:64-75`, alongside the three companion headers assembled at
+  `server.mjs:79-84`. The server contract checks all seven application statuses at
+  `test/server-contract.test.js:254-295`. Responses rejected by Node's HTTP parser before the
+  request handler runs are outside that guarantee.
 - The repository holds no secrets. Nothing in the scripts or the workflow reads a credential, and
   the metadata API needs no key.
 - Dependabot alerts and Dependabot security updates are both switched on, so an advisory against

@@ -35,8 +35,8 @@ assert.ok(packageName, 'package.json has no name, so the leak assertion would ch
 // closeAllConnections is not tidiness. server.close() waits for open connections to end and leaves
 // idle keep-alive ones alone, so without it a pooled socket keeps the callback from ever firing and
 // the run hangs with no failing test to point at. That happened here before agent:false below.
-async function withServer(body) {
-  const server = createStaticServer();
+async function withServer(body, requestHandler) {
+  const server = createStaticServer(requestHandler);
   await new Promise((resolve, reject) => {
     server.once('error', reject);
     server.listen(0, HOST, resolve);
@@ -66,6 +66,13 @@ function fetchPath(port, path, { method = 'GET', headers = {} } = {}) {
     req.on('error', reject);
     req.end();
   });
+}
+
+function assertSecurityHeaders(res, context) {
+  assert.equal(res.headers['content-security-policy'], CSP, `${context}: content security policy`);
+  assert.equal(res.headers['x-content-type-options'], 'nosniff', `${context}: content type options`);
+  assert.equal(res.headers['referrer-policy'], 'no-referrer', `${context}: referrer policy`);
+  assert.equal(res.headers['x-frame-options'], 'DENY', `${context}: frame options`);
 }
 
 // The Node client normalises and validates what it will put on the request line, so a target it
@@ -211,6 +218,7 @@ test('anything other than GET or HEAD is refused and says what is allowed', asyn
       for (const method of ['POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']) {
         const res = await fetchPath(port, path, { method });
         assert.equal(res.status, 405, `${method} ${path}`);
+        assert.equal(res.headers['content-type'], 'text/plain; charset=utf-8', `${method} ${path}`);
         assert.equal(res.headers.allow, 'GET, HEAD', `${method} ${path}`);
       }
     }
@@ -241,6 +249,49 @@ test('the local health response is identifiable and cannot be cached by the work
       assert.equal(res.body.length, 0, method);
     }
   });
+});
+
+test('every application response carries the security headers', async () => {
+  await withServer(async (port) => {
+    const initial = await fetchPath(port, '/index.html');
+    const cases = [
+      ['200', initial],
+      ['204', await fetchPath(port, LOCAL_SERVER_HEALTH_PATH)],
+      ['304', await fetchPath(port, '/index.html', { headers: { 'if-none-match': initial.headers.etag } })],
+      ['403', await fetchPath(port, '/%')],
+      ['404', await fetchPath(port, '/does-not-exist.html')],
+      ['405', await fetchPath(port, '/', { method: 'POST' })],
+    ];
+    for (const [status, res] of cases) {
+      assert.equal(res.status, Number(status), status);
+      assertSecurityHeaders(res, status);
+    }
+    assert.equal(cases[3][1].headers['content-type'], 'text/plain; charset=utf-8');
+    assert.equal(cases[4][1].headers['content-type'], 'text/plain; charset=utf-8');
+    assert.equal(cases[5][1].headers['content-type'], 'text/plain; charset=utf-8');
+    assert.equal(cases[5][1].headers.allow, 'GET, HEAD');
+  });
+
+  const errors = [];
+  const originalError = console.error;
+  console.error = (message) => errors.push(message);
+  try {
+    await withServer(async (port) => {
+      for (let requestNumber = 1; requestNumber <= 2; requestNumber += 1) {
+        const res = await fetchPath(port, '/');
+        assert.equal(res.status, 500, `request ${requestNumber}`);
+        assertSecurityHeaders(res, `500 request ${requestNumber}`);
+        assert.equal(res.headers['content-type'], 'text/plain; charset=utf-8');
+        assert.equal(res.body.toString('utf8'), 'Internal error');
+      }
+    }, async () => {
+      throw new Error('planned test failure');
+    });
+  } finally {
+    console.error = originalError;
+  }
+  assert.equal(errors.length, 2);
+  assert.ok(errors.every((message) => message.endsWith(': planned test failure')));
 });
 
 // ---------------------------------------------------------------- revalidation
