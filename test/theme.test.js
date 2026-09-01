@@ -6,7 +6,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 import { THEMES, DEFAULT_THEME, themeAttribute, normaliseTheme } from '../src/js/lib/theme.js';
-import { PAIRS, KNOWN, SURFACES, BODY, parseHex, parseColour, luminance, ratio, tokensIn, checkAll, unresolved, passingReport, resolveSurface } from '../scripts/check-palette.mjs';
+import {
+  PAIRS, STANDALONE_PAIRS, KNOWN, SURFACES, BODY, parseHex, parseColour, luminance, ratio,
+  tokensIn, checkAll, unresolved, passingReport, resolveSurface, discoverPaintInventory,
+  inventoryFindings, standaloneFindings, equalityFindings, paintOccurrences,
+} from '../scripts/check-palette.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (rel) => readFileSync(join(ROOT, ...rel.split('/')), 'utf8');
@@ -126,6 +130,95 @@ test('no rule outside the token blocks names a literal colour', () => {
   const body = stripComments(css).slice(endOfTokenBlocks(css));
   const literals = [...body.matchAll(/#[0-9a-fA-F]{3,8}\b|\brgba?\(\s*[\d.]|\bhsla?\(\s*[\d.]/g)];
   assert.deepEqual(literals.map((m) => m[0]), [], 'a rule still carries a literal colour');
+});
+
+test('the production inventory discovers every tracked paint occurrence and rejects unowned additions', () => {
+  const tracked = execFileSync('git', ['ls-files'], { cwd: ROOT, encoding: 'utf8' });
+  const calls = [];
+  const runGit = (command, args, options) => {
+    calls.push({ command, args, options });
+    return `${tracked.trim()}\nsrc/new-paints.css\n`;
+  };
+  const readSource = (path) => {
+    if (path === 'src/new-paints.css') return '.new { color: #010203; }';
+    const source = read(path);
+    if (path === 'src/styles.css') {
+      return source.replace('  --line: #2a2a37;', '  --line: #2a2a37;\n  --line: #2a2a37;');
+    }
+    return path === 'src/open.css' ? `${source}\n.existing-file-new-paint { color: #040506; }\n` : source;
+  };
+  const inventory = discoverPaintInventory({ runGit, readSource });
+
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].command, 'git');
+  assert.deepEqual(calls[0].args, ['ls-files']);
+  assert.equal(calls[0].options.cwd, ROOT);
+  assert.ok(inventory.sources.has('src/new-paints.css'));
+  const findings = inventoryFindings(inventory).map((finding) => finding.message);
+  assert.ok(findings.some((message) => message.includes('src/new-paints.css paints a colour but has no watcher')));
+  assert.ok(findings.some((message) => message.includes('src/open.css') && message.includes('#040506') && message.includes('no watcher consumes it')));
+  assert.ok(findings.some((message) => message.includes('src/styles.css') && message.includes('::2::--line') && message.includes('no watcher consumes it')));
+  assert.ok(inventoryFindings({ sources: new Map(), occurrences: [] })
+    .some((finding) => finding.message.includes('is watched as a colour source but no longer paints a colour')));
+
+  assert.throws(
+    () => discoverPaintInventory({ runGit: () => { throw new Error('git failed'); }, readSource }),
+    /git failed/,
+  );
+  assert.deepEqual(paintOccurrences('src/data/example.json', '{"title":"Example #123"}'), []);
+  assert.deepEqual(paintOccurrences('src/comment.css', '/* color: #010203; */'), []);
+});
+
+test('every standalone launch-page literal is measured in an actual contrast pair', () => {
+  assert.deepEqual(standaloneFindings(read('src/open.css')), []);
+  const measured = STANDALONE_PAIRS.map(([foreground, background]) => (
+    ratio(parseHex(foreground), parseHex(background)).toFixed(2)
+  ));
+  assert.deepEqual(measured, ['16.87', '6.08', '8.77', '4.77']);
+
+  const changed = `${read('src/open.css')}\n.extra { color: #010203; background: #111117; }\n`;
+  const findings = standaloneFindings(changed).map((finding) => finding.message);
+  assert.ok(findings.some((message) => message.includes('#010203') && message.includes('not used by a launch-page contrast pair')));
+  assert.ok(findings.some((message) => message.includes('.extra::background|#111117') && message.includes('not used by a launch-page contrast pair')));
+  const weakPair = [[
+    '#f2f2f8', '#9191a4', 4.5, 'a deliberately weak fixture', 'body::color', 'p::color',
+  ]];
+  assert.ok(standaloneFindings(read('src/open.css'), weakPair)
+    .some((finding) => finding.message.includes('below the 4.5:1 floor')));
+});
+
+test('manifest page colours and first-paint ring strokes equal their dark theme tokens', () => {
+  const inventory = discoverPaintInventory();
+  assert.deepEqual(equalityFindings(inventory, css), []);
+  const cases = [
+    ['src/manifest.webmanifest', '"background_color": "#111117"', '"background_color": "#010203"', /background_color is #010203, not --bg/],
+    ['src/manifest.webmanifest', '"theme_color": "#111117"', '"theme_color": "#010203"', /theme_color is #010203, not --bg/],
+    ['src/index.html', 'class="ring-track" cx="22" cy="22" r="19" fill="none" stroke="#2a2a37"', 'class="ring-track" cx="22" cy="22" r="19" fill="none" stroke="#010203"', /\.ring-track::stroke is #010203, not --line/],
+    ['src/index.html', 'class="ring-arc" id="ring-arc" cx="22" cy="22" r="19" fill="none" stroke="#b694ec"', 'class="ring-arc" id="ring-arc" cx="22" cy="22" r="19" fill="none" stroke="#010203"', /#ring-arc::stroke is #010203, not --accent-text/],
+  ];
+
+  for (const [path, before, after, expected] of cases) {
+    const source = inventory.sources.get(path);
+    assert.ok(source.includes(before), `${path} no longer contains the equality fixture`);
+    const changed = source.replace(before, after);
+    const sources = new Map(inventory.sources);
+    sources.set(path, changed);
+    const occurrences = [
+      ...inventory.occurrences.filter((paint) => paint.path !== path),
+      ...paintOccurrences(path, changed),
+    ];
+    const findings = equalityFindings({ sources, occurrences }, css).map((finding) => finding.message);
+    assert.ok(findings.some((message) => expected.test(message)), `${path} disagreement was not reported`);
+  }
+
+  assert.ok(equalityFindings(inventory, ':root { --bg: nope; }')
+    .some((finding) => finding.message.includes('--bg is not a plain hex colour')));
+  const missing = {
+    sources: inventory.sources,
+    occurrences: inventory.occurrences.filter((paint) => paint.owner !== 'theme_color'),
+  };
+  assert.ok(equalityFindings(missing, css)
+    .some((finding) => finding.message.includes('expected exactly one')));
 });
 
 test('relative luminance follows the WCAG curve at both ends', () => {
