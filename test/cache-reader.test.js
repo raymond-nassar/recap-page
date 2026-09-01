@@ -7,7 +7,7 @@ import { READER_PREFIX, readerUrl, detailUrl, launchUrl, isLaunchable } from '..
 import {
   digitalIdFromUrl, parseChecklist, readerIssueId,
 } from '../src/js/lib/markdown.js';
-import { manualDetailUrl, stageChecklistEntry } from '../src/js/main.js';
+import { manualDetailUrl, stageChecklistEntry } from '../src/js/views/add.js';
 import {
   createEmptyState, addIssuesToList, createList, listItems, markRead,
   pendingIssueIds, synopsisOrder,
