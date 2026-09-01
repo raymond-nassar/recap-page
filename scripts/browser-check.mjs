@@ -703,6 +703,32 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'progress-extraction-copy-return',
+    breaks: 'progress-view-extraction',
+    why: 'Progress methodology returns as standing text beside the extracted view',
+    script: () => {
+      addEventListener('load', () => {
+        const note = document.createElement('p');
+        note.className = 'rail-hint';
+        note.id = 'progress-note';
+        note.textContent = 'Tracked means what you have added, not the size of the whole series.';
+        document.querySelector('#progress-method').before(note);
+      });
+    },
+  },
+  {
+    id: 'progress-extraction-library-parent-off',
+    breaks: 'progress-view-extraction',
+    why: 'opening Progress clears the Library selection that owns the extracted child view',
+    script: () => {
+      addEventListener('load', () => {
+        document.querySelector('#view-library [data-view="progress"]').addEventListener('click', () => {
+          document.querySelector('.ri[data-view="library"]').removeAttribute('aria-current');
+        });
+      });
+    },
+  },
+  {
     id: 'settings-copy-return',
     breaks: 'copy-density',
     why: 'a Settings card repeats what its control already says',
@@ -4026,6 +4052,58 @@ const SCENARIOS = [
       );
       t.check('Library headings leave sorting to compact labels beside populated results',
         libraryHeads.every((hasSub) => !hasSub), JSON.stringify(libraryHeads));
+    },
+  },
+  {
+    id: 'progress-view-extraction',
+    title: 'Progress keeps its local scope, compact copy, and Library navigation',
+    async run(page, t) {
+      await importOrder(page);
+      await click(page, '.ri[data-view="library"]');
+      await page.waitForFunction(() => document.querySelector('#view-library')?.hidden === false);
+      await click(page, '#view-library [data-view="progress"]');
+      await page.waitForFunction(() => document.querySelector('#view-progress')?.hidden === false);
+
+      const initial = await page.$eval('#view-progress', (section) => ({
+        checked: section.querySelector('input[name="progress-scope"]:checked')?.value,
+        current: document.querySelector('.ri[aria-current="page"]')?.dataset.view,
+        directNotes: [...section.children].filter((node) => node.matches('.rail-hint')).length,
+        hash: location.hash,
+        method: section.querySelector('#progress-method-text')?.textContent.trim(),
+        methodLabel: section.querySelector('#progress-method > summary')?.textContent.trim(),
+        methodOpen: section.querySelector('#progress-method')?.open,
+        oldNote: Boolean(section.querySelector('#progress-note, #progress-sub')),
+        row: section.querySelector('.result-meta')?.textContent.trim(),
+        scopeHidden: section.querySelector('#progress-scope')?.hidden,
+        storedList: JSON.parse(localStorage.getItem('mrt.state.v2')).active,
+      }));
+      t.check('Progress defaults to the active list and paints its existing count',
+        initial.checked === 'list'
+        && initial.scopeHidden === false
+        && initial.method === 'This list counts the issues in “Browser Check Order”. Tracked means issues you added, not the size of each complete series.'
+        && initial.row === '0 of 3 tracked issues read (0%)',
+        JSON.stringify(initial));
+      t.check('Progress keeps methodology in one collapsed disclosure',
+        initial.directNotes === 0
+        && !initial.oldNote
+        && initial.methodOpen === false
+        && initial.methodLabel === 'How counts work',
+        JSON.stringify(initial));
+      t.check('Progress remains a Library child in history and the selected rail state',
+        initial.hash === `#/progress/${encodeURIComponent(initial.storedList)}` && initial.current === 'library',
+        JSON.stringify(initial));
+
+      await click(page, 'input[name="progress-scope"][value="all"]');
+      const all = await page.$eval('#view-progress', (section) => ({
+        checked: section.querySelector('input[name="progress-scope"]:checked')?.value,
+        method: section.querySelector('#progress-method-text')?.textContent.trim(),
+        row: section.querySelector('.result-meta')?.textContent.trim(),
+      }));
+      t.check('the extracted scope wiring switches to all-list methodology and rerenders',
+        all.checked === 'all'
+        && all.method === 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.'
+        && all.row === initial.row,
+        JSON.stringify(all));
     },
   },
   {

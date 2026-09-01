@@ -109,7 +109,7 @@ object the view layer itself created and can throw away.
 
 **The API client and its response cache are replaceable at runtime.** Saving a new API base builds
 a fresh pair and hands the replacement client to both the Hydrator and SynopsisRunner, at
-`src/js/main.js:5968-5982`. An in-flight synopsis run is cancelled and its tab-memory prose is
+`src/js/main.js:5891-5905`. An in-flight synopsis run is cancelled and its tab-memory prose is
 cleared rather than carried across services. The rate limiter is deliberately not rebuilt, because
 the budget it tracks belongs to the reader's connection rather than to whichever base URL is
 configured. The Store is not replaced.
@@ -281,7 +281,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:6405-6426`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:6328-6349`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -514,13 +514,13 @@ time. The selected id lives only in the validated `path` query of the hash route
 reader state, as enforced at `src/js/lib/route.js:160-195`. The controller keeps that requested id
 while the catalog loads, rejects stale async continuations with a render generation, falls back to
 the first resolved path when the id is absent or invalid, and canonically replaces the address at
-`src/js/main.js:6795-6842`.
+`src/js/main.js:6719-6757`.
 
 Progress is a projection of the Store onto each stop. It prefers the imported list whose catalog id
 exactly matches the stop, then the first imported sibling in catalog order, then reports **Not
-added**, at `src/js/main.js:6729-6749`. Cross-tab state replacement and whole-origin clearing call a
+added**, at `src/js/main.js:6653-6673`. Cross-tab state replacement and whole-origin clearing call a
 progress-only repaint at `src/js/main.js:123-151`; that repaint changes only the progress outputs at
-`src/js/main.js:6752-6759`, preserving the selector's DOM identity and keyboard focus.
+`src/js/main.js:6676-6683`, preserving the selector's DOM identity and keyboard focus.
 
 ## Where to read next
 
