@@ -12,9 +12,9 @@
 //   History    Nothing personal or credential-shaped is committed anywhere a reader could reach.
 //              Needs history, so on a shallow clone it refuses to answer rather than passing.
 //
-// Run it with no arguments for both halves against whatever history is present. `--surface`
-// scans what a clone of the remote would receive rather than the local object store, which is the
-// distinction the header comment on PATTERNS explains and the reason this script exists at all.
+// Run it with no arguments for both halves against whatever history is present. `--surface` scans
+// what a clone receives; `--branches` checks whether its advertised names belong to the default
+// or an open pull request. The modes stay separate because only the first two scan content.
 //
 // Three exit codes, and the third is the one that matters. 0 is clean over a population it could
 // actually read. 1 is findings. 2 is "could not answer", which is what a shallow clone, a missing
@@ -29,6 +29,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SURFACE = process.argv.includes('--surface');
+const BRANCHES = process.argv.includes('--branches');
 
 function git(args, opts = {}) {
   return execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', maxBuffer: 512e6, ...opts });
@@ -204,21 +205,140 @@ function trackedBlobs() {
 // Remote-tracking refs are a cache of the last fetch, not the remote. Asking the remote directly and
 // refusing to answer on any disagreement is the difference between reporting what would be published
 // and reporting what this machine last happened to hear about it.
+function parseRemoteAdvertisement(text) {
+  let defaultBranch = null;
+  const branches = [];
+  for (const line of text.split('\n').map((value) => value.trim()).filter(Boolean)) {
+    const [value, ref] = line.split('\t');
+    if (ref === 'HEAD' && value.startsWith('ref: refs/heads/')) {
+      defaultBranch = value.replace(/^ref: refs\/heads\//, '');
+    } else if (ref?.startsWith('refs/heads/')) {
+      branches.push(ref.replace(/^refs\/heads\//, ''));
+    }
+  }
+  return { defaultBranch, branches: [...new Set(branches)].sort() };
+}
+
+function remoteAdvertisement(runGit = git) {
+  return parseRemoteAdvertisement(runGit(['ls-remote', '--symref', 'origin', 'HEAD', 'refs/heads/*']));
+}
+
+function repositoryFromRemote(remote) {
+  const https = /^https:\/\/github\.com\/([^/]+)\/([^/]+?)(?:\.git)?$/i.exec(remote);
+  const ssh = /^git@github\.com:([^/]+)\/([^/]+?)(?:\.git)?$/i.exec(remote);
+  const match = https || ssh;
+  if (!match) throw new Error('origin is not a github.com repository and GITHUB_REPOSITORY is not set');
+  return `${match[1]}/${match[2]}`;
+}
+
+function repositoryName(runGit, env) {
+  const repository = env.GITHUB_REPOSITORY?.trim()
+    || repositoryFromRemote(runGit(['remote', 'get-url', 'origin']).trim());
+  if (!/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)) {
+    throw new Error(`the repository name ${JSON.stringify(repository)} is not in owner/repository form`);
+  }
+  return repository;
+}
+
+async function openPullRequestHeads(repository, fetchImpl, token) {
+  const heads = new Set();
+  for (let page = 1; ; page += 1) {
+    const url = new URL(`https://api.github.com/repos/${repository}/pulls`);
+    url.searchParams.set('state', 'open');
+    url.searchParams.set('per_page', '100');
+    url.searchParams.set('page', String(page));
+    const headers = {
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'recap-page-publication-gate',
+    };
+    if (token) headers.Authorization = `Bearer ${token}`;
+    const response = await fetchImpl(url, { headers });
+    if (!response.ok) throw new Error(`GitHub returned HTTP ${response.status} while listing open pull requests`);
+    const pulls = await response.json();
+    if (!Array.isArray(pulls)) throw new Error('GitHub returned a non-array pull request response');
+    for (const pull of pulls) {
+      if (pull?.head?.repo?.full_name?.toLowerCase() === repository.toLowerCase()
+          && typeof pull.head.ref === 'string') {
+        heads.add(pull.head.ref);
+      }
+    }
+    if (pulls.length < 100) break;
+  }
+  return [...heads].sort();
+}
+
+export function evaluateAdvertisedBranches(advertisement, openHeads) {
+  const allowed = new Set([advertisement.defaultBranch, ...openHeads]);
+  return advertisement.branches.filter((branch) => !allowed.has(branch));
+}
+
+function unansweredBranchResult(message) {
+  return { code: 2, defaultBranch: null, branches: [], openHeads: [], unexpected: [], message };
+}
+
+export async function advertisedBranchPolicy({
+  runGit = git,
+  fetchImpl = globalThis.fetch,
+  env = process.env,
+} = {}) {
+  let advertisement;
+  try {
+    advertisement = remoteAdvertisement(runGit);
+  } catch (error) {
+    return unansweredBranchResult(
+      `Could not ask the remote what branches it advertises: ${String(error.message).split('\n')[0]}`,
+    );
+  }
+  if (!advertisement.defaultBranch) {
+    return unansweredBranchResult('Could not identify the default branch: the remote HEAD has no branch symref');
+  }
+  if (!advertisement.branches.includes(advertisement.defaultBranch)) {
+    return unansweredBranchResult(
+      `Could not identify the default branch: the remote points to ${JSON.stringify(advertisement.defaultBranch)} `
+      + 'but does not advertise it',
+    );
+  }
+
+  let repository;
+  try {
+    repository = repositoryName(runGit, env);
+  } catch (error) {
+    return unansweredBranchResult(
+      `Could not identify the GitHub repository whose pull requests own branches: ${String(error.message).split('\n')[0]}`,
+    );
+  }
+
+  let openHeads;
+  try {
+    openHeads = await openPullRequestHeads(repository, fetchImpl, env.GITHUB_TOKEN);
+  } catch (error) {
+    return unansweredBranchResult(`Could not ask GitHub which pull requests are open: ${String(error.message).split('\n')[0]}`);
+  }
+
+  const unexpected = evaluateAdvertisedBranches(advertisement, openHeads);
+  return {
+    code: unexpected.length ? 1 : 0,
+    ...advertisement,
+    openHeads,
+    unexpected,
+    message: null,
+  };
+}
+
 function surfaceObjects() {
   const tracking = git(['for-each-ref', '--format=%(refname)', 'refs/remotes/origin'])
     .split('\n').map((s) => s.trim()).filter(Boolean).filter((r) => !r.endsWith('/HEAD'));
   if (tracking.length === 0) return { refs: null, why: 'No remote-tracking refs. --surface scans what a clone of the remote would receive, so there is nothing to scan.' };
 
-  let advertised;
+  let advertisement;
   try {
-    advertised = git(['ls-remote', '--heads', 'origin']).split('\n')
-      .map((s) => s.trim()).filter(Boolean)
-      .map((line) => line.split('\t')[1]).filter(Boolean)
-      .map((ref) => ref.replace(/^refs\/heads\//, ''));
+    advertisement = remoteAdvertisement();
   } catch (e) {
     return { refs: null, why: `Could not ask the remote what it advertises, so the local tracking refs cannot be trusted to be that population: ${String(e.message).split('\n')[0]}` };
   }
 
+  const advertised = advertisement.branches;
   const local = tracking.map((r) => r.replace(/^refs\/remotes\/origin\//, ''));
   const missing = advertised.filter((b) => !local.includes(b));
   const stale = local.filter((b) => !advertised.includes(b));
@@ -342,7 +462,31 @@ function isShallow() {
 
 // ------------------------------------------------------------------ report
 
-function main() {
+async function main() {
+  if (BRANCHES) {
+    const result = await advertisedBranchPolicy();
+    if (result.code === 2) {
+      console.error(result.message);
+      console.error('The advertised branch policy was unanswered rather than clean.');
+      return 2;
+    }
+    console.log(
+      `Advertised branch policy: ${result.branches.length} branch(es), `
+      + `default ${JSON.stringify(result.defaultBranch)}, ${result.openHeads.length} open pull request head(s).`,
+    );
+    if (result.unexpected.length) {
+      console.log(`${result.unexpected.length} unexpected advertised branch(es):`);
+      for (const branch of result.unexpected) console.log(`  ${JSON.stringify(branch)}`);
+      console.log(
+        'Only the default branch and heads of open pull requests from this repository '
+        + 'belong on the published surface.',
+      );
+      return 1;
+    }
+    console.log('No unexpected advertised branches.');
+    return 0;
+  }
+
   const { faults, errors } = boundaryFaults();
   const sink = new Map();
   let population;
@@ -420,7 +564,7 @@ function main() {
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   let code;
   try {
-    code = main();
+    code = await main();
   } catch (e) {
     // Anything thrown here is git or the filesystem refusing to co-operate. It used to surface as
     // an uncaught exception and exit 1, which is the code that means "findings were found", so an
@@ -428,5 +572,5 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     console.error(`The publication gate could not run: ${String(e && e.message).split('\n')[0]}`);
     code = 2;
   }
-  process.exit(code);
+  process.exitCode = code;
 }

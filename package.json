@@ -26,6 +26,7 @@
     "palette": "node scripts/check-palette.mjs",
     "publication": "node scripts/check-publication.mjs",
     "publication:surface": "node scripts/check-publication.mjs --surface",
+    "publication:branches": "node scripts/check-publication.mjs --branches",
     "vendor": "node scripts/vendor-orders.mjs",
     "vendor:index": "node scripts/vendor-index.mjs",
     "icons": "node scripts/build-icons.mjs",

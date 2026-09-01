@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Added notice when published branches outlive their work
+
+In plain English: Nothing in the app or its saved data changes. The repository now checks weekly
+whether it is still offering old branches to people who copy it, and maintainers can repeat the
+same check on demand.
+
+For maintainers, the check allows the main branch and temporary branches attached to open pull
+requests. It names branches that never became a pull request or remained after one closed, while
+ordinary CI stays independent of GitHub network availability.
+
 ### Made Microsoft Store the only in-app update channel
 
 In plain English: Recap Page no longer checks GitHub for new releases or sends readers to a
