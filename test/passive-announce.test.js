@@ -181,7 +181,7 @@ function channel() {
 }
 
 // This is addToActive: it confirms the add, then starts the hydrator, whose start() reports
-// 'running' before its first await. `src/js/main.js:4286-4289` and `src/js/hydrate.js:50`.
+// 'running' before its first await. `src/js/main.js:4160-4163` and `src/js/hydrate.js:50`.
 test('a confirmation and the hydration start raised together are both heard', () => {
   const c = channel();
   c.announce('Added 20 issues to Reading.');

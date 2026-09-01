@@ -51,7 +51,7 @@ import {
   ADD_VIEWS, VIEWS, breadcrumbHierarchy, formatRoute, parseRoute,
 } from './lib/route.js';
 import { labelledName } from './lib/accname.js';
-import { issuePresentation, resolveIssueFocus } from './lib/issueFocus.js';
+import { issuePresentation } from './lib/issueFocus.js';
 import { askConfirm, askText, askNote, wireAsk } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
@@ -60,6 +60,7 @@ import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js';
 import { createLibraryView } from './views/library.js';
 import { createProgressView } from './views/progress.js';
 import { createSavedListsPresenter } from './views/shared/saved-lists.js';
+import { createIssueView } from './views/issue.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -168,8 +169,6 @@ globalThis.addEventListener?.('storage', dispatchStorageEvent);
 let filter = DEFAULT_FILTER;
 let view = 'read';
 let issueRoute = null;
-let issueFocusLoad = null;
-let issueFocusResult = null;
 let issueSynopsisId = null;
 let updateNoticeDismissed = false;
 let updateCheckInFlight = false;
@@ -1579,9 +1578,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       showView('issue', { focus });
       return;
     }
-    issueFocusLoad?.abort();
-    issueFocusLoad = null;
-    issueFocusResult = null;
+    issueView.cancel();
     issueRoute = null; if (route.view === 'reading-paths') requestedReadingPathId = route.pathId;
     if (route.listId && route.listId !== activeListId() && Object.hasOwn(store.state.lists, route.listId)) {
       store.update((s) => setActive(s, route.listId));
@@ -1638,9 +1635,7 @@ function showView(next, { focus = true, push = false } = {}) {
   // bare lookup with a prototype member, and BL-068 has since given it none to answer with.
   if (next === 'read' && !Object.hasOwn(store.state.lists, activeListId() ?? '')) next = 'home';
   if (next !== 'issue' && view === 'issue') {
-    issueFocusLoad?.abort();
-    issueFocusLoad = null;
-    issueFocusResult = null;
+    issueView.cancel();
     issueRoute = null;
     if (issueSynopsisId != null) {
       synopsisRunner.cancel();
@@ -1666,7 +1661,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'home') renderHome();
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') renderHomeCategories();
-  if (next === 'issue') void renderIssueFocus();
+  if (next === 'issue') void issueView.render(issueRoute);
   renderBreadcrumbs();
   // Here rather than in renderAll, because what this list reports is not part of the state every
   // render repaints: it changes when a read fails at boot, when the reader removes a copy, and in
@@ -1698,16 +1693,17 @@ function renderBreadcrumbs() {
   const active = Object.hasOwn(store.state.lists, activeId ?? '')
     ? store.state.lists[activeId]
     : null;
-  const resolvedContext = issueFocusResult?.contextStatus === 'valid'
+  const issueResult = issueView.result();
+  const resolvedContext = issueResult?.contextStatus === 'valid'
     ? {
-      ...issueFocusResult.context,
-      shelf: issueFocusResult.breadcrumbShelf ?? null,
+      ...issueResult.context,
+      shelf: issueResult.breadcrumbShelf ?? null,
     }
     : null;
   const trail = breadcrumbHierarchy({
     view,
     list: active ? { id: active.id, name: active.name } : null,
-    issueTitle: issueFocusResult?.issue?.title ?? null,
+    issueTitle: issueResult?.issue?.title ?? null,
     context: resolvedContext,
   });
   const existing = section.querySelector(':scope > .breadcrumb');
@@ -1798,121 +1794,6 @@ function loadBundledOrder(file, { signal } = {}) {
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     return res.json();
   });
-}
-
-function issueContextText(context) {
-  if (!context) return '';
-  const position = context.total ? `${context.position} of ${context.total}` : '';
-  return [context.name, context.collectedIn, position].filter(Boolean).join(' · ');
-}
-
-function paintIssueFocus(result) {
-  const card = $('#issue-focus-card');
-  const status = $('#issue-focus-status');
-  const issue = result?.issue;
-  issueFocusResult = result;
-  if (!issue) {
-    card.hidden = true;
-    $('#issue-focus-h').textContent = 'Issue unavailable';
-    $('#issue-focus-context').textContent = '';
-    status.textContent = issueRoute?.issueId < 0
-      ? 'This local issue is no longer in saved data or the bundled order named by the link.'
-      : 'Issue details could not be loaded. Your saved lists and progress are unchanged.';
-    renderBreadcrumbs();
-    return;
-  }
-
-  const context = result.context;
-  const override = context?.override ?? store.state.overrides[issue.issueId] ?? null;
-  const presentation = issuePresentation(issue, {
-    override,
-    position: context?.position ?? null,
-    total: context?.total ?? null,
-    description: synopsisFallback(issue, sessionSynopsis.get(issue.issueId)),
-  });
-  $('#issue-focus-h').textContent = presentation.title;
-  $('#issue-focus-context').textContent = issueContextText(context);
-  status.textContent = result.contextStatus === 'stale'
-    ? 'The list or bundled order in this link no longer contains this issue. Showing issue details without that context.'
-    : '';
-  card.hidden = false;
-  paintCover($('#issue-focus-img'), $('#issue-focus-fb'), issue, 'portrait_uncanny');
-  $('#issue-focus-img').alt = coverUrl(issue, 'portrait_uncanny') ? `Cover of ${issue.title}` : '';
-  $('#issue-focus-fs').textContent = seriesOnly(issue.seriesName);
-  $('#issue-focus-fn').textContent = presentation.number;
-  paintHeroBackground($('#issue-focus-bg'), issue);
-  $('#issue-focus-by').textContent = presentation.byline;
-  $('#issue-focus-desc').textContent = presentation.description;
-  $('#issue-focus-facts').replaceChildren(...presentation.facts.map((item) => (
-    fact(item.key, item.value, item.className)
-  )));
-  const note = $('#issue-focus-note');
-  note.textContent = context?.note ?? '';
-  note.hidden = !note.textContent;
-  $('#btn-issue-read').hidden = !presentation.launchable;
-  const info = $('#btn-issue-info');
-  info.hidden = !presentation.detailUrl;
-  if (presentation.detailUrl) {
-    info.href = presentation.detailUrl;
-    info.setAttribute('aria-label', labelledName(info.textContent, `${issue.title} on marvel.com`));
-  } else {
-    info.removeAttribute('href');
-    info.removeAttribute('aria-label');
-  }
-  $('#btn-issue-synopsis').hidden = issue.issueId < 0 || synopsisRunner.active;
-  $('#btn-cancel-issue-synopsis').hidden = true;
-  renderBreadcrumbs();
-}
-
-async function renderIssueFocus() {
-  if (!issueRoute) return;
-  issueFocusLoad?.abort();
-  const controller = new AbortController();
-  issueFocusLoad = controller;
-  issueFocusResult = null;
-  $('#issue-focus-card').hidden = true;
-  $('#issue-focus-h').textContent = 'Loading issue details';
-  $('#issue-focus-context').textContent = '';
-  $('#issue-focus-status').textContent = 'Loading issue details…';
-  let catalog = null;
-  if (issueRoute.context?.kind === 'order') {
-    try {
-      catalog = await loadCatalog();
-    } catch {
-      catalog = null;
-    }
-  }
-  try {
-    const result = await resolveIssueFocus({
-      issueId: issueRoute.issueId,
-      context: issueRoute.context,
-      state: store.state,
-      catalog,
-      loadOrder: loadBundledOrder,
-      api,
-      signal: controller.signal,
-    });
-    if (issueFocusLoad !== controller || controller.signal.aborted) return;
-    const breadcrumbShelf = result.contextStatus === 'valid' && result.context?.kind === 'order'
-      ? catalogListShelf(catalog?.lists, result.context.id)
-      : null;
-    paintIssueFocus({ ...result, breadcrumbShelf });
-    if (result.contextStatus === 'stale' && issueRoute.context) {
-      issueRoute = { ...issueRoute, context: null };
-      syncHash();
-    }
-  } catch (error) {
-    if (error?.name === 'AbortError' || issueFocusLoad !== controller) return;
-    paintIssueFocus({ issue: null, source: 'unavailable', context: null, contextStatus: 'none', error });
-  }
-}
-
-function wireIssueFocus() {
-  $('#btn-issue-read').addEventListener('click', (event) => {
-    if (issueFocusResult?.issue) openInReader(issueFocusResult.issue, event);
-  });
-  $('#btn-issue-synopsis').addEventListener('click', startIssueSynopsis);
-  $('#btn-cancel-issue-synopsis').addEventListener('click', () => synopsisRunner.cancel());
 }
 
 // ------------------------------------------------------------------ rail
@@ -3763,14 +3644,7 @@ function renderSynopsis(status) {
   // The hero is showing a sentence that may have just been answered, and nothing else repaints on a
   // synopsis arriving: none of this is in the store, so no update() fires.
   renderHero();
-  if (view === 'issue' && issueFocusResult) {
-    const focusStatus = $('#issue-synopsis-status');
-    focusStatus.textContent = synopsisStatusLine(status);
-    focusStatus.hidden = !focusStatus.textContent;
-    paintIssueFocus(issueFocusResult);
-    $('#btn-issue-synopsis').hidden = issueFocusResult.issue.issueId < 0 || synopsisRunner.active;
-    $('#btn-cancel-issue-synopsis').hidden = !synopsisRunner.active;
-  }
+  if (view === 'issue') issueView.repaintSynopsis(status);
 }
 
 async function startSynopsisRun() {
@@ -3785,7 +3659,7 @@ async function startSynopsisRun() {
 }
 
 async function startIssueSynopsis() {
-  const issueId = issueFocusResult?.issue?.issueId;
+  const issueId = issueView.result()?.issue?.issueId;
   if (!Number.isInteger(issueId) || issueId < 1) return;
   const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
   if (!yes || view !== 'issue' || issueRoute?.issueId !== issueId) return;
@@ -6257,7 +6131,7 @@ export function boot() {
   wireSidebar();
   wireNav();
   wireReading();
-  wireIssueFocus();
+  issueView.wire();
   wireAdd();
   wireData();
   wireSalvage();
@@ -6392,6 +6266,57 @@ function groupSection(group, renderRow) {
     ...group.rows.map(renderRow),
   ]);
 }
+
+const issueView = createIssueView({
+  coverUrl,
+  decorateResult: (result, { catalog }) => ({
+    ...result,
+    breadcrumbShelf: result.contextStatus === 'valid' && result.context?.kind === 'order'
+      ? catalogListShelf(catalog?.lists, result.context.id)
+      : null,
+  }),
+  elements: () => ({
+    background: $('#issue-focus-bg'),
+    byline: $('#issue-focus-by'),
+    cancelSynopsis: $('#btn-cancel-issue-synopsis'),
+    card: $('#issue-focus-card'),
+    context: $('#issue-focus-context'),
+    description: $('#issue-focus-desc'),
+    facts: $('#issue-focus-facts'),
+    fallback: $('#issue-focus-fb'),
+    heading: $('#issue-focus-h'),
+    image: $('#issue-focus-img'),
+    info: $('#btn-issue-info'),
+    note: $('#issue-focus-note'),
+    number: $('#issue-focus-fn'),
+    read: $('#btn-issue-read'),
+    series: $('#issue-focus-fs'),
+    status: $('#issue-focus-status'),
+    synopsis: $('#btn-issue-synopsis'),
+    synopsisStatus: $('#issue-synopsis-status'),
+  }),
+  fact,
+  getApi: () => api,
+  getState: () => store.state,
+  getSynopsis: (issueId) => sessionSynopsis.get(issueId),
+  isSynopsisActive: () => synopsisRunner.active,
+  loadCatalog,
+  loadOrder: loadBundledOrder,
+  onCancelSynopsis: () => synopsisRunner.cancel(),
+  onRead: openInReader,
+  onStaleContext: (route) => {
+    if (issueRoute !== route) return;
+    issueRoute = { ...route, context: null };
+    syncHash();
+  },
+  onStartSynopsis: startIssueSynopsis,
+  paintBackground: paintHeroBackground,
+  paintCover,
+  renderBreadcrumbs,
+  seriesOnly,
+  synopsisFallback,
+  synopsisStatusLine,
+});
 
 const progressView = createProgressView({
   el,
