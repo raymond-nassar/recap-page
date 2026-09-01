@@ -17,11 +17,11 @@ launcher instead starts a hidden detached server, verifies the exact package gen
 uncacheable local health response, opens the browser only after readiness, and then exits. A later
 local-data failure checks that health response and gives direct reconnection guidance.
 
-The corrected version `2.0.1.0` bundle was then submitted and failed certification again. The
-[certification report](https://partner.microsoft.com/en-us/dashboard/products/9PDJ7XR9Q40Q/certification/reports/a7a59863-de07-4444-ac07-19e770c49f49)
-states that the product updates outside Microsoft Store. The submitted browser app checked GitHub by
-default, offered a direct standalone ZIP, and told readers to replace the old folder. The next
-candidate removes that path from the one shared app and adds exact package-content inspection.
+The corrected version `2.0.1.0` bundle was then submitted and failed certification again. The second
+certification report states that the product updates outside Microsoft Store. The submitted browser
+app checked GitHub by default, offered a direct standalone ZIP, and told readers to replace the old
+folder. The next candidate removes that path from the one shared app and adds exact package-content
+inspection.
 
 The repository now builds signed x64 and ARM64 version `2.0.2.0` proof packages, one x64/ARM64
 bundle, and an isolated x64 `2.0.2.1` update package. Store submission and publication remain
