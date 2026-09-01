@@ -7388,6 +7388,231 @@ const SCENARIOS = [
       await client.detach();
     },
   },
+  {
+    id: 'fault-harness-accessibility',
+    title: 'the developer fault harness reports actions accessibly without weakening its safety gates',
+    async run(page, t) {
+      await open(page, '/dev-faults.html');
+
+      const semantics = await page.$$eval('.out', (outputs) => outputs.map((output) => ({
+        id: output.id,
+        role: output.getAttribute('role'),
+        live: output.getAttribute('aria-live'),
+        atomic: output.getAttribute('aria-atomic'),
+        name: output.getAttribute('aria-label'),
+      })));
+      t.check('all five action results begin as uniquely named atomic polite statuses',
+        semantics.length === 5
+        && semantics.every((result) => (
+          result.role === 'status'
+          && result.live === 'polite'
+          && result.atomic === 'true'
+          && result.name
+        ))
+        && new Set(semantics.map((result) => result.name)).size === semantics.length,
+        JSON.stringify(semantics));
+
+      await page.evaluate(() => document.activeElement?.blur());
+      const expectedOrder = [
+        'b-download', 'b-backup', 'b-restore', 'b-restore-file', 'b-report',
+        'b-corrupt', 'b-newer', 'b-fill', 'b-free', 'b-wipe', '/',
+      ];
+      const keyboard = [];
+      for (let index = 0; index < expectedOrder.length; index += 1) {
+        await page.keyboard.press('Tab');
+        keyboard.push(await page.evaluate(() => {
+          const active = document.activeElement;
+          const style = getComputedStyle(active);
+          return {
+            target: active.id || active.getAttribute('href'),
+            outlineStyle: style.outlineStyle,
+            outlineWidth: Number.parseFloat(style.outlineWidth),
+          };
+        }));
+      }
+      t.check('real Tab presses reach every action and the return link in document order with visible focus',
+        keyboard.every((stop, index) => (
+          stop.target === expectedOrder[index]
+          && stop.outlineStyle !== 'none'
+          && stop.outlineWidth >= 3
+        )),
+        JSON.stringify(keyboard));
+
+      await page.keyboard.down('Shift');
+      for (let press = 0; press < 6; press += 1) await page.keyboard.press('Tab');
+      await page.keyboard.up('Shift');
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => (
+        document.querySelector('#out-safe').textContent.includes('key(s) on this origin')
+      ));
+      const normalMotion = await page.$eval('#out-safe', (output) => ({
+        active: document.activeElement?.id,
+        animations: output.getAnimations().length,
+        role: output.getAttribute('role'),
+        live: output.getAttribute('aria-live'),
+      }));
+      t.check('a keyboard-triggered routine result retains focus, stays polite and animates normally',
+        normalMotion.active === 'b-report'
+        && normalMotion.animations > 0
+        && normalMotion.role === 'status'
+        && normalMotion.live === 'polite',
+        JSON.stringify(normalMotion));
+
+      await new Promise((resolve) => setTimeout(resolve, 950));
+      const readContrast = (selector) => page.$eval(selector, (output) => {
+        const channel = (value) => {
+          const rgb = (value.match(/[\d.]+/g) ?? []).slice(0, 3).map(Number);
+          return rgb.map((entry) => {
+            const normal = entry / 255;
+            return normal <= 0.04045 ? normal / 12.92 : ((normal + 0.055) / 1.055) ** 2.4;
+          });
+        };
+        const luminance = (value) => {
+          const [r, g, b] = channel(value);
+          return (0.2126 * r) + (0.7152 * g) + (0.0722 * b);
+        };
+        const style = getComputedStyle(output);
+        const foreground = luminance(style.color);
+        const background = luminance(style.backgroundColor);
+        return {
+          foreground: style.color,
+          background: style.backgroundColor,
+          ratio: (Math.max(foreground, background) + 0.05)
+            / (Math.min(foreground, background) + 0.05),
+        };
+      });
+      const successContrast = await readContrast('#out-safe');
+
+      await page.evaluate(() => {
+        const original = Storage.prototype.setItem;
+        window.__mrtOriginalStorageSetItem = original;
+        Object.defineProperty(Storage.prototype, 'setItem', {
+          configurable: true,
+          value(key, value) {
+            if (key === 'mrt.devtools.backup') throw new DOMException('Storage full.', 'QuotaExceededError');
+            return original.call(this, key, value);
+          },
+        });
+        localStorage.setItem('mrt.state.v2', JSON.stringify({ schemaVersion: 2, lists: {}, issues: {}, read: {} }));
+      });
+      await click(page, '#b-backup');
+      await page.waitForFunction(() => document.querySelector('#out-safe').textContent.includes('Could not write'));
+      await new Promise((resolve) => setTimeout(resolve, 950));
+      const failure = await page.$eval('#out-safe', (output) => ({
+        role: output.getAttribute('role'),
+        live: output.getAttribute('aria-live'),
+        atomic: output.getAttribute('aria-atomic'),
+        name: output.getAttribute('aria-label'),
+      }));
+      const failureContrast = await readContrast('#out-safe');
+      t.check('a failed action becomes a named atomic assertive alert',
+        failure.role === 'alert'
+        && failure.live === 'assertive'
+        && failure.atomic === 'true'
+        && failure.name === 'Safety actions result',
+        JSON.stringify(failure));
+      t.check('success and failure results both meet normal-text contrast',
+        successContrast.ratio >= 4.5 && failureContrast.ratio >= 4.5,
+        JSON.stringify({ successContrast, failureContrast }));
+
+      await page.evaluate(() => {
+        Object.defineProperty(Storage.prototype, 'setItem', {
+          configurable: true,
+          value: window.__mrtOriginalStorageSetItem,
+        });
+        delete window.__mrtOriginalStorageSetItem;
+        localStorage.setItem('mrt.state.v2', '{"seeded":"must survive"}');
+        localStorage.removeItem('mrt.devtools.backup');
+      });
+      await page.$eval('#b-corrupt', (button) => button.focus());
+      let backupWarning = null;
+      page.once('dialog', async (dialog) => {
+        backupWarning = dialog.message();
+        await dialog.dismiss();
+      });
+      await page.keyboard.press('Enter');
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      const guarded = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+
+      for (let press = 0; press < 4; press += 1) await page.keyboard.press('Tab');
+      let wipeWarning = null;
+      page.once('dialog', async (dialog) => {
+        wipeWarning = dialog.message();
+        await dialog.dismiss();
+      });
+      await page.keyboard.press('Enter');
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      const refused = await page.evaluate(() => ({
+        state: localStorage.getItem('mrt.state.v2'),
+        active: document.activeElement?.id,
+      }));
+      t.check('unbacked corruption and cancelled wipe both leave the seeded bytes untouched',
+        backupWarning?.includes('Take a backup first')
+        && wipeWarning?.includes('Remove ALL tracker data')
+        && guarded === '{"seeded":"must survive"}'
+        && refused.state === '{"seeded":"must survive"}'
+        && refused.active === 'b-wipe',
+        JSON.stringify({
+          backupWarning, wipeWarning, guarded, refused,
+        }));
+
+      await page.setViewport({ width: 320, height: 900 });
+      const narrow = await page.evaluate(() => ({
+        viewport: innerWidth,
+        documentWidth: document.documentElement.scrollWidth,
+        clippedResults: [...document.querySelectorAll('.out')]
+          .filter((output) => output.scrollWidth > output.clientWidth).map((output) => output.id),
+      }));
+      t.check('the harness and complete results reflow without horizontal clipping at 320 pixels',
+        narrow.viewport === 320
+        && narrow.documentWidth <= narrow.viewport
+        && narrow.clippedResults.length === 0,
+        JSON.stringify(narrow));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.$eval('#b-wipe', (button) => button.scrollIntoView({ block: 'center', inline: 'center' }));
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      await page.waitForFunction(() => visualViewport.scale === 2);
+      const enlarged = await page.$eval('#b-wipe', (button) => {
+        const rect = button.getBoundingClientRect();
+        return {
+          scale: visualViewport.scale,
+          active: document.activeElement === button,
+          left: rect.left,
+          right: rect.right,
+          viewportLeft: visualViewport.offsetLeft,
+          viewportRight: visualViewport.offsetLeft + visualViewport.width,
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          clippedResults: [...document.querySelectorAll('.out')]
+            .filter((output) => output.scrollWidth > output.clientWidth).map((output) => output.id),
+        };
+      });
+      t.check('the focused destructive control and complete results remain operable at 200 percent',
+        enlarged.scale === 2
+        && enlarged.active
+        && enlarged.left >= enlarged.viewportLeft
+        && enlarged.right <= enlarged.viewportRight
+        && enlarged.overflow <= 1
+        && enlarged.clippedResults.length === 0,
+        JSON.stringify(enlarged));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+      await client.detach();
+
+      await page.evaluate(() => document.getAnimations().forEach((animation) => animation.finish()));
+      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+      await click(page, '#b-report');
+      await page.waitForFunction(() => matchMedia('(prefers-reduced-motion: reduce)').matches);
+      const reduced = await page.$eval('#out-safe', (output) => ({
+        matches: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        animations: output.getAnimations().length,
+        role: output.getAttribute('role'),
+      }));
+      t.check('reduced motion reports the complete result without creating an animation',
+        reduced.matches && reduced.animations === 0 && reduced.role === 'status',
+        JSON.stringify(reduced));
+    },
+  },
 ];
 
 MUTATIONS.push({
@@ -7401,6 +7626,34 @@ MUTATIONS.push({
     .find(Boolean) ?? exact;`,
   ),
 });
+
+MUTATIONS.push(
+  {
+    id: 'fault-result-urgency-static',
+    breaks: 'fault-harness-accessibility',
+    why: 'failed fault-harness actions remain polite statuses instead of assertive alerts',
+    rewriteFaults: (source) => source
+      .replace("failed ? 'alert' : 'status'", "'status'")
+      .replace("failed ? 'assertive' : 'polite'", "'polite'"),
+  },
+  {
+    id: 'fault-result-reduced-motion-off',
+    breaks: 'fault-harness-accessibility',
+    why: 'the result animation still runs when the reader requests reduced motion',
+    rewriteFaults: (source) => source.replace(
+      "if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {",
+      'if (true) {',
+    ),
+  },
+  {
+    id: 'fault-destructive-refusals-off',
+    breaks: 'fault-harness-accessibility',
+    why: 'unbacked corruption and an unconfirmed wipe both proceed past their refusal points',
+    rewriteFaults: (source) => source
+      .replace('if (!guard()) return;', 'if (false && !guard()) return;')
+      .replace("if (!confirm('Remove ALL", "if (false && !confirm('Remove ALL"),
+  },
+);
 
 // ------------------------------------------------------------------ page helpers
 
@@ -7566,6 +7819,7 @@ async function preparePage(page, origin, mutation) {
   await page.setBypassServiceWorker(true);
   const rewrites = new Map();
   for (const [path, rewrite] of [
+    ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
