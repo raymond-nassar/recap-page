@@ -11,8 +11,11 @@
 // shows is not a floor.
 
 import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { dirname, join } from 'node:path';
+import { dirname, extname, join } from 'node:path';
+
+import { SVG_CONTENT } from './build-icons.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -133,6 +136,13 @@ export const PAIRS = [
   ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1607`'],
 ];
 
+export const STANDALONE_PAIRS = [
+  ['#f2f2f8', '#111117', BODY, 'body text on the launch page', 'body::color', 'body::background'],
+  ['#9191a4', '#111117', BODY, 'the launch-page caption', 'p::color', 'body::background'],
+  ['#7fb3ff', '#111117', BODY, 'the launch-page fallback link', 'a::color', 'body::background'],
+  ['#fff', '#8a53e1', BODY, 'the letter inside the launch-page mark', '.mark::color', '.mark::background'],
+];
+
 // Two of the surfaces this stylesheet paints on are not tokens and have no hex value to read, so a
 // pair rendered on either could not be listed at all and both went ungated. That is the state this
 // list exists to prevent, and the argument for computing them here rather than recording a gap: an
@@ -196,6 +206,330 @@ export function parseColour(value) {
   if (!triple) return null;
   const rgb = [1, 2, 3].map((i) => Number(triple[i]));
   return rgb.every((v) => v <= 255) ? rgb : null;
+}
+
+const PAINT_EXTENSIONS = new Set(['.css', '.html', '.js', '.mjs', '.svg', '.webmanifest']);
+const PAINT_PROPERTIES = /^(?:-webkit-text-stroke|background(?:-color)?|border(?:-(?:block|inline))?(?:-(?:start|end))?(?:-(?:top|right|bottom|left))?(?:-color)?|box-shadow|caret-color|color|fill|outline(?:-color)?|stroke|text-decoration-color|text-shadow)$/;
+const THEME_SELECTORS = new Set([
+  ':root',
+  ':root, :root[data-theme="dark"]',
+  ':root[data-theme="light"]',
+  ':root:not([data-theme="dark"])',
+]);
+const INTENTIONAL_THEME_TOKENS = new Map([
+  ['--accent-line', 'channel source for translucent selection paints'],
+  ['--amber-line', 'channel source for translucent scheduled-state paints'],
+  ['--card-line', 'channel source for translucent card boundaries'],
+  ['--line', 'decorative hairlines with no contrast floor'],
+  ['--red-line', 'channel source for translucent danger paints'],
+  ['--shadow-rgb', 'channel source for decorative shadows'],
+  ['--teal-line', 'channel source for translucent available-state paints'],
+]);
+const EQUALITY_CONTRACTS = [
+  { path: 'src/manifest.webmanifest', owner: 'background_color', themeProperty: '--bg' },
+  { path: 'src/manifest.webmanifest', owner: 'theme_color', themeProperty: '--bg' },
+  { path: 'src/index.html', owner: '.ring-track::stroke', themeProperty: '--line' },
+  { path: 'src/index.html', owner: '#ring-arc::stroke', themeProperty: '--accent-text' },
+];
+const WATCHED_PAINT_FILES = new Set([
+  'src/dev-faults.css',
+  'src/dev-faults.js',
+  'src/icons/icon.svg',
+  'src/index.html',
+  'src/manifest.webmanifest',
+  'src/open.css',
+  'src/styles.css',
+]);
+const DEVELOPMENT_PAINTS = new Map([
+  ['src/dev-faults.css|body::background|#12131a', 'fault-harness page fill'],
+  ['src/dev-faults.css|body::color|#e7e8ee', 'fault-harness body text'],
+  ['src/dev-faults.css|p, li::color|#b9bcca', 'fault-harness secondary text'],
+  ['src/dev-faults.css|code::background|#1e2029', 'fault-harness code fill'],
+  ['src/dev-faults.css|code::color|#d6d9e6', 'fault-harness code text'],
+  ['src/dev-faults.css|.warn::border|#7a4b12', 'fault-harness warning border'],
+  ['src/dev-faults.css|.warn::background|#2a1d0c', 'fault-harness warning fill'],
+  ['src/dev-faults.css|.warn::color|#f0c992', 'fault-harness warning text'],
+  ['src/dev-faults.css|.card::border|#262936', 'fault-harness card border'],
+  ['src/dev-faults.css|.card::background|#191b24', 'fault-harness card fill'],
+  ['src/dev-faults.css|.card-safe::border-color|#1e5137', 'fault-harness safe-card border'],
+  ['src/dev-faults.css|.card-safe::background|#10251b', 'fault-harness safe-card fill'],
+  ['src/dev-faults.css|.card-danger::border-color|#5a2530', 'fault-harness danger-card border'],
+  ['src/dev-faults.css|.card-danger::background|#241318', 'fault-harness danger-card fill'],
+  ['src/dev-faults.css|button::border|#3a3f52', 'fault-harness button border'],
+  ['src/dev-faults.css|button::background|#262a38', 'fault-harness button fill'],
+  ['src/dev-faults.css|button::color|#e7e8ee', 'fault-harness button text'],
+  ['src/dev-faults.css|button:hover::background|#303648', 'fault-harness button hover fill'],
+  ['src/dev-faults.css|button.good::background|#16603f', 'fault-harness safe-button fill'],
+  ['src/dev-faults.css|button.good::border-color|#1e7d53', 'fault-harness safe-button border'],
+  ['src/dev-faults.css|button.good:hover::background|#1a7049', 'fault-harness safe-button hover fill'],
+  ['src/dev-faults.css|button.bad::background|#6d2130', 'fault-harness danger-button fill'],
+  ['src/dev-faults.css|button.bad::border-color|#8a2b3d', 'fault-harness danger-button border'],
+  ['src/dev-faults.css|button.bad:hover::background|#7e2739', 'fault-harness danger-button hover fill'],
+  ['src/dev-faults.css|.out::background|#0e0f15', 'fault-harness output fill'],
+  ['src/dev-faults.css|.out::border|#262936', 'fault-harness output border'],
+  ['src/dev-faults.css|.out::color|#9fd3b4', 'fault-harness output text'],
+  ['src/dev-faults.css|.expect::border-left|#3a3f52', 'fault-harness expected-result border'],
+  ['src/dev-faults.css|.expect strong::color|#e7e8ee', 'fault-harness expected-result text'],
+  ['src/dev-faults.css|a::color|#7fb2ff', 'fault-harness link text'],
+  ['src/dev-faults.css|.pill::background|#262a38', 'fault-harness pill fill'],
+  ['src/dev-faults.css|.pill::color|#b9bcca', 'fault-harness pill text'],
+  ['src/dev-faults.js|style.color::1::style.color::1|#f3a0a0', 'fault-harness dynamic bad text'],
+  ['src/dev-faults.js|style.color::1::style.color::2|#9fd3b4', 'fault-harness dynamic good text'],
+  ['src/dev-faults.js|background::1::background::1|#3a1720', 'fault-harness dynamic bad fill'],
+  ['src/dev-faults.js|background::1::background::2|#12351f', 'fault-harness dynamic good fill'],
+  ['src/dev-faults.js|background::2::background|#0e0f15', 'fault-harness dynamic output fill'],
+]);
+
+function generatedIconMatches(source) {
+  return source?.replace(/\r\n/g, '\n') === SVG_CONTENT;
+}
+
+function normaliseHex(value) {
+  const colour = parseHex(value);
+  if (!colour) return value.toLowerCase();
+  return `#${colour.map((channel) => channel.toString(16).padStart(2, '0')).join('')}`;
+}
+
+function occurrence(path, owner, value, property = null) {
+  const normalised = value.startsWith('#')
+    ? normaliseHex(value)
+    : `rgb(${parseColour(value).join(' ')})`;
+  const locator = `${path}|${owner}`;
+  return {
+    path, owner, property, value: normalised, locator, key: `${locator}|${normalised}`,
+  };
+}
+
+function stripComments(source, extension) {
+  let text = source;
+  if (extension === '.html' || extension === '.svg') {
+    text = text.replace(/<!--[\s\S]*?-->/g, (match) => ' '.repeat(match.length));
+  }
+  if (extension === '.css' || extension === '.js' || extension === '.mjs') {
+    text = text.replace(/\/\*[\s\S]*?\*\//g, (match) => ' '.repeat(match.length));
+  }
+  if (extension === '.js' || extension === '.mjs') {
+    text = text.replace(/(^|[^:])\/\/.*$/gm, (match, before) => `${before}${' '.repeat(match.length - before.length)}`);
+  }
+  return text;
+}
+
+function valuesIn(path, owner, property, raw) {
+  const values = [...raw.matchAll(/#[0-9a-fA-F]{3,8}\b/g)].map((match) => match[0]);
+  if (values.length === 0 && property.startsWith('--') && parseColour(raw)) values.push(raw.trim());
+  return values.map((value, index) => occurrence(path, `${owner}::${property}${values.length > 1 ? `::${index + 1}` : ''}`, value, property));
+}
+
+function cssPaints(path, source) {
+  const text = stripComments(source, '.css');
+  const found = [];
+  const counts = new Map();
+  for (const blockMatch of text.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const selector = blockMatch[1].replace(/\s+/g, ' ').trim();
+    for (const declaration of blockMatch[2].matchAll(/([\w-]+)\s*:\s*([^;{}]+);/g)) {
+      const property = declaration[1];
+      if (!property.startsWith('--') && !PAINT_PROPERTIES.test(property)) continue;
+      const identity = `${selector}::${property}`;
+      const count = (counts.get(identity) ?? 0) + 1;
+      counts.set(identity, count);
+      found.push(...valuesIn(path, count === 1 ? selector : `${selector}::${count}`, property, declaration[2]));
+    }
+  }
+  return found;
+}
+
+function elementOwner(tag, attributes) {
+  const id = attributes.match(/\bid="([^"]+)"/)?.[1];
+  if (id) return `#${id}`;
+  const classes = attributes.match(/\bclass="([^"]+)"/)?.[1]?.trim().split(/\s+/).filter(Boolean);
+  if (classes?.length) return `.${classes.join('.')}`;
+  const structure = attributes
+    .replace(/\s+(?:fill|stroke|color|bgcolor|style)="[^"]*"/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return structure ? `${tag}[${structure}]` : tag;
+}
+
+function markupPaints(path, source) {
+  const text = stripComments(source, extname(path));
+  const found = [];
+  const counts = new Map();
+  for (const tagMatch of text.matchAll(/<([a-z][\w:-]*)\b([^>]*?)>/gi)) {
+    const tag = tagMatch[1].toLowerCase();
+    const attributes = tagMatch[2];
+    const owner = elementOwner(tag, attributes);
+    for (const attribute of attributes.matchAll(/\b(fill|stroke|color|bgcolor|style)="([^"]*)"/gi)) {
+      const property = attribute[1].toLowerCase();
+      const identity = `${owner}::${property}`;
+      const count = (counts.get(identity) ?? 0) + 1;
+      counts.set(identity, count);
+      found.push(...valuesIn(path, count === 1 ? owner : `${owner}::${count}`, property, attribute[2]));
+    }
+  }
+  return found;
+}
+
+function scriptPaints(path, source) {
+  const text = stripComments(source, extname(path));
+  const found = [];
+  const counts = new Map();
+  for (const assignment of text.matchAll(/\b((?:style\.)?(?:background|backgroundColor|borderColor|color|fill|stroke))\s*(?::|=)\s*([^,;\n}]+)/g)) {
+    const property = assignment[1];
+    const count = (counts.get(property) ?? 0) + 1;
+    counts.set(property, count);
+    found.push(...valuesIn(path, `${property}::${count}`, property, assignment[2]));
+  }
+  return found;
+}
+
+function manifestPaints(path, source) {
+  const manifest = JSON.parse(source);
+  return Object.entries(manifest)
+    .filter(([key, value]) => /_color$/.test(key) && typeof value === 'string' && /#[0-9a-fA-F]{3,8}\b/.test(value))
+    .map(([key, value]) => occurrence(path, key, value, key));
+}
+
+export function paintOccurrences(path, source) {
+  const extension = extname(path);
+  if (extension === '.css') return cssPaints(path, source);
+  if (extension === '.html' || extension === '.svg') return markupPaints(path, source);
+  if (extension === '.js' || extension === '.mjs') return scriptPaints(path, source);
+  if (extension === '.webmanifest') return manifestPaints(path, source);
+  return [];
+}
+
+export function discoverPaintInventory({
+  runGit = execFileSync,
+  readSource = (path) => readFileSync(join(ROOT, ...path.split('/')), 'utf8'),
+} = {}) {
+  const tracked = runGit('git', ['ls-files'], {
+    cwd: ROOT,
+    encoding: 'utf8',
+    maxBuffer: 64 * 1024 * 1024,
+  })
+    .split(/\r?\n/)
+    .filter((path) => path.startsWith('src/') && PAINT_EXTENSIONS.has(extname(path)));
+  const sources = new Map();
+  const occurrences = [];
+  for (const path of tracked) {
+    const source = readSource(path);
+    const paints = paintOccurrences(path, source);
+    if (paints.length === 0) continue;
+    sources.set(path, source);
+    occurrences.push(...paints);
+  }
+  return { sources, occurrences };
+}
+
+function pairedThemeTokens() {
+  const tokens = new Set();
+  for (const [foreground, backgroundName] of PAIRS) {
+    tokens.add(foreground);
+    if (backgroundName.startsWith('--')) tokens.add(backgroundName);
+  }
+  for (const surface of Object.values(SURFACES)) {
+    tokens.add(surface.layer);
+    if (surface.on.startsWith('--')) tokens.add(surface.on);
+  }
+  return tokens;
+}
+
+function ownedPaint(paint, inventory) {
+  if (paint.path === 'src/styles.css') {
+    const selector = paint.owner.slice(0, paint.owner.indexOf('::'));
+    return THEME_SELECTORS.has(selector)
+      && paint.owner === `${selector}::${paint.property}`
+      && (pairedThemeTokens().has(paint.property) || INTENTIONAL_THEME_TOKENS.has(paint.property));
+  }
+  if (paint.path === 'src/open.css') {
+    return STANDALONE_PAIRS.some(([foreground, backgroundName, , , foregroundOwner, backgroundOwner]) => (
+      `${paint.owner}|${paint.value}` === `${foregroundOwner}|${normaliseHex(foreground)}`
+      || `${paint.owner}|${paint.value}` === `${backgroundOwner}|${normaliseHex(backgroundName)}`
+    ));
+  }
+  if (EQUALITY_CONTRACTS.some((contract) => `${contract.path}|${contract.owner}` === paint.locator)) return true;
+  if (paint.path === 'src/icons/icon.svg') {
+    return generatedIconMatches(inventory.sources.get(paint.path));
+  }
+  return DEVELOPMENT_PAINTS.has(paint.key);
+}
+
+export function inventoryFindings(inventory) {
+  const findings = [];
+  const discoveredFiles = new Set(inventory.occurrences.map((paint) => paint.path));
+  for (const path of discoveredFiles) {
+    if (!WATCHED_PAINT_FILES.has(path)) findings.push({ message: `${path} paints a colour but has no watcher` });
+  }
+  for (const path of WATCHED_PAINT_FILES) {
+    if (!discoveredFiles.has(path)) findings.push({ message: `${path} is watched as a colour source but no longer paints a colour` });
+  }
+  for (const paint of inventory.occurrences) {
+    if (!ownedPaint(paint, inventory)) findings.push({ message: `${paint.key} paints a colour but no watcher consumes it` });
+  }
+  if (!generatedIconMatches(inventory.sources.get('src/icons/icon.svg'))) {
+    findings.push({ message: 'src/icons/icon.svg no longer matches the generated icon source' });
+  }
+  return findings;
+}
+
+export function standaloneFindings(source, pairs = STANDALONE_PAIRS) {
+  const paints = paintOccurrences('src/open.css', source);
+  const paintKeys = new Set(paints.map((paint) => paint.key));
+  const watched = new Set(pairs.flatMap(([
+    foreground, backgroundName, , , foregroundOwner, backgroundOwner,
+  ]) => (
+    [
+      `src/open.css|${foregroundOwner}|${normaliseHex(foreground)}`,
+      `src/open.css|${backgroundOwner}|${normaliseHex(backgroundName)}`,
+    ]
+  )));
+  const findings = [];
+  for (const paint of paints) {
+    if (!watched.has(paint.key)) findings.push({ message: `${paint.key} is not used by a launch-page contrast pair` });
+  }
+  for (const key of watched) {
+    if (!paintKeys.has(key)) findings.push({ message: `${key} is listed in a launch-page contrast pair but is not painted by src/open.css` });
+  }
+  for (const [foreground, backgroundName, floor, where] of pairs) {
+    const measured = ratio(parseHex(foreground), parseHex(backgroundName));
+    if (measured < floor) {
+      findings.push({
+        ratio: measured,
+        message: `${foreground} on ${backgroundName} measures ${measured.toFixed(2)}:1, below the ${floor}:1 floor, and is ${where}`,
+      });
+    }
+  }
+  return findings;
+}
+
+export function equalityFindings(inventory, css) {
+  const dark = tokensIn(css, ':root, :root[data-theme="dark"]');
+  const findings = [];
+  for (const contract of EQUALITY_CONTRACTS) {
+    const locator = `${contract.path}|${contract.owner}`;
+    const paints = inventory.occurrences.filter((paint) => paint.locator === locator);
+    const expected = normaliseHex(dark.get(contract.themeProperty) ?? '');
+    if (paints.length !== 1) {
+      findings.push({ message: `${contract.path} has ${paints.length} ${contract.owner} paints; expected exactly one` });
+      continue;
+    }
+    if (!parseHex(expected)) {
+      findings.push({ message: `${contract.themeProperty} is not a plain hex colour in the dark theme` });
+      continue;
+    }
+    if (paints[0].value !== expected) {
+      findings.push({ message: `${contract.path} ${contract.owner} is ${paints[0].value}, not ${contract.themeProperty} at ${expected}` });
+    }
+  }
+  return findings;
+}
+
+export function sourceFindings(inventory, css) {
+  return [
+    ...inventoryFindings(inventory),
+    ...standaloneFindings(inventory.sources.get('src/open.css') ?? ''),
+    ...equalityFindings(inventory, css),
+  ];
 }
 
 // A fraction of one colour laid over the remainder of another, which is what the browser does for
@@ -424,7 +758,9 @@ export function unresolved(css) {
 }
 
 function main() {
-  const css = readFileSync(join(ROOT, 'src', 'styles.css'), 'utf8');
+  const inventory = discoverPaintInventory();
+  const css = inventory.sources.get('src/styles.css') ?? '';
+  const sourceFailures = sourceFindings(inventory, css);
 
   if (process.argv.includes('--report')) {
     for (const [selector, themeName] of [[':root, :root[data-theme="dark"]', 'dark'], [':root[data-theme="light"]', 'light']]) {
@@ -438,6 +774,12 @@ function main() {
         console.log(`  ${mark}  ${(r === null ? '     ' : r.toFixed(2).padStart(5))}  (${floor})  ${fgName} on ${bgName}`);
       }
     }
+    console.log('\nstandalone launch page');
+    for (const [foreground, backgroundName, floor, where] of STANDALONE_PAIRS) {
+      const measured = ratio(parseHex(foreground), parseHex(backgroundName));
+      const mark = measured < floor ? 'FAIL' : '  ok';
+      console.log(`  ${mark}  ${measured.toFixed(2).padStart(5)}  (${floor})  ${foreground} on ${backgroundName}, ${where}`);
+    }
     return;
   }
 
@@ -446,8 +788,9 @@ function main() {
   for (const k of fixed) {
     console.log(`  ${k} now meets the floor. Remove it from KNOWN in scripts/check-palette.mjs, and update the Issue that owns the correction.`);
   }
-  if (fresh.length || fixed.length) {
-    console.log(`\n${fresh.length} new pair(s) below the floor, ${fixed.length} recorded pair(s) no longer below it.`);
+  for (const failure of sourceFailures) console.log(`  ${failure.message}`);
+  if (fresh.length || fixed.length || sourceFailures.length) {
+    console.log(`\n${fresh.length} new themed pair(s) below the floor, ${fixed.length} recorded pair(s) no longer below it, ${sourceFailures.length} source finding(s).`);
     process.exitCode = 1;
     return;
   }
@@ -456,6 +799,7 @@ function main() {
   // Asserting it here rather than trusting the ordering keeps the two halves from drifting apart.
   if (!lines) throw new Error('passingReport refused a tree that the guard above passed as clean');
   for (const line of lines) console.log(line);
+  console.log(`${STANDALONE_PAIRS.length} standalone launch-page pairs measured, ${inventory.occurrences.length} paint occurrences watched across ${inventory.sources.size} tracked files.`);
 }
 
 // The passing path's output is built rather than printed inline so a test can assert on it. Review

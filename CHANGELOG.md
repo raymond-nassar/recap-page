@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Expanded colour coverage checks
+
+In plain English: Nothing in the app or its saved data changes. The release check now finds every
+tracked source file that paints a colour, measures the standalone launch screen, and catches drift
+between the first visible colours and the main theme instead of inspecting only the stylesheet.
+
 ### Made synopsis browser evidence repeatable
 
 In plain English: nothing readers see or have saved changes, and the app does not fetch any extra
