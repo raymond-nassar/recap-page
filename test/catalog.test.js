@@ -167,7 +167,7 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
   const url = new URL('../src/data/catalog.json', import.meta.url);
   const { lists, dropped } = parseCatalogRaw(JSON.parse(await readFile(url, 'utf8')));
   assert.equal(dropped, 0);
-  assert.equal(lists.length, 250);
+  assert.equal(lists.length, 251);
   let placeholders = 0;
   let emptyRecords = 0;
   let complete = 0;
@@ -218,11 +218,11 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
       bothEntries,
     },
     {
-      complete: 19391,
-      placeholders: 1883,
+      complete: 19615,
+      placeholders: 1887,
       emptyRecords: 85,
-      total: 21359,
-      placeholderEntries: 23,
+      total: 21587,
+      placeholderEntries: 24,
       emptyEntries: 7,
       bothEntries: 0,
     },

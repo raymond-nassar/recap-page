@@ -96,6 +96,7 @@ test('popularity sorting keeps the ranked stories first and the rest in their cu
     'Rocket Raccoon',
     'Abomination',
     'The Defenders',
+    'Adam Warlock',
     'Groot',
     'Star-Lord',
     'Modern X-Men Fast Track',

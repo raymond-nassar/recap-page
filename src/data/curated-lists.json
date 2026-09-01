@@ -2227,6 +2227,37 @@
       "timeline": null
     },
     {
+      "id": "adam-warlock-reading-order",
+      "name": "Adam Warlock",
+      "description": "A complete Adam Warlock reading path from his origins as Him through the Infinity stories, cosmic returns, and The Thanos Imperative.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "coverIssueId": 11958,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourcePage": "https://www.comicbookherald.com/adam-warlock-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "adam_warlock_reading_order.json",
+      "characters": [
+        "Adam Warlock",
+        "Gamora",
+        "Thanos"
+      ],
+      "keywords": [
+        "Adam Warlock",
+        "Infinity Gauntlet",
+        "Infinity Watch",
+        "Jim Starlin"
+      ],
+      "expect": 228,
+      "timeline": null,
+      "sourceFile": "adam-warlock-reading-order.md"
+    },
+    {
       "id": "groot-reading-order",
       "name": "Groot",
       "description": "Groot from his first appearance through the modern Guardians, solo adventures, Rocket partnership, and his 2023 origin series.",

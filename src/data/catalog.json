@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-30T17:24:08.331Z",
+  "generatedAt": "2026-09-01T19:57:11.614Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2722,6 +2722,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-28T05:48:01.810Z"
+    },
+    {
+      "id": "adam-warlock-reading-order",
+      "file": "adam_warlock_reading_order.json",
+      "name": "Adam Warlock",
+      "description": "A complete Adam Warlock reading path from his origins as Him through the Infinity stories, cosmic returns, and The Thanos Imperative.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 228,
+      "placeholderCount": 4,
+      "emptyRecordCount": 0,
+      "collections": 20,
+      "characters": [
+        "Adam Warlock",
+        "Gamora",
+        "Thanos"
+      ],
+      "keywords": [
+        "Adam Warlock",
+        "Infinity Gauntlet",
+        "Infinity Watch",
+        "Jim Starlin"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": null,
+      "coverIssueId": 11958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/5c9bd66a7d2ac",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/adam-warlock-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-01T19:57:11.614Z"
     },
     {
       "id": "groot-reading-order",

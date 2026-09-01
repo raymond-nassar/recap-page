@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Added Adam Warlock Character Spotlight
+
+In plain English: The Character Spotlight shelf now includes a complete Adam Warlock guide, from
+his origins as Him through the Infinity stories and later cosmic appearances. Four comics whose
+exact records are still unavailable remain visible in their source positions rather than being
+guessed or removed. Nothing already saved is changed.
+
+The guide preserves 253 source occurrences as 224 exact comics, four visible metadata gaps, and 25
+intentional repeats. Its complete-library review found 20 partial relationships and no duplicate or
+subset guide.
+
 ### Added notice when published branches outlive their work
 
 In plain English: Nothing in the app or its saved data changes. The repository now checks weekly
