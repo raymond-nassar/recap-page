@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Made fault-harness results accessible
+
+In plain English: Nothing in the app or its saved data changes. The developer screen for safely
+testing broken storage now announces complete action results, keeps keyboard focus visible, stops
+result motion when requested, and explains the exact address that shares the app's saved data.
+
+For maintainers, six unit assertions and nine installed-Edge assertions cover result semantics,
+keyboard order, focus, contrast, narrow reflow, 200 percent enlargement, reduced motion, and
+destructive refusal. Three focused mutations prove the changed behavior can fail.
+
 ### Standardized interface spacing
 
 In plain English: The spaces around controls, cards, lists, and page sections now follow one small,

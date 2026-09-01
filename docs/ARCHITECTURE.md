@@ -18,7 +18,7 @@ the prose rather than in a binary nobody can diff.
 The app is served from one origin and has three pages, each loading exactly one module. The tracker
 itself is loaded at `src/index.html:1061`. The launch page, which is the tab a reader's issue opens
 into, is loaded at `src/open.html:19`. A fault-injection harness that exists for development and is
-no part of the running app is loaded at `src/dev-faults.html:129`.
+no part of the running app is loaded at `src/dev-faults.html:135`.
 
 The module the tracker page loads is not the view layer itself but a small entry whose whole body is
 a call to `boot()` and then a registration of the offline worker, at `src/js/app.js:12-24`. The

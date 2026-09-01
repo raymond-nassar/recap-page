@@ -1729,8 +1729,8 @@
     "fp": "8afb6d479f5f3d20",
     "head": "// it in a Map that dies with the tab. Nothing here touches mrt.state.v2, nothing here is written to"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:129|0": {
-    "anchor": "src/dev-faults.html:129",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/dev-faults.html:135|0": {
+    "anchor": "src/dev-faults.html:135",
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
@@ -1949,13 +1949,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3465-3476|0": {
-    "anchor": "CHANGELOG.md:3465-3476",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3475-3486|0": {
+    "anchor": "CHANGELOG.md:3475-3486",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3478-3488|0": {
-    "anchor": "CHANGELOG.md:3478-3488",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3488-3498|0": {
+    "anchor": "CHANGELOG.md:3488-3498",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },

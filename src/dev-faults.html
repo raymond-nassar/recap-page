@@ -9,8 +9,9 @@
 <body>
 
 <h1>Fault injection harness</h1>
-<p>Phase 3 of the test plan. This page shares storage with the tracker because it is served from
-the same address, so it can break the app's saved data on purpose, then put it back.</p>
+<p>Phase 3 of the test plan. This page shares storage with the tracker only at
+<code>http://127.0.0.1:8787</code>, so it can break the app's saved data on purpose, then put it
+back. Changing the host or port selects a different browser storage bucket.</p>
 
 <div class="warn">
   <strong>Read this first.</strong> These buttons deliberately damage your saved reading data.
@@ -39,7 +40,8 @@ the same address, so it can break the app's saved data on purpose, then put it b
     <button id="b-report">Show storage report</button>
   </div>
   <input type="file" id="f-restore" accept=".json,application/json" hidden />
-  <div class="out" id="out-safe">Loading…</div>
+  <div class="out" id="out-safe" role="status" aria-live="polite" aria-atomic="true"
+    aria-label="Safety actions result">Loading…</div>
 </div>
 
 <div class="card">
@@ -55,7 +57,8 @@ the same address, so it can break the app's saved data on purpose, then put it b
       <li>“Start fresh” gives you an empty, working tracker</li>
     </ul>
   </div>
-  <div class="out" id="out-3a">Not run.</div>
+  <div class="out" id="out-3a" role="status" aria-live="polite" aria-atomic="true"
+    aria-label="Unreadable saved data result">Not run.</div>
 </div>
 
 <div class="card">
@@ -75,7 +78,8 @@ the same address, so it can break the app's saved data on purpose, then put it b
       <li>“Start fresh” should then give you a working tracker again</li>
     </ul>
   </div>
-  <div class="out" id="out-3b">Not run.</div>
+  <div class="out" id="out-3b" role="status" aria-live="polite" aria-atomic="true"
+    aria-label="Newer build data result">Not run.</div>
 </div>
 
 <div class="card">
@@ -97,7 +101,8 @@ the same address, so it can break the app's saved data on purpose, then put it b
     </ul>
     Press <em>Free storage again</em> when done.
   </div>
-  <div class="out" id="out-3c">Not run.</div>
+  <div class="out" id="out-3c" role="status" aria-live="polite" aria-atomic="true"
+    aria-label="Storage full result">Not run.</div>
 </div>
 
 <div class="card">
@@ -121,7 +126,8 @@ the same address, so it can break the app's saved data on purpose, then put it b
   <p>Removes everything this page created and every trace of the faults. Restore your real data
   first if you still want it.</p>
   <button class="bad" id="b-wipe">Remove all tracker data and harness keys</button>
-  <div class="out" id="out-wipe">Not run.</div>
+  <div class="out" id="out-wipe" role="status" aria-live="polite" aria-atomic="true"
+    aria-label="Clean-up result">Not run.</div>
 </div>
 
 <p class="u-mt-2"><a href="/">← Back to the tracker</a></p>

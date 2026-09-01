@@ -13,12 +13,17 @@ const bytes = (n) => (n < 1024 ? `${n} B` : n < 1048576 ? `${(n / 1024).toFixed(
 // happened", which is exactly how the first version of this page failed.
 function say(id, msg, tone = 'ok') {
   const el = $(id);
+  const failed = tone === 'bad';
+  el.setAttribute('role', failed ? 'alert' : 'status');
+  el.setAttribute('aria-live', failed ? 'assertive' : 'polite');
   el.textContent = msg;
-  el.style.color = tone === 'bad' ? '#f3a0a0' : '#9fd3b4';
-  el.animate(
-    [{ background: tone === 'bad' ? '#3a1720' : '#12351f' }, { background: '#0e0f15' }],
-    { duration: 900, easing: 'ease-out' },
-  );
+  el.style.color = failed ? '#f3a0a0' : '#9fd3b4';
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.animate(
+      [{ background: failed ? '#3a1720' : '#12351f' }, { background: '#0e0f15' }],
+      { duration: 900, easing: 'ease-out' },
+    );
+  }
 }
 
 function summarize(raw) {
@@ -140,7 +145,7 @@ $('b-newer').addEventListener('click', () => {
   const raw = localStorage.getItem(BACKUP) ?? localStorage.getItem(KEY);
   let obj;
   try { obj = JSON.parse(raw); } catch {
-    say('out-3b', 'Your current state is not readable, so it cannot be stamped. Restore your backup first.');
+    say('out-3b', 'Your current state is not readable, so it cannot be stamped. Restore your backup first.', 'bad');
     return;
   }
   obj.schemaVersion = 99;
