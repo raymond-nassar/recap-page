@@ -10,6 +10,7 @@ import {
 
 const { UNSEEN, EXPLAINING, COMPLETE } = SAVE_EDUCATION_STATE;
 const MAIN = readFileSync(new URL('../src/js/main.js', import.meta.url), 'utf8');
+const ADD = readFileSync(new URL('../src/js/views/add.js', import.meta.url), 'utf8');
 
 function fakeStorage(seed = {}) {
   const values = new Map(Object.entries(seed));
@@ -136,25 +137,27 @@ test('an unreadable preference is never overwritten with a lower state', () => {
 });
 
 test('every approved list path records only its final cumulative operation result', () => {
-  for (const symbol of ['addToActive', 'doImport', 'unresolvedRow', 'doManual', 'importCurated']) {
-    const start = MAIN.indexOf(`function ${symbol}(`);
+  for (const symbol of ['addToActive', 'doImport', 'unresolvedRow', 'doManual']) {
+    const start = ADD.indexOf(`function ${symbol}(`);
     assert.notEqual(start, -1, `expected ${symbol} to remain a named integration boundary`);
   }
+  assert.notEqual(MAIN.indexOf('async function importCurated('), -1);
 
   assert.match(MAIN, /return \{ listId: id, ok: true \};/);
   assert.equal(
-    [...MAIN.matchAll(/recordNonEmptyListSave\(/g)].length,
+    [...MAIN.matchAll(/recordNonEmptyListSave\(/g)].length
+      + [...ADD.matchAll(/onNonEmptyListSave\(/g)].length,
     7,
     'one definition and the add, import, two unresolved, manual, and curated paths must be explicit',
   );
   assert.match(
     MAIN,
-    /persistLongAddPage\(store, items, context, recordNonEmptyListSave\)/,
+    /persistLongAddPage\([\s\S]*?store,[\s\S]*?items,[\s\S]*?context,[\s\S]*?recordNonEmptyListSave/,
     'the long-add page path no longer records its completed cumulative result',
   );
-  assert.doesNotMatch(MAIN, /const listId = ensureList\(/);
-  assert.match(MAIN, /const operationOk = setupOk && store\.lastUpdateOk;/);
-  assert.match(MAIN, /const operationOk = setup\.ok && store\.lastUpdateOk;/);
+  assert.doesNotMatch(ADD, /const listId = ensureList\(/);
+  assert.match(ADD, /if \(!setupOk \|\| !operation\.ok\)/);
+  assert.match(ADD, /if \(!operation\.ok \|\| added === 0\)/);
 });
 
 test('a curated partial success keeps the list without consuming save education', () => {

@@ -9,17 +9,13 @@ import {
   createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList, removeFromList, moveItem,
   toggleRead, markRead, isRead, upNext, listProgress, listItems, exportBackup, migrate,
   setOverride, pendingIssueIds, coverUrl, listForCatalogId, SCHEMA_VERSION,
-  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, heldCount,
+  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences,
 } from './lib/model.js';
-import {
-  parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl,
-  readerIssueId, resolveUniqueExact,
-} from './lib/markdown.js';
+import { serializeChecklist } from './lib/markdown.js';
 import { DEFAULT_LIST_NAME, LIBRARY_VIEWS } from './lib/library.js';
 import { availability, describe, localDayString, SHORT, STATE } from './lib/availability.js';
-import { compareIssues } from './lib/sort.js';
 import {
-  parseCatalog, groupCatalog, updatedLabel,
+  parseCatalog, groupCatalog,
   pathPlacements, resolveReadingPaths, availableHomeCategories, HOME_CATEGORIES,
   availablePublishingCategories, isPublishingCategoryLeaf, publishingAgeGroups, publishingCategoryStories,
   timelineYears,
@@ -61,6 +57,7 @@ import { createCatalogPresentation } from './views/shared/catalog-presentation.j
 import { createCatalogView } from './views/catalog.js';
 import { createPreviewView } from './views/preview.js';
 import { createReadingPathsView } from './views/reading-paths.js';
+import { createAddView, persistLongAddPage } from './views/add.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -1631,7 +1628,7 @@ function showView(next, { focus = true, push = false } = {}) {
   }
 
   view = next;
-  warmNameIndexForView(next);
+  addView.enter(next);
   for (const name of VIEWS) {
     const panel = $(`#view-${name}`);
     if (panel) panel.hidden = name !== next;
@@ -3203,936 +3200,6 @@ async function startIssueSynopsis() {
   if (!synopsisRunner.active) issueSynopsisId = null;
 }
 
-// ------------------------------------------------------------------ add view
-
-function wireAdd() {
-  $('#form-search').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const q = $('#search-q').value.trim();
-    if (!q) return;
-    notify('#search-results', 'Searching…', 'busy');
-    try {
-      const items = await api.searchIssues(q, { limit: 50 });
-      renderResults('#search-results', items, (it) => `${it.seriesName ?? ''}${it.onSale ? ` · ${ymd(it.onSale)}` : ''}`);
-    } catch (err) {
-      notify('#search-results', friendly(err), 'error');
-    }
-  });
-
-  // Series and creator search reads a vendored index rather than the API, because the API
-  // ignores `q` on those routes (see api.js). The two cards are otherwise identical, so they
-  // are wired once: the only differences are which index they read and what "Add all issues"
-  // does with the result.
-  wireNameSearch({
-    section: '#sec-series', form: '#form-series', input: '#series-q', results: '#series-results',
-    kind: 'series', many: 'series', btnClass: 'btn btn-g',
-    search: (q, opts) => api.searchSeries(q, opts), onAdd: addSeries,
-    active: () => seriesAddRunner.active,
-  });
-
-  wireNameSearch({
-    section: '#sec-creator', form: '#form-creator', input: '#creator-q', results: '#creator-results',
-    kind: 'creators', many: 'creators', btnClass: 'btn btn-g',
-    search: (q, opts) => api.searchCreators(q, opts), onAdd: addCreator,
-    active: () => creatorAddRunner.active,
-  });
-
-  $('#form-import').addEventListener('submit', (e) => { e.preventDefault(); doImport(); });
-  $('#form-manual').addEventListener('submit', (e) => { e.preventDefault(); doManual(); });
-  $('#btn-manual-lookup').addEventListener('click', () => { doManualLookup(); });
-  // An accepted match describes one specific comic. Once the title no longer names that comic the
-  // offer has stopped making sense, so it is withdrawn here rather than refused at Add time, and
-  // the reader is told why while the box is still in front of them.
-  $('#manual-title').addEventListener('input', () => {
-    if (manualMatch && $('#manual-title').value.trim() !== manualMatch.title) {
-      clearManualMatch();
-      notify('#manual-candidates', 'The title changed, so the details from the wiki were dropped. Look it up again to fill them in.', 'warn');
-    }
-  });
-}
-
-const NAME_SEARCH_LIMIT = 40;
-
-export function mergeLongAddPage(state, context, issues) {
-  let { listId, insertAt } = context;
-  const { ownedIds = [] } = context;
-  let next = state;
-  if (!listId) {
-    next = createList(next, { name: DEFAULT_LIST_NAME });
-    listId = next.listOrder[next.listOrder.length - 1];
-    next = setActive(next, listId);
-    insertAt = 0;
-  }
-  const list = next.lists[listId];
-  if (!list) {
-    return { state, added: 0, skipped: 0, context, missing: true };
-  }
-
-  const before = new Set(list.itemIds);
-  const merged = addIssuesToList(next, listId, issues);
-  const mergedList = merged.state.lists[listId];
-  const fresh = mergedList.itemIds.filter((id) => !before.has(id));
-  const present = new Set(mergedList.itemIds);
-  const nextOwned = [...new Set([...ownedIds, ...fresh])].filter((id) => present.has(id));
-  const owned = new Set(nextOwned);
-  const stable = mergedList.itemIds.filter((id) => !owned.has(id));
-  const at = Math.max(0, Math.min(Number(insertAt) || 0, stable.length));
-  nextOwned.sort((a, b) => compareIssues(merged.state.issues[a], merged.state.issues[b]));
-
-  return {
-    state: {
-      ...merged.state,
-      lists: Object.assign(Object.create(null), merged.state.lists, {
-        [listId]: {
-          ...mergedList,
-          itemIds: stable.slice(0, at).concat(nextOwned, stable.slice(at)),
-        },
-      }),
-    },
-    added: merged.added,
-    skipped: merged.skipped,
-    context: { ...context, listId, insertAt, ownedIds: nextOwned },
-    missing: false,
-  };
-}
-
-export class LongAddRunner {
-  constructor({ load, savePage, onStatus = () => {} } = {}) {
-    this.load = load;
-    this.savePage = savePage;
-    this.onStatus = onStatus;
-    this.current = null;
-  }
-
-  get active() {
-    return this.current !== null;
-  }
-
-  status(run, phase, error = null) {
-    return {
-      phase,
-      item: run.item,
-      context: run.context,
-      received: run.received,
-      persisted: run.persisted,
-      total: run.total,
-      pages: run.pages,
-      added: run.added,
-      skipped: run.skipped,
-      error,
-      running: phase === 'running',
-    };
-  }
-
-  cancel() {
-    const run = this.current;
-    if (!run) return null;
-    const status = this.status(run, 'cancelled');
-    run.terminal = status;
-    this.current = null;
-    run.controller.abort();
-    this.onStatus(status);
-    return status;
-  }
-
-  async start(item, context = {}) {
-    if (this.current) return this.status(this.current, 'running');
-
-    const run = {
-      item,
-      context,
-      controller: new AbortController(),
-      received: 0,
-      persisted: 0,
-      total: Number(item?.issueCount) || null,
-      pages: 0,
-      added: 0,
-      skipped: 0,
-      terminal: null,
-    };
-    this.current = run;
-    this.onStatus(this.status(run, 'running'));
-    if (this.current !== run) return run.terminal;
-
-    const { signal } = run.controller;
-    try {
-      await this.load(item, {
-        signal,
-        onPage: (items, progress = {}) => {
-          if (signal.aborted || this.current !== run) return;
-          run.received = Number.isFinite(Number(progress.loaded))
-            ? Number(progress.loaded)
-            : run.received + items.length;
-          run.total = progress.total == null ? run.total : Number(progress.total);
-          const saved = this.savePage(items, run.context);
-          if (signal.aborted || this.current !== run) return;
-          if (!saved?.ok) {
-            const error = new Error(saved?.error || 'That page could not be saved.');
-            error.name = 'SaveError';
-            throw error;
-          }
-          run.context = saved.context ?? run.context;
-          run.persisted += Number(saved.persisted ?? items.length);
-          run.pages += 1;
-          run.added += Number(saved.added) || 0;
-          run.skipped += Number(saved.skipped) || 0;
-          this.onStatus(this.status(run, 'running'));
-        },
-      });
-    } catch (error) {
-      if (this.current !== run) return run.terminal;
-      this.current = null;
-      const phase = signal.aborted || error?.name === 'AbortError' ? 'cancelled' : 'failed';
-      const status = this.status(run, phase, error);
-      run.terminal = status;
-      this.onStatus(status);
-      return status;
-    }
-
-    if (this.current !== run) return run.terminal;
-    this.current = null;
-    const status = this.status(run, signal.aborted ? 'cancelled' : 'complete');
-    run.terminal = status;
-    this.onStatus(status);
-    return status;
-  }
-}
-
-function longAddContext() {
-  const listId = activeListId();
-  return {
-    listId,
-    insertAt: listId ? (store.state.lists[listId]?.itemIds.length ?? 0) : 0,
-    ownedIds: [],
-    transition: null,
-  };
-}
-
-export function persistLongAddPage(readerStore, items, context, onSaved = () => null) {
-  if (!items.length) return { ok: true, added: 0, skipped: 0, persisted: 0, context };
-  let merged;
-  readerStore.update((state) => {
-    merged = mergeLongAddPage(state, context, items);
-    return merged.state;
-  });
-  if (merged.missing) {
-    return {
-      ok: false,
-      error: 'The destination list no longer exists. No later pages were added.',
-      context,
-    };
-  }
-  if (!readerStore.lastUpdateOk) {
-    return { ok: false, error: readerStore.lastError, context };
-  }
-
-  const transition = context.transition
-    ?? onSaved({ ok: true, added: merged.added, listId: merged.context.listId });
-  return {
-    ok: true,
-    added: merged.added,
-    skipped: merged.skipped,
-    persisted: merged.added + merged.skipped,
-    context: { ...merged.context, transition },
-  };
-}
-
-function saveLongAddPage(items, context) {
-  return persistLongAddPage(store, items, context, recordNonEmptyListSave);
-}
-
-export function longAddStatusLine(status, { name, kind }) {
-  const total = status.total ? ` of ${status.total}` : '';
-  const savedIssues = `${status.persisted}${total} issue${status.total || status.persisted !== 1 ? 's' : ''}`;
-  if (status.phase === 'running') {
-    if (!status.received) {
-      return kind === 'creator'
-        ? `Loading issues credited to ${name}\u2026`
-        : `Loading all issues of ${name}\u2026`;
-    }
-    return `${name}: ${savedIssues} saved so far.`;
-  }
-  if (status.phase === 'cancelled') {
-    if (!status.persisted) return `${name}: stopped before the first page was saved.`;
-    return `${name}: stopped after ${savedIssues} ${status.total || status.persisted !== 1 ? 'were' : 'was'} saved. `
-      + `${status.added} added${status.skipped ? `, ${status.skipped} skipped as duplicates` : ''}.`;
-  }
-  if (status.phase === 'failed') {
-    const kept = status.persisted
-      ? `${savedIssues} ${status.total || status.persisted !== 1 ? 'were' : 'was'} saved.`
-      : 'No completed page was saved.';
-    const unsaved = status.received > status.persisted
-      ? ` ${status.received - status.persisted} received issue${status.received - status.persisted === 1 ? '' : 's'} could not be saved.`
-      : '';
-    return `${name}: loading failed. ${kept}${unsaved} ${friendly(status.error)}`;
-  }
-  const duplicate = status.skipped
-    ? `, ${status.skipped} ${kind === 'creator' ? 'duplicates' : 'skipped as duplicates'}`
-    : '';
-  const ending = `${name}: ${status.added} ${kind === 'series' ? `issue${status.added === 1 ? '' : 's'} ` : ''}added${duplicate}.`;
-  return kind === 'creator'
-    ? `${ending} Creator records omit Unlimited dates, so availability shows as unknown until details are fetched.`
-    : ending;
-}
-
-function renderLongAddStatus(config, runner, status) {
-  const box = $(config.results);
-  const focusedCancel = box?.querySelector('.notice-act button') === document.activeElement;
-  const running = status.phase === 'running';
-  const message = running
-    ? longAddStatusLine(status, { ...config, name: status.item.name })
-    : withSaveEducation(
-      longAddStatusLine(status, { ...config, name: status.item.name }),
-      status.context?.transition,
-    );
-  notify(
-    config.results,
-    message,
-    running ? 'busy' : status.phase === 'failed' ? 'error' : status.phase === 'cancelled' ? 'warn' : 'ok',
-    config.results,
-    running ? { label: `Cancel ${config.kind} import`, onClick: () => runner.cancel() } : null,
-  );
-
-  if (running && focusedCancel) {
-    box.querySelector('.notice-act button')?.focus({ preventScroll: true });
-  } else if (!running && focusedCancel) {
-    $(config.input)?.focus({ preventScroll: true });
-  }
-  if (!running && status.added > 0 && status.context?.listId) {
-    queueLongAddHydration(status.context.listId);
-  }
-}
-
-let longAddHydration = Promise.resolve();
-function queueLongAddHydration(listId) {
-  longAddHydration = longAddHydration.then(() => hydrator.start(listId));
-}
-
-function createLongAddRunner(config) {
-  const runner = new LongAddRunner({
-    load: (item, options) => config.load(item.id, options),
-    savePage: saveLongAddPage,
-    onStatus: (status) => renderLongAddStatus(config, runner, status),
-  });
-  return runner;
-}
-
-const seriesAddRunner = createLongAddRunner({
-  kind: 'series',
-  input: '#series-q',
-  results: '#series-results',
-  load: (id, options) => api.seriesIssues(id, options),
-});
-const creatorAddRunner = createLongAddRunner({
-  kind: 'creator',
-  input: '#creator-q',
-  results: '#creator-results',
-  load: (id, options) => api.creatorIssues(id, options),
-});
-
-function wireNameSearch({
-  section, form, input, results, kind, many, btnClass, search, onAdd, active,
-}) {
-  $(form).addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (active?.()) {
-      $(results).querySelector('.notice-act button')?.focus({ preventScroll: true });
-      announce(`Cancel the current ${kind === 'series' ? 'series' : 'creator'} import before searching again.`);
-      return;
-    }
-    const q = $(input).value.trim();
-    if (!q) return;
-    notify(results, 'Searching…', 'busy');
-    try {
-      const { items, matched, total, generatedAt } = await search(q, { limit: NAME_SEARCH_LIMIT });
-      const box = $(results);
-      box.replaceChildren();
-
-      if (!items.length) {
-        return notify(results, `No ${many} match “${q}”. Searched all ${count(total)} in the index.`, 'warn');
-      }
-
-      // A capped list that does not say it is capped tells the reader the other matches do not
-      // exist. The snapshot date is here for the same reason: this index is pinned at build
-      // time, so a series added upstream last week is genuinely missing until it is rebuilt.
-      const summary = matched > items.length
-        ? `Showing the ${items.length} closest matches of ${count(matched)}. Narrow your search to see the rest.`
-        : `${count(matched)} ${matched === 1 ? 'match' : 'matches'}.`;
-      box.append(el('p', { class: 'rail-hint', text: summary }));
-      box.append(el('details', { class: 'setting-more search-index-note' }, [
-        el('summary', { text: 'About these results' }),
-        el('p', {
-          class: 'rail-hint',
-          text: `Filtered on this device from an index of ${count(total)} ${many}${snapshot(generatedAt)}.`,
-        }),
-      ]));
-      announce(summary);
-
-      for (const item of items) {
-        box.append(el('div', { class: 'result' }, [
-          el('div', { class: 'result-main' }, [
-            el('div', { class: 'result-title', text: item.name }),
-            el('div', { class: 'result-meta', text: `${item.issueCount ?? 'an unknown number of'} issues` }),
-          ]),
-          el('button', {
-            type: 'button', class: btnClass,
-            'aria-label': `Add all issues of ${item.name}`,
-            onclick: () => onAdd(item),
-          }, 'Add all issues'),
-        ]));
-      }
-    } catch (err) {
-      await reportBundledLoadFailure({
-        report: results,
-        failure: friendly(err),
-        key: `${kind}-index-load`,
-        subject: `${kind === 'series' ? 'series' : 'creator'} search`,
-        retry: () => $(form).requestSubmit(),
-        isCurrent: () => $(section).closest('.view')?.hidden === false,
-      });
-    }
-  });
-}
-
-// Route entry is the reliable signal: direct hashes and browser history can reveal these pages
-// without either a pointer crossing the section or focus entering one of its controls.
-function warmNameIndexForView(name) {
-  const kind = name === 'add-series' ? 'series' : name === 'add-creator' ? 'creators' : null;
-  if (kind) void api.warmNameIndex(kind);
-}
-
-const count = (n) => Number(n ?? 0).toLocaleString();
-
-// Reuses the curated catalog's UTC date formatting, for the same reason: a snapshot taken at
-// 06:14Z reads as the previous day everywhere west of UTC-6:14, which is all of the Americas.
-function snapshot(generatedAt) {
-  const when = updatedLabel({ updatedAt: generatedAt });
-  return when ? `, taken ${when}` : '';
-}
-
-function addDestination() {
-  const target = store.state.lists[activeListId()];
-  return target
-    ? `Adding to: ${target.name}`
-    : `Adding to: new ${DEFAULT_LIST_NAME}`;
-}
-
-function renderResults(sel, items, metaFn) {
-  const box = $(sel);
-  box.replaceChildren();
-  if (!items.length) return notify(sel, 'Nothing matched that search.', 'warn');
-
-  const held = heldCount(store.state, items);
-  const summary = `${count(items.length)} ${items.length === 1 ? 'result' : 'results'}, ${count(held)} already in your library.`;
-  box.append(el('div', { class: 'res-head', text: summary }));
-
-  // This pane stopped being a live region, so the outcome has to be said here. The empty case
-  // below goes through notify() and still speaks, so without this line a search that found
-  // nothing announced itself and a search that worked did not, which reads as a broken search.
-  announce(summary);
-
-  for (const it of items) {
-    // The confirmation belongs on the control that was clicked. Previously the only feedback
-    // was a screen-reader announcement, so a sighted user had to open the list to find out
-    // whether anything had happened.
-    const btn = el('button', { type: 'button', class: 'btn btn-g' }, 'Add');
-    btn.addEventListener('click', () => {
-      const res = addToActive([it], `Added ${it.title}.`);
-      if (!res.ok) {
-        btn.textContent = 'Could not add';
-        return;
-      }
-      btn.disabled = true;
-      btn.classList.add('btn-added');
-      btn.textContent = res.added ? `Added to ${res.listName}` : 'Already in that list';
-    });
-
-    box.append(el('div', { class: 'result' }, [
-      el('div', { class: 'result-main' }, [
-        issueFocusAnchor(it, {
-          surface: 'search',
-          className: 'result-title result-title-link',
-          children: it.title,
-        }),
-        el('div', { class: 'result-meta', text: metaFn(it) }),
-      ]),
-      ...(heldCount(store.state, [it]) ? [el('span', { class: 'pill-held', text: 'Already in your library' })] : []),
-      btn,
-    ]));
-  }
-}
-
-// Carries every setup write, because lastUpdateOk describes only the most recent one and a later
-// successful issue write must not hide a failed create or active-list write.
-function ensureList(name) {
-  let id = activeListId();
-  if (!id) {
-    const created = store.update((s) => createList(s, { name }));
-    if (!store.lastUpdateOk) return { listId: null, ok: false };
-    id = created.listOrder[created.listOrder.length - 1];
-    store.update((s) => setActive(s, id));
-    if (!store.lastUpdateOk) return { listId: id, ok: false };
-  }
-  return { listId: id, ok: true };
-}
-
-function addToActive(issues, message, { sort = false } = {}) {
-  const setup = ensureList(DEFAULT_LIST_NAME);
-  const id = setup.listId;
-  if (!setup.ok) return { added: 0, skipped: 0, ok: false, listName: null };
-  let added = 0, skipped = 0;
-  store.update((s) => {
-    const res = addIssuesToList(s, id, issues, { sort });
-    added = res.added; skipped = res.skipped;
-    return res.state;
-  });
-  // added/skipped are counted inside the updater, which runs before the write. If the write
-  // failed the change was rolled back, so those counts describe nothing that survived.
-  const ok = setup.ok && store.lastUpdateOk;
-  if (!ok) return { added: 0, skipped: 0, ok: false, listName: null };
-  const listName = store.state.lists[id]?.name ?? 'your list';
-  const transition = recordNonEmptyListSave({ ok, added, listId: id });
-  announce(withSaveEducation(
-    `${message} ${added} added${skipped ? `, ${skipped} already in the list` : ''}.`,
-    transition,
-  ));
-
-  // Search, series and creator results come from list endpoints, which return neither `cover`
-  // nor `digitalId`; only /v1/issues/{id} does. Without hydration the issue lands with no art
-  // and, worse, no way to open it in Marvel Unlimited, until the user happens to notice the
-  // "Fetch details" button. Import already did this; every other add path was missing it.
-  // start() is a no-op while a run is in flight, so rapid adds cannot stack up.
-  if (added > 0) hydrator.start(id);
-
-  return { added, skipped, ok: true, listName };
-}
-
-async function addSeries(series) {
-  return seriesAddRunner.start(series, longAddContext());
-}
-
-async function addCreator(creator) {
-  return creatorAddRunner.start(creator, longAddContext());
-}
-
-export function stageChecklistEntry(entry) {
-  // The digital id is not a discriminator by itself: provider issues carry one after hydration.
-  // Only the reserved pair says this identity came from a pasted reader address.
-  const readerOnly = readerIssueId(entry?.digitalId) === Number(entry?.issueId);
-  return {
-    issueId: entry.issueId,
-    title: entry.title,
-    url: readerOnly ? null : entry.url,
-    digitalId: entry.digitalId ?? null,
-    source: readerOnly ? 'manual' : 'import',
-    hydrated: readerOnly,
-    collectedIn: entry.section ?? null,
-  };
-}
-
-function doImport() {
-  const text = $('#import-text').value;
-  if (!text.trim()) return notify('#import-report', 'Paste a Reading List first.', 'warn');
-
-  const { entries, unresolved, headings } = parseChecklist(text);
-  const box = $('#import-report');
-  box.replaceChildren();
-
-  if (!entries.length && !unresolved.length) {
-    return notify('#import-report', 'Could not find any issues in that text.', 'warn');
-  }
-
-  const intoNew = $('#import-new-list').checked;
-  let listId;
-  let setupOk;
-  if (intoNew) {
-    const name = headings[0] || `Imported ${new Date().toLocaleDateString()}`;
-    const created = store.update((s) => createList(s, { name, description: 'Imported from a pasted Reading List.' }));
-    if (!store.lastUpdateOk) {
-      return notify('#import-report', 'Could not create the list, so nothing was imported.', 'error');
-    }
-    listId = created.listOrder[created.listOrder.length - 1];
-    store.update((s) => setActive(s, listId));
-    setupOk = store.lastUpdateOk;
-    if (!setupOk) return;
-  } else {
-    const setup = ensureList(DEFAULT_LIST_NAME);
-    listId = setup.listId;
-    setupOk = setup.ok;
-    if (!setupOk) return notify('#import-report', 'Could not create a list, so nothing was imported.', 'error');
-  }
-
-  // Markdown carries only a title and an id, so metadata starts as pending and is
-  // filled in later rather than guessed at now. The sub-heading each line sat under is the
-  // exception: it is structure the reader wrote, not metadata to be looked up, so it comes
-  // straight across and a pasted trade order keeps its books.
-  const staged = entries.map(stageChecklistEntry);
-
-  let added = 0, skipped = 0;
-  store.update((s) => {
-    const res = addIssuesToList(s, listId, staged, {});
-    added = res.added; skipped = res.skipped;
-    let next = res.state;
-    for (const e of entries) if (e.read) next = markRead(next, e.issueId, true);
-    return next;
-  });
-
-  // The counts were taken inside the updater, before the write. A rolled-back write means
-  // nothing was imported, whatever they say.
-  const operationOk = setupOk && store.lastUpdateOk;
-  if (!operationOk) {
-    return notify('#import-report', 'Nothing was imported: that change could not be saved.', 'error');
-  }
-
-  box.append(el('p', { class: 'notice notice-ok', text: `Imported ${added} issue${added === 1 ? '' : 's'}${skipped ? `, ${skipped} already present` : ''}. Details will be fetched in the background.` }));
-
-  if (unresolved.length) {
-    box.append(el('p', { class: 'notice notice-warn', text: `${unresolved.length} line${unresolved.length === 1 ? '' : 's'} had no Marvel issue link. They are listed below rather than dropped, so you can resolve each one deliberately.` }));
-    const wrap = el('div', { class: 'results' });
-    for (const u of unresolved) wrap.append(unresolvedRow(u, listId));
-    box.append(wrap);
-  }
-
-  const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
-  announce(withSaveEducation(`Imported ${added} issues.`, transition));
-  hydrator.start(listId);
-}
-
-function unresolvedRow(entry, listId) {
-  const row = el('div', { class: 'result' });
-  const main = el('div', { class: 'result-main' }, [
-    el('div', { class: 'result-title', text: entry.title }),
-    el('div', { class: 'result-meta', text: 'No issue link, search to resolve' }),
-  ]);
-  const btn = el('button', { type: 'button', class: 'btn btn-g' }, 'Find match');
-  btn.addEventListener('click', async () => {
-    btn.disabled = true;
-    try {
-      const candidates = await api.searchIssues(entry.title, { limit: 25 });
-      const res = resolveUniqueExact(entry.title, candidates);
-      if (res.status === 'resolved') {
-        // Auto-accept only a single exact normalized match. Anything else is a choice
-        // for you to make, because silently picking result #1 files the wrong comic.
-        let added = 0;
-        store.update((s) => {
-          const result = addIssuesToList(s, listId, [res.match], {});
-          added = result.added;
-          return result.state;
-        });
-        if (!store.lastUpdateOk) {
-          btn.disabled = false;
-          row.append(el('p', { class: 'notice notice-error', text: 'That match could not be saved.' }));
-          return;
-        }
-        let operationOk = true;
-        if (entry.read) {
-          store.update((s) => markRead(s, res.match.issueId, true));
-          operationOk = store.lastUpdateOk;
-          if (!operationOk) {
-            btn.disabled = false;
-            return;
-          }
-        }
-        const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
-        row.replaceChildren(el('p', { class: 'notice notice-ok', text: `Matched: ${res.match.title}` }));
-        announce(withSaveEducation(`Matched ${entry.title}.`, transition));
-        return;
-      }
-      const choices = el('div', { class: 'results' });
-      const list = res.matches.slice(0, 8);
-      if (!list.length) {
-        row.replaceChildren(el('p', { class: 'notice notice-warn', text: `No candidates found for “${entry.title}”. Add it by hand if you still want to track it.` }));
-        // The report pane around this row is no longer live, and the sibling outcomes below
-        // announce themselves, so this one has to as well or the button just goes quiet.
-        announce(`No candidates found for ${entry.title}.`);
-        return;
-      }
-      choices.append(el('p', { class: 'rail-hint', text: `Pick the right issue for “${entry.title}”:` }));
-      for (const c of list) {
-        choices.append(el('div', { class: 'result' }, [
-          el('div', { class: 'result-main' }, [
-            el('div', { class: 'result-title', text: c.title }),
-            el('div', { class: 'result-meta', text: `${c.seriesName ?? ''}${c.onSale ? ` · ${ymd(c.onSale)}` : ''}` }),
-          ]),
-          el('button', {
-            type: 'button', class: 'btn btn-g',
-            onclick: () => {
-              let added = 0;
-              store.update((s) => {
-                const result = addIssuesToList(s, listId, [c], {});
-                added = result.added;
-                return result.state;
-              });
-              if (!store.lastUpdateOk) {
-                row.replaceChildren(el('p', { class: 'notice notice-error', text: `${c.title} could not be saved.` }));
-                return;
-              }
-              let operationOk = true;
-              if (entry.read) {
-                store.update((s) => markRead(s, c.issueId, true));
-                operationOk = store.lastUpdateOk;
-                if (!operationOk) return;
-              }
-              const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
-              row.replaceChildren(el('p', { class: 'notice notice-ok', text: `Added ${c.title}.` }));
-              announce(withSaveEducation(`Added ${c.title}.`, transition));
-            },
-          }, 'This one'),
-        ]));
-      }
-      row.replaceChildren(choices);
-    } catch (err) {
-      btn.disabled = false;
-      // Re-enabling the button is the only other cue that this failed, and a disabled state
-      // returning to enabled is not announced. Without this the lookup fails in silence.
-      const why = friendly(err);
-      row.append(el('p', { class: 'notice notice-error', text: why }));
-      announce(why);
-    }
-  });
-  row.append(main, btn);
-  return row;
-}
-
-// The metadata snapshot stops in 2025, so for anything newer this form is the only way in and a
-// bare title is all it can carry. The Marvel Fandom wiki holds the release date, the page count,
-// the credits and Marvel's own issue id for comics well past that boundary, and reading them at
-// the moment the reader asks turns a bare row into an entry that looks like every other one.
-//
-// The issue id is not a route into Marvel Unlimited and nothing here should read as though it
-// were. It builds the official marvel.com page for the comic, which is live for issues the
-// snapshot has never heard of: 129648 answers 200 and an invented id answers 404, measured on
-// 2026-08-19. So Info gains a destination it does not have today, because detailUrl returns null
-// for the negative synthetic id a hand entry otherwise carries, and Read reaches that same page
-// through the launcher's existing fallback. Opening the comic itself still needs the digital book
-// id, and the address box below remains the only thing that supplies one.
-//
-// Held here rather than written anywhere: a lookup the reader walks away from leaves nothing
-// behind, and the tracker is unchanged until Add issue is pressed.
-let manualMatch = null;
-
-function clearManualMatch() {
-  manualMatch = null;
-  $('#manual-candidates').replaceChildren();
-}
-
-function factsSummary(facts) {
-  const credits = facts.creators?.length ?? 0;
-  return [
-    facts.onSale ? `released ${ymd(facts.onSale)}` : null,
-    facts.pageCount ? `${facts.pageCount} pages` : null,
-    credits ? `${credits} credit${credits === 1 ? '' : 's'}` : null,
-  ].filter(Boolean).join(', ');
-}
-
-function acceptManualMatch(candidate) {
-  const facts = {
-    onSale: candidate.onSale,
-    pageCount: candidate.pageCount,
-    seriesName: candidate.seriesName,
-    number: candidate.number,
-    creators: candidate.creators.length ? candidate.creators : null,
-  };
-  manualMatch = { title: candidate.title, marvelIssueId: candidate.marvelIssueId, facts };
-  // The box shows exactly what will be stored, and it is still editable, so a wiki title the
-  // reader does not care for is theirs to change before anything is saved.
-  $('#manual-title').value = candidate.title;
-  const summary = factsSummary(facts);
-  notify(
-    '#manual-candidates',
-    summary
-      ? `Filled from “${candidate.title}” on the wiki: ${summary}. Press Add issue to keep it.`
-      : `“${candidate.title}” carried no release date, page count or credits, so only the title was filled.`,
-    summary ? 'ok' : 'warn',
-    '#manual-candidates',
-    { label: 'Discard', onClick: () => { clearManualMatch(); announce('Details from the wiki discarded.'); } },
-  );
-}
-
-async function doManualLookup() {
-  const phrase = $('#manual-title').value.trim();
-  if (!phrase) return notify('#manual-report', 'Type a title first, then look it up.', 'warn');
-
-  const btn = $('#btn-manual-lookup');
-  btn.disabled = true;
-  clearManualMatch();
-  try {
-    const found = await lookupIssue(phrase);
-    if (!found.length) {
-      return notify(
-        '#manual-candidates',
-        `Nothing on the wiki matched “${phrase}”. Its pages are named like “X-Men Vol 7 26”, so the series and the issue number usually find it. You can still add the issue without any details.`,
-        'warn',
-      );
-    }
-    // Never picked automatically. The search is fuzzy: asking it for one issue routinely returns
-    // the series page and the issue before it above the one that was meant, so choosing the top
-    // hit would quietly file the wrong comic's release date against this entry.
-    const choices = el('div', { class: 'results' }, [
-      el('p', { class: 'rail-hint', text: 'Pick the issue you meant. Nothing is added until you press Add issue.' }),
-    ]);
-    for (const candidate of found) {
-      choices.append(el('div', { class: 'result' }, [
-        el('div', { class: 'result-main' }, [
-          el('div', { class: 'result-title', text: candidate.title }),
-          el('div', {
-            class: 'result-meta',
-            text: factsSummary(candidate) || 'No release date, page count or credits on that page',
-          }),
-        ]),
-        el('button', { type: 'button', class: 'btn btn-g', onclick: () => acceptManualMatch(candidate) }, 'Use this'),
-      ]));
-    }
-    $('#manual-candidates').replaceChildren(choices);
-    announce(`${found.length} match${found.length === 1 ? '' : 'es'} from the wiki. Pick the issue you meant.`);
-  } catch (err) {
-    // Naming what was not sent matters as much as naming the failure: the reader agreed to a
-    // request about a title, and a failed request must not leave them wondering what else went.
-    notify(
-      '#manual-candidates',
-      `Could not reach the wiki, so nothing was filled in. ${friendly(err)} Nothing about your lists was sent, and your entry is unchanged.`,
-      'error',
-    );
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-// A reader address is not a detail page, so it is not kept as one. Stored as the issue url it
-// would satisfy the detail check in the reader module and light up the Info control, which names
-// itself "<title> on marvel.com" and would open the very reader the Read button already opens.
-// The row would then offer one destination twice under two names, one of them wrong. With no url
-// and a synthetic negative id there is no detail link at all, which is the honest answer: nothing
-// here knows a marvel.com page for an issue this new.
-export function manualDetailUrl(url, digitalId) {
-  return digitalId ? null : (url || null);
-}
-
-function doManual() {
-  const title = $('#manual-title').value.trim();
-  const url = $('#manual-url').value.trim();
-  if (!title) return notify('#manual-report', 'A title is required.', 'warn');
-  if (url && !isSafeMarvelUrl(url)) {
-    return notify('#manual-report', 'That URL is not a marvel.com address. Leave it blank if you do not have one.', 'error');
-  }
-
-  const wikiId = manualMatch?.marvelIssueId ?? null;
-  // A negative synthetic id for entries with no marvel.com URL; namespaced away from real
-  // Marvel ids so the two can never collide.
-  const issueId = issueIdFromUrl(url) ?? wikiId ?? -Date.now();
-
-  // Facts from a wiki lookup are refused when the tracker already holds the issue they would be
-  // written against, and the entry is refused with them. addIssuesToList merges into state.issues
-  // BEFORE it decides whether the list already had the id, so a collision overwrites the held
-  // issue's title, series, release date, page count and credits whether or not anything is added
-  // to a list. Measured against a curated issue: seven fields replaced while the call reported
-  // added=0 skipped=1, so the reader is told "already in that list, so nothing was added" at the
-  // exact moment that sentence stops being true.
-  //
-  // The test is the id that will actually be WRITTEN, not the id the wiki supplied. Those differ:
-  // a pasted address outranks the wiki id on the line above, and the accepted match's facts are
-  // spread into the payload either way. Guarding the wiki id alone therefore left this route open:
-  // look up one comic, press Use this, then paste an address naming another, and that other issue
-  // is what gets rewritten.
-  //
-  // There is no escape from that sequence once it starts, which is what makes it worth guarding
-  // rather than merely worth noting. What withdraws an accepted match is the title box changing,
-  // and acceptManualMatch sets that box programmatically, which fires no input event. So the
-  // listener is unreachable on this path and no keystroke anywhere in the sequence can withdraw
-  // the match.
-  //
-  // Gated on there being an accepted match rather than on where the id came from, which keeps the
-  // deliberate exemption intact: a pasted address with no lookup behind it names one specific
-  // issue the reader chose to point at, so merging into it is what they asked for. What can never
-  // happen is facts produced by a fuzzy search this code ran landing on something already held.
-  //
-  // Refusing rather than adding under a synthetic id follows what this form already does when the
-  // list holds the issue, and it is the recoverable choice: nothing is lost and the reader is told
-  // something true, where a second row for a comic they already track would sit in the reading
-  // list for good.
-  if (manualMatch && store.state.issues?.[issueId]) {
-    const holders = Object.values(store.state.lists ?? {})
-      .filter((l) => l.itemIds?.includes(issueId))
-      .map((l) => l.name)
-      .filter(Boolean);
-    return notify(
-      '#manual-report',
-      holders.length
-        ? `That is the issue you already have in ${holders.join(', ')}, so nothing was added and nothing was changed.`
-        : 'The tracker already holds that issue, so nothing was added and nothing was changed.',
-      'warn',
-    );
-  }
-
-  // The reader address carries the digital book id, and that id is the only thing that makes the
-  // Read button work. A hand-added issue is by definition newer than the metadata snapshot, so the
-  // lookup /open.html would otherwise perform has nothing to find and the launch degrades to the
-  // marvel.com page. Taking the id from the address the reader is already looking at needs no key,
-  // no account and no request to anyone.
-  const digitalId = digitalIdFromUrl(url);
-  const detail = manualDetailUrl(url, digitalId);
-  const setup = ensureList(DEFAULT_LIST_NAME);
-  const listId = setup.listId;
-  if (!setup.ok) return notify('#manual-report', 'Could not create a list, so nothing was added.', 'error');
-
-  // Report what actually happened rather than assuming success. This previously announced
-  // "Added" even when the entry had been silently discarded.
-  let added = 0;
-  let skipped = 0;
-  const filled = manualMatch ? factsSummary(manualMatch.facts) : '';
-  store.update((s) => {
-    const res = addIssuesToList(s, listId, [{
-      issueId,
-      title,
-      url: detail,
-      digitalId,
-      source: 'manual',
-      hydrated: true,
-      ...(manualMatch?.facts ?? {}),
-    }], {});
-    added = res.added;
-    skipped = res.skipped;
-    return res.state;
-  });
-
-  const operationOk = setup.ok && store.lastUpdateOk;
-  if (!operationOk || added === 0) {
-    return notify(
-      '#manual-report',
-      skipped > 0
-        ? `“${title}” is already in that list, so nothing was added.`
-        : `“${title}” could not be added. Your other lists are unchanged.`,
-      skipped > 0 ? 'warn' : 'error',
-    );
-  }
-
-  $('#manual-title').value = '';
-  $('#manual-url').value = '';
-  clearManualMatch();
-  // Three different outcomes that used to read as two. Whether Read will reach Marvel Unlimited is
-  // decided entirely by which address was pasted, and that is the one thing the reader cannot see
-  // from the row afterwards, so it is said here rather than left to be discovered by clicking. An
-  // entry that took the wiki's issue id now has a Read button where it had none, and saying it
-  // opens marvel.com is the difference between a working link and a disappointment.
-  const transition = recordNonEmptyListSave({ ok: operationOk, added, listId });
-  notify(
-    '#manual-report',
-    withSaveEducation([
-      `Added “${title}”.`,
-      digitalId
-        ? 'Read opens it in Marvel Unlimited.'
-        : wikiId
-          ? 'Read has no Marvel Unlimited link to use, so it opens the issue page on marvel.com instead. Paste the reader address above to change that.'
-          : null,
-      filled ? `Filled from the wiki: ${filled}.` : null,
-      digitalId
-        ? 'Availability still shows as unknown, because that is a separate field the metadata snapshot would have supplied.'
-        : 'Availability shows as unknown because it is not in the metadata snapshot.',
-    ].filter(Boolean).join(' '), transition),
-    'ok',
-  );
-}
-
 // ------------------------------------------------------------------ curated orders
 
 let catalogLoad = null;
@@ -4903,9 +3970,7 @@ function renderAll() {
   progressView.render();
   libraryView.render();
   renderQueue();
-  for (const target of document.querySelectorAll('.add-target')) {
-    target.textContent = addDestination();
-  }
+  addView.renderDestination();
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
@@ -4943,7 +4008,7 @@ export function boot() {
   wireNav();
   wireReading();
   issueView.wire();
-  wireAdd();
+  addView.wire();
   wireData();
   wireSalvage();
   wireShortcuts();
@@ -5078,6 +4143,53 @@ function groupSection(group, renderRow) {
     ...group.rows.map(renderRow),
   ]);
 }
+function ensureAddList(name) {
+  let id = activeListId();
+  if (!id) {
+    const created = store.update((state) => createList(state, { name }));
+    if (!store.lastUpdateOk) return { listId: null, ok: false };
+    id = created.listOrder[created.listOrder.length - 1];
+    store.update((state) => setActive(state, id));
+    if (!store.lastUpdateOk) return { listId: id, ok: false };
+  }
+  return { listId: id, ok: true };
+}
+
+const addView = createAddView({
+  $,
+  announce,
+  el,
+  ensureList: ensureAddList,
+  friendly,
+  getActiveListId: activeListId,
+  getState: () => store.state,
+  hydrate: (listId) => hydrator.start(listId),
+  issueFocusAnchor,
+  lookupManual: lookupIssue,
+  notify,
+  onNonEmptyListSave: recordNonEmptyListSave,
+  reportBundledLoadFailure,
+  saveLongAddPage: (items, context) => persistLongAddPage(
+    store,
+    items,
+    context,
+    recordNonEmptyListSave,
+  ),
+  search: {
+    creatorIssues: (id, options) => api.creatorIssues(id, options),
+    creators: (query, options) => api.searchCreators(query, options),
+    issues: (query, options) => api.searchIssues(query, options),
+    series: (query, options) => api.searchSeries(query, options),
+    seriesIssues: (id, options) => api.seriesIssues(id, options),
+  },
+  updateState: (updater) => {
+    const state = store.update(updater);
+    return { ok: store.lastUpdateOk, state };
+  },
+  warmNameIndex: (kind) => api.warmNameIndex(kind),
+  withSaveEducation,
+  ymd,
+});
 
 const issueView = createIssueView({
   coverUrl,

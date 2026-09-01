@@ -9,14 +9,15 @@ import {
 } from '../src/js/lib/route.js';
 import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
 import {
-  LongAddRunner, longAddStatusLine, mergeLongAddPage, persistLongAddPage,
-} from '../src/js/main.js';
+  createAddView, LongAddRunner, longAddStatusLine, mergeLongAddPage, persistLongAddPage,
+} from '../src/js/views/add.js';
 import { KEY, Store } from '../src/js/storage.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(ROOT, p), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
+const add = read('src/js/views/add.js');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
 
 function prose(text) {
@@ -287,11 +288,11 @@ test('long-add status keeps cancellation, failure, and completion distinct', () 
 });
 
 test('series and creator long adds use independent runners and active Cancel actions', () => {
-  assert.match(main, /const seriesAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'series'[\s\S]*?input: '#series-q'/);
-  assert.match(main, /const creatorAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'creator'[\s\S]*?input: '#creator-q'/);
-  assert.match(main, /running \? \{ label: `Cancel \$\{config\.kind\} import`, onClick: \(\) => runner\.cancel\(\) \} : null/);
-  assert.match(main, /else if \(!running && focusedCancel\) \{\s*\$\(config\.input\)\?\.focus\(\{ preventScroll: true \}\);/);
-  assert.match(main, /if \(active\?\.\(\)\) \{[\s\S]*?Cancel the current \$\{kind === 'series' \? 'series' : 'creator'\} import before searching again\./);
+  assert.match(add, /const seriesAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'series'[\s\S]*?input: '#series-q'/);
+  assert.match(add, /const creatorAddRunner = createLongAddRunner\(\{[\s\S]*?kind: 'creator'[\s\S]*?input: '#creator-q'/);
+  assert.match(add, /running \? \{ label: `Cancel \$\{config\.kind\} import`, onClick: \(\) => runner\.cancel\(\) \} : null/);
+  assert.match(add, /else if \(!running && focusedCancel\) \{\s*\$\(config\.input\)\?\.focus\(\{ preventScroll: true \}\);/);
+  assert.match(add, /if \(active\?\.\(\)\) \{[\s\S]*?Cancel the current \$\{kind === 'series' \? 'series' : 'creator'\} import before searching again\./);
 });
 
 test('the Add hub groups five routes with five dedicated pages', () => {
@@ -310,8 +311,8 @@ test('the Add hub groups five routes with five dedicated pages', () => {
 test('the destination rename does not alter Add action labels', () => {
   assert.match(catalogPresentation, /const CATALOG_ADD = '\+ Add to library'/);
   assert.match(allPages, />Add issue<\/button>/);
-  assert.match(main, /\}, 'Add all issues'\)/);
-  assert.match(main, /\}, 'Add'\);/);
+  assert.match(add, /\}, 'Add all issues'\)/);
+  assert.match(add, /\}, 'Add'\);/);
 });
 
 test('the Add address opens the hub while old child addresses stay valid', () => {
@@ -327,16 +328,16 @@ test('the Add address opens the hub while old child addresses stay valid', () =>
 test('series and creator indexes warm when their pages open by any route', () => {
   assert.match(
     main,
-    /view = next;\s*warmNameIndexForView\(next\);/,
+    /view = next;\s*addView\.enter\(next\);/,
     'view entry no longer starts the relevant name index',
   );
   assert.match(
-    main,
-    /function warmNameIndexForView\(name\)[\s\S]*name === 'add-series' \? 'series' : name === 'add-creator' \? 'creators'/,
+    add,
+    /function enter\(name\)[\s\S]*name === 'add-series' \? 'series' : name === 'add-creator' \? 'creators'/,
     'the two name-search pages no longer map to their indexes',
   );
   assert.doesNotMatch(
-    main,
+    add,
     /addEventListener\('(pointerenter|focusin)', warm/,
     'index warming still depends on pointer or focus entry',
   );
@@ -391,9 +392,9 @@ test('each Add destination sits inside its working card instead of the page head
       `${view} has no compact destination inside its working card`,
     );
   }
-  assert.match(main, /Adding to: \$\{target\.name\}/, 'the compact destination no longer names the current list');
+  assert.match(add, /Adding to: \$\{target\.name\}/, 'the compact destination no longer names the current list');
   assert.doesNotMatch(
-    main,
+    add,
     /already in your library\. \$\{destination\}/,
     'search summaries still repeat the destination below the card badge',
   );
@@ -467,8 +468,46 @@ test('every repeated Add view row action keeps the paired grey secondary classes
     ],
     [
       'doManualLookup Use this button',
-      /async function doManualLookup[\s\S]*?el\('button', \{ type: 'button', class: 'btn btn-g', onclick: \(\) => acceptManualMatch\(candidate\) \}, 'Use this'\)/,
+      /async function doManualLookup[\s\S]*?el\('button', \{[\s\S]*?class: 'btn btn-g',[\s\S]*?onclick: \(\) => acceptManualMatch\(candidate\),[\s\S]*?\}, 'Use this'\)/,
     ],
   ];
-  for (const [site, rx] of sites) assert.match(main, rx, `${site} no longer uses the paired grey button classes`);
+  for (const [site, rx] of sites) assert.match(add, rx, `${site} no longer uses the paired grey button classes`);
+});
+
+test('composition constructs one Add boundary and delegates its lifecycle', () => {
+  assert.equal((main.match(/createAddView\(\{/g) ?? []).length, 1);
+  for (const method of ['enter', 'renderDestination', 'wire']) {
+    assert.equal(
+      (main.match(new RegExp(`addView\\.${method}\\(`, 'g')) ?? []).length,
+      1,
+      `main must delegate Add ${method} exactly once`,
+    );
+  }
+  assert.doesNotMatch(main, /function (renderResults|doImport|unresolvedRow|doManual)\(/);
+  assert.doesNotMatch(
+    add,
+    /from ['"](?:\.\.\/(?:api|cache|hydrate|main|storage|synopsis)\.js|\.\.\/lib\/limiter\.js|\.\/)/,
+    'Add must receive controller services and sibling views through composition',
+  );
+  for (const owner of ['Store', 'MarvelApi', 'ResponseCache', 'RateLimiter', 'Hydrator', 'SynopsisRunner']) {
+    assert.match(main, new RegExp(`new ${owner}\\(`), `${owner} construction left main`);
+    assert.doesNotMatch(add, new RegExp(`new ${owner}\\(`), `${owner} construction moved into Add`);
+  }
+
+  const warmed = [];
+  const view = createAddView({
+    search: {
+      creatorIssues() {},
+      seriesIssues() {},
+    },
+    warmNameIndex: (kind) => warmed.push(kind),
+  });
+  assert.deepEqual(
+    Object.keys(view).sort(),
+    ['enter', 'renderDestination', 'wire'],
+  );
+  view.enter('add-series');
+  view.enter('add-creator');
+  view.enter('add-import');
+  assert.deepEqual(warmed, ['series', 'creators']);
 });

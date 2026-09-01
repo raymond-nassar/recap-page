@@ -10,6 +10,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
+const add = read('src/js/views/add.js');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
 const catalogView = read('src/js/views/catalog.js');
 const library = read('src/js/lib/library.js');
@@ -31,6 +32,7 @@ function filesUnder(relativeDir, extension) {
 const productCopy = [
   html.replace(/<!--[\s\S]*?-->/g, ''),
   main.replace(/^\s*\/\/.*$/gm, ''),
+  add.replace(/^\s*\/\/.*$/gm, ''),
   read('src/js/lib/catalog.js').replace(/^\s*\/\/.*$/gm, ''),
   library.replace(/^\s*\/\/.*$/gm, ''),
   ...filesUnder('src/data', '.json').map((path) => (
@@ -102,8 +104,8 @@ test('product copy uses Reading List everywhere and capitalizes both words', () 
     1,
     'the default list name must have one source rather than repeated literals',
   );
-  assert.doesNotMatch(main, /['"]My Reading List['"]/);
-  assert.match(main, /ensureList\(DEFAULT_LIST_NAME\)/);
+  assert.doesNotMatch(`${main}\n${add}`, /['"]My Reading List['"]/);
+  assert.match(add, /ensureList\(DEFAULT_LIST_NAME\)/);
 });
 
 test('Search issues groups the destinations the app can actually open', () => {

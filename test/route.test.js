@@ -567,6 +567,7 @@ test('applyRoute discards any open traversal, and does it before showView', () =
 // the stored id made the same throw happen on the next boot, during module evaluation.
 test('a list id naming a prototype member cannot be adopted from an address', () => {
   const main = read('src/js/main.js');
+  const add = read('src/js/views/add.js');
   const progress = read('src/js/views/progress.js');
   has(main, /Object\.hasOwn\(store\.state\.lists, route\.listId\)/, 'applyRoute asking whether the list is really there');
   has(main, /Object\.hasOwn\(store\.state\.lists, activeListId\(\) \?\? ''\)/, 'showView asking the same question');
@@ -579,9 +580,10 @@ test('a list id naming a prototype member cannot be adopted from an address', ()
   // Progress now receives the stored id and state from the controller, so its equivalent lookup is
   // counted in the extracted view rather than disappearing from this contract.
   const bare = [...main.matchAll(/store\.state\.lists\[activeListId\(\)\]/g)];
+  const addBare = [...add.matchAll(/getState\(\)\.lists\[getActiveListId\(\)\]/g)];
   const progressBare = [...progress.matchAll(/state\.lists\[activeId\]/g)];
   assert.equal(
-    bare.length + progressBare.length,
+    bare.length + addBare.length + progressBare.length,
     6,
     'a bare list lookup was added or removed without deciding about BL-068',
   );
