@@ -1306,6 +1306,45 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'synopsis-consent-decline-off',
+    breaks: 'synopsis-consent',
+    why: 'declining the synopsis disclaimer starts the run the reader refused',
+    rewriteMain: (source) => source.replace(
+      / {2}const yes = await askConfirm\(synopsisDisclaimer\(settings\.apiBase\)\);\r?\n {2}if \(!yes\) return;\r?\n {2}synopsisRunner\.start\(list\.id\);/,
+      `  const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
+  if (false && !yes) return;
+  synopsisRunner.start(list.id);`,
+    ),
+  },
+  {
+    id: 'synopsis-no-store-off',
+    breaks: 'synopsis-durability',
+    why: 'synopsis responses are admitted to the browser cache outside the app storage boundary',
+    rewriteApi: (source) => source.replace(
+      /( {8}headers: \{ accept: 'application\/json' \},\r?\n(?:.*\r?\n)*? {8})cache: 'no-store',(\r?\n {8}signal,)/,
+      "$1cache: 'default',$2",
+    ),
+  },
+  {
+    id: 'synopsis-service-rebind-off',
+    breaks: 'synopsis-service-change',
+    why: 'the synopsis runner keeps asking the old service after the reader saves a new address',
+    rewriteMain: (source) => source.replace(
+      / {4}if \(synopsisRunner\.active\) synopsisRunner\.cancel\(\);\r?\n {4}synopsisRunner\.api = api;\r?\n {4}sessionSynopsis\.clear\(\);/,
+      `    if (synopsisRunner.active) synopsisRunner.cancel();
+    sessionSynopsis.clear();`,
+    ),
+  },
+  {
+    id: 'synopsis-hero-repaint-off',
+    breaks: 'synopsis-journey',
+    why: 'arriving synopsis prose never repaints the current issue on screen',
+    rewriteMain: (source) => source.replace(
+      / {2}renderHero\(\);\r?\n {2}if \(view === 'issue' && issueFocusResult\) \{/,
+      "  if (view === 'issue' && issueFocusResult) {",
+    ),
+  },
+  {
     id: 'undo-no-dismiss',
     breaks: 'undo-delete-dismiss',
     why: 'the notice carries the undo alone, exactly as it shipped, so the message the reader is left with has no way out of it',
@@ -4819,6 +4858,10 @@ const SCENARIOS = [
           active: null,
         }));
       });
+      const legacyState = await legacy.evaluate(() => JSON.parse(localStorage.getItem('mrt.state.v2') || '{}'));
+      t.check('saved-state prose from the older build exists before current code loads',
+        legacyState.issues?.['6']?.description === 'Preloaded legacy synopsis.',
+        JSON.stringify(legacyState.issues?.['6']));
 
       await open(page, '/#/settings');
       await page.waitForFunction(
@@ -5221,6 +5264,319 @@ const SCENARIOS = [
       const asks = second.length === 1
         && !new URL(second[0].url, page.__origin).searchParams.has('d');
       t.check('and asks the launcher to resolve it', asks, JSON.stringify(second.map((o) => o.url)));
+    },
+  },
+  {
+    id: 'synopsis-consent',
+    title: 'synopsis fetching waits for consent that names what will happen',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'answer'; });
+      await importOrder(page);
+
+      await click(page, '#btn-synopsis');
+      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
+      const before = await page.evaluate(() => ({
+        body: document.querySelector('#ask-body')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        description: document.querySelector('#hero-desc')?.textContent ?? '',
+        open: document.querySelector('#ask')?.open === true,
+        requests: window.__mrtIssueRequestLog ?? [],
+      }));
+      t.check('the synopsis disclaimer opens before any issue request starts',
+        before.open && before.requests.length === 0, JSON.stringify(before));
+      t.check('the synopsis disclaimer names the service and temporary retention promise',
+        before.body.includes(new URL(DEFAULT_BASE).host)
+          && before.body.includes('Nothing fetched is saved')
+          && before.body.includes('browser tab only')
+          && before.body.includes('not written into your lists')
+          && before.body.includes('not included in a backup')
+          && before.body.includes('gone when you reload'),
+        before.body);
+      t.check('nothing is fetched while synopsis consent remains unanswered',
+        before.requests.length === 0 && !before.description.includes('Fixture synopsis from'),
+        JSON.stringify(before));
+
+      await click(page, '#ask-cancel');
+      await page.waitForFunction(() => document.querySelector('#ask')?.open !== true, { timeout: 15000 });
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(
+        () => requestAnimationFrame(resolve),
+      )));
+      const declined = await page.evaluate(() => ({
+        fetchHidden: document.querySelector('#btn-synopsis')?.hidden ?? null,
+        requests: window.__mrtIssueRequestLog ?? [],
+        stopHidden: document.querySelector('#btn-cancel-synopsis')?.hidden ?? null,
+      }));
+      t.check('declining synopsis consent starts no run',
+        declined.requests.length === 0 && declined.fetchHidden === false && declined.stopHidden === true,
+        JSON.stringify(declined));
+    },
+  },
+  {
+    id: 'synopsis-durability',
+    title: 'fetched synopsis prose never enters durable browser storage',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'answer'; });
+      await importOrder(page);
+      await page.evaluate(async () => {
+        const { ResponseCache } = await import('/js/cache.js');
+        const cache = new ResponseCache({
+          baseUrl: 'https://synopsis-sentinel.example.test/v1',
+          schemaVersion: 2,
+        });
+        await cache.set('/sentinel', { id: 'synopsis-storage-sentinel' });
+      });
+
+      await click(page, '#btn-synopsis');
+      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
+      await click(page, '#ask-ok');
+      await page.waitForFunction(
+        () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
+        { timeout: 20000 },
+      );
+
+      const expectedIds = ORDER.items.map((issue) => issue.issueId);
+      const observed = await page.evaluate(() => ({
+        description: document.querySelector('#hero-desc')?.textContent ?? '',
+        requests: window.__mrtIssueRequestLog ?? [],
+      }));
+      if (observed.requests.length !== expectedIds.length
+        || observed.requests.some((entry, index) => entry.issueId !== expectedIds[index])
+        || !observed.description.includes('Fixture synopsis from')) {
+        throw new Error(`durability precondition failed: ${JSON.stringify(observed)}`);
+      }
+      t.check('every synopsis issue request disables the browser cache',
+        observed.requests.every((entry) => entry.cache === 'no-store'),
+        JSON.stringify(observed.requests));
+
+      const durable = await page.evaluate(async () => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2') || '{}');
+        const local = Object.keys(localStorage).map((key) => ({
+          key,
+          value: localStorage.getItem(key) ?? '',
+        }));
+        const databases = [];
+        for (const info of await indexedDB.databases()) {
+          if (!info.name) continue;
+          const db = await new Promise((resolve, reject) => {
+            const request = indexedDB.open(info.name);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+          const storeNames = [...db.objectStoreNames];
+          const stores = [];
+          if (storeNames.length) {
+            const tx = db.transaction(storeNames, 'readonly');
+            const records = await Promise.all(storeNames.map((name) => new Promise((resolve, reject) => {
+              const request = tx.objectStore(name).getAll();
+              request.onsuccess = () => resolve(request.result);
+              request.onerror = () => reject(request.error);
+            })));
+            storeNames.forEach((name, index) => stores.push({ name, records: records[index] }));
+          }
+          databases.push({ name: info.name, stores });
+          db.close();
+        }
+        return { databases, local, state };
+      });
+      const savedIssues = Object.values(durable.state.issues ?? {});
+      t.check('no saved issue holds fetched synopsis prose',
+        savedIssues.length === expectedIds.length
+          && savedIssues.every((issue) => !Object.prototype.hasOwnProperty.call(issue, 'description')),
+        JSON.stringify(savedIssues));
+      t.check('no localStorage key holds fetched synopsis prose',
+        durable.local.length > 0
+          && durable.local.every((entry) => !entry.value.includes('Fixture synopsis from')),
+        JSON.stringify(durable.local));
+
+      const stores = durable.databases.flatMap((database) => database.stores.map((store) => ({
+        database: database.name,
+        ...store,
+      })));
+      const records = stores.flatMap((store) => store.records);
+      const storageDetail = {
+        databases: durable.databases.length,
+        stores: stores.length,
+        records: records.length,
+        sentinel: records.some((record) => JSON.stringify(record).includes('synopsis-storage-sentinel')),
+      };
+      t.check('no IndexedDB store holds fetched synopsis prose',
+        storageDetail.databases > 0
+          && storageDetail.stores > 0
+          && storageDetail.records > 0
+          && storageDetail.sentinel
+          && records.every((record) => !JSON.stringify(record).includes('Fixture synopsis from')),
+        JSON.stringify(storageDetail));
+
+      const activeList = durable.state.active;
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      const afterReload = [];
+      for (const issue of ORDER.items) {
+        await page.evaluate((issueId, listId) => {
+          location.hash = `#/issue/${issueId}?list=${encodeURIComponent(listId)}`;
+        }, issue.issueId, activeList);
+        await page.waitForFunction(
+          (title) => document.querySelector('#issue-focus-h')?.textContent.trim() === title,
+          { timeout: 15000 },
+          issue.title,
+        );
+        afterReload.push(await page.$eval('#issue-focus-desc', (node) => node.textContent.trim()));
+      }
+      t.check('reloading loses every fetched synopsis',
+        afterReload.length === expectedIds.length
+          && afterReload.every((description) => !description.includes('Fixture synopsis from')),
+        JSON.stringify(afterReload));
+    },
+  },
+  {
+    id: 'synopsis-service-change',
+    title: 'a service change drops old prose before the next consent',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'answer'; });
+      await importOrder(page);
+      await click(page, '#btn-synopsis');
+      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
+      await click(page, '#ask-ok');
+      await page.waitForFunction(
+        () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
+        { timeout: 20000 },
+      );
+      const before = await page.evaluate(() => ({
+        description: document.querySelector('#hero-desc')?.textContent ?? '',
+        hash: location.hash,
+        requests: window.__mrtIssueRequestLog ?? [],
+      }));
+      if (!before.description.includes(`Fixture synopsis from ${new URL(DEFAULT_BASE).host}`)) {
+        throw new Error(`service-change precondition failed: ${JSON.stringify(before)}`);
+      }
+
+      const nextBase = 'https://synopsis-next.example.test/v1';
+      await click(page, '.ri[data-view="data"]');
+      await page.waitForSelector('#view-data:not([hidden])', { timeout: 15000 });
+      await page.evaluate((value) => {
+        document.querySelector('#api-base').value = value;
+        document.querySelector('#form-settings').requestSubmit();
+      }, nextBase);
+      await page.waitForFunction(
+        () => document.querySelector('#api-report')?.textContent.includes('API URL saved'),
+        { timeout: 15000 },
+      );
+      const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('mrt.settings') || '{}'));
+      t.check('the newly typed synopsis service address is saved',
+        saved.apiBase === nextBase, JSON.stringify(saved));
+
+      await page.evaluate((hash) => { location.hash = hash; }, before.hash);
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      const cleared = await page.$eval('#hero-desc', (node) => node.textContent.trim());
+      t.check('changing synopsis service drops prose from the previous service',
+        !cleared.includes('Fixture synopsis from'), cleared);
+
+      const requestsBefore = before.requests.length;
+      await click(page, '#btn-synopsis');
+      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
+      const disclaimer = await page.$eval('#ask-body', (node) => node.textContent.replace(/\s+/g, ' ').trim());
+      t.check('the next synopsis disclaimer names the newly typed service address',
+        disclaimer.includes('synopsis-next.example.test'), disclaimer);
+      await click(page, '#ask-ok');
+      await page.waitForFunction(
+        (count) => (window.__mrtIssueRequestLog ?? []).length > count,
+        { timeout: 15000 },
+        requestsBefore,
+      );
+      const nextRequest = await page.evaluate((count) => (window.__mrtIssueRequestLog ?? [])[count] ?? null,
+        requestsBefore);
+      t.check('the next synopsis run asks the new service rather than the previous one',
+        nextRequest?.url.startsWith(`${nextBase}/issues/`), JSON.stringify(nextRequest));
+    },
+  },
+  {
+    id: 'synopsis-journey',
+    title: 'the ordinary synopsis journey reports, displays and stops its work',
+    async run(page, t) {
+      await page.evaluateOnNewDocument(() => { window.__mrtSynopsis = 'journey'; });
+      await importLongOrder(page);
+
+      const imported = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2') || '{}');
+        return {
+          active: state.active,
+          count: state.lists?.[state.active]?.itemIds?.length ?? 0,
+          title: document.querySelector('#hero-title')?.textContent.trim() ?? '',
+        };
+      });
+      t.check('the long synopsis reading order imports before the run',
+        imported.count === LONG_ORDER.items.length && imported.title === LONG_ORDER.items[0].title,
+        JSON.stringify(imported));
+
+      const affordances = await page.evaluate(() => ({
+        fetch: {
+          hidden: document.querySelector('#btn-synopsis')?.hidden ?? null,
+          text: document.querySelector('#btn-synopsis')?.textContent.trim() ?? '',
+        },
+        stop: {
+          hidden: document.querySelector('#btn-cancel-synopsis')?.hidden ?? null,
+          text: document.querySelector('#btn-cancel-synopsis')?.textContent.trim() ?? '',
+        },
+      }));
+      t.check('the reading view offers Fetch synopses',
+        affordances.fetch.hidden === false && affordances.fetch.text === 'Fetch synopses',
+        JSON.stringify(affordances.fetch));
+      t.check('the reading view provides the Stop synopses affordance',
+        affordances.stop.hidden === true && affordances.stop.text === 'Stop synopses',
+        JSON.stringify(affordances.stop));
+
+      await click(page, '#btn-synopsis');
+      await page.waitForFunction(() => document.querySelector('#ask')?.open === true, { timeout: 15000 });
+      await click(page, '#ask-ok');
+      await page.waitForFunction(
+        () => (window.__mrtIssueRequestLog ?? []).length === 9,
+        { timeout: 20000 },
+      );
+      const running = await page.evaluate(() => ({
+        description: document.querySelector('#hero-desc')?.textContent.trim() ?? '',
+        fetchHidden: document.querySelector('#btn-synopsis')?.hidden ?? null,
+        requests: window.__mrtIssueRequestLog ?? [],
+        status: document.querySelector('#synopsis-status')?.textContent.trim() ?? '',
+        stopHidden: document.querySelector('#btn-cancel-synopsis')?.hidden ?? null,
+      }));
+      t.check('an active synopsis run reports its progress',
+        running.status.startsWith(`Fetching synopses 8 of ${LONG_ORDER.items.length}`), running.status);
+      t.check('Stop synopses replaces Fetch synopses while the run is active',
+        running.fetchHidden === true && running.stopHidden === false, JSON.stringify(running));
+
+      const expectedIds = LONG_ORDER.items.slice(0, 9).map((issue) => issue.issueId);
+      const requestedIds = running.requests.map((request) => request.issueId);
+      t.check('the current issue is inside the first nine synopsis requests',
+        requestedIds.length === 9
+          && requestedIds.join(',') === expectedIds.join(',')
+          && requestedIds.includes(LONG_ORDER.items[0].issueId),
+        JSON.stringify(requestedIds));
+      t.check('an answered synopsis is displayed on the current issue',
+        running.description === `Fixture synopsis from ${new URL(DEFAULT_BASE).host} for ${LONG_ORDER.items[0].issueId}.`,
+        running.description);
+      t.check('an issue already asked about no longer says details are unfetched',
+        running.description !== 'Details have not been fetched yet.',
+        running.description);
+
+      await click(page, '#btn-cancel-synopsis');
+      await page.waitForFunction(
+        () => window.__mrtSynopsisHeldAborted === true
+          && /^Stopped after /.test(document.querySelector('#synopsis-status')?.textContent ?? ''),
+        { timeout: 15000 },
+      );
+      await page.waitForFunction(
+        () => document.querySelector('#announcer')?.textContent
+          .includes('What arrived is on screen until you reload.'),
+        { timeout: 15000 },
+      );
+      const stopped = await page.evaluate(() => ({
+        announcement: document.querySelector('#announcer')?.textContent.replace(/\s+/g, ' ').trim() ?? '',
+        requests: window.__mrtIssueRequestLog ?? [],
+      }));
+      t.check('stopping the synopsis run prevents any further issue request',
+        stopped.requests.length === 9, JSON.stringify(stopped.requests));
+      t.check('the cancellation announcement says arrived prose remains for this tab',
+        stopped.announcement.includes('What arrived is on screen until you reload.'),
+        stopped.announcement);
     },
   },
   {
@@ -7254,6 +7610,11 @@ async function preparePage(page, origin, mutation) {
         if (url === `${defaultApiBase}/health`) {
           return Promise.resolve(json({ issue_count: 1 }));
         }
+        if (window.__mrtSynopsis
+          && requestUrl.hostname === 'synopsis-next.example.test'
+          && requestUrl.pathname === '/v1/health') {
+          return Promise.resolve(json({ issue_count: 1 }));
+        }
         if (url === updateApiUrl) {
           window.__mrtUpdateRequests = (window.__mrtUpdateRequests ?? 0) + 1;
           const mode = window.__mrtUpdate ?? sessionStorage.getItem('mrt.update.stub') ?? 'current';
@@ -7376,20 +7737,46 @@ async function preparePage(page, origin, mutation) {
           }));
         }
 
-        // Only the synopsis scenario sets the flag, and it sets it before the first navigation.
-        // Left unset this line is reached by no request any other scenario makes, so what they
-        // see is the stub they saw before it was added.
+        // Only synopsis scenarios set the flag, and they set it before the first navigation. Left
+        // unset this line is reached by no request any other scenario makes, so what they see is
+        // the stub they saw before this was added.
         const issuePath = /\/issues\/(-?\d+)(?:\?|$)/.exec(url);
-        if (issuePath) window.__mrtIssueRequests = (window.__mrtIssueRequests ?? 0) + 1;
+        if (issuePath) {
+          window.__mrtIssueRequests = (window.__mrtIssueRequests ?? 0) + 1;
+          window.__mrtIssueRequestLog = [
+            ...(window.__mrtIssueRequestLog ?? []),
+            {
+              cache: init?.cache ?? null,
+              issueId: Number(issuePath[1]),
+              url,
+            },
+          ];
+        }
         const issue = window.__mrtSynopsis ? issuePath : null;
         if (issue) {
+          const issueId = Number(issue[1]);
+          const answer = () => json({
+            id: issueId,
+            description: `Fixture synopsis from ${requestUrl.host} for ${issueId}.`,
+          });
+          if (window.__mrtSynopsis === 'journey') {
+            if (window.__mrtIssueRequests < 9) return Promise.resolve(answer());
+            return new Promise((_resolve, reject) => {
+              const abort = () => {
+                window.__mrtSynopsisHeldAborted = true;
+                reject(new DOMException('Aborted', 'AbortError'));
+              };
+              if (init?.signal?.aborted) abort();
+              else init?.signal?.addEventListener('abort', abort, { once: true });
+            });
+          }
           const answers = window.__mrtSynopsis === 'answer';
           // Delayed on purpose, and this is the whole reason the scenario can make its claim. An
           // immediate refusal empties a three issue queue before a click on stop can land, and
           // what is under test is the line a run shows while it is still running.
           return new Promise((resolve, reject) => {
             setTimeout(() => {
-              if (answers) resolve(json({ id: Number(issue[1]), description: `Fixture synopsis for ${issue[1]}.` }));
+              if (answers) resolve(answer());
               // A network refusal rather than a 404: a 404 is the service answering, and the app
               // counts that as an answer on purpose. Only a request that got nothing at all is
               // what the running line is meant to hold back from its count.

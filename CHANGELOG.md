@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Made synopsis browser evidence repeatable
+
+In plain English: nothing readers see or have saved changes, and the app does not fetch any extra
+synopses. Maintainers can now repeat the browser checks that prove synopsis fetching waits for
+consent and keeps the resulting prose only in the open tab.
+
+For maintainers, 24 named assertions across four new browser scenarios and one existing scenario
+cover consent, temporary retention, service changes, legacy cleanup, and the ordinary reading
+journey. Five focused mutations prove those groups can fail without adding the browser suite to CI.
+
 ## 2.0.1
 ### Resolved Daredevil Reading List metadata gaps
 
