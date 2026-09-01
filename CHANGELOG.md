@@ -12,6 +12,15 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Kept recovery downloads specific to one incident
+
+In plain English: If saved data becomes unreadable more than once without reloading the app, a copy
+downloaded during the first incident no longer counts as protection for the later one. The app asks
+for a new download before it can replace the later unreadable data.
+
+For maintainers, the backup, settings, and recovery screens now have directly testable presentation
+boundaries while saved-data policy and service replacement stay with the central coordinator.
+
 ### Sent security headers on every application response
 
 In plain English: Nothing in the app or its saved data changes. The local server now keeps the same
