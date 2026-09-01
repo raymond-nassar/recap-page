@@ -67,8 +67,8 @@ test('one shared breadcrumb renderer covers routed views but never Home or dialo
   assert.match(main, /el\('nav', \{ class: 'breadcrumb', 'aria-label': 'Breadcrumb' \}\)/);
   assert.match(main, /if \(existing\?\.dataset\.trail === trailKey\) return;/);
   assert.match(main, /if \(!existing\) head\.before\(breadcrumb\);/);
-  assert.match(main, /if \(next === 'issue'\) void renderIssueFocus\(\);\s*renderBreadcrumbs\(\);/);
-  assert.match(main, /paintIssueFocus[\s\S]*?renderBreadcrumbs\(\);/);
+  assert.match(main, /if \(next === 'issue'\) void issueView\.render\(issueRoute\);\s*renderBreadcrumbs\(\);/);
+  assert.match(main, /const issueView = createIssueView\(\{[\s\S]*?\n\s*renderBreadcrumbs,[\s\S]*?\n\}\);/);
   assert.doesNotMatch(html, /<dialog[^>]*>[\s\S]*?class="breadcrumb"/);
   assert.doesNotMatch(main, /#preview[\s\S]{0,120}renderBreadcrumbs|#ask[\s\S]{0,120}renderBreadcrumbs/);
   assert.match(styles, /\.breadcrumb ol\s*\{[^}]*flex-wrap:\s*wrap;/s);

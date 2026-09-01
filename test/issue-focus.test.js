@@ -275,17 +275,16 @@ test('leaving issue focus cancels pending detail and synopsis work', () => {
   const main = read('src/js/main.js');
   const show = main.slice(main.indexOf('function showView'), main.indexOf('function railParentView'));
   assert.match(show, /next !== 'issue' && view === 'issue'/);
-  assert.match(show, /issueFocusLoad\?\.abort\(\)/);
-  assert.match(show, /issueFocusResult = null/);
+  assert.match(show, /issueView\.cancel\(\)/);
   assert.match(show, /synopsisRunner\.cancel\(\)/);
 });
 
 test('issue focus repaints dynamic breadcrumbs only after context validation', () => {
   const main = read('src/js/main.js');
-  const render = main.slice(main.indexOf('async function renderIssueFocus'), main.indexOf('function wireIssueFocus'));
-  assert.match(render, /result\.contextStatus === 'valid' && result\.context\?\.kind === 'order'/);
-  assert.match(render, /catalogListShelf\(catalog\?\.lists, result\.context\.id\)/);
-  assert.match(render, /paintIssueFocus\(\{ \.\.\.result, breadcrumbShelf \}\)/);
-  const paint = main.slice(main.indexOf('function paintIssueFocus'), main.indexOf('async function renderIssueFocus'));
-  assert.ok((paint.match(/renderBreadcrumbs\(\)/g) ?? []).length >= 2);
+  const construction = main.slice(main.indexOf('const issueView = createIssueView'), main.indexOf('const progressView'));
+  assert.match(construction, /result\.contextStatus === 'valid' && result\.context\?\.kind === 'order'/);
+  assert.match(construction, /catalogListShelf\(catalog\?\.lists, result\.context\.id\)/);
+  assert.match(construction, /renderBreadcrumbs,/);
+  const issueView = read('src/js/views/issue.js');
+  assert.ok((issueView.match(/renderBreadcrumbs\(\)/g) ?? []).length >= 2);
 });
