@@ -93,7 +93,8 @@ test('shared saved lists never depend on Library and main composes both consumer
   assert.doesNotMatch(shared, /views\/library|lib\/library/);
   assert.match(main, /const savedLists = createSavedListsPresenter\(\{/);
   assert.match(main, /openList: \(id\) => \{[\s\S]*setActive\(state, id\)[\s\S]*showView\('read', \{ push: true \}\)/);
-  assert.match(main, /function renderYours\([\s\S]*savedLists\.render\(/);
+  assert.match(main, /renderSavedLists: \(section, results\) => savedLists\.render\(section, results\)/);
+  assert.match(main, /const homeView = createHomeView\(\{/);
   assert.match(main, /function renderLibraryHub\([\s\S]*savedLists\.render\(/);
   assert.doesNotMatch(main, /savedLists\?\.(?:render)|if \(savedLists\)/);
 });

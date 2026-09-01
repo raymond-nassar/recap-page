@@ -61,6 +61,7 @@ import { createLibraryView } from './views/library.js';
 import { createProgressView } from './views/progress.js';
 import { createSavedListsPresenter } from './views/shared/saved-lists.js';
 import { createIssueView } from './views/issue.js';
+import { createHomeView } from './views/home.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -80,9 +81,6 @@ const RAIL_BREAKPOINT = 1000;
 // that state, so this is never read aloud or seen; it exists so the heading is never empty.
 // It has to match the text in index.html, which is what the document starts out holding.
 const HERO_NO_ISSUE = 'Nothing up next';
-// The same for the landing page's continue card, whose heading also names its section. Both
-// have to match the text index.html starts out holding.
-const CONTINUE_NO_LIST = 'Continue reading';
 const UPDATE_NOTICE_KEY = 'update-available';
 const UPDATE_CHECK_BUTTON_TEXT = 'Check for updates';
 
@@ -1067,7 +1065,7 @@ function setCovers(on) {
   // renderHome repaints the landing mosaics. renderLibrary is added because a library row now holds
   // a cover too, and paintCoverUrl set no src while covers were off, so those rows need repainting.
   renderReading();
-  renderHome();
+  homeView.render();
   libraryView.render();
   announce(settings.covers ? 'Cover art on.' : 'Cover art off. Covers are shown as text tiles.');
 }
@@ -1658,9 +1656,9 @@ function showView(next, { focus = true, push = false } = {}) {
   const shelf = CATALOG_SHELVES.find((s) => s.key === next);
   if (shelf) renderCatalogShelf(shelf.key);
   if (generatedCategoryByRoute.has(next)) renderPublishingCategory(next);
-  if (next === 'home') renderHome();
+  if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
-  if (next === 'browse') renderHomeCategories();
+  if (next === 'browse') void homeView.renderGateways();
   if (next === 'issue') void issueView.render(issueRoute);
   renderBreadcrumbs();
   // Here rather than in renderAll, because what this list reports is not part of the state every
@@ -1839,42 +1837,10 @@ function renderRail() {
 
 // ------------------------------------------------------------------ landing page
 
-// The parsed catalog is shared by later Home renders. Category availability changes only when the
-// bundled data changes, so a library update does not need to fetch or rebuild it.
-let homeCatalog = null;
-let homeCategoriesGeneration = 0;
 let publishingCategoryGeneration = 0;
 // Catalog ids that were just added, so the button can show "✓ In library" for a beat before
 // settling into "Open →". Transient by design; a reload shows the settled state.
 const justAdded = new Set();
-
-function wireHome() {
-  $('#btn-chero-read').addEventListener('click', (e) => {
-    const issue = upNext(store.state, activeListId());
-    if (issue) openInReader(issue, e);
-  });
-  $('#btn-chero-open').addEventListener('click', () => showView('read', { push: true }));
-}
-
-function renderHome() {
-  if ($('#view-home').hidden) return;
-  const populated = store.state.listOrder.length > 0;
-  const firstRun = ensureHomeFirstRun();
-
-  // The masthead remains the app name whether or not Continue reading is present.
-  $('#home-cat-h').classList.toggle('visually-hidden', !populated);
-  firstRun.hidden = populated;
-
-  renderContinue(populated);
-  renderYours();
-  renderHomeCategories();
-
-  // The attribution is required wherever Marvel data is shown, and the year has to be the
-  // current one rather than a string baked into the markup.
-  for (const label of document.querySelectorAll('[data-marvel-copyright]')) {
-    label.textContent = `© ${new Date().getFullYear()} MARVEL`;
-  }
-}
 
 // Category panels are generated from the same registry the router reads. Repeating twelve hidden
 // sections in the document would create a second list of routes, headings and ids that could drift
@@ -1914,162 +1880,18 @@ function ensurePublishingViews() {
   }
 }
 
-// State B's hero: the list being read, how far through it the reader is, and what is next.
-// There are no read timestamps in the state, so "where you left off" is the active list —
-// the one the reader last opened — rather than a guess at recency.
-function renderContinue(populated) {
-  const sec = $('#home-continue');
-  const id = activeListId();
-  const list = store.state.lists[id];
-  sec.hidden = !populated || !list;
-  // Hidden rather than emptied, so the heading keeps text. It labels this section, so an
-  // empty one costs the section its name too.
-  if (sec.hidden) {
-    $('#chero-h').textContent = CONTINUE_NO_LIST;
-    return;
-  }
-
-  const { read, total } = listProgress(store.state, id);
-  const issue = upNext(store.state, id);
-
-  $('#chero-h').textContent = list.name;
-
-  const bar = $('#chero-bar');
-  bar.setAttribute('aria-valuemax', String(total));
-  bar.setAttribute('aria-valuenow', String(read));
-  // The percentage alone would be a bare number to a screen reader; the text is what says
-  // what the number counts, and it is on screen too rather than being audio-only.
-  bar.setAttribute('aria-valuetext', `${read} of ${total} issues read`);
-  $('#chero-fill').style.setProperty('width', `${total ? ((read / total) * 100).toFixed(1) : 0}%`);
-  $('#chero-count').textContent = `${read} of ${total} issue${total === 1 ? '' : 's'} read`;
-
-  if (issue) {
-    $('#chero-next').textContent = `Next: ${issue.title}`;
-    paintCover($('#chero-img'), $('#chero-fb'), issue, 'portrait_incredible');
-    $('#chero-fs').textContent = seriesOnly(issue.seriesName);
-    $('#chero-fn').textContent = issue.number ? `#${issue.number}` : '';
-    $('#btn-chero-read').hidden = false;
-    // The label is read off the button rather than repeated here, so editing the markup cannot
-    // leave the name behind still claiming the old words.
-    $('#btn-chero-read').setAttribute('aria-label', labelledName($('#btn-chero-read').textContent, `${issue.title} in Marvel Unlimited`));
-  } else {
-    $('#chero-next').textContent = 'You have read every issue in this order.';
-    // Nothing to open, so the button goes rather than sitting there disabled with no
-    // explanation of why it cannot be used.
-    $('#btn-chero-read').hidden = true;
-    paintCoverUrl($('#chero-img'), $('#chero-fb'), null, hueOf(list.name), list.name);
-    $('#chero-fs').textContent = shortTitle(list.name);
-    $('#chero-fn').textContent = '';
-  }
-  $('#btn-chero-open').setAttribute('aria-label', labelledName($('#btn-chero-open').textContent, list.name));
-}
-
-function renderYours() {
-  const sec = $('#home-yours');
-  savedLists.render(sec, $('#home-yours-list'));
-}
-
 function renderLibraryHub() {
   const yours = $('#library-yours');
   savedLists.render(yours, $('#library-yours-list'));
   $('#library-empty').hidden = !yours.hidden;
 }
 
-function ensureHomeFirstRun() {
-  let section = $('#home-first-run');
-  if (section) return section;
-  const recommendation = el('div', { id: 'home-recommended', class: 'notice notice-act', hidden: true }, [
-    el('div', { class: 'grow' }, [
-      el('h3', { id: 'home-recommended-h', text: 'Recommended start: Setup to Modern Timeline' }),
-      el('p', { text: "A guided path through the earlier stories that prepare you for this app's Modern Timeline." }),
-    ]),
-    el('button', { type: 'button', id: 'btn-home-recommended', class: 'btn' }, 'Preview this Reading List'),
-  ]);
-  section = el('section', { id: 'home-first-run', class: 'sec', hidden: true, 'aria-labelledby': 'home-first-run-h' }, [
-    el('div', { class: 'sec-h' }, el('h2', { id: 'home-first-run-h', text: 'Where do you want to start?' })),
-    el('p', { class: 'home-first-run-copy', text: 'Browse curated Reading Lists. Add individual issues or your own list.' }), recommendation,
-  ]);
-  $('#home-categories').prepend(section);
-  return section;
-}
-
-async function renderHomeCategories() {
-  const generation = ++homeCategoriesGeneration;
-  const gateways = [...document.querySelectorAll('[data-category-gateway]')]; for (const label of document.querySelectorAll('[data-marvel-copyright]')) label.textContent = `© ${new Date().getFullYear()} MARVEL`;
-  if (!homeCatalog) {
-    clearNotice(CATALOG_LOAD);
-    for (const gateway of gateways) { const status = gateway.querySelector('[data-paths-status]'); status.classList.remove('visually-hidden'); status.hidden = false; status.textContent = 'Loading ways to read…'; }
-    try {
-      homeCatalog = await loadCatalog();
-    } catch (err) {
-      for (const gateway of gateways) {
-        gateway.querySelector('[data-primary-paths]').hidden = true; gateway.querySelector('[data-more-paths]').hidden = true; gateway.querySelector('[data-paths-status]').hidden = true;
-      }
-      const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
-      await reportBundledLoadFailure({
-        report,
-        failure: `The catalog could not be loaded: ${err.message}. Your lists are unchanged.`,
-        key: CATALOG_LOAD,
-        subject: 'the catalog',
-        retry: renderHomeCategories,
-        isCurrent: () => generation === homeCategoriesGeneration,
-      });
-      return;
-    }
-    clearNotice(CATALOG_LOAD);
-  }
-
-  const recommendation = $('#home-recommended'); if (recommendation) {
-    const list = modernTimelineFeaturedList(homeCatalog.lists); recommendation.hidden = !list; if (list) $('#btn-home-recommended').onclick = () => openPreview(list);
-  }
-  if (homeCatalog.dropped) {
-    const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
-    notify(report, `${homeCatalog.dropped} catalog ${homeCatalog.dropped === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`, 'warn');
-  }
-
-  const categories = availableHomeCategories(groupCatalog(homeCatalog.lists), HOME_CATEGORIES, resolveReadingPaths(homeCatalog.paths, homeCatalog.lists)); const primaryCategories = categories.filter(({ tier }) => tier === 'primary'); const secondaryCategories = categories.filter(({ tier }) => tier === 'secondary');
-  for (const gateway of gateways) {
-    const primary = gateway.querySelector('[data-primary-paths]');
-    const secondary = gateway.querySelector('[data-secondary-paths]');
-    const more = gateway.querySelector('[data-more-paths]'); const status = gateway.querySelector('[data-paths-status]');
-    primary.replaceChildren(...primaryCategories.map(homeCategoryTile)); secondary.replaceChildren(...secondaryCategories.map(homeCategoryTile));
-    primary.hidden = primaryCategories.length === 0; more.hidden = secondaryCategories.length === 0;
-    const statusText = categories.length ? `${categories.length} ways to read available.` : 'No reading paths are bundled with this build.';
-    status.classList.toggle('visually-hidden', categories.length > 0); status.hidden = false;
-    if (status.textContent !== statusText) status.textContent = statusText;
-  }
-}
-
-function homeCategoryTile(category) {
-  const glyph = String.fromCodePoint(Number.parseInt(category.icon, 16));
-  const count = `${category.count} ${category.count === 1 ? (category.singular ?? 'Reading List') : (category.plural ?? 'Reading Lists')}`;
-  return el('li', {}, el('button', {
-    type: 'button',
-    class: `home-path home-path-${category.tier}`,
-    'aria-label': `${category.heading}. ${category.label}. ${count}.`,
-    dataset: { category: category.key },
-    onclick: () => { if (category.route === 'reading-paths') requestedReadingPathId = null; showView(category.route, { push: true }); if (category.route === 'reading-paths') void renderReadingPaths(); },
-  }, [
-    el('span', { class: 'gi home-path-icon', 'aria-hidden': 'true', text: glyph }),
-    el('span', { class: 'home-path-copy' }, [
-      el('span', { class: 'eyebrow home-path-label', text: category.label }),
-      el('span', { class: 'home-path-title', text: category.heading }),
-      el('span', { class: 'home-path-count', text: count }),
-    ]),
-    el('span', {
-      class: 'gi home-path-arrow',
-      'aria-hidden': 'true',
-      text: String.fromCodePoint(0xE72A),
-    }),
-  ]));
-}
-
 function renderPublishingIndex(category, allStories) {
   const box = $(`#${category.route}-results`); const { count, earlier, modern, modernChildren } = publishingAgeGroups(allStories);
   $(`#${category.route}-count`).textContent = `${count} ${count === 1 ? 'Reading List' : 'Reading Lists'}`; box.replaceChildren();
   if (count === 0) { box.append(el('p', { class: 'rail-hint publishing-empty', text: 'No Reading Lists are published by age yet.' })); return; }
-  if (earlier.length) box.append(el('section', { id: 'marvel-ages-earlier', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-earlier-h' }, [el('div', { class: 'sec-h' }, el('h2', { id: 'marvel-ages-earlier-h', text: 'Earlier Marvel' })), el('ul', { id: 'marvel-ages-earlier-list', class: 'home-paths home-paths-secondary' }, earlier.map((child) => homeCategoryTile({ ...child, tier: 'secondary' })))]));
-  if (modern) { const aggregateLabel = labelledName('Browse all Modern Age Reading Lists', `${modern.label}, ${modern.count} Reading Lists`); box.append(el('section', { id: 'marvel-ages-modern', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-modern-h' }, [el('div', { class: 'sec-h' }, [el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }), el('button', { id: 'marvel-ages-modern-all', type: 'button', class: 'quiet', text: 'Browse all Modern Age Reading Lists', 'aria-label': aggregateLabel, onclick: () => showView('age-modern', { push: true }) })]), el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeCategoryTile({ ...child, tier: 'secondary' })))])); }
+  if (earlier.length) box.append(el('section', { id: 'marvel-ages-earlier', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-earlier-h' }, [el('div', { class: 'sec-h' }, el('h2', { id: 'marvel-ages-earlier-h', text: 'Earlier Marvel' })), el('ul', { id: 'marvel-ages-earlier-list', class: 'home-paths home-paths-secondary' }, earlier.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' })))]));
+  if (modern) { const aggregateLabel = labelledName('Browse all Modern Age Reading Lists', `${modern.label}, ${modern.count} Reading Lists`); box.append(el('section', { id: 'marvel-ages-modern', class: 'publishing-periods marvel-ages-group', 'aria-labelledby': 'marvel-ages-modern-h' }, [el('div', { class: 'sec-h' }, [el('h2', { id: 'marvel-ages-modern-h', text: 'Modern Age' }), el('button', { id: 'marvel-ages-modern-all', type: 'button', class: 'quiet', text: 'Browse all Modern Age Reading Lists', 'aria-label': aggregateLabel, onclick: () => showView('age-modern', { push: true }) })]), el('ul', { id: 'marvel-ages-modern-list', class: 'home-paths home-paths-secondary' }, modernChildren.map((child) => homeView.categoryTile({ ...child, tier: 'secondary' })))])); }
 }
 
 async function renderPublishingCategory(route) {
@@ -2121,7 +1943,7 @@ async function renderPublishingCategory(route) {
   );
   if (isPublishingCategory && !isPublishingCategoryLeaf(category)) {
     box.replaceChildren();
-    periodList.replaceChildren(...children.map((child) => homeCategoryTile({
+    periodList.replaceChildren(...children.map((child) => homeView.categoryTile({
       ...child,
       tier: 'secondary',
     })));
@@ -6087,7 +5909,7 @@ function friendly(err) {
 function renderAll() {
   renderRail();
   renderReading();
-  renderHome();
+  homeView.render();
   renderLibraryHub();
   progressView.render();
   libraryView.render();
@@ -6138,7 +5960,7 @@ export function boot() {
   wireShortcuts();
   wireBlockedBanner();
   for (const shelf of CATALOG_SHELVES) wireCatalogShelfSearch(shelf.key);
-  wireHome(); wireReadingPaths();
+  homeView.wire(); wireReadingPaths();
   wirePreview();
   wireAsk();
   renderAll();
@@ -6348,6 +6170,73 @@ const savedLists = createSavedListsPresenter({
     showView('read', { push: true });
   },
   paintCover,
+});
+
+const homeView = createHomeView({
+  categoriesForCatalog: (catalog) => availableHomeCategories(
+    groupCatalog(catalog.lists),
+    HOME_CATEGORIES,
+    resolveReadingPaths(catalog.paths, catalog.lists),
+  ),
+  clearCatalogNotice: () => clearNotice(CATALOG_LOAD),
+  el,
+  elements: () => ({
+    home: $('#view-home'),
+    categoriesHeading: $('#home-cat-h'),
+    categoriesRoot: $('#home-categories'),
+    continueSection: $('#home-continue'),
+    continueHeading: $('#chero-h'),
+    continueBar: $('#chero-bar'),
+    continueFill: $('#chero-fill'),
+    continueCount: $('#chero-count'),
+    continueNext: $('#chero-next'),
+    continueImage: $('#chero-img'),
+    continueFallback: $('#chero-fb'),
+    continueSeries: $('#chero-fs'),
+    continueNumber: $('#chero-fn'),
+    continueRead: $('#btn-chero-read'),
+    continueOpen: $('#btn-chero-open'),
+    yoursSection: $('#home-yours'),
+    yoursList: $('#home-yours-list'),
+    firstRun: $('#home-first-run'),
+    recommendation: $('#home-recommended'),
+    recommendationButton: $('#btn-home-recommended'),
+    gateways: [...document.querySelectorAll('[data-category-gateway]')],
+    copyrights: [...document.querySelectorAll('[data-marvel-copyright]')],
+  }),
+  getActiveListId: activeListId,
+  getState: () => store.state,
+  hueOf,
+  labelledName,
+  listProgress,
+  loadCatalog,
+  onCatalogDropped: (count) => {
+    const report = view === 'browse' ? '#browse-cat-report' : '#home-cat-report';
+    notify(report, `${count} catalog ${count === 1 ? 'entry is' : 'entries are'} incomplete and cannot be shown.`, 'warn');
+  },
+  onCatalogLoadFailure: ({ error, isCurrent, retry }) => reportBundledLoadFailure({
+    report: view === 'browse' ? '#browse-cat-report' : '#home-cat-report',
+    failure: `The catalog could not be loaded: ${error.message}. Your lists are unchanged.`,
+    key: CATALOG_LOAD,
+    subject: 'the catalog',
+    retry,
+    isCurrent,
+  }),
+  onNavigateCategory: (category) => {
+    if (category.route === 'reading-paths') requestedReadingPathId = null;
+    showView(category.route, { push: true });
+    if (category.route === 'reading-paths') void renderReadingPaths();
+  },
+  onOpen: () => showView('read', { push: true }),
+  onRead: openInReader,
+  openPreview,
+  paintCover,
+  paintCoverUrl,
+  recommendedList: modernTimelineFeaturedList,
+  renderSavedLists: (section, results) => savedLists.render(section, results),
+  seriesOnly,
+  shortTitle,
+  upNext,
 });
 
 const libraryView = createLibraryView({
