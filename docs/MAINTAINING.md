@@ -15,7 +15,7 @@ Start with a clean dependency install:
 npm ci
 ```
 
-Run the same seven deterministic checks used by CI:
+Run the same eight deterministic checks used by CI:
 
 ```text
 npm run lint
@@ -23,13 +23,15 @@ npm test
 npm run counts
 npm run sizes
 npm run anchors
+npm run spacing
 npm run palette
 npm run publication
 ```
 
-All seven run in CI. The checks cover lint and tests, documentation counts, stated file sizes,
-evidence anchors, contrast regressions, and publication content. The browser journeys below are
-manual release checks because they require installed Edge and a driver outside the repository.
+All eight run in CI. The checks cover lint and tests, documentation counts, stated file sizes,
+evidence anchors, spacing and contrast regressions, and publication content. The browser journeys
+below are manual release checks because they require installed Edge and a driver outside the
+repository.
 
 ### Run the test suite directly
 

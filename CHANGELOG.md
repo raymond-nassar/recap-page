@@ -12,6 +12,15 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Standardized interface spacing
+
+In plain English: The spaces around controls, cards, lists, and page sections now follow one small,
+consistent scale. Some gaps become slightly tighter or wider as a result, while narrow layouts and
+200 percent zoom continue to wrap without clipping important controls. Nothing saved is changed.
+
+For maintainers, one dependency-free check keeps 362 spacing declarations on the 11-step scale, and
+five installed-Edge assertions cover the reference, narrow, target-spacing, and zoomed layouts.
+
 ### Expanded colour coverage checks
 
 In plain English: Nothing in the app or its saved data changes. The release check now finds every

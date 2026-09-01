@@ -107,8 +107,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    # 23 minutes of step deadlines below, so the same ordering holds here.
-    timeout-minutes: 25
+    # 25 minutes of step deadlines below, so the same ordering holds here.
+    timeout-minutes: 26
     steps:
       # The full history, unlike every other checkout here. The publication gate below
       # scans commit messages and every blob any commit ever held, and the default
@@ -174,6 +174,12 @@ jobs:
       - name: Check stated file sizes
         timeout-minutes: 2
         run: npm run sizes
+
+      # The interface used to carry dozens of one-off margin, padding and gap values. This gate
+      # keeps those properties on the shared spacing ladder and rejects unclassified aliases.
+      - name: Check spacing scale
+        timeout-minutes: 2
+        run: npm run spacing
 
       # The contrast ratios this stylesheet claims used to be prose in CSS comments,
       # and one of those comments warned in as many words that a second theme "would

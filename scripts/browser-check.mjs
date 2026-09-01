@@ -1581,6 +1581,17 @@ const MUTATIONS = [
       '    return `${name}: stopped. ${kept}${unsaved} ${friendly(status.error)}`;',
     ),
   },
+  {
+    id: 'spacing-wrap-detached',
+    breaks: 'spacing-scale',
+    why: 'the page wrapper stops consuming the shared spacing step on its left edge',
+    script: () => {
+      addEventListener('load', () => {
+        const sheet = [...document.styleSheets].find((candidate) => candidate.href?.endsWith('styles.css'));
+        sheet.insertRule('.wrap { padding-left: 31px !important; }', sheet.cssRules.length);
+      });
+    },
+  },
 ];
 
 // ------------------------------------------------------------------ scenarios
@@ -5175,7 +5186,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:849` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:866` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -7253,6 +7264,128 @@ const SCENARIOS = [
         shelf.badge === 'Start · 1/3'
         && shelf.meta === '3 issues · 1 issue has no Marvel Unlimited link yet and cannot be opened',
         JSON.stringify(shelf));
+    },
+  },
+  {
+    id: 'spacing-scale',
+    title: 'the spacing scale resolves consistently through reference, narrow and zoomed layouts',
+    async run(page, t) {
+      await importOrder(page);
+      await openFullOrder(page);
+      await page.setViewport({ width: 1280, height: 900 });
+
+      const reference = await page.evaluate(() => {
+        const pixels = (style, property) => Number.parseFloat(style[property]);
+        const sides = (selector, prefix) => {
+          const style = getComputedStyle(document.querySelector(selector));
+          return ['Top', 'Right', 'Bottom', 'Left'].map((side) => pixels(style, `${prefix}${side}`));
+        };
+        const cardProbe = document.createElement('details');
+        cardProbe.className = 'card';
+        cardProbe.innerHTML = '<summary>Spacing probe</summary>';
+        document.body.append(cardProbe);
+        const probes = [];
+        for (let step = 1; step <= 11; step += 1) {
+          const probe = document.createElement('i');
+          probe.style.cssText = `position:fixed;visibility:hidden;width:var(--space-${step})`;
+          document.body.append(probe);
+          probes.push(pixels(getComputedStyle(probe), 'width'));
+          probe.remove();
+        }
+        const actions = [...document.querySelector('.row .ract').children]
+          .map((control) => control.getBoundingClientRect());
+        const targetDistances = actions.slice(1).map((rect, index) => {
+          const previous = actions[index];
+          return Math.hypot(
+            rect.left + rect.width / 2 - (previous.left + previous.width / 2),
+            rect.top + rect.height / 2 - (previous.top + previous.height / 2),
+          );
+        });
+        const result = {
+          probes,
+          wrap: sides('.wrap', 'padding'),
+          rail: sides('.rail', 'padding'),
+          row: {
+            gap: pixels(getComputedStyle(document.querySelector('.row')), 'gap'),
+            padding: sides('.row', 'padding'),
+          },
+          button: sides('#btn-hero-read', 'padding'),
+          card: sides('.card > summary', 'padding'),
+          minimumTargetDistance: Math.min(...targetDistances),
+        };
+        cardProbe.remove();
+        return result;
+      });
+      t.check('all eleven steps resolve to the selected pixel ladder',
+        reference.probes.join('/') === '2/4/6/8/12/16/20/24/32/40/48',
+        JSON.stringify(reference.probes));
+      t.check('representative boxes consume the selected spacing steps at 1280 by 900',
+        reference.wrap.join('/') === '24/32/48/32'
+        && reference.rail.join('/') === '12/12/16/12'
+        && reference.row.gap === 12
+        && reference.row.padding.join('/') === '8/8/8/8'
+        && reference.button.join('/') === '12/24/12/24'
+        && reference.card.join('/') === '16/16/16/16',
+        JSON.stringify(reference));
+      t.check('desktop row actions retain the target-spacing exception',
+        reference.minimumTargetDistance >= 24, `${reference.minimumTargetDistance}px`);
+
+      await page.setViewport({ width: 320, height: 900 });
+      await page.waitForFunction(() => matchMedia('(max-width: 620px)').matches);
+      const narrow = await page.evaluate(() => ({
+        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        width: innerWidth,
+      }));
+      t.check('the consolidated rhythm does not create horizontal clipping at 320 pixels',
+        narrow.width === 320 && narrow.overflow <= 1, JSON.stringify(narrow));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => scrollTo(0, 0));
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      await page.waitForFunction(() => visualViewport.scale === 2);
+      await page.$eval('.ri[data-view="library"]', (button) => {
+        button.focus();
+        button.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      });
+      const controlIsContained = () => {
+        const button = document.querySelector('.ri[data-view="library"]');
+        const rect = button.getBoundingClientRect();
+        const left = visualViewport.offsetLeft;
+        const right = left + visualViewport.width;
+        return document.activeElement === button
+          && rect.left >= left
+          && rect.right - right <= 1
+          && document.documentElement.scrollWidth - document.documentElement.clientWidth <= 1;
+      };
+      await page.waitForFunction(controlIsContained);
+      await page.evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      await page.waitForFunction(controlIsContained);
+      const zoomed = await page.$eval('.ri[data-view="library"]', (button) => {
+        const rect = button.getBoundingClientRect();
+        const left = visualViewport.offsetLeft;
+        const right = left + visualViewport.width;
+        return {
+          active: document.activeElement === button,
+          left: rect.left,
+          right: rect.right,
+          viewportLeft: left,
+          viewportRight: right,
+          scale: visualViewport.scale,
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        };
+      });
+      t.check('the focused navigation control remains operable without page clipping at 200 percent zoom',
+        zoomed.scale === 2
+        && zoomed.active
+        && zoomed.left >= zoomed.viewportLeft
+        && zoomed.right - zoomed.viewportRight <= 1
+        && zoomed.overflow <= 1,
+        JSON.stringify(zoomed));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+      await client.detach();
     },
   },
 ];
