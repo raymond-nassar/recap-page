@@ -19,7 +19,9 @@ import { VIEWS } from '../src/js/lib/route.js';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const markup = read('src/index.html');
-const source = read('src/js/main.js');
+const mainSource = read('src/js/main.js');
+const homeSource = read('src/js/views/home.js');
+const source = [mainSource, homeSource].join('\n');
 const presentationSource = [
   source,
   read('src/js/views/library.js'),
@@ -175,30 +177,30 @@ test('Home is a category gateway rather than another copy of the catalog', () =>
 });
 
 test('empty Home creates one labelled first-run region without changing Browse', () => {
-  const start = source.indexOf('function ensureHomeFirstRun');
-  const body = source.slice(start, source.indexOf('async function renderHomeCategories', start));
+  const start = homeSource.indexOf('function ensureFirstRun');
+  const body = homeSource.slice(start, homeSource.indexOf('function renderContinue', start));
   assert.notEqual(start, -1, 'the first-run region builder is missing');
   assert.match(body, /id: 'home-first-run'[\s\S]*'aria-labelledby': 'home-first-run-h'/);
-  assert.match(body, /el\('h2', \{ id: 'home-first-run-h', text: 'Where do you want to start\?'/);
+  assert.match(body, /el\('h2', \{[\s\S]*id: 'home-first-run-h',[\s\S]*text: 'Where do you want to start\?'/);
   assert.match(body, /Browse curated Reading Lists\. Add individual issues or your own list\./);
-  assert.match(body, /\$\('#home-categories'\)\.prepend\(section\)/);
+  assert.match(body, /current\.categoriesRoot\.prepend\(section\)/);
   assert.doesNotMatch(markup.slice(markup.indexOf('id="view-browse"')), /home-first-run/);
 });
 
 test('first-run guidance follows the same local populated state as Home', () => {
-  const start = source.indexOf('function renderHome()');
-  const body = source.slice(start, source.indexOf('function ensurePublishingViews', start));
-  assert.match(body, /const populated = store\.state\.listOrder\.length > 0;/);
-  assert.match(body, /const firstRun = ensureHomeFirstRun\(\);/);
+  const start = homeSource.indexOf('function render()');
+  const body = homeSource.slice(start, homeSource.indexOf('function categoryTile', start));
+  assert.match(body, /const populated = getState\(\)\.listOrder\.length > 0;/);
+  assert.match(body, /const firstRun = ensureFirstRun\(\);/);
   assert.match(body, /firstRun\.hidden = populated;/);
 });
 
 test('the recommended start resolves after catalog load and only opens Preview', () => {
-  const start = source.indexOf("const recommendation = $('#home-recommended')");
-  const body = source.slice(start, source.indexOf('if (homeCatalog.dropped)', start));
+  const start = homeSource.indexOf('if (nodes.recommendation)');
+  const body = homeSource.slice(start, homeSource.indexOf('if (catalog.dropped)', start));
   assert.notEqual(start, -1, 'the recommended-start catalog resolution is missing');
-  assert.match(body, /modernTimelineFeaturedList\(homeCatalog\.lists\)/);
-  assert.match(body, /\$\('#btn-home-recommended'\)\.onclick = \(\) => openPreview\(list\)/);
+  assert.match(body, /recommendedList\(catalog\.lists\)/);
+  assert.match(body, /nodes\.recommendationButton\.onclick = \(\) => openPreview\(list\)/);
   assert.doesNotMatch(body, /importCurated|setActive|showView|location\.hash|localStorage/);
 });
 
@@ -218,10 +220,11 @@ test('Home and Browse use the same category renderer', () => {
   );
   assert.match(markup, /id="view-browse"[\s\S]*?data-category-gateway/);
   assert.match(
-    source,
-    /function renderHomeCategories\(\)[\s\S]*querySelectorAll\('\[data-category-gateway\]'\)/,
-    'the renderer no longer discovers both category gateways',
+    homeSource,
+    /async function renderGateways\(\)[\s\S]*for \(const gateway of nodes\.gateways\)/,
+    'the renderer no longer paints both injected category gateways',
   );
+  assert.match(mainSource, /gateways: \[\.\.\.document\.querySelectorAll\('\[data-category-gateway\]'\)\]/);
   assert.doesNotMatch(source, /function renderBrowseCategories/);
 });
 
@@ -244,8 +247,8 @@ test('the shared path entry uses resolved path availability and an explicit path
       plural: 'Reading paths',
     },
   );
-  assert.match(source, /availableHomeCategories\(groupCatalog\(homeCatalog\.lists\), HOME_CATEGORIES, resolveReadingPaths\(homeCatalog\.paths, homeCatalog\.lists\)\)/);
-  assert.match(source, /category\.singular \?\? 'Reading List'/);
+  assert.match(mainSource, /availableHomeCategories\([\s\S]*groupCatalog\(catalog\.lists\)[\s\S]*resolveReadingPaths\(catalog\.paths, catalog\.lists\)/);
+  assert.match(homeSource, /category\.singular \?\? 'Reading List'/);
   assert.equal([...markup.matchAll(/data-category-gateway/g)].length, 2);
 });
 
@@ -257,11 +260,11 @@ test('asynchronous category results expose concise polite status updates', () =>
     'Home and Browse loading results are not polite live statuses',
   );
   assert.match(
-    source,
+    homeSource,
     /\$\{categories\.length\} ways to read available/,
     'loaded gateway results do not leave a concise screen-reader status',
   );
-  assert.match(source, /status\.classList\.toggle\('visually-hidden', categories\.length > 0\)/);
+  assert.match(homeSource, /status\.classList\.toggle\('visually-hidden', categories\.length > 0\)/);
   assert.match(
     source,
     /class:\s*'publishing-count'[\s\S]*role:\s*'status'[\s\S]*text:\s*'Loading Reading Lists'/,
@@ -271,10 +274,11 @@ test('asynchronous category results expose concise polite status updates', () =>
 });
 
 test('rendered categories navigate explicitly instead of relying on boot-time bindings', () => {
-  const start = source.indexOf('function homeCategoryTile');
+  const start = homeSource.indexOf('function categoryTile');
   assert.notEqual(start, -1, 'the category tile renderer is missing');
-  const body = source.slice(start, source.indexOf('\n}', start));
-  assert.match(body, /showView\(category\.route,\s*\{\s*push:\s*true\s*\}\)/);
+  const body = homeSource.slice(start, homeSource.indexOf('async function renderGateways', start));
+  assert.match(body, /onclick: \(\) => onNavigateCategory\(category\)/);
+  assert.match(mainSource, /onNavigateCategory: \(category\) => \{[\s\S]*showView\(category\.route, \{ push: true \}\)/);
 });
 
 test('Preview Open closes its modal before navigating to an existing Reading List', () => {
