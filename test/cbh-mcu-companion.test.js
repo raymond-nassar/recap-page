@@ -26,6 +26,7 @@ import {
   groupCatalog,
   HOME_CATEGORIES,
   parseCatalog,
+  pathPlacements,
   shelfLists,
 } from '../src/js/lib/catalog.js';
 
@@ -211,6 +212,70 @@ test('six frozen packets and mappings preserve 107 exact source rows', async () 
     expectedId: whatIf.id,
     inventoryRecord: records.get(whatIf.id),
   }), /issue-bearing boundary differs/i);
+});
+
+test('Far From Home binds the exact source, exclusions, overlap, and catalog role', async () => {
+  const inventory = await readJson('scripts/data/cbh-mcu-companion-inventory.json');
+  const packet = await readJson('scripts/data/cbh-packets/spider-man-far-from-home.json');
+  const mapping = await readJson('scripts/data/cbh-mappings/spider-man-far-from-home.json');
+  const report = await readJson('scripts/data/cbh-overlaps/spider-man-far-from-home.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const payload = await readJson('src/data/spider_man_far_from_home.json');
+  const catalog = parseCatalog(await readJson('src/data/catalog.json'));
+  const expectedRows = [
+    ['Amazing Spider-Man (1963) #66', 6886],
+    ['Amazing Spider-Man (1963) #67', 6887],
+    ['Peter Parker, the Spectacular Spider-Man (1976) #50', 14751],
+    ['Peter Parker, the Spectacular Spider-Man (1976) #51', 14752],
+    ['Amazing Spider-Man (1999) #618', 24425],
+    ['Amazing Spider-Man (1999) #619', 28224],
+    ['Amazing Spider-Man (1999) #620', 28225],
+    ['Friendly Neighborhood Spider-Man (2019) #6', 74028],
+  ];
+  const expectedExcluded = ['Spider-Men', 'Spider-Verse', 'Spider-Geddon', 'Hickman Avengers / Secret Wars'];
+  const expectedShared = ['6886', '6887', '24425', '28224', '28225'];
+  const expectedUnique = ['14751', '14752', '74028'];
+  const record = inventory.records.find(({ id }) => id === 'spider-man-far-from-home');
+  assert.equal(record.wordpressId, 40184);
+  assert.match(record.reason, /Podcast post 40334.+excluded/i);
+  assert.match(packet.sourceReview.rationale, /post 40184.+podcast post 40334 was rejected/i);
+  assert.deepEqual(
+    mapping.rows.map((row) => [row.sourceIssueReference, row.selectedIssueId]),
+    expectedRows,
+  );
+  assert.deepEqual(
+    packet.excludedSourceRows
+      .filter(({ reason }) => reason === 'Unnumbered recommendation without a complete issue-number boundary.')
+      .map(({ sourceIssueReference }) => sourceIssueReference),
+    expectedExcluded,
+  );
+
+  const overlap = report.comparisons.find(({ orderId }) => orderId === 'spider-man-best-of');
+  assert.deepEqual(
+    [overlap.relationship, overlap.sharedCount, overlap.sharedIds],
+    ['partial', 5, expectedShared],
+  );
+  assert.deepEqual(
+    mapping.rows
+      .map(({ selectedIssueId }) => String(selectedIssueId))
+      .filter((issueId) => !overlap.sharedIds.includes(issueId)),
+    expectedUnique,
+  );
+
+  assert.equal(manifest.lists.filter(({ id }) => id === record.id).length, 1);
+  assert.equal(catalog.lists.filter(({ id }) => id === record.id).length, 1);
+  assert.deepEqual(
+    [payload.count, payload.placeholders, payload.unresolved],
+    [8, 0, []],
+  );
+  assert.deepEqual(
+    HOME_CATEGORIES.find(({ key }) => key === 'marvel-on-screen')
+      .select(groupCatalog(catalog.lists))
+      .map((story) => story.lists[0].id),
+    MCU_SELECTED_IDS,
+  );
+  assert.equal(catalog.paths.some(({ steps }) => steps.includes(record.id)), false);
+  assert.equal(pathPlacements(catalog.paths, catalog.lists).has(`list:${record.id}`), false);
 });
 
 test('MCU Prep reports bind their reviewed libraries and selected peers', async () => {
