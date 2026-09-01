@@ -118,16 +118,18 @@ npm run lint
 npm run anchors
 npm run counts
 npm run sizes
+npm run spacing
 npm run palette
 npm run publication
 ```
 
-All seven run in CI on every pull request. `npm test` runs the unit tests. `npm run lint` runs
+All eight run in CI on every pull request. `npm test` runs the unit tests. `npm run lint` runs
 ESLint. `npm run anchors` checks that every file-and-line citation still names lines saying what
 the citation claims. `npm run counts` recomputes the figures the backlog states about its own
 ranked table, and `npm run sizes` recounts any file a sentence states the length of. `npm run
-palette` checks colour contrast. `npm run publication` checks that nothing in the history or the
-tracked files would be a problem if this repository were made public.
+spacing` checks that layout rhythm stays on its shared scale, and `npm run palette` checks colour
+contrast. `npm run publication` checks that nothing in the history or the tracked files would be a
+problem if this repository were made public.
 
 ### Historical evidence anchors
 

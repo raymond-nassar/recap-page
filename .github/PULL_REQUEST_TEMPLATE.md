@@ -43,6 +43,7 @@ Record numbers, not adjectives. Fill in what you ran and what it said.
 | `npm test` |  |
 | `npm run counts` |  |
 | `npm run sizes` |  |
+| `npm run spacing` |  |
 | `npm run palette` |  |
 | `npm run anchors` |  |
 | `npm run publication` |  |

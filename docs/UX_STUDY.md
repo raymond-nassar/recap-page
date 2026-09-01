@@ -218,8 +218,8 @@ Not applicable, with reason:
   across src/`.
 * 1.4.2 Audio Control, not applicable, for the same reason.
 * 2.2.2 Pause, Stop, Hide, not applicable, because the only moving element is a progress ring
-  transition that already respects reduced motion. Evidence: `src/styles.css:508`,
-  `src/styles.css:1551-1553`.
+  transition that already respects reduced motion. Evidence: `src/styles.css:525`,
+  `src/styles.css:1568-1570`.
 * 3.3.8 Accessible Authentication (Minimum), not applicable, because there is no authentication of
   any kind. Evidence: `absent: password|login|signin|oauth|token, grep across src/`.
 * 3.3.7 Redundant Entry, not applicable, because no flow asks for the same information twice.
@@ -242,7 +242,7 @@ Notable passes, recorded because a reader would reasonably expect them to fail:
 
 * 2.4.3 Focus Order and 2.4.7 Focus Visible pass. All 45 captured tab stops carry a 3 pixel solid
   outline, and focus order follows reading order. Evidence: `docs/ux-artifacts/live-inspection.json`,
-  `src/styles.css:224-228`.
+  `src/styles.css:241-245`.
 * 2.1.2 No Keyboard Trap passes. A reverse walk escaped to the document body.
   Evidence: `docs/ux-artifacts/live-inspection.json`.
 * 2.5.8 Target Size (Minimum) passes, through the spacing exception rather than through size. This
@@ -263,7 +263,7 @@ Rationale: affects the single most prominent action in the product, on every rea
 persists across every session and every list
 Confidence: Measured
 Evidence: `docs/ux-artifacts/pa11y-reading-seeded.json`, `docs/ux-artifacts/contrast-audit.json`,
-`src/styles.css:104-110`, `src/index.html:300-301`
+`src/styles.css:121-127`, `src/index.html:300-301`
 Source: WCAG 2.2 Level AA sweep, criterion 1.4.3
 Impact: HTML_CodeSniffer computed `#btn-hero-read`, the Open in Marvel Unlimited button, at
 4.36:1, its nested `kbd` hint at 4.36:1, the hero eyebrow paragraph at 4:1, and the rail brand mark
@@ -276,8 +276,8 @@ the `kbd` hint below full white, treating the accent as a token change rather th
 fix
 Backlog item: BL-029
 Resolved: the single accent was split into `--red` for surfaces behind white text and
-`--red-text` for red used as text, at `src/styles.css:104-110`, and the `kbd` tint was removed at
-`src/styles.css:634`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
+`--red-text` for red used as text, at `src/styles.css:121-127`, and the `kbd` tint was removed at
+`src/styles.css:651`. BL-166 has since renamed both to `--accent` and `--accent-text` and repainted
 them purple, so the split survives under different names. The figures in the Evidence artifacts are
 the pre-fix measurements and are kept as the record of why the item was raised.
 
@@ -303,8 +303,8 @@ mark rather than through container opacity, so the state reads without dragging 
 the contrast floor
 Backlog item: BL-030
 Resolved: the container `opacity` was replaced with a dedicated `--read-fg` foreground plus a
-strikethrough, at `src/styles.css:775-776`. The only opacity left on a read row is on the cover
-image at `src/styles.css:778`, which carries no text. Re-measured with six rows actually in the
+strikethrough, at `src/styles.css:792-793`. The only opacity left on a read row is on the cover
+image at `src/styles.css:795`, which carries no text. Re-measured with six rows actually in the
 read state, axe 4.13.0 reported no contrast violations on the surface.
 
 #### UX-A-003: Hero text contrast is undeterminable because it sits on a blurred cover
@@ -328,7 +328,7 @@ Recommendation: place a solid or sufficiently opaque scrim between the cover and
 computed background is fixed regardless of cover, which also makes the surface checkable
 Backlog item: BL-031
 Resolved as a side effect of BL-029: the hero scrim's top stop was raised from 60 to 88 percent
-alpha at `src/styles.css:555-562`. Sampling the rendered background across all eight catalog
+alpha at `src/styles.css:572-579`. Sampling the rendered background across all eight catalog
 series narrowed the spread from `#222325`-`#2e2d30` to `#1b1d22`-`#1e2126`, and the computed
 bound for a pure white cover is `#1f2228`, so the background is now fixed enough to check
 against whatever the reader imports rather than varying comic to comic.
@@ -342,7 +342,7 @@ Rationale: every row control on the primary reading path, persisting across sess
 conformance pass and an ergonomic problem rather than a barrier
 Confidence: Measured
 Evidence: `docs/ux-artifacts/target-spacing.json`, `docs/ux-artifacts/live-inspection.json`,
-`src/styles.css:792-795`
+`src/styles.css:809-812`
 Source: WCAG 2.2 Level AA sweep, criterion 2.5.8
 Impact: 60 of 140 row targets measure under 24 pixels in at least one dimension. The read toggle is
 17 by 17 and the row action buttons are 22 by 26. The naive verdict is a failure, and it is wrong.
@@ -364,7 +364,7 @@ Severity: 3, single-rater estimate
 Rationale: hides six controls per row on the primary reading path, on every touch device, for the
 life of the product
 Confidence: Measured
-Evidence: `src/styles.css:849-850`, `docs/ux-artifacts/live-inspection.json`
+Evidence: `src/styles.css:866-867`, `docs/ux-artifacts/live-inspection.json`
 Source: mobile viewport framing, criterion 1.4.13
 Impact: the row action container computes to `opacity: 0` at rest and is revealed only on `:hover`
 or `:focus-within`. Keyboard users are served, because the measured tab walk reached every action
@@ -376,7 +376,7 @@ breakpoint, keeping the hover reveal only where a fine pointer is present
 Backlog item: BL-028
 Resolved: narrow screens now show a visible More actions control, and opening it reveals full text
 labels for every compact row action. Fine-pointer layouts retain the compact hover and focus strip.
-The responsive presentation is defined at `src/styles.css:861-878`, and the disclosure preserves
+The responsive presentation is defined at `src/styles.css:878-895`, and the disclosure preserves
 keyboard focus and Escape handling at `src/js/main.js:3495-3579`.
 
 #### UX-A-006: Status messages are announced twice
@@ -435,14 +435,14 @@ Severity: 2, single-rater estimate
 Rationale: affects every surface for the life of the product, and matters most to readers who need
 a light or high-contrast presentation, but is a preference gap rather than a barrier
 Confidence: Measured
-Evidence: `src/styles.css:83`, `src/index.html:10`, `docs/ux-artifacts/live-inspection.json`
+Evidence: `src/styles.css:100`, `src/index.html:10`, `docs/ux-artifacts/live-inspection.json`
 Source: live UI framing, preference emulation
 Impact: `color-scheme` is hard-coded to dark and no `prefers-color-scheme` rule exists. Under
 emulated light preference the computed body background stays `rgb(15, 17, 21)` and the screenshots
 taken under light and dark preference are byte-identical, so the reader's system preference has no
 effect at all. Forced colours and reduced motion are both handled, which shows the gap is a missing
 theme rather than a general disregard for user preferences. Evidence for that contrast:
-`src/styles.css:1551-1553`.
+`src/styles.css:1568-1570`.
 Recommendation: derive the palette from tokens and add a light theme behind `prefers-color-scheme`
 with a manual override, reusing the existing forced-colors work as the model
 Backlog item: BL-032
@@ -631,7 +631,7 @@ Shift and Tab. Focus order matched reading order. Every stop carried a visible f
 3 pixel solid outline. No trap was found, and the reverse walk escaped cleanly to the document
 body. Exactly one stop was not visible, a 1 by 1 pixel input at zero opacity, and that is the
 standard visually-hidden filter radio paired with a visible label, not a stray control. Evidence:
-`src/styles.css:706`, `src/js/main.js:2624-2627`.
+`src/styles.css:723`, `src/js/main.js:2624-2627`.
 
 Dialog focus return was not testable, because the application contains no dialogs at all. The
 measured DOM has zero elements with `role="dialog"`, zero `dialog` elements and zero `aria-modal`
@@ -687,7 +687,7 @@ Rationale: catastrophic in its category. It defeated the entire mobile layout on
 device class the product is explicitly meant to be used beside, and escaped notice when the media
 query was read alone because that rule itself was correct
 Confidence: Measured
-Evidence: `src/styles.css:263-269`, `src/styles.css:271-274`,
+Evidence: `src/styles.css:280-286`, `src/styles.css:288-291`,
 `docs/ux-artifacts/viewport-sweep-reading.json`
 Source: mobile viewport framing, viewport sweep
 Historical impact: the stylesheet contained a media query that collapsed the rail to
@@ -725,7 +725,7 @@ Backlog item: BL-028
 reduce, with a screenshot captured for each. The light and dark screenshots are byte-identical,
 which is the measurement behind UX-A-008. Reduced motion is genuinely honoured: the progress ring
 transition computes to `none` under the reduce preference. Evidence:
-`docs/ux-artifacts/live-inspection.json`, `src/styles.css:508`, `src/styles.css:1551-1553`.
+`docs/ux-artifacts/live-inspection.json`, `src/styles.css:525`, `src/styles.css:1568-1570`.
 
 ## Step 5: Information architecture and generative artifacts
 

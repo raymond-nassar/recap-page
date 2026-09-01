@@ -134,7 +134,7 @@ test('the timeline is a vertical chronology rather than a separate year navigato
   assert.match(main, /class: 'timeline-year-marker is-empty'/);
   assert.match(main, /cardLevel: 'h4'/);
   assert.match(styles, /\.timeline-flow::before\s*\{[^}]*left:\s*var\(--timeline-axis\)/s);
-  assert.match(styles, /\.timeline-year-marker\s*\{[^}]*position:\s*sticky;[^}]*padding:\s*\.2rem 2rem \.2rem 0;/s);
+  assert.match(styles, /\.timeline-year-marker\s*\{[^}]*position:\s*sticky;[^}]*padding:\s*var\(--space-2\) var\(--space-9\) var\(--space-2\) 0;/s);
   assert.match(styles, /\.railed \.nav-scroll\s*\{[^}]*scrollbar-width:\s*none;/s);
 });
 
