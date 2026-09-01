@@ -567,6 +567,7 @@ test('applyRoute discards any open traversal, and does it before showView', () =
 // the stored id made the same throw happen on the next boot, during module evaluation.
 test('a list id naming a prototype member cannot be adopted from an address', () => {
   const main = read('src/js/main.js');
+  const progress = read('src/js/views/progress.js');
   has(main, /Object\.hasOwn\(store\.state\.lists, route\.listId\)/, 'applyRoute asking whether the list is really there');
   has(main, /Object\.hasOwn\(store\.state\.lists, activeListId\(\) \?\? ''\)/, 'showView asking the same question');
   lacks(main, /store\.state\.lists\[route\.listId\]/, 'a bare lookup of a list id from an address');
@@ -575,8 +576,15 @@ test('a list id naming a prototype member cannot be adopted from an address', ()
   // count is asserted so one added on the address path cannot hide among them. The destination-copy
   // simplification removed one redundant lookup from renderAll and left the shared formatter's
   // lookup in place, reducing this count from seven without changing which ids can reach storage.
+  // Progress now receives the stored id and state from the controller, so its equivalent lookup is
+  // counted in the extracted view rather than disappearing from this contract.
   const bare = [...main.matchAll(/store\.state\.lists\[activeListId\(\)\]/g)];
-  assert.equal(bare.length, 6, 'a bare list lookup was added or removed without deciding about BL-068');
+  const progressBare = [...progress.matchAll(/state\.lists\[activeId\]/g)];
+  assert.equal(
+    bare.length + progressBare.length,
+    6,
+    'a bare list lookup was added or removed without deciding about BL-068',
+  );
 });
 
 // Assigning location.hash fires hashchange, which re-runs applyRoute and moves focus to the view

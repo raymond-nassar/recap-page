@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:101-106`, `src/js/main.js:6405-6426`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:101-106`, `src/js/main.js:6328-6349`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -111,7 +111,7 @@ Severity: 3, single-rater estimate
 Rationale: irreversible, affects data the reader curated by hand, and the inconsistency with
 restore makes the gap harder to anticipate
 Confidence: Observed
-Evidence: `src/js/main.js:2761-2777`, `src/js/main.js:5945-5951`
+Evidence: `src/js/main.js:2761-2777`, `src/js/main.js:5868-5874`
 Source: heuristic 3 sweep, code-only framing
 Impact: deletion is guarded only by a native `confirm()` and there is no undo afterwards. Read
 progress survives, because it is global, but the list name and its curated order do not. Restoring
@@ -841,7 +841,7 @@ sentence frames rather than quotations. Nobody said these words.
   lookup apart from a comic that does not exist. Traced to `src/js/main.js:3429-3430`.
 * When I have read half of a long order across several sittings, I want to come back and see where
   I stopped, so I can resume without scrolling to find the boundary. Traced to
-  `src/js/main.js:5649-5707`.
+  `src/js/views/progress.js:48-103`.
 * When my browser storage is cleared or I move machines, I want my progress back from a file I
   control, so I can keep my history without an account. Traced to `src/js/lib/model.js:1046-1077`.
 * When I follow one crossover, I want its progress counted for that list alone, so I can see how

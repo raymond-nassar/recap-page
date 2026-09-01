@@ -7,9 +7,9 @@
 
 import {
   createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList, removeFromList, moveItem,
-  toggleRead, markRead, isRead, upNext, listProgress, seriesProgress, listItems, exportBackup, migrate,
+  toggleRead, markRead, isRead, upNext, listProgress, listItems, exportBackup, migrate,
   setOverride, pendingIssueIds, coverUrl, listForCatalogId, SCHEMA_VERSION,
-  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, progressSummary, progressGroups, completionState, orderWord, orderStates, heldCount,
+  setIssueNote, setListNote, MAX_BACKUP_BYTES, orderGapSentences, completionState, orderWord, orderStates, heldCount,
 } from './lib/model.js';
 import {
   parseChecklist, serializeChecklist, isSafeMarvelUrl, issueIdFromUrl, digitalIdFromUrl,
@@ -56,7 +56,7 @@ import { askConfirm, askText, askNote, wireAsk } from './ask.js';
 import {
   SAVE_EDUCATION_KEY, SAVE_EDUCATION_STATE, createSaveEducation,
 } from './lib/saveEducation.js';
-import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js';
+import { checkLocalServer, LOCAL_SERVER_STATUS } from './lib/localServer.js'; import { createProgressView } from './views/progress.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -5629,83 +5629,6 @@ async function importCurated(list, btn, { navigate = true, report = '#catalog-re
   }
 }
 
-// ------------------------------------------------------------------ progress
-
-// Not persisted, unlike the reading filter in BL-037. That one is a lens on a long order a reader
-// works through over days; this one is answered by whichever list they are reading now, so the
-// useful default is the active list every time the view is opened.
-let progressScope = 'list';
-
-function wireProgressScope() {
-  for (const radio of document.querySelectorAll('input[name="progress-scope"]')) {
-    radio.addEventListener('change', () => {
-      if (!radio.checked) return;
-      progressScope = radio.value;
-      renderProgress();
-    });
-  }
-}
-
-function renderProgress() {
-  const box = $('#series-progress');
-  const list = store.state.lists[activeListId()];
-  // `active` is null only when no list exists, so "This list" has no subject to name: the subtitle
-  // below would dereference it, and the choice would be between two options that both render
-  // "Nothing tracked yet." The whole fieldset is hidden rather than one radio disabled, matching
-  // the browse filters, which hide for the same reason. A disabled chip was the first
-  // attempt and was wrong: .fp paints the adjacent span, and with no :disabled rule it rendered
-  // identically to a live one, hover lift included.
-  const scoped = progressScope === 'list' && Boolean(list);
-  $('#progress-scope').hidden = !list;
-  for (const radio of document.querySelectorAll('input[name="progress-scope"]')) {
-    radio.checked = radio.value === (scoped ? 'list' : 'all');
-  }
-  $('#progress-method-text').textContent = scoped
-    ? `This list counts the issues in “${list.name}”. Tracked means issues you added, not the size of each complete series.`
-    : 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.';
-
-  const rows = scoped ? seriesProgress(store.state, activeListId()) : seriesProgress(store.state);
-  // Methodology is available on demand beside the scope control, and absent when there is no table
-  // for it to explain.
-  $('#progress-method').hidden = rows.length === 0;
-  // Both the scope and the active list are in the key. One number would let expanding All lists
-  // carry into This list, and one list's expansion onto the next list opened under the same scope,
-  // so switching either restarts at the cap, which is what a reader expects when the list changes.
-  const key = `${progressScope}:${activeListId()}`;
-  let countLine = null;
-  preservingFocus(box, () => {
-    box.replaceChildren();
-    if (!rows.length) {
-      // The same shape the library sub-views and the finished-order panel use, rather than a bare
-      // hint line. It also drops the two sentences of methodology that sat above it: how unique
-      // issues are counted and what "tracked" means are answers about a table, and there is no
-      // table, so on this screen they explained a measurement of nothing.
-      box.append(el('div', { class: 'empty-state' }, [
-        el('div', { class: 'empty-glyph', 'aria-hidden': 'true', text: '☐' }),
-        el('p', { text: 'Nothing tracked yet.' }),
-        emptyAction({ label: 'Browse Reading Lists', view: 'catalog' }),
-      ]));
-      return;
-    }
-    const shown = Math.min(listShown.get(key) ?? LIBRARY_CAP, rows.length);
-    const slice = rows.slice(0, shown);
-    const sum = progressSummary(rows);
-    // "of" between the two figures is the same phrasing the rows use, so the band and a row cannot
-    // read as counting different things. "fully read" not "complete": the app knows only what the
-    // reader tracks, never whether a series has ended.
-    box.append(summaryBand([
-      { figure: sum.series, label: 'series' },
-      { figure: `${sum.read.toLocaleString()} of ${sum.tracked.toLocaleString()}`, label: 'tracked issues read' },
-      { figure: sum.done, label: 'series fully read' },
-    ]));
-    if (rows.length > LIBRARY_CAP) countLine = box.appendChild(shownLine(shown, rows.length));
-    for (const group of progressGroups(slice)) {
-      box.append(groupSection(group, (r) => progressRow(r, group.key)));
-    }
-    if (shown < rows.length) box.append(moreButton(key, rows.length - shown, renderProgress));
-  }, { primary: 'more', fallback: () => countLine });
-}
-
 // ------------------------------------------------------------------ library sub-views
 
 // Both sub-views are rendered by one function reading LIBRARY_VIEWS, rather than one function
@@ -6407,7 +6330,7 @@ function renderAll() {
   renderReading();
   renderHome();
   renderLibraryHub();
-  renderProgress();
+  progressView.render();
   renderLibrary();
   renderQueue();
   for (const target of document.querySelectorAll('.add-target')) {
@@ -6440,6 +6363,7 @@ export function boot() {
   setInterval(renderQueue, 1000);
   void runAutomaticUpdateCheck();
 
+  progressView.wire();
   store.load();
   applyCoversSetting();
   applyUpdateCheckSetting();
@@ -6458,7 +6382,6 @@ export function boot() {
   wireHome(); wireReadingPaths();
   wirePreview();
   wireAsk();
-  wireProgressScope();
   renderAll();
   // The address bar is now allowed to be written, but not before: renderAll has just run once, and
   // an ungated sync inside it would have overwritten the incoming hash before it was read.
@@ -6573,14 +6496,14 @@ function shownLine(shown, total) {
 // The act and key pair is what restoreFocus matches on, so a button that survives its own press is
 // re-focused in the rebuilt DOM rather than dropping focus to the body. rerender is passed in so
 // the one builder serves both views, each re-rendering itself.
-function moreButton(key, rest, rerender) {
+function moreButton(key, rest, rerender, shownByKey = listShown) {
   return el('button', {
     type: 'button',
     class: 'btn btn-g',
     dataset: { act: 'more', key },
     text: `Show ${Math.min(LIBRARY_CAP, rest).toLocaleString()} more`,
     onclick: () => {
-      listShown.set(key, (listShown.get(key) ?? LIBRARY_CAP) + LIBRARY_CAP);
+      shownByKey.set(key, (shownByKey.get(key) ?? LIBRARY_CAP) + LIBRARY_CAP);
       rerender();
     },
   });
@@ -6599,26 +6522,27 @@ function groupSection(group, renderRow) {
   ]);
 }
 
-// One progress row. The chip repeats what the bar and figures already imply, for a reader scanning
-// rather than reading each line, and it names the two ends the bar cannot: a full bar could be a
-// series finished or one issue of one tracked, and an empty one could be nothing read or nothing
-// tracked. An active row gets no chip, because its bar is between the ends and already says so. The
-// word is "Fully read" not "Finished": a series is not a fixed list, so the app cannot claim it ends.
-function progressRow(r, state) {
-  const pct = r.tracked ? Math.round((r.read / r.tracked) * 100) : 0;
-  const chip = state === 'done'
-    ? [' ', el('span', { class: 'badge badge-done' }, [el('span', { 'aria-hidden': 'true', text: '✓' }), ' Fully read'])]
-    : state === 'unstarted'
-      ? [' ', el('span', { class: 'badge badge-none', text: 'Not started' })]
-      : [];
-  return el('div', { class: 'result' }, [
-    el('div', { class: 'result-main' }, [
-      el('div', { class: 'result-title' }, [el('span', { text: r.seriesName }), ...chip]),
-      el('div', { class: 'result-meta', text: `${r.read} of ${r.tracked} tracked issues read (${pct}%)` }),
-    ]),
-    el('progress', { max: String(Math.max(1, r.tracked)), value: String(r.read) }),
-  ]);
-}
+const progressView = createProgressView({
+  el,
+  elements: () => ({
+    method: $('#progress-method'),
+    methodText: $('#progress-method-text'),
+    radios: document.querySelectorAll('input[name="progress-scope"]'),
+    results: $('#series-progress'),
+    scope: $('#progress-scope'),
+  }),
+  emptyAction,
+  getActiveListId: activeListId,
+  getState: () => store.state,
+  listUi: {
+    cap: LIBRARY_CAP,
+    groupSection,
+    moreButton,
+    shownLine,
+    summaryBand,
+  },
+  preservingFocus,
+});
 
 // ------------------------------------------------------------------ landing page order tiles
 
