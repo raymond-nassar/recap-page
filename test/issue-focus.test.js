@@ -231,12 +231,13 @@ test('an issue route branches before list adoption and never calls setActive', (
 
 test('every issue-bearing surface uses the shared focus route without replacing Read or Add', () => {
   const main = read('src/js/main.js');
+  const previewView = read('src/js/views/preview.js');
   const shelf = main.slice(main.indexOf('function renderShelf'), main.indexOf('// Rows are kept'));
   assert.match(shelf, /surface: 'coming'/);
   assert.match(shelf, /class: 'tile-read'/);
   assert.match(shelf, /openInReader\(it, e\)/);
 
-  const preview = main.slice(main.indexOf('async function loadPreviewIssues'), main.indexOf('function setFilter'));
+  const preview = previewView.slice(previewView.indexOf('async function loadIssues'), previewView.indexOf('async function open'));
   assert.match(preview, /kind: 'order', id: list\.id/);
   assert.match(preview, /surface: 'preview'/);
 

@@ -13,6 +13,7 @@ const css = read('src/styles.css');
 const main = read('src/js/main.js');
 const libraryView = read('src/js/views/library.js');
 const savedListsView = read('src/js/views/shared/saved-lists.js');
+const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
 
 test('fallback initials use the first two comic title words', () => {
   assert.equal(fallbackInitials('Avengers Disassembled'), 'AD');
@@ -32,7 +33,7 @@ test('every cover fallback opts into the shared split-initial artwork', () => {
   for (const className of ['fallback', 'tf', 'rf', 'of', 'rcov-f', 'mosaic-f']) {
     const pattern = new RegExp(`class(?::|=)[^\\n]*['"][^'"]*\\b${className}\\b[^'"]*\\bcover-fallback\\b`);
     assert.match(
-      `${html}\n${main}\n${libraryView}\n${savedListsView}`,
+      `${html}\n${main}\n${libraryView}\n${savedListsView}\n${catalogPresentation}`,
       pattern,
       `${className} does not use the shared artwork`,
     );

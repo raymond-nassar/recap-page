@@ -281,7 +281,7 @@ test('aggregate paths retain shared stories independently with catalog-ordered s
 });
 
 test('aggregate progress prefers the exact import, then catalog-order sibling, then nothing', async () => {
-  const { readingPathProgress } = await import('../src/js/main.js');
+  const { readingPathProgress } = await import('../src/js/views/reading-paths.js');
   const stop = resolveReadingPaths(
     [path({ steps: ['one', 'shared-exact'] })],
     [

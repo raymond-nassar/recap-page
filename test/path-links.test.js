@@ -14,6 +14,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { groupCatalog, parseCatalog, pathPlacements, shelfStories, CATALOG_SHELVES } from '../src/js/lib/catalog.js';
+import { pathLine } from '../src/js/views/shared/catalog-presentation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = parseCatalog(JSON.parse(readFileSync(join(ROOT, 'src', 'data', 'catalog.json'), 'utf8')));
@@ -36,8 +37,6 @@ globalThis.document = {
   createElement: (tag) => node(tag),
   createTextNode: (text) => ({ tag: '#text', textContent: text }),
 };
-
-const { pathLine } = await import('../src/js/main.js');
 
 const placed = pathPlacements(catalog.paths, catalog.lists);
 const MODERN_AVENGERS_PATH_ID = 'modern-avengers';
@@ -142,4 +141,15 @@ test('both links address the screen the stop is actually drawn on', () => {
       }
     }
   }
+});
+
+test('the controller can preserve destination route state in generated path links', () => {
+  const placement = byPosition.get(2);
+  const [link] = links(pathLine(
+    placement,
+    shelfOf(keyAt(2)),
+    {},
+    { hrefForStop: (stop) => `#/${stop.shelf}?sort=popularity` },
+  ));
+  assert.equal(link.attrs.href, `#/${placement.first.shelf}?sort=popularity`);
 });

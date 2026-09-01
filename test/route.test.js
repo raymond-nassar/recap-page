@@ -683,18 +683,19 @@ test('an extra query is dropped while a path query on another view is ignored', 
   assert.equal(formatRoute({ view: 'browse', pathId: 'modern-avengers' }), '#/browse');
 });
 
-test('main.js retains path intent through load and permits only the current generation to finish', () => {
+test('the controller retains path intent while the view permits only the current generation to finish', () => {
   const main = read('src/js/main.js');
+  const readingPaths = read('src/js/views/reading-paths.js');
   has(main, /if \(route\.view === 'reading-paths'\) requestedReadingPathId = route\.pathId/,
     'route application retaining the raw requested path token');
-  has(main, /const generation = \+\+readingPathGeneration/,
+  has(readingPaths, /const currentGeneration = \+\+generation/,
     'a render generation captured before asynchronous catalog loading');
-  has(main, /view !== 'reading-paths' \|\| generation !== readingPathGeneration/,
+  has(readingPaths, /!isCurrent\(\) \|\| currentGeneration !== generation/,
     'stale or hidden render continuations being refused');
-  has(main, /if \(requestedReadingPathId !== selected\.id\)[\s\S]*?syncHash\(\);/,
+  has(readingPaths, /if \(requestedId !== selected\.id\) onCanonicalPath\(selected\.id\)/,
     'post-load fallback canonicalized through passive replacement');
-  has(main, /sanitizeStoredIssueDescriptions\(readerStore, event\.newValue,[\s\S]*?\), refreshReadingPathProgress\(\)\);/,
+  has(main, /sanitizeStoredIssueDescriptions\(readerStore, event\.newValue,[\s\S]*?\), readingPathsView\.refreshProgress\(\)\);/,
     'an adopted cross-tab write refreshing only visible reading-path progress');
-  has(main, /readerStore\.adoptForeignWrite\(null\); refreshReadingPathProgress\(\);/,
+  has(main, /readerStore\.adoptForeignWrite\(null\); readingPathsView\.refreshProgress\(\);/,
     'an adopted cross-tab origin clear removing visible reading-path progress');
 });

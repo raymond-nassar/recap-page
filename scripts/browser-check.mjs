@@ -928,7 +928,7 @@ const MUTATIONS = [
     id: 'spotlight-filter-noop',
     breaks: 'spotlight-filter',
     why: 'the selected Character Spotlight subset is ignored before search and grouping',
-    rewriteMain: (source) => source.replace(
+    rewriteCatalogView: (source) => source.replace(
       '? filterBySpotlightKind(mine, state.spotlight)',
       '? mine',
     ),
@@ -7819,7 +7819,7 @@ MUTATIONS.push({
   id: 'reading-paths-sibling-first',
   breaks: 'reading-paths',
   why: 'an earlier imported sibling is chosen before the exact path step',
-  rewriteMain: (source) => source.replace(
+  rewriteReadingPaths: (source) => source.replace(
     / {2}const imported = exact \?\? \(stop\?\.lists \?\? \[\]\)\r?\n {4}\.map\(\(list\) => listForCatalogId\(state, list\.id\)\)\r?\n {4}\.find\(Boolean\);/,
     `  const imported = (stop?.lists ?? [])
     .map((list) => listForCatalogId(state, list.id))
@@ -8021,7 +8021,9 @@ async function preparePage(page, origin, mutation) {
   for (const [path, rewrite] of [
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
+    ['/js/views/catalog.js', mutation?.rewriteCatalogView],
     ['/js/views/library.js', mutation?.rewriteLibrary],
+    ['/js/views/reading-paths.js', mutation?.rewriteReadingPaths],
     ['/js/views/shared/saved-lists.js', mutation?.rewriteSavedLists],
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],

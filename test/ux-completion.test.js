@@ -10,6 +10,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
+const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
+const catalogView = read('src/js/views/catalog.js');
 const library = read('src/js/lib/library.js');
 const libraryView = read('src/js/views/library.js');
 const styles = read('src/styles.css');
@@ -115,8 +117,11 @@ test('Search issues groups the destinations the app can actually open', () => {
 });
 
 test('browse screens render safe cover-led cards with one-sentence summaries', () => {
-  const start = main.indexOf('function catalogCard');
-  const body = main.slice(start, main.indexOf('// Where this story sits', start));
+  const start = catalogPresentation.indexOf('function catalogCard');
+  const body = catalogPresentation.slice(
+    start,
+    catalogPresentation.indexOf('function markOwnedPaths', start),
+  );
   assert.match(body, /paintCoverUrl\(img, fallback, catalogCoverUrl\(list\)/);
   assert.match(body, /desc\.textContent = firstSentence\(list\.description\)/);
   assert.match(body, /class: 'catalog-card'/);
@@ -131,9 +136,9 @@ test('browse screens render safe cover-led cards with one-sentence summaries', (
 
 test('the timeline is a vertical chronology rather than a separate year navigator', () => {
   assert.doesNotMatch(html, /id="catalog-timeline"/);
-  assert.match(main, /class: 'timeline-flow'/);
-  assert.match(main, /class: 'timeline-year-marker is-empty'/);
-  assert.match(main, /cardLevel: 'h4'/);
+  assert.match(catalogPresentation, /class: 'timeline-flow'/);
+  assert.match(catalogPresentation, /class: 'timeline-year-marker is-empty'/);
+  assert.match(catalogView, /cardLevel: 'h4'/);
   assert.match(styles, /\.timeline-flow::before\s*\{[^}]*left:\s*var\(--timeline-axis\)/s);
   assert.match(styles, /\.timeline-year-marker\s*\{[^}]*position:\s*sticky;[^}]*padding:\s*var\(--space-2\) var\(--space-9\) var\(--space-2\) 0;/s);
   assert.match(styles, /\.railed \.nav-scroll\s*\{[^}]*scrollbar-width:\s*none;/s);
@@ -219,7 +224,7 @@ test('Home headings are not explained twice', () => {
   assert.match(styles, /\.home-lockup\s*\{[^}]*grid-column:\s*2;[^}]*justify-items:\s*center;/);
   assert.doesNotMatch(main, /\$\('#home-h'\)\.textContent/);
   assert.doesNotMatch(html, /Featured journey|A place to start|Filter Reading Lists/);
-  assert.match(main, /if \(blurb\) children\.push\(/);
+  assert.match(catalogPresentation, /if \(blurb\) children\.push\(/);
 });
 
 test('standing explanations move behind disclosures or become compact labels', () => {
