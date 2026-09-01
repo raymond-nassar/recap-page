@@ -211,7 +211,7 @@ test('main constructs Issue Details once and delegates without moving shared pol
   assert.match(main, /issueView\.wire\(\);/);
   assert.doesNotMatch(main, /issueView\?\.(?:render|cancel|result|repaintSynopsis|wire)|if \(issueView\)/);
 
-  const route = main.slice(main.indexOf('function applyRoute'), main.indexOf('function setFullOrderFromRoute'));
+  const route = main.slice(main.indexOf('function applyRoute'), main.indexOf('function showView'));
   assert.match(route, /issueRoute = route;/);
   assert.match(route, /showView\('issue'/);
   const navigation = main.slice(main.indexOf('function openIssueFocus'), main.indexOf('function issueFocusAnchor'));

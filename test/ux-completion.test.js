@@ -10,6 +10,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(join(ROOT, path), 'utf8');
 const html = read('src/index.html');
 const main = read('src/js/main.js');
+const reading = read('src/js/views/reading.js');
 const add = read('src/js/views/add.js');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
 const catalogView = read('src/js/views/catalog.js');
@@ -255,5 +256,5 @@ test('standing explanations move behind disclosures or become compact labels', (
     /api\.github\.com\/repos\/raymond-nassar\/recap-page\/releases|marvel-reading-tracker-windows\.zip|delete the old folder|Unzip it anywhere/,
   );
   assert.match(libraryView, /class: 'library-sort', text: view\.sort/);
-  assert.match(main, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
+  assert.match(reading, /`\$\{upcoming\.length\} \$\{upcoming\.length === 1 \? 'issue' : 'issues'\}`/);
 });

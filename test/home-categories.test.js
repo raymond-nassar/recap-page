@@ -28,6 +28,7 @@ const presentationSource = [
   source,
   read('src/js/views/library.js'),
   read('src/js/views/shared/saved-lists.js'),
+  read('src/js/views/reading.js'),
 ].join('\n');
 const catalog = parseCatalog(JSON.parse(read('src/data/catalog.json')));
 const stories = groupCatalog(catalog.lists);

@@ -11,6 +11,7 @@ const read = (path) => readFileSync(join(here, '..', path), 'utf8');
 const html = read('src/index.html');
 const css = read('src/styles.css');
 const main = read('src/js/main.js');
+const readingView = read('src/js/views/reading.js');
 const libraryView = read('src/js/views/library.js');
 const savedListsView = read('src/js/views/shared/saved-lists.js');
 const catalogPresentation = read('src/js/views/shared/catalog-presentation.js');
@@ -33,7 +34,7 @@ test('every cover fallback opts into the shared split-initial artwork', () => {
   for (const className of ['fallback', 'tf', 'rf', 'of', 'rcov-f', 'mosaic-f']) {
     const pattern = new RegExp(`class(?::|=)[^\\n]*['"][^'"]*\\b${className}\\b[^'"]*\\bcover-fallback\\b`);
     assert.match(
-      `${html}\n${main}\n${libraryView}\n${savedListsView}\n${catalogPresentation}`,
+      `${html}\n${main}\n${readingView}\n${libraryView}\n${savedListsView}\n${catalogPresentation}`,
       pattern,
       `${className} does not use the shared artwork`,
     );
@@ -48,8 +49,10 @@ test('every cover fallback opts into the shared split-initial artwork', () => {
 });
 
 test('reading surfaces identify fallbacks from each comic rather than the reading order', () => {
-  assert.match(main, /paintCover\(\$\('#hero-img'\), \$\('#hero-fb'\), issue, 'portrait_uncanny'\)/);
-  assert.match(main, /paintCover\(img, fb, it, 'portrait_incredible'\)/);
-  assert.match(main, /paintCover\(img, fb, item, 'portrait_incredible'\)/);
-  assert.doesNotMatch(main, /paintCover\(img, fb, (?:it|item), 'portrait_incredible', (?:list|store\.state\.lists)/);
+  assert.match(readingView, /paintCover\(\$\('#hero-img'\), \$\('#hero-fb'\), issue, 'portrait_uncanny'\)/);
+  // The shelf and the full order each paint their own tile fallback rather than sharing one, so
+  // this call site is expected exactly twice: once per renderer.
+  const tileCalls = readingView.match(/paintCover\(img, fb, item, 'portrait_incredible'\)/g) ?? [];
+  assert.equal(tileCalls.length, 2, 'the shelf and the row renderer no longer both paint per-comic fallbacks');
+  assert.doesNotMatch(readingView, /paintCover\(img, fb, item, 'portrait_incredible', (?:list|store\.state\.lists)/);
 });

@@ -244,32 +244,32 @@ test('the note field is never required, or an emptied note could not be submitte
 });
 
 test('the view acts on a cleared note and ignores a cancelled one', () => {
-  const main = read('src/js/main.js');
+  const reading = read('src/js/views/reading.js');
   assert.equal(
-    (main.match(/if \(note === null\) return;/g) || []).length,
+    (reading.match(/if \(note === null\) return;/g) || []).length,
     2,
     'both note editors test for null explicitly rather than for falsiness',
   );
 });
 
 test('the note control stays out of the row action cluster, which is already full', () => {
-  const main = read('src/js/main.js');
-  const cluster = main.slice(main.indexOf("el('div', { class: 'ract' }"));
+  const reading = read('src/js/views/reading.js');
+  const cluster = reading.slice(reading.indexOf("el('div', { class: 'ract', id: panelId }"));
   const end = cluster.indexOf('      ]));');
   assert.equal(
     cluster.slice(0, end).includes("act: 'note'"),
     false,
     'the note control belongs in the text column, not beside the six existing buttons',
   );
-  assert.match(main, /class: `rnote/, 'the note control exists');
+  assert.match(reading, /class: `rnote/, 'the note control exists');
 });
 
 // An aria-label replaces the element's contents in the accessible name rather than adding to it,
 // so a label naming only the action hides the note itself from the one reader who cannot see it.
 // Found in review, and nothing else in the suite or the gates would catch it coming back.
 test('a screen reader is told what the note says, not just that one exists', () => {
-  const main = read('src/js/main.js');
-  const label = /'aria-label': item\.note\s*\n?\s*\?\s*`([^`]*)`/.exec(main);
+  const reading = read('src/js/views/reading.js');
+  const label = /'aria-label': item\.note\s*\n?\s*\?\s*`([^`]*)`/.exec(reading);
   assert.ok(label, 'the note control still labels itself conditionally');
   assert.match(
     label[1],

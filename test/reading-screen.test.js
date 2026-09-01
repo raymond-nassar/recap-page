@@ -20,6 +20,7 @@ const read = (p) => readFileSync(join(here, '..', p), 'utf8');
 const html = read('src/index.html');
 const css = read('src/styles.css');
 const main = read('src/js/main.js');
+const reading = read('src/js/views/reading.js');
 
 test('the reading view opts out of the prose measure, so a desktop is used rather than margined', () => {
   // BL-165 capped every view at the reading measure and gave home an opt-out because a catalog is a
@@ -36,7 +37,7 @@ test('the progress figure is on the screen rather than inside a tooltip', () => 
   // keyboard user can open, so the readable statement of progress was the bare count.
   assert.match(html, /id="ring-label"/);
   assert.match(html, /id="ring-sub"/);
-  assert.match(main, /\$\('#ring-sub'\)\.textContent/);
+  assert.match(reading, /\$\('#ring-sub'\)\.textContent/);
   assert.equal(/#ring-wrap'\)\.setAttribute\('title'/.test(main), false, 'the percentage is back in a tooltip');
 });
 
@@ -45,7 +46,7 @@ test('the ring geometry in the markup and the constant in the renderer agree', (
   // files, so the only thing keeping them in step is this.
   const r = Number(html.match(/class="ring-arc"[^>]*\br="(\d+)"/)[1]);
   const dash = Number(html.match(/stroke-dasharray="([\d.]+)"/)[1]);
-  const constant = Number(main.match(/const RING_CIRCUMFERENCE = ([\d.]+);/)[1]);
+  const constant = Number(reading.match(/export const RING_CIRCUMFERENCE = ([\d.]+);/)[1]);
   assert.equal(dash, constant, 'the markup and the renderer disagree about the circumference');
   assert.ok(Math.abs(dash - 2 * Math.PI * r) < 0.05, `${dash} is not the circumference of a circle of radius ${r}`);
 });
@@ -91,27 +92,27 @@ test('icon-only controls expose their meaning on hover and keyboard focus', () =
     assert.doesNotMatch(form, /\btitle="/, `${id} still relies on a native title`);
   }
 
-  assert.match(main, /class: 'cb has-tooltip'/);
+  assert.match(reading, /class: 'cb has-tooltip'/);
   for (const tooltip of [
     'Open issue page on marvel.com',
     'Move up',
     'Move down',
     'Remove from this list',
   ]) {
-    assert.ok(main.includes(`tooltip: '${tooltip}'`), `the row controls are missing the ${tooltip} tooltip`);
+    assert.ok(reading.includes(`tooltip: '${tooltip}'`), `the row controls are missing the ${tooltip} tooltip`);
   }
-  assert.match(main, /availabilityOverrideAction\(item\.override\)/);
+  assert.match(reading, /availabilityOverrideAction\(item\.override\)/);
 });
 
 test('narrow reading rows use a labeled disclosure instead of unexplained symbols', () => {
-  assert.match(main, /class: 'row-actions'/);
-  assert.match(main, /class: 'mini row-actions-toggle'[\s\S]*text: 'More actions'/);
-  assert.match(main, /'aria-expanded': 'false'/);
-  assert.match(main, /'aria-controls': panelId/);
-  assert.match(main, /'aria-label': `More actions for \$\{item\.title\}`/);
-  assert.match(main, /text: 'More actions', dataset: \{ key: item\.issueId, act: 'more' \}/);
+  assert.match(reading, /class: 'row-actions'/);
+  assert.match(reading, /class: 'mini row-actions-toggle'[\s\S]*text: 'More actions'/);
+  assert.match(reading, /'aria-expanded': 'false'/);
+  assert.match(reading, /'aria-controls': panelId/);
+  assert.match(reading, /'aria-label': `More actions for \$\{item\.title\}`/);
+  assert.match(reading, /text: 'More actions', dataset: \{ key: item\.issueId, act: 'more' \}/);
   for (const label of ['Move up', 'Move down', 'Change Unlimited status', 'Remove from list']) {
-    assert.ok(main.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
+    assert.ok(reading.includes(`class: 'mini-label', text: '${label}'`), `the mobile actions are missing ${label}`);
   }
 
   assert.match(css, /@media \(max-width: 620px\) \{[\s\S]*?\.row-actions-toggle \{\s*display: flex/);
@@ -148,9 +149,9 @@ test('the full Reading List summary is a wrapping full-width action', () => {
 });
 
 test('the full Reading List action and state hooks receive the accepted copy', () => {
-  assert.match(main, /\$\('#full-action'\)\.textContent = \$\('#full'\)\.open/);
+  assert.match(reading, /\$\('#full-action'\)\.textContent = \$\('#full'\)\.open/);
   for (const copy of ['Hide full Reading List', 'View all ${total} issue', 'No issues yet', '${unread} unread', 'All read']) {
-    assert.ok(main.includes(copy), `the summary renderer is missing ${copy}`);
+    assert.ok(reading.includes(copy), `the summary renderer is missing ${copy}`);
   }
 });
 

@@ -503,7 +503,7 @@ test('a control boundary is measured against every surface it is drawn on, not j
 
 // Every class this app puts on something a reader operates, found by reading the markup and the
 // renderer rather than by listing them here. Both sources are needed: the toolbar buttons are
-// authored in index.html, while the rows are built in main.js.
+// authored in index.html, while the rows are built in main.js and the Reading view.
 function interactiveClasses() {
   const found = new Set();
   const add = (attr) => {
@@ -515,7 +515,10 @@ function interactiveClasses() {
   for (const m of read('src/index.html').matchAll(new RegExp(`<(?:${TAGS})\\s[^>]*class="([^"]*)"`, 'g'))) add(m[1]);
   // el('button', { class: '...' }) and its backticked form. The object literal is matched lazily up
   // to the class key, so other attributes before it do not have to be anticipated.
-  for (const m of read('src/js/main.js').matchAll(new RegExp(`el\\(\\s*'(?:${TAGS})'\\s*,\\s*\\{[^{}]*?class:\\s*(?:'([^']*)'|\`([^\`]*)\`)`, 'g'))) add(m[1] ?? m[2]);
+  const RENDERER_SOURCES = ['src/js/main.js', 'src/js/views/reading.js'];
+  for (const path of RENDERER_SOURCES) {
+    for (const m of read(path).matchAll(new RegExp(`el\\(\\s*'(?:${TAGS})'\\s*,\\s*\\{[^{}]*?class:\\s*(?:'([^']*)'|\`([^\`]*)\`)`, 'g'))) add(m[1] ?? m[2]);
+  }
   return found;
 }
 
@@ -530,7 +533,7 @@ test('nothing a reader operates is bordered with the ungated hairline token', ()
   // in a state no fixture reaches needs a check that reads rules rather than pixels.
   const interactive = interactiveClasses();
   assert.ok(interactive.has('quiet'), 'the class scan found no toolbar buttons, so it is not reading the markup');
-  assert.ok(interactive.has('rnote'), 'the class scan found no rendered controls, so it is not reading main.js');
+  assert.ok(interactive.has('rnote'), 'the class scan found no rendered controls, so it is not reading the row renderer');
 
   const offenders = [];
   for (const rule of stripComments(css).matchAll(/([^{}]+)\{([^{}]*)\}/g)) {

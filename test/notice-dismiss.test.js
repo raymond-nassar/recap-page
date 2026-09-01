@@ -19,7 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { noticeEl, spoken } from '../src/js/main.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const source = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
+const source = readFileSync(join(ROOT, 'src', 'js', 'views', 'reading.js'), 'utf8');
 
 // Enough of a document for el() to build with, and no more. The repository has no DOM in tests and
 // deliberately does not take one on, so the parts el() actually touches are stood up by hand.
