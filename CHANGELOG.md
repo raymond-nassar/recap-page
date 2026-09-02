@@ -143,6 +143,19 @@ Reading List, Browse and both name searches, external-service failure, deliberat
 relaunch, live package removal, and exact cleanup. WACK remains on its supported x64 host and keeps
 all generated packages, certificates, browser profiles, and raw reports out of artifacts.
 
+### Added protected Microsoft Store update automation
+
+In plain English: once the first Store version is certified and available, publishing a reviewed
+app release can prepare and submit its Store update after the owner approves the protected release
+job. Microsoft still certifies every update before it appears, and nothing in saved reading
+progress changes.
+
+For maintainers, the release workflow builds and WACK-tests one exact x64 and ARM64 bundle, rejects
+unsafe Partner Center state, and submits the same bytes through Microsoft's submission API. Every
+mutation stays bound to the one newly created submission and is sent once. A manual run rehearses
+authenticated read access without changing Store state. The production environment must be
+protected before the workflow reaches the default branch.
+
 ### Added immutable historical evidence anchors
 
 In plain English: nothing in the app or in saved reading progress changes. Maintainers can now move

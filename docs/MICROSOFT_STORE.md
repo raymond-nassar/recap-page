@@ -26,6 +26,8 @@ inspection.
 The repository now builds signed x64 and ARM64 version `2.0.2.0` proof packages, one x64/ARM64
 bundle, and an isolated x64 `2.0.2.1` update package. Store submission and publication remain
 separate actions.
+Those versions record this package candidate. Later builds derive Store revision `.0` and the
+proof-only `.1` revision from the canonical application release version.
 
 The earlier 2.0.0 structural inspection on Windows 11 ARM64 proved:
 
@@ -330,7 +332,9 @@ The workflow runs when package behavior, package proof, or its own WACK automati
 request, and it is also available by manual dispatch. Its installed jobs use architecture-native
 x64 and Windows on Arm hosts for the certification journey. The WACK job remains on the supported
 Windows Server 2022 x64 command-line host. Every job uses a read-only repository token, pinned
-actions, telemetry opt-out, and no secrets or artifact upload.
+actions, telemetry opt-out, and no secrets or artifact upload. It derives package paths from the
+canonical application version and certifies the package built from the current source rather than
+comparing that source with the first accepted package commit.
 
 Each run rebuilds randomly signed proof inputs without changing the maintained package sources. It
 then temporarily trusts only that run's certificate and applies Microsoft's command-line sequence:
@@ -363,7 +367,7 @@ The GitHub ZIP remains a manual standalone Windows download while certification 
 does not check that channel or direct readers to it. Microsoft Store is the primary discovery channel
 and the only update channel for Store installations.
 
-## Remaining Store gates
+## First-submission Store gates
 
 - Review the maintained [submission packet](MICROSOFT_STORE_SUBMISSION.md), its sanitized assets,
   and every owner-only stop point.
@@ -376,6 +380,29 @@ and the only update channel for Store installations.
 
 Publication remains a separate owner action. Repository automation never requests credentials,
 accepts terms, reserves a name, uploads a package, or submits a listing.
+
+## Future Store update automation
+
+After the first free submission is certified and live, the protected Microsoft Store release
+workflow can submit later package updates. A published GitHub release starts the job, but the
+`microsoft-store-production` environment blocks it before build and credentials until the owner
+approves deployment.
+
+The workflow builds from the release tag in one Windows Server 2022 job. It inspects and WACK-tests
+the exact generated bundle, verifies the same SHA-256 before submission, then checks Partner Center
+for the expected live free product, no pending submission, and a strictly higher package version.
+Manual dispatch performs the same build and read-only API checks but cannot create, upload, update,
+commit, delete, poll, or operate a flight.
+
+An approved release creates one draft through Microsoft's submission API and captures its ID.
+Upload, update, verification, and commit remain bound to that ID, and every mutation is sent once
+without an automatic retry policy. Microsoft certification remains authoritative. After
+certification passes, Microsoft publishes the update automatically without a second manual hold.
+The workflow does not delete a pending draft or wait for certification.
+
+The [maintainer guide](MAINTAINING.md) owns environment setup order, secret names, activation
+rehearsal, release operation, and recovery. The [submission packet](MICROSOFT_STORE_SUBMISSION.md)
+remains the immutable first-submission handoff and records the boundary between the two procedures.
 
 ## Official references
 
@@ -391,4 +418,8 @@ accepts terms, reserves a name, uploads a package, or submits a listing.
 - [GitHub-hosted runner architecture and cost](https://docs.github.com/actions/reference/runners/github-hosted-runners)
 - [GitHub token permissions](https://docs.github.com/actions/tutorials/authenticate-with-github_token)
 - [winapp CLI multi-architecture bundles](https://learn.microsoft.com/windows/apps/dev-tools/winapp-cli/usage#multi-architecture-bundles)
+- [Microsoft Store updates with GitHub Actions](https://learn.microsoft.com/windows/apps/publish/msstore-dev-cli/github-actions?tabs=msix)
+- [Microsoft Store submission API](https://learn.microsoft.com/windows/uwp/monetize/manage-app-submissions)
+- [Create and manage Store submissions](https://learn.microsoft.com/windows/uwp/monetize/create-and-manage-submissions-using-windows-store-services)
+- [WinApp CLI v0.6.0 release assets and digests](https://api.github.com/repos/microsoft/WinAppCli/releases/tags/v0.6.0)
 - [Node v24.19.0 published checksums](https://nodejs.org/dist/v24.19.0/SHASUMS256.txt)

@@ -183,8 +183,8 @@ npm run store:check
 ```
 
 The check requires five 1920 by 1080 Desktop screenshots, the exact 300 by 300 purple panels tile,
-field-limit-safe listing copy, public HTTPS URLs, and the capability and publication stop points.
-It reads no account data and makes no network request.
+field-limit-safe listing copy, public HTTPS URLs, the first-submission stop points, and the separate
+future-update policy. It reads no account data and makes no network request.
 
 Regenerate the assets only with installed Edge and the same scratch `puppeteer-core` boundary as the
 browser checks:
@@ -561,6 +561,92 @@ The command pages the complete series and creator catalogs and writes compact sn
 `src/data/series-index.json` and `src/data/creators-index.json`. The app loads each file only when
 its search card opens. A new upstream record is not searchable until the snapshots are rebuilt.
 
+## Activate Microsoft Store update automation
+
+The first Microsoft Store submission remains manual. Do not activate automated updates until that
+free submission is certified and live. Implementation can merge earlier only after the protected
+environment exists, because GitHub creates a referenced environment without protection rules when
+one does not already exist.
+
+Before the Store workflow reaches the default branch:
+
+1. Create the `microsoft-store-production` environment in repository settings.
+2. Require the owner as a deployment reviewer and prevent self-review when repository settings
+   support it.
+3. Select deployment branches and tags, then confirm the default branch is accepted for the
+   read-only rehearsal and approved `v*` tags are accepted for release deployment.
+4. Do not merge the workflow if both paths cannot be expressed and enforced.
+
+The environment can exist before Store certification and does not need credentials yet. Until the
+first version is live, reject any deployment approval request. After it is live, create an Entra
+application with Partner Center Manager access and add these environment secrets:
+
+```text
+PARTNER_CENTER_TENANT_ID
+PARTNER_CENTER_CLIENT_ID
+PARTNER_CENTER_CLIENT_SECRET
+```
+
+Add the Store product identity as the environment variable
+`MICROSOFT_STORE_PRODUCT_ID`. Never place those values in repository variables, workflow text,
+logs, issue comments, or artifacts.
+
+Dispatch **Microsoft Store release** manually from the default branch before the first production
+update. The protected approval must appear before the job starts. The rehearsal builds, inspects,
+and WACK-tests the current bundle, authenticates, and reads the application and exact last published
+submission through Microsoft's submission API. It also confirms that the bundle version is higher
+than every published package version. It must report **read-only activation rehearsal passed**. It
+cannot create a submission, upload a package, update or commit a submission, delete, poll, operate a
+rollout, or operate a flight.
+
+If the rehearsal reports an unrecognized pricing field, package field, or rollout field, stop.
+Update the fixture-backed contract from the documented API and the observed sanitized field shape rather
+than accepting a missing value. Do not test the contract by creating a draft.
+
+### Operate a Store update
+
+Complete the ordinary release preparation below. Publishing a non-draft, non-prerelease GitHub
+release whose tag is exactly `v<version>` starts the Store job. The environment approval is the
+owner's authorization to build and submit that release. Reject approval if the Store product has
+pending work or if the release was not intended as the next Store update.
+
+The job proves the tag commit is on the default branch, builds once, inspects the packages, runs
+WACK, and confirms the bundle hash did not change. Only then does it authenticate, reject unsafe
+Partner Center state, create one draft, capture its submission ID, upload the bundle archive, set
+immediate publication with rollout disabled, verify that exact draft, and commit that same ID once.
+Each HTTP mutation is sent once without an automatic retry policy. The create request fails rather
+than deleting an existing pending submission.
+
+A successful job summary means Partner Center accepted the submission for certification. It does
+not mean certification passed or customers can see the update. Microsoft publishes automatically
+after certification, which can take up to three business days. There is no second manual publishing
+hold and the workflow does not wait or poll.
+
+### Recover a Store update
+
+| Point reached | Required action |
+|---|---|
+| Failure before draft upload | Correct the source, package, configuration, or read-only state problem. A deliberate rerun is safe only after confirming Partner Center still has no pending submission. |
+| Existing pending submission found | Stop. Inspect it in Partner Center and decide manually whether to finish or delete it. The workflow never deletes it. |
+| Failure during or after draft upload | Do not rerun. Treat the result as ambiguous, inspect Partner Center, and resolve the pending draft manually before another release attempt. |
+| Draft commit accepted | Monitor certification in Partner Center. Do not rerun the workflow or move the release tag. |
+| Certification failed | Use the certification report, correct the application, and publish a new GitHub release with a higher version. |
+| Runner lost after commit | Treat Partner Center as authoritative. The pending guard prevents another upload while Store work remains. |
+
+The workflow captures no raw Store response in its summary and uploads no package or diagnostic
+artifact. Its always-run cleanup removes generated packages, temporary Store JSON and upload
+archives, WACK reports, package registration, and temporary certificate trust. Access tokens remain
+in process memory only. A cleanup failure is a release failure and must be resolved before another
+run.
+
+When changing the Store submission API script, WinApp CLI, checkout action, or Node setup action,
+review the upstream contract or release notes, replace any affected immutable pin, update the
+workflow contract test, and repeat the read-only rehearsal before the next production submission.
+The Store release and standalone certification workflows download the fixed WinApp CLI v0.6.0
+archive and verify SHA-256
+`f6dc42e3b4e4709c8f617003008e2cfdd9a51735e04e7170d60edda258db78a8` before extraction or
+execution.
+
 ## Cutting a release
 
 Release preparation and GitHub publication are separate actions. Prepare and merge the release
@@ -572,14 +658,16 @@ from an unmerged branch commit.
 Move the current changelog entries under a version heading. Keep the release notes benefit-led and
 link to the full changelog.
 
-Update all three version sources together:
+Update the canonical application version and its synchronized release files together:
 
 ```text
 npm version <major|minor|patch> --no-git-tag-version
 ```
 
-The npm version lifecycle updates the browser version constant in the same operation. Confirm all
-three values agree and the stored-data schema is still correct. Use a major version for a
+The npm version lifecycle updates the browser version constant in the same operation. The MSIX
+packer derives Store revision `.0` and proof-only revision `.1` from that application version, so
+neither package version is maintained separately. Confirm the package metadata, lock file, and
+browser constant agree and the stored-data schema is still correct. Use a major version for a
 substantial new product generation. A major version is also required whenever an older build cannot
 read data written by the new build, but a product-generation release may preserve the existing
 schema. Use a minor version for features within the current generation and a patch for behavior
@@ -630,6 +718,10 @@ Create the GitHub release with tag `v<version>`, choose the merged commit as its
 prepared release notes, and attach `dist/marvel-reading-tracker-windows.zip`. Creating the release is
 what creates the tag. Do not create the tag on the feature branch: squash merging would leave it
 pointing to a commit that never reaches the default branch.
+
+After Store update automation is activated, publishing this release also requests a protected Store
+deployment. Approval submits the separately built MSIX bundle; it does not change or replace the
+attached GitHub ZIP.
 
 ### 5. Verify the published release
 
@@ -682,12 +774,13 @@ winapp --version
 npm run msix:pack
 ```
 
-The packer writes signed x64 and ARM64 version `2.0.2.0` packages plus their bundle under ignored
-`dist/msix/`. It also writes the x64 `2.0.2.1` update artifact under `dist/msix-proof/`, where it
-cannot enter the Store bundle. Both official Node archives are checked against Node's published
-SHA-256 list. Each package uses its native Node executable to run the maintained supervisor and the
-unchanged server. Package assets are generated and all outputs are signed with one transient
-certificate before the private key and password are deleted. Never commit anything under `dist/`.
+The packer writes signed x64 and ARM64 packages at `<application-version>.0` plus their bundle under
+ignored `dist/msix/`. It also writes the x64 `<application-version>.1` update artifact under
+`dist/msix-proof/`, where it cannot enter the Store bundle. Both official Node archives are checked
+against Node's published SHA-256 list. Each package uses its native Node executable to run the
+maintained supervisor and the unchanged server. Package assets are generated and all outputs are
+signed with one transient certificate before the private key and password are deleted. Never commit
+anything under `dist/`.
 
 On any build host, inspect every package and both bundle slices for identity, updater absence, Node
 hashes, and PE machine fields without starting a foreign runtime:
@@ -711,7 +804,7 @@ npm run msix:prove -- --scenario=update-state-continuity
 
 Those commands default to the standalone x64 package. Add
 `--architecture=arm64 --source=bundle` to the first two scenarios to prove that Windows selects the
-ARM64 slice from the final bundle. The update journey remains x64 because version `2.0.2.1` is
+ARM64 slice from the final bundle. The update journey remains x64 because the `.1` package is
 proof-only and never belongs in the Store bundle.
 
 Loose registration is useful for activation debugging but is not installation evidence. Record it

@@ -30,6 +30,8 @@ test('WACK and installed proof run when package behavior changes', () => {
     [
       '.github/workflows/wack.yml',
       '.github/browser-proof/**',
+      'LICENSE',
+      'package.json',
       'packaging/windows/**',
       'server.mjs',
       'src/**',
@@ -42,6 +44,7 @@ test('WACK and installed proof run when package behavior changes', () => {
       'scripts/wack-report.ps1',
       'test/msix-packaging.test.js',
       'test/server-contract.test.js',
+      'test/wack-workflow.test.js',
     ],
   );
   assert.doesNotMatch(workflow, /pull_request_target|schedule:|^ {2}push:/m);
@@ -53,8 +56,11 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
   assert.match(workflow, /runs-on: \$\{\{ matrix\.runner \}\}/);
   assert.deepEqual(topLevelMap(workflow, 'permissions'), { contents: 'read' });
   assert.match(workflow, /^ {2}WINAPP_CLI_TELEMETRY_OPTOUT: '1'\s*$/m);
-  assert.match(workflow, /\$output = @\(winapp --version\)/);
-  assert.match(workflow, /\$output\[-1\]\.Trim\(\) -ne '0\.6\.0'/);
+  assert.match(workflow, /releases\/download\/v0\.6\.0\/winappcli-x64\.zip/);
+  assert.match(workflow, /F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8/);
+  assert.ok(workflow.indexOf('Get-FileHash') < workflow.indexOf('Expand-Archive'));
+  assert.ok(workflow.indexOf('Expand-Archive') < workflow.indexOf('winapp.exe'));
+  assert.doesNotMatch(workflow, /setup-WinAppCli/);
   assert.doesNotMatch(workflow, /id-token:|packages: write|contents: write|secrets\./);
   assert.match(runner, /PROCESSOR_ARCHITECTURE -ne 'AMD64'/);
   assert.match(runner, /SessionId/);
@@ -84,8 +90,8 @@ test('the supported Windows job executes parser fixtures before certification', 
   assert.match(runner, /\. \(Join-Path \$PSScriptRoot 'wack-report\.ps1'\)/);
 });
 
-test('WACK builds exact clean package inputs without a stale commit pin', () => {
-  assert.doesNotMatch(workflow, /c5cd22f4351265a9429230572149d72494eb515e HEAD/);
+test('WACK builds exact clean package inputs at the canonical version', () => {
+  assert.doesNotMatch(workflow, /c5cd22f4351265a9429230572149d72494eb515e/);
   assert.match(workflow, /git diff --exit-code --/);
   for (const input of [
     'LICENSE',
@@ -97,15 +103,23 @@ test('WACK builds exact clean package inputs without a stale commit pin', () => 
   ]) {
     assert.match(workflow, new RegExp(input.replaceAll('.', '\\.')));
   }
+  assert.doesNotMatch(workflow, /RecapPage_2\.0\.0\.0/);
+  assert.match(workflow, /\$storeVersion = "\$appVersion\.0"/);
+  assert.match(workflow, /id: package-paths/);
+  assert.match(workflow, /steps\.package-paths\.outputs\.x64/);
+  assert.match(workflow, /steps\.package-paths\.outputs\.bundle/);
+  assert.match(workflow, /steps\.package-paths\.outputs\.certificate/);
 });
 
 test('WACK uploads no package, certificate, installer, or raw report', () => {
   assert.doesNotMatch(workflow, /upload-artifact|cache\/save|gh release|store upload/i);
-  assert.doesNotMatch(workflow, /\.pfx|winsdksetup|Invoke-WebRequest/);
+  assert.doesNotMatch(workflow, /\.pfx|winsdksetup/);
+  assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 2);
   assert.match(workflow, /if: always\(\)/);
   assert.match(workflow, /Get-AppxPackage -Name PanelStackLabs\.RecapPage/);
   assert.match(workflow, /Cert:\\LocalMachine\\TrustedPeople/);
-  assert.match(workflow, /Remove-Item -LiteralPath \.\/dist/);
+  assert.match(workflow, /'\.\/dist'/);
+  assert.match(workflow, /Remove-Item -LiteralPath \$path -Recurse -Force/);
   assert.match(runner, /Remove-Item -LiteralPath \$reportRoot -Recurse -Force/);
   assert.doesNotMatch(runner, /Get-Content -LiteralPath .*(stdout|stderr)/);
   assert.match(workflow, /\.github\/browser-proof/);

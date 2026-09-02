@@ -84,10 +84,15 @@ test('the packer separates the Store bundle from its proof-only update', async (
   assert.ok(existsSync(PACK), 'the MSIX packer is missing');
   const packer = await import('../scripts/pack-msix.mjs');
   const inspector = await import('../scripts/inspect-msix.mjs');
+  const pkg = JSON.parse(read(join(ROOT, 'package.json')));
+  const storeVersion = `${pkg.version}.0`;
+  const proofVersion = `${pkg.version}.1`;
+  const storePattern = storeVersion.replaceAll('.', '\\.');
+  const proofPattern = proofVersion.replaceAll('.', '\\.');
 
-  assert.deepEqual(packer.PACKAGE_VERSIONS, ['2.0.2.0', '2.0.2.1']);
-  assert.equal(packer.STORE_PACKAGE_VERSION, '2.0.2.0');
-  assert.equal(packer.PROOF_UPDATE_VERSION, '2.0.2.1');
+  assert.deepEqual(packer.PACKAGE_VERSIONS, [storeVersion, proofVersion]);
+  assert.equal(packer.STORE_PACKAGE_VERSION, storeVersion);
+  assert.equal(packer.PROOF_UPDATE_VERSION, proofVersion);
   assert.deepEqual(
     packer.PACKAGE_ARCHITECTURES.map(({ id, node }) => ({ id, node })),
     [
@@ -104,12 +109,21 @@ test('the packer separates the Store bundle from its proof-only update', async (
     '0.6.0',
   ].join('\n')), '0.6.0');
   assert.equal(packer.winAppCliVersion('Windows App Development CLI - Version 0.6.0'), null);
-  assert.match(packer.packagePath('x64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.2\.0_x64\.msix$/);
-  assert.match(packer.packagePath('arm64'), /dist[\\/]msix[\\/]RecapPage_2\.0\.2\.0_arm64\.msix$/);
-  assert.match(packer.bundlePath(), /RecapPage_2\.0\.2\.0_x64_arm64\.msixbundle$/);
   assert.match(
-    packer.proofPackagePath('2.0.2.1'),
-    /dist[\\/]msix-proof[\\/]RecapPage_2\.0\.2\.1_x64\.msix$/,
+    packer.packagePath('x64'),
+    new RegExp(`dist[\\\\/]msix[\\\\/]RecapPage_${storePattern}_x64\\.msix$`),
+  );
+  assert.match(
+    packer.packagePath('arm64'),
+    new RegExp(`dist[\\\\/]msix[\\\\/]RecapPage_${storePattern}_arm64\\.msix$`),
+  );
+  assert.match(
+    packer.bundlePath(),
+    new RegExp(`RecapPage_${storePattern}_x64_arm64\\.msixbundle$`),
+  );
+  assert.match(
+    packer.proofPackagePath(proofVersion),
+    new RegExp(`dist[\\\\/]msix-proof[\\\\/]RecapPage_${proofPattern}_x64\\.msix$`),
   );
   assert.deepEqual(inspector.parseInspectArguments([]), { measureRuntimes: true });
   assert.deepEqual(inspector.parseInspectArguments(['--structural']), { measureRuntimes: false });

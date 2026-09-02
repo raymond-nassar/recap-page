@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { APP_VERSION } from '../src/js/lib/version.js';
+import {
+  PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, derivePackageVersions,
+} from '../scripts/pack-msix.mjs';
 
 // The app has no build step, so the version the UI shows is a hand-written constant in
 // src/js/lib/version.js while the version npm and any release tag use lives in
@@ -21,6 +24,38 @@ test('the version is a plain three-part semantic version', () => {
   // prints the string raw, so anything with a pre-release or build suffix would need both
   // of those looked at again first.
   assert.match(APP_VERSION, /^\d+\.\d+\.\d+$/);
+});
+
+test('Store package versions derive from the canonical application version', () => {
+  assert.deepEqual(derivePackageVersions('2.1.3'), {
+    store: '2.1.3.0',
+    proof: '2.1.3.1',
+  });
+  assert.equal(STORE_PACKAGE_VERSION, `${pkg.version}.0`);
+  assert.equal(PROOF_UPDATE_VERSION, `${pkg.version}.1`);
+});
+
+test('Store package versions enforce unsigned 16-bit application components', () => {
+  assert.deepEqual(derivePackageVersions('0.0.0'), {
+    store: '0.0.0.0',
+    proof: '0.0.0.1',
+  });
+  assert.deepEqual(derivePackageVersions('65535.65535.65535'), {
+    store: '65535.65535.65535.0',
+    proof: '65535.65535.65535.1',
+  });
+  for (const invalid of [
+    '1.2',
+    '1.2.3.4',
+    '-1.2.3',
+    '1.2.3-beta',
+    '1.2.3+build',
+    '65536.0.0',
+    '0.65536.0',
+    '0.0.65536',
+  ]) {
+    assert.throws(() => derivePackageVersions(invalid), /package version/);
+  }
 });
 
 test('the changelog defines MAJOR as a product generation as well as a compatibility boundary', () => {
