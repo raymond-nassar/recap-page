@@ -127,7 +127,7 @@ jobs:
 
       - name: Inspect the Store packages
         timeout-minutes: 10
-        run: npm run msix:inspect
+        run: npm run msix:inspect -- --structural
 
       - name: Record the validated bundle hash
         id: bundle_hash
@@ -231,7 +231,7 @@ jobs:
       - name: Remove generated Store material
         if: always()
         timeout-minutes: 5
-        shell: pwsh
+        shell: powershell
         run: |
           $failures = @()
           try {
