@@ -12,6 +12,18 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Added a project home for discovery and support
+
+In plain English: People who find Recap Page through GitHub now have one clear place to understand
+the app, see what it looks like, run it safely, solve a problem, read the maintained guides and
+choose the right feedback route. The tracker still runs only on their computer, and nothing already
+saved is affected.
+
+The information page reuses the two current cover-off product views and links to the documents that
+own setup, support, privacy, security, architecture, provenance, releases and contribution guidance.
+An optional GitHub Copilot project guide explains its account and hosted-processing boundary before
+entry and never receives reading state from the app.
+
 ### Added Adam Warlock Character Spotlight
 
 In plain English: The Character Spotlight shelf now includes a complete Adam Warlock guide, from

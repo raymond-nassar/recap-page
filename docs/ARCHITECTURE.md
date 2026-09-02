@@ -578,3 +578,34 @@ Package files remain read-only. Browser state remains under `mrt.state.v2` and t
 described above, in the external browser's exact origin and profile. The package never reads or
 writes those stores. [The Microsoft Store package guide](MICROSOFT_STORE.md) owns build, proof,
 identity, cleanup, and remaining publication gates.
+
+## The public project home is not an app entry point
+
+GitHub Pages serves a separate information artifact at the repository's project-site address. A
+deterministic builder copies one HTML file, one stylesheet and the two cover-off screenshots already
+owned by the README into an ignored staging directory. The deployment workflow uploads only that
+four-file allowlist. No file under `src`, no manifest, no worker and no launch page can enter it.
+
+The information page has no script or form. Its navigation is ordinary links to the README, running
+guide, support policy, privacy policy, security policy, architecture, provenance, maintaining guide,
+contribution guide, governance, changelog, releases, issues and Project. Those destinations remain
+the owners of their detail.
+
+The optional GitHub Copilot Space is another GitHub-hosted project surface. The Page explains that
+boundary before linking to it. The tracker does not call either hosted surface, and neither hosted
+surface can read storage belonging to `http://127.0.0.1:8787`.
+
+```mermaid
+flowchart LR
+  source["pages source and two checked screenshots"] --> builder["allowlisted Pages builder"]
+  builder --> artifact["four-file deployment artifact"]
+  artifact --> pages["GitHub Pages project home"]
+  pages --> docs["maintained repository documents"]
+  pages --> space["optional GitHub Copilot Space"]
+  tracker["local tracker at 127.0.0.1:8787"] -. "no data path" .-> pages
+  tracker -. "no data path" .-> space
+```
+
+[Maintaining Recap Page](MAINTAINING.md) owns the exact Space sources, deployment settings, hosted
+verification and rollback order. Removing source files alone does not unpublish an existing Page,
+and removing public Space access cannot recall a prompt that GitHub has already processed.

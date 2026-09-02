@@ -721,3 +721,131 @@ TrustedPeople certificate, then confirm port 8787 is free.
 `npm run pack` remains the GitHub ZIP build. Do not merge the ZIP and MSIX paths or rename the stable
 ZIP asset. The Store package cannot replace that release until certification passes and the owner
 changes release policy explicitly.
+
+## Publish and maintain the project home
+
+The GitHub Pages home is an information artifact, not another tracker build. Its source lives under
+`pages/`. Build it with:
+
+```text
+npm run pages:build
+```
+
+The command replaces ignored `dist/pages/` only after a complete candidate has been assembled. The
+only permitted outputs are:
+
+```text
+index.html
+site.css
+assets/home-1280.png
+assets/avengers-disassembled-reading-1280.png
+```
+
+The two images must remain byte-identical to their namesakes under `docs/screenshots/`. Do not add
+`src`, an app manifest, a service worker, a script, a form, an iframe, an external font, analytics,
+telemetry or another application origin to the artifact.
+
+### Configure the Copilot Space
+
+Create one individual-owned Space named **Recap Page project guide** and keep General access private
+until the delivery pull request is checked. Add exactly these current files as individual GitHub
+sources:
+
+Space URL: <https://github.com/copilot/spaces/raymond-nassar/1>
+
+```text
+README.md
+docs/RUNNING.md
+SUPPORT.md
+PRIVACY.md
+SECURITY.md
+docs/ARCHITECTURE.md
+docs/DATA_PROVENANCE.md
+docs/MAINTAINING.md
+GOVERNANCE.md
+CONTRIBUTING.md
+```
+
+Do not attach the whole repository, CHANGELOG.md, an uploaded file or copied free text. Selected
+GitHub files stay synchronized with `main`, while a whole-repository source can retrieve dated
+working evidence that is not current product guidance.
+
+Use these Space instructions exactly:
+
+```text
+Answer questions about Recap Page only from the attached maintained public sources. Cite the source
+that supports each answer. When the sources do not answer, say that the answer is unknown rather
+than guessing. GitHub Copilot is not maintainer support. Send ordinary support and bug questions to
+SUPPORT.md and suspected vulnerabilities to the private route in SECURITY.md. Never ask for reading
+progress, lists, notes, backup files, personal information or vulnerability details. For storage
+answers, use PRIVACY.md as the reader-facing authority and docs/ARCHITECTURE.md for full detail; do
+not describe one key as the only browser storage. When naming stores, say that `mrt.state.v2` holds
+lists, reading progress, notes, availability overrides and custom entries; `mrt.settings` holds
+preferences; and separate recovery, IndexedDB and Cache API stores have their documented jobs. For
+questions about the project home or Copilot Space receiving reading state, answer only when
+PRIVACY.md or docs/ARCHITECTURE.md explicitly names that hosted surface; otherwise say the answer is
+unknown. Do not infer a hosted-surface answer from a general app no-upload statement.
+```
+
+Before copying the Space URL into the Page source, ask these questions without using real reader
+data:
+
+1. What is Recap Page, and where does it keep reading progress?
+2. How do I run it without making my existing progress look missing?
+3. Where should I ask for support, report a bug and report a security problem?
+4. Does the project home or this Space receive my reading state?
+
+Each answer must cite the appropriate attached file, preserve the exact local origin, separate
+support from private security and state that the hosted project surfaces receive no tracker data.
+Record that this is a smoke check rather than a guarantee: Copilot can use only part of the attached
+context and can answer incorrectly.
+
+### Prepare Pages without publishing
+
+Re-read current release notes and action definitions before pinning any Pages action. The workflow
+uses GitHub Actions as its Pages build type, relative artifact paths and no custom domain, so it does
+not need `actions/configure-pages`.
+
+Create the `github-pages` environment with `main` as its only deployment branch. Do not add a
+required reviewer, which would deadlock this single-maintainer repository. Add no environment secret.
+Read the Pages and environment settings back after writing them and before merging.
+
+The Pages workflow runs only for `main` pushes and manual dispatches on `main`. Its build job has
+`contents: read`; only the deployment job has `pages: write` and `id-token: write`. The existing
+required Node 20 and Node 24 jobs discover the Pages contract through bare `npm test`, so do not add
+a separate required branch check.
+
+### Publish and verify
+
+The public transitions are separate decisions:
+
+1. Change the checked private Space to **Anyone with link**.
+2. Merge the exact checked pull request and permit its first Pages deployment.
+3. Verify the deployed Page before setting the repository homepage.
+4. Set the homepage to `https://raymond-nassar.github.io/recap-page/`.
+
+Verify the Page uses HTTPS and corresponds to the merged commit. Check its exact artifact inventory,
+desktop and 320-pixel navigation, keyboard focus, forced-color boundaries, reduced-motion behavior,
+fixed-origin warning, maintained document links, issue forms, private security route, source and
+issue history, and public Space access. The Page must remain useful when Copilot is unavailable.
+
+### Roll back hosted surfaces first
+
+Public-transition approval must include authority to stop exposure immediately if a hosted check
+fails:
+
+1. Cancel an in-progress Pages deployment where possible.
+2. Unpublish the current Pages deployment.
+3. Return the Space to private access.
+4. Clear the repository homepage if it was set.
+5. Disable the publication path so another push cannot republish.
+6. Verify the Page and public Space routes are no longer available.
+7. Prepare a reviewed revert of the source and workflow changes.
+
+Deleting source or workflow files does not remove a current deployment. Deleting the Pages site or
+the deployment environment is a separate permanent action and needs separate approval.
+
+Rollback stops future access through the project. It cannot recall a Copilot prompt already
+processed, shorten GitHub's 28-day Chat retention, change the visitor's individual model-training
+setting or guarantee how quickly a copied public Space link stops resolving. Keep those limits in
+the public disclosure and the delivery record.

@@ -40,7 +40,8 @@
     "browser:prove": "node scripts/browser-check.mjs --prove",
     "upgrade": "node scripts/upgrade-check.mjs",
     "upgrade:prove": "node scripts/upgrade-check.mjs --prove",
-    "version": "node scripts/sync-version.mjs && git add src/js/lib/version.js"
+    "version": "node scripts/sync-version.mjs && git add src/js/lib/version.js",
+    "pages:build": "node scripts/build-pages.mjs"
   },
   "engines": {
     "node": ">=20"
