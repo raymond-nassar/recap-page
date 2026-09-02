@@ -282,7 +282,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2352-2371`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2352-2372`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -514,7 +514,7 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:2922-2957`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:2925-2960`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:160-195`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -534,7 +534,30 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for cards, path choice, source disclosure and path links. That internal module owns the
 choice without importing the controller or another concrete view, while the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:2803-2920`.
+`src/js/main.js:2804-2923`.
+
+## Modern Timeline position is a Store projection
+
+Modern Timeline stores no cursor. Its catalog view builds one first-match index from the saved
+Reading Lists' catalog identities, walks the canonical unfiltered story order and stops at the first
+representative list that is absent or not complete, at `src/js/views/catalog.js:26-68`. Grouped
+stories use the same shallowest-owned default path their card already presents. A catalog with a
+dropped entry reports the position as unavailable because the parser no longer has enough identity
+or order information to place that gap.
+
+Filtering changes only the visible story keys. The view retains canonical stories and visible keys
+from the current successful render, derives position from live Store state, and rejects marker
+refresh while a newer catalog render is pending, at `src/js/views/catalog.js:136-177`. A hidden
+current story is named rather than replaced, full completion sits after the unfiltered spine, and
+filtered completion is stated before the narrowed results.
+
+The shared presentation contract removes the previous positional state and paints exactly one
+current label, hidden message, completion state or unavailable message at
+`src/js/views/shared/catalog-presentation.js:280-330`. Only a visible current story receives
+`aria-current="step"`. The controller injects live state and current-view knowledge at
+`src/js/main.js:2833-2865`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:2352-2372`. That refresh leaves cards, controls, focus, scroll and
+transient path choice intact across same-tab and cross-tab state changes.
 
 ## Where to read next
 

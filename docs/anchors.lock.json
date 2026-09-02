@@ -1564,9 +1564,9 @@
     "fp": "d3c89ab1f16d81ee",
     "head": "export function toggleRead(state, issueId) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2352-2371|0": {
-    "anchor": "src/js/main.js:2352-2371",
-    "fp": "eaa9cf880769f730",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:2352-2372|0": {
+    "anchor": "src/js/main.js:2352-2372",
+    "fp": "611b45392207b80a",
     "head": "function renderAll() {"
   },
   "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/main.js:278-280|0": {
@@ -1629,6 +1629,31 @@
     "fp": "962c8048b2876981",
     "head": "onclick: () => {"
   },
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2352-2372|0": {
+    "anchor": "src/js/main.js:2352-2372",
+    "fp": "611b45392207b80a",
+    "head": "function renderAll() {"
+  },
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2833-2865|0": {
+    "anchor": "src/js/main.js:2833-2865",
+    "fp": "68405df558b78554",
+    "head": "const catalogView = createCatalogView({"
+  },
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:136-177|0": {
+    "anchor": "src/js/views/catalog.js:136-177",
+    "fp": "3d7a7e05ce68abdd",
+    "head": "function paintTimelineContext(context, { announceChange = false } = {}) {"
+  },
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/catalog.js:26-68|0": {
+    "anchor": "src/js/views/catalog.js:26-68",
+    "fp": "791cc726f6bd4955",
+    "head": "export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {"
+  },
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/views/shared/catalog-presentation.js:280-330|0": {
+    "anchor": "src/js/views/shared/catalog-presentation.js:280-330",
+    "fp": "0a962c0efebbd6c1",
+    "head": "function paintTimelinePosition(root, position, {"
+  },
   "docs/ARCHITECTURE.md|one-thing-the-drawing-found|src/js/storage.js:144-154|0": {
     "anchor": "src/js/storage.js:144-154",
     "fp": "8a51ad8622832a60",
@@ -1664,13 +1689,13 @@
     "fp": "91cf3f5c9862a25a",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2803-2920|0": {
-    "anchor": "src/js/main.js:2803-2920",
-    "fp": "945cd280233b45d3",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2804-2923|0": {
+    "anchor": "src/js/main.js:2804-2923",
+    "fp": "bfc218c9850b36b1",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2922-2957|0": {
-    "anchor": "src/js/main.js:2922-2957",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2925-2960|0": {
+    "anchor": "src/js/main.js:2925-2960",
     "fp": "84eae7226d8b4175",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1959,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3534-3545|0": {
-    "anchor": "CHANGELOG.md:3534-3545",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3546-3557|0": {
+    "anchor": "CHANGELOG.md:3546-3557",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3547-3557|0": {
-    "anchor": "CHANGELOG.md:3547-3557",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3559-3569|0": {
+    "anchor": "CHANGELOG.md:3559-3569",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2164,13 +2189,13 @@
     "fp": "90461cc45716fa24",
     "head": "<form id=\"form-catalog-search\" class=\"stack\" role=\"search\">"
   },
-  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:231-260|0": {
-    "anchor": "src/js/views/catalog.js:231-260",
+  "docs/UX_STUDY.md|sweep-result|src/js/views/catalog.js:409-438|0": {
+    "anchor": "src/js/views/catalog.js:409-438",
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1567-1569|0": {
-    "anchor": "src/styles.css:1567-1569",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1591-1593|0": {
+    "anchor": "src/styles.css:1591-1593",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2189,8 +2214,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1567-1569|0": {
-    "anchor": "src/styles.css:1567-1569",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1591-1593|0": {
+    "anchor": "src/styles.css:1591-1593",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2309,8 +2334,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1567-1569|0": {
-    "anchor": "src/styles.css:1567-1569",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1591-1593|0": {
+    "anchor": "src/styles.css:1591-1593",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2349,9 +2374,9 @@
     "fp": "24202dc115b89335",
     "head": "function wireShortcuts() {"
   },
-  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2352-2371|0": {
-    "anchor": "src/js/main.js:2352-2371",
-    "fp": "eaa9cf880769f730",
+  "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:2352-2372|0": {
+    "anchor": "src/js/main.js:2352-2372",
+    "fp": "611b45392207b80a",
     "head": "function renderAll() {"
   },
   "docs/UX_STUDY.md|ux-h-001-a-single-read-toggle-re-renders-the-ent|src/js/main.js:80-85|0": {
@@ -6019,13 +6044,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1599|0": {
-    "anchor": "src/styles.css:1599",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1626|0": {
+    "anchor": "src/styles.css:1626",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1623|0": {
-    "anchor": "src/styles.css:1623",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1650|0": {
+    "anchor": "src/styles.css:1650",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },

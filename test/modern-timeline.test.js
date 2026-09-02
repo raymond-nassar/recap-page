@@ -32,6 +32,7 @@ const catalogPresentationSource = readFileSync(
   join(ROOT, 'src', 'js', 'views', 'shared', 'catalog-presentation.js'),
   'utf8',
 );
+const mainSource = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
 
 const story = (key, ...lists) => ({ key, lists });
 const list = (id, timeline, extra = {}) => ({
@@ -209,4 +210,22 @@ test('only Modern Timeline era descriptions opt out of the shared prose measure'
     styles,
     /\.timeline-era-head \.shelf-section-blurb \{ color: CanvasText; \}/,
   );
+});
+
+test('Modern Timeline position keeps visible semantics and joins the Store render path', () => {
+  assert.match(catalogPresentationSource, /function paintTimelinePosition\(/);
+  assert.match(catalogPresentationSource, /setAttribute\('aria-current', 'step'\)/);
+  assert.match(catalogPresentationSource, /text: 'You are here'/);
+  assert.match(styles, /\.timeline-position-current \{/);
+  assert.match(styles, /\.timeline-position-status \{/);
+  assert.match(styles, /\.timeline-position-label \{ border-color: Highlight; color: CanvasText; \}/);
+  assert.match(styles, /\.timeline-position-status \{ border-color: Highlight; background: Canvas; color: CanvasText; \}/);
+
+  const renderAll = mainSource.slice(
+    mainSource.indexOf('function renderAll()'),
+    mainSource.indexOf('// ------------------------------------------------------------------ boot'),
+  );
+  assert.match(renderAll, /catalogView\.refreshProgress\(\)/);
+  assert.match(mainSource, /getState: \(\) => store\.state/);
+  assert.match(mainSource, /isCurrent: \(key\) => view === key/);
 });

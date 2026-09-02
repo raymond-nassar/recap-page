@@ -37,9 +37,18 @@ App launch, or selecting the brand lockup in the sidebar.
 - The recommended-start action opens Preview from Home without changing the URL or local state.
 - Modern Timeline uses 1998 as this app's chosen boundary, not as an official Marvel editorial-era
   claim. Marvel Knights to Planet X opens the sequence in 1998, then Avengers Disassembled resumes it
-  in 2004. Its 71 Reading Lists appear as 67 grouped normal story cards.
+  in 2004. Its 148 Reading Lists appear as 144 grouped normal story cards.
 - Setup to Modern Timeline is featured above the normal Modern Timeline cards through the same
   Preview flow. It is not duplicated as a card and is not included in the timeline count.
+- Modern Timeline marks the first story card that is not complete after the completed opening run.
+  The position is rebuilt from imported Reading Lists and their issue read markers, not stored as a
+  separate cursor. A grouped story follows the shallowest imported option the card already presents,
+  or its shallowest option when none has been imported.
+- Search and category filters change what is visible, not the reader's position. A visible current
+  story keeps the marker even when only another option through that story matches. If the whole story
+  is hidden, one message names it instead of marking a different card.
+- Completing every timeline story puts the position after the final card. If a catalog entry cannot
+  be shown, the position is reported as unavailable because the missing entry's place is unknown.
 - Events outside that guided sequence remain available through Marvel Ages and existing direct
   addresses.
 - Preview's existing Add control can complete the first add from Home. Failures target the Home
@@ -70,6 +79,10 @@ App launch, or selecting the brand lockup in the sidebar.
 - [ ] The first-run question and recommendation use ordered `h2` and `h3` headings
 - [ ] Closing recommended Preview returns focus to its Home button
 - [ ] Home and Preview contain no breadcrumb trail
+- [ ] Exactly one current story carries visible **You are here** text before its heading and
+      `aria-current="step"` on its card
+- [ ] Hidden, complete and unavailable position states are named in text without adding a focus stop
+- [ ] Progress updates preserve the focused control, scroll position and existing catalog cards
 - [ ] The primary grid becomes one column at narrow widths without horizontal clipping
 - [ ] The layout survives 200% text zoom without clipping
-- [ ] Forced colours preserve tile boundaries and focus
+- [ ] Forced colours preserve tile and current-position boundaries and focus

@@ -12,6 +12,18 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Added a current position to Modern Timeline
+
+In plain English: Modern Timeline now marks the first story that is not complete after everything
+you have finished from the beginning. The marker moves forward when you finish a Reading List and
+back when an earlier issue becomes unread. If a search or category hides that story, the page says
+so instead of pointing at a different one. Finishing the whole timeline produces a clear end state,
+and incomplete catalog data never produces a guessed position. Nothing already saved changes.
+
+For maintainers, the position is rebuilt from existing local issue progress and grouped Reading
+List completion. It adds no cursor or schema field, and Store updates repaint only the position
+state rather than rebuilding the catalog.
+
 ### Added a project home for discovery and support
 
 In plain English: People who find Recap Page through GitHub now have one clear place to understand
