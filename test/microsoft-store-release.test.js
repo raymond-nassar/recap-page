@@ -307,6 +307,10 @@ test('manual rehearsal cannot select the Store API mutation path', () => {
 });
 
 test('the exact WACK-approved bundle is rechecked before a single upload', () => {
+  assert.match(
+    step('Inspect the Store packages'),
+    /run: npm run msix:inspect -- --structural/,
+  );
   const firstHash = workflow.indexOf('Record the validated bundle hash');
   const wack = workflow.indexOf('Run WACK on the exact bundle');
   const certifiedHash = workflow.indexOf('Prove the certified bundle is unchanged');
@@ -338,5 +342,7 @@ test('every Store workflow step has a deadline below the job backstop', () => {
   const stepCount = (workflow.match(/^ {6}- name:/gm) ?? []).length;
   assert.equal(steps.length, stepCount);
   assert.ok(job >= steps.reduce((sum, value) => sum + value, 0) + 1);
-  assert.match(step('Remove generated Store material'), /if: always\(\)/);
+  const cleanup = step('Remove generated Store material');
+  assert.match(cleanup, /if: always\(\)/);
+  assert.match(cleanup, /shell: powershell/);
 });
