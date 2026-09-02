@@ -5,7 +5,7 @@
 Recap Page is a static site served by a small loopback server on your own machine. There is no
 hosted backend to attack, no account to take over and no database holding anyone else's data. The
 app has no runtime dependencies at all, so nothing in `package.json` reaches the browser. Everything
-it declares is development tooling: the four packages listed at `package.json:48-52` are the linter
+it declares is development tooling: the four packages listed at `package.json:49-53` are the linter
 and the three packages its configuration needs, and they run only on a maintainer's machine and in
 CI. Your reading progress lives in one browser storage key and never leaves the machine it was made
 on.
@@ -179,3 +179,24 @@ No certificate, password, package, runtime download, or generated asset belongs 
 Package files are read-only and hold no durable reader data. Lists, notes, settings, overrides, and
 read markers remain in the browser profile at the exact loopback origin. The dedicated
 [privacy policy](PRIVACY.md) owns the complete reader-facing disclosure.
+
+## Public project home and question guide
+
+The GitHub Pages project home is a separate information artifact, not another app entry point. Its
+published inventory is one HTML file, one stylesheet and two checked cover-off screenshots. It
+contains no script, form, iframe, service worker, manifest, tracker module, analytics or telemetry.
+It cannot read browser state stored under `127.0.0.1:8787`.
+
+The Pages workflow reads the reviewed repository, uploads that exact artifact and gives only its
+deployment job `pages: write` and `id-token: write`. It uses no secret and never publishes a pull
+request head. Changes to that artifact, its allowlist, its workflow or its hosted boundary are in
+scope for this policy.
+
+The optional GitHub Copilot Space uses selected public documentation. It is not a security-reporting
+channel and never receives data from the tracker. **Do not put suspected vulnerability details in
+the project home, Copilot Space, a public issue, a discussion or a pull request.** Use private
+vulnerability reporting as described above.
+
+GitHub Pages request handling and Copilot prompt processing belong to GitHub rather than to the
+tracker. The [privacy policy](PRIVACY.md) owns that disclosure and the limits of rollback after a
+prompt has already been processed.

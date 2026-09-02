@@ -1,6 +1,6 @@
 # Recap Page
 
-**A private reading companion for Marvel Unlimited.**
+**A private reading companion for Marvel Unlimited.** [Open the project home](https://raymond-nassar.github.io/recap-page/) for a quick tour, setup, help and project questions.
 
 Recap Page turns long comic events and character runs into clear reading sessions. Pick a curated
 reading order, follow it issue by issue, and keep your place without creating an account.

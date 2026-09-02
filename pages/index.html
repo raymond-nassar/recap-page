@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="referrer" content="no-referrer" />
+    <meta
+      name="description"
+      content="The project home for Recap Page, a private reading companion for Marvel Unlimited."
+    />
+    <title>Recap Page project home</title>
+    <link rel="stylesheet" href="./site.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="masthead">
+      <div class="shell">
+        <p class="eyebrow">Recap Page project home</p>
+        <h1>Find your way into Recap Page</h1>
+        <p class="lede">
+          Understand the local reading companion, see the real app, run it safely, find help,
+          explore how it works, or choose the right place to ask a question.
+        </p>
+        <aside class="hosting-note" aria-labelledby="hosting-note-title">
+          <h2 id="hosting-note-title">The project site is not the tracker</h2>
+          <p>
+            GitHub hosts this information page and receives ordinary web request information,
+            including your IP address. Recap Page itself still runs only on your computer. This
+            page cannot read your lists, notes, settings, backups, or reading progress.
+          </p>
+        </aside>
+        <nav class="section-nav" aria-label="Page sections">
+          <ul>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#demo">See the app</a></li>
+            <li><a href="#getting-started">Get started</a></li>
+            <li><a href="#troubleshooting">Troubleshoot</a></li>
+            <li><a href="#documentation">Documentation</a></li>
+            <li><a href="#project-questions">Project questions</a></li>
+            <li><a href="#feedback">Feedback</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="overview" class="section shell" aria-labelledby="overview-title">
+        <div class="section-heading">
+          <p class="eyebrow">Overview</p>
+          <h2 id="overview-title">A private companion for long Marvel reading journeys</h2>
+          <p>
+            Recap Page organizes curated reading lists, keeps your place issue by issue, and opens
+            the official Marvel Unlimited reader. It includes no comics and does not replace a
+            Marvel Unlimited subscription.
+          </p>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>Start with a story</h3>
+            <p>Browse events, eras, characters, connected reading paths, and MCU Prep guides.</p>
+          </article>
+          <article class="card">
+            <h3>Keep your place locally</h3>
+            <p>Your reading state stays in the browser profile and address where you made it.</p>
+          </article>
+          <article class="card">
+            <h3>Read on Marvel Unlimited</h3>
+            <p>Recap Page opens the official reader or the issue page. It never shows comic pages.</p>
+          </article>
+        </div>
+        <p class="action-row">
+          <a class="button" href="https://github.com/raymond-nassar/recap-page#readme">
+            Read the project overview
+          </a>
+          <a class="button button-secondary" href="#getting-started">Choose how to run it</a>
+        </p>
+      </section>
+
+      <section id="demo" class="section section-tinted" aria-labelledby="demo-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">See the real app</p>
+            <h2 id="demo-title">From choosing a path to reading the next issue</h2>
+            <p>
+              These current product views use no comic cover art and no private reading profile.
+            </p>
+          </div>
+          <div class="demo-grid">
+            <figure class="demo">
+              <img
+                src="./assets/home-1280.png"
+                width="1280"
+                height="900"
+                loading="lazy"
+                alt="Recap Page Home recommending Setup to Modern Timeline and showing Reading Paths among its discovery choices with cover art off"
+              />
+              <figcaption>Home offers clear starting points and connected Reading Paths.</figcaption>
+            </figure>
+            <figure class="demo">
+              <img
+                src="./assets/avengers-disassembled-reading-1280.png"
+                width="1280"
+                height="900"
+                loading="lazy"
+                alt="Avengers Disassembled open at the first issue with no progress marked and cover art off"
+              />
+              <figcaption>
+                A Reading List keeps the next issue, story order, and progress together.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="getting-started" class="section shell" aria-labelledby="getting-started-title">
+        <div class="section-heading">
+          <p class="eyebrow">Get started</p>
+          <h2 id="getting-started-title">Run Recap Page on your computer</h2>
+        </div>
+        <aside class="origin-warning" aria-labelledby="origin-warning-title">
+          <h3 id="origin-warning-title">Always use this exact address</h3>
+          <p><code>http://127.0.0.1:8787/</code></p>
+          <p>
+            A different hostname or port uses separate browser storage and looks like a fresh app.
+            Check the address before assuming that progress was lost.
+          </p>
+        </aside>
+        <div class="card-grid">
+          <article class="card route-card">
+            <h3>Install from Microsoft Store</h3>
+            <p>The Store is the primary Windows installation and update route.</p>
+            <a href="https://apps.microsoft.com/detail/9PDJ7XR9Q40Q">Open Microsoft Store</a>
+          </article>
+          <article class="card route-card">
+            <h3>Use the standalone Windows archive</h3>
+            <p>Download, unzip, and start the included local copy without an installer.</p>
+            <a
+              href="https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip"
+            >
+              Download the latest archive
+            </a>
+          </article>
+          <article class="card route-card">
+            <h3>Run from source</h3>
+            <p>Use Node.js 20 or newer, then follow the maintained setup steps.</p>
+            <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
+              Read the complete running guide
+            </a>
+          </article>
+        </div>
+        <p class="action-row">
+          <a class="button" href="http://127.0.0.1:8787/">Open the local app</a>
+          <a
+            class="button button-secondary"
+            href="https://github.com/raymond-nassar/recap-page/releases"
+          >
+            Browse releases
+          </a>
+        </p>
+      </section>
+
+      <section id="troubleshooting" class="section section-tinted" aria-labelledby="troubleshooting-title">
+        <div class="shell split">
+          <div class="section-heading">
+            <p class="eyebrow">Troubleshoot</p>
+            <h2 id="troubleshooting-title">Start with the five common problems</h2>
+            <p>
+              The running guide covers a busy port, missing Node.js, a blank page, a Read button
+              that appears to do nothing, and progress that seems to have disappeared.
+            </p>
+          </div>
+          <div class="route-list">
+            <a
+              class="route"
+              href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md#troubleshooting"
+            >
+              <strong>Open troubleshooting</strong>
+              <span>Use the maintained step-by-step checks.</span>
+            </a>
+            <a
+              class="route"
+              href="https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md"
+            >
+              <strong>Ask for support</strong>
+              <span>Learn what to include and which service owns the problem.</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="documentation" class="section shell" aria-labelledby="documentation-title">
+        <div class="section-heading">
+          <p class="eyebrow">Documentation</p>
+          <h2 id="documentation-title">Go to the maintained source</h2>
+          <p>
+            This home points to each document that owns the detail instead of copying a second
+            version that can drift.
+          </p>
+        </div>
+        <div class="link-grid">
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
+            <strong>Running</strong><span>Install, open, upgrade, and troubleshoot.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ARCHITECTURE.md">
+            <strong>Architecture</strong><span>Modules, storage, data flow, and boundaries.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/DATA_PROVENANCE.md">
+            <strong>Data provenance</strong><span>Sources, permissions, and licence limits.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md">
+            <strong>Privacy</strong><span>Local storage and direct network requests.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
+            <strong>Security</strong><span>Supported versions and private reporting.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/MAINTAINING.md">
+            <strong>Maintaining</strong><span>Checks, data work, Pages, and releases.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/CONTRIBUTING.md">
+            <strong>Contributing</strong><span>What changes are welcome and how they are judged.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md">
+            <strong>Governance</strong><span>Roadmap, release, and maintainer decisions.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/CHANGELOG.md">
+            <strong>Changelog</strong><span>What changed in each release.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/WHY_A_BROWSER_APP.md">
+            <strong>Why a browser app</strong><span>The measured platform decision.</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="project-questions" class="section section-tinted" aria-labelledby="project-questions-title">
+        <div class="shell split">
+          <div class="section-heading">
+            <p class="eyebrow">Project questions</p>
+            <h2 id="project-questions-title">Optional answers from GitHub Copilot</h2>
+            <p>
+              The project guide opens a GitHub Copilot Space built from selected maintained public
+              documents. All documentation and support routes remain available without Copilot.
+            </p>
+          </div>
+          <aside class="disclosure" aria-labelledby="copilot-disclosure-title">
+            <h3 id="copilot-disclosure-title">Before you use the project guide</h3>
+            <ul>
+              <li>Copilot Free works. You need a GitHub account with Copilot access.</li>
+              <li>Your questions use your Copilot Chat allowance or AI credits.</li>
+              <li>The project does not pay for or meter your use.</li>
+              <li>GitHub sends your question and selected public project context to an AI model.</li>
+              <li>Chat messages are retained for 28 days.</li>
+              <li>
+                Individual-plan interactions may be used to improve models unless you opt out in
+                your GitHub Copilot settings.
+              </li>
+              <li>Answers can be incomplete or wrong. Check the linked source before relying on one.</li>
+              <li>
+                Do not paste reading progress, lists, notes, backups, personal information, or
+                vulnerability details.
+              </li>
+            </ul>
+            <p>
+              Recap Page sends nothing to this guide. GitHub Copilot is not maintainer support.
+            </p>
+            <p class="action-row">
+              <a
+                class="button"
+                href="https://github.com/copilot/spaces/raymond-nassar/1"
+              >
+                Ask GitHub Copilot about Recap Page
+              </a>
+              <a
+                class="button button-secondary"
+                href="https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md"
+              >
+                Use the maintainer support route
+              </a>
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="feedback" class="section shell" aria-labelledby="feedback-title">
+        <div class="section-heading">
+          <p class="eyebrow">Feedback and reports</p>
+          <h2 id="feedback-title">Choose the route that matches what happened</h2>
+          <p>
+            These destinations already own support, product feedback, catalogue corrections, and
+            private security reports.
+          </p>
+        </div>
+        <div class="link-grid">
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md">
+            <strong>Support question</strong><span>Start with troubleshooting and ask for help.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=bug.yml">
+            <strong>Something is broken</strong><span>Report behavior that breaks an app promise.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=feature.yml">
+            <strong>Suggest an improvement</strong><span>Describe the reading problem to solve.</span>
+          </a>
+          <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml">
+            <strong>Correct reading data</strong><span>Report a position, issue, cover, or detail.</span>
+          </a>
+          <a class="security-route" href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
+            <strong>Report a security problem privately</strong>
+            <span>Never put vulnerability details in a public issue, Space, or pull request.</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="source-history" class="section section-tinted" aria-labelledby="source-history-title">
+        <div class="shell">
+          <div class="section-heading">
+            <p class="eyebrow">Source and history</p>
+            <h2 id="source-history-title">Inspect the project and its decisions</h2>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/raymond-nassar/recap-page">Source repository</a>
+            <a href="https://github.com/raymond-nassar/recap-page/issues">Issue history</a>
+            <a href="https://github.com/raymond-nassar/recap-page/issues/403">This home base issue</a>
+            <a href="https://github.com/raymond-nassar/recap-page/commits/main">Commit history</a>
+            <a href="https://github.com/raymond-nassar/recap-page/releases">Releases</a>
+            <a href="https://github.com/users/raymond-nassar/projects/1">Planning Project</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell">
+        <p>
+          Recap Page is an unofficial fan project. It is not affiliated with or endorsed by Marvel
+          Entertainment. It contains metadata and links only, and reading requires your own Marvel
+          Unlimited subscription.
+        </p>
+        <p>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md">Privacy</a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">Security</a>
+          <a href="https://github.com/raymond-nassar/recap-page/blob/main/LICENSE">License</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

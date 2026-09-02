@@ -8024,6 +8024,191 @@ const SCENARIOS = [
         JSON.stringify(reduced));
     },
   },
+  {
+    id: 'pages-home-navigation',
+    title: 'the project home stays informational, keyboard complete and narrow-safe',
+    async run(page, t) {
+      const { mkdtemp, rm } = await import('node:fs/promises');
+      const { tmpdir } = await import('node:os');
+      const { buildPages } = await import('./build-pages.mjs');
+      const temporary = await mkdtemp(join(tmpdir(), 'recap-page-pages-browser-'));
+      const webRequests = [];
+      const browserErrors = [];
+      page.on('request', (request) => {
+        if (/^https?:/.test(request.url())) webRequests.push(request.url());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+
+      try {
+        const { destination } = await buildPages({ destination: join(temporary, 'site') });
+        const url = pathToFileURL(join(destination, 'index.html')).href;
+
+        await page.setViewport({ width: 1280, height: 900 });
+        await page.goto(url, { waitUntil: 'load' });
+        await page.keyboard.press('Tab');
+        const skip = await page.$eval('.skip-link', (link) => {
+          const style = getComputedStyle(link);
+          const box = link.getBoundingClientRect();
+          return {
+            active: document.activeElement === link,
+            top: box.top,
+            outline: Number.parseFloat(style.outlineWidth),
+          };
+        });
+        t.check('the first keyboard stop is a visible skip link with a focus indicator',
+          skip.active && skip.top >= 0 && skip.outline > 0,
+          JSON.stringify(skip));
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.hash === '#main');
+        t.check('the skip link reaches the main content', true);
+
+        await page.$eval('#demo', (section) => section.scrollIntoView({ block: 'start' }));
+        await page.waitForFunction(() => (
+          [...document.images].every((image) => (
+            image.complete && image.naturalWidth === 1280 && image.naturalHeight === 900
+          ))
+        ));
+        const desktop = await page.evaluate(() => ({
+          width: innerWidth,
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          regions: [
+            'overview',
+            'demo',
+            'getting-started',
+            'troubleshooting',
+            'documentation',
+            'project-questions',
+            'feedback',
+            'source-history',
+          ].filter((id) => {
+            const element = document.getElementById(id);
+            return element && element.getBoundingClientRect().height > 0;
+          }),
+          navigation: [...document.querySelectorAll('.section-nav a')].map((link) => ({
+            name: link.textContent.trim(),
+            href: link.getAttribute('href'),
+            visible: link.getBoundingClientRect().height > 0,
+          })),
+          images: [...document.images].map((image) => ({
+            complete: image.complete,
+            width: image.naturalWidth,
+            height: image.naturalHeight,
+          })),
+        }));
+        t.check('desktop renders every project-home region without horizontal overflow',
+          desktop.width === 1280
+          && desktop.overflow <= 1
+          && desktop.regions.length === 8
+          && desktop.navigation.length === 7
+          && desktop.navigation.every((item) => item.visible),
+          JSON.stringify(desktop));
+        t.check('both canonical product images load at their checked dimensions',
+          desktop.images.length === 2
+          && desktop.images.every((image) => (
+            image.complete && image.width === 1280 && image.height === 900
+          )),
+          JSON.stringify(desktop.images));
+        t.check('the information page loads no web resource or active project service',
+          webRequests.length === 0,
+          webRequests.join(' / '));
+
+        await page.$eval('.section-nav a[href="#documentation"]', (link) => link.focus());
+        await page.keyboard.press('Enter');
+        await page.waitForFunction(() => location.hash === '#documentation');
+        const documentation = await page.$eval('#documentation', (section) => ({
+          visible: section.getBoundingClientRect().height > 0,
+          links: section.querySelectorAll('a').length,
+        }));
+        t.check('keyboard section navigation reaches the maintained-document routes',
+          documentation.visible && documentation.links === 10,
+          JSON.stringify(documentation));
+
+        await page.setViewport({ width: 320, height: 900 });
+        await page.waitForFunction(() => innerWidth === 320);
+        const narrow = await page.evaluate(() => ({
+          width: innerWidth,
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          splitColumns: getComputedStyle(document.querySelector('.split')).gridTemplateColumns,
+          navigation: [...document.querySelectorAll('.section-nav a')].map((link) => {
+            const box = link.getBoundingClientRect();
+            return {
+              width: box.width,
+              height: box.height,
+              visible: box.height > 0 && box.left >= 0 && box.right <= innerWidth,
+            };
+          }),
+          clipped: [...document.querySelectorAll('main *, footer *')]
+            .filter((element) => element.scrollWidth - element.clientWidth > 1)
+            .map((element) => element.id || element.className || element.tagName),
+        }));
+        t.check('the complete home reflows to one direction at 320 CSS pixels',
+          narrow.width === 320
+          && narrow.overflow <= 1
+          && narrow.splitColumns.split(' ').length === 1
+          && narrow.clipped.length === 0,
+          JSON.stringify(narrow));
+        t.check('every primary route remains visible and full-width at the narrow layout',
+          narrow.navigation.length === 7
+          && narrow.navigation.every((item) => (
+            item.visible && item.height >= 44 && item.width <= 296
+          )),
+          JSON.stringify(narrow.navigation));
+
+        const client = await page.createCDPSession();
+        const forcedColorsRequested = process.argv.includes('--forced-colors');
+        await client.send('Emulation.setEmulatedMedia', {
+          features: [
+            { name: 'prefers-reduced-motion', value: 'reduce' },
+            ...(forcedColorsRequested ? [{ name: 'forced-colors', value: 'active' }] : []),
+          ],
+        });
+        const reduced = await page.evaluate(() => ({
+          active: matchMedia('(prefers-reduced-motion: reduce)').matches,
+          animations: document.getAnimations().length,
+          durations: [...document.querySelectorAll('a, .card, .route')]
+            .flatMap((element) => {
+              const style = getComputedStyle(element);
+              return [style.animationDuration, style.transitionDuration];
+            })
+            .filter((duration) => duration !== '0s'),
+        }));
+        t.check('reduced motion leaves no animation or transition running',
+          reduced.active && reduced.animations === 0 && reduced.durations.length === 0,
+          JSON.stringify(reduced));
+
+        await page.$eval('.section-nav a[href="#feedback"]', (link) => link.focus());
+        const forced = await page.$eval('.section-nav a[href="#feedback"]', (link) => {
+          const style = getComputedStyle(link);
+          return {
+            active: matchMedia('(forced-colors: active)').matches,
+            borderWidth: Number.parseFloat(style.borderTopWidth),
+            borderColor: style.borderTopColor,
+            outlineWidth: Number.parseFloat(style.outlineWidth),
+            outlineColor: style.outlineColor,
+          };
+        });
+        t.check('the forced-colour launch preserves route and focus boundaries',
+          !forcedColorsRequested || (
+            forced.active
+            && forced.borderWidth > 0
+            && forced.borderColor !== 'rgba(0, 0, 0, 0)'
+            && forced.outlineWidth > 0
+            && forced.outlineColor !== 'rgba(0, 0, 0, 0)'
+          ),
+          JSON.stringify(forced));
+        await client.detach();
+
+        t.check('the project-home journey produces no console or page error',
+          browserErrors.length === 0,
+          browserErrors.join(' / '));
+      } finally {
+        await rm(temporary, { recursive: true, force: true });
+      }
+    },
+  },
 ];
 
 MUTATIONS.push({

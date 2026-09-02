@@ -1,6 +1,6 @@
 # Recap Page privacy policy
 
-Last updated: 2026-08-28
+Last updated: 2026-09-02
 
 Recap Page is a local reading companion. There is no account, advertising, analytics, behavioral
 tracking, or telemetry. Reading progress, lists, notes, settings, availability overrides, and
@@ -62,6 +62,28 @@ delivered only through Microsoft Store.
 You can export a backup, erase active Recap Page data from **Backup & settings**, remove individual
 recovery copies, clear site data in the browser, or uninstall the Windows package. Browser controls
 govern browser storage and caches. Package removal governs package files. They are separate actions.
+
+## Public project information and questions
+
+The [project home](https://raymond-nassar.github.io/recap-page/) is an information page hosted by
+GitHub Pages. It is not the tracker. It contains no script, form, analytics or telemetry and cannot
+read the browser storage under `http://127.0.0.1:8787`. GitHub documents that Pages logs a visitor's
+IP address for security purposes in [What is GitHub Pages?](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages),
+retrieved 2026-09-02. GitHub's privacy statement applies to GitHub's handling of those requests.
+
+The home can send you, only when you choose its link, to a public GitHub Copilot Space grounded in
+selected public project documents. Recap Page sends nothing to that Space. GitHub receives the
+question and selected context, processes them through an AI model, and counts the request against
+your Copilot allowance or credits. GitHub documents that Chat messages are retained for 28 days in
+[Asking GitHub Copilot questions in GitHub](https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github),
+retrieved 2026-09-02.
+
+For individual Copilot plans, GitHub may use interactions for model improvement unless the account
+holder opts out. The current control is described in [Managing GitHub Copilot policies as an
+individual subscriber](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies),
+retrieved 2026-09-02. Do not put reading progress, lists, notes, backups, personal information or
+vulnerability details in a Copilot question. Removing the public route stops future use through the
+project, but cannot recall a prompt GitHub has already processed or shorten GitHub's retention.
 
 ## Contact and security
 
