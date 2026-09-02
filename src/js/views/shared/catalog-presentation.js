@@ -277,6 +277,58 @@ export function createCatalogPresentation({
     ]);
   }
 
+  function paintTimelinePosition(root, position, {
+    message = '',
+    narrowed = false,
+    visibleStoryKeys = new Set(),
+  } = {}) {
+    if (!root || !position) return;
+    for (const card of root.querySelectorAll('[aria-current="step"]')) {
+      card.removeAttribute('aria-current');
+    }
+    for (const marker of root.querySelectorAll('[data-timeline-position]')) marker.remove();
+
+    const status = (kind, text, extraClass = '') => el('p', {
+      class: `timeline-position timeline-position-status${extraClass ? ` ${extraClass}` : ''}`,
+      dataset: { timelinePosition: kind },
+      text,
+    });
+
+    if (position.kind === 'current') {
+      const card = visibleStoryKeys.has(position.storyKey)
+        ? [...root.querySelectorAll('.catalog-card')]
+          .find((candidate) => candidate.dataset.story === position.storyKey)
+        : null;
+      if (!card) {
+        root.prepend(status('hidden', message));
+        return;
+      }
+      card.setAttribute('aria-current', 'step');
+      const stop = position.total === 1 ? 'timeline stop' : 'timeline stops';
+      const marker = el('p', {
+        class: 'timeline-position timeline-position-current',
+        dataset: { timelinePosition: 'current' },
+      }, [
+        el('span', { class: 'timeline-position-label', text: 'You are here' }),
+        el('span', {
+          class: 'timeline-position-progress',
+          text: `${position.completed} of ${position.total} ${stop} complete`,
+        }),
+      ]);
+      (card.querySelector('.catalog-card-text') ?? card).prepend(marker);
+      return;
+    }
+
+    if (position.kind === 'complete') {
+      const marker = status('complete', message, 'timeline-position-complete');
+      if (narrowed) root.prepend(marker);
+      else (root.querySelector('.timeline-flow') ?? root).append(marker);
+      return;
+    }
+
+    if (position.kind === 'unavailable') root.prepend(status('unavailable', message));
+  }
+
   function shelfSectionHead(section, {
     level = 'h2',
     className = 'shelf-section',
@@ -430,6 +482,7 @@ export function createCatalogPresentation({
     chosenPath,
     ensureSetupGuideFeature,
     markOwnedPaths,
+    paintTimelinePosition,
     pathChooser,
     renderTimelineSections,
     shelfSectionHead,

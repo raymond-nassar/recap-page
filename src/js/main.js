@@ -2356,6 +2356,7 @@ function renderAll() {
   renderLibraryHub();
   progressView.render();
   libraryView.render();
+  catalogView.refreshProgress();
   renderQueue();
   addView.renderDestination();
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
@@ -2844,6 +2845,8 @@ const catalogView = createCatalogView({
     spotlightKinds: () => document.querySelectorAll('input[name="spotlights-kind"]'),
     spotlightSorts: () => document.querySelectorAll('input[name="spotlights-sort"]'),
   },
+  getState: () => store.state,
+  isCurrent: (key) => view === key,
   loadCatalog,
   notifyDropped: (key, count) => notify(
     `#${key}-report`,

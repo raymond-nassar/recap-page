@@ -396,6 +396,19 @@ const PUBLISHING_CATALOG = {
   ],
 };
 const EMPTY_CATALOG = { lists: [], paths: [] };
+const INCOMPLETE_POSITION_CATALOG = {
+  ...CATALOG,
+  lists: [
+    ...CATALOG.lists,
+    {
+      id: 'position-gap',
+      name: 'Position Gap',
+      count: 1,
+      type: 'event',
+      timeline: 2004,
+    },
+  ],
+};
 const MULTI_FIRST_STOP_CATALOG = {
   ...CATALOG,
   lists: [
@@ -1514,6 +1527,36 @@ const MUTATIONS = [
           '#view-catalog .shelf-section-blurb { max-width: 64ch !important; }',
           sheet.cssRules.length,
         );
+      });
+    },
+  },
+  {
+    id: 'modern-timeline-position-follows-filter',
+    breaks: 'modern-timeline-position',
+    why: 'the position is recalculated from visible cards, so a filter silently substitutes a later stop',
+    rewriteCatalogView: (source) => source.replace(
+      'modernTimelinePosition(getState(), context.stories, {',
+      'modernTimelinePosition(getState(), context.stories.filter((story) => context.visibleStoryKeys.has(story.key)), {',
+    ),
+  },
+  {
+    id: 'modern-timeline-position-semantics-off',
+    breaks: 'modern-timeline-position',
+    why: 'the visible current label and programmatic current-step state are removed together',
+    script: () => {
+      const strip = () => {
+        document.querySelectorAll('[data-timeline-position="current"]').forEach((node) => node.remove());
+        document.querySelectorAll('[aria-current="step"]').forEach((node) => {
+          node.removeAttribute('aria-current');
+        });
+      };
+      addEventListener('DOMContentLoaded', () => {
+        new MutationObserver(strip).observe(document.body, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+        strip();
       });
     },
   },
@@ -3621,6 +3664,480 @@ const SCENARIOS = [
         && shared.issueNote === 'Legacy issue note'
         && shared.ring === '1 of 21 read',
         JSON.stringify(shared));
+    },
+  },
+  {
+    id: 'modern-timeline-position',
+    title: 'the Modern Timeline reconstructs one accessible position from local progress',
+    async run(page, t) {
+      const browserErrors = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+
+      await open(page, '/#/catalog');
+      await page.waitForSelector(
+        '#catalog-results .catalog-card[aria-current="step"] [data-timeline-position="current"]',
+        { timeout: 15000 },
+      );
+      const initial = await page.evaluate(() => {
+        const card = document.querySelector('#catalog-results .catalog-card[aria-current="step"]');
+        const marker = card?.querySelector('[data-timeline-position="current"]');
+        const heading = card?.querySelector('.catalog-card-title');
+        return {
+          currentCards: document.querySelectorAll(
+            '#catalog-results .catalog-card[aria-current="step"]',
+          ).length,
+          positionNodes: document.querySelectorAll(
+            '#catalog-results [data-timeline-position]',
+          ).length,
+          story: card?.dataset.story ?? '',
+          title: heading?.textContent.trim() ?? '',
+          label: marker?.querySelector('.timeline-position-label')?.textContent.trim() ?? '',
+          progress: marker?.querySelector('.timeline-position-progress')?.textContent.trim() ?? '',
+          labelBeforeHeading: Boolean(
+            marker?.compareDocumentPosition(heading) & Node.DOCUMENT_POSITION_FOLLOWING,
+          ),
+          setupCurrent: document.querySelectorAll(
+            '#modern-timeline-feature [aria-current="step"]',
+          ).length,
+        };
+      });
+      t.check('no progress marks only the first eligible story in reading order',
+        initial.currentCards === 1
+          && initial.positionNodes === 1
+          && initial.story === 'list:browser-check'
+          && initial.title === 'Browser Check Order'
+          && initial.label === 'You are here'
+          && initial.progress === '0 of 13 timeline stops complete'
+          && initial.labelBeforeHeading
+          && initial.setupCurrent === 0,
+        JSON.stringify(initial));
+
+      const currentHandle = await page.$(
+        '#catalog-results .catalog-card[aria-current="step"]',
+      );
+      const accessible = await page.accessibility.snapshot({
+        root: currentHandle,
+        interestingOnly: false,
+      });
+      await currentHandle.dispose();
+      const accessibleText = JSON.stringify(accessible);
+      t.check('the current card exposes the visible label and story to accessibility APIs',
+        /you are here/i.test(accessibleText)
+          && accessibleText.includes('Browser Check Order'),
+        accessibleText);
+
+      const previewButton =
+        '#catalog-results .catalog-card[aria-current="step"] [data-act="preview"]';
+      const beforePreview = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.focus(previewButton);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open]');
+      await click(page, '#preview-close');
+      await page.waitForFunction(() => !document.querySelector('#preview')?.open
+        && document.activeElement?.dataset.act === 'preview'
+        && document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
+          ?.dataset.story === 'list:browser-check');
+      const returned = await page.evaluate((before) => ({
+        stateSame: localStorage.getItem('mrt.state.v2') === before,
+        focusAct: document.activeElement?.dataset.act ?? '',
+        focusKey: document.activeElement?.dataset.key ?? '',
+        story: document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
+          ?.dataset.story ?? '',
+      }), beforePreview);
+      t.check('closing Preview reconstructs the same position and normal return focus',
+        returned.stateSame
+          && returned.focusAct === 'preview'
+          && returned.focusKey === 'list:browser-check'
+          && returned.story === 'list:browser-check',
+        JSON.stringify(returned));
+
+      await click(
+        page,
+        '#catalog-results .catalog-card[aria-current="step"] [data-act="import"]',
+      );
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await openFullOrder(page);
+      await click(page, '#rows [data-act="read"][data-key="900001"]');
+      await page.waitForFunction(() => document.querySelector(
+        '#rows [data-act="read"][data-key="900001"]',
+      )?.getAttribute('aria-pressed') === 'true');
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForFunction(() => document.querySelector(
+        '#catalog-results .catalog-card[aria-current="step"]',
+      )?.dataset.story === 'list:browser-check');
+      const partial = await page.evaluate(() => ({
+        story: document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
+          ?.dataset.story ?? '',
+        progress: document.querySelector(
+          '#catalog-results [data-timeline-position="current"] .timeline-position-progress',
+        )?.textContent.trim() ?? '',
+      }));
+      t.check('an in-progress first story remains the one current position',
+        partial.story === 'list:browser-check'
+          && partial.progress === '0 of 13 timeline stops complete',
+        JSON.stringify(partial));
+
+      await click(
+        page,
+        '#catalog-results .catalog-card[aria-current="step"] [data-act="open"]',
+      );
+      await page.waitForSelector('#view-read:not([hidden])');
+      await openFullOrder(page);
+      for (const issueId of [900002, 900003]) {
+        await click(page, `#rows [data-act="read"][data-key="${issueId}"]`);
+      }
+      const completedIssues = await page.evaluate(() => {
+        const read = JSON.parse(localStorage.getItem('mrt.state.v2'))?.read ?? {};
+        return [900001, 900002, 900003].filter((id) => (
+          Object.prototype.hasOwnProperty.call(read, String(id))
+        ));
+      });
+      t.check('the three issue marks complete the first Reading List',
+        completedIssues.length === 3, JSON.stringify(completedIssues));
+      await openBrowseCategory(page, 'timeline');
+      await page.waitForSelector('#catalog-results .catalog-card[aria-current="step"]');
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      const advanced = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return {
+          story: document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
+            ?.dataset.story ?? '',
+          announcement: document.querySelector('#announcer')?.textContent.trim() ?? '',
+          progress: document.querySelector(
+            '#catalog-results [data-timeline-position="current"] .timeline-position-progress',
+          )?.textContent.trim() ?? '',
+          unexpectedStateKeys: Object.keys(state).filter((key) => (
+            /cursor|position|timeline/i.test(key)
+          )),
+        };
+      });
+      t.check('completing the current story advances and announces without a cursor',
+        advanced.story === 'list:avengers-disassembled'
+          && advanced.progress === '1 of 13 timeline stops complete'
+          && advanced.announcement.includes('You are here: Avengers Disassembled')
+          && advanced.unexpectedStateKeys.length === 0,
+        JSON.stringify(advanced));
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForFunction(() => document.querySelector(
+        '#catalog-results .catalog-card[aria-current="step"]',
+      )?.dataset.story === 'list:avengers-disassembled');
+      const reloaded = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return {
+          story: document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
+            ?.dataset.story ?? '',
+          unexpectedStateKeys: Object.keys(state).filter((key) => (
+            /cursor|position|timeline/i.test(key)
+          )),
+        };
+      });
+      t.check('reload reconstructs the same position from schema 2 progress',
+        reloaded.story === 'list:avengers-disassembled'
+          && reloaded.unexpectedStateKeys.length === 0,
+        JSON.stringify(reloaded));
+
+      await page.focus('#catalog-q');
+      const beforeForeign = await page.evaluate(async () => {
+        window.__mrtHeldPositionCard = document.querySelector(
+          '#catalog-results [data-story="list:avengers-disassembled"]',
+        );
+        window.scrollTo({ top: 300 });
+        await new Promise((resolve) => requestAnimationFrame(resolve));
+        return {
+          catalogRequests: window.__mrtCatalogRequests ?? 0,
+          scroll: scrollY,
+          cards: document.querySelectorAll('#catalog-results .catalog-card').length,
+        };
+      });
+      const peer = await page.browserContext().newPage();
+      await preparePage(peer, page.__origin, null);
+      await open(peer, '/');
+      await peer.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await openFullOrder(peer);
+      await click(peer, '#rows [data-act="read"][data-key="900001"]');
+      const peerUnread = await peer.evaluate(() => !Object.prototype.hasOwnProperty.call(
+        JSON.parse(localStorage.getItem('mrt.state.v2'))?.read ?? {},
+        '900001',
+      ));
+      t.check('the sibling tab writes the earlier unread mark', peerUnread, String(peerUnread));
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      const foreign = await page.evaluate((before) => ({
+        story: document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
+          ?.dataset.story ?? '',
+        stateUnread: !Object.prototype.hasOwnProperty.call(
+          JSON.parse(localStorage.getItem('mrt.state.v2'))?.read ?? {},
+          '900001',
+        ),
+        heldConnected: window.__mrtHeldPositionCard?.isConnected === true,
+        focus: document.activeElement?.id ?? '',
+        query: document.querySelector('#catalog-q')?.value ?? '',
+        scroll: scrollY,
+        cards: document.querySelectorAll('#catalog-results .catalog-card').length,
+        catalogRequests: window.__mrtCatalogRequests ?? 0,
+        scrollSame: Math.abs(scrollY - before.scroll) <= 1,
+      }), beforeForeign);
+      await peer.close();
+      t.check('an earlier unread mark from another tab moves only the position state',
+        foreign.story === 'list:browser-check'
+          && foreign.stateUnread
+          && foreign.heldConnected
+          && foreign.focus === 'catalog-q'
+          && foreign.query === ''
+          && foreign.scrollSame
+          && foreign.cards === beforeForeign.cards
+          && foreign.catalogRequests === beforeForeign.catalogRequests,
+        JSON.stringify({ beforeForeign, foreign }));
+
+      await page.$eval('#catalog-q', (input) => {
+        input.value = 'Second Stop';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForSelector('#catalog-results [data-timeline-position="hidden"]');
+      await page.waitForFunction(() => document.querySelector('#announcer')?.textContent
+        .includes('hidden by the current search or filter'));
+      const hidden = await page.evaluate(() => ({
+        currentCards: document.querySelectorAll(
+          '#catalog-results .catalog-card[aria-current="step"]',
+        ).length,
+        positionNodes: document.querySelectorAll(
+          '#catalog-results [data-timeline-position]',
+        ).length,
+        status: document.querySelector(
+          '#catalog-results [data-timeline-position="hidden"]',
+        )?.textContent.trim() ?? '',
+        visibleTitle: document.querySelector(
+          '#catalog-results .catalog-card-title',
+        )?.textContent.trim() ?? '',
+      }));
+      t.check('narrowing names a hidden current story and never substitutes a visible card',
+        hidden.currentCards === 0
+          && hidden.positionNodes === 1
+          && hidden.status.includes('Browser Check Order')
+          && hidden.visibleTitle === 'Second Stop',
+        JSON.stringify(hidden));
+      await click(page, '#catalog-clear');
+      await page.waitForFunction(() => document.querySelector(
+        '#catalog-results .catalog-card[aria-current="step"]',
+      )?.dataset.story === 'list:browser-check');
+
+      await page.setViewport({ width: 320, height: 900 });
+      await page.waitForFunction(() => matchMedia('(max-width: 700px)').matches);
+      const narrow = await page.evaluate(() => {
+        const card = document.querySelector('#catalog-results .catalog-card[aria-current="step"]');
+        const label = card?.querySelector('.timeline-position-current');
+        const rect = card?.getBoundingClientRect();
+        return {
+          viewport: innerWidth,
+          documentWidth: document.documentElement.scrollWidth,
+          left: rect?.left ?? -1,
+          right: rect?.right ?? -1,
+          labelScroll: label?.scrollWidth ?? -1,
+          labelClient: label?.clientWidth ?? -1,
+        };
+      });
+      t.check('the current marker stays visible and unclipped at 320 CSS pixels',
+        narrow.documentWidth <= narrow.viewport
+          && narrow.left >= 0
+          && narrow.right <= narrow.viewport
+          && narrow.labelScroll <= narrow.labelClient,
+        JSON.stringify(narrow));
+
+      await page.setViewport({ width: 1280, height: 900 });
+      const currentPreview =
+        '#catalog-results .catalog-card[aria-current="step"] [data-act="preview"]';
+      await page.focus(currentPreview);
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      await page.$eval(currentPreview, (button) => {
+        button.scrollIntoView({ block: 'center', inline: 'center' });
+      });
+      const zoom = await page.evaluate((selector) => {
+        const button = document.querySelector(selector);
+        const rect = button.getBoundingClientRect();
+        const label = document.querySelector(
+          '#catalog-results [data-timeline-position="current"]',
+        );
+        return {
+          scale: visualViewport.scale,
+          active: document.activeElement === button,
+          buttonLeft: rect.left,
+          buttonRight: rect.right,
+          viewportLeft: visualViewport.offsetLeft,
+          viewportRight: visualViewport.offsetLeft + visualViewport.width,
+          labelScroll: label.scrollWidth,
+          labelClient: label.clientWidth,
+        };
+      }, currentPreview);
+      t.check('200 percent zoom keeps the current label and focused action operable',
+        zoom.scale === 2
+          && zoom.active
+          && zoom.buttonLeft >= zoom.viewportLeft
+          && zoom.buttonRight <= zoom.viewportRight
+          && zoom.labelScroll <= zoom.labelClient,
+        JSON.stringify(zoom));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+
+      await client.send('Emulation.setEmulatedMedia', {
+        features: [
+          { name: 'forced-colors', value: 'active' },
+          { name: 'prefers-reduced-motion', value: 'reduce' },
+        ],
+      });
+      const forced = await page.evaluate(() => {
+        const systemColor = (value) => {
+          const probe = document.createElement('span');
+          probe.style.color = value;
+          document.body.append(probe);
+          const color = getComputedStyle(probe).color;
+          probe.remove();
+          return color;
+        };
+        const card = document.querySelector('#catalog-results .catalog-card[aria-current="step"]');
+        const label = card.querySelector('.timeline-position-label');
+        const cardStyle = getComputedStyle(card);
+        return {
+          forced: matchMedia('(forced-colors: active)').matches,
+          reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+          highlight: systemColor('Highlight'),
+          outline: cardStyle.outlineColor,
+          labelBorder: getComputedStyle(label).borderTopColor,
+          transition: cardStyle.transitionDuration,
+          animation: cardStyle.animationDuration,
+        };
+      });
+      t.check('forced colors and reduced motion preserve the current state without animation',
+        forced.forced
+          && forced.reduced
+          && forced.outline === forced.highlight
+          && forced.labelBorder === forced.highlight
+          && forced.transition === '0s'
+          && forced.animation === '0s',
+        JSON.stringify(forced));
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      await client.detach();
+
+      await page.evaluate(async () => {
+        const raw = await fetch('./data/catalog.json').then((response) => response.json());
+        const catalog = await import('./js/lib/catalog.js');
+        const stories = catalog.modernTimelineStories(
+          catalog.groupCatalog(catalog.parseCatalog(raw).lists),
+        );
+        const current = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const itemIds = [900001, 900002, 900003];
+        const lists = {};
+        const listOrder = [];
+        for (const [index, story] of stories.entries()) {
+          const selected = catalog.defaultPath(story);
+          const id = `timeline-complete-${index}`;
+          lists[id] = {
+            id,
+            name: selected.name,
+            description: '',
+            note: '',
+            created: index + 1,
+            catalogId: selected.id,
+            itemIds,
+            collectedIn: {},
+          };
+          listOrder.push(id);
+        }
+        localStorage.setItem('mrt.state.v2', JSON.stringify({
+          ...current,
+          writeToken: 'timeline-complete',
+          read: { 900001: 1, 900002: 1, 900003: 1 },
+          lists,
+          listOrder,
+          active: listOrder[0],
+        }));
+      });
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#catalog-results [data-timeline-position="complete"]');
+      const complete = await page.evaluate(() => {
+        const marker = document.querySelector(
+          '#catalog-results [data-timeline-position="complete"]',
+        );
+        const flow = document.querySelector('#catalog-results .timeline-flow');
+        const lastCard = [...document.querySelectorAll(
+          '#catalog-results .catalog-card',
+        )].at(-1);
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return {
+          text: marker?.textContent.trim() ?? '',
+          currentCards: document.querySelectorAll(
+            '#catalog-results .catalog-card[aria-current="step"]',
+          ).length,
+          positionNodes: document.querySelectorAll(
+            '#catalog-results [data-timeline-position]',
+          ).length,
+          insideFlow: marker?.parentElement === flow,
+          afterLastCard: Boolean(
+            lastCard?.compareDocumentPosition(marker) & Node.DOCUMENT_POSITION_FOLLOWING,
+          ),
+          unexpectedStateKeys: Object.keys(state).filter((key) => (
+            /cursor|position|timeline/i.test(key)
+          )),
+        };
+      });
+      t.check('all complete ends the full spine without inventing a next card',
+        complete.text === 'Modern Timeline complete. All 13 timeline stops are complete.'
+          && complete.currentCards === 0
+          && complete.positionNodes === 1
+          && complete.insideFlow
+          && complete.afterLastCard
+          && complete.unexpectedStateKeys.length === 0
+          && !/next/i.test(complete.text),
+        JSON.stringify(complete));
+
+      await page.$eval('#catalog-q', (input) => {
+        input.value = 'Second Stop';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForSelector('#catalog-results [data-timeline-position="complete"]');
+      const filteredComplete = await page.evaluate(() => {
+        const marker = document.querySelector(
+          '#catalog-results [data-timeline-position="complete"]',
+        );
+        const flow = document.querySelector('#catalog-results .timeline-flow');
+        return {
+          insideFlow: marker?.parentElement === flow,
+          beforeFlow: Boolean(
+            marker?.compareDocumentPosition(flow) & Node.DOCUMENT_POSITION_FOLLOWING,
+          ),
+          text: marker?.textContent.trim() ?? '',
+        };
+      });
+      t.check('filtered completion is stated before the narrowed results, not at a partial spine end',
+        !filteredComplete.insideFlow
+          && filteredComplete.beforeFlow
+          && filteredComplete.text.includes('All 13 timeline stops are complete'),
+        JSON.stringify(filteredComplete));
+
+      await open(page, '/?catalog=position-incomplete#/catalog');
+      await page.waitForSelector('#catalog-results [data-timeline-position="unavailable"]');
+      const unavailable = await page.evaluate(() => ({
+        text: document.querySelector(
+          '#catalog-results [data-timeline-position="unavailable"]',
+        )?.textContent.trim() ?? '',
+        currentCards: document.querySelectorAll(
+          '#catalog-results .catalog-card[aria-current="step"]',
+        ).length,
+        complete: document.querySelectorAll(
+          '#catalog-results [data-timeline-position="complete"]',
+        ).length,
+      }));
+      t.check('an incomplete catalog makes position unavailable instead of advancing through a gap',
+        unavailable.text.includes('1 catalog entry is incomplete')
+          && unavailable.currentCards === 0
+          && unavailable.complete === 0
+          && !unavailable.text.includes('You are here'),
+        JSON.stringify(unavailable));
+
+      t.check('the Modern Timeline position journey produces no console or page errors',
+        browserErrors.length === 0, browserErrors.join(' / '));
     },
   },
   {
@@ -8484,6 +9001,7 @@ async function preparePage(page, origin, mutation) {
         }
         if (longAdd) window.__mrtLongAdd.fetches.push(url);
         if (url.endsWith('data/catalog.json')) {
+          window.__mrtCatalogRequests = (window.__mrtCatalogRequests ?? 0) + 1;
           const fixture = new URL(location.href).searchParams.get('catalog')
             ?? localStorage.getItem('mrt.catalog.fixture');
           const selectedCatalog = catalogFixtures[fixture] ?? catalog;
@@ -8779,6 +9297,7 @@ async function preparePage(page, origin, mutation) {
     {
       publishing: PUBLISHING_CATALOG,
       empty: EMPTY_CATALOG,
+      'position-incomplete': INCOMPLETE_POSITION_CATALOG,
       'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG, 'reading-paths': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },

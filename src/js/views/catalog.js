@@ -3,6 +3,7 @@ import {
   catalogFacets,
   countStories,
   decadeSections,
+  defaultPath,
   eraSections,
   facetLabel,
   filterByFacet,
@@ -18,14 +19,62 @@ import {
   spotlightSortLabel,
   visibleFirstStopGuides,
 } from '../lib/catalog.js';
+import { completionState, listProgress } from '../lib/model.js';
 
 const FILTER_THRESHOLD = 12;
+
+export function modernTimelinePosition(state, stories, { dropped = 0 } = {}) {
+  if (Number.isInteger(dropped) && dropped > 0) return { kind: 'unavailable', dropped };
+
+  const ordered = Array.isArray(stories) ? stories : [];
+  const total = ordered.length;
+  if (!total) return { kind: 'empty', completed: 0, total: 0 };
+
+  // One index preserves listForCatalogId's first-listOrder answer without repeating its linear
+  // scan for every story, which is material at the accepted saved-list ceiling.
+  const savedByCatalogId = new Map();
+  for (const id of Array.isArray(state?.listOrder) ? state.listOrder : []) {
+    const saved = state?.lists?.[id];
+    if (saved?.catalogId && !savedByCatalogId.has(saved.catalogId)) {
+      savedByCatalogId.set(saved.catalogId, saved);
+    }
+  }
+
+  for (let completed = 0; completed < total; completed += 1) {
+    const story = ordered[completed];
+    const list = defaultPath(story, (candidate) => savedByCatalogId.has(candidate.id));
+    const saved = list ? savedByCatalogId.get(list.id) : null;
+    if (!saved) {
+      return {
+        kind: 'current',
+        storyKey: story?.key ?? null,
+        storyName: story?.name ?? list?.name ?? 'Reading List',
+        completed,
+        total,
+      };
+    }
+    const progress = listProgress(state, saved.id);
+    if (completionState(progress.read, progress.total) !== 'done') {
+      return {
+        kind: 'current',
+        storyKey: story?.key ?? null,
+        storyName: story?.name ?? list?.name ?? saved.name ?? 'Reading List',
+        completed,
+        total,
+      };
+    }
+  }
+
+  return { kind: 'complete', completed: total, total };
+}
 
 export function createCatalogView({
   announce,
   clearLoadNotice,
   el,
   elements,
+  getState = () => ({ listOrder: [], lists: {}, read: {} }),
+  isCurrent = () => true,
   loadCatalog,
   notifyDropped,
   onLoadFailure,
@@ -38,10 +87,94 @@ export function createCatalogView({
   ]));
   const generationByShelf = new Map();
   let announceTimer = null;
+  let timelineContext = null;
+  let timelinePendingGeneration = null;
+  let timelinePositionSignature = null;
 
-  function announceResult(message) {
+  function announceResult(message, key) {
     clearTimeout(announceTimer);
-    announceTimer = setTimeout(() => announce(message), 500);
+    announceTimer = setTimeout(() => {
+      if (isCurrent(key)) announce(message);
+    }, 500);
+  }
+
+  function timelineProgressText(position) {
+    const stop = position.total === 1 ? 'timeline stop' : 'timeline stops';
+    return `${position.completed} of ${position.total} ${stop} complete.`;
+  }
+
+  function timelinePositionMessage(position, context) {
+    if (position.kind === 'current') {
+      const progress = timelineProgressText(position);
+      return context.visibleStoryKeys.has(position.storyKey)
+        ? `You are here: ${position.storyName}. ${progress}`
+        : `Your current timeline stop, ${position.storyName}, is hidden by the current search or filter. ${progress}`;
+    }
+    if (position.kind === 'complete') {
+      const stop = position.total === 1 ? 'timeline stop is' : 'timeline stops are';
+      return `Modern Timeline complete. All ${position.total} ${stop} complete.`;
+    }
+    if (position.kind === 'unavailable') {
+      const entry = position.dropped === 1 ? 'entry is' : 'entries are';
+      return `Your timeline position is unavailable because ${position.dropped} catalog ${entry} incomplete and cannot be shown.`;
+    }
+    return null;
+  }
+
+  function timelineSignature(position, context) {
+    return JSON.stringify([
+      position.kind,
+      position.storyKey ?? null,
+      position.completed ?? null,
+      position.total ?? null,
+      position.dropped ?? null,
+      position.kind === 'current' ? context.visibleStoryKeys.has(position.storyKey) : null,
+      context.narrowed,
+    ]);
+  }
+
+  function paintTimelineContext(context, { announceChange = false } = {}) {
+    const position = modernTimelinePosition(getState(), context.stories, {
+      dropped: context.dropped,
+    });
+    const signature = timelineSignature(position, context);
+    const message = timelinePositionMessage(position, context);
+    if (announceChange && signature === timelinePositionSignature) {
+      return { changed: false, message, position };
+    }
+    presentation.paintTimelinePosition?.(context.root, position, {
+      message,
+      narrowed: context.narrowed,
+      visibleStoryKeys: context.visibleStoryKeys,
+    });
+    timelinePositionSignature = signature;
+    if (announceChange && message) announceResult(message, 'catalog');
+    return { changed: true, message, position };
+  }
+
+  function commitTimelineContext({
+    dropped,
+    generation,
+    narrowed,
+    root,
+    stories,
+    visibleStories,
+  }) {
+    if (generation !== generationByShelf.get('catalog')) return null;
+    timelinePendingGeneration = null;
+    timelineContext = {
+      dropped,
+      narrowed,
+      root,
+      stories,
+      visibleStoryKeys: new Set(visibleStories.map((story) => story.key)),
+    };
+    return paintTimelineContext(timelineContext);
+  }
+
+  function refreshProgress() {
+    if (!isCurrent('catalog') || !timelineContext || timelinePendingGeneration !== null) return false;
+    return paintTimelineContext(timelineContext, { announceChange: true }).changed;
   }
 
   function narrowingLabel(key, lists, state) {
@@ -98,6 +231,11 @@ export function createCatalogView({
   async function render(key) {
     const generation = (generationByShelf.get(key) ?? 0) + 1;
     generationByShelf.set(key, generation);
+    if (key === 'catalog') {
+      timelineContext = null;
+      timelinePendingGeneration = generation;
+      timelinePositionSignature = null;
+    }
     const shelf = CATALOG_SHELVES.find((candidate) => candidate.key === key);
     const state = stateByShelf.get(key);
     const nodes = elements.shelf(key);
@@ -109,6 +247,11 @@ export function createCatalogView({
     try {
       catalog = await loadCatalog();
     } catch (error) {
+      if (generation !== generationByShelf.get(key)) return;
+      if (key === 'catalog') {
+        timelineContext = null;
+        timelinePendingGeneration = null;
+      }
       nodes.results.replaceChildren();
       nodes.filters.hidden = true;
       nodes.filters.replaceChildren();
@@ -121,6 +264,7 @@ export function createCatalogView({
       });
       return;
     }
+    if (generation !== generationByShelf.get(key)) return;
 
     if (catalog.dropped) notifyDropped(key, catalog.dropped);
     if (key === 'catalog') {
@@ -130,11 +274,22 @@ export function createCatalogView({
     const mine = key === 'catalog'
       ? modernTimelineLists(catalog.lists)
       : shelfLists(catalog.lists, key);
+    const canonicalTimelineStories = key === 'catalog' ? groupCatalog(mine) : null;
     nodes.results.replaceChildren();
     if (!mine.length) {
       nodes.filters.hidden = true;
       nodes.search.hidden = true;
       nodes.results.append(el('p', { class: 'rail-hint', text: shelf.empty }));
+      if (key === 'catalog') {
+        commitTimelineContext({
+          dropped: catalog.dropped,
+          generation,
+          narrowed: false,
+          root: nodes.results,
+          stories: canonicalTimelineStories,
+          visibleStories: [],
+        });
+      }
       return;
     }
 
@@ -161,7 +316,17 @@ export function createCatalogView({
         ? `No Reading Lists match “${state.query}”${where}.`
         : `No Reading Lists${where || ' in that category'}.`;
       nodes.results.append(el('p', { class: 'rail-hint', text: message }));
-      announceResult(`${message}${sortSentence}`);
+      const position = key === 'catalog'
+        ? commitTimelineContext({
+          dropped: catalog.dropped,
+          generation,
+          narrowed: state.facet !== 'all' || Boolean(state.query),
+          root: nodes.results,
+          stories: canonicalTimelineStories,
+          visibleStories: [],
+        })
+        : null;
+      announceResult(`${message}${sortSentence}${position?.message ? ` ${position.message}` : ''}`, key);
       return;
     }
 
@@ -209,10 +374,23 @@ export function createCatalogView({
         nodes.results.append(grid);
       }
     }
+    const position = key === 'catalog'
+      ? commitTimelineContext({
+        dropped: catalog.dropped,
+        generation,
+        narrowed: state.facet !== 'all' || Boolean(state.query),
+        root: nodes.results,
+        stories: canonicalTimelineStories,
+        visibleStories: stories,
+      })
+      : null;
     if (!catalog.dropped) {
       const where = narrowingLabel(key, mine, state);
       const match = state.query ? ` matching “${state.query}”` : '';
-      announceResult(`${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.${sortSentence}`);
+      announceResult(
+        `${shelf.heading} shows ${stories.length} ${stories.length === 1 ? 'Reading List' : 'Reading Lists'}${match}${where}.${sortSentence}${position?.message ? ` ${position.message}` : ''}`,
+        key,
+      );
     }
   }
 
@@ -265,6 +443,7 @@ export function createCatalogView({
 
   return {
     clearNarrowing,
+    refreshProgress,
     render,
     sort: () => stateByShelf.get('spotlights').sort,
     setSort,
