@@ -68,6 +68,7 @@ export function validateSubmission() {
     '## Listing assets',
     '## Final upload handoff',
     '## Live-review stop points',
+    '## Future Store updates',
     '## Official sources',
   ]) requireText(packet, heading, findings);
 
@@ -100,6 +101,17 @@ export function validateSubmission() {
     'owner authorized replacing the failed package',
     'Do not upload or submit a package that differs',
     'Do not publish',
+    'Everything above this heading records the first submission',
+    'published GitHub release',
+    'microsoft-store-production',
+    'approve that environment deployment',
+    'existing pending submission',
+    'package version that is not greater than the last published version',
+    'Immediate publication means Microsoft publishes the update automatically after certification',
+    'never polls certification',
+    'deletes a draft',
+    'retries a Store mutation automatically',
+    'do not rerun the workflow',
   ]) requireText(packet, value, findings);
 
   for (const url of PUBLIC_URLS) requireText(packet, url, findings);

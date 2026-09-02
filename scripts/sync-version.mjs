@@ -4,7 +4,8 @@
 // and the lock file but before it makes the release commit and tag. That timing is the
 // whole point: it means `npm version <level>` produces a single commit in which the
 // constant the browser reads and the number npm recorded already agree, so the drift check
-// in test/version.test.js is never red on an intermediate commit.
+// in test/version.test.js is never red on an intermediate commit. Store package versions
+// are derived from package.json by the MSIX packer and are not rewritten here.
 //
 // The constant is hand-written rather than generated at build time because the app has no
 // build step, and the browser has to read the version from somewhere. See the "Releasing"

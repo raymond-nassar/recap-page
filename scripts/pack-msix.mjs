@@ -11,12 +11,30 @@ import {
   NODE_ARCH, NODE_VERSION, appFiles, fetchRuntime, runtimeArchiveName,
 } from './pack-windows.mjs';
 
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
+
+export function derivePackageVersions(version) {
+  if (!/^\d+\.\d+\.\d+$/.test(version)) {
+    throw new Error(`package version must be three unsigned integer components: ${version}`);
+  }
+  const components = version.split('.').map(Number);
+  if (components.some((component) => component > 65535)) {
+    throw new Error(`package version components must be between 0 and 65535: ${version}`);
+  }
+  return Object.freeze({
+    store: `${version}.0`,
+    proof: `${version}.1`,
+  });
+}
+
 export const PACKAGE_NAME = 'PanelStackLabs.RecapPage';
 export const PACKAGE_PUBLISHER = 'CN=F6D9045B-46F0-4EAC-9524-4BFC8A75A472';
 export const PACKAGE_FAMILY = 'PanelStackLabs.RecapPage_we33aa8nvkpcc';
 export const AUMID = `${PACKAGE_FAMILY}!App`;
-export const STORE_PACKAGE_VERSION = '2.0.2.0';
-export const PROOF_UPDATE_VERSION = '2.0.2.1';
+const derivedVersions = derivePackageVersions(pkg.version);
+export const STORE_PACKAGE_VERSION = derivedVersions.store;
+export const PROOF_UPDATE_VERSION = derivedVersions.proof;
 export const PACKAGE_VERSIONS = Object.freeze([STORE_PACKAGE_VERSION, PROOF_UPDATE_VERSION]);
 export const PACKAGE_ARCHITECTURES = Object.freeze([
   Object.freeze({ id: 'x64', node: NODE_ARCH, peMachine: 0x8664 }),
@@ -24,7 +42,6 @@ export const PACKAGE_ARCHITECTURES = Object.freeze([
 ]);
 export const LAUNCHER_NAME = 'Launcher.mjs';
 
-const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 export const MSIX_ROOT = join(ROOT, 'dist', 'msix');
 export const MSIX_PROOF_ROOT = join(ROOT, 'dist', 'msix-proof');
 export const CERTIFICATE_PATH = join(MSIX_ROOT, 'RecapPage-local-proof.pfx');

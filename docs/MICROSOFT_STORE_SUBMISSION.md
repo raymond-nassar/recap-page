@@ -409,9 +409,37 @@ Issue #188 can close only after the owner sees the final Partner Center listing 
 the title is exactly **Recap Page**, Marvel appears only as accurate descriptive copy, and the
 unofficial, no-comics, and own-subscription disclosures are present.
 
+## Future Store updates
+
+Everything above this heading records the first submission. Its package version, reviewed hash,
+manual upload, certification submission, and manual publishing hold remain the factual first-release
+procedure. They do not authorize or describe a later update.
+
+After that first free version is live, a published GitHub release may start the separate Microsoft
+Store release workflow. The entire job waits at the protected `microsoft-store-production`
+environment before it builds or receives Partner Center credentials. The owner must approve that
+environment deployment before any update can be uploaded.
+
+The workflow refuses drafts, prereleases, mismatched tags, a product that is not live and free, an
+existing pending submission, and a package version that is not greater than the last published
+version. It builds the release tag once, inspects and WACK-tests that exact bundle, verifies its hash
+again, creates one draft through Microsoft's submission API, and captures its submission ID. It
+uploads the bundle archive, sets immediate publication with gradual rollout off, verifies that exact
+draft, and commits the same ID once.
+
+Immediate publication means Microsoft publishes the update automatically after certification. It
+does not bypass certification or make workflow completion mean the update is already visible. The
+workflow never polls certification, deletes a draft, retries a Store mutation automatically, or
+changes the GitHub ZIP release. Every Store mutation is one HTTP request without an automatic retry
+policy.
+
+If any failure occurs at or after draft upload, do not rerun the workflow. Inspect Partner Center
+first and resolve the pending draft manually. A certification failure requires a corrected,
+higher-version release rather than moving or reusing the failed release tag.
+
 ## Official sources
 
-Retrieved 2026-08-29:
+Retrieved 2026-08-29 and 2026-08-30:
 
 - [Submission checklist](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/create-app-submission)
 - [Pricing and availability](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/price-and-availability)
@@ -434,3 +462,7 @@ Retrieved 2026-08-29:
 - [Certification](https://learn.microsoft.com/windows/apps/publish/publish-your-app/msix/app-certification-process)
 - [Microsoft Store Policies 7.19](https://learn.microsoft.com/windows/apps/publish/store-policies)
 - [Desktop Bridge WACK tests](https://learn.microsoft.com/windows/uwp/debug-test-perf/windows-desktop-bridge-app-tests)
+- [Manage app submissions](https://learn.microsoft.com/windows/uwp/monetize/manage-app-submissions)
+- [Create an app submission](https://learn.microsoft.com/windows/uwp/monetize/create-an-app-submission)
+- [Update an app submission](https://learn.microsoft.com/windows/uwp/monetize/update-an-app-submission)
+- [Commit an app submission](https://learn.microsoft.com/windows/uwp/monetize/commit-an-app-submission)

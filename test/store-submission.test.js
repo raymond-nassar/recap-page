@@ -13,6 +13,21 @@ test('the Store submission packet and asset inventory satisfy their contract', (
   assert.deepEqual(validateSubmission(), []);
 });
 
+test('the packet separates the first submission from automated future updates', () => {
+  const packet = readFileSync(PACKET, 'utf8');
+  const first = packet.slice(0, packet.indexOf('## Future Store updates'));
+  const future = packet.slice(packet.indexOf('## Future Store updates'));
+  const futureOperation = future.slice(future.indexOf('After that first free version'));
+  assert.match(first, /manual publishing hold/);
+  assert.match(first, /Do not upload or submit a package that differs/);
+  assert.match(first, /Do not publish without a separate explicit direction/);
+  assert.match(future, /published GitHub release/);
+  assert.match(future, /protected `microsoft-store-production`\s+environment/);
+  assert.match(future, /publishes the update automatically after certification/);
+  assert.match(future, /do not rerun the workflow/i);
+  assert.doesNotMatch(futureOperation, /later approve Publish now|manual publishing hold/);
+});
+
 test('the Store tile is the existing purple panels mark at the listing size', () => {
   const tile = pngInfo(join(ASSET_DIR, STORE_TILE));
   assert.deepEqual({ width: tile.width, height: tile.height }, { width: 300, height: 300 });

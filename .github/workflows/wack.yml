@@ -7,6 +7,8 @@ on:
     paths:
       - .github/workflows/wack.yml
       - .github/browser-proof/**
+      - LICENSE
+      - package.json
       - packaging/windows/**
       - server.mjs
       - src/**
@@ -19,6 +21,7 @@ on:
       - scripts/wack-report.ps1
       - test/msix-packaging.test.js
       - test/server-contract.test.js
+      - test/wack-workflow.test.js
 
 # WACK needs no repository write, package publication, identity token, or secret.
 permissions:
@@ -52,22 +55,26 @@ jobs:
           node-version: '24'
           cache: npm
 
-      # Microsoft documents this action as the CI installation route. Its version
-      # input fixes the same winapp release required by the package builder.
-      - uses: microsoft/setup-WinAppCli@b93bbddc1f7abc061ca0d3a8119e3a0c7dd71495 # v0.2.0
-        timeout-minutes: 4
-        with:
-          version: v0.6.0
-
-      - name: Initialize telemetry-disabled WinApp CLI
-        timeout-minutes: 2
+      - name: Install checksum-verified WinApp CLI
+        timeout-minutes: 6
         shell: pwsh
         run: |
-          $output = @(winapp --version)
-          if ($LASTEXITCODE -ne 0 -or $output[-1].Trim() -ne '0.6.0') {
-            throw 'The pinned WinApp CLI did not initialize as version 0.6.0.'
+          $archive = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'
+          $toolRoot = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'
+          Invoke-WebRequest `
+            -Uri 'https://github.com/microsoft/winappCli/releases/download/v0.6.0/winappcli-x64.zip' `
+            -OutFile $archive
+          $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash
+          $expected = 'F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8'
+          if ($actual -ne $expected) {
+            throw 'WinApp CLI v0.6.0 did not match its reviewed SHA-256.'
           }
-          'WinApp CLI 0.6.0 initialized with telemetry disabled.'
+          Expand-Archive -LiteralPath $archive -DestinationPath $toolRoot
+          $version = @(& (Join-Path $toolRoot 'winapp.exe') --version)[-1].Trim()
+          if (@('0.6.0', 'v0.6.0') -notcontains $version) {
+            throw 'The checksum-verified WinApp CLI did not report version 0.6.0.'
+          }
+          $toolRoot >> $env:GITHUB_PATH
 
       - name: Install repository tooling
         timeout-minutes: 4
@@ -87,6 +94,18 @@ jobs:
           if ($LASTEXITCODE -ne 0) {
             throw 'Packaging inputs were dirty before the exact-head build.'
           }
+
+      - name: Resolve current package paths
+        id: package-paths
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $appVersion = (Get-Content -LiteralPath ./package.json -Raw |
+            ConvertFrom-Json).version
+          $storeVersion = "$appVersion.0"
+          "x64=./dist/msix/RecapPage_${storeVersion}_x64.msix" >> $env:GITHUB_OUTPUT
+          "bundle=./dist/msix/RecapPage_${storeVersion}_x64_arm64.msixbundle" >> $env:GITHUB_OUTPUT
+          "certificate=./dist/msix/RecapPage-local-proof.cer" >> $env:GITHUB_OUTPUT
 
       - name: Run focused packaging and WACK tests
         timeout-minutes: 2
@@ -110,9 +129,9 @@ jobs:
         shell: pwsh
         run: |
           ./scripts/run-wack.ps1 `
-            -X64Package ./dist/msix/RecapPage_2.0.2.0_x64.msix `
-            -Bundle ./dist/msix/RecapPage_2.0.2.0_x64_arm64.msixbundle `
-            -Certificate ./dist/msix/RecapPage-local-proof.cer
+            -X64Package '${{ steps.package-paths.outputs.x64 }}' `
+            -Bundle '${{ steps.package-paths.outputs.bundle }}' `
+            -Certificate '${{ steps.package-paths.outputs.certificate }}'
 
       - name: Remove generated certification material
         if: always()
@@ -160,15 +179,21 @@ jobs:
           } catch {
             $failures += $_.Exception
           }
-          try {
-            if (Test-Path -LiteralPath ./dist) {
-              Remove-Item -LiteralPath ./dist -Recurse -Force -ErrorAction Stop
+          foreach ($path in @(
+            (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'),
+            (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'),
+            './dist'
+          )) {
+            try {
+              if (Test-Path -LiteralPath $path) {
+                Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
+              }
+              if (Test-Path -LiteralPath $path) {
+                throw "Generated WACK material remains at $path"
+              }
+            } catch {
+              $failures += $_.Exception
             }
-            if (Test-Path -LiteralPath ./dist) {
-              throw 'Generated WACK package material remains.'
-            }
-          } catch {
-            $failures += $_.Exception
           }
           if ($failures.Count -ne 0) {
             throw [AggregateException]::new(
@@ -203,10 +228,26 @@ jobs:
           node-version: '24'
           cache: npm
 
-      - uses: microsoft/setup-WinAppCli@b93bbddc1f7abc061ca0d3a8119e3a0c7dd71495 # v0.2.0
-        timeout-minutes: 4
-        with:
-          version: v0.6.0
+      - name: Install checksum-verified WinApp CLI
+        timeout-minutes: 6
+        shell: pwsh
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'
+          $toolRoot = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'
+          Invoke-WebRequest `
+            -Uri 'https://github.com/microsoft/winappCli/releases/download/v0.6.0/winappcli-x64.zip' `
+            -OutFile $archive
+          $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash
+          $expected = 'F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8'
+          if ($actual -ne $expected) {
+            throw 'WinApp CLI v0.6.0 did not match its reviewed SHA-256.'
+          }
+          Expand-Archive -LiteralPath $archive -DestinationPath $toolRoot
+          $version = @(& (Join-Path $toolRoot 'winapp.exe') --version)[-1].Trim()
+          if (@('0.6.0', 'v0.6.0') -notcontains $version) {
+            throw 'The checksum-verified WinApp CLI did not report version 0.6.0.'
+          }
+          $toolRoot >> $env:GITHUB_PATH
 
       - name: Install repository tooling
         timeout-minutes: 4
@@ -320,7 +361,9 @@ jobs:
           try {
             $paths = @(
               './dist',
-              (Join-Path $env:RUNNER_TEMP 'recap-page-puppeteer')
+              (Join-Path $env:RUNNER_TEMP 'recap-page-puppeteer'),
+              (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'),
+              (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0')
             )
             foreach ($path in $paths) {
               if (Test-Path -LiteralPath $path) {

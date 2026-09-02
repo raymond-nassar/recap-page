@@ -1,0 +1,290 @@
+name: Microsoft Store release
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+env:
+  WINAPP_CLI_TELEMETRY_OPTOUT: '1'
+
+concurrency:
+  group: microsoft-store-production
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    name: Validate and submit the Store bundle
+    if: >-
+      github.event_name == 'release' ||
+      github.ref_name == github.event.repository.default_branch
+    environment: microsoft-store-production
+    runs-on: windows-2022
+    timeout-minutes: 185
+    steps:
+      - name: Check out the approved release source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: >-
+            ${{ github.event_name == 'release' &&
+                github.event.release.tag_name || github.ref }}
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install checksum-verified WinApp CLI
+        timeout-minutes: 6
+        shell: pwsh
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'
+          $toolRoot = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'
+          Invoke-WebRequest `
+            -Uri 'https://github.com/microsoft/winappCli/releases/download/v0.6.0/winappcli-x64.zip' `
+            -OutFile $archive
+          $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash
+          $expected = 'F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8'
+          if ($actual -ne $expected) {
+            throw 'WinApp CLI v0.6.0 did not match its reviewed SHA-256.'
+          }
+          Expand-Archive -LiteralPath $archive -DestinationPath $toolRoot
+          $version = @(& (Join-Path $toolRoot 'winapp.exe') --version)[-1].Trim()
+          if (@('0.6.0', 'v0.6.0') -notcontains $version) {
+            throw 'The checksum-verified WinApp CLI did not report version 0.6.0.'
+          }
+          $toolRoot >> $env:GITHUB_PATH
+
+      - name: Install repository tooling
+        timeout-minutes: 4
+        run: npm ci --ignore-scripts
+
+      - name: Resolve release metadata
+        id: release
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $appVersion = (Get-Content -LiteralPath ./package.json -Raw |
+            ConvertFrom-Json).version
+          $storeVersion = "$appVersion.0"
+          $bundleName = "RecapPage_${storeVersion}_x64_arm64.msixbundle"
+          $tempRoot = Join-Path $env:RUNNER_TEMP `
+            "recap-store-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
+          New-Item -ItemType Directory -Path $tempRoot -ErrorAction Stop | Out-Null
+          if ($env:GITHUB_EVENT_NAME -eq 'release') {
+            node ./scripts/check-store-release.mjs release `
+              $env:GITHUB_EVENT_PATH $appVersion $storeVersion
+            if ($LASTEXITCODE -ne 0) {
+              throw 'The published release does not match the package version.'
+            }
+          }
+          "app_version=$appVersion" >> $env:GITHUB_OUTPUT
+          "store_version=$storeVersion" >> $env:GITHUB_OUTPUT
+          "bundle_name=$bundleName" >> $env:GITHUB_OUTPUT
+          "bundle=./dist/msix/$bundleName" >> $env:GITHUB_OUTPUT
+          "x64=./dist/msix/RecapPage_${storeVersion}_x64.msix" >> $env:GITHUB_OUTPUT
+          "certificate=./dist/msix/RecapPage-local-proof.cer" >> $env:GITHUB_OUTPUT
+          "temp_root=$tempRoot" >> $env:GITHUB_OUTPUT
+
+      - name: Prove release commit provenance
+        if: github.event_name == 'release'
+        timeout-minutes: 2
+        shell: pwsh
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          $tagCommit = (git rev-parse "$env:RELEASE_TAG^{commit}").Trim()
+          if ($LASTEXITCODE -ne 0 -or $tagCommit -ne $env:GITHUB_SHA) {
+            throw 'The checked-out commit does not match the published release tag.'
+          }
+          git fetch --no-tags origin $env:DEFAULT_BRANCH
+          if ($LASTEXITCODE -ne 0) {
+            throw 'The default branch could not be fetched for provenance validation.'
+          }
+          git merge-base --is-ancestor $tagCommit "origin/$env:DEFAULT_BRANCH"
+          if ($LASTEXITCODE -ne 0) {
+            throw 'The published release commit is not on the default branch.'
+          }
+
+      - name: Run focused release tests
+        timeout-minutes: 2
+        run: >-
+          node --test test/version.test.js test/msix-packaging.test.js
+          test/wack-workflow.test.js test/microsoft-store-release.test.js
+
+      - name: Build the Store bundle once
+        timeout-minutes: 15
+        run: npm run msix:pack
+
+      - name: Inspect the Store packages
+        timeout-minutes: 10
+        run: npm run msix:inspect
+
+      - name: Record the validated bundle hash
+        id: bundle_hash
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash -Algorithm SHA256 `
+            -LiteralPath '${{ steps.release.outputs.bundle }}').Hash
+          "sha256=$hash" >> $env:GITHUB_OUTPUT
+
+      - name: Run WACK on the exact bundle
+        timeout-minutes: 55
+        shell: pwsh
+        run: |
+          ./scripts/run-wack.ps1 `
+            -X64Package '${{ steps.release.outputs.x64 }}' `
+            -Bundle '${{ steps.release.outputs.bundle }}' `
+            -Certificate '${{ steps.release.outputs.certificate }}'
+
+      - name: Prove the certified bundle is unchanged
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $actual = (Get-FileHash -Algorithm SHA256 `
+            -LiteralPath '${{ steps.release.outputs.bundle }}').Hash
+          if ($actual -ne '${{ steps.bundle_hash.outputs.sha256 }}') {
+            throw 'The Store bundle changed after validation.'
+          }
+
+      - name: Validate Partner Center without mutation
+        if: github.event_name == 'workflow_dispatch'
+        timeout-minutes: 8
+        shell: pwsh
+        env:
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace('${{ vars.MICROSOFT_STORE_PRODUCT_ID }}')) {
+            throw 'MICROSOFT_STORE_PRODUCT_ID is missing.'
+          }
+          ./scripts/publish-store-update.ps1 `
+            -Mode Validate `
+            -ProductId '${{ vars.MICROSOFT_STORE_PRODUCT_ID }}' `
+            -BundlePath '${{ steps.release.outputs.bundle }}' `
+            -ExpectedVersion '${{ steps.release.outputs.store_version }}' `
+            -WorkDirectory '${{ steps.release.outputs.temp_root }}'
+
+      - name: Recheck the bundle before mutation
+        if: github.event_name == 'release'
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          $actual = (Get-FileHash -Algorithm SHA256 `
+            -LiteralPath '${{ steps.release.outputs.bundle }}').Hash
+          if ($actual -ne '${{ steps.bundle_hash.outputs.sha256 }}') {
+            throw 'The Store bundle changed before submission.'
+          }
+
+      - name: Submit one Store update
+        if: github.event_name == 'release'
+        timeout-minutes: 25
+        shell: pwsh
+        env:
+          PARTNER_CENTER_CLIENT_ID: ${{ secrets.PARTNER_CENTER_CLIENT_ID }}
+          PARTNER_CENTER_CLIENT_SECRET: ${{ secrets.PARTNER_CENTER_CLIENT_SECRET }}
+          PARTNER_CENTER_TENANT_ID: ${{ secrets.PARTNER_CENTER_TENANT_ID }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace('${{ vars.MICROSOFT_STORE_PRODUCT_ID }}')) {
+            throw 'MICROSOFT_STORE_PRODUCT_ID is missing.'
+          }
+          ./scripts/publish-store-update.ps1 `
+            -Mode Submit `
+            -ProductId '${{ vars.MICROSOFT_STORE_PRODUCT_ID }}' `
+            -BundlePath '${{ steps.release.outputs.bundle }}' `
+            -ExpectedVersion '${{ steps.release.outputs.store_version }}' `
+            -WorkDirectory '${{ steps.release.outputs.temp_root }}'
+
+      - name: Write an allowlisted outcome summary
+        if: success()
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          @(
+            '## Microsoft Store release'
+            ''
+            "* Event: $env:GITHUB_EVENT_NAME"
+            "* Commit: $env:GITHUB_SHA"
+            "* Application version: ${{ steps.release.outputs.app_version }}"
+            "* Store version: ${{ steps.release.outputs.store_version }}"
+            "* Bundle: ${{ steps.release.outputs.bundle_name }}"
+            "* SHA-256: ${{ steps.bundle_hash.outputs.sha256 }}"
+            '* WACK: passed'
+            $(if ($env:GITHUB_EVENT_NAME -eq 'release') {
+              '* Partner Center: submission accepted for certification'
+            } else {
+              '* Partner Center: read-only activation rehearsal passed'
+            })
+          ) | Add-Content -LiteralPath $env:GITHUB_STEP_SUMMARY
+
+      - name: Remove generated Store material
+        if: always()
+        timeout-minutes: 5
+        shell: pwsh
+        run: |
+          $failures = @()
+          try {
+            $packages = @(Get-AppxPackage -Name PanelStackLabs.RecapPage |
+              Where-Object PackageFamilyName -eq `
+                'PanelStackLabs.RecapPage_we33aa8nvkpcc')
+            foreach ($package in $packages) {
+              Remove-AppxPackage -Package $package.PackageFullName
+            }
+          } catch {
+            $failures += $_.Exception
+          }
+          try {
+            $cer = '${{ steps.release.outputs.certificate }}'
+            if (Test-Path -LiteralPath $cer) {
+              $certificate = [Security.Cryptography.X509Certificates.X509Certificate2]::new(
+                (Resolve-Path -LiteralPath $cer).Path
+              )
+              $trusted = "Cert:\LocalMachine\TrustedPeople\$($certificate.Thumbprint)"
+              Remove-Item -LiteralPath $trusted -ErrorAction SilentlyContinue
+              if (Test-Path -LiteralPath $trusted) {
+                throw 'The temporary WACK certificate remains trusted.'
+              }
+            }
+          } catch {
+            $failures += $_.Exception
+          }
+          try {
+            Get-ChildItem -Path $env:TEMP -Filter 'recap-page-wack-*' `
+              -ErrorAction SilentlyContinue |
+              ForEach-Object {
+                Remove-Item -LiteralPath $_.FullName -Recurse -Force
+              }
+          } catch {
+            $failures += $_.Exception
+          }
+          foreach ($path in @(
+            '${{ steps.release.outputs.temp_root }}',
+            (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'),
+            (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'),
+            './dist'
+          )) {
+            try {
+              if ($path -and (Test-Path -LiteralPath $path)) {
+                Remove-Item -LiteralPath $path -Recurse -Force
+              }
+            } catch {
+              $failures += $_.Exception
+            }
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new(
+              'One or more Microsoft Store cleanup boundaries failed.',
+              [Exception[]]$failures
+            )
+          }
