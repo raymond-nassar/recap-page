@@ -209,6 +209,17 @@ test('the page exposes every task through semantic no-script structure', () => {
   assert.doesNotMatch(html, /\btarget="/i);
 });
 
+test('the project icon is self-contained so the owner-site root is never requested', () => {
+  const icon = /<link\s+rel="icon"\s+href="data:image\/svg\+xml;base64,([^"]+)"\s*\/>/m.exec(html);
+  assert.ok(icon, 'the Page has no in-document SVG icon');
+  const svg = Buffer.from(icon[1], 'base64').toString('utf8');
+  assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" viewBox="0 0 32 32">/);
+  assert.match(svg, /fill="#6d28d9"/);
+  assert.match(svg, /fill="#9e71e6"/);
+  assert.match(svg, /<\/svg>$/);
+  assert.doesNotMatch(html, /href="\/favicon\.ico"|href="https:\/\/raymond-nassar\.github\.io\/favicon\.ico"/);
+});
+
 test('all links and fragments resolve to the approved destinations', () => {
   const hrefs = [...html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)].map((match) => match[1]);
   assert.deepEqual(hrefs, EXPECTED_HREFS);
