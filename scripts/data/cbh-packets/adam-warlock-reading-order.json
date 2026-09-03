@@ -243,133 +243,7 @@
       "issueNumber": "6"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 89,
-      "sourceIssueReference": "Silver Surfer Annual #5",
-      "sourceRangeReference": "Collects: Silver Surfer (1987) 60-66, Dr. Strange : Sorcerer Supreme 36, Warlock & The Infinity Watch 1-6, Material From Silver Surfer Annual 5",
-      "sourceGroup": "Jim Starlin’s 70’s Marvel Cosmic to 90’s Infinity Trilogy",
-      "normalizedSeriesTitle": "Silver Surfer Annual",
-      "seriesYear": null,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-01",
-      "auditBasis": "The current series endpoint returned no issue numbered 5. The exact lookup returned 8 nonmatching candidates; issue #400 tracks future identity research without proposing a substitute.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/adam-warlock-reading-order/",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "metadata-provider-search",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Silver%20Surfer%20Annual%205&limit=50",
-          "retrievedAt": "2026-09-01"
-        }
-      ],
-      "evidenceDigest": "cdf2d211067de28509b0fb19b7f5dd79c14ad504eaf38d841e28c99d3631a51e"
-    },
-    {
-      "sourcePosition": 119,
-      "sourceIssueReference": "Marvel Holiday Special #2",
-      "sourceRangeReference": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2",
-      "sourceGroup": "Jim Starlin’s 70’s Marvel Cosmic to 90’s Infinity Trilogy",
-      "normalizedSeriesTitle": "Marvel Holiday Special",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-01",
-      "auditBasis": "No authoritative provider series is present in the vendored index or current source context. The exact lookup returned 10 nonmatching candidates; issue #400 tracks future identity research without proposing a substitute.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/adam-warlock-reading-order/",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "metadata-provider-search",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel%20Holiday%20Special%202&limit=50",
-          "retrievedAt": "2026-09-01"
-        }
-      ],
-      "evidenceDigest": "ca9f75fae62b7076609330443e3eb6af3fc67417fba867df0aeb23b1b3e22cc4"
-    },
-    {
-      "sourcePosition": 120,
-      "sourceIssueReference": "Marvel Swimsuit Special #2",
-      "sourceRangeReference": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2",
-      "sourceGroup": "Jim Starlin’s 70’s Marvel Cosmic to 90’s Infinity Trilogy",
-      "normalizedSeriesTitle": "Marvel Swimsuit Special",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-01",
-      "auditBasis": "No authoritative provider series is present in the vendored index or current source context. The exact lookup returned 1 nonmatching candidate; issue #400 tracks future identity research without proposing a substitute.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/adam-warlock-reading-order/",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "metadata-provider-search",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel%20Swimsuit%20Special%202&limit=50",
-          "retrievedAt": "2026-09-01"
-        }
-      ],
-      "evidenceDigest": "2023c6a11bafdf70f67c35eb9ad98b0b8a962bc4bc99c22c945550b6a3359fdb"
-    },
-    {
-      "sourcePosition": 168,
-      "sourceIssueReference": "Warlock Chronicles #8",
-      "sourceRangeReference": "Collects: Thor #468–471, Silver Surfer #86–88, Warlock Chronicles #6–8, Warlock And The Infinity Watch #23–25",
-      "sourceGroup": "Jim Starlin’s 70’s Marvel Cosmic to 90’s Infinity Trilogy",
-      "normalizedSeriesTitle": "Warlock Chronicles",
-      "seriesYear": null,
-      "issueNumber": "8",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-09-01",
-      "auditBasis": "The current series endpoint returned no issue numbered 8. The exact lookup returned 7 nonmatching candidates; issue #400 tracks future identity research without proposing a substitute.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/adam-warlock-reading-order/",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
-          "retrievedAt": "2026-09-01"
-        },
-        {
-          "kind": "metadata-provider-search",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Warlock%20Chronicles%208&limit=50",
-          "retrievedAt": "2026-09-01"
-        }
-      ],
-      "evidenceDigest": "433efd0a66919c2cd9bb4e9248f23b32f1012bf0fb88bc75620d35c1c6006573"
-    }
-  ],
-  "expectedCount": 224,
+  "expectedCount": 225,
   "proposedManifest": {
     "id": "adam-warlock-reading-order",
     "name": "Adam Warlock",
@@ -397,7 +271,7 @@
       "Infinity Watch",
       "Jim Starlin"
     ],
-    "expect": 228,
+    "expect": 225,
     "timeline": null,
     "sourceFile": "adam-warlock-reading-order.md"
   },
@@ -2092,6 +1966,19 @@
       "selectionNote": "vendored series index and source chronology"
     },
     {
+      "sourcePosition": 168,
+      "sourceIssueReference": "Warlock Chronicles #8",
+      "sourceRangeReference": "Collects: Thor #468–471, Silver Surfer #86–88, Warlock Chronicles #6–8, Warlock And The Infinity Watch #23–25",
+      "sourceGroup": "Jim Starlin’s 70’s Marvel Cosmic to 90’s Infinity Trilogy",
+      "normalizedSeriesTitle": "Warlock Chronicles",
+      "seriesYear": 1993,
+      "issueNumber": "8",
+      "seriesId": 6686,
+      "candidateIssueId": 23490,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity and Marvel Unlimited availability were owner-reviewed after the maintained metadata provider omitted this issue."
+    },
+    {
       "sourcePosition": 169,
       "sourceIssueReference": "Warlock And The Infinity Watch #23",
       "sourceRangeReference": "Collects: Thor #468–471, Silver Surfer #86–88, Warlock Chronicles #6–8, Warlock And The Infinity Watch #23–25",
@@ -3100,5 +2987,118 @@
       "selectionNote": "vendored series index and source chronology"
     }
   ],
-  "packetDigest": "c797f27abf6d6bb78181db4274b121d4df4c391c0f1fb99ce185297134d897c1"
+  "packetDigest": "f297748971b4fe9076b6622ad0349d811c76df50d65d4a1850227ae31ca104ce",
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 89,
+      "sourceIssueReference": "Silver Surfer Annual #5",
+      "reason": "The owner confirmed Silver Surfer Annual #5 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 119,
+      "sourceIssueReference": "Marvel Holiday Special #2",
+      "reason": "The owner confirmed Marvel Holiday Special #2 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "Marvel Swimsuit Special #2",
+      "reason": "The owner confirmed Marvel Swimsuit Special #2 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    }
+  ],
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 89,
+      "previousSourceIssueReference": "Silver Surfer Annual #5",
+      "previousSourceRangeReference": "Collects: Silver Surfer (1987) 60-66, Dr. Strange : Sorcerer Supreme 36, Warlock & The Infinity Watch 1-6, Material From Silver Surfer Annual 5",
+      "previousNormalizedSeriesTitle": "Silver Surfer Annual",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "5",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Silver Surfer Annual #5 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "ab8564bcb0537c4aa3dbb0612fca7d15b80520e2b34412c701be969f4a946a0c"
+    },
+    {
+      "sourcePosition": 119,
+      "previousSourceIssueReference": "Marvel Holiday Special #2",
+      "previousSourceRangeReference": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2",
+      "previousNormalizedSeriesTitle": "Marvel Holiday Special",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marvel Holiday Special #2 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "d119f7ddabc68854699a781424b5ab9aee84bf5e1f72a21b29dacaf94ad34f17"
+    },
+    {
+      "sourcePosition": 120,
+      "previousSourceIssueReference": "Marvel Swimsuit Special #2",
+      "previousSourceRangeReference": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2",
+      "previousNormalizedSeriesTitle": "Marvel Swimsuit Special",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marvel Swimsuit Special #2 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "12020a8a2954084637bb26ada356949ca0b34f3610e59e6d90128a966b5d55d3"
+    },
+    {
+      "sourcePosition": 168,
+      "previousSourceIssueReference": "Warlock Chronicles #8",
+      "previousSourceRangeReference": "Collects: Thor #468–471, Silver Surfer #86–88, Warlock Chronicles #6–8, Warlock And The Infinity Watch #23–25",
+      "previousNormalizedSeriesTitle": "Warlock Chronicles",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "8",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 23490,
+      "resolvedNormalizedSeriesTitle": "Warlock Chronicles",
+      "resolvedSeriesYear": 1993,
+      "resolvedIssueNumber": "8",
+      "auditBasis": "The owner supplied the exact official Marvel issue page and confirmed that this issue is available through Marvel Unlimited.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/23490/warlock_chronicles_1993_8",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/400",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "2e84158d3a880b2df59a00d2e6b76de6006c09db50d60c7d30edac270750356f"
+    }
+  ]
 }

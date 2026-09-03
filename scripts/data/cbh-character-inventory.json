@@ -39,7 +39,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The complete source page preserves 253 issue occurrences across 228 identities: 224 exact rows, four open metadata gaps, and 25 repeated occurrences. The complete-library report has 20 approved partial relationships and no exact or subset duplicate.",
+    "reason": "The complete source page preserves 253 issue occurrences across 225 exact rows, three owner-authorized Marvel Unlimited exclusions, and 25 repeated occurrences. The complete-library report has 20 approved partial relationships and no exact or subset duplicate.",
     "sourceRetrievedAt": "2026-09-01",
     "overlapIds": [
       "abomination-reading-order",

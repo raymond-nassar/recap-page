@@ -1050,12 +1050,13 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // 55 source-preserving placeholders. Fantastic Four adds 185 individually preserved cache-only
   // provider gaps, Guardians adds 29, and Defenders adds 23 without substituting a source identity.
   // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
-  // claiming a metadata match. Adam Warlock adds four more source-preserving metadata gaps.
+  // claiming a metadata match. Adam Warlock carries no placeholders after its owner-reviewed
+  // availability settlement.
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1885, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1884, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1881, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1880, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 90);
   assert.equal(affected, 9);
 });
@@ -1082,7 +1083,7 @@ test('import builds its gap disclosure from the items, not from the order payloa
 // starts asserting metadata it does not have again. Every other check of the refusal builds its own
 // state and so passes with this call site reverted; the defect was never in the model.
 //
-// 19,619 of the 19,709 non-placeholder curated items carry metadata and 90 do not, so
+// 19,620 of the 19,710 non-placeholder curated items carry metadata and 90 do not, so
 // `hydrated: true` over the map was a statement about the whole file that was false for 61
 // distinct issues.
 test('import lets each curated item speak for itself rather than asserting metadata over the file', () => {
@@ -1261,7 +1262,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
-  // adds 23, Nick Fury and S.H.I.E.L.D. adds 194, and Adam Warlock adds four.
-  assert.equal(refused.length, 1941);
+  // adds 23 and Nick Fury and S.H.I.E.L.D. adds 194. Adam Warlock carries no refused identities
+  // after its owner-reviewed availability settlement.
+  assert.equal(refused.length, 1937);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

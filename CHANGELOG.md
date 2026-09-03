@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Adam Warlock guide gaps
+
+In plain English: The bundled Adam Warlock guide now includes Warlock Chronicles #8. Three comics
+confirmed unavailable on Marvel Unlimited are omitted permanently instead of appearing as broken
+placeholders. Existing saved Reading Lists and reading progress are not rewritten; newly imported
+copies receive the settled 225-comic order.
+
+For maintainers, all 253 source occurrences remain accounted for as 225 exact rows, 25 repeats, and
+three explicit availability exclusions. The four former gaps retain auditable resolution evidence
+so they are not raised again.
+
 ### Completed three Ant-Man guide entries
 
 In plain English: The bundled Ant-Man guide now includes the Season One graphic novel and the final
