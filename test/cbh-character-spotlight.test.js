@@ -47,6 +47,33 @@ const youngAvengersCandidateId = 'young-avengers-reading-order';
 const runawaysCandidateId = 'runaways-reading-order';
 const publishedInventoryContracts = [
   {
+    id: 'agents-of-atlas-reading-order',
+    name: 'Agents of Atlas',
+    overlapCount: 3,
+    lifecycle: {
+      disposition: 'new-order',
+      reason: 'The frozen guide publishes 80 exact metadata rows and preserves 87 source occurrences as 80 exact rows, 3 repeats, and 4 source-boundary exclusions, with 3 current-library relationships and no exact duplicate.',
+      catalogIds: ['agents-of-atlas-reading-order'],
+      deliveryStatus: 'shipped',
+      centralDisposition: 'pilot-approved',
+      metadataHorizonStatus: 'approved',
+    },
+    preserved: {
+      position: 4,
+      id: 'agents-of-atlas-reading-order',
+      title: 'Agents of Atlas',
+      url: 'https://www.comicbookherald.com/agents-of-atlas-reading-order/',
+      guideType: 'character-run',
+      window: null,
+      sourceRetrievedAt: '2026-08-23',
+      labels: ['Agents of Atlas'],
+      sourcePositions: [4],
+      duplicateFlags: [],
+      sourceContentSha256: 'e58153e982b45d6471de9839f19dcf2c337ddb585a3bec1c19b558497d5454a0',
+      sourceBoundaryStatus: 'exact-page-snapshot',
+    },
+  },
+  {
     id: 'black-widow-reading-order',
     name: 'Black Widow',
     overlapCount: 29,
@@ -646,7 +673,7 @@ test('Abomination preserves the unresolved Hulk annual and selects the exact 198
   }
 });
 
-test('the character inventory preserves every central disposition, ships thirty-five spotlights, and records five approved reuses', async () => {
+test('the character inventory preserves every central disposition, ships thirty-six spotlights, and records five approved reuses', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   assert.doesNotThrow(() => validateInventoryState(inventory));
   assert.equal(inventory.length, 129);
@@ -657,10 +684,10 @@ test('the character inventory preserves every central disposition, ships thirty-
     counts[record.centralDisposition] = (counts[record.centralDisposition] ?? 0) + 1;
     return counts;
   }, {});
-  assert.equal(dispositionCounts.deferred, 81);
+  assert.equal(dispositionCounts.deferred, 80);
   assert.equal(dispositionCounts.excluded, 7);
   assert.equal(dispositionCounts.blocked, 1);
-  assert.equal(dispositionCounts['pilot-approved'], 35);
+  assert.equal(dispositionCounts['pilot-approved'], 36);
   assert.equal(dispositionCounts['reuse-existing'], 5);
 
   const shipped = inventory.filter((record) => record.deliveryStatus === 'shipped');
@@ -668,6 +695,7 @@ test('the character inventory preserves every central disposition, ships thirty-
     abominationCandidateId,
     'adam-warlock-reading-order',
     'agatha-harkness-reading-order',
+    'agents-of-atlas-reading-order',
     'amazing-spider-man-reading-order-modern-marvel-era',
     'ant-man-reading-order',
     blackPantherCandidateId,
