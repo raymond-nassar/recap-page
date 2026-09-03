@@ -866,9 +866,9 @@ private troubleshooting fields. `test/intake-config.test.js` discovers every for
 schema, label, YAML and citation checks. `test/pages-home.test.js` owns this form's exact semantic
 contract and the Page disclosure that precedes its direct link.
 
-An earlier individual Copilot project guide remains private and unlinked because organizational
-policy disables its sharing. It is not part of the public route. Deleting it is a separate permanent
-cleanup action and is not required to publish or maintain the project home.
+An earlier individual Copilot project guide was permanently deleted after the public question form
+and project home passed hosted verification. It is not part of the public route, and no legacy access
+role remains.
 
 ### Prepare Pages without publishing
 
