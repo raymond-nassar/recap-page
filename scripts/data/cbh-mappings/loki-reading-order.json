@@ -22821,10 +22821,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed all 154 complete-library comparisons against the frozen 638-row Loki mapping. The guide is not an exact duplicate; all partial and existing-subset relationships retain their separate source identities and the 18 unresolved positions remain explicit gaps.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "75331b27d148e22a9e34fc61d6fce7aea9101f13a1f8f4d4f530ce95f4e68138",
+    "reportDigest": "01283c58af01d2cd059e8a5f5dd5192fdcb35edeba2cce81670ca32781315194",
     "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9",
     "mappingDigest": "5ef7839f0d33a30d0b04a70d4b72cb5c5d517c274371448161170b9b774487fe",
-    "libraryDigest": "efb63bc80dfda2a16068ed8ea7dfc149db54d1aa0455d1e541f5c71df9a182ec",
+    "libraryDigest": "2ea42c4de5baab53e6c4af926f49c70723f1e490aa5ff0e339a0709ed572a773",
     "peerDigests": {},
     "dispositions": [
       {
@@ -24568,6 +24568,6 @@
         ]
       }
     ],
-    "approvalDigest": "89b4301252c8de4ca81c4ee37d63ac10211f754c34f042408b6b272f60590809"
+    "approvalDigest": "9fb7090d79ac1a12a77d214515247a969dafe07cb97ed5f7ae8e7c9ad6bae8fe"
   }
 }

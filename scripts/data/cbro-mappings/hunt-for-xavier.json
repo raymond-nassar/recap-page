@@ -307,10 +307,10 @@
     "coverIssueId": 13903
   },
   "relationshipReview": {
-    "reportDigest": "699b54fa16d3cb1b32dfae4463891f4ab378e5802f2b32ca98d1a969462af4e1",
+    "reportDigest": "8d6d101509821c1689470690566088d919f1557ca259e78db8bc9f0cbce8fcce",
     "packetDigest": "a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba",
     "mappingDigest": "5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c",
-    "libraryDigest": "b46de53942d04d11570d215d608163b00330771bb21182e4510f2d2fefbbac37",
+    "libraryDigest": "b24c496ff139829dd1392698b4141f984f4037bafd0bce1eadf570dd817bc890",
     "peerDigests": {
       "magneto-war": "bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1"
     },
@@ -1818,6 +1818,6 @@
     "authorityIdentity": "MRT-003-C02-B09 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:59.465Z",
-    "approvalDigest": "06b8f138cf68a647de634b5ea3988ef988353cbb39614c7eb07d831430da1722"
+    "approvalDigest": "bbad8afa90fb4d43677be2ab8cf05785b59eec824ac9c570e7db2e18859bb6d8"
   }
 }

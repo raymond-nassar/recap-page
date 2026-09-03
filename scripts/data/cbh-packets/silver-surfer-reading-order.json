@@ -205,6 +205,12 @@
       "decisionScope": "source-ledger exclusion"
     },
     {
+      "sourcePosition": 137,
+      "sourceIssueReference": "Silver Surfer: Judgment Day OGN",
+      "reason": "The owner confirmed Silver Surfer: Judgment Day is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 138,
       "sourceIssueReference": "Graphic novel from Stan Lee and John Buscema, in which each page is a splash panel.",
       "reason": "prose marker",
@@ -215,6 +221,12 @@
       "sourceIssueReference": "Silver Surfer: Parable",
       "reason": "collection marker",
       "decisionScope": "source-ledger exclusion"
+    },
+    {
+      "sourcePosition": 140,
+      "sourceIssueReference": "Silver Surfer: Parable #1",
+      "reason": "The owner rejected Marvel issue 46458 because it is a collected edition containing both Parable issues, not the standalone Silver Surfer: Parable #1, and directed that #1 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 142,
@@ -541,6 +553,12 @@
       "decisionScope": "source-ledger exclusion"
     },
     {
+      "sourcePosition": 318,
+      "sourceIssueReference": "Silver Surfer Infinite #1",
+      "reason": "The owner confirmed Silver Surfer Infinite #1 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 319,
       "sourceIssueReference": "One of Marvel’s digital only Infinite comics, this issue launches the new Slott and Allred Surfer, and has one of my favorite Norrin Radd jokes of all time.",
       "reason": "prose marker",
@@ -755,7 +773,7 @@
     },
     {
       "sourcePosition": 341,
-      "canonicalRow": 225,
+      "canonicalRow": 226,
       "sourceIssueReference": "Silver Surfer (2014) #6",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -764,7 +782,7 @@
     },
     {
       "sourcePosition": 342,
-      "canonicalRow": 226,
+      "canonicalRow": 227,
       "sourceIssueReference": "Silver Surfer (2014) #7",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -773,7 +791,7 @@
     },
     {
       "sourcePosition": 343,
-      "canonicalRow": 227,
+      "canonicalRow": 228,
       "sourceIssueReference": "Silver Surfer (2014) #8",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -782,7 +800,7 @@
     },
     {
       "sourcePosition": 344,
-      "canonicalRow": 228,
+      "canonicalRow": 229,
       "sourceIssueReference": "Silver Surfer (2014) #9",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -791,7 +809,7 @@
     },
     {
       "sourcePosition": 345,
-      "canonicalRow": 229,
+      "canonicalRow": 230,
       "sourceIssueReference": "Silver Surfer (2014) #10",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -800,7 +818,7 @@
     },
     {
       "sourcePosition": 347,
-      "canonicalRow": 230,
+      "canonicalRow": 231,
       "sourceIssueReference": "Silver Surfer (2014) #11",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -809,7 +827,7 @@
     },
     {
       "sourcePosition": 348,
-      "canonicalRow": 231,
+      "canonicalRow": 232,
       "sourceIssueReference": "Silver Surfer (2014) #12",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -818,7 +836,7 @@
     },
     {
       "sourcePosition": 349,
-      "canonicalRow": 232,
+      "canonicalRow": 233,
       "sourceIssueReference": "Silver Surfer (2014) #13",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -827,7 +845,7 @@
     },
     {
       "sourcePosition": 350,
-      "canonicalRow": 233,
+      "canonicalRow": 234,
       "sourceIssueReference": "Silver Surfer (2014) #14",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -835,113 +853,7 @@
       "issueNumber": "14"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 137,
-      "sourceIssueReference": "Silver Surfer: Judgment Day OGN",
-      "sourceRangeReference": "Issues: OGN",
-      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
-      "normalizedSeriesTitle": "Silver Surfer: Judgment Day",
-      "seriesYear": null,
-      "issueNumber": "OGN",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e7d05a390f60f3c9ba3e78c9ad3ebbce6b31cf695b63f027cc58c3550ee7e3cc"
-    },
-    {
-      "sourcePosition": 140,
-      "sourceIssueReference": "Silver Surfer: Parable #1",
-      "sourceRangeReference": "Issues: #1 to #2",
-      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
-      "normalizedSeriesTitle": "Silver Surfer: Parable",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "25ecd212b1750d0393bff1b55c9f5679ab82f524d156c441d10826e83220633a"
-    },
-    {
-      "sourcePosition": 141,
-      "sourceIssueReference": "Silver Surfer: Parable #2",
-      "sourceRangeReference": "Issues: #1 to #2",
-      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
-      "normalizedSeriesTitle": "Silver Surfer: Parable",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "62de26f8e5504ce98096d58d6461b2ed66aeb2185c427db32c369ee27f35308f"
-    },
-    {
-      "sourcePosition": 318,
-      "sourceIssueReference": "Silver Surfer Infinite #1",
-      "sourceRangeReference": "Issues: #1",
-      "sourceGroup": "VI) Marvel NOW! Silver Surfer",
-      "normalizedSeriesTitle": "Silver Surfer Infinite",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "43a68797cc40f91d5989ba332a09686ccb085fb5e254238d99dae654ed30d019"
-    }
-  ],
-  "expectedCount": 294,
+  "expectedCount": 295,
   "proposedManifest": {
     "id": "silver-surfer-reading-order",
     "name": "Silver Surfer",
@@ -973,7 +885,7 @@
       "Comic Book Herald",
       "Marvel Cosmic"
     ],
-    "expect": 298,
+    "expect": 295,
     "timeline": null,
     "coverIssueId": 16096
   },
@@ -982,9 +894,9 @@
   },
   "sourceReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "The accepted offline settlement resolves 294 unique provider issues, retains 17 backward repeats and 111 exclusions, and keeps four individual published-metadata gaps open in the linked issue #304 bundle.",
-    "reviewedAt": "2026-08-27T07:40:14-07:00"
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "GPT-5.6 Sol independently reviewed the exact diff for the frozen cache-only packet: 295 exact rows, 17 repeated source references, and 114 excluded source occurrences with no remaining gaps.",
+    "reviewedAt": "2026-09-03"
   },
   "rows": [
     {
@@ -2138,6 +2050,18 @@
       "candidateIssueId": 15167,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Silver Surfer: Parable #2",
+      "sourceRangeReference": "Issues: #1 to #2",
+      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
+      "normalizedSeriesTitle": "Silver Surfer: Parable",
+      "seriesYear": 1989,
+      "issueNumber": "2",
+      "seriesId": null,
+      "candidateIssueId": 43437,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity and Marvel Unlimited availability were owner-reviewed after the maintained metadata provider omitted this issue."
     },
     {
       "sourceIssueReference": "Silver Surfer (1987) #34",
@@ -4516,5 +4440,108 @@
       "selectionNote": "The source omits the series year; cached metadata supplies the exact series identity."
     }
   ],
-  "packetDigest": "ae35c61faaaf15f327de4549138291f718d3bc34e5f2819bca9c35ac9794bf01"
+  "packetDigest": "035dbbc4c860542a50055abc087147f241bf75b5bc69fc34b0238675b0f7d047",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 137,
+      "previousSourceIssueReference": "Silver Surfer: Judgment Day OGN",
+      "previousSourceRangeReference": "Issues: OGN",
+      "previousNormalizedSeriesTitle": "Silver Surfer: Judgment Day",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "OGN",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Silver Surfer: Judgment Day is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "44b18e6a103d98fbe54bf6799a0df402874cd94b163b4d98256bd8043cafd954"
+    },
+    {
+      "sourcePosition": 140,
+      "previousSourceIssueReference": "Silver Surfer: Parable #1",
+      "previousSourceRangeReference": "Issues: #1 to #2",
+      "previousNormalizedSeriesTitle": "Silver Surfer: Parable",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner rejected Marvel issue 46458 because it is a collected edition containing both Parable issues, not the standalone Silver Surfer: Parable #1, and directed that #1 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The official page and configured provider identify issue 46458 as a collected edition with issue number 0, so it cannot replace the standalone #1 source identity.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/46458/silver_surfer_parable_1988",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "provider-issue",
+          "url": "https://marvel.emreparker.com/v1/issues/46458",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "5f21dbb731973aef2281021207840f2ed21e92a1e2cd117bd73106b20797f1aa"
+    },
+    {
+      "sourcePosition": 141,
+      "previousSourceIssueReference": "Silver Surfer: Parable #2",
+      "previousSourceRangeReference": "Issues: #1 to #2",
+      "previousNormalizedSeriesTitle": "Silver Surfer: Parable",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 43437,
+      "resolvedNormalizedSeriesTitle": "Silver Surfer: Parable",
+      "resolvedSeriesYear": 1989,
+      "resolvedIssueNumber": "2",
+      "auditBasis": "The owner supplied the exact official Marvel issue page and confirmed that this issue is available through Marvel Unlimited.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/43437/silver_surfer_parable_1989_2",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "c6778ac4bbf55c3f561cbbf8f35f7f9de2da396775847cbd27399a2a4cd595c1"
+    },
+    {
+      "sourcePosition": 318,
+      "previousSourceIssueReference": "Silver Surfer Infinite #1",
+      "previousSourceRangeReference": "Issues: #1",
+      "previousNormalizedSeriesTitle": "Silver Surfer Infinite",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Silver Surfer Infinite #1 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "e4f0a416120ac5e3a8598cbb6ba84f8f43cc4572245ee515ac8db3177e64920e"
+    }
+  ]
 }

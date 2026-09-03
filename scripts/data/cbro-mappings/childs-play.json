@@ -232,10 +232,10 @@
     "coverIssueId": 17997
   },
   "relationshipReview": {
-    "reportDigest": "5e9a93fb259b724f834f06f9802e5c5ff5ea1e727c6c2b8e64e1d197e595c7df",
+    "reportDigest": "d79a80c8123d84e90055046627d95f2c5ee009a3c8b802ceeb3756cd734b823d",
     "packetDigest": "a89c36fd519746af77bd6beaf1ddc8f4efa3f82e66e53d2aba88890262dc7a9b",
     "mappingDigest": "4032f8bb4351aa52611916e4ab56a44564744b49108d3bec404a27e7e224a5a7",
-    "libraryDigest": "d2a54efa1f62153b4a82ae41ab3f9a86c667feef3b2aa1572a8d5592b3836371",
+    "libraryDigest": "7e563d00e554540ee810476bb8e963a614709dd8907f3027cd41994ebfcac643",
     "peerDigests": {
       "bloodties": "119307d55dc5663a022736a7ead022d2479eddb13def2b48fa5b642c8ef1fd73",
       "eighth-day": "48bc90d19becff04f194b3273fd949f676c9b1305d8cb741731abdf81d0ee548",
@@ -1746,6 +1746,6 @@
     "authorityIdentity": "MRT-003 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-25T03:09:11.977Z",
-    "approvalDigest": "0e70929d0c09995a9ada98e7ecd8a84f003157c4123736a2358672ff0e8245ee"
+    "approvalDigest": "abc28150636881f1d154e2f110d3d063622e5a7232df0363e897545699f5f32a"
   }
 }

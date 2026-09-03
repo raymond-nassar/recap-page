@@ -156,10 +156,10 @@
     "coverIssueId": 6507
   },
   "relationshipReview": {
-    "reportDigest": "25ad5f7958b7677500a25ecc553c98911f233a8f67e82ef499f6be39c6bfb3bc",
+    "reportDigest": "0ce2c7950bb2707e40e3ae71ae4f30cad103ce55694a7630685dc5fdbab3bdb1",
     "packetDigest": "3b6795f00d0b007ba8815ab371178ef53ad55995a1a54b175c8aa12314246301",
     "mappingDigest": "aef1e4f4cdc1b2e85759cff25cb32444b6946600fe3ff26bd4fa78122ee8d1bf",
-    "libraryDigest": "f9238b18f49c64b5205108b7149811e93c60327d1506f8f62022a3f0c7d2a6fc",
+    "libraryDigest": "8c067e0678c96f9b5215d48544c860b94bbc6055882264bccd456bb79b2e8985",
     "peerDigests": {
       "avengers-defenders-war": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
       "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
@@ -1670,6 +1670,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset and the Thanos War subset are the approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:38:48.585Z",
-    "approvalDigest": "5c884dbf1ec50f173df03b960a2e7bbbaf0c67dfa13a6cc090b000dcbb15a934"
+    "approvalDigest": "4ba5e0aa729aa53b5c5516a4d7631b3cabf1bf86160a3f925ca478d79b6a77cd"
   }
 }

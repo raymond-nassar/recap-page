@@ -1,7 +1,7 @@
 {
   "id": "silver-surfer-reading-order",
   "inventoryId": "silver-surfer-reading-order",
-  "packetDigest": "ae35c61faaaf15f327de4549138291f718d3bc34e5f2819bca9c35ac9794bf01",
+  "packetDigest": "035dbbc4c860542a50055abc087147f241bf75b5bc69fc34b0238675b0f7d047",
   "sourceUrl": "https://www.comicbookherald.com/silver-surfer-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceRetrievalStatus": "retrieved",
@@ -203,6 +203,12 @@
       "decisionScope": "source-ledger exclusion"
     },
     {
+      "sourcePosition": 137,
+      "sourceIssueReference": "Silver Surfer: Judgment Day OGN",
+      "reason": "The owner confirmed Silver Surfer: Judgment Day is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 138,
       "sourceIssueReference": "Graphic novel from Stan Lee and John Buscema, in which each page is a splash panel.",
       "reason": "prose marker",
@@ -213,6 +219,12 @@
       "sourceIssueReference": "Silver Surfer: Parable",
       "reason": "collection marker",
       "decisionScope": "source-ledger exclusion"
+    },
+    {
+      "sourcePosition": 140,
+      "sourceIssueReference": "Silver Surfer: Parable #1",
+      "reason": "The owner rejected Marvel issue 46458 because it is a collected edition containing both Parable issues, not the standalone Silver Surfer: Parable #1, and directed that #1 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 142,
@@ -539,6 +551,12 @@
       "decisionScope": "source-ledger exclusion"
     },
     {
+      "sourcePosition": 318,
+      "sourceIssueReference": "Silver Surfer Infinite #1",
+      "reason": "The owner confirmed Silver Surfer Infinite #1 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 319,
       "sourceIssueReference": "One of Marvel’s digital only Infinite comics, this issue launches the new Slott and Allred Surfer, and has one of my favorite Norrin Radd jokes of all time.",
       "reason": "prose marker",
@@ -753,7 +771,7 @@
     },
     {
       "sourcePosition": 341,
-      "canonicalRow": 225,
+      "canonicalRow": 226,
       "sourceIssueReference": "Silver Surfer (2014) #6",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -762,7 +780,7 @@
     },
     {
       "sourcePosition": 342,
-      "canonicalRow": 226,
+      "canonicalRow": 227,
       "sourceIssueReference": "Silver Surfer (2014) #7",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -771,7 +789,7 @@
     },
     {
       "sourcePosition": 343,
-      "canonicalRow": 227,
+      "canonicalRow": 228,
       "sourceIssueReference": "Silver Surfer (2014) #8",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -780,7 +798,7 @@
     },
     {
       "sourcePosition": 344,
-      "canonicalRow": 228,
+      "canonicalRow": 229,
       "sourceIssueReference": "Silver Surfer (2014) #9",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -789,7 +807,7 @@
     },
     {
       "sourcePosition": 345,
-      "canonicalRow": 229,
+      "canonicalRow": 230,
       "sourceIssueReference": "Silver Surfer (2014) #10",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #6 to #10",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -798,7 +816,7 @@
     },
     {
       "sourcePosition": 347,
-      "canonicalRow": 230,
+      "canonicalRow": 231,
       "sourceIssueReference": "Silver Surfer (2014) #11",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -807,7 +825,7 @@
     },
     {
       "sourcePosition": 348,
-      "canonicalRow": 231,
+      "canonicalRow": 232,
       "sourceIssueReference": "Silver Surfer (2014) #12",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -816,7 +834,7 @@
     },
     {
       "sourcePosition": 349,
-      "canonicalRow": 232,
+      "canonicalRow": 233,
       "sourceIssueReference": "Silver Surfer (2014) #13",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
@@ -825,118 +843,12 @@
     },
     {
       "sourcePosition": 350,
-      "canonicalRow": 233,
+      "canonicalRow": 234,
       "sourceIssueReference": "Silver Surfer (2014) #14",
       "sourceRangeReference": "Issues: Silver Surfer (2014) #11 to #15",
       "normalizedSeriesTitle": "Silver Surfer (2014)",
       "seriesYear": 2014,
       "issueNumber": "14"
-    }
-  ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 137,
-      "sourceIssueReference": "Silver Surfer: Judgment Day OGN",
-      "sourceRangeReference": "Issues: OGN",
-      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
-      "normalizedSeriesTitle": "Silver Surfer: Judgment Day",
-      "seriesYear": null,
-      "issueNumber": "OGN",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e7d05a390f60f3c9ba3e78c9ad3ebbce6b31cf695b63f027cc58c3550ee7e3cc"
-    },
-    {
-      "sourcePosition": 140,
-      "sourceIssueReference": "Silver Surfer: Parable #1",
-      "sourceRangeReference": "Issues: #1 to #2",
-      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
-      "normalizedSeriesTitle": "Silver Surfer: Parable",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "25ecd212b1750d0393bff1b55c9f5679ab82f524d156c441d10826e83220633a"
-    },
-    {
-      "sourcePosition": 141,
-      "sourceIssueReference": "Silver Surfer: Parable #2",
-      "sourceRangeReference": "Issues: #1 to #2",
-      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
-      "normalizedSeriesTitle": "Silver Surfer: Parable",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "62de26f8e5504ce98096d58d6461b2ed66aeb2185c427db32c369ee27f35308f"
-    },
-    {
-      "sourcePosition": 318,
-      "sourceIssueReference": "Silver Surfer Infinite #1",
-      "sourceRangeReference": "Issues: #1",
-      "sourceGroup": "VI) Marvel NOW! Silver Surfer",
-      "normalizedSeriesTitle": "Silver Surfer Infinite",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted offline provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #304.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/silver-surfer-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "43a68797cc40f91d5989ba332a09686ccb085fb5e254238d99dae654ed30d019"
     }
   ],
   "proposedManifest": {
@@ -970,7 +882,7 @@
       "Comic Book Herald",
       "Marvel Cosmic"
     ],
-    "expect": 298,
+    "expect": 295,
     "timeline": null,
     "coverIssueId": 16096
   },
@@ -2318,6 +2230,20 @@
       "manualSeriesSelectionApproved": false,
       "detailUrl": "https://www.marvel.com/comics/issue/15167/silver_surfer_1987_32",
       "onSaleDate": "1989-12-01T00:00:00+0000"
+    },
+    {
+      "id": 43437,
+      "title": "Silver Surfer: Parable",
+      "issueTitle": "Silver Surfer: Parable (1989) #2",
+      "seriesTitle": "Silver Surfer: Parable",
+      "apiSeriesName": "Silver Surfer: Parable (1989)",
+      "seriesId": null,
+      "issueNumber": "2",
+      "seriesYear": 1989,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/43437/silver_surfer_parable_1989_2",
+      "onSaleDate": null
     },
     {
       "id": 15169,
@@ -7494,6 +7420,30 @@
       "status": "exact"
     },
     {
+      "sourcePosition": 141,
+      "sourceIssueReference": "Silver Surfer: Parable #2",
+      "sourceRangeReference": "Issues: #1 to #2",
+      "sourceGroup": "III) 1980?s Silver Surfer Relaunch + Original Graphic Novels",
+      "normalizedSeriesTitle": "Silver Surfer: Parable",
+      "seriesYear": 1989,
+      "issueNumber": "2",
+      "seriesId": null,
+      "candidateIssueId": 43437,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact Marvel issue identity and Marvel Unlimited availability were owner-reviewed after the maintained metadata provider omitted this issue.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        43437
+      ],
+      "selectedIssueId": 43437,
+      "selectedIssueIds": [
+        43437
+      ],
+      "resolvedIssueTitle": "Silver Surfer: Parable (1989) #2",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/43437/silver_surfer_parable_1989_2",
+      "status": "exact"
+    },
+    {
       "sourcePosition": 145,
       "sourceIssueReference": "Silver Surfer (1987) #34",
       "sourceRangeReference": "Issues: #34 to #38",
@@ -12444,9 +12394,9 @@
       "status": "exact"
     }
   ],
-  "mappingDigest": "5bd2edbcb2f842342de7dd508beccd6ef924bb24f43ae0b05d03010ba913208a",
+  "mappingDigest": "ea48b22d38e10c3884b22ee36ef730d33e446f54e7ae17357ce8dd9479ab2950",
   "reviewStatus": "approved",
-  "packetReview": "GPT-5.6 Terra reviewed the frozen cache-only packet: 294 exact rows, 4 explicit source gaps, 17 repeated source references, and 111 excluded source occurrences.",
+  "packetReview": "GPT-5.6 Sol independently reviewed the exact diff for the frozen cache-only packet: 295 exact rows, 17 repeated source references, and 114 excluded source occurrences with no remaining gaps.",
   "approvedManifest": {
     "id": "silver-surfer-reading-order",
     "name": "Silver Surfer",
@@ -12478,20 +12428,20 @@
       "Comic Book Herald",
       "Marvel Cosmic"
     ],
-    "expect": 298,
+    "expect": 295,
     "timeline": null,
     "coverIssueId": 16096
   },
   "relationshipReview": {
-    "reportDigest": "34b7133d02dc5d08f917b1826053296d4f8f66647a013431d6e69044b30d7909",
-    "packetDigest": "ae35c61faaaf15f327de4549138291f718d3bc34e5f2819bca9c35ac9794bf01",
-    "mappingDigest": "5bd2edbcb2f842342de7dd508beccd6ef924bb24f43ae0b05d03010ba913208a",
+    "reportDigest": "52ad07408a1cac9d3e1a2366a490a69472c4fb700bbc1232da993edc6800aec2",
+    "packetDigest": "035dbbc4c860542a50055abc087147f241bf75b5bc69fc34b0238675b0f7d047",
+    "mappingDigest": "ea48b22d38e10c3884b22ee36ef730d33e446f54e7ae17357ce8dd9479ab2950",
     "libraryDigest": "ae8bb4c3d00f84ca8bc815f2c85d0a12af4eeb192e8bc2be43166d049ed684dd",
     "peerDigests": {},
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "GPT-5.6 Terra reviewed all 159 complete-library comparisons: 25 non-none relationships are intentional source-guide overlaps between distinct source identities and sequences, 134 none relationships have no shared issues, and no exact duplicate is present.",
-    "reviewedAt": "2026-08-27",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "GPT-5.6 Sol independently reviewed the exact diff covering all 161 complete-library comparisons: 27 non-none relationships are intentional source-guide overlaps between distinct source identities and sequences, 134 none relationships have no shared issues, and no exact duplicate is present.",
+    "reviewedAt": "2026-09-03",
     "dispositions": [
       {
         "orderId": "abomination-reading-order",
@@ -12499,8 +12449,8 @@
         "decision": "approved",
         "rationale": "The 3 shared issues with abomination-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 3,
         "sharedIds": [
           "11440",
@@ -12515,7 +12465,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12525,8 +12475,8 @@
         "decision": "approved",
         "rationale": "The 3 shared issues with agatha-harkness-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 3,
         "sharedIds": [
           "12921",
@@ -12541,7 +12491,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12552,7 +12502,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12563,7 +12513,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12573,8 +12523,8 @@
         "decision": "approved",
         "rationale": "The 28 shared issues with amazing-spider-man-reading-order-modern-marvel-era are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 28,
         "sharedIds": [
           "15169",
@@ -12614,7 +12564,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12625,7 +12575,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12635,8 +12585,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with ant-man-reading-order is an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "48631"
@@ -12649,7 +12599,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12660,7 +12610,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12670,8 +12620,8 @@
         "decision": "approved",
         "rationale": "The 8 shared issues with avengers-defenders-war are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 8,
         "sharedIds": [
           "6970",
@@ -12691,7 +12641,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12702,7 +12652,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12713,7 +12663,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12723,8 +12673,8 @@
         "decision": "approved",
         "rationale": "The 9 shared issues with black-panther-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 9,
         "sharedIds": [
           "13253",
@@ -12742,10 +12692,10 @@
         "orderId": "black-widow-reading-order",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "The 10 shared issues with doctor-doom-primer are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
+        "rationale": "The 5 shared issues with black-widow-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 5,
         "sharedIds": [
           "66416",
@@ -12762,7 +12712,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12773,7 +12723,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12784,7 +12734,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12795,7 +12745,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12806,7 +12756,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12817,7 +12767,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12828,7 +12778,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12839,7 +12789,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12850,7 +12800,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12861,7 +12811,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12872,7 +12822,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12883,7 +12833,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12893,8 +12843,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with daredevil-reading-order is an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "46002"
@@ -12907,7 +12857,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12918,7 +12868,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12929,7 +12879,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12940,7 +12890,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12951,7 +12901,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12962,7 +12912,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12973,7 +12923,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12984,7 +12934,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -12995,7 +12945,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13005,8 +12955,8 @@
         "decision": "approved",
         "rationale": "The 10 shared issues with doctor-doom-primer are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 10,
         "sharedIds": [
           "13263",
@@ -13028,7 +12978,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13038,8 +12988,8 @@
         "decision": "approved",
         "rationale": "The 31 shared issues with doctor-strange-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 31,
         "sharedIds": [
           "20262",
@@ -13082,7 +13032,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13093,7 +13043,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13104,7 +13054,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13115,7 +13065,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13126,7 +13076,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13137,7 +13087,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13147,8 +13097,8 @@
         "decision": "approved",
         "rationale": "The shared issues are intentional cross-character or event relationships; this source-derived guide remains distinct.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03"
       },
       {
         "orderId": "fatal-attractions",
@@ -13157,7 +13107,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13168,7 +13118,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13178,8 +13128,8 @@
         "decision": "approved",
         "rationale": "The 4 shared issues with groot-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 4,
         "sharedIds": [
           "36644",
@@ -13195,7 +13145,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13206,7 +13156,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13216,8 +13166,8 @@
         "decision": "approved",
         "rationale": "The 4 shared issues with hickman-full are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 4,
         "sharedIds": [
           "29603",
@@ -13233,7 +13183,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13244,7 +13194,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13255,7 +13205,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13266,7 +13216,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13276,8 +13226,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with hunt-for-wolverine are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "66416"
@@ -13290,7 +13240,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13301,7 +13251,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13312,7 +13262,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13322,8 +13272,8 @@
         "decision": "approved",
         "rationale": "The 7 shared issues with infinity-countdown-wars are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 7,
         "sharedIds": [
           "66283",
@@ -13342,7 +13292,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13353,7 +13303,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13364,7 +13314,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13375,7 +13325,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13386,7 +13336,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13397,7 +13347,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13408,7 +13358,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13418,8 +13368,8 @@
         "decision": "approved",
         "rationale": "The 17 shared issues with loki-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 17,
         "sharedIds": [
           "16099",
@@ -13447,8 +13397,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with magneto-reading-order is an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "12516"
@@ -13461,7 +13411,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13472,7 +13422,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13482,8 +13432,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with marvel-knights-to-planet-x is an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "15583"
@@ -13496,7 +13446,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13507,7 +13457,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13518,7 +13468,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13529,7 +13479,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13540,7 +13490,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13551,7 +13501,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13562,7 +13512,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13573,7 +13523,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13584,7 +13534,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13595,7 +13545,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13606,7 +13556,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13617,7 +13567,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13628,7 +13578,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13639,7 +13589,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13650,7 +13600,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13661,7 +13611,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13672,7 +13622,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13683,7 +13633,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13694,7 +13644,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13705,7 +13655,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13716,7 +13666,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13727,7 +13677,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13737,8 +13687,8 @@
         "decision": "approved",
         "rationale": "The 4 shared issues with planet-hulk are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 4,
         "sharedIds": [
           "3530",
@@ -13754,7 +13704,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13764,8 +13714,8 @@
         "decision": "approved",
         "rationale": "The 24 shared issues with question-of-the-week-do-you-have-a-hulk-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 24,
         "sharedIds": [
           "11440",
@@ -13801,7 +13751,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13812,7 +13762,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13823,7 +13773,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13834,7 +13784,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13844,8 +13794,8 @@
         "decision": "approved",
         "rationale": "The 4 shared issues with rocket-raccoon-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 4,
         "sharedIds": [
           "36644",
@@ -13861,7 +13811,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13872,7 +13822,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13883,7 +13833,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13894,7 +13844,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13905,7 +13855,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13916,7 +13866,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13927,7 +13877,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13938,7 +13888,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13949,7 +13899,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13960,7 +13910,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13971,7 +13921,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13982,7 +13932,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -13993,7 +13943,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14004,7 +13954,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14015,7 +13965,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14026,7 +13976,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14037,7 +13987,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14048,7 +13998,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14059,7 +14009,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14070,7 +14020,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14080,8 +14030,8 @@
         "decision": "approved",
         "rationale": "The 10 shared issues with thanos-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 10,
         "sharedIds": [
           "15169",
@@ -14103,7 +14053,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14114,7 +14064,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14125,7 +14075,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14136,7 +14086,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14147,7 +14097,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14158,7 +14108,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14169,7 +14119,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14180,7 +14130,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14191,7 +14141,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14202,7 +14152,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14212,8 +14162,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with white-tiger-ava-ayala are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "61093"
@@ -14226,7 +14176,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14236,8 +14186,8 @@
         "decision": "approved",
         "rationale": "The 5 shared issues with wolverine-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 5,
         "sharedIds": [
           "66416",
@@ -14253,8 +14203,8 @@
         "decision": "approved",
         "rationale": "The 2 shared issues with world-war-hulk-aftersmash are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 2,
         "sharedIds": [
           "24168",
@@ -14268,7 +14218,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14279,7 +14229,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14290,7 +14240,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14301,7 +14251,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14312,7 +14262,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14323,7 +14273,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14334,7 +14284,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14345,7 +14295,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14356,7 +14306,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14367,7 +14317,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14378,7 +14328,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14389,7 +14339,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14400,7 +14350,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14411,7 +14361,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14422,7 +14372,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14433,7 +14383,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14444,7 +14394,7 @@
         "rationale": "No shared issues in the current report require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14454,8 +14404,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with xmen-claremont are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "12516"
@@ -14467,14 +14417,125 @@
         "decision": "approved",
         "rationale": "The 1 shared issue with xmen-claremont-complete are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "12516"
         ]
       }
     ],
-    "approvalDigest": "841e9f465996c4bc4407dd389668b1410945ba9fd87be097b6d6c70b136af236"
-  }
+    "approvalDigest": "edbeff4fc9bb1cca73791b5b99e445ed4cc25efba4b8433c183e64fea24f22ef",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 426,
+      "sourceIdentityCount": 295,
+      "includedIssueCount": 295,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 17,
+      "excludedSourceRowCount": 114
+    }
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 137,
+      "previousSourceIssueReference": "Silver Surfer: Judgment Day OGN",
+      "previousSourceRangeReference": "Issues: OGN",
+      "previousNormalizedSeriesTitle": "Silver Surfer: Judgment Day",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "OGN",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Silver Surfer: Judgment Day is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "44b18e6a103d98fbe54bf6799a0df402874cd94b163b4d98256bd8043cafd954"
+    },
+    {
+      "sourcePosition": 140,
+      "previousSourceIssueReference": "Silver Surfer: Parable #1",
+      "previousSourceRangeReference": "Issues: #1 to #2",
+      "previousNormalizedSeriesTitle": "Silver Surfer: Parable",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner rejected Marvel issue 46458 because it is a collected edition containing both Parable issues, not the standalone Silver Surfer: Parable #1, and directed that #1 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The official page and configured provider identify issue 46458 as a collected edition with issue number 0, so it cannot replace the standalone #1 source identity.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/46458/silver_surfer_parable_1988",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "provider-issue",
+          "url": "https://marvel.emreparker.com/v1/issues/46458",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "5f21dbb731973aef2281021207840f2ed21e92a1e2cd117bd73106b20797f1aa"
+    },
+    {
+      "sourcePosition": 141,
+      "previousSourceIssueReference": "Silver Surfer: Parable #2",
+      "previousSourceRangeReference": "Issues: #1 to #2",
+      "previousNormalizedSeriesTitle": "Silver Surfer: Parable",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 43437,
+      "resolvedNormalizedSeriesTitle": "Silver Surfer: Parable",
+      "resolvedSeriesYear": 1989,
+      "resolvedIssueNumber": "2",
+      "auditBasis": "The owner supplied the exact official Marvel issue page and confirmed that this issue is available through Marvel Unlimited.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/43437/silver_surfer_parable_1989_2",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "c6778ac4bbf55c3f561cbbf8f35f7f9de2da396775847cbd27399a2a4cd595c1"
+    },
+    {
+      "sourcePosition": 318,
+      "previousSourceIssueReference": "Silver Surfer Infinite #1",
+      "previousSourceRangeReference": "Issues: #1",
+      "previousNormalizedSeriesTitle": "Silver Surfer Infinite",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Silver Surfer Infinite #1 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner confirmed this source issue is unavailable on Marvel Unlimited and directed that it not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/304",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "e4f0a416120ac5e3a8598cbb6ba84f8f43cc4572245ee515ac8db3177e64920e"
+    }
+  ]
 }

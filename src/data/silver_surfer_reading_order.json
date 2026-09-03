@@ -5,41 +5,12 @@
   "source": "https://www.comicbookherald.com/silver-surfer-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T14:57:53.205Z",
+  "generatedAt": "2026-09-03T19:23:17.670Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 298,
-  "collections": 46,
-  "placeholders": 4,
-  "unresolved": [
-    {
-      "title": "Silver Surfer: Judgment Day OGN",
-      "url": null,
-      "read": false,
-      "index": 96,
-      "section": "Issues: OGN"
-    },
-    {
-      "title": "Silver Surfer: Parable #1",
-      "url": null,
-      "read": false,
-      "index": 97,
-      "section": "Issues: #1 to #2"
-    },
-    {
-      "title": "Silver Surfer: Parable #2",
-      "url": null,
-      "read": false,
-      "index": 98,
-      "section": "Issues: #1 to #2"
-    },
-    {
-      "title": "Silver Surfer Infinite #1",
-      "url": null,
-      "read": false,
-      "index": 221,
-      "section": "Issues: #1"
-    }
-  ],
+  "count": 295,
+  "collections": 45,
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 13253,
@@ -2811,44 +2782,10 @@
       "collectedIn": "Issues: #1 to #32"
     },
     {
-      "issueId": -587070397,
-      "title": "Silver Surfer: Judgment Day OGN",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Issues: OGN"
-    },
-    {
-      "issueId": -881013962,
-      "title": "Silver Surfer: Parable #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Issues: #1 to #2"
-    },
-    {
-      "issueId": -830681105,
-      "title": "Silver Surfer: Parable #2",
+      "issueId": 43437,
+      "title": "Silver Surfer: Parable (1989) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/43437/silver_surfer_parable_1989_2",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -2858,7 +2795,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Issues: #1 to #2"
     },
     {
@@ -4130,11 +4067,27 @@
       "seriesName": "Fantastic Four (1961 - 1998)",
       "onSale": "1966-01-01T00:00:00+0000",
       "mu": "1966-01-01T00:00:00+0000",
-      "digitalId": null,
-      "cover": null,
+      "digitalId": 4655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5372d8552a8a9",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jack Kirby",
+          "role": "penciler"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Issues: #46"
     },
     {
@@ -6593,23 +6546,6 @@
         }
       ],
       "collectedIn": "Issues: #1 to #4"
-    },
-    {
-      "issueId": -1502495731,
-      "title": "Silver Surfer Infinite #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Issues: #1"
     },
     {
       "issueId": 48631,

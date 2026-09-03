@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Silver Surfer guide gaps
+
+In plain English: The bundled Silver Surfer guide now includes Silver Surfer: Parable #2. Three
+comics confirmed unavailable as standalone Marvel Unlimited issues are omitted permanently instead
+of appearing as broken placeholders. Existing saved Reading Lists and reading progress are not
+rewritten; newly imported copies receive the settled 295-comic order.
+
+For maintainers, all 426 source occurrences remain accounted for as 295 exact rows, 17 repeats, and
+114 explicit availability exclusions. The four former gaps retain auditable resolution evidence so
+they are not raised again.
+
 ### Removed two unavailable Deadpool MAX placeholders
 
 In plain English: The bundled Deadpool starter guide no longer shows two comics from the

@@ -386,10 +386,10 @@
     "coverIssueId": 6970
   },
   "relationshipReview": {
-    "reportDigest": "e280c4d76181b5b2572ab7bf3445e81770f57c92077aabd340ed1956c73ad8cc",
+    "reportDigest": "7707831ba765232b752c0d9f2740104d784495ac06de3fcee70f306183a709d3",
     "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
     "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-    "libraryDigest": "f9238b18f49c64b5205108b7149811e93c60327d1506f8f62022a3f0c7d2a6fc",
+    "libraryDigest": "8c067e0678c96f9b5215d48544c860b94bbc6055882264bccd456bb79b2e8985",
     "peerDigests": {
       "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
       "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -1909,6 +1909,6 @@
     "authorityIdentity": "MRT-003-C02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Kree-Skrull War subset and the Thanos War subset are the approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:38:48.585Z",
-    "approvalDigest": "a614b3d9444f6b79e28f8f800a217a81a7e1821efeefb906b8a2cd43522f0fcb"
+    "approvalDigest": "a053f113f4ddae40ae03043194437b1205f615fb5ffbd324c8b7733f078c1c20"
   }
 }

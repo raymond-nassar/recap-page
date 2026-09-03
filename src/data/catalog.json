@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T16:22:51.603Z",
+  "generatedAt": "2026-09-03T19:23:17.670Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2539,10 +2539,10 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 298,
-      "placeholderCount": 4,
-      "emptyRecordCount": 0,
-      "collections": 46,
+      "count": 295,
+      "placeholderCount": 0,
+      "emptyRecordCount": 1,
+      "collections": 45,
       "characters": [
         "Silver Surfer",
         "Norrin Radd",
@@ -2571,7 +2571,7 @@
       "source": "https://www.comicbookherald.com/silver-surfer-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T14:57:53.205Z"
+      "updatedAt": "2026-09-03T19:23:17.670Z"
     },
     {
       "id": "abomination-reading-order",

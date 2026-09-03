@@ -2,7 +2,7 @@
   "candidateId": "nick-fury-reading-order",
   "packetDigest": "bdb98b2a201a4b5536f2cffedd12e1b8f4d1d8ef5c652cdcbde5ccfd8e6b58ef",
   "mappingDigest": "7bba0ec8abf7a2ce4a046f59ab93101204dad68e835532bcff55551dc609b68c",
-  "libraryDigest": "bd3e15c55272dd5bfc7d6637ec76d4d1845f7858c9253d62aade473fcf446052",
+  "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 370,
@@ -860,5 +860,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "42bee9e542d596f74a6b926329db22cb3c1e938553d30c932d87ba68bfafee01"
+  "reportDigest": "62e9332849c62aa059b069140f813ecdcff788b6d8c3f9610e009339edf0b89a"
 }
