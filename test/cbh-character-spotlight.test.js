@@ -1249,7 +1249,7 @@ test('Daredevil publishes the audited full-page guide without hiding provider ga
   assert.equal(annualItem.url, 'https://www.marvel.com/comics/issue/43192/daredevildeadpool_annual_1997_1');
 });
 
-test('the Black Panther packet preserves the full source ledger through publication evidence', async () => {
+test('the Black Panther packet settles issue 281 without substituting nonexistent issues', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const packet = await readJson(`scripts/data/cbh-packets/${blackPantherCandidateId}.json`);
   const mapping = await readJson(`scripts/data/cbh-mappings/${blackPantherCandidateId}.json`);
@@ -1270,32 +1270,56 @@ test('the Black Panther packet preserves the full source ledger through publicat
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.equal(packet.sourceOccurrenceCount, 424);
-  assert.equal(packet.rows.length, 363);
+  assert.equal(packet.rows.length, 364);
   assert.equal(packet.repeatedSourceReferences.length, 57);
-  assert.equal(packet.sourceGaps.length, 4);
-  assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourcePosition), [292, 338, 339, 340]);
-  assert.equal(mapping.rows.length, 363);
+  assert.equal(packet.sourceGaps?.length ?? 0, 0);
+  assert.equal(packet.excludedSourceRows.length, 3);
+  assert.deepEqual(
+    packet.sourceGapResolutions.map(({ sourcePosition, resolutionKind }) => ({
+      sourcePosition,
+      resolutionKind,
+    })),
+    [
+      { sourcePosition: 292, resolutionKind: 'exact-issue' },
+      { sourcePosition: 338, resolutionKind: 'source-exclusion' },
+      { sourcePosition: 339, resolutionKind: 'source-exclusion' },
+      { sourcePosition: 340, resolutionKind: 'source-exclusion' },
+    ],
+  );
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.deepEqual(
+    packet.excludedSourceRows.map(({ sourcePosition }) => sourcePosition),
+    [338, 339, 340],
+  );
+  const avengersZero = mapping.rows.find(({ sourcePosition }) => sourcePosition === 292);
+  assert.equal(avengersZero?.selectedIssueId, 56448);
+  assert.equal(avengersZero?.normalizedSeriesTitle, 'All-New, All-Different Avengers');
+  assert.equal(mapping.rows.length, 364);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-  assert.equal(mapping.candidateMetadata.length, 363);
-  assert.equal(report.candidateCount, 363);
-  assert.equal(report.comparisonCount, 151);
+  assert.equal(mapping.candidateMetadata.length, 364);
+  assert.equal(report.candidateCount, 364);
+  assert.equal(report.comparisonCount, 138);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 10);
-  assert.equal(catalogEntry.expect, 367);
+  assert.equal(catalogEntry.expect, 364);
   assert.equal(catalogEntry.coverIssueId, 13258);
   const catalogList = catalog.lists.find((entry) => entry.id === blackPantherCandidateId);
   assert.equal(catalogEntry.out, 'black_panther_reading_order.json');
   assert.equal(catalogList.file, 'black_panther_reading_order.json');
-  assert.equal(catalogList.count, 367);
-  assert.equal(generated.count, 367);
-  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 363);
-  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 4);
-  assert.equal(generated.placeholders, 4);
+  assert.equal(catalogList.count, 364);
+  assert.equal(generated.count, 364);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 364);
+  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 0);
+  assert.equal(generated.placeholders, 0);
+  assert.equal(generated.items.filter((item) => item.issueId === 56448).length, 1);
+  for (const issueId of [57264, 57265, 57266]) {
+    assert.equal(generated.items.filter((item) => item.issueId === issueId).length, 1);
+  }
   await assert.rejects(
     readFile(path.join(root, 'src', 'data', 'black-panther-reading-order.json'), 'utf8'),
     { code: 'ENOENT' },
   );
-  assert.equal(parsed.entries.length, 363);
-  assert.equal(parsed.unresolved.length, 4);
+  assert.equal(parsed.entries.length, 364);
+  assert.equal(parsed.unresolved.length, 0);
   assert.match(markdown, /^## Introductory prose$/m);
   assert.match(markdown, /^## Latest Additions$/m);
 });

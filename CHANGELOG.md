@@ -12,6 +12,18 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Black Panther guide gaps
+
+In plain English: The bundled Black Panther guide now includes the exact Avengers launch special
+that introduces its Ultimates story. Three issue numbers that were mistakenly listed after
+*Ultimates 2* #9 are permanently omitted because that series jumps to #100 instead. Existing saved
+Reading Lists and reading progress are not rewritten; newly imported copies receive the settled
+364-comic order.
+
+For maintainers, all 424 source occurrences remain accounted for as 364 exact rows, 57 repeats, and
+3 explicit nonexistent-identity exclusions. The original *Ultimates* #10-12 remain present exactly
+once and were not reused as substitutes.
+
 ### Settled the Silver Surfer guide gaps
 
 In plain English: The bundled Silver Surfer guide now includes Silver Surfer: Parable #2. Three

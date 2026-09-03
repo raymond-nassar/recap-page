@@ -5,41 +5,12 @@
   "source": "https://www.comicbookherald.com/black-panther-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T03:53:15.980Z",
+  "generatedAt": "2026-09-03T22:29:35.598Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 367,
+  "count": 364,
   "collections": 11,
-  "placeholders": 4,
-  "unresolved": [
-    {
-      "title": "Avengers #0",
-      "url": null,
-      "read": false,
-      "index": 240,
-      "section": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
-    },
-    {
-      "title": "Ultimates 2 #10",
-      "url": null,
-      "read": false,
-      "index": 286,
-      "section": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
-    },
-    {
-      "title": "Ultimates 2 #11",
-      "url": null,
-      "read": false,
-      "index": 287,
-      "section": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
-    },
-    {
-      "title": "Ultimates 2 #12",
-      "url": null,
-      "read": false,
-      "index": 288,
-      "section": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 13253,
@@ -8435,20 +8406,47 @@
       "collectedIn": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
     },
     {
-      "issueId": -147456262,
-      "title": "Avengers #0",
+      "issueId": 56448,
+      "title": "All-New, All-Different Avengers (2015) #0",
       "number": "0",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/56448/all-new_all-different_avengers_2015",
+      "seriesId": 20443,
+      "seriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "onSale": "2015-10-07T00:00:00+0000",
+      "mu": "2016-04-04T00:00:00+0000",
+      "digitalId": 40145,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/56019395d3746",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Kenneth Rocafort",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "G. Willow Wilson",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
     },
     {
@@ -9981,57 +9979,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
-    },
-    {
-      "issueId": -159834114,
-      "title": "Ultimates 2 #10",
-      "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
-    },
-    {
-      "issueId": -143056495,
-      "title": "Ultimates 2 #11",
-      "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
-    },
-    {
-      "issueId": -126278876,
-      "title": "Ultimates 2 #12",
-      "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)"
     },
     {

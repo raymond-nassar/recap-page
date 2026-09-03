@@ -1,7 +1,7 @@
 {
   "id": "black-panther-reading-order",
   "inventoryId": "black-panther-reading-order",
-  "packetDigest": "5acb5c9727357a3418d30998f661040f02f2750f09d84013670a7136f914139e",
+  "packetDigest": "51c8e2de854bfff7ab4cf7ab750b40f4321e0451841c9fe3c7a3a93b921a8796",
   "sourceUrl": "https://www.comicbookherald.com/black-panther-reading-order/",
   "sourceRetrievedAt": "2026-08-26",
   "sourceRetrievalStatus": "retrieved",
@@ -473,7 +473,7 @@
     },
     {
       "sourcePosition": 381,
-      "canonicalRow": 311,
+      "canonicalRow": 312,
       "sourceIssueReference": "Black Panther #7",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -482,7 +482,7 @@
     },
     {
       "sourcePosition": 382,
-      "canonicalRow": 312,
+      "canonicalRow": 313,
       "sourceIssueReference": "Black Panther #8",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -491,7 +491,7 @@
     },
     {
       "sourcePosition": 383,
-      "canonicalRow": 313,
+      "canonicalRow": 314,
       "sourceIssueReference": "Black Panther #9",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -500,7 +500,7 @@
     },
     {
       "sourcePosition": 384,
-      "canonicalRow": 314,
+      "canonicalRow": 315,
       "sourceIssueReference": "Black Panther #10",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -509,7 +509,7 @@
     },
     {
       "sourcePosition": 385,
-      "canonicalRow": 315,
+      "canonicalRow": 316,
       "sourceIssueReference": "Black Panther #11",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -518,114 +518,12 @@
     },
     {
       "sourcePosition": 386,
-      "canonicalRow": 316,
+      "canonicalRow": 317,
       "sourceIssueReference": "Black Panther #12",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
       "seriesYear": 2018,
       "issueNumber": "12"
-    }
-  ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 292,
-      "sourceIssueReference": "Avengers #0",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Avengers",
-      "seriesYear": 2015,
-      "issueNumber": "0",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "No maintained provider series identifies Avengers #0 in the source context. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e8d7e6916881653dae0d5ed8e91bdc525062747afe79fbe41582ead641def5ff"
-    },
-    {
-      "sourcePosition": 338,
-      "sourceIssueReference": "Ultimates 2 #10",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Ultimates 2",
-      "seriesYear": 2016,
-      "issueNumber": "10",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The maintained provider series ends at #9 before legacy #100 and has no #10. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e7f6a1c5c0b2eba2693a90a549e2eea70cf195935a3dbf0b8a3bb89511dac866"
-    },
-    {
-      "sourcePosition": 339,
-      "sourceIssueReference": "Ultimates 2 #11",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Ultimates 2",
-      "seriesYear": 2016,
-      "issueNumber": "11",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The maintained provider series ends at #9 before legacy #100 and has no #11. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "9dd22a71bce86a370a46b00c5c243128c8560c3c4634fde99f7c8d30e3d6875d"
-    },
-    {
-      "sourcePosition": 340,
-      "sourceIssueReference": "Ultimates 2 #12",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Ultimates 2",
-      "seriesYear": 2016,
-      "issueNumber": "12",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The maintained provider series ends at #9 before legacy #100 and has no #12. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e7ee273db35af2d995b27845098a58796d9c16d5c532cac3c4258f02744d2739"
     }
   ],
   "reviewStatus": "approved",
@@ -654,7 +552,7 @@
       "Comic Book Herald",
       "Wakanda"
     ],
-    "expect": 367,
+    "expect": 364,
     "timeline": null,
     "coverIssueId": 13258
   },
@@ -4018,6 +3916,20 @@
       "manualSeriesSelectionApproved": false,
       "detailUrl": "https://www.marvel.com/comics/issue/57259/ultimates_2015_5",
       "onSaleDate": "2016-03-23T00:00:00+0000"
+    },
+    {
+      "id": 56448,
+      "title": "All-New, All-Different Avengers",
+      "issueTitle": "All-New, All-Different Avengers (2015) #0",
+      "seriesTitle": "All-New, All-Different Avengers",
+      "apiSeriesName": "All-New, All-Different Avengers (2015 - 2016)",
+      "seriesId": 20443,
+      "issueNumber": "0",
+      "seriesYear": 2015,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56448/all-new_all-different_avengers_2015",
+      "onSaleDate": "2015-10-07T00:00:00+0000"
     },
     {
       "id": 57261,
@@ -11504,6 +11416,31 @@
       ]
     },
     {
+      "sourcePosition": 292,
+      "sourceIssueReference": "Avengers #0",
+      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "sourceGroup": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "normalizedSeriesTitle": "All-New, All-Different Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "0",
+      "seriesId": 20443,
+      "candidateIssueId": 56448,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact provider metadata resolves the source Avengers #0 label to All-New, All-Different Avengers (2015) #0 in its source context.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56448"
+      ],
+      "selectedIssueId": 56448,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56448/all-new_all-different_avengers_2015",
+      "resolvedIssueTitle": "All-New, All-Different Avengers (2015) #0",
+      "note": "Marvel series 20443 (All-New, All-Different Avengers (2015 - 2016)) is the reviewed metadata series for this source reference.",
+      "status": "exact",
+      "selectedIssueIds": [
+        56448
+      ]
+    },
+    {
       "sourcePosition": 293,
       "sourceIssueReference": "Ultimates #7",
       "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
@@ -14456,7 +14393,6 @@
       ]
     }
   ],
-  "mappingDigest": "c9cc9a2cd8e513c01afe40218bfcee48f3ac7b333fd47b26f317eaf654e1a2c6",
   "packetReview": "Black Panther full-page source, exact provider resolution, repeated occurrence, gap, and source-order review",
   "approvedManifest": {
     "id": "black-panther-reading-order",
@@ -14483,32 +14419,29 @@
       "Comic Book Herald",
       "Wakanda"
     ],
-    "expect": 367,
+    "expect": 364,
     "timeline": null,
     "coverIssueId": 13258
   },
   "relationshipReview": {
-    "reportDigest": "0b86baf48e2894c87260117971a73ea926162954e51831cbcda536907997ee27",
-    "packetDigest": "5acb5c9727357a3418d30998f661040f02f2750f09d84013670a7136f914139e",
-    "mappingDigest": "c9cc9a2cd8e513c01afe40218bfcee48f3ac7b333fd47b26f317eaf654e1a2c6",
-    "libraryDigest": "c2bf9aa3a2dfe1acbc6aee34882333769be60b37c74cbf8108fdaafb4be715af",
+    "reportDigest": "e79a0a7afed38be6715ee5b546571a8213c00040b499cf333cfd8674d491e081",
+    "packetDigest": "51c8e2de854bfff7ab4cf7ab750b40f4321e0451841c9fe3c7a3a93b921a8796",
+    "mappingDigest": "9fe612c2c895e3ad50d7967899cfe4109355594402f4b5c95865c29ac15d6e95",
+    "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
     "peerDigests": {},
+    "sourceCounts": {
+      "sourceOccurrenceCount": 424,
+      "sourceIdentityCount": 364,
+      "includedIssueCount": 364,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 57,
+      "excludedSourceRowCount": 3
+    },
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "The complete-library comparison was refreshed after the Black Panther guide joined the catalog. Every resulting relationship remains approved.",
-    "reviewedAt": "2026-08-27T05:03:43.866Z",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Reviewed the refreshed complete-library comparison after resolving Avengers #0 and excluding nonexistent Ultimates 2 #10-12. All observed relationships remain source-faithful and approved.",
+    "reviewedAt": "2026-09-03",
     "dispositions": [
-      {
-        "orderId": "abomination-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
       {
         "orderId": "absolute-carnage",
         "relationship": "none",
@@ -14516,18 +14449,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "agatha-harkness-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14538,18 +14460,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "agents-of-atlas-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14560,18 +14471,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14582,7 +14482,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14593,18 +14493,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "ant-man-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14615,7 +14504,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14625,8 +14514,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "10104"
@@ -14639,7 +14528,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14650,7 +14539,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14661,7 +14550,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14672,7 +14561,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14688,9 +14577,9 @@
         ],
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z"
+        "reviewedAt": "2026-09-03"
       },
       {
         "orderId": "bloodties",
@@ -14699,7 +14588,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14710,18 +14599,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "captain-america-reading-order-modern-marvel-era",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14732,7 +14610,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14743,7 +14621,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14754,7 +14632,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14765,7 +14643,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14776,7 +14654,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14787,7 +14665,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14798,7 +14676,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14809,7 +14687,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14820,7 +14698,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14831,7 +14709,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14842,7 +14720,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14853,7 +14731,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14864,7 +14742,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14875,18 +14753,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "deadpool-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No selected issue identities overlap, so the guides remain distinct.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14897,7 +14764,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14908,7 +14775,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14919,7 +14786,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14930,7 +14797,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14941,7 +14808,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14952,7 +14819,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14962,8 +14829,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "7346"
@@ -14976,7 +14843,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14987,7 +14854,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -14998,7 +14865,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15009,7 +14876,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15020,7 +14887,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15030,12 +14897,23 @@
         "decision": "approved",
         "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "71797"
         ]
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "relationship": "none",
+        "decision": "approved",
+        "rationale": "No shared issues require a relationship exception.",
+        "authorityType": "policy",
+        "authorityIdentity": "relationship-policy-v1",
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -15044,7 +14922,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15055,7 +14933,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15065,8 +14943,8 @@
         "decision": "approved",
         "rationale": "The 2 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 2,
         "sharedIds": [
           "40467",
@@ -15080,18 +14958,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "hickman-x-men",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15102,7 +14969,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15113,7 +14980,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15124,7 +14991,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15135,7 +15002,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15146,7 +15013,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15157,7 +15024,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15168,7 +15035,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15179,7 +15046,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15190,7 +15057,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15201,7 +15068,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15212,7 +15079,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15223,7 +15090,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15233,8 +15100,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "7346"
@@ -15247,7 +15114,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15258,7 +15125,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15268,8 +15135,8 @@
         "decision": "approved",
         "rationale": "The 2 shared issues do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 2,
         "sharedIds": [
           "67307",
@@ -15283,7 +15150,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15294,7 +15161,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15305,7 +15172,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15316,7 +15183,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15326,8 +15193,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "12592"
@@ -15340,7 +15207,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15351,7 +15218,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15362,7 +15229,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15373,7 +15240,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15384,7 +15251,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15395,7 +15262,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15406,7 +15273,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15417,7 +15284,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15428,7 +15295,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15439,7 +15306,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15450,7 +15317,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15461,7 +15328,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15472,7 +15339,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15483,7 +15350,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15494,7 +15361,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15505,7 +15372,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15516,7 +15383,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15527,22 +15394,9 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
-      },
-      {
-        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The 1 shared issue identity does not make these source-defined guides duplicates.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 1,
-        "sharedIds": [
-          "10104"
-        ]
       },
       {
         "orderId": "reckoning-war",
@@ -15551,7 +15405,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15562,7 +15416,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15573,7 +15427,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15584,7 +15438,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15594,8 +15448,8 @@
         "decision": "approved",
         "rationale": "The 1 shared issue do not make this source-defined complete guide a duplicate.",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "71797"
@@ -15608,7 +15462,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15619,7 +15473,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15630,7 +15484,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15641,7 +15495,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15652,7 +15506,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15663,18 +15517,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No selected issue identities overlap, so the guides remain distinct.",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15685,7 +15528,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15696,9 +15539,30 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "relationship": "partial",
+        "decision": "approved",
+        "rationale": "The shared issues are source-required in distinct complete guides, so the factual partial overlap remains approved without merging or shortening either source-faithful sequence.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 9,
+        "sharedIds": [
+          "13253",
+          "13254",
+          "13256",
+          "12603",
+          "13424",
+          "15804",
+          "15922",
+          "16103",
+          "16444"
+        ]
       },
       {
         "orderId": "sins-of-sinister",
@@ -15707,7 +15571,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15718,7 +15582,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15729,7 +15593,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15740,18 +15604,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15762,7 +15615,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15773,7 +15626,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15784,7 +15637,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15795,7 +15648,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15806,7 +15659,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15817,7 +15670,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15828,7 +15681,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15839,7 +15692,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15850,7 +15703,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15861,7 +15714,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15872,18 +15725,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "ultimate-marvel-intro",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15894,18 +15736,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "wandavision",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15916,7 +15747,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15927,7 +15758,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15938,7 +15769,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15949,18 +15780,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "wolverine-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15971,7 +15791,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15982,7 +15802,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -15993,7 +15813,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16004,7 +15824,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16015,7 +15835,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16026,7 +15846,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16037,7 +15857,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16048,7 +15868,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16059,7 +15879,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16070,7 +15890,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16081,7 +15901,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16092,7 +15912,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16103,7 +15923,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16114,18 +15934,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "x-men-utopia",
-        "relationship": "none",
-        "decision": "approved",
-        "rationale": "No shared issues require a relationship exception.",
-        "authorityType": "policy",
-        "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16136,7 +15945,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16147,7 +15956,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16158,7 +15967,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16169,7 +15978,7 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -16180,11 +15989,158 @@
         "rationale": "No shared issues require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-27T05:03:43.866Z",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       }
     ],
-    "approvalDigest": "ec91fc3a35c322b33a85a994c94c2b254ef0402580ec37bf21a196b2c3505e51"
-  }
+    "approvalDigest": "9cd7c2b0cd76e277a1ea973219d4f0df8d8f02fb4c37c7e2dd43cbf52239dc0f"
+  },
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 338,
+      "sourceIssueReference": "Ultimates 2 #10",
+      "reason": "The source names Ultimates 2 (2016) #10, but the reviewed series runs #1-9 and then legacy #100; no #10 exists, and neither original Ultimates #10 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "normalizedSeriesTitle": "Ultimates 2",
+      "issueNumber": "10",
+      "reviewedSeriesId": 22929,
+      "lookupResult": "Ultimates 2 (2016) runs #1-9 and then legacy #100; issue #10 does not exist.",
+      "exclusionKind": "nonexistent-source-identity",
+      "evidenceDigest": "1451d50ba592abc029f14bab72d7e455f384cd992d7a76f3d827e2bde2497f8b"
+    },
+    {
+      "sourcePosition": 339,
+      "sourceIssueReference": "Ultimates 2 #11",
+      "reason": "The source names Ultimates 2 (2016) #11, but the reviewed series runs #1-9 and then legacy #100; no #11 exists, and neither original Ultimates #11 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "normalizedSeriesTitle": "Ultimates 2",
+      "issueNumber": "11",
+      "reviewedSeriesId": 22929,
+      "lookupResult": "Ultimates 2 (2016) runs #1-9 and then legacy #100; issue #11 does not exist.",
+      "exclusionKind": "nonexistent-source-identity",
+      "evidenceDigest": "089a285ee8a81eb0fcab3739483c2c7919c88be76541782f2966a12357322375"
+    },
+    {
+      "sourcePosition": 340,
+      "sourceIssueReference": "Ultimates 2 #12",
+      "reason": "The source names Ultimates 2 (2016) #12, but the reviewed series runs #1-9 and then legacy #100; no #12 exists, and neither original Ultimates #12 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "normalizedSeriesTitle": "Ultimates 2",
+      "issueNumber": "12",
+      "reviewedSeriesId": 22929,
+      "lookupResult": "Ultimates 2 (2016) runs #1-9 and then legacy #100; issue #12 does not exist.",
+      "exclusionKind": "nonexistent-source-identity",
+      "evidenceDigest": "2c82fbc8fb7f1b940964df42c20e7c2c9bb9e78ed66e1990a58bfa8748c55555"
+    }
+  ],
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 292,
+      "previousSourceIssueReference": "Avengers #0",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Avengers",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "0",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 56448,
+      "resolvedNormalizedSeriesTitle": "All-New, All-Different Avengers",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "0",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "Provider issue 56448 is the 2015 All-New, All-Different Avengers #0 launch special in the source-prescribed break between Ultimates #5 and #7.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/56448",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/56448/all-new_all-different_avengers_2015",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "ace197dce7ff89fea16c8bab85cbf37ee548e2851d47c6ac833e974b04a26907"
+    },
+    {
+      "sourcePosition": 338,
+      "previousSourceIssueReference": "Ultimates 2 #10",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Ultimates 2",
+      "previousSeriesYear": 2016,
+      "previousIssueNumber": "10",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names Ultimates 2 (2016) #10, but the reviewed series runs #1-9 and then legacy #100; no #10 exists, and neither original Ultimates #10 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The reviewed Ultimates 2 (2016) series runs #1-9 and then legacy #100. The original Ultimates #10 is already represented at source position 296, so no neighboring identity may substitute.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "4899782aa7da5622f24f5d03344f962c30dcea4eeebe920701dd929a9665395e"
+    },
+    {
+      "sourcePosition": 339,
+      "previousSourceIssueReference": "Ultimates 2 #11",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Ultimates 2",
+      "previousSeriesYear": 2016,
+      "previousIssueNumber": "11",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names Ultimates 2 (2016) #11, but the reviewed series runs #1-9 and then legacy #100; no #11 exists, and neither original Ultimates #11 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The reviewed Ultimates 2 (2016) series runs #1-9 and then legacy #100. The original Ultimates #11 is already represented at source position 297, so no neighboring identity may substitute.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "ed933a47092190fb698ac0acc12f8d5b4964d98980a8bbedbd30a2cc2055d9d5"
+    },
+    {
+      "sourcePosition": 340,
+      "previousSourceIssueReference": "Ultimates 2 #12",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Ultimates 2",
+      "previousSeriesYear": 2016,
+      "previousIssueNumber": "12",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names Ultimates 2 (2016) #12, but the reviewed series runs #1-9 and then legacy #100; no #12 exists, and neither original Ultimates #12 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The reviewed Ultimates 2 (2016) series runs #1-9 and then legacy #100. The original Ultimates #12 is already represented at source position 298, so no neighboring identity may substitute.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2903f7daebfbeb3c7abb26bc7d46034b40a355abd7ab9f50692fd6fd41a8fd3a"
+    }
+  ],
+  "mappingDigest": "9fe612c2c895e3ad50d7967899cfe4109355594402f4b5c95865c29ac15d6e95"
 }

@@ -7809,10 +7809,10 @@
     "coverIssueId": 10865
   },
   "relationshipReview": {
-    "reportDigest": "64d1ca00934be6cf4d3d5a3d7504c60164beec14d4bd9428af31a2454d89e19a",
+    "reportDigest": "1f9d58768a3a8acdf34544a199eeb588d445f50f142dc0c2972420168cd4581b",
     "packetDigest": "737f8fd6c65a2f24dc3bea4dfc394a7974308852f1cda00abbccccc77660b691",
     "mappingDigest": "83b58141a6112d7cebc2951acfd8c7680db90c63221a2a3321c8b210c464c745",
-    "libraryDigest": "ca57df90fdc2532c1e37a193dbd0492b2e8116f2590ab9c2ddf7538a47e87c79",
+    "libraryDigest": "290d5c873d5969e44f5469586e375166a021f287243b1b655f728c17053784aa",
     "peerDigests": {},
     "dispositions": [
       {
@@ -9694,6 +9694,6 @@
     "authorityIdentity": "MRT-003-C02-AU01-PUB coordinator",
     "rationale": "Every current library comparison was reviewed for the selected alternate-universe Marvel 2099 guide.",
     "reviewedAt": "2026-08-28T06:53:35.491Z",
-    "approvalDigest": "12ba919323305cb47a5d5849bc677ddb55fe077025d0b677a48c06b96e74c917"
+    "approvalDigest": "3bc7b7150f4c4e64e80047da3f763dc8502011055590e6ad058626a4436b9206"
   }
 }

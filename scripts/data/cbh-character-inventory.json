@@ -360,9 +360,20 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The full-page source ledger preserves 424 issue occurrences, 363 exactly resolved items, 57 repeats, and four explicit metadata gaps while the draft delivery remains unmerged.",
+    "reason": "The full-page source ledger preserves 424 issue occurrences as 364 exact items, 57 repeats, and three permanent source exclusions with no unresolved gaps.",
     "sourceRetrievedAt": "2026-08-26",
-    "overlapIds": [],
+    "overlapIds": [
+      "atlantis-attacks",
+      "black-widow-reading-order",
+      "essential-avengers",
+      "groot-reading-order",
+      "hickman-full",
+      "kree-skrull-war",
+      "marvel-fresh-start-avengers",
+      "maximum-security",
+      "rocket-raccoon-reading-order",
+      "silver-surfer-reading-order"
+    ],
     "catalogIds": [
       "black-panther-reading-order"
     ],

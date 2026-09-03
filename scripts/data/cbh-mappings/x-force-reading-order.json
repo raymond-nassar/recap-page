@@ -22813,10 +22813,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every complete-library comparison, including later guides. The 14 non-none relationships are ordinary shared reading material, including two existing subsets, and no exact duplicate exists. The guide remains independently useful because it preserves X-Force source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "ef5ba6ecfcdbd02420dc6c131d75fe130ee30f7102d90611cce149a487fbe66c",
+    "reportDigest": "5bc725648b1898be760fcc9ed0d177c3c2515a096d046146b7984185b10b195a",
     "packetDigest": "c6e699d843360f98e6acad931130cb1667f6c6501072acf5295f55d54fdcf5e5",
     "mappingDigest": "d8c9eddc35a958a088c098441b1143207c6172df2297411a1240fb0b9deea7aa",
-    "libraryDigest": "9d4be13ac1f8b5303507de55316a718bbdea854f676e11941cb17c312350e005",
+    "libraryDigest": "346baa7a69a91891ff7c675ccb1d6c09820de2810d82e3e13399b9fa3e1a3807",
     "peerDigests": {},
     "dispositions": [
       {
@@ -24305,6 +24305,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "2537b6e30eed3824b5376061f07f012afc9381d2888acf747a30278a6ef1868f"
+    "approvalDigest": "542a8589edd04d1a53de6ba7971702023cf84555821175b9ec61ddbaa9b1bf1e"
   }
 }

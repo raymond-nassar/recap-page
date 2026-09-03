@@ -2,7 +2,7 @@
   "candidateId": "the-defenders-reading-order",
   "packetDigest": "d50645b6f4d324178d7ea8b93fae012bfcc3177af42a2befea818328926d6440",
   "mappingDigest": "b748ed01220030899a42af5f547eaea5b2746e8de25e7f88e5dcd13821459884",
-  "libraryDigest": "0dbc25da26a53dd048266554a2d06f1c481d92dff96ed5f3cff7ac5e125df959",
+  "libraryDigest": "dc1e2a24759c2b11d0a68119faa55c7ec90f22044aecf075e44dd6607dd14481",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 331,
@@ -1312,5 +1312,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "de3c85c1d7d01e2435bbd2cda43b0dcc9a5fc3e024bcb0d5e719bbcefb1bd70d"
+  "reportDigest": "d4446b2a1545aa2a502e69e3f6409513d0f881a03108f36b14e15e53f76c9fd9"
 }

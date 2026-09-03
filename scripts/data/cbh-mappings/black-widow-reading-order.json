@@ -42791,10 +42791,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed all complete-library comparisons, including every non-none overlap. None is an exact duplicate; shared appearances remain valid in each guide.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "08c0ba258df1d6ed1df54479409a09cacea3b782bd80f3b4f2f5cad3f049c60b",
+    "reportDigest": "d48769086786acc6e141b35bd7a2f6499fa3411cc781260ce16d6bc180e32508",
     "packetDigest": "f52951e63428ee3d32445a7826872a349adae5a84da3326c7c5f9887667bb54e",
     "mappingDigest": "84108d9b21d817e3aba7f435f17e560a3e3073fd4aaa65de596b380a5d244e57",
-    "libraryDigest": "b2c65e6e252e87356573cca648d59ea585c75e33989dc7df3c5098b062a186a2",
+    "libraryDigest": "97089274071a46191af30a920595eef57c9a0cff0baa5c4d11577ef528206b53",
     "peerDigests": {},
     "dispositions": [
       {
@@ -44934,6 +44934,6 @@
         ]
       }
     ],
-    "approvalDigest": "b34774ff581511fee39472413c67c1996de32e1d06857f7f9e4ff4b4eec65249"
+    "approvalDigest": "8a628c10f3812bca6e1ff30e3b7ef87dd7f36069a90e6af13145941633d1026e"
   }
 }

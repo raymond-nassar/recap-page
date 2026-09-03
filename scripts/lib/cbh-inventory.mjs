@@ -54,6 +54,7 @@ const CHARACTER_HORIZON_STATUSES = new Set([
 
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
+  'black-panther-reading-order': 'd480030993cbe988f32f6790d055794bed9e202b0d4dbb726ab5247890fbacc8',
   'daredevil-reading-order': 'a5819df38fcbd69a9458b91c88d1d6f689c8ba6555e033e6fd93cd3d218c41bd',
   'silver-surfer-reading-order': '2fad8b1d3f31882844786b3a7051b48e559e7d94afdb3e936fdf83e88d263a92',
 });
