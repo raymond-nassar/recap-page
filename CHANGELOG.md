@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Completed three Ant-Man guide entries
+
+In plain English: The bundled Ant-Man guide now includes the Season One graphic novel and the final
+two numbered Secret Empire issues. Comics from the age-restricted MAX line remain intentionally
+omitted. Existing saved Reading Lists and reading progress are not rewritten; imports made from the
+updated bundled guide receive the three added comics.
+
+For maintainers, the guide now preserves 389 exact issue identities and 32 explicit MAX exclusions.
+The three added records retain exact official links and explicit metadata-provider refusals without
+guessing optional fields.
+
 ### Resolved three Amazing Spider-Man guide references
 
 In plain English: Seven comics now replace three vague entries in the bundled Amazing Spider-Man

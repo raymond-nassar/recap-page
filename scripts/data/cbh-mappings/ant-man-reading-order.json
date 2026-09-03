@@ -4,7 +4,7 @@
   "sourceUrl": "https://www.comicbookherald.com/ant-man-reading-order/",
   "sourceRetrievedAt": "2026-08-23",
   "sourceRetrievalStatus": "retrieved",
-  "approvedSourceCount": 386,
+  "approvedSourceCount": 389,
   "excludedSourceReferences": [
     "Amazon and other product links without an issue-bearing range",
     "Prose-only editorial commentary and recommendations"
@@ -13,7 +13,7 @@
   "repeatedSourceReferences": [
     {
       "sourcePosition": 93,
-      "canonicalRow": 74,
+      "canonicalRow": 75,
       "sourceIssueReference": "Avengers #223",
       "sourceRangeReference": "Avengers (1963) #212 to #230",
       "normalizedSeriesTitle": "Avengers",
@@ -22,7 +22,7 @@
     },
     {
       "sourcePosition": 418,
-      "canonicalRow": 365,
+      "canonicalRow": 368,
       "sourceIssueReference": "Ant-Man & the Wasp #1",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man & the Wasp",
@@ -31,7 +31,7 @@
     },
     {
       "sourcePosition": 419,
-      "canonicalRow": 366,
+      "canonicalRow": 369,
       "sourceIssueReference": "Ant-Man & the Wasp #2",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man & the Wasp",
@@ -40,7 +40,7 @@
     },
     {
       "sourcePosition": 420,
-      "canonicalRow": 367,
+      "canonicalRow": 370,
       "sourceIssueReference": "Ant-Man & the Wasp #3",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man & the Wasp",
@@ -49,7 +49,7 @@
     },
     {
       "sourcePosition": 421,
-      "canonicalRow": 368,
+      "canonicalRow": 371,
       "sourceIssueReference": "Ant-Man & the Wasp #4",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man & the Wasp",
@@ -58,7 +58,7 @@
     },
     {
       "sourcePosition": 422,
-      "canonicalRow": 369,
+      "canonicalRow": 372,
       "sourceIssueReference": "Ant-Man & the Wasp #5",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man & the Wasp",
@@ -67,7 +67,7 @@
     },
     {
       "sourcePosition": 423,
-      "canonicalRow": 370,
+      "canonicalRow": 373,
       "sourceIssueReference": "Giant-Man #1",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Giant-Man",
@@ -76,7 +76,7 @@
     },
     {
       "sourcePosition": 424,
-      "canonicalRow": 371,
+      "canonicalRow": 374,
       "sourceIssueReference": "Giant-Man #2",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Giant-Man",
@@ -85,7 +85,7 @@
     },
     {
       "sourcePosition": 425,
-      "canonicalRow": 372,
+      "canonicalRow": 375,
       "sourceIssueReference": "Giant-Man #3",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Giant-Man",
@@ -94,7 +94,7 @@
     },
     {
       "sourcePosition": 426,
-      "canonicalRow": 376,
+      "canonicalRow": 379,
       "sourceIssueReference": "Ant-Man #1",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man",
@@ -103,7 +103,7 @@
     },
     {
       "sourcePosition": 427,
-      "canonicalRow": 377,
+      "canonicalRow": 380,
       "sourceIssueReference": "Ant-Man #2",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man",
@@ -112,7 +112,7 @@
     },
     {
       "sourcePosition": 428,
-      "canonicalRow": 378,
+      "canonicalRow": 381,
       "sourceIssueReference": "Ant-Man #3",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man",
@@ -121,7 +121,7 @@
     },
     {
       "sourcePosition": 429,
-      "canonicalRow": 379,
+      "canonicalRow": 382,
       "sourceIssueReference": "Ant-Man #4",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man",
@@ -130,7 +130,7 @@
     },
     {
       "sourcePosition": 430,
-      "canonicalRow": 380,
+      "canonicalRow": 383,
       "sourceIssueReference": "Ant-Man #5",
       "sourceRangeReference": "Ant-Man & The Wasp: Living Legends, Ant-Man & The Wasp #1 to #5, Giant-Man #1 to #3, Ant-Man #1 to #5, Guardians Team-Up #7",
       "normalizedSeriesTitle": "Ant-Man",
@@ -158,214 +158,196 @@
   ],
   "excludedSourceRows": [
     {
-      "sourcePosition": 38,
-      "sourceIssueReference": "Ant-Man: Season One #1",
-      "reason": "Absent from the vendored series index, a live series listing pass, and a live full text issue search, even though every sibling volume in Marvel's Season One line resolves.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
       "sourcePosition": 117,
       "sourceIssueReference": "Alias #1",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 118,
       "sourceIssueReference": "Alias #2",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 119,
       "sourceIssueReference": "Alias #3",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 120,
       "sourceIssueReference": "Alias #4",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 121,
       "sourceIssueReference": "Alias #5",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 122,
       "sourceIssueReference": "Alias #6",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 123,
       "sourceIssueReference": "Alias #7",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 124,
       "sourceIssueReference": "Alias #8",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 125,
       "sourceIssueReference": "Alias #9",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 126,
       "sourceIssueReference": "Alias #10",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 127,
       "sourceIssueReference": "Alias #11",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 128,
       "sourceIssueReference": "Alias #12",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 129,
       "sourceIssueReference": "Alias #13",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 130,
       "sourceIssueReference": "Alias #14",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 131,
       "sourceIssueReference": "Alias #15",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 132,
       "sourceIssueReference": "Alias #16",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 133,
       "sourceIssueReference": "Alias #17",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 134,
       "sourceIssueReference": "Alias #18",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 135,
       "sourceIssueReference": "Alias #19",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 136,
       "sourceIssueReference": "Alias #20",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 137,
       "sourceIssueReference": "Alias #21",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 138,
       "sourceIssueReference": "Alias #22",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 139,
       "sourceIssueReference": "Alias #23",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 140,
       "sourceIssueReference": "Alias #24",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 141,
       "sourceIssueReference": "Alias #25",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 142,
       "sourceIssueReference": "Alias #26",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 143,
       "sourceIssueReference": "Alias #27",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 144,
       "sourceIssueReference": "Alias #28",
-      "reason": "Absent from the vendored series index and a live full text issue search; only later Ultimate Collection reprint editions are indexed, not the original 2001 to 2004 MAX single issues.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 151,
       "sourceIssueReference": "Ant-Man #1",
-      "reason": "Absent from the vendored series index, a live series listing pass, and a live full text issue search. Independently identified as Ant-Man (MAX) Vol. 1 by Daniel Way (Amazon ASIN 0785113290), 2003 to 2004.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 152,
       "sourceIssueReference": "Ant-Man #2",
-      "reason": "Absent from the vendored series index, a live series listing pass, and a live full text issue search. Independently identified as Ant-Man (MAX) Vol. 1 by Daniel Way (Amazon ASIN 0785113290), 2003 to 2004.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 153,
       "sourceIssueReference": "Ant-Man #3",
-      "reason": "Absent from the vendored series index, a live series listing pass, and a live full text issue search. Independently identified as Ant-Man (MAX) Vol. 1 by Daniel Way (Amazon ASIN 0785113290), 2003 to 2004.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     },
     {
       "sourcePosition": 154,
       "sourceIssueReference": "Ant-Man #4",
-      "reason": "Absent from the vendored series index, a live series listing pass, and a live full text issue search. Independently identified as Ant-Man (MAX) Vol. 1 by Daniel Way (Amazon ASIN 0785113290), 2003 to 2004.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 398,
-      "sourceIssueReference": "Secret Empire #9",
-      "reason": "Secret Empire (2017) is indexed (series id 23020, matching marvel.com/comics/series/23020) but the vendored mirror only carries nine of its eleven issues; #9 and #10 return no record in the mirror, a live series listing pass, or a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
-    },
-    {
-      "sourcePosition": 399,
-      "sourceIssueReference": "Secret Empire #10",
-      "reason": "Secret Empire (2017) is indexed (series id 23020, matching marvel.com/comics/series/23020) but the vendored mirror only carries nine of its eleven issues; #9 and #10 return no record in the mirror, a live series listing pass, or a live full text issue search.",
-      "decisionScope": "central-review-metadata-gap"
+      "reason": "Intentionally excluded under the owner-confirmed policy that Marvel MAX comics do not belong in reading lists because the age-restricted line will not be available on Marvel Unlimited.",
+      "decisionScope": "owner-policy-max-exclusion"
     }
   ],
   "reviewStatus": "approved",
@@ -400,7 +382,7 @@
       "Avengers",
       "Comic Book Herald"
     ],
-    "expect": 386,
+    "expect": 389,
     "timeline": null,
     "coverIssueId": 11379
   },
@@ -1218,6 +1200,29 @@
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/32680/avengers_origins_ant-man_the_wasp_2011_1",
       "resolvedIssueTitle": "Avengers Origins: Ant-Man & the Wasp (2011) #1",
       "note": "The source labels this one-shot 2013; Marvel's own series metadata dates it 2011."
+    },
+    {
+      "sourcePosition": 38,
+      "sourceIssueReference": "Ant-Man: Season One #1",
+      "sourceRangeReference": "Ant-Man: Season One #1",
+      "normalizedSeriesTitle": "Ant-Man: Season One",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "metadataIssueNumber": null,
+      "seriesId": 15468,
+      "candidateIssueId": 41514,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        41514
+      ],
+      "selectedIssueId": 41514,
+      "selectedIssueIds": [
+        41514
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41514",
+      "resolvedIssueTitle": "Ant-Man: Season One (Trade Paperback)",
+      "note": "Marvel issue 41514 is the reviewed identity; its official title is unnumbered."
     },
     {
       "sourcePosition": 39,
@@ -8390,6 +8395,50 @@
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/64166/secret_empire_2017_8",
       "resolvedIssueTitle": "Secret Empire (2017) #8",
       "note": "Marvel series 23020 (Secret Empire (2017)) is the reviewed metadata series for this source reference."
+    },
+    {
+      "sourcePosition": 398,
+      "sourceIssueReference": "Secret Empire #9",
+      "sourceRangeReference": "Secret Empire 0, Free Comic Book Day 2017 (Secret Empire 1), Secret Empire 1-10, Secret Empire Omega 1",
+      "normalizedSeriesTitle": "Secret Empire",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23020,
+      "candidateIssueId": 64259,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        64259
+      ],
+      "selectedIssueId": 64259,
+      "selectedIssueIds": [
+        64259
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64259/read",
+      "resolvedIssueTitle": "Secret Empire (2017) #9",
+      "note": "Marvel issue 64259 is the reviewed identity in series 23020."
+    },
+    {
+      "sourcePosition": 399,
+      "sourceIssueReference": "Secret Empire #10",
+      "sourceRangeReference": "Secret Empire 0, Free Comic Book Day 2017 (Secret Empire 1), Secret Empire 1-10, Secret Empire Omega 1",
+      "normalizedSeriesTitle": "Secret Empire",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23020,
+      "candidateIssueId": 64285,
+      "manualSeriesSelectionApproved": true,
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        64285
+      ],
+      "selectedIssueId": 64285,
+      "selectedIssueIds": [
+        64285
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
+      "resolvedIssueTitle": "Secret Empire (2017) #10",
+      "note": "Marvel issue 64285 is the reviewed identity in series 23020."
     },
     {
       "sourcePosition": 400,

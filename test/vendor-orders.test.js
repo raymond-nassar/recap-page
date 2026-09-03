@@ -10,6 +10,8 @@ import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { digestJson } from '../scripts/lib/chapter-orders.mjs';
+import { buildMarkdown } from '../scripts/author-cbh-packet.mjs';
+import { packetDigestFor, validateFrozenPacket } from '../scripts/lib/cbh-inventory.mjs';
 import { writeOutputsAtomically } from '../scripts/vendor-orders.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
@@ -665,5 +667,177 @@ test('Amazing Spider-Man resolves the researched provenance rows in source order
   assert.match(
     inventory.find((entry) => entry.id === orderId).reason,
     /1,944 of 2,047.+two.+provider.+103.+placeholders/i,
+  );
+});
+
+test('Ant-Man includes researched issues and preserves MAX policy exclusions', () => {
+  const dataDir = path.join(root, 'src', 'data');
+  const scriptsDataDir = path.join(root, 'scripts', 'data');
+  const orderId = 'ant-man-reading-order';
+  const source = readFileSync(path.join(dataDir, 'orders', `${orderId}.md`), 'utf8');
+  const parsed = parseChecklist(source);
+  const payload = JSON.parse(readFileSync(
+    path.join(dataDir, 'ant_man_reading_order.json'),
+    'utf8',
+  ));
+  const manifest = JSON.parse(readFileSync(path.join(dataDir, 'curated-lists.json'), 'utf8'));
+  const catalog = JSON.parse(readFileSync(path.join(dataDir, 'catalog.json'), 'utf8'));
+  const mapping = JSON.parse(readFileSync(
+    path.join(scriptsDataDir, 'cbh-mappings', `${orderId}.json`),
+    'utf8',
+  ));
+  const packet = JSON.parse(readFileSync(
+    path.join(scriptsDataDir, 'cbh-packets', `${orderId}.json`),
+    'utf8',
+  ));
+  const report = JSON.parse(readFileSync(
+    path.join(scriptsDataDir, 'cbh-overlaps', `${orderId}.json`),
+    'utf8',
+  ));
+
+  const sourceIds = parsed.entries.map((entry) => entry.issueId);
+  const payloadIds = payload.items.map((item) => item.issueId);
+  const orderedSlice = (ids, first, last) => {
+    const start = ids.indexOf(first);
+    assert.notEqual(start, -1);
+    return ids.slice(start, start + last.length);
+  };
+
+  assert.deepEqual(
+    orderedSlice(sourceIds, 32680, [32680, 41514, 6951]),
+    [32680, 41514, 6951],
+  );
+  assert.deepEqual(
+    orderedSlice(payloadIds, 32680, [32680, 41514, 6951]),
+    [32680, 41514, 6951],
+  );
+  assert.deepEqual(
+    orderedSlice(sourceIds, 64166, [64166, 64259, 64285, 64438]),
+    [64166, 64259, 64285, 64438],
+  );
+  assert.deepEqual(
+    orderedSlice(payloadIds, 64166, [64166, 64259, 64285, 64438]),
+    [64166, 64259, 64285, 64438],
+  );
+
+  for (const expected of [
+    {
+      issueId: 41514,
+      title: 'Ant-Man: Season One (Trade Paperback)',
+      number: null,
+      url: 'https://www.marvel.com/comics/issue/41514',
+    },
+    {
+      issueId: 64259,
+      title: 'Secret Empire (2017) #9',
+      number: '9',
+      url: 'https://www.marvel.com/comics/issue/64259/read',
+    },
+    {
+      issueId: 64285,
+      title: 'Secret Empire (2017) #10',
+      number: '10',
+      url: 'https://www.marvel.com/comics/issue/64285/secret_empire_2017_10',
+    },
+  ]) {
+    const item = payload.items.find((candidate) => candidate.issueId === expected.issueId);
+    assert.deepEqual(item, {
+      ...expected,
+      seriesId: null,
+      seriesName: null,
+      onSale: null,
+      mu: null,
+      digitalId: null,
+      cover: null,
+      description: null,
+      pageCount: null,
+      creators: [],
+      detailsRefused: true,
+    });
+  }
+
+  const generated = buildMarkdown(mapping);
+  assert.match(
+    generated,
+    /Ant-Man: Season One \(Trade Paperback\) <!-- mrt:source-occurrence=38 -->/,
+  );
+  assert.doesNotMatch(generated, /Season One \(Trade Paperback\) #1/);
+  const fallbackMapping = structuredClone(mapping);
+  const fallbackRow = fallbackMapping.rows.find((row) => row.sourcePosition === 38);
+  delete fallbackRow.metadataIssueNumber;
+  assert.match(buildMarkdown(fallbackMapping), /Season One \(Trade Paperback\) #1/);
+
+  assert.deepEqual(
+    mapping.excludedSourceRows.map((row) => row.sourcePosition),
+    [
+      ...Array.from({ length: 28 }, (_, index) => 117 + index),
+      ...Array.from({ length: 4 }, (_, index) => 151 + index),
+    ],
+  );
+  assert.ok(mapping.excludedSourceRows.every(
+    (row) => row.decisionScope === 'owner-policy-max-exclusion',
+  ));
+  assert.deepEqual(
+    packet.rows.map((row) => row.sourceIssueReference),
+    mapping.rows.map((row) => row.sourceIssueReference),
+  );
+  assert.deepEqual(
+    packet.excludedSourceRows.map((row) => row.sourcePosition),
+    mapping.excludedSourceRows.map((row) => row.sourcePosition),
+  );
+  assert.equal(packet.packetDigest, packetDigestFor(packet));
+  assert.doesNotThrow(() => validateFrozenPacket(packet));
+  assert.deepEqual(
+    mapping.repeatedSourceReferences.map((row) => row.canonicalRow),
+    packet.repeatedSourceReferences.map((row) => row.canonicalRow),
+  );
+  assert.equal(packet.expectedCount, 389);
+  assert.equal(packet.proposedManifest.expect, 389);
+  const comparisonIds = new Set(report.comparisons.map((row) => row.orderId));
+  assert.equal(report.candidateCount, 389);
+  assert.equal(report.comparisonCount, 138);
+  assert.equal(
+    digestJson(report.comparisons.map((row) => row.orderId)),
+    '7a1743d5a22213a8d577be18a0334990a01e365f5ee16fa4a9d31603fdfd82e1',
+  );
+  assert.ok([
+    'hickman-x-men',
+    'ultimate-marvel-intro',
+    'x-men-utopia',
+  ].every((id) => comparisonIds.has(id)));
+  assert.ok([
+    'guardians-of-the-galaxy-reading-order',
+    'silver-surfer-reading-order',
+    'thanos-reading-order',
+  ].every((id) => !comparisonIds.has(id)));
+  assert.deepEqual(
+    {
+      count: payload.count,
+      items: payload.items.length,
+      placeholders: payload.placeholders,
+      unresolved: payload.unresolved.length,
+      sourceEntries: parsed.entries.length,
+      sourceUnresolved: parsed.unresolved.length,
+    },
+    {
+      count: 389,
+      items: 389,
+      placeholders: 0,
+      unresolved: 0,
+      sourceEntries: 389,
+      sourceUnresolved: 0,
+    },
+  );
+
+  const manifestEntry = manifest.lists.find((entry) => entry.id === orderId);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === orderId);
+  assert.equal(manifestEntry.expect, 389);
+  assert.deepEqual(
+    {
+      count: catalogEntry.count,
+      placeholders: catalogEntry.placeholderCount,
+      empty: catalogEntry.emptyRecordCount,
+    },
+    { count: 389, placeholders: 0, empty: 3 },
   );
 });

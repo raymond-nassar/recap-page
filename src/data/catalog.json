@@ -2974,9 +2974,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 386,
+      "count": 389,
       "placeholderCount": 0,
-      "emptyRecordCount": 0,
+      "emptyRecordCount": 3,
       "collections": 0,
       "characters": [
         "Ant-Man",
