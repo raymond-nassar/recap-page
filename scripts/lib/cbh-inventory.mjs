@@ -54,7 +54,7 @@ const CHARACTER_HORIZON_STATUSES = new Set([
 
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
-  'daredevil-reading-order': '6d4e6890f7423dc9319aa32c4c323922a2c51871f278b1f822604c7520e87e85',
+  'daredevil-reading-order': 'a5819df38fcbd69a9458b91c88d1d6f689c8ba6555e033e6fd93cd3d218c41bd',
 });
 const PACKET_FIELDS = new Set([
   'schemaVersion',
