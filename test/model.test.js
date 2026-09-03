@@ -1029,7 +1029,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // from main, and again the same day after the Amazing Spider-Man complete guide added 106
   // placeholders of its own. The Iron Man guide then added seven owner-confirmed issue ids that
   // the live metadata index does not list. The Abomination guide retains one empty response after
-  // its Ghost Rider identity was corrected, bringing the total to 84 across six affected orders.
+  // its Ghost Rider identity was corrected. The Ant-Man guide adds three researched identities
+  // whose optional details were refused, bringing the total to 90 across nine affected orders.
   // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
@@ -1052,10 +1053,11 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // claiming a metadata match. Adam Warlock adds four more source-preserving metadata gaps.
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
+  // Ant-Man adds three exact official links with explicit provider refusals.
   assert.equal(claimed, 1885, 'the payload placeholder total moved; re-derive the figures in the record');
   assert.equal(placeholders, 1884, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 87);
-  assert.equal(affected, 8);
+  assert.equal(empty, 90);
+  assert.equal(affected, 9);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1080,8 +1082,8 @@ test('import builds its gap disclosure from the items, not from the order payloa
 // starts asserting metadata it does not have again. Every other check of the refusal builds its own
 // state and so passes with this call site reverted; the defect was never in the model.
 //
-// 19,619 of the 19,706 non-placeholder curated items carry metadata and 87 do not, so
-// `hydrated: true` over the map was a statement about the whole file that was false for 58
+// 19,619 of the 19,709 non-placeholder curated items carry metadata and 90 do not, so
+// `hydrated: true` over the map was a statement about the whole file that was false for 61
 // distinct issues.
 test('import lets each curated item speak for itself rather than asserting metadata over the file', () => {
   const main = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
@@ -1093,7 +1095,7 @@ test('import lets each curated item speak for itself rather than asserting metad
   assert.match(code, /source: 'curated'/, 'curated items no longer say where they came from, which is what marks the empty ones refused');
   assert.ok(
     !/hydrated:\s*true/.test(code),
-    'import asserts every curated item arrived with its details again, which is false for 87 of them',
+    'import asserts every curated item arrived with its details again, which is false for 90 of them',
   );
 });
 
@@ -1245,9 +1247,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // owner-confirmed issue ids that the live metadata index does not list, and none repeat an id
   // already present in the bundled catalog.
   //
-  // Deliberately edited on 2026-09-02, from 1,939 to 1,938. Three Amazing Spider-Man placeholder
-  // identities became seven exact issues; five carry provider metadata and two retain exact
-  // official links with provider refusals, for a net reduction of one refused identity.
+  // Deliberately edited on 2026-09-03, from 1,938 to 1,941. The Ant-Man guide adds three exact
+  // official links whose optional metadata requests were refused.
   //
   // The Abomination guide retains one exact issue page with no metadata response after its
   // Ghost Rider identity was corrected. Captain
@@ -1261,6 +1262,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
   // adds 23, Nick Fury and S.H.I.E.L.D. adds 194, and Adam Warlock adds four.
-  assert.equal(refused.length, 1938);
+  assert.equal(refused.length, 1941);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

@@ -2,7 +2,7 @@
 
 Generated for this project by scripts/author-cbh-packet.mjs from the reviewed and frozen ant-man-reading-order issue mapping.
 The mapping transcribes only issue-bearing references from Comic Book Herald's exact guide, expands its ranges, and preserves its source order.
-The frozen source records 437 issue occurrences, including 16 intentional repeats; this checklist lists each distinct comic once at its first source occurrence.
+The frozen source records 437 issue occurrences, including 16 intentional repeats and 32 intentional MAX exclusions; this checklist lists the remaining 389 comics once at each comic's first source occurrence.
 No source commentary or images are copied. Issue identities, titles, and exact links come from Marvel metadata after the packet resolution and overlap gates passed.
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
@@ -43,6 +43,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Tales to Astonish (1959) #68](https://www.marvel.com/comics/issue/11413/tales_to_astonish_1959_68)
 - [ ] [Tales to Astonish (1959) #69](https://www.marvel.com/comics/issue/11414/tales_to_astonish_1959_69)
 - [ ] [Avengers Origins: Ant-Man & the Wasp (2011) #1](https://www.marvel.com/comics/issue/32680/avengers_origins_ant-man_the_wasp_2011_1)
+- [ ] [Ant-Man: Season One (Trade Paperback)](https://www.marvel.com/comics/issue/41514)
 - [ ] [Avengers (1963) #1](https://www.marvel.com/comics/issue/6951/avengers_1963_1)
 - [ ] [Avengers (1963) #2](https://www.marvel.com/comics/issue/7063/avengers_1963_2)
 - [ ] [Avengers (1963) #3](https://www.marvel.com/comics/issue/7174/avengers_1963_3)
@@ -369,6 +370,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Secret Empire (2017) #6](https://www.marvel.com/comics/issue/63753/secret_empire_2017_6)
 - [ ] [Secret Empire (2017) #7](https://www.marvel.com/comics/issue/63869/secret_empire_2017_7)
 - [ ] [Secret Empire (2017) #8](https://www.marvel.com/comics/issue/64166/secret_empire_2017_8)
+- [ ] [Secret Empire (2017) #9](https://www.marvel.com/comics/issue/64259/read)
+- [ ] [Secret Empire (2017) #10](https://www.marvel.com/comics/issue/64285/secret_empire_2017_10)
 - [ ] [Secret Empire Omega (2017) #1](https://www.marvel.com/comics/issue/64438/secret_empire_omega_2017_1)
 - [ ] [Ant-Man & the Wasp (2018) #1](https://www.marvel.com/comics/issue/67699/ant-man_the_wasp_2018_1)
 - [ ] [Ant-Man & the Wasp (2018) #2](https://www.marvel.com/comics/issue/67701/ant-man_the_wasp_2018_2)

@@ -219,7 +219,10 @@ export function selectedIssueIds(mapping) {
     assert(Number(issueUrlMatch[1]) === Number(row.selectedIssueId),
       `${mapping.id} row ${index + 1} Marvel issue URL differs from selected issue id`);
     assert(typeof row.resolvedIssueTitle === 'string' && row.resolvedIssueTitle.trim(), `${mapping.id} row ${index + 1} has no resolved title`);
-    assert(String(row.metadataIssueNumber ?? row.issueNumber ?? '').trim(),
+    const issueNumber = Object.hasOwn(row, 'metadataIssueNumber')
+      ? row.metadataIssueNumber
+      : row.issueNumber;
+    assert(issueNumber === null || String(issueNumber ?? '').trim(),
       `${mapping.id} row ${index + 1} has no reviewed issue number`);
     return String(row.selectedIssueId);
   });
@@ -227,7 +230,11 @@ export function selectedIssueIds(mapping) {
 
 function checklistTitleForRow(row) {
   const title = row.resolvedIssueTitle.trim().replace(/[\u2013\u2014]/g, '-').replace(/\s+/g, ' ');
-  const issueNumber = String(row.metadataIssueNumber ?? row.issueNumber).trim();
+  const selectedNumber = Object.hasOwn(row, 'metadataIssueNumber')
+    ? row.metadataIssueNumber
+    : row.issueNumber;
+  if (selectedNumber === null) return title;
+  const issueNumber = String(selectedNumber).trim();
   const escapedNumber = issueNumber.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   return new RegExp(`#\\s*${escapedNumber}(?=\\s|$)`, 'i').test(title)
     ? title

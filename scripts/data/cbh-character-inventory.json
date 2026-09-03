@@ -206,7 +206,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "All 386 source-defined issues resolve exactly in source order once Ant-Man: Season One, Alias #1-28, Secret Empire #9-10, and the 2003 to 2004 Ant-Man (MAX) mini are excluded as absent from this app's configured metadata contract (checked against the vendored series index, a live series listing pass, and a live full text issue search). Thirteen partial and existing-subset relationships against the current library are centrally approved as natural crossover reading each guide independently requires; no exact duplicate exists.",
+    "reason": "All 389 published issues resolve exactly in source order. The 32 Alias #1-28 and Ant-Man (2003) #1-4 MAX positions remain explicit provenance exclusions under the owner-confirmed policy that the age-restricted MAX line does not belong in Marvel Unlimited reading lists. Thirteen partial and existing-subset relationships against the current library are centrally approved as natural crossover reading each guide independently requires; no exact duplicate exists.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "all-new-all-different-avengers",

@@ -7,7 +7,7 @@
   "sourceLicense": null,
   "generatedAt": "2026-08-26T08:00:03.031Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 386,
+  "count": 389,
   "collections": 0,
   "placeholders": 0,
   "unresolved": [],
@@ -1418,6 +1418,22 @@
           "role": "writer"
         }
       ]
+    },
+    {
+      "issueId": 41514,
+      "title": "Ant-Man: Season One (Trade Paperback)",
+      "number": null,
+      "url": "https://www.marvel.com/comics/issue/41514",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
     },
     {
       "issueId": 6951,
@@ -11445,6 +11461,38 @@
           "role": "writer"
         }
       ]
+    },
+    {
+      "issueId": 64259,
+      "title": "Secret Empire (2017) #9",
+      "number": "9",
+      "url": "https://www.marvel.com/comics/issue/64259/read",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
+    },
+    {
+      "issueId": 64285,
+      "title": "Secret Empire (2017) #10",
+      "number": "10",
+      "url": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
     },
     {
       "issueId": 64438,
