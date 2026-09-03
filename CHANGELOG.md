@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Removed two unavailable Deadpool MAX placeholders
+
+In plain English: The bundled Deadpool starter guide no longer shows two comics from the
+age-restricted MAX line as broken placeholders. Those comics are not available on Marvel Unlimited,
+so new imports now contain the 38 readable issues while existing saved Reading Lists and reading
+progress remain unchanged.
+
+For maintainers, all 56 source occurrences remain accounted for as 38 exact rows, 16 repeats, and
+two permanent MAX exclusions. Both former gaps retain their exact official identities and auditable
+resolution evidence so they are not raised again.
+
 ### Settled the Adam Warlock guide gaps
 
 In plain English: The bundled Adam Warlock guide now includes Warlock Chronicles #8. Three comics

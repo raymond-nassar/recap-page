@@ -1038,8 +1038,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The placeholder figures were 0 until the X-Men order arrived with six. The Captain America
   // guide carries 69 raw source-preserving flags, but one representative cover record also carries
   // valid launch metadata, leaving 68 unopenable placeholders in that guide. The
-  // Deadpool guide adds two provider-metadata gaps with official issue identities. Black Panther
-  // adds four source-preserving metadata gaps with distinct negative identifiers. Doctor Strange
+  // Deadpool carries no placeholders after its owner-approved MAX exclusions. Black Panther adds
+  // four source-preserving metadata gaps with distinct negative identifiers. Doctor Strange
   // adds 39 source-preserving metadata gaps with distinct negative identifiers. Daredevil now
   // carries no placeholders after its owner-reviewed availability settlement. Venom adds 33
   // further source-preserving metadata gaps with distinct negative identifiers. Punisher adds 158
@@ -1055,8 +1055,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1881, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1880, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1879, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1878, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 90);
   assert.equal(affected, 9);
 });
@@ -1254,8 +1254,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // The Abomination guide retains one exact issue page with no metadata response after its
   // Ghost Rider identity was corrected. Captain
   // America adds 69 placeholders, 68 of which are new negative identifiers because its cover
-  // record already has a pinned Marvel issue id. Deadpool adds two official issue identities
-  // that the provider also cannot answer. Black Panther adds four negative placeholder identifiers.
+  // record already has a pinned Marvel issue id. Deadpool carries no refused identities after its
+  // owner-approved MAX exclusions. Black Panther adds four negative placeholder identifiers.
   // Doctor Strange adds 39 more negative placeholder identifiers. Daredevil now adds none after
   // its availability settlement. Venom adds 33 more negative
   // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
@@ -1264,6 +1264,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
   // adds 23 and Nick Fury and S.H.I.E.L.D. adds 194. Adam Warlock carries no refused identities
   // after its owner-reviewed availability settlement.
-  assert.equal(refused.length, 1937);
+  assert.equal(refused.length, 1935);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

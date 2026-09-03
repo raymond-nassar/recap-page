@@ -2812,6 +2812,71 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'deadpool-max-actual-data',
+    title: 'the actual Deadpool guide omits MAX placeholders while preserving every readable issue',
+    async run(page, t) {
+      const browserErrors = [];
+      const externalRequests = [];
+      page.on('console', (message) => { if (message.type() === 'error') browserErrors.push(message.text()); });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      page.on('request', (request) => {
+        const url = new URL(request.url());
+        if (url.protocol.startsWith('http') && url.origin !== page.__origin) externalRequests.push(request.url());
+      });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+        window.__mrtBlockExternal = true;
+      });
+
+      const cardSelector = '#spotlights-results [data-story="list:deadpool-best-of"]';
+      await open(page, '/?catalog=actual#/home');
+      await openBrowseCategory(page, 'character-spotlights');
+      await page.$eval('#spotlights-q', (input) => {
+        input.value = 'Deadpool';
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      });
+      await page.waitForSelector(cardSelector, { timeout: 15000 });
+      const cardText = await page.$eval(cardSelector, (node) => node.textContent);
+      t.check('the actual Deadpool card reports 38 issues without a gap disclosure',
+        cardText.includes('38 issues') && !cardText.includes('gap'), cardText);
+
+      await click(page, `${cardSelector} [data-act="preview"]`);
+      await page.waitForSelector('#preview[open]', { timeout: 15000 });
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => document.querySelector('#preview-add [data-act="main"]')
+        ?.textContent.includes('In library'));
+      const imported = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        const list = Object.values(state.lists)
+          .find((candidate) => candidate.catalogId === 'deadpool-best-of');
+        const titles = (list?.itemIds ?? []).map((id) => state.issues[id]?.title);
+        return {
+          count: titles.length,
+          collections: new Set(Object.values(list?.collectedIn ?? {})).size,
+          maxTitles: titles.filter((title) => title?.startsWith('Deadpool MAX')),
+        };
+      });
+      t.check('import keeps 38 issues in eight collections with no MAX row',
+        imported.count === 38 && imported.collections === 8 && imported.maxTitles.length === 0,
+        JSON.stringify(imported));
+
+      await click(page, '#preview-add [data-act="main"]');
+      await page.waitForFunction(() => (
+        !document.querySelector('#view-read')?.hidden
+        && document.querySelector('#order-name')?.textContent.trim()
+          === 'The Best Deadpool Comics To Start With!'
+      ));
+      await openFullOrder(page);
+      const rendered = await page.$$eval('#rows .row .rt', (rows) => rows.map((row) => row.textContent.trim()));
+      t.check('the Reading List renders every imported issue and no MAX title',
+        rendered.length === 38 && rendered.every((title) => !title.startsWith('Deadpool MAX')),
+        JSON.stringify(rendered));
+      t.check('the Deadpool actual-data journey makes no external request and raises no browser error',
+        externalRequests.length === 0 && browserErrors.length === 0,
+        JSON.stringify({ externalRequests, browserErrors }));
+    },
+  },
+  {
     id: 'home-first-run-wayfinding',
     title: 'empty Home makes the first useful reading path obvious',
     async run(page, t) {
