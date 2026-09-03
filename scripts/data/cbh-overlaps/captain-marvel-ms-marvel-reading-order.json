@@ -2,7 +2,7 @@
   "candidateId": "captain-marvel-ms-marvel-reading-order",
   "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
   "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-  "libraryDigest": "10b7db05c151d8939b93793c4a66fb7332f7ab289c78a8bf204723bb6dc79063",
+  "libraryDigest": "aa65c1fe0334f558c6cdc99ccf17f052561a48d343ec9c881e900bc485d18ff3",
   "peerDigests": {},
   "candidateCount": 527,
   "comparisonCount": 157,
@@ -136,9 +136,10 @@
     },
     {
       "orderId": "black-panther-reading-order",
-      "sharedCount": 6,
+      "sharedCount": 7,
       "sharedIds": [
         "7346",
+        "56448",
         "57251",
         "57255",
         "57257",
@@ -1346,5 +1347,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "fce4be6af61bf551a4727a2c6cccf8ea6d8db818ee716d76a01f10ba4946efa5"
+  "reportDigest": "b9db31e2f29ff0d6f027838c9c06e33ffead061959b2e9570499ca7d6a898440"
 }

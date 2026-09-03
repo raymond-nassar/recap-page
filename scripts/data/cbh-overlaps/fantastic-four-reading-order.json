@@ -2,7 +2,7 @@
   "candidateId": "fantastic-four-reading-order",
   "packetDigest": "5dcde2b2f2a23a10c26929f037f3c6d46f7c4aebe20f511668db2da991ea68b8",
   "mappingDigest": "d4a43ccd1cc82665e2fee6f476e8f9f2be7b48059bec98eef952a0f720c5d421",
-  "libraryDigest": "507241d25de583d5d7e183d8e5494e13793ee4e7b7fa8847ce41c68bff9a281d",
+  "libraryDigest": "a711ee10f51ddbedff0fbadd4344d7a53500c1624fb912bc74e74191ed49867c",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1058,
@@ -1383,5 +1383,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "274596f77b8a726cb47f7e3c6615617e45524ccb6dca529b0aa3e33a5116cde8"
+  "reportDigest": "9dc653cf60bc5d64f05b7a20da5c25f2c42c4432c744a98e3156d668240f36b0"
 }

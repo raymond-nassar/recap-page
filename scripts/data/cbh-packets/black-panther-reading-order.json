@@ -475,7 +475,7 @@
     },
     {
       "sourcePosition": 381,
-      "canonicalRow": 311,
+      "canonicalRow": 312,
       "sourceIssueReference": "Black Panther #7",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -484,7 +484,7 @@
     },
     {
       "sourcePosition": 382,
-      "canonicalRow": 312,
+      "canonicalRow": 313,
       "sourceIssueReference": "Black Panther #8",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -493,7 +493,7 @@
     },
     {
       "sourcePosition": 383,
-      "canonicalRow": 313,
+      "canonicalRow": 314,
       "sourceIssueReference": "Black Panther #9",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -502,7 +502,7 @@
     },
     {
       "sourcePosition": 384,
-      "canonicalRow": 314,
+      "canonicalRow": 315,
       "sourceIssueReference": "Black Panther #10",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -511,7 +511,7 @@
     },
     {
       "sourcePosition": 385,
-      "canonicalRow": 315,
+      "canonicalRow": 316,
       "sourceIssueReference": "Black Panther #11",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -520,7 +520,7 @@
     },
     {
       "sourcePosition": 386,
-      "canonicalRow": 316,
+      "canonicalRow": 317,
       "sourceIssueReference": "Black Panther #12",
       "sourceRangeReference": "The Intergalactic Empire of Wakanda",
       "normalizedSeriesTitle": "Black Panther",
@@ -528,109 +528,7 @@
       "issueNumber": "12"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 292,
-      "sourceIssueReference": "Avengers #0",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Avengers",
-      "seriesYear": 2015,
-      "issueNumber": "0",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "No maintained provider series identifies Avengers #0 in the source context. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e8d7e6916881653dae0d5ed8e91bdc525062747afe79fbe41582ead641def5ff"
-    },
-    {
-      "sourcePosition": 338,
-      "sourceIssueReference": "Ultimates 2 #10",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Ultimates 2",
-      "seriesYear": 2016,
-      "issueNumber": "10",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The maintained provider series ends at #9 before legacy #100 and has no #10. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e7f6a1c5c0b2eba2693a90a549e2eea70cf195935a3dbf0b8a3bb89511dac866"
-    },
-    {
-      "sourcePosition": 339,
-      "sourceIssueReference": "Ultimates 2 #11",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Ultimates 2",
-      "seriesYear": 2016,
-      "issueNumber": "11",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The maintained provider series ends at #9 before legacy #100 and has no #11. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "9dd22a71bce86a370a46b00c5c243128c8560c3c4634fde99f7c8d30e3d6875d"
-    },
-    {
-      "sourcePosition": 340,
-      "sourceIssueReference": "Ultimates 2 #12",
-      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
-      "normalizedSeriesTitle": "Ultimates 2",
-      "seriesYear": 2016,
-      "issueNumber": "12",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The maintained provider series ends at #9 before legacy #100 and has no #12. See issue #281.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e7ee273db35af2d995b27845098a58796d9c16d5c532cac3c4258f02744d2739"
-    }
-  ],
-  "expectedCount": 363,
+  "expectedCount": 364,
   "proposedManifest": {
     "id": "black-panther-reading-order",
     "name": "Black Panther",
@@ -656,7 +554,7 @@
       "Comic Book Herald",
       "Wakanda"
     ],
-    "expect": 367,
+    "expect": 364,
     "timeline": null,
     "coverIssueId": 13258
   },
@@ -665,9 +563,9 @@
   },
   "sourceReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "Independent source review found the inherited six-heading outline omitted explicit issue occurrences and reordered later material. This packet records the full page in source order, retains repeated occurrences separately, and limits issue rows to explicit numbered source references.",
-    "reviewedAt": "2026-08-26"
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Reviewed the exact Avengers #0 provider identity and the source-preserving exclusions for nonexistent Ultimates 2 #10-12. The canonical ledger retains all 424 source positions without substitution.",
+    "reviewedAt": "2026-09-03"
   },
   "rows": [
     {
@@ -3551,6 +3449,18 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Avengers #0",
+      "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "sourceGroup": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "normalizedSeriesTitle": "All-New, All-Different Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "0",
+      "seriesId": 20443,
+      "candidateIssueId": 56448,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": "Exact provider metadata resolves the source Avengers #0 label to All-New, All-Different Avengers (2015) #0 in its source context."
+    },
+    {
       "sourceIssueReference": "Ultimates #7",
       "sourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
       "sourceGroup": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
@@ -5027,5 +4937,151 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "5acb5c9727357a3418d30998f661040f02f2750f09d84013670a7136f914139e"
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 338,
+      "sourceIssueReference": "Ultimates 2 #10",
+      "reason": "The source names Ultimates 2 (2016) #10, but the reviewed series runs #1-9 and then legacy #100; no #10 exists, and neither original Ultimates #10 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "normalizedSeriesTitle": "Ultimates 2",
+      "issueNumber": "10",
+      "reviewedSeriesId": 22929,
+      "lookupResult": "Ultimates 2 (2016) runs #1-9 and then legacy #100; issue #10 does not exist.",
+      "exclusionKind": "nonexistent-source-identity",
+      "evidenceDigest": "1451d50ba592abc029f14bab72d7e455f384cd992d7a76f3d827e2bde2497f8b"
+    },
+    {
+      "sourcePosition": 339,
+      "sourceIssueReference": "Ultimates 2 #11",
+      "reason": "The source names Ultimates 2 (2016) #11, but the reviewed series runs #1-9 and then legacy #100; no #11 exists, and neither original Ultimates #11 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "normalizedSeriesTitle": "Ultimates 2",
+      "issueNumber": "11",
+      "reviewedSeriesId": 22929,
+      "lookupResult": "Ultimates 2 (2016) runs #1-9 and then legacy #100; issue #11 does not exist.",
+      "exclusionKind": "nonexistent-source-identity",
+      "evidenceDigest": "089a285ee8a81eb0fcab3739483c2c7919c88be76541782f2966a12357322375"
+    },
+    {
+      "sourcePosition": 340,
+      "sourceIssueReference": "Ultimates 2 #12",
+      "reason": "The source names Ultimates 2 (2016) #12, but the reviewed series runs #1-9 and then legacy #100; no #12 exists, and neither original Ultimates #12 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "normalizedSeriesTitle": "Ultimates 2",
+      "issueNumber": "12",
+      "reviewedSeriesId": 22929,
+      "lookupResult": "Ultimates 2 (2016) runs #1-9 and then legacy #100; issue #12 does not exist.",
+      "exclusionKind": "nonexistent-source-identity",
+      "evidenceDigest": "2c82fbc8fb7f1b940964df42c20e7c2c9bb9e78ed66e1990a58bfa8748c55555"
+    }
+  ],
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 292,
+      "previousSourceIssueReference": "Avengers #0",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Avengers",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "0",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 56448,
+      "resolvedNormalizedSeriesTitle": "All-New, All-Different Avengers",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "0",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "Provider issue 56448 is the 2015 All-New, All-Different Avengers #0 launch special in the source-prescribed break between Ultimates #5 and #7.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/56448",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/56448/all-new_all-different_avengers_2015",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "ace197dce7ff89fea16c8bab85cbf37ee548e2851d47c6ac833e974b04a26907"
+    },
+    {
+      "sourcePosition": 338,
+      "previousSourceIssueReference": "Ultimates 2 #10",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Ultimates 2",
+      "previousSeriesYear": 2016,
+      "previousIssueNumber": "10",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names Ultimates 2 (2016) #10, but the reviewed series runs #1-9 and then legacy #100; no #10 exists, and neither original Ultimates #10 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The reviewed Ultimates 2 (2016) series runs #1-9 and then legacy #100. The original Ultimates #10 is already represented at source position 296, so no neighboring identity may substitute.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "4899782aa7da5622f24f5d03344f962c30dcea4eeebe920701dd929a9665395e"
+    },
+    {
+      "sourcePosition": 339,
+      "previousSourceIssueReference": "Ultimates 2 #11",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Ultimates 2",
+      "previousSeriesYear": 2016,
+      "previousIssueNumber": "11",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names Ultimates 2 (2016) #11, but the reviewed series runs #1-9 and then legacy #100; no #11 exists, and neither original Ultimates #11 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The reviewed Ultimates 2 (2016) series runs #1-9 and then legacy #100. The original Ultimates #11 is already represented at source position 297, so no neighboring identity may substitute.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "ed933a47092190fb698ac0acc12f8d5b4964d98980a8bbedbd30a2cc2055d9d5"
+    },
+    {
+      "sourcePosition": 340,
+      "previousSourceIssueReference": "Ultimates 2 #12",
+      "previousSourceRangeReference": "Black Panther: A Nation Under Our Feet (Ta-Nehisi Coates Run)",
+      "previousNormalizedSeriesTitle": "Ultimates 2",
+      "previousSeriesYear": 2016,
+      "previousIssueNumber": "12",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names Ultimates 2 (2016) #12, but the reviewed series runs #1-9 and then legacy #100; no #12 exists, and neither original Ultimates #12 nor Ultimates 2 #100 may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The reviewed Ultimates 2 (2016) series runs #1-9 and then legacy #100. The original Ultimates #12 is already represented at source position 298, so no neighboring identity may substitute.",
+      "evidenceSources": [
+        {
+          "kind": "comic-book-herald",
+          "url": "https://www.comicbookherald.com/black-panther-reading-order/",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/22929/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2903f7daebfbeb3c7abb26bc7d46034b40a355abd7ab9f50692fd6fd41a8fd3a"
+    }
+  ],
+  "packetDigest": "51c8e2de854bfff7ab4cf7ab750b40f4321e0451841c9fe3c7a3a93b921a8796"
 }
