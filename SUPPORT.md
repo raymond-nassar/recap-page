@@ -33,16 +33,16 @@ Open an issue on this repository. What helps most, in rough order:
 There is no other maintainer channel. There is no mailing list, maintainer chat or forum, and this
 project is worked on in bursts, so a reply may take a while.
 
-## Asking GitHub Copilot about the public project
+## Asking a public project question
 
-The [project home](https://raymond-nassar.github.io/recap-page/) explains an optional GitHub Copilot
-Space that answers questions from selected maintained project documents. It is AI-generated project
-help, not a conversation with the maintainer, and its answers can be incomplete or wrong.
+The [project home](https://raymond-nassar.github.io/recap-page/) links to a dedicated public question
+form for questions about how Recap Page works or why a documented project decision was made. Read the
+maintained source first and name it in the form so the remaining question has public context.
 
-The home explains GitHub access, hosted processing, Chat retention and individual training controls
-before the link. Recap Page sends no reading state to the Space. Do not paste progress, lists, notes,
-backups, personal information or suspected vulnerability details into it. Use the public issue route
-above for maintainer support and the private route below for security.
+Opening the form requires GitHub sign-in and creates a public Issue, so your username, question and
+replies are public and GitHub hosts that content. Recap Page sends nothing to it automatically. Do
+not paste reading progress, lists, notes, backups, personal information, attachments or suspected
+vulnerability details. Use the routes above or below when you need support or private security.
 
 ## A suspected security problem never goes in an issue
 

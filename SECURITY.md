@@ -180,7 +180,7 @@ Package files are read-only and hold no durable reader data. Lists, notes, setti
 read markers remain in the browser profile at the exact loopback origin. The dedicated
 [privacy policy](PRIVACY.md) owns the complete reader-facing disclosure.
 
-## Public project home and question guide
+## Public project home and question form
 
 The GitHub Pages project home is a separate information artifact, not another app entry point. Its
 published inventory is one HTML file, one stylesheet and two checked cover-off screenshots. It
@@ -192,11 +192,11 @@ deployment job `pages: write` and `id-token: write`. It uses no secret and never
 request head. Changes to that artifact, its allowlist, its workflow or its hosted boundary are in
 scope for this policy.
 
-The optional GitHub Copilot Space uses selected public documentation. It is not a security-reporting
-channel and never receives data from the tracker. **Do not put suspected vulnerability details in
-the project home, Copilot Space, a public issue, a discussion or a pull request.** Use private
-vulnerability reporting as described above.
+The public question form is framed by selected maintained documentation. It is not a
+security-reporting channel and receives only what a visitor deliberately types; the tracker never
+calls it. **Do not put suspected vulnerability details in the project home, a public issue, a
+discussion or a pull request.** Use private vulnerability reporting as described above.
 
-GitHub Pages request handling and Copilot prompt processing belong to GitHub rather than to the
-tracker. The [privacy policy](PRIVACY.md) owns that disclosure and the limits of rollback after a
-prompt has already been processed.
+GitHub Pages request handling and public Issue processing belong to GitHub rather than to the
+tracker. The [privacy policy](PRIVACY.md) owns that disclosure and the limits of removing content
+after it has already been published.

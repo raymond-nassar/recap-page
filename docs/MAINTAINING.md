@@ -838,60 +838,37 @@ The two images must remain byte-identical to their namesakes under `docs/screens
 `src`, an app manifest, a service worker, a script, a form, an iframe, an external font, analytics,
 telemetry or another application origin to the artifact.
 
-### Configure the Copilot Space
+### Maintain the public question form
 
-Create one individual-owned Space named **Recap Page project guide** and keep General access private
-until the delivery pull request is checked. Add exactly these current files as individual GitHub
-sources:
+The project-question route is `.github/ISSUE_TEMPLATE/project-question.yml`. It uses the default
+`question` label and creates a public GitHub Issue for a human answer. Its introduction must explain
+that GitHub sign-in is required, the username, question and replies are public, GitHub hosts that
+content, and Recap Page sends nothing automatically.
 
-Space URL: <https://github.com/copilot/spaces/raymond-nassar/1>
+Keep links to the overview, running guide, privacy policy, architecture, data provenance,
+governance, contribution guide and releases in the introduction. Route troubleshooting to
+SUPPORT.md, faults to the bug form, improvements to the feature form, catalogue corrections to the
+data form and suspected vulnerabilities to SECURITY.md.
 
-```text
-README.md
-docs/RUNNING.md
-SUPPORT.md
-PRIVACY.md
-SECURITY.md
-docs/ARCHITECTURE.md
-docs/DATA_PROVENANCE.md
-docs/MAINTAINING.md
-GOVERNANCE.md
-CONTRIBUTING.md
-```
+The form has four controls:
 
-Do not attach the whole repository, CHANGELOG.md, an uploaded file or copied free text. Selected
-GitHub files stay synchronized with `main`, while a whole-repository source can retrieve dated
-working evidence that is not current product guidance.
+1. A required topic covering the product or running it, privacy or saved data, architecture,
+   provenance, governance or contribution or releases, and no suitable source.
+2. A required project question.
+3. A required source-context answer naming the maintained source checked and what remains unclear,
+   or stating that none fits.
+4. Required acknowledgements that the Issue and replies are public and that the submission contains
+   no reading progress, lists, notes, backup content, personal information, attachments or
+   vulnerability details.
 
-Use these Space instructions exactly:
+Do not add browser details, the local app address, reading state, file uploads, screenshots or other
+private troubleshooting fields. `test/intake-config.test.js` discovers every form and owns generic
+schema, label, YAML and citation checks. `test/pages-home.test.js` owns this form's exact semantic
+contract and the Page disclosure that precedes its direct link.
 
-```text
-Answer questions about Recap Page only from the attached maintained public sources. Cite the source
-that supports each answer. When the sources do not answer, say that the answer is unknown rather
-than guessing. GitHub Copilot is not maintainer support. Send ordinary support and bug questions to
-SUPPORT.md and suspected vulnerabilities to the private route in SECURITY.md. Never ask for reading
-progress, lists, notes, backup files, personal information or vulnerability details. For storage
-answers, use PRIVACY.md as the reader-facing authority and docs/ARCHITECTURE.md for full detail; do
-not describe one key as the only browser storage. When naming stores, say that `mrt.state.v2` holds
-lists, reading progress, notes, availability overrides and custom entries; `mrt.settings` holds
-preferences; and separate recovery, IndexedDB and Cache API stores have their documented jobs. For
-questions about the project home or Copilot Space receiving reading state, answer only when
-PRIVACY.md or docs/ARCHITECTURE.md explicitly names that hosted surface; otherwise say the answer is
-unknown. Do not infer a hosted-surface answer from a general app no-upload statement.
-```
-
-Before copying the Space URL into the Page source, ask these questions without using real reader
-data:
-
-1. What is Recap Page, and where does it keep reading progress?
-2. How do I run it without making my existing progress look missing?
-3. Where should I ask for support, report a bug and report a security problem?
-4. Does the project home or this Space receive my reading state?
-
-Each answer must cite the appropriate attached file, preserve the exact local origin, separate
-support from private security and state that the hosted project surfaces receive no tracker data.
-Record that this is a smoke check rather than a guarantee: Copilot can use only part of the attached
-context and can answer incorrectly.
+An earlier individual Copilot project guide remains private and unlinked because organizational
+policy disables its sharing. It is not part of the public route. Deleting it is a separate permanent
+cleanup action and is not required to publish or maintain the project home.
 
 ### Prepare Pages without publishing
 
@@ -912,15 +889,16 @@ a separate required branch check.
 
 The public transitions are separate decisions:
 
-1. Change the checked private Space to **Anyone with link**.
-2. Merge the exact checked pull request and permit its first Pages deployment.
-3. Verify the deployed Page before setting the repository homepage.
+1. Re-enable the Pages workflow. This does not replay a push that happened while it was disabled.
+2. Merge the exact checked corrective pull request. That publishes the question form, and the
+   resulting `main` push triggers the corrected Pages deployment.
+3. Verify the deployed Page and rendered question form before setting the repository homepage.
 4. Set the homepage to `https://raymond-nassar.github.io/recap-page/`.
 
 Verify the Page uses HTTPS and corresponds to the merged commit. Check its exact artifact inventory,
 desktop and 320-pixel navigation, keyboard focus, forced-color boundaries, reduced-motion behavior,
 fixed-origin warning, maintained document links, issue forms, private security route, source and
-issue history, and public Space access. The Page must remain useful when Copilot is unavailable.
+issue history. Check the question form signed out and signed in without submitting an Issue.
 
 ### Roll back hosted surfaces first
 
@@ -929,16 +907,16 @@ fails:
 
 1. Cancel an in-progress Pages deployment where possible.
 2. Unpublish the current Pages deployment.
-3. Return the Space to private access.
-4. Clear the repository homepage if it was set.
-5. Disable the publication path so another push cannot republish.
-6. Verify the Page and public Space routes are no longer available.
-7. Prepare a reviewed revert of the source and workflow changes.
+3. Clear the repository homepage if it was set.
+4. Disable the publication path so another push cannot republish.
+5. Verify the Page route is no longer available.
+6. Prepare a reviewed source revert to remove the Page links or public question form.
 
 Deleting source or workflow files does not remove a current deployment. Deleting the Pages site or
 the deployment environment is a separate permanent action and needs separate approval.
 
-Rollback stops future access through the project. It cannot recall a Copilot prompt already
-processed, shorten GitHub's 28-day Chat retention, change the visitor's individual model-training
-setting or guarantee how quickly a copied public Space link stops resolving. Keep those limits in
-the public disclosure and the delivery record.
+The question form is published from the default branch and has no independent visibility switch.
+Removing it requires a reviewed source change, and cannot recall an Issue, reply, notification or
+copy that already exists. The earlier private Copilot project guide is not part of the current route;
+keeping or deleting it cannot recall a chat GitHub already processed. Keep those limits in the
+delivery record.
