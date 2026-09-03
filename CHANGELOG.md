@@ -12,6 +12,19 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Resolved three Amazing Spider-Man guide references
+
+In plain English: Seven comics now replace three vague entries in the bundled Amazing Spider-Man
+guide: the Parker Years one-shot, all five chapters of Planet of the Symbiotes, and Family Business.
+Two specials have official issue pages but no record in the app's metadata source, so their links
+work while optional details remain unavailable. Existing saved Reading Lists and reading progress
+are not rewritten; imports made from the updated bundled guide receive the corrected rows.
+
+For maintainers, the guide now preserves 2,047 source rows as 1,944 exact issue identities and 103
+plain-text placeholders. Five new rows carry maintained-provider metadata. Venom Super Special #1
+and Web of Spider-Man Super Special #1 retain exact official links with explicit provider refusals
+and no guessed optional fields.
+
 ### Added a current position to Modern Timeline
 
 In plain English: Modern Timeline now marks the first story that is not complete after everything

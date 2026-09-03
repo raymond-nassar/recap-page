@@ -146,7 +146,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "1,937 of 2,043 source-defined issues resolve exactly in source order; the remaining 106 rows ship as explicit plain-text placeholders (no invented Marvel issue ids or links) and are tracked for follow-up research in issue #248. The separate Complete guide remains distinct despite 32 approved partial relationships.",
+    "reason": "1,944 of 2,047 source-defined issues resolve to exact Marvel identities in source order. Of those, 1,942 carry maintained-provider metadata and two use owner-confirmed official Marvel issue URLs the provider does not list. The remaining 103 rows ship as explicit plain-text placeholders (no invented Marvel issue ids or links) and are tracked for follow-up research in issue #248. The separate Complete guide remains distinct despite 32 approved partial relationships.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "spider-man-best-of",

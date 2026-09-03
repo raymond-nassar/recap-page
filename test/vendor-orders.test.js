@@ -11,6 +11,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 import { digestJson } from '../scripts/lib/chapter-orders.mjs';
 import { writeOutputsAtomically } from '../scripts/vendor-orders.mjs';
+import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -572,5 +573,97 @@ test('an invalid partition leaves every generated output unchanged', (t) => {
   assert.equal(
     readFileSync(path.join(fixture, 'src', 'data', 'catalog.json'), 'utf8'),
     '{"sentinel":"existing catalog"}\n',
+  );
+});
+
+test('Amazing Spider-Man resolves the researched provenance rows in source order', () => {
+  const dataDir = path.join(root, 'src', 'data');
+  const orderId = 'amazing-spider-man-reading-order-modern-marvel-era';
+  const exactIds = [61254, 59710, 59712, 59715, 59711, 59714, 47150];
+  const source = readFileSync(
+    path.join(dataDir, 'orders', `${orderId}.md`),
+    'utf8',
+  );
+  const parsed = parseChecklist(source);
+  const payload = JSON.parse(readFileSync(
+    path.join(dataDir, 'amazing_spider_man_reading_order_modern_marvel_era.json'),
+    'utf8',
+  ));
+  const manifest = JSON.parse(readFileSync(path.join(dataDir, 'curated-lists.json'), 'utf8'));
+  const catalog = JSON.parse(readFileSync(path.join(dataDir, 'catalog.json'), 'utf8'));
+  const inventory = JSON.parse(readFileSync(
+    path.join(root, 'scripts', 'data', 'cbh-character-inventory.json'),
+    'utf8',
+  ));
+  const sourceIdAt = new Map(parsed.entries.map((entry) => [entry.index, entry.issueId]));
+
+  assert.deepEqual(
+    [714, 715, 716, 717, 718, 719, 1491].map((index) => sourceIdAt.get(index)),
+    exactIds,
+  );
+  assert.deepEqual(
+    [...payload.items.slice(714, 720), payload.items[1491]].map((item) => item.issueId),
+    exactIds,
+  );
+  assert.ok(parsed.unresolved.every((row) => ![
+    'Spider-Man: The Parker Years',
+    'various Super Specials',
+    'Original graphic novel',
+  ].includes(row.title)));
+  assert.deepEqual(
+    {
+      count: payload.count,
+      items: payload.items.length,
+      placeholders: payload.placeholders,
+      unresolved: payload.unresolved.length,
+    },
+    { count: 2047, items: 2047, placeholders: 103, unresolved: 103 },
+  );
+
+  for (const [issueId, title, url] of [
+    [
+      59715,
+      'Venom Super Special (1995) #1',
+      'https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1',
+    ],
+    [
+      59714,
+      'Web of Spider-Man Super Special (1995) #1',
+      'https://www.marvel.com/comics/issue/59714/web_of_spider-man_super_special_1995_1',
+    ],
+  ]) {
+    const item = payload.items.find((candidate) => candidate.issueId === issueId);
+    assert.deepEqual(item, {
+      issueId,
+      title,
+      number: '1',
+      url,
+      seriesId: null,
+      seriesName: null,
+      onSale: null,
+      mu: null,
+      digitalId: null,
+      cover: null,
+      description: null,
+      pageCount: null,
+      creators: [],
+      detailsRefused: true,
+    });
+  }
+
+  const manifestEntry = manifest.lists.find((entry) => entry.id === orderId);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === orderId);
+  assert.equal(manifestEntry.expect, 2047);
+  assert.deepEqual(
+    {
+      count: catalogEntry.count,
+      placeholders: catalogEntry.placeholderCount,
+      empty: catalogEntry.emptyRecordCount,
+    },
+    { count: 2047, placeholders: 103, empty: 2 },
+  );
+  assert.match(
+    inventory.find((entry) => entry.id === orderId).reason,
+    /1,944 of 2,047.+two.+provider.+103.+placeholders/i,
   );
 });

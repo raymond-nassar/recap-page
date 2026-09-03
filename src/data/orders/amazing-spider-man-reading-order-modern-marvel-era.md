@@ -722,8 +722,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #228](https://www.marvel.com/comics/issue/14685/peter_parker_the_spectacular_spider-man_1976_228)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #229](https://www.marvel.com/comics/issue/14686/peter_parker_the_spectacular_spider-man_1976_229)
 - [ ] [Spider-Man Team-Up (1995) #1](https://www.marvel.com/comics/issue/59371/spider-man_team-up_1995_1)
-- [ ] Spider-Man: The Parker Years
-- [ ] various Super Specials
+- [ ] [SPIDER-MAN: THE PARKER YEARS 1 (1995) #1](https://www.marvel.com/comics/issue/61254/spider-man_the_parker_years_1_1995_1)
+- [ ] [AMAZING SPIDER-MAN SUPER SPECIAL 1 (1995) #1](https://www.marvel.com/comics/issue/59710/amazing_spider-man_super_special_1_1995_1)
+- [ ] [SPIDER-MAN SUPER SPECIAL 1 (1995) #1](https://www.marvel.com/comics/issue/59712/spider-man_super_special_1_1995_1)
+- [ ] [Venom Super Special (1995) #1](https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1)
+- [ ] [THE SPECTACULAR SPIDER-MAN SUPER SPECIAL 1 (1995) #1](https://www.marvel.com/comics/issue/59711/the_spectacular_spider-man_super_special_1_1995_1)
+- [ ] [Web of Spider-Man Super Special (1995) #1](https://www.marvel.com/comics/issue/59714/web_of_spider-man_super_special_1995_1)
 - [ ] [New Warriors (1990) #65](https://www.marvel.com/comics/issue/61242/new_warriors_1990_65)
 - [ ] [New Warriors (1990) #66](https://www.marvel.com/comics/issue/61243/new_warriors_1990_66)
 - [ ] Scarlet Spider Unlimited #1
@@ -1495,7 +1499,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Superior Spider-Man (2013) #30](https://www.marvel.com/comics/issue/48038/superior_spider-man_2013_30)
 - [ ] [Superior Spider-Man (2013) #31](https://www.marvel.com/comics/issue/48039/superior_spider-man_2013_31)
 - [ ] [Superior Spider-Man Annual (2013) #2](https://www.marvel.com/comics/issue/50435/superior_spider-man_annual_2013_2)
-- [ ] Original graphic novel
+- [ ] [Amazing Spider-Man: Family Business (2013)](https://www.marvel.com/comics/issue/47150/amazing_spider-man_family_business_2013)
 - [ ] [The Amazing Spider-Man (2014) #1.1](https://www.marvel.com/comics/issue/47980/the_amazing_spider-man_2014_1.1)
 - [ ] [The Amazing Spider-Man (2014) #1.2](https://www.marvel.com/comics/issue/47981/the_amazing_spider-man_2014_1.2)
 - [ ] [The Amazing Spider-Man (2014) #1.3](https://www.marvel.com/comics/issue/47982/the_amazing_spider-man_2014_1.3)

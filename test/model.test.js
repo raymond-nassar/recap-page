@@ -1050,10 +1050,12 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // provider gaps, Guardians adds 29, and Defenders adds 23 without substituting a source identity.
   // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
   // claiming a metadata match. Adam Warlock adds four more source-preserving metadata gaps.
-  assert.equal(claimed, 1888, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1887, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 85);
-  assert.equal(affected, 7);
+  // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
+  // metadata, while two keep official issue links beside an explicit provider refusal.
+  assert.equal(claimed, 1885, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1884, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 87);
+  assert.equal(affected, 8);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1078,8 +1080,8 @@ test('import builds its gap disclosure from the items, not from the order payloa
 // starts asserting metadata it does not have again. Every other check of the refusal builds its own
 // state and so passes with this call site reverted; the defect was never in the model.
 //
-// 4,660 of the 4,732 non-placeholder curated items carry metadata and 72 do not, so
-// `hydrated: true` over the map was a statement about the whole file that was false for 43
+// 19,619 of the 19,706 non-placeholder curated items carry metadata and 87 do not, so
+// `hydrated: true` over the map was a statement about the whole file that was false for 58
 // distinct issues.
 test('import lets each curated item speak for itself rather than asserting metadata over the file', () => {
   const main = readFileSync(join(ROOT, 'src', 'js', 'main.js'), 'utf8');
@@ -1091,7 +1093,7 @@ test('import lets each curated item speak for itself rather than asserting metad
   assert.match(code, /source: 'curated'/, 'curated items no longer say where they came from, which is what marks the empty ones refused');
   assert.ok(
     !/hydrated:\s*true/.test(code),
-    'import asserts every curated item arrived with its details again, which is false for 72 of them',
+    'import asserts every curated item arrived with its details again, which is false for 87 of them',
   );
 });
 
@@ -1243,6 +1245,10 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // owner-confirmed issue ids that the live metadata index does not list, and none repeat an id
   // already present in the bundled catalog.
   //
+  // Deliberately edited on 2026-09-02, from 1,939 to 1,938. Three Amazing Spider-Man placeholder
+  // identities became seven exact issues; five carry provider metadata and two retain exact
+  // official links with provider refusals, for a net reduction of one refused identity.
+  //
   // The Abomination guide retains one exact issue page with no metadata response after its
   // Ghost Rider identity was corrected. Captain
   // America adds 69 placeholders, 68 of which are new negative identifiers because its cover
@@ -1255,6 +1261,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
   // adds 23, Nick Fury and S.H.I.E.L.D. adds 194, and Adam Warlock adds four.
-  assert.equal(refused.length, 1939);
+  assert.equal(refused.length, 1938);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });
