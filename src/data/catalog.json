@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-01T19:57:11.614Z",
+  "generatedAt": "2026-09-03T06:33:08.920Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -8958,9 +8958,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 2043,
-      "placeholderCount": 106,
-      "emptyRecordCount": 0,
+      "count": 2047,
+      "placeholderCount": 103,
+      "emptyRecordCount": 2,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -8984,7 +8984,7 @@
       "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T10:59:32.800Z"
+      "updatedAt": "2026-09-03T06:33:08.920Z"
     },
     {
       "id": "silent-war",

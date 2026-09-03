@@ -5,11 +5,11 @@
   "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-26T10:59:32.800Z",
+  "generatedAt": "2026-09-03T06:33:08.920Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 2043,
+  "count": 2047,
   "collections": 0,
-  "placeholders": 106,
+  "placeholders": 103,
   "unresolved": [
     {
       "title": "Marvel Calendar #1978",
@@ -292,465 +292,444 @@
       "section": null
     },
     {
-      "title": "Spider-Man: The Parker Years",
-      "url": null,
-      "read": false,
-      "index": 714,
-      "section": null
-    },
-    {
-      "title": "various Super Specials",
-      "url": null,
-      "read": false,
-      "index": 715,
-      "section": null
-    },
-    {
       "title": "Scarlet Spider Unlimited #1",
       "url": null,
       "read": false,
-      "index": 718,
+      "index": 722,
       "section": null
     },
     {
       "title": "Green Goblin #3",
       "url": null,
       "read": false,
-      "index": 727,
+      "index": 731,
       "section": null
     },
     {
       "title": "Daredevil #354",
       "url": null,
       "read": false,
-      "index": 758,
+      "index": 762,
       "section": null
     },
     {
       "title": "Spider-Man: 101 Ways To End The Clone Saga",
       "url": null,
       "read": false,
-      "index": 798,
+      "index": 802,
       "section": null
     },
     {
       "title": "X-Man Annual #1",
       "url": null,
       "read": false,
-      "index": 815,
+      "index": 819,
       "section": null
     },
     {
       "title": "Webspinners #10",
       "url": null,
       "read": false,
-      "index": 905,
+      "index": 909,
       "section": null
     },
     {
       "title": "Webspinners #11",
       "url": null,
       "read": false,
-      "index": 906,
+      "index": 910,
       "section": null
     },
     {
       "title": "Webspinners #12",
       "url": null,
       "read": false,
-      "index": 907,
+      "index": 911,
       "section": null
     },
     {
       "title": "35, #37",
       "url": null,
       "read": false,
-      "index": 981,
+      "index": 985,
       "section": null
     },
     {
       "title": "Doctor Octopus: Negative Exposure #1",
       "url": null,
       "read": false,
-      "index": 1017,
+      "index": 1021,
       "section": null
     },
     {
       "title": "Doctor Octopus: Negative Exposure #2",
       "url": null,
       "read": false,
-      "index": 1018,
+      "index": 1022,
       "section": null
     },
     {
       "title": "Doctor Octopus: Negative Exposure #3",
       "url": null,
       "read": false,
-      "index": 1019,
+      "index": 1023,
       "section": null
     },
     {
       "title": "Doctor Octopus: Negative Exposure #4",
       "url": null,
       "read": false,
-      "index": 1020,
+      "index": 1024,
       "section": null
     },
     {
       "title": "Doctor Octopus: Negative Exposure #5",
       "url": null,
       "read": false,
-      "index": 1021,
+      "index": 1025,
       "section": null
     },
     {
       "title": "The Pulse #1",
       "url": null,
       "read": false,
-      "index": 1047,
+      "index": 1051,
       "section": null
     },
     {
       "title": "The Pulse #2",
       "url": null,
       "read": false,
-      "index": 1048,
+      "index": 1052,
       "section": null
     },
     {
       "title": "The Pulse #3",
       "url": null,
       "read": false,
-      "index": 1049,
+      "index": 1053,
       "section": null
     },
     {
       "title": "The Pulse #4",
       "url": null,
       "read": false,
-      "index": 1050,
+      "index": 1054,
       "section": null
     },
     {
       "title": "The Pulse #5",
       "url": null,
       "read": false,
-      "index": 1051,
+      "index": 1055,
       "section": null
     },
     {
       "title": "Fantastic Four #536",
       "url": null,
       "read": false,
-      "index": 1126,
+      "index": 1130,
       "section": null
     },
     {
       "title": "Fantastic Four #537",
       "url": null,
       "read": false,
-      "index": 1127,
+      "index": 1131,
       "section": null
     },
     {
       "title": "New Avengers: Illuminati One-Shot",
       "url": null,
       "read": false,
-      "index": 1128,
+      "index": 1132,
       "section": null
     },
     {
       "title": "The Sensational Spider-Man #29",
       "url": null,
       "read": false,
-      "index": 1146,
+      "index": 1150,
       "section": null
     },
     {
       "title": "The Sensational Spider-Man #30",
       "url": null,
       "read": false,
-      "index": 1147,
+      "index": 1151,
       "section": null
     },
     {
       "title": "The Sensational Spider-Man #31",
       "url": null,
       "read": false,
-      "index": 1148,
+      "index": 1152,
       "section": null
     },
     {
       "title": "The Sensational Spider-Man #34",
       "url": null,
       "read": false,
-      "index": 1149,
+      "index": 1153,
       "section": null
     },
     {
       "title": "Secret Invasion: Amazing Spider-Man #1",
       "url": null,
       "read": false,
-      "index": 1196,
+      "index": 1200,
       "section": null
     },
     {
       "title": "Secret Invasion: Amazing Spider-Man #2",
       "url": null,
       "read": false,
-      "index": 1197,
+      "index": 1201,
       "section": null
     },
     {
       "title": "Secret Invasion: Amazing Spider-Man #3",
       "url": null,
       "read": false,
-      "index": 1198,
+      "index": 1202,
       "section": null
     },
     {
       "title": "Spider-Man: Presidents' Day Special",
       "url": null,
       "read": false,
-      "index": 1213,
+      "index": 1217,
       "section": null
     },
     {
       "title": "Spider-Man: The Short Halloween",
       "url": null,
       "read": false,
-      "index": 1227,
+      "index": 1231,
       "section": null
     },
     {
       "title": "Dark Reign: The List - Amazing Spider-Man",
       "url": null,
       "read": false,
-      "index": 1242,
+      "index": 1246,
       "section": null
     },
     {
       "title": "Web of Spider-Man (vol. 2) #11",
       "url": null,
       "read": false,
-      "index": 1282,
+      "index": 1286,
       "section": null
     },
     {
       "title": "Spider-Man Saga",
       "url": null,
       "read": false,
-      "index": 1289,
+      "index": 1293,
       "section": null
     },
     {
       "title": "Fantastic Four #579",
       "url": null,
       "read": false,
-      "index": 1306,
+      "index": 1310,
       "section": null
     },
     {
       "title": "Fantastic Four #580",
       "url": null,
       "read": false,
-      "index": 1307,
+      "index": 1311,
       "section": null
     },
     {
       "title": "Fantastic Four #581",
       "url": null,
       "read": false,
-      "index": 1308,
+      "index": 1312,
       "section": null
     },
     {
       "title": "Fantastic Four #582",
       "url": null,
       "read": false,
-      "index": 1309,
+      "index": 1313,
       "section": null
     },
     {
       "title": "Fantastic Four #583",
       "url": null,
       "read": false,
-      "index": 1310,
+      "index": 1314,
       "section": null
     },
     {
       "title": "Fantastic Four #584",
       "url": null,
       "read": false,
-      "index": 1311,
+      "index": 1315,
       "section": null
     },
     {
       "title": "Fantastic Four #585",
       "url": null,
       "read": false,
-      "index": 1312,
+      "index": 1316,
       "section": null
     },
     {
       "title": "Fantastic Four #586",
       "url": null,
       "read": false,
-      "index": 1313,
+      "index": 1317,
       "section": null
     },
     {
       "title": "Fantastic Four #587",
       "url": null,
       "read": false,
-      "index": 1314,
+      "index": 1318,
       "section": null
     },
     {
       "title": "Fantastic Four #588",
       "url": null,
       "read": false,
-      "index": 1315,
+      "index": 1319,
       "section": null
     },
     {
       "title": "Fantastic Four #600",
       "url": null,
       "read": false,
-      "index": 1332,
+      "index": 1336,
       "section": null
     },
     {
       "title": "Fantastic Four #601",
       "url": null,
       "read": false,
-      "index": 1333,
+      "index": 1337,
       "section": null
     },
     {
       "title": "Fantastic Four #602",
       "url": null,
       "read": false,
-      "index": 1334,
+      "index": 1338,
       "section": null
     },
     {
       "title": "Fantastic Four #603",
       "url": null,
       "read": false,
-      "index": 1335,
+      "index": 1339,
       "section": null
     },
     {
       "title": "Fantastic Four #604",
       "url": null,
       "read": false,
-      "index": 1336,
+      "index": 1340,
       "section": null
     },
     {
       "title": "Black Panther #524",
       "url": null,
       "read": false,
-      "index": 1359,
+      "index": 1363,
       "section": null
     },
     {
       "title": "Daredevil #8 crossover",
       "url": null,
       "read": false,
-      "index": 1365,
+      "index": 1369,
       "section": null
     },
     {
       "title": "Mighty Avengers #4.1",
       "url": null,
       "read": false,
-      "index": 1445,
+      "index": 1449,
       "section": null
     },
     {
       "title": "Mighty Avengers #5.1",
       "url": null,
       "read": false,
-      "index": 1446,
-      "section": null
-    },
-    {
-      "title": "Original graphic novel",
-      "url": null,
-      "read": false,
-      "index": 1487,
+      "index": 1450,
       "section": null
     },
     {
       "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #1",
       "url": null,
       "read": false,
-      "index": 1521,
+      "index": 1525,
       "section": null
     },
     {
       "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #2",
       "url": null,
       "read": false,
-      "index": 1522,
+      "index": 1526,
       "section": null
     },
     {
       "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #3",
       "url": null,
       "read": false,
-      "index": 1523,
+      "index": 1527,
       "section": null
     },
     {
       "title": "Superior Foes of Spider-Man (full run)",
       "url": null,
       "read": false,
-      "index": 1653,
+      "index": 1657,
       "section": null
     },
     {
       "title": "Red Goblin: Read Death #1",
       "url": null,
       "read": false,
-      "index": 1739,
+      "index": 1743,
       "section": null
     },
     {
       "title": "Amazing Spider-Man: Sins Rising #1",
       "url": null,
       "read": false,
-      "index": 1772,
+      "index": 1776,
       "section": null
     },
     {
       "title": "Spider-Man: The Sins of Norman Osborn #1",
       "url": null,
       "read": false,
-      "index": 1775,
+      "index": 1779,
       "section": null
     },
     {
       "title": "Amazing Spider-Man: Gang War Prelude #1",
       "url": null,
       "read": false,
-      "index": 1954,
+      "index": 1958,
       "section": null
     },
     {
       "title": "Venom War: Fantastic Four #1",
       "url": null,
       "read": false,
-      "index": 2009,
+      "index": 2013,
       "section": null
     },
     {
       "title": "Venom War: It's Jeff #1",
       "url": null,
       "read": false,
-      "index": 2010,
+      "index": 2014,
       "section": null
     }
   ],
@@ -22692,26 +22671,155 @@
       ]
     },
     {
-      "issueId": -1763273867,
-      "title": "Spider-Man: The Parker Years",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 61254,
+      "title": "SPIDER-MAN: THE PARKER YEARS 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/61254/spider-man_the_parker_years_1_1995_1",
+      "seriesId": 22528,
+      "seriesName": "SPIDER-MAN: THE PARKER YEARS 1 (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42516,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5a6a3b6440c55",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Evan Skolnick",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -34654655,
-      "title": "various Super Specials",
-      "number": null,
-      "url": null,
+      "issueId": 59710,
+      "title": "AMAZING SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59710/amazing_spider-man_super_special_1_1995_1",
+      "seriesId": 21739,
+      "seriesName": "AMAZING SPIDER-MAN SUPER SPECIAL 1 (1995)",
+      "onSale": "1995-04-01T00:00:00+0000",
+      "mu": "1995-04-01T00:00:00+0000",
+      "digitalId": 41429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/a0/57588282d49ef",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Koblish",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Christopher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Hoover",
+          "role": "penciler"
+        },
+        {
+          "name": "John Calimee",
+          "role": "penciler"
+        },
+        {
+          "name": "Phil Gosier",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Eric Fein",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Lackey",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59712,
+      "title": "SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59712/spider-man_super_special_1_1995_1",
+      "seriesId": 21741,
+      "seriesName": "SPIDER-MAN SUPER SPECIAL 1 (1995)",
+      "onSale": "1995-07-01T00:00:00+0000",
+      "mu": "1995-07-01T00:00:00+0000",
+      "digitalId": 41431,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/90/575b336ab3aa1",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Greg Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jimmy Palmiotti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "cover artist"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe St. Pierre",
+          "role": "penciler"
+        },
+        {
+          "name": "Tod Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59715,
+      "title": "Venom Super Special (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59715/venom_super_special_1995_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -22721,7 +22829,74 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
+    },
+    {
+      "issueId": 59711,
+      "title": "THE SPECTACULAR SPIDER-MAN SUPER SPECIAL 1 (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59711/the_spectacular_spider-man_super_special_1_1995_1",
+      "seriesId": 21740,
+      "seriesName": "THE SPECTACULAR SPIDER-MAN SUPER SPECIAL 1 (1995)",
+      "onSale": "1995-09-01T00:00:00+0000",
+      "mu": "1995-09-01T00:00:00+0000",
+      "digitalId": 41430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/575b313842bf3",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Arne Starr",
+          "role": "cover artist"
+        },
+        {
+          "name": "George Perez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ralph Cabrera",
+          "role": "cover artist"
+        },
+        {
+          "name": "Claude St. Aubin",
+          "role": "penciler"
+        },
+        {
+          "name": "Darick Robertson",
+          "role": "penciler"
+        },
+        {
+          "name": "David Michelinie",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 59714,
+      "title": "Web of Spider-Man Super Special (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59714/web_of_spider-man_super_special_1995_1",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
     },
     {
       "issueId": 61242,
@@ -45468,20 +45643,35 @@
       ]
     },
     {
-      "issueId": -616230124,
-      "title": "Original graphic novel",
+      "issueId": 47150,
+      "title": "Amazing Spider-Man: Family Business (2013)",
       "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/47150/amazing_spider-man_family_business_2013",
+      "seriesId": 17749,
+      "seriesName": "Amazing Spider-Man: Family Business (2013)",
+      "onSale": "2014-04-02T00:00:00+0000",
+      "mu": "2016-09-05T00:00:00+0000",
+      "digitalId": 33224,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/40/57c7529586451",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 112,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler"
+        },
+        {
+          "name": "James Robinson",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 47980,

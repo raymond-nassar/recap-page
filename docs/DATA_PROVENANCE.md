@@ -306,15 +306,15 @@ orders: **null means nobody granted anything for this file, not that the file is
 
 ### Reading orders, pinned
 
-Two hundred and fifty-one pinned reading-order payloads sit under
-[`src/data/`](../src/data): 250 visible catalog files and one noncatalog partition parent. They hold
-21,853 issue records covering 16,076 distinct issues. The visible files hold 21,366 of those records;
+Two hundred and fifty-two pinned reading-order payloads sit under
+[`src/data/`](../src/data): 251 visible catalog files and one noncatalog partition parent. They hold
+22,078 issue records covering 16,114 distinct issues. The visible files hold 21,591 of those records;
 the extra 487 are the retained Marvel Knights to Planet X parent whose ordinary children partition
 the same vector. Each record copies from the upstream API:
 `issueId`, `title`,
 `number`, `url`, `seriesId`, `seriesName`, `onSale`, `mu`, `digitalId`, `pageCount`, a `cover`
-object of `path` and `ext`, and `creators` of `name` and `role`. Across all 251 payloads, 16,524
-records carry a cover URL and 15,518 carry creator credits.
+object of `path` and `ext`, and `creators` of `name` and `role`. Across all 252 payloads, 16,754
+records carry a cover URL and 15,731 carry creator credits.
 
 `description` was the field to look at hardest and is now empty. The others are facts about a
 publication: which issue, in which series, on what date. A description was Marvel's own prose
@@ -323,10 +323,10 @@ The key is `null` on every record, the vendoring script no longer writes it, and
 A further 41, 7,193 characters, were removed from the design mockups described below, which a
 first pass missed because it looked only at the files the catalog names.
 
-Of the visible records, 1,891 are unopenable placeholders for unresolved source positions and 85
+Of the visible records, 1,884 are unopenable placeholders for unresolved source positions and 87
 non-placeholder records carry neither a series ID nor a digital ID after an upstream refusal. Those
-1,976 gap positions affect 30 catalog entries: 24 carry placeholders, six carry empty records, and
-none carry both kinds. One legacy item retains a placeholder flag alongside real identity and launch
+1,971 gap positions affect 31 catalog entries: 24 carry placeholders, eight carry empty records, and
+one carries both kinds. One legacy item retains a placeholder flag alongside real identity and launch
 metadata, so it belongs to neither gap category. Placeholder
 IDs are computed here by [`scripts/vendor-orders.mjs`](../scripts/vendor-orders.mjs) from the order
 and source identity and then negated, so none can be read as one of Marvel's. These records preserve
@@ -428,10 +428,11 @@ than being guessed or dropped.
 The Amazing Spider-Man complete guide is compiled by hand, like the Best of Spider-Man reading it
 shares a story with, rather than carried through the frozen-packet pipeline used by the other
 mapped complete guides: it is not derived from Marvel metadata and cannot be checked against it,
-only the issue ids and titles come from Marvel, by resolving each issue the source guide names. Of 2,043
-source-defined rows, 1,937 resolve to an exact Marvel issue; the remaining 106 ship as explicit
-plain-text placeholders, never an invented identity, and are tracked for follow-up research in a
-linked GitHub issue. It overlaps 32 other catalog entries, the largest being 209 shared issues with
+only the issue ids and titles come from Marvel, by resolving each issue the source guide names. Of 2,047
+source-defined rows, 1,944 resolve to an exact Marvel issue: 1,942 carry maintained-provider metadata,
+while two retain owner-confirmed official issue links beside an explicit provider refusal. The
+remaining 103 ship as plain-text placeholders, never an invented identity, and are tracked for
+follow-up research in a linked GitHub issue. It overlaps 32 other catalog entries, the largest being 209 shared issues with
 the Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
 Spider-Verse orders.
 
