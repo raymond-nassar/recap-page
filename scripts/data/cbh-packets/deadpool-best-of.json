@@ -158,68 +158,6 @@
       "issueNumber": "4"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 21,
-      "sourceIssueReference": "Deadpool MAX (2010) #1",
-      "sourceRangeReference": "7. Deadpool MAX",
-      "normalizedSeriesTitle": "Deadpool MAX",
-      "seriesYear": 2010,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The official Marvel issue page confirms this source identity, but the repository metadata provider returns no record for its exact Marvel issue id; Issue 275 tracks resolution.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "official-marvel-issue",
-          "url": "https://www.marvel.com/comics/issue/32219/deadpool_max_2010_1",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "provider-absence",
-          "url": "https://marvel.emreparker.com/v1/issues/32219",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "8a7f6ca3d11e4df00b505b0b498bf921f0b490b835589a28dafc50f40c4c482a"
-    },
-    {
-      "sourcePosition": 22,
-      "sourceIssueReference": "Deadpool MAX (2010) #2",
-      "sourceRangeReference": "7. Deadpool MAX",
-      "normalizedSeriesTitle": "Deadpool MAX",
-      "seriesYear": 2010,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The official Marvel issue page confirms this source identity, but the repository metadata provider returns no record for its exact Marvel issue id; Issue 275 tracks resolution.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "official-marvel-issue",
-          "url": "https://www.marvel.com/comics/issue/32228/deadpool_max_2010_2",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "provider-absence",
-          "url": "https://marvel.emreparker.com/v1/issues/32228",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "70b8aad44421585ee2ea069e0e519b27c37662884ff39a02b2abfebc18b658b3"
-    }
-  ],
   "expectedCount": 38,
   "proposedManifest": {
     "id": "deadpool-best-of",
@@ -253,7 +191,7 @@
       "Cable",
       "Wolverine"
     ],
-    "expect": 40,
+    "expect": 38,
     "timeline": null,
     "coverIssueId": 8462
   },
@@ -263,7 +201,7 @@
   "sourceReview": {
     "authorityType": "human",
     "authorityIdentity": "repository owner",
-    "rationale": "The owner approved the thirteen visible recommendation groups. Exact Marvel metadata resolves thirty-eight distinct issues; two Deadpool MAX identities remain explicit metadata gaps; the Minibus repetitions remain traceable to their later source groups.",
+    "rationale": "The owner approved the thirteen-group source boundary. Thirty-eight exact issues and sixteen source repeats remain published; the two Deadpool MAX identities are permanent owner-authorized exclusions.",
     "reviewedAt": "2026-08-26T18:44:06-07:00"
   },
   "rows": [
@@ -686,5 +624,73 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "a39ca4a84617939c399f6adf5bdd44211c711fbd40f7fe603342af4116bb29dc"
+  "packetDigest": "81d99a978e0439b26ce66f9b68b202153d1daa023c56b55c7168c834850f6834",
+  "excludedSourceRows": [
+    {
+      "sourcePosition": 21,
+      "sourceIssueReference": "Deadpool MAX (2010) #1",
+      "reason": "The owner confirmed all Marvel MAX comics are unavailable on Marvel Unlimited because of age restrictions and directed that Deadpool MAX (2010) #1 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel MAX exclusion"
+    },
+    {
+      "sourcePosition": 22,
+      "sourceIssueReference": "Deadpool MAX (2010) #2",
+      "reason": "The owner confirmed all Marvel MAX comics are unavailable on Marvel Unlimited because of age restrictions and directed that Deadpool MAX (2010) #2 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel MAX exclusion"
+    }
+  ],
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 21,
+      "previousSourceIssueReference": "Deadpool MAX (2010) #1",
+      "previousSourceRangeReference": "7. Deadpool MAX",
+      "previousNormalizedSeriesTitle": "Deadpool MAX",
+      "previousSeriesYear": 2010,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed all Marvel MAX comics are unavailable on Marvel Unlimited because of age restrictions and directed that Deadpool MAX (2010) #1 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel MAX exclusion",
+      "auditBasis": "The owner confirmed the Marvel MAX line is unavailable on Marvel Unlimited and directed that this source issue not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/32219/deadpool_max_2010_1",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "97f9da834711248a4dc9c924a78c2942ad67d9d415d3d4f2579a8d51e9658102"
+    },
+    {
+      "sourcePosition": 22,
+      "previousSourceIssueReference": "Deadpool MAX (2010) #2",
+      "previousSourceRangeReference": "7. Deadpool MAX",
+      "previousNormalizedSeriesTitle": "Deadpool MAX",
+      "previousSeriesYear": 2010,
+      "previousIssueNumber": "2",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed all Marvel MAX comics are unavailable on Marvel Unlimited because of age restrictions and directed that Deadpool MAX (2010) #2 remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel MAX exclusion",
+      "auditBasis": "The owner confirmed the Marvel MAX line is unavailable on Marvel Unlimited and directed that this source issue not return as a metadata gap.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/32228/deadpool_max_2010_2",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/275",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "checkedAt": "2026-09-03",
+      "evidenceDigest": "922a1d9cc889f077d5fdf09a52916fda43e60e69d6bcdc0317632f1eacf4e13c"
+    }
+  ]
 }

@@ -2097,7 +2097,7 @@ test('the Captain Marvel packet preserves its legacy run boundary, exclusion, an
   );
 });
 
-test('the Deadpool Best of guide preserves its source groups, repeats, metadata gaps, and complete-library approval', async () => {
+test('the Deadpool Best of guide preserves its source groups, repeats, MAX exclusions, and complete-library approval', async () => {
   const packet = await readJson('scripts/data/cbh-packets/deadpool-best-of.json');
   const mapping = await readJson('scripts/data/cbh-mappings/deadpool-best-of.json');
   const report = await readJson('scripts/data/cbh-overlaps/deadpool-best-of.json');
@@ -2107,21 +2107,61 @@ test('the Deadpool Best of guide preserves its source groups, repeats, metadata 
 
   assert.equal(packet.sourceOccurrenceCount, 56);
   assert.equal(packet.rows.length, 38);
-  assert.equal(packet.sourceGaps.length, 2);
+  assert.equal(packet.sourceGaps, undefined);
   assert.equal(packet.repeatedSourceReferences.length, 16);
+  assert.deepEqual(
+    packet.repeatedSourceReferences.map((entry) => [entry.sourcePosition, entry.canonicalRow]),
+    Array.from({ length: 16 }, (_, index) => [index + 41, index + 23]),
+  );
+  assert.deepEqual(
+    packet.excludedSourceRows.map((row) => [row.sourcePosition, row.sourceIssueReference]),
+    [
+      [21, 'Deadpool MAX (2010) #1'],
+      [22, 'Deadpool MAX (2010) #2'],
+    ],
+  );
+  assert.ok(packet.excludedSourceRows.every(
+    (row) => row.decisionScope === 'Owner-authorized Marvel MAX exclusion',
+  ));
+  assert.deepEqual(
+    packet.sourceGapResolutions.map((resolution) => [
+      resolution.sourcePosition,
+      resolution.resolutionKind,
+    ]),
+    [[21, 'source-exclusion'], [22, 'source-exclusion']],
+  );
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.evidenceDigest === sourceGapResolutionDigestFor(resolution)
+    && resolution.evidenceSources.some((source) => source.url.endsWith('/issues/275'))
+    && resolution.evidenceSources.some((source) => /\/issue\/322(?:19|28)\//.test(source.url))
+  )));
   assert.equal(new Set([
     ...packet.rows,
-    ...packet.sourceGaps,
     ...packet.repeatedSourceReferences,
+    ...packet.sourceGapResolutions.map((resolution) => ({
+      sourceRangeReference: resolution.previousSourceRangeReference,
+    })),
   ].map((entry) => entry.sourceRangeReference)).size, 13);
-  assert.deepEqual(
-    mapping.sourceGaps.map((gap) => gap.sourceIssueReference),
-    ['Deadpool MAX (2010) #1', 'Deadpool MAX (2010) #2'],
-  );
-  assert.equal(generated.count, 40);
-  assert.equal(generated.placeholders, 2);
+  assert.deepEqual(mapping.excludedSourceRows, packet.excludedSourceRows);
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.equal(mapping.sourceGaps, undefined);
+  assert.deepEqual(sourcePositionsForPacket(packet), mapping.rows.map((row) => row.sourcePosition));
+  assert.equal(generated.count, 38);
+  assert.equal(generated.placeholders, 0);
+  assert.deepEqual(generated.unresolved, []);
+  assert.ok(generated.items.every((item) => !item.title.startsWith('Deadpool MAX')));
   assert.equal(parseChecklist(markdown).entries.length, 38);
-  assert.equal(report.comparisonCount, 137);
+  assert.equal(report.candidateCount, 38);
+  assert.equal(report.comparisonCount, 138);
+  assert.deepEqual(
+    report.comparisons.find((comparison) => comparison.orderId === 'guardians-of-the-galaxy-reading-order'),
+    {
+      orderId: 'guardians-of-the-galaxy-reading-order',
+      sharedCount: 0,
+      sharedIds: [],
+      relationship: 'none',
+    },
+  );
   assert.deepEqual(
     report.comparisons.filter((comparison) => comparison.relationship !== 'none'),
     [],
@@ -2140,11 +2180,10 @@ test('the Deadpool Best of guide preserves its source groups, repeats, metadata 
     '4. Deadpool: The Adamantium Collection',
     '5. Deadpool - The Daniel Way Run',
     '6. Uncanny X-Force - The Rick Remender Run',
-    '7. Deadpool MAX',
     '8. Deadpool (Marvel NOW!) - The Gerry Duggan and Brian Posehn run',
     '9. Deadpool Minibus',
   ]);
-  assert.equal(new Set(generated.items.map((item) => item.collectedIn).filter(Boolean)).size, 9);
+  assert.equal(new Set(generated.items.map((item) => item.collectedIn).filter(Boolean)).size, 8);
 });
 
 test('the character inventory rejects incomplete evidence and source sets', async () => {

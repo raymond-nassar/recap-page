@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T15:55:18.540Z",
+  "generatedAt": "2026-09-03T16:22:51.603Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3885,10 +3885,10 @@
       "type": "character-run",
       "depth": "essential",
       "spotlightKind": "best-of",
-      "count": 40,
-      "placeholderCount": 2,
+      "count": 38,
+      "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 9,
+      "collections": 8,
       "characters": [
         "Deadpool",
         "Cable",
@@ -3918,7 +3918,7 @@
       "sourceSection": "The Best Deadpool Comics To Start With!",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T02:17:07.601Z"
+      "updatedAt": "2026-09-03T16:22:51.603Z"
     },
     {
       "id": "scarlet-witch-best-of",

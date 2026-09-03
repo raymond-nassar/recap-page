@@ -6,27 +6,12 @@
   "sourceSection": "The Best Deadpool Comics To Start With!",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T02:17:07.601Z",
+  "generatedAt": "2026-09-03T16:22:51.603Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 40,
-  "collections": 9,
-  "placeholders": 2,
-  "unresolved": [
-    {
-      "title": "Deadpool MAX (2010) #1",
-      "url": null,
-      "read": false,
-      "index": 20,
-      "section": "7. Deadpool MAX"
-    },
-    {
-      "title": "Deadpool MAX (2010) #2",
-      "url": null,
-      "read": false,
-      "index": 21,
-      "section": "7. Deadpool MAX"
-    }
-  ],
+  "count": 38,
+  "collections": 8,
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 8462,
@@ -652,40 +637,6 @@
         }
       ],
       "collectedIn": "6. Uncanny X-Force - The Rick Remender Run"
-    },
-    {
-      "issueId": -306311205,
-      "title": "Deadpool MAX (2010) #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "7. Deadpool MAX"
-    },
-    {
-      "issueId": -289533586,
-      "title": "Deadpool MAX (2010) #2",
-      "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "7. Deadpool MAX"
     },
     {
       "issueId": 43797,
