@@ -120,13 +120,19 @@
     "url": "https://www.comicbookherald.com/agents-of-atlas-reading-order/",
     "guideType": "character-run",
     "window": null,
-    "disposition": "deferred",
-    "reason": "The full-page source ledger preserves 232 ordered occurrences: 75 canonical candidates, 39 repeats, no gaps, and 118 exclusions. No complete Best/Essential section exists on the source page, so the full page remains the correct boundary while provider verification stays blocked.",
-    "sourceRetrievedAt": "2026-08-27",
-    "overlapIds": [],
-    "catalogIds": [],
-    "deliveryStatus": "not-applicable",
-    "centralDisposition": "deferred",
+    "disposition": "new-order",
+    "reason": "The frozen guide publishes 80 exact metadata rows and preserves 87 source occurrences as 80 exact rows, 3 repeats, and 4 source-boundary exclusions, with 3 current-library relationships and no exact duplicate.",
+    "sourceRetrievedAt": "2026-08-23",
+    "overlapIds": [
+      "black-widow-reading-order",
+      "secret-invasion",
+      "war-of-the-realms"
+    ],
+    "catalogIds": [
+      "agents-of-atlas-reading-order"
+    ],
+    "deliveryStatus": "shipped",
+    "centralDisposition": "pilot-approved",
     "labels": [
       "Agents of Atlas"
     ],
@@ -136,7 +142,7 @@
     "duplicateFlags": [],
     "sourceContentSha256": "e58153e982b45d6471de9839f19dcf2c337ddb585a3bec1c19b558497d5454a0",
     "sourceBoundaryStatus": "exact-page-snapshot",
-    "metadataHorizonStatus": "blocked-exact-resolution-not-run"
+    "metadataHorizonStatus": "approved"
   },
   {
     "position": 5,
