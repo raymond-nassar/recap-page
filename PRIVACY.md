@@ -71,19 +71,14 @@ read the browser storage under `http://127.0.0.1:8787`. GitHub documents that Pa
 IP address for security purposes in [What is GitHub Pages?](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages),
 retrieved 2026-09-02. GitHub's privacy statement applies to GitHub's handling of those requests.
 
-The home can send you, only when you choose its link, to a public GitHub Copilot Space grounded in
-selected public project documents. Recap Page sends nothing to that Space. GitHub receives the
-question and selected context, processes them through an AI model, and counts the request against
-your Copilot allowance or credits. GitHub documents that Chat messages are retained for 28 days in
-[Asking GitHub Copilot questions in GitHub](https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github),
-retrieved 2026-09-02.
+The home can send you, only when you choose its link, to a public GitHub question form framed by
+maintained project documents. You need a GitHub account and must sign in. Your username, question,
+and every reply are public, and GitHub hosts and processes that content under its privacy statement.
 
-For individual Copilot plans, GitHub may use interactions for model improvement unless the account
-holder opts out. The current control is described in [Managing GitHub Copilot policies as an
-individual subscriber](https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies),
-retrieved 2026-09-02. Do not put reading progress, lists, notes, backups, personal information or
-vulnerability details in a Copilot question. Removing the public route stops future use through the
-project, but cannot recall a prompt GitHub has already processed or shorten GitHub's retention.
+Recap Page sends nothing to the form automatically. The form asks which maintained source you
+checked and tells you not to include reading progress, lists, notes, backups, personal information,
+attachments or vulnerability details. Removing the form can stop new questions through that route,
+but cannot recall an Issue, reply, notification or copy that already exists.
 
 ## Contact and security
 

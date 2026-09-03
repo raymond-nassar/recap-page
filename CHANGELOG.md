@@ -33,8 +33,8 @@ saved is affected.
 
 The information page reuses the two current cover-off product views and links to the documents that
 own setup, support, privacy, security, architecture, provenance, releases and contribution guidance.
-An optional GitHub Copilot project guide explains its account and hosted-processing boundary before
-entry and never receives reading state from the app.
+A dedicated public question form frames questions with maintained project sources, explains that the
+Issue and replies are public, and receives nothing automatically from the app.
 
 ### Added Adam Warlock Character Spotlight
 

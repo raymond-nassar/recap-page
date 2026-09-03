@@ -1,0 +1,75 @@
+name: Ask a project question
+description: Ask how Recap Page works or why a documented project decision was made.
+labels: ["question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form opens a public GitHub Issue. You need a GitHub account and must sign in. Your
+        username, question and every reply are public. GitHub hosts and processes that content.
+        Recap Page does not send reading progress or anything else here automatically.
+
+        Read the maintained context that is closest to your question first:
+
+        - [Project overview](https://github.com/raymond-nassar/recap-page#readme)
+        - [Running and troubleshooting](https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md)
+        - [Privacy](https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md)
+        - [Architecture](https://github.com/raymond-nassar/recap-page/blob/main/docs/ARCHITECTURE.md)
+        - [Data provenance](https://github.com/raymond-nassar/recap-page/blob/main/docs/DATA_PROVENANCE.md)
+        - [Governance](https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md)
+        - [Contributing](https://github.com/raymond-nassar/recap-page/blob/main/CONTRIBUTING.md)
+        - [Releases](https://github.com/raymond-nassar/recap-page/releases)
+
+        For troubleshooting or ordinary support, use the
+        [support guide](https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md). Report
+        broken behaviour with the
+        [bug form](https://github.com/raymond-nassar/recap-page/issues/new?template=bug.yml), suggest
+        product changes with the
+        [feature form](https://github.com/raymond-nassar/recap-page/issues/new?template=feature.yml),
+        and correct catalogue data with the
+        [data form](https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml).
+        Suspected vulnerabilities belong only on the private route in the
+        [security policy](https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md).
+
+  - type: dropdown
+    id: topic
+    attributes:
+      label: What is your question about?
+      options:
+        - "The product or running it"
+        - "Privacy or saved data"
+        - "Architecture"
+        - "Data provenance"
+        - "Governance, contributing, or releases"
+        - "No maintained source seems to fit"
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: What would you like to understand?
+      description: Ask one project question so its answer and source stay clear.
+    validations:
+      required: true
+
+  - type: textarea
+    id: source-context
+    attributes:
+      label: Which maintained source did you check?
+      description: >-
+        Name the source and what remains unclear, or state that none of the listed sources fits.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: public-content
+    attributes:
+      label: Public issue checks
+      options:
+        - label: I understand that this issue, my username and every reply are public.
+          required: true
+        - label: >-
+            I have not included reading progress, lists, notes, backup content, personal information,
+            attachments or vulnerability details.
+          required: true

@@ -611,11 +611,12 @@ four-file allowlist. No file under `src`, no manifest, no worker and no launch p
 
 The information page has no script or form. Its navigation is ordinary links to the README, running
 guide, support policy, privacy policy, security policy, architecture, provenance, maintaining guide,
-contribution guide, governance, changelog, releases, issues and Project. Those destinations remain
-the owners of their detail.
+contribution guide, governance, changelog, releases and issues. Those destinations remain the owners
+of their detail.
 
-The optional GitHub Copilot Space is another GitHub-hosted project surface. The Page explains that
-boundary before linking to it. The tracker does not call either hosted surface, and neither hosted
+The public question form is another GitHub-hosted project surface. The Page explains before linking
+that sign-in is required and the resulting Issue and replies are public. The tracker does not call
+either hosted surface. The form receives only what a visitor deliberately types, and neither
 surface can read storage belonging to `http://127.0.0.1:8787`.
 
 ```mermaid
@@ -624,11 +625,11 @@ flowchart LR
   builder --> artifact["four-file deployment artifact"]
   artifact --> pages["GitHub Pages project home"]
   pages --> docs["maintained repository documents"]
-  pages --> space["optional GitHub Copilot Space"]
+  pages --> questions["public project-question Issue form"]
   tracker["local tracker at 127.0.0.1:8787"] -. "no data path" .-> pages
-  tracker -. "no data path" .-> space
+  tracker -. "no data path" .-> questions
 ```
 
-[Maintaining Recap Page](MAINTAINING.md) owns the exact Space sources, deployment settings, hosted
+[Maintaining Recap Page](MAINTAINING.md) owns the exact form contract, deployment settings, hosted
 verification and rollback order. Removing source files alone does not unpublish an existing Page,
-and removing public Space access cannot recall a prompt that GitHub has already processed.
+and removing the form cannot recall an Issue or reply that GitHub has already published.

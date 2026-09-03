@@ -32,27 +32,25 @@ import {
 const ROOT = join(import.meta.dirname, '..');
 const PAGE = join(ROOT, 'pages', 'index.html');
 const CSS = join(ROOT, 'pages', 'site.css');
-const MAINTAINING = join(ROOT, 'docs', 'MAINTAINING.md');
+const QUESTION_FORM = join(ROOT, '.github', 'ISSUE_TEMPLATE', 'project-question.yml');
 const WORKFLOW = join(ROOT, '.github', 'workflows', 'pages.yml');
 const html = readFileSync(PAGE, 'utf8');
 const css = readFileSync(CSS, 'utf8');
-const maintaining = readFileSync(MAINTAINING, 'utf8');
+const questionForm = readFileSync(QUESTION_FORM, 'utf8');
 const workflow = readFileSync(WORKFLOW, 'utf8');
 
 const APP_ORIGIN = 'http://127.0.0.1:8787/';
 const REPOSITORY = 'https://github.com/raymond-nassar/recap-page';
-const SPACE_URL = 'https://github.com/copilot/spaces/raymond-nassar/1';
-const SPACE_SOURCES = [
-  'README.md',
-  'docs/RUNNING.md',
-  'SUPPORT.md',
-  'PRIVACY.md',
-  'SECURITY.md',
-  'docs/ARCHITECTURE.md',
-  'docs/DATA_PROVENANCE.md',
-  'docs/MAINTAINING.md',
-  'GOVERNANCE.md',
-  'CONTRIBUTING.md',
+const QUESTION_FORM_URL = `${REPOSITORY}/issues/new?template=project-question.yml`;
+const QUESTION_CONTEXT_LINKS = [
+  `${REPOSITORY}#readme`,
+  `${REPOSITORY}/blob/main/docs/RUNNING.md`,
+  `${REPOSITORY}/blob/main/PRIVACY.md`,
+  `${REPOSITORY}/blob/main/docs/ARCHITECTURE.md`,
+  `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md`,
+  `${REPOSITORY}/blob/main/GOVERNANCE.md`,
+  `${REPOSITORY}/blob/main/CONTRIBUTING.md`,
+  `${REPOSITORY}/releases`,
 ];
 const EXPECTED_HREFS = [
   '#main',
@@ -82,7 +80,7 @@ const EXPECTED_HREFS = [
   `${REPOSITORY}/blob/main/GOVERNANCE.md`,
   `${REPOSITORY}/blob/main/CHANGELOG.md`,
   `${REPOSITORY}/blob/main/docs/WHY_A_BROWSER_APP.md`,
-  SPACE_URL,
+  QUESTION_FORM_URL,
   `${REPOSITORY}/blob/main/SUPPORT.md`,
   `${REPOSITORY}/blob/main/SUPPORT.md`,
   `${REPOSITORY}/issues/new?template=bug.yml`,
@@ -94,7 +92,6 @@ const EXPECTED_HREFS = [
   `${REPOSITORY}/issues/403`,
   `${REPOSITORY}/commits/main`,
   `${REPOSITORY}/releases`,
-  'https://github.com/users/raymond-nassar/projects/1',
   `${REPOSITORY}/blob/main/PRIVACY.md`,
   `${REPOSITORY}/blob/main/SECURITY.md`,
   `${REPOSITORY}/blob/main/LICENSE`,
@@ -273,46 +270,90 @@ test('the demo is exactly the two current described product views', () => {
   }
 });
 
-test('the Copilot disclosure is complete before the project link', () => {
+test('the public question disclosure is complete before the form link', () => {
   const section = html.slice(
     html.indexOf('<section id="project-questions"'),
     html.indexOf('<section id="feedback"'),
   );
-  assert.match(section, /Copilot Free works/);
-  assert.match(section, /GitHub account with Copilot access/);
-  assert.match(section, /Copilot Chat allowance or AI credits/);
-  assert.match(section, /project does not pay for or meter your use/);
-  assert.match(section, /question and selected public project context to an AI model/);
-  assert.match(section, /retained for 28 days/);
-  assert.match(section, /used to improve models unless you opt out/);
-  assert.match(section, /Answers can be incomplete or wrong/);
-  assert.match(section, /Do not paste reading progress, lists, notes, backups/);
-  assert.match(section, /Recap Page sends nothing to this guide/);
-  assert.match(section, /GitHub Copilot is not maintainer support/);
-  assert.doesNotMatch(section, /being checked privately|link is added/);
-  assert.ok(section.indexOf('Before you use the project guide') < section.indexOf(SPACE_URL));
-  assert.equal([...section.matchAll(new RegExp(SPACE_URL, 'g'))].length, 1);
-});
+  assert.match(section, /You need a GitHub account and must sign in/);
+  assert.match(section, /username, question, and every reply are public/);
+  assert.match(section, /GitHub hosts and processes that content/);
+  assert.match(section, /Recap Page sends nothing to the form automatically/);
+  assert.match(section, /Name the maintained source you checked and what remains unclear/);
+  assert.match(section, /Do not include reading progress, lists, notes, backups, personal information,\s+attachments, or vulnerability details/);
+  assert.match(section, /Troubleshooting, defects, improvements, catalogue corrections, and security reports/);
+  assert.ok(section.indexOf('Before you open the question form') < section.indexOf(QUESTION_FORM_URL));
+  assert.equal([...section.matchAll(new RegExp(QUESTION_FORM_URL.replace('?', '\\?'), 'g'))].length, 1);
 
-test('the maintained Space configuration is exact and selective', () => {
-  const sourceSection = maintaining.slice(
-    maintaining.indexOf('### Configure the Copilot Space'),
-    maintaining.indexOf('### Prepare Pages without publishing'),
-  );
-  assert.match(sourceSection, /Recap Page project guide/);
-  assert.match(sourceSection, /General access private/);
-  assert.match(sourceSection, new RegExp(`Space URL: <${SPACE_URL}>`));
-  for (const source of SPACE_SOURCES) {
-    assert.equal(
-      [...sourceSection.matchAll(new RegExp(`^${source.replaceAll('.', '\\.')}\\s*$`, 'gm'))].length,
-      1,
-      `${source} is not present exactly once in the Space source list`,
+  const currentSources = [
+    ['pages/index.html', html],
+    ['SUPPORT.md', readFileSync(join(ROOT, 'SUPPORT.md'), 'utf8')],
+    ['PRIVACY.md', readFileSync(join(ROOT, 'PRIVACY.md'), 'utf8')],
+    ['SECURITY.md', readFileSync(join(ROOT, 'SECURITY.md'), 'utf8')],
+    ['docs/ARCHITECTURE.md', readFileSync(join(ROOT, 'docs', 'ARCHITECTURE.md'), 'utf8')],
+    ['docs/MAINTAINING.md', readFileSync(join(ROOT, 'docs', 'MAINTAINING.md'), 'utf8')],
+    ['CHANGELOG.md', readFileSync(join(ROOT, 'CHANGELOG.md'), 'utf8')],
+  ];
+  for (const [path, source] of currentSources) {
+    assert.doesNotMatch(
+      source,
+      /github\.com\/copilot\/spaces|Optional answers from GitHub Copilot|Configure the Copilot Space|Ask GitHub Copilot/,
+      `${path} still advertises the unavailable Space`,
     );
   }
-  assert.doesNotMatch(sourceSection, /^CHANGELOG\.md\s*$/m);
-  assert.match(sourceSection, /Answer questions about Recap Page only from the attached maintained public sources/);
-  assert.match(sourceSection, /Never ask for reading\s+progress, lists, notes, backup files/);
-  assert.equal((sourceSection.match(/^\d+\. /gm) ?? []).length, 4);
+  assert.doesNotMatch(html, /github\.com\/users\/raymond-nassar\/projects\/1/);
+});
+
+test('the public question form is source-framed and safe', () => {
+  assert.match(questionForm, /^name: Ask a project question$/m);
+  assert.match(questionForm, /^description: Ask how Recap Page works or why a documented project decision was made\.$/m);
+  assert.match(questionForm, /^labels: \["question"\]$/m);
+
+  const intro = questionForm.slice(0, questionForm.indexOf('  - type: dropdown'));
+  assert.match(intro, /You need a GitHub account and must sign in/);
+  assert.match(intro, /username, question and every reply are public/);
+  assert.match(intro, /GitHub hosts and processes that content/);
+  assert.match(intro, /Recap Page does not send reading progress or anything else here automatically/);
+  for (const href of QUESTION_CONTEXT_LINKS) {
+    assert.equal(
+      [...intro.matchAll(new RegExp(href.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'))].length,
+      1,
+      `${href} is not present exactly once in the question context`,
+    );
+  }
+  for (const route of [
+    `${REPOSITORY}/blob/main/SUPPORT.md`,
+    `${REPOSITORY}/issues/new?template=bug.yml`,
+    `${REPOSITORY}/issues/new?template=feature.yml`,
+    `${REPOSITORY}/issues/new?template=data-order.yml`,
+    `${REPOSITORY}/blob/main/SECURITY.md`,
+  ]) {
+    assert.match(intro, new RegExp(route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+
+  const controls = [...questionForm.matchAll(/^\s{4}id: ([\w-]+)$/gm)]
+    .map((match) => match[1]);
+  assert.deepEqual(controls, ['topic', 'question', 'source-context', 'public-content']);
+  const options = [...questionForm.matchAll(/^\s{8}- "([^"]+)"$/gm)]
+    .map((match) => match[1]);
+  assert.deepEqual(options, [
+    'The product or running it',
+    'Privacy or saved data',
+    'Architecture',
+    'Data provenance',
+    'Governance, contributing, or releases',
+    'No maintained source seems to fit',
+  ]);
+  assert.match(questionForm, /Name the source and what remains unclear, or state that none of the listed sources fits/);
+  assert.doesNotMatch(questionForm, /^\s+- type: input$/m);
+  assert.match(
+    questionForm,
+    /I understand that this issue, my username and every reply are public\.\s+required: true/,
+  );
+  assert.match(
+    questionForm,
+    /I have not included reading progress, lists, notes, backup content, personal information,\s+attachments or vulnerability details\.\s+required: true/,
+  );
 });
 
 test('Page HTML and CSS enforce the shipped writing rule', () => {
