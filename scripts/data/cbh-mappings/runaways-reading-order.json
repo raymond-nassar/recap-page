@@ -6117,10 +6117,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "reviewedAt": "2026-08-27",
     "rationale": "The report compares every eligible current-library order with the 114 reader-visible exact Runaways selections. All 3 non-none relationships were reviewed against their shared issue ids; no exact duplicate exists.",
-    "reportDigest": "1d45b26de068fdb80759c25e248249b4f4b5f3bf259a913c1ebf102ae3f6d251",
+    "reportDigest": "3881b8aea53e1fc7bc5c18d08530ff26142c479a27701ccbc4634ce0a267a263",
     "packetDigest": "bbc2f8b76a838e7e1c2b2ee282102ad12f8f6f21b3af9b210721557652495a64",
     "mappingDigest": "871f585521812b266678c1ace14f49fc78fdff69906d1d74b91c0197a1776418",
-    "libraryDigest": "bd3e15c55272dd5bfc7d6637ec76d4d1845f7858c9253d62aade473fcf446052",
+    "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
     "peerDigests": {},
     "dispositions": [
       {
@@ -7366,6 +7366,6 @@
         "rationale": "No exact provider-resolved issue identity is shared."
       }
     ],
-    "approvalDigest": "76b5cf6268f9fbd880f6040569d46458abd66d12aef06499e2017c5b46f4dd6c"
+    "approvalDigest": "44d5e8aebbeb51ff91fe769a331c8f6a75a53359310be5758ce7e415f6f07e9e"
   }
 }

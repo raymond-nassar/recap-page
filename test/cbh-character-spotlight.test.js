@@ -1926,7 +1926,7 @@ test('Loki source-gap identities survive re-vendoring and import without collaps
   );
 });
 
-test('Silver Surfer preserves all 426 source occurrences and the four issue #304 gap records', async () => {
+test('Silver Surfer settles all four issue #304 gaps without losing source positions', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const packet = await readJson('scripts/data/cbh-packets/silver-surfer-reading-order.json');
   const mapping = await readJson('scripts/data/cbh-mappings/silver-surfer-reading-order.json');
@@ -1990,39 +1990,55 @@ test('Silver Surfer preserves all 426 source occurrences and the four issue #304
   );
 
   assert.equal(packet.sourceOccurrenceCount, 426);
-  assert.equal(packet.rows.length, 294);
+  assert.equal(packet.rows.length, 295);
   assert.equal(packet.repeatedSourceReferences.length, 17);
-  assert.equal(packet.sourceGaps.length, 4);
-  assert.equal(packet.excludedSourceRows.length, 111);
+  assert.equal(packet.sourceGaps?.length ?? 0, 0);
+  assert.equal(packet.excludedSourceRows.length, 114);
   assert.equal(
     packet.rows.length
       + packet.repeatedSourceReferences.length
-      + packet.sourceGaps.length
+      + (packet.sourceGaps?.length ?? 0)
       + packet.excludedSourceRows.length,
     packet.sourceOccurrenceCount,
   );
-  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
-  for (const sourceGaps of [packet.sourceGaps, mapping.sourceGaps]) {
-    assert.equal(sourceGaps.length, 4);
-    assert.ok(sourceGaps.every((gap) => (
-      gap.auditBasis.includes('issue #304')
-      && gap.evidenceSources.some((source) => (
-        source.kind === 'gap-tracking-issue'
-        && source.url === 'https://github.com/raymond-nassar/recap-page/issues/304'
-      ))
-    )));
-  }
+  assert.equal(mapping.sourceGaps?.length ?? 0, 0);
+  assert.deepEqual(
+    packet.sourceGapResolutions.map(({ sourcePosition, resolutionKind }) => ({
+      sourcePosition,
+      resolutionKind,
+    })),
+    [
+      { sourcePosition: 137, resolutionKind: 'source-exclusion' },
+      { sourcePosition: 140, resolutionKind: 'source-exclusion' },
+      { sourcePosition: 141, resolutionKind: 'exact-issue' },
+      { sourcePosition: 318, resolutionKind: 'source-exclusion' },
+    ],
+  );
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.deepEqual(
+    packet.excludedSourceRows
+      .filter(({ sourcePosition }) => [137, 140, 318].includes(sourcePosition))
+      .map(({ sourcePosition }) => sourcePosition),
+    [137, 140, 318],
+  );
+  const parableTwo = mapping.rows.find(({ sourcePosition }) => sourcePosition === 141);
+  assert.equal(parableTwo?.selectedIssueId, 43437);
+  assert.equal(
+    parableTwo?.marvelIssueUrl,
+    'https://www.marvel.com/comics/issue/43437/silver_surfer_parable_1989_2',
+  );
   assert.equal(record?.centralDisposition, 'pilot-approved');
   assert.equal(record?.deliveryStatus, 'shipped');
-  assert.equal(manifestEntry?.expect, 298);
-  assert.equal(catalogEntry?.count, 298);
-  assert.equal(generated.count, 298);
-  assert.equal(generated.placeholders, 4);
-  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 294);
-  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 4);
-  assert.equal(parseChecklist(markdown).entries.length, 294);
-  assert.equal(parseChecklist(markdown).unresolved.length, 4);
-  assert.equal(report.candidateCount, 294);
+  assert.equal(manifestEntry?.expect, 295);
+  assert.equal(catalogEntry?.count, 295);
+  assert.equal(generated.count, 295);
+  assert.equal(generated.placeholders, 0);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 295);
+  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 0);
+  assert.equal(generated.items.find((item) => item.issueId === 43437)?.number, '2');
+  assert.equal(parseChecklist(markdown).entries.length, 295);
+  assert.equal(parseChecklist(markdown).unresolved.length, 0);
+  assert.equal(report.candidateCount, 295);
   assert.equal(report.comparisonCount, expectedOrderIds.length);
   assert.deepEqual(
     report.comparisons.map((comparison) => comparison.orderId).sort(),
@@ -2439,7 +2455,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
   );
 
-  assert.equal(reviewedLibraryDigest, '11c4a1b1c4971924b77d997dc5ab513944ede970e7a0bcae66ac0f41d51f8464');
+  assert.equal(reviewedLibraryDigest, '3068493398158e5690148a7ef7983d25158c01ad5af56d62ae315fcc97b3ab97');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(regeneratedReport.candidateId, report.candidateId);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -2680,11 +2696,11 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
   assert.equal(mapping.mappingDigest, '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40');
-  assert.equal(reviewedLibraryDigest, '675878b33ab7659dfd47da4d1232a7ada701752c560081af323014c01b998366');
-  assert.equal(report.reportDigest, '4ad58d47b49d975782eae632559c8174c73d1a82e969aba038352be87beed150');
+  assert.equal(reviewedLibraryDigest, '1f72711a796a97d0100ccb331b5316b5cc75aded09cee00b60caf7aee6a3f14f');
+  assert.equal(report.reportDigest, '2dca33dab59c37b398f9a57999ddea44e77f55e7a0486c3735e394d5c3ce7a61');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '94716125fbccc9022d92d773455dca6115917a372e2362e5e5c16ae54288fddf',
+    'ecd806a515a9cb56f1c8e04f811b2ff9d649dcc9add4a90815460f9534801464',
   );
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(regeneratedReport.comparisons, report.comparisons);
@@ -2820,11 +2836,11 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
 
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
   assert.equal(mapping.mappingDigest, '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523');
-  assert.equal(reviewedLibraryDigest, 'a345b84b05c8f3f33dcf139bd5eef20a35a8e41bf0a22c3ba34d0757c7ce7d8a');
-  assert.equal(report.reportDigest, '9d6e0d9b0c9d3895037a0e2fd856e40165480bba0ee162f86af6ece927b21e01');
+  assert.equal(reviewedLibraryDigest, '4b6faebd9cb64a02fa3f0f69e4236a8c8a4507bb3f48869fadb41dc9b43b0c20');
+  assert.equal(report.reportDigest, 'dd4933934a5f50ab76fb5fb0d989633091e2ea09cff86d283678d07e24a6f191');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '979cf253b40ad65e19c3027c3631c9c5d0938e8c916a42dc5e98f5ad2dbfce0d',
+    '99e939719f9e39522545e6e4f0c9f222c403177ef8253f8502f77872383c11a2',
   );
   assert.deepEqual(report.peerDigests, {
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
@@ -2971,11 +2987,11 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
 
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
   assert.equal(mapping.mappingDigest, '731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da');
-  assert.equal(reviewedLibraryDigest, 'e3eaf52e6d27c1bf040834c95c4cbc6a6244e85fe762db13460fac20b1e6f371');
-  assert.equal(report.reportDigest, 'e8efb226df5eb9058ca21fabd74bf87ab34d2cd9cad7d49e6cca1ed712f2bb71');
+  assert.equal(reviewedLibraryDigest, '6859e74c23e96d11d6165ff5670b1a437b1e119f9f093faeedbc5aa8800f437b');
+  assert.equal(report.reportDigest, 'dd0a186869e4d3bd86c33fb241a51a7853f0ba9356556cd97b714a9cf3f894af');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    'a4c807d9edd15299a1c7bba98bfd505dd2a0b858b44ed772492b94d698bf9244',
+    '19f38f249e7ba526f7182890583181adecfb5bea2367a45bdd0d6a578947b557',
   );
   assert.deepEqual(report.peerDigests, {
     [grootCandidateId]: '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523',
@@ -3208,12 +3224,12 @@ test('the Modern X-Men fast-track preserves its selected source boundary and ove
   assert.equal(packet.sourceIssueBearingBlocksSha256, 'f0c54ad986cc4b07f06cc0345d3d909d4e95e2926b2e69aebf8b077c9672c9b5');
   assert.equal(packet.sourceRetrievedAt, '2026-08-25');
   assert.equal(mapping.mappingDigest, '06aaeaf6f659dfd659bcde59ed9ff5dd8df7c6dbb99b456697f47c008fcf3271');
-  assert.equal(report.reportDigest, '3990926e6b598f4facc270e6cebb7c1af5acad0fb29241a211666e09049c9409');
-  assert.equal(reviewedLibraryDigest, 'efb63bc80dfda2a16068ed8ea7dfc149db54d1aa0455d1e541f5c71df9a182ec');
+  assert.equal(report.reportDigest, 'ce2d0e51851e1bee43b00be6ee0dcc24bb6b578835e145d0fa12be91c01e73f8');
+  assert.equal(reviewedLibraryDigest, '2ea42c4de5baab53e6c4af926f49c70723f1e490aa5ff0e339a0709ed572a773');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '07fd776c3be4e0526fff2247bafff758c406e545115627275b25356fb22bc940',
+    '745a3b537e6d5ddedc696f1566108246785288c6cb0e80760caf3dbbc2720a7f',
   );
   assert.deepEqual(regeneratedReport, report);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -3353,7 +3369,7 @@ test('the first character batch stays exact through evidence, catalog, and gener
     },
   };
 
-  assert.equal(reviewedLibraryDigest, 'a65b550da4452089919d0bd13255ef645c5e30db016be7bdc1d8e1e517c6dc36');
+  assert.equal(reviewedLibraryDigest, 'fdae5afcb4e4d4133a19ccc6fa14189a8249978f22b03094e2a1272d29417b9a');
   for (const item of evidence) {
     const peer = evidence.find((candidate) => candidate.id !== item.id);
     const inventoryRecord = inventory.find((record) => record.id === item.id);

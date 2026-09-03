@@ -514,10 +514,10 @@
     "coverIssueId": 13751
   },
   "relationshipReview": {
-    "reportDigest": "959dae661165a2d307265a65e2c40ca36433ae906963b8201885e8a4f796625e",
+    "reportDigest": "8b4e1f63fe1a2446e9bea19516de4df702839a72851d2d185fe55621bb96d818",
     "packetDigest": "39b70a2413d47657f81ccd1ac3d051180a64e5707bdd4aa52cd742698bbe6b99",
     "mappingDigest": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
-    "libraryDigest": "e74ef5c54a1995a38427f499be01ba19c0f8f4ca3d9d025114f2c94867ba7734",
+    "libraryDigest": "b1b816716a53d2e3fe26b7de4279485b08db664d3638f747b542f26804c44d09",
     "peerDigests": {
       "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1",
       "wraith-war": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954"
@@ -2050,6 +2050,6 @@
     "authorityIdentity": "MRT-003-C02-B04 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the eight named X-Men, Avengers, Doctor Doom, and peer relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:55.194Z",
-    "approvalDigest": "e3d5f7cb074cedf64f096c075e208a00fa5fe724a9f87f934b421709b70e0e04"
+    "approvalDigest": "8295af83a28e65e5d15265f2699cfd3bfacae426871dd284c09e3b7b85cfa827"
   }
 }

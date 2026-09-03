@@ -8949,10 +8949,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every complete-library comparison, including later guides. The 18 non-none relationships are ordinary shared reading material and no exact duplicate exists. The guide remains independently useful because it preserves Moon Knight source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "be2cead0b5bfd2aaed0169f45c9d53ba296d5e7a47ffccfb1520ab1806fee789",
+    "reportDigest": "e6d3a5778869c27458ddd5ac72ab10ff91750a6e6808a399032f51b214afe517",
     "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
     "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-    "libraryDigest": "27efc4c017543e551facf0528e8954454ba730bc8833a376c72d179160edbd25",
+    "libraryDigest": "db22454e21205b298621babbbc6e7aa978ff0681435f0567b46d282b909945cd",
     "peerDigests": {},
     "dispositions": [
       {
@@ -10414,6 +10414,6 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "5b346002f03e3024a85d5b3729b4885d55abec5a93378adedb7d8c1e8728308e"
+    "approvalDigest": "99626bfa23cce4797c7a1d9b91b6c896bd25dbb109d4c50048d20fa1a491141b"
   }
 }

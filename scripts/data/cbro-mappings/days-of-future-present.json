@@ -237,10 +237,10 @@
     "coverIssueId": 8702
   },
   "relationshipReview": {
-    "reportDigest": "a4115e4661b9b0df0fdb2a93c82c466f685de2cbf004086a6087cca4711d65f8",
+    "reportDigest": "d2b677a21bd480f3d56dc93591715b5247cf375351bbf1e0d1da29229bb76f07",
     "packetDigest": "4ff38fed78b07fca1c58fc5e21a6b3352ff34cb5244b4f0c64bada3290c2e02b",
     "mappingDigest": "cae5e6f5f257f803c1c2e60c9c1fb798aba27c3f7864edb18cdbf7811d3c462d",
-    "libraryDigest": "928cb903929b41151006d9ee67083831b72d67c81a75cb2f9a900099ab514e44",
+    "libraryDigest": "3760b816252f554bd73942358c182acad3468a5f4bd751b9830bb142ed1364a3",
     "peerDigests": {
       "atlantis-attacks": "ccd1d0bf1dcebcab63880670a5d90d373548a5bf16e9827f42e874c9e4b2b942",
       "evolutionary-war": "161437ca410dc1f9cf5ff86e6565b841b95fb4503063c49fbcddff4e22ac2197",
@@ -1750,6 +1750,6 @@
     "authorityIdentity": "MRT-003-C02-B05 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:56.020Z",
-    "approvalDigest": "349569495fd7378433cca3219cdcd145f5a92c09f78181c9e976cd0b89c6cdf6"
+    "approvalDigest": "bf061acb73b529b6ebf5e59173ebb88928881d74ea60eeadaec04ef072995334"
   }
 }

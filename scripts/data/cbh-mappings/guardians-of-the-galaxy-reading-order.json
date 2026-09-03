@@ -11577,10 +11577,10 @@
     "authorityIdentity": "independent Guardians material review",
     "rationale": "Independent material review accepted the cache-only mapping, all 29 explicit source gaps, and the scope-aware full-library overlap report.",
     "reviewedAt": "2026-08-27T18:40:00Z",
-    "reportDigest": "815e68f5ae354e634a70a1756cbb4e3f758db44e0bc870cc211eb4a4a22eedbd",
+    "reportDigest": "34d6fa23072d75ebd465dc1821452463e2b3d88c267ed4182b704657bf85dc0c",
     "packetDigest": "2d752bbe858973504f1f9a024af6af69b8b7c7f02047eb05ee7242b793974978",
     "mappingDigest": "387d8761858022382dd2b2af61313cf1d3eff26223aaa7c7115ab0c21c4eb538",
-    "libraryDigest": "4a9ea21acf4af9a7091b23e9a4ad69920e39bb4e782ffabaef7287c7578107ba",
+    "libraryDigest": "e386f66544057eb53d42d7e5007479bab1abeed5d6ef57c806e94e69cbde99ab",
     "peerDigests": {},
     "dispositions": [
       {
@@ -13051,6 +13051,6 @@
         "reviewedAt": "2026-08-27T18:40:00Z"
       }
     ],
-    "approvalDigest": "656eb1fb9b8349163bda88065e2fa85d201279922e55baf6abcd186fece2c63b"
+    "approvalDigest": "afddd9f305b041cb1976c9ff3853c4250402c1ccbb20258cac29953f6c4667aa"
   }
 }

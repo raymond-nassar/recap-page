@@ -1030,7 +1030,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // placeholders of its own. The Iron Man guide then added seven owner-confirmed issue ids that
   // the live metadata index does not list. The Abomination guide retains one empty response after
   // its Ghost Rider identity was corrected. The Ant-Man guide adds three researched identities
-  // whose optional details were refused, bringing the total to 90 across nine affected orders.
+  // whose optional details were refused. Silver Surfer now adds one exact official issue whose
+  // optional details were refused, bringing the total to 91 across ten affected orders.
   // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
@@ -1045,7 +1046,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // further source-preserving metadata gaps with distinct negative identifiers. Punisher adds 158
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
   // Magneto adds 58 cached-provider gaps. Loki adds 18 distinct source-occurrence gaps. Silver
-  // Surfer adds four source-preserving metadata gaps. Black Widow adds fourteen, Moon Knight adds 18,
+  // Surfer carries no placeholders after one exact resolution and three approved exclusions.
+  // Black Widow adds fourteen, Moon Knight adds 18,
   // and X-Force adds 23 source-position metadata gaps. Inhumans adds 42 more. Young Avengers adds
   // 55 source-preserving placeholders. Fantastic Four adds 185 individually preserved cache-only
   // provider gaps, Guardians adds 29, and Defenders adds 23 without substituting a source identity.
@@ -1055,10 +1057,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1879, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1878, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 90);
-  assert.equal(affected, 9);
+  assert.equal(claimed, 1875, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1874, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 91);
+  assert.equal(affected, 10);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1260,10 +1262,11 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // its availability settlement. Venom adds 33 more negative
   // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
   // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
-  // Surfer adds four. Black Widow adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
+  // Surfer adds one exact official issue whose optional metadata request was refused. Black Widow
+  // adds fourteen, Moon Knight adds 18, X-Force adds 23, Inhumans
   // adds 42, and Young Avengers adds 55. Fantastic Four adds 185, Guardians adds 29, Defenders
   // adds 23 and Nick Fury and S.H.I.E.L.D. adds 194. Adam Warlock carries no refused identities
   // after its owner-reviewed availability settlement.
-  assert.equal(refused.length, 1935);
+  assert.equal(refused.length, 1932);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

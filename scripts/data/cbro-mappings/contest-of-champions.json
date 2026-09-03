@@ -195,10 +195,10 @@
     "coverIssueId": 39673
   },
   "relationshipReview": {
-    "reportDigest": "480bb12c1f98635d501ab586c262d6a4ccabe11167ed6abe17b573e66c66d06e",
+    "reportDigest": "6e90e7781883c02c3909b7fbd382a234f47fbcb6d6ef921260e1d4b885f71acb",
     "packetDigest": "6ef776481f229f264d61a9cdfe7d961117223434bf7b121ca71cfc526bebd68b",
     "mappingDigest": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
-    "libraryDigest": "370d1169a2a55fbc1451c4fb484b3e730fbc2e0281b523930c5b5989f973d977",
+    "libraryDigest": "dcd08431204b649bbe2365534895cb0cf02585a05cceb52be25831539c644634",
     "peerDigests": {
       "dark-phoenix-saga": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
       "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -1709,6 +1709,6 @@
     "authorityIdentity": "MRT-003-C02-B02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:53.308Z",
-    "approvalDigest": "df59ec5b3298e376f590b2ed578f4ea727cad8f7f732b91774693737f67f9a55"
+    "approvalDigest": "9bf5387bbc9ea0807a38a4f0ec3d05150ba92c934a7950689c3bc53220757b37"
   }
 }

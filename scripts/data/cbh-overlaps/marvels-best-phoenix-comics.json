@@ -2,7 +2,7 @@
   "candidateId": "marvels-best-phoenix-comics",
   "packetDigest": "c9a242d0dedec94cc3a14b80ac6846482977be55e4cf71fc5f5d839f5c8d44e2",
   "mappingDigest": "b411b60c330cf1f950cdf7b81a1e4a0ab37b37a3d0978ec9d31b43f61f2f5ec0",
-  "libraryDigest": "a65b550da4452089919d0bd13255ef645c5e30db016be7bdc1d8e1e517c6dc36",
+  "libraryDigest": "fdae5afcb4e4d4133a19ccc6fa14189a8249978f22b03094e2a1272d29417b9a",
   "peerDigests": {
     "phalanx-reading-order": "9716fe6865fd5ffd3eef631aec5a85a0e2405d0ccfab5c58eb2d66869a699495"
   },
@@ -828,5 +828,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "1cd52c0ff6cfd680db59d29f134aae72c0a58e8ad1b7ba276b0840e6fe8b3065"
+  "reportDigest": "7af89e5abf3b44f3215dd2bfc738afb2b689f83b6df8fcc3f564513e789a96d8"
 }
