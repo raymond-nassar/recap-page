@@ -97,7 +97,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Warlock and the Infinity Watch (1992) #4 <!-- mrt:source-occurrence=86 -->](https://www.marvel.com/comics/issue/18446/warlock_and_the_infinity_watch_1992_4)
 - [ ] [Warlock and the Infinity Watch (1992) #5 <!-- mrt:source-occurrence=87 -->](https://www.marvel.com/comics/issue/18450/warlock_and_the_infinity_watch_1992_5)
 - [ ] [Warlock and the Infinity Watch (1992) #6 <!-- mrt:source-occurrence=88 -->](https://www.marvel.com/comics/issue/18451/warlock_and_the_infinity_watch_1992_6)
-- [ ] Silver Surfer Annual #5 <!-- mrt:source-occurrence=89 -->
 ## Collects: Collects Infinity War #1-6, Warlock And The Infinity Watch #7-10 & Marvel Comics Presents #108-111
 - [ ] [Infinity War (1992) #1 <!-- mrt:source-occurrence=90 -->](https://www.marvel.com/comics/issue/9292/infinity_war_1992_1)
 - [ ] [Infinity War (1992) #2 <!-- mrt:source-occurrence=91 -->](https://www.marvel.com/comics/issue/9293/infinity_war_1992_2)
@@ -129,8 +128,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Quasar (1989) #42 <!-- mrt:source-occurrence=116 -->](https://www.marvel.com/comics/issue/18931/quasar_1989_42)
 - [ ] [Quasar (1989) #43 <!-- mrt:source-occurrence=117 -->](https://www.marvel.com/comics/issue/18932/quasar_1989_43)
 - [ ] [Marvel Comics Presents (1988) #112 <!-- mrt:source-occurrence=118 -->](https://www.marvel.com/comics/issue/10025/marvel_comics_presents_1988_112)
-- [ ] Marvel Holiday Special #2 <!-- mrt:source-occurrence=119 -->
-- [ ] Marvel Swimsuit Special #2 <!-- mrt:source-occurrence=120 -->
 ## Collects: Infinity Crusade #1-3, Warlock Chronicles #1-3 & Warlock And The Infinity Watch #18-19
 - [ ] [Infinity Crusade (1993) #1 <!-- mrt:source-occurrence=121 -->](https://www.marvel.com/comics/issue/23307/infinity_crusade_1993_1)
 - [ ] [Infinity Crusade (1993) #2 <!-- mrt:source-occurrence=122 -->](https://www.marvel.com/comics/issue/23308/infinity_crusade_1993_2)
@@ -159,7 +156,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Silver Surfer (1987) #88 <!-- mrt:source-occurrence=165 -->](https://www.marvel.com/comics/issue/15228/silver_surfer_1987_88)
 - [ ] [Warlock Chronicles (1993) #6 <!-- mrt:source-occurrence=166 -->](https://www.marvel.com/comics/issue/23488/warlock_chronicles_1993_6)
 - [ ] [Warlock Chronicles (1993) #7 <!-- mrt:source-occurrence=167 -->](https://www.marvel.com/comics/issue/23489/warlock_chronicles_1993_7)
-- [ ] Warlock Chronicles #8 <!-- mrt:source-occurrence=168 -->
+- [ ] [Warlock Chronicles (1993) #8 <!-- mrt:source-occurrence=168 -->](https://www.marvel.com/comics/issue/23490/warlock_chronicles_1993_8)
 - [ ] [Warlock and the Infinity Watch (1992) #23 <!-- mrt:source-occurrence=169 -->](https://www.marvel.com/comics/issue/18428/warlock_and_the_infinity_watch_1992_23)
 - [ ] [Warlock and the Infinity Watch (1992) #24 <!-- mrt:source-occurrence=170 -->](https://www.marvel.com/comics/issue/18429/warlock_and_the_infinity_watch_1992_24)
 - [ ] [Warlock and the Infinity Watch (1992) #25 <!-- mrt:source-occurrence=171 -->](https://www.marvel.com/comics/issue/18430/warlock_and_the_infinity_watch_1992_25)

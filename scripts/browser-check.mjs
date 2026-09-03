@@ -2749,7 +2749,7 @@ const SCENARIOS = [
       ));
       const card = await page.$eval(cardSelector, (node) => ({
         title: node.querySelector('.catalog-card-title')?.textContent.trim(),
-        count: node.textContent.includes('228 issues'),
+        count: node.textContent.includes('225 issues'),
         addName: node.querySelector('[data-act="import"]')?.getAttribute('aria-label'),
         sourceName: node.querySelector('a[href*="comicbookherald.com"]')?.getAttribute('aria-label'),
         sourceHref: node.querySelector('a[href*="comicbookherald.com"]')?.href,
@@ -2781,24 +2781,19 @@ const SCENARIOS = [
           count: titles.length,
           first: titles[0],
           last: titles.at(-1),
-          gaps: titles.filter((title) => [
+          resolvedIssue: list?.itemIds.includes(23490) ?? false,
+          unavailableTitles: titles.filter((title) => [
             'Silver Surfer Annual #5',
             'Marvel Holiday Special #2',
             'Marvel Swimsuit Special #2',
-            'Warlock Chronicles #8',
           ].includes(title)),
         };
       });
-      t.check('import preserves 228 positions, both boundaries, and all four gaps',
-        imported.matches === 1 && imported.count === 228
+      t.check('import preserves 225 exact positions, both boundaries, and the resolved issue',
+        imported.matches === 1 && imported.count === 225
         && imported.first === 'Fantastic Four (1961) #66'
         && imported.last === 'Thanos Annual (2014) #1'
-        && imported.gaps.join('|') === [
-          'Silver Surfer Annual #5',
-          'Marvel Holiday Special #2',
-          'Marvel Swimsuit Special #2',
-          'Warlock Chronicles #8',
-        ].join('|'),
+        && imported.resolvedIssue && imported.unavailableTitles.length === 0,
         JSON.stringify(imported));
 
       await click(page, '#preview-add [data-act="main"]');

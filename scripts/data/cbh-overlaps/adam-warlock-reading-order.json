@@ -1,17 +1,18 @@
 {
   "candidateId": "adam-warlock-reading-order",
-  "packetDigest": "c797f27abf6d6bb78181db4274b121d4df4c391c0f1fb99ce185297134d897c1",
-  "mappingDigest": "1404a09676d466fc4cbb5d43f197ed440f627abcf028c736ef1d08cae91fd6ad",
+  "packetDigest": "f297748971b4fe9076b6622ad0349d811c76df50d65d4a1850227ae31ca104ce",
+  "mappingDigest": "2f26b75751df69a93c6e6206defc34134cd04010812763ec9da9c652d7f16294",
   "libraryDigest": "74e134ca7adafa48f28942de557e54e5151543b3f7265ccabe9b938eec316623",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 253,
-    "sourceIdentityCount": 228,
-    "includedIssueCount": 224,
-    "sourceGapCount": 4,
-    "repeatedSourceReferenceCount": 25
+    "sourceIdentityCount": 225,
+    "includedIssueCount": 225,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 25,
+    "excludedSourceRowCount": 3
   },
-  "candidateCount": 224,
+  "candidateCount": 225,
   "comparisonCount": 173,
   "comparisons": [
     {
@@ -1096,7 +1097,7 @@
     },
     {
       "orderId": "thanos-reading-order",
-      "sharedCount": 105,
+      "sharedCount": 106,
       "sharedIds": [
         "22130",
         "22131",
@@ -1171,6 +1172,7 @@
         "15228",
         "23488",
         "23489",
+        "23490",
         "18428",
         "18429",
         "18430",
@@ -1433,5 +1435,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "7c0cf84073f6c4a1ae90ae018eee9ebfdc4b987ce563a0ffc308fddbfc4cd319"
+  "reportDigest": "c55be53c9a574ea5736c0f4f603d1baf1a3d75f8730cc5ceb6df80896bc52f36"
 }

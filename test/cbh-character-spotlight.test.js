@@ -809,7 +809,7 @@ test('the character inventory preserves every central disposition, ships thirty-
   ]);
 });
 
-test('Adam Warlock publishes the complete frozen source with four explicit metadata gaps', async () => {
+test('Adam Warlock publishes the settled source with one exact resolution and three exclusions', async () => {
   const id = 'adam-warlock-reading-order';
   const [
     inventory,
@@ -847,34 +847,58 @@ test('Adam Warlock publishes the complete frozen source with four explicit metad
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.equal(packet.packetDigest, packetDigestFor(packet));
   assert.equal(packet.sourceOccurrenceCount, 253);
-  assert.equal(packet.rows.length, 224);
-  assert.equal(packet.sourceGaps.length, 4);
+  assert.equal(packet.rows.length, 225);
+  assert.equal(packet.sourceGaps, undefined);
   assert.equal(packet.repeatedSourceReferences.length, 25);
   assert.equal(packet.excludedSourceReferences.length, 4);
-  assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourcePosition), [89, 119, 120, 168]);
+  assert.deepEqual(packet.excludedSourceRows.map((row) => row.sourcePosition), [89, 119, 120]);
+  assert.ok(packet.excludedSourceRows.every(
+    (row) => row.decisionScope === 'Owner-authorized Marvel Unlimited exclusion',
+  ));
   assert.deepEqual(
-    packet.sourceGaps.map((gap) => gap.sourceIssueReference),
+    packet.sourceGapResolutions.map((resolution) => [
+      resolution.sourcePosition,
+      resolution.resolutionKind,
+    ]),
     [
-      'Silver Surfer Annual #5',
-      'Marvel Holiday Special #2',
-      'Marvel Swimsuit Special #2',
-      'Warlock Chronicles #8',
+      [89, 'source-exclusion'],
+      [119, 'source-exclusion'],
+      [120, 'source-exclusion'],
+      [168, 'exact-issue'],
     ],
   );
-  assert.ok(packet.sourceGaps.every((gap) => (
-    gap.status === 'open'
-      && gap.kind === 'published-metadata-gap'
-      && gap.evidenceSources.some((source) => source.url.endsWith('/issues/400'))
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.evidenceSources.some((source) => source.url.endsWith('/issues/400'))
   )));
+  assert.equal(packet.sourceGapResolutions.at(-1).selectedIssueId, 23490);
   assert.deepEqual(
     packet.repeatedSourceReferences.map((entry) => entry.sourcePosition),
     [75, 82, ...Array.from({ length: 22 }, (_, index) => index + 137), 172],
   );
   assert.deepEqual(sourcePositionsForPacket(packet), mapping.rows.map((row) => row.sourcePosition));
   assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
+  assert.deepEqual(mapping.excludedSourceRows, packet.excludedSourceRows);
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
   assert.deepEqual(mapping.repeatedSourceReferences, packet.repeatedSourceReferences);
-  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 224);
+  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 225);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+  const resolved = mapping.rows.find((row) => row.sourcePosition === 168);
+  assert.deepEqual(
+    {
+      issueId: resolved.selectedIssueId,
+      seriesId: resolved.seriesId,
+      number: resolved.issueNumber,
+      title: resolved.resolvedIssueTitle,
+      url: resolved.marvelIssueUrl,
+    },
+    {
+      issueId: 23490,
+      seriesId: 6686,
+      number: '8',
+      title: 'Warlock Chronicles (1993) #8',
+      url: 'https://www.marvel.com/comics/issue/23490/warlock_chronicles_1993_8',
+    },
+  );
   assert.equal(currentReport.reportDigest, report.reportDigest);
   assert.equal(report.comparisonCount, 173);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'partial').length, 20);
@@ -891,20 +915,17 @@ test('Adam Warlock publishes the complete frozen source with four explicit metad
   }));
 
   assert.deepEqual(manifestRecord, mapping.approvedManifest);
-  assert.equal(catalogRecord.count, 228);
-  assert.equal(catalogRecord.placeholderCount, 4);
-  assert.equal(payload.count, 228);
-  assert.equal(payload.placeholders, 4);
-  assert.equal(payload.items.filter((item) => item.placeholder).length, 4);
+  assert.equal(catalogRecord.count, 225);
+  assert.equal(catalogRecord.placeholderCount, 0);
+  assert.equal(payload.count, 225);
+  assert.equal(payload.placeholders, 0);
+  assert.equal(payload.items.filter((item) => item.placeholder).length, 0);
   assert.equal(payload.items[0].title, 'Fantastic Four (1961) #66');
   assert.equal(payload.items.at(-1).title, 'Thanos Annual (2014) #1');
-  assert.deepEqual(
-    payload.unresolved.map((entry) => Number(entry.sourceKey)),
-    [89, 119, 120, 168],
-  );
+  assert.deepEqual(payload.unresolved, []);
   const parsed = parseChecklist(markdown);
-  assert.equal(parsed.entries.length, 224);
-  assert.equal(parsed.unresolved.length, 4);
+  assert.equal(parsed.entries.length, 225);
+  assert.equal(parsed.unresolved.length, 0);
   assert.equal(inventoryRecord.deliveryStatus, 'shipped');
   assert.equal(inventoryRecord.centralDisposition, 'pilot-approved');
   assert.deepEqual(inventoryRecord.catalogIds, [id]);

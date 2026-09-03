@@ -5,45 +5,12 @@
   "source": "https://www.comicbookherald.com/adam-warlock-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-01T19:57:11.614Z",
+  "generatedAt": "2026-09-03T15:55:18.540Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 228,
+  "count": 225,
   "collections": 20,
-  "placeholders": 4,
-  "unresolved": [
-    {
-      "title": "Silver Surfer Annual #5",
-      "url": null,
-      "read": false,
-      "index": 86,
-      "section": "Collects: Silver Surfer (1987) 60-66, Dr. Strange : Sorcerer Supreme 36, Warlock & The Infinity Watch 1-6, Material From Silver Surfer Annual 5",
-      "sourceKey": "89"
-    },
-    {
-      "title": "Marvel Holiday Special #2",
-      "url": null,
-      "read": false,
-      "index": 116,
-      "section": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2",
-      "sourceKey": "119"
-    },
-    {
-      "title": "Marvel Swimsuit Special #2",
-      "url": null,
-      "read": false,
-      "index": 117,
-      "section": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2",
-      "sourceKey": "120"
-    },
-    {
-      "title": "Warlock Chronicles #8",
-      "url": null,
-      "read": false,
-      "index": 143,
-      "section": "Collects: Thor #468-471, Silver Surfer #86-88, Warlock Chronicles #6-8, Warlock And The Infinity Watch #23-25",
-      "sourceKey": "168"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 13273,
@@ -2810,23 +2777,6 @@
       "collectedIn": "Collects: Silver Surfer (1987) 60-66, Dr. Strange : Sorcerer Supreme 36, Warlock & The Infinity Watch 1-6, Material From Silver Surfer Annual 5"
     },
     {
-      "issueId": -28737396,
-      "title": "Silver Surfer Annual #5",
-      "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Silver Surfer (1987) 60-66, Dr. Strange : Sorcerer Supreme 36, Warlock & The Infinity Watch 1-6, Material From Silver Surfer Annual 5"
-    },
-    {
       "issueId": 9292,
       "title": "Infinity War (1992) #1",
       "number": "1",
@@ -3903,40 +3853,6 @@
       "collectedIn": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2"
     },
     {
-      "issueId": -168489776,
-      "title": "Marvel Holiday Special #2",
-      "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2"
-    },
-    {
-      "issueId": -2064110460,
-      "title": "Marvel Swimsuit Special #2",
-      "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Warlock & The Infinity Watch 11-17, Silver Surfer/Warlock: Resurrection 1-4, Quasar 41-43; Material From Marvel Comics Presents (1988) 112, Marvel Holiday Special 2, Marvel Swimsuit Special 2"
-    },
-    {
       "issueId": 23307,
       "title": "Infinity Crusade (1993) #1",
       "number": "1",
@@ -4861,12 +4777,12 @@
       "collectedIn": "Collects: Thor #468-471, Silver Surfer #86-88, Warlock Chronicles #6-8, Warlock And The Infinity Watch #23-25"
     },
     {
-      "issueId": -185708680,
-      "title": "Warlock Chronicles #8",
+      "issueId": 23490,
+      "title": "Warlock Chronicles (1993) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
+      "url": "https://www.marvel.com/comics/issue/23490/warlock_chronicles_1993_8",
+      "seriesId": 6686,
+      "seriesName": "Warlock Chronicles (1993 - 1994)",
       "onSale": null,
       "mu": null,
       "digitalId": null,
@@ -4874,7 +4790,6 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Collects: Thor #468-471, Silver Surfer #86-88, Warlock Chronicles #6-8, Warlock And The Infinity Watch #23-25"
     },
     {
