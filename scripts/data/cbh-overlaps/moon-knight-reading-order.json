@@ -1,17 +1,18 @@
 {
   "candidateId": "moon-knight-reading-order",
-  "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
-  "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
+  "packetDigest": "a033c4c388c2cb0d8032574795a69cec52f95b87d0c8b8db1683c20cdd9883a5",
+  "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
   "libraryDigest": "c0eab7d863d1f59fcdf9f06b6211d3d76f86e3b9bf1ca042b9df67e0f872a796",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 414,
-    "sourceIdentityCount": 392,
-    "includedIssueCount": 374,
-    "sourceGapCount": 18,
-    "repeatedSourceReferenceCount": 11
+    "sourceIdentityCount": 382,
+    "includedIssueCount": 382,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 11,
+    "excludedSourceRowCount": 21
   },
-  "candidateCount": 374,
+  "candidateCount": 382,
   "comparisonCount": 162,
   "comparisons": [
     {
@@ -161,7 +162,7 @@
     },
     {
       "orderId": "black-widow-reading-order",
-      "sharedCount": 26,
+      "sharedCount": 27,
       "sharedIds": [
         "17888",
         "17889",
@@ -170,6 +171,7 @@
         "17892",
         "17893",
         "17894",
+        "56327",
         "6929",
         "16055",
         "16062",
@@ -995,9 +997,14 @@
     },
     {
       "orderId": "wandavision",
-      "sharedCount": 4,
+      "sharedCount": 9,
       "sharedIds": [
+        "55231",
+        "55232",
+        "55233",
+        "55234",
         "17927",
+        "55236",
         "17790",
         "17791",
         "17794"
@@ -1159,5 +1166,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "92f37955a2727e8686fb7db9bf510a7e154b98839ec06095448bd4605eeea0f8"
+  "reportDigest": "b102511ff7a3d94a06dc2590f34064025785be330416b98d0e3631c8c07a76ba"
 }

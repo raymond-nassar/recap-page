@@ -4,9 +4,9 @@
   "inventoryId": "moon-knight-reading-order",
   "sourceUrl": "https://www.comicbookherald.com/moon-knight-reading-order/",
   "sourceRetrievedAt": "2026-08-23",
-  "sourceBoundary": "No qualifying Best Comics or Essential Comics subsection exists, so the full reading-order page is the frozen boundary. The frozen page holds 414 occurrences: 374 exact canonical rows, 11 repeats, 18 explicit metadata gaps, and 11 partial-material exclusions.",
+  "sourceBoundary": "The full reading-order page is the frozen boundary. Its 414 occurrences resolve to 382 exact canonical rows, 11 repeats, and 21 explicit exclusions, with no remaining metadata gaps.",
   "excludedSourceReferences": [
-    "Partial-material source references are retained as 11 semantic exclusions and not published as whole comics."
+    "Partial-material source references and owner-approved unavailable or collection-only comics remain explicit semantic exclusions and are not published."
   ],
   "sourceOccurrenceCount": 414,
   "repeatedSourceReferences": [
@@ -84,7 +84,7 @@
     },
     {
       "sourcePosition": 133,
-      "canonicalRow": 57,
+      "canonicalRow": 59,
       "sourceIssueReference": "Marc Spector, Moon Knight #1",
       "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
       "normalizedSeriesTitle": "Marc Spector, Moon Knight",
@@ -93,7 +93,7 @@
     },
     {
       "sourcePosition": 134,
-      "canonicalRow": 58,
+      "canonicalRow": 60,
       "sourceIssueReference": "Marc Spector, Moon Knight #2",
       "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
       "normalizedSeriesTitle": "Marc Spector, Moon Knight",
@@ -102,7 +102,7 @@
     },
     {
       "sourcePosition": 390,
-      "canonicalRow": 345,
+      "canonicalRow": 353,
       "sourceIssueReference": "Devil's Reign: Moon Knight",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Devil's Reign: Moon Knight",
@@ -172,483 +172,73 @@
       "decisionScope": "source-semantic-exclusion"
     },
     {
-      "sourcePosition": 132,
-      "sourceIssueReference": "Avengers Spotlight #23",
-      "reason": "The source identifies this as partial material rather than a whole included comic.",
-      "decisionScope": "source-semantic-exclusion"
-    }
-  ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 74,
-      "sourceIssueReference": "Marvel Fanfare #38",
-      "sourceRangeReference": "Marvel Fanfare #38-39",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Fanfare",
-      "seriesYear": 1982,
-      "issueNumber": "38",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3719/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e75d2f9fedf9d9e327bf263804e2d4922a46e361ba42fc5ca23e3f4a1bee8a25"
-    },
-    {
-      "sourcePosition": 75,
-      "sourceIssueReference": "Marvel Fanfare #39",
-      "sourceRangeReference": "Marvel Fanfare #38-39",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Fanfare",
-      "seriesYear": 1982,
-      "issueNumber": "39",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3719/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "3b03deb484f2ecc1c8009b92cb5b84ceb810371f4f2e6854c3c86dcb263065ae"
-    },
-    {
       "sourcePosition": 77,
       "sourceIssueReference": "Marvel Super-Heroes #1",
-      "sourceRangeReference": "Marvel Super-Heroes #1",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Super-Heroes",
-      "seriesYear": 1967,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/2300/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "4e6699db60cda6493ff963e56c016cac395a7366611b49c1878f884d6b8d37cd"
-    },
-    {
-      "sourcePosition": 97,
-      "sourceIssueReference": "West Coast Avengers Annual #1",
-      "sourceRangeReference": "Annual #1",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers Annual",
-      "seriesYear": 1986,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3632/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8dd370346b2182c114145100372f0538ca4361e60e63fd0ae2251b16ff9d0ed2"
+      "reason": "The owner confirmed Marvel Super-Heroes (1990) #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 114,
       "sourceIssueReference": "Marvel Graphic Novel #27",
-      "sourceRangeReference": "Marvel Graphic Novel (1982) #27: Emperor Doom",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Graphic Novel",
-      "seriesYear": 1982,
-      "issueNumber": "27",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/16385/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "357895831cb618448d5e491f342bdfc58bb374a86b7884239d2140142992b173"
+      "reason": "Marvel publishes Emperor Doom as collection 74612, not as a standalone Marvel Unlimited issue.",
+      "decisionScope": "Collection-only source exclusion"
     },
     {
-      "sourcePosition": 119,
-      "sourceIssueReference": "West Coast Avengers #42",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "42",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "9642d3f0814098a3134f82ff7c339416da571d33ca9ca939d1d5285c31eb6b5a"
-    },
-    {
-      "sourcePosition": 120,
-      "sourceIssueReference": "West Coast Avengers #43",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "43",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "46bf3e28e2184b0a85a68332fdc4f10b4d6d558b2e2048753a42e74190606f0c"
-    },
-    {
-      "sourcePosition": 121,
-      "sourceIssueReference": "West Coast Avengers #44",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "44",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a32281deb1795464365014d461f9323f92bc25288b933fd9abd741324a4a3b2e"
-    },
-    {
-      "sourcePosition": 122,
-      "sourceIssueReference": "West Coast Avengers #45",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "45",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "688b670befa6a77e490dfb26c3cabefe5252abb8aebff1a720505bfbb0b85225"
-    },
-    {
-      "sourcePosition": 124,
-      "sourceIssueReference": "Avengers West Coast #47",
-      "sourceRangeReference": "Avengers West Coast (1989) #47-52",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Avengers West Coast",
-      "seriesYear": 1989,
-      "issueNumber": "47",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Source caption establishes the Avengers West Coast alias, but complete direct series pagination contains no issue #47. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "668ba9014673128cb558685775a3b2340a3894d89aa898aa72e5ba0f8436c741"
+      "sourcePosition": 132,
+      "sourceIssueReference": "Avengers Spotlight #23",
+      "reason": "The source identifies this as partial material rather than a whole included comic.",
+      "decisionScope": "source-semantic-exclusion"
     },
     {
       "sourcePosition": 184,
       "sourceIssueReference": "Marc Spector, Moon Knight #52",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "52",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "798747f574f5da658cca3fe400388903df6f20bae2d83ddec1dfdb793d7fd345"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #52 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 185,
       "sourceIssueReference": "Marc Spector, Moon Knight #53",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "53",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "befc8d77bda94a4910d007db4e3c5de83e6605bd9e1ba00676dde993d11f621f"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #53 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 186,
       "sourceIssueReference": "Marc Spector, Moon Knight #54",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "54",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8c7283aea386ad7222bb14338bffae37add42c75e483b2c2e3409aeec8de7d9b"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #54 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 187,
       "sourceIssueReference": "Marc Spector, Moon Knight #55",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "55",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "1102f1bc6aa32e55ba55246dc9f1c74afb985bd950d9127c37d44a4d609db8d2"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #55 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 188,
       "sourceIssueReference": "Marc Spector, Moon Knight #56",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "56",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b3b7bc0004c5964fc5f301f378522b3f8323b2eb61cb25f71cceea59aead29c2"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #56 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 190,
       "sourceIssueReference": "Marc Spector, Moon Knight #58",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "58",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8681e51076f537e9f153a8d3867586a22959b29ebfb48529d96344ffca178b27"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #58 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 191,
       "sourceIssueReference": "Marc Spector, Moon Knight #59",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "59",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "925377f7e444359e5b46500888a676bf36bbce0a6d484fca2d2740975870e0fc"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #59 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 192,
       "sourceIssueReference": "Marc Spector, Moon Knight #60",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "60",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "3bbf29ed5800e90c4a0de701129d684ac2e096fb79538141ea47ede9aec60dac"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #60 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     }
   ],
-  "expectedCount": 374,
+  "expectedCount": 382,
   "proposedManifest": {
     "id": "moon-knight-reading-order",
     "name": "Moon Knight",
@@ -676,7 +266,7 @@
       "Khonshu",
       "Comic Book Herald"
     ],
-    "expect": 392,
+    "expect": 382,
     "timeline": 1972,
     "coverIssueId": 51010
   },
@@ -1901,6 +1491,32 @@
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
     },
     {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Marvel Fanfare #38",
+      "sourceRangeReference": "Marvel Fanfare #38-39",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "Marvel Fanfare",
+      "seriesYear": 1982,
+      "issueNumber": "38",
+      "seriesId": null,
+      "candidateIssueId": 19813,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 19813 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Marvel Fanfare #39",
+      "sourceRangeReference": "Marvel Fanfare #38-39",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "Marvel Fanfare",
+      "seriesYear": 1982,
+      "issueNumber": "39",
+      "seriesId": null,
+      "candidateIssueId": 19814,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 19814 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourcePosition": 76,
       "sourceIssueReference": "Solo Avengers #3",
       "sourceRangeReference": "Solo Avengers #3",
@@ -2339,6 +1955,19 @@
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/17903/west_coast_avengers_1985_24",
       "resolvedIssueTitle": "West Coast Avengers (1985) #24",
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "West Coast Avengers Annual #1",
+      "sourceRangeReference": "Annual #1",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers Annual",
+      "seriesYear": 1986,
+      "issueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 56327,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 56327 is the owner-approved exact official identity for this source position."
     },
     {
       "sourcePosition": 98,
@@ -2781,6 +2410,58 @@
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
     },
     {
+      "sourcePosition": 119,
+      "sourceIssueReference": "West Coast Avengers #42",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "42",
+      "seriesId": null,
+      "candidateIssueId": 55231,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55231 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "West Coast Avengers #43",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "43",
+      "seriesId": null,
+      "candidateIssueId": 55232,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55232 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "West Coast Avengers #44",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "44",
+      "seriesId": null,
+      "candidateIssueId": 55233,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55233 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourcePosition": 122,
+      "sourceIssueReference": "West Coast Avengers #45",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "45",
+      "seriesId": null,
+      "candidateIssueId": 55234,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55234 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourcePosition": 123,
       "sourceIssueReference": "West Coast Avengers #46",
       "sourceRangeReference": "West Coast Avengers (1985) #38-46",
@@ -2801,6 +2482,19 @@
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/17927/west_coast_avengers_1985_46",
       "resolvedIssueTitle": "West Coast Avengers (1985) #46",
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
+    },
+    {
+      "sourcePosition": 124,
+      "sourceIssueReference": "Avengers West Coast #47",
+      "sourceRangeReference": "Avengers West Coast (1989) #47-52",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "47",
+      "seriesId": null,
+      "candidateIssueId": 55236,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55236 is the owner-approved exact official identity for this source position."
     },
     {
       "sourcePosition": 125,
@@ -8919,5 +8613,446 @@
       "note": "direct series pagination matched the source issue number and provider series identity"
     }
   ],
-  "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654"
+  "packetDigest": "a033c4c388c2cb0d8032574795a69cec52f95b87d0c8b8db1683c20cdd9883a5",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 74,
+      "previousSourceIssueReference": "Marvel Fanfare #38",
+      "previousSourceRangeReference": "Marvel Fanfare #38-39",
+      "previousNormalizedSeriesTitle": "Marvel Fanfare",
+      "previousSeriesYear": 1982,
+      "previousIssueNumber": "38",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 19813,
+      "resolvedNormalizedSeriesTitle": "Marvel Fanfare",
+      "resolvedSeriesYear": 1982,
+      "resolvedIssueNumber": "38",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 19813 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/19813/marvel_fanfare_1982_38",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "e362e6160d91aad0d71ea16ec99813dfd6ef94c93b7532f4d21a299572f6df01"
+    },
+    {
+      "sourcePosition": 75,
+      "previousSourceIssueReference": "Marvel Fanfare #39",
+      "previousSourceRangeReference": "Marvel Fanfare #38-39",
+      "previousNormalizedSeriesTitle": "Marvel Fanfare",
+      "previousSeriesYear": 1982,
+      "previousIssueNumber": "39",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 19814,
+      "resolvedNormalizedSeriesTitle": "Marvel Fanfare",
+      "resolvedSeriesYear": 1982,
+      "resolvedIssueNumber": "39",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 19814 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/19814/marvel_fanfare_1982_39",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "fada1ba25cd1eeab167f6c6a333a625dc49cf6a7aae2d5294787e19a93274c48"
+    },
+    {
+      "sourcePosition": 77,
+      "previousSourceIssueReference": "Marvel Super-Heroes #1",
+      "previousSourceRangeReference": "Marvel Super-Heroes #1",
+      "previousNormalizedSeriesTitle": "Marvel Super-Heroes",
+      "previousSeriesYear": 1967,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marvel Super-Heroes (1990) #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/15511/marvel_super_heroes_1990_1",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2bbb7bdb314d88435b9dd8936e65fa16a0f36389ade804eb758f23a04e7285c2"
+    },
+    {
+      "sourcePosition": 97,
+      "previousSourceIssueReference": "West Coast Avengers Annual #1",
+      "previousSourceRangeReference": "Annual #1",
+      "previousNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "previousSeriesYear": 1986,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 56327,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "resolvedSeriesYear": 1986,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 56327 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "4865866e2cdca800875499e02eb02fdf5d0d9fe10aa8e43274a5b9b94962b7a9"
+    },
+    {
+      "sourcePosition": 114,
+      "previousSourceIssueReference": "Marvel Graphic Novel #27",
+      "previousSourceRangeReference": "Marvel Graphic Novel (1982) #27: Emperor Doom",
+      "previousNormalizedSeriesTitle": "Marvel Graphic Novel",
+      "previousSeriesYear": 1982,
+      "previousIssueNumber": "27",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Marvel publishes Emperor Doom as collection 74612, not as a standalone Marvel Unlimited issue.",
+      "decisionScope": "Collection-only source exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The official Marvel result is a collection rather than a standalone issue, so publication would substitute a different record type.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-collection",
+          "url": "https://www.marvel.com/comics/collection/74612/marvel_graphic_novel_emperor_doom_trade_paperback",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2c11f2733549497cb77e09cb5eb55ad601f17e7ef2521e6124f8f8a2c3ef7bc4"
+    },
+    {
+      "sourcePosition": 119,
+      "previousSourceIssueReference": "West Coast Avengers #42",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "42",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55231,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "42",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55231 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "57216fe6c025c2101579fdcb9b44e9718a526ff2b0bdd6ef3a8b162fb9b05852"
+    },
+    {
+      "sourcePosition": 120,
+      "previousSourceIssueReference": "West Coast Avengers #43",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "43",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55232,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "43",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55232 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "1055f016073aac69d4636365c5b0e6d70a1fba6ab5948904568f069bf4bf6223"
+    },
+    {
+      "sourcePosition": 121,
+      "previousSourceIssueReference": "West Coast Avengers #44",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "44",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55233,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "44",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55233 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d27ecda1f67bdb954f7430eb2f959d5bf172d538774b80d8da69ef23fabe99d8"
+    },
+    {
+      "sourcePosition": 122,
+      "previousSourceIssueReference": "West Coast Avengers #45",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "45",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55234,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "45",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55234 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "e46f1385acb9947a456d0647e7075b4fae62551fd08b87a872a0678fb5d8ea47"
+    },
+    {
+      "sourcePosition": 124,
+      "previousSourceIssueReference": "Avengers West Coast #47",
+      "previousSourceRangeReference": "Avengers West Coast (1989) #47-52",
+      "previousNormalizedSeriesTitle": "Avengers West Coast",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "47",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55236,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "47",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55236 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "29e116d0a254adb239bdacfa569f11af9e5ea115966f5f82a5b3080744aa7309"
+    },
+    {
+      "sourcePosition": 184,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #52",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "52",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #52 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d5f1568257ad4a21cc3f1f7f9632ac5208d8c0d16c596dfdfdd176ebcbd5082a"
+    },
+    {
+      "sourcePosition": 185,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #53",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "53",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #53 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "bd403eda4490432ccac7d4f3eb5ee6d0ec1d5b4f34c967d7f037b16dd1117da5"
+    },
+    {
+      "sourcePosition": 186,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #54",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "54",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #54 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "8e4c0b362a88388d89959b3361b58956d9d94114ab43f55d1288d43b3684c7bf"
+    },
+    {
+      "sourcePosition": 187,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #55",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "55",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #55 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "b872594a8ef41771ab6f699b06b7c9b9b4836163366f6330ebba6f38cd4fdff2"
+    },
+    {
+      "sourcePosition": 188,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #56",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "56",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #56 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "449e8055b2a0df1b5a61060c1c4975940a8a4733ff1d4cee4da98179558ec9d5"
+    },
+    {
+      "sourcePosition": 190,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #58",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "58",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #58 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d2c283b4c482de21597d773ce7b7db404e143a5bb6f1c656442abd1a43436a28"
+    },
+    {
+      "sourcePosition": 191,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #59",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "59",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #59 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "163b2ce505f6b375388d4f8f69ca100f96f9ec021900859df2163589d578a46f"
+    },
+    {
+      "sourcePosition": 192,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #60",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "60",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #60 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2fd7b31f081b05497d10d1da97861c5762fa14a5c2198ecee9e9993009774a23"
+    }
+  ]
 }

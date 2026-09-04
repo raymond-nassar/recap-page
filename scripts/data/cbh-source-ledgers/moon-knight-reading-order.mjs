@@ -225,7 +225,7 @@ const moonKnightSourceLedger = expandLedger([
       single({ title: 'Marvel Fanfare', year: 1982, issueNumber: 30, sourceIssueReference: 'Marvel Fanfare #30', sourceRangeReference: 'Marvel Fanfare #30' }),
       range({ title: 'Marvel Fanfare', year: 1982, start: 38, end: 39, sourceRangeReference: 'Marvel Fanfare #38-39' }),
       single({ title: 'Solo Avengers', year: 1987, issueNumber: 3, sourceIssueReference: 'Solo Avengers #3', sourceRangeReference: 'Solo Avengers #3' }),
-      single({ title: 'Marvel Super-Heroes', year: 1967, issueNumber: 1, sourceIssueReference: 'Marvel Super-Heroes #1', sourceRangeReference: 'Marvel Super-Heroes #1' }),
+      single({ title: 'Marvel Super-Heroes', year: 1990, issueNumber: 1, classification: 'semantic-exclusion', sourceIssueReference: 'Marvel Super-Heroes #1', sourceRangeReference: 'Marvel Super-Heroes #1', note: 'The owner confirmed that the 1990 issue is unavailable on Marvel Unlimited.' }),
       range({ title: 'Marc Spector, Moon Knight', year: 1989, start: 1, end: 2, sourceRangeReference: 'Marc Spector, Moon Knight #1-2' }),
     ]),
     block(22, 'Collects: West Coast Avengers (1985) #8-24, Annual #1; Avengers Annual #15', [
@@ -237,7 +237,7 @@ const moonKnightSourceLedger = expandLedger([
       range({ title: 'West Coast Avengers', year: 1985, start: 25, end: 37, sourceRangeReference: 'West Coast Avengers (1985) #25-37' }),
       single({ title: 'West Coast Avengers Annual', year: 1986, issueNumber: 2, sourceIssueReference: 'West Coast Avengers Annual #2', sourceRangeReference: 'West Coast Avengers Annual (1986) #2' }),
       single({ title: 'Avengers Annual', year: 1967, issueNumber: 16, sourceIssueReference: 'Avengers Annual #16', sourceRangeReference: 'Avengers Annual (1967) #16' }),
-      single({ title: 'Marvel Graphic Novel', year: 1982, issueNumber: 27, sourceIssueReference: 'Marvel Graphic Novel #27', sourceRangeReference: 'Marvel Graphic Novel (1982) #27: Emperor Doom' }),
+      single({ title: 'Marvel Graphic Novel', year: 1982, issueNumber: 27, classification: 'semantic-exclusion', sourceIssueReference: 'Marvel Graphic Novel #27', sourceRangeReference: 'Marvel Graphic Novel (1982) #27: Emperor Doom', note: 'Marvel publishes Emperor Doom as a collection, not as a standalone Marvel Unlimited issue.' }),
     ]),
     block(28, 'Collects: West Coast Avengers (1985) #38-46, Avengers West Coast (1989) #47-52, West Coast Avengers Annual (1986) #3, Avengers West Coast Annual (1989) #4, Material From Avengers Spotlight (1989) #23.', [
       range({ title: 'West Coast Avengers', year: 1985, start: 38, end: 46, sourceRangeReference: 'West Coast Avengers (1985) #38-46' }),
@@ -247,7 +247,10 @@ const moonKnightSourceLedger = expandLedger([
       single({ title: 'Avengers Spotlight', year: 1989, issueNumber: 23, classification: 'semantic-exclusion', sourceIssueReference: 'Avengers Spotlight #23', sourceRangeReference: 'Material From Avengers Spotlight (1989) #23' }),
     ]),
     block(30, 'Marc Spector, Moon Knight #1 to #60 (1989 to 1994)', [
-      range({ title: 'Marc Spector, Moon Knight', year: 1989, start: 1, end: 60, sourceRangeReference: 'Marc Spector, Moon Knight #1 to #60 (1989 to 1994)' }),
+      range({ title: 'Marc Spector, Moon Knight', year: 1989, start: 1, end: 51, sourceRangeReference: 'Marc Spector, Moon Knight #1 to #60 (1989 to 1994)' }),
+      range({ title: 'Marc Spector, Moon Knight', year: 1989, start: 52, end: 56, classification: 'semantic-exclusion', sourceRangeReference: 'Marc Spector, Moon Knight #1 to #60 (1989 to 1994)', note: 'The owner confirmed that this issue is unavailable on Marvel Unlimited.' }),
+      single({ title: 'Marc Spector, Moon Knight', year: 1989, issueNumber: 57, sourceRangeReference: 'Marc Spector, Moon Knight #1 to #60 (1989 to 1994)' }),
+      range({ title: 'Marc Spector, Moon Knight', year: 1989, start: 58, end: 60, classification: 'semantic-exclusion', sourceRangeReference: 'Marc Spector, Moon Knight #1 to #60 (1989 to 1994)', note: 'The owner confirmed that this issue is unavailable on Marvel Unlimited.' }),
     ]),
     block(33, 'Collects: Amazing Spider-Man (1963) #351-360, Amazing Spider-Man Annual #25, Spectacular Spider-Man Annual #11, Web Of Spider-Man Annual #7, And Spider-Man: Fear Itself (1992).', [
       range({ title: 'Amazing Spider-Man', year: 1963, start: 351, end: 360, sourceRangeReference: 'Amazing Spider-Man (1963) #351-360' }),

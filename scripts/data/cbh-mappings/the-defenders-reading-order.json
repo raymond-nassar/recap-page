@@ -10661,10 +10661,10 @@
     "coverIssueId": 17089
   },
   "relationshipReview": {
-    "reportDigest": "f5bd04d8159380904e8156fe24326a164b5be49433e210defacd9057bb478717",
+    "reportDigest": "127bc68740fa9df19babaa686f6b0dc09042e22c8622b0eee28a372eed5c48a5",
     "packetDigest": "d50645b6f4d324178d7ea8b93fae012bfcc3177af42a2befea818328926d6440",
     "mappingDigest": "b748ed01220030899a42af5f547eaea5b2746e8de25e7f88e5dcd13821459884",
-    "libraryDigest": "ca9a168349cd5532f14499af42e8480a737214d9b69a3137b999f92a5f942371",
+    "libraryDigest": "cfa42523619081cab3a5349a110b49a8cf6f7fb11da40e2296e2a8b837e5738a",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
@@ -12152,7 +12152,7 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "a6e87d59d4c9b7da2a9d956450a79afd09b6d1c9bdf52c8cdd6ca36fe70d0c91",
+    "approvalDigest": "dc69cce647627a44c6c79d44e75ebf1fc9ef11f601b4279719b243506373b28f",
     "sourceCounts": {
       "sourceOccurrenceCount": 331,
       "sourceIdentityCount": 268,

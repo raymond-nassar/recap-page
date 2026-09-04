@@ -7809,10 +7809,10 @@
     "coverIssueId": 10865
   },
   "relationshipReview": {
-    "reportDigest": "211f0ead5201148957fb985e2cba2f29b783b5eb143991636e33c5713035d46c",
+    "reportDigest": "f562b41d9a637b42d872e0c2e8ccb2b395c7d3fe1fc3bc3310ed14b6dd49fad9",
     "packetDigest": "737f8fd6c65a2f24dc3bea4dfc394a7974308852f1cda00abbccccc77660b691",
     "mappingDigest": "83b58141a6112d7cebc2951acfd8c7680db90c63221a2a3321c8b210c464c745",
-    "libraryDigest": "ac1836ff985dd6a558f67a5a5b19bc41b6ef7632fc0435276e7a2ccbf41db56a",
+    "libraryDigest": "9405b7c357884f0d8318fcd03808b1d9e67487f741dc5763559b41bf8487e6e6",
     "peerDigests": {},
     "dispositions": [
       {
@@ -9691,10 +9691,10 @@
     "sourceProvider": "comic-book-reading-orders",
     "packetReview": "MRT-003-C02-AU01-PUB central CBRO source review",
     "authorityType": "stronger-model",
-    "authorityIdentity": "MRT-003-C02-AU01-PUB coordinator",
+    "authorityIdentity": "GitHub Copilot",
     "rationale": "Every current library comparison was reviewed for the selected alternate-universe Marvel 2099 guide.",
     "reviewedAt": "2026-08-28T06:53:35.491Z",
-    "approvalDigest": "6b887f36b0d43c9fde5692a5e42e9875609e98ff813fd20f6f28c2d195e47d9a",
+    "approvalDigest": "234df4247958c47c8064e2d53e082074ad20b4caaa8221f01771d8a2c66acb57",
     "sourceCounts": {
       "sourceOccurrenceCount": 271,
       "sourceIdentityCount": 172,

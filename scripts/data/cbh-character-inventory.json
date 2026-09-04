@@ -2274,7 +2274,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The frozen full-page source ledger preserves 414 occurrences: 374 exact provider-resolved comics, 11 backward repeats, 18 explicit open metadata gaps, and 11 partial-material exclusions. The complete-library report has 17 approved non-none relationships and no exact duplicate.",
+    "reason": "The frozen full-page source ledger preserves 414 occurrences: 382 exact provider or owner-resolved comics, 11 backward repeats, and 21 explicit exclusions. The complete-library report has approved non-none relationships and no exact duplicate.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "agatha-harkness-reading-order",
