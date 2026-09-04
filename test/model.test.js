@@ -1031,7 +1031,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // the live metadata index does not list. The Abomination guide retains one empty response after
   // its Ghost Rider identity was corrected. The Ant-Man guide adds three researched identities
   // whose optional details were refused. Silver Surfer now adds one exact official issue whose
-  // optional details were refused, bringing the total to 91 across ten affected orders.
+  // optional details were refused. Loki now replaces 18 placeholders with 16 complete records and
+  // two exact provider refusals, bringing the total to 105 across thirteen affected orders.
   // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
@@ -1045,7 +1046,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // carries no placeholders after its owner-reviewed availability settlement. Venom adds 33
   // further source-preserving metadata gaps with distinct negative identifiers. Punisher adds 158
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
-  // Magneto adds 58 cached-provider gaps. Loki adds 18 distinct source-occurrence gaps. Silver
+  // Magneto adds 58 cached-provider gaps. Loki carries no placeholders after its owner-reviewed
+  // settlement. Silver
   // Surfer carries no placeholders after one exact resolution and three approved exclusions.
   // Black Panther carries no placeholders after one exact resolution and three approved
   // nonexistent-identity exclusions. Black Widow carries no placeholders after eleven exact
@@ -1062,10 +1064,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1654, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1653, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 103);
-  assert.equal(affected, 12);
+  assert.equal(claimed, 1636, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1635, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 105);
+  assert.equal(affected, 13);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1267,7 +1269,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // negative placeholder identifiers. Daredevil now adds none after
   // its availability settlement. Venom adds 33 more negative
   // placeholder identifiers. Punisher adds 158 distinct placeholders while retaining 23 repeated
-  // source occurrences without duplicate identifiers. Magneto adds 58. Loki adds 18. Silver
+  // source occurrences without duplicate identifiers. Magneto adds 58. Loki now adds two exact
+  // provider refusals instead of 18 placeholders. Silver
   // Surfer adds one exact official issue whose optional metadata request was refused. Black Widow
   // adds four exact official issues whose optional metadata requests were refused. Moon Knight's
   // eight exact refused records add two distinct ids because six already occur in Black Widow or
@@ -1276,6 +1279,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // owner-reviewed settlement. Guardians adds 29, Defenders adds 23 and Nick Fury and S.H.I.E.L.D.
   // adds 194. Adam Warlock carries no refused identities after its owner-reviewed availability
   // settlement.
-  assert.equal(refused.length, 1715);
+  assert.equal(refused.length, 1699);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

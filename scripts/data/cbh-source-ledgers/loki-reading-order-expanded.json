@@ -5,10 +5,10 @@
   "sourceBlockCount": 232,
   "sourceOccurrenceCount": 830,
   "counts": {
-    "exclusion": 121,
-    "exact": 638,
+    "exact": 656,
     "repeat": 53,
-    "gap": 18
+    "gap": 0,
+    "exclusion": 121
   },
   "occurrences": [
     {
@@ -1945,7 +1945,7 @@
     {
       "sourceBlockPosition": 42,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
-      "sourceReference": "Marvel Masterworks: The Mighty Thor \u2013 Volume 9",
+      "sourceReference": "Marvel Masterworks: The Mighty Thor – Volume 9",
       "disposition": "exclusion",
       "rationale": "Trade header or collected-edition label without an issue identity.",
       "position": 179
@@ -2074,7 +2074,7 @@
     {
       "sourceBlockPosition": 44,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
-      "sourceReference": "Marvel Masterworks \u2013 The Mighty Thor \u2013 Volume 10",
+      "sourceReference": "Marvel Masterworks – The Mighty Thor – Volume 10",
       "disposition": "exclusion",
       "rationale": "Trade header or collected-edition label without an issue identity.",
       "position": 191
@@ -2203,7 +2203,7 @@
     {
       "sourceBlockPosition": 46,
       "sourceGroup": "Loki’s 1960’s Reading Order!",
-      "sourceReference": "Marvel Masterworks: The Mighty Thor \u2013 Volume 11",
+      "sourceReference": "Marvel Masterworks: The Mighty Thor – Volume 11",
       "disposition": "exclusion",
       "rationale": "Trade header or collected-edition label without an issue identity.",
       "position": 203
@@ -3561,7 +3561,7 @@
     {
       "sourceBlockPosition": 69,
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
-      "sourceReference": "Thor by Walter Simonson \u2013 Volume 1",
+      "sourceReference": "Thor by Walter Simonson – Volume 1",
       "disposition": "exclusion",
       "rationale": "Trade header or collected-edition label without an issue identity.",
       "position": 330
@@ -3966,10 +3966,11 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
       "issueNumber": "9",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 368
+      "expectedSeriesId": 2100,
+      "disposition": "exact",
+      "position": 368,
+      "issueId": "12369",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12369/x-men_annual_1970_9"
     },
     {
       "sourceBlockPosition": 78,
@@ -4629,9 +4630,10 @@
       "sourceReference": "Journey Into Mystery (1996) #503-513",
       "issueNumber": "509",
       "expectedSeriesId": 13569,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 431
+      "disposition": "exact",
+      "position": 431,
+      "issueId": "37753",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/37753/journey_into_mystery_1996_509"
     },
     {
       "sourceBlockPosition": 92,
@@ -4661,9 +4663,10 @@
       "sourceReference": "Journey Into Mystery (1996) #503-513",
       "issueNumber": "512",
       "expectedSeriesId": 13569,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 434
+      "disposition": "exact",
+      "position": 434,
+      "issueId": "37755",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/37755/journey_into_mystery_1996_512"
     },
     {
       "sourceBlockPosition": 92,
@@ -4769,7 +4772,7 @@
     {
       "sourceBlockPosition": 97,
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
-      "sourceReference": "Amazing Spider-Man by JMS \u2013 Ultimate Collection Book 3",
+      "sourceReference": "Amazing Spider-Man by JMS – Ultimate Collection Book 3",
       "disposition": "exclusion",
       "rationale": "Trade header or collected-edition label without an issue identity.",
       "position": 445
@@ -4889,7 +4892,7 @@
     {
       "sourceBlockPosition": 103,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #1-6 (July 2007 \u2013 Feb 2008)",
+      "sourceReference": "Thor #1-6 (July 2007 – Feb 2008)",
       "issueNumber": "1",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4900,7 +4903,7 @@
     {
       "sourceBlockPosition": 103,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #1-6 (July 2007 \u2013 Feb 2008)",
+      "sourceReference": "Thor #1-6 (July 2007 – Feb 2008)",
       "issueNumber": "2",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4911,7 +4914,7 @@
     {
       "sourceBlockPosition": 103,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #1-6 (July 2007 \u2013 Feb 2008)",
+      "sourceReference": "Thor #1-6 (July 2007 – Feb 2008)",
       "issueNumber": "3",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4922,7 +4925,7 @@
     {
       "sourceBlockPosition": 103,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #1-6 (July 2007 \u2013 Feb 2008)",
+      "sourceReference": "Thor #1-6 (July 2007 – Feb 2008)",
       "issueNumber": "4",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4933,7 +4936,7 @@
     {
       "sourceBlockPosition": 103,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #1-6 (July 2007 \u2013 Feb 2008)",
+      "sourceReference": "Thor #1-6 (July 2007 – Feb 2008)",
       "issueNumber": "5",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4944,7 +4947,7 @@
     {
       "sourceBlockPosition": 103,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #1-6 (July 2007 \u2013 Feb 2008)",
+      "sourceReference": "Thor #1-6 (July 2007 – Feb 2008)",
       "issueNumber": "6",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4971,7 +4974,7 @@
     {
       "sourceBlockPosition": 106,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #7 \u2013 #12 + #600 (March 2008 \u2013 Feb 2009)",
+      "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "issueNumber": "7",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4982,7 +4985,7 @@
     {
       "sourceBlockPosition": 106,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #7 \u2013 #12 + #600 (March 2008 \u2013 Feb 2009)",
+      "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "issueNumber": "8",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -4993,7 +4996,7 @@
     {
       "sourceBlockPosition": 106,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #7 \u2013 #12 + #600 (March 2008 \u2013 Feb 2009)",
+      "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "issueNumber": "9",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5004,7 +5007,7 @@
     {
       "sourceBlockPosition": 106,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #7 \u2013 #12 + #600 (March 2008 \u2013 Feb 2009)",
+      "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "issueNumber": "10",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5015,7 +5018,7 @@
     {
       "sourceBlockPosition": 106,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #7 \u2013 #12 + #600 (March 2008 \u2013 Feb 2009)",
+      "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "issueNumber": "11",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5026,7 +5029,7 @@
     {
       "sourceBlockPosition": 106,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #7 \u2013 #12 + #600 (March 2008 \u2013 Feb 2009)",
+      "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "issueNumber": "12",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5037,7 +5040,7 @@
     {
       "sourceBlockPosition": 106,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #7 \u2013 #12 + #600 (March 2008 \u2013 Feb 2009)",
+      "sourceReference": "Thor #7 – #12 + #600 (March 2008 – Feb 2009)",
       "issueNumber": "600",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5056,7 +5059,7 @@
     {
       "sourceBlockPosition": 108,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 \u2013 Sep 2009)",
+      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
       "issueNumber": "601",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5067,7 +5070,7 @@
     {
       "sourceBlockPosition": 108,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 \u2013 Sep 2009)",
+      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
       "issueNumber": "602",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5078,7 +5081,7 @@
     {
       "sourceBlockPosition": 108,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 \u2013 Sep 2009)",
+      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
       "issueNumber": "603",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5089,12 +5092,13 @@
     {
       "sourceBlockPosition": 108,
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 \u2013 Sep 2009)",
+      "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
       "issueNumber": "1",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 476
+      "expectedSeriesId": 13601,
+      "disposition": "exact",
+      "position": 476,
+      "issueId": "37957",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/37957/thor_giant-size_finale_2009_1"
     },
     {
       "sourceBlockPosition": 109,
@@ -5274,7 +5278,7 @@
     {
       "sourceBlockPosition": 115,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "Thor #615 \u2013 #621 (Sept 2010 \u2013 March 2011)",
+      "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
       "issueNumber": "615",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5285,7 +5289,7 @@
     {
       "sourceBlockPosition": 115,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "Thor #615 \u2013 #621 (Sept 2010 \u2013 March 2011)",
+      "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
       "issueNumber": "616",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5296,7 +5300,7 @@
     {
       "sourceBlockPosition": 115,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "Thor #615 \u2013 #621 (Sept 2010 \u2013 March 2011)",
+      "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
       "issueNumber": "617",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5307,7 +5311,7 @@
     {
       "sourceBlockPosition": 115,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "Thor #615 \u2013 #621 (Sept 2010 \u2013 March 2011)",
+      "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
       "issueNumber": "618",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5318,7 +5322,7 @@
     {
       "sourceBlockPosition": 115,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "Thor #615 \u2013 #621 (Sept 2010 \u2013 March 2011)",
+      "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
       "issueNumber": "619",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5329,7 +5333,7 @@
     {
       "sourceBlockPosition": 115,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "Thor #615 \u2013 #621 (Sept 2010 \u2013 March 2011)",
+      "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
       "issueNumber": "620",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5340,7 +5344,7 @@
     {
       "sourceBlockPosition": 115,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "Thor #615 \u2013 #621 (Sept 2010 \u2013 March 2011)",
+      "sourceReference": "Thor #615 – #621 (Sept 2010 – March 2011)",
       "issueNumber": "621",
       "expectedSeriesId": 2473,
       "disposition": "exact",
@@ -5359,7 +5363,7 @@
     {
       "sourceBlockPosition": 117,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor 1-6 (April 2011 \u2013 Sept 2011)",
+      "sourceReference": "The Mighty Thor 1-6 (April 2011 – Sept 2011)",
       "issueNumber": "1",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5370,7 +5374,7 @@
     {
       "sourceBlockPosition": 117,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor 1-6 (April 2011 \u2013 Sept 2011)",
+      "sourceReference": "The Mighty Thor 1-6 (April 2011 – Sept 2011)",
       "issueNumber": "2",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5381,7 +5385,7 @@
     {
       "sourceBlockPosition": 117,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor 1-6 (April 2011 \u2013 Sept 2011)",
+      "sourceReference": "The Mighty Thor 1-6 (April 2011 – Sept 2011)",
       "issueNumber": "3",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5392,7 +5396,7 @@
     {
       "sourceBlockPosition": 117,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor 1-6 (April 2011 \u2013 Sept 2011)",
+      "sourceReference": "The Mighty Thor 1-6 (April 2011 – Sept 2011)",
       "issueNumber": "4",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5403,7 +5407,7 @@
     {
       "sourceBlockPosition": 117,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor 1-6 (April 2011 \u2013 Sept 2011)",
+      "sourceReference": "The Mighty Thor 1-6 (April 2011 – Sept 2011)",
       "issueNumber": "5",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5414,7 +5418,7 @@
     {
       "sourceBlockPosition": 117,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor 1-6 (April 2011 \u2013 Sept 2011)",
+      "sourceReference": "The Mighty Thor 1-6 (April 2011 – Sept 2011)",
       "issueNumber": "6",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5625,7 +5629,7 @@
     {
       "sourceBlockPosition": 122,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor #7 \u2013 #12 (Oct 2011 \u2013 March 2012); Fear Itself #7.2: Thor",
+      "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
       "issueNumber": "7",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5636,7 +5640,7 @@
     {
       "sourceBlockPosition": 122,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor #7 \u2013 #12 (Oct 2011 \u2013 March 2012); Fear Itself #7.2: Thor",
+      "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
       "issueNumber": "8",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5647,7 +5651,7 @@
     {
       "sourceBlockPosition": 122,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor #7 \u2013 #12 (Oct 2011 \u2013 March 2012); Fear Itself #7.2: Thor",
+      "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
       "issueNumber": "9",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5658,7 +5662,7 @@
     {
       "sourceBlockPosition": 122,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor #7 \u2013 #12 (Oct 2011 \u2013 March 2012); Fear Itself #7.2: Thor",
+      "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
       "issueNumber": "10",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5669,7 +5673,7 @@
     {
       "sourceBlockPosition": 122,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor #7 \u2013 #12 (Oct 2011 \u2013 March 2012); Fear Itself #7.2: Thor",
+      "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
       "issueNumber": "11",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5680,7 +5684,7 @@
     {
       "sourceBlockPosition": 122,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor #7 \u2013 #12 (Oct 2011 \u2013 March 2012); Fear Itself #7.2: Thor",
+      "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
       "issueNumber": "12",
       "expectedSeriesId": 13757,
       "disposition": "exact",
@@ -5691,12 +5695,13 @@
     {
       "sourceBlockPosition": 122,
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "sourceReference": "The Mighty Thor #7 \u2013 #12 (Oct 2011 \u2013 March 2012); Fear Itself #7.2: Thor",
+      "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
       "issueNumber": "7.2",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 533
+      "expectedSeriesId": 13691,
+      "disposition": "exact",
+      "position": 533,
+      "issueId": "41108",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41108/fear_itself_2010_7.2"
     },
     {
       "sourceBlockPosition": 123,
@@ -5972,10 +5977,11 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
       "issueNumber": "1",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 559
+      "expectedSeriesId": 15239,
+      "disposition": "exact",
+      "position": 559,
+      "issueId": "41036",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41036/the_mighty_thor_annual_2012_1"
     },
     {
       "sourceBlockPosition": 127,
@@ -6413,52 +6419,57 @@
     {
       "sourceBlockPosition": 149,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "sourceReference": "Original Sin: Thor & Loki \u2013 The Tenth Realm 1-5",
+      "sourceReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
       "issueNumber": "1",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 601
+      "expectedSeriesId": 18681,
+      "disposition": "exact",
+      "position": 601,
+      "issueId": "50888",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50888/original_sin_2014_5.1"
     },
     {
       "sourceBlockPosition": 149,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "sourceReference": "Original Sin: Thor & Loki \u2013 The Tenth Realm 1-5",
+      "sourceReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
       "issueNumber": "2",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 602
+      "expectedSeriesId": 18681,
+      "disposition": "exact",
+      "position": 602,
+      "issueId": "50892",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50892/original_sin_2014_5.2"
     },
     {
       "sourceBlockPosition": 149,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "sourceReference": "Original Sin: Thor & Loki \u2013 The Tenth Realm 1-5",
+      "sourceReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
       "issueNumber": "3",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 603
+      "expectedSeriesId": 18681,
+      "disposition": "exact",
+      "position": 603,
+      "issueId": "50926",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50926/original_sin_2014_5.3"
     },
     {
       "sourceBlockPosition": 149,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "sourceReference": "Original Sin: Thor & Loki \u2013 The Tenth Realm 1-5",
+      "sourceReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
       "issueNumber": "4",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 604
+      "expectedSeriesId": 18681,
+      "disposition": "exact",
+      "position": 604,
+      "issueId": "50927",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50927/original_sin_2014_5.4"
     },
     {
       "sourceBlockPosition": 149,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "sourceReference": "Original Sin: Thor & Loki \u2013 The Tenth Realm 1-5",
+      "sourceReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
       "issueNumber": "5",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 605
+      "expectedSeriesId": 18681,
+      "disposition": "exact",
+      "position": 605,
+      "issueId": "50928",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50928/original_sin_2014_5.5"
     },
     {
       "sourceBlockPosition": 150,
@@ -7026,9 +7037,10 @@
       "sourceReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
       "issueNumber": "1",
       "expectedSeriesId": 23038,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 661
+      "disposition": "exact",
+      "position": 661,
+      "issueId": "62818",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017"
     },
     {
       "sourceBlockPosition": 172,
@@ -7305,50 +7317,55 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
       "issueNumber": "794",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 689
+      "expectedSeriesId": 20432,
+      "disposition": "exact",
+      "position": 689,
+      "issueId": "65894",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65894/the_amazing_spider-man_2017_794"
     },
     {
       "sourceBlockPosition": 184,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
       "issueNumber": "795",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 690
+      "expectedSeriesId": 20432,
+      "disposition": "exact",
+      "position": 690,
+      "issueId": "66083",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66083/the_amazing_spider-man_2017_795"
     },
     {
       "sourceBlockPosition": 184,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
       "issueNumber": "796",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 691
+      "expectedSeriesId": 20432,
+      "disposition": "exact",
+      "position": 691,
+      "issueId": "66263",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66263/the_amazing_spider-man_2017_796"
     },
     {
       "sourceBlockPosition": 184,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
       "issueNumber": "42",
-      "expectedSeriesId": 26267,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 692
+      "expectedSeriesId": 24255,
+      "disposition": "exact",
+      "position": 692,
+      "issueId": "66184",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66184/amazing_spider-man_annual_2018_42"
     },
     {
       "sourceBlockPosition": 184,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
       "issueNumber": "25",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 693
+      "expectedSeriesId": 20432,
+      "disposition": "exact",
+      "position": 693,
+      "issueId": "59526",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59526/the_amazing_spider-man_2015_25"
     },
     {
       "sourceBlockPosition": 185,
@@ -8000,10 +8017,11 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
       "issueNumber": "1",
-      "expectedSeriesId": null,
-      "disposition": "gap",
-      "rationale": "Provider lookup did not establish this source issue identity.",
-      "position": 757
+      "expectedSeriesId": 26898,
+      "disposition": "exact",
+      "position": 757,
+      "issueId": "74762",
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1"
     },
     {
       "sourceBlockPosition": 205,

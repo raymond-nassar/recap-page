@@ -360,7 +360,7 @@
     },
     {
       "sourcePosition": 561,
-      "canonicalRow": 440,
+      "canonicalRow": 445,
       "sourceIssueReference": "Exiled (2011) #1",
       "sourceRangeReference": "Exiled #1",
       "normalizedSeriesTitle": "Exiled",
@@ -369,7 +369,7 @@
     },
     {
       "sourcePosition": 562,
-      "canonicalRow": 443,
+      "canonicalRow": 448,
       "sourceIssueReference": "Journey Into Mystery (2011) #637",
       "sourceRangeReference": "Journey Into Mystery #637",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -378,7 +378,7 @@
     },
     {
       "sourcePosition": 563,
-      "canonicalRow": 441,
+      "canonicalRow": 446,
       "sourceIssueReference": "New Mutants (2009) #42",
       "sourceRangeReference": "New Mutants #42",
       "normalizedSeriesTitle": "New Mutants",
@@ -387,7 +387,7 @@
     },
     {
       "sourcePosition": 564,
-      "canonicalRow": 444,
+      "canonicalRow": 449,
       "sourceIssueReference": "Journey Into Mystery (2011) #638",
       "sourceRangeReference": "Journey Into Mystery #638",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -396,7 +396,7 @@
     },
     {
       "sourcePosition": 565,
-      "canonicalRow": 442,
+      "canonicalRow": 447,
       "sourceIssueReference": "New Mutants (2009) #43",
       "sourceRangeReference": "New Mutants #43",
       "normalizedSeriesTitle": "New Mutants",
@@ -405,7 +405,7 @@
     },
     {
       "sourcePosition": 567,
-      "canonicalRow": 452,
+      "canonicalRow": 457,
       "sourceIssueReference": "The Mighty Thor (2011) #18",
       "sourceRangeReference": "The Mighty Thor #18",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -414,7 +414,7 @@
     },
     {
       "sourcePosition": 568,
-      "canonicalRow": 448,
+      "canonicalRow": 453,
       "sourceIssueReference": "Journey Into Mystery (2011) #642",
       "sourceRangeReference": "Journey Into Mystery #642",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -423,7 +423,7 @@
     },
     {
       "sourcePosition": 569,
-      "canonicalRow": 453,
+      "canonicalRow": 458,
       "sourceIssueReference": "The Mighty Thor (2011) #19",
       "sourceRangeReference": "The Mighty Thor #19",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -432,7 +432,7 @@
     },
     {
       "sourcePosition": 570,
-      "canonicalRow": 449,
+      "canonicalRow": 454,
       "sourceIssueReference": "Journey Into Mystery (2011) #643",
       "sourceRangeReference": "Journey Into Mystery #643",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -441,7 +441,7 @@
     },
     {
       "sourcePosition": 571,
-      "canonicalRow": 454,
+      "canonicalRow": 459,
       "sourceIssueReference": "The Mighty Thor (2011) #20",
       "sourceRangeReference": "The Mighty Thor #20",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -450,7 +450,7 @@
     },
     {
       "sourcePosition": 572,
-      "canonicalRow": 450,
+      "canonicalRow": 455,
       "sourceIssueReference": "Journey Into Mystery (2011) #644",
       "sourceRangeReference": "Journey Into Mystery #644",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -459,7 +459,7 @@
     },
     {
       "sourcePosition": 573,
-      "canonicalRow": 455,
+      "canonicalRow": 460,
       "sourceIssueReference": "The Mighty Thor (2011) #21",
       "sourceRangeReference": "The Mighty Thor #21",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -468,7 +468,7 @@
     },
     {
       "sourcePosition": 574,
-      "canonicalRow": 451,
+      "canonicalRow": 456,
       "sourceIssueReference": "Journey Into Mystery (2011) #645",
       "sourceRangeReference": "Journey Into Mystery #645",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -477,7 +477,7 @@
     },
     {
       "sourcePosition": 575,
-      "canonicalRow": 456,
+      "canonicalRow": 461,
       "sourceIssueReference": "The Mighty Thor (2011) #22",
       "sourceRangeReference": "The Mighty Thor #22",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -486,482 +486,12 @@
     },
     {
       "sourcePosition": 796,
-      "canonicalRow": 600,
+      "canonicalRow": 618,
       "sourceIssueReference": "War Of The Realms Omega (2019) #1",
       "sourceRangeReference": "Loki (2019) #1 to #5; material from War of the Realms: Omega (2019) #1",
       "normalizedSeriesTitle": "War Of The Realms Omega",
       "seriesYear": 2019,
       "issueNumber": "1"
-    }
-  ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 368,
-      "sourceIssueReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
-      "sourceRangeReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
-      "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
-      "normalizedSeriesTitle": "Uncanny X-Men Annual",
-      "seriesYear": null,
-      "issueNumber": "9",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "091808c026a30331a6ca1e9d18c26828d3a5856565075bb47a556c86719d6838"
-    },
-    {
-      "sourcePosition": 431,
-      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
-      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
-      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
-      "normalizedSeriesTitle": "Journey Into Mystery",
-      "seriesYear": 1996,
-      "issueNumber": "509",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "fc8fdd0e2e1e6321ea29b55897d1a0a950a780b59f0dc2244d29312c0dc4a91d"
-    },
-    {
-      "sourcePosition": 434,
-      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
-      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
-      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
-      "normalizedSeriesTitle": "Journey Into Mystery",
-      "seriesYear": 1996,
-      "issueNumber": "512",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "bbeafa2c22003fb859ecaa96226f4a0d901d5a01d89ea99293fad6e7622c482e"
-    },
-    {
-      "sourcePosition": 476,
-      "sourceIssueReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
-      "sourceRangeReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)",
-      "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "normalizedSeriesTitle": "Thor: Defining Moments Giant-Size",
-      "seriesYear": 2009,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a2ee9b9efd807e612dc171ac8b1a395ddbed5ab29dcf774dcb4a822a1543dba1"
-    },
-    {
-      "sourcePosition": 533,
-      "sourceIssueReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
-      "sourceRangeReference": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor",
-      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "normalizedSeriesTitle": "Fear Itself: Thor",
-      "seriesYear": 2011,
-      "issueNumber": "7.2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "7ebd81455b7131513ed959518126554650dbdc71a452d6eec824036515debbd3"
-    },
-    {
-      "sourcePosition": 559,
-      "sourceIssueReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
-      "sourceRangeReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
-      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "normalizedSeriesTitle": "The Mighty Thor Annual",
-      "seriesYear": 2011,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a86a808c869ca120c1c0c2402a52156e040e6591d61d407f1ea7d9d24817d441"
-    },
-    {
-      "sourcePosition": 601,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "25fdbf72d66bf8348a5f353e8fce00254ca99814aa0856e266e45740e559d8d3"
-    },
-    {
-      "sourcePosition": 602,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "066dbe475c024fcb7cba10c7f55fa99259c5a6f6ca43a05bb26477d86531a3ff"
-    },
-    {
-      "sourcePosition": 603,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "5e589cd7b40cc30588a37bbec67d12c5df110919c7296096bdad8ef8b4e113fb"
-    },
-    {
-      "sourcePosition": 604,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8e05fc9e3acbdef941d0f3f921761d5734f6395b0223c2d4e066e0e4eabe2d79"
-    },
-    {
-      "sourcePosition": 605,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "7ba8cc00f137d41c37046029e30f6fa1cd208ca85dff45c70edb8e1ce2d39dae"
-    },
-    {
-      "sourcePosition": 661,
-      "sourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
-      "sourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Free Comic Book Day All-New Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "7dcd3c34c807e4088db313dc36ff7029dfb6dd5d9bdfd23bf092f15d7f9b1176"
-    },
-    {
-      "sourcePosition": 689,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "794",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "42826d6f71e641197f4c1353f057be7f1f18a1fea487bb29b869bf1b1f3df944"
-    },
-    {
-      "sourcePosition": 690,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "795",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a51854362f81f231ff7de7f2992a126951d9a020b32d50eb0d7e3c0b36d3db2e"
-    },
-    {
-      "sourcePosition": 691,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "796",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e786bc270b58559e1ffc343e1b9109a4ea636190ce4dcd71128262469cd1b77f"
-    },
-    {
-      "sourcePosition": 692,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man Annual",
-      "seriesYear": 2018,
-      "issueNumber": "42",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "3f1891da33917e46ed56f263335bc215e28a84dab5a68a6d8af2d157b9bd1542"
-    },
-    {
-      "sourcePosition": 693,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "25",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "bea2805e95830e91d636c9348771f0f1649b120213a345e7ac8fa33e5b22f829"
-    },
-    {
-      "sourcePosition": 757,
-      "sourceIssueReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
-      "sourceRangeReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
-      "sourceGroup": "Marvel Fresh Start Loki Comics",
-      "normalizedSeriesTitle": "Infinity Wars: Infinity",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "6eb55948ac5b4ccd06a7e11a26072d87402f96b461f49b78ebad7dad421af40f"
     }
   ],
   "excludedSourceRows": [
@@ -1692,7 +1222,7 @@
       "decisionScope": "source-boundary"
     }
   ],
-  "expectedCount": 638,
+  "expectedCount": 656,
   "proposedManifest": {
     "id": "loki-reading-order",
     "name": "Loki",
@@ -5407,6 +4937,18 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor"
     },
     {
+      "sourceIssueReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "sourceRangeReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "normalizedSeriesTitle": "X-Men Annual",
+      "seriesYear": 1970,
+      "issueNumber": "9",
+      "seriesId": 2100,
+      "candidateIssueId": 12369,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor"
+    },
+    {
       "sourceIssueReference": "Thor (1966) #364",
       "sourceRangeReference": "Thor #364-369; Thor #371-374",
       "normalizedSeriesTitle": "Thor",
@@ -6031,6 +5573,18 @@
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s"
     },
     {
+      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 1996,
+      "issueNumber": "509",
+      "seriesId": 13569,
+      "candidateIssueId": 37753,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s"
+    },
+    {
       "sourceIssueReference": "Journey Into Mystery (1996) #510",
       "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -6050,6 +5604,18 @@
       "issueNumber": "511",
       "seriesId": 13569,
       "candidateIssueId": 48376,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s"
+    },
+    {
+      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 1996,
+      "issueNumber": "512",
+      "seriesId": 13569,
+      "candidateIssueId": 37755,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s"
@@ -6350,6 +5916,18 @@
       "issueNumber": "603",
       "seriesId": 2473,
       "candidateIssueId": 26690,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Asgard Disassembled And Loki Reborn"
+    },
+    {
+      "sourceIssueReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
+      "sourceRangeReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)",
+      "normalizedSeriesTitle": "Thor Giant-Size Finale",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 13601,
+      "candidateIssueId": 37957,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "sourceGroup": "Asgard Disassembled And Loki Reborn"
@@ -6931,6 +6509,18 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen"
     },
     {
+      "sourceIssueReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
+      "sourceRangeReference": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor",
+      "normalizedSeriesTitle": "Fear Itself",
+      "seriesYear": 2010,
+      "issueNumber": "7.2",
+      "seriesId": 13691,
+      "candidateIssueId": 41108,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen"
+    },
+    {
       "sourceIssueReference": "The Mighty Thor (2011) #12.1",
       "sourceRangeReference": "The Mighty Thor #12.1; The Mighty Thor #13-17",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -7207,6 +6797,18 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen"
     },
     {
+      "sourceIssueReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "sourceRangeReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "normalizedSeriesTitle": "The Mighty Thor Annual",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 15239,
+      "candidateIssueId": 41036,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen"
+    },
+    {
       "sourceIssueReference": "Young Avengers (2013) #1",
       "sourceRangeReference": "Young Avengers (2013) 1-15; Marvel Now! Point One 1 (Young Avengers Story)",
       "normalizedSeriesTitle": "Young Avengers",
@@ -7454,6 +7056,66 @@
       "issueNumber": "5",
       "seriesId": 18340,
       "candidateIssueId": 48518,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard"
+    },
+    {
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.1",
+      "seriesId": 18681,
+      "candidateIssueId": 50888,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard"
+    },
+    {
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.2",
+      "seriesId": 18681,
+      "candidateIssueId": 50892,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard"
+    },
+    {
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.3",
+      "seriesId": 18681,
+      "candidateIssueId": 50926,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard"
+    },
+    {
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.4",
+      "seriesId": 18681,
+      "candidateIssueId": 50927,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard"
+    },
+    {
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.5",
+      "seriesId": 18681,
+      "candidateIssueId": 50928,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard"
@@ -7939,6 +7601,18 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
     },
     {
+      "sourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "sourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "normalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23038,
+      "candidateIssueId": 62818,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
+    },
+    {
       "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #1",
       "sourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
       "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
@@ -8150,6 +7824,66 @@
       "issueNumber": "14",
       "seriesId": 23677,
       "candidateIssueId": 65089,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "794",
+      "seriesId": 20432,
+      "candidateIssueId": 65894,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "795",
+      "seriesId": 20432,
+      "candidateIssueId": 66083,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "796",
+      "seriesId": 20432,
+      "candidateIssueId": 66263,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "normalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "seriesYear": 2018,
+      "issueNumber": "42",
+      "seriesId": 24255,
+      "candidateIssueId": 66184,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
+    },
+    {
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2015,
+      "issueNumber": "25",
+      "seriesId": 20432,
+      "candidateIssueId": 59526,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)"
@@ -8714,6 +8448,18 @@
       "issueNumber": "1",
       "seriesId": 26478,
       "candidateIssueId": 73415,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Marvel Fresh Start Loki Comics"
+    },
+    {
+      "sourceIssueReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "sourceRangeReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "normalizedSeriesTitle": "Infinity Wars: Infinity",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26898,
+      "candidateIssueId": 74762,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "sourceGroup": "Marvel Fresh Start Loki Comics"
@@ -9391,5 +9137,511 @@
       "sourceGroup": "Latest Additions:"
     }
   ],
-  "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9"
+  "packetDigest": "59f9c2e4f97567d03eeb5c37e44a859f2308de7ce10c015d15722f5c64f42dbe",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 368,
+      "previousSourceIssueReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "previousSourceRangeReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "previousNormalizedSeriesTitle": "Uncanny X-Men Annual",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "9",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 12369,
+      "resolvedNormalizedSeriesTitle": "X-Men Annual",
+      "resolvedSeriesYear": 1970,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/12369/x-men_annual_1970_9",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "6d0b2d5cb27fc8c54e6e003ad6fd3b6b3cfdea4e6895d9c1bbf318ee6592f159"
+    },
+    {
+      "sourcePosition": 431,
+      "previousSourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "previousSourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "previousNormalizedSeriesTitle": "Journey Into Mystery",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "509",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 37753,
+      "resolvedNormalizedSeriesTitle": "Journey Into Mystery",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "509",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/37753/journey_into_mystery_1996_509",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "097a156820c729200c0e16a9bc196a106560c0ad8a5150caebf9d4c8dd3360cb"
+    },
+    {
+      "sourcePosition": 434,
+      "previousSourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "previousSourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "previousNormalizedSeriesTitle": "Journey Into Mystery",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "512",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 37755,
+      "resolvedNormalizedSeriesTitle": "Journey Into Mystery",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "512",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/37755/journey_into_mystery_1996_512",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "9b208247dc09439cddee4e5745a256d90ad4e100791223c19d9bf2900fa62b13"
+    },
+    {
+      "sourcePosition": 476,
+      "previousSourceIssueReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
+      "previousSourceRangeReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)",
+      "previousNormalizedSeriesTitle": "Thor: Defining Moments Giant-Size",
+      "previousSeriesYear": 2009,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 37957,
+      "resolvedNormalizedSeriesTitle": "Thor Giant-Size Finale",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/37957/thor_giant-size_finale_2009_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1b9ad3ff0b66f01966a19a278735e536730a8b6e2f14d99babd7ef22c32615af"
+    },
+    {
+      "sourcePosition": 533,
+      "previousSourceIssueReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
+      "previousSourceRangeReference": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor",
+      "previousNormalizedSeriesTitle": "Fear Itself: Thor",
+      "previousSeriesYear": 2011,
+      "previousIssueNumber": "7.2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 41108,
+      "resolvedNormalizedSeriesTitle": "Fear Itself",
+      "resolvedSeriesYear": 2010,
+      "resolvedIssueNumber": "7.2",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/41108/fear_itself_2010_7.2",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "a29de01bba4fc01fb89c77e2abc3de06d9f4d7b8fd9a6ebeaa7574340be14df7"
+    },
+    {
+      "sourcePosition": 559,
+      "previousSourceIssueReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "previousSourceRangeReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "previousNormalizedSeriesTitle": "The Mighty Thor Annual",
+      "previousSeriesYear": 2011,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 41036,
+      "resolvedNormalizedSeriesTitle": "The Mighty Thor Annual",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/41036/the_mighty_thor_annual_2012_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "25600d1eff7a4ca9aba4bed745395457a5215cb421a597d7911ae28f2f15ca5d"
+    },
+    {
+      "sourcePosition": 601,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50888,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50888/original_sin_2014_5.1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "b3ba81ad4b9927b6ec292af99b75045d88f85ae15c9f29da13a1f17a007a8705"
+    },
+    {
+      "sourcePosition": 602,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50892,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.2",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50892/original_sin_2014_5.2",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "172b18b0d11d07a350235e461f13975f646823fda0f6f04857a547b19a288ca9"
+    },
+    {
+      "sourcePosition": 603,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50926,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.3",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50926/original_sin_2014_5.3",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "60ee718735c666015d8546116e916384b800431bf62f27c37bcc75401ceb5f00"
+    },
+    {
+      "sourcePosition": 604,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50927,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.4",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50927/original_sin_2014_5.4",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d0e8e9ff181cf379bb33897e91b3822884dd76fff6c7727cc8ef2873e5592dfc"
+    },
+    {
+      "sourcePosition": 605,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50928,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.5",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50928/original_sin_2014_5.5",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "233f96b3bfa5be3c848c2320fa43d57d8e140186904d01eea1631b5f9815bcb3"
+    },
+    {
+      "sourcePosition": 661,
+      "previousSourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "previousSourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "previousNormalizedSeriesTitle": "Free Comic Book Day All-New Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62818,
+      "resolvedNormalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1e2c91ec4834d846c9cf6ef517e849d7a01e8ffa08161bdab3cfe5353e6a9a24"
+    },
+    {
+      "sourcePosition": 689,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "794",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65894,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "794",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65894/the_amazing_spider-man_2017_794",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "e777a13646299114c4b0d4a1dcd3583d5a657486ca75e0006602dd4a065a25fc"
+    },
+    {
+      "sourcePosition": 690,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "795",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66083,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "795",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66083/the_amazing_spider-man_2017_795",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "ca1310e3854416d73f23bf9eebe43b497a83a58a79127c8f96e36d62a63dbd85"
+    },
+    {
+      "sourcePosition": 691,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "796",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66263,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "796",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66263/the_amazing_spider-man_2017_796",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "6d315045bdef017f8acb96a59f8678943c37d62798de1b33daaf33e2e81c5e47"
+    },
+    {
+      "sourcePosition": 692,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "42",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66184,
+      "resolvedNormalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "42",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66184/amazing_spider-man_annual_2018_42",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "aef00fc48f1a31e1538c48703019507ec55e7e69ee1a44b0431f2f6f8fd7bbbc"
+    },
+    {
+      "sourcePosition": 693,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "25",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 59526,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "25",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/59526/the_amazing_spider-man_2015_25",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "e2f040054bd4488ce9d10827d5385b43d4d465d7c3fac31b985443732f755290"
+    },
+    {
+      "sourcePosition": 757,
+      "previousSourceIssueReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "previousSourceRangeReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "previousNormalizedSeriesTitle": "Infinity Wars: Infinity",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 74762,
+      "resolvedNormalizedSeriesTitle": "Infinity Wars: Infinity",
+      "resolvedSeriesYear": 2019,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "aae507ddc4463aa939f2838caac264101764657198b632b7e97a3e42cd2376a8"
+    }
+  ]
 }

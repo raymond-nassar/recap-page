@@ -22,7 +22,12 @@ import { buildReportForMapping as buildCurrentReportForMapping } from '../script
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
-import { addIssuesToList, createEmptyState, createList } from '../src/js/lib/model.js';
+import {
+  addIssuesToList,
+  createEmptyState,
+  createList,
+  pendingIssueIds,
+} from '../src/js/lib/model.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const abominationCandidateId = 'abomination-reading-order';
@@ -2091,7 +2096,7 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
       positions: [87],
     },
   ];
-  const gapBlockPositions = [77, 92, 108, 122, 126, 149, 172, 184, 205];
+  const gapBlockPositions = [];
 
   function validateLedgerShape(candidateLedger) {
     assert.equal(candidateLedger.sourceUrl, 'https://www.comicbookherald.com/loki-reading-order/');
@@ -2232,8 +2237,8 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   assert.equal(inventoryRecord.sourceRetrievedAt, '2026-08-27');
   assert.equal(inventoryRecord.sourceContentSha256, ledger.sourceContentSha256);
   assert.match(inventoryRecord.reason, /830 issue and marker occurrences/i);
-  assert.match(inventoryRecord.reason, /638 exact issue rows/i);
-  assert.match(inventoryRecord.reason, /18 explicit metadata gaps/i);
+  assert.match(inventoryRecord.reason, /656 exact issue rows/i);
+  assert.match(inventoryRecord.reason, /zero metadata gaps/i);
   assert.match(inventoryRecord.reason, /53 repeated issue occurrences/i);
   assert.match(inventoryRecord.reason, /121 exclusions/i);
 
@@ -2241,9 +2246,9 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   assert.equal(expandedLedger.sourceBlockCount, ledger.sourceOccurrenceCount);
   assert.equal(expandedLedger.sourceOccurrenceCount, expandedLedger.occurrences.length);
   assert.deepEqual(expandedLedger.counts, {
-    exact: 638,
+    exact: 656,
     repeat: 53,
-    gap: 18,
+    gap: 0,
     exclusion: 121,
   });
   assert.equal(
@@ -2262,7 +2267,7 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   );
   assert.equal(
     expandedLedger.occurrences.filter((entry) => (
-      entry.sourceBlockPosition === 149 && entry.disposition === 'gap'
+      entry.sourceBlockPosition === 149 && entry.disposition === 'exact'
     )).length,
     5,
   );
@@ -2283,7 +2288,7 @@ test('the Loki source ledger preserves every occurrence and boundary decision', 
   assert.throws(() => validateLedgerShape(duplicated));
 });
 
-test('Loki publishes every cached exact issue and preserves its source gaps', async () => {
+test('Loki publishes every settled exact issue without source gaps', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const packet = await readJson('scripts/data/cbh-packets/loki-reading-order.json');
   const mapping = await readJson('scripts/data/cbh-mappings/loki-reading-order.json');
@@ -2302,31 +2307,34 @@ test('Loki publishes every cached exact issue and preserves its source gaps', as
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.equal(packet.sourceOccurrenceCount, 830);
-  assert.equal(packet.rows.length, 638);
+  assert.equal(packet.rows.length, 656);
   assert.equal(packet.repeatedSourceReferences.length, 53);
-  assert.equal(packet.sourceGaps.length, 18);
+  assert.equal(packet.sourceGaps?.length ?? 0, 0);
+  assert.equal(packet.sourceGapResolutions.length, 18);
   assert.equal(packet.excludedSourceRows.length, 121);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 638);
+  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 656);
   assert.ok(mapping.repeatedSourceReferences.every((entry) => entry.canonicalRow > 0));
   assert.equal(mapping.reviewStatus, 'approved');
   assert.equal(report.comparisonCount, 137);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'exact').length, 0);
   assert.equal(manifestEntry.expect, 656);
   assert.equal(payload.count, 656);
-  assert.equal(payload.placeholders, 18);
-  assert.equal(payload.items.filter((item) => item.issueId > 0).length, 638);
-  assert.equal(payload.items.filter((item) => item.issueId < 0).length, 18);
+  assert.equal(payload.placeholders, 0);
+  assert.equal(payload.items.filter((item) => item.issueId > 0).length, 656);
+  assert.equal(payload.items.filter((item) => item.issueId < 0).length, 0);
   assert.equal(payload.collections, 75);
   assert.deepEqual(
     [...new Set(payload.items.map((item) => item.collectedIn))],
     parseChecklist(markdown).headings.slice(1),
   );
   assert.match(markdown, /^## Journey Into Mystery \(1952\) 83-109$/m);
-  assert.ok(packet.sourceGaps.every((gap) => /issue #302/.test(gap.auditBasis)));
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.evidenceSources.some((source) => source.url.endsWith('/issues/302'))
+  )));
 });
 
-test('Loki source-gap identities survive re-vendoring and import without collapsing', async () => {
+test('Loki settled identities survive re-vendoring and import without collapsing', async () => {
   const markdown = await readFile(path.join(root, 'src/data/orders/loki-reading-order.md'), 'utf8');
   const mapping = await readJson('scripts/data/cbh-mappings/loki-reading-order.json');
   const payload = await readJson('src/data/loki_reading_order.json');
@@ -2344,21 +2352,111 @@ test('Loki source-gap identities survive re-vendoring and import without collaps
 
   assert.equal(items.length, 656);
   assert.ok(items.every((item) => !item.title.includes('mrt:source-occurrence=')));
-  assert.deepEqual(
-    unresolved.map((entry) => entry.sourceKey),
-    mapping.sourceGaps.map((gap) => String(gap.sourcePosition)),
-  );
+  assert.deepEqual(unresolved, []);
+  assert.equal(mapping.sourceGaps?.length ?? 0, 0);
   assert.equal(new Set(items.map((item) => item.issueId)).size, 656);
   assert.deepEqual(
     items.map((item) => item.issueId),
     payload.items.map((item) => item.issueId),
   );
   assert.equal(state.lists[listId].itemIds.length, 656);
-  assert.equal(items.filter((item) => item.placeholder).length, 18);
+  assert.equal(items.filter((item) => item.placeholder).length, 0);
   assert.equal(
     placeholderId('unchanged-order', 'Existing unique placeholder'),
     placeholderId('unchanged-order', 'Existing unique placeholder', null),
   );
+});
+
+test('Loki settles all 18 issue #302 gaps with exact identities', async () => {
+  const [ledger, expandedLedger, packet, mapping, report, catalog, payload, markdown] = await Promise.all([
+    readJson('scripts/data/cbh-source-ledgers/loki-reading-order.json'),
+    readJson('scripts/data/cbh-source-ledgers/loki-reading-order-expanded.json'),
+    readJson('scripts/data/cbh-packets/loki-reading-order.json'),
+    readJson('scripts/data/cbh-mappings/loki-reading-order.json'),
+    readJson('scripts/data/cbh-overlaps/loki-reading-order.json'),
+    readJson('src/data/catalog.json'),
+    readJson('src/data/loki_reading_order.json'),
+    readFile(path.join(root, 'src/data/orders/loki-reading-order.md'), 'utf8'),
+  ]);
+  const exactIssues = new Map([
+    [368, 12369],
+    [431, 37753],
+    [434, 37755],
+    [476, 37957],
+    [533, 41108],
+    [559, 41036],
+    [601, 50888],
+    [602, 50892],
+    [603, 50926],
+    [604, 50927],
+    [605, 50928],
+    [661, 62818],
+    [689, 65894],
+    [690, 66083],
+    [691, 66263],
+    [692, 66184],
+    [693, 59526],
+    [757, 74762],
+  ]);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === 'loki-reading-order');
+  const checklist = parseChecklist(markdown);
+  assert.deepEqual(ledger.counts, { exact: 75, repeat: 39, gap: 0, exclusion: 118 });
+  assert.deepEqual(expandedLedger.counts, { exact: 656, repeat: 53, gap: 0, exclusion: 121 });
+  assert.equal(expandedLedger.sourceOccurrenceCount, 830);
+  assert.deepEqual(
+    packet.sourceGapResolutions.map((resolution) => resolution.sourcePosition),
+    [...exactIssues.keys()],
+  );
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.resolutionKind === 'exact-issue'
+      && resolution.evidenceDigest === sourceGapResolutionDigestFor(resolution)
+  )));
+  assert.equal(
+    digestCanonicalJson(packet.sourceGapResolutions),
+    '59de316b6547f728eb75fd03ba8717ebb9cbf294f30404e31d02d5906e25962b',
+  );
+  assert.equal(
+    digestCanonicalJson([...exactIssues.keys()]),
+    '38d5002a8438cd41b66902444e0d20b504bcf36b9fb0efc1f453232410cc83bd',
+  );
+  for (const [sourcePosition, issueId] of exactIssues) {
+    const row = mapping.rows.find((entry) => entry.sourcePosition === sourcePosition);
+    const occurrence = expandedLedger.occurrences.find((entry) => entry.position === sourcePosition);
+    const resolution = packet.sourceGapResolutions.find((entry) => entry.sourcePosition === sourcePosition);
+    assert.equal(row?.selectedIssueId, issueId, `source position ${sourcePosition} has the wrong issue`);
+    assert.equal(Number(occurrence?.issueId), issueId);
+    assert.equal(resolution?.selectedIssueId, issueId);
+  }
+  assert.equal(packet.rows.length, 656);
+  assert.equal(mapping.rows.length, 656);
+  assert.equal(packet.sourceGaps?.length ?? 0, 0);
+  assert.equal(mapping.sourceGaps?.length ?? 0, 0);
+  assert.equal(packet.packetDigest, packetDigestFor(packet));
+  assert.equal(mapping.relationshipReview.approvalDigest, approvalDigestFor(mapping.relationshipReview));
+  const currentReport = await buildReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', 'loki-reading-order.json'),
+  );
+  assert.deepEqual(currentReport, report);
+  assert.equal(payload.count, 656);
+  assert.equal(payload.placeholders, 0);
+  assert.deepEqual(payload.unresolved, []);
+  assert.equal(checklist.entries.length, 656);
+  assert.deepEqual(checklist.unresolved, []);
+  assert.equal(catalogEntry.count, 656);
+  assert.equal(catalogEntry.placeholderCount, 0);
+  assert.equal(catalogEntry.emptyRecordCount, 2);
+  assert.deepEqual(
+    payload.items.filter((item) => item.detailsRefused).map((item) => item.issueId),
+    [37753, 37755],
+  );
+  const baseState = createList(createEmptyState(), { name: 'Loki settlement' });
+  const state = addIssuesToList(
+    baseState,
+    baseState.listOrder[0],
+    payload.items.map((item) => ({ ...item, source: 'curated' })),
+  ).state;
+  assert.ok(!pendingIssueIds(state).includes(37753));
+  assert.ok(!pendingIssueIds(state).includes(37755));
 });
 
 test('Silver Surfer settles all four issue #304 gaps without losing source positions', async () => {

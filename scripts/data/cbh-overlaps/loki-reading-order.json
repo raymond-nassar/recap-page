@@ -1,17 +1,18 @@
 {
   "candidateId": "loki-reading-order",
-  "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9",
-  "mappingDigest": "5ef7839f0d33a30d0b04a70d4b72cb5c5d517c274371448161170b9b774487fe",
-  "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
+  "packetDigest": "59f9c2e4f97567d03eeb5c37e44a859f2308de7ce10c015d15722f5c64f42dbe",
+  "mappingDigest": "e00c816ee6d4121bf509f242b85863f47ef061afeda913d2fc5a7436a5b7f2fa",
+  "libraryDigest": "b5ffdf1a1afe9dfe8d661db486526c369a3fb316ba8a81ffd21e1ebd77772524",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 830,
     "sourceIdentityCount": 656,
-    "includedIssueCount": 638,
-    "sourceGapCount": 18,
-    "repeatedSourceReferenceCount": 53
+    "includedIssueCount": 656,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 53,
+    "excludedSourceRowCount": 121
   },
-  "candidateCount": 638,
+  "candidateCount": 656,
   "comparisonCount": 137,
   "comparisons": [
     {
@@ -375,7 +376,7 @@
     },
     {
       "orderId": "infinity-countdown-wars",
-      "sharedCount": 18,
+      "sharedCount": 19,
       "sharedIds": [
         "66283",
         "66416",
@@ -392,6 +393,7 @@
         "67150",
         "67151",
         "73415",
+        "74762",
         "71037",
         "71308",
         "71310"
@@ -762,8 +764,9 @@
     },
     {
       "orderId": "star-lord-reading-order",
-      "sharedCount": 12,
+      "sharedCount": 13,
       "sharedIds": [
+        "62818",
         "61513",
         "61514",
         "61516",
@@ -1055,8 +1058,9 @@
     },
     {
       "orderId": "xmen-claremont",
-      "sharedCount": 2,
+      "sharedCount": 3,
       "sharedIds": [
+        "12369",
         "11701",
         "11702"
       ],
@@ -1064,13 +1068,14 @@
     },
     {
       "orderId": "xmen-claremont-complete",
-      "sharedCount": 2,
+      "sharedCount": 3,
       "sharedIds": [
+        "12369",
         "11701",
         "11702"
       ],
       "relationship": "partial"
     }
   ],
-  "reportDigest": "bf82c8901419c8d8b2326d8a2f1ccbb13eb41f0f981701f9f2e796c716534717"
+  "reportDigest": "7652de5417f35ce217adc3fa3d5e6993a955f05527056f097f3d4dc4bfe0dfdf"
 }

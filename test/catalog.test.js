@@ -218,12 +218,12 @@ test('the bundled catalog is valid and its counts match the vendored orders', as
       bothEntries,
     },
     {
-      complete: 19787,
-      placeholders: 1653,
-      emptyRecords: 103,
+      complete: 19803,
+      placeholders: 1635,
+      emptyRecords: 105,
       total: 21543,
-      placeholderEntries: 17,
-      emptyEntries: 12,
+      placeholderEntries: 16,
+      emptyEntries: 13,
       bothEntries: 1,
     },
   );

@@ -58,6 +58,7 @@ const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
   'black-widow-reading-order': '78f1e66f89f8d6f6978b0882439b04d8115e351929b93efc0130f3617d8f6e7c',
   'daredevil-reading-order': 'a5819df38fcbd69a9458b91c88d1d6f689c8ba6555e033e6fd93cd3d218c41bd',
   'fantastic-four-reading-order': '9edb15a15d2daae057b551c64570d3318b13e3a4fc47dca6d2504a0d985d7a91',
+  'loki-reading-order': '59de316b6547f728eb75fd03ba8717ebb9cbf294f30404e31d02d5906e25962b',
   'moon-knight-reading-order': 'd073930c3543c58ba3fc12f5e02ab80fb5551d0847f1b932e01c96d00da5ab08',
   'silver-surfer-reading-order': '2fad8b1d3f31882844786b3a7051b48e559e7d94afdb3e936fdf83e88d263a92',
 });

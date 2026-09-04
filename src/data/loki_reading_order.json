@@ -5,103 +5,12 @@
   "source": "https://www.comicbookherald.com/loki-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T14:42:20.271Z",
+  "generatedAt": "2026-09-04T19:09:53.466Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 656,
   "collections": 75,
-  "placeholders": 18,
-  "unresolved": [
-    {
-      "index": 367,
-      "title": "Uncanny X-Men Annual #9",
-      "section": "Loki In The 1980’s, Enter Walt Simonson’s Thor"
-    },
-    {
-      "index": 430,
-      "title": "Journey Into Mystery #509",
-      "section": "Acts of Vengeance and Loki Comics in the 1990’s"
-    },
-    {
-      "index": 433,
-      "title": "Journey Into Mystery #512",
-      "section": "Acts of Vengeance and Loki Comics in the 1990’s"
-    },
-    {
-      "index": 475,
-      "title": "Thor: Defining Moments Giant-Size #1",
-      "section": "Asgard Disassembled And Loki Reborn"
-    },
-    {
-      "index": 532,
-      "title": "Fear Itself: Thor #7.2",
-      "section": "Loki by Matt Fraction and Kieron Gillen"
-    },
-    {
-      "index": 558,
-      "title": "The Mighty Thor Annual #1",
-      "section": "Loki by Matt Fraction and Kieron Gillen"
-    },
-    {
-      "index": 600,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #1",
-      "section": "Loki in Young Avengers And Agent of Asgard"
-    },
-    {
-      "index": 601,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #2",
-      "section": "Loki in Young Avengers And Agent of Asgard"
-    },
-    {
-      "index": 602,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #3",
-      "section": "Loki in Young Avengers And Agent of Asgard"
-    },
-    {
-      "index": 603,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #4",
-      "section": "Loki in Young Avengers And Agent of Asgard"
-    },
-    {
-      "index": 604,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #5",
-      "section": "Loki in Young Avengers And Agent of Asgard"
-    },
-    {
-      "index": 660,
-      "title": "Free Comic Book Day All-New Guardians of the Galaxy #1",
-      "section": "Loki With All-New, All-Different Thor (And Runs for President)"
-    },
-    {
-      "index": 688,
-      "title": "Amazing Spider-Man #794",
-      "section": "Loki With All-New, All-Different Thor (And Runs for President)"
-    },
-    {
-      "index": 689,
-      "title": "Amazing Spider-Man #795",
-      "section": "Loki With All-New, All-Different Thor (And Runs for President)"
-    },
-    {
-      "index": 690,
-      "title": "Amazing Spider-Man #796",
-      "section": "Loki With All-New, All-Different Thor (And Runs for President)"
-    },
-    {
-      "index": 691,
-      "title": "Amazing Spider-Man Annual #42",
-      "section": "Loki With All-New, All-Different Thor (And Runs for President)"
-    },
-    {
-      "index": 692,
-      "title": "Amazing Spider-Man #25",
-      "section": "Loki With All-New, All-Different Thor (And Runs for President)"
-    },
-    {
-      "index": 756,
-      "title": "Infinity Wars: Infinity #1",
-      "section": "Marvel Fresh Start Loki Comics"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 9779,
@@ -9738,20 +9647,39 @@
       "collectedIn": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2"
     },
     {
-      "issueId": -691262400,
-      "title": "Uncanny X-Men Annual #9",
+      "issueId": 12369,
+      "title": "X-Men Annual (1970) #9",
       "number": "9",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/12369/x-men_annual_1970_9",
+      "seriesId": 2100,
+      "seriesName": "X-Men Annual (1970 - 1994)",
+      "onSale": "1985-01-01T00:00:00+0000",
+      "mu": "1985-01-01T00:00:00+0000",
+      "digitalId": 2831,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/592f0e5f4531c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Gordon",
+          "role": "cover artist"
+        },
+        {
+          "name": "Arthur Adams",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mignola",
+          "role": "cover artist"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2"
     },
     {
@@ -11371,10 +11299,10 @@
       "collectedIn": "Journey Into Mystery (1996) #503-513"
     },
     {
-      "issueId": -1208945201,
-      "title": "Journey Into Mystery #509",
+      "issueId": 37753,
+      "title": "Journey Into Mystery (1996) #509",
       "number": "509",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/37753/journey_into_mystery_1996_509",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11384,7 +11312,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Journey Into Mystery (1996) #503-513"
     },
     {
@@ -11436,10 +11364,10 @@
       "collectedIn": "Journey Into Mystery (1996) #503-513"
     },
     {
-      "issueId": -1292833296,
-      "title": "Journey Into Mystery #512",
+      "issueId": 37755,
+      "title": "Journey Into Mystery (1996) #512",
       "number": "512",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/37755/journey_into_mystery_1996_512",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11449,7 +11377,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Journey Into Mystery (1996) #503-513"
     },
     {
@@ -12230,20 +12158,35 @@
       "collectedIn": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)"
     },
     {
-      "issueId": -991476116,
-      "title": "Thor: Defining Moments Giant-Size #1",
+      "issueId": 37957,
+      "title": "THOR GIANT-SIZE FINALE (2009) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/37957/thor_giant-size_finale_2009_1",
+      "seriesId": 13601,
+      "seriesName": "THOR GIANT-SIZE FINALE (2009)",
+      "onSale": "2009-11-25T00:00:00+0000",
+      "mu": "2009-11-25T00:00:00+0000",
+      "digitalId": 18386,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/50b4fd935fd9b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)"
     },
     {
@@ -13698,20 +13641,39 @@
       "collectedIn": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor"
     },
     {
-      "issueId": -870894606,
-      "title": "Fear Itself: Thor #7.2",
+      "issueId": 41108,
+      "title": "Fear Itself (2010) #7.2",
       "number": "7.2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/41108/fear_itself_2010_7.2",
+      "seriesId": 13691,
+      "seriesName": "Fear Itself (2010 - 2011)",
+      "onSale": "2011-11-09T00:00:00+0000",
+      "mu": "2012-11-16T00:00:00+0000",
+      "digitalId": 24952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/5644df93bca16",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Roslan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Salvador Larroca",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor"
     },
     {
@@ -14415,20 +14377,31 @@
       "collectedIn": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1"
     },
     {
-      "issueId": -702132678,
-      "title": "The Mighty Thor Annual #1",
+      "issueId": 41036,
+      "title": "The Mighty Thor Annual (2012) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/41036/the_mighty_thor_annual_2012_1",
+      "seriesId": 15239,
+      "seriesName": "The Mighty Thor Annual (2012)",
+      "onSale": "2012-06-06T00:00:00+0000",
+      "mu": "2013-04-15T00:00:00+0000",
+      "digitalId": 26668,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/59c2b898eecb3",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Patch Zircher",
+          "role": "penciler"
+        },
+        {
+          "name": "J. M. DeMatteis",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1"
     },
     {
@@ -15068,88 +15041,163 @@
       "collectedIn": "Loki: Agent of Asgard #1 to #5"
     },
     {
-      "issueId": -1927461738,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 50888,
+      "title": "Original Sin (2014) #5.1",
+      "number": "5.1",
+      "url": "https://www.marvel.com/comics/issue/50888/original_sin_2014_5.1",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSale": "2014-07-09T00:00:00+0000",
+      "mu": "2015-01-12T00:00:00+0000",
+      "digitalId": 34259,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/53b2dcc52316c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Original Sin: Thor & Loki - The Tenth Realm 1-5"
     },
     {
-      "issueId": -1944239357,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #2",
-      "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 50892,
+      "title": "Original Sin (2014) #5.2",
+      "number": "5.2",
+      "url": "https://www.marvel.com/comics/issue/50892/original_sin_2014_5.2",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSale": "2014-07-23T00:00:00+0000",
+      "mu": "2015-01-26T00:00:00+0000",
+      "digitalId": 34271,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/53c433b501e9c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dale Keown",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Original Sin: Thor & Loki - The Tenth Realm 1-5"
     },
     {
-      "issueId": -1961016976,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #3",
-      "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 50926,
+      "title": "Original Sin (2014) #5.3",
+      "number": "5.3",
+      "url": "https://www.marvel.com/comics/issue/50926/original_sin_2014_5.3",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSale": "2014-08-06T00:00:00+0000",
+      "mu": "2015-02-02T00:00:00+0000",
+      "digitalId": 34652,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/53d7ed270a097",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Original Sin: Thor & Loki - The Tenth Realm 1-5"
     },
     {
-      "issueId": -1843573643,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #4",
-      "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 50927,
+      "title": "Original Sin (2014) #5.4",
+      "number": "5.4",
+      "url": "https://www.marvel.com/comics/issue/50927/original_sin_2014_5.4",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSale": "2014-08-27T00:00:00+0000",
+      "mu": "2015-02-23T00:00:00+0000",
+      "digitalId": 34653,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/53f7acaf77dd7",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Original Sin: Thor & Loki - The Tenth Realm 1-5"
     },
     {
-      "issueId": -1860351262,
-      "title": "Original Sin: Thor & Loki The Tenth Realm #5",
-      "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 50928,
+      "title": "Original Sin (2014) #5.5",
+      "number": "5.5",
+      "url": "https://www.marvel.com/comics/issue/50928/original_sin_2014_5.5",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSale": "2014-09-17T00:00:00+0000",
+      "mu": "2015-03-23T00:00:00+0000",
+      "digitalId": 34655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/5411fe3a07b1b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Jason Aaron",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Original Sin: Thor & Loki - The Tenth Realm 1-5"
     },
     {
@@ -16304,20 +16352,31 @@
       "collectedIn": "Mighty Thor (2015) #20-23; Generations: The Unworthy Thor & The Mighty Thor (2017) #1"
     },
     {
-      "issueId": -1725836120,
-      "title": "Free Comic Book Day All-New Guardians of the Galaxy #1",
+      "issueId": 62818,
+      "title": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "seriesId": 23038,
+      "seriesName": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "onSale": "2017-05-05T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 44806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5b22f0e28daf0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10"
     },
     {
@@ -16937,88 +16996,251 @@
       "collectedIn": "Unbeatable Squirrel Girl (2015b) #27-31; Material from Not Brand Echh (2017) #14"
     },
     {
-      "issueId": -1794572296,
-      "title": "Amazing Spider-Man #794",
+      "issueId": 65894,
+      "title": "The Amazing Spider-Man (2017) #794",
       "number": "794",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65894/the_amazing_spider-man_2017_794",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSale": "2018-01-24T00:00:00+0000",
+      "mu": "2018-07-30T00:00:00+0000",
+      "digitalId": 47127,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/00/5a610fe5de50d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerry Alanguilan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25"
     },
     {
-      "issueId": -1744386534,
-      "title": "Amazing Spider-Man #795",
+      "issueId": 66083,
+      "title": "The Amazing Spider-Man (2017) #795",
       "number": "795",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/66083/the_amazing_spider-man_2017_795",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSale": "2018-02-07T00:00:00+0000",
+      "mu": "2018-08-13T00:00:00+0000",
+      "digitalId": 47272,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/03/5a724221d7369",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25"
     },
     {
-      "issueId": -1727608915,
-      "title": "Amazing Spider-Man #796",
+      "issueId": 66263,
+      "title": "The Amazing Spider-Man (2017) #796",
       "number": "796",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/66263/the_amazing_spider-man_2017_796",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSale": "2018-02-21T00:00:00+0000",
+      "mu": "2018-08-27T00:00:00+0000",
+      "digitalId": 47315,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5a8482aeced67",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Hawthorne",
+          "role": "penciler"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25"
     },
     {
-      "issueId": -1710831296,
-      "title": "Amazing Spider-Man Annual #42",
+      "issueId": 66184,
+      "title": "AMAZING SPIDER-MAN ANNUAL 42 (2018) #42",
       "number": "42",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/66184/amazing_spider-man_annual_42_2018_42",
+      "seriesId": 24255,
+      "seriesName": "AMAZING SPIDER-MAN ANNUAL 42 (2018)",
+      "onSale": "2018-02-14T00:00:00+0000",
+      "mu": "2018-08-20T00:00:00+0000",
+      "digitalId": 47232,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/5a7b3d978bcf2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Cory Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gustavo Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Pallot",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        },
+        {
+          "name": "David Hein",
+          "role": "writer"
+        },
+        {
+          "name": "Jeff Loveness",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25"
     },
     {
-      "issueId": -1694053677,
-      "title": "Amazing Spider-Man #25",
+      "issueId": 59526,
+      "title": "The Amazing Spider-Man (2017) #25",
       "number": "25",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/59526/the_amazing_spider-man_2017_25",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSale": "2017-03-15T00:00:00+0000",
+      "mu": "2017-09-18T00:00:00+0000",
+      "digitalId": 44266,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/58bf12f651c79",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Jordan Gibson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tana Ford",
+          "role": "cover artist"
+        },
+        {
+          "name": "Wade Von Grawbadger",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "Hannah Blumenreich",
+          "role": "penciler"
+        },
+        {
+          "name": "Ray-Anthony Height",
+          "role": "penciler"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Cale Atkinson",
+          "role": "writer"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Jacob Chabot",
+          "role": "writer"
+        },
+        {
+          "name": "James Asmus",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25"
     },
     {
@@ -18638,20 +18860,39 @@
       "collectedIn": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1"
     },
     {
-      "issueId": -1299048054,
-      "title": "Infinity Wars: Infinity #1",
+      "issueId": 74762,
+      "title": "Infinity Wars: Infinity (2019) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1",
+      "seriesId": 26898,
+      "seriesName": "Infinity Wars: Infinity (2019)",
+      "onSale": "2019-01-02T00:00:00+0000",
+      "mu": "2019-07-08T00:00:00+0000",
+      "digitalId": 50103,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5c23edd3b2784",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1"
     },
     {
