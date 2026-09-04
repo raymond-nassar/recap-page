@@ -31962,10 +31962,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The all-library overlap report covers every maintained order, including later orders, and records no exact sequence duplication.",
     "reviewedAt": "2026-08-27T18:40:00.000Z",
-    "reportDigest": "6408ba1853e3dbf9934f226583dcfc93449d9231cf139f7bcf1639d46fa49bed",
+    "reportDigest": "720b1647e22c89b90fd83333998e6fcc0e35bf7b122780333dd3f512d03e57f2",
     "packetDigest": "5dcde2b2f2a23a10c26929f037f3c6d46f7c4aebe20f511668db2da991ea68b8",
     "mappingDigest": "d4a43ccd1cc82665e2fee6f476e8f9f2be7b48059bec98eef952a0f720c5d421",
-    "libraryDigest": "b5f01775e5108223d1dfd81a7b964e5152ecd48a0024d34086a7a051673b497d",
+    "libraryDigest": "720b9f8be481f8a0db567d8f37daf90815268ca492e08eb249442ea5968b7713",
     "peerDigests": {},
     "dispositions": [
       {
@@ -33455,7 +33455,7 @@
         "reviewedAt": "2026-08-27T18:40:00.000Z"
       }
     ],
-    "approvalDigest": "75e1bed7ddcd8d112e9d915a54165b6f10c51cb14dc67bde986d2866cad11ed1",
+    "approvalDigest": "fffc473172b16bb45e58da6d8b00d26fd8a0fec6d7168ab2b2accae09a7df790",
     "sourceCounts": {
       "sourceOccurrenceCount": 1058,
       "sourceIdentityCount": 1000,

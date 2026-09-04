@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T05:21:12.713Z",
+  "generatedAt": "2026-09-04T07:14:21.222Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3335,10 +3335,10 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 392,
-      "placeholderCount": 18,
-      "emptyRecordCount": 0,
-      "collections": 69,
+      "count": 382,
+      "placeholderCount": 0,
+      "emptyRecordCount": 8,
+      "collections": 67,
       "characters": [
         "Moon Knight",
         "Marc Spector",
@@ -3363,7 +3363,7 @@
       "source": "https://www.comicbookherald.com/moon-knight-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T17:46:34.548Z"
+      "updatedAt": "2026-09-04T07:14:21.222Z"
     },
     {
       "id": "guardians-of-the-galaxy-reading-order",

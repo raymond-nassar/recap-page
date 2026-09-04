@@ -412,10 +412,10 @@ const moonKnightExpectedGroupHeadings = [
 ];
 
 const moonKnightExpectedCategoryCounts = {
-  'provisional-canonical-candidate': 392,
+  'provisional-canonical-candidate': 382,
   'true-repeat': 11,
   'unresolved-included-identity-gap': 0,
-  'semantic-exclusion': 11,
+  'semantic-exclusion': 21,
 };
 
 const moonKnightExpectedRepeatPositions = [59, 60, 61, 62, 63, 64, 65, 66, 133, 134, 390];
@@ -428,7 +428,10 @@ const moonKnightExpectedNamedCandidateReferences = [
   'Ms. Marvel & Moon Knight',
   'Strange Academy: Moon Knight',
 ];
-const moonKnightExpectedSemanticExclusionPositions = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 132];
+const moonKnightExpectedSemanticExclusionPositions = [
+  11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 77, 114, 132,
+  184, 185, 186, 187, 188, 190, 191, 192,
+];
 const moonKnightExpectedMoonKnightIssue1Identities = [
   '1980:provisional-canonical-candidate',
   '1985:provisional-canonical-candidate',
@@ -523,6 +526,7 @@ function assertMoonKnightSourceLedgerShape(ledger) {
 
   const block11 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 11);
   const block19 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 19);
+  const block25 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 25);
   const block28 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 28);
   const block30 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 30);
   const block33 = ledger.sourceNodes.find((node) => node.sourceBlockPosition === 33);
@@ -538,13 +542,23 @@ function assertMoonKnightSourceLedgerShape(ledger) {
   ));
   assert.equal(block11.occurrences.filter((occurrence) => occurrence.classification === 'semantic-exclusion').length, 10);
   assert.ok(block19.occurrences.slice(0, 8).every((occurrence) => occurrence.classification === 'true-repeat'));
-  assert.ok(block19.occurrences.slice(8).every((occurrence) => occurrence.classification === 'provisional-canonical-candidate'));
+  assert.equal(block19.occurrences.find((occurrence) => occurrence.sourceIssueReference === 'Marvel Super-Heroes #1').seriesYear, 1990);
+  assert.equal(block19.occurrences.find((occurrence) => occurrence.sourceIssueReference === 'Marvel Super-Heroes #1').classification, 'semantic-exclusion');
+  assert.equal(block25.occurrences.at(-1).sourceIssueReference, 'Marvel Graphic Novel #27');
+  assert.equal(block25.occurrences.at(-1).classification, 'semantic-exclusion');
   assert.ok(block28.occurrences.at(-1).classification === 'semantic-exclusion');
   assert.equal(
     block28.text,
     'Collects: West Coast Avengers (1985) #38-46, Avengers West Coast (1989) #47-52, West Coast Avengers Annual (1986) #3, Avengers West Coast Annual (1989) #4, Material From Avengers Spotlight (1989) #23.',
   );
   assert.ok(block30.occurrences.slice(0, 2).every((occurrence) => occurrence.classification === 'true-repeat'));
+  assert.equal(block30.occurrences.find((occurrence) => occurrence.issueNumber === '57').classification, 'provisional-canonical-candidate');
+  assert.deepEqual(
+    block30.occurrences
+      .filter((occurrence) => occurrence.classification === 'semantic-exclusion')
+      .map((occurrence) => occurrence.issueNumber),
+    ['52', '53', '54', '55', '56', '58', '59', '60'],
+  );
   assert.ok(block33.occurrences.at(-1).classification === 'provisional-canonical-candidate');
   assert.equal(block51.occurrences.length, 6);
   assert.ok(block51.occurrences.slice(0, -1).every((occurrence) => occurrence.classification === 'provisional-canonical-candidate'));
@@ -2701,7 +2715,7 @@ test('the frozen White Tiger evidence stays exact through every generated surfac
     path.join(root, 'scripts', 'data', 'cbh-mappings', `${candidateId}.json`),
   );
 
-  assert.equal(reviewedLibraryDigest, '13d74f46ca63f29f04234e4eda365db6c0221621d98811a1b9bd00d5ea1d49e5');
+  assert.equal(reviewedLibraryDigest, '3d8145c388e40dad1baf02330116f9578ea53d5c223ccf0ce4c46b38749d1aa1');
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.equal(regeneratedReport.candidateId, report.candidateId);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
@@ -2778,7 +2792,7 @@ test('the Moon Knight source ledger stays exact through its frozen source bounda
   assert.equal(record.sourceBoundaryStatus, 'exact-page-snapshot');
   assert.equal(record.metadataHorizonStatus, 'approved');
   assert.equal(record.sourceRetrievedAt, '2026-08-23');
-  assert.match(record.reason, /374 exact provider-resolved comics, 11 backward repeats, 18 explicit open metadata gaps, and 11 partial-material exclusions/i);
+  assert.match(record.reason, /382 exact provider or owner-resolved comics, 11 backward repeats, and 21 explicit exclusions/i);
 
   assertMoonKnightSourceLedgerShape(moonKnightSourceLedger);
 
@@ -2858,15 +2872,17 @@ test('the Moon Knight source ledger stays exact through its frozen source bounda
   assert.throws(() => assertMoonKnightSourceLedgerShape(mixedClauseMutation), /deep-equal/);
 });
 
-test('Moon Knight publishes its complete source accounting with explicit metadata gaps', async () => {
+test('Moon Knight settles issue 310 with exact identities and availability exclusions', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
   const packet = await readJson(`scripts/data/cbh-packets/${moonKnightCandidateId}.json`);
   const mapping = await readJson(`scripts/data/cbh-mappings/${moonKnightCandidateId}.json`);
   const report = await readJson(`scripts/data/cbh-overlaps/${moonKnightCandidateId}.json`);
   const generated = await readJson('src/data/moon_knight_reading_order.json');
   const markdown = await readFile(path.join(root, 'src/data/orders/moon-knight-reading-order.md'), 'utf8');
   const record = inventory.find((entry) => entry.id === moonKnightCandidateId);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === moonKnightCandidateId);
   const parsed = parseChecklist(markdown);
   const reviewedLibraryDigest = await libraryDigestForScope(manifest, [
     'the-defenders-reading-order',
@@ -2883,6 +2899,8 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
 
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.centralDisposition, 'pilot-approved');
+  assert.equal(record.metadataHorizonStatus, 'approved');
+  assert.match(record.reason, /382 exact provider or owner-resolved comics, 11 backward repeats, and 21 explicit exclusions/i);
   assert.deepEqual(
     record.overlapIds,
     report.comparisons
@@ -2890,16 +2908,88 @@ test('Moon Knight publishes its complete source accounting with explicit metadat
       .map((comparison) => comparison.orderId),
   );
   assert.equal(packet.sourceOccurrenceCount, 414);
-  assert.equal(packet.rows.length, 374);
+  assert.equal(packet.rows.length, 382);
   assert.equal(packet.repeatedSourceReferences.length, 11);
-  assert.equal(packet.sourceGaps.length, 18);
-  assert.equal(packet.excludedSourceRows.length, 11);
-  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 374);
-  assert.equal(generated.count, 392);
-  assert.equal(generated.placeholders, 18);
+  assert.equal(Object.hasOwn(packet, 'sourceGaps'), false);
+  assert.equal(Object.hasOwn(mapping, 'sourceGaps'), false);
+  assert.equal(packet.sourceGapResolutions.length, 18);
+  assert.equal(mapping.sourceGapResolutions.length, 18);
+  assert.equal(packet.excludedSourceRows.length, 21);
+  const exactPositionMap = new Map([
+    [74, 19813],
+    [75, 19814],
+    [97, 56327],
+    [119, 55231],
+    [120, 55232],
+    [121, 55233],
+    [122, 55234],
+    [124, 55236],
+  ]);
   assert.deepEqual(
-    generated.unresolved.map((entry) => entry.title),
-    packet.sourceGaps.map((gap) => gap.sourceIssueReference),
+    [...exactPositionMap].map(([sourcePosition, _selectedIssueId]) => ({
+      sourcePosition,
+      selectedIssueId: mapping.rows.find((row) => row.sourcePosition === sourcePosition)?.selectedIssueId,
+    })),
+    [...exactPositionMap].map(([sourcePosition, selectedIssueId]) => ({ sourcePosition, selectedIssueId })),
+  );
+  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 382);
+  assert.equal(generated.count, 382);
+  assert.equal(generated.placeholders, 0);
+  assert.deepEqual(generated.unresolved, []);
+  assert.equal(manifest.lists.find((entry) => entry.id === moonKnightCandidateId).expect, 382);
+  assert.equal(catalogEntry.count, 382);
+  assert.equal(catalogEntry.placeholderCount, 0);
+  assert.equal(catalogEntry.emptyRecordCount, 8);
+  assert.deepEqual(
+    packet.sourceGapResolutions.map((resolution) => resolution.sourcePosition),
+    [74, 75, 77, 97, 114, 119, 120, 121, 122, 124, 184, 185, 186, 187, 188, 190, 191, 192],
+  );
+  assert.deepEqual(
+    packet.sourceGapResolutions.filter((resolution) => resolution.resolutionKind === 'source-exclusion')
+      .map((resolution) => resolution.sourcePosition),
+    [77, 114, 184, 185, 186, 187, 188, 190, 191, 192],
+  );
+  assert.deepEqual(
+    packet.rows.map((row) => row.sourcePosition),
+    mapping.rows.map((row) => row.sourcePosition),
+  );
+  assert.ok(packet.rows.every((row) => Number.isInteger(row.sourcePosition)));
+  assert.equal(mapping.rows.some((row) => row.selectedIssueId === 15155), false);
+  assert.equal(mapping.rows.find((row) => row.sourcePosition === 124).sourceIssueReference, 'Avengers West Coast #47');
+  assert.equal(mapping.rows.find((row) => row.sourcePosition === 124).normalizedSeriesTitle, 'West Coast Avengers');
+  assert.equal(mapping.rows.find((row) => row.sourcePosition === 124).seriesYear, 1985);
+  const sparseIds = new Set(exactPositionMap.values());
+  assert.deepEqual(
+    mapping.candidateMetadata.map((item) => item.id),
+    [...sparseIds],
+  );
+  assert.ok(mapping.candidateMetadata.every((item) => (
+    item.apiSeriesName === null
+    && item.seriesId === null
+    && item.onSaleDate === null
+    && item.detailsRefused === true
+  )));
+  assert.ok(
+    generated.items
+      .filter((item) => sparseIds.has(item.issueId))
+      .every((item) => (
+        item.seriesId === null
+        && item.seriesName === null
+        && item.onSale === null
+        && item.mu === null
+        && item.digitalId === null
+        && item.cover === null
+        && item.description === null
+        && item.pageCount === null
+        && item.creators.length === 0
+        && item.detailsRefused === true
+      )),
+  );
+  assert.deepEqual(
+    report.comparisons
+      .filter((comparison) => ['black-widow-reading-order', 'wandavision'].includes(comparison.orderId))
+      .map((comparison) => [comparison.orderId, comparison.sharedCount]),
+    [['black-widow-reading-order', 27], ['wandavision', 9]],
   );
   assert.deepEqual(
     parsed.entries.map((entry) => String(entry.issueId)),
@@ -2950,11 +3040,11 @@ test('the frozen Rocket evidence stays complete, fresh, and exact through every 
 
   assert.equal(packet.packetDigest, '99d180656af7f429d8bfb6b40e736f8ba30d0f9334da27799cec8f31ff20b384');
   assert.equal(mapping.mappingDigest, '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40');
-  assert.equal(reviewedLibraryDigest, '2ec456d34429152e0ebff5eab66d52404251ded3ce6bdfbc9946022924de4075');
-  assert.equal(report.reportDigest, 'dfff0fa62d579ac5b733b630ca3e10527f8d2ce9cb43c33dfac4719ad656e25c');
+  assert.equal(reviewedLibraryDigest, '6b53c0cd7d701b9b0a213ddf57189665e613d97176cef70b2e36020646ff89d6');
+  assert.equal(report.reportDigest, 'cd83895cd42fca887a2ce26d670e15edac1c66746fac9ae561122a61f6326fa1');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    'f137030de413dd0a30056ecb8176b6dd83130185fa6e5d8d1cf02748da3d3a20',
+    '3a9e01073d6f5b9141d1b8840497f9c4475a5c66a4157ffb9703dbe57e1fbda9',
   );
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
   assert.deepEqual(regeneratedReport.comparisons, report.comparisons);
@@ -3098,11 +3188,11 @@ test('the frozen Groot evidence stays complete, fresh, distinct, and exact', asy
 
   assert.equal(packet.packetDigest, 'b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7');
   assert.equal(mapping.mappingDigest, '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523');
-  assert.equal(reviewedLibraryDigest, 'f1e9d4feec92028575b888a9a2e3eeaf3f19b6da73b18661f29160d60e17217e');
-  assert.equal(report.reportDigest, 'af92d6a580749fb968b3f38c14327f9ee2299eb8e85d73afdad5822c02ee225b');
+  assert.equal(reviewedLibraryDigest, 'e915976ad1f825af1bbbef651479202b60ccbc8e033d097123dc0bcb0dd9ae9c');
+  assert.equal(report.reportDigest, '6621056250ed9f957feb733b4d166f7a7d906f67705c92b7337d74edb7b8be9f');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '65a0560bdf452807aaae7dc6829caae6b69e194c357e797d86c7101bd326b14a',
+    '9add4c52dfc997158e307afc69442102ca7752a43edc7776f98499e4db3cec8c',
   );
   assert.deepEqual(report.peerDigests, {
     [cosmicCandidateId]: '6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40',
@@ -3257,11 +3347,11 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
 
   assert.equal(packet.packetDigest, 'a19869d4e6e5250df9c8fba6f4c65cb485fd63124cd104020c6af310e1abc4ac');
   assert.equal(mapping.mappingDigest, '731a3399ed455840723712deeffa4dc4a9a0ef2cc11d6fd093da6e3af97552da');
-  assert.equal(reviewedLibraryDigest, 'b82b9487dd10c693f983ab3ce6635dca7447a42dedf231d3eeefa2238a0243f0');
-  assert.equal(report.reportDigest, 'c0cdfd4f05e60f4038364778f6c1f9e9d39101b2662080dd9e5f0522e114fe0a');
+  assert.equal(reviewedLibraryDigest, 'cafa8043d7d267ee001ba53e7c07fbb7204e98a420f4aeecd95e8d3bedacba2a');
+  assert.equal(report.reportDigest, 'd4374cca902faea9c1f9931c946998b151a7f3518a11c768728a938d247df31e');
   assert.equal(
     mapping.relationshipReview.approvalDigest,
-    '24c3066820d081444e636690021fd65649f89576d7ba894edf4d42c4a4b3f0ec',
+    '369737bd4b1241f7a00c5252d9931d834493147bad15640a07d1bf42450ba515',
   );
   assert.deepEqual(report.peerDigests, {
     [grootCandidateId]: '8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523',

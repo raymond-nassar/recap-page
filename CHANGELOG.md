@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Moon Knight guide gaps
+
+In plain English: The bundled Moon Knight guide now includes eight exact comics that previously
+appeared as broken placeholders. Ten entries that are unavailable as standalone Marvel Unlimited
+issues are omitted instead, including Emperor Doom without substituting its collected edition.
+Existing saved Reading Lists and reading progress are not rewritten; newly imported copies receive
+the settled 382-comic order.
+
+For maintainers, all 414 source positions remain accounted for as 382 exact rows, 11 repeats, and
+21 explicit availability exclusions. All 18 former gaps retain auditable transition evidence.
+
 ### Settled the Black Widow guide gaps
 
 In plain English: The bundled Black Widow guide now includes eleven exact comics that previously

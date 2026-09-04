@@ -5,139 +5,12 @@
   "source": "https://www.comicbookherald.com/moon-knight-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T17:46:34.548Z",
+  "generatedAt": "2026-09-04T07:14:21.222Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 392,
-  "collections": 69,
-  "placeholders": 18,
-  "unresolved": [
-    {
-      "title": "Marvel Fanfare #38",
-      "url": null,
-      "read": false,
-      "index": 55,
-      "section": "Marvel Fanfare #38-39"
-    },
-    {
-      "title": "Marvel Fanfare #39",
-      "url": null,
-      "read": false,
-      "index": 56,
-      "section": "Marvel Fanfare #38-39"
-    },
-    {
-      "title": "Marvel Super-Heroes #1",
-      "url": null,
-      "read": false,
-      "index": 58,
-      "section": "Marvel Super-Heroes #1"
-    },
-    {
-      "title": "West Coast Avengers Annual #1",
-      "url": null,
-      "read": false,
-      "index": 78,
-      "section": "Annual #1"
-    },
-    {
-      "title": "Marvel Graphic Novel #27",
-      "url": null,
-      "read": false,
-      "index": 95,
-      "section": "Marvel Graphic Novel (1982) #27: Emperor Doom"
-    },
-    {
-      "title": "West Coast Avengers #42",
-      "url": null,
-      "read": false,
-      "index": 100,
-      "section": "West Coast Avengers (1985) #38-46"
-    },
-    {
-      "title": "West Coast Avengers #43",
-      "url": null,
-      "read": false,
-      "index": 101,
-      "section": "West Coast Avengers (1985) #38-46"
-    },
-    {
-      "title": "West Coast Avengers #44",
-      "url": null,
-      "read": false,
-      "index": 102,
-      "section": "West Coast Avengers (1985) #38-46"
-    },
-    {
-      "title": "West Coast Avengers #45",
-      "url": null,
-      "read": false,
-      "index": 103,
-      "section": "West Coast Avengers (1985) #38-46"
-    },
-    {
-      "title": "Avengers West Coast #47",
-      "url": null,
-      "read": false,
-      "index": 105,
-      "section": "Avengers West Coast (1989) #47-52"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #52",
-      "url": null,
-      "read": false,
-      "index": 162,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #53",
-      "url": null,
-      "read": false,
-      "index": 163,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #54",
-      "url": null,
-      "read": false,
-      "index": 164,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #55",
-      "url": null,
-      "read": false,
-      "index": 165,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #56",
-      "url": null,
-      "read": false,
-      "index": 166,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #58",
-      "url": null,
-      "read": false,
-      "index": 168,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #59",
-      "url": null,
-      "read": false,
-      "index": 169,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "title": "Marc Spector, Moon Knight #60",
-      "url": null,
-      "read": false,
-      "index": 170,
-      "section": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    }
-  ],
+  "count": 382,
+  "collections": 67,
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 51010,
@@ -1922,10 +1795,10 @@
       "collectedIn": "Marvel Fanfare #30"
     },
     {
-      "issueId": -2050883495,
-      "title": "Marvel Fanfare #38",
-      "number": null,
-      "url": null,
+      "issueId": 19813,
+      "title": "Marvel Fanfare (1982) #38",
+      "number": "38",
+      "url": "https://www.marvel.com/comics/issue/19813/marvel_fanfare_1982_38",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -1935,14 +1808,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Marvel Fanfare #38-39"
     },
     {
-      "issueId": -2067661114,
-      "title": "Marvel Fanfare #39",
-      "number": null,
-      "url": null,
+      "issueId": 19814,
+      "title": "Marvel Fanfare (1982) #39",
+      "number": "39",
+      "url": "https://www.marvel.com/comics/issue/19814/marvel_fanfare_1982_39",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -1952,7 +1825,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Marvel Fanfare #38-39"
     },
     {
@@ -1986,23 +1859,6 @@
         }
       ],
       "collectedIn": "Solo Avengers #3"
-    },
-    {
-      "issueId": -430822920,
-      "title": "Marvel Super-Heroes #1",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marvel Super-Heroes #1"
     },
     {
       "issueId": 68877,
@@ -2596,10 +2452,10 @@
       "collectedIn": "West Coast Avengers (1985) #8-24"
     },
     {
-      "issueId": -191472006,
-      "title": "West Coast Avengers Annual #1",
-      "number": null,
-      "url": null,
+      "issueId": 56327,
+      "title": "West Coast Avengers Annual (1986) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -2609,7 +2465,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Annual #1"
     },
     {
@@ -3161,23 +3017,6 @@
       "collectedIn": "Avengers Annual (1967) #16"
     },
     {
-      "issueId": -1194946330,
-      "title": "Marvel Graphic Novel #27",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marvel Graphic Novel (1982) #27: Emperor Doom"
-    },
-    {
       "issueId": 17918,
       "title": "West Coast Avengers (1985) #38",
       "number": "38",
@@ -3306,10 +3145,10 @@
       "collectedIn": "West Coast Avengers (1985) #38-46"
     },
     {
-      "issueId": -1839110980,
-      "title": "West Coast Avengers #42",
-      "number": null,
-      "url": null,
+      "issueId": 55231,
+      "title": "West Coast Avengers (1985) #42",
+      "number": "42",
+      "url": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3319,14 +3158,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "West Coast Avengers (1985) #38-46"
     },
     {
-      "issueId": -1822333361,
-      "title": "West Coast Avengers #43",
-      "number": null,
-      "url": null,
+      "issueId": 55232,
+      "title": "West Coast Avengers (1985) #43",
+      "number": "43",
+      "url": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3336,14 +3175,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "West Coast Avengers (1985) #38-46"
     },
     {
-      "issueId": -1939776694,
-      "title": "West Coast Avengers #44",
-      "number": null,
-      "url": null,
+      "issueId": 55233,
+      "title": "West Coast Avengers (1985) #44",
+      "number": "44",
+      "url": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3353,14 +3192,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "West Coast Avengers (1985) #38-46"
     },
     {
-      "issueId": -1922999075,
-      "title": "West Coast Avengers #45",
-      "number": null,
-      "url": null,
+      "issueId": 55234,
+      "title": "West Coast Avengers (1985) #45",
+      "number": "45",
+      "url": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3370,7 +3209,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "West Coast Avengers (1985) #38-46"
     },
     {
@@ -3402,10 +3241,10 @@
       "collectedIn": "West Coast Avengers (1985) #38-46"
     },
     {
-      "issueId": -526906609,
-      "title": "Avengers West Coast #47",
-      "number": null,
-      "url": null,
+      "issueId": 55236,
+      "title": "West Coast Avengers (1985) #47",
+      "number": "47",
+      "url": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -3415,7 +3254,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Avengers West Coast (1989) #47-52"
     },
     {
@@ -5282,91 +5121,6 @@
       "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
     },
     {
-      "issueId": -794529826,
-      "title": "Marc Spector, Moon Knight #52",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "issueId": -777752207,
-      "title": "Marc Spector, Moon Knight #53",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "issueId": -760974588,
-      "title": "Marc Spector, Moon Knight #54",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "issueId": -744196969,
-      "title": "Marc Spector, Moon Knight #55",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "issueId": -727419350,
-      "title": "Marc Spector, Moon Knight #56",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
       "issueId": 68930,
       "title": "Marc Spector: Moon Knight (1989) #57",
       "number": "57",
@@ -5392,57 +5146,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "issueId": -962306016,
-      "title": "Marc Spector, Moon Knight #58",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "issueId": -945528397,
-      "title": "Marc Spector, Moon Knight #59",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
-    },
-    {
-      "issueId": -928949455,
-      "title": "Marc Spector, Moon Knight #60",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)"
     },
     {

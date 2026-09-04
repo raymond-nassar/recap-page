@@ -43136,12 +43136,12 @@
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GitHub Copilot",
-    "rationale": "Reviewed the refreshed complete-library comparison after settling all fourteen issue 311 positions. Every resulting relationship remains source-faithful and approved.",
-    "reviewedAt": "2026-09-03",
-    "reportDigest": "1a31a1d13b1c07a27cdc09d129d4239dce8fb8c5692fe01eb206d3d1e3158adb",
+    "rationale": "Reviewed the preserved-scope comparison after the Moon Knight issue 310 settlement changed shared issue evidence. Every resulting relationship remains source-faithful and approved.",
+    "reviewedAt": "2026-09-04",
+    "reportDigest": "848eb4428edc6a1a9a14c99d43248cb4ccbb7597462325d88bd0a3d59a8555c5",
     "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
     "mappingDigest": "6ccf074e84532129997b6f4d6a3abd19ff341cb70b4a20314af6feda3b62cc1e",
-    "libraryDigest": "3d6e002a77dc2eccf61d8b9347371bc7940d81c8702c9ab7a9f716beb38608a1",
+    "libraryDigest": "635a7b88457b3deff045c128c626b0f599968081f21e8a8d092bed7dd5d60d77",
     "peerDigests": {},
     "dispositions": [
       {
@@ -43151,7 +43151,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43162,7 +43162,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43186,7 +43186,7 @@
           "10024"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
@@ -43199,7 +43199,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 6,
         "sharedIds": [
           "9294",
@@ -43217,7 +43217,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43228,7 +43228,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 2,
         "sharedIds": [
           "19785",
@@ -43242,7 +43242,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43253,7 +43253,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 3,
         "sharedIds": [
           "6908",
@@ -43268,7 +43268,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43279,7 +43279,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43290,7 +43290,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 26,
         "sharedIds": [
           "7309",
@@ -43328,7 +43328,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43339,7 +43339,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43350,7 +43350,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43361,7 +43361,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43372,7 +43372,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43383,7 +43383,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43394,7 +43394,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 4,
         "sharedIds": [
           "73446",
@@ -43410,7 +43410,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 5,
         "sharedIds": [
           "7250",
@@ -43427,7 +43427,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43438,7 +43438,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43449,7 +43449,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 22,
         "sharedIds": [
           "7099",
@@ -43483,7 +43483,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43494,7 +43494,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43505,7 +43505,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43516,7 +43516,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 6,
         "sharedIds": [
           "6097",
@@ -43534,7 +43534,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43545,7 +43545,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43556,7 +43556,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43567,7 +43567,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43578,7 +43578,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 126,
         "sharedIds": [
           "8433",
@@ -43716,7 +43716,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43727,7 +43727,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43738,7 +43738,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43749,7 +43749,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43760,7 +43760,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43771,7 +43771,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43782,7 +43782,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43793,7 +43793,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43804,7 +43804,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43815,7 +43815,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 6,
         "sharedIds": [
           "9292",
@@ -43833,7 +43833,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43844,7 +43844,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 16,
         "sharedIds": [
           "7312",
@@ -43872,7 +43872,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43883,7 +43883,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43894,7 +43894,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 11,
         "sharedIds": [
           "7309",
@@ -43917,7 +43917,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43928,7 +43928,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43939,7 +43939,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43957,7 +43957,7 @@
           "63223"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
@@ -43970,7 +43970,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43981,7 +43981,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43992,7 +43992,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44017,7 +44017,7 @@
           "67151"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
@@ -44030,7 +44030,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44041,7 +44041,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 6,
         "sharedIds": [
           "35160",
@@ -44059,7 +44059,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44070,7 +44070,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44081,7 +44081,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44092,7 +44092,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44103,7 +44103,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44114,7 +44114,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "66416"
@@ -44127,7 +44127,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44138,7 +44138,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44149,7 +44149,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44160,7 +44160,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 18,
         "sharedIds": [
           "66416",
@@ -44188,7 +44188,7 @@
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
@@ -44201,7 +44201,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44212,7 +44212,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44255,7 +44255,7 @@
           "16519"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
@@ -44268,7 +44268,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44279,7 +44279,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44290,7 +44290,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44301,7 +44301,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44312,7 +44312,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44323,7 +44323,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 13,
         "sharedIds": [
           "66416",
@@ -44348,7 +44348,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 17,
         "sharedIds": [
           "7290",
@@ -44377,7 +44377,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44386,7 +44386,7 @@
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
@@ -44399,7 +44399,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44410,7 +44410,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44421,7 +44421,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44432,7 +44432,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44443,7 +44443,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "58430"
@@ -44456,7 +44456,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44467,7 +44467,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 4,
         "sharedIds": [
           "15350",
@@ -44483,7 +44483,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44494,7 +44494,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44505,7 +44505,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44516,7 +44516,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44525,7 +44525,7 @@
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
@@ -44538,13 +44538,13 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
       {
         "orderId": "moon-knight-reading-order",
-        "sharedCount": 26,
+        "sharedCount": 27,
         "sharedIds": [
           "17888",
           "17889",
@@ -44553,6 +44553,7 @@
           "17892",
           "17893",
           "17894",
+          "56327",
           "6929",
           "16055",
           "16062",
@@ -44574,11 +44575,11 @@
           "35144"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
+        "rationale": "The Moon Knight issue 310 settlement adds exact source-backed issue 56327; the resulting relationship remains source-faithful and is approved."
       },
       {
         "orderId": "muir-island-saga",
@@ -44587,7 +44588,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44598,7 +44599,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44609,7 +44610,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44620,7 +44621,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44631,7 +44632,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44642,7 +44643,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44651,7 +44652,7 @@
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
@@ -44664,7 +44665,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 17,
         "sharedIds": [
           "7225",
@@ -44693,7 +44694,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44704,7 +44705,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44715,7 +44716,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44726,7 +44727,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44737,7 +44738,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44748,7 +44749,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44759,7 +44760,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 5,
         "sharedIds": [
           "67563",
@@ -44776,7 +44777,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 4,
         "sharedIds": [
           "16880",
@@ -44792,7 +44793,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44803,7 +44804,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44814,7 +44815,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44825,7 +44826,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44836,7 +44837,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44845,7 +44846,7 @@
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
@@ -44858,7 +44859,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 2,
         "sharedIds": [
           "17491",
@@ -44872,7 +44873,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44883,7 +44884,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44894,7 +44895,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44905,7 +44906,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44916,7 +44917,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44927,7 +44928,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44938,7 +44939,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44949,7 +44950,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44960,7 +44961,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 6,
         "sharedIds": [
           "66416",
@@ -44978,7 +44979,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44989,7 +44990,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45000,7 +45001,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45011,7 +45012,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
         "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "6908"
@@ -45024,7 +45025,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45035,7 +45036,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45046,7 +45047,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45057,7 +45058,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45068,7 +45069,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45079,7 +45080,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45090,7 +45091,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45101,7 +45102,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 16,
         "sharedIds": [
           "8080",
@@ -45129,7 +45130,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45140,7 +45141,7 @@
           "6925"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GitHub Copilot",
@@ -45153,7 +45154,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45164,7 +45165,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45175,7 +45176,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45186,7 +45187,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45197,7 +45198,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "8322"
@@ -45210,7 +45211,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45221,7 +45222,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45232,7 +45233,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45243,7 +45244,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 3,
         "sharedIds": [
           "75482",
@@ -45258,7 +45259,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45269,7 +45270,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45280,7 +45281,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 11,
         "sharedIds": [
           "40",
@@ -45303,7 +45304,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45314,7 +45315,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45325,7 +45326,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45334,7 +45335,7 @@
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
@@ -45347,7 +45348,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45358,7 +45359,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45369,7 +45370,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45380,7 +45381,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45391,7 +45392,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45402,7 +45403,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45413,7 +45414,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45424,7 +45425,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45435,7 +45436,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45446,7 +45447,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45457,7 +45458,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45468,7 +45469,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45479,7 +45480,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45490,7 +45491,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45501,7 +45502,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45512,7 +45513,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -45523,7 +45524,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "6966"
@@ -45534,14 +45535,14 @@
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-03",
+        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID."
       }
     ],
-    "approvalDigest": "8c593c21835f59b3bd892503a6001d045e235ea0620451b7dc5f06094b67923a",
+    "approvalDigest": "d032c3d381a35b6e4467317375b8d6b32ce98fc4dc101f8ac8c60cbefaf3acd1",
     "sourceCounts": {
       "sourceOccurrenceCount": 773,
       "sourceIdentityCount": 567,

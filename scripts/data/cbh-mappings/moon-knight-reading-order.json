@@ -6,7 +6,7 @@
   "sourceRetrievalStatus": "retrieved",
   "approvedSourceCount": 414,
   "excludedSourceReferences": [
-    "Partial-material source references are retained as 11 semantic exclusions and not published as whole comics."
+    "Partial-material source references and owner-approved unavailable or collection-only comics remain explicit semantic exclusions and are not published."
   ],
   "sourceOccurrenceCount": 414,
   "repeatedSourceReferences": [
@@ -84,7 +84,7 @@
     },
     {
       "sourcePosition": 133,
-      "canonicalRow": 57,
+      "canonicalRow": 59,
       "sourceIssueReference": "Marc Spector, Moon Knight #1",
       "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
       "normalizedSeriesTitle": "Marc Spector, Moon Knight",
@@ -93,7 +93,7 @@
     },
     {
       "sourcePosition": 134,
-      "canonicalRow": 58,
+      "canonicalRow": 60,
       "sourceIssueReference": "Marc Spector, Moon Knight #2",
       "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
       "normalizedSeriesTitle": "Marc Spector, Moon Knight",
@@ -102,7 +102,7 @@
     },
     {
       "sourcePosition": 390,
-      "canonicalRow": 345,
+      "canonicalRow": 353,
       "sourceIssueReference": "Devil's Reign: Moon Knight",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Devil's Reign: Moon Knight",
@@ -172,480 +172,70 @@
       "decisionScope": "source-semantic-exclusion"
     },
     {
-      "sourcePosition": 132,
-      "sourceIssueReference": "Avengers Spotlight #23",
-      "reason": "The source identifies this as partial material rather than a whole included comic.",
-      "decisionScope": "source-semantic-exclusion"
-    }
-  ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 74,
-      "sourceIssueReference": "Marvel Fanfare #38",
-      "sourceRangeReference": "Marvel Fanfare #38-39",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Fanfare",
-      "seriesYear": 1982,
-      "issueNumber": "38",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3719/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e75d2f9fedf9d9e327bf263804e2d4922a46e361ba42fc5ca23e3f4a1bee8a25"
-    },
-    {
-      "sourcePosition": 75,
-      "sourceIssueReference": "Marvel Fanfare #39",
-      "sourceRangeReference": "Marvel Fanfare #38-39",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Fanfare",
-      "seriesYear": 1982,
-      "issueNumber": "39",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3719/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "3b03deb484f2ecc1c8009b92cb5b84ceb810371f4f2e6854c3c86dcb263065ae"
-    },
-    {
       "sourcePosition": 77,
       "sourceIssueReference": "Marvel Super-Heroes #1",
-      "sourceRangeReference": "Marvel Super-Heroes #1",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Super-Heroes",
-      "seriesYear": 1967,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/2300/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "4e6699db60cda6493ff963e56c016cac395a7366611b49c1878f884d6b8d37cd"
-    },
-    {
-      "sourcePosition": 97,
-      "sourceIssueReference": "West Coast Avengers Annual #1",
-      "sourceRangeReference": "Annual #1",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers Annual",
-      "seriesYear": 1986,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3632/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8dd370346b2182c114145100372f0538ca4361e60e63fd0ae2251b16ff9d0ed2"
+      "reason": "The owner confirmed Marvel Super-Heroes (1990) #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 114,
       "sourceIssueReference": "Marvel Graphic Novel #27",
-      "sourceRangeReference": "Marvel Graphic Novel (1982) #27: Emperor Doom",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marvel Graphic Novel",
-      "seriesYear": 1982,
-      "issueNumber": "27",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/16385/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "357895831cb618448d5e491f342bdfc58bb374a86b7884239d2140142992b173"
+      "reason": "Marvel publishes Emperor Doom as collection 74612, not as a standalone Marvel Unlimited issue.",
+      "decisionScope": "Collection-only source exclusion"
     },
     {
-      "sourcePosition": 119,
-      "sourceIssueReference": "West Coast Avengers #42",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "42",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "9642d3f0814098a3134f82ff7c339416da571d33ca9ca939d1d5285c31eb6b5a"
-    },
-    {
-      "sourcePosition": 120,
-      "sourceIssueReference": "West Coast Avengers #43",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "43",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "46bf3e28e2184b0a85a68332fdc4f10b4d6d558b2e2048753a42e74190606f0c"
-    },
-    {
-      "sourcePosition": 121,
-      "sourceIssueReference": "West Coast Avengers #44",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "44",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a32281deb1795464365014d461f9323f92bc25288b933fd9abd741324a4a3b2e"
-    },
-    {
-      "sourcePosition": 122,
-      "sourceIssueReference": "West Coast Avengers #45",
-      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "West Coast Avengers",
-      "seriesYear": 1985,
-      "issueNumber": "45",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "688b670befa6a77e490dfb26c3cabefe5252abb8aebff1a720505bfbb0b85225"
-    },
-    {
-      "sourcePosition": 124,
-      "sourceIssueReference": "Avengers West Coast #47",
-      "sourceRangeReference": "Avengers West Coast (1989) #47-52",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Avengers West Coast",
-      "seriesYear": 1989,
-      "issueNumber": "47",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Source caption establishes the Avengers West Coast alias, but complete direct series pagination contains no issue #47. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/3630/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "668ba9014673128cb558685775a3b2340a3894d89aa898aa72e5ba0f8436c741"
+      "sourcePosition": 132,
+      "sourceIssueReference": "Avengers Spotlight #23",
+      "reason": "The source identifies this as partial material rather than a whole included comic.",
+      "decisionScope": "source-semantic-exclusion"
     },
     {
       "sourcePosition": 184,
       "sourceIssueReference": "Marc Spector, Moon Knight #52",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "52",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "798747f574f5da658cca3fe400388903df6f20bae2d83ddec1dfdb793d7fd345"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #52 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 185,
       "sourceIssueReference": "Marc Spector, Moon Knight #53",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "53",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "befc8d77bda94a4910d007db4e3c5de83e6605bd9e1ba00676dde993d11f621f"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #53 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 186,
       "sourceIssueReference": "Marc Spector, Moon Knight #54",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "54",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8c7283aea386ad7222bb14338bffae37add42c75e483b2c2e3409aeec8de7d9b"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #54 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 187,
       "sourceIssueReference": "Marc Spector, Moon Knight #55",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "55",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "1102f1bc6aa32e55ba55246dc9f1c74afb985bd950d9127c37d44a4d609db8d2"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #55 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 188,
       "sourceIssueReference": "Marc Spector, Moon Knight #56",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "56",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b3b7bc0004c5964fc5f301f378522b3f8323b2eb61cb25f71cceea59aead29c2"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #56 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 190,
       "sourceIssueReference": "Marc Spector, Moon Knight #58",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "58",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8681e51076f537e9f153a8d3867586a22959b29ebfb48529d96344ffca178b27"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #58 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 191,
       "sourceIssueReference": "Marc Spector, Moon Knight #59",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "59",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "925377f7e444359e5b46500888a676bf36bbce0a6d484fca2d2740975870e0fc"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #59 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 192,
       "sourceIssueReference": "Marc Spector, Moon Knight #60",
-      "sourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
-      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
-      "normalizedSeriesTitle": "Marc Spector, Moon Knight",
-      "seriesYear": 1989,
-      "issueNumber": "60",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Complete direct series pagination contains no item with the source issue number. Issue #310 tracks this exact source position without substituting another comic.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/moon-knight-reading-order/",
-          "retrievedAt": "2026-08-23"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series/23996/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "3bbf29ed5800e90c4a0de701129d684ac2e096fb79538141ea47ede9aec60dac"
+      "reason": "The owner confirmed Marc Spector, Moon Knight #60 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     }
   ],
   "reviewStatus": "approved",
@@ -676,7 +266,7 @@
       "Khonshu",
       "Comic Book Herald"
     ],
-    "expect": 392,
+    "expect": 382,
     "timeline": 1972,
     "coverIssueId": 51010
   },
@@ -1892,6 +1482,58 @@
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
     },
     {
+      "sourcePosition": 74,
+      "sourceIssueReference": "Marvel Fanfare #38",
+      "sourceRangeReference": "Marvel Fanfare #38-39",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "Marvel Fanfare",
+      "seriesYear": 1982,
+      "issueNumber": "38",
+      "seriesId": null,
+      "candidateIssueId": 19813,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 19813 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19813"
+      ],
+      "selectedIssueId": 19813,
+      "selectedIssueIds": [
+        19813
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19813/marvel_fanfare_1982_38",
+      "resolvedIssueTitle": "Marvel Fanfare (1982) #38",
+      "metadataIssueNumber": "38",
+      "note": "Issue 19813 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 75,
+      "sourceIssueReference": "Marvel Fanfare #39",
+      "sourceRangeReference": "Marvel Fanfare #38-39",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "Marvel Fanfare",
+      "seriesYear": 1982,
+      "issueNumber": "39",
+      "seriesId": null,
+      "candidateIssueId": 19814,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 19814 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "19814"
+      ],
+      "selectedIssueId": 19814,
+      "selectedIssueIds": [
+        19814
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/19814/marvel_fanfare_1982_39",
+      "resolvedIssueTitle": "Marvel Fanfare (1982) #39",
+      "metadataIssueNumber": "39",
+      "note": "Issue 19814 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
       "sourcePosition": 76,
       "sourceIssueReference": "Solo Avengers #3",
       "sourceRangeReference": "Solo Avengers #3",
@@ -2330,6 +1972,32 @@
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/17903/west_coast_avengers_1985_24",
       "resolvedIssueTitle": "West Coast Avengers (1985) #24",
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
+    },
+    {
+      "sourcePosition": 97,
+      "sourceIssueReference": "West Coast Avengers Annual #1",
+      "sourceRangeReference": "Annual #1",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers Annual",
+      "seriesYear": 1986,
+      "issueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 56327,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 56327 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56327"
+      ],
+      "selectedIssueId": 56327,
+      "selectedIssueIds": [
+        56327
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+      "resolvedIssueTitle": "West Coast Avengers Annual (1986) #1",
+      "metadataIssueNumber": "1",
+      "note": "Issue 56327 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
     },
     {
       "sourcePosition": 98,
@@ -2772,6 +2440,110 @@
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
     },
     {
+      "sourcePosition": 119,
+      "sourceIssueReference": "West Coast Avengers #42",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "42",
+      "seriesId": null,
+      "candidateIssueId": 55231,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55231 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55231"
+      ],
+      "selectedIssueId": 55231,
+      "selectedIssueIds": [
+        55231
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #42",
+      "metadataIssueNumber": "42",
+      "note": "Issue 55231 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 120,
+      "sourceIssueReference": "West Coast Avengers #43",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "43",
+      "seriesId": null,
+      "candidateIssueId": 55232,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55232 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55232"
+      ],
+      "selectedIssueId": 55232,
+      "selectedIssueIds": [
+        55232
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #43",
+      "metadataIssueNumber": "43",
+      "note": "Issue 55232 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 121,
+      "sourceIssueReference": "West Coast Avengers #44",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "44",
+      "seriesId": null,
+      "candidateIssueId": 55233,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55233 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55233"
+      ],
+      "selectedIssueId": 55233,
+      "selectedIssueIds": [
+        55233
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #44",
+      "metadataIssueNumber": "44",
+      "note": "Issue 55233 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 122,
+      "sourceIssueReference": "West Coast Avengers #45",
+      "sourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "45",
+      "seriesId": null,
+      "candidateIssueId": 55234,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55234 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55234"
+      ],
+      "selectedIssueId": 55234,
+      "selectedIssueIds": [
+        55234
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #45",
+      "metadataIssueNumber": "45",
+      "note": "Issue 55234 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
       "sourcePosition": 123,
       "sourceIssueReference": "West Coast Avengers #46",
       "sourceRangeReference": "West Coast Avengers (1985) #38-46",
@@ -2792,6 +2564,32 @@
       "marvelIssueUrl": "https://www.marvel.com/comics/issue/17927/west_coast_avengers_1985_46",
       "resolvedIssueTitle": "West Coast Avengers (1985) #46",
       "note": "exact title, source-series year, and issue-number match from complete provider series pagination"
+    },
+    {
+      "sourcePosition": 124,
+      "sourceIssueReference": "Avengers West Coast #47",
+      "sourceRangeReference": "Avengers West Coast (1989) #47-52",
+      "sourceGroup": "I) Moon Knight Origins & West Coast Avenger",
+      "normalizedSeriesTitle": "West Coast Avengers",
+      "seriesYear": 1985,
+      "issueNumber": "47",
+      "seriesId": null,
+      "candidateIssueId": 55236,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 55236 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "55236"
+      ],
+      "selectedIssueId": 55236,
+      "selectedIssueIds": [
+        55236
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+      "resolvedIssueTitle": "West Coast Avengers (1985) #47",
+      "metadataIssueNumber": "47",
+      "note": "Issue 55236 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
     },
     {
       "sourcePosition": 125,
@@ -8910,8 +8708,8 @@
       "note": "direct series pagination matched the source issue number and provider series identity"
     }
   ],
-  "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
-  "packetReview": "Cache-only resolution review by GPT-5.6 Terra verified 374 unique canonical provider ids, 11 backward repeats, 18 explicit metadata gaps linked to #310, and 11 semantic exclusions.",
+  "packetDigest": "a033c4c388c2cb0d8032574795a69cec52f95b87d0c8b8db1683c20cdd9883a5",
+  "packetReview": "The frozen source audit and issue 310 settlement verify 382 exact identities, 11 backward repeats, and 21 explicit exclusions with no remaining metadata gaps.",
   "approvedManifest": {
     "id": "moon-knight-reading-order",
     "name": "Moon Knight",
@@ -8939,19 +8737,19 @@
       "Khonshu",
       "Comic Book Herald"
     ],
-    "expect": 392,
+    "expect": 382,
     "timeline": 1972,
     "coverIssueId": 51010
   },
-  "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
+  "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
   "relationshipReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "Reviewed every complete-library comparison, including later guides. The 18 non-none relationships are ordinary shared reading material and no exact duplicate exists. The guide remains independently useful because it preserves Moon Knight source order, source provenance, explicit metadata gaps, and repeat history.",
-    "reviewedAt": "2026-08-27",
-    "reportDigest": "92f37955a2727e8686fb7db9bf510a7e154b98839ec06095448bd4605eeea0f8",
-    "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
-    "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
+    "authorityIdentity": "GitHub Copilot",
+    "rationale": "Reviewed the preserved-scope comparison after settling all 18 issue 310 positions. Every resulting relationship remains source-faithful and approved.",
+    "reviewedAt": "2026-09-04",
+    "reportDigest": "b102511ff7a3d94a06dc2590f34064025785be330416b98d0e3631c8c07a76ba",
+    "packetDigest": "a033c4c388c2cb0d8032574795a69cec52f95b87d0c8b8db1683c20cdd9883a5",
+    "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
     "libraryDigest": "c0eab7d863d1f59fcdf9f06b6211d3d76f86e3b9bf1ca042b9df67e0f872a796",
     "peerDigests": {},
     "dispositions": [
@@ -8961,8 +8759,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "absolute-carnage",
@@ -8970,17 +8770,25 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "agatha-harkness-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 3 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 3,
+        "sharedIds": [
+          "17792",
+          "17793",
+          "17794"
+        ]
       },
       {
         "orderId": "age-of-x-man",
@@ -8988,8 +8796,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "agents-of-atlas-reading-order",
@@ -8997,8 +8807,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -9006,17 +8818,39 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 17 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 17,
+        "sharedIds": [
+          "6762",
+          "6763",
+          "6764",
+          "6765",
+          "6766",
+          "6767",
+          "6768",
+          "6769",
+          "6770",
+          "6772",
+          "16900",
+          "54822",
+          "54823",
+          "55230",
+          "66485",
+          "66532",
+          "66756"
+        ]
       },
       {
         "orderId": "annihilation",
@@ -9024,8 +8858,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
@@ -9033,17 +8869,40 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "ant-man-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 18 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 18,
+        "sharedIds": [
+          "29089",
+          "29093",
+          "33620",
+          "29095",
+          "33621",
+          "29097",
+          "29098",
+          "29099",
+          "29100",
+          "29090",
+          "29091",
+          "29092",
+          "35160",
+          "37346",
+          "35140",
+          "35130",
+          "35128",
+          "35144"
+        ]
       },
       {
         "orderId": "apocalypse-wars",
@@ -9051,17 +8910,23 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "atlantis-attacks",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 1 provider issue id but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 1,
+        "sharedIds": [
+          "17842"
+        ]
       },
       {
         "orderId": "avengers-defenders-war",
@@ -9069,8 +8934,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-disassembled",
@@ -9078,8 +8945,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
@@ -9087,8 +8956,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "axis",
@@ -9096,8 +8967,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "black-panther-reading-order",
@@ -9105,18 +8978,20 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "black-widow-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 26 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 26,
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 27,
         "sharedIds": [
           "17888",
           "17889",
@@ -9125,6 +9000,7 @@
           "17892",
           "17893",
           "17894",
+          "56327",
           "6929",
           "16055",
           "16062",
@@ -9152,8 +9028,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-best-of",
@@ -9161,8 +9039,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
@@ -9170,8 +9050,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
@@ -9179,8 +9061,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "chaos-war",
@@ -9188,8 +9072,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
@@ -9197,8 +9083,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
@@ -9206,8 +9094,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-avengers",
@@ -9215,8 +9105,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war-essential",
@@ -9224,8 +9116,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
@@ -9233,8 +9127,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
@@ -9242,26 +9138,64 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
         "relationship": "existing-subset",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The existing-subset relationship shares 15 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 15,
+        "sharedIds": [
+          "66279",
+          "66409",
+          "66540",
+          "66910",
+          "66537",
+          "66278",
+          "66493",
+          "66762",
+          "66909",
+          "66543",
+          "66688",
+          "66843",
+          "66485",
+          "66532",
+          "66756"
+        ]
       },
       {
         "orderId": "daredevil-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 15 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 15,
+        "sharedIds": [
+          "16055",
+          "16062",
+          "16063",
+          "16064",
+          "16065",
+          "16066",
+          "16067",
+          "16068",
+          "16069",
+          "16056",
+          "16057",
+          "16058",
+          "16059",
+          "16060",
+          "16061"
+        ]
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -9269,8 +9203,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-reign-avengers",
@@ -9278,8 +9214,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-web",
@@ -9287,8 +9225,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-past",
@@ -9296,8 +9236,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-present",
@@ -9305,8 +9247,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
@@ -9314,8 +9258,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "deadpool-best-of",
@@ -9323,8 +9269,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -9332,17 +9280,24 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "devils-reign",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 2 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 2,
+        "sharedIds": [
+          "93855",
+          "99042"
+        ]
       },
       {
         "orderId": "doctor-doom-primer",
@@ -9350,8 +9305,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -9359,17 +9316,41 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 19 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 19,
+        "sharedIds": [
+          "20356",
+          "20357",
+          "20358",
+          "20360",
+          "66279",
+          "66409",
+          "66540",
+          "66910",
+          "66537",
+          "66278",
+          "66493",
+          "66762",
+          "66909",
+          "66543",
+          "66688",
+          "66843",
+          "66485",
+          "66532",
+          "66756"
+        ]
       },
       {
         "orderId": "doomwar",
@@ -9377,8 +9358,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
@@ -9386,8 +9369,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
@@ -9395,17 +9380,23 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "evolutionary-war",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 1 provider issue id but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 1,
+        "sharedIds": [
+          "17940"
+        ]
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -9413,8 +9404,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -9422,17 +9415,21 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fantastic-four-reading-order",
         "relationship": "none",
         "decision": "approved",
-        "rationale": "The current-library comparison has no shared provider issue ids.",
         "authorityType": "policy",
-        "authorityIdentity": "current-library none-overlap policy",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fatal-attractions",
@@ -9440,8 +9437,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "generations",
@@ -9449,8 +9448,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "groot-reading-order",
@@ -9458,8 +9459,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -9467,17 +9470,40 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 18 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 18,
+        "sharedIds": [
+          "29089",
+          "29093",
+          "33620",
+          "29095",
+          "33621",
+          "29097",
+          "29098",
+          "29099",
+          "29100",
+          "29090",
+          "29091",
+          "29092",
+          "35160",
+          "37346",
+          "35140",
+          "35130",
+          "35128",
+          "35144"
+        ]
       },
       {
         "orderId": "hickman-full",
@@ -9485,8 +9511,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
@@ -9494,8 +9522,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-x-men",
@@ -9503,8 +9533,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m",
@@ -9512,8 +9544,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m-essential",
@@ -9521,8 +9555,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -9530,8 +9566,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-xavier",
@@ -9539,8 +9577,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
@@ -9548,8 +9588,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinite-destinies",
@@ -9557,8 +9599,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -9566,8 +9610,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -9575,8 +9621,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "iron-man-2020",
@@ -9584,8 +9632,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
@@ -9593,8 +9643,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "king-in-black",
@@ -9602,8 +9654,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
@@ -9611,8 +9665,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
@@ -9620,8 +9676,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "last-annihilation",
@@ -9629,8 +9687,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "loki-reading-order",
@@ -9638,17 +9698,24 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "magneto-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 2 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 2,
+        "sharedIds": [
+          "17932",
+          "17933"
+        ]
       },
       {
         "orderId": "magneto-war",
@@ -9656,8 +9723,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -9665,8 +9734,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-knights-to-planet-x",
@@ -9674,8 +9745,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-multiverse",
@@ -9683,8 +9756,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -9692,8 +9767,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-what-if",
@@ -9701,8 +9778,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -9710,17 +9789,23 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "maximum-security",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 1 provider issue id but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 1,
+        "sharedIds": [
+          "16066"
+        ]
       },
       {
         "orderId": "messiah-complex",
@@ -9728,8 +9813,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-war",
@@ -9737,8 +9824,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "midnight-massacre",
@@ -9746,8 +9835,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
@@ -9755,8 +9846,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "monsters-unleashed",
@@ -9764,8 +9857,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
@@ -9773,8 +9868,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mutant-massacre",
@@ -9782,8 +9879,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mys-tech-wars",
@@ -9791,8 +9890,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
@@ -9800,8 +9901,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe",
@@ -9809,8 +9912,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -9818,8 +9923,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-galactic-storm",
@@ -9827,8 +9934,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -9836,8 +9945,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
@@ -9845,8 +9956,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
@@ -9854,8 +9967,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-reading-order",
@@ -9863,8 +9978,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phoenix-saga",
@@ -9872,8 +9989,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "planet-hulk",
@@ -9881,8 +10000,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "punisher-reading-order",
@@ -9890,8 +10011,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -9899,8 +10022,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reckoning-war",
@@ -9908,8 +10033,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -9917,8 +10044,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
@@ -9926,8 +10055,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -9935,8 +10066,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -9944,8 +10077,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -9953,8 +10088,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "second-coming",
@@ -9962,8 +10099,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion",
@@ -9971,8 +10110,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion-essential",
@@ -9980,8 +10121,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
@@ -9989,8 +10132,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
@@ -9998,8 +10143,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "setup-to-modern-timeline",
@@ -10007,17 +10154,25 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "shadowland",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 3 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 3,
+        "sharedIds": [
+          "34341",
+          "34342",
+          "34338"
+        ]
       },
       {
         "orderId": "silent-war",
@@ -10025,8 +10180,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -10034,8 +10191,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "sins-of-sinister",
@@ -10043,8 +10202,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
@@ -10052,8 +10213,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
@@ -10061,8 +10224,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
@@ -10070,8 +10235,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -10079,8 +10246,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -10088,8 +10257,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -10097,8 +10268,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-the-other",
@@ -10106,8 +10279,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
@@ -10115,8 +10290,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
@@ -10124,8 +10301,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-imperative",
@@ -10133,17 +10312,26 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 4 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 4,
+        "sharedIds": [
+          "68914",
+          "68915",
+          "68916",
+          "68917"
+        ]
       },
       {
         "orderId": "thanos-war",
@@ -10151,8 +10339,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -10160,8 +10350,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -10169,8 +10361,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "time-and-time-again",
@@ -10178,8 +10372,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "ultimate-marvel-intro",
@@ -10187,17 +10383,24 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venom-reading-order",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 2 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 2,
+        "sharedIds": [
+          "16900",
+          "54823"
+        ]
       },
       {
         "orderId": "venomverse",
@@ -10205,17 +10408,31 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wandavision",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 4 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 9,
+        "sharedIds": [
+          "55231",
+          "55232",
+          "55233",
+          "55234",
+          "17927",
+          "55236",
+          "17790",
+          "17791",
+          "17794"
+        ]
       },
       {
         "orderId": "war-of-kings",
@@ -10223,8 +10440,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
@@ -10232,17 +10451,25 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "white-tiger-ava-ayala",
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The partial relationship shares 3 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The issue 310 settlement adds exact source-backed identities; the resulting relationship remains source-faithful and is approved.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 3,
+        "sharedIds": [
+          "81098",
+          "81100",
+          "81102"
+        ]
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -10250,8 +10477,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wolverine-reading-order",
@@ -10259,8 +10488,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -10268,8 +10499,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
@@ -10277,8 +10510,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-cutioners-song",
@@ -10286,8 +10521,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-age-of-x",
@@ -10295,8 +10532,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -10304,8 +10543,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -10313,8 +10554,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -10322,8 +10565,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-extermination",
@@ -10331,8 +10576,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-inferno",
@@ -10340,8 +10587,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -10349,8 +10598,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-nation-x",
@@ -10358,8 +10609,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-regenesis",
@@ -10367,8 +10620,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-schism",
@@ -10376,8 +10631,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -10385,8 +10642,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-utopia",
@@ -10394,8 +10653,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-of-swords",
@@ -10403,8 +10664,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
@@ -10412,8 +10675,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
@@ -10421,8 +10686,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
@@ -10430,8 +10697,10 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -10439,17 +10708,583 @@
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "rationale": "No shared provider issue ID.",
+        "reviewedAt": "2026-09-04",
+        "sharedCount": 0,
+        "sharedIds": []
       }
     ],
-    "approvalDigest": "af8ca0ddb4ad3f9a54f31337a4f2e0cd325072ad3770410237864a53527e73b1",
+    "approvalDigest": "c8b079a10aa5415d9e2e56b02f773d54dcfac272d232855b8b1289e214a35898",
     "sourceCounts": {
       "sourceOccurrenceCount": 414,
-      "sourceIdentityCount": 392,
-      "includedIssueCount": 374,
-      "sourceGapCount": 18,
-      "repeatedSourceReferenceCount": 11
+      "sourceIdentityCount": 382,
+      "includedIssueCount": 382,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 11,
+      "excludedSourceRowCount": 21
     }
-  }
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 74,
+      "previousSourceIssueReference": "Marvel Fanfare #38",
+      "previousSourceRangeReference": "Marvel Fanfare #38-39",
+      "previousNormalizedSeriesTitle": "Marvel Fanfare",
+      "previousSeriesYear": 1982,
+      "previousIssueNumber": "38",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 19813,
+      "resolvedNormalizedSeriesTitle": "Marvel Fanfare",
+      "resolvedSeriesYear": 1982,
+      "resolvedIssueNumber": "38",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 19813 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/19813/marvel_fanfare_1982_38",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "e362e6160d91aad0d71ea16ec99813dfd6ef94c93b7532f4d21a299572f6df01"
+    },
+    {
+      "sourcePosition": 75,
+      "previousSourceIssueReference": "Marvel Fanfare #39",
+      "previousSourceRangeReference": "Marvel Fanfare #38-39",
+      "previousNormalizedSeriesTitle": "Marvel Fanfare",
+      "previousSeriesYear": 1982,
+      "previousIssueNumber": "39",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 19814,
+      "resolvedNormalizedSeriesTitle": "Marvel Fanfare",
+      "resolvedSeriesYear": 1982,
+      "resolvedIssueNumber": "39",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 19814 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/19814/marvel_fanfare_1982_39",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "fada1ba25cd1eeab167f6c6a333a625dc49cf6a7aae2d5294787e19a93274c48"
+    },
+    {
+      "sourcePosition": 77,
+      "previousSourceIssueReference": "Marvel Super-Heroes #1",
+      "previousSourceRangeReference": "Marvel Super-Heroes #1",
+      "previousNormalizedSeriesTitle": "Marvel Super-Heroes",
+      "previousSeriesYear": 1967,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marvel Super-Heroes (1990) #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/15511/marvel_super_heroes_1990_1",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2bbb7bdb314d88435b9dd8936e65fa16a0f36389ade804eb758f23a04e7285c2"
+    },
+    {
+      "sourcePosition": 97,
+      "previousSourceIssueReference": "West Coast Avengers Annual #1",
+      "previousSourceRangeReference": "Annual #1",
+      "previousNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "previousSeriesYear": 1986,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 56327,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "resolvedSeriesYear": 1986,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 56327 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "4865866e2cdca800875499e02eb02fdf5d0d9fe10aa8e43274a5b9b94962b7a9"
+    },
+    {
+      "sourcePosition": 114,
+      "previousSourceIssueReference": "Marvel Graphic Novel #27",
+      "previousSourceRangeReference": "Marvel Graphic Novel (1982) #27: Emperor Doom",
+      "previousNormalizedSeriesTitle": "Marvel Graphic Novel",
+      "previousSeriesYear": 1982,
+      "previousIssueNumber": "27",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Marvel publishes Emperor Doom as collection 74612, not as a standalone Marvel Unlimited issue.",
+      "decisionScope": "Collection-only source exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The official Marvel result is a collection rather than a standalone issue, so publication would substitute a different record type.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-collection",
+          "url": "https://www.marvel.com/comics/collection/74612/marvel_graphic_novel_emperor_doom_trade_paperback",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2c11f2733549497cb77e09cb5eb55ad601f17e7ef2521e6124f8f8a2c3ef7bc4"
+    },
+    {
+      "sourcePosition": 119,
+      "previousSourceIssueReference": "West Coast Avengers #42",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "42",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55231,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "42",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55231 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "57216fe6c025c2101579fdcb9b44e9718a526ff2b0bdd6ef3a8b162fb9b05852"
+    },
+    {
+      "sourcePosition": 120,
+      "previousSourceIssueReference": "West Coast Avengers #43",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "43",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55232,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "43",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55232 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "1055f016073aac69d4636365c5b0e6d70a1fba6ab5948904568f069bf4bf6223"
+    },
+    {
+      "sourcePosition": 121,
+      "previousSourceIssueReference": "West Coast Avengers #44",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "44",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55233,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "44",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55233 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d27ecda1f67bdb954f7430eb2f959d5bf172d538774b80d8da69ef23fabe99d8"
+    },
+    {
+      "sourcePosition": 122,
+      "previousSourceIssueReference": "West Coast Avengers #45",
+      "previousSourceRangeReference": "West Coast Avengers (1985) #38-46",
+      "previousNormalizedSeriesTitle": "West Coast Avengers",
+      "previousSeriesYear": 1985,
+      "previousIssueNumber": "45",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55234,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "45",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55234 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "e46f1385acb9947a456d0647e7075b4fae62551fd08b87a872a0678fb5d8ea47"
+    },
+    {
+      "sourcePosition": 124,
+      "previousSourceIssueReference": "Avengers West Coast #47",
+      "previousSourceRangeReference": "Avengers West Coast (1989) #47-52",
+      "previousNormalizedSeriesTitle": "Avengers West Coast",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "47",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 55236,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers",
+      "resolvedSeriesYear": 1985,
+      "resolvedIssueNumber": "47",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "Official Marvel issue 55236 is the owner-approved exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "29e116d0a254adb239bdacfa569f11af9e5ea115966f5f82a5b3080744aa7309"
+    },
+    {
+      "sourcePosition": 184,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #52",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "52",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #52 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d5f1568257ad4a21cc3f1f7f9632ac5208d8c0d16c596dfdfdd176ebcbd5082a"
+    },
+    {
+      "sourcePosition": 185,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #53",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "53",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #53 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "bd403eda4490432ccac7d4f3eb5ee6d0ec1d5b4f34c967d7f037b16dd1117da5"
+    },
+    {
+      "sourcePosition": 186,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #54",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "54",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #54 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "8e4c0b362a88388d89959b3361b58956d9d94114ab43f55d1288d43b3684c7bf"
+    },
+    {
+      "sourcePosition": 187,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #55",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "55",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #55 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "b872594a8ef41771ab6f699b06b7c9b9b4836163366f6330ebba6f38cd4fdff2"
+    },
+    {
+      "sourcePosition": 188,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #56",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "56",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #56 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "449e8055b2a0df1b5a61060c1c4975940a8a4733ff1d4cee4da98179558ec9d5"
+    },
+    {
+      "sourcePosition": 190,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #58",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "58",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #58 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d2c283b4c482de21597d773ce7b7db404e143a5bb6f1c656442abd1a43436a28"
+    },
+    {
+      "sourcePosition": 191,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #59",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "59",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #59 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "163b2ce505f6b375388d4f8f69ca100f96f9ec021900859df2163589d578a46f"
+    },
+    {
+      "sourcePosition": 192,
+      "previousSourceIssueReference": "Marc Spector, Moon Knight #60",
+      "previousSourceRangeReference": "Marc Spector, Moon Knight #1 to #60 (1989 to 1994)",
+      "previousNormalizedSeriesTitle": "Marc Spector, Moon Knight",
+      "previousSeriesYear": 1989,
+      "previousIssueNumber": "60",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marc Spector, Moon Knight #60 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner authorized omission after confirming that no Marvel Unlimited issue is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/310",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "2fd7b31f081b05497d10d1da97861c5762fa14a5c2198ecee9e9993009774a23"
+    }
+  ],
+  "candidateMetadata": [
+    {
+      "id": 19813,
+      "title": "Marvel Fanfare",
+      "issueTitle": "Marvel Fanfare (1982) #38",
+      "seriesTitle": "Marvel Fanfare",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "38",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19813/marvel_fanfare_1982_38",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 19814,
+      "title": "Marvel Fanfare",
+      "issueTitle": "Marvel Fanfare (1982) #39",
+      "seriesTitle": "Marvel Fanfare",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "39",
+      "seriesYear": 1982,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/19814/marvel_fanfare_1982_39",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 56327,
+      "title": "West Coast Avengers Annual",
+      "issueTitle": "West Coast Avengers Annual (1986) #1",
+      "seriesTitle": "West Coast Avengers Annual",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "1",
+      "seriesYear": 1986,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 55231,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #42",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "42",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55231/west_coast_avengers_1985_42",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 55232,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #43",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "43",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55232/west_coast_avengers_1985_43",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 55233,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #44",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "44",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55233/west_coast_avengers_1985_44",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 55234,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #45",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "45",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55234/west_coast_avengers_1985_45",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 55236,
+      "title": "West Coast Avengers",
+      "issueTitle": "West Coast Avengers (1985) #47",
+      "seriesTitle": "West Coast Avengers",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "47",
+      "seriesYear": 1985,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/55236/west_coast_avengers_1985_47",
+      "onSaleDate": null,
+      "detailsRefused": true
+    }
+  ]
 }
