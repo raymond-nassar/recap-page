@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T20:14:16.188Z",
+  "generatedAt": "2026-09-04T21:40:26.080Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -2617,8 +2617,8 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 268,
-      "placeholderCount": 23,
+      "count": 259,
+      "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 25,
       "characters": [
@@ -2648,7 +2648,7 @@
       "source": "https://www.comicbookherald.com/the-defenders-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T18:44:46.826Z"
+      "updatedAt": "2026-09-04T21:40:26.080Z"
     },
     {
       "id": "runaways-reading-order",

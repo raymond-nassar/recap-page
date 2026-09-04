@@ -5,11 +5,15 @@ import path from 'node:path';
 import test from 'node:test';
 import { fileURLToPath } from 'node:url';
 import {
+  assertMappingMatchesPacketOccurrences,
+  digestCanonicalJson,
   sourcePositionsForPacket,
+  sourceGapResolutionDigestFor,
   validateFrozenPacket,
   validateMappingDigest,
   validateReportDigest,
 } from '../scripts/lib/cbh-inventory.mjs';
+import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const EXPECTED = {
@@ -697,12 +701,12 @@ test('The Defenders inventory row points at the new source evidence', async () =
   assert.equal(record.centralDisposition, 'pilot-approved');
   assert.equal(record.deliveryStatus, 'shipped');
   assert.deepEqual(record.catalogIds, ['the-defenders-reading-order']);
-  assert.equal(record.overlapIds.length, 19);
+  assert.equal(record.overlapIds.length, 20);
   assert.match(record.reason, /331-occurrence/i);
-  assert.match(record.reason, /245 exact metadata rows/i);
-  assert.match(record.reason, /23 explicit unresolved placeholders/i);
-  assert.match(record.reason, /12 backward repeats/i);
-  assert.match(record.reason, /51 semantic exclusions/i);
+  assert.match(record.reason, /259 exact metadata rows/i);
+  assert.match(record.reason, /20 backward repeats/i);
+  assert.match(record.reason, /zero metadata gaps/i);
+  assert.match(record.reason, /52 semantic exclusions/i);
   assert.match(record.reason, /current-library relationship/i);
 });
 
@@ -815,97 +819,160 @@ test('The Defenders source ledger rejects the known defect shapes', async () => 
   assert.throws(() => assertLedgerShape(refreshDerivedFields(inheritedRangeIdentityLoss)));
 });
 
-test('The Defenders publication preserves the settled source partition and cache-only resolution', async () => {
-  const [packet, mapping, report, manifest, generated, markdown] = await Promise.all([
+test('The Defenders publication preserves the settled source partition and exact resolution', async () => {
+  const [packet, mapping, report, manifest, catalog, inventory, generated, markdown] = await Promise.all([
     readJson('scripts/data/cbh-packets/the-defenders-reading-order.json'),
     readJson('scripts/data/cbh-mappings/the-defenders-reading-order.json'),
     readJson('scripts/data/cbh-overlaps/the-defenders-reading-order.json'),
     readJson('src/data/curated-lists.json'),
+    readJson('src/data/catalog.json'),
+    readJson('scripts/data/cbh-character-inventory.json'),
     readJson('src/data/the_defenders_reading_order.json'),
     readFile(path.join(root, 'src/data/orders/the-defenders-reading-order.md'), 'utf8'),
   ]);
+  const exactResolutions = [
+    [102, 57812],
+    [199, 20292], [200, 20293], [201, 20294], [202, 20295], [203, 20297], [204, 20298],
+    [267, 39757], [268, 39762], [269, 39763], [270, 39758], [271, 39759], [272, 39761],
+    [274, 39760], [275, 39767], [276, 39766], [277, 39765], [278, 39764], [279, 39756],
+    [303, 62818],
+  ];
+  const repeatResolutions = [
+    [57, 22, 20026],
+    [198, 155, 20291],
+  ];
+  const addedRepeatRows = [
+    [57, 22], [198, 155], [206, 157], [207, 158], [208, 159],
+    [209, 160], [210, 161], [211, 162],
+  ];
+  const expectedNonNone = [
+    ['agatha-harkness-reading-order', 'partial', 3],
+    ['avengers-defenders-war', 'existing-subset', 8],
+    ['black-widow-reading-order', 'partial', 1],
+    ['captain-marvel-ms-marvel-reading-order', 'partial', 3],
+    ['daredevil-reading-order', 'partial', 10],
+    ['doctor-strange-reading-order', 'partial', 182],
+    ['fantastic-four-reading-order', 'partial', 2],
+    ['guardians-of-the-galaxy-reading-order', 'partial', 6],
+    ['loki-reading-order', 'partial', 14],
+    ['magneto-reading-order', 'partial', 2],
+    ['moon-knight-reading-order', 'partial', 4],
+    ['punisher-reading-order', 'partial', 6],
+    ['question-of-the-week-do-you-have-a-hulk-reading-order', 'partial', 16],
+    ['scarlet-witch-best-of', 'partial', 1],
+    ['silver-surfer-reading-order', 'partial', 43],
+    ['star-lord-reading-order', 'partial', 1],
+    ['thanos-reading-order', 'partial', 2],
+    ['thanos-war', 'partial', 2],
+    ['white-tiger-ava-ayala', 'partial', 1],
+    ['xmen-claremont-complete', 'partial', 2],
+  ];
 
+  for (const [sourcePosition, issueId] of exactResolutions) {
+    assert.equal(
+      mapping.rows.find((row) => row.sourcePosition === sourcePosition)?.selectedIssueId,
+      issueId,
+      `Defenders source position ${sourcePosition} must resolve to issue ${issueId}`,
+    );
+  }
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: 'the-defenders-reading-order',
   }));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: report.libraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
   assert.equal(packet.sourceOccurrenceCount, 331);
-  assert.equal(packet.rows.length, 245);
-  assert.equal(packet.sourceGaps.length, 23);
-  assert.equal(packet.repeatedSourceReferences.length, 12);
-  assert.equal(packet.excludedSourceRows.length, 51);
-  assert.equal(packet.rows.length + packet.sourceGaps.length
-    + packet.repeatedSourceReferences.length + packet.excludedSourceRows.length, 331);
-  assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourcePosition), [
-    57, 102, 198, 199, 200, 201, 202, 203, 204, 267, 268, 269, 270, 271, 272,
-    274, 275, 276, 277, 278, 279, 303, 310,
-  ]);
-  assert.deepEqual(packet.sourceGaps.find((gap) => gap.sourcePosition === 303), {
-    sourcePosition: 303,
-    sourceIssueReference: 'Free Comic Book Day 2017 (Defenders Story)',
-    sourceRangeReference: 'Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)',
-    sourceGroup: 'Marvel Netflix Defenders!',
-    normalizedSeriesTitle: 'Free Comic Book Day 2017 (Defenders Story)',
-    seriesYear: 2017,
-    issueNumber: 'named work',
-    kind: 'published-metadata-gap',
-    status: 'open',
-    checkedAt: '2026-08-27',
-    auditBasis: 'The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.',
-    evidenceSources: [
-      {
-        kind: 'comic-book-herald',
-        url: 'https://www.comicbookherald.com/the-defenders-reading-order/',
-        retrievedAt: '2026-08-27',
-      },
-      {
-        kind: 'gap-tracking-issue',
-        url: 'https://github.com/raymond-nassar/recap-page/issues/317',
-        retrievedAt: '2026-08-27',
-      },
-    ],
-    evidenceDigest: '3bddf71a5392629c9fbe7ca59f7683780429dca1ba1f246aa9ec210c57dd3dd6',
-  });
+  assert.equal(packet.rows.length, 259);
+  assert.equal(packet.sourceGaps, undefined);
+  assert.equal(packet.sourceGapResolutions.length, 23);
+  assert.equal(packet.repeatedSourceReferences.length, 20);
+  assert.equal(packet.excludedSourceRows.length, 52);
+  assert.equal(packet.rows.length + packet.repeatedSourceReferences.length
+    + packet.excludedSourceRows.length, 331);
+  assert.deepEqual(
+    packet.repeatedSourceReferences
+      .filter((entry) => addedRepeatRows.some(([position]) => position === entry.sourcePosition))
+      .map((entry) => [entry.sourcePosition, entry.canonicalRow]),
+    addedRepeatRows,
+  );
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((entry) => entry.resolutionKind === 'exact-issue')
+      .map((entry) => [entry.sourcePosition, entry.selectedIssueId]),
+    exactResolutions,
+  );
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((entry) => entry.resolutionKind === 'canonical-repeat')
+      .map((entry) => [entry.sourcePosition, entry.canonicalRow, entry.selectedIssueId]),
+    repeatResolutions,
+  );
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((entry) => entry.resolutionKind === 'source-exclusion')
+      .map(({ sourcePosition, decisionScope }) => [sourcePosition, decisionScope]),
+    [[310, 'Owner-authorized nonexistent-identity exclusion']],
+  );
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.evidenceDigest === sourceGapResolutionDigestFor(resolution)
+      && resolution.evidenceSources.some((source) => (
+        source.kind === 'owner-availability-review'
+          && source.url === 'https://github.com/raymond-nassar/recap-page/issues/317'
+      ))
+  )));
+  assert.equal(
+    digestCanonicalJson(packet.sourceGapResolutions),
+    '6428c9ed9818c1eaa45868a110fe274f1c115343076c0a3658ed964e4121a656',
+  );
   assert.deepEqual(
     sourcePositionsForPacket(packet),
     mapping.rows.map((row) => row.sourcePosition),
   );
-  assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 245);
+  assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 259);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
-  assert.equal(report.candidateCount, 245);
+  assert.equal(mapping.candidateMetadata.length, 259);
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.equal(report.candidateCount, 259);
   assert.equal(report.comparisonCount, 164);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'exact').length, 0);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 145);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship !== 'none').length, 19);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 144);
   assert.deepEqual(
     report.comparisons
-      .filter((comparison) => [
-        'fantastic-four-reading-order',
-        'guardians-of-the-galaxy-reading-order',
-      ].includes(comparison.orderId))
-      .map(({ orderId, relationship, sharedIds }) => ({ orderId, relationship, sharedIds })),
-    [
-      {
-        orderId: 'fantastic-four-reading-order',
-        relationship: 'partial',
-        sharedIds: ['6983', '12951'],
-      },
-      {
-        orderId: 'guardians-of-the-galaxy-reading-order',
-        relationship: 'partial',
-        sharedIds: ['20333', '20334', '20335', '20336', '20030', '15429'],
-      },
-    ],
+      .filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => [comparison.orderId, comparison.relationship, comparison.sharedCount]),
+    expectedNonNone,
   );
-  assert.equal(generated.count, 268);
-  assert.equal(generated.placeholders, 23);
-  assert.equal(generated.unresolved.length, 23);
-  assert.equal(parseChecklist(markdown).entries.length, 245);
-  assert.match(markdown, /^- \[ \] Free Comic Book Day 2017 \(Defenders Story\)$/m);
-  const entry = manifest.lists.find((candidate) => candidate.id === 'the-defenders-reading-order');
-  assert.ok(entry);
-  assert.equal(entry.expect, 268);
-  assert.equal(entry.coverIssueId, 17089);
+  assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
+  assert.equal(mapping.relationshipReview.authorityIdentity, 'GPT-5.6 Sol');
+  assert.equal(generated.count, 259);
+  assert.equal(generated.placeholders, 0);
+  assert.equal(generated.unresolved.length, 0);
+  assert.equal(new Set(generated.items.map((item) => item.issueId)).size, 259);
+  assert.deepEqual(
+    generated.items.map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  const parsed = parseChecklist(markdown);
+  assert.equal(parsed.entries.length, 259);
+  assert.equal(parsed.unresolved.length, 0);
+  assert.match(markdown, /issue\/39761\/defenders_2011_6/);
+  assert.match(markdown, /issue\/62818\/free_comic_book_day_all-new_guardians_of_the_galaxy_2017/);
+  const manifestEntry = manifest.lists.find((candidate) => candidate.id === 'the-defenders-reading-order');
+  const catalogEntry = catalog.lists.find((candidate) => candidate.id === 'the-defenders-reading-order');
+  const inventoryEntry = inventory.find((candidate) => candidate.id === 'the-defenders-reading-order');
+  assert.ok(manifestEntry);
+  assert.ok(catalogEntry);
+  assert.ok(inventoryEntry);
+  assert.equal(manifestEntry.expect, 259);
+  assert.equal(catalogEntry.count, 259);
+  assert.equal(catalogEntry.placeholderCount, 0);
+  assert.equal(manifestEntry.coverIssueId, 17089);
+  assert.deepEqual(inventoryEntry.overlapIds, expectedNonNone.map(([id]) => id));
 });

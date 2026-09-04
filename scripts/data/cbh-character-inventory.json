@@ -859,7 +859,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The frozen 331-occurrence full-page guide now publishes 245 exact metadata rows and 23 explicit unresolved placeholders, while preserving 12 backward repeats, 51 semantic exclusions, every source position, and every current-library relationship.",
+    "reason": "The frozen 331-occurrence full-page guide publishes 259 exact metadata rows while preserving 20 backward repeats, zero metadata gaps, 52 semantic exclusions, every source position, and every current-library relationship.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "agatha-harkness-reading-order",
@@ -877,6 +877,7 @@
       "question-of-the-week-do-you-have-a-hulk-reading-order",
       "scarlet-witch-best-of",
       "silver-surfer-reading-order",
+      "star-lord-reading-order",
       "thanos-reading-order",
       "thanos-war",
       "white-tiger-ava-ayala",

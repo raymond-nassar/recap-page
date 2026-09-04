@@ -5,174 +5,12 @@
   "source": "https://www.comicbookherald.com/the-defenders-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T18:44:46.826Z",
+  "generatedAt": "2026-09-04T21:40:26.080Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 268,
+  "count": 259,
   "collections": 25,
-  "placeholders": 23,
-  "unresolved": [
-    {
-      "title": "Giant-Size (1974) #1",
-      "url": null,
-      "read": false,
-      "index": 36,
-      "section": "Collects: Avengers (1963) 115-128, Giant-Size (1974) 1, Defenders (1972) 8-11, Captain Marvel (1968) 33, Fantastic Four (1961) 150"
-    },
-    {
-      "title": "Annual (1976) #1",
-      "url": null,
-      "read": false,
-      "index": 71,
-      "section": "Collects: Defenders (1972) #31-41, Annual (1976) #1, Marvel Treasury Edition (1974) #12"
-    },
-    {
-      "title": "New Defenders (1972) #125",
-      "url": null,
-      "read": false,
-      "index": 157,
-      "section": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "title": "New Defenders (1972) #126",
-      "url": null,
-      "read": false,
-      "index": 158,
-      "section": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "title": "New Defenders (1972) #127",
-      "url": null,
-      "read": false,
-      "index": 159,
-      "section": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "title": "New Defenders (1972) #128",
-      "url": null,
-      "read": false,
-      "index": 160,
-      "section": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "title": "New Defenders (1972) #129",
-      "url": null,
-      "read": false,
-      "index": 161,
-      "section": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "title": "New Defenders (1972) #130",
-      "url": null,
-      "read": false,
-      "index": 162,
-      "section": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "title": "New Defenders (1972) #131",
-      "url": null,
-      "read": false,
-      "index": 163,
-      "section": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "title": "Defenders (2012) #1",
-      "url": null,
-      "read": false,
-      "index": 217,
-      "section": "Collects: Defenders (2012) #1-6"
-    },
-    {
-      "title": "Defenders (2012) #2",
-      "url": null,
-      "read": false,
-      "index": 218,
-      "section": "Collects: Defenders (2012) #1-6"
-    },
-    {
-      "title": "Defenders (2012) #3",
-      "url": null,
-      "read": false,
-      "index": 219,
-      "section": "Collects: Defenders (2012) #1-6"
-    },
-    {
-      "title": "Defenders (2012) #4",
-      "url": null,
-      "read": false,
-      "index": 220,
-      "section": "Collects: Defenders (2012) #1-6"
-    },
-    {
-      "title": "Defenders (2012) #5",
-      "url": null,
-      "read": false,
-      "index": 221,
-      "section": "Collects: Defenders (2012) #1-6"
-    },
-    {
-      "title": "Defenders (2012) #6",
-      "url": null,
-      "read": false,
-      "index": 222,
-      "section": "Collects: Defenders (2012) #1-6"
-    },
-    {
-      "title": "Defenders (2012) #7",
-      "url": null,
-      "read": false,
-      "index": 223,
-      "section": "Collects: Defenders 7-12"
-    },
-    {
-      "title": "Defenders (2012) #8",
-      "url": null,
-      "read": false,
-      "index": 224,
-      "section": "Collects: Defenders 7-12"
-    },
-    {
-      "title": "Defenders (2012) #9",
-      "url": null,
-      "read": false,
-      "index": 225,
-      "section": "Collects: Defenders 7-12"
-    },
-    {
-      "title": "Defenders (2012) #10",
-      "url": null,
-      "read": false,
-      "index": 226,
-      "section": "Collects: Defenders 7-12"
-    },
-    {
-      "title": "Defenders (2012) #11",
-      "url": null,
-      "read": false,
-      "index": 227,
-      "section": "Collects: Defenders 7-12"
-    },
-    {
-      "title": "Defenders (2012) #12",
-      "url": null,
-      "read": false,
-      "index": 228,
-      "section": "Collects: Defenders 7-12"
-    },
-    {
-      "title": "Free Comic Book Day 2017 (Defenders Story)",
-      "url": null,
-      "read": false,
-      "index": 247,
-      "section": "Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)"
-    },
-    {
-      "title": "Defenders (2017) #11",
-      "url": null,
-      "read": false,
-      "index": 252,
-      "section": "Collects: Defenders 6-11"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 17089,
@@ -1332,23 +1170,6 @@
           "role": "penciler"
         }
       ],
-      "collectedIn": "Collects: Avengers (1963) 115-128, Giant-Size (1974) 1, Defenders (1972) 8-11, Captain Marvel (1968) 33, Fantastic Four (1961) 150"
-    },
-    {
-      "issueId": -1822554135,
-      "title": "Giant-Size (1974) #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Collects: Avengers (1963) 115-128, Giant-Size (1974) 1, Defenders (1972) 8-11, Captain Marvel (1968) 33, Fantastic Four (1961) 150"
     },
     {
@@ -2568,20 +2389,31 @@
       "collectedIn": "Collects: Defenders (1972) #31-41, Annual (1976) #1, Marvel Treasury Edition (1974) #12"
     },
     {
-      "issueId": -1311809139,
-      "title": "Annual (1976) #1",
+      "issueId": 57812,
+      "title": "Defenders Annual (1976) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/57812/defenders_annual_1976_1",
+      "seriesId": 21038,
+      "seriesName": "Defenders Annual (1976)",
+      "onSale": "1976-11-01T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 40179,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/90/57ebdb562c7fb",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ed Hannigan",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Gerber",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders (1972) #31-41, Annual (1976) #1, Marvel Treasury Edition (1974) #12"
     },
     {
@@ -5545,125 +5377,6 @@
       "collectedIn": "Collects: Defenders (1972) 110-125, Avengers Annual (1967) 11"
     },
     {
-      "issueId": -353957569,
-      "title": "New Defenders (1972) #125",
-      "number": "125",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "issueId": -337179950,
-      "title": "New Defenders (1972) #126",
-      "number": "126",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "issueId": -320402331,
-      "title": "New Defenders (1972) #127",
-      "number": "127",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "issueId": -303624712,
-      "title": "New Defenders (1972) #128",
-      "number": "128",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "issueId": -286847093,
-      "title": "New Defenders (1972) #129",
-      "number": "129",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "issueId": -337032855,
-      "title": "New Defenders (1972) #130",
-      "number": "130",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
-      "issueId": -353810474,
-      "title": "New Defenders (1972) #131",
-      "number": "131",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131"
-    },
-    {
       "issueId": 20292,
       "title": "Defenders (1972) #126",
       "number": "126",
@@ -7447,207 +7160,355 @@
       "collectedIn": "Collects: The Last Defenders #1-6"
     },
     {
-      "issueId": -1277133730,
-      "title": "Defenders (2012) #1",
+      "issueId": 39757,
+      "title": "Defenders (2011) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39757/defenders_2011_1",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2011-12-07T00:00:00+0000",
+      "mu": "2013-01-25T00:00:00+0000",
+      "digitalId": 24947,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/51a5172d8e680",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders (2012) #1-6"
     },
     {
-      "issueId": -1293911349,
-      "title": "Defenders (2012) #2",
+      "issueId": 39762,
+      "title": "Defenders (2011) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39762/defenders_2011_2",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-01-04T00:00:00+0000",
+      "mu": "2013-01-28T00:00:00+0000",
+      "digitalId": 25196,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/51a517158610a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders (2012) #1-6"
     },
     {
-      "issueId": -1310688968,
-      "title": "Defenders (2012) #3",
+      "issueId": 39763,
+      "title": "Defenders (2011) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39763/defenders_2011_3",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-02-01T00:00:00+0000",
+      "mu": "2013-01-29T00:00:00+0000",
+      "digitalId": 25404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/51a51719bae4d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders (2012) #1-6"
     },
     {
-      "issueId": -1193245635,
-      "title": "Defenders (2012) #4",
+      "issueId": 39758,
+      "title": "Defenders (2011) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39758/defenders_2011_4",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-03-07T00:00:00+0000",
+      "mu": "2012-03-07T00:00:00+0000",
+      "digitalId": 25700,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/51a5170a17bd2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stefano Gaudiano",
+          "role": "cover artist"
+        },
+        {
+          "name": "Michael Lark",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders (2012) #1-6"
     },
     {
-      "issueId": -1210023254,
-      "title": "Defenders (2012) #5",
+      "issueId": 39759,
+      "title": "Defenders (2011) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39759/defenders_2011_5",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-04-18T00:00:00+0000",
+      "mu": "2013-01-31T00:00:00+0000",
+      "digitalId": 26163,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/56cb1659e049b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders (2012) #1-6"
     },
     {
-      "issueId": -1226800873,
-      "title": "Defenders (2012) #6",
+      "issueId": 39761,
+      "title": "Defenders (2011) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39761/defenders_2011_6",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-05-02T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 26307,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4fa43c33f2580",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders (2012) #1-6"
     },
     {
-      "issueId": -1243578492,
-      "title": "Defenders (2012) #7",
+      "issueId": 39760,
+      "title": "Defenders (2011) #7",
       "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39760/defenders_2011_7",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-06-06T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 26674,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/51a51839426a1",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders 7-12"
     },
     {
-      "issueId": -1394577063,
-      "title": "Defenders (2012) #8",
+      "issueId": 39767,
+      "title": "Defenders (2011) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39767/defenders_2011_8",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-07-11T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 27171,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/51a51848d7869",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders 7-12"
     },
     {
-      "issueId": -1411354682,
-      "title": "Defenders (2012) #9",
+      "issueId": 39766,
+      "title": "Defenders (2011) #9",
       "number": "9",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39766/defenders_2011_9",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-08-01T00:00:00+0000",
+      "mu": "2012-08-01T00:00:00+0000",
+      "digitalId": 27351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/51a5182f1ee62",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders 7-12"
     },
     {
-      "issueId": -77352062,
-      "title": "Defenders (2012) #10",
+      "issueId": 39765,
+      "title": "Defenders (2011) #10",
       "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39765/defenders_2011_10",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-09-05T00:00:00+0000",
+      "mu": "2013-04-29T00:00:00+0000",
+      "digitalId": 27604,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/f0/51a51829ddaa4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joe Quinones",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders 7-12"
     },
     {
-      "issueId": -60574443,
-      "title": "Defenders (2012) #11",
+      "issueId": 39764,
+      "title": "Defenders (2011) #11",
       "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39764/defenders_2011_11",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-10-03T00:00:00+0000",
+      "mu": "2012-10-03T00:00:00+0000",
+      "digitalId": 27759,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/51a5181b083d3",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mirco Pierfederici",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rachel Dodson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders 7-12"
     },
     {
-      "issueId": -43796824,
-      "title": "Defenders (2012) #12",
+      "issueId": 39756,
+      "title": "Defenders (2011) #12",
       "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/39756/defenders_2011_12",
+      "seriesId": 14701,
+      "seriesName": "Defenders (2011 - 2012)",
+      "onSale": "2012-11-07T00:00:00+0000",
+      "mu": "2013-05-06T00:00:00+0000",
+      "digitalId": 27962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/51a51815cf07e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Terry Dodson",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Fraction",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders 7-12"
     },
     {
@@ -8163,20 +8024,31 @@
       "collectedIn": "Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)"
     },
     {
-      "issueId": -1641675316,
-      "title": "Free Comic Book Day 2017 (Defenders Story)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62818,
+      "title": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "seriesId": 23038,
+      "seriesName": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "onSale": "2017-05-05T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 44806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5b22f0e28daf0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)"
     },
     {
@@ -8293,23 +8165,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Defenders 6-11"
-    },
-    {
-      "issueId": -1961595192,
-      "title": "Defenders (2017) #11",
-      "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Collects: Defenders 6-11"
     },
     {
