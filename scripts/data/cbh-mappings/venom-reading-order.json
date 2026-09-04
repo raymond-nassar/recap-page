@@ -16927,10 +16927,10 @@
     "coverIssueId": 10590
   },
   "relationshipReview": {
-    "reportDigest": "533bdddef8bcb539b8cb3ad43cfb143dafa8cfaf4ce36cff75c9b5fff43e3c88",
+    "reportDigest": "b3d68fa7749d226572877e8a24fbb77b577af8918ca67ab38a61916c73d64b9d",
     "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
     "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
-    "libraryDigest": "2ea42c4de5baab53e6c4af926f49c70723f1e490aa5ff0e339a0709ed572a773",
+    "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
     "peerDigests": {},
     "dispositions": [
       {
@@ -18543,6 +18543,13 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The include-later complete-library report was rebuilt against 154 current catalog orders. Twenty-three non-none relationships were reviewed as intentional crossover overlap or an existing subset; no exact duplicate exists.",
     "reviewedAt": "2026-08-27T05:41:32.288Z",
-    "approvalDigest": "f7c4bf29653d230dad41c82f24b86a344cffffaf386ce0e95d8ed66aa066f402"
+    "approvalDigest": "56d422e5a0651e444e5cb2d988708554cca32c22e25188031b278d63c7c2d79b",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 932,
+      "sourceIdentityCount": 643,
+      "includedIssueCount": 610,
+      "sourceGapCount": 33,
+      "repeatedSourceReferenceCount": 286
+    }
   }
 }

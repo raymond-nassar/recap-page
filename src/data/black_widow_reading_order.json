@@ -5,111 +5,12 @@
   "source": "https://www.comicbookherald.com/black-widow-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T17:44:12.206Z",
+  "generatedAt": "2026-09-04T05:21:12.713Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 570,
-  "collections": 143,
-  "placeholders": 14,
-  "unresolved": [
-    {
-      "title": "Amazing Spider-Man #86",
-      "url": null,
-      "read": false,
-      "index": 1,
-      "section": "Amazing Spider-Man #86"
-    },
-    {
-      "title": "Daredevil: Love and War (1986)",
-      "url": null,
-      "read": false,
-      "index": 159,
-      "section": "Daredevil: Love and War (1986)"
-    },
-    {
-      "title": "West Coast Avengers Annual #1",
-      "url": null,
-      "read": false,
-      "index": 191,
-      "section": "West Coast Avengers Annual (1986) #1"
-    },
-    {
-      "title": "Namor The Sub-Mariner Annual #1",
-      "url": null,
-      "read": false,
-      "index": 229,
-      "section": "Namor The Sub-Mariner Annual (1991) #1"
-    },
-    {
-      "title": "Avengers: Deathtrap ? The Vault (1991)",
-      "url": null,
-      "read": false,
-      "index": 232,
-      "section": "Avengers: Deathtrap ? The Vault (1991)"
-    },
-    {
-      "title": "Avengers #496",
-      "url": null,
-      "read": false,
-      "index": 329,
-      "section": "Avengers (1963) #496"
-    },
-    {
-      "title": "Captain America: The Legend (1996)",
-      "url": null,
-      "read": false,
-      "index": 330,
-      "section": "Captain America: The Legend (1996)"
-    },
-    {
-      "title": "Onslaught: X-Men (1996)",
-      "url": null,
-      "read": false,
-      "index": 338,
-      "section": "Onslaught: X-Men (1996)"
-    },
-    {
-      "title": "Thunderbolts #-1",
-      "url": null,
-      "read": false,
-      "index": 344,
-      "section": "Collects: Thunderbolts (1997) #1-5 & -1"
-    },
-    {
-      "title": "Secret Empire #9",
-      "url": null,
-      "read": false,
-      "index": 492,
-      "section": "Collects: Secret Empire (2017) #0-10"
-    },
-    {
-      "title": "Secret Empire #10",
-      "url": null,
-      "read": false,
-      "index": 493,
-      "section": "Collects: Secret Empire (2017) #0-10"
-    },
-    {
-      "title": "Infinity Countdown Prime (2018)",
-      "url": null,
-      "read": false,
-      "index": 516,
-      "section": "Infinity Countdown Prime (2018)"
-    },
-    {
-      "title": "Infinty Wars Prime #1",
-      "url": null,
-      "read": false,
-      "index": 522,
-      "section": "Collects: Infinty Wars Prime (2018) #1"
-    },
-    {
-      "title": "Black Widow #15",
-      "url": null,
-      "read": false,
-      "index": 569,
-      "section": "Collects: Black Widow (2020) #11 to #15"
-    }
-  ],
+  "count": 567,
+  "collections": 141,
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 11295,
@@ -156,20 +57,35 @@
       "collectedIn": "Collects: Collects Tales of Suspense #52"
     },
     {
-      "issueId": -1226190216,
-      "title": "Amazing Spider-Man #86",
+      "issueId": 6908,
+      "title": "The Amazing Spider-Man (1963) #86",
       "number": "86",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/6908/the_amazing_spider-man_1963_86",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSale": "1970-07-01T00:00:00+0000",
+      "mu": "1970-07-01T00:00:00+0000",
+      "digitalId": 5036,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/c0/57b1f251c62b1",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Amazing Spider-Man #86"
     },
     {
@@ -5002,20 +4918,31 @@
       "collectedIn": "What If? (1977) #28"
     },
     {
-      "issueId": -1864379526,
+      "issueId": 20779,
       "title": "Daredevil: Love and War (1986)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/20779/daredevil_love_and_war_1986",
+      "seriesId": 3906,
+      "seriesName": "Daredevil: Love and War (1986)",
+      "onSale": "1986-10-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 8108,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/60/4bb8472eaed8a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Daredevil: Love and War (1986)"
     },
     {
@@ -5994,10 +5921,10 @@
       "collectedIn": "Collects: West Coast Avengers (1985) #10-16"
     },
     {
-      "issueId": -1405355647,
-      "title": "West Coast Avengers Annual #1",
+      "issueId": 56327,
+      "title": "West Coast Avengers Annual (1986) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -6007,7 +5934,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "West Coast Avengers Annual (1986) #1"
     },
     {
@@ -7515,23 +7442,6 @@
       "collectedIn": "Avengers Annual (1967) #20"
     },
     {
-      "issueId": -625986314,
-      "title": "Namor The Sub-Mariner Annual #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Namor The Sub-Mariner Annual (1991) #1"
-    },
-    {
       "issueId": 19863,
       "title": "Iron Man Annual (1976) #12",
       "number": "12",
@@ -7652,20 +7562,47 @@
       "collectedIn": "West Coast Avengers Annual (1986) #6"
     },
     {
-      "issueId": -2109229235,
-      "title": "Avengers: Deathtrap ? The Vault (1991)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 67091,
+      "title": "Avengers: Deathtrap - The Vault (1991) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/67091/avengers_deathtrap_-_the_vault_1991_1",
+      "seriesId": 24257,
+      "seriesName": "Avengers: Deathtrap - The Vault (1991)",
+      "onSale": "1991-01-01T00:00:00+0000",
+      "mu": "2018-03-26T00:00:00+0000",
+      "digitalId": 47894,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/5ab3f766695c4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Sanders III",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joe Rosas",
+          "role": "penciler"
+        },
+        {
+          "name": "Randy Emberlin",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Danny Fingeroth",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Avengers: Deathtrap ? The Vault (1991)"
     },
     {
@@ -11101,38 +11038,36 @@
       "collectedIn": "Iron Man (1968) #326"
     },
     {
-      "issueId": -500617705,
-      "title": "Avengers #496",
-      "number": "496",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 492,
+      "title": "Avengers (1998) #81",
+      "number": "81",
+      "url": "https://www.marvel.com/comics/issue/492/avengers_1998_81",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSale": "2004-04-28T00:00:00+0000",
+      "mu": "2004-04-28T00:00:00+0000",
+      "digitalId": 1487,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/b0/586d5c8fdb0af",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Avengers (1963) #496"
-    },
-    {
-      "issueId": -18418460,
-      "title": "Captain America: The Legend (1996)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Captain America: The Legend (1996)"
     },
     {
       "issueId": 14343,
@@ -11379,20 +11314,47 @@
       "collectedIn": "Incredible Hulk (1962) #444"
     },
     {
-      "issueId": -1357938138,
-      "title": "Onslaught: X-Men (1996)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 20767,
+      "title": "Onslaught: X-Men (1996) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/20767/onslaught_x-men_1996_1",
+      "seriesId": 3900,
+      "seriesName": "Onslaught: X-Men (1996)",
+      "onSale": "1996-08-01T00:00:00+0000",
+      "mu": "2007-04-28T00:00:00+0000",
+      "digitalId": 8504,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb858cba0802",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Onslaught: X-Men (1996)"
     },
     {
@@ -11553,23 +11515,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Thunderbolts (1997) #1-5 & -1"
-    },
-    {
-      "issueId": -1401244581,
-      "title": "Thunderbolts #-1",
-      "number": "-1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Collects: Thunderbolts (1997) #1-5 & -1"
     },
     {
@@ -16150,10 +16095,10 @@
       "collectedIn": "Collects: Secret Empire (2017) #0-10"
     },
     {
-      "issueId": -1859153480,
-      "title": "Secret Empire #9",
+      "issueId": 64259,
+      "title": "Secret Empire (2017) #9",
       "number": "9",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64259/read",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -16163,14 +16108,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Secret Empire (2017) #0-10"
     },
     {
-      "issueId": -2030677326,
-      "title": "Secret Empire #10",
+      "issueId": 64285,
+      "title": "Secret Empire (2017) #10",
       "number": "10",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -16180,7 +16125,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Secret Empire (2017) #0-10"
     },
     {
@@ -16956,20 +16901,35 @@
       "collectedIn": "Infinity Countdown (2018) #1-5"
     },
     {
-      "issueId": -61916138,
-      "title": "Infinity Countdown Prime (2018)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 66283,
+      "title": "Infinity Countdown Prime (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66283/infinity_countdown_prime_2018_1",
+      "seriesId": 24300,
+      "seriesName": "Infinity Countdown Prime (2018)",
+      "onSale": "2018-02-21T00:00:00+0000",
+      "mu": "2018-08-27T00:00:00+0000",
+      "digitalId": 47335,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/5a84851766948",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Mike O'sullivan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Infinity Countdown Prime (2018)"
     },
     {
@@ -17153,20 +17113,31 @@
       "collectedIn": "& Infinity Countdown: Daredevil (2018) #1"
     },
     {
-      "issueId": -259075485,
-      "title": "Infinty Wars Prime #1",
+      "issueId": 67349,
+      "title": "Infinity Wars Prime (2018) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/67349/infinity_wars_prime_2018_1",
+      "seriesId": 24340,
+      "seriesName": "Infinity Wars Prime (2018)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5b52272a8fa14",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Infinty Wars Prime (2018) #1"
     },
     {
@@ -18686,10 +18657,10 @@
       "collectedIn": "Collects: Black Widow (2020) #11 to #15"
     },
     {
-      "issueId": -268686600,
-      "title": "Black Widow #15",
+      "issueId": 95780,
+      "title": "Black Widow (2020) #15",
       "number": "15",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/95780/read",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -18699,7 +18670,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Black Widow (2020) #11 to #15"
     }
   ]

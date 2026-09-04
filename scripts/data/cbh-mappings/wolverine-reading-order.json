@@ -33241,10 +33241,10 @@
     "authorityIdentity": "GitHub Copilot",
     "rationale": "Reviewed the canonical overlap report against the settled current-main library. Existing overlaps are intentional source-defined relationships, including Hunt for Wolverine, Wolverine Goes to Hell, Modern X-Men Fast Track, and broader X-Men guides.",
     "reviewedAt": "2026-08-26T19:13:50Z",
-    "reportDigest": "17f6bfea2ea72fb64d669fd7130d7db672f2e3bac437bdc32b8f0779a85ff3e0",
+    "reportDigest": "16fbc63d744e1f6e4f2f9cc23f03f8ef5142997decb0a4394383f158e81b50d8",
     "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2",
     "mappingDigest": "ed898bfb96d5272887c1990b6066ec76f285e734613f39babdc48d7b0c85e05f",
-    "libraryDigest": "a400d6727f5cbe342c16f3520dd29e88ed73e6cade37b3b0afde0eb4864832d9",
+    "libraryDigest": "db71a220721017dde1c1e341b4ea38ba6bd3c5c5b5a1d8fe20c9059afbe69bf7",
     "peerDigests": {},
     "dispositions": [
       {
@@ -35209,6 +35209,13 @@
         ]
       }
     ],
-    "approvalDigest": "5ac5bd345208c64312501c362f41e6666f70867c8c08bf9edad04522bce5066f"
+    "approvalDigest": "922e00e39fc8effe3c47b9ff235169526ebafb5854c59900f45861278fc767c1",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 1328,
+      "sourceIdentityCount": 1222,
+      "includedIssueCount": 437,
+      "sourceGapCount": 785,
+      "repeatedSourceReferenceCount": 69
+    }
   }
 }

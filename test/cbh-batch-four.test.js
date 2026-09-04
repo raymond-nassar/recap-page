@@ -290,7 +290,7 @@ test('batch four has no aggregate identity, source, sequence, or issue overlap',
     assert.equal(report.comparisons.length, 135);
     const approved = new Map([
       ['infinity-countdown-wars', new Map([
-        ['black-widow-reading-order', ['partial', 16, ['66416', '66684', '67022', '67347', '67346', '68653', '68659', '68662', '68663', '68656', '67145', '67147', '67148', '67149', '67150', '67151']]],
+        ['black-widow-reading-order', ['partial', 18, ['66283', '66416', '66684', '67022', '67347', '67346', '68653', '68659', '68662', '68663', '68656', '67349', '67145', '67147', '67148', '67149', '67150', '67151']]],
         ['hunt-for-wolverine', ['partial', 1, ['66416']]],
         ['star-lord-reading-order', ['partial', 1, ['65547']]],
       ])],

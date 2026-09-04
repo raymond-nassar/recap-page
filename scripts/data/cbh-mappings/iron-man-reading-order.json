@@ -26889,10 +26889,10 @@
     "coverIssueId": 11280
   },
   "relationshipReview": {
-    "reportDigest": "56008133e7792d1e9719ae8623a6caf486cb7559ab1d775ed50ca228a8d7a8ac",
+    "reportDigest": "0e0fb1bf9acd4835f860209a69ce4f307ac1527971ea946ca156cebb5aab6cab",
     "packetDigest": "b2c67419dce8fff82401ee9e32498c97086409bae1e514f10d9ab4ac70feb805",
     "mappingDigest": "3b1656e2f3d9eda936d2930e7d1fbb3db5ab7a094268e40a2cf0560aa463828c",
-    "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
+    "libraryDigest": "832e7575b71050011dc71951b9b7db38865cd252f2b3dcf0fea72ba7ad6962c3",
     "peerDigests": {},
     "dispositions": [
       {
@@ -28528,7 +28528,14 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002 resume coordinator",
     "rationale": "Every current-library comparison was reviewed against the complete-guide boundary; the iron-man-2020 partial overlap is approved as intentional provenance per its disposition, and no exact or subset relationship exists with any other order.",
-    "approvalDigest": "07fe5f15bbdfd06b191e0f7bd8c7140f11bdd901b66dbdcf4950a781cb57e218"
+    "approvalDigest": "ab8143711cd8f1c1cbfa36facf5f3f07b760693399c4dc784115fa5448c6f897",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 815,
+      "sourceIdentityCount": 811,
+      "includedIssueCount": 811,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 2
+    }
   },
   "approvalDigest": "04a4307181082319c2ef7645ae512ab0274e178ff23178dbc50364f21bbcb1d8"
 }

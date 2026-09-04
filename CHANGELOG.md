@@ -12,6 +12,18 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Black Widow guide gaps
+
+In plain English: The bundled Black Widow guide now includes eleven exact comics that previously
+appeared as broken placeholders. Three source entries confirmed unavailable on Marvel Unlimited are
+omitted instead, including Thunderbolts #-1 without replacing it with #0. Existing saved Reading
+Lists and reading progress are not rewritten; newly imported copies receive the settled 567-comic
+order.
+
+For maintainers, all 773 source positions remain accounted for as 567 exact rows, 20 repeats, and
+186 explicit availability exclusions. The exact Avengers legacy-number resolution and all fourteen
+former gaps retain auditable transition evidence.
+
 ### Settled the Black Panther guide gaps
 
 In plain English: The bundled Black Panther guide now includes the exact Avengers launch special

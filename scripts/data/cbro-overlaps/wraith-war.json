@@ -2,10 +2,17 @@
   "candidateId": "wraith-war",
   "packetDigest": "724e37c0091298acd6a54cc0b576604686fd03ae0f9782b810043022b6511237",
   "mappingDigest": "acf7d1f64e2f5acd0aa1db72d6b477e1a4b5043499970daea93bc8907c795954",
-  "libraryDigest": "b1b816716a53d2e3fe26b7de4279485b08db664d3638f747b542f26804c44d09",
+  "libraryDigest": "2ab52de18b319e8016584c6b2d51b6645f829df991679ab674a8a65eecf818ca",
   "peerDigests": {
     "mutant-massacre": "d872ab7ef5de932b2be654f16a5ecf1ad375e3e1c269a257932079362baa2b44",
     "secret-wars-ii": "d828d0762f2a3364d36d3736e29b90368b40117824792aa2e2dd8353720cadc1"
+  },
+  "sourceCounts": {
+    "sourceOccurrenceCount": 35,
+    "sourceIdentityCount": 7,
+    "includedIssueCount": 7,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
   },
   "candidateCount": 7,
   "comparisonCount": 136,
@@ -837,5 +844,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "d6c92910a3947b8bdcac420a214946496c29bc50aec59c8cbe1f47c9ce843be4"
+  "reportDigest": "d66705751f9087ff9729ebe964e6cf42c94edafb5747148cf75654d855682a7e"
 }

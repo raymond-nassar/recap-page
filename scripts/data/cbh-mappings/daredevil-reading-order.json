@@ -33425,10 +33425,10 @@
     "coverIssueId": 8073
   },
   "relationshipReview": {
-    "reportDigest": "87e1a36c2326f115f76c471a874ad7d6b3f28ba108ad6a7cc163b514a1cba164",
+    "reportDigest": "e3d242ee3841c96e0585b90ab08c153cee9b15f5628ac4a4e7703411bb30e387",
     "packetDigest": "ffa5d625acd2f0032993d4dc196671f163bc9fa904635c65b958d401b1d842c9",
     "mappingDigest": "eee45d6ec5349ada554e6bf7e5fe49ea2928f1c41787e9d1733e96554e92fd16",
-    "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
+    "libraryDigest": "13d5f34c6f9a9cbd94a49411ab9b402d6f590a257463e9a3ff12abff640ee1c6",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 909,
@@ -33569,7 +33569,7 @@
       {
         "orderId": "black-widow-reading-order",
         "relationship": "partial",
-        "sharedCount": 125,
+        "sharedCount": 126,
         "sharedIds": [
           "8426",
           "8427",
@@ -33655,6 +33655,7 @@
           "8174",
           "8175",
           "8206",
+          "20779",
           "8202",
           "8203",
           "8204",
@@ -34045,7 +34046,9 @@
         "rationale": "No shared issue identity requires an exception.",
         "authorityType": "policy",
         "authorityIdentity": "relationship-policy-v1",
-        "reviewedAt": "2026-08-30"
+        "reviewedAt": "2026-08-30",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -34684,7 +34687,11 @@
         "rationale": "The complete Daredevil and Silver Surfer character guides share issue 46002 but preserve distinct source-defined character scopes.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "reviewedAt": "2026-08-30"
+        "reviewedAt": "2026-08-30",
+        "sharedCount": 1,
+        "sharedIds": [
+          "46002"
+        ]
       },
       {
         "orderId": "sins-of-sinister",
@@ -35135,7 +35142,7 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "The current-main library comparison was independently reviewed after the Daredevil availability settlement. Every retained partial or subset relationship preserves a distinct source-defined guide scope.",
     "reviewedAt": "2026-08-30",
-    "approvalDigest": "75e34dfe9fe05806d00a25ab48c91509e2da293f0ffdf466a8e01f457519737a"
+    "approvalDigest": "9d918951c6aec9c905eba29da47b8315d7e3ffecd54fa13ba8afbf5d391e5cc4"
   },
   "sourceGapResolutions": [
     {

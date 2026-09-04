@@ -440,6 +440,12 @@
       "decisionScope": "Source semantic boundary"
     },
     {
+      "sourcePosition": 315,
+      "sourceIssueReference": "Namor The Sub-Mariner Annual #1",
+      "reason": "The owner confirmed Namor The Sub-Mariner Annual #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 319,
       "sourceIssueReference": "Nat rejoins the Avengers just in time for some cosmic weirdness with The Collector and a big crossover: The Subterranean Wars!",
       "reason": "Non-issue source block remains excluded.",
@@ -590,6 +596,12 @@
       "decisionScope": "Source semantic boundary"
     },
     {
+      "sourcePosition": 441,
+      "sourceIssueReference": "Captain America: The Legend (1996)",
+      "reason": "The owner confirmed Captain America: The Legend (1996) is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 442,
       "sourceIssueReference": "Material from Captain America Ashcan Edition",
       "reason": "Partial-material label remains excluded.",
@@ -630,6 +642,12 @@
       "sourceIssueReference": "Thunderbolts Classics Vol. 1",
       "reason": "Non-issue source block remains excluded.",
       "decisionScope": "Source semantic boundary"
+    },
+    {
+      "sourcePosition": 462,
+      "sourceIssueReference": "Thunderbolts #-1",
+      "reason": "Thunderbolts #-1 exists, but the reviewed Thunderbolts series has no standalone Marvel Unlimited entry for it; Thunderbolts #0 must not substitute.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 467,
@@ -1125,16 +1143,16 @@
     },
     {
       "sourcePosition": 23,
-      "canonicalGapSourcePosition": 7,
       "sourceIssueReference": "Amazing Spider-Man #86",
       "sourceRangeReference": "Amazing Spider-Man #86",
       "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 0,
-      "issueNumber": "86"
+      "seriesYear": 1963,
+      "issueNumber": "86",
+      "canonicalRow": 2
     },
     {
       "sourcePosition": 25,
-      "canonicalRow": 2,
+      "canonicalRow": 3,
       "sourceIssueReference": "Amazing Adventures #1",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1143,7 +1161,7 @@
     },
     {
       "sourcePosition": 26,
-      "canonicalRow": 3,
+      "canonicalRow": 4,
       "sourceIssueReference": "Amazing Adventures #2",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1152,7 +1170,7 @@
     },
     {
       "sourcePosition": 27,
-      "canonicalRow": 4,
+      "canonicalRow": 5,
       "sourceIssueReference": "Amazing Adventures #3",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1161,7 +1179,7 @@
     },
     {
       "sourcePosition": 28,
-      "canonicalRow": 5,
+      "canonicalRow": 6,
       "sourceIssueReference": "Amazing Adventures #4",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1170,7 +1188,7 @@
     },
     {
       "sourcePosition": 29,
-      "canonicalRow": 6,
+      "canonicalRow": 7,
       "sourceIssueReference": "Amazing Adventures #5",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1179,7 +1197,7 @@
     },
     {
       "sourcePosition": 30,
-      "canonicalRow": 7,
+      "canonicalRow": 8,
       "sourceIssueReference": "Amazing Adventures #6",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1188,7 +1206,7 @@
     },
     {
       "sourcePosition": 31,
-      "canonicalRow": 8,
+      "canonicalRow": 9,
       "sourceIssueReference": "Amazing Adventures #7",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1197,7 +1215,7 @@
     },
     {
       "sourcePosition": 32,
-      "canonicalRow": 9,
+      "canonicalRow": 10,
       "sourceIssueReference": "Amazing Adventures #8",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1206,7 +1224,7 @@
     },
     {
       "sourcePosition": 98,
-      "canonicalRow": 14,
+      "canonicalRow": 15,
       "sourceIssueReference": "Daredevil #81",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
       "normalizedSeriesTitle": "Daredevil",
@@ -1215,7 +1233,7 @@
     },
     {
       "sourcePosition": 99,
-      "canonicalRow": 15,
+      "canonicalRow": 16,
       "sourceIssueReference": "Daredevil #82",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
       "normalizedSeriesTitle": "Daredevil",
@@ -1224,7 +1242,7 @@
     },
     {
       "sourcePosition": 100,
-      "canonicalRow": 16,
+      "canonicalRow": 17,
       "sourceIssueReference": "Daredevil #83",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
       "normalizedSeriesTitle": "Daredevil",
@@ -1233,7 +1251,7 @@
     },
     {
       "sourcePosition": 254,
-      "canonicalRow": 157,
+      "canonicalRow": 158,
       "sourceIssueReference": "Daredevil #219",
       "sourceRangeReference": "219-222 & 225-226",
       "normalizedSeriesTitle": "Daredevil",
@@ -1242,7 +1260,7 @@
     },
     {
       "sourcePosition": 527,
-      "canonicalRow": 373,
+      "canonicalRow": 379,
       "sourceIssueReference": "Avengers #7",
       "sourceRangeReference": "Avengers (1998) #7",
       "normalizedSeriesTitle": "Avengers",
@@ -1251,7 +1269,7 @@
     },
     {
       "sourcePosition": 592,
-      "canonicalRow": 430,
+      "canonicalRow": 436,
       "sourceIssueReference": " #1",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1260,7 +1278,7 @@
     },
     {
       "sourcePosition": 593,
-      "canonicalRow": 431,
+      "canonicalRow": 437,
       "sourceIssueReference": " #2",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1269,7 +1287,7 @@
     },
     {
       "sourcePosition": 594,
-      "canonicalRow": 432,
+      "canonicalRow": 438,
       "sourceIssueReference": " #3",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1278,7 +1296,7 @@
     },
     {
       "sourcePosition": 595,
-      "canonicalRow": 433,
+      "canonicalRow": 439,
       "sourceIssueReference": " #4",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1287,7 +1305,7 @@
     },
     {
       "sourcePosition": 596,
-      "canonicalRow": 434,
+      "canonicalRow": 440,
       "sourceIssueReference": " #5",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1295,373 +1313,7 @@
       "issueNumber": "5"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 7,
-      "sourceIssueReference": "Amazing Spider-Man #86",
-      "sourceRangeReference": "Amazing Spider-Man #86",
-      "sourceGroup": "Black Widow Origins",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 0,
-      "issueNumber": "86",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Amazing%20Spider-Man%2086&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "f3b708ad3375a1ff4a24e15466d97aac84b9a5a5acc1859eb242e8b9a64b7685"
-    },
-    {
-      "sourcePosition": 226,
-      "sourceIssueReference": "Daredevil: Love and War (1986)",
-      "sourceRangeReference": "Daredevil: Love and War (1986)",
-      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
-      "normalizedSeriesTitle": "Daredevil: Love and War",
-      "seriesYear": 1986,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%3A%20Love%20and%20War&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "57766247b7f1017347f222a2b457ee09f106125b5b7faefeef8ea13013ad0c2b"
-    },
-    {
-      "sourcePosition": 269,
-      "sourceIssueReference": "West Coast Avengers Annual #1",
-      "sourceRangeReference": "West Coast Avengers Annual (1986) #1",
-      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
-      "normalizedSeriesTitle": "West Coast Avengers Annual",
-      "seriesYear": 1986,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=West%20Coast%20Avengers%20Annual%201&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "347d098f0b8e2254054a44a7cc3913dc21d5d92cb1db438a82c2a2611afb2956"
-    },
-    {
-      "sourcePosition": 315,
-      "sourceIssueReference": "Namor The Sub-Mariner Annual #1",
-      "sourceRangeReference": "Namor The Sub-Mariner Annual (1991) #1",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Namor The Sub-Mariner Annual",
-      "seriesYear": 1991,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Namor%20The%20Sub-Mariner%20Annual%201&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "0ed6a170bf2f1aaddb951391d83c5a41e7ec801d4ad062f1f3a8d5ad2153095e"
-    },
-    {
-      "sourcePosition": 318,
-      "sourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
-      "sourceRangeReference": "Avengers: Deathtrap ? The Vault (1991)",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Avengers: Deathtrap ? The Vault",
-      "seriesYear": 1991,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Avengers%3A%20Deathtrap%20%3F%20The%20Vault&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "5fab7a2ca08448124bb7571462949e6ef6af50cf3610ee15233a2502c9ca55e8"
-    },
-    {
-      "sourcePosition": 440,
-      "sourceIssueReference": "Avengers #496",
-      "sourceRangeReference": "Avengers (1963) #496",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Avengers",
-      "seriesYear": 1963,
-      "issueNumber": "496",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Avengers%20496&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a70a6404f0b03a7ec0e7620444a50c2cc5b84df56df1d9e13c0690058fdc7558"
-    },
-    {
-      "sourcePosition": 441,
-      "sourceIssueReference": "Captain America: The Legend (1996)",
-      "sourceRangeReference": "Captain America: The Legend (1996)",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Captain America: The Legend",
-      "seriesYear": 1996,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The fully paged provider catalog contains no exact or normalized Captain America: The Legend series identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "82098526b3fad0f2ba71c6b444196e13adb15aec286359baebe29b1181d34c5f"
-    },
-    {
-      "sourcePosition": 453,
-      "sourceIssueReference": "Onslaught: X-Men (1996)",
-      "sourceRangeReference": "Onslaught: X-Men (1996)",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Onslaught: X-Men",
-      "seriesYear": 1996,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Onslaught%3A%20X-Men&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "d8f76951dfc09a00ad456b482af1ae907dfcef54a463f1ebc0fb45c660f3e53b"
-    },
-    {
-      "sourcePosition": 462,
-      "sourceIssueReference": "Thunderbolts #-1",
-      "sourceRangeReference": "Collects: Thunderbolts (1997) #1-5 & -1",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Thunderbolts",
-      "seriesYear": 1997,
-      "issueNumber": "-1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thunderbolts%20-1&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "1423884ffe393c10e81d63b7a54a29418e1b3416e97533b6981c9e794535b709"
-    },
-    {
-      "sourcePosition": 665,
-      "sourceIssueReference": "Secret Empire #9",
-      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Secret Empire",
-      "seriesYear": 2017,
-      "issueNumber": "9",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Secret%20Empire%209&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a4dba68ae5b9e57c793e2269a3931ae3e741b0dd44aabe4dd3563dfc857bfdaa"
-    },
-    {
-      "sourcePosition": 666,
-      "sourceIssueReference": "Secret Empire #10",
-      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Secret Empire",
-      "seriesYear": 2017,
-      "issueNumber": "10",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Secret%20Empire%2010&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e029932fe8b4ae0ddd2a8de548c6129dda8d372b8d8e43a290b4c447873f8510"
-    },
-    {
-      "sourcePosition": 699,
-      "sourceIssueReference": "Infinity Countdown Prime (2018)",
-      "sourceRangeReference": "Infinity Countdown Prime (2018)",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Infinity Countdown Prime",
-      "seriesYear": 2018,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Infinity%20Countdown%20Prime&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "36b6780408d87928bc6c95f320b4c9f611417da2748a262a0cf945641f4b9437"
-    },
-    {
-      "sourcePosition": 710,
-      "sourceIssueReference": "Infinty Wars Prime #1",
-      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Infinty Wars Prime",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Infinty%20Wars%20Prime%201&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "9e70f3320ca8966c56c358b9e8bcd486a2b379c354a8ef7667dad3d1327b701b"
-    },
-    {
-      "sourcePosition": 773,
-      "sourceIssueReference": "Black Widow #15",
-      "sourceRangeReference": "Collects: Black Widow (2020) #11 to #15",
-      "sourceGroup": "Latest Additions",
-      "normalizedSeriesTitle": "Black Widow",
-      "seriesYear": 2020,
-      "issueNumber": "15",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Black%20Widow%2015&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "469df8730ea5fabea7ad927e7168b030e50c9a8f8ea7eeb612b069a8fd270cb1"
-    }
-  ],
-  "expectedCount": 556,
+  "expectedCount": 567,
   "proposedManifest": {
     "id": "black-widow-reading-order",
     "name": "Black Widow",
@@ -1692,7 +1344,7 @@
       "Marvel",
       "Comic Book Herald"
     ],
-    "expect": 570,
+    "expect": 567,
     "timeline": null,
     "coverIssueId": 11295
   },
@@ -1718,6 +1370,19 @@
       "candidateIssueId": 11295,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Amazing Spider-Man #86",
+      "sourceRangeReference": "Amazing Spider-Man #86",
+      "sourceGroup": "Black Widow Origins",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "86",
+      "seriesId": 1987,
+      "candidateIssueId": 6908,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 6908 is the owner-approved exact official identity for this source position."
     },
     {
       "sourcePosition": 8,
@@ -3761,6 +3426,19 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 226,
+      "sourceIssueReference": "Daredevil: Love and War (1986)",
+      "sourceRangeReference": "Daredevil: Love and War (1986)",
+      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
+      "normalizedSeriesTitle": "Daredevil: Love and War",
+      "seriesYear": 1986,
+      "issueNumber": "0",
+      "seriesId": 3906,
+      "candidateIssueId": 20779,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 20779 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourcePosition": 233,
       "sourceIssueReference": "Avengers #231",
       "sourceRangeReference": "Collects: Avengers (1963) #231-241",
@@ -4162,6 +3840,19 @@
       "candidateIssueId": 17894,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 269,
+      "sourceIssueReference": "West Coast Avengers Annual #1",
+      "sourceRangeReference": "West Coast Avengers Annual (1986) #1",
+      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
+      "normalizedSeriesTitle": "West Coast Avengers Annual",
+      "seriesYear": 1986,
+      "issueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 56327,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 56327 is the owner-approved exact official identity for this source position."
     },
     {
       "sourcePosition": 270,
@@ -4669,6 +4360,19 @@
       "candidateIssueId": 17844,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 318,
+      "sourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "sourceRangeReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "sourceGroup": "Black Widow in the 1990's",
+      "normalizedSeriesTitle": "Avengers: Deathtrap - The Vault",
+      "seriesYear": 1991,
+      "issueNumber": "1",
+      "seriesId": 24257,
+      "candidateIssueId": 67091,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 67091 is the owner-approved exact official identity for this source position."
     },
     {
       "sourcePosition": 321,
@@ -5919,6 +5623,19 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 440,
+      "sourceIssueReference": "Avengers #496",
+      "sourceRangeReference": "Avengers (1963) #496",
+      "sourceGroup": "Black Widow in the 1990's",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1998,
+      "issueNumber": "81",
+      "seriesId": 354,
+      "candidateIssueId": 492,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 492 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourcePosition": 446,
       "sourceIssueReference": "X-Men #53",
       "sourceRangeReference": "Collects: X-Men (1991) #53-54",
@@ -6008,6 +5725,19 @@
       "candidateIssueId": 9255,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 453,
+      "sourceIssueReference": "Onslaught: X-Men (1996)",
+      "sourceRangeReference": "Onslaught: X-Men (1996)",
+      "sourceGroup": "Black Widow in the 1990's",
+      "normalizedSeriesTitle": "Onslaught: X-Men",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 3900,
+      "candidateIssueId": 20767,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 20767 is the owner-approved exact official identity for this source position."
     },
     {
       "sourcePosition": 457,
@@ -7985,6 +7715,32 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 665,
+      "sourceIssueReference": "Secret Empire #9",
+      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Secret Empire",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23020,
+      "candidateIssueId": 64259,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64259 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourcePosition": 666,
+      "sourceIssueReference": "Secret Empire #10",
+      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Secret Empire",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23020,
+      "candidateIssueId": 64285,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64285 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourcePosition": 667,
       "sourceIssueReference": "Secret Empire Omega #1",
       "sourceRangeReference": "Secret Empire Omega (2017) #1",
@@ -8271,6 +8027,19 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 699,
+      "sourceIssueReference": "Infinity Countdown Prime (2018)",
+      "sourceRangeReference": "Infinity Countdown Prime (2018)",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Infinity Countdown Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24300,
+      "candidateIssueId": 66283,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 66283 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourcePosition": 703,
       "sourceIssueReference": "Infinity Countdown: Black Widow #1",
       "sourceRangeReference": "Collects: Infinity Countdown: Black Widow (2018) #1",
@@ -8334,6 +8103,19 @@
       "candidateIssueId": 67347,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 710,
+      "sourceIssueReference": "Infinty Wars Prime #1",
+      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Infinity Wars Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24340,
+      "candidateIssueId": 67349,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 67349 is the owner-approved exact official identity for this source position."
     },
     {
       "sourcePosition": 711,
@@ -8932,7 +8714,403 @@
       "candidateIssueId": 95779,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 773,
+      "sourceIssueReference": "Black Widow #15",
+      "sourceRangeReference": "Collects: Black Widow (2020) #11 to #15",
+      "sourceGroup": "Latest Additions",
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2020,
+      "issueNumber": "15",
+      "seriesId": null,
+      "candidateIssueId": 95780,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 95780 is the owner-approved exact official identity for this source position."
     }
   ],
-  "packetDigest": "f52951e63428ee3d32445a7826872a349adae5a84da3326c7c5f9887667bb54e"
+  "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 7,
+      "previousSourceIssueReference": "Amazing Spider-Man #86",
+      "previousSourceRangeReference": "Amazing Spider-Man #86",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "86",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 6908,
+      "resolvedNormalizedSeriesTitle": "Amazing Spider-Man",
+      "resolvedSeriesYear": 1963,
+      "resolvedIssueNumber": "86",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 6908 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/6908",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "4d39a5dccdefdb9a70eced44011dd19669c934129590dea8efd0dc5110de1783"
+    },
+    {
+      "sourcePosition": 226,
+      "previousSourceIssueReference": "Daredevil: Love and War (1986)",
+      "previousSourceRangeReference": "Daredevil: Love and War (1986)",
+      "previousNormalizedSeriesTitle": "Daredevil: Love and War",
+      "previousSeriesYear": 1986,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20779,
+      "resolvedNormalizedSeriesTitle": "Daredevil: Love and War",
+      "resolvedSeriesYear": 1986,
+      "resolvedIssueNumber": "0",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 20779 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/20779",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "e19cc55df39ffb5e32673e035625f31659445e92ec5ce06e02751b265bc31e2b"
+    },
+    {
+      "sourcePosition": 269,
+      "previousSourceIssueReference": "West Coast Avengers Annual #1",
+      "previousSourceRangeReference": "West Coast Avengers Annual (1986) #1",
+      "previousNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "previousSeriesYear": 1986,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 56327,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "resolvedSeriesYear": 1986,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 56327 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "fd1e2e7af6015bb0606ab0d028335364f55c190c5c4aa35af79c90c6fa1262e8"
+    },
+    {
+      "sourcePosition": 315,
+      "previousSourceIssueReference": "Namor The Sub-Mariner Annual #1",
+      "previousSourceRangeReference": "Namor The Sub-Mariner Annual (1991) #1",
+      "previousNormalizedSeriesTitle": "Namor The Sub-Mariner Annual",
+      "previousSeriesYear": 1991,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Namor The Sub-Mariner Annual #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner authorized omission after confirming that no standalone Marvel Unlimited issue entry is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "3259d80d64c59b81694e941b9f95e8cd3cf32a4ffccc732909ad23fe353f501e"
+    },
+    {
+      "sourcePosition": 318,
+      "previousSourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "previousSourceRangeReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "previousNormalizedSeriesTitle": "Avengers: Deathtrap ? The Vault",
+      "previousSeriesYear": 1991,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 67091,
+      "resolvedNormalizedSeriesTitle": "Avengers: Deathtrap - The Vault",
+      "resolvedSeriesYear": 1991,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 67091 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/67091",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d58064c5dd3881731813adfb8c75e39ffdb3b213cfa7184349515fa90eca5073"
+    },
+    {
+      "sourcePosition": 440,
+      "previousSourceIssueReference": "Avengers #496",
+      "previousSourceRangeReference": "Avengers (1963) #496",
+      "previousNormalizedSeriesTitle": "Avengers",
+      "previousSeriesYear": 1963,
+      "previousIssueNumber": "496",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 492,
+      "resolvedNormalizedSeriesTitle": "Avengers",
+      "resolvedSeriesYear": 1998,
+      "resolvedIssueNumber": "81",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 492 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/492",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "9dedde9f05c023132191f0bb16397ccec7511c89a5cae395e58d7ebf423444fe"
+    },
+    {
+      "sourcePosition": 441,
+      "previousSourceIssueReference": "Captain America: The Legend (1996)",
+      "previousSourceRangeReference": "Captain America: The Legend (1996)",
+      "previousNormalizedSeriesTitle": "Captain America: The Legend",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "null",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Captain America: The Legend (1996) is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner authorized omission after confirming that no standalone Marvel Unlimited issue entry is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "f3e377c49a2555fda1acffd950bce3117b1cc1626acb66033d48cdab7e148cfb"
+    },
+    {
+      "sourcePosition": 453,
+      "previousSourceIssueReference": "Onslaught: X-Men (1996)",
+      "previousSourceRangeReference": "Onslaught: X-Men (1996)",
+      "previousNormalizedSeriesTitle": "Onslaught: X-Men",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20767,
+      "resolvedNormalizedSeriesTitle": "Onslaught: X-Men",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 20767 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/20767",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "c52d5cb08c0d32d3100383bdf01c5e5939892957cb4155ebc5e967026948834e"
+    },
+    {
+      "sourcePosition": 462,
+      "previousSourceIssueReference": "Thunderbolts #-1",
+      "previousSourceRangeReference": "Collects: Thunderbolts (1997) #1-5 & -1",
+      "previousNormalizedSeriesTitle": "Thunderbolts",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "-1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Thunderbolts #-1 exists, but the reviewed Thunderbolts series has no standalone Marvel Unlimited entry for it; Thunderbolts #0 must not substitute.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The complete reviewed Thunderbolts series response starts at #1 and contains no #-1 entry, so the source identity remains preserved as an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2296/issues?limit=100&offset=0",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "official-marvel-series",
+          "url": "https://www.marvel.com/comics/series/2296/thunderbolts_1997_2003",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "aa4323b6e90d75b81e9e7a8a6fee124d320bb34481ea5d93a300c8d2b0f081a9"
+    },
+    {
+      "sourcePosition": 665,
+      "previousSourceIssueReference": "Secret Empire #9",
+      "previousSourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "previousNormalizedSeriesTitle": "Secret Empire",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "9",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64259,
+      "resolvedNormalizedSeriesTitle": "Secret Empire",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 64259 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64259/read",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "5c8f9c420f29b1646143d03909e4ff69e78ea2cb9136625a4f4ede06196e7d23"
+    },
+    {
+      "sourcePosition": 666,
+      "previousSourceIssueReference": "Secret Empire #10",
+      "previousSourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "previousNormalizedSeriesTitle": "Secret Empire",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "10",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64285,
+      "resolvedNormalizedSeriesTitle": "Secret Empire",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "10",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 64285 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "8d92ac03d431eb8a40efb4e88960d380f9f07fbdb66503c18020e2c1d0b77e66"
+    },
+    {
+      "sourcePosition": 699,
+      "previousSourceIssueReference": "Infinity Countdown Prime (2018)",
+      "previousSourceRangeReference": "Infinity Countdown Prime (2018)",
+      "previousNormalizedSeriesTitle": "Infinity Countdown Prime",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66283,
+      "resolvedNormalizedSeriesTitle": "Infinity Countdown Prime",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 66283 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/66283",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "cecb7f0e9c14346ebf45f0ad8e8a4fd8f2efd76de4863b38561d2a571143909e"
+    },
+    {
+      "sourcePosition": 710,
+      "previousSourceIssueReference": "Infinty Wars Prime #1",
+      "previousSourceRangeReference": "Collects: Infinty Wars Prime (2018) #1",
+      "previousNormalizedSeriesTitle": "Infinty Wars Prime",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 67349,
+      "resolvedNormalizedSeriesTitle": "Infinity Wars Prime",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 67349 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/67349",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "89edcd315b198be01383af33258e6fb5ce64d2c7d7a7a18f6f358462f4eb0f35"
+    },
+    {
+      "sourcePosition": 773,
+      "previousSourceIssueReference": "Black Widow #15",
+      "previousSourceRangeReference": "Collects: Black Widow (2020) #11 to #15",
+      "previousNormalizedSeriesTitle": "Black Widow",
+      "previousSeriesYear": 2020,
+      "previousIssueNumber": "15",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 95780,
+      "resolvedNormalizedSeriesTitle": "Black Widow",
+      "resolvedSeriesYear": 2020,
+      "resolvedIssueNumber": "15",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 95780 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/95780/read",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "fdb46ab02ee0b832e48438c2c6eb2dc514c0a04407eda5448d7b5da8f6676ed3"
+    }
+  ]
 }

@@ -6117,10 +6117,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "reviewedAt": "2026-08-27",
     "rationale": "The report compares every eligible current-library order with the 114 reader-visible exact Runaways selections. All 3 non-none relationships were reviewed against their shared issue ids; no exact duplicate exists.",
-    "reportDigest": "3881b8aea53e1fc7bc5c18d08530ff26142c479a27701ccbc4634ce0a267a263",
+    "reportDigest": "0fe9ebcf40e0893391428a791fae921ff3008e2c732010cc28dcc4441b2a8648",
     "packetDigest": "bbc2f8b76a838e7e1c2b2ee282102ad12f8f6f21b3af9b210721557652495a64",
     "mappingDigest": "871f585521812b266678c1ace14f49fc78fdff69906d1d74b91c0197a1776418",
-    "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
+    "libraryDigest": "ef08bfbca1539f69ad7ea7b9f2e6593e4a6e10ce6997955a320de9869cc21224",
     "peerDigests": {},
     "dispositions": [
       {
@@ -6130,7 +6130,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "age-of-x-man",
@@ -6139,7 +6141,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "all-new-all-different-avengers",
@@ -6148,7 +6152,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation",
@@ -6157,7 +6163,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "annihilation-conquest",
@@ -6166,7 +6174,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "apocalypse-wars",
@@ -6175,7 +6185,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "atlantis-attacks",
@@ -6184,7 +6196,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-defenders-war",
@@ -6193,7 +6207,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-disassembled",
@@ -6202,7 +6218,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "avengers-enemy-within",
@@ -6211,7 +6229,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "axis",
@@ -6220,7 +6240,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "black-widow-reading-order",
@@ -6229,7 +6251,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "bloodties",
@@ -6238,7 +6262,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "captain-america-best-of",
@@ -6247,7 +6273,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "chaos-war",
@@ -6256,7 +6284,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "childs-play",
@@ -6265,7 +6295,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "civil-war",
@@ -6274,7 +6306,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27",
-        "rationale": "The partial relationship is limited to the reported exact shared provider issue ids."
+        "rationale": "The partial relationship is limited to the reported exact shared provider issue ids.",
+        "sharedCount": 4,
+        "sharedIds": [
+          "4500",
+          "4821",
+          "5114",
+          "5267"
+        ]
       },
       {
         "orderId": "civil-war-avengers",
@@ -6283,7 +6322,14 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27",
-        "rationale": "The partial relationship is limited to the reported exact shared provider issue ids."
+        "rationale": "The partial relationship is limited to the reported exact shared provider issue ids.",
+        "sharedCount": 4,
+        "sharedIds": [
+          "4500",
+          "4821",
+          "5114",
+          "5267"
+        ]
       },
       {
         "orderId": "civil-war-essential",
@@ -6292,7 +6338,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "clone-conspiracy",
@@ -6301,7 +6349,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "contest-of-champions",
@@ -6310,7 +6360,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "damnation",
@@ -6319,7 +6371,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-phoenix-saga",
@@ -6328,7 +6382,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-reign-avengers",
@@ -6337,7 +6393,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dark-web",
@@ -6346,7 +6404,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-past",
@@ -6355,7 +6415,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "days-of-future-present",
@@ -6364,7 +6426,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "dead-mans-hand",
@@ -6373,7 +6437,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "death-of-doctor-strange",
@@ -6382,7 +6448,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "devils-reign",
@@ -6391,7 +6459,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-doom-primer",
@@ -6400,7 +6470,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
@@ -6409,7 +6481,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "doomwar",
@@ -6418,7 +6492,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "eighth-day",
@@ -6427,7 +6503,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "essential-avengers",
@@ -6436,7 +6514,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "evolutionary-war",
@@ -6445,7 +6525,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
@@ -6454,7 +6536,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fall-of-the-mutants",
@@ -6463,7 +6547,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "fatal-attractions",
@@ -6472,7 +6558,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "generations",
@@ -6481,7 +6569,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "groot-reading-order",
@@ -6490,7 +6580,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
@@ -6499,7 +6591,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -6508,7 +6602,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "heroic-age-avengers",
@@ -6517,7 +6613,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-full",
@@ -6526,7 +6624,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hickman-minimal",
@@ -6535,7 +6635,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m",
@@ -6544,7 +6646,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "house-of-m-essential",
@@ -6553,7 +6657,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-wolverine",
@@ -6562,7 +6668,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "hunt-for-xavier",
@@ -6571,7 +6679,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inferno",
@@ -6580,7 +6690,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinite-destinies",
@@ -6589,7 +6701,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "infinity-countdown-wars",
@@ -6598,7 +6712,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "inhumans-vs-x-men",
@@ -6607,7 +6723,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "iron-man-2020",
@@ -6616,7 +6734,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "judgment-day",
@@ -6625,7 +6745,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "king-in-black",
@@ -6634,7 +6756,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kravens-last-hunt",
@@ -6643,7 +6767,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "kree-skrull-war",
@@ -6652,7 +6778,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "last-annihilation",
@@ -6661,7 +6789,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "magneto-war",
@@ -6670,7 +6800,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -6679,7 +6811,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-multiverse",
@@ -6688,7 +6822,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
@@ -6697,7 +6833,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvel-what-if",
@@ -6706,7 +6844,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "marvels-best-phoenix-comics",
@@ -6715,7 +6855,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "maximum-security",
@@ -6724,7 +6866,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-complex",
@@ -6733,7 +6877,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "messiah-war",
@@ -6742,7 +6888,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "midnight-massacre",
@@ -6751,7 +6899,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "minimum-carnage",
@@ -6760,7 +6910,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "monsters-unleashed",
@@ -6769,7 +6921,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "muir-island-saga",
@@ -6778,7 +6932,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mutant-massacre",
@@ -6787,7 +6943,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "mys-tech-wars",
@@ -6796,7 +6954,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "necrosha",
@@ -6805,7 +6965,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe",
@@ -6814,7 +6976,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "new-ultimate-universe-trades",
@@ -6823,7 +6987,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-galactic-storm",
@@ -6832,7 +6998,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "operation-zero-tolerance",
@@ -6841,7 +7009,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "original-clone-saga",
@@ -6850,7 +7020,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-covenant",
@@ -6859,7 +7031,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phalanx-reading-order",
@@ -6868,7 +7042,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "phoenix-saga",
@@ -6877,7 +7053,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "planet-hulk",
@@ -6886,7 +7064,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reckoning-war",
@@ -6895,7 +7075,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
@@ -6904,7 +7086,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "revolutionary-war",
@@ -6913,7 +7097,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rise-of-the-midnight-sons",
@@ -6922,7 +7108,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "rocket-raccoon-reading-order",
@@ -6931,7 +7119,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -6940,7 +7130,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "second-coming",
@@ -6949,7 +7141,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-invasion",
@@ -6958,7 +7152,13 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-08-27",
-        "rationale": "The partial relationship is limited to the reported exact shared provider issue ids."
+        "rationale": "The partial relationship is limited to the reported exact shared provider issue ids.",
+        "sharedCount": 3,
+        "sharedIds": [
+          "21414",
+          "21588",
+          "21785"
+        ]
       },
       {
         "orderId": "secret-invasion-essential",
@@ -6967,7 +7167,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-war",
@@ -6976,7 +7178,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "secret-wars-ii",
@@ -6985,7 +7189,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "shadowland",
@@ -6994,7 +7200,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silent-war",
@@ -7003,7 +7211,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "silver-surfer-reading-order",
@@ -7012,7 +7222,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "sins-of-sinister",
@@ -7021,7 +7233,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-geddon",
@@ -7030,7 +7244,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-island",
@@ -7039,7 +7255,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
@@ -7048,7 +7266,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-identity-crisis",
@@ -7057,7 +7277,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-no-way-home",
@@ -7066,7 +7288,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-man-the-other",
@@ -7075,7 +7299,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "spider-verse",
@@ -7084,7 +7310,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "star-lord-reading-order",
@@ -7093,7 +7321,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-imperative",
@@ -7102,7 +7332,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-reading-order",
@@ -7111,7 +7343,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thanos-war",
@@ -7120,7 +7354,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -7129,7 +7365,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "thor-best-of",
@@ -7138,7 +7376,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "time-and-time-again",
@@ -7147,7 +7387,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "venomverse",
@@ -7156,7 +7398,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-kings",
@@ -7165,7 +7409,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "war-of-the-realms",
@@ -7174,7 +7420,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "white-tiger-ava-ayala",
@@ -7183,7 +7431,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wolverine-goes-to-hell",
@@ -7192,7 +7442,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -7201,7 +7453,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "wraith-war",
@@ -7210,7 +7464,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-cutioners-song",
@@ -7219,7 +7475,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-age-of-x",
@@ -7228,7 +7486,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-battle-of-the-atom",
@@ -7237,7 +7497,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
@@ -7246,7 +7508,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-divided-we-stand",
@@ -7255,7 +7519,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-extermination",
@@ -7264,7 +7530,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-inferno",
@@ -7273,7 +7541,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-manifest-destiny",
@@ -7282,7 +7552,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-nation-x",
@@ -7291,7 +7563,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-regenesis",
@@ -7300,7 +7574,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-schism",
@@ -7309,7 +7585,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
@@ -7318,7 +7596,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-of-swords",
@@ -7327,7 +7607,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-termination",
@@ -7336,7 +7618,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "x-tinction-agenda",
@@ -7345,7 +7629,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont",
@@ -7354,7 +7640,9 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "xmen-claremont-complete",
@@ -7363,9 +7651,18 @@
         "authorityType": "policy",
         "authorityIdentity": "Complete-library no-overlap policy",
         "reviewedAt": "2026-08-27",
-        "rationale": "No exact provider-resolved issue identity is shared."
+        "rationale": "No exact provider-resolved issue identity is shared.",
+        "sharedCount": 0,
+        "sharedIds": []
       }
     ],
-    "approvalDigest": "44d5e8aebbeb51ff91fe769a331c8f6a75a53359310be5758ce7e415f6f07e9e"
+    "approvalDigest": "01ae791021d906f149ed7a39c6fe706ebbbe7ecee188635cabfdb0e6d178a791",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 116,
+      "sourceIdentityCount": 114,
+      "includedIssueCount": 114,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 0
+    }
   }
 }

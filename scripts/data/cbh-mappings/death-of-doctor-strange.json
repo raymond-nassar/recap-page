@@ -531,10 +531,10 @@
     "coverIssueId": 93315
   },
   "relationshipReview": {
-    "reportDigest": "ab3035dcaa246305eaf0d0cec72778c417255c01dda26b7ebda1aaddfda305c4",
+    "reportDigest": "32a810965adef1dff3fbb2adec26c45d9b1e7f38fdeae3bb163dcdae93e54635",
     "packetDigest": "444a2a6f5f08e41de12cdfe33d204773239ff8c7eabf121ab65ce4d14cc8faa6",
     "mappingDigest": "5a95b6c315effbd4e727ce12bd2efd771851ef12753e876244d917c4e4003f24",
-    "libraryDigest": "0219f3159d60d377273973fb3195c14b66bf59ff5f9169bde120fde51f7da07e",
+    "libraryDigest": "1bbd97a16aadc7710548a9627336f99adeaed0bc3de1b4290a340b4ed579a029",
     "peerDigests": {
       "devils-reign": "a68d79e7c893728d5f2be55169a8aa351275a857cb49fc587aef14453286d9a7",
       "reckoning-war": "658100532f5e59dc538bbc42631372036066603b45c131116bc0b665ff01a146"
@@ -1502,6 +1502,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "8a9ac51daaa21dd01d9b2df465147e4f4f70cf8aee5e9e9d19ba537a0727ec08"
+    "approvalDigest": "e36e9586b287c08c41155295573209904c1eae8541f7f8dde715899476198a32"
   }
 }

@@ -8288,10 +8288,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every scope-aware relationship. The two non-none intersections are partial or existing-subset relationships, not duplicates, and the guide keeps its distinct source-led purpose.",
     "reviewedAt": "2026-08-28",
-    "reportDigest": "62e9332849c62aa059b069140f813ecdcff788b6d8c3f9610e009339edf0b89a",
+    "reportDigest": "291099b6bc78165e3bafdbf36229d981553897d249803dafc6aaf6f56965af0e",
     "packetDigest": "bdb98b2a201a4b5536f2cffedd12e1b8f4d1d8ef5c652cdcbde5ccfd8e6b58ef",
     "mappingDigest": "7bba0ec8abf7a2ce4a046f59ab93101204dad68e835532bcff55551dc609b68c",
-    "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
+    "libraryDigest": "ef08bfbca1539f69ad7ea7b9f2e6593e4a6e10ce6997955a320de9869cc21224",
     "peerDigests": {},
     "dispositions": [
       {
@@ -8400,7 +8400,9 @@
         "authorityType": "policy",
         "authorityIdentity": "scope-aware overlap policy",
         "rationale": "No selected issue overlaps this existing order in the scope-aware comparison.",
-        "reviewedAt": "2026-08-28"
+        "reviewedAt": "2026-08-28",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "bloodties",
@@ -9537,6 +9539,13 @@
         "reviewedAt": "2026-08-28"
       }
     ],
-    "approvalDigest": "cbd9e57f8cce23e170f19b8c264a9070ce6c3505be251969912a94d0efe3b2b7"
+    "approvalDigest": "51ba5656f1b916f7d98a0d4056f4f881dfd45b588b3e44a5b5d8c77eeeb77fc4",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 370,
+      "sourceIdentityCount": 272,
+      "includedIssueCount": 78,
+      "sourceGapCount": 194,
+      "repeatedSourceReferenceCount": 74
+    }
   }
 }

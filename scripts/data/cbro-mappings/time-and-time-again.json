@@ -387,10 +387,10 @@
     "coverIssueId": 69176
   },
   "relationshipReview": {
-    "reportDigest": "e3d7d03c971fa3f42ebc659ab50fd415a32062f0ce9a730fccb61758255f0762",
+    "reportDigest": "474314225d956564de7e6b0b355963db6ac5100c3ed72acf5af4ca35bed47f7c",
     "packetDigest": "eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d",
     "mappingDigest": "e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4",
-    "libraryDigest": "dd8ef4655d7e3fd12085ab29f8cc395b1f2097dc3477cfbecef8eb3ff91f31e9",
+    "libraryDigest": "4b30394db05ae56da3ea7deae47e1d9a835e9fab4c588c6bc268e8c2d7160413",
     "peerDigests": {
       "operation-zero-tolerance": "498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74",
       "phalanx-covenant": "9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718",
@@ -1900,6 +1900,6 @@
     "authorityIdentity": "MRT-003-C02-B08 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; the Phalanx Covenant subset is the only approved non-none relationship.",
     "reviewedAt": "2026-08-26T15:28:58.606Z",
-    "approvalDigest": "75fcd6c4572f7888aa74e484e3fb2cec80da260580c4881b389227fd4bc34b59"
+    "approvalDigest": "9538768494b5af160040e9402c12ba4cd6aa3b91e4054e24f595b6b79485cfca"
   }
 }

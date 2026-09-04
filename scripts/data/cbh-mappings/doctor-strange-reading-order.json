@@ -30667,10 +30667,10 @@
     "coverIssueId": 11029
   },
   "relationshipReview": {
-    "reportDigest": "160306729630c89627bd78c36b209cf972a217c0b62b7895afa49759beda36a0",
+    "reportDigest": "d91d0b9b961b1812a0fa5b475ad5d2f45f3f2fe0b344063f762e5fc486fadce5",
     "packetDigest": "44bf6593238e366136b8c341272262c51f5412a103f499f16c6783324ead05bd",
     "mappingDigest": "807760c148cdcdf3c1c1fc2943f14b0410ca457c470c7ee6b1ac88ad8cf2da7e",
-    "libraryDigest": "2ea42c4de5baab53e6c4af926f49c70723f1e490aa5ff0e339a0709ed572a773",
+    "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
@@ -30810,16 +30810,18 @@
       {
         "orderId": "black-widow-reading-order",
         "relationship": "partial",
-        "sharedCount": 14,
+        "sharedCount": 16,
         "sharedIds": [
           "7312",
           "20143",
           "6925",
+          "66283",
           "66416",
           "66684",
           "67022",
           "68653",
           "68656",
+          "67349",
           "67145",
           "67147",
           "67148",
@@ -32386,6 +32388,13 @@
         ]
       }
     ],
-    "approvalDigest": "a17040fc744dfd83b8746cb423f60295490324253fe722838dc745da365a545e"
+    "approvalDigest": "070d44bb071280cbce3a136d8b404806afbb1335a143d9b202f5242b14bfe141",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 932,
+      "sourceIdentityCount": 750,
+      "includedIssueCount": 711,
+      "sourceGapCount": 39,
+      "repeatedSourceReferenceCount": 181
+    }
   }
 }

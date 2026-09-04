@@ -6078,10 +6078,10 @@
   },
   "mappingDigest": "8c54c6d1308c3be1a5d55a2affedd96da4a3e2abf0b72dd4ddd1a5a0bc087a72",
   "relationshipReview": {
-    "reportDigest": "530db809b43f4160c0378adc861f13351ecf6db182bf96a8a0f00484b033c2e1",
+    "reportDigest": "0b11a972c549408c37e18dfc0b8a126a50fc460fd7a56a08d82cc5b436bf97f1",
     "packetDigest": "d3c2add3e3a87d50f0b78ae848a7db7efd9df08bdffaefd4aecc58ffdaa7bb29",
     "mappingDigest": "8c54c6d1308c3be1a5d55a2affedd96da4a3e2abf0b72dd4ddd1a5a0bc087a72",
-    "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
+    "libraryDigest": "ef08bfbca1539f69ad7ea7b9f2e6593e4a6e10ce6997955a320de9869cc21224",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
@@ -7617,6 +7617,13 @@
         "sharedIds": []
       }
     ],
-    "approvalDigest": "17188b7f7fa914d57ed8dff3516be03c3c7cb2b8287a28075685016ee2a1c814"
+    "approvalDigest": "7c2af0e6e1e76f4261d4b2f6f41475d588d53615690557b0d6b7713997139c66",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 132,
+      "sourceIdentityCount": 127,
+      "includedIssueCount": 127,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 0
+    }
   }
 }

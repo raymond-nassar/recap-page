@@ -3941,10 +3941,10 @@
     "coverIssueId": 12903
   },
   "relationshipReview": {
-    "reportDigest": "99a905764fc0b1fd772d0cae07b157d6e8298bfaf2ece3ba3d5e1c8b8e74f891",
+    "reportDigest": "8f3b55cb40c92b64d50c6f32478511263dc4308d206ceab079c7ce7262386a4d",
     "packetDigest": "00356c88548e6fd5896da5fb88fbfe67dbfdfe071702f03d85ce962236eb07e4",
     "mappingDigest": "68b36b41c894d439b4b2fa56b4fc600e035b1fda361cd146b537340b6b29c6df",
-    "libraryDigest": "885d590dd95c738bd7417cba51782498fa8da1539faef83be822d4ed8ce95fae",
+    "libraryDigest": "633484687c871f6620fac20f5c0ddb2717367944297cdb9f44d04a726cdaace4",
     "peerDigests": {},
     "dispositions": [
       {
@@ -5503,6 +5503,13 @@
     "authorityIdentity": "GPT-5.4 mini",
     "rationale": "Every current library comparison was reviewed; 133 none relationships needed no exception and 4 partial overlaps were justified individually.",
     "reviewedAt": "2026-08-26T00:00:00Z",
-    "approvalDigest": "8c8024b2e6cc61fd26f2257dcf1c0057b641861bb0e9ef14123b89fb27c8b196"
+    "approvalDigest": "596f18607b3c6d83a31e979f69d9c7b2a9e49f7ff5b343e7f8f6975d46f8a10f",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 105,
+      "sourceIdentityCount": 104,
+      "includedIssueCount": 104,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 1
+    }
   }
 }

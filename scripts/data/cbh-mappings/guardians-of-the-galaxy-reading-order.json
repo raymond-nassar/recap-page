@@ -11577,10 +11577,10 @@
     "authorityIdentity": "independent Guardians material review",
     "rationale": "Independent material review accepted the cache-only mapping, all 29 explicit source gaps, and the scope-aware full-library overlap report.",
     "reviewedAt": "2026-08-27T18:40:00Z",
-    "reportDigest": "e768e6d21e98b409c0b08679491ced08566281705fcfdb67076b1041ced11c39",
+    "reportDigest": "2c903ae8a19981552b8d2fbd14054576a5775270aded74fcc34488b927520173",
     "packetDigest": "2d752bbe858973504f1f9a024af6af69b8b7c7f02047eb05ee7242b793974978",
     "mappingDigest": "387d8761858022382dd2b2af61313cf1d3eff26223aaa7c7115ab0c21c4eb538",
-    "libraryDigest": "dffdc266eb87b668bf0b3d15b27ea5202e18d57c5ac31adc02999c68252a3a53",
+    "libraryDigest": "7bf378af896b7a8e8756fe17797eca584ee5a3b96e9cec29985fe956dac64b45",
     "peerDigests": {},
     "dispositions": [
       {
@@ -11743,7 +11743,25 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "independent Guardians material review",
         "rationale": "The source is a distinct full Guardians team guide; this overlap is contextual and does not duplicate the candidate sequence.",
-        "reviewedAt": "2026-08-27T18:40:00Z"
+        "reviewedAt": "2026-08-27T18:40:00Z",
+        "sharedCount": 15,
+        "sharedIds": [
+          "63127",
+          "62837",
+          "63223",
+          "66283",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "67145",
+          "67147",
+          "67148",
+          "67149",
+          "67150",
+          "67151"
+        ]
       },
       {
         "orderId": "bloodties",
@@ -13051,6 +13069,13 @@
         "reviewedAt": "2026-08-27T18:40:00Z"
       }
     ],
-    "approvalDigest": "786b7bd4d56a206015bf21bc415c3f0f9d5f99019c8e73ebb8639fb504624fe7"
+    "approvalDigest": "912f80e30738c6c57bd070521c155bc78fd65f943c9c664aab0a285f553b89d7",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 420,
+      "sourceIdentityCount": 323,
+      "includedIssueCount": 294,
+      "sourceGapCount": 29,
+      "repeatedSourceReferenceCount": 38
+    }
   }
 }

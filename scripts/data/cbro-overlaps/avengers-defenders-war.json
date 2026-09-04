@@ -2,7 +2,7 @@
   "candidateId": "avengers-defenders-war",
   "packetDigest": "ecb588c36414442f5717176d7acbfd2e3893b9eddaa3d87737c2925ec1abb985",
   "mappingDigest": "71f75f307ed36722ea5c65a1a132022608d0e10563ad4a008eb27d9dd4e22652",
-  "libraryDigest": "8c067e0678c96f9b5215d48544c860b94bbc6055882264bccd456bb79b2e8985",
+  "libraryDigest": "15975afcb9778c9febcc04ebe880d434a84d08d0d20e1d32183be234d6d9f746",
   "peerDigests": {
     "kree-skrull-war": "932047dae3233ffed12f92fb3670fb2f9ffbb2a4f7039440911b9113e68be8a7",
     "reed-richards-and-sue-storms-wedding": "b62eecba1e1a995204cd33364ae7c3e7cd3406c5a08a622a73a3a0dfbaed6e1a",
@@ -838,5 +838,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "7707831ba765232b752c0d9f2740104d784495ac06de3fcee70f306183a709d3"
+  "reportDigest": "c629c6f097ac3a9e049f8b908ffb11438e3eb377d5a24883a802c53755b7fb7f"
 }

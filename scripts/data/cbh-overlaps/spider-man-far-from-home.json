@@ -2,13 +2,20 @@
   "candidateId": "spider-man-far-from-home",
   "packetDigest": "8975b171f32406cd885818b94dcee940db8c871d75481e27c8d26805b5e13ce3",
   "mappingDigest": "07ee557a3f84740a9e834b708cb4a01a619ec5f1c3961be2a1e0f5a9d0ca0c05",
-  "libraryDigest": "c8da03f234940464d60558ffdf3324151d6caf62998fcc2370a149f4f6f1d58c",
+  "libraryDigest": "d259c12b5efc1b452377de654b1094d8d533907f2b56aaab65a0221b26ab979d",
   "peerDigests": {
     "doctor-strange-multiverse-of-madness": "72effeecd5169706d1362171b3274299ba6394901c3544921f2786ac3a060965",
     "marvel-multiverse": "d61b40301bd8c702c95766645d767c8cd799ce6634256eb96a1e5e37e7bb6a32",
     "marvel-what-if": "3e162d1661aa1c47012bbffcfa367eb8a0155bb5a4f0972139eab28232430c6f",
     "spider-man-no-way-home": "bc2b5cbf8c4c9b2a0f647d11003b9b159c13848547c07161eac6501dbfd184d4",
     "wandavision": "4f7c6cbef1ed942f69e528e7eef40fc1f17f98b75045818067394af10c831fe3"
+  },
+  "sourceCounts": {
+    "sourceOccurrenceCount": 24,
+    "sourceIdentityCount": 8,
+    "includedIssueCount": 8,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
   },
   "candidateCount": 8,
   "comparisonCount": 137,
@@ -842,5 +849,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "284eb8996c3b70b0261c3f3a2451b5bc07cb852f4c0fa17c391131dfd4ba09b2"
+  "reportDigest": "dd6af476cf1a684ead8fd638d54dd34c2cbae79a36345796da10c92c8f0aff0b"
 }

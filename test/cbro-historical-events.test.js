@@ -2809,26 +2809,26 @@ test('batch eight packets mappings reports and product outputs preserve 45 exact
     ['time-and-time-again', {
       packet: 'eb5ecdd8a59051df77ae122bbb57ba2dcd51bd0aabd0c4b10447d9e9767a010d',
       mapping: 'e2d1ce0c50fc25b3af7ef7bacbc38dad8bbe095ba55146fddfe03e1dedbf87a4',
-      report: 'e3d7d03c971fa3f42ebc659ab50fd415a32062f0ce9a730fccb61758255f0762',
-      approval: '75fcd6c4572f7888aa74e484e3fb2cec80da260580c4881b389227fd4bc34b59',
+      report: '474314225d956564de7e6b0b355963db6ac5100c3ed72acf5af4ca35bed47f7c',
+      approval: '9538768494b5af160040e9402c12ba4cd6aa3b91e4054e24f595b6b79485cfca',
     }],
     ['phalanx-covenant', {
       packet: 'a5114c1e6b5485449c95721d1534e89397562ef4946c6adfdf416987659f1d03',
       mapping: '9f14be2f42349a2e9cb13e31581ceca1ff706259c7104df06ef6401d60449718',
-      report: 'd45a0eadf4d5182041aa80a1be68ac220e747c2907087bbf5c440af9c3f44cd2',
-      approval: 'eff209f1a362dfb12145c09c5064d0a937ebf8d2e0a75bc13aff3182a3e053d1',
+      report: '04ab256cd9820216b4002d06db480c8721752cf0a34327b5c2f34b0117642b11',
+      approval: 'c6c2ec8957b8c54eb3860a3d8826437c423bdf9c5dd0f4df2a5568d635c16767',
     }],
     ['operation-zero-tolerance', {
       packet: 'a132a3a3661900f6a5e81e9d7bc505df833a9d85cedfcc114a2b354aba637ec2',
       mapping: '498251dc41a9e650a5c6a3c537c48a8dbe9af6b9822803d4370e62f272f97c74',
-      report: '7df3269b8aa829c57fcc0605c3c14e9bd51700dbbf7d62fef777b1209dfb29fa',
-      approval: 'a290855a4a401483098501a4c303fba57aca6c5c845accec41b6a8224af6e6b5',
+      report: '5a840e4f4114bf2869a7d574c4a3ee593ccb4a9272e594442abee2318faf1125',
+      approval: 'dffb64ce96cb8c3005816a35556d642a58113bfc30e960a7c2c631313ecb59c3',
     }],
     ['spider-man-identity-crisis', {
       packet: '29bc594f87e67a13a0e8bf60d29393d72430df7969ddedd71fe40bfbad73e5c1',
       mapping: 'c73b00f8f6410fbd351c4696894a1afd11dd7dcfa79eb46355360d76f9ef4741',
-      report: 'd7f89b6a001d03a6d28d670afa1b835406ba1bad843d8ae408d0dd729611eab6',
-      approval: 'e4b101c5b205c876a07633ee56f205176db11e08298371a25b2f068bb1393157',
+      report: '8eb51487bdadfa2dc84ae33dc5e5f440ed33f49f9647629b1cd2d95e88de871e',
+      approval: '95ffa015cf55e28625da202d1bbbf6c571a5b76d01842bcc7d87ff59159be484',
     }],
   ]);
   const mappingById = new Map();
@@ -3298,14 +3298,14 @@ test('batch nine packets mappings and reports preserve 14 exact all-none rows', 
     ['hunt-for-xavier', {
       packet: 'a2874c3d8902acb0949386532091c843f7e491a09107952ea39cce6b478d72ba',
       mapping: '5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c',
-      report: '8d6d101509821c1689470690566088d919f1557ca259e78db8bc9f0cbce8fcce',
-      approval: 'bbad8afa90fb4d43677be2ab8cf05785b59eec824ac9c570e7db2e18859bb6d8',
+      report: '6b739a3787b587ad9f9a9953efc4264b2167b5af5fa37806ce1e73af3074d03b',
+      approval: '8721193baf490394ad361aebe94f65b5f7c61b573936416b48565e6fbedacee4',
     }],
     ['magneto-war', {
       packet: '3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827',
       mapping: 'bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1',
-      report: '82599fa9d0ca909280bff7811402943ba4f599dec470ddf01b40ab9a3d248c5e',
-      approval: 'e26ef75e4826d866bba9938e714e16c20d53aa0440114e41ccdc99198537615f',
+      report: 'ae167e32cd26630d0566a2b3ada1980b369844871d97871745c776537060dede',
+      approval: '3749557cf394760ccf496e066b2950efd2ab5bd5db19992cd61d6c7b5e3d54d3',
     }],
   ]);
   const mappingById = new Map();
@@ -3433,20 +3433,20 @@ test('batch seven packets mappings reports and product outputs preserve 23 exact
     ['x-cutioners-song', {
       packet: 'ee73d3140c7b22e81fb5a68ba699fe05acd1674ecd66704df9519defa80183f3',
       mapping: '0d8647a95f37060f25d9c9f23b4a042c9c88ac43e5ce207fdf20f75a4a746582',
-      report: '9e9b523bb70f13678d09e2a04134c137d2f915205ad420c7aa38dddd52641a18',
-      approval: '2a2f7c447230fc90a95ba268df69407ad0bba8f28d60a53c7901a4a27a41e2d4',
+      report: '614f015b437b99bd2ce5de784100898c35ded4fc81422fd6964b4ec3c0fdca04',
+      approval: '502480b060efe0d777e0f0b26f948b73b475abcf11548556b0df01075e0ec874',
     }],
     ['mys-tech-wars', {
       packet: '8f536f7d5fc44fbcc07f3245f2e1ed3a287d7b6cf4629dd4a4f1bb0ef7590705',
       mapping: '1ea66de3f195764b4a90af6c0a4e5d609846a4084db382a7ff295edcfc067306',
-      report: 'a90f7c47fe4fe07d7d86a94fecaa2f9d5fd64e1b4ef8f8117eeef7acc5806388',
-      approval: 'e179597590a5eb77993bc1e295140fdf29a3337aeb449f0fdc3270c65effa29e',
+      report: 'cc8c9f44d9dd40015c047849300214781e566d9e19a33f37064562928c9e0fdc',
+      approval: '705cd65075fc6fe091a5aab285875cb96782ae93f16d611127d31c97d87b107d',
     }],
     ['fatal-attractions', {
       packet: '2f52914f5c42ab4c8459064bdafac5f932b7f628f00fbae37e1b16f409016bbb',
       mapping: '30a2f8e583d391f7df42fd671f9430f29dc180822482984b6c7d8963abf6caf9',
-      report: '96cb70896cc66b1948d49dea27773daaa3277b536e2e4ebe7e1c56a323274757',
-      approval: '88a29da4ba0158a3a7047b957bed53ee85d103ee2fc6fc812085a4d6813390d0',
+      report: '0f5ad9cc8cf71ca68a35571a820762c7825f29ea6bb8e2de933dfb4ecc335433',
+      approval: '1e033ca5331a4494ec0e45793575ba7116e72f7d53223d5fa0a2fc4957d8a896',
     }],
   ]);
   const mappingById = new Map();

@@ -9,8 +9,8 @@ const ledgerPath = path.join(root, 'scripts', 'data', 'cbh-source-ledgers', 'bla
 const inventoryPath = path.join(root, 'scripts', 'data', 'cbh-character-inventory.json');
 
 const expectedCategoryCounts = {
-  'provisional-canonical-candidate': 570,
-  'semantic-exclusion': 183,
+  'provisional-canonical-candidate': 567,
+  'semantic-exclusion': 186,
   'true-repeat': 20,
   'unresolved-included-identity-gap': 0,
 };
@@ -40,12 +40,12 @@ const expectedNodeCounts = new Map([
 ]);
 
 const namedComicsWithoutSourceIssueNumbers = new Map([
-  [226, { title: 'Daredevil: Love and War', year: 1986 }],
-  [318, { title: 'Avengers: Deathtrap ? The Vault', year: 1991 }],
+  [226, { title: 'Daredevil: Love and War', year: 1986, issueNumber: '0' }],
+  [318, { title: 'Avengers: Deathtrap - The Vault', year: 1991, issueNumber: '1' }],
   [441, { title: 'Captain America: The Legend', year: 1996 }],
-  [453, { title: 'Onslaught: X-Men', year: 1996 }],
+  [453, { title: 'Onslaught: X-Men', year: 1996, issueNumber: '1' }],
   [466, { title: 'Thunderbolts Annual', year: 1997 }],
-  [699, { title: 'Infinity Countdown Prime', year: 2018 }],
+  [699, { title: 'Infinity Countdown Prime', year: 2018, issueNumber: '1' }],
 ]);
 
 const sourceNumberingDistinctFromProviderCanonicalNumbering = {
@@ -53,6 +53,24 @@ const sourceNumberingDistinctFromProviderCanonicalNumbering = {
   sourceIssueReference: 'Black Widow: The Coldest War Marvel OGN #61',
   sourceIssueNumber: '61',
 };
+
+const settledAvailabilityExclusions = new Map([
+  [315, {
+    sourceIssueReference: 'Namor The Sub-Mariner Annual #1',
+    sourceRangeReference: 'Namor The Sub-Mariner Annual (1991) #1',
+    issueNumber: '1',
+  }],
+  [441, {
+    sourceIssueReference: 'Captain America: The Legend (1996)',
+    sourceRangeReference: undefined,
+    issueNumber: null,
+  }],
+  [462, {
+    sourceIssueReference: 'Thunderbolts #-1',
+    sourceRangeReference: 'Collects: Thunderbolts (1997) #1-5 & -1',
+    issueNumber: '-1',
+  }],
+]);
 
 function range(start, end) {
   return Array.from({ length: end - start + 1 }, (_, index) => start + index);
@@ -190,7 +208,11 @@ function validateLedger(ledger) {
     const entry = ledger.occurrences.find((candidate) => candidate.sourcePosition === sourcePosition);
     assert.equal(entry?.normalizedSeriesTitle, expected.title, `named comic at source position ${sourcePosition}`);
     assert.equal(entry?.seriesYear, expected.year, `named comic year at source position ${sourcePosition}`);
-    assert.equal(entry?.issueNumber, null, `named comic at source position ${sourcePosition} must not infer issue #1`);
+    assert.equal(
+      entry?.issueNumber,
+      expected.issueNumber ?? null,
+      `named comic at source position ${sourcePosition} canonical issue number`,
+    );
   }
 
   const coldestWar = ledger.occurrences.find(
@@ -209,8 +231,8 @@ function validateLedger(ledger) {
   assert.equal(node54.some((entry) => entry.sourceIssueReference === 'Daredevil: Love and War (1986)'), true);
 
   const node74 = ledger.occurrences.filter((entry) => entry.sourceNode === 74);
-  assert.equal(node74.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 17);
-  assert.equal(node74.filter((entry) => entry.disposition === 'semantic-exclusion').length, 1);
+  assert.equal(node74.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 16);
+  assert.equal(node74.filter((entry) => entry.disposition === 'semantic-exclusion').length, 2);
   assert.equal(node74.some((entry) => entry.sourceIssueReference === 'Avengers: Deathtrap ? The Vault (1991)'), true);
 
   const node95 = ledger.occurrences.filter((entry) => entry.sourceNode === 95);
@@ -219,8 +241,8 @@ function validateLedger(ledger) {
   assert.equal(node95.some((entry) => entry.sourceIssueReference === 'Ashcan Edition'), true);
 
   const node98 = ledger.occurrences.filter((entry) => entry.sourceNode === 98);
-  assert.equal(node98.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 15);
-  assert.equal(node98.filter((entry) => entry.disposition === 'semantic-exclusion').length, 2);
+  assert.equal(node98.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 14);
+  assert.equal(node98.filter((entry) => entry.disposition === 'semantic-exclusion').length, 3);
   assert.equal(node98.some((entry) => entry.sourceIssueReference === 'Captain America: The Legend (1996)'), true);
 
   const node101 = ledger.occurrences.filter((entry) => entry.sourceNode === 101);
@@ -228,8 +250,19 @@ function validateLedger(ledger) {
   assert.equal(node101.some((entry) => entry.sourceIssueReference === 'Onslaught: X-Men (1996)'), true);
 
   const node105 = ledger.occurrences.filter((entry) => entry.sourceNode === 105);
-  assert.equal(node105.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 10);
+  assert.equal(node105.filter((entry) => entry.disposition === 'provisional-canonical-candidate').length, 9);
+  assert.equal(node105.filter((entry) => entry.disposition === 'semantic-exclusion').length, 1);
   assert.equal(node105.some((entry) => entry.sourceIssueReference === 'Thunderbolts Annual ?97'), true);
+
+  for (const [sourcePosition, expected] of settledAvailabilityExclusions) {
+    const entry = ledger.occurrences.find((candidate) => candidate.sourcePosition === sourcePosition);
+    assert.equal(entry?.disposition, 'semantic-exclusion');
+    assert.equal(entry?.sourceIssueReference, expected.sourceIssueReference);
+    assert.equal(entry?.sourceRangeReference, expected.sourceRangeReference);
+    assert.equal(entry?.issueNumber, expected.issueNumber);
+    assert.equal(entry?.decisionScope, 'Owner-authorized Marvel Unlimited exclusion');
+    assert.match(entry?.reason ?? '', /Marvel Unlimited/i);
+  }
 
   const node126 = ledger.occurrences.filter((entry) => entry.sourceNode === 126);
   assert.equal(node126.every((entry) => entry.normalizedSeriesTitle === 'Daredevil' && entry.seriesYear === 1998), true);

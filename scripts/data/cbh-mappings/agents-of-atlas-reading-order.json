@@ -2787,10 +2787,10 @@
     "coverIssueId": 4801
   },
   "relationshipReview": {
-    "reportDigest": "b020c550996453751097ecd4a979bc0897c9c2697b0047d84f48cbfdb35c2fd5",
+    "reportDigest": "21f93d0ff607ef862c225d5e240b5664e60b5d6adee3ab8a41cd190de082ab61",
     "packetDigest": "422b2a50c012bf32695de1b8df9d5e3776eb502698fc28a7813f4de428de815e",
     "mappingDigest": "4468252f21650e77747ec789865a4c7500c220608412876da0d7ad46ea805946",
-    "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
+    "libraryDigest": "832e7575b71050011dc71951b9b7db38865cd252f2b3dcf0fea72ba7ad6962c3",
     "peerDigests": {},
     "dispositions": [
       {
@@ -4304,6 +4304,13 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Central review reconciled the exact Comic Book Herald boundary against the current metadata snapshot, retained 80 resolved rows in source order, and approved the two partial overlaps while leaving every other current-library comparison as none.",
     "reviewedAt": "2026-08-26",
-    "approvalDigest": "1760b842ba8f168b21c94839b8004be7771575e83b942809ec3d7bcb7a7e818a"
+    "approvalDigest": "40efa4d5195257eac32c0b619f430a4e131a2cfbb9b77f8a2730b2e8d2d678ef",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 87,
+      "sourceIdentityCount": 80,
+      "includedIssueCount": 80,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 3
+    }
   }
 }

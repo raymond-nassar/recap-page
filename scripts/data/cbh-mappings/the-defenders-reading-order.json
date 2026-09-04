@@ -10661,10 +10661,10 @@
     "coverIssueId": 17089
   },
   "relationshipReview": {
-    "reportDigest": "d4446b2a1545aa2a502e69e3f6409513d0f881a03108f36b14e15e53f76c9fd9",
+    "reportDigest": "f5bd04d8159380904e8156fe24326a164b5be49433e210defacd9057bb478717",
     "packetDigest": "d50645b6f4d324178d7ea8b93fae012bfcc3177af42a2befea818328926d6440",
     "mappingDigest": "b748ed01220030899a42af5f547eaea5b2746e8de25e7f88e5dcd13821459884",
-    "libraryDigest": "dc1e2a24759c2b11d0a68119faa55c7ec90f22044aecf075e44dd6607dd14481",
+    "libraryDigest": "ca9a168349cd5532f14499af42e8480a737214d9b69a3137b999f92a5f942371",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Terra",
@@ -10831,7 +10831,11 @@
         "rationale": "The 1 shared issue with black-widow-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 1,
+        "sharedIds": [
+          "6925"
+        ]
       },
       {
         "orderId": "bloodties",
@@ -12148,6 +12152,13 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "713082b38d633d4428d923accc907fc26f3151cbcb3be29437a37a35844da315"
+    "approvalDigest": "a6e87d59d4c9b7da2a9d956450a79afd09b6d1c9bdf52c8cdd6ca36fe70d0c91",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 331,
+      "sourceIdentityCount": 268,
+      "includedIssueCount": 245,
+      "sourceGapCount": 23,
+      "repeatedSourceReferenceCount": 12
+    }
   }
 }
