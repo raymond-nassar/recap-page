@@ -2,8 +2,15 @@
   "candidateId": "ultimate-marvel-intro",
   "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc",
   "mappingDigest": "a3daf543129ffdd4062f858ad81f4ead293662ee3628b297d252561ca894a143",
-  "libraryDigest": "e70a1e0375e6601ae853c643f2d786fec681a789be7e4bc5c1b85c079ff94d27",
+  "libraryDigest": "603f067521bd221efb155a8066302e48eb0e87a05071b8947bdacd827d1cb243",
   "peerDigests": {},
+  "sourceCounts": {
+    "sourceOccurrenceCount": 122,
+    "sourceIdentityCount": 121,
+    "includedIssueCount": 121,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 0
+  },
   "candidateCount": 121,
   "comparisonCount": 136,
   "comparisons": [
@@ -824,5 +831,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b499272a7523296894ee96ff18df4f45e29844efa0806812b19b513e812c739a"
+  "reportDigest": "0dee82eca1e9aec98978b3dbb7d7d4eaace424a9877350003afefd40babb5d20"
 }

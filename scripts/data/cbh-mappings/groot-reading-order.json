@@ -2971,10 +2971,10 @@
     "coverIssueId": 11353
   },
   "relationshipReview": {
-    "reportDigest": "dd4933934a5f50ab76fb5fb0d989633091e2ea09cff86d283678d07e24a6f191",
+    "reportDigest": "af92d6a580749fb968b3f38c14327f9ee2299eb8e85d73afdad5822c02ee225b",
     "packetDigest": "b9cd22d29d38539fa16d44d15db0cea8108ad414319828c0108845d0f3d267c7",
     "mappingDigest": "8f693cbf39f09350230965373d28a9bf3cb4fc34175ed848b751778a41d16523",
-    "libraryDigest": "4b6faebd9cb64a02fa3f0f69e4236a8c8a4507bb3f48869fadb41dc9b43b0c20",
+    "libraryDigest": "f1e9d4feec92028575b888a9a2e3eeaf3f19b6da73b18661f29160d60e17217e",
     "peerDigests": {
       "rocket-raccoon-reading-order": "6f87747f42b979377176e8be7ef6f2c761beeed2aaad297f2af3f53e44deef40"
     },
@@ -4566,6 +4566,13 @@
     "authorityIdentity": "MRT-002-C07 coordinator",
     "rationale": "Every current-library and named Rocket peer comparison was reviewed against the separate complete-guide boundary; the four factual partials are approved and no exact or subset relationship exists.",
     "reviewedAt": "2026-08-23",
-    "approvalDigest": "99e939719f9e39522545e6e4f0c9f222c403177ef8253f8502f77872383c11a2"
+    "approvalDigest": "65a0560bdf452807aaae7dc6829caae6b69e194c357e797d86c7101bd326b14a",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 84,
+      "sourceIdentityCount": 76,
+      "includedIssueCount": 76,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 8
+    }
   }
 }

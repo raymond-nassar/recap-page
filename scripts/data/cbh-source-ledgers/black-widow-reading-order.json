@@ -13,10 +13,10 @@
   "issueBearingBlockCount": 76,
   "sourceOccurrenceCount": 773,
   "categoryCounts": {
-    "provisional-canonical-candidate": 570,
+    "provisional-canonical-candidate": 567,
     "true-repeat": 20,
     "unresolved-included-identity-gap": 0,
-    "semantic-exclusion": 183
+    "semantic-exclusion": 186
   },
   "excludedSourceReferences": [
     "Narrative prose issue mentions remain excluded from the canonical candidate set.",
@@ -102,7 +102,7 @@
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": "Amazing Spider-Man #86",
       "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 0,
+      "seriesYear": 1963,
       "issueNumber": "86",
       "sourceRangeReference": "Amazing Spider-Man #86",
       "disposition": "provisional-canonical-candidate"
@@ -295,7 +295,7 @@
       "sourceGroup": "Black Widow Origins",
       "sourceIssueReference": "Amazing Spider-Man #86",
       "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 0,
+      "seriesYear": 1963,
       "issueNumber": "86",
       "sourceRangeReference": "Amazing Spider-Man #86",
       "disposition": "true-repeat",
@@ -2753,7 +2753,7 @@
       "sourceIssueReference": "Daredevil: Love and War (1986)",
       "normalizedSeriesTitle": "Daredevil: Love and War",
       "seriesYear": 1986,
-      "issueNumber": null,
+      "issueNumber": "0",
       "disposition": "provisional-canonical-candidate",
       "reason": "Named OGN is source-identifiable from the surrounding Essential Black Widow Stories section."
     },
@@ -3825,7 +3825,9 @@
       "seriesYear": 1991,
       "issueNumber": "1",
       "sourceRangeReference": "Namor The Sub-Mariner Annual (1991) #1",
-      "disposition": "provisional-canonical-candidate"
+      "disposition": "semantic-exclusion",
+      "reason": "The owner confirmed Namor The Sub-Mariner Annual #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 316,
@@ -3857,9 +3859,9 @@
       "sourceNode": 74,
       "sourceGroup": "Black Widow in the 1990's",
       "sourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
-      "normalizedSeriesTitle": "Avengers: Deathtrap ? The Vault",
+      "normalizedSeriesTitle": "Avengers: Deathtrap - The Vault",
       "seriesYear": 1991,
-      "issueNumber": null,
+      "issueNumber": "1",
       "disposition": "provisional-canonical-candidate",
       "reason": "Named OGN is source-identifiable from the surrounding Black Widow in the 1990s section."
     },
@@ -5326,8 +5328,8 @@
       "sourceGroup": "Black Widow in the 1990's",
       "sourceIssueReference": "Avengers #496",
       "normalizedSeriesTitle": "Avengers",
-      "seriesYear": 1963,
-      "issueNumber": "496",
+      "seriesYear": 1998,
+      "issueNumber": "81",
       "sourceRangeReference": "Avengers (1963) #496",
       "disposition": "provisional-canonical-candidate"
     },
@@ -5340,8 +5342,9 @@
       "normalizedSeriesTitle": "Captain America: The Legend",
       "seriesYear": 1996,
       "issueNumber": null,
-      "disposition": "provisional-canonical-candidate",
-      "reason": "The fully paged provider catalog has no exact or normalized Captain America: The Legend series identity."
+      "disposition": "semantic-exclusion",
+      "reason": "The owner confirmed Captain America: The Legend (1996) is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 442,
@@ -5483,7 +5486,7 @@
       "sourceIssueReference": "Onslaught: X-Men (1996)",
       "normalizedSeriesTitle": "Onslaught: X-Men",
       "seriesYear": 1996,
-      "issueNumber": null,
+      "issueNumber": "1",
       "disposition": "provisional-canonical-candidate",
       "reason": "Named crossover collection is source-identifiable from the surrounding Black Widow in the 1990s section."
     },
@@ -5593,7 +5596,9 @@
       "seriesYear": 1997,
       "issueNumber": "-1",
       "sourceRangeReference": "Collects: Thunderbolts (1997) #1-5 & -1",
-      "disposition": "provisional-canonical-candidate"
+      "disposition": "semantic-exclusion",
+      "reason": "Thunderbolts #-1 exists, but the reviewed Thunderbolts series has no standalone Marvel Unlimited entry for it; Thunderbolts #0 must not substitute.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 463,
@@ -8441,7 +8446,7 @@
       "sourceIssueReference": "Infinity Countdown Prime (2018)",
       "normalizedSeriesTitle": "Infinity Countdown Prime",
       "seriesYear": 2018,
-      "issueNumber": null,
+      "issueNumber": "1",
       "disposition": "provisional-canonical-candidate",
       "reason": "Named one-shot is source-identifiable from the surrounding All-New All-Different Black Widow section."
     },
@@ -8571,7 +8576,7 @@
       "sourceNode": 183,
       "sourceGroup": "All-New All-Different Black Widow",
       "sourceIssueReference": "Infinty Wars Prime #1",
-      "normalizedSeriesTitle": "Infinty Wars Prime",
+      "normalizedSeriesTitle": "Infinity Wars Prime",
       "seriesYear": 2018,
       "issueNumber": "1",
       "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1",

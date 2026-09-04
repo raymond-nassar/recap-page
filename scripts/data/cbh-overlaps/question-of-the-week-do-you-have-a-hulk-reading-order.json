@@ -2,7 +2,7 @@
   "candidateId": "question-of-the-week-do-you-have-a-hulk-reading-order",
   "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
   "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-  "libraryDigest": "2ea42c4de5baab53e6c4af926f49c70723f1e490aa5ff0e339a0709ed572a773",
+  "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1242,
@@ -1019,5 +1019,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "8f763bcb2d989f92c2b4190683004f803eb4b7f4f2601063150deea55d38a77a"
+  "reportDigest": "8e311c2c15cdd640b3dbc706a45f54b38afb024041899b0360d658f312248f9b"
 }

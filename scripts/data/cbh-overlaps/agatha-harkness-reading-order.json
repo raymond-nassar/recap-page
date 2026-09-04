@@ -2,8 +2,15 @@
   "candidateId": "agatha-harkness-reading-order",
   "packetDigest": "00356c88548e6fd5896da5fb88fbfe67dbfdfe071702f03d85ce962236eb07e4",
   "mappingDigest": "68b36b41c894d439b4b2fa56b4fc600e035b1fda361cd146b537340b6b29c6df",
-  "libraryDigest": "885d590dd95c738bd7417cba51782498fa8da1539faef83be822d4ed8ce95fae",
+  "libraryDigest": "633484687c871f6620fac20f5c0ddb2717367944297cdb9f44d04a726cdaace4",
   "peerDigests": {},
+  "sourceCounts": {
+    "sourceOccurrenceCount": 105,
+    "sourceIdentityCount": 104,
+    "includedIssueCount": 104,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 1
+  },
   "candidateCount": 104,
   "comparisonCount": 138,
   "comparisons": [
@@ -869,5 +876,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "99a905764fc0b1fd772d0cae07b157d6e8298bfaf2ece3ba3d5e1c8b8e74f891"
+  "reportDigest": "8f3b55cb40c92b64d50c6f32478511263dc4308d206ceab079c7ce7262386a4d"
 }

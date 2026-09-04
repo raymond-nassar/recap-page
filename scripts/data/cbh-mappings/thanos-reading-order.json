@@ -10787,10 +10787,10 @@
     "coverIssueId": 9610
   },
   "relationshipReview": {
-    "reportDigest": "cdd2f1319f0f3555b7d6039f21a38f8827acfa88df31bab75a057348b76f42b0",
+    "reportDigest": "829594e7bd7deb84b4b334ec0969d9e7baec22a59fe025c41ebe23d8ddbe2c65",
     "packetDigest": "385758b69b84394fd9a3952d08e31cff45df1fd0929fc7f171c97db99d25e062",
     "mappingDigest": "88eaf2246b84effae186dd1b54b58e58334a839fcaf2ea32141b4176e5e5c9e6",
-    "libraryDigest": "885d590dd95c738bd7417cba51782498fa8da1539faef83be822d4ed8ce95fae",
+    "libraryDigest": "633484687c871f6620fac20f5c0ddb2717367944297cdb9f44d04a726cdaace4",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 321,
@@ -10924,7 +10924,7 @@
       {
         "orderId": "black-widow-reading-order",
         "relationship": "partial",
-        "sharedCount": 15,
+        "sharedCount": 16,
         "sharedIds": [
           "8080",
           "18452",
@@ -10940,7 +10940,8 @@
           "10020",
           "10021",
           "10023",
-          "10024"
+          "10024",
+          "67349"
         ],
         "decision": "approved",
         "authorityType": "stronger-model",
@@ -12400,6 +12401,6 @@
     "authorityIdentity": "GPT-5.6 Sol final Thanos overlap review",
     "rationale": "Reviewed the complete current-library report, the 272 exact issue identities, seven availability exclusions, and 42 intentional repeats.",
     "reviewedAt": "2026-08-26T07:36:34.796Z",
-    "approvalDigest": "3d2a5e6946d24a1a62d47f12f53ddb3d405af5295f808b5c4b7fee9fdc7d4d71"
+    "approvalDigest": "a9a59d07c2da542ae5064a92509347f9a8c8e6d32e0cbe42d0d5410e4d2c056b"
   }
 }

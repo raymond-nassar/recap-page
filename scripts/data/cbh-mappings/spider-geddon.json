@@ -1001,10 +1001,10 @@
     "coverIssueId": 71314
   },
   "relationshipReview": {
-    "reportDigest": "14ef4a815ac46d52ccb8f82f613a646ada41fa003ef7196bf273f1d0a4c63b32",
+    "reportDigest": "f9b1fa57927761ea36efdeb4ed2266717e2f8d1986745a42929841b04d865a44",
     "packetDigest": "26378833c6cefcf5fe3648c09fd68d9fb544a94b4a51c880ab4aad35e4014813",
     "mappingDigest": "71d7c0accbab5764114f223d92959dd2e9490cd4ceaa2a4ddd617db6542d78b3",
-    "libraryDigest": "621003a9eff5c23801263e83f5632ec4e48a4747046cad6d91946d6cc328c7dc",
+    "libraryDigest": "944c024d3080bbeaac24ca887d386421b66fc2bb3ab03236f96926380fd8c294",
     "peerDigests": {
       "age-of-x-man": "80f9eaac66e6795236fc45fda6e864ad5eae22ca43cb149dbc52b2a07e465469",
       "iron-man-2020": "7feeb6ee3d4cb30992fad0c9ac0078d92230e2deb3474d36f77cdcbdae52e6b6"
@@ -1972,6 +1972,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "c15b474a7b70f2a35ef8646d49e5d688057c4279f586f9ddeee9aa45f6e94f85"
+    "approvalDigest": "b275a734840b7d8c799070d28afea390dac8a978cfbc002cc79cab69e9df7fdc"
   }
 }

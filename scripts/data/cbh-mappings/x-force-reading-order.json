@@ -22813,10 +22813,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every complete-library comparison, including later guides. The 14 non-none relationships are ordinary shared reading material, including two existing subsets, and no exact duplicate exists. The guide remains independently useful because it preserves X-Force source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "5bc725648b1898be760fcc9ed0d177c3c2515a096d046146b7984185b10b195a",
+    "reportDigest": "5da274528af0b7cee9ff0708161b391aaf24a831a84a5bf21035fd91e60a5c2e",
     "packetDigest": "c6e699d843360f98e6acad931130cb1667f6c6501072acf5295f55d54fdcf5e5",
     "mappingDigest": "d8c9eddc35a958a088c098441b1143207c6172df2297411a1240fb0b9deea7aa",
-    "libraryDigest": "346baa7a69a91891ff7c675ccb1d6c09820de2810d82e3e13399b9fa3e1a3807",
+    "libraryDigest": "abcea65f78b7d1ced47058330a38cecf4fdafb6c96c0a3cf28e43c46d8599c20",
     "peerDigests": {},
     "dispositions": [
       {
@@ -22979,7 +22979,9 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ids were found in the complete-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "bloodties",
@@ -24305,6 +24307,13 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "542a8589edd04d1a53de6ba7971702023cf84555821175b9ec61ddbaa9b1bf1e"
+    "approvalDigest": "cc4b35c6a4df72686e9751c88b0a2a61ceae3df299cc5cf6cd4e8cbbd759458a",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 409,
+      "sourceIdentityCount": 285,
+      "includedIssueCount": 262,
+      "sourceGapCount": 23,
+      "repeatedSourceReferenceCount": 81
+    }
   }
 }

@@ -22821,10 +22821,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed all 154 complete-library comparisons against the frozen 638-row Loki mapping. The guide is not an exact duplicate; all partial and existing-subset relationships retain their separate source identities and the 18 unresolved positions remain explicit gaps.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "01283c58af01d2cd059e8a5f5dd5192fdcb35edeba2cce81670ca32781315194",
+    "reportDigest": "bf82c8901419c8d8b2326d8a2f1ccbb13eb41f0f981701f9f2e796c716534717",
     "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9",
     "mappingDigest": "5ef7839f0d33a30d0b04a70d4b72cb5c5d517c274371448161170b9b774487fe",
-    "libraryDigest": "2ea42c4de5baab53e6c4af926f49c70723f1e490aa5ff0e339a0709ed572a773",
+    "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
     "peerDigests": {},
     "dispositions": [
       {
@@ -22970,13 +22970,15 @@
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
         "reviewedAt": "2026-08-27",
-        "sharedCount": 11,
+        "sharedCount": 13,
         "sharedIds": [
+          "66283",
           "66416",
           "66684",
           "67022",
           "68653",
           "68656",
+          "67349",
           "67145",
           "67147",
           "67148",
@@ -24568,6 +24570,13 @@
         ]
       }
     ],
-    "approvalDigest": "9fb7090d79ac1a12a77d214515247a969dafe07cb97ed5f7ae8e7c9ad6bae8fe"
+    "approvalDigest": "77ba98dd8b76c3abd07f6b8f8cc2e4885c5e86eafc2d20018b99d1625f78a9d9",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 830,
+      "sourceIdentityCount": 656,
+      "includedIssueCount": 638,
+      "sourceGapCount": 18,
+      "repeatedSourceReferenceCount": 53
+    }
   }
 }

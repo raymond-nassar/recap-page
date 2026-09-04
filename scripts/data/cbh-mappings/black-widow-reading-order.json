@@ -1,7 +1,7 @@
 {
   "id": "black-widow-reading-order",
   "inventoryId": "black-widow-reading-order",
-  "packetDigest": "f52951e63428ee3d32445a7826872a349adae5a84da3326c7c5f9887667bb54e",
+  "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
   "sourceUrl": "https://www.comicbookherald.com/black-widow-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceProvider": "comic-book-herald",
@@ -440,6 +440,12 @@
       "decisionScope": "Source semantic boundary"
     },
     {
+      "sourcePosition": 315,
+      "sourceIssueReference": "Namor The Sub-Mariner Annual #1",
+      "reason": "The owner confirmed Namor The Sub-Mariner Annual #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 319,
       "sourceIssueReference": "Nat rejoins the Avengers just in time for some cosmic weirdness with The Collector and a big crossover: The Subterranean Wars!",
       "reason": "Non-issue source block remains excluded.",
@@ -590,6 +596,12 @@
       "decisionScope": "Source semantic boundary"
     },
     {
+      "sourcePosition": 441,
+      "sourceIssueReference": "Captain America: The Legend (1996)",
+      "reason": "The owner confirmed Captain America: The Legend (1996) is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 442,
       "sourceIssueReference": "Material from Captain America Ashcan Edition",
       "reason": "Partial-material label remains excluded.",
@@ -630,6 +642,12 @@
       "sourceIssueReference": "Thunderbolts Classics Vol. 1",
       "reason": "Non-issue source block remains excluded.",
       "decisionScope": "Source semantic boundary"
+    },
+    {
+      "sourcePosition": 462,
+      "sourceIssueReference": "Thunderbolts #-1",
+      "reason": "Thunderbolts #-1 exists, but the reviewed Thunderbolts series has no standalone Marvel Unlimited entry for it; Thunderbolts #0 must not substitute.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 467,
@@ -1125,16 +1143,16 @@
     },
     {
       "sourcePosition": 23,
-      "canonicalGapSourcePosition": 7,
       "sourceIssueReference": "Amazing Spider-Man #86",
       "sourceRangeReference": "Amazing Spider-Man #86",
       "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 0,
-      "issueNumber": "86"
+      "seriesYear": 1963,
+      "issueNumber": "86",
+      "canonicalRow": 2
     },
     {
       "sourcePosition": 25,
-      "canonicalRow": 2,
+      "canonicalRow": 3,
       "sourceIssueReference": "Amazing Adventures #1",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1143,7 +1161,7 @@
     },
     {
       "sourcePosition": 26,
-      "canonicalRow": 3,
+      "canonicalRow": 4,
       "sourceIssueReference": "Amazing Adventures #2",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1152,7 +1170,7 @@
     },
     {
       "sourcePosition": 27,
-      "canonicalRow": 4,
+      "canonicalRow": 5,
       "sourceIssueReference": "Amazing Adventures #3",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1161,7 +1179,7 @@
     },
     {
       "sourcePosition": 28,
-      "canonicalRow": 5,
+      "canonicalRow": 6,
       "sourceIssueReference": "Amazing Adventures #4",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1170,7 +1188,7 @@
     },
     {
       "sourcePosition": 29,
-      "canonicalRow": 6,
+      "canonicalRow": 7,
       "sourceIssueReference": "Amazing Adventures #5",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1179,7 +1197,7 @@
     },
     {
       "sourcePosition": 30,
-      "canonicalRow": 7,
+      "canonicalRow": 8,
       "sourceIssueReference": "Amazing Adventures #6",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1188,7 +1206,7 @@
     },
     {
       "sourcePosition": 31,
-      "canonicalRow": 8,
+      "canonicalRow": 9,
       "sourceIssueReference": "Amazing Adventures #7",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1197,7 +1215,7 @@
     },
     {
       "sourcePosition": 32,
-      "canonicalRow": 9,
+      "canonicalRow": 10,
       "sourceIssueReference": "Amazing Adventures #8",
       "sourceRangeReference": "Amazing Adventures #1 to #8",
       "normalizedSeriesTitle": "Amazing Adventures",
@@ -1206,7 +1224,7 @@
     },
     {
       "sourcePosition": 98,
-      "canonicalRow": 14,
+      "canonicalRow": 15,
       "sourceIssueReference": "Daredevil #81",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
       "normalizedSeriesTitle": "Daredevil",
@@ -1215,7 +1233,7 @@
     },
     {
       "sourcePosition": 99,
-      "canonicalRow": 15,
+      "canonicalRow": 16,
       "sourceIssueReference": "Daredevil #82",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
       "normalizedSeriesTitle": "Daredevil",
@@ -1224,7 +1242,7 @@
     },
     {
       "sourcePosition": 100,
-      "canonicalRow": 16,
+      "canonicalRow": 17,
       "sourceIssueReference": "Daredevil #83",
       "sourceRangeReference": "Collects: Daredevil (1964) #75-84",
       "normalizedSeriesTitle": "Daredevil",
@@ -1233,7 +1251,7 @@
     },
     {
       "sourcePosition": 254,
-      "canonicalRow": 157,
+      "canonicalRow": 158,
       "sourceIssueReference": "Daredevil #219",
       "sourceRangeReference": "219-222 & 225-226",
       "normalizedSeriesTitle": "Daredevil",
@@ -1242,7 +1260,7 @@
     },
     {
       "sourcePosition": 527,
-      "canonicalRow": 373,
+      "canonicalRow": 379,
       "sourceIssueReference": "Avengers #7",
       "sourceRangeReference": "Avengers (1998) #7",
       "normalizedSeriesTitle": "Avengers",
@@ -1251,7 +1269,7 @@
     },
     {
       "sourcePosition": 592,
-      "canonicalRow": 430,
+      "canonicalRow": 436,
       "sourceIssueReference": " #1",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1260,7 +1278,7 @@
     },
     {
       "sourcePosition": 593,
-      "canonicalRow": 431,
+      "canonicalRow": 437,
       "sourceIssueReference": " #2",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1269,7 +1287,7 @@
     },
     {
       "sourcePosition": 594,
-      "canonicalRow": 432,
+      "canonicalRow": 438,
       "sourceIssueReference": " #3",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1278,7 +1296,7 @@
     },
     {
       "sourcePosition": 595,
-      "canonicalRow": 433,
+      "canonicalRow": 439,
       "sourceIssueReference": " #4",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
@@ -1287,378 +1305,12 @@
     },
     {
       "sourcePosition": 596,
-      "canonicalRow": 434,
+      "canonicalRow": 440,
       "sourceIssueReference": " #5",
       "sourceRangeReference": "Issues: #1 to #6",
       "normalizedSeriesTitle": "Black Widow",
       "seriesYear": 2004,
       "issueNumber": "5"
-    }
-  ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 7,
-      "sourceIssueReference": "Amazing Spider-Man #86",
-      "sourceRangeReference": "Amazing Spider-Man #86",
-      "sourceGroup": "Black Widow Origins",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 0,
-      "issueNumber": "86",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Amazing%20Spider-Man%2086&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "f3b708ad3375a1ff4a24e15466d97aac84b9a5a5acc1859eb242e8b9a64b7685"
-    },
-    {
-      "sourcePosition": 226,
-      "sourceIssueReference": "Daredevil: Love and War (1986)",
-      "sourceRangeReference": "Daredevil: Love and War (1986)",
-      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
-      "normalizedSeriesTitle": "Daredevil: Love and War",
-      "seriesYear": 1986,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Daredevil%3A%20Love%20and%20War&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "57766247b7f1017347f222a2b457ee09f106125b5b7faefeef8ea13013ad0c2b"
-    },
-    {
-      "sourcePosition": 269,
-      "sourceIssueReference": "West Coast Avengers Annual #1",
-      "sourceRangeReference": "West Coast Avengers Annual (1986) #1",
-      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
-      "normalizedSeriesTitle": "West Coast Avengers Annual",
-      "seriesYear": 1986,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=West%20Coast%20Avengers%20Annual%201&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "347d098f0b8e2254054a44a7cc3913dc21d5d92cb1db438a82c2a2611afb2956"
-    },
-    {
-      "sourcePosition": 315,
-      "sourceIssueReference": "Namor The Sub-Mariner Annual #1",
-      "sourceRangeReference": "Namor The Sub-Mariner Annual (1991) #1",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Namor The Sub-Mariner Annual",
-      "seriesYear": 1991,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Namor%20The%20Sub-Mariner%20Annual%201&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "0ed6a170bf2f1aaddb951391d83c5a41e7ec801d4ad062f1f3a8d5ad2153095e"
-    },
-    {
-      "sourcePosition": 318,
-      "sourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
-      "sourceRangeReference": "Avengers: Deathtrap ? The Vault (1991)",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Avengers: Deathtrap ? The Vault",
-      "seriesYear": 1991,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Avengers%3A%20Deathtrap%20%3F%20The%20Vault&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "5fab7a2ca08448124bb7571462949e6ef6af50cf3610ee15233a2502c9ca55e8"
-    },
-    {
-      "sourcePosition": 440,
-      "sourceIssueReference": "Avengers #496",
-      "sourceRangeReference": "Avengers (1963) #496",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Avengers",
-      "seriesYear": 1963,
-      "issueNumber": "496",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Avengers%20496&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a70a6404f0b03a7ec0e7620444a50c2cc5b84df56df1d9e13c0690058fdc7558"
-    },
-    {
-      "sourcePosition": 441,
-      "sourceIssueReference": "Captain America: The Legend (1996)",
-      "sourceRangeReference": "Captain America: The Legend (1996)",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Captain America: The Legend",
-      "seriesYear": 1996,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The fully paged provider catalog contains no exact or normalized Captain America: The Legend series identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/series?limit=200&offset=0",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "82098526b3fad0f2ba71c6b444196e13adb15aec286359baebe29b1181d34c5f"
-    },
-    {
-      "sourcePosition": 453,
-      "sourceIssueReference": "Onslaught: X-Men (1996)",
-      "sourceRangeReference": "Onslaught: X-Men (1996)",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Onslaught: X-Men",
-      "seriesYear": 1996,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Onslaught%3A%20X-Men&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "d8f76951dfc09a00ad456b482af1ae907dfcef54a463f1ebc0fb45c660f3e53b"
-    },
-    {
-      "sourcePosition": 462,
-      "sourceIssueReference": "Thunderbolts #-1",
-      "sourceRangeReference": "Collects: Thunderbolts (1997) #1-5 & -1",
-      "sourceGroup": "Black Widow in the 1990's",
-      "normalizedSeriesTitle": "Thunderbolts",
-      "seriesYear": 1997,
-      "issueNumber": "-1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thunderbolts%20-1&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "1423884ffe393c10e81d63b7a54a29418e1b3416e97533b6981c9e794535b709"
-    },
-    {
-      "sourcePosition": 665,
-      "sourceIssueReference": "Secret Empire #9",
-      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Secret Empire",
-      "seriesYear": 2017,
-      "issueNumber": "9",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Secret%20Empire%209&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a4dba68ae5b9e57c793e2269a3931ae3e741b0dd44aabe4dd3563dfc857bfdaa"
-    },
-    {
-      "sourcePosition": 666,
-      "sourceIssueReference": "Secret Empire #10",
-      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Secret Empire",
-      "seriesYear": 2017,
-      "issueNumber": "10",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Secret%20Empire%2010&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e029932fe8b4ae0ddd2a8de548c6129dda8d372b8d8e43a290b4c447873f8510"
-    },
-    {
-      "sourcePosition": 699,
-      "sourceIssueReference": "Infinity Countdown Prime (2018)",
-      "sourceRangeReference": "Infinity Countdown Prime (2018)",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Infinity Countdown Prime",
-      "seriesYear": 2018,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Infinity%20Countdown%20Prime&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "36b6780408d87928bc6c95f320b4c9f611417da2748a262a0cf945641f4b9437"
-    },
-    {
-      "sourcePosition": 710,
-      "sourceIssueReference": "Infinty Wars Prime #1",
-      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1",
-      "sourceGroup": "All-New All-Different Black Widow",
-      "normalizedSeriesTitle": "Infinty Wars Prime",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Infinty%20Wars%20Prime%201&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "9e70f3320ca8966c56c358b9e8bcd486a2b379c354a8ef7667dad3d1327b701b"
-    },
-    {
-      "sourcePosition": 773,
-      "sourceIssueReference": "Black Widow #15",
-      "sourceRangeReference": "Collects: Black Widow (2020) #11 to #15",
-      "sourceGroup": "Latest Additions",
-      "normalizedSeriesTitle": "Black Widow",
-      "seriesYear": 2020,
-      "issueNumber": "15",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The settled provider metadata has no exact record for this frozen source identity.",
-      "evidenceSources": [
-        {
-          "kind": "metadata-api",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Black%20Widow%2015&limit=5",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-page",
-          "url": "https://www.comicbookherald.com/black-widow-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "469df8730ea5fabea7ad927e7168b030e50c9a8f8ea7eeb612b069a8fd270cb1"
     }
   ],
   "proposedManifest": {
@@ -1691,7 +1343,7 @@
       "Marvel",
       "Comic Book Herald"
     ],
-    "expect": 570,
+    "expect": 567,
     "timeline": null,
     "coverIssueId": 11295
   },
@@ -28290,6 +27942,426 @@
         "path": "http://i.annihil.us/u/prod/marvel/i/mg/6/20/62015569dafd0",
         "extension": "jpg"
       }
+    },
+    {
+      "id": 6908,
+      "digitalId": 5036,
+      "title": "The Amazing Spider-Man (1963) #86",
+      "issueNumber": "86",
+      "description": "The origin of Black Widow!  Spider-Man goes toe-to-toe with Black Widow as we learn more about her mysterious past.",
+      "modified": "2024-09-20T09:13:21+0000",
+      "pageCount": 0,
+      "detailUrl": "https://www.marvel.com/comics/issue/6908/the_amazing_spider-man_1963_86",
+      "seriesId": 1987,
+      "seriesName": "The Amazing Spider-Man (1963 - 1998)",
+      "onSaleDate": "1970-07-01T00:00:00+0000",
+      "unlimitedDate": "1970-07-01T00:00:00+0000",
+      "yearPage": 1970,
+      "creators": [
+        {
+          "id": 389,
+          "name": "Jim Mooney",
+          "role": "cover artist"
+        },
+        {
+          "id": 13272,
+          "name": "John Romita Sr.",
+          "role": "cover artist"
+        },
+        {
+          "id": 1553,
+          "name": "Sam Rosen",
+          "role": "letterer"
+        },
+        {
+          "id": 30,
+          "name": "Stan Lee",
+          "role": "writer"
+        }
+      ],
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/c0/57b1f251c62b1",
+        "extension": "jpg"
+      },
+      "seriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 20779,
+      "digitalId": 8108,
+      "title": "Daredevil: Love and War (1986)",
+      "issueNumber": "0",
+      "description": "Frank Miller explores the push and pull nature of Kingpin and Daredevil's relationship. Vanessa Fisk represents all that the Kingpin holds dear; when the woman he loves is in grave danger, Fisk will act savagely to save her. All's fair in Love and War, and for Kingpin the saying's particularly true!",
+      "modified": "2020-04-09T11:19:41+0000",
+      "pageCount": 0,
+      "detailUrl": "https://www.marvel.com/comics/issue/20779/daredevil_love_and_war_1986",
+      "seriesId": 3906,
+      "seriesName": "Daredevil: Love and War (1986)",
+      "onSaleDate": "1986-10-01T00:00:00+0000",
+      "unlimitedDate": "2009-10-09T00:00:00+0000",
+      "yearPage": 1986,
+      "creators": [
+        {
+          "id": 26,
+          "name": "Bill Sienkiewicz",
+          "role": "cover artist"
+        },
+        {
+          "id": 399,
+          "name": "Jim Novak",
+          "role": "letterer"
+        },
+        {
+          "id": 17,
+          "name": "Frank Miller",
+          "role": "writer"
+        }
+      ],
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/60/4bb8472eaed8a",
+        "extension": "jpg"
+      },
+      "seriesTitle": "Daredevil: Love and War",
+      "seriesYear": 1986,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 56327,
+      "title": "West Coast Avengers Annual",
+      "issueTitle": "West Coast Avengers Annual (1986) #1",
+      "seriesTitle": "West Coast Avengers Annual",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "1",
+      "seriesYear": 1986,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 67091,
+      "digitalId": 47894,
+      "title": "Avengers: Deathtrap - The Vault (1991) #1",
+      "issueNumber": "1",
+      "description": null,
+      "modified": "2020-11-12T10:42:56+0000",
+      "pageCount": 0,
+      "detailUrl": "https://www.marvel.com/comics/issue/67091/avengers_deathtrap_-_the_vault_1991_1",
+      "seriesId": 24257,
+      "seriesName": "Avengers: Deathtrap - The Vault (1991)",
+      "onSaleDate": "1991-01-01T00:00:00+0000",
+      "unlimitedDate": "2018-03-26T00:00:00+0000",
+      "yearPage": 1991,
+      "creators": [
+        {
+          "id": 2717,
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "id": 13301,
+          "name": "Jim Sanders III",
+          "role": "cover artist"
+        },
+        {
+          "id": 2086,
+          "name": "Joe Rosas",
+          "role": "penciler"
+        },
+        {
+          "id": 2078,
+          "name": "Randy Emberlin",
+          "role": "penciler"
+        },
+        {
+          "id": 658,
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "id": 6049,
+          "name": "Danny Fingeroth",
+          "role": "writer"
+        }
+      ],
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/7/00/5ab3f766695c4",
+        "extension": "jpg"
+      },
+      "seriesTitle": "Avengers: Deathtrap - The Vault",
+      "seriesYear": 1991,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 492,
+      "digitalId": 1487,
+      "title": "Avengers (1998) #81",
+      "issueNumber": "81",
+      "description": null,
+      "modified": "2024-09-24T09:16:27+0000",
+      "pageCount": 0,
+      "detailUrl": "https://www.marvel.com/comics/issue/492/avengers_1998_81",
+      "seriesId": 354,
+      "seriesName": "Avengers (1998 - 2004)",
+      "onSaleDate": "2004-04-28T00:00:00+0000",
+      "unlimitedDate": "2004-04-28T00:00:00+0000",
+      "yearPage": 2004,
+      "creators": [
+        {
+          "id": 13449,
+          "name": "Chris Sotomayor",
+          "role": "colorist"
+        },
+        {
+          "id": 485,
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "id": 350,
+          "name": "Richard Starkings",
+          "role": "letterer"
+        },
+        {
+          "id": 6170,
+          "name": "Olivier Coipel",
+          "role": "penciler"
+        },
+        {
+          "id": 11,
+          "name": "Chuck Austen",
+          "role": "writer"
+        }
+      ],
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/f/b0/586d5c8fdb0af",
+        "extension": "jpg"
+      },
+      "seriesTitle": "Avengers",
+      "seriesYear": 1998,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 20767,
+      "digitalId": 8504,
+      "title": "Onslaught: X-Men  (1996) #1",
+      "issueNumber": "1",
+      "description": "Professor Xavier is Onslaught? Questions will be answered about the X-Men's most insidious villain in this tell-all issue. Is Xavier truly the traitor his team of mutants believes him to be? And who is really behind the devastation of Onslaught?",
+      "modified": "2023-02-27T00:16:57+0000",
+      "pageCount": 0,
+      "detailUrl": "https://www.marvel.com/comics/issue/20767/onslaught_x-men_1996_1",
+      "seriesId": 3900,
+      "seriesName": "Onslaught: X-Men  (1996)",
+      "onSaleDate": "1996-08-01T00:00:00+0000",
+      "unlimitedDate": "2007-04-28T00:00:00+0000",
+      "yearPage": 1996,
+      "creators": [
+        {
+          "id": 1909,
+          "name": "Steve Buccellato",
+          "role": "colorist"
+        },
+        {
+          "id": 568,
+          "name": "Art Thibert",
+          "role": "cover artist"
+        },
+        {
+          "id": 1326,
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "id": 350,
+          "name": "Richard Starkings",
+          "role": "letterer"
+        },
+        {
+          "id": 2879,
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "id": 365,
+          "name": "Pasqual Ferry",
+          "role": "penciler"
+        },
+        {
+          "id": 119,
+          "name": "Mark Waid",
+          "role": "writer"
+        },
+        {
+          "id": 3637,
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/8/e0/4bb858cba0802",
+        "extension": "jpg"
+      },
+      "seriesTitle": "Onslaught: X-Men",
+      "seriesYear": 1996,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 64259,
+      "title": "Secret Empire",
+      "issueTitle": "Secret Empire (2017) #9",
+      "seriesTitle": "Secret Empire",
+      "apiSeriesName": null,
+      "seriesId": 23020,
+      "issueNumber": "9",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64259/read",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 64285,
+      "title": "Secret Empire",
+      "issueTitle": "Secret Empire (2017) #10",
+      "seriesTitle": "Secret Empire",
+      "apiSeriesName": null,
+      "seriesId": 23020,
+      "issueNumber": "10",
+      "seriesYear": 2017,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
+      "onSaleDate": null,
+      "detailsRefused": true
+    },
+    {
+      "id": 66283,
+      "digitalId": 47335,
+      "title": "Infinity Countdown Prime (2018) #1",
+      "issueNumber": "1",
+      "description": "The Infinity Stones. Individually, they grant their wielder great power. Together, they grant the power of a god. Newly reformed and scattered throughout the universe, these artifacts allow the ones who claim them their heart’s desire. Now, as their locations are discovered, forces converge for a battle that will begin the universe down a dark path to the END. Jump onto this exciting ride that will lead to the biggest Infinity yet! Plus: The saga of the Infinity Stones - what they are and how they came to be! From creation to destruction to re-creation, this prose primer will tell you everything you need to know about the legendary cosmic gems!",
+      "modified": "2019-06-21T17:22:04+0000",
+      "pageCount": 48,
+      "detailUrl": "https://www.marvel.com/comics/issue/66283/infinity_countdown_prime_2018_1",
+      "seriesId": 24300,
+      "seriesName": "Infinity Countdown Prime (2018)",
+      "onSaleDate": "2018-02-21T00:00:00+0000",
+      "unlimitedDate": "2018-08-27T00:00:00+0000",
+      "yearPage": 2018,
+      "creators": [
+        {
+          "id": 4991,
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 8822,
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 312,
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "id": 11680,
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "id": 10004,
+          "name": "Mike O'sullivan",
+          "role": "writer"
+        }
+      ],
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/e/90/5a84851766948",
+        "extension": "jpg"
+      },
+      "seriesTitle": "Infinity Countdown Prime",
+      "seriesYear": 2018,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 67349,
+      "digitalId": 48615,
+      "title": "Infinity Wars Prime (2018) #1",
+      "issueNumber": "1",
+      "description": "Trust us, Marvel Fans - before the INFINITY WARS begin to rage comes this shocking chapter of the cosmic saga that you will not want to miss! The ramifications of this issue will be felt throughout Infinity for years to come! We can say NO MORE!",
+      "modified": "2023-11-08T18:24:38+0000",
+      "pageCount": 40,
+      "detailUrl": "https://www.marvel.com/comics/issue/67349/infinity_wars_prime_2018_1",
+      "seriesId": 24340,
+      "seriesName": "Infinity Wars Prime (2018)",
+      "onSaleDate": "2018-07-25T00:00:00+0000",
+      "unlimitedDate": "2019-01-28T00:00:00+0000",
+      "yearPage": 2018,
+      "creators": [
+        {
+          "id": 4991,
+          "name": "Frank Martin",
+          "role": "colorist"
+        },
+        {
+          "id": 8822,
+          "name": "Jordan D. White",
+          "role": "editor"
+        },
+        {
+          "id": 12980,
+          "name": "Vc Cory Petit",
+          "role": "letterer"
+        },
+        {
+          "id": 312,
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "id": 11680,
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
+      "cover": {
+        "path": "http://i.annihil.us/u/prod/marvel/i/mg/5/f0/5b52272a8fa14",
+        "extension": "jpg"
+      },
+      "seriesTitle": "Infinity Wars Prime",
+      "seriesYear": 2018,
+      "manualSeriesSelection": true,
+      "manualSeriesSelectionApproved": true
+    },
+    {
+      "id": 95780,
+      "title": "Black Widow",
+      "issueTitle": "Black Widow (2020) #15",
+      "seriesTitle": "Black Widow",
+      "apiSeriesName": null,
+      "seriesId": null,
+      "issueNumber": "15",
+      "seriesYear": 2020,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95780/read",
+      "onSaleDate": null,
+      "detailsRefused": true
     }
   ],
   "rows": [
@@ -28317,6 +28389,31 @@
       "resolvedIssueTitle": "Tales of Suspense (1959) #52",
       "metadataIssueNumber": "52",
       "note": "",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 7,
+      "sourceIssueReference": "Amazing Spider-Man #86",
+      "sourceRangeReference": "Amazing Spider-Man #86",
+      "sourceGroup": "Black Widow Origins",
+      "normalizedSeriesTitle": "Amazing Spider-Man",
+      "seriesYear": 1963,
+      "issueNumber": "86",
+      "seriesId": 1987,
+      "candidateIssueId": 6908,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 6908 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "6908"
+      ],
+      "selectedIssueId": 6908,
+      "selectedIssueIds": [
+        6908
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/6908/the_amazing_spider-man_1963_86",
+      "resolvedIssueTitle": "The Amazing Spider-Man (1963) #86",
+      "note": "Issue 6908 is the owner-approved exact official identity for this source position.",
       "status": "exact"
     },
     {
@@ -32402,6 +32499,31 @@
       "status": "exact"
     },
     {
+      "sourcePosition": 226,
+      "sourceIssueReference": "Daredevil: Love and War (1986)",
+      "sourceRangeReference": "Daredevil: Love and War (1986)",
+      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
+      "normalizedSeriesTitle": "Daredevil: Love and War",
+      "seriesYear": 1986,
+      "issueNumber": "0",
+      "seriesId": 3906,
+      "candidateIssueId": 20779,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 20779 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20779"
+      ],
+      "selectedIssueId": 20779,
+      "selectedIssueIds": [
+        20779
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20779/daredevil_love_and_war_1986",
+      "resolvedIssueTitle": "Daredevil: Love and War (1986)",
+      "note": "Issue 20779 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
       "sourcePosition": 233,
       "sourceIssueReference": "Avengers #231",
       "sourceRangeReference": "Collects: Avengers (1963) #231-241",
@@ -33205,6 +33327,31 @@
       "resolvedIssueTitle": "West Coast Avengers (1985) #16",
       "metadataIssueNumber": "16",
       "note": "",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 269,
+      "sourceIssueReference": "West Coast Avengers Annual #1",
+      "sourceRangeReference": "West Coast Avengers Annual (1986) #1",
+      "sourceGroup": "Essential Black Widow Stories From 70's To 90's",
+      "normalizedSeriesTitle": "West Coast Avengers Annual",
+      "seriesYear": 1986,
+      "issueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 56327,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 56327 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "56327"
+      ],
+      "selectedIssueId": 56327,
+      "selectedIssueIds": [
+        56327
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+      "resolvedIssueTitle": "West Coast Avengers Annual (1986) #1",
+      "note": "Issue 56327 is the owner-approved exact official identity for this source position.",
       "status": "exact"
     },
     {
@@ -34219,6 +34366,31 @@
       "resolvedIssueTitle": "West Coast Avengers Annual (1986) #6",
       "metadataIssueNumber": "6",
       "note": "",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 318,
+      "sourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "sourceRangeReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "sourceGroup": "Black Widow in the 1990's",
+      "normalizedSeriesTitle": "Avengers: Deathtrap - The Vault",
+      "seriesYear": 1991,
+      "issueNumber": "1",
+      "seriesId": 24257,
+      "candidateIssueId": 67091,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 67091 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67091"
+      ],
+      "selectedIssueId": 67091,
+      "selectedIssueIds": [
+        67091
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67091/avengers_deathtrap_-_the_vault_1991_1",
+      "resolvedIssueTitle": "Avengers: Deathtrap - The Vault (1991) #1",
+      "note": "Issue 67091 is the owner-approved exact official identity for this source position.",
       "status": "exact"
     },
     {
@@ -36718,6 +36890,31 @@
       "status": "exact"
     },
     {
+      "sourcePosition": 440,
+      "sourceIssueReference": "Avengers #496",
+      "sourceRangeReference": "Avengers (1963) #496",
+      "sourceGroup": "Black Widow in the 1990's",
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 1998,
+      "issueNumber": "81",
+      "seriesId": 354,
+      "candidateIssueId": 492,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 492 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "492"
+      ],
+      "selectedIssueId": 492,
+      "selectedIssueIds": [
+        492
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/492/avengers_1998_81",
+      "resolvedIssueTitle": "Avengers (1998) #81",
+      "note": "Issue 492 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
       "sourcePosition": 446,
       "sourceIssueReference": "X-Men #53",
       "sourceRangeReference": "Collects: X-Men (1991) #53-54",
@@ -36897,6 +37094,31 @@
       "resolvedIssueTitle": "Incredible Hulk (1962) #444",
       "metadataIssueNumber": "444",
       "note": "",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 453,
+      "sourceIssueReference": "Onslaught: X-Men (1996)",
+      "sourceRangeReference": "Onslaught: X-Men (1996)",
+      "sourceGroup": "Black Widow in the 1990's",
+      "normalizedSeriesTitle": "Onslaught: X-Men",
+      "seriesYear": 1996,
+      "issueNumber": "1",
+      "seriesId": 3900,
+      "candidateIssueId": 20767,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 20767 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "20767"
+      ],
+      "selectedIssueId": 20767,
+      "selectedIssueIds": [
+        20767
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/20767/onslaught_x-men_1996_1",
+      "resolvedIssueTitle": "Onslaught: X-Men (1996) #1",
+      "note": "Issue 20767 is the owner-approved exact official identity for this source position.",
       "status": "exact"
     },
     {
@@ -40851,6 +41073,56 @@
       "status": "exact"
     },
     {
+      "sourcePosition": 665,
+      "sourceIssueReference": "Secret Empire #9",
+      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Secret Empire",
+      "seriesYear": 2017,
+      "issueNumber": "9",
+      "seriesId": 23020,
+      "candidateIssueId": 64259,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64259 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64259"
+      ],
+      "selectedIssueId": 64259,
+      "selectedIssueIds": [
+        64259
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64259/read",
+      "resolvedIssueTitle": "Secret Empire (2017) #9",
+      "note": "Issue 64259 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 666,
+      "sourceIssueReference": "Secret Empire #10",
+      "sourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Secret Empire",
+      "seriesYear": 2017,
+      "issueNumber": "10",
+      "seriesId": 23020,
+      "candidateIssueId": 64285,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64285 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "64285"
+      ],
+      "selectedIssueId": 64285,
+      "selectedIssueIds": [
+        64285
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
+      "resolvedIssueTitle": "Secret Empire (2017) #10",
+      "note": "Issue 64285 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
       "sourcePosition": 667,
       "sourceIssueReference": "Secret Empire Omega #1",
       "sourceRangeReference": "Secret Empire Omega (2017) #1",
@@ -41423,6 +41695,31 @@
       "status": "exact"
     },
     {
+      "sourcePosition": 699,
+      "sourceIssueReference": "Infinity Countdown Prime (2018)",
+      "sourceRangeReference": "Infinity Countdown Prime (2018)",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Infinity Countdown Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24300,
+      "candidateIssueId": 66283,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 66283 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66283"
+      ],
+      "selectedIssueId": 66283,
+      "selectedIssueIds": [
+        66283
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66283/infinity_countdown_prime_2018_1",
+      "resolvedIssueTitle": "Infinity Countdown Prime (2018) #1",
+      "note": "Issue 66283 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
+    },
+    {
       "sourcePosition": 703,
       "sourceIssueReference": "Infinity Countdown: Black Widow #1",
       "sourceRangeReference": "Collects: Infinity Countdown: Black Widow (2018) #1",
@@ -41550,6 +41847,31 @@
       "resolvedIssueTitle": "Infinity Countdown: Daredevil (2018) #1",
       "metadataIssueNumber": "1",
       "note": "",
+      "status": "exact"
+    },
+    {
+      "sourcePosition": 710,
+      "sourceIssueReference": "Infinty Wars Prime #1",
+      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1",
+      "sourceGroup": "All-New All-Different Black Widow",
+      "normalizedSeriesTitle": "Infinity Wars Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24340,
+      "candidateIssueId": 67349,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 67349 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "67349"
+      ],
+      "selectedIssueId": 67349,
+      "selectedIssueIds": [
+        67349
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/67349/infinity_wars_prime_2018_1",
+      "resolvedIssueTitle": "Infinity Wars Prime (2018) #1",
+      "note": "Issue 67349 is the owner-approved exact official identity for this source position.",
       "status": "exact"
     },
     {
@@ -42747,11 +43069,36 @@
       "metadataIssueNumber": "14",
       "note": "",
       "status": "exact"
+    },
+    {
+      "sourcePosition": 773,
+      "sourceIssueReference": "Black Widow #15",
+      "sourceRangeReference": "Collects: Black Widow (2020) #11 to #15",
+      "sourceGroup": "Latest Additions",
+      "normalizedSeriesTitle": "Black Widow",
+      "seriesYear": 2020,
+      "issueNumber": "15",
+      "seriesId": null,
+      "candidateIssueId": 95780,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 95780 is the owner-approved exact official identity for this source position.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95780"
+      ],
+      "selectedIssueId": 95780,
+      "selectedIssueIds": [
+        95780
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95780/read",
+      "resolvedIssueTitle": "Black Widow (2020) #15",
+      "note": "Issue 95780 is the owner-approved exact official identity for this source position.",
+      "status": "exact"
     }
   ],
   "reviewStatus": "approved",
-  "mappingDigest": "84108d9b21d817e3aba7f435f17e560a3e3073fd4aaa65de596b380a5d244e57",
-  "packetReview": "GPT-5.6 Terra reviewed the frozen source packet, exact selected IDs, 14 explicit metadata gaps, and source-to-provider numbering distinctions.",
+  "mappingDigest": "6ccf074e84532129997b6f4d6a3abd19ff341cb70b4a20314af6feda3b62cc1e",
+  "packetReview": "GPT-5.6 Terra reviewed the frozen source packet and source-to-provider numbering distinctions; issue 311 then approved eleven exact identities and three Marvel Unlimited exclusions.",
   "approvedManifest": {
     "id": "black-widow-reading-order",
     "name": "Black Widow",
@@ -42782,19 +43129,19 @@
       "Marvel",
       "Comic Book Herald"
     ],
-    "expect": 570,
+    "expect": 567,
     "timeline": null,
     "coverIssueId": 11295
   },
   "relationshipReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "Reviewed all complete-library comparisons, including every non-none overlap. None is an exact duplicate; shared appearances remain valid in each guide.",
-    "reviewedAt": "2026-08-27",
-    "reportDigest": "d48769086786acc6e141b35bd7a2f6499fa3411cc781260ce16d6bc180e32508",
-    "packetDigest": "f52951e63428ee3d32445a7826872a349adae5a84da3326c7c5f9887667bb54e",
-    "mappingDigest": "84108d9b21d817e3aba7f435f17e560a3e3073fd4aaa65de596b380a5d244e57",
-    "libraryDigest": "97089274071a46191af30a920595eef57c9a0cff0baa5c4d11577ef528206b53",
+    "authorityIdentity": "GitHub Copilot",
+    "rationale": "Reviewed the refreshed complete-library comparison after settling all fourteen issue 311 positions. Every resulting relationship remains source-faithful and approved.",
+    "reviewedAt": "2026-09-03",
+    "reportDigest": "1a31a1d13b1c07a27cdc09d129d4239dce8fb8c5692fe01eb206d3d1e3158adb",
+    "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
+    "mappingDigest": "6ccf074e84532129997b6f4d6a3abd19ff341cb70b4a20314af6feda3b62cc1e",
+    "libraryDigest": "3d6e002a77dc2eccf61d8b9347371bc7940d81c8702c9ab7a9f716beb38608a1",
     "peerDigests": {},
     "dispositions": [
       {
@@ -42804,7 +43151,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42815,9 +43162,35 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "adam-warlock-reading-order",
+        "sharedCount": 14,
+        "sharedIds": [
+          "9292",
+          "9293",
+          "9294",
+          "9295",
+          "9296",
+          "9297",
+          "18452",
+          "18453",
+          "18454",
+          "18414",
+          "10020",
+          "10021",
+          "10023",
+          "10024"
+        ],
+        "relationship": "partial",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
       },
       {
         "orderId": "agatha-harkness-reading-order",
@@ -42826,7 +43199,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 6,
         "sharedIds": [
           "9294",
@@ -42844,7 +43217,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42855,7 +43228,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 2,
         "sharedIds": [
           "19785",
@@ -42869,7 +43242,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42880,9 +43253,10 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 2,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 3,
         "sharedIds": [
+          "6908",
           "16890",
           "1532"
         ]
@@ -42894,7 +43268,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42905,7 +43279,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42916,8 +43290,8 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 24,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 26,
         "sharedIds": [
           "7309",
           "7311",
@@ -42942,6 +43316,8 @@
           "63753",
           "63869",
           "64166",
+          "64259",
+          "64285",
           "64438"
         ]
       },
@@ -42952,7 +43328,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42963,7 +43339,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42974,7 +43350,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42985,7 +43361,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -42996,7 +43372,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43007,7 +43383,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43018,7 +43394,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 4,
         "sharedIds": [
           "73446",
@@ -43034,7 +43410,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 5,
         "sharedIds": [
           "7250",
@@ -43051,7 +43427,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43062,7 +43438,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43073,7 +43449,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 22,
         "sharedIds": [
           "7099",
@@ -43107,7 +43483,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43118,7 +43494,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43129,7 +43505,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43140,7 +43516,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 6,
         "sharedIds": [
           "6097",
@@ -43158,7 +43534,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43169,7 +43545,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43180,7 +43556,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43191,7 +43567,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43202,8 +43578,8 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 125,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 126,
         "sharedIds": [
           "8433",
           "8434",
@@ -43289,6 +43665,7 @@
           "8174",
           "8175",
           "8206",
+          "20779",
           "8202",
           "8203",
           "8204",
@@ -43339,7 +43716,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43350,7 +43727,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43361,7 +43738,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43372,7 +43749,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43383,7 +43760,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43394,7 +43771,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43405,7 +43782,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43416,7 +43793,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43427,7 +43804,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43438,7 +43815,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 6,
         "sharedIds": [
           "9292",
@@ -43456,7 +43833,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43467,8 +43844,8 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 14,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 16,
         "sharedIds": [
           "7312",
           "6925",
@@ -43478,6 +43855,8 @@
           "67022",
           "68653",
           "68656",
+          "66283",
+          "67349",
           "67145",
           "67147",
           "67148",
@@ -43493,7 +43872,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43504,7 +43883,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43515,7 +43894,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 11,
         "sharedIds": [
           "7309",
@@ -43538,7 +43917,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43549,7 +43928,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43560,9 +43939,29 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "fantastic-four-reading-order",
+        "sharedCount": 8,
+        "sharedIds": [
+          "7101",
+          "13068",
+          "13245",
+          "19885",
+          "15533",
+          "63127",
+          "62837",
+          "63223"
+        ],
+        "relationship": "partial",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
       },
       {
         "orderId": "fatal-attractions",
@@ -43571,7 +43970,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43582,7 +43981,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43593,9 +43992,36 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "guardians-of-the-galaxy-reading-order",
+        "sharedCount": 15,
+        "sharedIds": [
+          "63127",
+          "62837",
+          "63223",
+          "66416",
+          "66684",
+          "67022",
+          "68653",
+          "68656",
+          "66283",
+          "67145",
+          "67147",
+          "67148",
+          "67149",
+          "67150",
+          "67151"
+        ],
+        "relationship": "partial",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
       },
       {
         "orderId": "heroes-reborn-2021",
@@ -43604,7 +44030,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43615,7 +44041,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 6,
         "sharedIds": [
           "35160",
@@ -43633,7 +44059,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43644,7 +44070,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43655,7 +44081,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43666,7 +44092,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43677,7 +44103,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43688,7 +44114,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "66416"
@@ -43701,7 +44127,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43712,7 +44138,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43723,7 +44149,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43734,19 +44160,21 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 16,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 18,
         "sharedIds": [
           "66416",
           "66684",
           "67022",
           "68653",
           "68656",
+          "66283",
           "68659",
           "67346",
           "68662",
           "68663",
           "67347",
+          "67349",
           "67145",
           "67147",
           "67148",
@@ -43756,13 +44184,24 @@
         ]
       },
       {
+        "orderId": "inhumans-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID."
+      },
+      {
         "orderId": "inhumans-vs-x-men",
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43773,9 +44212,54 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "iron-man-reading-order",
+        "sharedCount": 33,
+        "sharedIds": [
+          "11295",
+          "11296",
+          "11300",
+          "11304",
+          "11308",
+          "9525",
+          "9526",
+          "37769",
+          "37780",
+          "37791",
+          "37802",
+          "37813",
+          "37824",
+          "37835",
+          "37846",
+          "37857",
+          "37770",
+          "37771",
+          "37772",
+          "37773",
+          "19885",
+          "40",
+          "1438",
+          "1532",
+          "1628",
+          "1720",
+          "1829",
+          "6097",
+          "6301",
+          "13477",
+          "15855",
+          "15965",
+          "16519"
+        ],
+        "relationship": "partial",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
       },
       {
         "orderId": "judgment-day",
@@ -43784,7 +44268,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43795,7 +44279,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43806,7 +44290,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43817,7 +44301,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43828,7 +44312,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43839,14 +44323,16 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 11,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 13,
         "sharedIds": [
           "66416",
           "66684",
           "67022",
           "68653",
           "68656",
+          "66283",
+          "67349",
           "67145",
           "67147",
           "67148",
@@ -43862,7 +44348,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 17,
         "sharedIds": [
           "7290",
@@ -43891,9 +44377,20 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "marvel-2099",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID."
       },
       {
         "orderId": "marvel-fresh-start-avengers",
@@ -43902,7 +44399,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43913,7 +44410,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43924,7 +44421,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43935,7 +44432,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43946,7 +44443,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "58430"
@@ -43959,7 +44456,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43970,7 +44467,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 4,
         "sharedIds": [
           "15350",
@@ -43986,7 +44483,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -43997,7 +44494,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44008,7 +44505,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44019,9 +44516,20 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "modern-x-men-fast-track",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID."
       },
       {
         "orderId": "monsters-unleashed",
@@ -44030,9 +44538,47 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "moon-knight-reading-order",
+        "sharedCount": 26,
+        "sharedIds": [
+          "17888",
+          "17889",
+          "17890",
+          "17891",
+          "17892",
+          "17893",
+          "17894",
+          "6929",
+          "16055",
+          "16062",
+          "16063",
+          "16064",
+          "16065",
+          "16066",
+          "16067",
+          "16068",
+          "16069",
+          "16056",
+          "16057",
+          "16058",
+          "35160",
+          "37346",
+          "35140",
+          "35130",
+          "35128",
+          "35144"
+        ],
+        "relationship": "partial",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
       },
       {
         "orderId": "muir-island-saga",
@@ -44041,7 +44587,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44052,7 +44598,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44063,7 +44609,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44074,7 +44620,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44085,7 +44631,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44096,9 +44642,20 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "nick-fury-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID."
       },
       {
         "orderId": "operation-galactic-storm",
@@ -44107,7 +44664,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 17,
         "sharedIds": [
           "7225",
@@ -44136,7 +44693,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44147,7 +44704,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44158,7 +44715,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44169,7 +44726,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44180,7 +44737,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44191,7 +44748,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44202,7 +44759,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 5,
         "sharedIds": [
           "67563",
@@ -44219,7 +44776,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 4,
         "sharedIds": [
           "16880",
@@ -44235,7 +44792,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44246,7 +44803,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44257,7 +44814,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44268,7 +44825,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44279,9 +44836,20 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "runaways-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID."
       },
       {
         "orderId": "scarlet-witch-best-of",
@@ -44290,7 +44858,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 2,
         "sharedIds": [
           "17491",
@@ -44304,7 +44872,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44315,7 +44883,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44326,7 +44894,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44337,7 +44905,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44348,7 +44916,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44359,7 +44927,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44370,7 +44938,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44381,7 +44949,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44392,14 +44960,15 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 5,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 6,
         "sharedIds": [
           "66416",
           "66684",
           "67022",
           "68653",
-          "68656"
+          "68656",
+          "66283"
         ]
       },
       {
@@ -44409,7 +44978,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44420,7 +44989,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44431,20 +45000,22 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
       {
         "orderId": "spider-man-best-of",
-        "relationship": "none",
+        "relationship": "partial",
         "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence.",
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 1,
+        "sharedIds": [
+          "6908"
+        ]
       },
       {
         "orderId": "spider-man-far-from-home",
@@ -44453,7 +45024,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44464,7 +45035,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44475,7 +45046,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44486,7 +45057,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44497,7 +45068,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44508,7 +45079,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44519,7 +45090,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44530,8 +45101,8 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 15,
+        "reviewedAt": "2026-09-03",
+        "sharedCount": 16,
         "sharedIds": [
           "8080",
           "9292",
@@ -44547,7 +45118,8 @@
           "10020",
           "10021",
           "10023",
-          "10024"
+          "10024",
+          "67349"
         ]
       },
       {
@@ -44557,9 +45129,22 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "the-defenders-reading-order",
+        "sharedCount": 1,
+        "sharedIds": [
+          "6925"
+        ],
+        "relationship": "partial",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GitHub Copilot",
+        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
       },
       {
         "orderId": "the-night-gwen-stacy-died",
@@ -44568,7 +45153,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44579,7 +45164,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44590,7 +45175,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44601,7 +45186,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44612,7 +45197,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "8322"
@@ -44625,7 +45210,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44636,7 +45221,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44647,7 +45232,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44658,7 +45243,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 3,
         "sharedIds": [
           "75482",
@@ -44673,7 +45258,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44684,7 +45269,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44695,7 +45280,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 11,
         "sharedIds": [
           "40",
@@ -44718,7 +45303,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44729,7 +45314,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44740,9 +45325,20 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
+      },
+      {
+        "orderId": "x-force-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID."
       },
       {
         "orderId": "x-men-age-of-x",
@@ -44751,7 +45347,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44762,7 +45358,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44773,7 +45369,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44784,7 +45380,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44795,7 +45391,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44806,7 +45402,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44817,7 +45413,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44828,7 +45424,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44839,7 +45435,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44850,7 +45446,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44861,7 +45457,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44872,7 +45468,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44883,7 +45479,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44894,7 +45490,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44905,7 +45501,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44916,7 +45512,7 @@
         "authorityType": "policy",
         "authorityIdentity": "complete-library-overlap-policy",
         "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -44927,13 +45523,415 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-08-27",
+        "reviewedAt": "2026-09-03",
         "sharedCount": 1,
         "sharedIds": [
           "6966"
         ]
+      },
+      {
+        "orderId": "young-avengers-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "reviewedAt": "2026-09-03",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "complete-library-overlap-policy",
+        "rationale": "No shared provider issue ID."
       }
     ],
-    "approvalDigest": "8a628c10f3812bca6e1ff30e3b7ef87dd7f36069a90e6af13145941633d1026e"
-  }
+    "approvalDigest": "8c593c21835f59b3bd892503a6001d045e235ea0620451b7dc5f06094b67923a",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 773,
+      "sourceIdentityCount": 567,
+      "includedIssueCount": 567,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 20,
+      "excludedSourceRowCount": 186
+    }
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 7,
+      "previousSourceIssueReference": "Amazing Spider-Man #86",
+      "previousSourceRangeReference": "Amazing Spider-Man #86",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "86",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 6908,
+      "resolvedNormalizedSeriesTitle": "Amazing Spider-Man",
+      "resolvedSeriesYear": 1963,
+      "resolvedIssueNumber": "86",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 6908 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/6908",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "4d39a5dccdefdb9a70eced44011dd19669c934129590dea8efd0dc5110de1783"
+    },
+    {
+      "sourcePosition": 226,
+      "previousSourceIssueReference": "Daredevil: Love and War (1986)",
+      "previousSourceRangeReference": "Daredevil: Love and War (1986)",
+      "previousNormalizedSeriesTitle": "Daredevil: Love and War",
+      "previousSeriesYear": 1986,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20779,
+      "resolvedNormalizedSeriesTitle": "Daredevil: Love and War",
+      "resolvedSeriesYear": 1986,
+      "resolvedIssueNumber": "0",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 20779 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/20779",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "e19cc55df39ffb5e32673e035625f31659445e92ec5ce06e02751b265bc31e2b"
+    },
+    {
+      "sourcePosition": 269,
+      "previousSourceIssueReference": "West Coast Avengers Annual #1",
+      "previousSourceRangeReference": "West Coast Avengers Annual (1986) #1",
+      "previousNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "previousSeriesYear": 1986,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 56327,
+      "resolvedNormalizedSeriesTitle": "West Coast Avengers Annual",
+      "resolvedSeriesYear": 1986,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 56327 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/56327/west_coast_avengers_annual_1986_1",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "fd1e2e7af6015bb0606ab0d028335364f55c190c5c4aa35af79c90c6fa1262e8"
+    },
+    {
+      "sourcePosition": 315,
+      "previousSourceIssueReference": "Namor The Sub-Mariner Annual #1",
+      "previousSourceRangeReference": "Namor The Sub-Mariner Annual (1991) #1",
+      "previousNormalizedSeriesTitle": "Namor The Sub-Mariner Annual",
+      "previousSeriesYear": 1991,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Namor The Sub-Mariner Annual #1 is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner authorized omission after confirming that no standalone Marvel Unlimited issue entry is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "3259d80d64c59b81694e941b9f95e8cd3cf32a4ffccc732909ad23fe353f501e"
+    },
+    {
+      "sourcePosition": 318,
+      "previousSourceIssueReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "previousSourceRangeReference": "Avengers: Deathtrap ? The Vault (1991)",
+      "previousNormalizedSeriesTitle": "Avengers: Deathtrap ? The Vault",
+      "previousSeriesYear": 1991,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 67091,
+      "resolvedNormalizedSeriesTitle": "Avengers: Deathtrap - The Vault",
+      "resolvedSeriesYear": 1991,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 67091 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/67091",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "d58064c5dd3881731813adfb8c75e39ffdb3b213cfa7184349515fa90eca5073"
+    },
+    {
+      "sourcePosition": 440,
+      "previousSourceIssueReference": "Avengers #496",
+      "previousSourceRangeReference": "Avengers (1963) #496",
+      "previousNormalizedSeriesTitle": "Avengers",
+      "previousSeriesYear": 1963,
+      "previousIssueNumber": "496",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 492,
+      "resolvedNormalizedSeriesTitle": "Avengers",
+      "resolvedSeriesYear": 1998,
+      "resolvedIssueNumber": "81",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 492 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/492",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "9dedde9f05c023132191f0bb16397ccec7511c89a5cae395e58d7ebf423444fe"
+    },
+    {
+      "sourcePosition": 441,
+      "previousSourceIssueReference": "Captain America: The Legend (1996)",
+      "previousSourceRangeReference": "Captain America: The Legend (1996)",
+      "previousNormalizedSeriesTitle": "Captain America: The Legend",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "null",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Captain America: The Legend (1996) is unavailable on Marvel Unlimited.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner authorized omission after confirming that no standalone Marvel Unlimited issue entry is available.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "f3e377c49a2555fda1acffd950bce3117b1cc1626acb66033d48cdab7e148cfb"
+    },
+    {
+      "sourcePosition": 453,
+      "previousSourceIssueReference": "Onslaught: X-Men (1996)",
+      "previousSourceRangeReference": "Onslaught: X-Men (1996)",
+      "previousNormalizedSeriesTitle": "Onslaught: X-Men",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20767,
+      "resolvedNormalizedSeriesTitle": "Onslaught: X-Men",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 20767 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/20767",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "c52d5cb08c0d32d3100383bdf01c5e5939892957cb4155ebc5e967026948834e"
+    },
+    {
+      "sourcePosition": 462,
+      "previousSourceIssueReference": "Thunderbolts #-1",
+      "previousSourceRangeReference": "Collects: Thunderbolts (1997) #1-5 & -1",
+      "previousNormalizedSeriesTitle": "Thunderbolts",
+      "previousSeriesYear": 1997,
+      "previousIssueNumber": "-1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Thunderbolts #-1 exists, but the reviewed Thunderbolts series has no standalone Marvel Unlimited entry for it; Thunderbolts #0 must not substitute.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The complete reviewed Thunderbolts series response starts at #1 and contains no #-1 entry, so the source identity remains preserved as an availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/series/2296/issues?limit=100&offset=0",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "official-marvel-series",
+          "url": "https://www.marvel.com/comics/series/2296/thunderbolts_1997_2003",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "aa4323b6e90d75b81e9e7a8a6fee124d320bb34481ea5d93a300c8d2b0f081a9"
+    },
+    {
+      "sourcePosition": 665,
+      "previousSourceIssueReference": "Secret Empire #9",
+      "previousSourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "previousNormalizedSeriesTitle": "Secret Empire",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "9",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64259,
+      "resolvedNormalizedSeriesTitle": "Secret Empire",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 64259 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64259/read",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "5c8f9c420f29b1646143d03909e4ff69e78ea2cb9136625a4f4ede06196e7d23"
+    },
+    {
+      "sourcePosition": 666,
+      "previousSourceIssueReference": "Secret Empire #10",
+      "previousSourceRangeReference": "Collects: Secret Empire (2017) #0-10",
+      "previousNormalizedSeriesTitle": "Secret Empire",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "10",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64285,
+      "resolvedNormalizedSeriesTitle": "Secret Empire",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "10",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 64285 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64285/secret_empire_2017_10",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "8d92ac03d431eb8a40efb4e88960d380f9f07fbdb66503c18020e2c1d0b77e66"
+    },
+    {
+      "sourcePosition": 699,
+      "previousSourceIssueReference": "Infinity Countdown Prime (2018)",
+      "previousSourceRangeReference": "Infinity Countdown Prime (2018)",
+      "previousNormalizedSeriesTitle": "Infinity Countdown Prime",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66283,
+      "resolvedNormalizedSeriesTitle": "Infinity Countdown Prime",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 66283 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/66283",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "cecb7f0e9c14346ebf45f0ad8e8a4fd8f2efd76de4863b38561d2a571143909e"
+    },
+    {
+      "sourcePosition": 710,
+      "previousSourceIssueReference": "Infinty Wars Prime #1",
+      "previousSourceRangeReference": "Collects: Infinty Wars Prime (2018) #1",
+      "previousNormalizedSeriesTitle": "Infinty Wars Prime",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 67349,
+      "resolvedNormalizedSeriesTitle": "Infinity Wars Prime",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 67349 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/67349",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "89edcd315b198be01383af33258e6fb5ce64d2c7d7a7a18f6f358462f4eb0f35"
+    },
+    {
+      "sourcePosition": 773,
+      "previousSourceIssueReference": "Black Widow #15",
+      "previousSourceRangeReference": "Collects: Black Widow (2020) #11 to #15",
+      "previousNormalizedSeriesTitle": "Black Widow",
+      "previousSeriesYear": 2020,
+      "previousIssueNumber": "15",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 95780,
+      "resolvedNormalizedSeriesTitle": "Black Widow",
+      "resolvedSeriesYear": 2020,
+      "resolvedIssueNumber": "15",
+      "checkedAt": "2026-09-03",
+      "auditBasis": "The owner supplied or confirmed official issue 95780 as the exact identity for the preserved source reference.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/95780/read",
+          "retrievedAt": "2026-09-03"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/311",
+          "retrievedAt": "2026-09-03"
+        }
+      ],
+      "evidenceDigest": "fdb46ab02ee0b832e48438c2c6eb2dc514c0a04407eda5448d7b5da8f6676ed3"
+    }
+  ]
 }

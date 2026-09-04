@@ -420,10 +420,10 @@
     "coverIssueId": 92236
   },
   "relationshipReview": {
-    "reportDigest": "8d00098637fa0ba2b0c314e94e7e0dfd413722847aa536773124b7242120d433",
+    "reportDigest": "0c5418fc471a437e85f90a06184c8a6f9e6312e04cda019c203a8c09395393cd",
     "packetDigest": "ac08895871774ef5883efe978d1381ee4327f51525da4dbb262f5f67d9929a61",
     "mappingDigest": "34c04ca17f5ad3bdcbed6832875f6e8906fe4fdf678110637bd53b5299d9c4c3",
-    "libraryDigest": "88ec112c4171377f6433df77f4dc2378d85e81c0113857dfdb55f0d7e4147210",
+    "libraryDigest": "e7a8790f83b402f4c81873698497401f00137b59517400368d12a063e3b47688",
     "peerDigests": {
       "infinite-destinies": "15a8ad3f53eed905c7ed336668cfa03e88524fc760906552232027aeedbe6d6b",
       "x-men-inferno": "24fe2f0aaebd9439d3a7b608f095fb0201c04e4c234514c0ecd40b16d802687f"
@@ -1391,6 +1391,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "6fbd635a1b3df8ccdafc2bb47e763a7ca272e750c27d9657f444a129a1832da9"
+    "approvalDigest": "e5e52124bae3aa35d1920dbe89f43a55ae52528e33e6641f7f8b96ff1ff57efe"
   }
 }

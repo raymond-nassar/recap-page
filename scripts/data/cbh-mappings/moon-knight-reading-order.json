@@ -8949,10 +8949,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "Reviewed every complete-library comparison, including later guides. The 18 non-none relationships are ordinary shared reading material and no exact duplicate exists. The guide remains independently useful because it preserves Moon Knight source order, source provenance, explicit metadata gaps, and repeat history.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "b27b5956afcfbe0495a6912a3188547f6709bb664623993129d979f9a746bfdc",
+    "reportDigest": "92f37955a2727e8686fb7db9bf510a7e154b98839ec06095448bd4605eeea0f8",
     "packetDigest": "2b77bda70ad533c7c0c4521a966e907e2bada5c56ba45f9521ac8647e67b1654",
     "mappingDigest": "f74bc075979b496e7c3db74bccabfa37158b9ad0c9b138ab13705c904367555a",
-    "libraryDigest": "9d47fcd6efdebd9f71f3f74ae52d7db2bce8560fe19360c3213a6e313c98810a",
+    "libraryDigest": "c0eab7d863d1f59fcdf9f06b6211d3d76f86e3b9bf1ca042b9df67e0f872a796",
     "peerDigests": {},
     "dispositions": [
       {
@@ -9115,7 +9115,36 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The partial relationship shares 26 provider issue ids but does not duplicate the Moon Knight source guide.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 26,
+        "sharedIds": [
+          "17888",
+          "17889",
+          "17890",
+          "17891",
+          "17892",
+          "17893",
+          "17894",
+          "6929",
+          "16055",
+          "16062",
+          "16063",
+          "16064",
+          "16065",
+          "16066",
+          "16067",
+          "16068",
+          "16069",
+          "16056",
+          "16057",
+          "16058",
+          "35160",
+          "37346",
+          "35140",
+          "35130",
+          "35128",
+          "35144"
+        ]
       },
       {
         "orderId": "bloodties",
@@ -10414,6 +10443,13 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "493c977737f45db6f10ac258fea776cf25a476f64fdaaa5f93bab24476d6f428"
+    "approvalDigest": "af8ca0ddb4ad3f9a54f31337a4f2e0cd325072ad3770410237864a53527e73b1",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 414,
+      "sourceIdentityCount": 392,
+      "includedIssueCount": 374,
+      "sourceGapCount": 18,
+      "repeatedSourceReferenceCount": 11
+    }
   }
 }

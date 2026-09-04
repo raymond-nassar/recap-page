@@ -6731,10 +6731,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The current active library comparison covers 138 catalog orders. All eight non-none relationships were reviewed individually; each is a partial overlap caused by source-inclusive crossover material, and no exact duplicate exists.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "4adc59b1061f177bb410a120ba61fd5699dbb30682997f195d4a274b8d6474c1",
+    "reportDigest": "4a8f649f2b3da25ac7b0ef8342a5e078c89800aa43cdf8de47a4e279469d85d7",
     "packetDigest": "cd96d43cc0b84c1d3308acad624440953c3869d99fb41b9823039b2bed94cb82",
     "mappingDigest": "598e40dff03f403689e0ac7a917a5264b9b77dfd8bb27bc964cc4436f633ee47",
-    "libraryDigest": "da629eff37f022bd4783f0568f77a5c9d55a9ddb310a84eeab37ce23672644d2",
+    "libraryDigest": "ef08bfbca1539f69ad7ea7b9f2e6593e4a6e10ce6997955a320de9869cc21224",
     "peerDigests": {},
     "dispositions": [
       {
@@ -6843,7 +6843,9 @@
         "authorityType": "policy",
         "authorityIdentity": "existing-library-policy",
         "rationale": "No shared selected issue ids exist in the reviewed active-library comparison.",
-        "reviewedAt": "2026-08-27"
+        "reviewedAt": "2026-08-27",
+        "sharedCount": 0,
+        "sharedIds": []
       },
       {
         "orderId": "bloodties",
@@ -7980,6 +7982,13 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "0e00afd3798b9a580343d3a74331ab7f61f537ebd7310aab202b72185befc7cf"
+    "approvalDigest": "6d3d621816077aa2b327f43aa3472bba77bfbdd044db62f650a8f2167f3d3340",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 220,
+      "sourceIdentityCount": 169,
+      "includedIssueCount": 114,
+      "sourceGapCount": 55,
+      "repeatedSourceReferenceCount": 0
+    }
   }
 }

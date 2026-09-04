@@ -4576,10 +4576,10 @@
     "coverIssueId": 4372
   },
   "relationshipReview": {
-    "reportDigest": "b499272a7523296894ee96ff18df4f45e29844efa0806812b19b513e812c739a",
+    "reportDigest": "0dee82eca1e9aec98978b3dbb7d7d4eaace424a9877350003afefd40babb5d20",
     "packetDigest": "59b6f9e82438c07aa75d405fd6b2097c36bae2f294e725e52885bbfc07f93efc",
     "mappingDigest": "a3daf543129ffdd4062f858ad81f4ead293662ee3628b297d252561ca894a143",
-    "libraryDigest": "e70a1e0375e6601ae853c643f2d786fec681a789be7e4bc5c1b85c079ff94d27",
+    "libraryDigest": "603f067521bd221efb155a8066302e48eb0e87a05071b8947bdacd827d1cb243",
     "peerDigests": {},
     "dispositions": [
       {
@@ -6083,6 +6083,13 @@
     "authorityIdentity": "GPT-5.5",
     "reviewedAt": "2026-08-26T05:30:00Z",
     "rationale": "The first Earth-1610 Ultimate Marvel release was compared against every current catalog order. All 134 relationships are none, so no existing order or selected peer duplicates this issue sequence.",
-    "approvalDigest": "86030ae3603e4a1b4750b6afeeeef281dc20f58f775c7415d342a244e5e3319c"
+    "approvalDigest": "f6187c96bbfae7b72a32503254c82353f2a1405c82c35b944a2e6912b67a5d12",
+    "sourceCounts": {
+      "sourceOccurrenceCount": 122,
+      "sourceIdentityCount": 121,
+      "includedIssueCount": 121,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 0
+    }
   }
 }

@@ -742,10 +742,10 @@
     "coverIssueId": 80459
   },
   "relationshipReview": {
-    "reportDigest": "88d2b49825408bc87fd0eecbaaeb694da3cffca61fc4e311b3c8db96994afda5",
+    "reportDigest": "2a6b9e6b3913106a1856fd3624113247894f2f4135c05bab1381808cc58a8a83",
     "packetDigest": "0712ab5db6936f8a4ed370f86e790ca4861b793d2dc98ce98e8b2e25cbbd2e9c",
     "mappingDigest": "7feeb6ee3d4cb30992fad0c9ac0078d92230e2deb3474d36f77cdcbdae52e6b6",
-    "libraryDigest": "621003a9eff5c23801263e83f5632ec4e48a4747046cad6d91946d6cc328c7dc",
+    "libraryDigest": "944c024d3080bbeaac24ca887d386421b66fc2bb3ab03236f96926380fd8c294",
     "peerDigests": {
       "age-of-x-man": "80f9eaac66e6795236fc45fda6e864ad5eae22ca43cb149dbc52b2a07e465469",
       "spider-geddon": "71d7c0accbab5764114f223d92959dd2e9490cd4ceaa2a4ddd617db6542d78b3"
@@ -1713,6 +1713,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 2 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "d9494c95bc406202fc6251f48b81625fe2c177924daa44f3370091e5204903cc"
+    "approvalDigest": "f18ab3148e5026b0f7b9d50d146765f3d3d1247319871117e67ee925cae7ac8d"
   }
 }

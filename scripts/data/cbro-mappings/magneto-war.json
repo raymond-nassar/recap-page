@@ -383,10 +383,10 @@
     "coverIssueId": 12393
   },
   "relationshipReview": {
-    "reportDigest": "82599fa9d0ca909280bff7811402943ba4f599dec470ddf01b40ab9a3d248c5e",
+    "reportDigest": "ae167e32cd26630d0566a2b3ada1980b369844871d97871745c776537060dede",
     "packetDigest": "3e51200302d796ec6f32fd0376d8d9a06d0f68abe246540840f614f811572827",
     "mappingDigest": "bd9242a3e97a6414f7b7f980b446a7d9f4a31f4a9e17e635d4bbc54c52df43d1",
-    "libraryDigest": "b24c496ff139829dd1392698b4141f984f4037bafd0bce1eadf570dd817bc890",
+    "libraryDigest": "081ada05ae7fd8139ea0a1c688d8c0891e8ea7d8728a1a63c76c71e89430b577",
     "peerDigests": {
       "hunt-for-xavier": "5f7c52e7d15015ac77c7ba6a9062399c8fe3df3f15fa0f1a4f63af9fde4f101c"
     },
@@ -1894,6 +1894,6 @@
     "authorityIdentity": "MRT-003-C02-B09 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; all relationships are none.",
     "reviewedAt": "2026-08-26T15:28:59.465Z",
-    "approvalDigest": "e26ef75e4826d866bba9938e714e16c20d53aa0440114e41ccdc99198537615f"
+    "approvalDigest": "3749557cf394760ccf496e066b2950efd2ab5bd5db19992cd61d6c7b5e3d54d3"
   }
 }

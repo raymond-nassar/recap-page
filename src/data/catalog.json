@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-03T22:29:35.598Z",
+  "generatedAt": "2026-09-04T05:21:12.713Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3134,10 +3134,10 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 570,
-      "placeholderCount": 14,
-      "emptyRecordCount": 0,
-      "collections": 143,
+      "count": 567,
+      "placeholderCount": 0,
+      "emptyRecordCount": 4,
+      "collections": 141,
       "characters": [
         "Black Widow",
         "Natasha Romanoff",
@@ -3165,7 +3165,7 @@
       "source": "https://www.comicbookherald.com/black-widow-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T17:44:12.206Z"
+      "updatedAt": "2026-09-04T05:21:12.713Z"
     },
     {
       "id": "daredevil-reading-order",

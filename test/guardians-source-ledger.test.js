@@ -689,7 +689,7 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
       return [orderId, [comparison?.relationship, comparison?.sharedCount]];
     })),
     {
-      'black-widow-reading-order': ['partial', 14],
+      'black-widow-reading-order': ['partial', 15],
       'fantastic-four-reading-order': ['partial', 22],
       'silver-surfer-reading-order': ['partial', 7],
     },

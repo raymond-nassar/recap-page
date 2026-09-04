@@ -423,10 +423,10 @@
     "coverIssueId": 12446
   },
   "relationshipReview": {
-    "reportDigest": "7c5380c38d46d894caf4aaebd76315babe24ad841a349990b477585d687bd3af",
+    "reportDigest": "de58eba681ac3c6148469f9a275fb6c224ff2a86e3698a466fa70061d0840aa2",
     "packetDigest": "7144b1d5e2cb36f3ff00631ee2aab7dc3053345ce7f7dee4327ea2a4cebfd752",
     "mappingDigest": "0ca931db6ce100c837f5d73c14e0754f0d32e4c9b69ea826b8b76103fc210a7a",
-    "libraryDigest": "dcd08431204b649bbe2365534895cb0cf02585a05cceb52be25831539c644634",
+    "libraryDigest": "229daebd4291a2210ad3fa2fd26aa4c723ef895ed13d926f98fab31c64f76613",
     "peerDigests": {
       "contest-of-champions": "e8b9450e41124d32562e53da1dcd35a0d25d7696ec46b00d874883faa293dbc9",
       "days-of-future-past": "e253d3fc6b88618ee4faa4a3d4aaf328dc7fffb16ea7bce3e685ca5bc50aa1e0",
@@ -1957,6 +1957,6 @@
     "authorityIdentity": "MRT-003-C02-B02 coordinator",
     "rationale": "Every current library and selected peer comparison was reviewed; only the seven named X-Men and Marvel Multiverse relationships are approved non-none relationships.",
     "reviewedAt": "2026-08-26T15:28:53.308Z",
-    "approvalDigest": "d3e1a819f424f5b78a7750b2ebdf96525df230be47d0f416b2c1fd2fa9ace666"
+    "approvalDigest": "47612f58aad87f83e04bbbfd17081ed0c813e25bb1ef4df4ad3ab5ba94e6db03"
   }
 }

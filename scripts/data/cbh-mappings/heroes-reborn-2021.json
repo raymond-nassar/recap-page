@@ -746,10 +746,10 @@
     "coverIssueId": 92793
   },
   "relationshipReview": {
-    "reportDigest": "63ab9f187c44efe3f908ce7e152a521bc14fa7c0edc1b4df5c96aebcbd865b07",
+    "reportDigest": "60246213061f7384acfa3d6bb7eeb7df5834cb32d0087c946abcf88c06b704d9",
     "packetDigest": "5a27486f35415e510a6bffcc034bc1f38288a820ac4429efe4605b29541d37d2",
     "mappingDigest": "5564b55f4ad53c2136dda32d1109b849b5357db02f3e1d411e0a053a9e347620",
-    "libraryDigest": "89cb809d81f6c3723c15c1b90ba8debd461cfb3ccd736ba7b77824596187c4c3",
+    "libraryDigest": "786f64cd5b8947dc88d218a0e1043d08c654b9c3cc007f8fc998f26763e6c0f0",
     "peerDigests": {
       "x-of-swords": "ee1f6c699343458fe48d1b50f3f8c02702e934d8bf593d199863646c2541f3b3"
     },
@@ -1716,6 +1716,6 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Every comparison against the complete 86-list catalog and 1 named batch peer mappings was reviewed; 0 partial relationships required explicit approval.",
     "reviewedAt": "2026-08-23T05:47:48.847Z",
-    "approvalDigest": "660fd6d67b317a9365486c1f2a9b332d316f6583a98d0390ef284cdef19d98da"
+    "approvalDigest": "08381ef1ac94b7a78b50e5230ab0ed0dc25c0d000805562b05d5a2cec8fdb4ac"
   }
 }

@@ -83,7 +83,7 @@
     },
     {
       "orderId": "black-widow-reading-order",
-      "sharedCount": 24,
+      "sharedCount": 26,
       "sharedIds": [
         "7309",
         "7311",
@@ -108,6 +108,8 @@
         "63753",
         "63869",
         "64166",
+        "64259",
+        "64285",
         "64438"
       ],
       "relationship": "partial"

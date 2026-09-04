@@ -2,8 +2,15 @@
   "candidateId": "agents-of-atlas-reading-order",
   "packetDigest": "422b2a50c012bf32695de1b8df9d5e3776eb502698fc28a7813f4de428de815e",
   "mappingDigest": "4468252f21650e77747ec789865a4c7500c220608412876da0d7ad46ea805946",
-  "libraryDigest": "01e06d0e4c18a92cecf1dd25230acfae681c00ea9d7aa744757f378fe9cb77f6",
+  "libraryDigest": "832e7575b71050011dc71951b9b7db38865cd252f2b3dcf0fea72ba7ad6962c3",
   "peerDigests": {},
+  "sourceCounts": {
+    "sourceOccurrenceCount": 87,
+    "sourceIdentityCount": 80,
+    "includedIssueCount": 80,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 3
+  },
   "candidateCount": 80,
   "comparisonCount": 136,
   "comparisons": [
@@ -834,5 +841,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b020c550996453751097ecd4a979bc0897c9c2697b0047d84f48cbfdb35c2fd5"
+  "reportDigest": "21f93d0ff607ef862c225d5e240b5664e60b5d6adee3ab8a41cd190de082ab61"
 }
