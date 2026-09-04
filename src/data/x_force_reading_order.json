@@ -5,197 +5,12 @@
   "source": "https://www.comicbookherald.com/x-force-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T20:53:47.177Z",
+  "generatedAt": "2026-09-04T20:14:16.188Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 285,
   "collections": 60,
-  "placeholders": 23,
-  "unresolved": [
-    {
-      "title": "Cable: Blood & Metal 1-2",
-      "url": null,
-      "read": false,
-      "index": 22,
-      "section": "Cable: Blood & Metal 1-2",
-      "sourceKey": "32"
-    },
-    {
-      "title": "Cable: Blood & Metal 1-2",
-      "url": null,
-      "read": false,
-      "index": 23,
-      "section": "Cable: Blood & Metal 1-2",
-      "sourceKey": "33"
-    },
-    {
-      "title": "Stryfe’s Strike File",
-      "url": null,
-      "read": false,
-      "index": 38,
-      "section": "Stryfe’s Strike File",
-      "sourceKey": "51"
-    },
-    {
-      "title": "Cable #11-15",
-      "url": null,
-      "read": false,
-      "index": 163,
-      "section": "Cable #11-15",
-      "sourceKey": "208"
-    },
-    {
-      "title": "Cable #11-15",
-      "url": null,
-      "read": false,
-      "index": 164,
-      "section": "Cable #11-15",
-      "sourceKey": "209"
-    },
-    {
-      "title": "Cable #11-15",
-      "url": null,
-      "read": false,
-      "index": 165,
-      "section": "Cable #11-15",
-      "sourceKey": "210"
-    },
-    {
-      "title": "Cable #11-15",
-      "url": null,
-      "read": false,
-      "index": 166,
-      "section": "Cable #11-15",
-      "sourceKey": "211"
-    },
-    {
-      "title": "Cable #11-15",
-      "url": null,
-      "read": false,
-      "index": 167,
-      "section": "Cable #11-15",
-      "sourceKey": "212"
-    },
-    {
-      "title": "X-Force/Cable: Messiah War One-Shot",
-      "url": null,
-      "read": false,
-      "index": 171,
-      "section": "X-Force/Cable: Messiah War One-Shot",
-      "sourceKey": "216"
-    },
-    {
-      "title": "X-Force: Sex & Violence #1 - #3",
-      "url": null,
-      "read": false,
-      "index": 181,
-      "section": "X-Force: Sex & Violence #1 - #3",
-      "sourceKey": "236"
-    },
-    {
-      "title": "X-Force: Sex & Violence #1 - #3",
-      "url": null,
-      "read": false,
-      "index": 182,
-      "section": "X-Force: Sex & Violence #1 - #3",
-      "sourceKey": "237"
-    },
-    {
-      "title": "X-Force: Sex & Violence #1 - #3",
-      "url": null,
-      "read": false,
-      "index": 183,
-      "section": "X-Force: Sex & Violence #1 - #3",
-      "sourceKey": "238"
-    },
-    {
-      "title": "X-Men: Legacy #231-234",
-      "url": null,
-      "read": false,
-      "index": 188,
-      "section": "X-Men: Legacy #231-234",
-      "sourceKey": "250"
-    },
-    {
-      "title": "X-Men: Legacy #231-234",
-      "url": null,
-      "read": false,
-      "index": 189,
-      "section": "X-Men: Legacy #231-234",
-      "sourceKey": "251"
-    },
-    {
-      "title": "X-Men: Legacy #231-234",
-      "url": null,
-      "read": false,
-      "index": 190,
-      "section": "X-Men: Legacy #231-234",
-      "sourceKey": "252"
-    },
-    {
-      "title": "X-Men: Legacy #231-234",
-      "url": null,
-      "read": false,
-      "index": 191,
-      "section": "X-Men: Legacy #231-234",
-      "sourceKey": "253"
-    },
-    {
-      "title": "X-Men: Legacy (2008) #235-237",
-      "url": null,
-      "read": false,
-      "index": 202,
-      "section": "X-Men: Legacy (2008) #235-237",
-      "sourceKey": "279"
-    },
-    {
-      "title": "X-Men: Legacy (2008) #235-237",
-      "url": null,
-      "read": false,
-      "index": 203,
-      "section": "X-Men: Legacy (2008) #235-237",
-      "sourceKey": "280"
-    },
-    {
-      "title": "X-Men: Legacy (2008) #235-237",
-      "url": null,
-      "read": false,
-      "index": 204,
-      "section": "X-Men: Legacy (2008) #235-237",
-      "sourceKey": "281"
-    },
-    {
-      "title": "#1 - #4",
-      "url": null,
-      "read": false,
-      "index": 281,
-      "section": "#1 - #4",
-      "sourceKey": "406"
-    },
-    {
-      "title": "#1 - #4",
-      "url": null,
-      "read": false,
-      "index": 282,
-      "section": "#1 - #4",
-      "sourceKey": "407"
-    },
-    {
-      "title": "#1 - #4",
-      "url": null,
-      "read": false,
-      "index": 283,
-      "section": "#1 - #4",
-      "sourceKey": "408"
-    },
-    {
-      "title": "#1 - #4",
-      "url": null,
-      "read": false,
-      "index": 284,
-      "section": "#1 - #4",
-      "sourceKey": "409"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 10441,
@@ -954,37 +769,67 @@
       "collectedIn": "Spider -Man (1990) 16"
     },
     {
-      "issueId": -798860681,
-      "title": "Cable: Blood & Metal 1-2",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 23285,
+      "title": "Cable - Blood and Metal (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/23285/cable_-_blood_and_metal_1992_1",
+      "seriesId": 6668,
+      "seriesName": "Cable - Blood and Metal (1992)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 11920,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/51b605c1eeaa8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Cable: Blood & Metal 1-2"
     },
     {
-      "issueId": -815638300,
-      "title": "Cable: Blood & Metal 1-2",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 23286,
+      "title": "Cable - Blood and Metal (1992) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/23286/cable_-_blood_and_metal_1992_2",
+      "seriesId": 6668,
+      "seriesName": "Cable - Blood and Metal (1992)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 11921,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/d0/5b290c5eac513",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dan Green",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Cable: Blood & Metal 1-2"
     },
     {
@@ -1436,20 +1281,51 @@
       "collectedIn": "X-Force (1991) #16-18"
     },
     {
-      "issueId": -781097324,
-      "title": "Stryfe’s Strike File",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 47464,
+      "title": "Stryfe's Strike File (1993) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/47464/stryfes_strike_file_1993_1",
+      "seriesId": 17927,
+      "seriesName": "Stryfe's Strike File (1993)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 28580,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/58496860a4d58",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Andy Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Brandon Peterson",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Capullo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Various Various",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Stryfe’s Strike File"
     },
     {
@@ -5379,88 +5255,151 @@
       "collectedIn": "X-Men: The Times And Life Of Lucas Bishop #1-3"
     },
     {
-      "issueId": -533180702,
-      "title": "Cable #11-15",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 23618,
+      "title": "Cable (2008) #11",
+      "number": "11",
+      "url": "https://www.marvel.com/comics/issue/23618/cable_2008_11",
+      "seriesId": 4002,
+      "seriesName": "Cable (2008 - 2010)",
+      "onSale": "2009-02-04T00:00:00+0000",
+      "mu": "2011-11-25T00:00:00+0000",
+      "digitalId": 12836,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/10/4ea0720a9f634",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ariel Olivetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Cable #11-15"
     },
     {
-      "issueId": -516403083,
-      "title": "Cable #11-15",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 23773,
+      "title": "Cable (2008) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/23773/cable_2008_12",
+      "seriesId": 4002,
+      "seriesName": "Cable (2008 - 2010)",
+      "onSale": "2009-03-04T00:00:00+0000",
+      "mu": "2011-11-25T00:00:00+0000",
+      "digitalId": 12847,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/4ea077af8b958",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jamie Mckelvie",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ariel Olivetti",
+          "role": "penciler"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Cable #11-15"
     },
     {
-      "issueId": -298146941,
-      "title": "Cable #11-15",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 23971,
+      "title": "Cable (2008) #13",
+      "number": "13",
+      "url": "https://www.marvel.com/comics/issue/23971/cable_2008_13",
+      "seriesId": 4002,
+      "seriesName": "Cable (2008 - 2010)",
+      "onSale": "2009-04-01T00:00:00+0000",
+      "mu": "2009-04-01T00:00:00+0000",
+      "digitalId": 15547,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4ea19c8c0760d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Cable #11-15"
     },
     {
-      "issueId": -314924560,
-      "title": "Cable #11-15",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 24171,
+      "title": "Cable (2008) #14",
+      "number": "14",
+      "url": "https://www.marvel.com/comics/issue/24171/cable_2008_14",
+      "seriesId": 4002,
+      "seriesName": "Cable (2008 - 2010)",
+      "onSale": "2009-05-06T00:00:00+0000",
+      "mu": "2009-05-06T00:00:00+0000",
+      "digitalId": 15606,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/20/4ea1b32b48e75",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Cable #11-15"
     },
     {
-      "issueId": -331702179,
-      "title": "Cable #11-15",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 24631,
+      "title": "Cable (2008) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/24631/cable_2008_15",
+      "seriesId": 4002,
+      "seriesName": "Cable (2008 - 2010)",
+      "onSale": "2009-06-17T00:00:00+0000",
+      "mu": "2009-06-17T00:00:00+0000",
+      "digitalId": 12637,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/f0/4ea1ba4b5cb88",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ariel Olivetti",
+          "role": "cover artist"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Cable #11-15"
     },
     {
@@ -5540,20 +5479,39 @@
       "collectedIn": "X-Force #14-16"
     },
     {
-      "issueId": -264591703,
-      "title": "X-Force/Cable: Messiah War One-Shot",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 27620,
+      "title": "X-FORCE/CABLE: MESSIAH WAR 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27620/x-forcecable_messiah_war_1_2009_1",
+      "seriesId": 7002,
+      "seriesName": "X-FORCE/CABLE: MESSIAH WAR 1 (2009)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 13177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/52c5d057533be",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Dave Wilkins",
+          "role": "penciler"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Choi",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Force/Cable: Messiah War One-Shot"
     },
     {
@@ -5829,54 +5787,99 @@
       "collectedIn": "X-Force #17 - #25"
     },
     {
-      "issueId": -533379383,
-      "title": "X-Force: Sex & Violence #1 - #3",
-      "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 33736,
+      "title": "X-Force: Sex and Violence (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/33736/x-force_sex_and_violence_2010_1",
+      "seriesId": 11180,
+      "seriesName": "X-Force: Sex and Violence (2010)",
+      "onSale": "2010-07-14T00:00:00+0000",
+      "mu": "2011-06-30T00:00:00+0000",
+      "digitalId": 15220,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/59637bbbb2076",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        },
+        {
+          "name": "Craig Kyle",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Force: Sex & Violence #1 - #3"
     },
     {
-      "issueId": -550157002,
-      "title": "X-Force: Sex & Violence #1 - #3",
-      "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 33740,
+      "title": "X-Force: Sex and Violence (2010) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/33740/x-force_sex_and_violence_2010_2",
+      "seriesId": 11180,
+      "seriesName": "X-Force: Sex and Violence (2010)",
+      "onSale": "2010-08-11T00:00:00+0000",
+      "mu": "2011-07-27T00:00:00+0000",
+      "digitalId": 15655,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/59637d8398719",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        },
+        {
+          "name": "Craig Kyle",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Force: Sex & Violence #1 - #3"
     },
     {
-      "issueId": -365603193,
-      "title": "X-Force: Sex & Violence #1 - #3",
+      "issueId": 33743,
+      "title": "X-Force: Sex and Violence (2010) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/33743/x-force_sex_and_violence_2010_3",
+      "seriesId": 11180,
+      "seriesName": "X-Force: Sex and Violence (2010)",
+      "onSale": "2010-09-09T00:00:00+0000",
+      "mu": "2011-07-26T08:44:50+0000",
+      "digitalId": 16021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/59638019541e6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        },
+        {
+          "name": "Craig Kyle",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Force: Sex & Violence #1 - #3"
     },
     {
@@ -6007,71 +6010,147 @@
       "collectedIn": "New Mutants #6-8"
     },
     {
-      "issueId": -431727931,
-      "title": "X-Men: Legacy #231-234",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 27348,
+      "title": "X-Men Legacy (2008) #231",
+      "number": "231",
+      "url": "https://www.marvel.com/comics/issue/27348/x-men_legacy_2008_231",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2009-12-23T00:00:00+0000",
+      "mu": "2011-02-16T00:00:00+0000",
+      "digitalId": 17709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/58bec8e94eae0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Clay Mann",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Men: Legacy #231-234"
     },
     {
-      "issueId": -448505550,
-      "title": "X-Men: Legacy #231-234",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 28415,
+      "title": "X-Men Legacy (2008) #232",
+      "number": "232",
+      "url": "https://www.marvel.com/comics/issue/28415/x-men_legacy_2008_232",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2010-01-27T00:00:00+0000",
+      "mu": "2011-02-23T00:00:00+0000",
+      "digitalId": 13723,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/51a4e1aa04284",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Allen Martinez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clay Mann",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Men: Legacy #231-234"
     },
     {
-      "issueId": -465283169,
-      "title": "X-Men: Legacy #231-234",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 30700,
+      "title": "X-Men Legacy (2008) #233",
+      "number": "233",
+      "url": "https://www.marvel.com/comics/issue/30700/x-men_legacy_2008_233",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-02-24T00:00:00+0000",
+      "digitalId": 13952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/51a4e27c40a31",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Clay Mann",
+          "role": "penciler"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Men: Legacy #231-234"
     },
     {
-      "issueId": -482060788,
-      "title": "X-Men: Legacy #231-234",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 30701,
+      "title": "X-Men Legacy (2008) #234",
+      "number": "234",
+      "url": "https://www.marvel.com/comics/issue/30701/x-men_legacy_2008_234",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2010-03-17T00:00:00+0000",
+      "mu": "2010-12-22T00:00:00+0000",
+      "digitalId": 14116,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/51a4e19cc7896",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michel Lacombe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yanick Paquette",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Men: Legacy #231-234"
     },
     {
@@ -6406,54 +6485,103 @@
       "collectedIn": "New Mutants (2009) #12-14"
     },
     {
-      "issueId": -515910216,
-      "title": "X-Men: Legacy (2008) #235-237",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 32598,
+      "title": "X-Men Legacy (2008) #235",
+      "number": "235",
+      "url": "https://www.marvel.com/comics/issue/32598/x-men_legacy_2008_235",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2010-04-21T00:00:00+0000",
+      "mu": "2010-12-28T00:00:00+0000",
+      "digitalId": 14364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/51a4e1962afed",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Men: Legacy (2008) #235-237"
     },
     {
-      "issueId": -666121726,
-      "title": "X-Men: Legacy (2008) #235-237",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 30703,
+      "title": "X-Men Legacy (2008) #236",
+      "number": "236",
+      "url": "https://www.marvel.com/comics/issue/30703/x-men_legacy_2008_236",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2010-05-19T00:00:00+0000",
+      "mu": "2011-01-12T00:00:00+0000",
+      "digitalId": 14637,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/51a4e3470585f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Men: Legacy (2008) #235-237"
     },
     {
-      "issueId": -649344107,
-      "title": "X-Men: Legacy (2008) #235-237",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 30704,
+      "title": "X-Men Legacy (2008) #237",
+      "number": "237",
+      "url": "https://www.marvel.com/comics/issue/30704/x-men_legacy_2008_237",
+      "seriesId": 3754,
+      "seriesName": "X-Men Legacy (2008 - 2012)",
+      "onSale": "2010-06-23T00:00:00+0000",
+      "mu": "2011-03-09T00:00:00+0000",
+      "digitalId": 15019,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/30/4c1b7963bc901",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jay Leisten",
+          "role": "cover artist"
+        },
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Greg Land",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "X-Men: Legacy (2008) #235-237"
     },
     {
@@ -8671,71 +8799,115 @@
       "collectedIn": "X-Force 11-15"
     },
     {
-      "issueId": -88970230,
-      "title": "#1 - #4",
-      "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 49296,
+      "title": "Deadpool Vs. X-Force (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/49296/deadpool_vs_x-force_2014_1",
+      "seriesId": 18537,
+      "seriesName": "Deadpool Vs. X-Force (2014)",
+      "onSale": "2014-07-02T00:00:00+0000",
+      "mu": "2015-01-05T00:00:00+0000",
+      "digitalId": 34164,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/53a869f55d31d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "#1 - #4"
     },
     {
-      "issueId": -72192611,
-      "title": "#1 - #4",
-      "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 49298,
+      "title": "Deadpool Vs. X-Force (2014) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/49298/deadpool_vs_x-force_2014_2",
+      "seriesId": 18537,
+      "seriesName": "Deadpool Vs. X-Force (2014)",
+      "onSale": "2014-07-23T00:00:00+0000",
+      "mu": "2015-01-19T00:00:00+0000",
+      "digitalId": 34165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/53c42b6941711",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "#1 - #4"
     },
     {
-      "issueId": -122525468,
-      "title": "#1 - #4",
-      "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 49299,
+      "title": "Deadpool Vs. X-Force (2014) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/49299/deadpool_vs_x-force_2014_3",
+      "seriesId": 18537,
+      "seriesName": "Deadpool Vs. X-Force (2014)",
+      "onSale": "2014-08-20T00:00:00+0000",
+      "mu": "2015-02-16T00:00:00+0000",
+      "digitalId": 34610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/53f2709ac9eed",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "#1 - #4"
     },
     {
-      "issueId": -105747849,
-      "title": "#1 - #4",
+      "issueId": 49300,
+      "title": "Deadpool Vs. X-Force (2014) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/49300/deadpool_vs_x-force_2014_4",
+      "seriesId": 18537,
+      "seriesName": "Deadpool Vs. X-Force (2014)",
+      "onSale": "2014-09-03T00:00:00+0000",
+      "mu": "2015-03-02T00:00:00+0000",
+      "digitalId": 34728,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/53f749e028780",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Shane Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Duane Swierczynski",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "#1 - #4"
     }
   ]

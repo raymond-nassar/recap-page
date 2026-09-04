@@ -3656,7 +3656,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The 409-occurrence X-Force source ledger is settled cache-only as 262 exact unique provider rows, 81 full-identity backward repeats, 23 explicit metadata gaps tracked in Issue #321, and 43 semantic exclusions.",
+    "reason": "The 409-occurrence X-Force source ledger contains 285 exact unique issue rows, 81 full-identity backward repeats, zero metadata gaps, and 43 semantic exclusions.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "amazing-spider-man-reading-order-modern-marvel-era",

@@ -5,6 +5,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   approvalDigestFor,
+  assertMappingMatchesPacketOccurrences,
   digestCanonicalJson,
   libraryDigestFor,
   packetDigestFor,
@@ -4231,7 +4232,7 @@ test('Magneto preserves cache-only source accounting through publication', async
   assert.equal(parsed.unresolved.length, 58);
 });
 
-test('X-Force preserves cache-only settlement, source gaps, and complete-library review', async () => {
+test('X-Force publishes the exact settled source and bounded complete-library review', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = await readJson('src/data/catalog.json');
@@ -4244,33 +4245,44 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   const record = inventory.find((entry) => entry.id === xForceCandidateId);
   const manifestEntry = manifest.lists.find((entry) => entry.id === xForceCandidateId);
   const catalogEntry = catalog.lists.find((entry) => entry.id === xForceCandidateId);
-  const gapPositions = [
-    32, 33, 51, 208, 209, 210, 211, 212, 216, 236, 237, 238, 250, 251, 252, 253,
-    279, 280, 281, 406, 407, 408, 409,
+  const exactResolutions = [
+    [32, 23285], [33, 23286], [51, 47464], [208, 23618], [209, 23773],
+    [210, 23971], [211, 24171], [212, 24631], [216, 27620], [236, 33736],
+    [237, 33740], [238, 33743], [250, 27348], [251, 28415], [252, 30700],
+    [253, 30701], [279, 32598], [280, 30703], [281, 30704], [406, 49296],
+    [407, 49298], [408, 49299], [409, 49300],
   ];
   const expectedNonNone = [
     ['amazing-spider-man-reading-order-modern-marvel-era', 'partial', 2],
     ['childs-play', 'existing-subset', 4],
     ['deadpool-best-of', 'partial', 5],
     ['fatal-attractions', 'partial', 1],
-    ['magneto-reading-order', 'partial', 16],
-    ['messiah-war', 'partial', 6],
-    ['necrosha', 'partial', 10],
+    ['magneto-reading-order', 'partial', 23],
+    ['messiah-war', 'existing-subset', 10],
+    ['necrosha', 'existing-subset', 14],
     ['phalanx-covenant', 'partial', 3],
     ['phalanx-reading-order', 'partial', 3],
-    ['second-coming', 'partial', 11],
-    ['wolverine-reading-order', 'partial', 54],
+    ['second-coming', 'partial', 14],
+    ['wolverine-reading-order', 'partial', 64],
     ['x-cutioners-song', 'existing-subset', 13],
     ['x-men-divided-we-stand', 'partial', 13],
     ['x-men-regenesis', 'partial', 1],
   ];
 
+  for (const [sourcePosition, issueId] of exactResolutions) {
+    assert.equal(
+      mapping.rows.find((row) => row.sourcePosition === sourcePosition)?.selectedIssueId,
+      issueId,
+      `X-Force source position ${sourcePosition} must resolve to issue ${issueId}`,
+    );
+  }
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: xForceCandidateId,
     inventoryRecord: record,
     catalogEntries: manifest.lists,
   }));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
@@ -4281,30 +4293,36 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
   }));
 
   assert.equal(packet.sourceOccurrenceCount, 409);
-  assert.equal(packet.rows.length, 262);
+  assert.equal(packet.rows.length, 285);
   assert.equal(packet.repeatedSourceReferences.length, 81);
-  assert.equal(packet.sourceGaps.length, 23);
+  assert.equal(packet.sourceGaps, undefined);
+  assert.equal(packet.sourceGapResolutions.length, 23);
   assert.equal(packet.excludedSourceRows.length, 43);
   assert.equal(new Set([
     ...sourcePositionsForPacket(packet),
     ...packet.repeatedSourceReferences.map((entry) => entry.sourcePosition),
-    ...packet.sourceGaps.map((entry) => entry.sourcePosition),
     ...packet.excludedSourceRows.map((entry) => entry.sourcePosition),
   ]).size, 409);
-  assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourcePosition), gapPositions);
-  assert.ok(packet.sourceGaps.every((gap) => (
-    gap.kind === 'published-metadata-gap'
-      && gap.status === 'open'
-      && gap.evidenceSources.length === 37
-      && gap.evidenceSources.some((source) => (
-        source.kind === 'gap-tracking-issue'
+  assert.deepEqual(
+    packet.sourceGapResolutions.map((entry) => [entry.sourcePosition, entry.selectedIssueId]),
+    exactResolutions,
+  );
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.resolutionKind === 'exact-issue'
+      && resolution.evidenceDigest === sourceGapResolutionDigestFor(resolution)
+      && resolution.evidenceSources.some((source) => (
+        source.kind === 'owner-availability-review'
           && source.url === 'https://github.com/raymond-nassar/recap-page/issues/321'
       ))
   )));
-  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 262);
-  assert.equal(mapping.candidateMetadata.length, 262);
-  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
-  assert.equal(report.candidateCount, 262);
+  assert.equal(
+    digestCanonicalJson(packet.sourceGapResolutions),
+    '5dd58f5d27ed93ef250159b61f2d3b05da1a836ecd539d6569ec6950abfddb43',
+  );
+  assert.equal(new Set(mapping.rows.map((row) => row.selectedIssueId)).size, 285);
+  assert.equal(mapping.candidateMetadata.length, 285);
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.equal(report.candidateCount, 285);
   assert.equal(report.comparisonCount, manifest.lists.length - 9);
   assert.deepEqual(
     report.comparisons
@@ -4313,6 +4331,7 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
     expectedNonNone,
   );
   assert.equal(mapping.relationshipReview.dispositions.length, report.comparisonCount);
+  assert.equal(mapping.relationshipReview.authorityIdentity, 'GPT-5.6 Sol');
   assert.equal(manifestEntry.expect, 285);
   assert.equal(catalogEntry.count, 285);
   assert.equal(catalogEntry.coverIssueId, 10441);
@@ -4321,10 +4340,10 @@ test('X-Force preserves cache-only settlement, source gaps, and complete-library
     'https://i.annihil.us/u/prod/marvel/i/mg/9/00/4c7d506d22f2b.jpg',
   );
   assert.equal(generated.count, 285);
-  assert.equal(generated.placeholders, 23);
-  assert.equal(generated.items.filter((item) => !item.placeholder).length, 262);
+  assert.equal(generated.placeholders, 0);
+  assert.equal(generated.items.filter((item) => !item.placeholder).length, 285);
   assert.equal(new Set(generated.items.map((item) => item.issueId)).size, 285);
-  assert.deepEqual(parsed.unresolved.map((entry) => entry.sourceKey), gapPositions.map(String));
+  assert.equal(parsed.unresolved.length, 0);
   assert.deepEqual(
     generated.items.filter((item) => !item.placeholder).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),

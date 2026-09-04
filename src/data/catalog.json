@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T19:09:53.466Z",
+  "generatedAt": "2026-09-04T20:14:16.188Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -4025,7 +4025,7 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 285,
-      "placeholderCount": 23,
+      "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 60,
       "characters": [
@@ -4050,7 +4050,7 @@
       "source": "https://www.comicbookherald.com/x-force-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T20:53:47.177Z"
+      "updatedAt": "2026-09-04T20:14:16.188Z"
     },
     {
       "id": "muir-island-saga",
