@@ -11577,10 +11577,10 @@
     "authorityIdentity": "independent Guardians material review",
     "rationale": "Independent material review accepted the cache-only mapping, all 29 explicit source gaps, and the scope-aware full-library overlap report.",
     "reviewedAt": "2026-08-27T18:40:00Z",
-    "reportDigest": "90515628cce179c2fe2d84b8debdb771f21413724695bd623f0beb15f5bd2757",
+    "reportDigest": "2759d2258696e760839907ee599406dc5eacd2f463e242cc9759fcb19b3ed001",
     "packetDigest": "2d752bbe858973504f1f9a024af6af69b8b7c7f02047eb05ee7242b793974978",
     "mappingDigest": "387d8761858022382dd2b2af61313cf1d3eff26223aaa7c7115ab0c21c4eb538",
-    "libraryDigest": "3ad2c31acdf007f579c86ced616a2712bcdda61e9fd07d8bc6c38998091456a2",
+    "libraryDigest": "7db3718f96375df2cb0ee57410e9da20ae18e0643e8a88c174716809a2d8c18e",
     "peerDigests": {},
     "dispositions": [
       {
@@ -13069,7 +13069,7 @@
         "reviewedAt": "2026-08-27T18:40:00Z"
       }
     ],
-    "approvalDigest": "874e88f24879ce2e6a4950687a248650dc8ac5d4c87f62f4017b2ac1d72cefa0",
+    "approvalDigest": "3f42290a1dabec085b208e3aec1cd725be399f22805c245b083de7193a3db2ff",
     "sourceCounts": {
       "sourceOccurrenceCount": 420,
       "sourceIdentityCount": 323,

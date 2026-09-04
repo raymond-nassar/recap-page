@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-09-04T05:21:12.713Z",
-  "pairCount": 67,
-  "chapterCountWithOverlap": 48,
+  "generatedAt": "2026-09-04T17:46:00.000Z",
+  "pairCount": 68,
+  "chapterCountWithOverlap": 49,
   "existingListCount": 19,
-  "sharedOccurrenceCount": 357,
+  "sharedOccurrenceCount": 366,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "58e07909b06020d9e0f7fafcadb92303a06564776770a93f3bcf7e8f7337cdbb",
+  "matrixSha256": "0de7c236c403cc440c8dd8bc507fc534703a586cbb9365057e49645be4a12839",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -26,7 +26,7 @@
     },
     {
       "id": "fantastic-four-reading-order",
-      "sharedCount": 14
+      "sharedCount": 23
     },
     {
       "id": "iron-man-reading-order",
@@ -680,6 +680,22 @@
         15073,
         15074,
         15075
+      ]
+    },
+    {
+      "chapterId": "marvel-knights-to-planet-x-62",
+      "existingListId": "fantastic-four-reading-order",
+      "sharedCount": 9,
+      "sharedIssueIds": [
+        12857,
+        12858,
+        385,
+        299,
+        283,
+        314,
+        343,
+        284,
+        417
       ]
     },
     {

@@ -224,7 +224,7 @@ test('the child overlap matrix is current, disjoint and aggregates to the parent
       pinned.internalChildOverlapCount,
       pinned.matrixSha256,
     ],
-    [67, 48, 19, 357, 0, '58e07909b06020d9e0f7fafcadb92303a06564776770a93f3bcf7e8f7337cdbb'],
+    [68, 49, 19, 366, 0, '0de7c236c403cc440c8dd8bc507fc534703a586cbb9365057e49645be4a12839'],
   );
 });
 

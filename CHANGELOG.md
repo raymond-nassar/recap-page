@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Fantastic Four guide gaps
+
+In plain English: The bundled Fantastic Four guide now includes 159 exact comics that previously
+appeared as broken placeholders. Twenty-four entries confirmed unavailable as standalone Marvel
+Unlimited issues are omitted, and two repeated comics reuse their earlier entries instead of
+appearing twice. Existing saved Reading Lists and reading progress are not rewritten; newly
+imported copies receive the settled 973-comic order.
+
+For maintainers, all 1,058 source positions remain accounted for as 973 exact rows, 38 repeats, and
+47 explicit exclusions. All 185 former gaps retain auditable transition evidence.
+
 ### Settled the Moon Knight guide gaps
 
 In plain English: The bundled Moon Knight guide now includes eight exact comics that previously
