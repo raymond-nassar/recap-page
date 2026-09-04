@@ -14,10 +14,10 @@
   "provenanceGroupCount": 13,
   "sourceOccurrenceCount": 1058,
   "categoryCounts": {
-    "provisional-canonical-candidate": 1000,
-    "true-repeat": 35,
+    "provisional-canonical-candidate": 973,
+    "true-repeat": 38,
     "unresolved-included-identity-gap": 0,
-    "semantic-exclusion": 23
+    "semantic-exclusion": 47
   },
   "categoryPositions": {
     "provisional-canonical-candidate": [
@@ -348,21 +348,8 @@
       337,
       338,
       339,
-      341,
-      342,
-      343,
-      344,
-      345,
-      346,
-      347,
-      348,
-      349,
       350,
-      351,
-      352,
       353,
-      354,
-      355,
       356,
       357,
       358,
@@ -382,7 +369,6 @@
       372,
       373,
       374,
-      375,
       376,
       377,
       378,
@@ -452,7 +438,6 @@
       443,
       444,
       445,
-      446,
       447,
       449,
       450,
@@ -481,7 +466,6 @@
       473,
       474,
       475,
-      476,
       477,
       478,
       480,
@@ -541,13 +525,7 @@
       539,
       540,
       541,
-      542,
-      543,
       544,
-      545,
-      546,
-      547,
-      548,
       549,
       550,
       551,
@@ -667,8 +645,6 @@
       672,
       673,
       674,
-      675,
-      676,
       680,
       681,
       682,
@@ -713,7 +689,6 @@
       722,
       723,
       724,
-      725,
       726,
       727,
       728,
@@ -753,7 +728,6 @@
       766,
       767,
       768,
-      769,
       770,
       771,
       772,
@@ -879,7 +853,6 @@
       911,
       912,
       913,
-      915,
       916,
       917,
       918,
@@ -1040,7 +1013,10 @@
       587,
       627,
       632,
+      675,
+      676,
       692,
+      725,
       778,
       779,
       791,
@@ -1065,12 +1041,34 @@
       177,
       193,
       340,
+      341,
+      342,
+      343,
+      344,
+      345,
+      346,
+      347,
+      348,
+      349,
+      351,
+      352,
+      354,
+      355,
+      375,
       421,
+      446,
       448,
+      476,
       486,
       509,
       510,
       518,
+      542,
+      543,
+      545,
+      546,
+      547,
+      548,
       645,
       677,
       678,
@@ -1079,10 +1077,12 @@
       751,
       752,
       753,
+      769,
       828,
       871,
       895,
       914,
+      915,
       1036
     ]
   },
@@ -6119,7 +6119,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "26",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 342,
@@ -6131,7 +6131,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "27",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 343,
@@ -6143,7 +6143,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "28",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 344,
@@ -6155,7 +6155,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "29",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 345,
@@ -6167,7 +6167,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "30",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 346,
@@ -6179,7 +6179,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "31",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 347,
@@ -6191,7 +6191,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "32",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 348,
@@ -6203,7 +6203,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "33",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 349,
@@ -6215,7 +6215,7 @@
       "normalizedSeriesTitle": "Epic Illustrated",
       "seriesYear": 1980,
       "issueNumber": "34",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 350,
@@ -6239,7 +6239,7 @@
       "normalizedSeriesTitle": "What the--?!",
       "seriesYear": 1988,
       "issueNumber": "2",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 352,
@@ -6251,7 +6251,7 @@
       "normalizedSeriesTitle": "What the--?!",
       "seriesYear": 1988,
       "issueNumber": "10",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 353,
@@ -6275,7 +6275,7 @@
       "normalizedSeriesTitle": "Fantastic Four Roast",
       "seriesYear": 1982,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 355,
@@ -6287,7 +6287,7 @@
       "normalizedSeriesTitle": "Fantastic Four Special Edition",
       "seriesYear": null,
       "issueNumber": "gap",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 356,
@@ -6527,7 +6527,7 @@
       "normalizedSeriesTitle": "Hulk/Thing - The Big Change",
       "seriesYear": 1982,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 376,
@@ -7379,7 +7379,7 @@
       "normalizedSeriesTitle": "Fantastic Four: The Legend",
       "seriesYear": 1996,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 447,
@@ -7739,7 +7739,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": 1998,
       "issueNumber": "1/2",
-      "classification": "provisional-canonical-candidate",
+      "classification": "semantic-exclusion",
       "expandedFromSourceRange": false
     },
     {
@@ -8545,7 +8545,7 @@
       "normalizedSeriesTitle": "Franklin Richards: Everybody Loves Franklin",
       "seriesYear": 2006,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 543,
@@ -8557,7 +8557,7 @@
       "normalizedSeriesTitle": "Franklin Richards: Super Summer Spectacular",
       "seriesYear": 2006,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 544,
@@ -8581,7 +8581,7 @@
       "normalizedSeriesTitle": "Franklin Richards: March Madness",
       "seriesYear": 2007,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 546,
@@ -8593,7 +8593,7 @@
       "normalizedSeriesTitle": "Franklin Richards: World Be Warned",
       "seriesYear": 2007,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 547,
@@ -8605,7 +8605,7 @@
       "normalizedSeriesTitle": "Franklin Richards: Monster Mash",
       "seriesYear": 2007,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 548,
@@ -8617,7 +8617,7 @@
       "normalizedSeriesTitle": "Franklin Richards: Fall Football Fiasco!",
       "seriesYear": 2007,
       "issueNumber": "1",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 549,
@@ -10206,7 +10206,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": 1961,
       "issueNumber": "525",
-      "classification": "provisional-canonical-candidate"
+      "classification": "true-repeat"
     },
     {
       "sourceOccurrencePosition": 676,
@@ -10218,7 +10218,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": 1961,
       "issueNumber": "526",
-      "classification": "provisional-canonical-candidate"
+      "classification": "true-repeat"
     },
     {
       "sourceOccurrencePosition": 677,
@@ -10810,7 +10810,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": 1998,
       "issueNumber": "575",
-      "classification": "provisional-canonical-candidate"
+      "classification": "true-repeat"
     },
     {
       "sourceOccurrencePosition": 726,
@@ -11361,7 +11361,7 @@
       "normalizedSeriesTitle": "Fantastic Four",
       "seriesYear": 2012,
       "issueNumber": "5Au",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 770,
@@ -13163,7 +13163,7 @@
       "normalizedSeriesTitle": "FOOM Magazine",
       "seriesYear": 2017,
       "issueNumber": "gap",
-      "classification": "provisional-canonical-candidate"
+      "classification": "semantic-exclusion"
     },
     {
       "sourceOccurrencePosition": 916,

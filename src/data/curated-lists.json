@@ -4655,7 +4655,7 @@
         "Johnny Storm",
         "Ben Grimm"
       ],
-      "expect": 1000,
+      "expect": 973,
       "timeline": null,
       "sourceFile": "fantastic-four-reading-order.md"
     },

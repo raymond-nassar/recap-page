@@ -9,7 +9,6 @@ import {
   createEmptyState,
   createList,
 } from '../src/js/lib/model.js';
-import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
 import { parseChecklist } from '../src/js/lib/markdown.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -34,10 +33,7 @@ const expectedRepeatIdentities = [
 const nonIssueSourceBlockPositions = [107, 218, 315, 363];
 const exactIssueNumberPattern = /^(?:\d+(?:\.\d+)?[A-Za-z]*|\d+\/\d+|Annual|gap)$/;
 const explicitRangePattern = /#?(\d+)\s*(?:-|to)\s*#?(\d+)\s*$/i;
-const namedUnnumberedCandidateReferences = [
-  'Fantastic Four Special Edition',
-  'FOOM Magazine (2017)',
-];
+const namedUnnumberedCandidateReferences = [];
 const contextualIdentitySamples = [
   [44, 'Fantastic Four', 1961, '215'],
   [44, 'Avengers', 1963, '233'],
@@ -68,24 +64,26 @@ const sourceSemanticExclusionReferences = [
 ];
 
 const namedWorksThatMustStayCandidates = [
-  'Fantastic Four Roast',
-  'Fantastic Four Special Edition',
-  'Marvel Graphic Novel: Hulk/Thing - The Big Change',
   'Fantastic Four 1998 Annual',
   'Fantastic Four Annual (2001)',
   'Son Of A Genius',
+  'Happy Franksgiving',
+  'Fear Itself: FF one-shot',
+  'Galacta: Daughter of Galactus',
+  'Fantastic Four: Reckoning War Alpha',
+  'Reckoning War: Trial of The Watcher',
+];
+const unavailableNamedWorks = [
+  'Fantastic Four Roast',
+  'Fantastic Four Special Edition',
+  'Marvel Graphic Novel: Hulk/Thing - The Big Change',
   'Everybody Loves Franklin',
   'Super Summer Spectacular',
-  'Happy Franksgiving',
   'March Madness',
   'World Be Warned',
   'Monster Mash',
   'Fall Football Fiasco',
-  'Fear Itself: FF one-shot',
-  'Galacta: Daughter of Galactus',
   'FOOM Magazine (2017)',
-  'Fantastic Four: Reckoning War Alpha',
-  'Reckoning War: Trial of The Watcher',
 ];
 
 function digest(value) {
@@ -96,26 +94,20 @@ function readJson(filePath) {
   return readFile(filePath, 'utf8').then((content) => JSON.parse(content));
 }
 
-test('Fantastic Four preserves every unresolved source position through import', async () => {
+test('Fantastic Four publishes only settled issues through import', async () => {
   const payload = await readJson(path.join(root, 'src', 'data', 'fantastic_four_reading_order.json'));
   const checklist = parseChecklist(await readFile(
     path.join(root, 'src', 'data', 'orders', 'fantastic-four-reading-order.md'),
     'utf8',
   ));
   const placeholders = payload.items.filter((item) => item.placeholder);
-  assert.equal(placeholders.length, 185);
-  assert.deepEqual(
-    checklist.unresolved.map((entry) => entry.sourceKey),
-    payload.unresolved.map((entry) => String(entry.sourcePosition)),
-  );
-  assert.ok(placeholders.every((item) => Number.isInteger(item.issueId) && item.issueId < 0));
-  assert.equal(new Set(placeholders.map((item) => item.issueId)).size, placeholders.length);
-  assert.deepEqual(
-    placeholders.map((item) => item.issueId),
-    checklist.unresolved.map((entry) => (
-      placeholderId(payload.id, entry.title, entry.sourceKey)
-    )),
-  );
+  assert.equal(payload.count, 973);
+  assert.equal(payload.items.length, 973);
+  assert.equal(payload.placeholders, 0);
+  assert.deepEqual(payload.unresolved, []);
+  assert.equal(placeholders.length, 0);
+  assert.equal(checklist.entries.length, 973);
+  assert.deepEqual(checklist.unresolved, []);
 
   let state = createList(createEmptyState(), { name: 'Fantastic Four' });
   const listId = state.listOrder[0];
@@ -174,10 +166,10 @@ function assertFantasticFourSourceLedgerShape(ledger) {
   assert.deepEqual(ledger.categoryCounts, derivedCategoryCounts, 'categoryCounts must be derived from issueOccurrences');
   assert.deepEqual(ledger.categoryPositions, derivedCategoryPositions, 'categoryPositions must be derived from issueOccurrences');
   assert.deepEqual(ledger.categoryCounts, {
-    'provisional-canonical-candidate': 1000,
-    'true-repeat': 35,
+    'provisional-canonical-candidate': 973,
+    'true-repeat': 38,
     'unresolved-included-identity-gap': 0,
-    'semantic-exclusion': 23,
+    'semantic-exclusion': 47,
   }, 'expected normalized category totals');
   assert.equal(ledger.categoryCounts['unresolved-included-identity-gap'] ?? 0, 0, 'source-identifiable named works must not fall into the gap bucket');
   assert.deepEqual(
@@ -364,6 +356,11 @@ function assertFantasticFourSourceLedgerShape(ledger) {
     assert.ok(occurrence, `missing named work: ${sourceIssueReference}`);
     assert.equal(occurrence.classification, 'provisional-canonical-candidate', `${sourceIssueReference} should stay a candidate`);
   }
+  for (const sourceIssueReference of unavailableNamedWorks) {
+    const occurrence = ledger.issueOccurrences.find((candidate) => candidate.sourceIssueReference === sourceIssueReference);
+    assert.ok(occurrence, `missing unavailable named work: ${sourceIssueReference}`);
+    assert.equal(occurrence.classification, 'semantic-exclusion', `${sourceIssueReference} should stay excluded`);
+  }
 
   const primerPages = ledger.issueOccurrences.find((occurrence) => occurrence.sourceIssueReference === 'Marvel Legacy Primer pages');
   assert.ok(primerPages, 'missing Marvel Legacy Primer pages');
@@ -377,8 +374,9 @@ test('the Fantastic Four source ledger stays exact through its frozen boundary',
 
   assert.ok(record, 'expected a Fantastic Four inventory record');
   assert.equal(record.sourceContentSha256, ledger.sourceContentSha256);
-  assert.match(record.reason, /815 exact metadata rows/i);
-  assert.match(record.reason, /185 explicit metadata gaps/i);
+  assert.match(record.reason, /973 exact provider or owner-resolved comics/i);
+  assert.match(record.reason, /38 backward repeats/i);
+  assert.match(record.reason, /47 explicit exclusions/i);
   assert.match(record.reason, /1,058 source occurrences/i);
   assert.doesNotThrow(() => assertFantasticFourSourceLedgerShape(ledger));
 
@@ -415,13 +413,6 @@ test('the Fantastic Four source ledger stays exact through its frozen boundary',
     1,
   );
   assert.throws(() => assertFantasticFourSourceLedgerShape(deleteRepeat), /sourceOccurrenceCount must match issueOccurrences/);
-
-  const deleteGap = structuredClone(ledger);
-  deleteGap.issueOccurrences.splice(
-    deleteGap.issueOccurrences.findIndex((occurrence) => occurrence.classification === 'unresolved-included-identity-gap'),
-    1,
-  );
-  assert.throws(() => assertFantasticFourSourceLedgerShape(deleteGap), /sourceOccurrenceCount must match issueOccurrences/);
 
   const deleteExclusion = structuredClone(ledger);
   deleteExclusion.issueOccurrences.splice(
@@ -462,7 +453,7 @@ test('the Fantastic Four source ledger stays exact through its frozen boundary',
   assert.throws(() => assertFantasticFourSourceLedgerShape(titleCollision), /expected exact repeat identities|duplicate|missing repeat/i);
 
   const namedWorkGap = structuredClone(ledger);
-  namedWorkGap.issueOccurrences.find((occurrence) => occurrence.sourceIssueReference === 'Fantastic Four Roast')
+  namedWorkGap.issueOccurrences.find((occurrence) => occurrence.sourceIssueReference === 'Son Of A Genius')
     .classification = 'unresolved-included-identity-gap';
   assert.throws(() => assertFantasticFourSourceLedgerShape(namedWorkGap), /should stay a candidate|source-identifiable named works|categoryCounts must be derived from issueOccurrences/);
 

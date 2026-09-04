@@ -104,10 +104,10 @@ const publishedInventoryContracts = [
   {
     id: 'fantastic-four-reading-order',
     name: 'Fantastic Four',
-    overlapCount: 34,
+    overlapCount: 23,
     lifecycle: {
       disposition: 'new-order',
-      reason: 'The frozen full-page guide now publishes 815 exact metadata rows and 185 explicit metadata gaps, preserving 1,058 source occurrences and 34 current-library relationships without an exact duplicate.',
+      reason: 'The frozen full-page guide now publishes 973 exact provider or owner-resolved comics, 38 backward repeats, and 47 explicit exclusions, preserving 1,058 source occurrences without an exact duplicate.',
       catalogIds: ['fantastic-four-reading-order'],
       deliveryStatus: 'shipped',
       centralDisposition: 'pilot-approved',
@@ -1456,6 +1456,7 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
       creators: [],
       detailsRefused: true,
     });
+
   }
 
   assert.equal(manifestRecord.expect, 567);
@@ -1482,6 +1483,180 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
       sharedIds: ['6908'],
       relationship: 'partial',
     },
+  );
+});
+
+test('Fantastic Four settles issue 324 with exact identities and availability exclusions', async () => {
+  const id = 'fantastic-four-reading-order';
+  const [
+    inventory,
+    ledger,
+    packet,
+    mapping,
+    report,
+    manifest,
+    catalog,
+    generated,
+    markdown,
+  ] = await Promise.all([
+    readJson('scripts/data/cbh-character-inventory.json'),
+    readJson(`scripts/data/cbh-source-ledgers/${id}.json`),
+    readJson(`scripts/data/cbh-packets/${id}.json`),
+    readJson(`scripts/data/cbh-mappings/${id}.json`),
+    readJson(`scripts/data/cbh-overlaps/${id}.json`),
+    readJson('src/data/curated-lists.json'),
+    readJson('src/data/catalog.json'),
+    readJson('src/data/fantastic_four_reading_order.json'),
+    readFile(path.join(root, `src/data/orders/${id}.md`), 'utf8'),
+  ]);
+  const inventoryRecord = inventory.find((record) => record.id === id);
+  const manifestEntry = manifest.lists.find((entry) => entry.id === id);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === id);
+  const parsed = parseChecklist(markdown);
+  const transitionPositions = packet.sourceGapResolutions.map(
+    (resolution) => resolution.sourcePosition,
+  );
+  const expectedExclusionPositions = [
+    341, 342, 343, 344, 345, 346, 347, 348, 349, 351, 352, 354,
+    355, 375, 446, 476, 542, 543, 545, 546, 547, 548, 769, 915,
+  ];
+  const criticalExactIssues = new Map([
+    [112, 20673],
+    [765, 46096],
+    [803, 51815],
+    [804, 51818],
+    [805, 51821],
+    [806, 51824],
+    [822, 56213],
+    [823, 56214],
+    [824, 56215],
+    [825, 56216],
+    [826, 56217],
+    [902, 62959],
+    [984, 82352],
+  ]);
+  for (const [sourcePosition, issueId] of criticalExactIssues) {
+    const row = mapping.rows.find((entry) => entry.sourcePosition === sourcePosition);
+    assert.equal(row?.selectedIssueId, issueId, `source position ${sourcePosition} has the wrong issue`);
+  }
+  const currentReport = await buildCurrentReportForMapping(
+    path.join(root, 'scripts', 'data', 'cbh-mappings', `${id}.json`),
+  );
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: id,
+    inventoryRecord,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.equal(packet.packetDigest, packetDigestFor(packet));
+  assert.equal(mapping.packetDigest, packet.packetDigest);
+  assert.equal(mapping.relationshipReview.approvalDigest, approvalDigestFor(mapping.relationshipReview));
+  assert.deepEqual(currentReport, report);
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: currentReport.libraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+
+  assert.equal(ledger.sourceOccurrenceCount, 1058);
+  assert.deepEqual(ledger.categoryCounts, {
+    'provisional-canonical-candidate': 973,
+    'true-repeat': 38,
+    'unresolved-included-identity-gap': 0,
+    'semantic-exclusion': 47,
+  });
+  assert.equal(packet.rows.length, 973);
+  assert.equal(packet.repeatedSourceReferences.length, 38);
+  assert.equal(packet.excludedSourceRows.length, 47);
+  assert.equal(packet.sourceGaps?.length ?? 0, 0);
+  assert.equal(mapping.sourceGaps?.length ?? 0, 0);
+  assert.equal(packet.sourceGapResolutions.length, 185);
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.evidenceDigest === sourceGapResolutionDigestFor(resolution)
+  )));
+  assert.equal(
+    digestCanonicalJson(transitionPositions),
+    'dab621c0b8c8271009e518cfd614ac17d3f961b7b8842a5985c094562da0a568',
+  );
+  assert.equal(
+    digestCanonicalJson(packet.sourceGapResolutions),
+    '9edb15a15d2daae057b551c64570d3318b13e3a4fc47dca6d2504a0d985d7a91',
+  );
+  assert.deepEqual(
+    Object.fromEntries(['exact-issue', 'canonical-repeat', 'source-exclusion'].map((kind) => [
+      kind,
+      packet.sourceGapResolutions.filter((resolution) => resolution.resolutionKind === kind).length,
+    ])),
+    { 'exact-issue': 159, 'canonical-repeat': 2, 'source-exclusion': 24 },
+  );
+  const classificationForResolution = {
+    'exact-issue': 'provisional-canonical-candidate',
+    'canonical-repeat': 'true-repeat',
+    'source-exclusion': 'semantic-exclusion',
+  };
+  for (const resolution of packet.sourceGapResolutions) {
+    const occurrence = ledger.issueOccurrences.find(
+      (entry) => entry.sourceOccurrencePosition === resolution.sourcePosition,
+    );
+    assert.equal(
+      occurrence?.classification,
+      classificationForResolution[resolution.resolutionKind],
+      `source position ${resolution.sourcePosition} disagrees with its approved resolution`,
+    );
+  }
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((resolution) => resolution.resolutionKind === 'source-exclusion')
+      .map((resolution) => resolution.sourcePosition),
+    expectedExclusionPositions,
+  );
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((resolution) => resolution.resolutionKind === 'canonical-repeat')
+      .map((resolution) => resolution.sourcePosition),
+    [675, 676],
+  );
+  assert.ok(packet.repeatedSourceReferences.some((entry) => entry.sourcePosition === 725));
+  assert.ok(packet.rows.some((entry) => entry.sourcePosition === 724));
+
+  assert.deepEqual(sourcePositionsForPacket(packet), mapping.rows.map((row) => row.sourcePosition));
+  assert.deepEqual(
+    [
+      ...sourcePositionsForPacket(packet),
+      ...packet.repeatedSourceReferences.map((entry) => entry.sourcePosition),
+      ...packet.excludedSourceRows.map((entry) => entry.sourcePosition),
+    ].sort((left, right) => left - right),
+    Array.from({ length: 1058 }, (_, index) => index + 1),
+  );
+
+  assert.equal(generated.count, 973);
+  assert.equal(generated.items.length, 973);
+  assert.equal(generated.placeholders, 0);
+  assert.deepEqual(generated.unresolved, []);
+  assert.deepEqual(
+    generated.items.map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.equal(parsed.entries.length, 973);
+  assert.deepEqual(parsed.unresolved, []);
+  assert.deepEqual(
+    parsed.entries.map((entry) => String(entry.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.equal(manifestEntry.expect, 973);
+  assert.equal(catalogEntry.count, 973);
+  assert.equal(catalogEntry.placeholderCount, 0);
+  assert.equal(catalogEntry.emptyRecordCount, 0);
+  assert.deepEqual(
+    inventoryRecord.overlapIds,
+    report.comparisons
+      .filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => comparison.orderId),
   );
 });
 

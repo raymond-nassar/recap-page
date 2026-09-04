@@ -8189,8 +8189,8 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 1000,
-      "placeholderCount": 185,
+      "count": 973,
+      "placeholderCount": 0,
       "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
@@ -8216,7 +8216,7 @@
       "source": "https://www.comicbookherald.com/fantastic-four-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T18:45:00.000Z"
+      "updatedAt": "2026-09-04T17:46:00.000Z"
     },
     {
       "id": "nick-fury-reading-order",
