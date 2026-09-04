@@ -1,7 +1,7 @@
 {
   "id": "loki-reading-order",
   "inventoryId": "loki-reading-order",
-  "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9",
+  "packetDigest": "59f9c2e4f97567d03eeb5c37e44a859f2308de7ce10c015d15722f5c64f42dbe",
   "sourceUrl": "https://www.comicbookherald.com/loki-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceProvider": "comic-book-herald",
@@ -1089,7 +1089,7 @@
     },
     {
       "sourcePosition": 561,
-      "canonicalRow": 440,
+      "canonicalRow": 445,
       "sourceIssueReference": "Exiled (2011) #1",
       "sourceRangeReference": "Exiled #1",
       "normalizedSeriesTitle": "Exiled",
@@ -1098,7 +1098,7 @@
     },
     {
       "sourcePosition": 562,
-      "canonicalRow": 443,
+      "canonicalRow": 448,
       "sourceIssueReference": "Journey Into Mystery (2011) #637",
       "sourceRangeReference": "Journey Into Mystery #637",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -1107,7 +1107,7 @@
     },
     {
       "sourcePosition": 563,
-      "canonicalRow": 441,
+      "canonicalRow": 446,
       "sourceIssueReference": "New Mutants (2009) #42",
       "sourceRangeReference": "New Mutants #42",
       "normalizedSeriesTitle": "New Mutants",
@@ -1116,7 +1116,7 @@
     },
     {
       "sourcePosition": 564,
-      "canonicalRow": 444,
+      "canonicalRow": 449,
       "sourceIssueReference": "Journey Into Mystery (2011) #638",
       "sourceRangeReference": "Journey Into Mystery #638",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -1125,7 +1125,7 @@
     },
     {
       "sourcePosition": 565,
-      "canonicalRow": 442,
+      "canonicalRow": 447,
       "sourceIssueReference": "New Mutants (2009) #43",
       "sourceRangeReference": "New Mutants #43",
       "normalizedSeriesTitle": "New Mutants",
@@ -1134,7 +1134,7 @@
     },
     {
       "sourcePosition": 567,
-      "canonicalRow": 452,
+      "canonicalRow": 457,
       "sourceIssueReference": "The Mighty Thor (2011) #18",
       "sourceRangeReference": "The Mighty Thor #18",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -1143,7 +1143,7 @@
     },
     {
       "sourcePosition": 568,
-      "canonicalRow": 448,
+      "canonicalRow": 453,
       "sourceIssueReference": "Journey Into Mystery (2011) #642",
       "sourceRangeReference": "Journey Into Mystery #642",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -1152,7 +1152,7 @@
     },
     {
       "sourcePosition": 569,
-      "canonicalRow": 453,
+      "canonicalRow": 458,
       "sourceIssueReference": "The Mighty Thor (2011) #19",
       "sourceRangeReference": "The Mighty Thor #19",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -1161,7 +1161,7 @@
     },
     {
       "sourcePosition": 570,
-      "canonicalRow": 449,
+      "canonicalRow": 454,
       "sourceIssueReference": "Journey Into Mystery (2011) #643",
       "sourceRangeReference": "Journey Into Mystery #643",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -1170,7 +1170,7 @@
     },
     {
       "sourcePosition": 571,
-      "canonicalRow": 454,
+      "canonicalRow": 459,
       "sourceIssueReference": "The Mighty Thor (2011) #20",
       "sourceRangeReference": "The Mighty Thor #20",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -1179,7 +1179,7 @@
     },
     {
       "sourcePosition": 572,
-      "canonicalRow": 450,
+      "canonicalRow": 455,
       "sourceIssueReference": "Journey Into Mystery (2011) #644",
       "sourceRangeReference": "Journey Into Mystery #644",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -1188,7 +1188,7 @@
     },
     {
       "sourcePosition": 573,
-      "canonicalRow": 455,
+      "canonicalRow": 460,
       "sourceIssueReference": "The Mighty Thor (2011) #21",
       "sourceRangeReference": "The Mighty Thor #21",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -1197,7 +1197,7 @@
     },
     {
       "sourcePosition": 574,
-      "canonicalRow": 451,
+      "canonicalRow": 456,
       "sourceIssueReference": "Journey Into Mystery (2011) #645",
       "sourceRangeReference": "Journey Into Mystery #645",
       "normalizedSeriesTitle": "Journey Into Mystery",
@@ -1206,7 +1206,7 @@
     },
     {
       "sourcePosition": 575,
-      "canonicalRow": 456,
+      "canonicalRow": 461,
       "sourceIssueReference": "The Mighty Thor (2011) #22",
       "sourceRangeReference": "The Mighty Thor #22",
       "normalizedSeriesTitle": "The Mighty Thor",
@@ -1215,482 +1215,12 @@
     },
     {
       "sourcePosition": 796,
-      "canonicalRow": 600,
+      "canonicalRow": 618,
       "sourceIssueReference": "War Of The Realms Omega (2019) #1",
       "sourceRangeReference": "Loki (2019) #1 to #5; material from War of the Realms: Omega (2019) #1",
       "normalizedSeriesTitle": "War Of The Realms Omega",
       "seriesYear": 2019,
       "issueNumber": "1"
-    }
-  ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 368,
-      "sourceIssueReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
-      "sourceRangeReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
-      "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
-      "normalizedSeriesTitle": "Uncanny X-Men Annual",
-      "seriesYear": null,
-      "issueNumber": "9",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "091808c026a30331a6ca1e9d18c26828d3a5856565075bb47a556c86719d6838"
-    },
-    {
-      "sourcePosition": 431,
-      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
-      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
-      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
-      "normalizedSeriesTitle": "Journey Into Mystery",
-      "seriesYear": 1996,
-      "issueNumber": "509",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "fc8fdd0e2e1e6321ea29b55897d1a0a950a780b59f0dc2244d29312c0dc4a91d"
-    },
-    {
-      "sourcePosition": 434,
-      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
-      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
-      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
-      "normalizedSeriesTitle": "Journey Into Mystery",
-      "seriesYear": 1996,
-      "issueNumber": "512",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "bbeafa2c22003fb859ecaa96226f4a0d901d5a01d89ea99293fad6e7622c482e"
-    },
-    {
-      "sourcePosition": 476,
-      "sourceIssueReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
-      "sourceRangeReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)",
-      "sourceGroup": "Asgard Disassembled And Loki Reborn",
-      "normalizedSeriesTitle": "Thor: Defining Moments Giant-Size",
-      "seriesYear": 2009,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a2ee9b9efd807e612dc171ac8b1a395ddbed5ab29dcf774dcb4a822a1543dba1"
-    },
-    {
-      "sourcePosition": 533,
-      "sourceIssueReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
-      "sourceRangeReference": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor",
-      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "normalizedSeriesTitle": "Fear Itself: Thor",
-      "seriesYear": 2011,
-      "issueNumber": "7.2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "7ebd81455b7131513ed959518126554650dbdc71a452d6eec824036515debbd3"
-    },
-    {
-      "sourcePosition": 559,
-      "sourceIssueReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
-      "sourceRangeReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
-      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
-      "normalizedSeriesTitle": "The Mighty Thor Annual",
-      "seriesYear": 2011,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a86a808c869ca120c1c0c2402a52156e040e6591d61d407f1ea7d9d24817d441"
-    },
-    {
-      "sourcePosition": 601,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "25fdbf72d66bf8348a5f353e8fce00254ca99814aa0856e266e45740e559d8d3"
-    },
-    {
-      "sourcePosition": 602,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "066dbe475c024fcb7cba10c7f55fa99259c5a6f6ca43a05bb26477d86531a3ff"
-    },
-    {
-      "sourcePosition": 603,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "5e589cd7b40cc30588a37bbec67d12c5df110919c7296096bdad8ef8b4e113fb"
-    },
-    {
-      "sourcePosition": 604,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8e05fc9e3acbdef941d0f3f921761d5734f6395b0223c2d4e066e0e4eabe2d79"
-    },
-    {
-      "sourcePosition": 605,
-      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
-      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
-      "normalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
-      "seriesYear": 2014,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "7ba8cc00f137d41c37046029e30f6fa1cd208ca85dff45c70edb8e1ce2d39dae"
-    },
-    {
-      "sourcePosition": 661,
-      "sourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
-      "sourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Free Comic Book Day All-New Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "7dcd3c34c807e4088db313dc36ff7029dfb6dd5d9bdfd23bf092f15d7f9b1176"
-    },
-    {
-      "sourcePosition": 689,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "794",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "42826d6f71e641197f4c1353f057be7f1f18a1fea487bb29b869bf1b1f3df944"
-    },
-    {
-      "sourcePosition": 690,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "795",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a51854362f81f231ff7de7f2992a126951d9a020b32d50eb0d7e3c0b36d3db2e"
-    },
-    {
-      "sourcePosition": 691,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "796",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e786bc270b58559e1ffc343e1b9109a4ea636190ce4dcd71128262469cd1b77f"
-    },
-    {
-      "sourcePosition": 692,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man Annual",
-      "seriesYear": 2018,
-      "issueNumber": "42",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "3f1891da33917e46ed56f263335bc215e28a84dab5a68a6d8af2d157b9bd1542"
-    },
-    {
-      "sourcePosition": 693,
-      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
-      "normalizedSeriesTitle": "Amazing Spider-Man",
-      "seriesYear": 2015,
-      "issueNumber": "25",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "bea2805e95830e91d636c9348771f0f1649b120213a345e7ac8fa33e5b22f829"
-    },
-    {
-      "sourcePosition": 757,
-      "sourceIssueReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
-      "sourceRangeReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
-      "sourceGroup": "Marvel Fresh Start Loki Comics",
-      "normalizedSeriesTitle": "Infinity Wars: Infinity",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The source issue identity was not established by the cached provider series evidence. Tracked in issue #302.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/loki-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "metadata-provider",
-          "url": "https://marvel.emreparker.com/v1/series",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "6eb55948ac5b4ccd06a7e11a26072d87402f96b461f49b78ebad7dad421af40f"
     }
   ],
   "reviewStatus": "approved",
@@ -8105,6 +7635,186 @@
       "seriesName": "Loki (2023 - Present)",
       "onSaleDate": "2023-09-20T00:00:00+0000",
       "unlimitedDate": "2023-09-07T10:30:00+0000"
+    },
+    {
+      "id": 12369,
+      "title": "X-Men Annual (1970) #9",
+      "issueNumber": "9",
+      "detailUrl": "https://www.marvel.com/comics/issue/12369/x-men_annual_1970_9",
+      "seriesId": 2100,
+      "seriesName": "X-Men Annual (1970 - 1994)",
+      "onSaleDate": "1985-01-01T00:00:00+0000",
+      "unlimitedDate": "1985-01-01T00:00:00+0000"
+    },
+    {
+      "id": 37753,
+      "title": "Journey Into Mystery (1996) #509",
+      "issueNumber": "509",
+      "detailUrl": "https://www.marvel.com/comics/issue/37753/journey_into_mystery_1996_509",
+      "seriesId": 13569,
+      "seriesName": "Journey Into Mystery (1996 - 1998)",
+      "onSaleDate": null,
+      "unlimitedDate": null
+    },
+    {
+      "id": 37755,
+      "title": "Journey Into Mystery (1996) #512",
+      "issueNumber": "512",
+      "detailUrl": "https://www.marvel.com/comics/issue/37755/journey_into_mystery_1996_512",
+      "seriesId": 13569,
+      "seriesName": "Journey Into Mystery (1996 - 1998)",
+      "onSaleDate": null,
+      "unlimitedDate": null
+    },
+    {
+      "id": 37957,
+      "title": "THOR GIANT-SIZE FINALE (2009) #1",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/37957/thor_giant-size_finale_2009_1",
+      "seriesId": 13601,
+      "seriesName": "THOR GIANT-SIZE FINALE (2009)",
+      "onSaleDate": "2009-11-25T00:00:00+0000",
+      "unlimitedDate": "2009-11-25T00:00:00+0000"
+    },
+    {
+      "id": 41108,
+      "title": "Fear Itself (2010) #7.2",
+      "issueNumber": "7.2",
+      "detailUrl": "https://www.marvel.com/comics/issue/41108/fear_itself_2010_7.2",
+      "seriesId": 13691,
+      "seriesName": "Fear Itself (2010 - 2011)",
+      "onSaleDate": "2011-11-09T00:00:00+0000",
+      "unlimitedDate": "2012-11-16T00:00:00+0000"
+    },
+    {
+      "id": 41036,
+      "title": "The Mighty Thor Annual (2012) #1",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/41036/the_mighty_thor_annual_2012_1",
+      "seriesId": 15239,
+      "seriesName": "The Mighty Thor Annual (2012)",
+      "onSaleDate": "2012-06-06T00:00:00+0000",
+      "unlimitedDate": "2013-04-15T00:00:00+0000"
+    },
+    {
+      "id": 50888,
+      "title": "Original Sin (2014) #5.1",
+      "issueNumber": "5.1",
+      "detailUrl": "https://www.marvel.com/comics/issue/50888/original_sin_2014_5.1",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSaleDate": "2014-07-09T00:00:00+0000",
+      "unlimitedDate": "2015-01-12T00:00:00+0000"
+    },
+    {
+      "id": 50892,
+      "title": "Original Sin (2014) #5.2",
+      "issueNumber": "5.2",
+      "detailUrl": "https://www.marvel.com/comics/issue/50892/original_sin_2014_5.2",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSaleDate": "2014-07-23T00:00:00+0000",
+      "unlimitedDate": "2015-01-26T00:00:00+0000"
+    },
+    {
+      "id": 50926,
+      "title": "Original Sin (2014) #5.3",
+      "issueNumber": "5.3",
+      "detailUrl": "https://www.marvel.com/comics/issue/50926/original_sin_2014_5.3",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSaleDate": "2014-08-06T00:00:00+0000",
+      "unlimitedDate": "2015-02-02T00:00:00+0000"
+    },
+    {
+      "id": 50927,
+      "title": "Original Sin (2014) #5.4",
+      "issueNumber": "5.4",
+      "detailUrl": "https://www.marvel.com/comics/issue/50927/original_sin_2014_5.4",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSaleDate": "2014-08-27T00:00:00+0000",
+      "unlimitedDate": "2015-02-23T00:00:00+0000"
+    },
+    {
+      "id": 50928,
+      "title": "Original Sin (2014) #5.5",
+      "issueNumber": "5.5",
+      "detailUrl": "https://www.marvel.com/comics/issue/50928/original_sin_2014_5.5",
+      "seriesId": 18681,
+      "seriesName": "Original Sin (2014)",
+      "onSaleDate": "2014-09-17T00:00:00+0000",
+      "unlimitedDate": "2015-03-23T00:00:00+0000"
+    },
+    {
+      "id": 62818,
+      "title": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "seriesId": 23038,
+      "seriesName": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "onSaleDate": "2017-05-05T00:00:00+0000",
+      "unlimitedDate": "2018-06-18T00:00:00+0000"
+    },
+    {
+      "id": 65894,
+      "title": "The Amazing Spider-Man (2017) #794",
+      "issueNumber": "794",
+      "detailUrl": "https://www.marvel.com/comics/issue/65894/the_amazing_spider-man_2017_794",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSaleDate": "2018-01-24T00:00:00+0000",
+      "unlimitedDate": "2018-07-30T00:00:00+0000"
+    },
+    {
+      "id": 66083,
+      "title": "The Amazing Spider-Man (2017) #795",
+      "issueNumber": "795",
+      "detailUrl": "https://www.marvel.com/comics/issue/66083/the_amazing_spider-man_2017_795",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSaleDate": "2018-02-07T00:00:00+0000",
+      "unlimitedDate": "2018-08-13T00:00:00+0000"
+    },
+    {
+      "id": 66263,
+      "title": "The Amazing Spider-Man (2017) #796",
+      "issueNumber": "796",
+      "detailUrl": "https://www.marvel.com/comics/issue/66263/the_amazing_spider-man_2017_796",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSaleDate": "2018-02-21T00:00:00+0000",
+      "unlimitedDate": "2018-08-27T00:00:00+0000"
+    },
+    {
+      "id": 66184,
+      "title": "AMAZING SPIDER-MAN ANNUAL 42 (2018) #42",
+      "issueNumber": "42",
+      "detailUrl": "https://www.marvel.com/comics/issue/66184/amazing_spider-man_annual_42_2018_42",
+      "seriesId": 24255,
+      "seriesName": "AMAZING SPIDER-MAN ANNUAL 42 (2018)",
+      "onSaleDate": "2018-02-14T00:00:00+0000",
+      "unlimitedDate": "2018-08-20T00:00:00+0000"
+    },
+    {
+      "id": 59526,
+      "title": "The Amazing Spider-Man (2017) #25",
+      "issueNumber": "25",
+      "detailUrl": "https://www.marvel.com/comics/issue/59526/the_amazing_spider-man_2017_25",
+      "seriesId": 20432,
+      "seriesName": "The Amazing Spider-Man (2017 - 2018)",
+      "onSaleDate": "2017-03-15T00:00:00+0000",
+      "unlimitedDate": "2017-09-18T00:00:00+0000"
+    },
+    {
+      "id": 74762,
+      "title": "Infinity Wars: Infinity (2019) #1",
+      "issueNumber": "1",
+      "detailUrl": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1",
+      "seriesId": 26898,
+      "seriesName": "Infinity Wars: Infinity (2019)",
+      "onSaleDate": "2019-01-02T00:00:00+0000",
+      "unlimitedDate": "2019-07-08T00:00:00+0000"
     }
   ],
   "rows": [
@@ -15147,6 +14857,29 @@
       "note": "Exact match from the cached provider issue response."
     },
     {
+      "sourcePosition": 368,
+      "sourceIssueReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "sourceRangeReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
+      "normalizedSeriesTitle": "X-Men Annual",
+      "seriesYear": 1970,
+      "issueNumber": "9",
+      "seriesId": 2100,
+      "candidateIssueId": 12369,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        12369
+      ],
+      "selectedIssueId": 12369,
+      "selectedIssueIds": [
+        12369
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/12369/x-men_annual_1970_9",
+      "resolvedIssueTitle": "X-Men Annual (1970) #9",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
       "sourcePosition": 371,
       "sourceIssueReference": "Thor (1966) #364",
       "sourceRangeReference": "Thor #364-369; Thor #371-374",
@@ -16343,6 +16076,29 @@
       "note": "Exact match from the cached provider issue response."
     },
     {
+      "sourcePosition": 431,
+      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 1996,
+      "issueNumber": "509",
+      "seriesId": 13569,
+      "candidateIssueId": 37753,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        37753
+      ],
+      "selectedIssueId": 37753,
+      "selectedIssueIds": [
+        37753
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/37753/journey_into_mystery_1996_509",
+      "resolvedIssueTitle": "Journey Into Mystery (1996) #509",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page; the retired metadata provider returned 404, so publication metadata is intentionally bare."
+    },
+    {
       "sourcePosition": 432,
       "sourceIssueReference": "Journey Into Mystery (1996) #510",
       "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
@@ -16387,6 +16143,29 @@
       "resolvedIssueTitle": "Journey Into Mystery (1996) #511",
       "resolutionStatus": "exact",
       "note": "Exact match from the cached provider issue response."
+    },
+    {
+      "sourcePosition": 434,
+      "sourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "sourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
+      "normalizedSeriesTitle": "Journey Into Mystery",
+      "seriesYear": 1996,
+      "issueNumber": "512",
+      "seriesId": 13569,
+      "candidateIssueId": 37755,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        37755
+      ],
+      "selectedIssueId": 37755,
+      "selectedIssueIds": [
+        37755
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/37755/journey_into_mystery_1996_512",
+      "resolvedIssueTitle": "Journey Into Mystery (1996) #512",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page; the retired metadata provider returned 404, so publication metadata is intentionally bare."
     },
     {
       "sourcePosition": 435,
@@ -16962,6 +16741,29 @@
       "resolvedIssueTitle": "Thor (2007) #603",
       "resolutionStatus": "exact",
       "note": "Exact match from the cached provider issue response."
+    },
+    {
+      "sourcePosition": 476,
+      "sourceIssueReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
+      "sourceRangeReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)",
+      "sourceGroup": "Asgard Disassembled And Loki Reborn",
+      "normalizedSeriesTitle": "Thor Giant-Size Finale",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 13601,
+      "candidateIssueId": 37957,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        37957
+      ],
+      "selectedIssueId": 37957,
+      "selectedIssueIds": [
+        37957
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/37957/thor_giant-size_finale_2009_1",
+      "resolvedIssueTitle": "THOR GIANT-SIZE FINALE (2009) #1",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
     },
     {
       "sourcePosition": 477,
@@ -18068,6 +17870,29 @@
       "note": "Exact match from the cached provider issue response."
     },
     {
+      "sourcePosition": 533,
+      "sourceIssueReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
+      "sourceRangeReference": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor",
+      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
+      "normalizedSeriesTitle": "Fear Itself",
+      "seriesYear": 2010,
+      "issueNumber": "7.2",
+      "seriesId": 13691,
+      "candidateIssueId": 41108,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        41108
+      ],
+      "selectedIssueId": 41108,
+      "selectedIssueIds": [
+        41108
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41108/fear_itself_2010_7.2",
+      "resolvedIssueTitle": "Fear Itself (2010) #7.2",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
       "sourcePosition": 535,
       "sourceIssueReference": "The Mighty Thor (2011) #12.1",
       "sourceRangeReference": "The Mighty Thor #12.1; The Mighty Thor #13-17",
@@ -18597,6 +18422,29 @@
       "note": "Exact match from the cached provider issue response."
     },
     {
+      "sourcePosition": 559,
+      "sourceIssueReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "sourceRangeReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
+      "normalizedSeriesTitle": "The Mighty Thor Annual",
+      "seriesYear": 2012,
+      "issueNumber": "1",
+      "seriesId": 15239,
+      "candidateIssueId": 41036,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        41036
+      ],
+      "selectedIssueId": 41036,
+      "selectedIssueIds": [
+        41036
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/41036/the_mighty_thor_annual_2012_1",
+      "resolvedIssueTitle": "The Mighty Thor Annual (2012) #1",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
       "sourcePosition": 577,
       "sourceIssueReference": "Young Avengers (2013) #1",
       "sourceRangeReference": "Young Avengers (2013) 1-15; Marvel Now! Point One 1 (Young Avengers Story)",
@@ -19078,6 +18926,121 @@
       "resolvedIssueTitle": "Loki: Agent of Asgard (2014) #5",
       "resolutionStatus": "exact",
       "note": "Exact match from the cached provider issue response."
+    },
+    {
+      "sourcePosition": 601,
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.1",
+      "seriesId": 18681,
+      "candidateIssueId": 50888,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50888
+      ],
+      "selectedIssueId": 50888,
+      "selectedIssueIds": [
+        50888
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50888/original_sin_2014_5.1",
+      "resolvedIssueTitle": "Original Sin (2014) #5.1",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 602,
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.2",
+      "seriesId": 18681,
+      "candidateIssueId": 50892,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50892
+      ],
+      "selectedIssueId": 50892,
+      "selectedIssueIds": [
+        50892
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50892/original_sin_2014_5.2",
+      "resolvedIssueTitle": "Original Sin (2014) #5.2",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 603,
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.3",
+      "seriesId": 18681,
+      "candidateIssueId": 50926,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50926
+      ],
+      "selectedIssueId": 50926,
+      "selectedIssueIds": [
+        50926
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50926/original_sin_2014_5.3",
+      "resolvedIssueTitle": "Original Sin (2014) #5.3",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 604,
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.4",
+      "seriesId": 18681,
+      "candidateIssueId": 50927,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50927
+      ],
+      "selectedIssueId": 50927,
+      "selectedIssueIds": [
+        50927
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50927/original_sin_2014_5.4",
+      "resolvedIssueTitle": "Original Sin (2014) #5.4",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 605,
+      "sourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "sourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
+      "normalizedSeriesTitle": "Original Sin",
+      "seriesYear": 2014,
+      "issueNumber": "5.5",
+      "seriesId": 18681,
+      "candidateIssueId": 50928,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        50928
+      ],
+      "selectedIssueId": 50928,
+      "selectedIssueIds": [
+        50928
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/50928/original_sin_2014_5.5",
+      "resolvedIssueTitle": "Original Sin (2014) #5.5",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
     },
     {
       "sourcePosition": 608,
@@ -20000,6 +19963,29 @@
       "note": "Exact match from the cached provider issue response."
     },
     {
+      "sourcePosition": 661,
+      "sourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "sourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
+      "normalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23038,
+      "candidateIssueId": 62818,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        62818
+      ],
+      "selectedIssueId": 62818,
+      "selectedIssueIds": [
+        62818
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "resolvedIssueTitle": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
       "sourcePosition": 662,
       "sourceIssueReference": "All-New Guardians of the Galaxy (2017) #1",
       "sourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
@@ -20412,6 +20398,121 @@
       "resolvedIssueTitle": "Not Brand Echh (2017) #14",
       "resolutionStatus": "exact",
       "note": "Exact match from the cached provider issue response."
+    },
+    {
+      "sourcePosition": 689,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "794",
+      "seriesId": 20432,
+      "candidateIssueId": 65894,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        65894
+      ],
+      "selectedIssueId": 65894,
+      "selectedIssueIds": [
+        65894
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/65894/the_amazing_spider-man_2017_794",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2017) #794",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 690,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "795",
+      "seriesId": 20432,
+      "candidateIssueId": 66083,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        66083
+      ],
+      "selectedIssueId": 66083,
+      "selectedIssueIds": [
+        66083
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66083/the_amazing_spider-man_2017_795",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2017) #795",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 691,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2017,
+      "issueNumber": "796",
+      "seriesId": 20432,
+      "candidateIssueId": 66263,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        66263
+      ],
+      "selectedIssueId": 66263,
+      "selectedIssueIds": [
+        66263
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66263/the_amazing_spider-man_2017_796",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2017) #796",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 692,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
+      "normalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "seriesYear": 2018,
+      "issueNumber": "42",
+      "seriesId": 24255,
+      "candidateIssueId": 66184,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        66184
+      ],
+      "selectedIssueId": 66184,
+      "selectedIssueIds": [
+        66184
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66184/amazing_spider-man_annual_42_2018_42",
+      "resolvedIssueTitle": "AMAZING SPIDER-MAN ANNUAL 42 (2018) #42",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
+    },
+    {
+      "sourcePosition": 693,
+      "sourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
+      "normalizedSeriesTitle": "The Amazing Spider-Man",
+      "seriesYear": 2015,
+      "issueNumber": "25",
+      "seriesId": 20432,
+      "candidateIssueId": 59526,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        59526
+      ],
+      "selectedIssueId": 59526,
+      "selectedIssueIds": [
+        59526
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/59526/the_amazing_spider-man_2017_25",
+      "resolvedIssueTitle": "The Amazing Spider-Man (2017) #25",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
     },
     {
       "sourcePosition": 696,
@@ -21493,6 +21594,29 @@
       "resolvedIssueTitle": "Infinity Wars: Fallen Guardian (2018) #1",
       "resolutionStatus": "exact",
       "note": "Exact match from the cached provider issue response."
+    },
+    {
+      "sourcePosition": 757,
+      "sourceIssueReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "sourceRangeReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "sourceGroup": "Marvel Fresh Start Loki Comics",
+      "normalizedSeriesTitle": "Infinity Wars: Infinity",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26898,
+      "candidateIssueId": 74762,
+      "manualSeriesSelectionApproved": false,
+      "candidateIssueIds": [
+        74762
+      ],
+      "selectedIssueId": 74762,
+      "selectedIssueIds": [
+        74762
+      ],
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1",
+      "resolvedIssueTitle": "Infinity Wars: Infinity (2019) #1",
+      "resolutionStatus": "exact",
+      "note": "Exact owner-confirmed Marvel issue page and reviewed metadata identity."
     },
     {
       "sourcePosition": 758,
@@ -22783,7 +22907,7 @@
       "note": "Exact match from the cached provider issue response."
     }
   ],
-  "mappingDigest": "5ef7839f0d33a30d0b04a70d4b72cb5c5d517c274371448161170b9b774487fe",
+  "mappingDigest": "e00c816ee6d4121bf509f242b85863f47ef061afeda913d2fc5a7436a5b7f2fa",
   "packetReview": "The frozen source packet preserves all 830 expanded occurrences and does not substitute any of the 18 unresolved source identities.",
   "approvedManifest": {
     "id": "loki-reading-order",
@@ -22818,100 +22942,94 @@
   },
   "relationshipReview": {
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "Reviewed all 154 complete-library comparisons against the frozen 638-row Loki mapping. The guide is not an exact duplicate; all partial and existing-subset relationships retain their separate source identities and the 18 unresolved positions remain explicit gaps.",
-    "reviewedAt": "2026-08-27",
-    "reportDigest": "bf82c8901419c8d8b2326d8a2f1ccbb13eb41f0f981701f9f2e796c716534717",
-    "packetDigest": "787a3d806339c6137d30d6f35f291377f36d8dd69e78b2b7875fe847ae723fc9",
-    "mappingDigest": "5ef7839f0d33a30d0b04a70d4b72cb5c5d517c274371448161170b9b774487fe",
-    "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Reviewed all 137 bounded library comparisons against the settled 656-row mapping. No exact duplicate replaces the guide's source identity.",
+    "reviewedAt": "2026-09-04",
+    "reportDigest": "7652de5417f35ce217adc3fa3d5e6993a955f05527056f097f3d4dc4bfe0dfdf",
+    "packetDigest": "59f9c2e4f97567d03eeb5c37e44a859f2308de7ce10c015d15722f5c64f42dbe",
+    "mappingDigest": "e00c816ee6d4121bf509f242b85863f47ef061afeda913d2fc5a7436a5b7f2fa",
+    "libraryDigest": "b5ffdf1a1afe9dfe8d661db486526c369a3fb316ba8a81ffd21e1ebd77772524",
     "peerDigests": {},
     "dispositions": [
       {
         "orderId": "absolute-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "age-of-x-man",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "all-new-all-different-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "annihilation-conquest",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "apocalypse-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "atlantis-attacks",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "avengers-defenders-war",
-        "relationship": "existing-subset",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
         "sharedCount": 8,
         "sharedIds": [
           "6970",
@@ -22922,54 +23040,54 @@
           "20403",
           "20263",
           "20274"
-        ]
+        ],
+        "relationship": "existing-subset",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "The existing guide's 8 issues are a subset of this guide; separate source identity remains reviewed.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "avengers-disassembled",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "avengers-enemy-within",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "axis",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
         "sharedCount": 4,
         "sharedIds": [
           "48519",
           "50715",
           "51078",
           "51170"
-        ]
-      },
-      {
-        "orderId": "black-widow-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "4 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "black-widow-reading-order",
         "sharedCount": 13,
         "sharedIds": [
           "66283",
@@ -22985,258 +23103,258 @@
           "67149",
           "67150",
           "67151"
-        ]
-      },
-      {
-        "orderId": "bloodties",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "chaos-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "childs-play",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "civil-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "civil-war-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "civil-war-essential",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "clone-conspiracy",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "contest-of-champions",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "damnation",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dark-phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dark-reign-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dark-web",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "days-of-future-past",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "days-of-future-present",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dead-mans-hand",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "death-of-doctor-strange",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "devils-reign",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "doctor-doom-primer",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "doctor-strange-multiverse-of-madness",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "doomwar",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "eighth-day",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "essential-avengers",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "13 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "bloodties",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "chaos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "childs-play",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "damnation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-web",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "devils-reign",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doomwar",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "eighth-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "essential-avengers",
         "sharedCount": 20,
         "sharedIds": [
           "6951",
@@ -23259,197 +23377,197 @@
           "7041",
           "7052",
           "7064"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "20 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "evolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fall-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fatal-attractions",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "generations",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
         "sharedCount": 1,
         "sharedIds": [
           "63967"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "groot-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "heroes-reborn-2021",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "heroic-age-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "hickman-full",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "hickman-minimal",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "house-of-m",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "house-of-m-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "hunt-for-wolverine",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
         "sharedCount": 1,
         "sharedIds": [
           "66416"
-        ]
-      },
-      {
-        "orderId": "hunt-for-xavier",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "inferno",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "infinite-destinies",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "infinity-countdown-wars",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 18,
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
+        "sharedCount": 19,
         "sharedIds": [
           "66283",
           "66416",
@@ -23466,107 +23584,108 @@
           "67150",
           "67151",
           "73415",
+          "74762",
           "71037",
           "71308",
           "71310"
-        ]
-      },
-      {
-        "orderId": "inhumans-vs-x-men",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "iron-man-2020",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "judgment-day",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "king-in-black",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "kravens-last-hunt",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "kree-skrull-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "last-annihilation",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "magneto-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "marvel-fresh-start-avengers",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "19 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "inhumans-vs-x-men",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "iron-man-2020",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "judgment-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "king-in-black",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "last-annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "magneto-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
         "sharedCount": 12,
         "sharedIds": [
           "67002",
@@ -23581,419 +23700,419 @@
           "67767",
           "67768",
           "67769"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "12 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-multiverse",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-what-if",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvels-best-phoenix-comics",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
         "sharedCount": 1,
         "sharedIds": [
           "64417"
-        ]
-      },
-      {
-        "orderId": "maximum-security",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "messiah-complex",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "messiah-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "midnight-massacre",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "minimum-carnage",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "monsters-unleashed",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "muir-island-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "mutant-massacre",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "maximum-security",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "messiah-complex",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "messiah-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "midnight-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "minimum-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "monsters-unleashed",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "muir-island-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "mutant-massacre",
         "sharedCount": 2,
         "sharedIds": [
           "11701",
           "11702"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "2 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "mys-tech-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "necrosha",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "new-ultimate-universe",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "new-ultimate-universe-trades",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "operation-galactic-storm",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "operation-zero-tolerance",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "original-clone-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "phalanx-covenant",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "phalanx-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "planet-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "reckoning-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "revolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "scarlet-witch-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "second-coming",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "secret-invasion",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "secret-invasion-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "secret-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "secret-wars-ii",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
         "sharedCount": 1,
         "sharedIds": [
           "11691"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "shadowland",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "silent-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "silver-surfer-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "rationale": "The 17 shared issues with silver-surfer-reading-order are an intentional source-guide overlap; the guides retain distinct source identities and sequences, and no exact duplicate exists.",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27",
         "sharedCount": 17,
         "sharedIds": [
           "16099",
@@ -24013,106 +24132,107 @@
           "68653",
           "68656",
           "66158"
-        ]
-      },
-      {
-        "orderId": "sins-of-sinister",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-geddon",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-island",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-identity-crisis",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-no-way-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-the-other",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-verse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "star-lord-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 12,
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "17 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-geddon",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-island",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-verse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "sharedCount": 13,
         "sharedIds": [
+          "62818",
           "61513",
           "61514",
           "61516",
@@ -24125,65 +24245,65 @@
           "61521",
           "61523",
           "61524"
-        ]
-      },
-      {
-        "orderId": "thanos-imperative",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "thanos-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "13 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-reading-order",
         "sharedCount": 4,
         "sharedIds": [
           "69925",
           "69926",
           "67349",
           "71037"
-        ]
-      },
-      {
-        "orderId": "thanos-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "the-night-gwen-stacy-died",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "thor-best-of",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "4 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thor-best-of",
         "sharedCount": 80,
         "sharedIds": [
           "9689",
@@ -24266,49 +24386,49 @@
           "70792",
           "70793",
           "70794"
-        ]
-      },
-      {
-        "orderId": "time-and-time-again",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "venomverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "war-of-kings",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "war-of-the-realms",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "80 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "venomverse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "war-of-kings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "No shared issue IDs.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "war-of-the-realms",
         "sharedCount": 15,
         "sharedIds": [
           "71271",
@@ -24326,257 +24446,772 @@
           "73996",
           "73997",
           "73998"
-        ]
-      },
-      {
-        "orderId": "white-tiger-ava-ayala",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "15 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
         "sharedCount": 3,
         "sharedIds": [
           "46844",
           "46845",
           "61093"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "3 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "wolverine-goes-to-hell",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "wraith-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-cutioners-song",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-age-of-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-divided-we-stand",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-extermination",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-manifest-destiny",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-nation-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-regenesis",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-schism",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-of-swords",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-termination",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-tinction-agenda",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
+        "authorityIdentity": "GPT-5.6 Sol",
         "rationale": "No shared issue IDs.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 0,
-        "sharedIds": []
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "xmen-claremont",
+        "sharedCount": 3,
+        "sharedIds": [
+          "12369",
+          "11701",
+          "11702"
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 2,
-        "sharedIds": [
-          "11701",
-          "11702"
-        ]
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "3 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "xmen-claremont-complete",
+        "sharedCount": 3,
+        "sharedIds": [
+          "12369",
+          "11701",
+          "11702"
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "A distinct source boundary supports retaining this non-exact relationship.",
-        "reviewedAt": "2026-08-27",
-        "sharedCount": 2,
-        "sharedIds": [
-          "11701",
-          "11702"
-        ]
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "3 issue IDs overlap, without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       }
     ],
-    "approvalDigest": "77ba98dd8b76c3abd07f6b8f8cc2e4885c5e86eafc2d20018b99d1625f78a9d9",
+    "approvalDigest": "5edc309f0172afb22279ef87e9a91869ae639cf634506c4ab57e93b8f3539d13",
     "sourceCounts": {
       "sourceOccurrenceCount": 830,
       "sourceIdentityCount": 656,
-      "includedIssueCount": 638,
-      "sourceGapCount": 18,
-      "repeatedSourceReferenceCount": 53
+      "includedIssueCount": 656,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 53,
+      "excludedSourceRowCount": 121
     }
-  }
+  },
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 368,
+      "previousSourceIssueReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "previousSourceRangeReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
+      "previousNormalizedSeriesTitle": "Uncanny X-Men Annual",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "9",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 12369,
+      "resolvedNormalizedSeriesTitle": "X-Men Annual",
+      "resolvedSeriesYear": 1970,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/12369/x-men_annual_1970_9",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "6d0b2d5cb27fc8c54e6e003ad6fd3b6b3cfdea4e6895d9c1bbf318ee6592f159"
+    },
+    {
+      "sourcePosition": 431,
+      "previousSourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "previousSourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "previousNormalizedSeriesTitle": "Journey Into Mystery",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "509",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 37753,
+      "resolvedNormalizedSeriesTitle": "Journey Into Mystery",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "509",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/37753/journey_into_mystery_1996_509",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "097a156820c729200c0e16a9bc196a106560c0ad8a5150caebf9d4c8dd3360cb"
+    },
+    {
+      "sourcePosition": 434,
+      "previousSourceIssueReference": "Journey Into Mystery (1996) #503-513",
+      "previousSourceRangeReference": "Journey Into Mystery (1996) #503-513",
+      "previousNormalizedSeriesTitle": "Journey Into Mystery",
+      "previousSeriesYear": 1996,
+      "previousIssueNumber": "512",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 37755,
+      "resolvedNormalizedSeriesTitle": "Journey Into Mystery",
+      "resolvedSeriesYear": 1996,
+      "resolvedIssueNumber": "512",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/37755/journey_into_mystery_1996_512",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "9b208247dc09439cddee4e5745a256d90ad4e100791223c19d9bf2900fa62b13"
+    },
+    {
+      "sourcePosition": 476,
+      "previousSourceIssueReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
+      "previousSourceRangeReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 - Sep 2009)",
+      "previousNormalizedSeriesTitle": "Thor: Defining Moments Giant-Size",
+      "previousSeriesYear": 2009,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 37957,
+      "resolvedNormalizedSeriesTitle": "Thor Giant-Size Finale",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/37957/thor_giant-size_finale_2009_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1b9ad3ff0b66f01966a19a278735e536730a8b6e2f14d99babd7ef22c32615af"
+    },
+    {
+      "sourcePosition": 533,
+      "previousSourceIssueReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
+      "previousSourceRangeReference": "The Mighty Thor #7 - #12 (Oct 2011 - March 2012); Fear Itself #7.2: Thor",
+      "previousNormalizedSeriesTitle": "Fear Itself: Thor",
+      "previousSeriesYear": 2011,
+      "previousIssueNumber": "7.2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 41108,
+      "resolvedNormalizedSeriesTitle": "Fear Itself",
+      "resolvedSeriesYear": 2010,
+      "resolvedIssueNumber": "7.2",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/41108/fear_itself_2010_7.2",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "a29de01bba4fc01fb89c77e2abc3de06d9f4d7b8fd9a6ebeaa7574340be14df7"
+    },
+    {
+      "sourcePosition": 559,
+      "previousSourceIssueReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "previousSourceRangeReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
+      "previousNormalizedSeriesTitle": "The Mighty Thor Annual",
+      "previousSeriesYear": 2011,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 41036,
+      "resolvedNormalizedSeriesTitle": "The Mighty Thor Annual",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/41036/the_mighty_thor_annual_2012_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "25600d1eff7a4ca9aba4bed745395457a5215cb421a597d7911ae28f2f15ca5d"
+    },
+    {
+      "sourcePosition": 601,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50888,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50888/original_sin_2014_5.1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "b3ba81ad4b9927b6ec292af99b75045d88f85ae15c9f29da13a1f17a007a8705"
+    },
+    {
+      "sourcePosition": 602,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50892,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.2",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50892/original_sin_2014_5.2",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "172b18b0d11d07a350235e461f13975f646823fda0f6f04857a547b19a288ca9"
+    },
+    {
+      "sourcePosition": 603,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50926,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.3",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50926/original_sin_2014_5.3",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "60ee718735c666015d8546116e916384b800431bf62f27c37bcc75401ceb5f00"
+    },
+    {
+      "sourcePosition": 604,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50927,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.4",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50927/original_sin_2014_5.4",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d0e8e9ff181cf379bb33897e91b3822884dd76fff6c7727cc8ef2873e5592dfc"
+    },
+    {
+      "sourcePosition": 605,
+      "previousSourceIssueReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
+      "previousSourceRangeReference": "Original Sin: Thor & Loki - The Tenth Realm 1-5",
+      "previousNormalizedSeriesTitle": "Original Sin: Thor & Loki The Tenth Realm",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50928,
+      "resolvedNormalizedSeriesTitle": "Original Sin",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "5.5",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50928/original_sin_2014_5.5",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "233f96b3bfa5be3c848c2320fa43d57d8e140186904d01eea1631b5f9815bcb3"
+    },
+    {
+      "sourcePosition": 661,
+      "previousSourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "previousSourceRangeReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
+      "previousNormalizedSeriesTitle": "Free Comic Book Day All-New Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62818,
+      "resolvedNormalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1e2c91ec4834d846c9cf6ef517e849d7a01e8ffa08161bdab3cfe5353e6a9a24"
+    },
+    {
+      "sourcePosition": 689,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "794",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65894,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "794",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65894/the_amazing_spider-man_2017_794",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "e777a13646299114c4b0d4a1dcd3583d5a657486ca75e0006602dd4a065a25fc"
+    },
+    {
+      "sourcePosition": 690,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "795",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66083,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "795",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66083/the_amazing_spider-man_2017_795",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "ca1310e3854416d73f23bf9eebe43b497a83a58a79127c8f96e36d62a63dbd85"
+    },
+    {
+      "sourcePosition": 691,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "796",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66263,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "796",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66263/the_amazing_spider-man_2017_796",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "6d315045bdef017f8acb96a59f8678943c37d62798de1b33daaf33e2e81c5e47"
+    },
+    {
+      "sourcePosition": 692,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "42",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66184,
+      "resolvedNormalizedSeriesTitle": "Amazing Spider-Man Annual",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "42",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66184/amazing_spider-man_annual_2018_42",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "aef00fc48f1a31e1538c48703019507ec55e7e69ee1a44b0431f2f6f8fd7bbbc"
+    },
+    {
+      "sourcePosition": 693,
+      "previousSourceIssueReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousSourceRangeReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
+      "previousNormalizedSeriesTitle": "Amazing Spider-Man",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "25",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 59526,
+      "resolvedNormalizedSeriesTitle": "The Amazing Spider-Man",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "25",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/59526/the_amazing_spider-man_2015_25",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "e2f040054bd4488ce9d10827d5385b43d4d465d7c3fac31b985443732f755290"
+    },
+    {
+      "sourcePosition": 757,
+      "previousSourceIssueReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "previousSourceRangeReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
+      "previousNormalizedSeriesTitle": "Infinity Wars: Infinity",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 74762,
+      "resolvedNormalizedSeriesTitle": "Infinity Wars: Infinity",
+      "resolvedSeriesYear": 2019,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel issue page identifies the preserved source comic exactly.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/302",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "aae507ddc4463aa939f2838caac264101764657198b632b7e97a3e42cd2376a8"
+    }
+  ]
 }

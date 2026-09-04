@@ -8861,10 +8861,10 @@
     "sourceFile": "adam-warlock-reading-order.md"
   },
   "relationshipReview": {
-    "reportDigest": "4f4f7abeade68f6a30f9401356597a4e8ad15c942515ddb89df534bc0d22d8ac",
+    "reportDigest": "afbb402ba14a7f9735f1d77d5521f82417fb85920de6d7942da44801f788a91c",
     "packetDigest": "f297748971b4fe9076b6622ad0349d811c76df50d65d4a1850227ae31ca104ce",
     "mappingDigest": "2f26b75751df69a93c6e6206defc34134cd04010812763ec9da9c652d7f16294",
-    "libraryDigest": "78ce4af5341c371d8451529e9b72aa782b4ef05047c557b6ca1b29cc210c638d",
+    "libraryDigest": "91532be0ee62b941c378516a8e22e6613730d5d89565378d48163f94f354ed29",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 253,
@@ -11164,7 +11164,7 @@
         "sharedIds": []
       }
     ],
-    "approvalDigest": "b5eac7889ad238a8f291e54a9e1689d40aeac28ad8bcd15ce9aac7764e5bd149"
+    "approvalDigest": "02626deb6b032090f22cbc9ebcb990f43cf53463d1652512b141bef7b3f608d9"
   },
   "excludedSourceRows": [
     {

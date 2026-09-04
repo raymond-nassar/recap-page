@@ -1866,7 +1866,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The complete source evidence expands to 830 issue and marker occurrences: 638 exact issue rows, 53 repeated issue occurrences, 18 explicit metadata gaps tracked in issue #302, and 121 exclusions. The full source page has no narrower Best/Essential section.",
+    "reason": "The complete source evidence expands to 830 issue and marker occurrences: 656 exact issue rows, 53 repeated issue occurrences, zero metadata gaps, and 121 exclusions. The full source page has no narrower Best/Essential section.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "abomination-reading-order",

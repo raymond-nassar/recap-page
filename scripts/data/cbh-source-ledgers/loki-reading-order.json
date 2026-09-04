@@ -23,10 +23,10 @@
   "sourceGroupCount": 11,
   "sourceOccurrenceCount": 232,
   "counts": {
-    "exclusion": 118,
-    "exact": 66,
+    "exact": 75,
     "repeat": 39,
-    "gap": 9
+    "gap": 0,
+    "exclusion": 118
   },
   "occurrences": [
     {
@@ -1276,27 +1276,22 @@
       "sourceGroup": "Loki In The 1980’s, Enter Walt Simonson’s Thor",
       "sourceText": "Collects: New Mutants Special Edition #1, Uncanny X-Men Annual #9, X-Men/Alpha Flight #1 To #2",
       "sourceReference": "New Mutants Special Edition #1; Uncanny X-Men Annual #9; X-Men/Alpha Flight #1 To #2",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "New Mutants Special Edition #1",
         "Uncanny X-Men Annual #9",
         "X-Men/Alpha Flight #1 To #2"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
+        "checkedAt": "2026-09-04",
+        "status": "exact",
         "exactIssueIds": [
           "10342",
           "62577",
-          "62578"
+          "62578",
+          "12369"
         ],
-        "unresolved": [
-          {
-            "key": "missingUncannyAnnual",
-            "issueNumber": "9",
-            "matches": []
-          }
-        ]
+        "unresolved": []
       }
     },
     {
@@ -1496,13 +1491,13 @@
       "sourceGroup": "Acts of Vengeance and Loki Comics in the 1990’s",
       "sourceText": "Collects: Journey Into Mystery (1996) #503-513",
       "sourceReference": "Journey Into Mystery (1996) #503-513",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "Journey Into Mystery (1996) #503-513"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
+        "checkedAt": "2026-09-04",
+        "status": "exact",
         "exactIssueIds": [
           "48369",
           "48370",
@@ -1510,22 +1505,13 @@
           "48372",
           "48373",
           "48374",
+          "37753",
           "48375",
           "48376",
+          "37755",
           "61241"
         ],
-        "unresolved": [
-          {
-            "key": "jim1996",
-            "issueNumber": "509",
-            "matches": []
-          },
-          {
-            "key": "jim1996",
-            "issueNumber": "512",
-            "matches": []
-          }
-        ]
+        "unresolved": []
       }
     },
     {
@@ -1716,26 +1702,21 @@
       "sourceGroup": "Asgard Disassembled And Loki Reborn",
       "sourceText": "Collects: Thor #601-603, And Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
       "sourceReference": "Thor #601-603; Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "Thor #601-603",
         "Thor: Defining Moments Giant-Size #1 (Apr 2009 – Sep 2009)"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
+        "checkedAt": "2026-09-04",
+        "status": "exact",
         "exactIssueIds": [
           "23751",
           "24149",
-          "26690"
+          "26690",
+          "37957"
         ],
-        "unresolved": [
-          {
-            "key": "missingDefiningMoments",
-            "issueNumber": "1",
-            "matches": []
-          }
-        ]
+        "unresolved": []
       }
     },
     {
@@ -1931,29 +1912,24 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: The Mighty Thor #7 – #12 (Oct 2011 – March 2012), Fear Itself #7.2: Thor",
       "sourceReference": "The Mighty Thor #7 – #12 (Oct 2011 – March 2012); Fear Itself #7.2: Thor",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "The Mighty Thor #7 – #12 (Oct 2011 – March 2012)",
         "Fear Itself #7.2: Thor"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
+        "checkedAt": "2026-09-04",
+        "status": "exact",
         "exactIssueIds": [
           "38210",
           "38208",
           "38212",
           "38214",
           "38207",
-          "38218"
+          "38218",
+          "41108"
         ],
-        "unresolved": [
-          {
-            "key": "missingFearThor",
-            "issueNumber": "7.2",
-            "matches": []
-          }
-        ]
+        "unresolved": []
       }
     },
     {
@@ -2000,7 +1976,7 @@
       "sourceGroup": "Loki by Matt Fraction and Kieron Gillen",
       "sourceText": "Collects: Exiled 1; New Mutants 42-43; Journey Into Mystery 637-645; The Mighty Thor 18-22, Annual 1 (Ends October 2012)",
       "sourceReference": "Exiled #1; New Mutants #42-43; Journey Into Mystery #637-645; The Mighty Thor #18-22; The Mighty Thor Annual #1",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "Exiled #1",
         "New Mutants #42-43",
@@ -2009,8 +1985,8 @@
         "The Mighty Thor Annual #1"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
+        "checkedAt": "2026-09-04",
+        "status": "exact",
         "exactIssueIds": [
           "42400",
           "40718",
@@ -2028,15 +2004,10 @@
           "40823",
           "40827",
           "40821",
-          "40814"
+          "40814",
+          "41036"
         ],
-        "unresolved": [
-          {
-            "key": "missingMightyAnnual",
-            "issueNumber": "1",
-            "matches": []
-          }
-        ]
+        "unresolved": []
       }
     },
     {
@@ -2328,41 +2299,21 @@
       "sourceGroup": "Loki in Young Avengers And Agent of Asgard",
       "sourceText": "Collects: Original Sin: Thor & Loki – The Tenth Realm 1-5",
       "sourceReference": "Original Sin: Thor & Loki – The Tenth Realm 1-5",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "Original Sin: Thor & Loki – The Tenth Realm 1-5"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
-        "exactIssueIds": [],
-        "unresolved": [
-          {
-            "key": "missingTenthRealm",
-            "issueNumber": "1",
-            "matches": []
-          },
-          {
-            "key": "missingTenthRealm",
-            "issueNumber": "2",
-            "matches": []
-          },
-          {
-            "key": "missingTenthRealm",
-            "issueNumber": "3",
-            "matches": []
-          },
-          {
-            "key": "missingTenthRealm",
-            "issueNumber": "4",
-            "matches": []
-          },
-          {
-            "key": "missingTenthRealm",
-            "issueNumber": "5",
-            "matches": []
-          }
-        ]
+        "checkedAt": "2026-09-04",
+        "status": "exact",
+        "exactIssueIds": [
+          "50888",
+          "50892",
+          "50926",
+          "50927",
+          "50928"
+        ],
+        "unresolved": []
       }
     },
     {
@@ -2643,7 +2594,7 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Free Comic Book Day 2017 All-New Guardians of the Galaxy #1, All-New Guardians of the Galaxy (2017) #1-2, 4, 6, 8 & 10",
       "sourceReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1; All-New Guardians of the Galaxy (2017) #1-2; All-New Guardians of the Galaxy (2017) #4; All-New Guardians of the Galaxy (2017) #6; All-New Guardians of the Galaxy (2017) #8; All-New Guardians of the Galaxy (2017) #10",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
         "All-New Guardians of the Galaxy (2017) #1-2",
@@ -2653,9 +2604,10 @@
         "All-New Guardians of the Galaxy (2017) #10"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
+        "checkedAt": "2026-09-04",
+        "status": "exact",
         "exactIssueIds": [
+          "62818",
           "61513",
           "61514",
           "61516",
@@ -2663,13 +2615,7 @@
           "61520",
           "61522"
         ],
-        "unresolved": [
-          {
-            "key": "fcbdGuardians2017",
-            "issueNumber": "1",
-            "matches": []
-          }
-        ]
+        "unresolved": []
       }
     },
     {
@@ -2803,43 +2749,23 @@
       "sourceGroup": "Loki With All-New, All-Different Thor (And Runs for President)",
       "sourceText": "Collects: Amazing Spider-Man (2015) #794-796, Amazing Spider-Man Annual (2018) #42,Material from Amazing Spider-Man (2015) #25",
       "sourceReference": "Amazing Spider-Man (2015) #794-796; Amazing Spider-Man Annual (2018) #42; Material from Amazing Spider-Man (2015) #25",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "Amazing Spider-Man (2015) #794-796",
         "Amazing Spider-Man Annual (2018) #42",
         "Material from Amazing Spider-Man (2015) #25"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
-        "exactIssueIds": [],
-        "unresolved": [
-          {
-            "key": "missingAsm2015",
-            "issueNumber": "794",
-            "matches": []
-          },
-          {
-            "key": "missingAsm2015",
-            "issueNumber": "795",
-            "matches": []
-          },
-          {
-            "key": "missingAsm2015",
-            "issueNumber": "796",
-            "matches": []
-          },
-          {
-            "key": "asmAnnual2018",
-            "issueNumber": "42",
-            "matches": []
-          },
-          {
-            "key": "missingAsm2015",
-            "issueNumber": "25",
-            "matches": []
-          }
-        ]
+        "checkedAt": "2026-09-04",
+        "status": "exact",
+        "exactIssueIds": [
+          "65894",
+          "66083",
+          "66263",
+          "66184",
+          "59526"
+        ],
+        "unresolved": []
       }
     },
     {
@@ -3103,7 +3029,7 @@
       "sourceGroup": "Marvel Fresh Start Loki Comics",
       "sourceText": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
       "sourceReference": "Infinty Wars Prime (2018) #1; Infinity Wars (2018) #1-6; Infinity Wars: Fallen Guardian (2018) #1; Infinity Wars: Infinity (2018) #1; Material from Thanos Legacy (2018) #1",
-      "disposition": "gap",
+      "disposition": "exact",
       "issueReferences": [
         "Infinty Wars Prime (2018) #1",
         "Infinity Wars (2018) #1-6",
@@ -3112,8 +3038,8 @@
         "Material from Thanos Legacy (2018) #1"
       ],
       "providerSettlement": {
-        "checkedAt": "2026-08-27",
-        "status": "gap",
+        "checkedAt": "2026-09-04",
+        "status": "exact",
         "exactIssueIds": [
           "67349",
           "67145",
@@ -3123,15 +3049,10 @@
           "67150",
           "67151",
           "73415",
+          "74762",
           "71037"
         ],
-        "unresolved": [
-          {
-            "key": "missingWarsInfinity",
-            "issueNumber": "1",
-            "matches": []
-          }
-        ]
+        "unresolved": []
       }
     },
     {
@@ -3553,17 +3474,7 @@
     },
     "gaps": {
       "rationale": "Provider lookup did not establish every issue identity in the source block.",
-      "positions": [
-        77,
-        92,
-        108,
-        122,
-        126,
-        149,
-        172,
-        184,
-        205
-      ]
+      "positions": []
     },
     "exclusions": [
       {
@@ -3707,13 +3618,13 @@
     ]
   },
   "providerSettlement": {
-    "checkedAt": "2026-08-27",
+    "checkedAt": "2026-09-04",
     "providerBaseUrl": "https://marvel.emreparker.com/v1",
     "successfulPageCount": 61,
     "cachedFailureCount": 0,
     "candidateCounts": {
-      "exact": 66,
-      "gap": 9
+      "exact": 75,
+      "gap": 0
     },
     "duplicateProviderIds": [
       {

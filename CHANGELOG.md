@@ -12,6 +12,15 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Loki guide gaps
+
+In plain English: The bundled Loki guide now includes 18 exact comics that previously appeared as
+broken placeholders. Existing saved Reading Lists and reading progress are not rewritten; newly
+imported copies receive the settled 656-comic order.
+
+For maintainers, all 830 source positions remain accounted for as 656 exact rows, 53 repeats, and
+121 explicit exclusions. All 18 former gaps retain auditable transition evidence.
+
 ### Settled the Fantastic Four guide gaps
 
 In plain English: The bundled Fantastic Four guide now includes 159 exact comics that previously
