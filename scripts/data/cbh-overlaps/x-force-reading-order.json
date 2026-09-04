@@ -1,17 +1,18 @@
 {
   "candidateId": "x-force-reading-order",
-  "packetDigest": "c6e699d843360f98e6acad931130cb1667f6c6501072acf5295f55d54fdcf5e5",
-  "mappingDigest": "d8c9eddc35a958a088c098441b1143207c6172df2297411a1240fb0b9deea7aa",
+  "packetDigest": "c1ced9a6b1543419eae37b2b58df0920fc3024ef209a3be0b7fde27d47858335",
+  "mappingDigest": "6c6f2a29b7add43d16e8a844bc537dd992f51648dd325c453b77d12ae2e4b63f",
   "libraryDigest": "1805c2bb5a39274ba7886c4eefab75743534f9f1fc2c5bb7ed5ef9e869c17bd2",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 409,
     "sourceIdentityCount": 285,
-    "includedIssueCount": 262,
-    "sourceGapCount": 23,
-    "repeatedSourceReferenceCount": 81
+    "includedIssueCount": 285,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 81,
+    "excludedSourceRowCount": 43
   },
-  "candidateCount": 262,
+  "candidateCount": 285,
   "comparisonCount": 165,
   "comparisons": [
     {
@@ -476,9 +477,13 @@
     },
     {
       "orderId": "magneto-reading-order",
-      "sharedCount": 16,
+      "sharedCount": 23,
       "sharedIds": [
         "17989",
+        "27348",
+        "28415",
+        "30700",
+        "30701",
         "28103",
         "30274",
         "33166",
@@ -488,6 +493,9 @@
         "32552",
         "30486",
         "30487",
+        "32598",
+        "30703",
+        "30704",
         "32583",
         "30673",
         "30674",
@@ -553,16 +561,20 @@
     },
     {
       "orderId": "messiah-war",
-      "sharedCount": 6,
+      "sharedCount": 10,
       "sharedIds": [
         "23667",
         "23848",
         "24054",
+        "23971",
+        "24171",
+        "24631",
         "23969",
         "24170",
-        "27253"
+        "27253",
+        "27620"
       ],
-      "relationship": "partial"
+      "relationship": "existing-subset"
     },
     {
       "orderId": "midnight-massacre",
@@ -608,7 +620,7 @@
     },
     {
       "orderId": "necrosha",
-      "sharedCount": 10,
+      "sharedCount": 14,
       "sharedIds": [
         "27259",
         "27260",
@@ -618,10 +630,14 @@
         "26055",
         "26056",
         "26057",
+        "27348",
+        "28415",
+        "30700",
+        "30701",
         "28103",
         "29945"
       ],
-      "relationship": "partial"
+      "relationship": "existing-subset"
     },
     {
       "orderId": "new-ultimate-universe",
@@ -735,7 +751,7 @@
     },
     {
       "orderId": "second-coming",
-      "sharedCount": 11,
+      "sharedCount": 14,
       "sharedIds": [
         "30274",
         "33166",
@@ -745,6 +761,9 @@
         "32552",
         "30486",
         "30487",
+        "32598",
+        "30703",
+        "30704",
         "32583",
         "30673",
         "30674"
@@ -951,7 +970,7 @@
     },
     {
       "orderId": "wolverine-reading-order",
-      "sharedCount": 54,
+      "sharedCount": 64,
       "sharedIds": [
         "18005",
         "17980",
@@ -969,17 +988,27 @@
         "23125",
         "23617",
         "23772",
+        "23971",
+        "24171",
+        "24631",
         "23969",
         "24170",
         "27253",
         "26055",
         "26057",
+        "27348",
+        "28415",
+        "30700",
+        "30701",
         "32564",
         "30621",
         "30622",
         "32552",
         "30486",
         "30487",
+        "32598",
+        "30703",
+        "30704",
         "32583",
         "30673",
         "30674",
@@ -1161,5 +1190,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "ccf39d80fe86800c8aa752ee945637e3950c19e97ac3bcf09762dff82c31c80d"
+  "reportDigest": "5bd308e6ad4a32308460a1260d64e57f248d344b3d707120e759307f1c34c439"
 }

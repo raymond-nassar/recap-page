@@ -61,6 +61,7 @@ const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
   'loki-reading-order': '59de316b6547f728eb75fd03ba8717ebb9cbf294f30404e31d02d5906e25962b',
   'moon-knight-reading-order': 'd073930c3543c58ba3fc12f5e02ab80fb5551d0847f1b932e01c96d00da5ab08',
   'silver-surfer-reading-order': '2fad8b1d3f31882844786b3a7051b48e559e7d94afdb3e936fdf83e88d263a92',
+  'x-force-reading-order': '5dd58f5d27ed93ef250159b61f2d3b05da1a836ecd539d6569ec6950abfddb43',
 });
 const PACKET_FIELDS = new Set([
   'schemaVersion',

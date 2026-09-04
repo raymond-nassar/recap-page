@@ -12,6 +12,15 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the X-Force guide gaps
+
+In plain English: The bundled X-Force guide now includes 23 exact comics that previously appeared
+as broken placeholders. Existing saved Reading Lists and reading progress are not rewritten; newly
+imported copies receive the settled 285-comic order.
+
+For maintainers, all 409 source positions remain accounted for as 285 exact rows, 81 repeats, and
+43 explicit exclusions. All 23 former gaps retain auditable transition evidence.
+
 ### Settled the Loki guide gaps
 
 In plain English: The bundled Loki guide now includes 18 exact comics that previously appeared as
