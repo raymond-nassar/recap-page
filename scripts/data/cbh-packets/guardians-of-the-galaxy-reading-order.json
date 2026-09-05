@@ -77,6 +77,18 @@
       "decisionScope": "source-boundary"
     },
     {
+      "sourcePosition": 117,
+      "sourceIssueReference": "Annihilation",
+      "reason": "The frozen source names the Annihilation event without an issue number, so selecting one issue would replace the source occurrence with an arbitrary comic.",
+      "decisionScope": "source-semantic-exclusion"
+    },
+    {
+      "sourcePosition": 118,
+      "sourceIssueReference": "Annihilation Conquest",
+      "reason": "The frozen source names Annihilation: Conquest without an issue number, so issue #1 or any other chapter cannot be inferred from the event title.",
+      "decisionScope": "source-semantic-exclusion"
+    },
+    {
       "sourcePosition": 119,
       "sourceIssueReference": "Guardians of the Galaxy by Abnett & Lanning: The Complete Collection Volume 1",
       "reason": "Trade or collection label without an issue identity.",
@@ -87,6 +99,12 @@
       "sourceIssueReference": "Guardians of the Galaxy by Abnett & Lanning: The Complete Collection Volume 2",
       "reason": "Trade or collection label without an issue identity.",
       "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 146,
+      "sourceIssueReference": "The Thanos Imperative",
+      "reason": "The frozen source names The Thanos Imperative without an issue number, so no single issue identity can preserve the source occurrence.",
+      "decisionScope": "source-semantic-exclusion"
     },
     {
       "sourcePosition": 151,
@@ -119,10 +137,22 @@
       "decisionScope": "source-boundary"
     },
     {
+      "sourcePosition": 178,
+      "sourceIssueReference": "Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "reason": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for this Free Comic Book Day 2014 Guardians occurrence; the standing publication policy permits an explicit exclusion without substitution.",
+      "decisionScope": "owner-authorized-unavailable-exclusion"
+    },
+    {
       "sourcePosition": 183,
       "sourceIssueReference": "Guardians of the Galaxy Vol. 4: Original Sin",
       "reason": "Trade or collection label without an issue identity.",
       "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 190,
+      "sourceIssueReference": "Guardians of the Galaxy Annual #1",
+      "reason": "The frozen source omits the annual year and the rejected candidate 4033 is Books of Doom (2005) #6, so the exact Guardians annual identity remains unavailable and no annual may be substituted.",
+      "decisionScope": "owner-authorized-unavailable-exclusion"
     },
     {
       "sourcePosition": 191,
@@ -161,6 +191,18 @@
       "decisionScope": "source-boundary"
     },
     {
+      "sourcePosition": 234,
+      "sourceIssueReference": "Guardians of the Galaxy: Tomorrow's Avengers #1",
+      "reason": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for Guardians of the Galaxy: Tomorrow’s Avengers #1; the standing publication policy permits an explicit exclusion without substitution.",
+      "decisionScope": "owner-authorized-unavailable-exclusion"
+    },
+    {
+      "sourcePosition": 235,
+      "sourceIssueReference": "Free Comic Book Day (2014) Rocket Raccoon #1",
+      "reason": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for the Free Comic Book Day 2014 Rocket Raccoon occurrence; its collection in a trade does not supply a standalone issue identity.",
+      "decisionScope": "owner-authorized-unavailable-exclusion"
+    },
+    {
       "sourcePosition": 237,
       "sourceIssueReference": "Thor (1966) #314",
       "reason": "Partial-material reference rather than a whole-comic occurrence.",
@@ -177,6 +219,12 @@
       "sourceIssueReference": "Marvel Holiday Special #2",
       "reason": "Partial-material reference rather than a whole-comic occurrence.",
       "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 240,
+      "sourceIssueReference": "Guardians of Knowhere",
+      "reason": "The frozen source names Guardians of Knowhere without an issue number, so exact issue 53702 (#1) cannot be inferred solely from the series title.",
+      "decisionScope": "source-semantic-exclusion"
     },
     {
       "sourcePosition": 241,
@@ -249,6 +297,12 @@
       "sourceIssueReference": "Guardians of the Galaxy: New Guard Vol. 2",
       "reason": "Trade or collection label without an issue identity.",
       "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 271,
+      "sourceIssueReference": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
+      "reason": "The frozen source names Guardians of the Galaxy: Awesome Mix Infinite Comic without an issue number, so no single issue identity can preserve the source occurrence.",
+      "decisionScope": "source-semantic-exclusion"
     },
     {
       "sourcePosition": 272,
@@ -335,6 +389,12 @@
       "decisionScope": "source-boundary"
     },
     {
+      "sourcePosition": 371,
+      "sourceIssueReference": "Guardians of the Galaxy #19",
+      "reason": "The reviewed provider snapshot ends the Guardians of the Galaxy (2020) run at #18 and candidate 3350 is unrelated, so #19 remains unavailable without substitution under the standing publication policy.",
+      "decisionScope": "owner-authorized-unavailable-exclusion"
+    },
+    {
       "sourcePosition": 378,
       "sourceIssueReference": "Guardians of the Galaxy by Donny Cates Vol. 2: Faithless",
       "reason": "Trade or collection label without an issue identity.",
@@ -365,6 +425,12 @@
       "decisionScope": "source-boundary"
     },
     {
+      "sourcePosition": 413,
+      "sourceIssueReference": "The Last Annihilation: Wakanda and S.W.O.R.D. #7",
+      "reason": "The frozen occurrence combines Wakanda #1 (issue 95676) and S.W.O.R.D. (2020) #7 (issue 94676). The one-position/one-outcome schema cannot publish both without silently dropping one identity, so the composite occurrence is explicitly excluded.",
+      "decisionScope": "source-semantic-exclusion"
+    },
+    {
       "sourcePosition": 415,
       "sourceIssueReference": "Guardians of the Galaxy by Collin Kelly & Jackson Lanzing Vol. 1: Grootfall",
       "reason": "Trade or collection label without an issue identity.",
@@ -376,7 +442,7 @@
   "repeatedSourceReferences": [
     {
       "sourcePosition": 162,
-      "canonicalRow": 133,
+      "canonicalRow": 136,
       "sourceIssueReference": "Guardians of the Galaxy #8",
       "sourceRangeReference": "Collects: Guardians of the Galaxy #1 to #10",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -385,7 +451,7 @@
     },
     {
       "sourcePosition": 163,
-      "canonicalRow": 134,
+      "canonicalRow": 137,
       "sourceIssueReference": "Guardians of the Galaxy #9",
       "sourceRangeReference": "Collects: Guardians of the Galaxy #1 to #10",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -394,7 +460,7 @@
     },
     {
       "sourcePosition": 169,
-      "canonicalRow": 143,
+      "canonicalRow": 146,
       "sourceIssueReference": "Guardians of the Galaxy #11",
       "sourceRangeReference": "Collects: Guardians of the Galaxy 11-13, All-New X-Men 22-24",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -403,7 +469,7 @@
     },
     {
       "sourcePosition": 170,
-      "canonicalRow": 144,
+      "canonicalRow": 147,
       "sourceIssueReference": "Guardians of the Galaxy #12",
       "sourceRangeReference": "Collects: Guardians of the Galaxy 11-13, All-New X-Men 22-24",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -412,7 +478,7 @@
     },
     {
       "sourcePosition": 171,
-      "canonicalRow": 145,
+      "canonicalRow": 148,
       "sourceIssueReference": "Guardians of the Galaxy #13",
       "sourceRangeReference": "Collects: Guardians of the Galaxy 11-13, All-New X-Men 22-24",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -421,7 +487,7 @@
     },
     {
       "sourcePosition": 203,
-      "canonicalRow": 166,
+      "canonicalRow": 169,
       "sourceIssueReference": "Guardians of the Galaxy #24",
       "sourceRangeReference": "Collects: Guardians of the Galaxy #24 to #27, Guardians Team-Up #1 to #5",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -430,7 +496,7 @@
     },
     {
       "sourcePosition": 204,
-      "canonicalRow": 167,
+      "canonicalRow": 170,
       "sourceIssueReference": "Guardians of the Galaxy #25",
       "sourceRangeReference": "Collects: Guardians of the Galaxy #24 to #27, Guardians Team-Up #1 to #5",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -439,7 +505,7 @@
     },
     {
       "sourcePosition": 213,
-      "canonicalRow": 166,
+      "canonicalRow": 169,
       "sourceIssueReference": "Guardians of the Galaxy #24",
       "sourceRangeReference": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -448,7 +514,7 @@
     },
     {
       "sourcePosition": 214,
-      "canonicalRow": 167,
+      "canonicalRow": 170,
       "sourceIssueReference": "Guardians of the Galaxy #25",
       "sourceRangeReference": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -457,7 +523,7 @@
     },
     {
       "sourcePosition": 220,
-      "canonicalRow": 171,
+      "canonicalRow": 174,
       "sourceIssueReference": "Guardians Team-Up #2",
       "sourceRangeReference": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1",
       "normalizedSeriesTitle": "Guardians Team-Up",
@@ -466,7 +532,7 @@
     },
     {
       "sourcePosition": 379,
-      "canonicalRow": 258,
+      "canonicalRow": 274,
       "sourceIssueReference": "Guardians of the Galaxy #7",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2019) #7 to #12, Guardians of the Galaxy Annual (2019) #1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -475,7 +541,7 @@
     },
     {
       "sourcePosition": 380,
-      "canonicalRow": 259,
+      "canonicalRow": 275,
       "sourceIssueReference": "Guardians of the Galaxy #8",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2019) #7 to #12, Guardians of the Galaxy Annual (2019) #1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -484,7 +550,7 @@
     },
     {
       "sourcePosition": 381,
-      "canonicalRow": 260,
+      "canonicalRow": 276,
       "sourceIssueReference": "Guardians of the Galaxy #9",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2019) #7 to #12, Guardians of the Galaxy Annual (2019) #1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -493,7 +559,7 @@
     },
     {
       "sourcePosition": 382,
-      "canonicalRow": 261,
+      "canonicalRow": 277,
       "sourceIssueReference": "Guardians of the Galaxy #10",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2019) #7 to #12, Guardians of the Galaxy Annual (2019) #1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -502,7 +568,7 @@
     },
     {
       "sourcePosition": 383,
-      "canonicalRow": 262,
+      "canonicalRow": 278,
       "sourceIssueReference": "Guardians of the Galaxy #11",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2019) #7 to #12, Guardians of the Galaxy Annual (2019) #1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -511,7 +577,7 @@
     },
     {
       "sourcePosition": 384,
-      "canonicalRow": 263,
+      "canonicalRow": 279,
       "sourceIssueReference": "Guardians of the Galaxy #12",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2019) #7 to #12, Guardians of the Galaxy Annual (2019) #1",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -520,16 +586,16 @@
     },
     {
       "sourcePosition": 385,
-      "canonicalGapPosition": 351,
+      "canonicalRow": 280,
       "sourceIssueReference": "Guardians of the Galaxy Annual #1",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2019) #7 to #12, Guardians of the Galaxy Annual (2019) #1",
-      "normalizedSeriesTitle": "Guardians of the Galaxy Annual",
+      "normalizedSeriesTitle": "GUARDIANS OF THE GALAXY ANNUAL 1",
       "seriesYear": 2019,
       "issueNumber": "1"
     },
     {
       "sourcePosition": 387,
-      "canonicalRow": 264,
+      "canonicalRow": 281,
       "sourceIssueReference": "Guardians of the Galaxy #1",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #1 to #5",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -538,7 +604,7 @@
     },
     {
       "sourcePosition": 388,
-      "canonicalRow": 265,
+      "canonicalRow": 282,
       "sourceIssueReference": "Guardians of the Galaxy #2",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #1 to #5",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -547,7 +613,7 @@
     },
     {
       "sourcePosition": 389,
-      "canonicalRow": 266,
+      "canonicalRow": 283,
       "sourceIssueReference": "Guardians of the Galaxy #3",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #1 to #5",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -556,7 +622,7 @@
     },
     {
       "sourcePosition": 390,
-      "canonicalRow": 267,
+      "canonicalRow": 284,
       "sourceIssueReference": "Guardians of the Galaxy #4",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #1 to #5",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -565,7 +631,7 @@
     },
     {
       "sourcePosition": 391,
-      "canonicalRow": 268,
+      "canonicalRow": 285,
       "sourceIssueReference": "Guardians of the Galaxy #5",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #1 to #5",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -574,7 +640,7 @@
     },
     {
       "sourcePosition": 393,
-      "canonicalRow": 269,
+      "canonicalRow": 286,
       "sourceIssueReference": "Guardians of the Galaxy #6",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #6 to #12",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -583,7 +649,7 @@
     },
     {
       "sourcePosition": 394,
-      "canonicalRow": 270,
+      "canonicalRow": 287,
       "sourceIssueReference": "Guardians of the Galaxy #7",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #6 to #12",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -592,7 +658,7 @@
     },
     {
       "sourcePosition": 395,
-      "canonicalRow": 271,
+      "canonicalRow": 288,
       "sourceIssueReference": "Guardians of the Galaxy #8",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #6 to #12",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -601,7 +667,7 @@
     },
     {
       "sourcePosition": 396,
-      "canonicalRow": 272,
+      "canonicalRow": 289,
       "sourceIssueReference": "Guardians of the Galaxy #9",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #6 to #12",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -610,7 +676,7 @@
     },
     {
       "sourcePosition": 397,
-      "canonicalRow": 273,
+      "canonicalRow": 290,
       "sourceIssueReference": "Guardians of the Galaxy #10",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #6 to #12",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -619,7 +685,7 @@
     },
     {
       "sourcePosition": 398,
-      "canonicalRow": 274,
+      "canonicalRow": 291,
       "sourceIssueReference": "Guardians of the Galaxy #11",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #6 to #12",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -628,7 +694,7 @@
     },
     {
       "sourcePosition": 399,
-      "canonicalRow": 275,
+      "canonicalRow": 292,
       "sourceIssueReference": "Guardians of the Galaxy #12",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #6 to #12",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -637,7 +703,7 @@
     },
     {
       "sourcePosition": 401,
-      "canonicalRow": 276,
+      "canonicalRow": 293,
       "sourceIssueReference": "Guardians of the Galaxy #13",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #13 to #18",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -646,7 +712,7 @@
     },
     {
       "sourcePosition": 402,
-      "canonicalRow": 277,
+      "canonicalRow": 294,
       "sourceIssueReference": "Guardians of the Galaxy #14",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #13 to #18",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -655,7 +721,7 @@
     },
     {
       "sourcePosition": 403,
-      "canonicalRow": 278,
+      "canonicalRow": 295,
       "sourceIssueReference": "Guardians of the Galaxy #15",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #13 to #18",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -664,7 +730,7 @@
     },
     {
       "sourcePosition": 404,
-      "canonicalRow": 279,
+      "canonicalRow": 296,
       "sourceIssueReference": "Guardians of the Galaxy #16",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #13 to #18",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -673,7 +739,7 @@
     },
     {
       "sourcePosition": 405,
-      "canonicalRow": 280,
+      "canonicalRow": 297,
       "sourceIssueReference": "Guardians of the Galaxy #17",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #13 to #18",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -682,7 +748,7 @@
     },
     {
       "sourcePosition": 406,
-      "canonicalRow": 281,
+      "canonicalRow": 298,
       "sourceIssueReference": "Guardians of the Galaxy #18",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #13 to #18",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -691,7 +757,7 @@
     },
     {
       "sourcePosition": 408,
-      "canonicalRow": 279,
+      "canonicalRow": 296,
       "sourceIssueReference": "Guardians of the Galaxy #16",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -700,7 +766,7 @@
     },
     {
       "sourcePosition": 409,
-      "canonicalRow": 280,
+      "canonicalRow": 297,
       "sourceIssueReference": "Guardians of the Galaxy #17",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -709,7 +775,7 @@
     },
     {
       "sourcePosition": 410,
-      "canonicalRow": 281,
+      "canonicalRow": 298,
       "sourceIssueReference": "Guardians of the Galaxy #18",
       "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
       "normalizedSeriesTitle": "Guardians of the Galaxy",
@@ -717,788 +783,7 @@
       "issueNumber": "18"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 117,
-      "sourceIssueReference": "Annihilation",
-      "sourceRangeReference": "Annihilation",
-      "sourceGroup": "Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run",
-      "normalizedSeriesTitle": "Annihilation",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context-resolved. Source names a work but no issue number; exact provider series context is proven without choosing an issue.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "provider-series",
-          "url": "https://marvel.emreparker.com/v1/series/3613",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8423ada82bafaa43f9b6d51a7c4a3eab0c9ee0bcd7cec5bdf84305b747a70f12"
-    },
-    {
-      "sourcePosition": 118,
-      "sourceIssueReference": "Annihilation Conquest",
-      "sourceRangeReference": "Annihilation Conquest",
-      "sourceGroup": "Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run",
-      "normalizedSeriesTitle": "Annihilation Conquest",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context-resolved. Source names a work but no issue number; exact provider series context is proven without choosing an issue.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "provider-series",
-          "url": "https://marvel.emreparker.com/v1/series/3061",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b7923d3762ba03b68dca9996652be65bbafb76bc91502db9ea19cf4759face0a"
-    },
-    {
-      "sourcePosition": 146,
-      "sourceIssueReference": "The Thanos Imperative",
-      "sourceRangeReference": "The Thanos Imperative",
-      "sourceGroup": "Modern Guardians of the Galaxy - Dan Abnett & Andy Lanning Run",
-      "normalizedSeriesTitle": "The Thanos Imperative",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context-resolved. Source names a work but no issue number; exact provider series context is proven without choosing an issue.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "provider-series",
-          "url": "https://marvel.emreparker.com/v1/series/9950",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "89eedeca7f74ab770f0137435be13eafc7f554466d9e235dddad8fe02c296649"
-    },
-    {
-      "sourcePosition": 148,
-      "sourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #2",
-      "sourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
-      "seriesYear": 2013,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. Exact provider series context has no issue with the source issue number.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "471cab6f58e6a037016827ec9c9d7dcf2ecaf80b255401ca5190165ce0ca1f1f"
-    },
-    {
-      "sourcePosition": 149,
-      "sourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #3",
-      "sourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
-      "seriesYear": 2013,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. Exact provider series context has no issue with the source issue number.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e9b023acc6a956c4ba075f4b7c87cecee2fead316c2a7a3950d3ec12014826e3"
-    },
-    {
-      "sourcePosition": 150,
-      "sourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #4",
-      "sourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
-      "seriesYear": 2013,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. Exact provider series context has no issue with the source issue number.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "4f90292f6874219a67f0493ed775e840200cb22df2ee5faadc83d8fd97f6e000"
-    },
-    {
-      "sourcePosition": 178,
-      "sourceIssueReference": "Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
-      "sourceRangeReference": "Collects: Captain Marvel (2012) #1, Amazing Spider-Man #654 (B story), Free Comic Book Day 2014 (Guardians Of The Galaxy) 1, Guardians of the Galaxy (2013) #14-17",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Free Comic Book Day 2014: Guardians Of The Galaxy",
-      "seriesYear": 2014,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2a880983cfc1698d77461c2c12eb40d294d1f7cc708ea0431f0a8052730e7835"
-    },
-    {
-      "sourcePosition": 190,
-      "sourceIssueReference": "Guardians of the Galaxy Annual #1",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2013) #18-23, Annual #1",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Guardians of the Galaxy Annual",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e418f22c6250d7ef2153370a4066ba858cf7f0909842a4abf0d9b441437d6266"
-    },
-    {
-      "sourcePosition": 221,
-      "sourceIssueReference": "Nova #28",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Nova",
-      "seriesYear": null,
-      "issueNumber": "28",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "47f64429034d04689d4583b8c0e5f53d7d8c763e4f5681ca954c927f5f9b90ae"
-    },
-    {
-      "sourcePosition": 233,
-      "sourceIssueReference": "Guardians of the Galaxy: Best Story Ever (2015) #1",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Guardians of the Galaxy: Best Story Ever",
-      "seriesYear": 2015,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: ambiguous. Multiple provider issues match the exact source title/year/number context.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "9853fea3c94de46f08f1dbf5e75a7bffe0105c7d46f07f9a774eda6c8883283d"
-    },
-    {
-      "sourcePosition": 234,
-      "sourceIssueReference": "Guardians of the Galaxy: Tomorrow's Avengers #1",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Guardians of the Galaxy: Tomorrow's Avengers",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "4b76c0d04ce118ba58f437a17b70e9162eb20be4ee6c050a5670eaaf780fbddf"
-    },
-    {
-      "sourcePosition": 235,
-      "sourceIssueReference": "Free Comic Book Day (2014) Rocket Raccoon #1",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Free Comic Book Day 2014: Rocket Raccoon",
-      "seriesYear": 2014,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a146fe33593777f3c551f7580c8b574f545c1d979bf296f17e9c0ff74ca12d56"
-    },
-    {
-      "sourcePosition": 240,
-      "sourceIssueReference": "Guardians of Knowhere",
-      "sourceRangeReference": "Guardians of Knowhere",
-      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
-      "normalizedSeriesTitle": "Guardians of Knowhere",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context-resolved. Source names a work but no issue number; exact provider series context is proven without choosing an issue.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "provider-series",
-          "url": "https://marvel.emreparker.com/v1/series/20090",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "ecad198778dc0ff16656ef9c84efaa0fb0d070dc3288ad6f634042b7bba9ee0a"
-    },
-    {
-      "sourcePosition": 271,
-      "sourceIssueReference": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
-      "sourceRangeReference": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
-      "sourceGroup": "All-New All-Different Guardians of the Galaxy... Still by Bendis",
-      "normalizedSeriesTitle": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context-resolved. Source names a work but no issue number; exact provider series context is proven without choosing an issue.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "provider-series",
-          "url": "https://marvel.emreparker.com/v1/series/22922",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b494d1382f10a7ab7614a77bd9eaeefd5d0b64ea2f082ea8703ed093ad662994"
-    },
-    {
-      "sourcePosition": 290,
-      "sourceIssueReference": "Secret Empire: United #1",
-      "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Secret Empire: United",
-      "seriesYear": 2017,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2f477b07353a0147defa9658804bba8b4119d2e83e85866510b8af5836b2a4fd"
-    },
-    {
-      "sourcePosition": 293,
-      "sourceIssueReference": "Uncanny Avengers (2015B) #24",
-      "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Uncanny Avengers",
-      "seriesYear": null,
-      "issueNumber": "24",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "0fb3f6256d57736ef5701e692c8b438bbb33edc479170fb62375b21cb7c7642a"
-    },
-    {
-      "sourcePosition": 294,
-      "sourceIssueReference": "Uncanny Avengers (2015B) #25",
-      "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Uncanny Avengers",
-      "seriesYear": null,
-      "issueNumber": "25",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "7347e14933ca564f03f985b21359b0e63fd8c23ca2c88c4d2107f61251559d78"
-    },
-    {
-      "sourcePosition": 297,
-      "sourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
-      "sourceRangeReference": "Collects: Free Comic Book Day 2017 All-New Guardians of the Galaxy #1, All-New Guardians of the Galaxy (2017) #1-2, 4, 6, 8 & 10",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Free Comic Book Day 2017: All-New Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "40f82774884c9399d9f3fae5ee02ba28d11e7655e4bb8039c9e1adc45791da47"
-    },
-    {
-      "sourcePosition": 312,
-      "sourceIssueReference": "Guardians of the Galaxy #146",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "146",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "65f3444d41bff42a95786b66bee047e52cf80bcbdcef92c37c892d0199dbf7fd"
-    },
-    {
-      "sourcePosition": 313,
-      "sourceIssueReference": "Guardians of the Galaxy #147",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "147",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "df3755e727dec92b5006d8062604b7c37a0fa2da82b58b1f181d38f5e71af680"
-    },
-    {
-      "sourcePosition": 314,
-      "sourceIssueReference": "Guardians of the Galaxy #148",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "148",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "dfe3c3106039193d54cded5e16a9c92b2e700f08a8e553c0feec2b5be9534f80"
-    },
-    {
-      "sourcePosition": 315,
-      "sourceIssueReference": "Guardians of the Galaxy #149",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "149",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "19c16cf1e87b341a33baf41c018fec427419c8091cb7625cfb4508bc66c75fac"
-    },
-    {
-      "sourcePosition": 316,
-      "sourceIssueReference": "Guardians of the Galaxy #150",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Guardians of the Galaxy",
-      "seriesYear": 2017,
-      "issueNumber": "150",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "99a166d182b2d9c3544a6b39da58ebc0f981785c459558326755bb9fdceecd86"
-    },
-    {
-      "sourcePosition": 327,
-      "sourceIssueReference": "Infinty Wars Prime #1",
-      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Infinty Wars Prime",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "e57f955fa793d358254e233ec2531f0a928b0976a541e965252794e19cbf52ba"
-    },
-    {
-      "sourcePosition": 335,
-      "sourceIssueReference": "Infinity Wars: Infinity #1",
-      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Infinity Wars: Infinity",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "6c93138625b4e8613f51c6f3c86c184d64e24c3e458cf2b00a71681eea0a1ff3"
-    },
-    {
-      "sourcePosition": 351,
-      "sourceIssueReference": "Guardians of the Galaxy Annual #1",
-      "sourceRangeReference": "Collects: Guardians Of The Galaxy (2019) #7-12, Guardians of the Galaxy Annual (2019) #1",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Guardians of the Galaxy Annual",
-      "seriesYear": 2019,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "8c123f820a3e6ecdb7b72f58781e09ccbb643145de89b0b987ce3323c405aba0"
-    },
-    {
-      "sourcePosition": 371,
-      "sourceIssueReference": "Guardians of the Galaxy #19",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #1 to #19, Rocket #1 to #6",
-      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
-      "normalizedSeriesTitle": "Guardians of the Galaxy",
-      "seriesYear": 2020,
-      "issueNumber": "19",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. Exact provider series context has no issue with the source issue number.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "0d56b2ec098fa782002ba1dfe062e4cbb37419c198a423641bbfeae43d68c265"
-    },
-    {
-      "sourcePosition": 412,
-      "sourceIssueReference": "The Last Annihilation: Wiccan & Hulking #1",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulking",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "94948d3b407e8bbc50317fd1578ccd8df87496b623f3e20ac102907edbc1452f"
-    },
-    {
-      "sourcePosition": 413,
-      "sourceIssueReference": "The Last Annihilation: Wakanda and S.W.O.R.D. #7",
-      "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "The Last Annihilation: Wakanda and S.W.O.R.D.",
-      "seriesYear": 2020,
-      "issueNumber": "7",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact normalized title/year match exists in the paginated provider catalog.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2ad416d254c25358ff02a8e8532d0f6cb41106a9ac3c9f8f76787125c736ebfe"
-    }
-  ],
-  "expectedCount": 294,
+  "expectedCount": 312,
   "proposedManifest": {
     "id": "guardians-of-the-galaxy-reading-order",
     "name": "Guardians of the Galaxy",
@@ -1531,12 +816,12 @@
       "Groot",
       "Comic Book Herald"
     ],
-    "expect": 323,
+    "expect": 312,
     "timeline": null,
     "coverIssueId": 15429
   },
   "insertionAnchor": {
-    "beforeId": "xmen-claremont"
+    "beforeId": "inhumans-reading-order"
   },
   "sourceReview": {
     "authorityType": "stronger-model",
@@ -3262,6 +2547,45 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 148,
+      "sourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #2",
+      "sourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
+      "normalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2013,
+      "issueNumber": "2",
+      "seriesId": 17755,
+      "candidateIssueId": 47163,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 149,
+      "sourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #3",
+      "sourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
+      "normalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2013,
+      "issueNumber": "3",
+      "seriesId": 17755,
+      "candidateIssueId": 47164,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 150,
+      "sourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #4",
+      "sourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
+      "normalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "seriesYear": 2013,
+      "issueNumber": "4",
+      "seriesId": 17755,
+      "candidateIssueId": 47165,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourcePosition": 153,
       "sourceIssueReference": "Guardians of the Galaxy #8",
       "sourceRangeReference": "Note that Guardians of the Galaxy issues #8 and #9 are crossovers with Marvel’s 2013 Infinity event. You can find their appropriate timeline placement within Comic Book Herald’s Infinity reading order.",
@@ -3886,6 +3210,19 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 221,
+      "sourceIssueReference": "Nova #28",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1",
+      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
+      "normalizedSeriesTitle": "Nova",
+      "seriesYear": 2007,
+      "issueNumber": "28",
+      "seriesId": 2504,
+      "candidateIssueId": 26093,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourcePosition": 222,
       "sourceIssueReference": "Cyclops #12",
       "sourceRangeReference": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1",
@@ -3999,6 +3336,19 @@
       "issueNumber": "883",
       "seriesId": 9045,
       "candidateIssueId": 35992,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 233,
+      "sourceIssueReference": "Guardians of the Galaxy: Best Story Ever (2015) #1",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2",
+      "sourceGroup": "Marvel NOW! Guardians of the Galaxy - The Brian Michael Bendis Run",
+      "normalizedSeriesTitle": "Guardians of the Galaxy: Best Story Ever",
+      "seriesYear": 2015,
+      "issueNumber": "1",
+      "seriesId": 19449,
+      "candidateIssueId": 51915,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -4432,6 +3782,19 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 290,
+      "sourceIssueReference": "Secret Empire: United #1",
+      "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "SECRET EMPIRE: UNITED 1",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 25358,
+      "candidateIssueId": 62959,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourcePosition": 291,
       "sourceIssueReference": "Secret Empire: Underground #1",
       "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
@@ -4458,6 +3821,32 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 293,
+      "sourceIssueReference": "Uncanny Avengers (2015B) #24",
+      "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "Uncanny Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "24",
+      "seriesId": 20621,
+      "candidateIssueId": 61101,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 294,
+      "sourceIssueReference": "Uncanny Avengers (2015B) #25",
+      "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "Uncanny Avengers",
+      "seriesYear": 2015,
+      "issueNumber": "25",
+      "seriesId": 20621,
+      "candidateIssueId": 61102,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourcePosition": 295,
       "sourceIssueReference": "All-New Guardians of the Galaxy Annual #1",
       "sourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
@@ -4467,6 +3856,19 @@
       "issueNumber": "1",
       "seriesId": 24393,
       "candidateIssueId": 63223,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 297,
+      "sourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
+      "sourceRangeReference": "Collects: Free Comic Book Day 2017 All-New Guardians of the Galaxy #1, All-New Guardians of the Galaxy (2017) #1-2, 4, 6, 8 & 10",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "seriesYear": 2017,
+      "issueNumber": "0",
+      "seriesId": 23038,
+      "candidateIssueId": 62818,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -4627,6 +4029,71 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 312,
+      "sourceIssueReference": "Guardians of the Galaxy #146",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "146",
+      "seriesId": 23058,
+      "candidateIssueId": 65074,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 313,
+      "sourceIssueReference": "Guardians of the Galaxy #147",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "147",
+      "seriesId": 23058,
+      "candidateIssueId": 65075,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 314,
+      "sourceIssueReference": "Guardians of the Galaxy #148",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "148",
+      "seriesId": 23058,
+      "candidateIssueId": 65282,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 315,
+      "sourceIssueReference": "Guardians of the Galaxy #149",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "149",
+      "seriesId": 23058,
+      "candidateIssueId": 65283,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 316,
+      "sourceIssueReference": "Guardians of the Galaxy #150",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "seriesYear": 2017,
+      "issueNumber": "150",
+      "seriesId": 23058,
+      "candidateIssueId": 65547,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourcePosition": 318,
       "sourceIssueReference": "Infinity Countdown Prime (2018) #1",
       "sourceRangeReference": "Collects: Infinity Countdown Prime (2018), Infinity Countdown (2018) #1-5, Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
@@ -4718,6 +4185,19 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 327,
+      "sourceIssueReference": "Infinty Wars Prime #1",
+      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "Infinity Wars Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24340,
+      "candidateIssueId": 67349,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourcePosition": 328,
       "sourceIssueReference": "Infinity Wars #1",
       "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
@@ -4805,6 +4285,19 @@
       "issueNumber": "1",
       "seriesId": 26478,
       "candidateIssueId": 73415,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 335,
+      "sourceIssueReference": "Infinity Wars: Infinity #1",
+      "sourceRangeReference": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "Infinity Wars: Infinity",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 26898,
+      "candidateIssueId": 74762,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -4961,6 +4454,19 @@
       "issueNumber": "12",
       "seriesId": 26480,
       "candidateIssueId": 73431,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
+      "sourcePosition": 351,
+      "sourceIssueReference": "Guardians of the Galaxy Annual #1",
+      "sourceRangeReference": "Collects: Guardians Of The Galaxy (2019) #7-12, Guardians of the Galaxy Annual (2019) #1",
+      "sourceGroup": "Marvel Legacy to Marvel Fresh Start Guardians",
+      "normalizedSeriesTitle": "GUARDIANS OF THE GALAXY ANNUAL 1",
+      "seriesYear": 2019,
+      "issueNumber": "1",
+      "seriesId": 27554,
+      "candidateIssueId": 76749,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
     },
@@ -5290,6 +4796,19 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 412,
+      "sourceIssueReference": "The Last Annihilation: Wiccan & Hulking #1",
+      "sourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32833,
+      "candidateIssueId": 95675,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null
+    },
+    {
       "sourcePosition": 414,
       "sourceIssueReference": "Guardians of the Galaxy: Cosmic Rewind #1",
       "sourceRangeReference": "Guardians of the Galaxy: Cosmic Rewind #1",
@@ -5368,5 +4887,802 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "2d752bbe858973504f1f9a024af6af69b8b7c7f02047eb05ee7242b793974978"
+  "packetDigest": "aadc3848c4f27cc2abe9c560146119c9a760ea7a037c8b06df0fe6cc96222134",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 117,
+      "previousSourceIssueReference": "Annihilation",
+      "previousSourceRangeReference": "Annihilation",
+      "previousNormalizedSeriesTitle": "Annihilation",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The frozen source names the Annihilation event without an issue number, so selecting one issue would replace the source occurrence with an arbitrary comic.",
+      "decisionScope": "source-semantic-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The frozen source names the Annihilation event without an issue number, so selecting one issue would replace the source occurrence with an arbitrary comic.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d100488c128e0a7eb7f8ad8f345d5047c5640ba2801f859935de5f03c25159a8"
+    },
+    {
+      "sourcePosition": 118,
+      "previousSourceIssueReference": "Annihilation Conquest",
+      "previousSourceRangeReference": "Annihilation Conquest",
+      "previousNormalizedSeriesTitle": "Annihilation Conquest",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The frozen source names Annihilation: Conquest without an issue number, so issue #1 or any other chapter cannot be inferred from the event title.",
+      "decisionScope": "source-semantic-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The frozen source names Annihilation: Conquest without an issue number, so issue #1 or any other chapter cannot be inferred from the event title.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "c843c4570f848d857e8dcad71645d4be7153de486a03539d310f4f98190e0317"
+    },
+    {
+      "sourcePosition": 146,
+      "previousSourceIssueReference": "The Thanos Imperative",
+      "previousSourceRangeReference": "The Thanos Imperative",
+      "previousNormalizedSeriesTitle": "The Thanos Imperative",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The frozen source names The Thanos Imperative without an issue number, so no single issue identity can preserve the source occurrence.",
+      "decisionScope": "source-semantic-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The frozen source names The Thanos Imperative without an issue number, so no single issue identity can preserve the source occurrence.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "f9f71bd036aa3d9ce4e0b3a86e3fe8c20d11ffbde600387ea68abffe5fe65abd"
+    },
+    {
+      "sourcePosition": 148,
+      "previousSourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #2",
+      "previousSourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "previousSeriesYear": 2013,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 47163,
+      "resolvedNormalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "resolvedSeriesYear": 2013,
+      "resolvedIssueNumber": "2",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 47163 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/47163/guardians_of_the_galaxy_infinite_comic_2013_2",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "f9886008fb363aecd4705156e058b084ef314728e171294cd88d1798fdefa6e0"
+    },
+    {
+      "sourcePosition": 149,
+      "previousSourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #3",
+      "previousSourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "previousSeriesYear": 2013,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 47164,
+      "resolvedNormalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "resolvedSeriesYear": 2013,
+      "resolvedIssueNumber": "3",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 47164 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/47164/read",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "e5f4235d0e9bfc0042b92ba4d342c5ec557a85ff945dfde56637b11e622d74d2"
+    },
+    {
+      "sourcePosition": 150,
+      "previousSourceIssueReference": "Guardians of the Galaxy Infinite Comic (2013) #4",
+      "previousSourceRangeReference": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "previousSeriesYear": 2013,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 47165,
+      "resolvedNormalizedSeriesTitle": "Guardians of the Galaxy Infinite Comic",
+      "resolvedSeriesYear": 2013,
+      "resolvedIssueNumber": "4",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 47165 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/47165/read",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "090faff0537eaa1e9d1a190669492c7c76bdf32d107f383edb213640fdcfd4d1"
+    },
+    {
+      "sourcePosition": 178,
+      "previousSourceIssueReference": "Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
+      "previousSourceRangeReference": "Collects: Captain Marvel (2012) #1, Amazing Spider-Man #654 (B story), Free Comic Book Day 2014 (Guardians Of The Galaxy) 1, Guardians of the Galaxy (2013) #14-17",
+      "previousNormalizedSeriesTitle": "Free Comic Book Day 2014: Guardians Of The Galaxy",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for this Free Comic Book Day 2014 Guardians occurrence; the standing publication policy permits an explicit exclusion without substitution.",
+      "decisionScope": "owner-authorized-unavailable-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for this Free Comic Book Day 2014 Guardians occurrence; the standing publication policy permits an explicit exclusion without substitution.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1b74ba3c4a79ac7313f95d6998d1f244eb57889f55484dea4cad88983e2f4e40"
+    },
+    {
+      "sourcePosition": 190,
+      "previousSourceIssueReference": "Guardians of the Galaxy Annual #1",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2013) #18-23, Annual #1",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy Annual",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The frozen source omits the annual year and the rejected candidate 4033 is Books of Doom (2005) #6, so the exact Guardians annual identity remains unavailable and no annual may be substituted.",
+      "decisionScope": "owner-authorized-unavailable-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The frozen source omits the annual year and the rejected candidate 4033 is Books of Doom (2005) #6, so the exact Guardians annual identity remains unavailable and no annual may be substituted.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "3a4032dc6765941bb4a10a3fd0a00c65004dd6058e78e24e55fe7de52087ab5f"
+    },
+    {
+      "sourcePosition": 221,
+      "previousSourceIssueReference": "Nova #28",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1",
+      "previousNormalizedSeriesTitle": "Nova",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "28",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 26093,
+      "resolvedNormalizedSeriesTitle": "Nova",
+      "resolvedSeriesYear": 2007,
+      "resolvedIssueNumber": "28",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 26093 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/26093/nova_2007_28",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d667fd337c53d70262c59a7d92a1e11f79aebf2d83091c6a493980e1de914d40"
+    },
+    {
+      "sourcePosition": 233,
+      "previousSourceIssueReference": "Guardians of the Galaxy: Best Story Ever (2015) #1",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy: Best Story Ever",
+      "previousSeriesYear": 2015,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 51915,
+      "resolvedNormalizedSeriesTitle": "Guardians of the Galaxy: Best Story Ever",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 51915 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/51915/guardians_of_the_galaxy_best_story_ever_2015_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "5b42ded79a0ba7bee375d33b95741f67e48d6458313e8d117f95ae8c212726e3"
+    },
+    {
+      "sourcePosition": 234,
+      "previousSourceIssueReference": "Guardians of the Galaxy: Tomorrow's Avengers #1",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy: Tomorrow's Avengers",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for Guardians of the Galaxy: Tomorrow’s Avengers #1; the standing publication policy permits an explicit exclusion without substitution.",
+      "decisionScope": "owner-authorized-unavailable-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for Guardians of the Galaxy: Tomorrow’s Avengers #1; the standing publication policy permits an explicit exclusion without substitution.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "8abdfcf376c129d5461e2b3a05b5c7186e1cacbca39cec41b42415793e5f6335"
+    },
+    {
+      "sourcePosition": 235,
+      "previousSourceIssueReference": "Free Comic Book Day (2014) Rocket Raccoon #1",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2",
+      "previousNormalizedSeriesTitle": "Free Comic Book Day 2014: Rocket Raccoon",
+      "previousSeriesYear": 2014,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for the Free Comic Book Day 2014 Rocket Raccoon occurrence; its collection in a trade does not supply a standalone issue identity.",
+      "decisionScope": "owner-authorized-unavailable-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed provider and official evidence did not establish an exact Marvel issue identity for the Free Comic Book Day 2014 Rocket Raccoon occurrence; its collection in a trade does not supply a standalone issue identity.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "9ed673076805ebec47e49460a8372996a4e9dbcae5a5f36103c256fad8afcddc"
+    },
+    {
+      "sourcePosition": 240,
+      "previousSourceIssueReference": "Guardians of Knowhere",
+      "previousSourceRangeReference": "Guardians of Knowhere",
+      "previousNormalizedSeriesTitle": "Guardians of Knowhere",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The frozen source names Guardians of Knowhere without an issue number, so exact issue 53702 (#1) cannot be inferred solely from the series title.",
+      "decisionScope": "source-semantic-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The frozen source names Guardians of Knowhere without an issue number, so exact issue 53702 (#1) cannot be inferred solely from the series title.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "8f1681ba6c0689d65b7aff857df133e735115cfb7a7f594dd7c74412af3639c7"
+    },
+    {
+      "sourcePosition": 271,
+      "previousSourceIssueReference": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
+      "previousSourceRangeReference": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The frozen source names Guardians of the Galaxy: Awesome Mix Infinite Comic without an issue number, so no single issue identity can preserve the source occurrence.",
+      "decisionScope": "source-semantic-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The frozen source names Guardians of the Galaxy: Awesome Mix Infinite Comic without an issue number, so no single issue identity can preserve the source occurrence.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "b4552e36d55f4494d051c5b960dcda9b5ed746f64e689981853567fb78129ed7"
+    },
+    {
+      "sourcePosition": 290,
+      "previousSourceIssueReference": "Secret Empire: United #1",
+      "previousSourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
+      "previousNormalizedSeriesTitle": "Secret Empire: United",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62959,
+      "resolvedNormalizedSeriesTitle": "SECRET EMPIRE: UNITED 1",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 62959 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62959/secret_empire_united_1_2017_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "3ce37137434820781921f04cbf2c83136736aaf2676b09762f2d4b0f930ee232"
+    },
+    {
+      "sourcePosition": 293,
+      "previousSourceIssueReference": "Uncanny Avengers (2015B) #24",
+      "previousSourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
+      "previousNormalizedSeriesTitle": "Uncanny Avengers",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "24",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 61101,
+      "resolvedNormalizedSeriesTitle": "Uncanny Avengers",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "24",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 61101 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/61101/uncanny_avengers_2015_24",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1e0a8e67579d4cb77a02a92700fa7a22bafd63f4a2a1dab3cb0a7c7601edc4db"
+    },
+    {
+      "sourcePosition": 294,
+      "previousSourceIssueReference": "Uncanny Avengers (2015B) #25",
+      "previousSourceRangeReference": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1",
+      "previousNormalizedSeriesTitle": "Uncanny Avengers",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "25",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 61102,
+      "resolvedNormalizedSeriesTitle": "Uncanny Avengers",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "25",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 61102 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/61102/uncanny_avengers_2015_25",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "c1b0ac3deb82bb1cf132f3728d7a6e6b6320a1a436a905f183077e76ad3f90e9"
+    },
+    {
+      "sourcePosition": 297,
+      "previousSourceIssueReference": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
+      "previousSourceRangeReference": "Collects: Free Comic Book Day 2017 All-New Guardians of the Galaxy #1, All-New Guardians of the Galaxy (2017) #1-2, 4, 6, 8 & 10",
+      "previousNormalizedSeriesTitle": "Free Comic Book Day 2017: All-New Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62818,
+      "resolvedNormalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "0",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 62818 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1c0678acbbfec7a057a113a71e3682355fd630f4749e5ce58fec9e29488da33d"
+    },
+    {
+      "sourcePosition": 312,
+      "previousSourceIssueReference": "Guardians of the Galaxy #146",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "146",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65074,
+      "resolvedNormalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "146",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 65074 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65074/all-new_guardians_of_the_galaxy_2017_146",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "6ecf2a9b41ff879ef6cba4846cc60baaca2049e38bc6abb8a60605a5e34663ae"
+    },
+    {
+      "sourcePosition": 313,
+      "previousSourceIssueReference": "Guardians of the Galaxy #147",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "147",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65075,
+      "resolvedNormalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "147",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 65075 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65075/all-new_guardians_of_the_galaxy_2017_147",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "6e5f3a6edb8232f45210fc94b50254ca11a27ed02d8a6f81238747917c7a5888"
+    },
+    {
+      "sourcePosition": 314,
+      "previousSourceIssueReference": "Guardians of the Galaxy #148",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "148",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65282,
+      "resolvedNormalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "148",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 65282 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65282/all-new_guardians_of_the_galaxy_2017_148",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "a7632d136927937bb2dfde408defa3f2239d7e2eeb1c57b1eaab8f0e313a0b32"
+    },
+    {
+      "sourcePosition": 315,
+      "previousSourceIssueReference": "Guardians of the Galaxy #149",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "149",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65283,
+      "resolvedNormalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "149",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 65283 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65283/all-new_guardians_of_the_galaxy_2017_149",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "17f5080dec77d85402673abdfa00465f564b6077c5bdc21f0db64de92e516ad4"
+    },
+    {
+      "sourcePosition": 316,
+      "previousSourceIssueReference": "Guardians of the Galaxy #150",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2017) #146-150",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "150",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65547,
+      "resolvedNormalizedSeriesTitle": "All-New Guardians of the Galaxy",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "150",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 65547 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65547/all-new_guardians_of_the_galaxy_2017_150",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d650ebaaa3bd2d5dfc5729fb658da1011c599c1fdbca5c32b9092cb50c461474"
+    },
+    {
+      "sourcePosition": 327,
+      "previousSourceIssueReference": "Infinty Wars Prime #1",
+      "previousSourceRangeReference": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
+      "previousNormalizedSeriesTitle": "Infinty Wars Prime",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 67349,
+      "resolvedNormalizedSeriesTitle": "Infinity Wars Prime",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 67349 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/67349/infinity_wars_prime_2018_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "de415ba094ca4a1b94bfafd564d1fafb77e98b8626e80369e313d2779f0598f5"
+    },
+    {
+      "sourcePosition": 335,
+      "previousSourceIssueReference": "Infinity Wars: Infinity #1",
+      "previousSourceRangeReference": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1",
+      "previousNormalizedSeriesTitle": "Infinity Wars: Infinity",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 74762,
+      "resolvedNormalizedSeriesTitle": "Infinity Wars: Infinity",
+      "resolvedSeriesYear": 2019,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 74762 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "7984dd79e7f7fb1732377e1407126c82ff18ebb1acc28589a25de7e8a9b7ded9"
+    },
+    {
+      "sourcePosition": 351,
+      "previousSourceIssueReference": "Guardians of the Galaxy Annual #1",
+      "previousSourceRangeReference": "Collects: Guardians Of The Galaxy (2019) #7-12, Guardians of the Galaxy Annual (2019) #1",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy Annual",
+      "previousSeriesYear": 2019,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 76749,
+      "resolvedNormalizedSeriesTitle": "GUARDIANS OF THE GALAXY ANNUAL 1",
+      "resolvedSeriesYear": 2019,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 76749 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/76749/guardians_of_the_galaxy_annual_1_2019_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "4a92e9060398e537925ee53fb7aab881f3481ecb83f57ec0a6c020e634d6b790"
+    },
+    {
+      "sourcePosition": 371,
+      "previousSourceIssueReference": "Guardians of the Galaxy #19",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2020) #1 to #19, Rocket #1 to #6",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "previousSeriesYear": 2020,
+      "previousIssueNumber": "19",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The reviewed provider snapshot ends the Guardians of the Galaxy (2020) run at #18 and candidate 3350 is unrelated, so #19 remains unavailable without substitution under the standing publication policy.",
+      "decisionScope": "owner-authorized-unavailable-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed provider snapshot ends the Guardians of the Galaxy (2020) run at #18 and candidate 3350 is unrelated, so #19 remains unavailable without substitution under the standing publication policy.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "2e3a9963a59e7c2c744bd173ad4072d1c19340811aa1e2edca8f8f8940b0575d"
+    },
+    {
+      "sourcePosition": 412,
+      "previousSourceIssueReference": "The Last Annihilation: Wiccan & Hulking #1",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
+      "previousNormalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulking",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 95675,
+      "resolvedNormalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "resolvedSeriesYear": 2021,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed official issue identity and preserved source reference establish issue 95675 as the exact comic for this position.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "bb76c7ab3a8a53c62c0776bae3dba7a6fb19523003718e544ba3fa601941178b"
+    },
+    {
+      "sourcePosition": 413,
+      "previousSourceIssueReference": "The Last Annihilation: Wakanda and S.W.O.R.D. #7",
+      "previousSourceRangeReference": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7",
+      "previousNormalizedSeriesTitle": "The Last Annihilation: Wakanda and S.W.O.R.D.",
+      "previousSeriesYear": 2020,
+      "previousIssueNumber": "7",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The frozen occurrence combines Wakanda #1 (issue 95676) and S.W.O.R.D. (2020) #7 (issue 94676). The one-position/one-outcome schema cannot publish both without silently dropping one identity, so the composite occurrence is explicitly excluded.",
+      "decisionScope": "source-semantic-exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The frozen occurrence combines Wakanda #1 (issue 95676) and S.W.O.R.D. (2020) #7 (issue 94676). The one-position/one-outcome schema cannot publish both without silently dropping one identity, so the composite occurrence is explicitly excluded.",
+      "evidenceSources": [
+        {
+          "kind": "maintained-mapping",
+          "url": "https://github.com/raymond-nassar/recap-page/blob/main/scripts/data/cbh-mappings/last-annihilation.json",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/316",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-order",
+          "url": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "ed258bc8058dc09c7ed66408ee2659b0b0cf2b1218205e0f1e2f63c07c03f807"
+    }
+  ]
 }

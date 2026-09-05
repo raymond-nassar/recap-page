@@ -33866,14 +33866,10 @@
     "sourceFile": "fantastic-four-reading-order.md"
   },
   "relationshipReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The all-library overlap report covers every maintained order after the Fantastic Four metadata settlement and records no exact sequence duplication.",
-    "reviewedAt": "2026-09-04T17:46:00.000Z",
-    "reportDigest": "dd74665192fdfd2889005b3cb4233db651edaa9aa1ac131ac3777adc8370cfe0",
+    "reportDigest": "d203dec8b93371f52938e70b5c3d289cbe7094bab2058b379d84c36d9ea0af12",
     "packetDigest": "9b0551b0168d133d35e402ddb62bcf71608b4d09473ba06a844a8efc412b6f9d",
     "mappingDigest": "b7f29554bf2e26ea9bacb46d7ecde3639a9f193ab7dce1e448b99993a2b57b6c",
-    "libraryDigest": "13d5f34c6f9a9cbd94a49411ab9b402d6f590a257463e9a3ff12abff640ee1c6",
+    "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 1058,
@@ -33883,33 +33879,36 @@
       "repeatedSourceReferenceCount": 38,
       "excludedSourceRowCount": 47
     },
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Refreshed all 138 bounded library comparisons after the Guardians settlement changed the published library. No exact duplicate replaces this guide's source identity.",
+    "reviewedAt": "2026-09-04",
     "dispositions": [
       {
         "orderId": "absolute-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "age-of-x-man",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "all-new-all-different-avengers",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 22 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "sharedCount": 22,
         "sharedIds": [
           "56213",
           "56214",
@@ -33933,88 +33932,105 @@
           "61105",
           "61106",
           "65312"
-        ]
-      },
-      {
-        "orderId": "annihilation",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "annihilation-conquest",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "apocalypse-wars",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "atlantis-attacks",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "avengers-defenders-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "avengers-disassembled",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "avengers-enemy-within",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "axis",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "black-widow-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 11 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "22 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "axis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "black-widow-reading-order",
+        "sharedCount": 11,
         "sharedIds": [
           "13068",
           "7101",
@@ -34027,178 +34043,215 @@
           "61101",
           "61102",
           "63223"
-        ]
-      },
-      {
-        "orderId": "bloodties",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "captain-america-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "chaos-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "childs-play",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "civil-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "civil-war-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "civil-war-essential",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "clone-conspiracy",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "contest-of-champions",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "damnation",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "dark-phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "dark-reign-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "dark-web",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "days-of-future-past",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "days-of-future-present",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "dead-mans-hand",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "death-of-doctor-strange",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "devils-reign",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "doctor-doom-primer",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 50 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "11 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "bloodties",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "captain-america-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "chaos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "childs-play",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "damnation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-web",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "devils-reign",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doctor-doom-primer",
+        "sharedCount": 50,
         "sharedIds": [
           "13255",
           "13263",
@@ -34250,25 +34303,28 @@
           "61556",
           "61557",
           "61558"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "50 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "doctor-strange-multiverse-of-madness",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "doomwar",
-        "relationship": "existing-subset",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The six-issue Doomwar guide is fully contained as source-listed Fantastic Four reading material, while the Fantastic Four guide retains its broader scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "sharedCount": 6,
         "sharedIds": [
           "29948",
           "29949",
@@ -34276,94 +34332,109 @@
           "29951",
           "29952",
           "30720"
-        ]
+        ],
+        "relationship": "existing-subset",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "The existing guide's 6 issue IDs are a subset of this broader source-specific reading order.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "eighth-day",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "essential-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "evolutionary-war",
+        "sharedCount": 1,
+        "sharedIds": [
+          "8700"
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 1 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
-        "sharedIds": [
-          "8700"
-        ]
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fall-of-the-mutants",
+        "sharedCount": 1,
+        "sharedIds": [
+          "13131"
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 1 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
-        "sharedIds": [
-          "13131"
-        ]
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fatal-attractions",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "generations",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "groot-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 22 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "sharedCount": 25,
         "sharedIds": [
           "55462",
           "55464",
@@ -34384,37 +34455,45 @@
           "60979",
           "60980",
           "60981",
+          "62959",
           "63127",
           "62837",
+          "61101",
+          "61102",
           "63223"
-        ]
-      },
-      {
-        "orderId": "heroes-reborn-2021",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "heroic-age-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "hickman-full",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 44 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "25 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "heroes-reborn-2021",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "heroic-age-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "hickman-full",
+        "sharedCount": 44,
         "sharedIds": [
           "23843",
           "24043",
@@ -34460,66 +34539,76 @@
           "38607",
           "41197",
           "41207"
-        ]
-      },
-      {
-        "orderId": "hickman-minimal",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "house-of-m",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 3 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "44 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "hickman-minimal",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "house-of-m",
+        "sharedCount": 3,
         "sharedIds": [
           "4872",
           "2361",
           "2828"
-        ]
-      },
-      {
-        "orderId": "house-of-m-essential",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "hunt-for-wolverine",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "hunt-for-xavier",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "inferno",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 15 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "3 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "house-of-m-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "hunt-for-wolverine",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "inferno",
+        "sharedCount": 15,
         "sharedIds": [
           "7172",
           "7173",
@@ -34536,329 +34625,396 @@
           "12045",
           "8254",
           "8255"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "15 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "infinite-destinies",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "infinity-countdown-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "inhumans-vs-x-men",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "iron-man-2020",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "judgment-day",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 2 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "sharedCount": 2,
         "sharedIds": [
           "95806",
           "95807"
-        ]
-      },
-      {
-        "orderId": "king-in-black",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "kravens-last-hunt",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "kree-skrull-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "last-annihilation",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "magneto-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "marvel-fresh-start-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "marvel-multiverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "marvel-super-heroes-secret-wars",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "marvel-what-if",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "marvels-best-phoenix-comics",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 1 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "2 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "king-in-black",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "kravens-last-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "kree-skrull-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "last-annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "magneto-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "marvel-fresh-start-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "marvel-multiverse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "marvel-super-heroes-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "marvel-what-if",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "sharedCount": 1,
         "sharedIds": [
           "64417"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "maximum-security",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "messiah-complex",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "messiah-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "midnight-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "minimum-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "monsters-unleashed",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "muir-island-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "mutant-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "mys-tech-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "necrosha",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "new-ultimate-universe",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "new-ultimate-universe-trades",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "operation-galactic-storm",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "operation-zero-tolerance",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "original-clone-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "phalanx-covenant",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "phalanx-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "planet-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "reckoning-war",
-        "relationship": "existing-subset",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 6 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "sharedCount": 6,
         "sharedIds": [
           "95798",
           "95799",
@@ -34866,144 +35022,165 @@
           "95801",
           "99051",
           "99052"
-        ]
-      },
-      {
-        "orderId": "reed-richards-and-sue-storms-wedding",
+        ],
         "relationship": "existing-subset",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 1 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "The existing guide's 6 issue IDs are a subset of this broader source-specific reading order.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "reed-richards-and-sue-storms-wedding",
+        "sharedCount": 1,
         "sharedIds": [
           "8707"
-        ]
+        ],
+        "relationship": "existing-subset",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "The existing guide's 1 issue IDs are a subset of this broader source-specific reading order.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "revolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "scarlet-witch-best-of",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 5 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "sharedCount": 5,
         "sharedIds": [
           "61103",
           "61104",
           "61105",
           "61106",
           "65312"
-        ]
-      },
-      {
-        "orderId": "second-coming",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "secret-invasion",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 3 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "5 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "second-coming",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-invasion",
+        "sharedCount": 3,
         "sharedIds": [
           "21269",
           "21413",
           "21587"
-        ]
-      },
-      {
-        "orderId": "secret-invasion-essential",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "secret-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "secret-wars-ii",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 3 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "3 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "sharedCount": 3,
         "sharedIds": [
           "13097",
           "13100",
           "13103"
-        ]
-      },
-      {
-        "orderId": "shadowland",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "silent-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "silver-surfer-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 46 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "3 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "shadowland",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "silent-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
+        "sharedCount": 46,
         "sharedIds": [
           "13251",
           "13253",
@@ -35051,133 +35228,160 @@
           "91618",
           "91619",
           "91620"
-        ]
-      },
-      {
-        "orderId": "sins-of-sinister",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "spider-geddon",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "spider-island",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "spider-man-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "spider-man-identity-crisis",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "spider-man-no-way-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "spider-man-the-other",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "spider-verse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "star-lord-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "thanos-imperative",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "thanos-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "thanos-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "the-night-gwen-stacy-died",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "thor-best-of",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 6 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "46 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "sins-of-sinister",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-geddon",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-island",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-verse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "the-night-gwen-stacy-died",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thor-best-of",
+        "sharedCount": 6,
         "sharedIds": [
           "71271",
           "71273",
@@ -35185,43 +35389,50 @@
           "71275",
           "71276",
           "71277"
-        ]
-      },
-      {
-        "orderId": "time-and-time-again",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "venomverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "war-of-kings",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
-      },
-      {
-        "orderId": "war-of-the-realms",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 7 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "6 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "time-and-time-again",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "venomverse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "war-of-kings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "war-of-the-realms",
+        "sharedCount": 7,
         "sharedIds": [
           "71271",
           "71273",
@@ -35230,213 +35441,258 @@
           "71276",
           "71277",
           "74814"
-        ]
-      },
-      {
-        "orderId": "white-tiger-ava-ayala",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 5 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
+        "rationale": "7 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "sharedCount": 5,
         "sharedIds": [
           "56031",
           "56032",
           "58372",
           "58373",
           "58374"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "5 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "wolverine-goes-to-hell",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "wraith-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-cutioners-song",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-age-of-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-divided-we-stand",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-extermination",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-manifest-destiny",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-nation-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-regenesis",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-schism",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-of-swords",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-termination",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-tinction-agenda",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison has no shared provider issue ids.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z"
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "xmen-claremont",
+        "sharedCount": 1,
+        "sharedIds": [
+          "13101"
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 1 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
-        "sharedIds": [
-          "13101"
-        ]
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "xmen-claremont-complete",
+        "sharedCount": 2,
+        "sharedIds": [
+          "22451",
+          "13101"
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The complete-library comparison records 2 exact shared provider issue ids after the Fantastic Four metadata settlement; the peer retains a distinct scope.",
-        "reviewedAt": "2026-09-04T17:46:00.000Z",
-        "sharedIds": [
-          "22451",
-          "13101"
-        ]
+        "rationale": "2 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       }
     ],
-    "approvalDigest": "d7dc476f259dec895d64c42575ea29ac85f913a7494184f6b0a8bdb2b6830fac"
+    "approvalDigest": "0cec23d23fabbc6bd7768e0ef425368234bec79d12bd552e4b55be85be9b73e3"
   },
   "sourceGapResolutions": [
     {
