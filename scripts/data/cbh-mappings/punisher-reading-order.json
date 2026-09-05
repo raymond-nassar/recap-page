@@ -22680,10 +22680,10 @@
     "authorityIdentity": "GPT-5.6 Terra",
     "rationale": "The repaired complete library was compared with all 156 published orders using cached evidence only. Every 10 non-none relationship was independently reviewed and approved for this full guide.",
     "reviewedAt": "2026-08-27T14:57:51.400Z",
-    "reportDigest": "d4f3c96e3a7075e473b752c3afd50811daeeef86259ad6d8298e41eb664351dc",
+    "reportDigest": "813e18da7a58b3a433c9f7ff35104cc7cd4b2e1ae0d96314a28a98edb99c13e8",
     "packetDigest": "ff88a21e032af67bf42c2c4a6424ed8e0eebc08b02710cac8f2eba92feaafb42",
     "mappingDigest": "ca9165c8db00878066426b13090acb92fb79fcd17d59ee129a51d5b6e1c26b80",
-    "libraryDigest": "b3bcb2982192998c9a67636e1cccb50e8e37d1703bc1cfda75d9c78bb6a5dea5",
+    "libraryDigest": "94b8847d59950eb381ca5a431e7f238cfdca7796b76f65d0f6e03f38072d73de",
     "peerDigests": {},
     "dispositions": [
       {
@@ -24562,7 +24562,7 @@
         "sharedIds": []
       }
     ],
-    "approvalDigest": "69e393a4b7d2200c73a2fc3187e69d31812d6ce85c73e283a7fa01e32cfe7343",
+    "approvalDigest": "2bba83242563579160f68ca55ba6f89f7d2e5631e29c73f58a1d08847e277b1d",
     "sourceCounts": {
       "sourceOccurrenceCount": 857,
       "sourceIdentityCount": 638,

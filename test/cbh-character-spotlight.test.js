@@ -4129,8 +4129,8 @@ test('Venom preserves every source occurrence through its published guide', asyn
   assert.equal(record?.deliveryStatus, 'shipped');
   assert.equal(record?.metadataHorizonStatus, 'approved');
   assert.match(record?.reason ?? '', /610 exact provider-resolved comics/i);
-  assert.match(record?.reason ?? '', /33 explicit open metadata gaps/i);
-  assert.match(record?.reason ?? '', /23 approved non-none relationships/i);
+  assert.match(record?.reason ?? '', /33 exact official-link-only comics with refused optional details/i);
+  assert.match(record?.reason ?? '', /24 approved non-none relationships/i);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: venomCandidateId,
     inventoryRecord: record,
@@ -4147,13 +4147,12 @@ test('Venom preserves every source occurrence through its published guide', asyn
   }));
 
   assert.equal(packet.sourceOccurrenceCount, 932);
-  assert.equal(packet.rows.length, 610);
+  assert.equal(packet.rows.length, 643);
   assert.equal(packet.repeatedSourceReferences.length, 286);
-  assert.equal(packet.sourceGaps.length, 33);
+  assert.equal(Object.hasOwn(packet, 'sourceGaps'), false);
   assert.equal(new Set([
     ...packet.rows,
     ...packet.repeatedSourceReferences,
-    ...packet.sourceGaps,
   ].map((entry) => entry.sourceRangeReference)).size, 125);
   assert.deepEqual(packet.excludedSourceRows.map((entry) => [
     entry.sourcePosition,
@@ -4163,33 +4162,34 @@ test('Venom preserves every source occurrence through its published guide', asyn
     [99, 'Silver Sable & the Wild Pack #18'],
     [100, 'Silver Sable & the Wild Pack #19'],
   ]);
-  assert.deepEqual(packet.sourceGaps.map((entry) => entry.sourcePosition), [
+  assert.deepEqual(packet.sourceGapResolutions.map((entry) => entry.sourcePosition), [
     898, 899, 900, 901, 902, 903, 905, 906, 907, 908, 909, 910, 911, 912, 913, 914,
     915, 916, 917, 918, 920, 921, 922, 923, 924, 925, 926, 927, 928, 929, 930, 931, 932,
   ]);
-  assert.equal(mapping.rows.length, 610);
-  assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 610);
-  assert.deepEqual(mapping.sourceGaps, packet.sourceGaps);
-  assert.equal(report.candidateCount, 610);
-  assert.equal(report.comparisonCount, 137);
+  assert.equal(mapping.rows.length, 643);
+  assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 643);
+  assert.equal(Object.hasOwn(mapping, 'sourceGaps'), false);
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.equal(report.candidateCount, 643);
+  assert.equal(report.comparisonCount, 138);
   assert.equal(report.libraryDigest, reviewedLibraryDigest);
-  assert.equal(record?.overlapIds.length, 23);
+  assert.equal(record?.overlapIds.length, 24);
   const reportOverlapIds = report.comparisons
     .filter((comparison) => comparison.relationship !== 'none')
     .map((comparison) => comparison.orderId);
-  assert.equal(reportOverlapIds.length, 14);
+  assert.equal(reportOverlapIds.length, 15);
   assert.ok(reportOverlapIds.every((id) => record?.overlapIds.includes(id)));
-  assert.equal(mapping.relationshipReview.authorityIdentity, 'GPT-5.6 Terra');
-  assert.equal(mapping.relationshipReview.dispositions.length, 137);
-  assert.match(mapping.relationshipReview.rationale, /154 current catalog orders/);
-  assert.match(mapping.relationshipReview.rationale, /Twenty-three non-none relationships/);
+  assert.equal(mapping.relationshipReview.authorityIdentity, 'GPT-5.6 Sol');
+  assert.equal(mapping.relationshipReview.dispositions.length, 138);
+  assert.match(mapping.relationshipReview.rationale, /174 current catalog orders/);
+  assert.match(mapping.relationshipReview.rationale, /Twenty-four non-none relationships/);
 
   const manifestEntry = manifest.lists.find((entry) => entry.id === venomCandidateId);
   const catalogEntry = catalog.lists.find((entry) => entry.id === venomCandidateId);
   assert.equal(manifestEntry?.expect, 643);
   assert.equal(catalogEntry?.count, 643);
   assert.equal(generated.items.length, 643);
-  assert.equal(generated.placeholders, 33);
+  assert.equal(generated.placeholders, 0);
   assert.deepEqual(
     generated.items.filter((item) => !item.placeholder).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
@@ -4198,7 +4198,7 @@ test('Venom preserves every source occurrence through its published guide', asyn
     parsed.entries.map((entry) => String(entry.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  assert.equal(parsed.unresolved.length, 33);
+  assert.equal(parsed.unresolved.length, 0);
 });
 
 test('Magneto preserves cache-only source accounting through publication', async () => {

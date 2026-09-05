@@ -64,6 +64,7 @@ const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
   'question-of-the-week-do-you-have-a-hulk-reading-order': '22760b123ee3ae117804aca77d71fe3aef76a456f9406debc53666e0571d3097',
   'silver-surfer-reading-order': '2fad8b1d3f31882844786b3a7051b48e559e7d94afdb3e936fdf83e88d263a92',
   'the-defenders-reading-order': '6428c9ed9818c1eaa45868a110fe274f1c115343076c0a3658ed964e4121a656',
+  'venom-reading-order': '746da4b4bef2a0c8694f98f7415e81c99efc814c8ad370fb3c79c5d371715b11',
   'x-force-reading-order': '5dd58f5d27ed93ef250159b61f2d3b05da1a836ecd539d6569ec6950abfddb43',
 });
 const PACKET_FIELDS = new Set([

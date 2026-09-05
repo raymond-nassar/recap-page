@@ -125,12 +125,11 @@ not because an unresolved identity is silently removed.
 
 The Venom Character Spotlight follows the complete maintained page because it has no qualifying
 Best Comics or Essential Comics subsection. Its frozen source evidence preserves 932 issue
-occurrences across 646 identities: 610 exact provider-resolved comics, 286 intentional repeats,
-33 explicit open metadata gaps, and three owner-authorized A-Z-absent omissions. The 33 gaps
-remain visible in the published checklist and are tracked in
-[Issue #288](https://github.com/raymond-nassar/recap-page/issues/288); none is substituted or
-silently removed. Its complete-library review covers 154 current orders, with 22 approved
-non-none relationships and 132 no-overlap relationships.
+occurrences across 646 identities: 610 exact provider-resolved comics, 33 exact official-link-only
+comics with refused optional details, 286 intentional repeats, and three owner-authorized
+A-Z-absent omissions. All 33 former gaps retain exact transition evidence and working official
+Marvel issue links without invented optional metadata. Its complete-library review covers 173
+other current orders, with 24 approved non-none relationships and 149 no-overlap relationships.
 
 Magneto's published order preserves all 811 positions from its frozen source snapshot. Its 695
 resolved rows and 47 deliberate repeat links were assembled only from retained provider-resolution
