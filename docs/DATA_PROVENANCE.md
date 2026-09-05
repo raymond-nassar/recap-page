@@ -86,13 +86,13 @@ none is substituted or silently removed. Its complete-library review records eig
 relationships and 139 no-overlap relationships.
 
 Doctor Strange's complete guide retains the full visible page boundary: 932 source occurrences
-across 76 issue-bearing blocks and nine top-level headings. It publishes 711 exact issue identities,
-records 181 repeated source references once at their first occurrence, preserves 39 open metadata
-gaps, and names one source exclusion. The open gaps retain their exact source positions and failed
-provider lookups, with follow-up assigned in [Issue #283](https://github.com/raymond-nassar/recap-page/issues/283).
-The complete-library report compares the guide with all 153 existing reading lists: three are
-existing-subset relationships, 27 are partial, and 123 have no shared issues. The source groups and
-gaps remain maintained evidence rather than replacements or invented issue identities.
+across 76 issue-bearing blocks and nine top-level headings. It publishes 734 exact issue identities,
+records 182 repeated source references once at their first occurrence, preserves 16
+owner-authorized unavailable source exclusions, and has no open metadata gaps. The complete-library
+report compares the guide with 138 eligible reading lists: three are existing-subset relationships,
+23 are partial, and 112 have no shared issues. All 26 shared identities are source-required; the
+unavailable positions remain maintained evidence rather than replacements or invented issue
+identities.
 
 The complete Punisher guide retains the visible source page through Latest Additions: 857 source
 occurrences across eleven source groups. It publishes 480 exact provider-resolved comics, preserves 145

@@ -1,18 +1,19 @@
 {
   "candidateId": "doctor-strange-reading-order",
-  "packetDigest": "44bf6593238e366136b8c341272262c51f5412a103f499f16c6783324ead05bd",
-  "mappingDigest": "807760c148cdcdf3c1c1fc2943f14b0410ca457c470c7ee6b1ac88ad8cf2da7e",
-  "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
+  "packetDigest": "f1913ab509d5b629f8dcc1df4254d36981d30dfe259bd0e7c7f9129490b58587",
+  "mappingDigest": "91067d2acb44618fc9d14b97e57f26a538642c9edc56105dc66778bd3a74688c",
+  "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 932,
-    "sourceIdentityCount": 750,
-    "includedIssueCount": 711,
-    "sourceGapCount": 39,
-    "repeatedSourceReferenceCount": 181
+    "sourceIdentityCount": 734,
+    "includedIssueCount": 734,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 182,
+    "excludedSourceRowCount": 16
   },
-  "candidateCount": 711,
-  "comparisonCount": 137,
+  "candidateCount": 734,
+  "comparisonCount": 138,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -324,6 +325,31 @@
       "sharedCount": 1,
       "sharedIds": [
         "11353"
+      ],
+      "relationship": "partial"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
+      "sharedCount": 18,
+      "sharedIds": [
+        "20333",
+        "20334",
+        "20335",
+        "20336",
+        "66283",
+        "66416",
+        "66684",
+        "67022",
+        "68653",
+        "68656",
+        "66158",
+        "67349",
+        "67145",
+        "67147",
+        "67148",
+        "67149",
+        "67150",
+        "67151"
       ],
       "relationship": "partial"
     },
@@ -1040,5 +1066,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "d91d0b9b961b1812a0fa5b475ad5d2f45f3f2fe0b344063f762e5fc486fadce5"
+  "reportDigest": "1747b6ed5dd630923f3e2ce447738ef5ab846b0bac0f446e6919262bc42b1c20"
 }

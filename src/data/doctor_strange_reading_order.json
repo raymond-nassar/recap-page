@@ -5,286 +5,12 @@
   "source": "https://www.comicbookherald.com/doctor-strange-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T09:36:57.369Z",
+  "generatedAt": "2026-09-05T18:59:53.175Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 750,
-  "collections": 72,
-  "placeholders": 39,
-  "unresolved": [
-    {
-      "title": "Mystery Tales #21",
-      "url": null,
-      "read": false,
-      "index": 139,
-      "section": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #17-21, Giant-Size Defenders #2-4, Marvel Two-In-One #6-7; Material From Mystery Tales #21, World Of Fantasy #11 And Tales Of Suspense (1959) #96"
-    },
-    {
-      "title": "World of Fantasy #11",
-      "url": null,
-      "read": false,
-      "index": 140,
-      "section": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #17-21, Giant-Size Defenders #2-4, Marvel Two-In-One #6-7; Material From Mystery Tales #21, World Of Fantasy #11 And Tales Of Suspense (1959) #96"
-    },
-    {
-      "title": "Doctor Strange Annual #1",
-      "url": null,
-      "read": false,
-      "index": 165,
-      "section": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #6-28, Annual (1977) #1; Tomb Of Dracula (1972) #44"
-    },
-    {
-      "title": "FOOM #19",
-      "url": null,
-      "read": false,
-      "index": 204,
-      "section": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #42-57, Material from FOOM (1973) #19"
-    },
-    {
-      "title": "Chamber of Chills #3",
-      "url": null,
-      "read": false,
-      "index": 229,
-      "section": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #29-51, Man-Thing (1979) #4; Material From Chamber Of Chills (1972) #3-4, Defenders (1972) #53"
-    },
-    {
-      "title": "Chamber of Chills #4",
-      "url": null,
-      "read": false,
-      "index": 230,
-      "section": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #29-51, Man-Thing (1979) #4; Material From Chamber Of Chills (1972) #3-4, Defenders (1972) #53"
-    },
-    {
-      "title": "Marvel Treasury Edition #16",
-      "url": null,
-      "read": false,
-      "index": 249,
-      "section": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #58-75; Marvel Treasury Edition (1974) #16"
-    },
-    {
-      "title": "Crazy #88",
-      "url": null,
-      "read": false,
-      "index": 274,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Collects: Doctor Strange (1974) #47-57, Marvel Fanfare (1982) #6, Material from Crazy (1973) #88"
-    },
-    {
-      "title": "Marvel Graphic Novel #23",
-      "url": null,
-      "read": false,
-      "index": 312,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Marvel Original Graphic Novel #23."
-    },
-    {
-      "title": "Strange Tales #1",
-      "url": null,
-      "read": false,
-      "index": 336,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #2",
-      "url": null,
-      "read": false,
-      "index": 337,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #3",
-      "url": null,
-      "read": false,
-      "index": 338,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #4",
-      "url": null,
-      "read": false,
-      "index": 339,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #5",
-      "url": null,
-      "read": false,
-      "index": 340,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #6",
-      "url": null,
-      "read": false,
-      "index": 341,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #8",
-      "url": null,
-      "read": false,
-      "index": 343,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #9",
-      "url": null,
-      "read": false,
-      "index": 344,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #10",
-      "url": null,
-      "read": false,
-      "index": 345,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #11",
-      "url": null,
-      "read": false,
-      "index": 346,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #12",
-      "url": null,
-      "read": false,
-      "index": 347,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #13",
-      "url": null,
-      "read": false,
-      "index": 348,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #14",
-      "url": null,
-      "read": false,
-      "index": 349,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #15",
-      "url": null,
-      "read": false,
-      "index": 350,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #16",
-      "url": null,
-      "read": false,
-      "index": 351,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #17",
-      "url": null,
-      "read": false,
-      "index": 352,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #18",
-      "url": null,
-      "read": false,
-      "index": 353,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Strange Tales #19",
-      "url": null,
-      "read": false,
-      "index": 354,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
-    },
-    {
-      "title": "Marvel Graphic Novel #49",
-      "url": null,
-      "read": false,
-      "index": 368,
-      "section": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Collects: Doctor Strange, Sorcerer Supreme (1988) #1-13; Marvel Original Graphic Novel #49"
-    },
-    {
-      "title": "Namor the Sub-Mariner Annual #2",
-      "url": null,
-      "read": false,
-      "index": 433,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #41-59, Annual #2-3, Spider-Man/Dr. Strange: The Way To Dusty Death, Silver Surfer Vol. 3 #67, Morbius: The Living Vampire #9, Secret Defenders #1-11, Material From Incredible Hulk Annual #18, Namor The Sub-Mariner Annual #2, And Silver Surfer Annual #5"
-    },
-    {
-      "title": "Silver Surfer Annual #5",
-      "url": null,
-      "read": false,
-      "index": 434,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #41-59, Annual #2-3, Spider-Man/Dr. Strange: The Way To Dusty Death, Silver Surfer Vol. 3 #67, Morbius: The Living Vampire #9, Secret Defenders #1-11, Material From Incredible Hulk Annual #18, Namor The Sub-Mariner Annual #2, And Silver Surfer Annual #5"
-    },
-    {
-      "title": "Dracula Lives #6",
-      "url": null,
-      "read": false,
-      "index": 458,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Marvel Spotlight (1971) #3-4, Werewolf By Night (1972) #1, 3 and 15, Tomb Of Dracula (1972) #18-19, Marvel Chillers (1975) #1-2, Avengers (1963) #185-187, Doctor Strange (1974) #59-62, 67 and 81, Thor (1966) #332-333, Material from Dracula Lives (1973) #6, Amazing Spider-Man Annual (1964) #22, X-Men Annual (1970) #12, Doctor Strange, Sorcerer Supreme (1988) #9-13 and 15"
-    },
-    {
-      "title": "Midnight Sons Unlimited #1",
-      "url": null,
-      "read": false,
-      "index": 485,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Ghost Rider (1990) #28 and 31, Ghost Rider/Blaze: Spirits of Vengeance (1992) #1-6, Morbius: The Living Vampire (1992) #1, Darkhold: Pages From the Book of Sins (1992) #1, Nightstalkers (1992) #1, Web Of Spider-Man (1985) #95-96, Material from Midnight Sons Unlimited (1993) #1"
-    },
-    {
-      "title": "Doctor Strange: What Is It That Disturbs You, Stephen? #1",
-      "url": null,
-      "read": false,
-      "index": 540,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #60-90, Annual #4 And Ashcan Edition; Strange Tales (1994) #1; Midnight Suns Unlimited #6; Dr. Strange: What Is It That Disturbs You, Stephen? GN; Untold Tales Of Spider-Man: Strange Encounter GN"
-    },
-    {
-      "title": "Doctor Strange: The Flight of Bones #1",
-      "url": null,
-      "read": false,
-      "index": 541,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
-    },
-    {
-      "title": "Doctor Strange: The Flight of Bones #2",
-      "url": null,
-      "read": false,
-      "index": 542,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
-    },
-    {
-      "title": "Doctor Strange: The Flight of Bones #3",
-      "url": null,
-      "read": false,
-      "index": 543,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
-    },
-    {
-      "title": "Doctor Strange: The Flight of Bones #4",
-      "url": null,
-      "read": false,
-      "index": 544,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
-    },
-    {
-      "title": "Marvel Shadows and Light #2",
-      "url": null,
-      "read": false,
-      "index": 547,
-      "section": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
-    },
-    {
-      "title": "Doctor Strange/Punisher: Magic Bullets #4",
-      "url": null,
-      "read": false,
-      "index": 568,
-      "section": "VI) All-New All-Different Doctor Strange | Collects: Doctor Strange/Punisher: Magic Bullets (2016) #1-4"
-    }
-  ],
+  "count": 734,
+  "collections": 71,
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 11029,
@@ -4719,40 +4445,6 @@
       "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #17-21, Giant-Size Defenders #2-4, Marvel Two-In-One #6-7; Material From Mystery Tales #21, World Of Fantasy #11 And Tales Of Suspense (1959) #96"
     },
     {
-      "issueId": -1504320176,
-      "title": "Mystery Tales #21",
-      "number": "21",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #17-21, Giant-Size Defenders #2-4, Marvel Two-In-One #6-7; Material From Mystery Tales #21, World Of Fantasy #11 And Tales Of Suspense (1959) #96"
-    },
-    {
-      "issueId": -1559502756,
-      "title": "World of Fantasy #11",
-      "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #17-21, Giant-Size Defenders #2-4, Marvel Two-In-One #6-7; Material From Mystery Tales #21, World Of Fantasy #11 And Tales Of Suspense (1959) #96"
-    },
-    {
       "issueId": 11343,
       "title": "Tales of Suspense (1959) #96",
       "number": "96",
@@ -5489,23 +5181,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #6-28, Annual (1977) #1; Tomb Of Dracula (1972) #44"
-    },
-    {
-      "issueId": -1331430828,
-      "title": "Doctor Strange Annual #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #6-28, Annual (1977) #1; Tomb Of Dracula (1972) #44"
     },
     {
@@ -6901,23 +6576,6 @@
       "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #42-57, Material from FOOM (1973) #19"
     },
     {
-      "issueId": -1772637370,
-      "title": "FOOM #19",
-      "number": "19",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #42-57, Material from FOOM (1973) #19"
-    },
-    {
       "issueId": 20108,
       "title": "Doctor Strange (1974) #29",
       "number": "29",
@@ -7730,40 +7388,6 @@
       "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #29-51, Man-Thing (1979) #4; Material From Chamber Of Chills (1972) #3-4, Defenders (1972) #53"
     },
     {
-      "issueId": -1152971888,
-      "title": "Chamber of Chills #3",
-      "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #29-51, Man-Thing (1979) #4; Material From Chamber Of Chills (1972) #3-4, Defenders (1972) #53"
-    },
-    {
-      "issueId": -1102639031,
-      "title": "Chamber of Chills #4",
-      "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Doctor Strange (1974) #29-51, Man-Thing (1979) #4; Material From Chamber Of Chills (1972) #3-4, Defenders (1972) #53"
-    },
-    {
       "issueId": 20368,
       "title": "Defenders (1972) #58",
       "number": "58",
@@ -8357,23 +7981,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #58-75; Marvel Treasury Edition (1974) #16"
-    },
-    {
-      "issueId": -1003001238,
-      "title": "Marvel Treasury Edition #16",
-      "number": "16",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "II) Psychedelic Dr. Strange Meets The 1970's - The Steve Englehart Run | Collects: Defenders (1972) #58-75; Marvel Treasury Edition (1974) #16"
     },
     {
@@ -9234,23 +8841,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Collects: Doctor Strange (1974) #47-57, Marvel Fanfare (1982) #6, Material from Crazy (1973) #88"
-    },
-    {
-      "issueId": -1167050730,
-      "title": "Crazy #88",
-      "number": "88",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Collects: Doctor Strange (1974) #47-57, Marvel Fanfare (1982) #6, Material from Crazy (1973) #88"
     },
     {
@@ -10458,23 +10048,6 @@
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Defenders (1972) #92-109; Marvel Team-Up (1972) #101; Captain America (1968) #268"
     },
     {
-      "issueId": -1325489249,
-      "title": "Marvel Graphic Novel #23",
-      "number": "23",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Marvel Original Graphic Novel #23."
-    },
-    {
       "issueId": 20275,
       "title": "Defenders (1972) #110",
       "number": "110",
@@ -11239,10 +10812,10 @@
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Dr. Strange #76 to #81"
     },
     {
-      "issueId": -1663714019,
-      "title": "Strange Tales #1",
+      "issueId": 22099,
+      "title": "Strange Tales (1987) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22099/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11252,14 +10825,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1714046876,
-      "title": "Strange Tales #2",
+      "issueId": 22110,
+      "title": "Strange Tales (1987) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22110/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11269,14 +10842,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1697269257,
-      "title": "Strange Tales #3",
+      "issueId": 22111,
+      "title": "Strange Tales (1987) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22111/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11286,14 +10859,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1747602114,
-      "title": "Strange Tales #4",
+      "issueId": 22112,
+      "title": "Strange Tales (1987) #4",
       "number": "4",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22112/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11303,14 +10876,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1730824495,
-      "title": "Strange Tales #5",
+      "issueId": 22113,
+      "title": "Strange Tales (1987) #5",
       "number": "5",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22113/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11320,14 +10893,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1781157352,
-      "title": "Strange Tales #6",
+      "issueId": 22114,
+      "title": "Strange Tales (1987) #6",
       "number": "6",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22114/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11337,7 +10910,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
@@ -11389,10 +10962,10 @@
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1814712590,
-      "title": "Strange Tales #8",
+      "issueId": 22116,
+      "title": "Strange Tales (1987) #8",
       "number": "8",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22116/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11402,14 +10975,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1797934971,
-      "title": "Strange Tales #9",
+      "issueId": 22117,
+      "title": "Strange Tales (1987) #9",
       "number": "9",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22117/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11419,14 +10992,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1804021105,
-      "title": "Strange Tales #10",
+      "issueId": 22100,
+      "title": "Strange Tales (1987) #10",
       "number": "10",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22100/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11436,14 +11009,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1820798724,
-      "title": "Strange Tales #11",
+      "issueId": 22101,
+      "title": "Strange Tales (1987) #11",
       "number": "11",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22101/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11453,14 +11026,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1837576343,
-      "title": "Strange Tales #12",
+      "issueId": 22102,
+      "title": "Strange Tales (1987) #12",
       "number": "12",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22102/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11470,14 +11043,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1854353962,
-      "title": "Strange Tales #13",
+      "issueId": 22103,
+      "title": "Strange Tales (1987) #13",
       "number": "13",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22103/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11487,14 +11060,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1871131581,
-      "title": "Strange Tales #14",
+      "issueId": 22104,
+      "title": "Strange Tales (1987) #14",
       "number": "14",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22104/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11504,14 +11077,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1887909200,
-      "title": "Strange Tales #15",
+      "issueId": 22105,
+      "title": "Strange Tales (1987) #15",
       "number": "15",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22105/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11521,14 +11094,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1904686819,
-      "title": "Strange Tales #16",
+      "issueId": 22106,
+      "title": "Strange Tales (1987) #16",
       "number": "16",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22106/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11538,14 +11111,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1921464438,
-      "title": "Strange Tales #17",
+      "issueId": 22107,
+      "title": "Strange Tales (1987) #17",
       "number": "17",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22107/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11555,14 +11128,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1938242057,
-      "title": "Strange Tales #18",
+      "issueId": 22108,
+      "title": "Strange Tales (1987) #18",
       "number": "18",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22108/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11572,14 +11145,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
-      "issueId": -1955019676,
-      "title": "Strange Tales #19",
+      "issueId": 22109,
+      "title": "Strange Tales (1987) #19",
       "number": "19",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/22109/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -11589,7 +11162,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Issues: Strange Tales #1 to #19"
     },
     {
@@ -12106,23 +11679,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Collects: Doctor Strange, Sorcerer Supreme (1988) #1-13; Marvel Original Graphic Novel #49"
-    },
-    {
-      "issueId": -1561361653,
-      "title": "Marvel Graphic Novel #49",
-      "number": "49",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "III) Dr. Strange In The 1980s - The Roger Stern & Peter Gillis Era | Collects: Doctor Strange, Sorcerer Supreme (1988) #1-13; Marvel Original Graphic Novel #49"
     },
     {
@@ -14326,40 +13882,6 @@
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #41-59, Annual #2-3, Spider-Man/Dr. Strange: The Way To Dusty Death, Silver Surfer Vol. 3 #67, Morbius: The Living Vampire #9, Secret Defenders #1-11, Material From Incredible Hulk Annual #18, Namor The Sub-Mariner Annual #2, And Silver Surfer Annual #5"
     },
     {
-      "issueId": -1395911499,
-      "title": "Namor the Sub-Mariner Annual #2",
-      "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #41-59, Annual #2-3, Spider-Man/Dr. Strange: The Way To Dusty Death, Silver Surfer Vol. 3 #67, Morbius: The Living Vampire #9, Secret Defenders #1-11, Material From Incredible Hulk Annual #18, Namor The Sub-Mariner Annual #2, And Silver Surfer Annual #5"
-    },
-    {
-      "issueId": -824105929,
-      "title": "Silver Surfer Annual #5",
-      "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #41-59, Annual #2-3, Spider-Man/Dr. Strange: The Way To Dusty Death, Silver Surfer Vol. 3 #67, Morbius: The Living Vampire #9, Secret Defenders #1-11, Material From Incredible Hulk Annual #18, Namor The Sub-Mariner Annual #2, And Silver Surfer Annual #5"
-    },
-    {
       "issueId": 16888,
       "title": "Amazing Spider-Man Annual (1964) #14",
       "number": "14",
@@ -15091,23 +14613,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Marvel Spotlight (1971) #3-4, Werewolf By Night (1972) #1, 3 and 15, Tomb Of Dracula (1972) #18-19, Marvel Chillers (1975) #1-2, Avengers (1963) #185-187, Doctor Strange (1974) #59-62, 67 and 81, Thor (1966) #332-333, Material from Dracula Lives (1973) #6, Amazing Spider-Man Annual (1964) #22, X-Men Annual (1970) #12, Doctor Strange, Sorcerer Supreme (1988) #9-13 and 15"
-    },
-    {
-      "issueId": -2119317696,
-      "title": "Dracula Lives #6",
-      "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Marvel Spotlight (1971) #3-4, Werewolf By Night (1972) #1, 3 and 15, Tomb Of Dracula (1972) #18-19, Marvel Chillers (1975) #1-2, Avengers (1963) #185-187, Doctor Strange (1974) #59-62, 67 and 81, Thor (1966) #332-333, Material from Dracula Lives (1973) #6, Amazing Spider-Man Annual (1964) #22, X-Men Annual (1970) #12, Doctor Strange, Sorcerer Supreme (1988) #9-13 and 15"
     },
     {
@@ -16076,23 +15581,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Ghost Rider (1990) #28 and 31, Ghost Rider/Blaze: Spirits of Vengeance (1992) #1-6, Morbius: The Living Vampire (1992) #1, Darkhold: Pages From the Book of Sins (1992) #1, Nightstalkers (1992) #1, Web Of Spider-Man (1985) #95-96, Material from Midnight Sons Unlimited (1993) #1"
-    },
-    {
-      "issueId": -2963190,
-      "title": "Midnight Sons Unlimited #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Ghost Rider (1990) #28 and 31, Ghost Rider/Blaze: Spirits of Vengeance (1992) #1-6, Morbius: The Living Vampire (1992) #1, Darkhold: Pages From the Book of Sins (1992) #1, Nightstalkers (1992) #1, Web Of Spider-Man (1985) #95-96, Material from Midnight Sons Unlimited (1993) #1"
     },
     {
@@ -17940,10 +17428,10 @@
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #60-90, Annual #4 And Ashcan Edition; Strange Tales (1994) #1; Midnight Suns Unlimited #6; Dr. Strange: What Is It That Disturbs You, Stephen? GN; Untold Tales Of Spider-Man: Strange Encounter GN"
     },
     {
-      "issueId": -1257097864,
-      "title": "Doctor Strange: What Is It That Disturbs You, Stephen? #1",
-      "number": "1",
-      "url": null,
+      "issueId": 62446,
+      "title": "Doctor Strange: What Is It That Disturbs You, Stephen? (1997)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/62446/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -17953,14 +17441,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #60-90, Annual #4 And Ashcan Edition; Strange Tales (1994) #1; Midnight Suns Unlimited #6; Dr. Strange: What Is It That Disturbs You, Stephen? GN; Untold Tales Of Spider-Man: Strange Encounter GN"
     },
     {
-      "issueId": -361699874,
-      "title": "Doctor Strange: The Flight of Bones #1",
+      "issueId": 62433,
+      "title": "Doctor Strange (1999) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62433/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -17970,14 +17458,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
     },
     {
-      "issueId": -378477493,
-      "title": "Doctor Strange: The Flight of Bones #2",
+      "issueId": 62434,
+      "title": "Doctor Strange (1999) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62434/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -17987,14 +17475,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
     },
     {
-      "issueId": -395255112,
-      "title": "Doctor Strange: The Flight of Bones #3",
+      "issueId": 62435,
+      "title": "Doctor Strange (1999) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62435/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -18004,14 +17492,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
     },
     {
-      "issueId": -277811779,
-      "title": "Doctor Strange: The Flight of Bones #4",
+      "issueId": 62436,
+      "title": "Doctor Strange (1999) #4",
       "number": "4",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/62436/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -18021,7 +17509,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
     },
     {
@@ -18130,23 +17618,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
-    },
-    {
-      "issueId": -1118264982,
-      "title": "Marvel Shadows and Light #2",
-      "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: The Flight Of Bones (1999) #1-4, Mystic Hands of Doctor Strange (2010) #1, Material from Marvel Shadows and Light (1997) #1-2, Marvel Double Shot (2003) #4"
     },
     {
@@ -18854,23 +18325,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "VI) All-New All-Different Doctor Strange | Collects: Doctor Strange/Punisher: Magic Bullets (2016) #1-4"
-    },
-    {
-      "issueId": -705841523,
-      "title": "Doctor Strange/Punisher: Magic Bullets #4",
-      "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "VI) All-New All-Different Doctor Strange | Collects: Doctor Strange/Punisher: Magic Bullets (2016) #1-4"
     },
     {
