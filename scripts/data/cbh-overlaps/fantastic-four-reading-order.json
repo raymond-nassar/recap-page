@@ -2,7 +2,7 @@
   "candidateId": "fantastic-four-reading-order",
   "packetDigest": "9b0551b0168d133d35e402ddb62bcf71608b4d09473ba06a844a8efc412b6f9d",
   "mappingDigest": "b7f29554bf2e26ea9bacb46d7ecde3639a9f193ab7dce1e448b99993a2b57b6c",
-  "libraryDigest": "13d5f34c6f9a9cbd94a49411ab9b402d6f590a257463e9a3ff12abff640ee1c6",
+  "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1058,
@@ -360,7 +360,7 @@
     },
     {
       "orderId": "guardians-of-the-galaxy-reading-order",
-      "sharedCount": 22,
+      "sharedCount": 25,
       "sharedIds": [
         "55462",
         "55464",
@@ -381,8 +381,11 @@
         "60979",
         "60980",
         "60981",
+        "62959",
         "63127",
         "62837",
+        "61101",
+        "61102",
         "63223"
       ],
       "relationship": "partial"
@@ -1130,5 +1133,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "dd74665192fdfd2889005b3cb4233db651edaa9aa1ac131ac3777adc8370cfe0"
+  "reportDigest": "d203dec8b93371f52938e70b5c3d289cbe7094bab2058b379d84c36d9ea0af12"
 }

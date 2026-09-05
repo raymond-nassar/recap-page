@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Guardians of the Galaxy guide gaps
+
+In plain English: The bundled Guardians of the Galaxy guide now includes 18 exact comics that
+previously appeared as broken placeholders. Eleven entries that lack a safe single-comic identity
+are omitted without substitution. Existing saved Reading Lists and reading progress are not
+rewritten; newly imported copies receive the settled 312-comic order.
+
+For maintainers, all 420 source positions remain accounted for as 312 exact rows, 38 repeats, and
+70 explicit exclusions. All 29 former gaps retain auditable transition evidence.
+
 ### Settled the Defenders guide gaps
 
 In plain English: The bundled Defenders guide no longer shows 23 broken placeholders. Fourteen

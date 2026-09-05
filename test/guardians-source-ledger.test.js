@@ -2,6 +2,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
+import {
+  assertMappingMatchesPacketOccurrences,
+  sourceGapResolutionDigestFor,
+  validateFrozenPacket,
+  validateMappingDigest,
+  validateReportDigest,
+} from '../scripts/lib/cbh-inventory.mjs';
+import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
 
 async function readJson(path) {
   return JSON.parse(await readFile(path, 'utf8'));
@@ -449,7 +457,7 @@ test('the Guardians Stage A ledger freezes the full-page boundary and inventory 
   );
 
   assert.ok(record);
-  assert.equal(record.reason, 'The frozen full-page guide now publishes 294 exact metadata rows and 29 explicit unresolved placeholders, with every source position and current-library relationship preserved.');
+  assert.equal(record.reason, 'The frozen full-page guide publishes 312 exact metadata rows, 38 backward repeats, and 70 explicit exclusions, preserving all 420 source positions and current-library relationships.');
   assert.equal(record.sourceRetrievedAt, ledger.sourceRetrievedAt);
   assert.equal(record.sourceContentSha256, ledger.sourceContentSha256);
   assert.equal(record.disposition, 'new-order');
@@ -664,33 +672,33 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
   assert.ok(manifest.lists.some((entry) => entry.id === ledger.id));
   const guardiansCatalog = catalog.lists.find((entry) => entry.id === ledger.id);
   assert.ok(guardiansCatalog);
-  assert.equal(guardiansCatalog.count, 323);
-  assert.equal(mapping.rows.length, 294);
-  assert.equal(mapping.sourceGaps.length, 29);
+  assert.equal(guardiansCatalog.count, 312);
+  assert.equal(mapping.rows.length, 312);
+  assert.equal(mapping.sourceGaps, undefined);
   assert.equal(mapping.repeatedSourceReferences.length, 38);
-  assert.equal(mapping.excludedSourceRows.length, 59);
-  assert.equal(payload.placeholders, 29);
-  assert.equal(report.comparisonCount, 163);
-  assert.equal(report.comparisons.length, 163);
+  assert.equal(mapping.excludedSourceRows.length, 70);
+  assert.equal(payload.placeholders, 0);
+  assert.equal(report.comparisonCount, 137);
+  assert.equal(report.comparisons.length, 137);
   assert.deepEqual(
     Object.fromEntries(['none', 'partial', 'existing-subset'].map((relationship) => [
       relationship,
       report.comparisons.filter((comparison) => comparison.relationship === relationship).length,
     ])),
-    { none: 143, partial: 19, 'existing-subset': 1 },
+    { none: 124, partial: 12, 'existing-subset': 1 },
   );
   assert.deepEqual(
     Object.fromEntries([
       'black-widow-reading-order',
-      'fantastic-four-reading-order',
+      'groot-reading-order',
       'silver-surfer-reading-order',
     ].map((orderId) => {
       const comparison = report.comparisons.find((entry) => entry.orderId === orderId);
       return [orderId, [comparison?.relationship, comparison?.sharedCount]];
     })),
     {
-      'black-widow-reading-order': ['partial', 15],
-      'fantastic-four-reading-order': ['partial', 22],
+      'black-widow-reading-order': ['partial', 19],
+      'groot-reading-order': ['partial', 25],
       'silver-surfer-reading-order': ['partial', 7],
     },
   );
@@ -715,6 +723,97 @@ test('the Guardians Stage A checkpoint stays distinct from related current-catal
     new Set(starLordPacket.rows.map(sourceIdentity)).has('Guardians of the Galaxy|2013|1'),
     false,
     'star-lord-reading-order should stay distinct from the 2013 team launch',
+  );
+});
+
+test('the Guardians publication preserves the settled 29-position transition', async () => {
+  const [packet, mapping, report, catalog, generated] = await Promise.all([
+    readJson('scripts/data/cbh-packets/guardians-of-the-galaxy-reading-order.json'),
+    readJson('scripts/data/cbh-mappings/guardians-of-the-galaxy-reading-order.json'),
+    readJson('scripts/data/cbh-overlaps/guardians-of-the-galaxy-reading-order.json'),
+    readJson('src/data/catalog.json'),
+    readJson('src/data/guardians_of_the_galaxy_reading_order.json'),
+  ]);
+  const exactResolutions = [
+    [148, 47163], [149, 47164], [150, 47165], [221, 26093], [233, 51915],
+    [290, 62959], [293, 61101], [294, 61102], [297, 62818], [312, 65074],
+    [313, 65075], [314, 65282], [315, 65283], [316, 65547], [327, 67349],
+    [335, 74762], [351, 76749], [412, 95675],
+  ];
+  const excludedResolutions = [
+    [117, 'source-semantic-exclusion'],
+    [118, 'source-semantic-exclusion'],
+    [146, 'source-semantic-exclusion'],
+    [178, 'owner-authorized-unavailable-exclusion'],
+    [190, 'owner-authorized-unavailable-exclusion'],
+    [234, 'owner-authorized-unavailable-exclusion'],
+    [235, 'owner-authorized-unavailable-exclusion'],
+    [240, 'source-semantic-exclusion'],
+    [271, 'source-semantic-exclusion'],
+    [371, 'owner-authorized-unavailable-exclusion'],
+    [413, 'source-semantic-exclusion'],
+  ];
+
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: 'guardians-of-the-galaxy-reading-order',
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: report.libraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+  assert.equal(packet.sourceOccurrenceCount, 420);
+  assert.equal(packet.rows.length, 312);
+  assert.equal(packet.repeatedSourceReferences.length, 38);
+  assert.equal(packet.excludedSourceRows.length, 70);
+  assert.equal(packet.sourceGaps, undefined);
+  assert.equal(packet.sourceGapResolutions.length, 29);
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((resolution) => resolution.resolutionKind === 'exact-issue')
+      .map((resolution) => [resolution.sourcePosition, resolution.selectedIssueId]),
+    exactResolutions,
+  );
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((resolution) => resolution.resolutionKind === 'source-exclusion')
+      .map((resolution) => [resolution.sourcePosition, resolution.decisionScope]),
+    excludedResolutions,
+  );
+  assert.equal(
+    packet.sourceGapResolutions
+      .filter((resolution) => resolution.resolutionKind === 'canonical-repeat')
+      .length,
+    0,
+  );
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    resolution.evidenceDigest === sourceGapResolutionDigestFor(resolution)
+  )));
+  const composite = packet.sourceGapResolutions.find((resolution) => resolution.sourcePosition === 413);
+  assert.match(composite.exclusionReason, /Wakanda #1.*95676/);
+  assert.match(composite.exclusionReason, /S\.W\.O\.R\.D\. \(2020\) #7.*94676/);
+  assert.equal(
+    packet.rows.find((row) => row.sourcePosition === 351)?.candidateIssueId,
+    76749,
+  );
+  assert.equal(
+    packet.repeatedSourceReferences.find((reference) => reference.sourcePosition === 385)?.canonicalRow,
+    280,
+  );
+  assert.deepEqual(mapping.sourceGapResolutions, packet.sourceGapResolutions);
+  assert.equal(mapping.rows.length, 312);
+  assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
+  assert.equal(generated.count, 312);
+  assert.equal(generated.placeholders, 0);
+  assert.equal(generated.unresolved.length, 0);
+  assert.equal(
+    catalog.lists.find((entry) => entry.id === 'guardians-of-the-galaxy-reading-order')?.count,
+    312,
   );
 });
 

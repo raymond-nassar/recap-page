@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-04T21:40:26.080Z",
+  "generatedAt": "2026-09-05T05:01:41.370Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3373,10 +3373,10 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 323,
-      "placeholderCount": 29,
+      "count": 312,
+      "placeholderCount": 0,
       "emptyRecordCount": 0,
-      "collections": 46,
+      "collections": 41,
       "characters": [
         "Guardians of the Galaxy",
         "Star-Lord",
@@ -3406,7 +3406,7 @@
       "source": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-28T02:01:57.031Z"
+      "updatedAt": "2026-09-05T05:01:41.370Z"
     },
     {
       "id": "inhumans-reading-order",

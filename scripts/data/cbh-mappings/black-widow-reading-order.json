@@ -43134,37 +43134,45 @@
     "coverIssueId": 11295
   },
   "relationshipReview": {
-    "authorityType": "stronger-model",
-    "authorityIdentity": "GitHub Copilot",
-    "rationale": "Reviewed the preserved-scope comparison after the Moon Knight issue 310 settlement changed shared issue evidence. Every resulting relationship remains source-faithful and approved.",
-    "reviewedAt": "2026-09-04",
-    "reportDigest": "4baf1ba95d36c0e5bc55b19bd49bf6e975f58bcf990dbc797b71d8734a3ba31a",
+    "reportDigest": "2b6822b9ae3c70c8815356c7d4f274511d14aa1839f93997b31e1c21a188cd1f",
     "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
     "mappingDigest": "6ccf074e84532129997b6f4d6a3abd19ff341cb70b4a20314af6feda3b62cc1e",
-    "libraryDigest": "ff453240ef8bfc90deccb00518f621a73dfb0c94dd30894340e8f4d1c09510be",
+    "libraryDigest": "4f2e63818d3881de32479bb3ec10b0e47dd3b05a120797b5af382ad21f999fb4",
     "peerDigests": {},
+    "sourceCounts": {
+      "sourceOccurrenceCount": 773,
+      "sourceIdentityCount": 567,
+      "includedIssueCount": 567,
+      "sourceGapCount": 0,
+      "repeatedSourceReferenceCount": 20,
+      "excludedSourceRowCount": 186
+    },
+    "authorityType": "stronger-model",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "Refreshed all 173 bounded library comparisons after the Guardians settlement changed the published library. No exact duplicate replaces this guide's source identity.",
+    "reviewedAt": "2026-09-04",
     "dispositions": [
       {
         "orderId": "abomination-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "absolute-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "adam-warlock-reading-order",
@@ -43186,20 +43194,14 @@
           "10024"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GitHub Copilot",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "14 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "agatha-harkness-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 6,
         "sharedIds": [
           "9294",
@@ -43208,89 +43210,89 @@
           "18453",
           "17491",
           "17492"
-        ]
-      },
-      {
-        "orderId": "age-of-x-man",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "agents-of-atlas-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "6 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "age-of-x-man",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "agents-of-atlas-reading-order",
         "sharedCount": 2,
         "sharedIds": [
           "19785",
           "19786"
-        ]
-      },
-      {
-        "orderId": "all-new-all-different-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "2 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "all-new-all-different-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
         "sharedCount": 3,
         "sharedIds": [
           "6908",
           "16890",
           "1532"
-        ]
-      },
-      {
-        "orderId": "annihilation",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "annihilation-conquest",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "ant-man-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "3 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "annihilation-conquest",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "ant-man-reading-order",
         "sharedCount": 26,
         "sharedIds": [
           "7309",
@@ -43319,98 +43321,98 @@
           "64259",
           "64285",
           "64438"
-        ]
-      },
-      {
-        "orderId": "apocalypse-wars",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "atlantis-attacks",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "avengers-defenders-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "avengers-disassembled",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "avengers-enemy-within",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "axis",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "black-panther-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "26 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "apocalypse-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "atlantis-attacks",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "avengers-defenders-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "avengers-disassembled",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "avengers-enemy-within",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "axis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "black-panther-reading-order",
         "sharedCount": 4,
         "sharedIds": [
           "73446",
           "73447",
           "73448",
           "73449"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "4 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "bloodties",
-        "relationship": "existing-subset",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 5,
         "sharedIds": [
           "7250",
@@ -43418,38 +43420,38 @@
           "17788",
           "14313",
           "13848"
-        ]
+        ],
+        "relationship": "existing-subset",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "The existing guide's 5 issue IDs are a subset of this broader source-specific reading order.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "captain-america-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "captain-america-reading-order-modern-marvel-era",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "captain-marvel-ms-marvel-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 22,
         "sharedIds": [
           "7099",
@@ -43474,49 +43476,49 @@
           "15855",
           "15965",
           "16519"
-        ]
-      },
-      {
-        "orderId": "chaos-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "childs-play",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "civil-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "civil-war-avengers",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "22 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "chaos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "childs-play",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war-avengers",
         "sharedCount": 6,
         "sharedIds": [
           "6097",
@@ -43525,60 +43527,60 @@
           "15855",
           "15965",
           "16519"
-        ]
-      },
-      {
-        "orderId": "civil-war-essential",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "clone-conspiracy",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "contest-of-champions",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "damnation",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "daredevil-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "6 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "civil-war-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "clone-conspiracy",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "contest-of-champions",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "damnation",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "daredevil-reading-order",
         "sharedCount": 126,
         "sharedIds": [
           "8433",
@@ -43707,115 +43709,115 @@
           "16057",
           "16058",
           "909"
-        ]
-      },
-      {
-        "orderId": "dark-phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dark-reign-avengers",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dark-web",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "days-of-future-past",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "days-of-future-present",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "dead-mans-hand",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "deadpool-best-of",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "death-of-doctor-strange",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "devils-reign",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "doctor-doom-primer",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "126 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-reign-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dark-web",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "days-of-future-past",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "days-of-future-present",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "dead-mans-hand",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "deadpool-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "death-of-doctor-strange",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "devils-reign",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doctor-doom-primer",
         "sharedCount": 6,
         "sharedIds": [
           "9292",
@@ -43824,27 +43826,27 @@
           "9295",
           "9296",
           "9297"
-        ]
-      },
-      {
-        "orderId": "doctor-strange-multiverse-of-madness",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "doctor-strange-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "6 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doctor-strange-multiverse-of-madness",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doctor-strange-reading-order",
         "sharedCount": 16,
         "sharedIds": [
           "7312",
@@ -43863,38 +43865,38 @@
           "67149",
           "67150",
           "67151"
-        ]
-      },
-      {
-        "orderId": "doomwar",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "eighth-day",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "essential-avengers",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "16 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "doomwar",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "eighth-day",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "essential-avengers",
         "sharedCount": 11,
         "sharedIds": [
           "7309",
@@ -43908,40 +43910,46 @@
           "7318",
           "7319",
           "7023"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "11 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "evolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fall-house-x-rise-powers-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fall-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fantastic-four-reading-order",
@@ -43960,51 +43968,54 @@
           "63223"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GitHub Copilot",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "11 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "fatal-attractions",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "generations",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "groot-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
-        "sharedCount": 15,
+        "sharedCount": 19,
         "sharedIds": [
+          "62959",
           "63127",
           "62837",
+          "61101",
+          "61102",
           "63223",
           "66416",
           "66684",
@@ -44012,6 +44023,7 @@
           "68653",
           "68656",
           "66283",
+          "67349",
           "67145",
           "67147",
           "67148",
@@ -44020,31 +44032,25 @@
           "67151"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GitHub Copilot",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "19 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "heroes-reborn-2021",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "heroic-age-avengers",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 6,
         "sharedIds": [
           "35160",
@@ -44053,117 +44059,117 @@
           "35130",
           "35128",
           "35144"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "6 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "hickman-full",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "hickman-minimal",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "hickman-x-men",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "house-of-m",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "house-of-m-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "hunt-for-wolverine",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "66416"
-        ]
-      },
-      {
-        "orderId": "hunt-for-xavier",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "inferno",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "infinite-destinies",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "infinity-countdown-wars",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "hunt-for-xavier",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "infinite-destinies",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "infinity-countdown-wars",
         "sharedCount": 18,
         "sharedIds": [
           "66416",
@@ -44184,40 +44190,46 @@
           "67149",
           "67150",
           "67151"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "18 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "inhumans-reading-order",
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID."
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "inhumans-vs-x-men",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "iron-man-2020",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "iron-man-reading-order",
@@ -44258,75 +44270,69 @@
           "16519"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GitHub Copilot",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "33 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "judgment-day",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "king-in-black",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "kravens-last-hunt",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "kree-skrull-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "last-annihilation",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "loki-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 13,
         "sharedIds": [
           "66416",
@@ -44342,16 +44348,16 @@
           "67149",
           "67150",
           "67151"
-        ]
-      },
-      {
-        "orderId": "magneto-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "13 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "magneto-reading-order",
         "sharedCount": 17,
         "sharedIds": [
           "7290",
@@ -44371,179 +44377,185 @@
           "17788",
           "14313",
           "13848"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "17 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "magneto-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-2099",
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID."
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-fresh-start-avengers",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-knights-to-planet-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-multiverse",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-super-heroes-secret-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "marvel-what-if",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "58430"
-        ]
-      },
-      {
-        "orderId": "marvels-best-phoenix-comics",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "maximum-security",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "marvels-best-phoenix-comics",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "maximum-security",
         "sharedCount": 4,
         "sharedIds": [
           "15350",
           "15351",
           "15352",
           "16066"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "4 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "messiah-complex",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "messiah-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "midnight-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "minimum-carnage",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "modern-x-men-fast-track",
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID."
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "monsters-unleashed",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "moon-knight-reading-order",
@@ -44578,97 +44590,91 @@
           "35144"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GitHub Copilot",
-        "rationale": "The Moon Knight issue 310 settlement adds exact source-backed issue 56327; the resulting relationship remains source-faithful and is approved."
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "27 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "muir-island-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "mutant-massacre",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "mys-tech-wars",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "necrosha",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "new-ultimate-universe",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "new-ultimate-universe-trades",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "nick-fury-reading-order",
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID."
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "operation-galactic-storm",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 17,
         "sharedIds": [
           "7225",
@@ -44688,82 +44694,82 @@
           "11773",
           "11774",
           "7782"
-        ]
-      },
-      {
-        "orderId": "operation-zero-tolerance",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "original-clone-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "phalanx-covenant",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "phalanx-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "phoenix-saga",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "planet-hulk",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "punisher-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "17 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "operation-zero-tolerance",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "original-clone-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "phalanx-covenant",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "phalanx-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "phoenix-saga",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "planet-hulk",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "punisher-reading-order",
         "sharedCount": 5,
         "sharedIds": [
           "67563",
@@ -44771,200 +44777,200 @@
           "69851",
           "69852",
           "69853"
-        ]
-      },
-      {
-        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "5 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "question-of-the-week-do-you-have-a-hulk-reading-order",
         "sharedCount": 4,
         "sharedIds": [
           "16880",
           "7409",
           "9255",
           "9260"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "4 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "reckoning-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "reed-richards-and-sue-storms-wedding",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "revolutionary-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "rise-of-the-midnight-sons",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "rocket-raccoon-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "runaways-reading-order",
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID."
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "scarlet-witch-best-of",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 2,
         "sharedIds": [
           "17491",
           "17492"
-        ]
-      },
-      {
-        "orderId": "second-coming",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "secret-invasion",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "secret-invasion-essential",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "secret-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "secret-wars-ii",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "setup-to-modern-timeline",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "shadowland",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "silent-war",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "silver-surfer-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "2 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "second-coming",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-invasion",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-invasion-essential",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "secret-wars-ii",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "setup-to-modern-timeline",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "shadowland",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "silent-war",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "silver-surfer-reading-order",
         "sharedCount": 6,
         "sharedIds": [
           "66416",
@@ -44973,139 +44979,139 @@
           "68653",
           "68656",
           "66283"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "6 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "sins-of-sinister",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "spider-geddon",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "spider-island",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "spider-man-best-of",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GitHub Copilot",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "6908"
-        ]
-      },
-      {
-        "orderId": "spider-man-far-from-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-identity-crisis",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-no-way-home",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-man-the-other",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "spider-verse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "star-lord-reading-order",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "thanos-imperative",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "thanos-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-far-from-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-identity-crisis",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-no-way-home",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-man-the-other",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "spider-verse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "star-lord-reading-order",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-imperative",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "thanos-reading-order",
         "sharedCount": 16,
         "sharedIds": [
           "8080",
@@ -45124,18 +45130,24 @@
           "10023",
           "10024",
           "67349"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "16 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "thanos-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "the-defenders-reading-order",
@@ -45144,147 +45156,141 @@
           "6925"
         ],
         "relationship": "partial",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GitHub Copilot",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. Each independently sourced guide retains its complete sequence."
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "the-night-gwen-stacy-died",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "thor-best-of",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "time-and-time-again",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "ultimate-marvel-intro",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "venom-reading-order",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "8322"
-        ]
-      },
-      {
-        "orderId": "venomverse",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "wandavision",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "war-of-kings",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "war-of-the-realms",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "venomverse",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "wandavision",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "war-of-kings",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "war-of-the-realms",
         "sharedCount": 3,
         "sharedIds": [
           "75482",
           "75483",
           "75484"
-        ]
-      },
-      {
-        "orderId": "white-tiger-ava-ayala",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "wolverine-goes-to-hell",
-        "relationship": "none",
-        "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
-      },
-      {
-        "orderId": "wolverine-reading-order",
+        ],
         "relationship": "partial",
         "decision": "approved",
         "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "3 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "white-tiger-ava-ayala",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "wolverine-goes-to-hell",
+        "sharedCount": 0,
+        "sharedIds": [],
+        "relationship": "none",
+        "decision": "approved",
+        "authorityType": "policy",
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
+      },
+      {
+        "orderId": "wolverine-reading-order",
         "sharedCount": 11,
         "sharedIds": [
           "40",
@@ -45298,262 +45304,260 @@
           "67022",
           "68653",
           "68656"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "11 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "world-war-hulk-aftersmash",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "wraith-war",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-cutioners-song",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-force-reading-order",
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID."
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-age-of-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-battle-of-the-atom",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-curse-of-the-mutants",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-divided-we-stand",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-extermination",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-inferno",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-manifest-destiny",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-nation-x",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-regenesis",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-schism",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-trial-of-jean-grey",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-men-utopia",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-of-swords",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-termination",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "x-tinction-agenda",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "xmen-claremont",
+        "sharedCount": 0,
+        "sharedIds": [],
         "relationship": "none",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID.",
-        "reviewedAt": "2026-09-04",
-        "sharedCount": 0,
-        "sharedIds": []
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "xmen-claremont-complete",
-        "relationship": "partial",
-        "decision": "approved",
-        "authorityType": "stronger-model",
-        "authorityIdentity": "GPT-5.6 Terra",
-        "rationale": "The shared issues are legitimate character, team, or event appearances. The Black Widow guide retains its complete independently sourced sequence rather than replacing or narrowing the existing guide.",
-        "reviewedAt": "2026-09-04",
         "sharedCount": 1,
         "sharedIds": [
           "6966"
-        ]
+        ],
+        "relationship": "partial",
+        "decision": "approved",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "1 issue IDs overlap without either guide containing the other.",
+        "reviewedAt": "2026-09-04"
       },
       {
         "orderId": "young-avengers-reading-order",
         "sharedCount": 0,
         "sharedIds": [],
         "relationship": "none",
-        "reviewedAt": "2026-09-04",
         "decision": "approved",
         "authorityType": "policy",
-        "authorityIdentity": "complete-library-overlap-policy",
-        "rationale": "No shared provider issue ID."
+        "authorityIdentity": "full-library none-overlap policy",
+        "rationale": "No shared provider issue ID exists.",
+        "reviewedAt": "2026-09-04"
       }
     ],
-    "approvalDigest": "a47ee164fe34d9d4f5d1ca8305cb2c5694037eea6de98b9595df0f3b39ca56f5",
-    "sourceCounts": {
-      "sourceOccurrenceCount": 773,
-      "sourceIdentityCount": 567,
-      "includedIssueCount": 567,
-      "sourceGapCount": 0,
-      "repeatedSourceReferenceCount": 20,
-      "excludedSourceRowCount": 186
-    }
+    "approvalDigest": "9bd14c4a8cb11d4477ffa6d2fce3a2c787a90030fb10e90869b177c9a7cc2c93"
   },
   "sourceGapResolutions": [
     {

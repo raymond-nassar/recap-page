@@ -5,129 +5,12 @@
   "source": "https://www.comicbookherald.com/guardians-of-the-galaxy-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-28T02:01:57.031Z",
+  "generatedAt": "2026-09-05T05:01:41.370Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 323,
-  "collections": 46,
-  "placeholders": 29,
-  "unresolved": [
-    {
-      "title": "Annihilation",
-      "sourceKey": "117"
-    },
-    {
-      "title": "Annihilation Conquest",
-      "sourceKey": "118"
-    },
-    {
-      "title": "The Thanos Imperative",
-      "sourceKey": "146"
-    },
-    {
-      "title": "Guardians of the Galaxy Infinite Comic (2013) #2",
-      "sourceKey": "148"
-    },
-    {
-      "title": "Guardians of the Galaxy Infinite Comic (2013) #3",
-      "sourceKey": "149"
-    },
-    {
-      "title": "Guardians of the Galaxy Infinite Comic (2013) #4",
-      "sourceKey": "150"
-    },
-    {
-      "title": "Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
-      "sourceKey": "178"
-    },
-    {
-      "title": "Guardians of the Galaxy Annual #1",
-      "sourceKey": "190"
-    },
-    {
-      "title": "Nova #28",
-      "sourceKey": "221"
-    },
-    {
-      "title": "Guardians of the Galaxy: Best Story Ever (2015) #1",
-      "sourceKey": "233"
-    },
-    {
-      "title": "Guardians of the Galaxy: Tomorrow's Avengers #1",
-      "sourceKey": "234"
-    },
-    {
-      "title": "Free Comic Book Day (2014) Rocket Raccoon #1",
-      "sourceKey": "235"
-    },
-    {
-      "title": "Guardians of Knowhere",
-      "sourceKey": "240"
-    },
-    {
-      "title": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
-      "sourceKey": "271"
-    },
-    {
-      "title": "Secret Empire: United #1",
-      "sourceKey": "290"
-    },
-    {
-      "title": "Uncanny Avengers (2015B) #24",
-      "sourceKey": "293"
-    },
-    {
-      "title": "Uncanny Avengers (2015B) #25",
-      "sourceKey": "294"
-    },
-    {
-      "title": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
-      "sourceKey": "297"
-    },
-    {
-      "title": "Guardians of the Galaxy #146",
-      "sourceKey": "312"
-    },
-    {
-      "title": "Guardians of the Galaxy #147",
-      "sourceKey": "313"
-    },
-    {
-      "title": "Guardians of the Galaxy #148",
-      "sourceKey": "314"
-    },
-    {
-      "title": "Guardians of the Galaxy #149",
-      "sourceKey": "315"
-    },
-    {
-      "title": "Guardians of the Galaxy #150",
-      "sourceKey": "316"
-    },
-    {
-      "title": "Infinty Wars Prime #1",
-      "sourceKey": "327"
-    },
-    {
-      "title": "Infinity Wars: Infinity #1",
-      "sourceKey": "335"
-    },
-    {
-      "title": "Guardians of the Galaxy Annual #1",
-      "sourceKey": "351"
-    },
-    {
-      "title": "Guardians of the Galaxy #19",
-      "sourceKey": "371"
-    },
-    {
-      "title": "The Last Annihilation: Wiccan & Hulking #1",
-      "sourceKey": "412"
-    },
-    {
-      "title": "The Last Annihilation: Wakanda and S.W.O.R.D. #7",
-      "sourceKey": "413"
-    }
-  ],
+  "count": 312,
+  "collections": 41,
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 15429,
@@ -3626,40 +3509,6 @@
       "collectedIn": "Collects: Guardians Of The Galaxy (1990) 51-62, Material From Guardians Of The Galaxy Annual 4"
     },
     {
-      "issueId": -808278756,
-      "title": "Annihilation",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Annihilation"
-    },
-    {
-      "issueId": -690835423,
-      "title": "Annihilation Conquest",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Annihilation Conquest"
-    },
-    {
       "issueId": 21268,
       "title": "Guardians of the Galaxy (2008) #1",
       "number": "1",
@@ -4640,23 +4489,6 @@
       "collectedIn": "Collects: Guardians of the Galaxy #13 to #25"
     },
     {
-      "issueId": -556121600,
-      "title": "The Thanos Imperative",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "The Thanos Imperative"
-    },
-    {
       "issueId": 47162,
       "title": "Guardians of the Galaxy Infinite Comic (2013) #1",
       "number": "1",
@@ -4689,12 +4521,12 @@
       "collectedIn": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4"
     },
     {
-      "issueId": -656787314,
+      "issueId": 47163,
       "title": "Guardians of the Galaxy Infinite Comic (2013) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
+      "url": "https://www.marvel.com/comics/issue/47163/guardians_of_the_galaxy_infinite_comic_2013_2",
+      "seriesId": 17755,
+      "seriesName": "Guardians of the Galaxy Infinite Comic (2013)",
       "onSale": null,
       "mu": null,
       "digitalId": null,
@@ -4702,16 +4534,16 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4"
+      "collectedIn": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "detailsRefused": true
     },
     {
-      "issueId": -640009695,
+      "issueId": 47164,
       "title": "Guardians of the Galaxy Infinite Comic (2013) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
+      "url": "https://www.marvel.com/comics/issue/47164/guardians_of_the_galaxy_infinite_comic_2013_3",
+      "seriesId": 17755,
+      "seriesName": "Guardians of the Galaxy Infinite Comic (2013)",
       "onSale": null,
       "mu": null,
       "digitalId": null,
@@ -4719,16 +4551,16 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4"
+      "collectedIn": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "detailsRefused": true
     },
     {
-      "issueId": -421753553,
+      "issueId": 47165,
       "title": "Guardians of the Galaxy Infinite Comic (2013) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
+      "url": "https://www.marvel.com/comics/issue/47165/guardians_of_the_galaxy_infinite_comic_2013_4",
+      "seriesId": 17755,
+      "seriesName": "Guardians of the Galaxy Infinite Comic (2013)",
       "onSale": null,
       "mu": null,
       "digitalId": null,
@@ -4736,8 +4568,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4"
+      "collectedIn": "Guardians of the Galaxy Infinite Comic (2013) #1 to #4",
+      "detailsRefused": true
     },
     {
       "issueId": 43298,
@@ -4765,7 +4597,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Note that Guardians of the Galaxy issues #8 and #9 are crossovers with Marvel’s 2013 Infinity event. You can find their appropriate timeline placement within Comic Book Herald’s Infinity reading order."
+      "collectedIn": "Note that Guardians of the Galaxy issues #8 and #9 are crossovers with Marvel’s 2013 Infinity event. You can find their appropriate timeline placement within Comic Book Herald’s Infinity Reading List."
     },
     {
       "issueId": 43297,
@@ -4793,7 +4625,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Note that Guardians of the Galaxy issues #8 and #9 are crossovers with Marvel’s 2013 Infinity event. You can find their appropriate timeline placement within Comic Book Herald’s Infinity reading order."
+      "collectedIn": "Note that Guardians of the Galaxy issues #8 and #9 are crossovers with Marvel’s 2013 Infinity event. You can find their appropriate timeline placement within Comic Book Herald’s Infinity Reading List."
     },
     {
       "issueId": 43305,
@@ -5053,7 +4885,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Issues #11 to #13 of GoTG crossover with Bendis’s work on All-New X-Men, alternating issue by issue for the Trial of Jean Grey. You can find the full reading order in the Marvel NOW! guide."
+      "collectedIn": "Issues #11 to #13 of GoTG crossover with Bendis’s work on All-New X-Men, alternating issue by issue for the Trial of Jean Grey. You can find the full Reading List in the Marvel NOW! guide."
     },
     {
       "issueId": 43294,
@@ -5081,7 +4913,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Issues #11 to #13 of GoTG crossover with Bendis’s work on All-New X-Men, alternating issue by issue for the Trial of Jean Grey. You can find the full reading order in the Marvel NOW! guide."
+      "collectedIn": "Issues #11 to #13 of GoTG crossover with Bendis’s work on All-New X-Men, alternating issue by issue for the Trial of Jean Grey. You can find the full Reading List in the Marvel NOW! guide."
     },
     {
       "issueId": 48632,
@@ -5109,7 +4941,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Issues #11 to #13 of GoTG crossover with Bendis’s work on All-New X-Men, alternating issue by issue for the Trial of Jean Grey. You can find the full reading order in the Marvel NOW! guide."
+      "collectedIn": "Issues #11 to #13 of GoTG crossover with Bendis’s work on All-New X-Men, alternating issue by issue for the Trial of Jean Grey. You can find the full Reading List in the Marvel NOW! guide."
     },
     {
       "issueId": 43487,
@@ -5225,23 +5057,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Captain Marvel (2012) #1, Amazing Spider-Man #654 (B story), Free Comic Book Day 2014 (Guardians Of The Galaxy) 1, Guardians of the Galaxy (2013) #14-17"
-    },
-    {
-      "issueId": -757600123,
-      "title": "Free Comic Book Day 2014 (Guardians Of The Galaxy) #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Collects: Captain Marvel (2012) #1, Amazing Spider-Man #654 (B story), Free Comic Book Day 2014 (Guardians Of The Galaxy) 1, Guardians of the Galaxy (2013) #14-17"
     },
     {
@@ -5521,23 +5336,6 @@
       "collectedIn": "Collects: Guardians of the Galaxy (2013) #18-23, Annual #1"
     },
     {
-      "issueId": -557894399,
-      "title": "Guardians of the Galaxy Annual #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Guardians of the Galaxy (2013) #18-23, Annual #1"
-    },
-    {
       "issueId": 50965,
       "title": "Guardians 3000 (2014) #1",
       "number": "1",
@@ -5735,7 +5533,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Issues #24 and #25 of Guardians of the Galaxy are part of the Black Vortex crossover event with the X-Men. You can find their placement in the timeline with Comic Book Herald’s Black Vortex reading order."
+      "collectedIn": "Issues #24 and #25 of Guardians of the Galaxy are part of the Black Vortex crossover event with the X-Men. You can find their placement in the timeline with Comic Book Herald’s Black Vortex Reading List."
     },
     {
       "issueId": 51899,
@@ -5763,7 +5561,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Issues #24 and #25 of Guardians of the Galaxy are part of the Black Vortex crossover event with the X-Men. You can find their placement in the timeline with Comic Book Herald’s Black Vortex reading order."
+      "collectedIn": "Issues #24 and #25 of Guardians of the Galaxy are part of the Black Vortex crossover event with the X-Men. You can find their placement in the timeline with Comic Book Herald’s Black Vortex Reading List."
     },
     {
       "issueId": 51902,
@@ -6134,20 +5932,35 @@
       "collectedIn": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1"
     },
     {
-      "issueId": -1736487778,
-      "title": "Nova #28",
+      "issueId": 26093,
+      "title": "Nova (2007) #28",
       "number": "28",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/26093/nova_2007_28",
+      "seriesId": 2504,
+      "seriesName": "Nova (2007 - 2010)",
+      "onSale": "2009-08-26T00:00:00+0000",
+      "mu": "2010-11-18T00:00:00+0000",
+      "digitalId": 16771,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5790ccf4e0262",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrea DI Vito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy & X-Men: The Black Vortex Alpha 1, Guardians of the Galaxy 24-25, Legendary Star-Lord 9-11, All-New X-Men 38-39, Guardians Team-Up 2, Nova 28, Cyclops 12, Captain Marvel 14, Guardians of the Galaxy & X-Men: The Black Vortex Omega 1"
     },
     {
@@ -6398,54 +6211,27 @@
       "collectedIn": "Collects: Guardians Team-Up 6-10, Deadpool Team-Up 883"
     },
     {
-      "issueId": -1837300587,
+      "issueId": 51915,
       "title": "Guardians of the Galaxy: Best Story Ever (2015) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/51915/guardians_of_the_galaxy_best_story_ever_2015_1",
+      "seriesId": 19449,
+      "seriesName": "Guardians of the Galaxy: Best Story Ever (2015)",
+      "onSale": "2015-04-01T00:00:00+0000",
+      "mu": "2015-10-05T00:00:00+0000",
+      "digitalId": 38553,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/55141fda2cb36",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2"
-    },
-    {
-      "issueId": -1753412492,
-      "title": "Guardians of the Galaxy: Tomorrow's Avengers #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2"
-    },
-    {
-      "issueId": -1736634873,
-      "title": "Free Comic Book Day (2014) Rocket Raccoon #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Tim Seeley",
+          "role": "penciler"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2"
     },
     {
@@ -6473,23 +6259,6 @@
       "collectedIn": "Collects: Guardians of the Galaxy: Best Story Ever (2015), Guardians of the Galaxy: Tomorrow ‘s Avengers 1, Free Comic Book Day (2014) Rocket Raccoon 1, Guardians of the Galaxy : Galaxy ‘s Most Wanted 1; material from Thor (1966) 314, Logan’s Run 6, Marvel Holiday Special 2"
     },
     {
-      "issueId": -1651613945,
-      "title": "Guardians of Knowhere",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Guardians of Knowhere"
-    },
-    {
       "issueId": 55462,
       "title": "Guardians of the Galaxy (2015) #1",
       "number": "1",
@@ -6515,7 +6284,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #1 to #5"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #1 to #5"
     },
     {
       "issueId": 55464,
@@ -6543,7 +6312,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #1 to #5"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #1 to #5"
     },
     {
       "issueId": 55466,
@@ -6571,7 +6340,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #1 to #5"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #1 to #5"
     },
     {
       "issueId": 55467,
@@ -6603,7 +6372,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #1 to #5"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #1 to #5"
     },
     {
       "issueId": 55468,
@@ -6631,7 +6400,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #1 to #5"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #1 to #5"
     },
     {
       "issueId": 58086,
@@ -6955,7 +6724,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #6 to #10"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #6 to #10"
     },
     {
       "issueId": 55470,
@@ -6987,7 +6756,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #6 to #10"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #6 to #10"
     },
     {
       "issueId": 55471,
@@ -7015,7 +6784,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #6 to #10"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #6 to #10"
     },
     {
       "issueId": 55472,
@@ -7047,7 +6816,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #6 to #10"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #6 to #10"
     },
     {
       "issueId": 55473,
@@ -7079,24 +6848,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #6 to #10"
-    },
-    {
-      "issueId": -1400442531,
-      "title": "Guardians of the Galaxy: Awesome Mix Infinite Comic",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Guardians of the Galaxy: Awesome Mix Infinite Comic"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #6 to #10"
     },
     {
       "issueId": 55474,
@@ -7128,7 +6880,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #11 to #14"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #11 to #14"
     },
     {
       "issueId": 55475,
@@ -7160,7 +6912,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #11 to #14"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #11 to #14"
     },
     {
       "issueId": 55476,
@@ -7192,7 +6944,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #11 to #14"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #11 to #14"
     },
     {
       "issueId": 55477,
@@ -7220,7 +6972,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #11 to #14"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #11 to #14"
     },
     {
       "issueId": 55478,
@@ -7252,7 +7004,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #15 to #19"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #15 to #19"
     },
     {
       "issueId": 55479,
@@ -7284,7 +7036,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #15 to #19"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #15 to #19"
     },
     {
       "issueId": 60979,
@@ -7316,7 +7068,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #15 to #19"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #15 to #19"
     },
     {
       "issueId": 60980,
@@ -7348,7 +7100,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #15 to #19"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #15 to #19"
     },
     {
       "issueId": 60981,
@@ -7412,7 +7164,7 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Collects: Guardians of the Galaxy (2015 – ) #15 to #19"
+      "collectedIn": "Collects: Guardians of the Galaxy (2015 - ) #15 to #19"
     },
     {
       "issueId": 62822,
@@ -7575,20 +7327,35 @@
       "collectedIn": "Collects: Guardians of the Galaxy: Mother Entropy (2017) #1-5"
     },
     {
-      "issueId": -1886007744,
-      "title": "Secret Empire: United #1",
+      "issueId": 62959,
+      "title": "SECRET EMPIRE: UNITED 1 (2017) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/62959/secret_empire_united_1_2017_1",
+      "seriesId": 25358,
+      "seriesName": "SECRET EMPIRE: UNITED 1 (2017 - Present)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-06-14T00:00:00+0000",
+      "digitalId": 44994,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/60/593994245f7b4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Ario Anindito",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Stegman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1"
     },
     {
@@ -7656,37 +7423,75 @@
       "collectedIn": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1"
     },
     {
-      "issueId": -1835674887,
-      "title": "Uncanny Avengers (2015B) #24",
+      "issueId": 61101,
+      "title": "Uncanny Avengers (2015) #24",
       "number": "24",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61101/uncanny_avengers_2015_24",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2017-06-14T00:00:00+0000",
+      "mu": "2017-12-18T00:00:00+0000",
+      "digitalId": 45009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/593994c0ecbe8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1"
     },
     {
-      "issueId": -1818897268,
-      "title": "Uncanny Avengers (2015B) #25",
+      "issueId": 61102,
+      "title": "Uncanny Avengers (2015) #25",
       "number": "25",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61102/uncanny_avengers_2015_25",
+      "seriesId": 20621,
+      "seriesName": "Uncanny Avengers (2015 - 2017)",
+      "onSale": "2017-07-12T00:00:00+0000",
+      "mu": "2018-01-15T00:00:00+0000",
+      "digitalId": 45265,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/50/595eaa3625eda",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jahnoy Lindsay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Juanan Ramirez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kim Jacinto",
+          "role": "cover artist"
+        },
+        {
+          "name": "R.B. Silva",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1"
     },
     {
@@ -7722,20 +7527,31 @@
       "collectedIn": "Collects: Secret Empire: United (2017) #1, Secret Empire: Underground (2017) #1, Secret Empire: Uprising (2017) #1, Uncanny Avengers (2015B) #24-25, All-New Guardians of the Galaxy Annual (2017) #1"
     },
     {
-      "issueId": -1768564411,
-      "title": "Free Comic Book Day 2017 All-New Guardians of the Galaxy #1",
-      "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62818,
+      "title": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+      "seriesId": 23038,
+      "seriesName": "Free Comic Book Day (All-New Guardians of the Galaxy) (2017)",
+      "onSale": "2017-05-05T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 44806,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/c0/5b22f0e28daf0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Free Comic Book Day 2017 All-New Guardians of the Galaxy #1, All-New Guardians of the Galaxy (2017) #1-2, 4, 6, 8 & 10"
     },
     {
@@ -8103,88 +7919,171 @@
       "collectedIn": "Collects: All-New Guardians of the Galaxy (2017) #3, 5, 7, 9 & 11-12"
     },
     {
-      "issueId": -1380820921,
-      "title": "Guardians of the Galaxy #146",
+      "issueId": 65074,
+      "title": "All-New Guardians of the Galaxy (2017) #146",
       "number": "146",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65074/all-new_guardians_of_the_galaxy_2017_146",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-11-01T00:00:00+0000",
+      "mu": "2018-05-07T00:00:00+0000",
+      "digitalId": 46357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/59f106b67964a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Robbie Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy (2017) #146-150"
     },
     {
-      "issueId": -1397598540,
-      "title": "Guardians of the Galaxy #147",
+      "issueId": 65075,
+      "title": "All-New Guardians of the Galaxy (2017) #147",
       "number": "147",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65075/all-new_guardians_of_the_galaxy_2017_147",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-11-15T00:00:00+0000",
+      "mu": "2018-05-21T00:00:00+0000",
+      "digitalId": 46358,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5a0348f85bf5f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy (2017) #146-150"
     },
     {
-      "issueId": -1481486635,
-      "title": "Guardians of the Galaxy #148",
+      "issueId": 65282,
+      "title": "All-New Guardians of the Galaxy (2017) #148",
       "number": "148",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65282/all-new_guardians_of_the_galaxy_2017_148",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-12-06T00:00:00+0000",
+      "mu": "2018-06-11T00:00:00+0000",
+      "digitalId": 46757,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/5a1f33cad9a85",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy (2017) #146-150"
     },
     {
-      "issueId": -1498264254,
-      "title": "Guardians of the Galaxy #149",
+      "issueId": 65283,
+      "title": "All-New Guardians of the Galaxy (2017) #149",
       "number": "149",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65283/all-new_guardians_of_the_galaxy_2017_149",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2017-12-20T00:00:00+0000",
+      "mu": "2018-06-25T00:00:00+0000",
+      "digitalId": 46758,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5a3170b743f86",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Aaron Kuder",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy (2017) #146-150"
     },
     {
-      "issueId": -1447931397,
-      "title": "Guardians of the Galaxy #150",
+      "issueId": 65547,
+      "title": "All-New Guardians of the Galaxy (2017) #150",
       "number": "150",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65547/all-new_guardians_of_the_galaxy_2017_150",
+      "seriesId": 23058,
+      "seriesName": "All-New Guardians of the Galaxy (2017)",
+      "onSale": "2018-01-03T00:00:00+0000",
+      "mu": "2018-07-09T00:00:00+0000",
+      "digitalId": 47013,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5a382e241fcce",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Aaron Kuder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marcus to",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alex Ross",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy (2017) #146-150"
     },
     {
@@ -8468,20 +8367,31 @@
       "collectedIn": "Collects: Infinity Countdown Prime (2018), Infinity Countdown (2018) #1-5, Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)"
     },
     {
-      "issueId": -1196120017,
-      "title": "Infinty Wars Prime #1",
+      "issueId": 67349,
+      "title": "Infinity Wars Prime (2018) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/67349/infinity_wars_prime_2018_1",
+      "seriesId": 24340,
+      "seriesName": "Infinity Wars Prime (2018)",
+      "onSale": "2018-07-25T00:00:00+0000",
+      "mu": "2019-01-28T00:00:00+0000",
+      "digitalId": 48615,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/f0/5b52272a8fa14",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1"
     },
     {
@@ -8685,20 +8595,39 @@
       "collectedIn": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1"
     },
     {
-      "issueId": -1162366102,
-      "title": "Infinity Wars: Infinity #1",
+      "issueId": 74762,
+      "title": "Infinity Wars: Infinity (2019) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/74762/infinity_wars_infinity_2019_1",
+      "seriesId": 26898,
+      "seriesName": "Infinity Wars: Infinity (2019)",
+      "onSale": "2019-01-02T00:00:00+0000",
+      "mu": "2019-07-08T00:00:00+0000",
+      "digitalId": 50103,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5c23edd3b2784",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Deodato Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Infinty Wars Prime (2018) #1, Infinity Wars (2018) #1-6, Infinity Wars: Fallen Guardian (2018) #1, Infinity Wars: Infinity (2018) #1, Material from Thanos Legacy (2018) #1"
     },
     {
@@ -9118,20 +9047,63 @@
       "collectedIn": "Collects: Guardians Of The Galaxy (2019) #7-12, Guardians of the Galaxy Annual (2019) #1"
     },
     {
-      "issueId": -1564734768,
-      "title": "Guardians of the Galaxy Annual #1",
+      "issueId": 76749,
+      "title": "GUARDIANS OF THE GALAXY ANNUAL 1 (2019) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/76749/guardians_of_the_galaxy_annual_1_2019_1",
+      "seriesId": 27554,
+      "seriesName": "GUARDIANS OF THE GALAXY ANNUAL 1 (2019)",
+      "onSale": "2019-06-05T00:00:00+0000",
+      "mu": "2019-12-09T00:00:00+0000",
+      "digitalId": 51675,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/b0/5ced97cf6e221",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Filipe Andrade",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ibrahim Moustafa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yildiray Cinar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Giuseppe Camuncoli",
+          "role": "penciler"
+        },
+        {
+          "name": "John Mccrea",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        },
+        {
+          "name": "Donny Cates",
+          "role": "writer"
+        },
+        {
+          "name": "Lonnie Nadler",
+          "role": "writer"
+        },
+        {
+          "name": "Tini Howard",
+          "role": "writer"
+        },
+        {
+          "name": "Zac Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians Of The Galaxy (2019) #7-12, Guardians of the Galaxy Annual (2019) #1"
     },
     {
@@ -9751,23 +9723,6 @@
       "collectedIn": "Collects: Guardians of the Galaxy (2020) #1 to #19, Rocket #1 to #6"
     },
     {
-      "issueId": -1363057564,
-      "title": "Guardians of the Galaxy #19",
-      "number": "19",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Guardians of the Galaxy (2020) #1 to #19, Rocket #1 to #6"
-    },
-    {
       "issueId": 61665,
       "title": "Rocket (2017) #1",
       "number": "1",
@@ -9992,37 +9947,35 @@
       "collectedIn": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7"
     },
     {
-      "issueId": -89065846,
-      "title": "The Last Annihilation: Wiccan & Hulking #1",
+      "issueId": 95675,
+      "title": "The Last Annihilation: Wiccan & Hulkling (2021) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+      "seriesId": 32833,
+      "seriesName": "The Last Annihilation: Wiccan & Hulkling (2021)",
+      "onSale": "2021-09-01T00:00:00+0000",
+      "mu": "2021-12-06T00:00:00+0000",
+      "digitalId": 57691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/612e8de15783b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7"
-    },
-    {
-      "issueId": -72288227,
-      "title": "The Last Annihilation: Wakanda and S.W.O.R.D. #7",
-      "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luciano Vecchio",
+          "role": "penciler"
+        },
+        {
+          "name": "Anthony Oliveira",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Guardians of the Galaxy (2020) #16 to #18, Cable: Reloaded #1, The Last Annihilation: Wiccan & Hulking, The Last Annihilation: Wakanda and S.W.O.R.D. (2020) #7"
     },
     {
