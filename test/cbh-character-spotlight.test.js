@@ -791,7 +791,7 @@ test('the character inventory preserves every central disposition, ships thirty-
   assert.deepEqual(shippedById.get('the-defenders-reading-order').catalogIds, [
     'the-defenders-reading-order',
   ]);
-  assert.equal(shippedById.get('the-defenders-reading-order').overlapIds.length, 19);
+  assert.equal(shippedById.get('the-defenders-reading-order').overlapIds.length, 20);
   assert.deepEqual(shippedById.get(moonKnightCandidateId).catalogIds, [moonKnightCandidateId]);
   assert.equal(shippedById.get(moonKnightCandidateId).overlapIds.length, 18);
   assert.deepEqual(shippedById.get('daredevil-reading-order').catalogIds, ['daredevil-reading-order']);

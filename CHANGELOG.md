@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Defenders guide gaps
+
+In plain English: The bundled Defenders guide no longer shows 23 broken placeholders. Fourteen
+comics are newly readable, repeated comics reuse their first entries, and a nonexistent issue is
+omitted rather than replaced. Existing saved Reading Lists and reading progress are not rewritten;
+newly imported copies receive the settled 259-comic order.
+
+For maintainers, all 331 source positions remain accounted for as 259 exact rows, 20 repeats, and 52
+explicit exclusions. All 23 former gaps retain auditable transition evidence.
+
 ### Settled the X-Force guide gaps
 
 In plain English: The bundled X-Force guide now includes 23 exact comics that previously appeared
