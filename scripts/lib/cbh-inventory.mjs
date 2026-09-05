@@ -57,6 +57,7 @@ const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
   'black-panther-reading-order': 'd480030993cbe988f32f6790d055794bed9e202b0d4dbb726ab5247890fbacc8',
   'black-widow-reading-order': '78f1e66f89f8d6f6978b0882439b04d8115e351929b93efc0130f3617d8f6e7c',
   'daredevil-reading-order': 'a5819df38fcbd69a9458b91c88d1d6f689c8ba6555e033e6fd93cd3d218c41bd',
+  'doctor-strange-reading-order': '1e5d157c9ec42832a76e0528cbe2cf906a3a11eb4ccead4482c8b00ce15dddaf',
   'fantastic-four-reading-order': '9edb15a15d2daae057b551c64570d3318b13e3a4fc47dca6d2504a0d985d7a91',
   'guardians-of-the-galaxy-reading-order': 'ae93f928584d214a8d264a0240ea1d8da4245611bd43277c911bcad83933270b',
   'loki-reading-order': '59de316b6547f728eb75fd03ba8717ebb9cbf294f30404e31d02d5906e25962b',

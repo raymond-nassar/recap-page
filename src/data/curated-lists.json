@@ -2527,40 +2527,6 @@
       "coverIssueId": 8906
     },
     {
-      "id": "doctor-strange-reading-order",
-      "name": "Doctor Strange",
-      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
-      "type": "character-run",
-      "spotlightKind": "complete-guide",
-      "depth": "complete",
-      "beginner": true,
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "sourceFile": "doctor-strange-reading-order.md",
-      "sourcePage": "https://www.comicbookherald.com/doctor-strange-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "out": "doctor_strange_reading_order.json",
-      "characters": [
-        "Doctor Strange",
-        "Defenders",
-        "Avengers",
-        "Clea",
-        "Wong"
-      ],
-      "keywords": [
-        "Doctor Strange",
-        "Sorcerer Supreme",
-        "Defenders",
-        "Strange Academy",
-        "Comic Book Herald"
-      ],
-      "expect": 750,
-      "timeline": null,
-      "coverIssueId": 11029
-    },
-    {
       "id": "black-widow-reading-order",
       "name": "Black Widow",
       "description": "The complete Black Widow reading guide from Natasha Romanoff's earliest Marvel appearances through her modern solo series and team appearances.",
@@ -2856,6 +2822,40 @@
       "expect": 169,
       "timeline": null,
       "coverIssueId": 4500
+    },
+    {
+      "id": "doctor-strange-reading-order",
+      "name": "Doctor Strange",
+      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "doctor-strange-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "doctor_strange_reading_order.json",
+      "characters": [
+        "Doctor Strange",
+        "Defenders",
+        "Avengers",
+        "Clea",
+        "Wong"
+      ],
+      "keywords": [
+        "Doctor Strange",
+        "Sorcerer Supreme",
+        "Defenders",
+        "Strange Academy",
+        "Comic Book Herald"
+      ],
+      "expect": 734,
+      "timeline": null,
+      "coverIssueId": 11029
     },
     {
       "id": "xmen-claremont",

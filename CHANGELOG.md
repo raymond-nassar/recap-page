@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Resolved the Doctor Strange guide's remaining metadata gaps
+
+In plain English: Every source position in the Doctor Strange guide is now accounted for. The guide
+publishes 734 exact official Marvel issue identities, preserves 182 repeated references, and records
+16 positions without a verified official issue page as unavailable instead of substituting a
+different comic or inventing optional metadata.
+
 ### Settled the Venom guide gaps
 
 In plain English: The bundled Venom guide now includes 33 exact comics that previously appeared as

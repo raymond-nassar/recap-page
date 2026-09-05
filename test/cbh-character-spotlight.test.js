@@ -2010,38 +2010,45 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   }));
 
   assert.equal(packet.sourceOccurrenceCount, 932);
-  assert.equal(packet.rows.length, 711);
-  assert.equal(packet.sourceGaps.length, 39);
-  assert.equal(packet.repeatedSourceReferences.length, 181);
-  assert.equal(packet.excludedSourceRows.length, 1);
+  assert.equal(packet.rows.length, 734);
+  assert.equal(Object.hasOwn(packet, 'sourceGaps'), false);
+  assert.equal(packet.repeatedSourceReferences.length, 182);
+  assert.equal(packet.excludedSourceRows.length, 16);
+  assert.equal(packet.sourceGapResolutions.length, 39);
   assert.equal(new Set(
-    [...packet.rows, ...packet.sourceGaps].map((entry) => entry.sourceGroup),
-  ).size, 72);
+    packet.rows.map((entry) => entry.sourceGroup),
+  ).size, 71);
   assert.match(packet.sourceBoundary, /all 76 issue-bearing blocks/);
   assert.equal(
     packet.sourceBoundary.match(/\b(?:I|II|III|IV|V|VI|VII|VIII)\)/g)?.length,
     8,
   );
   assert.match(packet.sourceBoundary, /Latest Additions:/);
-  assert.equal(mapping.rows.length, 711);
-  assert.equal(mapping.sourceGaps.length, 39);
-  assert.equal(mapping.candidateMetadata.length, 711);
+  assert.equal(mapping.rows.length, 734);
+  assert.equal(Object.hasOwn(mapping, 'sourceGaps'), false);
+  assert.equal(mapping.candidateMetadata.length, 734);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
-  assert.equal(report.candidateCount, 711);
-  assert.equal(report.comparisonCount, 137);
-  assert.equal(mapping.relationshipReview.dispositions.length, 137);
+  assert.equal(report.candidateCount, 734);
+  assert.equal(report.comparisonCount, 138);
+  assert.equal(mapping.relationshipReview.dispositions.length, 138);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'none').length, 112);
   assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'existing-subset').length, 3);
-  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 22);
-  assert.equal(manifestEntry.expect, 750);
+  assert.equal(report.comparisons.filter((comparison) => comparison.relationship === 'partial').length, 23);
+  assert.deepEqual(
+    inventoryRecord.overlapIds,
+    report.comparisons
+      .filter((comparison) => comparison.relationship !== 'none')
+      .map((comparison) => comparison.orderId),
+  );
+  assert.equal(manifestEntry.expect, 734);
   assert.equal(manifestEntry.spotlightKind, 'complete-guide');
-  assert.equal(catalogEntry.count, 750);
-  assert.equal(generated.count, 750);
-  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 711);
-  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 39);
-  assert.equal(generated.placeholders, 39);
-  assert.equal(parsed.entries.length, 711);
-  assert.equal(parsed.unresolved.length, 39);
+  assert.equal(catalogEntry.count, 734);
+  assert.equal(generated.count, 734);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 734);
+  assert.equal(generated.items.filter((item) => item.issueId < 0).length, 0);
+  assert.equal(generated.placeholders, 0);
+  assert.equal(parsed.entries.length, 734);
+  assert.equal(parsed.unresolved.length, 0);
   assert.deepEqual(
     generated.items.filter((item) => item.issueId > 0).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
@@ -2049,17 +2056,17 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.match(markdown, /^## I\) Dr\. Strange Origins and The 1960's \| Collects:/m);
   assert.match(markdown, /^## Latest Additions:/m);
   const doctorIndex = manifest.lists.findIndex((entry) => entry.id === doctorStrangeCandidateId);
-  assert.equal(manifest.lists[doctorIndex - 1].id, hulkCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 1].id, 'black-widow-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 2].id, 'daredevil-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 3].id, venomCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 4].id, magnetoCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 5].id, 'loki-reading-order');
-  assert.equal(manifest.lists[doctorIndex + 6].id, moonKnightCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 7].id, guardiansCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 8].id, inhumansCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 9].id, youngAvengersCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 10].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex - 1].id, youngAvengersCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 1].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 2].id, 'xmen-claremont-complete');
+  assert.equal(manifest.lists[doctorIndex + 3].id, captainMarvelCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 4].id, 'captain-america-best-of');
+  assert.equal(manifest.lists[doctorIndex + 5].id, 'captain-america-reading-order-modern-marvel-era');
+  assert.equal(manifest.lists[doctorIndex + 6].id, 'doctor-doom-primer');
+  assert.equal(manifest.lists[doctorIndex + 7].id, 'spider-man-best-of');
+  assert.equal(manifest.lists[doctorIndex + 8].id, 'thor-best-of');
+  assert.equal(manifest.lists[doctorIndex + 9].id, 'deadpool-best-of');
+  assert.equal(manifest.lists[doctorIndex + 10].id, 'scarlet-witch-best-of');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -3785,16 +3792,16 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 4].id, 'ant-man-reading-order');
   assert.equal(manifest.lists[starLordIndex + 5].id, 'wolverine-reading-order');
   assert.equal(manifest.lists[starLordIndex + 6].id, hulkCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 7].id, doctorStrangeCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 8].id, 'black-widow-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 9].id, 'daredevil-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 10].id, venomCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 11].id, magnetoCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 12].id, 'loki-reading-order');
-  assert.equal(manifest.lists[starLordIndex + 13].id, moonKnightCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 14].id, guardiansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 15].id, inhumansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 16].id, youngAvengersCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 7].id, 'black-widow-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 8].id, 'daredevil-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 9].id, venomCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 10].id, magnetoCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 11].id, 'loki-reading-order');
+  assert.equal(manifest.lists[starLordIndex + 12].id, moonKnightCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 13].id, guardiansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 14].id, inhumansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 15].id, youngAvengersCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 16].id, doctorStrangeCandidateId);
   assert.equal(manifest.lists[starLordIndex + 17].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T06:57:41.606Z",
+  "generatedAt": "2026-09-05T18:59:53.175Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3093,10 +3093,10 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 750,
-      "placeholderCount": 39,
-      "emptyRecordCount": 0,
-      "collections": 72,
+      "count": 734,
+      "placeholderCount": 0,
+      "emptyRecordCount": 23,
+      "collections": 71,
       "characters": [
         "Doctor Strange",
         "Defenders",
@@ -3124,7 +3124,7 @@
       "source": "https://www.comicbookherald.com/doctor-strange-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T09:36:57.369Z"
+      "updatedAt": "2026-09-05T18:59:53.175Z"
     },
     {
       "id": "black-widow-reading-order",

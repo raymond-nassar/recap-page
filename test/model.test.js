@@ -1032,8 +1032,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // its Ghost Rider identity was corrected. The Ant-Man guide adds three researched identities
   // whose optional details were refused. Silver Surfer now adds one exact official issue whose
   // optional details were refused. Loki now replaces 18 placeholders with 16 complete records and
-  // two exact provider refusals. Venom adds 33 exact official-link-only empty records, bringing
-  // the current total to 147 across fifteen affected orders.
+  // two exact provider refusals. Venom adds 33 exact official-link-only empty records. Doctor
+  // Strange now adds 23, bringing the current total to 170 across sixteen affected orders.
   // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
@@ -1043,7 +1043,7 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // valid launch metadata, leaving 68 unopenable placeholders in that guide. The
   // Deadpool carries no placeholders after its owner-approved MAX exclusions. Black Panther adds
   // four source-preserving metadata gaps with distinct negative identifiers. Doctor Strange
-  // adds 39 source-preserving metadata gaps with distinct negative identifiers. Daredevil now
+  // carries no placeholders after 23 exact resolutions and 16 availability exclusions. Daredevil now
   // carries no placeholders after its owner-reviewed availability settlement. Venom carries 33
   // exact official issue records with provider refusals and no placeholders. Punisher adds 158
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
@@ -1067,10 +1067,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1509, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1508, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 147);
-  assert.equal(affected, 15);
+  assert.equal(claimed, 1470, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1469, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 170);
+  assert.equal(affected, 16);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1268,8 +1268,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // America adds 69 placeholders, 68 of which are new negative identifiers because its cover
   // record already has a pinned Marvel issue id. Deadpool carries no refused identities after its
   // owner-approved MAX exclusions. Black Panther carries no refused identities after its exact
-  // Avengers #0 resolution and three nonexistent-identity exclusions. Doctor Strange adds 39 more
-  // negative placeholder identifiers. Daredevil now adds none after
+  // Avengers #0 resolution and three nonexistent-identity exclusions. Doctor Strange replaces
+  // 39 negative placeholders with 23 exact refused identities and 16 exclusions. Daredevil adds none after
   // its availability settlement. Venom replaces 33 distinct negative placeholders with 33 exact
   // official issue records whose optional provider metadata was refused, so its distinct refused
   // contribution remains unchanged. Punisher adds 158 distinct placeholders while retaining 23
@@ -1287,6 +1287,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // after its owner-reviewed availability settlement.
   // Hulk replaces 19 distinct negative placeholders with nine exact refused records. One of
   // those exact identities already appears elsewhere, so the distinct refused total falls by 11.
-  assert.equal(refused.length, 1616);
+  assert.equal(refused.length, 1600);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

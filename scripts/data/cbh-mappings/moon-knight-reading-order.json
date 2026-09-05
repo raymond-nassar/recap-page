@@ -8747,10 +8747,10 @@
     "authorityIdentity": "GitHub Copilot",
     "rationale": "Reviewed the preserved-scope comparison after settling all 18 issue 310 positions. Every resulting relationship remains source-faithful and approved.",
     "reviewedAt": "2026-09-04",
-    "reportDigest": "1bea959dfc0cc02d070e2b6b3b29229da2b97f777ac7cb8600464254c3081dc9",
+    "reportDigest": "30c00e4ced1e365813a856dbbca940c93a2ef6ac5b698ca18acf8ab99db60edd",
     "packetDigest": "a033c4c388c2cb0d8032574795a69cec52f95b87d0c8b8db1683c20cdd9883a5",
     "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
-    "libraryDigest": "d04fe10c8a9a5d875c3aef1303398c6f4d18f580b85d4843bb979a4380684c45",
+    "libraryDigest": "303c36116a49d8688a42221e38f54b28a3c605ccd8e330a6a90fca31ae3c3e1c",
     "peerDigests": {},
     "dispositions": [
       {
@@ -10714,7 +10714,7 @@
         "sharedIds": []
       }
     ],
-    "approvalDigest": "044c3b9341b3c5c1754e34a14a910cdc0dc5a9a4b0b8920ff258c14cfe4dac3d",
+    "approvalDigest": "b777c446b9c7074a1273d6edf153eb2fe1343777c58615ab9db481cd11c2c705",
     "sourceCounts": {
       "sourceOccurrenceCount": 414,
       "sourceIdentityCount": 382,
