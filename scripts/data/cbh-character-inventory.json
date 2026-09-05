@@ -1515,7 +1515,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The complete source page yields 1,242 ordered source occurrences: 1,140 distinct verified issues, 75 intentional repeat references, 19 explicit provider gaps, and eight excluded collection or Issues parser markers. The published spotlight retains all verified issues in source order while leaving unavailable source positions as plain-text provenance.",
+    "reason": "The complete source page yields 1,242 ordered source occurrences: 1,149 distinct verified issues, 75 intentional repeat references, zero open provider gaps, and 18 explicit exclusions. The published spotlight retains every verified issue in source order while preserving each unavailable or nonexistent source identity as explicit provenance.",
     "sourceRetrievedAt": "2026-08-26",
     "overlapIds": [
       "abomination-reading-order",

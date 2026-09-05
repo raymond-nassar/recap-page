@@ -1061,13 +1061,15 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
   // claiming a metadata match. Adam Warlock carries no placeholders after its owner-reviewed
   // availability settlement.
+  // Hulk carries no placeholders after nine exact resolutions and ten approved exclusions. Its
+  // nine exact records retain explicit official links with unknown optional provider metadata.
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1590, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1589, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 105);
-  assert.equal(affected, 13);
+  assert.equal(claimed, 1571, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1570, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 114);
+  assert.equal(affected, 14);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1280,6 +1282,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // owner-reviewed settlement. Guardians adds 29, Defenders adds none after its owner-reviewed
   // settlement, and Nick Fury and S.H.I.E.L.D. adds 194. Adam Warlock carries no refused identities
   // after its owner-reviewed availability settlement.
-  assert.equal(refused.length, 1653);
+  // Hulk replaces 19 distinct negative placeholders with nine exact refused records. One of
+  // those exact identities already appears elsewhere, so the distinct refused total falls by 11.
+  assert.equal(refused.length, 1642);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

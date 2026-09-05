@@ -14,7 +14,7 @@
   "repeatedSourceReferences": [
     {
       "sourcePosition": 358,
-      "canonicalRow": 343,
+      "canonicalRow": 345,
       "sourceIssueReference": "Incredible Hulk vol. 2 #328",
       "sourceRangeReference": "Source block 20: Incredible Hulk by Peter David Omnibus Vol. 1 | Collects: Incredible Hulk vol. 2 #328, 331-368, Web of Spider-Man #44, Fantastic Four #320, material from Marvel Comics Presents #26, 45.",
       "normalizedSeriesTitle": "Incredible Hulk",
@@ -23,7 +23,7 @@
     },
     {
       "sourcePosition": 489,
-      "canonicalRow": 472,
+      "canonicalRow": 475,
       "sourceIssueReference": "Hulk: Future Imperfect #1",
       "sourceRangeReference": "Source block 24: Hulk: Future Imperfect | Issues: #1 to #2",
       "normalizedSeriesTitle": "Hulk: Future Imperfect",
@@ -32,7 +32,7 @@
     },
     {
       "sourcePosition": 490,
-      "canonicalRow": 473,
+      "canonicalRow": 476,
       "sourceIssueReference": "Hulk: Future Imperfect #2",
       "sourceRangeReference": "Source block 24: Hulk: Future Imperfect | Issues: #1 to #2",
       "normalizedSeriesTitle": "Hulk: Future Imperfect",
@@ -41,7 +41,7 @@
     },
     {
       "sourcePosition": 561,
-      "canonicalRow": 524,
+      "canonicalRow": 527,
       "sourceIssueReference": "Incredible Hulk #1",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -50,7 +50,7 @@
     },
     {
       "sourcePosition": 562,
-      "canonicalRow": 525,
+      "canonicalRow": 528,
       "sourceIssueReference": "Incredible Hulk #2",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -59,7 +59,7 @@
     },
     {
       "sourcePosition": 563,
-      "canonicalRow": 526,
+      "canonicalRow": 529,
       "sourceIssueReference": "Incredible Hulk #3",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -68,7 +68,7 @@
     },
     {
       "sourcePosition": 564,
-      "canonicalRow": 527,
+      "canonicalRow": 530,
       "sourceIssueReference": "Incredible Hulk #4",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -77,7 +77,7 @@
     },
     {
       "sourcePosition": 565,
-      "canonicalRow": 528,
+      "canonicalRow": 531,
       "sourceIssueReference": "Incredible Hulk #5",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -86,7 +86,7 @@
     },
     {
       "sourcePosition": 566,
-      "canonicalRow": 529,
+      "canonicalRow": 532,
       "sourceIssueReference": "Incredible Hulk #6",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -95,7 +95,7 @@
     },
     {
       "sourcePosition": 567,
-      "canonicalRow": 530,
+      "canonicalRow": 533,
       "sourceIssueReference": "Incredible Hulk #7",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -104,7 +104,7 @@
     },
     {
       "sourcePosition": 568,
-      "canonicalRow": 531,
+      "canonicalRow": 534,
       "sourceIssueReference": "Incredible Hulk #8",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -113,7 +113,7 @@
     },
     {
       "sourcePosition": 569,
-      "canonicalRow": 532,
+      "canonicalRow": 535,
       "sourceIssueReference": "Incredible Hulk #9",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -122,7 +122,7 @@
     },
     {
       "sourcePosition": 570,
-      "canonicalRow": 533,
+      "canonicalRow": 536,
       "sourceIssueReference": "Incredible Hulk #10",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -131,7 +131,7 @@
     },
     {
       "sourcePosition": 571,
-      "canonicalRow": 534,
+      "canonicalRow": 537,
       "sourceIssueReference": "Incredible Hulk #11",
       "sourceRangeReference": "Source block 27: Incredible Hulk | Issues: #1 to #28",
       "normalizedSeriesTitle": "Hulk",
@@ -140,7 +140,7 @@
     },
     {
       "sourcePosition": 732,
-      "canonicalRow": 690,
+      "canonicalRow": 693,
       "sourceIssueReference": "Incredible Hulk #95",
       "sourceRangeReference": "Source block 43: Incredible Hulk in Planet Hulk | Issues: #92 to #105, Giant-Size Hulk #1 (read after Incredible Hulk #95)",
       "normalizedSeriesTitle": "Hulk",
@@ -149,7 +149,7 @@
     },
     {
       "sourcePosition": 826,
-      "canonicalRow": 325,
+      "canonicalRow": 327,
       "sourceIssueReference": "Incredible Hulk (1968) #312",
       "sourceRangeReference": "Source block 67: World War Hulks | Collects: World War Hulks #1, Fall Of The Hulks: Savage She-Hulks #1-3, Hulked-Out Heroes #1-2, World War Hulks: Spider-Man Vs. Thor #1-2, World War Hulks: Captain America Vs. Wolverine #1-2, and Incredible Hulk (1968) #312 and #609-611.",
       "normalizedSeriesTitle": "Incredible Hulk",
@@ -167,7 +167,7 @@
     },
     {
       "sourcePosition": 1025,
-      "canonicalRow": 983,
+      "canonicalRow": 986,
       "sourceIssueReference": "The Totally Awesome Hulk #20",
       "sourceRangeReference": "Source block 101: The Totally Awesome Hulk Vol. 4: My Best Friend's Monster | Collects: The Totally Awesome Hulk 19-23, Moon Girl & Devil Dinosaur #4",
       "normalizedSeriesTitle": "The Totally Awesome Hulk",
@@ -176,7 +176,7 @@
     },
     {
       "sourcePosition": 1026,
-      "canonicalRow": 984,
+      "canonicalRow": 987,
       "sourceIssueReference": "The Totally Awesome Hulk #21",
       "sourceRangeReference": "Source block 101: The Totally Awesome Hulk Vol. 4: My Best Friend's Monster | Collects: The Totally Awesome Hulk 19-23, Moon Girl & Devil Dinosaur #4",
       "normalizedSeriesTitle": "The Totally Awesome Hulk",
@@ -185,7 +185,7 @@
     },
     {
       "sourcePosition": 1027,
-      "canonicalRow": 985,
+      "canonicalRow": 988,
       "sourceIssueReference": "The Totally Awesome Hulk #22",
       "sourceRangeReference": "Source block 101: The Totally Awesome Hulk Vol. 4: My Best Friend's Monster | Collects: The Totally Awesome Hulk 19-23, Moon Girl & Devil Dinosaur #4",
       "normalizedSeriesTitle": "The Totally Awesome Hulk",
@@ -194,7 +194,7 @@
     },
     {
       "sourcePosition": 1042,
-      "canonicalRow": 994,
+      "canonicalRow": 1003,
       "sourceIssueReference": "Incredible Hulk #714",
       "sourceRangeReference": "Source block 104: Hulk: World War Hulk II | Collects: Incredible Hulk 714-717, World War Hulk 1",
       "normalizedSeriesTitle": "Incredible Hulk",
@@ -203,7 +203,7 @@
     },
     {
       "sourcePosition": 1073,
-      "canonicalRow": 1008,
+      "canonicalRow": 1017,
       "sourceIssueReference": "Avengers #684",
       "sourceRangeReference": "Source block 106: Immortal Hulk Vol. 1 (Deluxe Hardcover) | Collects: Immortal Hulk #1-10 and material from Avengers #684.",
       "normalizedSeriesTitle": "Avengers",
@@ -212,7 +212,7 @@
     },
     {
       "sourcePosition": 1074,
-      "canonicalRow": 1015,
+      "canonicalRow": 1024,
       "sourceIssueReference": "Immortal Hulk #1",
       "sourceRangeReference": "Source block 107: Immortal Hulk Vol. 1: Or is he Both? | Collects: Immortal Hulk 1-5, Material From Avengers: No Surrender 684",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -221,7 +221,7 @@
     },
     {
       "sourcePosition": 1075,
-      "canonicalRow": 1016,
+      "canonicalRow": 1025,
       "sourceIssueReference": "Immortal Hulk #2",
       "sourceRangeReference": "Source block 107: Immortal Hulk Vol. 1: Or is he Both? | Collects: Immortal Hulk 1-5, Material From Avengers: No Surrender 684",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -230,7 +230,7 @@
     },
     {
       "sourcePosition": 1076,
-      "canonicalRow": 1017,
+      "canonicalRow": 1026,
       "sourceIssueReference": "Immortal Hulk #3",
       "sourceRangeReference": "Source block 107: Immortal Hulk Vol. 1: Or is he Both? | Collects: Immortal Hulk 1-5, Material From Avengers: No Surrender 684",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -239,7 +239,7 @@
     },
     {
       "sourcePosition": 1077,
-      "canonicalRow": 1018,
+      "canonicalRow": 1027,
       "sourceIssueReference": "Immortal Hulk #4",
       "sourceRangeReference": "Source block 107: Immortal Hulk Vol. 1: Or is he Both? | Collects: Immortal Hulk 1-5, Material From Avengers: No Surrender 684",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -248,7 +248,7 @@
     },
     {
       "sourcePosition": 1078,
-      "canonicalRow": 1019,
+      "canonicalRow": 1028,
       "sourceIssueReference": "Immortal Hulk #5",
       "sourceRangeReference": "Source block 107: Immortal Hulk Vol. 1: Or is he Both? | Collects: Immortal Hulk 1-5, Material From Avengers: No Surrender 684",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -257,7 +257,7 @@
     },
     {
       "sourcePosition": 1079,
-      "canonicalRow": 1008,
+      "canonicalRow": 1017,
       "sourceIssueReference": "Avengers: No Surrender #684",
       "sourceRangeReference": "Source block 107: Immortal Hulk Vol. 1: Or is he Both? | Collects: Immortal Hulk 1-5, Material From Avengers: No Surrender 684",
       "normalizedSeriesTitle": "Avengers",
@@ -266,7 +266,7 @@
     },
     {
       "sourcePosition": 1080,
-      "canonicalRow": 1020,
+      "canonicalRow": 1029,
       "sourceIssueReference": "Immortal Hulk #6",
       "sourceRangeReference": "Source block 108: Immortal Hulk Vol. 2: The Green Door | Collects: Immortal Hulk 6-10",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -275,7 +275,7 @@
     },
     {
       "sourcePosition": 1081,
-      "canonicalRow": 1021,
+      "canonicalRow": 1030,
       "sourceIssueReference": "Immortal Hulk #7",
       "sourceRangeReference": "Source block 108: Immortal Hulk Vol. 2: The Green Door | Collects: Immortal Hulk 6-10",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -284,7 +284,7 @@
     },
     {
       "sourcePosition": 1082,
-      "canonicalRow": 1022,
+      "canonicalRow": 1031,
       "sourceIssueReference": "Immortal Hulk #8",
       "sourceRangeReference": "Source block 108: Immortal Hulk Vol. 2: The Green Door | Collects: Immortal Hulk 6-10",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -293,7 +293,7 @@
     },
     {
       "sourcePosition": 1083,
-      "canonicalRow": 1023,
+      "canonicalRow": 1032,
       "sourceIssueReference": "Immortal Hulk #9",
       "sourceRangeReference": "Source block 108: Immortal Hulk Vol. 2: The Green Door | Collects: Immortal Hulk 6-10",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -302,7 +302,7 @@
     },
     {
       "sourcePosition": 1084,
-      "canonicalRow": 1024,
+      "canonicalRow": 1033,
       "sourceIssueReference": "Immortal Hulk #10",
       "sourceRangeReference": "Source block 108: Immortal Hulk Vol. 2: The Green Door | Collects: Immortal Hulk 6-10",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -311,7 +311,7 @@
     },
     {
       "sourcePosition": 1100,
-      "canonicalRow": 1030,
+      "canonicalRow": 1039,
       "sourceIssueReference": "Immortal Hulk #11",
       "sourceRangeReference": "Source block 111: Immortal Hulk Vol. 3: Hulk in Hell | Collects: Immortal Hulk 11-15",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -320,7 +320,7 @@
     },
     {
       "sourcePosition": 1101,
-      "canonicalRow": 1031,
+      "canonicalRow": 1040,
       "sourceIssueReference": "Immortal Hulk #12",
       "sourceRangeReference": "Source block 111: Immortal Hulk Vol. 3: Hulk in Hell | Collects: Immortal Hulk 11-15",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -329,7 +329,7 @@
     },
     {
       "sourcePosition": 1102,
-      "canonicalRow": 1032,
+      "canonicalRow": 1041,
       "sourceIssueReference": "Immortal Hulk #13",
       "sourceRangeReference": "Source block 111: Immortal Hulk Vol. 3: Hulk in Hell | Collects: Immortal Hulk 11-15",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -338,7 +338,7 @@
     },
     {
       "sourcePosition": 1103,
-      "canonicalRow": 1033,
+      "canonicalRow": 1042,
       "sourceIssueReference": "Immortal Hulk #14",
       "sourceRangeReference": "Source block 111: Immortal Hulk Vol. 3: Hulk in Hell | Collects: Immortal Hulk 11-15",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -347,7 +347,7 @@
     },
     {
       "sourcePosition": 1104,
-      "canonicalRow": 1034,
+      "canonicalRow": 1043,
       "sourceIssueReference": "Immortal Hulk #15",
       "sourceRangeReference": "Source block 111: Immortal Hulk Vol. 3: Hulk in Hell | Collects: Immortal Hulk 11-15",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -356,7 +356,7 @@
     },
     {
       "sourcePosition": 1105,
-      "canonicalRow": 1035,
+      "canonicalRow": 1044,
       "sourceIssueReference": "Immortal Hulk #16",
       "sourceRangeReference": "Source block 112: Immortal Hulk Vol. 4 | Collects: Immortal Hulk #16-20",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -365,7 +365,7 @@
     },
     {
       "sourcePosition": 1106,
-      "canonicalRow": 1036,
+      "canonicalRow": 1045,
       "sourceIssueReference": "Immortal Hulk #17",
       "sourceRangeReference": "Source block 112: Immortal Hulk Vol. 4 | Collects: Immortal Hulk #16-20",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -374,7 +374,7 @@
     },
     {
       "sourcePosition": 1107,
-      "canonicalRow": 1037,
+      "canonicalRow": 1046,
       "sourceIssueReference": "Immortal Hulk #18",
       "sourceRangeReference": "Source block 112: Immortal Hulk Vol. 4 | Collects: Immortal Hulk #16-20",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -383,7 +383,7 @@
     },
     {
       "sourcePosition": 1108,
-      "canonicalRow": 1038,
+      "canonicalRow": 1047,
       "sourceIssueReference": "Immortal Hulk #19",
       "sourceRangeReference": "Source block 112: Immortal Hulk Vol. 4 | Collects: Immortal Hulk #16-20",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -392,7 +392,7 @@
     },
     {
       "sourcePosition": 1109,
-      "canonicalRow": 1039,
+      "canonicalRow": 1048,
       "sourceIssueReference": "Immortal Hulk #20",
       "sourceRangeReference": "Source block 112: Immortal Hulk Vol. 4 | Collects: Immortal Hulk #16-20",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -401,7 +401,7 @@
     },
     {
       "sourcePosition": 1120,
-      "canonicalRow": 1040,
+      "canonicalRow": 1049,
       "sourceIssueReference": "Immortal Hulk #21",
       "sourceRangeReference": "Source block 114: Immortal Hulk Vol. 5 | Collects: Immortal Hulk 21-25",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -410,7 +410,7 @@
     },
     {
       "sourcePosition": 1121,
-      "canonicalRow": 1041,
+      "canonicalRow": 1050,
       "sourceIssueReference": "Immortal Hulk #22",
       "sourceRangeReference": "Source block 114: Immortal Hulk Vol. 5 | Collects: Immortal Hulk 21-25",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -419,7 +419,7 @@
     },
     {
       "sourcePosition": 1122,
-      "canonicalRow": 1042,
+      "canonicalRow": 1051,
       "sourceIssueReference": "Immortal Hulk #23",
       "sourceRangeReference": "Source block 114: Immortal Hulk Vol. 5 | Collects: Immortal Hulk 21-25",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -428,7 +428,7 @@
     },
     {
       "sourcePosition": 1123,
-      "canonicalRow": 1043,
+      "canonicalRow": 1052,
       "sourceIssueReference": "Immortal Hulk #24",
       "sourceRangeReference": "Source block 114: Immortal Hulk Vol. 5 | Collects: Immortal Hulk 21-25",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -437,7 +437,7 @@
     },
     {
       "sourcePosition": 1124,
-      "canonicalRow": 1044,
+      "canonicalRow": 1053,
       "sourceIssueReference": "Immortal Hulk #25",
       "sourceRangeReference": "Source block 114: Immortal Hulk Vol. 5 | Collects: Immortal Hulk 21-25",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -446,7 +446,7 @@
     },
     {
       "sourcePosition": 1125,
-      "canonicalRow": 1045,
+      "canonicalRow": 1054,
       "sourceIssueReference": "Immortal Hulk #26",
       "sourceRangeReference": "Source block 115: Immortal Hulk Vol. 6: We Believe In Bruce Banner | Collects: Immortal Hulk #26 to #30",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -455,7 +455,7 @@
     },
     {
       "sourcePosition": 1126,
-      "canonicalRow": 1046,
+      "canonicalRow": 1055,
       "sourceIssueReference": "Immortal Hulk #27",
       "sourceRangeReference": "Source block 115: Immortal Hulk Vol. 6: We Believe In Bruce Banner | Collects: Immortal Hulk #26 to #30",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -464,7 +464,7 @@
     },
     {
       "sourcePosition": 1127,
-      "canonicalRow": 1047,
+      "canonicalRow": 1056,
       "sourceIssueReference": "Immortal Hulk #28",
       "sourceRangeReference": "Source block 115: Immortal Hulk Vol. 6: We Believe In Bruce Banner | Collects: Immortal Hulk #26 to #30",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -473,7 +473,7 @@
     },
     {
       "sourcePosition": 1128,
-      "canonicalRow": 1048,
+      "canonicalRow": 1057,
       "sourceIssueReference": "Immortal Hulk #29",
       "sourceRangeReference": "Source block 115: Immortal Hulk Vol. 6: We Believe In Bruce Banner | Collects: Immortal Hulk #26 to #30",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -482,7 +482,7 @@
     },
     {
       "sourcePosition": 1129,
-      "canonicalRow": 1049,
+      "canonicalRow": 1058,
       "sourceIssueReference": "Immortal Hulk #30",
       "sourceRangeReference": "Source block 115: Immortal Hulk Vol. 6: We Believe In Bruce Banner | Collects: Immortal Hulk #26 to #30",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -491,7 +491,7 @@
     },
     {
       "sourcePosition": 1140,
-      "canonicalRow": 1050,
+      "canonicalRow": 1059,
       "sourceIssueReference": "Immortal Hulk #31",
       "sourceRangeReference": "Source block 117: Immortal Hulk Vol. 7: Hulk is Hulk | Collects: Immortal Hulk #31 to #35",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -500,7 +500,7 @@
     },
     {
       "sourcePosition": 1141,
-      "canonicalRow": 1051,
+      "canonicalRow": 1060,
       "sourceIssueReference": "Immortal Hulk #32",
       "sourceRangeReference": "Source block 117: Immortal Hulk Vol. 7: Hulk is Hulk | Collects: Immortal Hulk #31 to #35",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -509,7 +509,7 @@
     },
     {
       "sourcePosition": 1142,
-      "canonicalRow": 1052,
+      "canonicalRow": 1061,
       "sourceIssueReference": "Immortal Hulk #33",
       "sourceRangeReference": "Source block 117: Immortal Hulk Vol. 7: Hulk is Hulk | Collects: Immortal Hulk #31 to #35",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -518,7 +518,7 @@
     },
     {
       "sourcePosition": 1143,
-      "canonicalRow": 1053,
+      "canonicalRow": 1062,
       "sourceIssueReference": "Immortal Hulk #34",
       "sourceRangeReference": "Source block 117: Immortal Hulk Vol. 7: Hulk is Hulk | Collects: Immortal Hulk #31 to #35",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -527,7 +527,7 @@
     },
     {
       "sourcePosition": 1144,
-      "canonicalRow": 1054,
+      "canonicalRow": 1063,
       "sourceIssueReference": "Immortal Hulk #35",
       "sourceRangeReference": "Source block 117: Immortal Hulk Vol. 7: Hulk is Hulk | Collects: Immortal Hulk #31 to #35",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -536,7 +536,7 @@
     },
     {
       "sourcePosition": 1145,
-      "canonicalRow": 1055,
+      "canonicalRow": 1064,
       "sourceIssueReference": "Immortal Hulk #36",
       "sourceRangeReference": "Source block 118: Immortal Hulk Vol. 8 | Collects: Immortal Hulk #36 to #40",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -545,7 +545,7 @@
     },
     {
       "sourcePosition": 1146,
-      "canonicalRow": 1056,
+      "canonicalRow": 1065,
       "sourceIssueReference": "Immortal Hulk #37",
       "sourceRangeReference": "Source block 118: Immortal Hulk Vol. 8 | Collects: Immortal Hulk #36 to #40",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -554,7 +554,7 @@
     },
     {
       "sourcePosition": 1147,
-      "canonicalRow": 1057,
+      "canonicalRow": 1066,
       "sourceIssueReference": "Immortal Hulk #38",
       "sourceRangeReference": "Source block 118: Immortal Hulk Vol. 8 | Collects: Immortal Hulk #36 to #40",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -563,7 +563,7 @@
     },
     {
       "sourcePosition": 1148,
-      "canonicalRow": 1058,
+      "canonicalRow": 1067,
       "sourceIssueReference": "Immortal Hulk #39",
       "sourceRangeReference": "Source block 118: Immortal Hulk Vol. 8 | Collects: Immortal Hulk #36 to #40",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -572,7 +572,7 @@
     },
     {
       "sourcePosition": 1149,
-      "canonicalRow": 1059,
+      "canonicalRow": 1068,
       "sourceIssueReference": "Immortal Hulk #40",
       "sourceRangeReference": "Source block 118: Immortal Hulk Vol. 8 | Collects: Immortal Hulk #36 to #40",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -581,7 +581,7 @@
     },
     {
       "sourcePosition": 1160,
-      "canonicalRow": 1060,
+      "canonicalRow": 1069,
       "sourceIssueReference": "Immortal Hulk (2018) #41",
       "sourceRangeReference": "Source block 120: Immortal Hulk Vol. 9: The Weakest One There Is | Collects: Immortal Hulk (2018) #41 to #45",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -590,7 +590,7 @@
     },
     {
       "sourcePosition": 1161,
-      "canonicalRow": 1061,
+      "canonicalRow": 1070,
       "sourceIssueReference": "Immortal Hulk (2018) #42",
       "sourceRangeReference": "Source block 120: Immortal Hulk Vol. 9: The Weakest One There Is | Collects: Immortal Hulk (2018) #41 to #45",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -599,7 +599,7 @@
     },
     {
       "sourcePosition": 1162,
-      "canonicalRow": 1062,
+      "canonicalRow": 1071,
       "sourceIssueReference": "Immortal Hulk (2018) #43",
       "sourceRangeReference": "Source block 120: Immortal Hulk Vol. 9: The Weakest One There Is | Collects: Immortal Hulk (2018) #41 to #45",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -608,7 +608,7 @@
     },
     {
       "sourcePosition": 1163,
-      "canonicalRow": 1063,
+      "canonicalRow": 1072,
       "sourceIssueReference": "Immortal Hulk (2018) #44",
       "sourceRangeReference": "Source block 120: Immortal Hulk Vol. 9: The Weakest One There Is | Collects: Immortal Hulk (2018) #41 to #45",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -617,7 +617,7 @@
     },
     {
       "sourcePosition": 1164,
-      "canonicalRow": 1064,
+      "canonicalRow": 1073,
       "sourceIssueReference": "Immortal Hulk (2018) #45",
       "sourceRangeReference": "Source block 120: Immortal Hulk Vol. 9: The Weakest One There Is | Collects: Immortal Hulk (2018) #41 to #45",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -626,7 +626,7 @@
     },
     {
       "sourcePosition": 1165,
-      "canonicalRow": 1065,
+      "canonicalRow": 1074,
       "sourceIssueReference": "Immortal Hulk (2018) #46",
       "sourceRangeReference": "Source block 121: Immortal Hulk Vol. 10: Of Hell and Of Death | Collects: Immortal Hulk (2018) #46 to #50",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -635,7 +635,7 @@
     },
     {
       "sourcePosition": 1166,
-      "canonicalRow": 1066,
+      "canonicalRow": 1075,
       "sourceIssueReference": "Immortal Hulk (2018) #47",
       "sourceRangeReference": "Source block 121: Immortal Hulk Vol. 10: Of Hell and Of Death | Collects: Immortal Hulk (2018) #46 to #50",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -644,7 +644,7 @@
     },
     {
       "sourcePosition": 1167,
-      "canonicalRow": 1067,
+      "canonicalRow": 1076,
       "sourceIssueReference": "Immortal Hulk (2018) #48",
       "sourceRangeReference": "Source block 121: Immortal Hulk Vol. 10: Of Hell and Of Death | Collects: Immortal Hulk (2018) #46 to #50",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -653,7 +653,7 @@
     },
     {
       "sourcePosition": 1168,
-      "canonicalRow": 1068,
+      "canonicalRow": 1077,
       "sourceIssueReference": "Immortal Hulk (2018) #49",
       "sourceRangeReference": "Source block 121: Immortal Hulk Vol. 10: Of Hell and Of Death | Collects: Immortal Hulk (2018) #46 to #50",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -662,7 +662,7 @@
     },
     {
       "sourcePosition": 1169,
-      "canonicalRow": 1069,
+      "canonicalRow": 1078,
       "sourceIssueReference": "Immortal Hulk (2018) #50",
       "sourceRangeReference": "Source block 121: Immortal Hulk Vol. 10: Of Hell and Of Death | Collects: Immortal Hulk (2018) #46 to #50",
       "normalizedSeriesTitle": "Immortal Hulk",
@@ -671,7 +671,7 @@
     },
     {
       "sourcePosition": 1170,
-      "canonicalRow": 1027,
+      "canonicalRow": 1036,
       "sourceIssueReference": "Immortal Hulk: The Best Defense (2018) #1",
       "sourceRangeReference": "Source block 122: Immortal Hulk Vol. 11: Apocrypha | Collects: Immortal Hulk: The Best Defense (2018) #1, Defenders: The Best Defense (2018) #1, Absolute Carnage: Immortal Hulk (2019) #1, Immortal Hulk (2020) #0, Immortal She-Hulk (2020) #1, King in Black: Immortal Hulk (2020) #1, material from Immortal Hulk: Time of Monsters (2021) #1",
       "normalizedSeriesTitle": "Hulk: Defenders: The Best Defense",
@@ -680,7 +680,7 @@
     },
     {
       "sourcePosition": 1171,
-      "canonicalRow": 1025,
+      "canonicalRow": 1034,
       "sourceIssueReference": "Defenders: The Best Defense (2018) #1",
       "sourceRangeReference": "Source block 122: Immortal Hulk Vol. 11: Apocrypha | Collects: Immortal Hulk: The Best Defense (2018) #1, Defenders: The Best Defense (2018) #1, Absolute Carnage: Immortal Hulk (2019) #1, Immortal Hulk (2020) #0, Immortal She-Hulk (2020) #1, King in Black: Immortal Hulk (2020) #1, material from Immortal Hulk: Time of Monsters (2021) #1",
       "normalizedSeriesTitle": "Defenders: The Best Defense",
@@ -688,579 +688,7 @@
       "issueNumber": "1"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 118,
-      "sourceIssueReference": "Incredible Hulk Annual #3",
-      "sourceRangeReference": "Source block 5: Incredible Hulk Epic Collection Vol. 5: Who Will Judge the Hulk? (1971-1972) | Collects: Incredible Hulk (1968) #138-156, Annual #3-4; Avengers (1963) #88.",
-      "normalizedSeriesTitle": "Incredible Hulk Annual",
-      "seriesYear": 1976,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/2983/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "fe70e884f4797de699d82b65415aeca999be9d1c8724ff1ea14b0a9ccda63dc6"
-    },
-    {
-      "sourcePosition": 119,
-      "sourceIssueReference": "Incredible Hulk Annual #4",
-      "sourceRangeReference": "Source block 5: Incredible Hulk Epic Collection Vol. 5: Who Will Judge the Hulk? (1971-1972) | Collects: Incredible Hulk (1968) #138-156, Annual #3-4; Avengers (1963) #88.",
-      "normalizedSeriesTitle": "Incredible Hulk Annual",
-      "seriesYear": 1976,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/2983/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "613036ff7ba0aab052c7240445b3a369830b3785d51dd19c931ec388387fe756"
-    },
-    {
-      "sourcePosition": 155,
-      "sourceIssueReference": "FOOM (1973) #1",
-      "sourceRangeReference": "Source block 8: Incredible Hulk Epic Collection Vol. 6: Crisis on Counter-Earth (1972-1974) | Collects: Incredible Hulk (1968) #157-178; material from FOOM (1973) #1-2.",
-      "normalizedSeriesTitle": "FOOM",
-      "seriesYear": 1973,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/29120/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "63dc54163ca3e8896074a42298fda21e81d8b58e28a3270414c63cec3fee7d4a"
-    },
-    {
-      "sourcePosition": 156,
-      "sourceIssueReference": "FOOM (1973) #2",
-      "sourceRangeReference": "Source block 8: Incredible Hulk Epic Collection Vol. 6: Crisis on Counter-Earth (1972-1974) | Collects: Incredible Hulk (1968) #157-178; material from FOOM (1973) #1-2.",
-      "normalizedSeriesTitle": "FOOM",
-      "seriesYear": 1973,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/29120/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "44b157ff7a13646aa2c5c99252d807aab13e6ee367d168ae3a0e62dc1ccbf6f5"
-    },
-    {
-      "sourcePosition": 179,
-      "sourceIssueReference": "Incredible Hulk Annual (1968) #5",
-      "sourceRangeReference": "Source block 9: Incredible Hulk Epic Collection Vol. 7: And Now… The Wolverine (1974-1976) | Collects: Incredible Hulk (1968) #179-200, Annual (1968) #5.",
-      "normalizedSeriesTitle": "Incredible Hulk Annual",
-      "seriesYear": 1976,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/2983/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "5c2ff805e731e152a5d851b5113a71a7c8c616354ebf2c17662674e7a0bde57c"
-    },
-    {
-      "sourcePosition": 229,
-      "sourceIssueReference": "Marvel Treasury Edition #20",
-      "sourceRangeReference": "Source block 11: Incredible Hulk Epic Collection Vol. 9: Kill or Be Killed (1978-1980) | Collects: Incredible Hulk (1968) #227-244, Annual (1968) #7-9; Captain America (1968) #230; Marvel Calendar 1979; material from Marvel Treasury Edition #20, 24.",
-      "normalizedSeriesTitle": "Marvel Treasury Edition",
-      "seriesYear": 1974,
-      "issueNumber": "20",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/19832/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e630839e6caf4e9e164797721d7ffea98cd9249915d7b4245e4dca3ef83d46f7"
-    },
-    {
-      "sourcePosition": 230,
-      "sourceIssueReference": "Marvel Treasury Edition #24",
-      "sourceRangeReference": "Source block 11: Incredible Hulk Epic Collection Vol. 9: Kill or Be Killed (1978-1980) | Collects: Incredible Hulk (1968) #227-244, Annual (1968) #7-9; Captain America (1968) #230; Marvel Calendar 1979; material from Marvel Treasury Edition #20, 24.",
-      "normalizedSeriesTitle": "Marvel Treasury Edition",
-      "seriesYear": 1974,
-      "issueNumber": "24",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/19832/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "55a28d140c1a3296445f5119208fc4393a2d1d8f28632f6d8793ab0dff6c1e47"
-    },
-    {
-      "sourcePosition": 442,
-      "sourceIssueReference": "Incredible Hulk Annual #17",
-      "sourceRangeReference": "Source block 22: Incredible Hulk by Peter David Omnibus Vol. 2 | Collects: Incredible Hulk vol. 2 #369-400, Annual #16-18, X-Factor #76, material from Marvel Holiday Special #2",
-      "normalizedSeriesTitle": "Incredible Hulk Annual",
-      "seriesYear": 1976,
-      "issueNumber": "17",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/2983/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "186522d81294535f104a3a23d8a9cb2a8a80a49301fc2da3db6915349742a85a"
-    },
-    {
-      "sourcePosition": 445,
-      "sourceIssueReference": "Marvel Holiday Special #2",
-      "sourceRangeReference": "Source block 22: Incredible Hulk by Peter David Omnibus Vol. 2 | Collects: Incredible Hulk vol. 2 #369-400, Annual #16-18, X-Factor #76, material from Marvel Holiday Special #2",
-      "normalizedSeriesTitle": "Marvel Holiday Special",
-      "seriesYear": 1991,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel+Holiday+Special++2&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "5e2e27715baeee685a5f0b45e3d77726f2f976a0d14205da52dc8979a24d49de"
-    },
-    {
-      "sourcePosition": 487,
-      "sourceIssueReference": "Incredible Hulk Ashcan Edition #1",
-      "sourceRangeReference": "Source block 23: Incredible Hulk by Peter David Omnibus Vol. 3 | Collects: Incredible Hulk vol. 2 #401-435, Incredible Hulk Annual #19-20, Incredible Hulk vs. Venom #1, Hulk: Future Imperfect #1-2, Tales to Astonish (1994) #1, Incredible Hulk Ashcan Edition #1, material from Marvel Holiday Special #3",
-      "normalizedSeriesTitle": "Incredible Hulk Ashcan Edition",
-      "seriesYear": 1994,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Incredible+Hulk+Ashcan+Edition++1&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "cb117f782a36ec3afdd97f071a0bc43b0cf76b465f87b6d474b5e1ed6625c0e3"
-    },
-    {
-      "sourcePosition": 488,
-      "sourceIssueReference": "Marvel Holiday Special #3",
-      "sourceRangeReference": "Source block 23: Incredible Hulk by Peter David Omnibus Vol. 3 | Collects: Incredible Hulk vol. 2 #401-435, Incredible Hulk Annual #19-20, Incredible Hulk vs. Venom #1, Hulk: Future Imperfect #1-2, Tales to Astonish (1994) #1, Incredible Hulk Ashcan Edition #1, material from Marvel Holiday Special #3",
-      "normalizedSeriesTitle": "Marvel Holiday Special",
-      "seriesYear": 1991,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel+Holiday+Special++3&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "608f1a3aff651f3905340ac1f0f7f2f2e0d3daae649c320cf96670bf31bfb464"
-    },
-    {
-      "sourcePosition": 523,
-      "sourceIssueReference": "Incredible Hulk vol. 2 #-1",
-      "sourceRangeReference": "Source block 25: Incredible Hulk by Peter David Omnibus Vol. 4 | Collects: Incredible Hulk vol. 2 #436-467, -1; Incredible Hulk Annual '97; Savage Hulk #1; Cutting Edge #1; Cable #34; Onslaught: Marvel Universe #1; Incredible Hulk: Hercules Unleashed #1; Heroes Reborn: The Return #1-4.",
-      "normalizedSeriesTitle": "Incredible Hulk",
-      "seriesYear": 1962,
-      "issueNumber": "-1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/2021/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "f69e0bc34da07f920e9256ce0ba80a49d604268e2e7e5704b813c788c201d223"
-    },
-    {
-      "sourcePosition": 867,
-      "sourceIssueReference": "Skaar: King of the Savage Land #6",
-      "sourceRangeReference": "Source block 76: Skaar: King of the Savage Land | Issues: #1 to #6",
-      "normalizedSeriesTitle": "Skaar: King of the Savage Land",
-      "seriesYear": 2011,
-      "issueNumber": "6",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/series/13882/issues?limit=200&offset=0",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "e7f2fd66523e0c5f726f2fb60d9194da829ad5c6283a8ae2f7e72dde0d9c4369"
-    },
-    {
-      "sourcePosition": 1030,
-      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #1",
-      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
-      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
-      "seriesYear": 2017,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thor+Vs.+Hulk%3A+Champions+Of+The+Universe++1&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "c6ce2034d527f7541c8ad5febac24518b225fbc54f842498afde39ed55c4ec30"
-    },
-    {
-      "sourcePosition": 1031,
-      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #2",
-      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
-      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
-      "seriesYear": 2017,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thor+Vs.+Hulk%3A+Champions+Of+The+Universe++2&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "51ad3d238291c9ef1a8842f0dd02e3048c682f77351347f56ca87e385d9dc93d"
-    },
-    {
-      "sourcePosition": 1032,
-      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #3",
-      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
-      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
-      "seriesYear": 2017,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thor+Vs.+Hulk%3A+Champions+Of+The+Universe++3&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "184adf6ed462cc6c472fe6cf717b522d3116d543895ef0ec890b65c63e1ff6bb"
-    },
-    {
-      "sourcePosition": 1033,
-      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #4",
-      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
-      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
-      "seriesYear": 2017,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thor+Vs.+Hulk%3A+Champions+Of+The+Universe++4&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "73f5f392e6b1b24e8ed6d90478d7e3a8443185165eb855f5dac427c664af51e3"
-    },
-    {
-      "sourcePosition": 1034,
-      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #5",
-      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
-      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
-      "seriesYear": 2017,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thor+Vs.+Hulk%3A+Champions+Of+The+Universe++5&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "95a13872ae09e4efda5f3e933aeffbc08090697f7ebaf87d3a1950684f7499e0"
-    },
-    {
-      "sourcePosition": 1035,
-      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #6",
-      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
-      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
-      "seriesYear": 2017,
-      "issueNumber": "6",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The source-required identity has no one-to-one exact Marvel issue record in the maintained metadata snapshot or verified API response; it remains fillable provenance under Issue #285, linked to Issue #239.",
-      "evidenceSources": [
-        {
-          "kind": "provider-metadata",
-          "url": "https://marvel.emreparker.com/v1/search/issues?q=Thor+Vs.+Hulk%3A+Champions+Of+The+Universe++6&limit=100",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
-          "retrievedAt": "2026-08-26"
-        },
-        {
-          "kind": "source-owner-decision",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "936021e23546d511cb8b0ab4370bc04cb95f2b88319ea040b07a6a736bc0caf5"
-    }
-  ],
-  "expectedCount": 1140,
+  "expectedCount": 1149,
   "proposedManifest": {
     "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
     "name": "Hulk (and She-Hulk, Red Hulk)",
@@ -1290,7 +718,7 @@
       "Skaar",
       "Comic Book Herald"
     ],
-    "expect": 1159,
+    "expect": 1149,
     "timeline": null,
     "coverIssueId": 8906
   },
@@ -3381,6 +2809,17 @@
       "sourceGroup": "II) Hulk Joins the Defenders, She-Hulk Origins"
     },
     {
+      "sourceIssueReference": "Incredible Hulk Annual (1968) #5",
+      "sourceRangeReference": "Source block 9: Incredible Hulk Epic Collection Vol. 7: And Now… The Wolverine (1974-1976) | Collects: Incredible Hulk (1968) #179-200, Annual (1968) #5.",
+      "normalizedSeriesTitle": "Incredible Hulk Annual",
+      "seriesYear": 1976,
+      "issueNumber": "5",
+      "seriesId": null,
+      "candidateIssueId": 16878,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 16878 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourceIssueReference": "Incredible Hulk (1968) #201",
       "sourceRangeReference": "Source block 10: Incredible Hulk Epic Collection Vol. 8: The Curing of Dr. Banner (1976-1978) | Collects: Incredible Hulk (1968) #201-226, Annual (1968) #6.",
       "normalizedSeriesTitle": "Incredible Hulk",
@@ -3967,6 +3406,17 @@
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "sourceGroup": "II) Hulk Joins the Defenders, She-Hulk Origins"
+    },
+    {
+      "sourceIssueReference": "Marvel Treasury Edition #24",
+      "sourceRangeReference": "Source block 11: Incredible Hulk Epic Collection Vol. 9: Kill or Be Killed (1978-1980) | Collects: Incredible Hulk (1968) #227-244, Annual (1968) #7-9; Captain America (1968) #230; Marvel Calendar 1979; material from Marvel Treasury Edition #20, 24.",
+      "normalizedSeriesTitle": "Marvel Treasury Edition",
+      "seriesYear": 1974,
+      "issueNumber": "24",
+      "seriesId": null,
+      "candidateIssueId": 78221,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 78221 is the owner-approved exact official identity for this source position."
     },
     {
       "sourceIssueReference": "Savage She-Hulk #1",
@@ -6475,6 +5925,17 @@
       "manualSeriesSelectionApproved": false,
       "selectionNote": null,
       "sourceGroup": "III) Peter David Hulk & Sensational She-Hulk"
+    },
+    {
+      "sourceIssueReference": "Incredible Hulk Annual #17",
+      "sourceRangeReference": "Source block 22: Incredible Hulk by Peter David Omnibus Vol. 2 | Collects: Incredible Hulk vol. 2 #369-400, Annual #16-18, X-Factor #76, material from Marvel Holiday Special #2",
+      "normalizedSeriesTitle": "Incredible Hulk Annual",
+      "seriesYear": 1976,
+      "issueNumber": "17",
+      "seriesId": null,
+      "candidateIssueId": 16874,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 16874 is the owner-approved exact official identity for this source position."
     },
     {
       "sourceIssueReference": "Incredible Hulk Annual #18",
@@ -13168,6 +12629,72 @@
       "sourceGroup": "X) All-New All-Different Totally Awesome Hulk"
     },
     {
+      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #1",
+      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": null,
+      "candidateIssueId": 64499,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64499 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #2",
+      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": null,
+      "candidateIssueId": 64562,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64562 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #3",
+      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": null,
+      "candidateIssueId": 64745,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64745 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #4",
+      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": null,
+      "candidateIssueId": 64951,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 64951 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #5",
+      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": null,
+      "candidateIssueId": 65026,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 65026 is the owner-approved exact official identity for this source position."
+    },
+    {
+      "sourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #6",
+      "sourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "normalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "seriesYear": 2017,
+      "issueNumber": "6",
+      "seriesId": null,
+      "candidateIssueId": 65027,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 65027 is the owner-approved exact official identity for this source position."
+    },
+    {
       "sourceIssueReference": "Incredible Hulk #709",
       "sourceRangeReference": "Source block 103: Hulk: Return to Planet Hulk | Collects: Incredible Hulk 709-714",
       "normalizedSeriesTitle": "Incredible Hulk",
@@ -14992,8 +14519,20 @@
       "selectionNote": "The source preserves the later Panther Rex title; Marvel metadata retains the original Black Panther publication title."
     }
   ],
-  "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
+  "packetDigest": "fe9da454a388e360206ffe10acae42e2d21a2a79c024e81a14feb407fdf2ac71",
   "excludedSourceRows": [
+    {
+      "sourcePosition": 118,
+      "sourceIssueReference": "Incredible Hulk Annual #3",
+      "reason": "No exact Marvel issue URL was found for Incredible Hulk Annual #3.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 119,
+      "sourceIssueReference": "Incredible Hulk Annual #4",
+      "reason": "No exact Marvel issue URL was found for Incredible Hulk Annual #4.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
     {
       "sourcePosition": 121,
       "sourceIssueReference": "Collects: Hulk: Grand Design - Monster and Hulk: Grand Design - Madness.",
@@ -15001,10 +14540,52 @@
       "decisionScope": "hulk-source-parser-marker"
     },
     {
+      "sourcePosition": 155,
+      "sourceIssueReference": "FOOM (1973) #1",
+      "reason": "No Marvel Unlimited URL was found for FOOM (1973) #1.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 156,
+      "sourceIssueReference": "FOOM (1973) #2",
+      "reason": "No Marvel Unlimited URL was found for FOOM (1973) #2.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 229,
+      "sourceIssueReference": "Marvel Treasury Edition #20",
+      "reason": "No exact Marvel issue URL was found for Marvel Treasury Edition #20.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
       "sourcePosition": 318,
       "sourceIssueReference": "Issues: OGN",
       "reason": "Collection or Issues parser marker, not a comic identity.",
       "decisionScope": "hulk-source-parser-marker"
+    },
+    {
+      "sourcePosition": 445,
+      "sourceIssueReference": "Marvel Holiday Special #2",
+      "reason": "The owner confirmed Marvel Holiday Special #2 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 487,
+      "sourceIssueReference": "Incredible Hulk Ashcan Edition #1",
+      "reason": "No Marvel Unlimited URL was found for Incredible Hulk Ashcan Edition #1.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 488,
+      "sourceIssueReference": "Marvel Holiday Special #3",
+      "reason": "No standalone issue numbered #3 or exact Marvel URL was verified for Marvel Holiday Special #3; the source label is preserved without substituting a year-based special.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
+    },
+    {
+      "sourcePosition": 523,
+      "sourceIssueReference": "Incredible Hulk vol. 2 #-1",
+      "reason": "No verified Marvel URL was found for Incredible Hulk vol. 2 #-1.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion"
     },
     {
       "sourcePosition": 591,
@@ -15037,10 +14618,530 @@
       "decisionScope": "hulk-source-parser-marker"
     },
     {
+      "sourcePosition": 867,
+      "sourceIssueReference": "Skaar: King of the Savage Land #6",
+      "reason": "Configured-provider series 13882 contains only #1 through #5, so Skaar: King of the Savage Land #6 is omitted without substitution.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion"
+    },
+    {
       "sourcePosition": 883,
       "sourceIssueReference": "Issues:",
       "reason": "Collection or Issues parser marker, not a comic identity.",
       "decisionScope": "hulk-source-parser-marker"
+    }
+  ],
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 118,
+      "previousSourceIssueReference": "Incredible Hulk Annual #3",
+      "previousSourceRangeReference": "Source block 5: Incredible Hulk Epic Collection Vol. 5: Who Will Judge the Hulk? (1971-1972) | Collects: Incredible Hulk (1968) #138-156, Annual #3-4; Avengers (1963) #88.",
+      "previousNormalizedSeriesTitle": "Incredible Hulk Annual",
+      "previousSeriesYear": 1976,
+      "previousIssueNumber": "3",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No exact Marvel issue URL was found for Incredible Hulk Annual #3.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/series/2983/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "629bd5727e475f87223a135220098d94c61f9a773d1b92f40a3db336a4178af6"
+    },
+    {
+      "sourcePosition": 119,
+      "previousSourceIssueReference": "Incredible Hulk Annual #4",
+      "previousSourceRangeReference": "Source block 5: Incredible Hulk Epic Collection Vol. 5: Who Will Judge the Hulk? (1971-1972) | Collects: Incredible Hulk (1968) #138-156, Annual #3-4; Avengers (1963) #88.",
+      "previousNormalizedSeriesTitle": "Incredible Hulk Annual",
+      "previousSeriesYear": 1976,
+      "previousIssueNumber": "4",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No exact Marvel issue URL was found for Incredible Hulk Annual #4.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/series/2983/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "c28f65161bb1b6d49964263098716d7d51e3a301769935dba9e901a2133d813d"
+    },
+    {
+      "sourcePosition": 155,
+      "previousSourceIssueReference": "FOOM (1973) #1",
+      "previousSourceRangeReference": "Source block 8: Incredible Hulk Epic Collection Vol. 6: Crisis on Counter-Earth (1972-1974) | Collects: Incredible Hulk (1968) #157-178; material from FOOM (1973) #1-2.",
+      "previousNormalizedSeriesTitle": "FOOM",
+      "previousSeriesYear": 1973,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No Marvel Unlimited URL was found for FOOM (1973) #1.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/series/29120/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "3984a1ab750475fb9e1e7e6f9fc6fa730030a3a83cf7b12c77d2dc8f8fe6cfe9"
+    },
+    {
+      "sourcePosition": 156,
+      "previousSourceIssueReference": "FOOM (1973) #2",
+      "previousSourceRangeReference": "Source block 8: Incredible Hulk Epic Collection Vol. 6: Crisis on Counter-Earth (1972-1974) | Collects: Incredible Hulk (1968) #157-178; material from FOOM (1973) #1-2.",
+      "previousNormalizedSeriesTitle": "FOOM",
+      "previousSeriesYear": 1973,
+      "previousIssueNumber": "2",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No Marvel Unlimited URL was found for FOOM (1973) #2.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/series/29120/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "bda0c9e9dff444d984011a304d1862eb8d3328b00aa39be6716e9c19148ebfaf"
+    },
+    {
+      "sourcePosition": 179,
+      "previousSourceIssueReference": "Incredible Hulk Annual (1968) #5",
+      "previousSourceRangeReference": "Source block 9: Incredible Hulk Epic Collection Vol. 7: And Now… The Wolverine (1974-1976) | Collects: Incredible Hulk (1968) #179-200, Annual (1968) #5.",
+      "previousNormalizedSeriesTitle": "Incredible Hulk Annual",
+      "previousSeriesYear": 1976,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 16878,
+      "resolvedNormalizedSeriesTitle": "Incredible Hulk Annual",
+      "resolvedSeriesYear": 1976,
+      "resolvedIssueNumber": "5",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/16878/incredible_hulk_annual_1976_5",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "13a3dbf622a04bd2a560f52da326fe5d222f466439aed65e1410015d5babf724"
+    },
+    {
+      "sourcePosition": 229,
+      "previousSourceIssueReference": "Marvel Treasury Edition #20",
+      "previousSourceRangeReference": "Source block 11: Incredible Hulk Epic Collection Vol. 9: Kill or Be Killed (1978-1980) | Collects: Incredible Hulk (1968) #227-244, Annual (1968) #7-9; Captain America (1968) #230; Marvel Calendar 1979; material from Marvel Treasury Edition #20, 24.",
+      "previousNormalizedSeriesTitle": "Marvel Treasury Edition",
+      "previousSeriesYear": 1974,
+      "previousIssueNumber": "20",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No exact Marvel issue URL was found for Marvel Treasury Edition #20.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/series/19832/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "a000538b9397a9bb97eb55496e86e284664f8bfd4d12a1b0698cb15ef1593bd5"
+    },
+    {
+      "sourcePosition": 230,
+      "previousSourceIssueReference": "Marvel Treasury Edition #24",
+      "previousSourceRangeReference": "Source block 11: Incredible Hulk Epic Collection Vol. 9: Kill or Be Killed (1978-1980) | Collects: Incredible Hulk (1968) #227-244, Annual (1968) #7-9; Captain America (1968) #230; Marvel Calendar 1979; material from Marvel Treasury Edition #20, 24.",
+      "previousNormalizedSeriesTitle": "Marvel Treasury Edition",
+      "previousSeriesYear": 1974,
+      "previousIssueNumber": "24",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 78221,
+      "resolvedNormalizedSeriesTitle": "Marvel Treasury Edition",
+      "resolvedSeriesYear": 1974,
+      "resolvedIssueNumber": "24",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/78221/marvel_treasury_edition_1974_24",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "06de05c8230be9944a9c8cddf9b03fdcc3196d5fa3032c2e52b7c4503f0eaacd"
+    },
+    {
+      "sourcePosition": 442,
+      "previousSourceIssueReference": "Incredible Hulk Annual #17",
+      "previousSourceRangeReference": "Source block 22: Incredible Hulk by Peter David Omnibus Vol. 2 | Collects: Incredible Hulk vol. 2 #369-400, Annual #16-18, X-Factor #76, material from Marvel Holiday Special #2",
+      "previousNormalizedSeriesTitle": "Incredible Hulk Annual",
+      "previousSeriesYear": 1976,
+      "previousIssueNumber": "17",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 16874,
+      "resolvedNormalizedSeriesTitle": "Incredible Hulk Annual",
+      "resolvedSeriesYear": 1976,
+      "resolvedIssueNumber": "17",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/16874/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "0e75927cae22f0dbc79ad02d07235b7d31f82bbb7880f55acebe1df42ed72767"
+    },
+    {
+      "sourcePosition": 445,
+      "previousSourceIssueReference": "Marvel Holiday Special #2",
+      "previousSourceRangeReference": "Source block 22: Incredible Hulk by Peter David Omnibus Vol. 2 | Collects: Incredible Hulk vol. 2 #369-400, Annual #16-18, X-Factor #76, material from Marvel Holiday Special #2",
+      "previousNormalizedSeriesTitle": "Marvel Holiday Special",
+      "previousSeriesYear": 1991,
+      "previousIssueNumber": "2",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The owner confirmed Marvel Holiday Special #2 is unavailable on Marvel Unlimited and directed that it remain omitted without future gap tracking.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel+Holiday+Special++2&limit=100",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "e56e2e76dae42e7b4743dc535132b16894641737aa922d878d35bf0ce3602774"
+    },
+    {
+      "sourcePosition": 487,
+      "previousSourceIssueReference": "Incredible Hulk Ashcan Edition #1",
+      "previousSourceRangeReference": "Source block 23: Incredible Hulk by Peter David Omnibus Vol. 3 | Collects: Incredible Hulk vol. 2 #401-435, Incredible Hulk Annual #19-20, Incredible Hulk vs. Venom #1, Hulk: Future Imperfect #1-2, Tales to Astonish (1994) #1, Incredible Hulk Ashcan Edition #1, material from Marvel Holiday Special #3",
+      "previousNormalizedSeriesTitle": "Incredible Hulk Ashcan Edition",
+      "previousSeriesYear": 1994,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No Marvel Unlimited URL was found for Incredible Hulk Ashcan Edition #1.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Incredible+Hulk+Ashcan+Edition++1&limit=100",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "9c859086fa060eef7d8de9146accef5007c45a27d22c2277c53a4a20af8c3e13"
+    },
+    {
+      "sourcePosition": 488,
+      "previousSourceIssueReference": "Marvel Holiday Special #3",
+      "previousSourceRangeReference": "Source block 23: Incredible Hulk by Peter David Omnibus Vol. 3 | Collects: Incredible Hulk vol. 2 #401-435, Incredible Hulk Annual #19-20, Incredible Hulk vs. Venom #1, Hulk: Future Imperfect #1-2, Tales to Astonish (1994) #1, Incredible Hulk Ashcan Edition #1, material from Marvel Holiday Special #3",
+      "previousNormalizedSeriesTitle": "Marvel Holiday Special",
+      "previousSeriesYear": 1991,
+      "previousIssueNumber": "3",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No standalone issue numbered #3 or exact Marvel URL was verified for Marvel Holiday Special #3; the source label is preserved without substituting a year-based special.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/search/issues?q=Marvel+Holiday+Special++3&limit=100",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "d8bd1b26a22e4993d24af13e395b0493b5983598308a2de8433819ba6ad7bddc"
+    },
+    {
+      "sourcePosition": 523,
+      "previousSourceIssueReference": "Incredible Hulk vol. 2 #-1",
+      "previousSourceRangeReference": "Source block 25: Incredible Hulk by Peter David Omnibus Vol. 4 | Collects: Incredible Hulk vol. 2 #436-467, -1; Incredible Hulk Annual '97; Savage Hulk #1; Cutting Edge #1; Cable #34; Onslaught: Marvel Universe #1; Incredible Hulk: Hercules Unleashed #1; Heroes Reborn: The Return #1-4.",
+      "previousNormalizedSeriesTitle": "Incredible Hulk",
+      "previousSeriesYear": 1962,
+      "previousIssueNumber": "-1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No verified Marvel URL was found for Incredible Hulk vol. 2 #-1.",
+      "decisionScope": "Owner-authorized Marvel Unlimited exclusion",
+      "auditBasis": "The owner authorized omission after no exact Marvel Unlimited issue page could be verified.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/series/2021/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "0333fe984865eff82e44f6367e81d1311c119f3288536f10c0bb2ff055776342"
+    },
+    {
+      "sourcePosition": 867,
+      "previousSourceIssueReference": "Skaar: King of the Savage Land #6",
+      "previousSourceRangeReference": "Source block 76: Skaar: King of the Savage Land | Issues: #1 to #6",
+      "previousNormalizedSeriesTitle": "Skaar: King of the Savage Land",
+      "previousSeriesYear": 2011,
+      "previousIssueNumber": "6",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Configured-provider series 13882 contains only #1 through #5, so Skaar: King of the Savage Land #6 is omitted without substitution.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "auditBasis": "The owner authorized omission after the complete configured-provider series proved that this issue identity does not exist.",
+      "evidenceSources": [
+        {
+          "kind": "provider-metadata",
+          "url": "https://marvel.emreparker.com/v1/series/13882/issues?limit=200&offset=0",
+          "retrievedAt": "2026-08-26"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "1ffeee5c870c2d74d17b8d5f8c88dc2db78fc14dc3f86bfb7616fa4471e2f453"
+    },
+    {
+      "sourcePosition": 1030,
+      "previousSourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #1",
+      "previousSourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "previousNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64499,
+      "resolvedNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64499/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "a995ce7f72d9ff17ba2711c53ca410b785765ded1fbce0c5501555fb06163502"
+    },
+    {
+      "sourcePosition": 1031,
+      "previousSourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #2",
+      "previousSourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "previousNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64562,
+      "resolvedNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "2",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64562/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "d120b4ee2958ae60352376bc639a630d8ae768680261aa939354e1642795cd24"
+    },
+    {
+      "sourcePosition": 1032,
+      "previousSourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #3",
+      "previousSourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "previousNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64745,
+      "resolvedNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "3",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64745/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "73984fc8dbd9f2ba822fbc22ac53a4d31c9f08ebbcc67a236cfd7d263018252d"
+    },
+    {
+      "sourcePosition": 1033,
+      "previousSourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #4",
+      "previousSourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "previousNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64951,
+      "resolvedNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "4",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64951/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "c0e843feda028d90dd4ade67fc1d5371b0af5e28fdae2fa8314b375edf8f9ce4"
+    },
+    {
+      "sourcePosition": 1034,
+      "previousSourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #5",
+      "previousSourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "previousNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65026,
+      "resolvedNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "5",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65026/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "99f1c30e94616d17c65de897e028128901e42eac3a91e223c6dcd8124a26d12d"
+    },
+    {
+      "sourcePosition": 1035,
+      "previousSourceIssueReference": "Thor Vs. Hulk: Champions Of The Universe #6",
+      "previousSourceRangeReference": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6",
+      "previousNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "6",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65027,
+      "resolvedNormalizedSeriesTitle": "Thor Vs. Hulk: Champions Of The Universe",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "6",
+      "auditBasis": "The owner supplied the exact official Marvel issue identity; configured-provider detail hydration returned 404, so optional metadata and availability remain unknown.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65027/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/285",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "checkedAt": "2026-09-04",
+      "evidenceDigest": "c25a498653268b320c2bd43e81c6c61bf479bdea3c7eb19176a83d6a0d03c1c2"
     }
   ]
 }

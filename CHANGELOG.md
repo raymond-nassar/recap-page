@@ -22,6 +22,15 @@ newly imported copies receive the settled 259-comic order.
 For maintainers, all 331 source positions remain accounted for as 259 exact rows, 20 repeats, and 52
 explicit exclusions. All 23 former gaps retain auditable transition evidence.
 
+### Settled the Hulk guide gaps
+
+In plain English: The bundled Hulk guide now includes nine exact comics that previously appeared
+as broken placeholders. Ten entries confirmed unavailable or nonexistent are omitted without
+substitution. Existing saved Reading Lists and reading progress are not rewritten; newly imported
+copies receive the settled 1,149-comic order.
+
+For maintainers, all 1,242 source positions remain accounted for as 1,149 exact rows, 75 repeats,
+and 18 explicit exclusions. All 19 former gaps retain auditable transition evidence.
 ### Settled the X-Force guide gaps
 
 In plain English: The bundled X-Force guide now includes 23 exact comics that previously appeared

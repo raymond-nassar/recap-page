@@ -1,18 +1,19 @@
 {
   "candidateId": "question-of-the-week-do-you-have-a-hulk-reading-order",
-  "packetDigest": "cb0c4702a631b0543d779403331fea80a578008a2ff13acce15c29be59e2d4e7",
-  "mappingDigest": "e19a5cbcdc48eb700667f36f1b948daf023ad92a335e007f3ea5dc3f1428ea5a",
-  "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
+  "packetDigest": "fe9da454a388e360206ffe10acae42e2d21a2a79c024e81a14feb407fdf2ac71",
+  "mappingDigest": "42e6409babf8cb09f42e324996eed6bdd86bdf2ee9402b2c59837187572b4842",
+  "libraryDigest": "13d5f34c6f9a9cbd94a49411ab9b402d6f590a257463e9a3ff12abff640ee1c6",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 1242,
-    "sourceIdentityCount": 1159,
-    "includedIssueCount": 1140,
-    "sourceGapCount": 19,
-    "repeatedSourceReferenceCount": 75
+    "sourceIdentityCount": 1149,
+    "includedIssueCount": 1149,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 75,
+    "excludedSourceRowCount": 18
   },
-  "candidateCount": 1140,
-  "comparisonCount": 137,
+  "candidateCount": 1149,
+  "comparisonCount": 138,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -296,6 +297,12 @@
         "9082"
       ],
       "relationship": "partial"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
+      "sharedCount": 0,
+      "sharedIds": [],
+      "relationship": "none"
     },
     {
       "orderId": "heroes-reborn-2021",
@@ -1019,5 +1026,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "8e311c2c15cdd640b3dbc706a45f54b38afb024041899b0360d658f312248f9b"
+  "reportDigest": "a70319844563177de816b7ffe5e19a038af5ffac011091bba7675e5c62e3af62"
 }
