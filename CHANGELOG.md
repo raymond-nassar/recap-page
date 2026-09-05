@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Hulk guide gaps
+
+In plain English: The bundled Hulk guide now includes nine exact comics that previously appeared
+as broken placeholders. Ten entries confirmed unavailable or nonexistent are omitted without
+substitution. Existing saved Reading Lists and reading progress are not rewritten; newly imported
+copies receive the settled 1,149-comic order.
+
+For maintainers, all 1,242 source positions remain accounted for as 1,149 exact rows, 75 repeats,
+and 18 explicit exclusions. All 19 former gaps retain auditable transition evidence.
+
 ### Settled the X-Force guide gaps
 
 In plain English: The bundled X-Force guide now includes 23 exact comics that previously appeared

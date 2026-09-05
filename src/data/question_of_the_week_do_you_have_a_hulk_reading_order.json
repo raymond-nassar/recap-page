@@ -5,146 +5,12 @@
   "source": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T04:26:25.607Z",
+  "generatedAt": "2026-09-05T02:48:55.463Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 1159,
+  "count": 1149,
   "collections": 12,
-  "placeholders": 19,
-  "unresolved": [
-    {
-      "title": "Incredible Hulk Annual #3",
-      "url": null,
-      "read": false,
-      "index": 117,
-      "section": "I) Hulk Begins - 1960s"
-    },
-    {
-      "title": "Incredible Hulk Annual #4",
-      "url": null,
-      "read": false,
-      "index": 118,
-      "section": "I) Hulk Begins - 1960s"
-    },
-    {
-      "title": "FOOM (1973) #1",
-      "url": null,
-      "read": false,
-      "index": 153,
-      "section": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
-      "title": "FOOM (1973) #2",
-      "url": null,
-      "read": false,
-      "index": 154,
-      "section": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
-      "title": "Incredible Hulk Annual (1968) #5",
-      "url": null,
-      "read": false,
-      "index": 177,
-      "section": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
-      "title": "Marvel Treasury Edition #20",
-      "url": null,
-      "read": false,
-      "index": 227,
-      "section": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
-      "title": "Marvel Treasury Edition #24",
-      "url": null,
-      "read": false,
-      "index": 228,
-      "section": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
-      "title": "Incredible Hulk Annual #17",
-      "url": null,
-      "read": false,
-      "index": 438,
-      "section": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "title": "Marvel Holiday Special #2",
-      "url": null,
-      "read": false,
-      "index": 441,
-      "section": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "title": "Incredible Hulk Ashcan Edition #1",
-      "url": null,
-      "read": false,
-      "index": 483,
-      "section": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "title": "Marvel Holiday Special #3",
-      "url": null,
-      "read": false,
-      "index": 484,
-      "section": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "title": "Incredible Hulk vol. 2 #-1",
-      "url": null,
-      "read": false,
-      "index": 517,
-      "section": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "title": "Skaar: King of the Savage Land #6",
-      "url": null,
-      "read": false,
-      "index": 843,
-      "section": "VIII) The Greg Pak Hulk Era Comes to a Close"
-    },
-    {
-      "title": "Thor Vs. Hulk: Champions Of The Universe #1",
-      "url": null,
-      "read": false,
-      "index": 1001,
-      "section": "X) All-New All-Different Totally Awesome Hulk"
-    },
-    {
-      "title": "Thor Vs. Hulk: Champions Of The Universe #2",
-      "url": null,
-      "read": false,
-      "index": 1002,
-      "section": "X) All-New All-Different Totally Awesome Hulk"
-    },
-    {
-      "title": "Thor Vs. Hulk: Champions Of The Universe #3",
-      "url": null,
-      "read": false,
-      "index": 1003,
-      "section": "X) All-New All-Different Totally Awesome Hulk"
-    },
-    {
-      "title": "Thor Vs. Hulk: Champions Of The Universe #4",
-      "url": null,
-      "read": false,
-      "index": 1004,
-      "section": "X) All-New All-Different Totally Awesome Hulk"
-    },
-    {
-      "title": "Thor Vs. Hulk: Champions Of The Universe #5",
-      "url": null,
-      "read": false,
-      "index": 1005,
-      "section": "X) All-New All-Different Totally Awesome Hulk"
-    },
-    {
-      "title": "Thor Vs. Hulk: Champions Of The Universe #6",
-      "url": null,
-      "read": false,
-      "index": 1006,
-      "section": "X) All-New All-Different Totally Awesome Hulk"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 8906,
@@ -2961,40 +2827,6 @@
       "collectedIn": "I) Hulk Begins - 1960s"
     },
     {
-      "issueId": -36038037,
-      "title": "Incredible Hulk Annual #3",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "I) Hulk Begins - 1960s"
-    },
-    {
-      "issueId": -19260418,
-      "title": "Incredible Hulk Annual #4",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "I) Hulk Begins - 1960s"
-    },
-    {
       "issueId": 7341,
       "title": "Avengers (1963) #88",
       "number": "88",
@@ -3691,40 +3523,6 @@
       "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
     },
     {
-      "issueId": -708531577,
-      "title": "FOOM (1973) #1",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
-      "issueId": -691753958,
-      "title": "FOOM (1973) #2",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
       "issueId": 8990,
       "title": "Incredible Hulk (1962) #179",
       "number": "179",
@@ -4304,10 +4102,10 @@
       "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
     },
     {
-      "issueId": -335463918,
-      "title": "Incredible Hulk Annual (1968) #5",
-      "number": null,
-      "url": null,
+      "issueId": 16878,
+      "title": "Incredible Hulk Annual (1976) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/16878/incredible_hulk_annual_1976_5",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -4317,8 +4115,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
+      "detailsRefused": true,
+      "collectedIn": "Source block 9: Incredible Hulk Epic Collection Vol. 7: And Now… The Wolverine (1974-1976) | Collects: Incredible Hulk (1968) #179-200, Annual (1968) #5."
     },
     {
       "issueId": 9012,
@@ -5105,10 +4903,10 @@
       "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
     },
     {
-      "issueId": -1515642658,
-      "title": "Marvel Treasury Edition #20",
-      "number": null,
-      "url": null,
+      "issueId": 78221,
+      "title": "Marvel Treasury Edition (1974) #24",
+      "number": "24",
+      "url": "https://www.marvel.com/comics/issue/78221/marvel_treasury_edition_1974_24",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -5118,25 +4916,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
-    },
-    {
-      "issueId": -1582753134,
-      "title": "Marvel Treasury Edition #24",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "II) Hulk Joins the Defenders, She-Hulk Origins"
+      "detailsRefused": true,
+      "collectedIn": "Source block 11: Incredible Hulk Epic Collection Vol. 9: Kill or Be Killed (1978-1980) | Collects: Incredible Hulk (1968) #227-244, Annual (1968) #7-9; Captain America (1968) #230; Marvel Calendar 1979; material from Marvel Treasury Edition #20, 24."
     },
     {
       "issueId": 15256,
@@ -9067,10 +8848,10 @@
       "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
     },
     {
-      "issueId": -346887672,
-      "title": "Incredible Hulk Annual #17",
-      "number": null,
-      "url": null,
+      "issueId": 16874,
+      "title": "Incredible Hulk Annual (1976) #17",
+      "number": "17",
+      "url": "https://www.marvel.com/comics/issue/16874/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -9080,8 +8861,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
+      "detailsRefused": true,
+      "collectedIn": "Source block 22: Incredible Hulk by Peter David Omnibus Vol. 2 | Collects: Incredible Hulk vol. 2 #369-400, Annual #16-18, X-Factor #76, material from Marvel Holiday Special #2"
     },
     {
       "issueId": 16875,
@@ -9113,23 +8894,6 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "issueId": -1339570690,
-      "title": "Marvel Holiday Special #2",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
     },
     {
@@ -10161,40 +9925,6 @@
       "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
     },
     {
-      "issueId": -2131860186,
-      "title": "Incredible Hulk Ashcan Edition #1",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "issueId": -1322793071,
-      "title": "Marvel Holiday Special #3",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
       "issueId": 9247,
       "title": "Incredible Hulk (1962) #436",
       "number": "436",
@@ -10724,23 +10454,6 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
-    },
-    {
-      "issueId": -881550640,
-      "title": "Incredible Hulk vol. 2 #-1",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "III) Peter David Hulk & Sensational She-Hulk"
     },
     {
@@ -16839,23 +16552,6 @@
       "collectedIn": "VIII) The Greg Pak Hulk Era Comes to a Close"
     },
     {
-      "issueId": -1533273903,
-      "title": "Skaar: King of the Savage Land #6",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "VIII) The Greg Pak Hulk Era Comes to a Close"
-    },
-    {
       "issueId": 35101,
       "title": "Incredible Hulks (2010) #621",
       "number": "621",
@@ -19665,10 +19361,10 @@
       "collectedIn": "X) All-New All-Different Totally Awesome Hulk"
     },
     {
-      "issueId": -97229680,
-      "title": "Thor Vs. Hulk: Champions Of The Universe #1",
-      "number": null,
-      "url": null,
+      "issueId": 64499,
+      "title": "Thor Vs. Hulk: Champions Of The Universe (2017) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64499/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -19678,14 +19374,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) All-New All-Different Totally Awesome Hulk"
+      "detailsRefused": true,
+      "collectedIn": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6"
     },
     {
-      "issueId": -46896823,
-      "title": "Thor Vs. Hulk: Champions Of The Universe #2",
-      "number": null,
-      "url": null,
+      "issueId": 64562,
+      "title": "Thor Vs. Hulk: Champions Of The Universe (2017) #2",
+      "number": "2",
+      "url": "https://www.marvel.com/comics/issue/64562/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -19695,14 +19391,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) All-New All-Different Totally Awesome Hulk"
+      "detailsRefused": true,
+      "collectedIn": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6"
     },
     {
-      "issueId": -63674442,
-      "title": "Thor Vs. Hulk: Champions Of The Universe #3",
-      "number": null,
-      "url": null,
+      "issueId": 64745,
+      "title": "Thor Vs. Hulk: Champions Of The Universe (2017) #3",
+      "number": "3",
+      "url": "https://www.marvel.com/comics/issue/64745/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -19712,14 +19408,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) All-New All-Different Totally Awesome Hulk"
+      "detailsRefused": true,
+      "collectedIn": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6"
     },
     {
-      "issueId": -13341585,
-      "title": "Thor Vs. Hulk: Champions Of The Universe #4",
-      "number": null,
-      "url": null,
+      "issueId": 64951,
+      "title": "Thor Vs. Hulk: Champions Of The Universe (2017) #4",
+      "number": "4",
+      "url": "https://www.marvel.com/comics/issue/64951/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -19729,14 +19425,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) All-New All-Different Totally Awesome Hulk"
+      "detailsRefused": true,
+      "collectedIn": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6"
     },
     {
-      "issueId": -30119204,
-      "title": "Thor Vs. Hulk: Champions Of The Universe #5",
-      "number": null,
-      "url": null,
+      "issueId": 65026,
+      "title": "Thor Vs. Hulk: Champions Of The Universe (2017) #5",
+      "number": "5",
+      "url": "https://www.marvel.com/comics/issue/65026/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -19746,14 +19442,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) All-New All-Different Totally Awesome Hulk"
+      "detailsRefused": true,
+      "collectedIn": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6"
     },
     {
-      "issueId": -2127269993,
-      "title": "Thor Vs. Hulk: Champions Of The Universe #6",
-      "number": null,
-      "url": null,
+      "issueId": 65027,
+      "title": "Thor Vs. Hulk: Champions Of The Universe (2017) #6",
+      "number": "6",
+      "url": "https://www.marvel.com/comics/issue/65027/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -19763,8 +19459,8 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
-      "collectedIn": "X) All-New All-Different Totally Awesome Hulk"
+      "detailsRefused": true,
+      "collectedIn": "Source block 102: Thor Vs. Hulk: Champions of the Universe | Collects: Thor Vs. Hulk: Champions Of The Universe 1-6"
     },
     {
       "issueId": 64909,

@@ -2908,7 +2908,7 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   assert.equal(generated.items.length, 811);
 });
 
-test('Hulk preserves all reviewed source positions and distinguishes provider gaps from parser markers', async () => {
+test('Hulk settles every reviewed source position without substituting excluded identities', async () => {
   const inventory = await readJson('scripts/data/cbh-character-inventory.json');
   const manifest = await readJson('src/data/curated-lists.json');
   const catalog = await readJson('src/data/catalog.json');
@@ -2922,9 +2922,9 @@ test('Hulk preserves all reviewed source positions and distinguishes provider ga
   assert.equal(record.centralDisposition, 'pilot-approved');
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.metadataHorizonStatus, 'approved');
-  assert.match(record.reason, /1,140 distinct verified issues/i);
-  assert.match(record.reason, /19 explicit provider gaps/i);
-  assert.match(record.reason, /eight excluded collection or Issues parser markers/i);
+  assert.match(record.reason, /1,149 distinct verified issues/i);
+  assert.match(record.reason, /zero open provider gaps/i);
+  assert.match(record.reason, /18 explicit exclusions/i);
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: hulkCandidateId,
     inventoryRecord: record,
@@ -2941,12 +2941,55 @@ test('Hulk preserves all reviewed source positions and distinguishes provider ga
   }));
 
   assert.equal(packet.sourceOccurrenceCount, 1242);
-  assert.equal(packet.rows.length, 1140);
+  assert.equal(packet.rows.length, 1149);
   assert.equal(packet.repeatedSourceReferences.length, 75);
-  assert.equal(packet.sourceGaps.length, 19);
-  assert.deepEqual(packet.excludedSourceRows.map((entry) => entry.sourcePosition),
-    [121, 318, 591, 597, 734, 735, 854, 883]);
-  assert.equal(new Set(mapping.rows.map((row) => row.sourceGroup)).size, 12);
+  assert.deepEqual(packet.sourceGaps ?? [], []);
+  assert.deepEqual(packet.excludedSourceRows.map((entry) => entry.sourcePosition), [
+    118, 119, 121, 155, 156, 229, 318, 445, 487, 488, 523, 591, 597, 734, 735, 854, 867, 883,
+  ]);
+  assert.equal(packet.sourceGapResolutions.length, 19);
+  assert.equal(packet.sourceGapResolutions.filter((entry) => entry.resolutionKind === 'exact-issue').length, 9);
+  assert.equal(packet.sourceGapResolutions.filter((entry) => entry.resolutionKind === 'source-exclusion').length, 10);
+  assert.deepEqual(
+    packet.sourceGapResolutions
+      .filter((entry) => entry.resolutionKind === 'source-exclusion')
+      .map((entry) => [entry.sourcePosition, entry.decisionScope]),
+    [
+      [118, 'Owner-authorized Marvel Unlimited exclusion'],
+      [119, 'Owner-authorized Marvel Unlimited exclusion'],
+      [155, 'Owner-authorized Marvel Unlimited exclusion'],
+      [156, 'Owner-authorized Marvel Unlimited exclusion'],
+      [229, 'Owner-authorized Marvel Unlimited exclusion'],
+      [445, 'Owner-authorized Marvel Unlimited exclusion'],
+      [487, 'Owner-authorized Marvel Unlimited exclusion'],
+      [488, 'Owner-authorized Marvel Unlimited exclusion'],
+      [523, 'Owner-authorized Marvel Unlimited exclusion'],
+      [867, 'Owner-authorized nonexistent-identity exclusion'],
+    ],
+  );
+  assert.equal(new Set(mapping.rows.map((row) => row.sourceGroup)).size, 13);
+  const settledRows = [
+    [179, 16878, 'https://www.marvel.com/comics/issue/16878/incredible_hulk_annual_1976_5'],
+    [230, 78221, 'https://www.marvel.com/comics/issue/78221/marvel_treasury_edition_1974_24'],
+    [442, 16874, 'https://www.marvel.com/comics/issue/16874/'],
+    [1030, 64499, 'https://www.marvel.com/comics/issue/64499/'],
+    [1031, 64562, 'https://www.marvel.com/comics/issue/64562/'],
+    [1032, 64745, 'https://www.marvel.com/comics/issue/64745/'],
+    [1033, 64951, 'https://www.marvel.com/comics/issue/64951/'],
+    [1034, 65026, 'https://www.marvel.com/comics/issue/65026/'],
+    [1035, 65027, 'https://www.marvel.com/comics/issue/65027/'],
+  ];
+  assert.deepEqual(
+    mapping.rows.filter((row) => settledRows.some(([position]) => position === row.sourcePosition))
+      .map((row) => [row.sourcePosition, row.selectedIssueId, row.marvelIssueUrl]),
+    settledRows,
+  );
+  for (const [, issueId] of settledRows) {
+    const metadata = mapping.candidateMetadata.find((entry) => entry.id === issueId);
+    assert.ok(metadata, `missing candidate metadata for ${issueId}`);
+    assert.equal(metadata.detailsRefused, true);
+    assert.equal(metadata.onSaleDate, null);
+  }
   assert.deepEqual(
     mapping.rows.filter((row) => [76, 801, 937, 938, 939, 1046, 1173, 1242].includes(row.sourcePosition))
       .map((row) => [row.sourcePosition, row.selectedIssueId, row.marvelIssueUrl]),
@@ -2961,15 +3004,23 @@ test('Hulk preserves all reviewed source positions and distinguishes provider ga
       [1242, 128406, 'https://www.marvel.com/comics/issue/128406/imperial_war_black_panther_2025_1'],
     ],
   );
-  assert.equal(generated.items.length, 1159);
-  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 1140);
-  assert.equal(generated.items.filter((item) => item.issueId < 0 && item.placeholder).length, 19);
+  assert.equal(generated.items.length, 1149);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 1149);
+  assert.equal(generated.items.filter((item) => item.placeholder).length, 0);
+  for (const [, issueId] of settledRows) {
+    const item = generated.items.find((entry) => entry.issueId === issueId);
+    assert.ok(item, `missing generated Hulk item ${issueId}`);
+    assert.equal(item.detailsRefused, true);
+    assert.equal(item.mu, null);
+  }
   assert.deepEqual(
     generated.items.filter((item) => item.issueId > 0).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
   );
-  assert.equal(manifest.lists.find((entry) => entry.id === hulkCandidateId).expect, 1159);
-  assert.equal(catalog.lists.find((entry) => entry.id === hulkCandidateId).count, 1159);
+  assert.equal(manifest.lists.find((entry) => entry.id === hulkCandidateId).expect, 1149);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === hulkCandidateId);
+  assert.equal(catalogEntry.count, 1149);
+  assert.equal(catalogEntry.placeholderCount, 0);
 });
 
 

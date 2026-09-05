@@ -3053,9 +3053,9 @@
       "type": "character-run",
       "depth": "partial",
       "spotlightKind": "other",
-      "count": 1159,
-      "placeholderCount": 19,
-      "emptyRecordCount": 0,
+      "count": 1149,
+      "placeholderCount": 0,
+      "emptyRecordCount": 9,
       "collections": 12,
       "characters": [
         "Hulk",
@@ -3083,7 +3083,7 @@
       "source": "https://www.comicbookherald.com/question-of-the-week-do-you-have-a-hulk-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T04:26:25.607Z"
+      "updatedAt": "2026-09-05T02:48:55.463Z"
     },
     {
       "id": "doctor-strange-reading-order",

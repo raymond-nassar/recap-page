@@ -43138,10 +43138,10 @@
     "authorityIdentity": "GitHub Copilot",
     "rationale": "Reviewed the preserved-scope comparison after the Moon Knight issue 310 settlement changed shared issue evidence. Every resulting relationship remains source-faithful and approved.",
     "reviewedAt": "2026-09-04",
-    "reportDigest": "a780bd21bd3d50b0f477e53d9bd5705e61e9f6d9b7ebf310bf2836b783785a1a",
+    "reportDigest": "3a3ee1eec802f5ccd8db6c3e884cabe6b4357bbe369438e962a250453d4890d0",
     "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
     "mappingDigest": "6ccf074e84532129997b6f4d6a3abd19ff341cb70b4a20314af6feda3b62cc1e",
-    "libraryDigest": "709c93c442278730bb1f1c754d766520b31ef7a37afc037c131a14b76d9a4950",
+    "libraryDigest": "df44b0ed544d83754c922cde09d17a290003c8bbb0be814058f57a96ffea6d5a",
     "peerDigests": {},
     "dispositions": [
       {
@@ -45545,7 +45545,7 @@
         "rationale": "No shared provider issue ID."
       }
     ],
-    "approvalDigest": "20f58dc17a791ceb4ffb49b34b640b2753d75dfd49145976d6e069dc0e787b05",
+    "approvalDigest": "fa31aafbc5a11c69aa42c7ff67a1bc09dfa6abdf86e33ed7bc188cad61f980f3",
     "sourceCounts": {
       "sourceOccurrenceCount": 773,
       "sourceIdentityCount": 567,
