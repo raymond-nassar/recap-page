@@ -18993,10 +18993,10 @@
     "authorityIdentity": "GPT-5.6 Sol",
     "rationale": "Reviewed all 165 bounded library comparisons against the current 285-row mapping. No exact duplicate replaces the guide's source identity.",
     "reviewedAt": "2026-09-04",
-    "reportDigest": "5bd308e6ad4a32308460a1260d64e57f248d344b3d707120e759307f1c34c439",
+    "reportDigest": "5b8512fc67e45b5fa57e06c9d7e2503bd6db5ee1d6c8c7e2ea10a88990c0f975",
     "packetDigest": "c1ced9a6b1543419eae37b2b58df0920fc3024ef209a3be0b7fde27d47858335",
     "mappingDigest": "6c6f2a29b7add43d16e8a844bc537dd992f51648dd325c453b77d12ae2e4b63f",
-    "libraryDigest": "1805c2bb5a39274ba7886c4eefab75743534f9f1fc2c5bb7ed5ef9e869c17bd2",
+    "libraryDigest": "b5584fc2411c242b00ae87ac9f8df04a6168df2a8a90ea14e72820e8078f468f",
     "peerDigests": {},
     "dispositions": [
       {
@@ -20999,7 +20999,7 @@
         "reviewedAt": "2026-09-04"
       }
     ],
-    "approvalDigest": "143212ed0ff4fd6648dd7086ae29fdf4d975e45b763161eda7af7f1b37d289d5",
+    "approvalDigest": "dbb98f2bd998c01fcdfa5dd260cd7d08e964e50fcff6cb80c82f414341dc0328",
     "sourceCounts": {
       "sourceOccurrenceCount": 409,
       "sourceIdentityCount": 285,

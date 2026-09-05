@@ -8502,10 +8502,10 @@
     "authorityIdentity": "Independent Inhumans relationship review",
     "rationale": "A full-library, source-position-preserving comparison reviewed every relationship after the cache-only settlement and retained all source-listed shared comics.",
     "reviewedAt": "2026-08-27",
-    "reportDigest": "40501389d520582ac30fdc55a45532374db5edb323b370002f17660ce3d3e54a",
+    "reportDigest": "6dad7dcf74ea2acd8505e8e741bb1dbf7ed0973abdb513cc07653989e794d267",
     "packetDigest": "9f64bff5ac3fb910300f5c96ea976c646fd057a09b4c28e55920cf15b38d49ae",
     "mappingDigest": "a4cbaf7108b0d4b9088362ea89ed5d930db9f354e4cfa11183926b81f9d76e5e",
-    "libraryDigest": "d624855b78579073a08dcb042fc88b6cd38464033e29712c0f9e1bbc8c1417bc",
+    "libraryDigest": "1946236b3db82a323000c37c6fdcbdaed5128c6605fa8a85694f1ade941b17cc",
     "peerDigests": {},
     "dispositions": [
       {
@@ -10005,7 +10005,7 @@
         "reviewedAt": "2026-08-27"
       }
     ],
-    "approvalDigest": "c5d53aae10542088aa34a296032151dd42eda6c1704c74e13f3d823dac866535",
+    "approvalDigest": "b83aa8df2cbd75fc993988dd071c4f7681398b688f8f7a13845d0a734d25333a",
     "sourceCounts": {
       "sourceOccurrenceCount": 354,
       "sourceIdentityCount": 259,

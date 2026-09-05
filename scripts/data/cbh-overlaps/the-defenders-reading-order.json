@@ -1,17 +1,18 @@
 {
   "candidateId": "the-defenders-reading-order",
-  "packetDigest": "d50645b6f4d324178d7ea8b93fae012bfcc3177af42a2befea818328926d6440",
-  "mappingDigest": "b748ed01220030899a42af5f547eaea5b2746e8de25e7f88e5dcd13821459884",
+  "packetDigest": "475cc8c202d29a0e929d10909f5ad09ebe0c725ed725274fb3d159976306e328",
+  "mappingDigest": "03a012cbe16a76318aa5d32c606f4dad3c15e3ab6ffc73a6d80ed60373756ea0",
   "libraryDigest": "60b29a053dfd2f99cf9343d7ff07bbc5f611e3c4e4bca9255c715e5b2ecb00bb",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 331,
-    "sourceIdentityCount": 268,
-    "includedIssueCount": 245,
-    "sourceGapCount": 23,
-    "repeatedSourceReferenceCount": 12
+    "sourceIdentityCount": 259,
+    "includedIssueCount": 259,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 20,
+    "excludedSourceRowCount": 52
   },
-  "candidateCount": 245,
+  "candidateCount": 259,
   "comparisonCount": 164,
   "comparisons": [
     {
@@ -677,7 +678,7 @@
     },
     {
       "orderId": "loki-reading-order",
-      "sharedCount": 13,
+      "sharedCount": 14,
       "sharedIds": [
         "20392",
         "20403",
@@ -687,6 +688,7 @@
         "6971",
         "6972",
         "6973",
+        "62818",
         "100036",
         "100037",
         "100038",
@@ -873,13 +875,14 @@
     },
     {
       "orderId": "punisher-reading-order",
-      "sharedCount": 5,
+      "sharedCount": 6,
       "sharedIds": [
         "62923",
         "63230",
         "63692",
         "64138",
-        "64527"
+        "64527",
+        "62818"
       ],
       "relationship": "partial"
     },
@@ -994,7 +997,7 @@
     },
     {
       "orderId": "silver-surfer-reading-order",
-      "sharedCount": 31,
+      "sharedCount": 43,
       "sharedIds": [
         "17089",
         "17090",
@@ -1022,6 +1025,18 @@
         "2389",
         "2458",
         "3047",
+        "39757",
+        "39762",
+        "39763",
+        "39758",
+        "39759",
+        "39761",
+        "39760",
+        "39767",
+        "39766",
+        "39765",
+        "39764",
+        "39756",
         "84120",
         "84121",
         "84122",
@@ -1086,9 +1101,11 @@
     },
     {
       "orderId": "star-lord-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "62818"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "thanos-imperative",
@@ -1312,5 +1329,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "df74f669901568ad10b57894ca16df168c0060d4cde81fc7495a2c4477847415"
+  "reportDigest": "e6fd9cec0c51f44a21e30e7fd5ea81a25bd6913270077958539d13257144c517"
 }

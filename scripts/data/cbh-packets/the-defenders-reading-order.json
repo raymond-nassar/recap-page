@@ -9,7 +9,7 @@
   "sourceIssueBearingBlocksSha256": "87b0596da4099aa56135fed39fa44058336b02550365e2b570d183fb2bdd46e8",
   "sourceBoundary": "The complete CBH Defenders page, from Prelude through Latest Additions, with every source occurrence retained in source order.",
   "excludedSourceReferences": [
-    "All 51 semantic source occurrences remain explicit excluded provenance rows."
+    "All 52 semantic and owner-authorized source exclusions remain explicit provenance rows."
   ],
   "sourceOccurrenceCount": 331,
   "canonicalSourcePositions": true,
@@ -51,6 +51,15 @@
       "issueNumber": "118"
     },
     {
+      "sourcePosition": 57,
+      "canonicalRow": 22,
+      "sourceIssueReference": "Giant-Size (1974) #1",
+      "sourceRangeReference": "Collects: Avengers (1963) 115-128, Giant-Size (1974) 1, Defenders (1972) 8-11, Captain Marvel (1968) 33, Fantastic Four (1961) 150",
+      "normalizedSeriesTitle": "Giant-Size Defenders",
+      "seriesYear": 1974,
+      "issueNumber": "1"
+    },
+    {
       "sourcePosition": 58,
       "canonicalRow": 13,
       "sourceIssueReference": "Defenders (1972) #8",
@@ -88,7 +97,7 @@
     },
     {
       "sourcePosition": 195,
-      "canonicalRow": 151,
+      "canonicalRow": 152,
       "sourceIssueReference": "Defenders (1972) #122",
       "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
       "normalizedSeriesTitle": "Defenders (1972)",
@@ -97,7 +106,7 @@
     },
     {
       "sourcePosition": 196,
-      "canonicalRow": 152,
+      "canonicalRow": 153,
       "sourceIssueReference": "Defenders (1972) #123",
       "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
       "normalizedSeriesTitle": "Defenders (1972)",
@@ -106,7 +115,7 @@
     },
     {
       "sourcePosition": 197,
-      "canonicalRow": 153,
+      "canonicalRow": 154,
       "sourceIssueReference": "Defenders (1972) #124",
       "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
       "normalizedSeriesTitle": "Defenders (1972)",
@@ -114,8 +123,71 @@
       "issueNumber": "124"
     },
     {
+      "sourcePosition": 198,
+      "canonicalRow": 155,
+      "sourceIssueReference": "New Defenders (1972) #125",
+      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "normalizedSeriesTitle": "Defenders (1972)",
+      "seriesYear": 1972,
+      "issueNumber": "125"
+    },
+    {
+      "sourcePosition": 206,
+      "canonicalRow": 157,
+      "sourceIssueReference": "Defenders (1972) #126",
+      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "126"
+    },
+    {
+      "sourcePosition": 207,
+      "canonicalRow": 158,
+      "sourceIssueReference": "Defenders (1972) #127",
+      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "127"
+    },
+    {
+      "sourcePosition": 208,
+      "canonicalRow": 159,
+      "sourceIssueReference": "Defenders (1972) #128",
+      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "128"
+    },
+    {
+      "sourcePosition": 209,
+      "canonicalRow": 160,
+      "sourceIssueReference": "Defenders (1972) #129",
+      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "129"
+    },
+    {
+      "sourcePosition": 210,
+      "canonicalRow": 161,
+      "sourceIssueReference": "Defenders (1972) #130",
+      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "130"
+    },
+    {
+      "sourcePosition": 211,
+      "canonicalRow": 162,
+      "sourceIssueReference": "Defenders (1972) #131",
+      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 1972,
+      "issueNumber": "131"
+    },
+    {
       "sourcePosition": 305,
-      "canonicalRow": 226,
+      "canonicalRow": 239,
       "sourceIssueReference": "Defenders (2017) #6",
       "sourceRangeReference": "Collects: Defenders 6-11",
       "normalizedSeriesTitle": "Defenders (2017)",
@@ -395,6 +467,12 @@
       "decisionScope": "source-ledger exclusion"
     },
     {
+      "sourcePosition": 310,
+      "sourceIssueReference": "Defenders (2017) #11",
+      "reason": "The source names Defenders (2017) #11, but the complete reviewed series ends at #10; no neighboring issue may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion"
+    },
+    {
       "sourcePosition": 311,
       "sourceIssueReference": "Latest Additions",
       "reason": "section marker",
@@ -431,607 +509,7 @@
       "decisionScope": "source-ledger exclusion"
     }
   ],
-  "sourceGaps": [
-    {
-      "sourcePosition": 57,
-      "sourceIssueReference": "Giant-Size (1974) #1",
-      "sourceRangeReference": "Collects: Avengers (1963) 115-128, Giant-Size (1974) 1, Defenders (1972) 8-11, Captain Marvel (1968) 33, Fantastic Four (1961) 150",
-      "sourceGroup": "The Coming of the Defenders!",
-      "normalizedSeriesTitle": "Giant-Size (1974)",
-      "seriesYear": 1974,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b218e334df6dc7da2b30df03f6867ab7722800369f1ebe743d9a61c30eaf9900"
-    },
-    {
-      "sourcePosition": 102,
-      "sourceIssueReference": "Annual (1976) #1",
-      "sourceRangeReference": "Collects: Defenders (1972) #31-41, Annual (1976) #1, Marvel Treasury Edition (1974) #12",
-      "sourceGroup": "The Coming of the Defenders!",
-      "normalizedSeriesTitle": "Annual (1976)",
-      "seriesYear": 1976,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2922710ca578baf1b78c787a1ba29fc0d50782658c38beea5487294c0fec405e"
-    },
-    {
-      "sourcePosition": 198,
-      "sourceIssueReference": "New Defenders (1972) #125",
-      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "New Defenders (1972)",
-      "seriesYear": 1972,
-      "issueNumber": "125",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "159f7c0f80abe52078f06b6a8666d741fd8f0e8f7067427630dd1249db7509f0"
-    },
-    {
-      "sourcePosition": 199,
-      "sourceIssueReference": "New Defenders (1972) #126",
-      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "New Defenders (1972)",
-      "seriesYear": 1972,
-      "issueNumber": "126",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "bb65a3f0a556c34885012f08b84dcecb2ececa8f9e92805c0b7ed3bae2167b26"
-    },
-    {
-      "sourcePosition": 200,
-      "sourceIssueReference": "New Defenders (1972) #127",
-      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "New Defenders (1972)",
-      "seriesYear": 1972,
-      "issueNumber": "127",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b32af75516ec05a2472b9fe0a1ea0dec9799e7de6042bb3896282b6afcad432e"
-    },
-    {
-      "sourcePosition": 201,
-      "sourceIssueReference": "New Defenders (1972) #128",
-      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "New Defenders (1972)",
-      "seriesYear": 1972,
-      "issueNumber": "128",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "c0c72093168af48465d3f9e2c0030212187841067bbb7d77d1bf0340b8d42682"
-    },
-    {
-      "sourcePosition": 202,
-      "sourceIssueReference": "New Defenders (1972) #129",
-      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "New Defenders (1972)",
-      "seriesYear": 1972,
-      "issueNumber": "129",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "585dd647c8b394ca65e2ce9b23663229fbd1f7bc3289391d39363afb50ee0951"
-    },
-    {
-      "sourcePosition": 203,
-      "sourceIssueReference": "New Defenders (1972) #130",
-      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "New Defenders (1972)",
-      "seriesYear": 1972,
-      "issueNumber": "130",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "ecdbf7a689d45215bec95b64d1ac6959d5fd28fea73e4b9ef01b49c648f23125"
-    },
-    {
-      "sourcePosition": 204,
-      "sourceIssueReference": "New Defenders (1972) #131",
-      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "New Defenders (1972)",
-      "seriesYear": 1972,
-      "issueNumber": "131",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "09b6fd059d4a6894144bf3237d7176893a7a7ce3383754b3c5f7e1126a03f3e1"
-    },
-    {
-      "sourcePosition": 267,
-      "sourceIssueReference": "Defenders (2012) #1",
-      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "61f419aff814569425ab8ae7fca1ba5619a2cf8e46fb2d1db836d8bec3016f33"
-    },
-    {
-      "sourcePosition": 268,
-      "sourceIssueReference": "Defenders (2012) #2",
-      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a97997f9b661ef4223f5f8cd83ee44fbd492c1558a0d14c21be8f8d0ab8f9d19"
-    },
-    {
-      "sourcePosition": 269,
-      "sourceIssueReference": "Defenders (2012) #3",
-      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a32f6fcccda91f6054bd1dcc9644dec9535d7377798d123e2b0ed0928a435b09"
-    },
-    {
-      "sourcePosition": 270,
-      "sourceIssueReference": "Defenders (2012) #4",
-      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "c31c92c553d6527495912090b03b2ee3a658307beed2c30026cd2a2786fe0765"
-    },
-    {
-      "sourcePosition": 271,
-      "sourceIssueReference": "Defenders (2012) #5",
-      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "6c6348342cb50d19c6f6bc96042c90f53c022a6c04af27c5b266527be85a4426"
-    },
-    {
-      "sourcePosition": 272,
-      "sourceIssueReference": "Defenders (2012) #6",
-      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "6",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "b6b3a9f25e4ecc77157a967aa5c2860fabf500d9400532b766c005ef4add8870"
-    },
-    {
-      "sourcePosition": 274,
-      "sourceIssueReference": "Defenders (2012) #7",
-      "sourceRangeReference": "Collects: Defenders 7-12",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "7",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "4d65e4e15171d9bde391f75d787801cc6623c78cf85a510ff4d9b937878b918e"
-    },
-    {
-      "sourcePosition": 275,
-      "sourceIssueReference": "Defenders (2012) #8",
-      "sourceRangeReference": "Collects: Defenders 7-12",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "8",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "a347b46dfadd04ae320a960e907f14d234b3feec2c65f15e9125198aa945dcb8"
-    },
-    {
-      "sourcePosition": 276,
-      "sourceIssueReference": "Defenders (2012) #9",
-      "sourceRangeReference": "Collects: Defenders 7-12",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "9",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "776bb462971bf13e9acb4492b6710fdc06e2e617a4419b23de8fc224ac5ee73c"
-    },
-    {
-      "sourcePosition": 277,
-      "sourceIssueReference": "Defenders (2012) #10",
-      "sourceRangeReference": "Collects: Defenders 7-12",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "10",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "6825eebc5f580567e0acb0175eda2ac032c6b2670fa484c1417c4ab184552400"
-    },
-    {
-      "sourcePosition": 278,
-      "sourceIssueReference": "Defenders (2012) #11",
-      "sourceRangeReference": "Collects: Defenders 7-12",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "11",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "591e02bf7a1398676130a3a7be9c2366f97b5650e59d342176434ea75ea508e4"
-    },
-    {
-      "sourcePosition": 279,
-      "sourceIssueReference": "Defenders (2012) #12",
-      "sourceRangeReference": "Collects: Defenders 7-12",
-      "sourceGroup": "Defenders of the 2000’s!",
-      "normalizedSeriesTitle": "Defenders (2012)",
-      "seriesYear": 2012,
-      "issueNumber": "12",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "11faf1a11bf70c85512c4b6280b32b03a78b90c45182de15d26f6dbd2c05e807"
-    },
-    {
-      "sourcePosition": 303,
-      "sourceIssueReference": "Free Comic Book Day 2017 (Defenders Story)",
-      "sourceRangeReference": "Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)",
-      "sourceGroup": "Marvel Netflix Defenders!",
-      "normalizedSeriesTitle": "Free Comic Book Day 2017 (Defenders Story)",
-      "seriesYear": 2017,
-      "issueNumber": "named work",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "3bddf71a5392629c9fbe7ca59f7683780429dca1ba1f246aa9ec210c57dd3dd6"
-    },
-    {
-      "sourcePosition": 310,
-      "sourceIssueReference": "Defenders (2017) #11",
-      "sourceRangeReference": "Collects: Defenders 6-11",
-      "sourceGroup": "Marvel Netflix Defenders!",
-      "normalizedSeriesTitle": "Defenders (2017)",
-      "seriesYear": 2017,
-      "issueNumber": "11",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "The accepted cache-only provider settlement has no exact canonical metadata row for this source identity. The open gap bundle is tracked in issue #317.",
-      "evidenceSources": [
-        {
-          "kind": "comic-book-herald",
-          "url": "https://www.comicbookherald.com/the-defenders-reading-order/",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "gap-tracking-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "2b5b76c24ae564ada92d12d384b256919d390939388f6763086c0bf52296839b"
-    }
-  ],
-  "expectedCount": 245,
+  "expectedCount": 259,
   "proposedManifest": {
     "id": "the-defenders-reading-order",
     "name": "The Defenders",
@@ -1062,7 +540,7 @@
       "Hulk",
       "Marvel"
     ],
-    "expect": 268,
+    "expect": 259,
     "timeline": null,
     "coverIssueId": 17089
   },
@@ -1985,6 +1463,19 @@
       "candidateIssueId": 20350,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 102,
+      "sourceIssueReference": "Annual (1976) #1",
+      "sourceRangeReference": "Collects: Defenders (1972) #31-41, Annual (1976) #1, Marvel Treasury Edition (1974) #12",
+      "normalizedSeriesTitle": "Defenders Annual",
+      "seriesYear": 1976,
+      "issueNumber": "1",
+      "seriesId": 21038,
+      "candidateIssueId": 57812,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "The Coming of the Defenders!"
     },
     {
       "sourcePosition": 103,
@@ -3092,82 +2583,82 @@
       "selectionNote": null
     },
     {
-      "sourcePosition": 206,
-      "sourceIssueReference": "Defenders (1972) #126",
-      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "Defenders (1972)",
+      "sourcePosition": 199,
+      "sourceIssueReference": "New Defenders (1972) #126",
+      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "normalizedSeriesTitle": "Defenders",
       "seriesYear": 1972,
       "issueNumber": "126",
       "seriesId": 3743,
       "candidateIssueId": 20292,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": null
+      "selectionNote": null,
+      "sourceGroup": "The New Defenders!"
     },
     {
-      "sourcePosition": 207,
-      "sourceIssueReference": "Defenders (1972) #127",
-      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "Defenders (1972)",
+      "sourcePosition": 200,
+      "sourceIssueReference": "New Defenders (1972) #127",
+      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "normalizedSeriesTitle": "Defenders",
       "seriesYear": 1972,
       "issueNumber": "127",
       "seriesId": 3743,
       "candidateIssueId": 20293,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": null
+      "selectionNote": null,
+      "sourceGroup": "The New Defenders!"
     },
     {
-      "sourcePosition": 208,
-      "sourceIssueReference": "Defenders (1972) #128",
-      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "Defenders (1972)",
+      "sourcePosition": 201,
+      "sourceIssueReference": "New Defenders (1972) #128",
+      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "normalizedSeriesTitle": "Defenders",
       "seriesYear": 1972,
       "issueNumber": "128",
       "seriesId": 3743,
       "candidateIssueId": 20294,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": null
+      "selectionNote": null,
+      "sourceGroup": "The New Defenders!"
     },
     {
-      "sourcePosition": 209,
-      "sourceIssueReference": "Defenders (1972) #129",
-      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "Defenders (1972)",
+      "sourcePosition": 202,
+      "sourceIssueReference": "New Defenders (1972) #129",
+      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "normalizedSeriesTitle": "Defenders",
       "seriesYear": 1972,
       "issueNumber": "129",
       "seriesId": 3743,
       "candidateIssueId": 20295,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": null
+      "selectionNote": null,
+      "sourceGroup": "The New Defenders!"
     },
     {
-      "sourcePosition": 210,
-      "sourceIssueReference": "Defenders (1972) #130",
-      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "Defenders (1972)",
+      "sourcePosition": 203,
+      "sourceIssueReference": "New Defenders (1972) #130",
+      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "normalizedSeriesTitle": "Defenders",
       "seriesYear": 1972,
       "issueNumber": "130",
       "seriesId": 3743,
       "candidateIssueId": 20297,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": null
+      "selectionNote": null,
+      "sourceGroup": "The New Defenders!"
     },
     {
-      "sourcePosition": 211,
-      "sourceIssueReference": "Defenders (1972) #131",
-      "sourceRangeReference": "Collects: Defenders (1972) 126-137; Iceman (1984) 1-4; Beauty And The Beast (1984) 1-4",
-      "sourceGroup": "The New Defenders!",
-      "normalizedSeriesTitle": "Defenders (1972)",
+      "sourcePosition": 204,
+      "sourceIssueReference": "New Defenders (1972) #131",
+      "sourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "normalizedSeriesTitle": "Defenders",
       "seriesYear": 1972,
       "issueNumber": "131",
       "seriesId": 3743,
       "candidateIssueId": 20298,
       "manualSeriesSelectionApproved": false,
-      "selectionNote": null
+      "selectionNote": null,
+      "sourceGroup": "The New Defenders!"
     },
     {
       "sourcePosition": 212,
@@ -3781,6 +3272,162 @@
       "selectionNote": null
     },
     {
+      "sourcePosition": 267,
+      "sourceIssueReference": "Defenders (2012) #1",
+      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "1",
+      "seriesId": 14701,
+      "candidateIssueId": 39757,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 268,
+      "sourceIssueReference": "Defenders (2012) #2",
+      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "2",
+      "seriesId": 14701,
+      "candidateIssueId": 39762,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 269,
+      "sourceIssueReference": "Defenders (2012) #3",
+      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "3",
+      "seriesId": 14701,
+      "candidateIssueId": 39763,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 270,
+      "sourceIssueReference": "Defenders (2012) #4",
+      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "4",
+      "seriesId": 14701,
+      "candidateIssueId": 39758,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 271,
+      "sourceIssueReference": "Defenders (2012) #5",
+      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "5",
+      "seriesId": 14701,
+      "candidateIssueId": 39759,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 272,
+      "sourceIssueReference": "Defenders (2012) #6",
+      "sourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "6",
+      "seriesId": 14701,
+      "candidateIssueId": 39761,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 274,
+      "sourceIssueReference": "Defenders (2012) #7",
+      "sourceRangeReference": "Collects: Defenders 7-12",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "7",
+      "seriesId": 14701,
+      "candidateIssueId": 39760,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 275,
+      "sourceIssueReference": "Defenders (2012) #8",
+      "sourceRangeReference": "Collects: Defenders 7-12",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "8",
+      "seriesId": 14701,
+      "candidateIssueId": 39767,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 276,
+      "sourceIssueReference": "Defenders (2012) #9",
+      "sourceRangeReference": "Collects: Defenders 7-12",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "9",
+      "seriesId": 14701,
+      "candidateIssueId": 39766,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 277,
+      "sourceIssueReference": "Defenders (2012) #10",
+      "sourceRangeReference": "Collects: Defenders 7-12",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "10",
+      "seriesId": 14701,
+      "candidateIssueId": 39765,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 278,
+      "sourceIssueReference": "Defenders (2012) #11",
+      "sourceRangeReference": "Collects: Defenders 7-12",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "11",
+      "seriesId": 14701,
+      "candidateIssueId": 39764,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
+      "sourcePosition": 279,
+      "sourceIssueReference": "Defenders (2012) #12",
+      "sourceRangeReference": "Collects: Defenders 7-12",
+      "normalizedSeriesTitle": "Defenders",
+      "seriesYear": 2011,
+      "issueNumber": "12",
+      "seriesId": 14701,
+      "candidateIssueId": 39756,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Defenders of the 2000’s!"
+    },
+    {
       "sourcePosition": 282,
       "sourceIssueReference": "Fearless Defenders #1",
       "sourceRangeReference": "Collects: Fearless Defenders 1-6",
@@ -4013,6 +3660,19 @@
       "candidateIssueId": 64794,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourcePosition": 303,
+      "sourceIssueReference": "Free Comic Book Day 2017 (Defenders Story)",
+      "sourceRangeReference": "Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)",
+      "normalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "seriesYear": 2017,
+      "issueNumber": "0",
+      "seriesId": 23038,
+      "candidateIssueId": 62818,
+      "manualSeriesSelectionApproved": false,
+      "selectionNote": null,
+      "sourceGroup": "Marvel Netflix Defenders!"
     },
     {
       "sourcePosition": 306,
@@ -4262,5 +3922,656 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "d50645b6f4d324178d7ea8b93fae012bfcc3177af42a2befea818328926d6440"
+  "packetDigest": "475cc8c202d29a0e929d10909f5ad09ebe0c725ed725274fb3d159976306e328",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 57,
+      "previousSourceIssueReference": "Giant-Size (1974) #1",
+      "previousSourceRangeReference": "Collects: Avengers (1963) 115-128, Giant-Size (1974) 1, Defenders (1972) 8-11, Captain Marvel (1968) 33, Fantastic Four (1961) 150",
+      "previousNormalizedSeriesTitle": "Giant-Size (1974)",
+      "previousSeriesYear": 1974,
+      "previousIssueNumber": "1",
+      "resolutionKind": "canonical-repeat",
+      "canonicalRow": 22,
+      "selectedIssueId": 20026,
+      "resolvedNormalizedSeriesTitle": "Giant-Size Defenders",
+      "resolvedSeriesYear": 1974,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The exact Marvel issue is already published at its earlier source occurrence, so this position preserves a backward repeat without duplicating the issue.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20026/giant-size_defenders_1974_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "3febf068ecbc03dda59353b8de7075b8a8f2fce9a903a54f5ece2c54e1fd6b19"
+    },
+    {
+      "sourcePosition": 102,
+      "previousSourceIssueReference": "Annual (1976) #1",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #31-41, Annual (1976) #1, Marvel Treasury Edition (1974) #12",
+      "previousNormalizedSeriesTitle": "Annual (1976)",
+      "previousSeriesYear": 1976,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 57812,
+      "resolvedNormalizedSeriesTitle": "Defenders Annual",
+      "resolvedSeriesYear": 1976,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/57812/defenders_annual_1976_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "85654070dc8a0fd1649c1b073753d0adbe2702fa8f2cceeb0b31211090eb0af9"
+    },
+    {
+      "sourcePosition": 198,
+      "previousSourceIssueReference": "New Defenders (1972) #125",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "previousNormalizedSeriesTitle": "New Defenders (1972)",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "125",
+      "resolutionKind": "canonical-repeat",
+      "canonicalRow": 155,
+      "selectedIssueId": 20291,
+      "resolvedNormalizedSeriesTitle": "Defenders (1972)",
+      "resolvedSeriesYear": 1972,
+      "resolvedIssueNumber": "125",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The exact Marvel issue is already published at its earlier source occurrence, so this position preserves a backward repeat without duplicating the issue.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20291/defenders_1972_125",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "bd61452b7acccc3989c6fa406d046aa197ecb89fcd6345ecd7db98635c65ec35"
+    },
+    {
+      "sourcePosition": 199,
+      "previousSourceIssueReference": "New Defenders (1972) #126",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "previousNormalizedSeriesTitle": "New Defenders (1972)",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "126",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20292,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 1972,
+      "resolvedIssueNumber": "126",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20292/defenders_1972_126",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "c1b88667bb16c64d5f5c1036fb76cb8de1a39997ae06162082ae20e7a1bfc163"
+    },
+    {
+      "sourcePosition": 200,
+      "previousSourceIssueReference": "New Defenders (1972) #127",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "previousNormalizedSeriesTitle": "New Defenders (1972)",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "127",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20293,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 1972,
+      "resolvedIssueNumber": "127",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20293/defenders_1972_127",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "f2c958eaa2f378bdbaeb40903a7f10b9eca9debd572aa7f79d41eb09d5f08896"
+    },
+    {
+      "sourcePosition": 201,
+      "previousSourceIssueReference": "New Defenders (1972) #128",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "previousNormalizedSeriesTitle": "New Defenders (1972)",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "128",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20294,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 1972,
+      "resolvedIssueNumber": "128",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20294/defenders_1972_128",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d22e42a3d2aa07d50612892eadb6354a4fd92f070ec2e7eeb3f32ea5a966507c"
+    },
+    {
+      "sourcePosition": 202,
+      "previousSourceIssueReference": "New Defenders (1972) #129",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "previousNormalizedSeriesTitle": "New Defenders (1972)",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "129",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20295,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 1972,
+      "resolvedIssueNumber": "129",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20295/defenders_1972_129",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "8752dd9db22b3bfe2d9fd8634401832ab872e044d3ee3648b0994ee6639fcc5f"
+    },
+    {
+      "sourcePosition": 203,
+      "previousSourceIssueReference": "New Defenders (1972) #130",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "previousNormalizedSeriesTitle": "New Defenders (1972)",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "130",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20297,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 1972,
+      "resolvedIssueNumber": "130",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20297/defenders_1972_130",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "acd8e04c2888572640950856c033cd7a6633262f4a0ff3d9a8c2e097ef96e524"
+    },
+    {
+      "sourcePosition": 204,
+      "previousSourceIssueReference": "New Defenders (1972) #131",
+      "previousSourceRangeReference": "Collects: Defenders (1972) #122-124 And New Defenders (1972) #125-131",
+      "previousNormalizedSeriesTitle": "New Defenders (1972)",
+      "previousSeriesYear": 1972,
+      "previousIssueNumber": "131",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 20298,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 1972,
+      "resolvedIssueNumber": "131",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/20298/defenders_1972_131",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d39aa2c6f2590be367cf7337808ebac86826649925529bf1028692b4e97ccaa5"
+    },
+    {
+      "sourcePosition": 267,
+      "previousSourceIssueReference": "Defenders (2012) #1",
+      "previousSourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39757,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39757/defenders_2011_1",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "eb2316e05d7a0644f999ebc0b60451c150ed59b35fcc5457c052ee041ec29a29"
+    },
+    {
+      "sourcePosition": 268,
+      "previousSourceIssueReference": "Defenders (2012) #2",
+      "previousSourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39762,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "2",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39762/defenders_2011_2",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "06243bfc594f9468655555e60159433c7c98e4ebc87328cffe3be37413aa5a62"
+    },
+    {
+      "sourcePosition": 269,
+      "previousSourceIssueReference": "Defenders (2012) #3",
+      "previousSourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39763,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "3",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39763/defenders_2011_3",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "1c89c2ac13eef49ba2c4ceec6434953bd83c05fb9e8fb5cbf867a28cc438db01"
+    },
+    {
+      "sourcePosition": 270,
+      "previousSourceIssueReference": "Defenders (2012) #4",
+      "previousSourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39758,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "4",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39758/defenders_2011_4",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "d2890b80869cf869fe9b8cfec95284fb75edaa0a4dc1b7ab059d234d02b664be"
+    },
+    {
+      "sourcePosition": 271,
+      "previousSourceIssueReference": "Defenders (2012) #5",
+      "previousSourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39759,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "5",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39759/defenders_2011_5",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "40f1ef9594a8d705d34ae9fc53875aed81d1b4ca1743d94c48760d21e7776bac"
+    },
+    {
+      "sourcePosition": 272,
+      "previousSourceIssueReference": "Defenders (2012) #6",
+      "previousSourceRangeReference": "Collects: Defenders (2012) #1-6",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "6",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39761,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "6",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39761/defenders_2011_6",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "38e29311e3c0c0abbe0976bfcad1c50a97c4c3f25bae94ae8b2857689655ba07"
+    },
+    {
+      "sourcePosition": 274,
+      "previousSourceIssueReference": "Defenders (2012) #7",
+      "previousSourceRangeReference": "Collects: Defenders 7-12",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "7",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39760,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "7",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39760/defenders_2011_7",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "7185d4719bbbdaece285993279af76b743892d7eb88d1fa4ddd45470eb780247"
+    },
+    {
+      "sourcePosition": 275,
+      "previousSourceIssueReference": "Defenders (2012) #8",
+      "previousSourceRangeReference": "Collects: Defenders 7-12",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "8",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39767,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "8",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39767/defenders_2011_8",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "36de9b47437f4368d149192bd5adb5db05be589dd36357f33b25e8441e1cb7c2"
+    },
+    {
+      "sourcePosition": 276,
+      "previousSourceIssueReference": "Defenders (2012) #9",
+      "previousSourceRangeReference": "Collects: Defenders 7-12",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "9",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39766,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "9",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39766/defenders_2011_9",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "102297bc5391ce665a9949399e381ee64481c6a3a118422dd29e1627a04a3212"
+    },
+    {
+      "sourcePosition": 277,
+      "previousSourceIssueReference": "Defenders (2012) #10",
+      "previousSourceRangeReference": "Collects: Defenders 7-12",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "10",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39765,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "10",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39765/defenders_2011_10",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "8f1483438a51a072bea30899ed025f27efcb0aa16d893786847ad914aa0a915a"
+    },
+    {
+      "sourcePosition": 278,
+      "previousSourceIssueReference": "Defenders (2012) #11",
+      "previousSourceRangeReference": "Collects: Defenders 7-12",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "11",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39764,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "11",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39764/defenders_2011_11",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "a0b93a26667169e004a23ee9c19dd9c441f80dcc83a40d28590a390849e6a5a9"
+    },
+    {
+      "sourcePosition": 279,
+      "previousSourceIssueReference": "Defenders (2012) #12",
+      "previousSourceRangeReference": "Collects: Defenders 7-12",
+      "previousNormalizedSeriesTitle": "Defenders (2012)",
+      "previousSeriesYear": 2012,
+      "previousIssueNumber": "12",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 39756,
+      "resolvedNormalizedSeriesTitle": "Defenders",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "12",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The owner-confirmed official Marvel identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/39756/defenders_2011_12",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "c3b071547b09b4862928890d79de18346698b4a1bac73410dbe63f601c8c572e"
+    },
+    {
+      "sourcePosition": 303,
+      "previousSourceIssueReference": "Free Comic Book Day 2017 (Defenders Story)",
+      "previousSourceRangeReference": "Collects: Defenders 1-6, Free Comic Book Day 2017 (Defenders Story)",
+      "previousNormalizedSeriesTitle": "Free Comic Book Day 2017 (Defenders Story)",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "named work",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62818,
+      "resolvedNormalizedSeriesTitle": "Free Comic Book Day (All-New Guardians of the Galaxy)",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "0",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The reviewed issue contains the named Defenders preview story requested by the source.",
+      "evidenceSources": [
+        {
+          "kind": "bibliographic-record",
+          "url": "https://www.comics.org/issue/1697540/",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62818/free_comic_book_day_all-new_guardians_of_the_galaxy_2017",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "7c382db935af7c5ba4609b664921613d9affd78bb863db8472ff6e2243401400"
+    },
+    {
+      "sourcePosition": 310,
+      "previousSourceIssueReference": "Defenders (2017) #11",
+      "previousSourceRangeReference": "Collects: Defenders 6-11",
+      "previousNormalizedSeriesTitle": "Defenders (2017)",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "11",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names Defenders (2017) #11, but the complete reviewed series ends at #10; no neighboring issue may substitute.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "checkedAt": "2026-09-04",
+      "auditBasis": "The complete Defenders (2017-2018) series contains issues #1 through #10 and no #11.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider-series",
+          "url": "https://marvel.emreparker.com/v1/series/23074/issues?limit=200&offset=0",
+          "retrievedAt": "2026-09-04"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/317",
+          "retrievedAt": "2026-09-04"
+        }
+      ],
+      "evidenceDigest": "bd7b2af900b175af82f4d66000fa9f8084fb25f5259f4a8e18099de1d1a892e0"
+    }
+  ]
 }
