@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Venom guide gaps
+
+In plain English: The bundled Venom guide now includes 33 exact comics that previously appeared as
+broken placeholders. Existing saved Reading Lists and reading progress are not rewritten; newly
+imported copies receive the settled 643-comic order.
+
+For maintainers, all 932 source positions remain accounted for as 643 exact rows, 286 repeats, and
+three explicit exclusions. All 33 former gaps retain auditable transition evidence, while optional
+provider details remain explicitly refused rather than guessed.
+
 ### Settled the Guardians of the Galaxy guide gaps
 
 In plain English: The bundled Guardians of the Galaxy guide now includes 18 exact comics that

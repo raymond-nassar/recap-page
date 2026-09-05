@@ -5,244 +5,12 @@
   "source": "https://www.comicbookherald.com/venom-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-27T06:39:54.285Z",
+  "generatedAt": "2026-09-05T06:57:41.606Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 643,
   "collections": 91,
-  "placeholders": 33,
-  "unresolved": [
-    {
-      "title": "Eddie Brock: Carnage #10",
-      "url": null,
-      "read": false,
-      "index": 608,
-      "section": "Collects: Eddie Brock: Carnage (2025) #6-10"
-    },
-    {
-      "title": "Knull #1",
-      "url": null,
-      "read": false,
-      "index": 609,
-      "section": "Collects: Knull (2025) #1 to #5"
-    },
-    {
-      "title": "Knull #2",
-      "url": null,
-      "read": false,
-      "index": 610,
-      "section": "Collects: Knull (2025) #1 to #5"
-    },
-    {
-      "title": "Knull #3",
-      "url": null,
-      "read": false,
-      "index": 611,
-      "section": "Collects: Knull (2025) #1 to #5"
-    },
-    {
-      "title": "Knull #4",
-      "url": null,
-      "read": false,
-      "index": 612,
-      "section": "Collects: Knull (2025) #1 to #5"
-    },
-    {
-      "title": "Knull #5",
-      "url": null,
-      "read": false,
-      "index": 613,
-      "section": "Collects: Knull (2025) #1 to #5"
-    },
-    {
-      "title": "Venom #251",
-      "url": null,
-      "read": false,
-      "index": 615,
-      "section": "Collects: Venom (2025) #250-254"
-    },
-    {
-      "title": "Venom #252",
-      "url": null,
-      "read": false,
-      "index": 616,
-      "section": "Collects: Venom (2025) #250-254"
-    },
-    {
-      "title": "Venom #253",
-      "url": null,
-      "read": false,
-      "index": 617,
-      "section": "Collects: Venom (2025) #250-254"
-    },
-    {
-      "title": "Venom #254",
-      "url": null,
-      "read": false,
-      "index": 618,
-      "section": "Collects: Venom (2025) #250-254"
-    },
-    {
-      "title": "Amazing Spider-Man/Venom: Death Spiral #1",
-      "url": null,
-      "read": false,
-      "index": 619,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Amazing Spider-Man #23",
-      "url": null,
-      "read": false,
-      "index": 620,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Amazing Spider-Man #24",
-      "url": null,
-      "read": false,
-      "index": 621,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Amazing Spider-Man #25",
-      "url": null,
-      "read": false,
-      "index": 622,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Amazing Spider-Man #26",
-      "url": null,
-      "read": false,
-      "index": 623,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Amazing Spider-Man #27",
-      "url": null,
-      "read": false,
-      "index": 624,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Venom #255",
-      "url": null,
-      "read": false,
-      "index": 625,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Venom #256",
-      "url": null,
-      "read": false,
-      "index": 626,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Venom #257",
-      "url": null,
-      "read": false,
-      "index": 627,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Amazing Spider-Man/Venom: Death Spiral - Body Count #1",
-      "url": null,
-      "read": false,
-      "index": 628,
-      "section": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
-    },
-    {
-      "title": "Queen in Black #1",
-      "url": null,
-      "read": false,
-      "index": 630,
-      "section": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
-    },
-    {
-      "title": "Queen in Black #2",
-      "url": null,
-      "read": false,
-      "index": 631,
-      "section": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
-    },
-    {
-      "title": "Queen in Black #3",
-      "url": null,
-      "read": false,
-      "index": 632,
-      "section": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
-    },
-    {
-      "title": "Queen in Black #4",
-      "url": null,
-      "read": false,
-      "index": 633,
-      "section": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
-    },
-    {
-      "title": "Queen in Black #5",
-      "url": null,
-      "read": false,
-      "index": 634,
-      "section": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Hela #1",
-      "url": null,
-      "read": false,
-      "index": 635,
-      "section": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Venom Unchained #1",
-      "url": null,
-      "read": false,
-      "index": 636,
-      "section": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Venom Unchained #2",
-      "url": null,
-      "read": false,
-      "index": 637,
-      "section": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Venom Unchained #3",
-      "url": null,
-      "read": false,
-      "index": 638,
-      "section": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Defenders of Light and Dark #1",
-      "url": null,
-      "read": false,
-      "index": 639,
-      "section": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Defenders of Light and Dark #2",
-      "url": null,
-      "read": false,
-      "index": 640,
-      "section": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Defenders of Light and Dark #3",
-      "url": null,
-      "read": false,
-      "index": 641,
-      "section": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
-    },
-    {
-      "title": "Queen in Black: Thor #1",
-      "url": null,
-      "read": false,
-      "index": 642,
-      "section": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 10590,
@@ -20328,10 +20096,10 @@
       "collectedIn": "Collects: Eddie Brock: Carnage (2025) #6-10"
     },
     {
-      "issueId": -1945207566,
-      "title": "Eddie Brock: Carnage #10",
+      "issueId": 121341,
+      "title": "Eddie Brock: Carnage (2025) #10",
       "number": "10",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/121341/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20341,14 +20109,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Eddie Brock: Carnage (2025) #6-10"
     },
     {
-      "issueId": -1149639323,
-      "title": "Knull #1",
+      "issueId": 130716,
+      "title": "Knull (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/130716/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20358,14 +20126,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Knull (2025) #1 to #5"
     },
     {
-      "issueId": -1199972180,
-      "title": "Knull #2",
+      "issueId": 130717,
+      "title": "Knull (2026) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/130717/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20375,14 +20143,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Knull (2025) #1 to #5"
     },
     {
-      "issueId": -1183194561,
-      "title": "Knull #3",
+      "issueId": 130718,
+      "title": "Knull (2026) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/130718/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20392,14 +20160,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Knull (2025) #1 to #5"
     },
     {
-      "issueId": -1233527418,
-      "title": "Knull #4",
+      "issueId": 130719,
+      "title": "Knull (2026) #4",
       "number": "4",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/130719/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20409,14 +20177,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Knull (2025) #1 to #5"
     },
     {
-      "issueId": -1216749799,
-      "title": "Knull #5",
+      "issueId": 130720,
+      "title": "Knull (2026) #5",
       "number": "5",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/130720/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20426,7 +20194,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Knull (2025) #1 to #5"
     },
     {
@@ -20478,10 +20246,10 @@
       "collectedIn": "Collects: Venom (2025) #250-254"
     },
     {
-      "issueId": -788286125,
-      "title": "Venom #251",
+      "issueId": 128933,
+      "title": "Venom (2025) #251",
       "number": "251",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/128933/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20491,14 +20259,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Venom (2025) #250-254"
     },
     {
-      "issueId": -838618982,
-      "title": "Venom #252",
+      "issueId": 128934,
+      "title": "Venom (2025) #252",
       "number": "252",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/128934/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20508,14 +20276,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Venom (2025) #250-254"
     },
     {
-      "issueId": -821841363,
-      "title": "Venom #253",
+      "issueId": 128935,
+      "title": "Venom (2025) #253",
       "number": "253",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/128935/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20525,14 +20293,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Venom (2025) #250-254"
     },
     {
-      "issueId": -737953268,
-      "title": "Venom #254",
+      "issueId": 128936,
+      "title": "Venom (2025) #254",
       "number": "254",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/128936/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20542,14 +20310,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Venom (2025) #250-254"
     },
     {
-      "issueId": -515447643,
-      "title": "Amazing Spider-Man/Venom: Death Spiral #1",
+      "issueId": 133540,
+      "title": "AMAZING SPIDER-MAN/VENOM: DEATH SPIRAL (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/133540/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20559,14 +20327,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -63377658,
-      "title": "Amazing Spider-Man #23",
+      "issueId": 127576,
+      "title": "The Amazing Spider-Man (2025) #23",
       "number": "23",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/127576/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20576,14 +20344,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -13044801,
-      "title": "Amazing Spider-Man #24",
+      "issueId": 127577,
+      "title": "The Amazing Spider-Man (2025) #24",
       "number": "24",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/127577/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20593,14 +20361,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -29822420,
-      "title": "Amazing Spider-Man #25",
+      "issueId": 127578,
+      "title": "The Amazing Spider-Man (2025) #25",
       "number": "25",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/127578/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20610,14 +20378,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -2126973209,
-      "title": "Amazing Spider-Man #26",
+      "issueId": 127579,
+      "title": "The Amazing Spider-Man (2025) #26",
       "number": "26",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/127579/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20627,14 +20395,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -2143750828,
-      "title": "Amazing Spider-Man #27",
+      "issueId": 127580,
+      "title": "The Amazing Spider-Man (2025) #27",
       "number": "27",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/127580/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20644,14 +20412,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -721175649,
-      "title": "Venom #255",
+      "issueId": 128937,
+      "title": "Venom (2025) #255",
       "number": "255",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/128937/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20661,14 +20429,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -771508506,
-      "title": "Venom #256",
+      "issueId": 128938,
+      "title": "Venom (2025) #256",
       "number": "256",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/128938/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20678,14 +20446,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -754730887,
-      "title": "Venom #257",
+      "issueId": 128939,
+      "title": "Venom (2025) #257",
       "number": "257",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/128939/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20695,14 +20463,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -1656243297,
-      "title": "Amazing Spider-Man/Venom: Death Spiral - Body Count #1",
+      "issueId": 136126,
+      "title": "AMAZING SPIDER-MAN/VENOM: DEATH SPIRAL - BODY COUNT (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/136126/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20712,7 +20480,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
@@ -20764,10 +20532,10 @@
       "collectedIn": "Collects: Amazing Spider-Man/Venom: Death Spiral (2026) #1, Amazing Spider-Man (2025) #23-27, Venom (2025) #255-257, Amazing Spider-Man/Venom: Death Spiral - Body Count (2026) #1, and Free Comic Book Day 2025: Amazing Spider-Man/Ultimate Universe #1 (C story)."
     },
     {
-      "issueId": -736070581,
-      "title": "Queen in Black #1",
+      "issueId": 133101,
+      "title": "Queen In Black (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/133101/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20777,14 +20545,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
     },
     {
-      "issueId": -719292962,
-      "title": "Queen in Black #2",
+      "issueId": 133102,
+      "title": "Queen In Black (2026) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/133102/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20794,14 +20562,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
     },
     {
-      "issueId": -702515343,
-      "title": "Queen in Black #3",
+      "issueId": 133103,
+      "title": "Queen In Black (2026) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/133103/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20811,14 +20579,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
     },
     {
-      "issueId": -685737724,
-      "title": "Queen in Black #4",
+      "issueId": 133104,
+      "title": "Queen In Black (2026) #4",
       "number": "4",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/133104/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20828,14 +20596,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
     },
     {
-      "issueId": -668960105,
-      "title": "Queen in Black #5",
+      "issueId": 133105,
+      "title": "Queen In Black (2026) #5",
       "number": "5",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/133105/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20845,14 +20613,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
     },
     {
-      "issueId": -63470315,
-      "title": "Queen in Black: Hela #1",
+      "issueId": 135829,
+      "title": "QUEEN IN BLACK: HELA (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135829/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20862,14 +20630,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black (2026) #1-5, Queen in Black: Hela (2026) #1"
     },
     {
-      "issueId": -149745819,
-      "title": "Queen in Black: Venom Unchained #1",
+      "issueId": 135245,
+      "title": "Queen In Black: Venom Unchained (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135245/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20879,14 +20647,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
     },
     {
-      "issueId": -200078676,
-      "title": "Queen in Black: Venom Unchained #2",
+      "issueId": 135246,
+      "title": "Queen In Black: Venom Unchained (2026) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135246/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20896,14 +20664,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
     },
     {
-      "issueId": -183301057,
-      "title": "Queen in Black: Venom Unchained #3",
+      "issueId": 135247,
+      "title": "Queen In Black: Venom Unchained (2026) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135247/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20913,14 +20681,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
     },
     {
-      "issueId": -883740543,
-      "title": "Queen in Black: Defenders of Light and Dark #1",
+      "issueId": 135242,
+      "title": "Queen In Black: Defenders Of Light And Dark (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135242/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20930,14 +20698,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
     },
     {
-      "issueId": -934073400,
-      "title": "Queen in Black: Defenders of Light and Dark #2",
+      "issueId": 135243,
+      "title": "Queen In Black: Defenders Of Light And Dark (2026) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135243/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20947,14 +20715,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
     },
     {
-      "issueId": -917295781,
-      "title": "Queen in Black: Defenders of Light and Dark #3",
+      "issueId": 135244,
+      "title": "Queen In Black: Defenders Of Light And Dark (2026) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135244/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20964,14 +20732,14 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
     },
     {
-      "issueId": -1905049846,
-      "title": "Queen in Black: Thor #1",
+      "issueId": 135830,
+      "title": "QUEEN IN BLACK: THOR (2026) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/135830/",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -20981,7 +20749,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true,
+      "detailsRefused": true,
       "collectedIn": "Collects: Queen in Black: Venom Unchained (2026) #1-3, Queen in Black: Defenders of Light and Dark (2026) #1-3, Queen in Black: Thor (2026) #1"
     }
   ]

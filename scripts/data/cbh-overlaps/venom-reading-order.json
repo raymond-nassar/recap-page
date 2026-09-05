@@ -1,18 +1,19 @@
 {
   "candidateId": "venom-reading-order",
-  "packetDigest": "21d1c6ad635e22b9656f08ca45d169eb3f6657109626568a0c7c00aa563e3425",
-  "mappingDigest": "fc9f4eee5888067abcc4a482d0a07dea7340fc255843ea3ec3f8a03e80162934",
-  "libraryDigest": "9a75dc767f4da775ee31863607d4490a353216b07d343689b11d1556e498e3e1",
+  "packetDigest": "b238b85beab90a703a3867b5454f736bd49cab8f830b26cfe4e4457599147160",
+  "mappingDigest": "6dfc5d787636f69b9515ed79cc73dac88c2cb1665a91316c7b579ae6c4247761",
+  "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 932,
     "sourceIdentityCount": 643,
-    "includedIssueCount": 610,
-    "sourceGapCount": 33,
-    "repeatedSourceReferenceCount": 286
+    "includedIssueCount": 643,
+    "sourceGapCount": 0,
+    "repeatedSourceReferenceCount": 286,
+    "excludedSourceRowCount": 3
   },
-  "candidateCount": 610,
-  "comparisonCount": 137,
+  "candidateCount": 643,
+  "comparisonCount": 138,
   "comparisons": [
     {
       "orderId": "absolute-carnage",
@@ -303,6 +304,32 @@
       "sharedCount": 0,
       "sharedIds": [],
       "relationship": "none"
+    },
+    {
+      "orderId": "guardians-of-the-galaxy-reading-order",
+      "sharedCount": 19,
+      "sharedIds": [
+        "48633",
+        "48634",
+        "48635",
+        "48636",
+        "42671",
+        "51896",
+        "51899",
+        "51902",
+        "51903",
+        "55462",
+        "55464",
+        "55466",
+        "55467",
+        "55468",
+        "55469",
+        "55470",
+        "55471",
+        "55472",
+        "55473"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "heroes-reborn-2021",
@@ -935,5 +962,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "b3d68fa7749d226572877e8a24fbb77b577af8918ca67ab38a61916c73d64b9d"
+  "reportDigest": "6e4bef7cd92e083fe8aaf23f8be71c8f902a8d5514bf0f1e04e9e5d1d78ff4af"
 }

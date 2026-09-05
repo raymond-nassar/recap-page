@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T05:01:41.370Z",
+  "generatedAt": "2026-09-05T06:57:41.606Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3217,8 +3217,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 643,
-      "placeholderCount": 33,
-      "emptyRecordCount": 0,
+      "placeholderCount": 0,
+      "emptyRecordCount": 33,
       "collections": 91,
       "characters": [
         "Venom",
@@ -3247,7 +3247,7 @@
       "source": "https://www.comicbookherald.com/venom-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T06:39:54.285Z"
+      "updatedAt": "2026-09-05T06:57:41.606Z"
     },
     {
       "id": "magneto-reading-order",
