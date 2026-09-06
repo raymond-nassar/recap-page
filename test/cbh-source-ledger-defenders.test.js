@@ -853,7 +853,7 @@ test('The Defenders publication preserves the settled source partition and exact
     ['daredevil-reading-order', 'partial', 10],
     ['doctor-strange-reading-order', 'partial', 182],
     ['fantastic-four-reading-order', 'partial', 2],
-    ['guardians-of-the-galaxy-reading-order', 'partial', 6],
+    ['guardians-of-the-galaxy-reading-order', 'partial', 7],
     ['loki-reading-order', 'partial', 14],
     ['magneto-reading-order', 'partial', 2],
     ['moon-knight-reading-order', 'partial', 4],

@@ -1033,7 +1033,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // whose optional details were refused. Silver Surfer now adds one exact official issue whose
   // optional details were refused. Loki now replaces 18 placeholders with 16 complete records and
   // two exact provider refusals. Venom adds 33 exact official-link-only empty records. Doctor
-  // Strange now adds 23, bringing the current total to 170 across sixteen affected orders.
+  // Strange adds 23, and Magneto now adds two exact provider refusals, bringing the current total
+  // to 172 across seventeen affected orders.
   // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
@@ -1047,8 +1048,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // carries no placeholders after its owner-reviewed availability settlement. Venom carries 33
   // exact official issue records with provider refusals and no placeholders. Punisher adds 158
   // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
-  // Magneto adds 58 cached-provider gaps. Loki carries no placeholders after its owner-reviewed
-  // settlement. Silver
+  // Magneto now carries one provider-ID-free provenance placeholder after settling 57 former gaps.
+  // Loki carries no placeholders after its owner-reviewed settlement. Silver
   // Surfer carries no placeholders after one exact resolution and three approved exclusions.
   // Black Panther carries no placeholders after one exact resolution and three approved
   // nonexistent-identity exclusions. Black Widow carries no placeholders after eleven exact
@@ -1068,10 +1069,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1377, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1376, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 170);
-  assert.equal(affected, 16);
+  assert.equal(claimed, 1320, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1319, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 172);
+  assert.equal(affected, 17);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1274,14 +1275,16 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // its availability settlement. Venom replaces 33 distinct negative placeholders with 33 exact
   // official issue records whose optional provider metadata was refused, so its distinct refused
   // contribution remains unchanged. Punisher adds 158 distinct placeholders while retaining 23
-  // repeated source occurrences without duplicate identifiers. Magneto adds 58. Loki now adds two
-  // exact provider refusals instead of 18 placeholders. Silver Surfer adds one exact official issue
+  // repeated source occurrences without duplicate identifiers. Magneto replaces 58 placeholders
+  // with two exact provider refusals and one retained provenance placeholder, reducing its distinct
+  // refused contribution by 55. Loki now adds two exact provider refusals instead of 18
+  // placeholders. Silver Surfer adds one exact official issue
   // whose optional metadata request was refused. Black Widow
   // adds four exact official issues whose optional metadata requests were refused. Moon Knight's
   // eight exact refused records add two distinct ids because six already occur in Black Widow or
   // WandaVision; its ten excluded comics add none. X-Force adds no refused identities after its 23
-  // exact resolutions. Inhumans
-  // adds 42, and Young Avengers retains four context placeholders after 51 exact resolutions.
+  // exact resolutions. Inhumans adds no refused identities after its 38 exact resolutions and four
+  // exclusions, and Young Avengers retains four context placeholders after 51 exact resolutions.
   // Fantastic Four carries no refused identities after its
   // owner-reviewed settlement. Guardians replaces 29 placeholders with 18 exact issues, three of
   // which retain explicit provider refusals. Defenders adds none after its owner-reviewed
@@ -1291,6 +1294,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // explicit exclusions.
   // Hulk replaces 19 distinct negative placeholders with nine exact refused records. One of
   // those exact identities already appears elsewhere, so the distinct refused total falls by 11.
-  assert.equal(refused.length, 1507);
+  assert.equal(refused.length, 1452);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

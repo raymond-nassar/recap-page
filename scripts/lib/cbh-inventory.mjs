@@ -62,6 +62,7 @@ const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
   'guardians-of-the-galaxy-reading-order': 'ae93f928584d214a8d264a0240ea1d8da4245611bd43277c911bcad83933270b',
   'inhumans-reading-order': '1489ca1efdcba7791fc70e217832169b8d99f1668539fc9d21c110b4a46ddec1',
   'loki-reading-order': '59de316b6547f728eb75fd03ba8717ebb9cbf294f30404e31d02d5906e25962b',
+  'magneto-reading-order': 'aeb7c9f6144a8ba1b4147fd27ba409f5ff7d3a7f63009f2910d9c44f6fe5435a',
   'moon-knight-reading-order': 'd073930c3543c58ba3fc12f5e02ab80fb5551d0847f1b932e01c96d00da5ab08',
   'question-of-the-week-do-you-have-a-hulk-reading-order': '22760b123ee3ae117804aca77d71fe3aef76a456f9406debc53666e0571d3097',
   'silver-surfer-reading-order': '2fad8b1d3f31882844786b3a7051b48e559e7d94afdb3e936fdf83e88d263a92',

@@ -1,12 +1,12 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-09-06T09:48:24.096Z",
+  "generatedAt": "2026-09-06T13:03:58.297Z",
   "pairCount": 68,
   "chapterCountWithOverlap": 49,
   "existingListCount": 19,
-  "sharedOccurrenceCount": 368,
+  "sharedOccurrenceCount": 372,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "677cd85ef3c88b931ddace555ce8909254b8fed44d247de253cb5a4530b796c1",
+  "matrixSha256": "dc98c35e005b0adf534fe3e74a8d5cb4ff44921661f6ad6f4ea59280c76d7c54",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
@@ -38,7 +38,7 @@
     },
     {
       "id": "magneto-reading-order",
-      "sharedCount": 13
+      "sharedCount": 17
     },
     {
       "id": "marvels-best-phoenix-comics",
@@ -869,7 +869,7 @@
     {
       "chapterId": "marvel-knights-to-planet-x-78",
       "existingListId": "magneto-reading-order",
-      "sharedCount": 9,
+      "sharedCount": 13,
       "sharedIssueIds": [
         14965,
         125,
@@ -879,7 +879,11 @@
         122,
         121,
         120,
-        420
+        420,
+        648,
+        727,
+        524,
+        769
       ]
     },
     {
