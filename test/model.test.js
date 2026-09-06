@@ -1055,7 +1055,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // resolutions and three Marvel Unlimited exclusions. Moon Knight carries no placeholders after
   // eight exact resolutions and ten availability exclusions, while its eight exact records have
   // explicit official links but no optional provider metadata. X-Force carries no placeholders
-  // after 23 exact resolutions. Inhumans adds 42 more. Young Avengers adds
+  // after 23 exact resolutions. Inhumans carries no placeholders after 38 exact resolutions and
+  // four explicit exclusions. Young Avengers adds
   // 55 source-preserving placeholders. Fantastic Four carries no placeholders after its
   // owner-reviewed settlement. Guardians carries no placeholders after 18 exact resolutions and
   // 11 explicit exclusions, and Defenders carries no placeholders after its owner-reviewed settlement.
@@ -1067,8 +1068,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1470, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1469, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1428, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1427, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 170);
   assert.equal(affected, 16);
 });
@@ -1284,9 +1285,11 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // owner-reviewed settlement. Guardians replaces 29 placeholders with 18 exact issues, three of
   // which retain explicit provider refusals. Defenders adds none after its owner-reviewed
   // settlement, and Nick Fury and S.H.I.E.L.D. adds 194. Adam Warlock carries no refused identities
-  // after its owner-reviewed availability settlement.
+  // after its owner-reviewed availability settlement. Inhumans carries no refused identities after
+  // 38 provider-resolved records replaced its placeholders and four unavailable identities became
+  // explicit exclusions.
   // Hulk replaces 19 distinct negative placeholders with nine exact refused records. One of
   // those exact identities already appears elsewhere, so the distinct refused total falls by 11.
-  assert.equal(refused.length, 1600);
+  assert.equal(refused.length, 1558);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

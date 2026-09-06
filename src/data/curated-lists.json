@@ -2760,39 +2760,6 @@
       "coverIssueId": 15429
     },
     {
-      "id": "inhumans-reading-order",
-      "name": "Inhumans",
-      "description": "A complete Inhumans reading path from their earliest Fantastic Four appearances through their modern era.",
-      "type": "character-run",
-      "spotlightKind": "complete-guide",
-      "depth": "complete",
-      "beginner": false,
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "sourceFile": "inhumans-reading-order.md",
-      "sourcePage": "https://www.comicbookherald.com/inhumans-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "out": "inhumans_reading_order.json",
-      "characters": [
-        "Inhumans",
-        "Black Bolt",
-        "Medusa",
-        "Maximus"
-      ],
-      "keywords": [
-        "Inhumans",
-        "Black Bolt",
-        "Medusa",
-        "Marvel Comics",
-        "Comic Book Herald"
-      ],
-      "expect": 259,
-      "timeline": 1965,
-      "coverIssueId": 13183
-    },
-    {
       "id": "young-avengers-reading-order",
       "name": "Young Avengers",
       "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
@@ -2856,6 +2823,39 @@
       "expect": 734,
       "timeline": null,
       "coverIssueId": 11029
+    },
+    {
+      "id": "inhumans-reading-order",
+      "name": "Inhumans",
+      "description": "A complete Inhumans reading path from their earliest Fantastic Four appearances through their modern era.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "inhumans-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/inhumans-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "inhumans_reading_order.json",
+      "characters": [
+        "Inhumans",
+        "Black Bolt",
+        "Medusa",
+        "Maximus"
+      ],
+      "keywords": [
+        "Inhumans",
+        "Black Bolt",
+        "Medusa",
+        "Marvel Comics",
+        "Comic Book Herald"
+      ],
+      "expect": 255,
+      "timeline": 1965,
+      "coverIssueId": 13183
     },
     {
       "id": "xmen-claremont",

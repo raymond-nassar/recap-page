@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-05T18:59:53.175Z",
+  "generatedAt": "2026-09-06T04:18:43.037Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3086,47 +3086,6 @@
       "updatedAt": "2026-09-05T02:48:55.463Z"
     },
     {
-      "id": "doctor-strange-reading-order",
-      "file": "doctor_strange_reading_order.json",
-      "name": "Doctor Strange",
-      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
-      "type": "character-run",
-      "depth": "complete",
-      "spotlightKind": "complete-guide",
-      "count": 734,
-      "placeholderCount": 0,
-      "emptyRecordCount": 23,
-      "collections": 71,
-      "characters": [
-        "Doctor Strange",
-        "Defenders",
-        "Avengers",
-        "Clea",
-        "Wong"
-      ],
-      "keywords": [
-        "Doctor Strange",
-        "Sorcerer Supreme",
-        "Defenders",
-        "Strange Academy",
-        "Comic Book Herald"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": true,
-      "timeline": null,
-      "coverIssueId": 11029,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4bc480360bd1f",
-        "ext": "jpg"
-      },
-      "source": "https://www.comicbookherald.com/doctor-strange-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "updatedAt": "2026-09-05T18:59:53.175Z"
-    },
-    {
       "id": "black-widow-reading-order",
       "file": "black_widow_reading_order.json",
       "name": "Black Widow",
@@ -3409,46 +3368,6 @@
       "updatedAt": "2026-09-05T05:01:41.370Z"
     },
     {
-      "id": "inhumans-reading-order",
-      "file": "inhumans_reading_order.json",
-      "name": "Inhumans",
-      "description": "A complete Inhumans reading path from their earliest Fantastic Four appearances through their modern era.",
-      "type": "character-run",
-      "depth": "complete",
-      "spotlightKind": "complete-guide",
-      "count": 259,
-      "placeholderCount": 42,
-      "emptyRecordCount": 0,
-      "collections": 39,
-      "characters": [
-        "Inhumans",
-        "Black Bolt",
-        "Medusa",
-        "Maximus"
-      ],
-      "keywords": [
-        "Inhumans",
-        "Black Bolt",
-        "Medusa",
-        "Marvel Comics",
-        "Comic Book Herald"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": false,
-      "timeline": 1965,
-      "coverIssueId": 13183,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5aabdb973e9d9",
-        "ext": "jpg"
-      },
-      "source": "https://www.comicbookherald.com/inhumans-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "updatedAt": "2026-08-28T03:46:03.663Z"
-    },
-    {
       "id": "young-avengers-reading-order",
       "file": "young_avengers_reading_order.json",
       "name": "Young Avengers",
@@ -3485,6 +3404,87 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-08-28T03:03:48.579Z"
+    },
+    {
+      "id": "doctor-strange-reading-order",
+      "file": "doctor_strange_reading_order.json",
+      "name": "Doctor Strange",
+      "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 734,
+      "placeholderCount": 0,
+      "emptyRecordCount": 23,
+      "collections": 71,
+      "characters": [
+        "Doctor Strange",
+        "Defenders",
+        "Avengers",
+        "Clea",
+        "Wong"
+      ],
+      "keywords": [
+        "Doctor Strange",
+        "Sorcerer Supreme",
+        "Defenders",
+        "Strange Academy",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 11029,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4bc480360bd1f",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/doctor-strange-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-05T18:59:53.175Z"
+    },
+    {
+      "id": "inhumans-reading-order",
+      "file": "inhumans_reading_order.json",
+      "name": "Inhumans",
+      "description": "A complete Inhumans reading path from their earliest Fantastic Four appearances through their modern era.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 255,
+      "placeholderCount": 0,
+      "emptyRecordCount": 0,
+      "collections": 39,
+      "characters": [
+        "Inhumans",
+        "Black Bolt",
+        "Medusa",
+        "Maximus"
+      ],
+      "keywords": [
+        "Inhumans",
+        "Black Bolt",
+        "Medusa",
+        "Marvel Comics",
+        "Comic Book Herald"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": false,
+      "timeline": 1965,
+      "coverIssueId": 13183,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/e0/5aabdb973e9d9",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/inhumans-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-06T04:18:43.037Z"
     },
     {
       "id": "xmen-claremont",

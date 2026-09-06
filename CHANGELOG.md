@@ -12,6 +12,16 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Inhumans guide gaps
+
+In plain English: The bundled Inhumans guide now includes 38 exact comics that previously appeared
+as broken placeholders. Four entries that are unavailable or do not exist under the source identity
+are omitted without substitution. Existing saved Reading Lists and reading progress are not
+rewritten; newly imported copies receive the settled 255-comic order.
+
+For maintainers, all 354 source positions remain accounted for as 255 exact rows, four repeated
+references, and 95 explicit exclusions. All 42 former gaps retain auditable transition evidence.
+
 ### Resolved the Doctor Strange guide's remaining metadata gaps
 
 In plain English: Every source position in the Doctor Strange guide is now accounted for. The guide
