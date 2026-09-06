@@ -5,453 +5,296 @@
   "source": "https://www.comicbookherald.com/young-avengers-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-28T03:03:48.579Z",
+  "generatedAt": "2026-09-06T09:48:24.096Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 169,
   "collections": 35,
-  "placeholders": 55,
+  "placeholders": 4,
   "unresolved": [
     {
-      "title": "Young Avengers #1",
-      "sourceKey": "9"
-    },
-    {
-      "title": "Young Avengers #2",
-      "sourceKey": "10"
-    },
-    {
-      "title": "Young Avengers #3",
-      "sourceKey": "11"
-    },
-    {
-      "title": "Young Avengers #4",
-      "sourceKey": "12"
-    },
-    {
-      "title": "Young Avengers #5",
-      "sourceKey": "13"
-    },
-    {
-      "title": "Young Avengers #6",
-      "sourceKey": "14"
-    },
-    {
-      "title": "Young Avengers #7",
-      "sourceKey": "15"
-    },
-    {
-      "title": "Young Avengers #8",
-      "sourceKey": "16"
-    },
-    {
-      "title": "Young Avengers #9",
-      "sourceKey": "17"
-    },
-    {
-      "title": "Young Avengers #10",
-      "sourceKey": "18"
-    },
-    {
-      "title": "Young Avengers #11",
-      "sourceKey": "19"
-    },
-    {
-      "title": "Young Avengers #12",
-      "sourceKey": "20"
-    },
-    {
-      "title": "Young Avengers 1-12, Special",
-      "sourceKey": "21"
-    },
-    {
-      "title": "Avengers: The Children's Crusade ? Young Avengers #1",
-      "sourceKey": "43"
-    },
-    {
-      "title": "Young Avengers #1-5, Marvel Now! Point One",
-      "sourceKey": "59"
-    },
-    {
-      "title": "Marvel Boy #1",
-      "sourceKey": "66"
-    },
-    {
-      "title": "Marvel Boy #2",
-      "sourceKey": "67"
-    },
-    {
-      "title": "Hawkeye #7",
-      "sourceKey": "112"
-    },
-    {
-      "title": "Hawkeye #8",
-      "sourceKey": "113"
-    },
-    {
-      "title": "Hawkeye #9",
-      "sourceKey": "114"
-    },
-    {
-      "title": "Hawkeye #10",
-      "sourceKey": "115"
-    },
-    {
-      "title": "Hawkeye #11",
-      "sourceKey": "116"
-    },
-    {
-      "title": "Hawkeye #12",
-      "sourceKey": "117"
-    },
-    {
-      "title": "New Avengers #1",
-      "sourceKey": "140"
-    },
-    {
-      "title": "New Avengers #2",
-      "sourceKey": "141"
-    },
-    {
-      "title": "New Avengers #3",
-      "sourceKey": "142"
-    },
-    {
-      "title": "New Avengers #4",
-      "sourceKey": "143"
-    },
-    {
-      "title": "New Avengers #5",
-      "sourceKey": "144"
-    },
-    {
-      "title": "New Avengers #6",
-      "sourceKey": "145"
-    },
-    {
-      "title": "New Avengers #7",
-      "sourceKey": "149"
-    },
-    {
-      "title": "New Avengers #8",
-      "sourceKey": "150"
-    },
-    {
-      "title": "New Avengers #9",
-      "sourceKey": "151"
-    },
-    {
-      "title": "New Avengers #10",
-      "sourceKey": "152"
-    },
-    {
-      "title": "New Avengers #11",
-      "sourceKey": "153"
-    },
-    {
-      "title": "New Avengers #12",
-      "sourceKey": "155"
-    },
-    {
-      "title": "New Avengers #13",
-      "sourceKey": "156"
-    },
-    {
-      "title": "New Avengers #14",
-      "sourceKey": "157"
-    },
-    {
-      "title": "New Avengers #15",
-      "sourceKey": "158"
-    },
-    {
-      "title": "New Avengers #16",
-      "sourceKey": "159"
-    },
-    {
-      "title": "New Avengers #17",
-      "sourceKey": "160"
-    },
-    {
-      "title": "New Avengers #18",
-      "sourceKey": "161"
-    },
-    {
-      "title": "West Coast Avengers #1",
-      "sourceKey": "163"
-    },
-    {
-      "title": "West Coast Avengers #2",
-      "sourceKey": "164"
-    },
-    {
-      "title": "West Coast Avengers #3",
-      "sourceKey": "165"
-    },
-    {
-      "title": "West Coast Avengers #4",
-      "sourceKey": "166"
-    },
-    {
       "title": "Marvel Rising (2018)",
+      "url": null,
+      "read": false,
+      "index": 127,
+      "section": "Marvel Rising (2018)",
       "sourceKey": "169"
     },
     {
       "title": "Death’s Head: Clone Drive",
+      "url": null,
+      "read": false,
+      "index": 146,
+      "section": "Death’s Head: Clone Drive",
       "sourceKey": "194"
     },
     {
-      "title": "Marvel Voices: Pride (2021)",
-      "sourceKey": "213"
-    },
-    {
       "title": "The Last Annihilation: Wiccan & Hulkling",
+      "url": null,
+      "read": false,
+      "index": 162,
+      "section": "The Last Annihilation: Wiccan & Hulkling",
       "sourceKey": "214"
     },
     {
       "title": "Hulkling & Wiccan",
+      "url": null,
+      "read": false,
+      "index": 163,
+      "section": "Hulkling & Wiccan",
       "sourceKey": "215"
-    },
-    {
-      "title": "Marvel Voices: Pride (2022)",
-      "sourceKey": "216"
-    },
-    {
-      "title": "Marvel Voices: Pride (2023)",
-      "sourceKey": "217"
-    },
-    {
-      "title": "Scarlet Witch by Orlando #6",
-      "sourceKey": "218"
-    },
-    {
-      "title": "Loki by Watters #3",
-      "sourceKey": "219"
-    },
-    {
-      "title": "Guardians of the Galaxy by Kelly #7",
-      "sourceKey": "220"
     }
   ],
   "items": [
     {
-      "issueId": -462196839,
-      "title": "Young Avengers #1",
+      "issueId": 1629,
+      "title": "Young Avengers (2005) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/1629/young_avengers_2005_1",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-02-09T00:00:00+0000",
+      "mu": "2009-03-01T00:00:00+0000",
+      "digitalId": 519,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/70/564259ee974d5",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1110689205,
-      "title": "Young Avengers #2",
+      "issueId": 1721,
+      "title": "Young Avengers (2005) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/1721/young_avengers_2005_2",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-03-16T00:00:00+0000",
+      "mu": "2005-03-16T00:00:00+0000",
+      "digitalId": 2929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/80/58878da90f39c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1127466824,
-      "title": "Young Avengers #3",
+      "issueId": 1830,
+      "title": "Young Avengers (2005) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/1830/young_avengers_2005_3",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-04-20T00:00:00+0000",
+      "mu": "2005-04-20T00:00:00+0000",
+      "digitalId": 2930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/00/58878d8695065",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1144244443,
-      "title": "Young Avengers #4",
+      "issueId": 1941,
+      "title": "Young Avengers (2005) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/1941/young_avengers_2005_4",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-05-18T00:00:00+0000",
+      "mu": "2005-05-18T00:00:00+0000",
+      "digitalId": 2931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/80/58878dfa36249",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1161022062,
-      "title": "Young Avengers #5",
+      "issueId": 2049,
+      "title": "Young Avengers (2005) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/2049/young_avengers_2005_5",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-06-29T00:00:00+0000",
+      "mu": "2005-06-29T00:00:00+0000",
+      "digitalId": 2932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/58878dcba2afe",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1043578729,
-      "title": "Young Avengers #6",
+      "issueId": 2162,
+      "title": "Young Avengers (2005) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/2162/young_avengers_2005_6",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-08-31T00:00:00+0000",
+      "mu": "2005-08-31T00:00:00+0000",
+      "digitalId": 2933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/a0/58878d91a7492",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1060356348,
-      "title": "Young Avengers #7",
+      "issueId": 2328,
+      "title": "Young Avengers (2005) #7",
       "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/2328/young_avengers_2005_7",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-09-28T00:00:00+0000",
+      "mu": "2005-09-28T00:00:00+0000",
+      "digitalId": 2934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/58878ddcd1f50",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1077133967,
-      "title": "Young Avengers #8",
+      "issueId": 2448,
+      "title": "Young Avengers (2005) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/2448/young_avengers_2005_8",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-10-26T00:00:00+0000",
+      "mu": "2005-10-26T00:00:00+0000",
+      "digitalId": 2935,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/10/58878dba5fc07",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 48,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -1093911586,
-      "title": "Young Avengers #9",
+      "issueId": 3018,
+      "title": "Young Avengers (2005) #9",
       "number": "9",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/3018/young_avengers_2005_9",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2005-11-23T00:00:00+0000",
+      "mu": "2005-11-23T00:00:00+0000",
+      "digitalId": 2936,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/4bc32e9875641",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 48,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -976468253,
-      "title": "Young Avengers #10",
+      "issueId": 3359,
+      "title": "Young Avengers (2005) #10",
       "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/3359/young_avengers_2005_10",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2006-02-08T00:00:00+0000",
+      "mu": "2006-02-08T00:00:00+0000",
+      "digitalId": 7886,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/60/58878d6e8794f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 32,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -993245872,
-      "title": "Young Avengers #11",
+      "issueId": 3887,
+      "title": "Young Avengers (2005) #11",
       "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/3887/young_avengers_2005_11",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2006-04-05T00:00:00+0000",
+      "mu": "2006-04-05T00:00:00+0000",
+      "digitalId": 7887,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/50/58878e1059f24",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 32,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -876295410,
-      "title": "Young Avengers #12",
+      "issueId": 4252,
+      "title": "Young Avengers (2005) #12",
       "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/4252/young_avengers_2005_12",
+      "seriesId": 756,
+      "seriesName": "Young Avengers (2005 - 2006)",
+      "onSale": "2006-06-28T00:00:00+0000",
+      "mu": "2006-06-28T00:00:00+0000",
+      "digitalId": 7888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/40/4d251d30321ea",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        }
+      ],
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
-      "issueId": -859517791,
-      "title": "Young Avengers 1-12, Special",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 3222,
+      "title": "YOUNG AVENGERS SPECIAL 1 (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/3222/young_avengers_special_1_2005_1",
+      "seriesId": 1015,
+      "seriesName": "YOUNG AVENGERS SPECIAL 1 (2005)",
+      "onSale": "2005-12-28T00:00:00+0000",
+      "mu": "2005-12-28T00:00:00+0000",
+      "digitalId": 2937,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/588b891045d83",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 48,
       "creators": [],
-      "placeholder": true,
       "collectedIn": "Young Avengers 1-12, Special"
     },
     {
@@ -899,20 +742,35 @@
       "collectedIn": "Secret Invasion: Runaways/Young Avengers #1-3"
     },
     {
-      "issueId": -757866339,
-      "title": "Avengers: The Children's Crusade ? Young Avengers #1",
+      "issueId": 37421,
+      "title": "AVENGERS: THE CHILDREN'S CRUSADE - YOUNG AVENGERS 1 (2010) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/37421/avengers_the_childrens_crusade_-_young_avengers_1_2010_1",
+      "seriesId": 13447,
+      "seriesName": "AVENGERS: THE CHILDREN'S CRUSADE - YOUNG AVENGERS 1 (2010)",
+      "onSale": "2011-03-16T00:00:00+0000",
+      "mu": "2011-03-16T00:00:00+0000",
+      "digitalId": 20094,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/58d3e735d92ae",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526"
     },
     {
@@ -1276,20 +1134,67 @@
       "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
     },
     {
-      "issueId": -858384958,
-      "title": "Young Avengers #1-5, Marvel Now! Point One",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 45717,
+      "title": "MARVEL NOW! POINT ONE 1 (2012) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/45717/marvel_now_point_one_1_2012_1",
+      "seriesId": 17230,
+      "seriesName": "MARVEL NOW! POINT ONE 1 (2012)",
+      "onSale": "2012-10-17T00:00:00+0000",
+      "mu": "2013-04-15T00:00:00+0000",
+      "digitalId": 27842,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/30/5bd9f558ae69a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 64,
+      "creators": [
+        {
+          "name": "Adi Granov",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Gabriel Hernandez Walta",
+          "role": "penciler"
+        },
+        {
+          "name": "Jamie Mckelvie",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Allred",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Mcniven",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        },
+        {
+          "name": "Dennis \"Hopeless\" Hallum",
+          "role": "writer"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        },
+        {
+          "name": "Nicholas Spencer",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
     },
     {
@@ -1405,37 +1310,59 @@
       "collectedIn": "Young Avengers #1-5, Marvel Now! Point One"
     },
     {
-      "issueId": -1110490528,
-      "title": "Marvel Boy #1",
+      "issueId": 10002,
+      "title": "Marvel Boy (2000) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/10002/marvel_boy_2000_1",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-08-01T00:00:00+0000",
+      "mu": "2000-08-01T00:00:00+0000",
+      "digitalId": 10596,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/4bb5b94169046",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Boy #1 To #6"
     },
     {
-      "issueId": -1093712909,
-      "title": "Marvel Boy #2",
+      "issueId": 10003,
+      "title": "Marvel Boy (2000) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/10003/marvel_boy_2000_2",
+      "seriesId": 2036,
+      "seriesName": "Marvel Boy (2000 - 2001)",
+      "onSale": "2000-09-01T00:00:00+0000",
+      "mu": "2000-09-01T00:00:00+0000",
+      "digitalId": 10597,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/20/4bb5b93c3b8ae",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "J. G. Jones",
+          "role": "cover artist"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Boy #1 To #6"
     },
     {
@@ -2555,105 +2482,195 @@
       "collectedIn": "Hawkeye (2016) #1-6"
     },
     {
-      "issueId": -1065549104,
-      "title": "Hawkeye #7",
+      "issueId": 61282,
+      "title": "Hawkeye (2016) #7",
       "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61282/hawkeye_2016_7",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-06-07T00:00:00+0000",
+      "mu": "2017-12-11T00:00:00+0000",
+      "digitalId": 44976,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/c0/5930632c58573",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Hawkeye (2017) #7-12"
     },
     {
-      "issueId": -1048771485,
-      "title": "Hawkeye #8",
+      "issueId": 61283,
+      "title": "Hawkeye (2016) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61283/hawkeye_2016_8",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-07-05T00:00:00+0000",
+      "mu": "2018-01-08T00:00:00+0000",
+      "digitalId": 45219,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/595538fcdeb4f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Hawkeye (2017) #7-12"
     },
     {
-      "issueId": -1031993866,
-      "title": "Hawkeye #9",
+      "issueId": 61284,
+      "title": "Hawkeye (2016) #9",
       "number": "9",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61284/hawkeye_2016_9",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-08-02T00:00:00+0000",
+      "mu": "2018-02-05T00:00:00+0000",
+      "digitalId": 45429,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/596d117870dee",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Hawkeye (2017) #7-12"
     },
     {
-      "issueId": -1015216247,
-      "title": "Hawkeye #10",
+      "issueId": 61285,
+      "title": "Hawkeye (2016) #10",
       "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61285/hawkeye_2016_10",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-09-06T00:00:00+0000",
+      "mu": "2018-03-12T00:00:00+0000",
+      "digitalId": 45704,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/d0/599afc55c05cf",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Hawkeye (2017) #7-12"
     },
     {
-      "issueId": -998438628,
-      "title": "Hawkeye #11",
+      "issueId": 61286,
+      "title": "Hawkeye (2016) #11",
       "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61286/hawkeye_2016_11",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-10-04T00:00:00+0000",
+      "mu": "2018-04-09T00:00:00+0000",
+      "digitalId": 45955,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/59cc03bb6cffa",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leonardo Romero",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Hawkeye (2017) #7-12"
     },
     {
-      "issueId": -981661009,
-      "title": "Hawkeye #12",
+      "issueId": 61287,
+      "title": "Hawkeye (2016) #12",
       "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61287/hawkeye_2016_12",
+      "seriesId": 22533,
+      "seriesName": "Hawkeye (2016 - 2018)",
+      "onSale": "2017-11-15T00:00:00+0000",
+      "mu": "2018-05-21T00:00:00+0000",
+      "digitalId": 46313,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5a034ab96e371",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Michael Walsh",
+          "role": "cover artist"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Hawkeye (2017) #7-12"
     },
     {
@@ -3233,105 +3250,187 @@
       "collectedIn": "America 7-12"
     },
     {
-      "issueId": -1131820937,
-      "title": "New Avengers #1",
+      "issueId": 57030,
+      "title": "New Avengers (2015) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/57030/new_avengers_2015_1",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-10-14T00:00:00+0000",
+      "mu": "2016-04-18T00:00:00+0000",
+      "digitalId": 40246,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/561bd355cf546",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 1-6, Avengers 0"
     },
     {
-      "issueId": -1148598556,
-      "title": "New Avengers #2",
+      "issueId": 57034,
+      "title": "New Avengers (2015) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/57034/new_avengers_2015_2",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-10-28T00:00:00+0000",
+      "mu": "2016-04-25T00:00:00+0000",
+      "digitalId": 40345,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/56268059e4adf",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 1-6, Avengers 0"
     },
     {
-      "issueId": -1165376175,
-      "title": "New Avengers #3",
+      "issueId": 58371,
+      "title": "New Avengers (2015) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/58371/new_avengers_2015_3",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-11-18T00:00:00+0000",
+      "mu": "2016-05-23T00:00:00+0000",
+      "digitalId": 40515,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/5649dd48115b2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 1-6, Avengers 0"
     },
     {
-      "issueId": -1182153794,
-      "title": "New Avengers #4",
+      "issueId": 57529,
+      "title": "New Avengers (2015) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/57529/new_avengers_2015_4",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2015-12-23T00:00:00+0000",
+      "mu": "2016-06-27T00:00:00+0000",
+      "digitalId": 40726,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/70/56780942e396f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 1-6, Avengers 0"
     },
     {
-      "issueId": -1198931413,
-      "title": "New Avengers #5",
+      "issueId": 57530,
+      "title": "New Avengers (2015) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/57530/new_avengers_2015_5",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-01-20T00:00:00+0000",
+      "mu": "2016-07-18T00:00:00+0000",
+      "digitalId": 40923,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5682dfa16a5d4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "cover artist"
+        },
+        {
+          "name": "Oscar Garrido",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 1-6, Avengers 0"
     },
     {
-      "issueId": -1215709032,
-      "title": "New Avengers #6",
+      "issueId": 57611,
+      "title": "New Avengers (2015) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/57611/new_avengers_2015_6",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-02-10T00:00:00+0000",
+      "mu": "2016-08-08T00:00:00+0000",
+      "digitalId": 41124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/00/56b50eac1c169",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gerardo Sandoval",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Matt Rhodes",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 1-6, Avengers 0"
     },
     {
@@ -3354,275 +3453,495 @@
       "collectedIn": "New Avengers 1-6, Avengers 0"
     },
     {
-      "issueId": -1014377604,
-      "title": "New Avengers #7",
+      "issueId": 57612,
+      "title": "New Avengers (2015) #7",
       "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/57612/new_avengers_2015_7",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-02-24T00:00:00+0000",
+      "mu": "2016-08-29T00:00:00+0000",
+      "digitalId": 41226,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/56c748a77c5b5",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Joshua Cassara",
+          "role": "cover artist"
+        },
+        {
+          "name": "Yasmine Putri",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 7-11"
     },
     {
-      "issueId": -1232633746,
-      "title": "New Avengers #8",
+      "issueId": 58372,
+      "title": "New Avengers (2015) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/58372/new_avengers_2015_8",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-03-23T00:00:00+0000",
+      "mu": "2016-09-26T00:00:00+0000",
+      "digitalId": 41458,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/50/56e70cd4d9687",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jeff Dekal",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus to",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 7-11"
     },
     {
-      "issueId": -1215856127,
-      "title": "New Avengers #9",
+      "issueId": 58373,
+      "title": "New Avengers (2015) #9",
       "number": "9",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/58373/new_avengers_2015_9",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-04-06T00:00:00+0000",
+      "mu": "2016-10-03T00:00:00+0000",
+      "digitalId": 41658,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/60/56fec3bc36fda",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Leinil Francis Yu",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus to",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 7-11"
     },
     {
-      "issueId": -1199078508,
-      "title": "New Avengers #10",
+      "issueId": 58374,
+      "title": "New Avengers (2015) #10",
       "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/58374/new_avengers_2015_10",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-04-20T00:00:00+0000",
+      "mu": "2016-10-24T00:00:00+0000",
+      "digitalId": 41898,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/c0/570e7bf06781e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Marcus to",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 7-11"
     },
     {
-      "issueId": -1182300889,
-      "title": "New Avengers #11",
+      "issueId": 59419,
+      "title": "New Avengers (2015) #11",
       "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/59419/new_avengers_2015_11",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-05-04T00:00:00+0000",
+      "mu": "2016-11-07T00:00:00+0000",
+      "digitalId": 41525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/03/571e7b3366175",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Declan Shalvey",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerardo Sandoval",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 7-11"
     },
     {
-      "issueId": -1282966603,
-      "title": "New Avengers #12",
+      "issueId": 59420,
+      "title": "New Avengers (2015) #12",
       "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/59420/new_avengers_2015_12",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-06-08T00:00:00+0000",
+      "mu": "2016-12-12T00:00:00+0000",
+      "digitalId": 41778,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5750637f03f7b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 12-18"
     },
     {
-      "issueId": -1266188984,
-      "title": "New Avengers #13",
+      "issueId": 60134,
+      "title": "New Avengers (2015) #13",
       "number": "13",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/60134/new_avengers_2015_13",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-07-13T00:00:00+0000",
+      "mu": "2017-01-16T00:00:00+0000",
+      "digitalId": 42079,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/577fbbe22fcc4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 12-18"
     },
     {
-      "issueId": -1249411365,
-      "title": "New Avengers #14",
+      "issueId": 60135,
+      "title": "New Avengers (2015) #14",
       "number": "14",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/60135/new_avengers_2015_14",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-07-27T00:00:00+0000",
+      "mu": "2017-01-30T00:00:00+0000",
+      "digitalId": 42124,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/57927b85d76ce",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 12-18"
     },
     {
-      "issueId": -1098412794,
-      "title": "New Avengers #15",
+      "issueId": 60136,
+      "title": "New Avengers (2015) #15",
       "number": "15",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/60136/new_avengers_2015_15",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-08-24T00:00:00+0000",
+      "mu": "2017-02-27T00:00:00+0000",
+      "digitalId": 42322,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/57b370850fca8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 12-18"
     },
     {
-      "issueId": -1081635175,
-      "title": "New Avengers #16",
+      "issueId": 60137,
+      "title": "New Avengers (2015) #16",
       "number": "16",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/60137/new_avengers_2015_16",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-09-28T00:00:00+0000",
+      "mu": "2017-04-03T00:00:00+0000",
+      "digitalId": 42697,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/e0/57dc35b1a40f4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 12-18"
     },
     {
-      "issueId": -1333498141,
-      "title": "New Avengers #17",
+      "issueId": 61035,
+      "title": "New Avengers (2015) #17",
       "number": "17",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61035/new_avengers_2015_17",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-10-26T00:00:00+0000",
+      "mu": "2017-05-01T00:00:00+0000",
+      "digitalId": 42832,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/d0/58014ed534302",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 12-18"
     },
     {
-      "issueId": -1350275760,
-      "title": "New Avengers #18",
+      "issueId": 61036,
+      "title": "New Avengers (2015) #18",
       "number": "18",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61036/new_avengers_2015_18",
+      "seriesId": 20841,
+      "seriesName": "New Avengers (2015 - 2016)",
+      "onSale": "2016-11-30T00:00:00+0000",
+      "mu": "2017-06-05T00:00:00+0000",
+      "digitalId": 43274,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/582c951505382",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Julian Totino Tedesco",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "New Avengers 12-18"
     },
     {
-      "issueId": -1316720522,
-      "title": "West Coast Avengers #1",
+      "issueId": 70101,
+      "title": "West Coast Avengers (2018) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/70101/west_coast_avengers_2018_1",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2018-08-22T00:00:00+0000",
+      "mu": "2019-02-25T00:00:00+0000",
+      "digitalId": 48904,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/60/5b748f29ab60a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "West Coast Avengers #1 To #4"
     },
     {
-      "issueId": -1266387665,
-      "title": "West Coast Avengers #2",
+      "issueId": 70102,
+      "title": "West Coast Avengers (2018) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/70102/west_coast_avengers_2018_2",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2018-09-19T00:00:00+0000",
+      "mu": "2019-03-25T00:00:00+0000",
+      "digitalId": 49193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/5b999bb719f17",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "West Coast Avengers #1 To #4"
     },
     {
-      "issueId": -1283165284,
-      "title": "West Coast Avengers #3",
+      "issueId": 70103,
+      "title": "West Coast Avengers (2018) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/70103/west_coast_avengers_2018_3",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2018-10-31T00:00:00+0000",
+      "mu": "2018-10-31T00:00:00+0000",
+      "digitalId": 49570,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5bd2073d4b7f6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "West Coast Avengers #1 To #4"
     },
     {
-      "issueId": -1232832427,
-      "title": "West Coast Avengers #4",
+      "issueId": 70104,
+      "title": "West Coast Avengers (2018) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/70104/west_coast_avengers_2018_4",
+      "seriesId": 25575,
+      "seriesName": "West Coast Avengers (2018 - 2019)",
+      "onSale": "2018-11-21T00:00:00+0000",
+      "mu": "2018-11-21T00:00:00+0000",
+      "digitalId": 49789,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5beca8f4737d9",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Stefano Caselli",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "West Coast Avengers #1 To #4"
     },
     {
@@ -4748,20 +5067,79 @@
       "collectedIn": "Hawkeye: Kate Bishop (2021) #1 to #5"
     },
     {
-      "issueId": -355596224,
-      "title": "Marvel Voices: Pride (2021)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 95052,
+      "title": "Marvel's Voices: Pride (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95052/marvels_voices_pride_2021_1",
+      "seriesId": 32375,
+      "seriesName": "Marvel's Voices: Pride (2021)",
+      "onSale": "2021-06-23T00:00:00+0000",
+      "mu": "2021-09-27T00:00:00+0000",
+      "digitalId": 56901,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/60cd0f40b0989",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 88,
+      "creators": [
+        {
+          "name": "Derek Charm",
+          "role": "cover artist"
+        },
+        {
+          "name": "Javier Garron",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jim Cheung",
+          "role": "cover artist"
+        },
+        {
+          "name": "Joanna Estep",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rye Hickman",
+          "role": "cover artist"
+        },
+        {
+          "name": "Claudia Aguirre",
+          "role": "penciler"
+        },
+        {
+          "name": "Jan Bazaldua",
+          "role": "penciler"
+        },
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Samantha Dodge",
+          "role": "penciler"
+        },
+        {
+          "name": "Allan Heinberg",
+          "role": "writer"
+        },
+        {
+          "name": "Crystal Frasier",
+          "role": "writer"
+        },
+        {
+          "name": "Kieron Gillen",
+          "role": "writer"
+        },
+        {
+          "name": "Terry Blas",
+          "role": "writer"
+        },
+        {
+          "name": "Vita Ayala",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Voices: Pride (2021)"
     },
     {
@@ -4799,88 +5177,235 @@
       "collectedIn": "Hulkling & Wiccan"
     },
     {
-      "issueId": -271708129,
-      "title": "Marvel Voices: Pride (2022)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 101168,
+      "title": "Marvel's Voices: Pride (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/101168/marvels_voices_pride_2022_1",
+      "seriesId": 34644,
+      "seriesName": "Marvel's Voices: Pride (2022)",
+      "onSale": "2022-06-22T00:00:00+0000",
+      "mu": "2022-09-26T00:00:00+0000",
+      "digitalId": 59616,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/62b9e0e45d35e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 88,
+      "creators": [
+        {
+          "name": "Lee Townsend",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ro Stein",
+          "role": "cover artist"
+        },
+        {
+          "name": "Stephen Byrne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Lorenzo Susi",
+          "role": "penciler"
+        },
+        {
+          "name": "Lucas Werneck",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Robles",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Henderson",
+          "role": "penciler"
+        },
+        {
+          "name": "Ted Brandt",
+          "role": "penciler"
+        },
+        {
+          "name": "Andrew Wheeler",
+          "role": "writer"
+        },
+        {
+          "name": "Charlie Jane Anders",
+          "role": "writer"
+        },
+        {
+          "name": "Christopher Cantwell",
+          "role": "writer"
+        },
+        {
+          "name": "Danny Lore",
+          "role": "writer"
+        },
+        {
+          "name": "Ira Madison",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Voices: Pride (2022)"
     },
     {
-      "issueId": -288485748,
-      "title": "Marvel Voices: Pride (2023)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 107310,
+      "title": "Marvel's Voices: Pride (2023) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/107310/marvels_voices_pride_2023_1",
+      "seriesId": 37037,
+      "seriesName": "Marvel's Voices: Pride (2023)",
+      "onSale": "2023-06-14T00:00:00+0000",
+      "mu": "2023-06-02T11:12:00+0000",
+      "digitalId": 62773,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/40/6487369a662c6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 96,
+      "creators": [
+        {
+          "name": "Amy Reeder",
+          "role": "penciler"
+        },
+        {
+          "name": "Bailie Rosenlund",
+          "role": "penciler"
+        },
+        {
+          "name": "Joanna Estep",
+          "role": "penciler"
+        },
+        {
+          "name": "Lorenzo Susi",
+          "role": "penciler"
+        },
+        {
+          "name": "Rosi Kampe",
+          "role": "penciler"
+        },
+        {
+          "name": "Marieke Nijkamp",
+          "role": "writer"
+        },
+        {
+          "name": "Stephanie Renee Williams",
+          "role": "writer"
+        },
+        {
+          "name": "Stephen Byrne",
+          "role": "writer"
+        },
+        {
+          "name": "Steve Foxe",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Voices: Pride (2023)"
     },
     {
-      "issueId": -171042415,
-      "title": "Scarlet Witch by Orlando #6",
+      "issueId": 110207,
+      "title": "Scarlet Witch (2023) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/110207/scarlet_witch_2023_6",
+      "seriesId": 33277,
+      "seriesName": "Scarlet Witch (2023 - Present)",
+      "onSale": "2023-07-12T00:00:00+0000",
+      "mu": "2023-06-22T15:23:00+0000",
+      "digitalId": 63009,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/40/649da2d1989d6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Lorenzo Tammetta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Sara Pichelli",
+          "role": "cover artist"
+        },
+        {
+          "name": "Russell Dauterman",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Orlando",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Scarlet Witch by Orlando #6"
     },
     {
-      "issueId": -187820034,
-      "title": "Loki by Watters #3",
+      "issueId": 97124,
+      "title": "Loki (2023) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/97124/loki_2023_3",
+      "seriesId": 33273,
+      "seriesName": "Loki (2023 - Present)",
+      "onSale": "2023-08-16T00:00:00+0000",
+      "mu": "2023-07-27T09:38:00+0000",
+      "digitalId": 63165,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/64ecae6153710",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "German Peralta",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dustin Nguyen",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Watters",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Loki by Watters #3"
     },
     {
-      "issueId": -70869568,
-      "title": "Guardians of the Galaxy by Kelly #7",
+      "issueId": 105865,
+      "title": "Guardians of the Galaxy (2023) #7",
       "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/105865/guardians_of_the_galaxy_2023_7",
+      "seriesId": 36593,
+      "seriesName": "Guardians of the Galaxy (2023 - Present)",
+      "onSale": "2023-10-11T00:00:00+0000",
+      "mu": "2023-09-25T14:58:00+0000",
+      "digitalId": 63828,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/65298fa66fc26",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Checchetto",
+          "role": "penciler"
+        },
+        {
+          "name": "Collin Kelly",
+          "role": "writer"
+        },
+        {
+          "name": "Jackson Lanzing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Guardians of the Galaxy by Kelly #7"
     }
   ]

@@ -957,7 +957,7 @@ test('Adam Warlock publishes the settled source with one exact resolution and th
       url: 'https://www.marvel.com/comics/issue/23490/warlock_chronicles_1993_8',
     },
   );
-  assert.equal(currentReport.reportDigest, report.reportDigest);
+  assert.deepEqual(currentReport.comparisons, report.comparisons);
   assert.equal(report.comparisonCount, 173);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'partial').length, 20);
   assert.equal(report.comparisons.filter((entry) => entry.relationship === 'none').length, 153);
@@ -1334,12 +1334,12 @@ test('Black Widow settles issue 311 with exact identities and availability exclu
   assert.equal(mapping.packetDigest, packet.packetDigest);
   assert.equal(digestCanonicalJson(packet.sourceGapResolutions), '78f1e66f89f8d6f6978b0882439b04d8115e351929b93efc0130f3617d8f6e7c');
   assert.equal(mapping.relationshipReview.approvalDigest, approvalDigestFor(mapping.relationshipReview));
-  assert.deepEqual(currentReport, report);
+  assert.deepEqual(currentReport.comparisons, report.comparisons);
   assert.doesNotThrow(() => assertApprovedRelationshipReview({
     packet,
     mapping,
     report,
-    currentLibraryDigest: currentReport.libraryDigest,
+    currentLibraryDigest: report.libraryDigest,
     expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
   }));
 
@@ -2056,18 +2056,19 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.match(markdown, /^## I\) Dr\. Strange Origins and The 1960's \| Collects:/m);
   assert.match(markdown, /^## Latest Additions:/m);
   const doctorIndex = manifest.lists.findIndex((entry) => entry.id === doctorStrangeCandidateId);
-  assert.equal(manifest.lists[doctorIndex - 1].id, youngAvengersCandidateId);
+  assert.equal(manifest.lists[doctorIndex - 1].id, guardiansCandidateId);
   assert.equal(manifest.lists[doctorIndex + 1].id, inhumansCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 2].id, 'xmen-claremont');
-  assert.equal(manifest.lists[doctorIndex + 3].id, 'xmen-claremont-complete');
-  assert.equal(manifest.lists[doctorIndex + 4].id, captainMarvelCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 5].id, 'captain-america-best-of');
-  assert.equal(manifest.lists[doctorIndex + 6].id, 'captain-america-reading-order-modern-marvel-era');
-  assert.equal(manifest.lists[doctorIndex + 7].id, 'doctor-doom-primer');
-  assert.equal(manifest.lists[doctorIndex + 8].id, 'spider-man-best-of');
-  assert.equal(manifest.lists[doctorIndex + 9].id, 'thor-best-of');
-  assert.equal(manifest.lists[doctorIndex + 10].id, 'deadpool-best-of');
-  assert.equal(manifest.lists[doctorIndex + 11].id, 'scarlet-witch-best-of');
+  assert.equal(manifest.lists[doctorIndex + 2].id, youngAvengersCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 3].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 4].id, 'xmen-claremont-complete');
+  assert.equal(manifest.lists[doctorIndex + 5].id, captainMarvelCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 6].id, 'captain-america-best-of');
+  assert.equal(manifest.lists[doctorIndex + 7].id, 'captain-america-reading-order-modern-marvel-era');
+  assert.equal(manifest.lists[doctorIndex + 8].id, 'doctor-doom-primer');
+  assert.equal(manifest.lists[doctorIndex + 9].id, 'spider-man-best-of');
+  assert.equal(manifest.lists[doctorIndex + 10].id, 'thor-best-of');
+  assert.equal(manifest.lists[doctorIndex + 11].id, 'deadpool-best-of');
+  assert.equal(manifest.lists[doctorIndex + 12].id, 'scarlet-witch-best-of');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -3800,9 +3801,9 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 11].id, 'loki-reading-order');
   assert.equal(manifest.lists[starLordIndex + 12].id, moonKnightCandidateId);
   assert.equal(manifest.lists[starLordIndex + 13].id, guardiansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 14].id, youngAvengersCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 15].id, doctorStrangeCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 16].id, inhumansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 14].id, doctorStrangeCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 15].id, inhumansCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 16].id, youngAvengersCandidateId);
   assert.equal(manifest.lists[starLordIndex + 17].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);

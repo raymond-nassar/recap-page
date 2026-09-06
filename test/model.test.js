@@ -1056,8 +1056,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // eight exact resolutions and ten availability exclusions, while its eight exact records have
   // explicit official links but no optional provider metadata. X-Force carries no placeholders
   // after 23 exact resolutions. Inhumans carries no placeholders after 38 exact resolutions and
-  // four explicit exclusions. Young Avengers adds
-  // 55 source-preserving placeholders. Fantastic Four carries no placeholders after its
+  // four explicit exclusions. Young Avengers retains four context placeholders after 51 exact
+  // resolutions. Fantastic Four carries no placeholders after its
   // owner-reviewed settlement. Guardians carries no placeholders after 18 exact resolutions and
   // 11 explicit exclusions, and Defenders carries no placeholders after its owner-reviewed settlement.
   // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
@@ -1068,8 +1068,8 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
   // metadata, while two keep official issue links beside an explicit provider refusal.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1428, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1427, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1377, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1376, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 170);
   assert.equal(affected, 16);
 });
@@ -1281,7 +1281,8 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // eight exact refused records add two distinct ids because six already occur in Black Widow or
   // WandaVision; its ten excluded comics add none. X-Force adds no refused identities after its 23
   // exact resolutions. Inhumans
-  // adds 42, and Young Avengers adds 55. Fantastic Four carries no refused identities after its
+  // adds 42, and Young Avengers retains four context placeholders after 51 exact resolutions.
+  // Fantastic Four carries no refused identities after its
   // owner-reviewed settlement. Guardians replaces 29 placeholders with 18 exact issues, three of
   // which retain explicit provider refusals. Defenders adds none after its owner-reviewed
   // settlement, and Nick Fury and S.H.I.E.L.D. adds 194. Adam Warlock carries no refused identities
@@ -1290,6 +1291,6 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // explicit exclusions.
   // Hulk replaces 19 distinct negative placeholders with nine exact refused records. One of
   // those exact identities already appears elsewhere, so the distinct refused total falls by 11.
-  assert.equal(refused.length, 1558);
+  assert.equal(refused.length, 1507);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

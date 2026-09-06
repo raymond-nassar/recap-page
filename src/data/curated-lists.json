@@ -2760,37 +2760,6 @@
       "coverIssueId": 15429
     },
     {
-      "id": "young-avengers-reading-order",
-      "name": "Young Avengers",
-      "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
-      "type": "character-run",
-      "spotlightKind": "complete-guide",
-      "depth": "complete",
-      "beginner": true,
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "sourceFile": "young-avengers-reading-order.md",
-      "sourcePage": "https://www.comicbookherald.com/young-avengers-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "out": "young_avengers_reading_order.json",
-      "characters": [
-        "Young Avengers",
-        "Kate Bishop",
-        "Wiccan",
-        "Hulkling"
-      ],
-      "keywords": [
-        "Young Avengers",
-        "Comic Book Herald",
-        "Marvel"
-      ],
-      "expect": 169,
-      "timeline": null,
-      "coverIssueId": 4500
-    },
-    {
       "id": "doctor-strange-reading-order",
       "name": "Doctor Strange",
       "description": "Doctor Strange from his first Strange Tales appearances through the modern Sorcerer Supreme, Defenders, Avengers, Strange Academy, and 2023 runs.",
@@ -2856,6 +2825,37 @@
       "expect": 255,
       "timeline": 1965,
       "coverIssueId": 13183
+    },
+    {
+      "id": "young-avengers-reading-order",
+      "name": "Young Avengers",
+      "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": true,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "young-avengers-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/young-avengers-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "young_avengers_reading_order.json",
+      "characters": [
+        "Young Avengers",
+        "Kate Bishop",
+        "Wiccan",
+        "Hulkling"
+      ],
+      "keywords": [
+        "Young Avengers",
+        "Comic Book Herald",
+        "Marvel"
+      ],
+      "expect": 169,
+      "timeline": null,
+      "coverIssueId": 4500
     },
     {
       "id": "xmen-claremont",
