@@ -8743,10 +8743,10 @@
   },
   "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
   "relationshipReview": {
-    "reportDigest": "fa0390e552e89f0947abd5c571eb5c10693b082c5055c0b39c74a69e2187be69",
+    "reportDigest": "995030c5dbe9b1d686193fca336733b09b82fe38ebce4ec8087935576f665fcb",
     "packetDigest": "a033c4c388c2cb0d8032574795a69cec52f95b87d0c8b8db1683c20cdd9883a5",
     "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
-    "libraryDigest": "e5a35faa709984de9b33cabb59f30edfa62788c62ea8e3fd2845fc81f9e1e5ba",
+    "libraryDigest": "9683eeb3db3c42d7c39d9ecb75c67caa3cea6204de3e5bed45d6c34d8c506b6f",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 414,
@@ -10218,9 +10218,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing moon-knight-reading-order comparison scope was re-reviewed after the Magneto settlement changed one included library order. All 162 relationships retain their source-order publication decisions.",
+    "rationale": "The existing moon-knight-reading-order comparison scope was re-reviewed after the Captain America settlement changed one included library order. All 162 relationships retain their publication decisions.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "9b26bc8d7483670b3a37636ea8bf185e7ef6ffb09c0dcb049fdb8566a3fee5f6"
+    "approvalDigest": "a5aa071f4fe49577f3d7b497197f368e63d11b934119673853501633bed8aa64"
   },
   "sourceGapResolutions": [
     {

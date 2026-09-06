@@ -1,20 +1,16 @@
 {
   "parentId": "marvel-knights-to-planet-x",
-  "generatedAt": "2026-09-06T13:03:58.297Z",
-  "pairCount": 68,
-  "chapterCountWithOverlap": 49,
-  "existingListCount": 19,
-  "sharedOccurrenceCount": 372,
+  "generatedAt": "2026-09-06T13:35:20.257Z",
+  "pairCount": 67,
+  "chapterCountWithOverlap": 48,
+  "existingListCount": 18,
+  "sharedOccurrenceCount": 371,
   "internalChildOverlapCount": 0,
-  "matrixSha256": "dc98c35e005b0adf534fe3e74a8d5cb4ff44921661f6ad6f4ea59280c76d7c54",
+  "matrixSha256": "3d3248a1618cd287d28068e6a3604fab3087575f85cbcf7b19440b82fa69fb34",
   "existingLists": [
     {
       "id": "amazing-spider-man-reading-order-modern-marvel-era",
       "sharedCount": 53
-    },
-    {
-      "id": "captain-america-reading-order-modern-marvel-era",
-      "sharedCount": 1
     },
     {
       "id": "daredevil-reading-order",
@@ -480,14 +476,6 @@
         43161,
         43162,
         43163
-      ]
-    },
-    {
-      "chapterId": "marvel-knights-to-planet-x-38",
-      "existingListId": "captain-america-reading-order-modern-marvel-era",
-      "sharedCount": 1,
-      "sharedIssueIds": [
-        12817
       ]
     },
     {

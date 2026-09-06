@@ -32,7 +32,9 @@ const originalApprovedOverlaps = [
   ['wolverine-reading-order', 42],
 ];
 const currentOverlaps = [
-  ...originalApprovedOverlaps,
+  ...originalApprovedOverlaps.filter(([id]) => (
+    id !== 'captain-america-reading-order-modern-marvel-era'
+  )),
   ['daredevil-reading-order', 73],
   ['fantastic-four-reading-order', 23],
   ['iron-man-reading-order', 6],

@@ -564,15 +564,10 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The modern Marvel-era guide ships with explicit unresolved provenance and a representative cover issue, so the catalog entry can be published without inventing missing rows.",
+    "reason": "The recoverable 69-position checklist publishes its one atomic issue as an exact metadata row and preserves the other 68 collection, trade, range, compound, event, order-label, and series-context positions as source-semantic exclusions. It has zero canonical repeats, zero unavailable exclusions, and zero open metadata gaps.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
-      "captain-america-best-of",
-      "doctor-doom-primer",
-      "essential-avengers",
-      "heroic-age-avengers",
-      "iron-man-reading-order",
-      "marvel-super-heroes-secret-wars"
+      "captain-america-best-of"
     ],
     "catalogIds": [
       "captain-america-reading-order-modern-marvel-era"

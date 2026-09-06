@@ -24442,15 +24442,15 @@
     "spotlightKind": "complete-guide"
   },
   "relationshipReview": {
-    "reportDigest": "11443aba1c2e2aac3ab13280963f68f02a8ec7de63fbd6e7f8a2ae6758c15e4f",
+    "reportDigest": "1863aebe99b12fe5b652b2ce815e214354b5b3f36fe08877a6f73b63436d3479",
     "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
     "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-    "libraryDigest": "5368ec04dcea2baeddea6aaa1843bf0aaa6e5805a5ad63c2787d0fcd4927c273",
+    "libraryDigest": "b8f6eea1fe9a494159d9388155794fa1088b68e1867c570e3c6f39b973c818e5",
     "peerDigests": {},
     "authorityType": "stronger-model",
-    "authorityIdentity": "GPT-5.6 Terra",
-    "rationale": "Independent complete-library review, including later orders, confirmed 155 relationships: 28 non-none (25 partial and 3 existing-subset) and 127 none. Every non-none relationship was reviewed from its exact shared provider identities; none is an exact duplicate.",
-    "reviewedAt": "2026-08-27T14:00:00.000Z",
+    "authorityIdentity": "GPT-5.6 Sol",
+    "rationale": "The existing captain-marvel-ms-marvel-reading-order comparison scope was re-reviewed after the Captain America settlement changed one included library order. All 157 relationships retain their publication decisions.",
+    "reviewedAt": "2026-09-06",
     "dispositions": [
       {
         "orderId": "abomination-reading-order",
@@ -24459,7 +24459,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24470,7 +24470,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24481,7 +24481,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24492,7 +24492,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24503,7 +24503,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24514,7 +24514,7 @@
         "rationale": "Reviewed 6 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 6,
         "sharedIds": [
           "55351",
@@ -24532,7 +24532,7 @@
         "rationale": "Reviewed 3 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 3,
         "sharedIds": [
           "16890",
@@ -24547,7 +24547,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24558,7 +24558,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24569,7 +24569,7 @@
         "rationale": "Reviewed 13 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 13,
         "sharedIds": [
           "7347",
@@ -24594,7 +24594,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24605,7 +24605,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24616,7 +24616,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24627,7 +24627,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24638,7 +24638,7 @@
         "rationale": "Reviewed 5 exact shared provider identities; this remains a existing-subset relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 5,
         "sharedIds": [
           "47565",
@@ -24655,7 +24655,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24666,7 +24666,7 @@
         "rationale": "Reviewed 6 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 7,
         "sharedIds": [
           "7346",
@@ -24710,7 +24710,7 @@
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "rationale": "The shared issues are legitimate character, team, or event appearances. Each guide retains its complete independently sourced sequence.",
-        "reviewedAt": "2026-08-27T14:00:00.000Z"
+        "reviewedAt": "2026-09-06"
       },
       {
         "orderId": "bloodties",
@@ -24719,7 +24719,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24730,7 +24730,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24741,7 +24741,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24752,7 +24752,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24763,7 +24763,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24774,7 +24774,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24785,7 +24785,7 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 12,
         "sharedIds": [
           "6097",
@@ -24809,7 +24809,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24820,7 +24820,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24831,7 +24831,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24842,7 +24842,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24853,7 +24853,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24864,7 +24864,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24875,7 +24875,7 @@
         "rationale": "Reviewed 17 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 17,
         "sharedIds": [
           "22880",
@@ -24904,7 +24904,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24915,7 +24915,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24926,7 +24926,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24937,7 +24937,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24948,7 +24948,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24959,7 +24959,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24970,7 +24970,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -24981,7 +24981,7 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 12,
         "sharedIds": [
           "10580",
@@ -25005,7 +25005,7 @@
         "rationale": "Reviewed 1 exact shared provider identity; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 1,
         "sharedIds": [
           "23747"
@@ -25018,7 +25018,7 @@
         "rationale": "Reviewed 9 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 9,
         "sharedIds": [
           "8022",
@@ -25039,7 +25039,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25050,7 +25050,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25061,7 +25061,7 @@
         "rationale": "Reviewed 39 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 39,
         "sharedIds": [
           "7342",
@@ -25112,7 +25112,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25123,7 +25123,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25134,7 +25134,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25145,7 +25145,7 @@
         "rationale": "The shared issues are intentional cross-character or event relationships; this source-derived guide remains distinct.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 8,
         "sharedIds": [
           "19683",
@@ -25165,7 +25165,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25176,7 +25176,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25187,7 +25187,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25198,7 +25198,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25209,7 +25209,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25220,7 +25220,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25231,7 +25231,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25242,7 +25242,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25253,7 +25253,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25264,7 +25264,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25275,7 +25275,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25286,7 +25286,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25297,7 +25297,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25308,7 +25308,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25319,7 +25319,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25330,7 +25330,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25341,7 +25341,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25352,7 +25352,7 @@
         "rationale": "Reviewed 1 exact shared provider identity; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 1,
         "sharedIds": [
           "95788"
@@ -25365,7 +25365,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25376,7 +25376,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25387,7 +25387,7 @@
         "rationale": "Reviewed 9 exact shared provider identities; this remains a existing-subset relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 9,
         "sharedIds": [
           "7342",
@@ -25408,7 +25408,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25419,7 +25419,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25430,7 +25430,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25441,7 +25441,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25452,7 +25452,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25463,7 +25463,7 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a existing-subset relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 12,
         "sharedIds": [
           "10580",
@@ -25487,7 +25487,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25498,7 +25498,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25509,7 +25509,7 @@
         "rationale": "Reviewed 3 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 3,
         "sharedIds": [
           "17518",
@@ -25524,7 +25524,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25535,7 +25535,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25546,7 +25546,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25557,7 +25557,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25568,7 +25568,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25579,7 +25579,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25590,7 +25590,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25601,7 +25601,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25612,7 +25612,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25623,7 +25623,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25634,7 +25634,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25645,7 +25645,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25656,7 +25656,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25667,7 +25667,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25678,7 +25678,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25689,7 +25689,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25700,7 +25700,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25711,7 +25711,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25722,7 +25722,7 @@
         "rationale": "Reviewed 12 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 12,
         "sharedIds": [
           "10580",
@@ -25746,7 +25746,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25757,7 +25757,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25768,7 +25768,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25779,7 +25779,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25790,7 +25790,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25801,7 +25801,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25812,7 +25812,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25823,7 +25823,7 @@
         "rationale": "Reviewed 1 exact shared provider identity; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 1,
         "sharedIds": [
           "22980"
@@ -25836,7 +25836,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25847,7 +25847,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25858,7 +25858,7 @@
         "rationale": "Reviewed 7 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 7,
         "sharedIds": [
           "13737",
@@ -25877,7 +25877,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25888,7 +25888,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25899,7 +25899,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25910,7 +25910,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25921,7 +25921,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25932,7 +25932,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25943,7 +25943,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25954,7 +25954,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25965,7 +25965,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25976,7 +25976,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25987,7 +25987,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -25998,7 +25998,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26009,7 +26009,7 @@
         "rationale": "Reviewed 5 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 5,
         "sharedIds": [
           "64961",
@@ -26026,7 +26026,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26037,7 +26037,7 @@
         "rationale": "Reviewed 28 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 28,
         "sharedIds": [
           "8014",
@@ -26077,7 +26077,7 @@
         "rationale": "Reviewed 11 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 11,
         "sharedIds": [
           "8014",
@@ -26100,7 +26100,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26111,7 +26111,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26122,7 +26122,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26133,7 +26133,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26144,7 +26144,7 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 2,
         "sharedIds": [
           "10590",
@@ -26158,7 +26158,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26169,7 +26169,7 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 2,
         "sharedIds": [
           "7123",
@@ -26183,7 +26183,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26194,7 +26194,7 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 2,
         "sharedIds": [
           "74006",
@@ -26208,7 +26208,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26219,7 +26219,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26230,7 +26230,7 @@
         "rationale": "Reviewed 2 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 2,
         "sharedIds": [
           "13713",
@@ -26244,7 +26244,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26255,7 +26255,7 @@
         "rationale": "Reviewed 6 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 6,
         "sharedIds": [
           "13726",
@@ -26273,7 +26273,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26284,7 +26284,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26295,7 +26295,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26306,7 +26306,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26317,7 +26317,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26328,7 +26328,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26339,7 +26339,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26350,7 +26350,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26361,7 +26361,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26372,7 +26372,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26383,7 +26383,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26394,7 +26394,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26405,7 +26405,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26416,7 +26416,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26427,7 +26427,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26438,7 +26438,7 @@
         "rationale": "No shared provider identities require a relationship exception.",
         "authorityType": "policy",
         "authorityIdentity": "complete-library comparison policy",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 0,
         "sharedIds": []
       },
@@ -26449,7 +26449,7 @@
         "rationale": "Reviewed 55 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 55,
         "sharedIds": [
           "13691",
@@ -26516,7 +26516,7 @@
         "rationale": "Reviewed 55 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
-        "reviewedAt": "2026-08-27T14:00:00.000Z",
+        "reviewedAt": "2026-09-06",
         "sharedCount": 55,
         "sharedIds": [
           "13691",
@@ -26577,7 +26577,7 @@
         ]
       }
     ],
-    "approvalDigest": "3ad678e4b08ef159b22a1adad8a7cdbef71ac5abe51d244735e61f4d4a73c905",
+    "approvalDigest": "038ae3afcbb92e36de7c218cd93a610c639b7851b3b94cbe0115bc707ef6bcc6",
     "sourceCounts": {
       "sourceOccurrenceCount": 599,
       "sourceIdentityCount": 527,

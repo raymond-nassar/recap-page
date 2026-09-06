@@ -3022,7 +3022,7 @@
     {
       "id": "captain-america-reading-order-modern-marvel-era",
       "name": "Captain America: Modern Marvel Era",
-      "description": "Captain America from The New Deal through the 2023 run, preserving Comic Book Herald's modern Marvel-era checklist and any unresolved source rows as explicit provenance.",
+      "description": "The one atomic issue in Comic Book Herald's modern Captain America checklist, with all non-atomic source rows preserved as explicit provenance.",
       "type": "character-run",
       "spotlightKind": "complete-guide",
       "depth": "complete",
@@ -3055,9 +3055,9 @@
         "Comic Book Herald",
         "Modern Marvel Era"
       ],
-      "expect": 69,
+      "expect": 1,
       "timeline": null,
-      "coverIssueId": 12817
+      "coverIssueId": 6010
     },
     {
       "id": "doctor-doom-primer",

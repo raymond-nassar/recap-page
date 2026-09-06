@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Captain America modern guide
+
+In plain English: The modern Captain America guide now opens the one comic that its source names
+individually. The other 68 recommendations name collections, ranges, events, or reading contexts,
+so they are preserved as source notes instead of being shown as broken comic links or replaced with
+made-up representative issues. Existing saved Reading Lists and progress are not rewritten.
+
+For maintainers: the recoverable 69-position boundary now records one exact issue and 68
+source-semantic exclusions, with zero canonical repeats, unavailable exclusions, or open metadata
+gaps.
+
 ### Settled the Magneto guide gaps
 
 In plain English: The bundled Magneto guide now includes 56 exact comics that previously appeared
