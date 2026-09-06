@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Young Avengers guide gaps
+
+In plain English: The bundled Young Avengers guide now includes 51 exact comics that previously
+appeared as broken placeholders. Four context entries remain as placeholders because they do not
+identify a single comic. Existing saved Reading Lists and reading progress are not rewritten;
+newly imported copies receive the settled 169-item order.
+
+For maintainers, all 220 source positions remain accounted for as 165 exact rows, four context
+placeholders, and 51 explicit exclusions. All 51 former provider gaps retain auditable transition
+evidence.
+
 ### Settled the Inhumans guide gaps
 
 In plain English: The bundled Inhumans guide now includes 38 exact comics that previously appeared

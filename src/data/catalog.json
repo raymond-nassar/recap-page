@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T04:18:43.037Z",
+  "generatedAt": "2026-09-06T09:48:24.096Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3368,44 +3368,6 @@
       "updatedAt": "2026-09-05T05:01:41.370Z"
     },
     {
-      "id": "young-avengers-reading-order",
-      "file": "young_avengers_reading_order.json",
-      "name": "Young Avengers",
-      "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
-      "type": "character-run",
-      "depth": "complete",
-      "spotlightKind": "complete-guide",
-      "count": 169,
-      "placeholderCount": 55,
-      "emptyRecordCount": 0,
-      "collections": 35,
-      "characters": [
-        "Young Avengers",
-        "Kate Bishop",
-        "Wiccan",
-        "Hulkling"
-      ],
-      "keywords": [
-        "Young Avengers",
-        "Comic Book Herald",
-        "Marvel"
-      ],
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "beginner": true,
-      "timeline": null,
-      "coverIssueId": 4500,
-      "cover": {
-        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5718ee6a84c6b",
-        "ext": "jpg"
-      },
-      "source": "https://www.comicbookherald.com/young-avengers-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "updatedAt": "2026-08-28T03:03:48.579Z"
-    },
-    {
       "id": "doctor-strange-reading-order",
       "file": "doctor_strange_reading_order.json",
       "name": "Doctor Strange",
@@ -3485,6 +3447,44 @@
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
       "updatedAt": "2026-09-06T04:18:43.037Z"
+    },
+    {
+      "id": "young-avengers-reading-order",
+      "file": "young_avengers_reading_order.json",
+      "name": "Young Avengers",
+      "description": "A complete Young Avengers reading path that follows the source page from the team origins through the latest additions.",
+      "type": "character-run",
+      "depth": "complete",
+      "spotlightKind": "complete-guide",
+      "count": 169,
+      "placeholderCount": 4,
+      "emptyRecordCount": 0,
+      "collections": 35,
+      "characters": [
+        "Young Avengers",
+        "Kate Bishop",
+        "Wiccan",
+        "Hulkling"
+      ],
+      "keywords": [
+        "Young Avengers",
+        "Comic Book Herald",
+        "Marvel"
+      ],
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "beginner": true,
+      "timeline": null,
+      "coverIssueId": 4500,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5718ee6a84c6b",
+        "ext": "jpg"
+      },
+      "source": "https://www.comicbookherald.com/young-avengers-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "updatedAt": "2026-09-06T09:48:24.096Z"
     },
     {
       "id": "xmen-claremont",

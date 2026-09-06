@@ -1,17 +1,18 @@
 {
   "candidateId": "young-avengers-reading-order",
-  "packetDigest": "cd96d43cc0b84c1d3308acad624440953c3869d99fb41b9823039b2bed94cb82",
-  "mappingDigest": "598e40dff03f403689e0ac7a917a5264b9b77dfd8bb27bc964cc4436f633ee47",
-  "libraryDigest": "ef08bfbca1539f69ad7ea7b9f2e6593e4a6e10ce6997955a320de9869cc21224",
+  "packetDigest": "a11055aecc8fff6f5e7b509be271b72f567e5348ef58d23ee6b5dea67daf5e7d",
+  "mappingDigest": "d40894c865e6f492da6f0610da4d26c01765069a0597fec2fc136e305e4a1501",
+  "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 220,
     "sourceIdentityCount": 169,
-    "includedIssueCount": 114,
-    "sourceGapCount": 55,
-    "repeatedSourceReferenceCount": 0
+    "includedIssueCount": 165,
+    "sourceGapCount": 4,
+    "repeatedSourceReferenceCount": 0,
+    "excludedSourceRowCount": 51
   },
-  "candidateCount": 114,
+  "candidateCount": 165,
   "comparisonCount": 138,
   "comparisons": [
     {
@@ -28,9 +29,16 @@
     },
     {
       "orderId": "all-new-all-different-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 6,
+      "sharedIds": [
+        "57030",
+        "57034",
+        "58371",
+        "57529",
+        "57530",
+        "57611"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "annihilation",
@@ -404,9 +412,13 @@
     },
     {
       "orderId": "marvel-fresh-start-avengers",
-      "sharedCount": 7,
+      "sharedCount": 11,
       "sharedIds": [
         "21401",
+        "70101",
+        "70102",
+        "70103",
+        "70104",
         "70105",
         "70106",
         "70107",
@@ -762,10 +774,25 @@
     },
     {
       "orderId": "white-tiger-ava-ayala",
-      "sharedCount": 2,
+      "sharedCount": 17,
       "sharedIds": [
         "46844",
-        "46845"
+        "46845",
+        "57030",
+        "57034",
+        "58371",
+        "57529",
+        "57530",
+        "57611",
+        "57612",
+        "58372",
+        "58373",
+        "58374",
+        "60135",
+        "60136",
+        "60137",
+        "61035",
+        "61036"
       ],
       "relationship": "partial"
     },
@@ -890,5 +917,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "4a8f649f2b3da25ac7b0ef8342a5e078c89800aa43cdf8de47a4e279469d85d7"
+  "reportDigest": "095a8adae42cd9887ff753e42da1fb1e171f492de5d695d697b2d3414a0871bc"
 }

@@ -6,19 +6,19 @@ No source commentary or images are copied. Issue identities, titles, and exact l
 See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permission boundary and review method.
 
 ## Young Avengers 1-12, Special
-- [ ] Young Avengers #1 <!-- mrt:source-occurrence=9 -->
-- [ ] Young Avengers #2 <!-- mrt:source-occurrence=10 -->
-- [ ] Young Avengers #3 <!-- mrt:source-occurrence=11 -->
-- [ ] Young Avengers #4 <!-- mrt:source-occurrence=12 -->
-- [ ] Young Avengers #5 <!-- mrt:source-occurrence=13 -->
-- [ ] Young Avengers #6 <!-- mrt:source-occurrence=14 -->
-- [ ] Young Avengers #7 <!-- mrt:source-occurrence=15 -->
-- [ ] Young Avengers #8 <!-- mrt:source-occurrence=16 -->
-- [ ] Young Avengers #9 <!-- mrt:source-occurrence=17 -->
-- [ ] Young Avengers #10 <!-- mrt:source-occurrence=18 -->
-- [ ] Young Avengers #11 <!-- mrt:source-occurrence=19 -->
-- [ ] Young Avengers #12 <!-- mrt:source-occurrence=20 -->
-- [ ] Young Avengers 1-12, Special <!-- mrt:source-occurrence=21 -->
+- [ ] [Young Avengers (2005) #1 <!-- mrt:source-occurrence=9 -->](https://www.marvel.com/comics/issue/1629/young_avengers_2005_1)
+- [ ] [Young Avengers (2005) #2 <!-- mrt:source-occurrence=10 -->](https://www.marvel.com/comics/issue/1721/young_avengers_2005_2)
+- [ ] [Young Avengers (2005) #3 <!-- mrt:source-occurrence=11 -->](https://www.marvel.com/comics/issue/1830/young_avengers_2005_3)
+- [ ] [Young Avengers (2005) #4 <!-- mrt:source-occurrence=12 -->](https://www.marvel.com/comics/issue/1941/young_avengers_2005_4)
+- [ ] [Young Avengers (2005) #5 <!-- mrt:source-occurrence=13 -->](https://www.marvel.com/comics/issue/2049/young_avengers_2005_5)
+- [ ] [Young Avengers (2005) #6 <!-- mrt:source-occurrence=14 -->](https://www.marvel.com/comics/issue/2162/young_avengers_2005_6)
+- [ ] [Young Avengers (2005) #7 <!-- mrt:source-occurrence=15 -->](https://www.marvel.com/comics/issue/2328/young_avengers_2005_7)
+- [ ] [Young Avengers (2005) #8 <!-- mrt:source-occurrence=16 -->](https://www.marvel.com/comics/issue/2448/young_avengers_2005_8)
+- [ ] [Young Avengers (2005) #9 <!-- mrt:source-occurrence=17 -->](https://www.marvel.com/comics/issue/3018/young_avengers_2005_9)
+- [ ] [Young Avengers (2005) #10 <!-- mrt:source-occurrence=18 -->](https://www.marvel.com/comics/issue/3359/young_avengers_2005_10)
+- [ ] [Young Avengers (2005) #11 <!-- mrt:source-occurrence=19 -->](https://www.marvel.com/comics/issue/3887/young_avengers_2005_11)
+- [ ] [Young Avengers (2005) #12 <!-- mrt:source-occurrence=20 -->](https://www.marvel.com/comics/issue/4252/young_avengers_2005_12)
+- [ ] [YOUNG AVENGERS SPECIAL 1 (2005) #1 <!-- mrt:source-occurrence=21 -->](https://www.marvel.com/comics/issue/3222/young_avengers_special_1_2005_1)
 ## Civil War: Young Avengers & Runaways 1-4
 - [ ] [Civil War: Young Avengers & Runaways (2006) #1 <!-- mrt:source-occurrence=24 -->](https://www.marvel.com/comics/issue/4500/civil_war_young_avengers_runaways_2006_1)
 - [ ] [Civil War: Young Avengers & Runaways (2006) #2 <!-- mrt:source-occurrence=25 -->](https://www.marvel.com/comics/issue/4821/civil_war_young_avengers_runaways_2006_2)
@@ -36,7 +36,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Secret Invasion: Runaways/Young Avengers (2008) #2 <!-- mrt:source-occurrence=39 -->](https://www.marvel.com/comics/issue/21588/secret_invasion_runawaysyoung_avengers_2008_2)
 - [ ] [Secret Invasion: Runaways/Young Avengers (2008) #3 <!-- mrt:source-occurrence=40 -->](https://www.marvel.com/comics/issue/21785/secret_invasion_runawaysyoung_avengers_2008_3)
 ## Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade - Young Avengers 1, Uncanny X-Men 526
-- [ ] Avengers: The Children's Crusade ? Young Avengers #1 <!-- mrt:source-occurrence=43 -->
+- [ ] [AVENGERS: THE CHILDREN'S CRUSADE - YOUNG AVENGERS 1 (2010) #1 <!-- mrt:source-occurrence=43 -->](https://www.marvel.com/comics/issue/37421/avengers_the_childrens_crusade_-_young_avengers_1_2010_1)
 - [ ] [Avengers: The Children's Crusade (2010) #1 <!-- mrt:source-occurrence=44 -->](https://www.marvel.com/comics/issue/31134/avengers_the_childrens_crusade_2010_1)
 - [ ] [Avengers: The Children's Crusade (2010) #2 <!-- mrt:source-occurrence=45 -->](https://www.marvel.com/comics/issue/31136/avengers_the_childrens_crusade_2010_2)
 - [ ] [Avengers: The Children's Crusade (2010) #3 <!-- mrt:source-occurrence=46 -->](https://www.marvel.com/comics/issue/31138/avengers_the_childrens_crusade_2010_3)
@@ -49,14 +49,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Uncanny X-Men (1963) #526 <!-- mrt:source-occurrence=53 -->](https://www.marvel.com/comics/issue/30623/uncanny_x-men_1963_526)
 ## Young Avengers #1-5, Marvel Now! Point One
 - [ ] [Young Avengers (2013) #1 <!-- mrt:source-occurrence=58 -->](https://www.marvel.com/comics/issue/46824/young_avengers_2013_1)
-- [ ] Young Avengers #1-5, Marvel Now! Point One <!-- mrt:source-occurrence=59 -->
+- [ ] [MARVEL NOW! POINT ONE 1 (2012) #1 <!-- mrt:source-occurrence=59 -->](https://www.marvel.com/comics/issue/45717/marvel_now_point_one_1_2012_1)
 - [ ] [Young Avengers (2013) #2 <!-- mrt:source-occurrence=60 -->](https://www.marvel.com/comics/issue/46829/young_avengers_2013_2)
 - [ ] [Young Avengers (2013) #3 <!-- mrt:source-occurrence=61 -->](https://www.marvel.com/comics/issue/46832/young_avengers_2013_3)
 - [ ] [Young Avengers (2013) #4 <!-- mrt:source-occurrence=62 -->](https://www.marvel.com/comics/issue/46834/young_avengers_2013_4)
 - [ ] [Young Avengers (2013) #5 <!-- mrt:source-occurrence=63 -->](https://www.marvel.com/comics/issue/46836/young_avengers_2013_5)
 ## Marvel Boy #1 To #6
-- [ ] Marvel Boy #1 <!-- mrt:source-occurrence=66 -->
-- [ ] Marvel Boy #2 <!-- mrt:source-occurrence=67 -->
+- [ ] [Marvel Boy (2000) #1 <!-- mrt:source-occurrence=66 -->](https://www.marvel.com/comics/issue/10002/marvel_boy_2000_1)
+- [ ] [Marvel Boy (2000) #2 <!-- mrt:source-occurrence=67 -->](https://www.marvel.com/comics/issue/10003/marvel_boy_2000_2)
 - [ ] [Marvel Boy (2000) #3 <!-- mrt:source-occurrence=68 -->](https://www.marvel.com/comics/issue/10004/marvel_boy_2000_3)
 - [ ] [Marvel Boy (2000) #4 <!-- mrt:source-occurrence=69 -->](https://www.marvel.com/comics/issue/10005/marvel_boy_2000_4)
 - [ ] [Marvel Boy (2000) #5 <!-- mrt:source-occurrence=70 -->](https://www.marvel.com/comics/issue/10006/marvel_boy_2000_5)
@@ -98,12 +98,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Hawkeye (2016) #5 <!-- mrt:source-occurrence=108 -->](https://www.marvel.com/comics/issue/61280/hawkeye_2016_5)
 - [ ] [Hawkeye (2016) #6 <!-- mrt:source-occurrence=109 -->](https://www.marvel.com/comics/issue/61281/hawkeye_2016_6)
 ## Hawkeye (2017) #7-12
-- [ ] Hawkeye #7 <!-- mrt:source-occurrence=112 -->
-- [ ] Hawkeye #8 <!-- mrt:source-occurrence=113 -->
-- [ ] Hawkeye #9 <!-- mrt:source-occurrence=114 -->
-- [ ] Hawkeye #10 <!-- mrt:source-occurrence=115 -->
-- [ ] Hawkeye #11 <!-- mrt:source-occurrence=116 -->
-- [ ] Hawkeye #12 <!-- mrt:source-occurrence=117 -->
+- [ ] [Hawkeye (2016) #7 <!-- mrt:source-occurrence=112 -->](https://www.marvel.com/comics/issue/61282/hawkeye_2016_7)
+- [ ] [Hawkeye (2016) #8 <!-- mrt:source-occurrence=113 -->](https://www.marvel.com/comics/issue/61283/hawkeye_2016_8)
+- [ ] [Hawkeye (2016) #9 <!-- mrt:source-occurrence=114 -->](https://www.marvel.com/comics/issue/61284/hawkeye_2016_9)
+- [ ] [Hawkeye (2016) #10 <!-- mrt:source-occurrence=115 -->](https://www.marvel.com/comics/issue/61285/hawkeye_2016_10)
+- [ ] [Hawkeye (2016) #11 <!-- mrt:source-occurrence=116 -->](https://www.marvel.com/comics/issue/61286/hawkeye_2016_11)
+- [ ] [Hawkeye (2016) #12 <!-- mrt:source-occurrence=117 -->](https://www.marvel.com/comics/issue/61287/hawkeye_2016_12)
 ## Hawkeye (2016) #13-16 And Generations: Hawkeye & Hawkeye #1
 - [ ] [Generations: Hawkeye & Hawkeye (2017) #1 <!-- mrt:source-occurrence=119 -->](https://www.marvel.com/comics/issue/63956/generations_hawkeye_hawkeye_2017_1)
 - [ ] [Hawkeye (2016) #13 <!-- mrt:source-occurrence=120 -->](https://www.marvel.com/comics/issue/65284/hawkeye_2016_13)
@@ -125,32 +125,32 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [America (2017) #11 <!-- mrt:source-occurrence=137 -->](https://www.marvel.com/comics/issue/65896/america_2017_11)
 - [ ] [America (2017) #12 <!-- mrt:source-occurrence=138 -->](https://www.marvel.com/comics/issue/66264/america_2017_12)
 ## New Avengers 1-6, Avengers 0
-- [ ] New Avengers #1 <!-- mrt:source-occurrence=140 -->
-- [ ] New Avengers #2 <!-- mrt:source-occurrence=141 -->
-- [ ] New Avengers #3 <!-- mrt:source-occurrence=142 -->
-- [ ] New Avengers #4 <!-- mrt:source-occurrence=143 -->
-- [ ] New Avengers #5 <!-- mrt:source-occurrence=144 -->
-- [ ] New Avengers #6 <!-- mrt:source-occurrence=145 -->
+- [ ] [New Avengers (2015) #1 <!-- mrt:source-occurrence=140 -->](https://www.marvel.com/comics/issue/57030/new_avengers_2015_1)
+- [ ] [New Avengers (2015) #2 <!-- mrt:source-occurrence=141 -->](https://www.marvel.com/comics/issue/57034/new_avengers_2015_2)
+- [ ] [New Avengers (2015) #3 <!-- mrt:source-occurrence=142 -->](https://www.marvel.com/comics/issue/58371/new_avengers_2015_3)
+- [ ] [New Avengers (2015) #4 <!-- mrt:source-occurrence=143 -->](https://www.marvel.com/comics/issue/57529/new_avengers_2015_4)
+- [ ] [New Avengers (2015) #5 <!-- mrt:source-occurrence=144 -->](https://www.marvel.com/comics/issue/57530/new_avengers_2015_5)
+- [ ] [New Avengers (2015) #6 <!-- mrt:source-occurrence=145 -->](https://www.marvel.com/comics/issue/57611/new_avengers_2015_6)
 - [ ] [Avengers (1998) #0 <!-- mrt:source-occurrence=146 -->](https://www.marvel.com/comics/issue/3589/avengers_1998)
 ## New Avengers 7-11
-- [ ] New Avengers #7 <!-- mrt:source-occurrence=149 -->
-- [ ] New Avengers #8 <!-- mrt:source-occurrence=150 -->
-- [ ] New Avengers #9 <!-- mrt:source-occurrence=151 -->
-- [ ] New Avengers #10 <!-- mrt:source-occurrence=152 -->
-- [ ] New Avengers #11 <!-- mrt:source-occurrence=153 -->
+- [ ] [New Avengers (2015) #7 <!-- mrt:source-occurrence=149 -->](https://www.marvel.com/comics/issue/57612/new_avengers_2015_7)
+- [ ] [New Avengers (2015) #8 <!-- mrt:source-occurrence=150 -->](https://www.marvel.com/comics/issue/58372/new_avengers_2015_8)
+- [ ] [New Avengers (2015) #9 <!-- mrt:source-occurrence=151 -->](https://www.marvel.com/comics/issue/58373/new_avengers_2015_9)
+- [ ] [New Avengers (2015) #10 <!-- mrt:source-occurrence=152 -->](https://www.marvel.com/comics/issue/58374/new_avengers_2015_10)
+- [ ] [New Avengers (2015) #11 <!-- mrt:source-occurrence=153 -->](https://www.marvel.com/comics/issue/59419/new_avengers_2015_11)
 ## New Avengers 12-18
-- [ ] New Avengers #12 <!-- mrt:source-occurrence=155 -->
-- [ ] New Avengers #13 <!-- mrt:source-occurrence=156 -->
-- [ ] New Avengers #14 <!-- mrt:source-occurrence=157 -->
-- [ ] New Avengers #15 <!-- mrt:source-occurrence=158 -->
-- [ ] New Avengers #16 <!-- mrt:source-occurrence=159 -->
-- [ ] New Avengers #17 <!-- mrt:source-occurrence=160 -->
-- [ ] New Avengers #18 <!-- mrt:source-occurrence=161 -->
+- [ ] [New Avengers (2015) #12 <!-- mrt:source-occurrence=155 -->](https://www.marvel.com/comics/issue/59420/new_avengers_2015_12)
+- [ ] [New Avengers (2015) #13 <!-- mrt:source-occurrence=156 -->](https://www.marvel.com/comics/issue/60134/new_avengers_2015_13)
+- [ ] [New Avengers (2015) #14 <!-- mrt:source-occurrence=157 -->](https://www.marvel.com/comics/issue/60135/new_avengers_2015_14)
+- [ ] [New Avengers (2015) #15 <!-- mrt:source-occurrence=158 -->](https://www.marvel.com/comics/issue/60136/new_avengers_2015_15)
+- [ ] [New Avengers (2015) #16 <!-- mrt:source-occurrence=159 -->](https://www.marvel.com/comics/issue/60137/new_avengers_2015_16)
+- [ ] [New Avengers (2015) #17 <!-- mrt:source-occurrence=160 -->](https://www.marvel.com/comics/issue/61035/new_avengers_2015_17)
+- [ ] [New Avengers (2015) #18 <!-- mrt:source-occurrence=161 -->](https://www.marvel.com/comics/issue/61036/new_avengers_2015_18)
 ## West Coast Avengers #1 To #4
-- [ ] West Coast Avengers #1 <!-- mrt:source-occurrence=163 -->
-- [ ] West Coast Avengers #2 <!-- mrt:source-occurrence=164 -->
-- [ ] West Coast Avengers #3 <!-- mrt:source-occurrence=165 -->
-- [ ] West Coast Avengers #4 <!-- mrt:source-occurrence=166 -->
+- [ ] [West Coast Avengers (2018) #1 <!-- mrt:source-occurrence=163 -->](https://www.marvel.com/comics/issue/70101/west_coast_avengers_2018_1)
+- [ ] [West Coast Avengers (2018) #2 <!-- mrt:source-occurrence=164 -->](https://www.marvel.com/comics/issue/70102/west_coast_avengers_2018_2)
+- [ ] [West Coast Avengers (2018) #3 <!-- mrt:source-occurrence=165 -->](https://www.marvel.com/comics/issue/70103/west_coast_avengers_2018_3)
+- [ ] [West Coast Avengers (2018) #4 <!-- mrt:source-occurrence=166 -->](https://www.marvel.com/comics/issue/70104/west_coast_avengers_2018_4)
 ## Marvel Rising (2018)
 - [ ] Marvel Rising (2018) <!-- mrt:source-occurrence=169 -->
 ## Exiles (2018) #1 to #6
@@ -194,18 +194,18 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Hawkeye: Kate Bishop (2021) #4 <!-- mrt:source-occurrence=211 -->](https://www.marvel.com/comics/issue/96220/hawkeye_kate_bishop_2021_4)
 - [ ] [Hawkeye: Kate Bishop (2021) #5 <!-- mrt:source-occurrence=212 -->](https://www.marvel.com/comics/issue/96221/hawkeye_kate_bishop_2021_5)
 ## Marvel Voices: Pride (2021)
-- [ ] Marvel Voices: Pride (2021) <!-- mrt:source-occurrence=213 -->
+- [ ] [Marvel's Voices: Pride (2021) #1 <!-- mrt:source-occurrence=213 -->](https://www.marvel.com/comics/issue/95052/marvels_voices_pride_2021_1)
 ## The Last Annihilation: Wiccan & Hulkling
 - [ ] The Last Annihilation: Wiccan & Hulkling <!-- mrt:source-occurrence=214 -->
 ## Hulkling & Wiccan
 - [ ] Hulkling & Wiccan <!-- mrt:source-occurrence=215 -->
 ## Marvel Voices: Pride (2022)
-- [ ] Marvel Voices: Pride (2022) <!-- mrt:source-occurrence=216 -->
+- [ ] [Marvel's Voices: Pride (2022) #1 <!-- mrt:source-occurrence=216 -->](https://www.marvel.com/comics/issue/101168/marvels_voices_pride_2022_1)
 ## Marvel Voices: Pride (2023)
-- [ ] Marvel Voices: Pride (2023) <!-- mrt:source-occurrence=217 -->
+- [ ] [Marvel's Voices: Pride (2023) #1 <!-- mrt:source-occurrence=217 -->](https://www.marvel.com/comics/issue/107310/marvels_voices_pride_2023_1)
 ## Scarlet Witch by Orlando #6
-- [ ] Scarlet Witch by Orlando #6 <!-- mrt:source-occurrence=218 -->
+- [ ] [Scarlet Witch (2023) #6 <!-- mrt:source-occurrence=218 -->](https://www.marvel.com/comics/issue/110207/scarlet_witch_2023_6)
 ## Loki by Watters #3
-- [ ] Loki by Watters #3 <!-- mrt:source-occurrence=219 -->
+- [ ] [Loki (2023) #3 <!-- mrt:source-occurrence=219 -->](https://www.marvel.com/comics/issue/97124/loki_2023_3)
 ## Guardians of the Galaxy by Kelly #7
-- [ ] Guardians of the Galaxy by Kelly #7 <!-- mrt:source-occurrence=220 -->
+- [ ] [Guardians of the Galaxy (2023) #7 <!-- mrt:source-occurrence=220 -->](https://www.marvel.com/comics/issue/105865/guardians_of_the_galaxy_2023_7)

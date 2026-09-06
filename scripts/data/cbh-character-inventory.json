@@ -3845,9 +3845,10 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The exact full-page source ledger and cache-only provider settlement preserve all 220 source occurrences: 114 importable issue selections, four context-only named works, 51 unresolved placeholders, and 51 exclusions. The remaining provider gaps are tracked in issue #333.",
+    "reason": "The exact full-page source ledger preserves all 220 source occurrences: 165 exact official issue identities, four context-only named works, and 51 source-boundary exclusions. Issue #333 records the completed 51-position settlement.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
+      "all-new-all-different-avengers",
       "civil-war",
       "civil-war-avengers",
       "dark-reign-avengers",

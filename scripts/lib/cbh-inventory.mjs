@@ -68,6 +68,7 @@ const APPROVED_SOURCE_GAP_RESOLUTION_DIGESTS = Object.freeze({
   'the-defenders-reading-order': '6428c9ed9818c1eaa45868a110fe274f1c115343076c0a3658ed964e4121a656',
   'venom-reading-order': '746da4b4bef2a0c8694f98f7415e81c99efc814c8ad370fb3c79c5d371715b11',
   'x-force-reading-order': '5dd58f5d27ed93ef250159b61f2d3b05da1a836ecd539d6569ec6950abfddb43',
+  'young-avengers-reading-order': '24b13bf2ed1955edb3be60d728a93687436f4efd3028984ee86ff5213e5fa43f',
 });
 const PACKET_FIELDS = new Set([
   'schemaVersion',
