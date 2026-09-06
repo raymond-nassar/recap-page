@@ -5,181 +5,12 @@
   "source": "https://www.comicbookherald.com/inhumans-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-28T03:46:03.663Z",
+  "generatedAt": "2026-09-06T04:18:43.037Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 259,
+  "count": 255,
   "collections": 39,
-  "placeholders": 42,
-  "unresolved": [
-    {
-      "title": "Young Inhumans #1",
-      "sourceKey": "73"
-    },
-    {
-      "title": "Young Inhumans #2",
-      "sourceKey": "74"
-    },
-    {
-      "title": "Young Inhumans #3",
-      "sourceKey": "75"
-    },
-    {
-      "title": "Young Inhumans #4",
-      "sourceKey": "76"
-    },
-    {
-      "title": "Young Inhumans #5",
-      "sourceKey": "77"
-    },
-    {
-      "title": "Young Inhumans #6",
-      "sourceKey": "78"
-    },
-    {
-      "title": "Young Inhumans #7",
-      "sourceKey": "79"
-    },
-    {
-      "title": "Young Inhumans #8",
-      "sourceKey": "80"
-    },
-    {
-      "title": "Young Inhumans #9",
-      "sourceKey": "81"
-    },
-    {
-      "title": "Young Inhumans #10",
-      "sourceKey": "82"
-    },
-    {
-      "title": "Young Inhumans #11",
-      "sourceKey": "83"
-    },
-    {
-      "title": "Young Inhumans #12",
-      "sourceKey": "84"
-    },
-    {
-      "title": "Inhumans 2099 One-Shot",
-      "sourceKey": "87"
-    },
-    {
-      "title": "World War Hulk #6",
-      "sourceKey": "114"
-    },
-    {
-      "title": "Mighty Avengers #27",
-      "sourceKey": "133"
-    },
-    {
-      "title": "Realm Of Kings: Inhumans #1",
-      "sourceKey": "144"
-    },
-    {
-      "title": "Realm Of Kings: Inhumans #2",
-      "sourceKey": "145"
-    },
-    {
-      "title": "Realm Of Kings: Inhumans #3",
-      "sourceKey": "146"
-    },
-    {
-      "title": "Realm Of Kings: Inhumans #4",
-      "sourceKey": "147"
-    },
-    {
-      "title": "Realm Of Kings: Inhumans #5",
-      "sourceKey": "148"
-    },
-    {
-      "title": "Avengers Assemble 21.Inh",
-      "sourceKey": "191"
-    },
-    {
-      "title": "Avengers Assemble 22.Inh",
-      "sourceKey": "192"
-    },
-    {
-      "title": "Avengers Assemble 23.Inh",
-      "sourceKey": "193"
-    },
-    {
-      "title": "Uncanny X-Men 15.Inh",
-      "sourceKey": "198"
-    },
-    {
-      "title": "Indestructible Hulk 17.Inh",
-      "sourceKey": "199"
-    },
-    {
-      "title": "Indestructible Hulk 18.Inh",
-      "sourceKey": "200"
-    },
-    {
-      "title": "New Avengers 13.Inh",
-      "sourceKey": "202"
-    },
-    {
-      "title": "Inhumans Prime #1",
-      "sourceKey": "280"
-    },
-    {
-      "title": "Inhumans: Judgement Day",
-      "sourceKey": "289"
-    },
-    {
-      "title": "Inhumans: Once & Future Kings #1",
-      "sourceKey": "291"
-    },
-    {
-      "title": "Inhumans: Once & Future Kings #2",
-      "sourceKey": "292"
-    },
-    {
-      "title": "Inhumans: Once & Future Kings #3",
-      "sourceKey": "293"
-    },
-    {
-      "title": "Inhumans: Once & Future Kings #4",
-      "sourceKey": "294"
-    },
-    {
-      "title": "Inhumans: Once & Future Kings #5",
-      "sourceKey": "295"
-    },
-    {
-      "title": "Avengers #1.MU",
-      "sourceKey": "297"
-    },
-    {
-      "title": "Spider-Man/Deadpool #1.MU",
-      "sourceKey": "298"
-    },
-    {
-      "title": "All-New X-Men #1.MU",
-      "sourceKey": "299"
-    },
-    {
-      "title": "Champions #1.MU",
-      "sourceKey": "300"
-    },
-    {
-      "title": "Doctor Strange #1.MU",
-      "sourceKey": "301"
-    },
-    {
-      "title": "Uncanny Inhumans #1.MU",
-      "sourceKey": "302"
-    },
-    {
-      "title": "Guardians of the Galaxy #1.MU",
-      "sourceKey": "303"
-    },
-    {
-      "title": "The Totally Awesome Hulk #1.MU",
-      "sourceKey": "304"
-    }
-  ],
+  "placeholders": 0,
+  "unresolved": [],
   "items": [
     {
       "issueId": 13183,
@@ -1410,224 +1241,419 @@
       "collectedIn": "Inhumans #1 To #4 (2000)"
     },
     {
-      "issueId": -1435926335,
-      "title": "Young Inhumans #1",
+      "issueId": 17188,
+      "title": "Inhumans (2003) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17188/inhumans_2003_1",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-05-28T00:00:00+0000",
+      "mu": "2003-05-28T00:00:00+0000",
+      "digitalId": 4464,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4bb6845e21e9a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1419148716,
-      "title": "Young Inhumans #2",
+      "issueId": 17189,
+      "title": "Inhumans (2003) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17189/inhumans_2003_2",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-06-25T00:00:00+0000",
+      "mu": "2003-06-25T00:00:00+0000",
+      "digitalId": 4465,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/20/4bb682efaf797",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1402371097,
-      "title": "Young Inhumans #3",
+      "issueId": 17190,
+      "title": "Inhumans (2003) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17190/inhumans_2003_3",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-07-23T00:00:00+0000",
+      "mu": "2003-07-23T00:00:00+0000",
+      "digitalId": 4463,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/5dc5a68dd6470",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1385593478,
-      "title": "Young Inhumans #4",
+      "issueId": 17191,
+      "title": "Inhumans (2003) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17191/inhumans_2003_4",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-08-27T00:00:00+0000",
+      "mu": "2003-08-27T00:00:00+0000",
+      "digitalId": 4462,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/c0/4bb682e1b114e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1368815859,
-      "title": "Young Inhumans #5",
+      "issueId": 17192,
+      "title": "Inhumans (2003) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/17192/inhumans_2003_5",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-09-24T00:00:00+0000",
+      "mu": "2003-09-24T00:00:00+0000",
+      "digitalId": 4461,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/4bb682dc5bd27",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1620480144,
-      "title": "Young Inhumans #6",
+      "issueId": 363,
+      "title": "Inhumans (2003) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/363/inhumans_2003_6",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-10-22T00:00:00+0000",
+      "mu": "2003-10-22T00:00:00+0000",
+      "digitalId": 2027,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/80/580fe4cbbfd8b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Matthew Clark",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1603702525,
-      "title": "Young Inhumans #7",
+      "issueId": 338,
+      "title": "Inhumans (2003) #7",
       "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/338/inhumans_2003_7",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-11-26T00:00:00+0000",
+      "mu": "2003-11-26T00:00:00+0000",
+      "digitalId": 2028,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/d0/4bc32e43e2137",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Teranishi",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1450931155,
-      "title": "Young Inhumans #8",
+      "issueId": 351,
+      "title": "Inhumans (2003) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/351/inhumans_2003_8",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2003-12-24T00:00:00+0000",
+      "mu": "2003-12-24T00:00:00+0000",
+      "digitalId": 2029,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/5dc5e3c35c072",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robert Teranishi",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1467708774,
-      "title": "Young Inhumans #9",
+      "issueId": 362,
+      "title": "Inhumans (2003) #9",
       "number": "9",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/362/inhumans_2003_9",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2004-02-04T00:00:00+0000",
+      "mu": "2004-02-04T00:00:00+0000",
+      "digitalId": 2030,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/580fe4f85a26f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1417375917,
-      "title": "Young Inhumans #10",
+      "issueId": 380,
+      "title": "Inhumans (2003) #10",
       "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/380/inhumans_2003_10",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2004-02-25T00:00:00+0000",
+      "mu": "2004-02-25T00:00:00+0000",
+      "digitalId": 2020,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/30/580fe54bb3e4a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1434153536,
-      "title": "Young Inhumans #11",
+      "issueId": 319,
+      "title": "Inhumans (2003) #11",
       "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/319/inhumans_2003_11",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2004-03-17T00:00:00+0000",
+      "mu": "2004-03-17T00:00:00+0000",
+      "digitalId": 2021,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/580fe59b34c78",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Nelson Decastro",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rodney Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Braithwaite",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1383820679,
-      "title": "Young Inhumans #12",
+      "issueId": 432,
+      "title": "Inhumans (2003) #12",
       "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/432/inhumans_2003_12",
+      "seriesId": 637,
+      "seriesName": "Inhumans (2003 - 2004)",
+      "onSale": "2004-04-14T00:00:00+0000",
+      "mu": "2004-04-14T00:00:00+0000",
+      "digitalId": 2022,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/580fe58e657e5",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Rodney Ramos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Mckeever",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Young Inhumans #1 To #12 (2003 - 2004)"
     },
     {
-      "issueId": -1367043060,
-      "title": "Inhumans 2099 One-Shot",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 1399,
+      "title": "INHUMANS 2099 1 (2004) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/1399/inhumans_2099_1_2004_1",
+      "seriesId": 822,
+      "seriesName": "INHUMANS 2099 1 (2004)",
+      "onSale": "2004-11-01T00:00:00+0000",
+      "mu": "2004-11-01T00:00:00+0000",
+      "digitalId": 2162,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5dc5812d8456c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Robert Kirkman",
+          "role": "cover artist"
+        }
+      ],
       "collectedIn": "Inhumans 2099 One-Shot"
     },
     {
@@ -2134,23 +2160,6 @@
       "collectedIn": "World War Hulk #1 To #6"
     },
     {
-      "issueId": -1522570095,
-      "title": "World War Hulk #6",
-      "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "World War Hulk #1 To #6"
-    },
-    {
       "issueId": 5723,
       "title": "New Avengers: Illuminati (2006) #1",
       "number": "1",
@@ -2466,20 +2475,43 @@
       "collectedIn": "Secret Invasion: Inhumans #1 To #4"
     },
     {
-      "issueId": -1640307618,
-      "title": "Mighty Avengers #27",
+      "issueId": 25971,
+      "title": "The Mighty Avengers (2007) #27",
       "number": "27",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/25971/the_mighty_avengers_2007_27",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2009-07-15T00:00:00+0000",
+      "mu": "2009-07-15T00:00:00+0000",
+      "digitalId": 12958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/70/4f7c92a66c689",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Danny Miki",
+          "role": "cover artist"
+        },
+        {
+          "name": "Khoi Pham",
+          "role": "penciler"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler"
+        },
+        {
+          "name": "Christos Gage",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Mighty Avengers #27"
     },
     {
@@ -2727,88 +2759,199 @@
       "collectedIn": "War Of Kings #1 To #6"
     },
     {
-      "issueId": -1892464770,
-      "title": "Realm Of Kings: Inhumans #1",
+      "issueId": 28701,
+      "title": "Realm of Kings Inhumans (2009) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/28701/realm_of_kings_inhumans_2009_1",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-03-14T00:00:00+0000",
+      "digitalId": 13626,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/577145e52c26a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Realm Of Kings: Inhumans #1 To #5"
     },
     {
-      "issueId": -1875687151,
-      "title": "Realm Of Kings: Inhumans #2",
+      "issueId": 28702,
+      "title": "Realm of Kings Inhumans (2009) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/28702/realm_of_kings_inhumans_2009_2",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2009-12-16T00:00:00+0000",
+      "mu": "2011-03-18T00:00:00+0000",
+      "digitalId": 18193,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/03/5771456df1256",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Realm Of Kings: Inhumans #1 To #5"
     },
     {
-      "issueId": -1858909532,
-      "title": "Realm Of Kings: Inhumans #3",
+      "issueId": 28703,
+      "title": "Realm of Kings Inhumans (2009) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/28703/realm_of_kings_inhumans_2009_3",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2010-01-20T00:00:00+0000",
+      "mu": "2011-04-01T00:00:00+0000",
+      "digitalId": 18197,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/577ff6cff41aa",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Realm Of Kings: Inhumans #1 To #5"
     },
     {
-      "issueId": -1842131913,
-      "title": "Realm Of Kings: Inhumans #4",
+      "issueId": 28704,
+      "title": "Realm of Kings Inhumans (2009) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/28704/realm_of_kings_inhumans_2009_4",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2010-12-09T00:00:00+0000",
+      "digitalId": 13929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/e0/577ff76855eb8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andrew Hennessy",
+          "role": "cover artist"
+        },
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Realm Of Kings: Inhumans #1 To #5"
     },
     {
-      "issueId": -1825354294,
-      "title": "Realm Of Kings: Inhumans #5",
+      "issueId": 28705,
+      "title": "Realm of Kings Inhumans (2009) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/28705/realm_of_kings_inhumans_2009_5",
+      "seriesId": 9053,
+      "seriesName": "Realm of Kings Inhumans (2009 - 2010)",
+      "onSale": "2010-03-31T00:00:00+0000",
+      "mu": "2010-12-16T00:00:00+0000",
+      "digitalId": 14237,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/40/577ff87dcc650",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Pablo Raimondi",
+          "role": "penciler"
+        },
+        {
+          "name": "STJEPAN SEJIC",
+          "role": "penciler"
+        },
+        {
+          "name": "Andy Lanning",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Realm Of Kings: Inhumans #1 To #5"
     },
     {
@@ -3680,54 +3823,71 @@
       "collectedIn": "Infinity #1 To #6, New Avengers #8 To #12"
     },
     {
-      "issueId": -1741959070,
-      "title": "Avengers Assemble 21.Inh",
-      "number": "21.Inh",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 48562,
+      "title": "Avengers Assemble (2012) #22",
+      "number": "22",
+      "url": "https://www.marvel.com/comics/issue/48562/avengers_assemble_2012_22",
+      "seriesId": 15373,
+      "seriesName": "Avengers Assemble (2012 - 2014)",
+      "onSale": "2013-12-18T00:00:00+0000",
+      "mu": "2014-06-16T00:00:00+0000",
+      "digitalId": 32354,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/52a75fd69972c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matteo Buffagni",
+          "role": "penciler"
+        },
+        {
+          "name": "Paco Diaz",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
     },
     {
-      "issueId": -1758736689,
-      "title": "Avengers Assemble 22.Inh",
-      "number": "22.Inh",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 48563,
+      "title": "Avengers Assemble (2012) #23",
+      "number": "23",
+      "url": "https://www.marvel.com/comics/issue/48563/avengers_assemble_2012_23",
+      "seriesId": 15373,
+      "seriesName": "Avengers Assemble (2012 - 2014)",
+      "onSale": "2014-01-29T00:00:00+0000",
+      "mu": "2014-07-28T00:00:00+0000",
+      "digitalId": 32798,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/52d9890665bd0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
-    },
-    {
-      "issueId": -1775514308,
-      "title": "Avengers Assemble 23.Inh",
-      "number": "23.Inh",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Matteo Buffagni",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Sue Deconnick",
+          "role": "writer"
+        },
+        {
+          "name": "Warren Ellis",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
     },
     {
@@ -3847,54 +4007,59 @@
       "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
     },
     {
-      "issueId": -1590960499,
-      "title": "Uncanny X-Men 15.Inh",
-      "number": "15.Inh",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 48673,
+      "title": "Uncanny X-Men (2013) #15",
+      "number": "15",
+      "url": "https://www.marvel.com/comics/issue/48673/uncanny_x-men_2013_15",
+      "seriesId": 17602,
+      "seriesName": "Uncanny X-Men (2013 - 2015)",
+      "onSale": "2013-12-11T00:00:00+0000",
+      "mu": "2014-06-16T00:00:00+0000",
+      "digitalId": 32303,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/59318405ac6a2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Kris Anka",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
     },
     {
-      "issueId": -1607738118,
-      "title": "Indestructible Hulk 17.Inh",
-      "number": "17.Inh",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 48653,
+      "title": "Indestructible Hulk (2012) #18",
+      "number": "18",
+      "url": "https://www.marvel.com/comics/issue/48653/indestructible_hulk_2012_18",
+      "seriesId": 16583,
+      "seriesName": "Indestructible Hulk (2012 - 2014)",
+      "onSale": "2014-01-22T00:00:00+0000",
+      "mu": "2014-07-21T00:00:00+0000",
+      "digitalId": 32817,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5b9a6d900deb9",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
-    },
-    {
-      "issueId": -537836361,
-      "title": "Indestructible Hulk 18.Inh",
-      "number": "18.Inh",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mahmud Asrar",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Waid",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
     },
     {
@@ -3923,23 +4088,6 @@
           "role": "writer"
         }
       ],
-      "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
-    },
-    {
-      "issueId": -571391599,
-      "title": "New Avengers 13.Inh",
-      "number": "13.Inh",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
       "collectedIn": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20"
     },
     {
@@ -5863,20 +6011,47 @@
       "collectedIn": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1"
     },
     {
-      "issueId": -268114529,
-      "title": "Inhumans Prime #1",
+      "issueId": 62652,
+      "title": "INHUMANS PRIME 1 (2017) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/62652/inhumans_prime_1_2017_1",
+      "seriesId": 22994,
+      "seriesName": "INHUMANS PRIME 1 (2017)",
+      "onSale": "2017-03-29T00:00:00+0000",
+      "mu": "2017-10-02T00:00:00+0000",
+      "digitalId": 44380,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/58d157aae978a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Keith Champagne",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Sook",
+          "role": "cover artist"
+        },
+        {
+          "name": "Walden Wong",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Allen",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonboy Meyers",
+          "role": "penciler"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1"
     },
     {
@@ -6128,241 +6303,471 @@
       "collectedIn": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day"
     },
     {
-      "issueId": -419113100,
-      "title": "Inhumans: Judgement Day",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 65910,
+      "title": "Inhumans: Judgment Day (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/65910/inhumans_judgment_day_2018_1",
+      "seriesId": 23907,
+      "seriesName": "Inhumans: Judgment Day (2018)",
+      "onSale": "2018-01-24T00:00:00+0000",
+      "mu": "2018-07-30T00:00:00+0000",
+      "digitalId": 47118,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/90/5a61111c32fc7",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Kevin Libranda",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marc Deering",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Del Mundo",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Al Ewing",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day"
     },
     {
-      "issueId": -352149719,
-      "title": "Inhumans: Once & Future Kings #1",
+      "issueId": 63973,
+      "title": "Inhumans: Once and Future Kings (2017) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/63973/inhumans_once_and_future_kings_2017_1",
+      "seriesId": 23283,
+      "seriesName": "Inhumans: Once and Future Kings (2017)",
+      "onSale": "2017-08-09T00:00:00+0000",
+      "mu": "2018-02-12T00:00:00+0000",
+      "digitalId": 45430,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/a0/59779631a5211",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Gustavo Duarte",
+          "role": "cover artist"
+        },
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Inhumans: Once & Future Kings #1 to #5"
     },
     {
-      "issueId": -335372100,
-      "title": "Inhumans: Once & Future Kings #2",
+      "issueId": 64401,
+      "title": "Inhumans: Once and Future Kings (2017) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/64401/inhumans_once_and_future_kings_2017_2",
+      "seriesId": 23283,
+      "seriesName": "Inhumans: Once and Future Kings (2017)",
+      "onSale": "2017-09-06T00:00:00+0000",
+      "mu": "2018-03-12T00:00:00+0000",
+      "digitalId": 45706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/c0/599afd54c17bc",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Inhumans: Once & Future Kings #1 to #5"
     },
     {
-      "issueId": -318594481,
-      "title": "Inhumans: Once & Future Kings #3",
+      "issueId": 64815,
+      "title": "Inhumans: Once and Future Kings (2017) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/64815/inhumans_once_and_future_kings_2017_3",
+      "seriesId": 23283,
+      "seriesName": "Inhumans: Once and Future Kings (2017)",
+      "onSale": "2017-10-11T00:00:00+0000",
+      "mu": "2018-04-16T00:00:00+0000",
+      "digitalId": 45988,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/a0/59d53e386e9e6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Inhumans: Once & Future Kings #1 to #5"
     },
     {
-      "issueId": -436037814,
-      "title": "Inhumans: Once & Future Kings #4",
+      "issueId": 65079,
+      "title": "Inhumans: Once and Future Kings (2017) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65079/inhumans_once_and_future_kings_2017_4",
+      "seriesId": 23283,
+      "seriesName": "Inhumans: Once and Future Kings (2017)",
+      "onSale": "2017-11-01T00:00:00+0000",
+      "mu": "2018-05-07T00:00:00+0000",
+      "digitalId": 46360,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/59f1073c226de",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Inhumans: Once & Future Kings #1 to #5"
     },
     {
-      "issueId": -419260195,
-      "title": "Inhumans: Once & Future Kings #5",
+      "issueId": 65287,
+      "title": "Inhumans: Once and Future Kings (2017) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/65287/inhumans_once_and_future_kings_2017_5",
+      "seriesId": 23283,
+      "seriesName": "Inhumans: Once and Future Kings (2017)",
+      "onSale": "2017-12-06T00:00:00+0000",
+      "mu": "2018-06-11T00:00:00+0000",
+      "digitalId": 46761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/70/5a1f346610bab",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Nick Bradshaw",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        },
+        {
+          "name": "Ryan North",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Inhumans: Once & Future Kings #1 to #5"
     },
     {
-      "issueId": -385704957,
-      "title": "Avengers #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62507,
+      "title": "Avengers (2016) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62507/avengers_2016_1.1",
+      "seriesId": 22547,
+      "seriesName": "Avengers (2016 - 2018)",
+      "onSale": "2017-01-25T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 43888,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/c0/5878facf3a0fe",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "David Nakayama",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Izaakse",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Zub",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {
-      "issueId": -503148290,
-      "title": "Spider-Man/Deadpool #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62511,
+      "title": "Spider-Man/Deadpool (2016) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62511/spider-mandeadpool_2016_1.1",
+      "seriesId": 19679,
+      "seriesName": "Spider-Man/Deadpool (2016 - 2019)",
+      "onSale": "2017-01-25T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 43893,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/a0/58825b1cab96e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Dave Johnson",
+          "role": "penciler"
+        },
+        {
+          "name": "Tigh Walker",
+          "role": "penciler"
+        },
+        {
+          "name": "Joshua Corin",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {
-      "issueId": -486370671,
-      "title": "All-New X-Men #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62601,
+      "title": "All-New X-Men (2015) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62601/all-new_x-men_2015_1.1",
+      "seriesId": 20622,
+      "seriesName": "All-New X-Men (2015 - 2017)",
+      "onSale": "2017-02-01T00:00:00+0000",
+      "mu": "2017-08-07T00:00:00+0000",
+      "digitalId": 44172,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/50/588b6561f11c0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "penciler"
+        },
+        {
+          "name": "Carlo Barberi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeremy Whitley",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {
-      "issueId": -2124803860,
-      "title": "Champions #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62604,
+      "title": "Champions (2016) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62604/champions_2016_1.1",
+      "seriesId": 22552,
+      "seriesName": "Champions (2016 - 2019)",
+      "onSale": "2017-02-22T00:00:00+0000",
+      "mu": "2017-08-28T00:00:00+0000",
+      "digitalId": 44175,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/80/58a20f6edc6cf",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Ro Stein",
+          "role": "penciler"
+        },
+        {
+          "name": "Simone Bianchi",
+          "role": "penciler"
+        },
+        {
+          "name": "Ted Brandt",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeremy Whitley",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {
-      "issueId": -2108026241,
-      "title": "Doctor Strange #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62603,
+      "title": "Doctor Strange (2015) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62603/doctor_strange_2015_1.1",
+      "seriesId": 20457,
+      "seriesName": "Doctor Strange (2015 - 2018)",
+      "onSale": "2017-02-15T00:00:00+0000",
+      "mu": "2017-08-21T00:00:00+0000",
+      "digitalId": 44174,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/e0/589debafe72cd",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Chip Zdarsky",
+          "role": "penciler"
+        },
+        {
+          "name": "Julian Lopez",
+          "role": "penciler"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {
-      "issueId": -10875452,
-      "title": "Uncanny Inhumans #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62602,
+      "title": "Uncanny Inhumans (2015) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62602/uncanny_inhumans_2015_1.1",
+      "seriesId": 19780,
+      "seriesName": "Uncanny Inhumans (2015 - 2017)",
+      "onSale": "2017-02-08T00:00:00+0000",
+      "mu": "2017-08-14T00:00:00+0000",
+      "digitalId": 44173,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/03/5890a36c52374",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Level",
+          "role": "penciler"
+        },
+        {
+          "name": "Michael Walsh",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Allor",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {
-      "issueId": -2141581479,
-      "title": "Guardians of the Galaxy #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62637,
+      "title": "Guardians of the Galaxy (2015) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62637/guardians_of_the_galaxy_2015_1.1",
+      "seriesId": 20465,
+      "seriesName": "Guardians of the Galaxy (2015 - 2017)",
+      "onSale": "2017-03-08T00:00:00+0000",
+      "mu": "2017-09-11T00:00:00+0000",
+      "digitalId": 44349,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/58b71e153c35d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Arthur Adams",
+          "role": "penciler"
+        },
+        {
+          "name": "Chad Bowers",
+          "role": "writer"
+        },
+        {
+          "name": "Chris Sims",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {
-      "issueId": -44430690,
-      "title": "The Totally Awesome Hulk #1.MU",
-      "number": "1.MU",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62648,
+      "title": "The Totally Awesome Hulk (2015) #1.1",
+      "number": "1.1",
+      "url": "https://www.marvel.com/comics/issue/62648/the_totally_awesome_hulk_2015_1.1",
+      "seriesId": 20614,
+      "seriesName": "The Totally Awesome Hulk (2015 - 2017)",
+      "onSale": "2017-03-01T00:00:00+0000",
+      "mu": "2017-09-04T00:00:00+0000",
+      "digitalId": 44374,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/58b095ecd6c2d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jahnoy Lindsay",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ty Templeton",
+          "role": "cover artist"
+        },
+        {
+          "name": "R Rahzzah",
+          "role": "penciler"
+        },
+        {
+          "name": "Ricardo Lopez-Ortiz",
+          "role": "penciler"
+        },
+        {
+          "name": "Bryan Edward Hill",
+          "role": "writer"
+        },
+        {
+          "name": "Leah Williams",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU"
     },
     {

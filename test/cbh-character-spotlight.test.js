@@ -778,7 +778,7 @@ test('the character inventory preserves every central disposition, ships thirty-
   assert.equal(inhumans?.centralDisposition, 'pilot-approved');
   assert.equal(inhumans?.deliveryStatus, 'shipped');
   assert.deepEqual(inhumans?.catalogIds, [inhumansCandidateId]);
-  assert.equal(inhumans?.overlapIds.length, 16);
+  assert.equal(inhumans?.overlapIds.length, 13);
   const youngAvengers = inventory.find((record) => record.id === youngAvengersCandidateId);
   assert.equal(youngAvengers?.centralDisposition, 'pilot-approved');
   assert.equal(youngAvengers?.deliveryStatus, 'shipped');
@@ -2057,16 +2057,17 @@ test('the Doctor Strange guide preserves its complete source ledger through publ
   assert.match(markdown, /^## Latest Additions:/m);
   const doctorIndex = manifest.lists.findIndex((entry) => entry.id === doctorStrangeCandidateId);
   assert.equal(manifest.lists[doctorIndex - 1].id, youngAvengersCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 1].id, 'xmen-claremont');
-  assert.equal(manifest.lists[doctorIndex + 2].id, 'xmen-claremont-complete');
-  assert.equal(manifest.lists[doctorIndex + 3].id, captainMarvelCandidateId);
-  assert.equal(manifest.lists[doctorIndex + 4].id, 'captain-america-best-of');
-  assert.equal(manifest.lists[doctorIndex + 5].id, 'captain-america-reading-order-modern-marvel-era');
-  assert.equal(manifest.lists[doctorIndex + 6].id, 'doctor-doom-primer');
-  assert.equal(manifest.lists[doctorIndex + 7].id, 'spider-man-best-of');
-  assert.equal(manifest.lists[doctorIndex + 8].id, 'thor-best-of');
-  assert.equal(manifest.lists[doctorIndex + 9].id, 'deadpool-best-of');
-  assert.equal(manifest.lists[doctorIndex + 10].id, 'scarlet-witch-best-of');
+  assert.equal(manifest.lists[doctorIndex + 1].id, inhumansCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 2].id, 'xmen-claremont');
+  assert.equal(manifest.lists[doctorIndex + 3].id, 'xmen-claremont-complete');
+  assert.equal(manifest.lists[doctorIndex + 4].id, captainMarvelCandidateId);
+  assert.equal(manifest.lists[doctorIndex + 5].id, 'captain-america-best-of');
+  assert.equal(manifest.lists[doctorIndex + 6].id, 'captain-america-reading-order-modern-marvel-era');
+  assert.equal(manifest.lists[doctorIndex + 7].id, 'doctor-doom-primer');
+  assert.equal(manifest.lists[doctorIndex + 8].id, 'spider-man-best-of');
+  assert.equal(manifest.lists[doctorIndex + 9].id, 'thor-best-of');
+  assert.equal(manifest.lists[doctorIndex + 10].id, 'deadpool-best-of');
+  assert.equal(manifest.lists[doctorIndex + 11].id, 'scarlet-witch-best-of');
 });
 
 test('the Loki source ledger preserves every occurrence and boundary decision', async () => {
@@ -3799,9 +3800,9 @@ test('the frozen Star-Lord evidence stays complete, fresh, distinct, and exact',
   assert.equal(manifest.lists[starLordIndex + 11].id, 'loki-reading-order');
   assert.equal(manifest.lists[starLordIndex + 12].id, moonKnightCandidateId);
   assert.equal(manifest.lists[starLordIndex + 13].id, guardiansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 14].id, inhumansCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 15].id, youngAvengersCandidateId);
-  assert.equal(manifest.lists[starLordIndex + 16].id, doctorStrangeCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 14].id, youngAvengersCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 15].id, doctorStrangeCandidateId);
+  assert.equal(manifest.lists[starLordIndex + 16].id, inhumansCandidateId);
   assert.equal(manifest.lists[starLordIndex + 17].id, 'xmen-claremont');
 
   const reordered = structuredClone(packet);

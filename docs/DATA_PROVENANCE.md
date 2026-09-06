@@ -94,6 +94,14 @@ report compares the guide with 138 eligible reading lists: three are existing-su
 unavailable positions remain maintained evidence rather than replacements or invented issue
 identities.
 
+The complete Inhumans guide preserves all 354 positions from its frozen source snapshot. It
+publishes 255 exact official issue identities, records four later references against their first
+canonical rows, and keeps 95 source exclusions with no unresolved placeholders. Thirty-eight former
+gaps now have verified official identities. World War Hulk #6 is excluded because the main series
+ends at #5, while three unavailable `.Inh` identities remain explicit exclusions instead of being
+replaced by base-numbered issues. The complete-library report compares the guide with 138 eligible
+reading lists: one is an existing-subset relationship, 12 are partial, and 125 have no shared issue.
+
 The complete Punisher guide retains the visible source page through Latest Additions: 857 source
 occurrences across eleven source groups. It publishes 480 exact provider-resolved comics, preserves 145
 repeated source occurrences, 158 open metadata gaps, and 74 explicit non-issue exclusions. The 158

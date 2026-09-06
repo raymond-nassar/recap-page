@@ -264,6 +264,12 @@
       "decisionScope": "source-boundary"
     },
     {
+      "sourcePosition": 114,
+      "sourceIssueReference": "World War Hulk #6",
+      "reason": "The official World War Hulk (2007) series ends at #5; #6 is omitted because the source identity does not exist, and World War Hulk: Front Line #6 is a different title.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion"
+    },
+    {
       "sourcePosition": 115,
       "sourceIssueReference": "While this might seem like a Hulk story, it actually delivers major ramifications on the Inhumans, particularly Black Bolt. If you do dive into World War Hulk here, I have two recommendations. The first, is to check out my World War Hulk reading order. And the second is to consider reading both Planet Hulk, and the first issue of New Avengers: Illuminati (below) before WWH.",
       "reason": "prose marker",
@@ -412,6 +418,24 @@
       "sourceIssueReference": "Inhumanity",
       "reason": "collection marker",
       "decisionScope": "source-boundary"
+    },
+    {
+      "sourcePosition": 191,
+      "sourceIssueReference": "Avengers Assemble 21.Inh",
+      "reason": "No distinct official Avengers Assemble #21.Inh identity was verified; the base-numbered #21 is preserved as evidence but is not substituted.",
+      "decisionScope": "Owner-authorized unavailable exact-identity exclusion"
+    },
+    {
+      "sourcePosition": 199,
+      "sourceIssueReference": "Indestructible Hulk 17.Inh",
+      "reason": "No distinct official Indestructible Hulk #17.Inh identity was verified; the base-numbered #17 is preserved as evidence but is not substituted.",
+      "decisionScope": "Owner-authorized unavailable exact-identity exclusion"
+    },
+    {
+      "sourcePosition": 202,
+      "sourceIssueReference": "New Avengers 13.Inh",
+      "reason": "No distinct official New Avengers #13.Inh identity was verified; the base-numbered #13 is preserved as evidence but is not substituted.",
+      "decisionScope": "Owner-authorized unavailable exact-identity exclusion"
     },
     {
       "sourcePosition": 204,
@@ -596,7 +620,7 @@
     },
     {
       "sourcePosition": 329,
-      "canonicalRow": 154,
+      "canonicalRow": 177,
       "sourceIssueReference": "Uncanny Inhumans #11",
       "sourceRangeReference": "Collects: Mosaic #6 to #8, Uncanny Inhumans #11",
       "normalizedSeriesTitle": "Uncanny Inhumans",
@@ -604,1101 +628,1177 @@
       "issueNumber": "11"
     }
   ],
-  "sourceGaps": [
+  "sourceGapResolutions": [
     {
       "sourcePosition": 73,
-      "sourceIssueReference": "Young Inhumans #1",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #1",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17188,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/17188/inhumans_2003_1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "cc7205fe59a7bb4e717eb8acd2eedad976ed564f4520f3ebb20deadb769d2baa"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "93c1a583cc3abaab3659aeaca83fe4aa4809302cc595a3cc162c75f66123928d"
     },
     {
       "sourcePosition": 74,
-      "sourceIssueReference": "Young Inhumans #2",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #2",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17189,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "2",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/17189/inhumans_2003_2",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "51fb1122d9dd441a324b92ee0db1f412c45dccb63d3991f56421b36f3ced02db"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "2e2848ff04a5d48ea5e237777ab43eb0e596c543fe4e4469c51296ba75d36150"
     },
     {
       "sourcePosition": 75,
-      "sourceIssueReference": "Young Inhumans #3",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #3",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17190,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "3",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/17190/inhumans_2003_3",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "8beb605710b73b56f42e8599eaa19b2cd691fdd24c21e2a68b08511991dab1df"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "95d75d4e5241f62d659e14f404d2b0bade935142ea9104d0d4bb9934f6f9e045"
     },
     {
       "sourcePosition": 76,
-      "sourceIssueReference": "Young Inhumans #4",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #4",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17191,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "4",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/17191/inhumans_2003_4",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "5970caccd6a7f1baefc729e6c261557a864db4345b4d156e521c7b221635908d"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "81c0d6f48812f37c30e7f88857bd675edcd037a1cb67767c2bdef78071469d1c"
     },
     {
       "sourcePosition": 77,
-      "sourceIssueReference": "Young Inhumans #5",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #5",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 17192,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "5",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/17192/inhumans_2003_5",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "5a124277594bd3635aab5a697d8ba358ceb0c4262364e4f6101c51a8a9166ea0"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "9f729a289b0b0d7f5808605caed5a358d4424523c0c89362bbf753663759bdbf"
     },
     {
       "sourcePosition": 78,
-      "sourceIssueReference": "Young Inhumans #6",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "6",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #6",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "6",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 363,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "6",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/363/inhumans_2003_6",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "b3f6d912b25cf3d9c33eaa90df5bd2c3bfe074e26603b0517f4cc9b9704a63d8"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "64cadeb388d70fd50a88396a6b71e3fa7b080926befdf1d35df460b63ea0b640"
     },
     {
       "sourcePosition": 79,
-      "sourceIssueReference": "Young Inhumans #7",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "7",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #7",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "7",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 338,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "7",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/338/inhumans_2003_7",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "cc66169271d48796197f10edff4deca52e5bef3f1e1c0bd03b8d914ff2d3efe6"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "532ea6e4f42bb57146d1527b397f010c346f1c89ae714674c0a613606c6bedfc"
     },
     {
       "sourcePosition": 80,
-      "sourceIssueReference": "Young Inhumans #8",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "8",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #8",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "8",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 351,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "8",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/351/inhumans_2003_8",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "334db9177f6732c7a7eaada69ed7adc9119fc1d0c54a0df53bfdaac4414e5d93"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "a21a1eb34339c234759b2a4fb99bd0df0050627b84106636b4dab14a1abfb598"
     },
     {
       "sourcePosition": 81,
-      "sourceIssueReference": "Young Inhumans #9",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "9",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #9",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "9",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 362,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "9",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/362/inhumans_2003_9",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "5e008ae7906dc571441188ec18257e3214b688cc57dc12cb4f3be468e9fdf000"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "3fcd8f73b280506e4aeb4b1b26c3bce97282ae660aa84ec6b702f65b49dc13ee"
     },
     {
       "sourcePosition": 82,
-      "sourceIssueReference": "Young Inhumans #10",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "10",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #10",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "10",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 380,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "10",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/380/inhumans_2003_10",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "7d7a46c416040d4a6bb80045c33ac92a36b177b5ff64acf8f518debf6b2d9780"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "df58b57d5c343c0cb87e0788976ce28524c828dc1e61bc6e329d0bbb14634180"
     },
     {
       "sourcePosition": 83,
-      "sourceIssueReference": "Young Inhumans #11",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "11",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #11",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "11",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 319,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "11",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/319/inhumans_2003_11",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "660dc1f69f5e85d2836ac5002938c13627b30404d72244232b63c542a4221f11"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "0fa9e802886dc63af1daddc61186cabc292bc480fa8d18da380bacc6981ad454"
     },
     {
       "sourcePosition": 84,
-      "sourceIssueReference": "Young Inhumans #12",
-      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Young Inhumans",
-      "seriesYear": 2003,
-      "issueNumber": "12",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Young Inhumans #12",
+      "previousSourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "previousNormalizedSeriesTitle": "Young Inhumans",
+      "previousSeriesYear": 2003,
+      "previousIssueNumber": "12",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 432,
+      "resolvedNormalizedSeriesTitle": "Inhumans",
+      "resolvedSeriesYear": 2003,
+      "resolvedIssueNumber": "12",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/432/inhumans_2003_12",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "6424d4829142c96ee70f9e5eb6eb2933dd59333387a1062a8ad1319592849f0a"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "9e0e6c9abe6f6ccdb3dba76ff3eed31156f81d8af99b2c8e59e3e453bab5967b"
     },
     {
       "sourcePosition": 87,
-      "sourceIssueReference": "Inhumans 2099 One-Shot",
-      "sourceRangeReference": "Inhumans 2099 One-Shot",
-      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
-      "normalizedSeriesTitle": "Inhumans 2099 One-Shot",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans 2099 One-Shot",
+      "previousSourceRangeReference": "Inhumans 2099 One-Shot",
+      "previousNormalizedSeriesTitle": "Inhumans 2099 One-Shot",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 1399,
+      "resolvedNormalizedSeriesTitle": "Inhumans 2099",
+      "resolvedSeriesYear": 2004,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/1399/inhumans_2099_1_2004_1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "b43d86f36d8db93c13b1818c9fc0228d8865f7953817b524b2cbcd43ab15b468"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "1c3f9b7fbda75a7365159effe332c903906957a0f1c7b4f0f8d9649386a86eda"
     },
     {
       "sourcePosition": 114,
-      "sourceIssueReference": "World War Hulk #6",
-      "sourceRangeReference": "World War Hulk #1 To #6",
-      "sourceGroup": "III) Inhumans and the Marvel Era of Events",
-      "normalizedSeriesTitle": "World War Hulk",
-      "seriesYear": null,
-      "issueNumber": "6",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "World War Hulk #6",
+      "previousSourceRangeReference": "World War Hulk #1 To #6",
+      "previousNormalizedSeriesTitle": "World War Hulk",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "6",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The official World War Hulk (2007) series ends at #5; #6 is omitted because the source identity does not exist, and World War Hulk: Front Line #6 is a different title.",
+      "decisionScope": "Owner-authorized nonexistent-identity exclusion",
+      "auditBasis": "The complete archived first-party series contains #1 through #5 only, and the owner directed that near-title substitutions must not be used.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-series-archive",
+          "url": "https://web.archive.org/web/20130216143642/http://marvel.com:80/comics/series/2400/world_war_hulk_2007",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "17b14b6398a8ee1a62d0d1a89f86466cfe54aecb59cfcd3aa173f45f3d590ae7"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "3dc2ce400fb3ea2b47d64e308e6af8a2f690c231c24ed8b7eac7fcac7a052ca7"
     },
     {
       "sourcePosition": 133,
-      "sourceIssueReference": "Mighty Avengers #27",
-      "sourceRangeReference": "Mighty Avengers #27",
-      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
-      "normalizedSeriesTitle": "Mighty Avengers",
-      "seriesYear": null,
-      "issueNumber": "27",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Mighty Avengers #27",
+      "previousSourceRangeReference": "Mighty Avengers #27",
+      "previousNormalizedSeriesTitle": "Mighty Avengers",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "27",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 25971,
+      "resolvedNormalizedSeriesTitle": "Mighty Avengers",
+      "resolvedSeriesYear": 2007,
+      "resolvedIssueNumber": "27",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/25971/the_mighty_avengers_2007_27",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "a26ad826f6008d426412878b666984149c1e22ad2379c3bb14e991df7d0f16a9"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "8798d629e2d61da0647188ea4eeae6c52f30a435ee31a6af4a3d09d0e8e8aa63"
     },
     {
       "sourcePosition": 144,
-      "sourceIssueReference": "Realm Of Kings: Inhumans #1",
-      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
-      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
-      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Realm Of Kings: Inhumans #1",
+      "previousSourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "previousNormalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 28701,
+      "resolvedNormalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/28701/realm_of_kings_inhumans_2009_1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "9104b2ba5ec1ee9cf120a86038bbb2250374251704c9ebe9820702575de110bb"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "afc05257a311463a06a27ca0c687a2f18f12b177cbcaf8f97112239f35b7ba51"
     },
     {
       "sourcePosition": 145,
-      "sourceIssueReference": "Realm Of Kings: Inhumans #2",
-      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
-      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
-      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Realm Of Kings: Inhumans #2",
+      "previousSourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "previousNormalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 28702,
+      "resolvedNormalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "2",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/28702/realm_of_kings_inhumans_2009_2",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "47ee2052abee00928ff581fac2264fd093d6fda9cadd7eb81cdc9c1ed16a2dc3"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "2d6810ce4786576562121bbf3e1e17f6fb83cfea299f6f73d0c2013fd821ca03"
     },
     {
       "sourcePosition": 146,
-      "sourceIssueReference": "Realm Of Kings: Inhumans #3",
-      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
-      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
-      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
-      "seriesYear": null,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Realm Of Kings: Inhumans #3",
+      "previousSourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "previousNormalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 28703,
+      "resolvedNormalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "3",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/28703/realm_of_kings_inhumans_2009_3",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "4198019a4f910aaa1d32d20b1cda6ae8c99796509324e92225c03c56488dadf6"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "bb12ab9a6ae16a56520be1f810a3cc95e6dd5a8499898de7f5aefdc5088b8fe3"
     },
     {
       "sourcePosition": 147,
-      "sourceIssueReference": "Realm Of Kings: Inhumans #4",
-      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
-      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
-      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
-      "seriesYear": null,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Realm Of Kings: Inhumans #4",
+      "previousSourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "previousNormalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 28704,
+      "resolvedNormalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "4",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/28704/realm_of_kings_inhumans_2009_4",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "7867ab1d0c3385032d17e6929912f83326e4dd3e11dcb86059b0537efe87275e"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "f504eca250ced0e53630aedfd7f0f541ad14e5ce5e21aa5b1d7f9372768d188f"
     },
     {
       "sourcePosition": 148,
-      "sourceIssueReference": "Realm Of Kings: Inhumans #5",
-      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
-      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
-      "normalizedSeriesTitle": "Realm Of Kings: Inhumans",
-      "seriesYear": null,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Realm Of Kings: Inhumans #5",
+      "previousSourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "previousNormalizedSeriesTitle": "Realm Of Kings: Inhumans",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 28705,
+      "resolvedNormalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "5",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/28705/realm_of_kings_inhumans_2009_5",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "8a5057201c03c2b7511d0f52319a1deb4a17938cabecaada4e0fda0376108796"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "6a5a09199a56cbbcb329a0daba6ff82c0e03ca3c70ea61610e56a16673c816e9"
     },
     {
       "sourcePosition": 191,
-      "sourceIssueReference": "Avengers Assemble 21.Inh",
-      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
-      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
-      "normalizedSeriesTitle": "Avengers Assemble",
-      "seriesYear": null,
-      "issueNumber": "21.Inh",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Avengers Assemble 21.Inh",
+      "previousSourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "previousNormalizedSeriesTitle": "Avengers Assemble",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "21.Inh",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No distinct official Avengers Assemble #21.Inh identity was verified; the base-numbered #21 is preserved as evidence but is not substituted.",
+      "decisionScope": "Owner-authorized unavailable exact-identity exclusion",
+      "auditBasis": "First-party evidence confirms only the base-numbered issue, and the owner authorized unavailable treatment after exact suffix-identity research.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-base-issue",
+          "url": "https://www.marvel.com/comics/issue/48561",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "4cec6fca9868d2c13a49d49f79b5601f7ad0a1d7cb196fcca194e208815364ea"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "1bcc45a73d3b6d0661b877e1bfc1c87d47fa47b7d35b840c500756091e69f2a2"
     },
     {
       "sourcePosition": 192,
-      "sourceIssueReference": "Avengers Assemble 22.Inh",
-      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
-      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
-      "normalizedSeriesTitle": "Avengers Assemble",
-      "seriesYear": null,
-      "issueNumber": "22.Inh",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Avengers Assemble 22.Inh",
+      "previousSourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "previousNormalizedSeriesTitle": "Avengers Assemble",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "22.Inh",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 48562,
+      "resolvedNormalizedSeriesTitle": "Avengers Assemble",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": "22",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/48562/avengers_assemble_2012_22",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "96771512be4a9d8348fd9a35110e19bbdc07e1bc180670bad12a6cc751d0ff0f"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "2f5df3a14753092bae80e2da16d0f99fca99bba83e9d9f4cd37d789504593759"
     },
     {
       "sourcePosition": 193,
-      "sourceIssueReference": "Avengers Assemble 23.Inh",
-      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
-      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
-      "normalizedSeriesTitle": "Avengers Assemble",
-      "seriesYear": null,
-      "issueNumber": "23.Inh",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Avengers Assemble 23.Inh",
+      "previousSourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "previousNormalizedSeriesTitle": "Avengers Assemble",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "23.Inh",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 48563,
+      "resolvedNormalizedSeriesTitle": "Avengers Assemble",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": "23",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/48563/avengers_assemble_2012_23",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "6532576806fa194c6c362763e88062df57884e29a4222259a7cb3dd35edfc453"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "258b8ea7baa2447642655d10c0499f6938cfdec0efa9724f302ce1ea35cd839c"
     },
     {
       "sourcePosition": 198,
-      "sourceIssueReference": "Uncanny X-Men 15.Inh",
-      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
-      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
-      "normalizedSeriesTitle": "Uncanny X-Men",
-      "seriesYear": null,
-      "issueNumber": "15.Inh",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Uncanny X-Men 15.Inh",
+      "previousSourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "previousNormalizedSeriesTitle": "Uncanny X-Men",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "15.Inh",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 48673,
+      "resolvedNormalizedSeriesTitle": "Uncanny X-Men",
+      "resolvedSeriesYear": 2013,
+      "resolvedIssueNumber": "15",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/48673/uncanny_x-men_2013_15",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "a2b8ffcc0fda4e039e8a927d0e69eab9b7ea68ea8220dea59cf7a9714b8a5555"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "e062bb198571a601b9eeb578e602743c2c6ecd658cbeaacb7d0329a165a0cf9b"
     },
     {
       "sourcePosition": 199,
-      "sourceIssueReference": "Indestructible Hulk 17.Inh",
-      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
-      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
-      "normalizedSeriesTitle": "Indestructible Hulk",
-      "seriesYear": null,
-      "issueNumber": "17.Inh",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Indestructible Hulk 17.Inh",
+      "previousSourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "previousNormalizedSeriesTitle": "Indestructible Hulk",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "17.Inh",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No distinct official Indestructible Hulk #17.Inh identity was verified; the base-numbered #17 is preserved as evidence but is not substituted.",
+      "decisionScope": "Owner-authorized unavailable exact-identity exclusion",
+      "auditBasis": "First-party evidence confirms only the base-numbered issue, and the owner authorized unavailable treatment after exact suffix-identity research.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-base-issue",
+          "url": "https://www.marvel.com/comics/issue/48652",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "ada3678c168878971faa969e7506bd97f1b4eb3ee430a575c13bd926207e7dd3"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "da32068e577df69f735235f405e8820cae59a7450e1a6598a5e26aacce1ad752"
     },
     {
       "sourcePosition": 200,
-      "sourceIssueReference": "Indestructible Hulk 18.Inh",
-      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
-      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
-      "normalizedSeriesTitle": "Indestructible Hulk",
-      "seriesYear": null,
-      "issueNumber": "18.Inh",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Indestructible Hulk 18.Inh",
+      "previousSourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "previousNormalizedSeriesTitle": "Indestructible Hulk",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "18.Inh",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 48653,
+      "resolvedNormalizedSeriesTitle": "Indestructible Hulk",
+      "resolvedSeriesYear": 2012,
+      "resolvedIssueNumber": "18",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/48653/indestructible_hulk_2012_18",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "9f233c1628575804e9b43750717a77baeab51ca7aaf98971d3ead250e9ae710b"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "1ca0f8a6d53f6c2e960a8a208fa3ecd98dca6f4df5023e91068d1fd340175b2e"
     },
     {
       "sourcePosition": 202,
-      "sourceIssueReference": "New Avengers 13.Inh",
-      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
-      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
-      "normalizedSeriesTitle": "New Avengers",
-      "seriesYear": null,
-      "issueNumber": "13.Inh",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "New Avengers 13.Inh",
+      "previousSourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "previousNormalizedSeriesTitle": "New Avengers",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "13.Inh",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "No distinct official New Avengers #13.Inh identity was verified; the base-numbered #13 is preserved as evidence but is not substituted.",
+      "decisionScope": "Owner-authorized unavailable exact-identity exclusion",
+      "auditBasis": "First-party evidence confirms only the base-numbered issue, and the owner authorized unavailable treatment after exact suffix-identity research.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-base-issue",
+          "url": "https://www.marvel.com/comics/issue/43527",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "13408e2948c856fed39cbbe817d642645a1b8de65af6025922d18b658084dcfe"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "2546add9d04489293ee4b6a8fa46728385ae9b8c0b3a81bee2600c5f646bd517"
     },
     {
       "sourcePosition": 280,
-      "sourceIssueReference": "Inhumans Prime #1",
-      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Inhumans Prime",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans Prime #1",
+      "previousSourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "previousNormalizedSeriesTitle": "Inhumans Prime",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62652,
+      "resolvedNormalizedSeriesTitle": "Inhumans Prime",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62652/inhumans_prime_1_2017_1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "b6b241b7ccb0883f8d95a8785e5eb0cec2349cb10117ebd52a98801f1a3c024f"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "a67f10a0ce270a359576f25b351cd5b443e85de9221e8d2634b82d6e5f223e84"
     },
     {
       "sourcePosition": 289,
-      "sourceIssueReference": "Inhumans: Judgement Day",
-      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Inhumans: Judgement Day",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans: Judgement Day",
+      "previousSourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "previousNormalizedSeriesTitle": "Inhumans: Judgement Day",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65910,
+      "resolvedNormalizedSeriesTitle": "Inhumans: Judgement Day",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65910/inhumans_judgment_day_2018_1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "44de8cd5726501b8e55b93e5daa05c1ed20d6bd76928c66be88d925ebcb977e3"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "260902a09c661eb25811dcc859313abea0b95cfd645c3f1ff00660c1c12998e8"
     },
     {
       "sourcePosition": 291,
-      "sourceIssueReference": "Inhumans: Once & Future Kings #1",
-      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
-      "seriesYear": null,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans: Once & Future Kings #1",
+      "previousSourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "previousNormalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 63973,
+      "resolvedNormalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/63973/inhumans_once_and_future_kings_2017_1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "a1fb99ebe2412a38f138b90aea732cab7882b80cfc830bf78d336491762e50d1"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "4e53db210b455fcfca7a5b2fa7d3d815d92706e38d2ae0497c60f0939eadf6f7"
     },
     {
       "sourcePosition": 292,
-      "sourceIssueReference": "Inhumans: Once & Future Kings #2",
-      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
-      "seriesYear": null,
-      "issueNumber": "2",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans: Once & Future Kings #2",
+      "previousSourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "previousNormalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "2",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64401,
+      "resolvedNormalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "2",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64401/inhumans_once_and_future_kings_2017_2",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "c9326c9a040577c1c181aebae32c32a0bae8323e78951fc985669a98d6349ab9"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "e2cab755333a27b5188dd3583317a9e2bc0dac7a586afb1584303251e8cc4b38"
     },
     {
       "sourcePosition": 293,
-      "sourceIssueReference": "Inhumans: Once & Future Kings #3",
-      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
-      "seriesYear": null,
-      "issueNumber": "3",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans: Once & Future Kings #3",
+      "previousSourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "previousNormalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "3",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 64815,
+      "resolvedNormalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "3",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/64815/inhumans_once_and_future_kings_2017_3",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "4b101b8fe594fb2770a064232760a9836efdfb64622eec4b61675dbd658ce43e"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "720e1cb843c89e27355ce07cbd6518f017a65aeffab59cc0d88b007f054b9dcd"
     },
     {
       "sourcePosition": 294,
-      "sourceIssueReference": "Inhumans: Once & Future Kings #4",
-      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
-      "seriesYear": null,
-      "issueNumber": "4",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans: Once & Future Kings #4",
+      "previousSourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "previousNormalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "4",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65079,
+      "resolvedNormalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "4",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65079/inhumans_once_and_future_kings_2017_4",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "3348ed517e1cded9f99349dad31895df71a06b38918d2385fb4b4d6da0c8e72a"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "4052c36f1cf398ba953b40e519ae069d9655ce62628869480ac3ef8610a30ee8"
     },
     {
       "sourcePosition": 295,
-      "sourceIssueReference": "Inhumans: Once & Future Kings #5",
-      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Inhumans: Once & Future Kings",
-      "seriesYear": null,
-      "issueNumber": "5",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. No exact catalog series title matches this source series title.",
+      "previousSourceIssueReference": "Inhumans: Once & Future Kings #5",
+      "previousSourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "previousNormalizedSeriesTitle": "Inhumans: Once & Future Kings",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "5",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 65287,
+      "resolvedNormalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "resolvedSeriesYear": 2017,
+      "resolvedIssueNumber": "5",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/65287/inhumans_once_and_future_kings_2017_5",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "65c2be9f1b2660bb57073a9ee72439ef87706e98366477166f5a1a35c21f3cdb"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "62ce9b2af506289c03abe4f4195273afd7ce5aa2f62d9220875c7028e83c7385"
     },
     {
       "sourcePosition": 297,
-      "sourceIssueReference": "Avengers #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Avengers",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Avengers #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "Avengers",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62507,
+      "resolvedNormalizedSeriesTitle": "Avengers",
+      "resolvedSeriesYear": 2016,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62507/avengers_2016_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "7da1858051e5621b6cf5548ba0bdf1f72cdf8552f4b7286fbdfa81c058852f07"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "44a74a6519b472e9b80f596ce2202b58f9ce2cbd83005159b7b2be84ff964059"
     },
     {
       "sourcePosition": 298,
-      "sourceIssueReference": "Spider-Man/Deadpool #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Spider-Man/Deadpool",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Spider-Man/Deadpool #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "Spider-Man/Deadpool",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62511,
+      "resolvedNormalizedSeriesTitle": "Spider-Man/Deadpool",
+      "resolvedSeriesYear": 2016,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62511/spider-mandeadpool_2016_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "09026c9354668de3bfaa54dea9f527654048d4e6ca0024568d25ffc68a47a756"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "54496a8bbf4e8f633624065888b9e7076e771c3e0a4b26458e973e1385908cfd"
     },
     {
       "sourcePosition": 299,
-      "sourceIssueReference": "All-New X-Men #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "All-New X-Men",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "All-New X-Men #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "All-New X-Men",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62601,
+      "resolvedNormalizedSeriesTitle": "All-New X-Men",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62601/all-new_x-men_2015_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "3bc2ec68228df38a5cf7ff7d525e02052ba26c996dab475a53d2cc61ffe468f4"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "df1c3e9197366175fe10b8ec81e4e9c7b48326ec2b1c1b5ecfa0efd5937f4fe4"
     },
     {
       "sourcePosition": 300,
-      "sourceIssueReference": "Champions #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Champions",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Champions #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "Champions",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62604,
+      "resolvedNormalizedSeriesTitle": "Champions",
+      "resolvedSeriesYear": 2016,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62604/champions_2016_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "fcba75dc8a34d1b5be5e878cdc8e415f04c9bbf5140e444a8c4d77301b5388cd"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "6577219fe6cb2729e982e18c42084dfe3df677aa3d3c30f652e1a9a6eb785380"
     },
     {
       "sourcePosition": 301,
-      "sourceIssueReference": "Doctor Strange #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Doctor Strange",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Doctor Strange #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "Doctor Strange",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62603,
+      "resolvedNormalizedSeriesTitle": "Doctor Strange",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62603/doctor_strange_2015_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "63b8623b0990a8bcb7bfa923c83793fad30312b76c12d4713ad2afd544893f77"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "c4d9d9a790b7c2d88a95ec278e8aa77333139039fa1fb85cdc28986236f8de6e"
     },
     {
       "sourcePosition": 302,
-      "sourceIssueReference": "Uncanny Inhumans #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Uncanny Inhumans",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Uncanny Inhumans #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "Uncanny Inhumans",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62602,
+      "resolvedNormalizedSeriesTitle": "Uncanny Inhumans",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62602/uncanny_inhumans_2015_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "84a77aae3a03a5da5035d76cdf73a7da61656d7e90bada5bff95ac5dcff8db2a"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "e032fe71c7c4ea8d3d1818db8074c3231f20de3291b3b3ec232f684e486d2b80"
     },
     {
       "sourcePosition": 303,
-      "sourceIssueReference": "Guardians of the Galaxy #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Guardians of the Galaxy",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "Guardians of the Galaxy #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62637,
+      "resolvedNormalizedSeriesTitle": "Guardians of the Galaxy",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62637/guardians_of_the_galaxy_2015_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "5d941a0f6b3dc74869203288d4c1614a294804a47c4af9274a10620c13c57f62"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "eec7424c3ab1bdc9db2324e6c5227e075ca7b02629a52091e67f94e4c6a19546"
     },
     {
       "sourcePosition": 304,
-      "sourceIssueReference": "The Totally Awesome Hulk #1.MU",
-      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "The Totally Awesome Hulk",
-      "seriesYear": null,
-      "issueNumber": "1.MU",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: metadata-absent. The reviewed direct series has no issue with the exact source issue number.",
+      "previousSourceIssueReference": "The Totally Awesome Hulk #1.MU",
+      "previousSourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "previousNormalizedSeriesTitle": "The Totally Awesome Hulk",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "1.MU",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62648,
+      "resolvedNormalizedSeriesTitle": "The Totally Awesome Hulk",
+      "resolvedSeriesYear": 2015,
+      "resolvedIssueNumber": "1.1",
+      "auditBasis": "First-party Marvel issue identity and configured-provider detail metadata agree with the researched source semantics.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62648/the_totally_awesome_hulk_2015_1.1",
+          "retrievedAt": "2026-09-05"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/inhumans-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/332",
+          "retrievedAt": "2026-09-05"
         }
       ],
-      "evidenceDigest": "5b3c62acccec904a3bfaac5aebb49b87a134f678a98d533a1fd0670b2e4c401a"
+      "checkedAt": "2026-09-05",
+      "evidenceDigest": "cabe6288f26a00f86695e78aae004725f2e6efd46da229a89907af328d6f61ff"
     }
   ],
-  "expectedCount": 217,
+  "expectedCount": 255,
   "proposedManifest": {
     "id": "inhumans-reading-order",
     "name": "Inhumans",
@@ -1728,7 +1828,7 @@
       "Marvel Comics",
       "Comic Book Herald"
     ],
-    "expect": 259,
+    "expect": 255,
     "timeline": 1965,
     "coverIssueId": 13183
   },
@@ -2250,6 +2350,175 @@
       "selectionNote": "Source title, year, and issue number match one provider issue."
     },
     {
+      "sourceIssueReference": "Young Inhumans #1",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 73,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "1",
+      "seriesId": 637,
+      "candidateIssueId": 17188,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #2",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 74,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "2",
+      "seriesId": 637,
+      "candidateIssueId": 17189,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #3",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 75,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "3",
+      "seriesId": 637,
+      "candidateIssueId": 17190,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #4",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 76,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "4",
+      "seriesId": 637,
+      "candidateIssueId": 17191,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #5",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 77,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "5",
+      "seriesId": 637,
+      "candidateIssueId": 17192,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #6",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 78,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "6",
+      "seriesId": 637,
+      "candidateIssueId": 363,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #7",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 79,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "7",
+      "seriesId": 637,
+      "candidateIssueId": 338,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #8",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 80,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "8",
+      "seriesId": 637,
+      "candidateIssueId": 351,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #9",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 81,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "9",
+      "seriesId": 637,
+      "candidateIssueId": 362,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #10",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 82,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "10",
+      "seriesId": 637,
+      "candidateIssueId": 380,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #11",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 83,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "11",
+      "seriesId": 637,
+      "candidateIssueId": 319,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Young Inhumans #12",
+      "sourceRangeReference": "Young Inhumans #1 To #12 (2003 – 2004)",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 84,
+      "normalizedSeriesTitle": "Inhumans",
+      "seriesYear": 2003,
+      "issueNumber": "12",
+      "seriesId": 637,
+      "candidateIssueId": 432,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identities resolve the source's Young Inhumans label to the twelve-issue Inhumans (2003) series."
+    },
+    {
+      "sourceIssueReference": "Inhumans 2099 One-Shot",
+      "sourceRangeReference": "Inhumans 2099 One-Shot",
+      "sourceGroup": "II) Marvel Knights Inhumans for the 2000’s",
+      "sourcePosition": 87,
+      "normalizedSeriesTitle": "Inhumans 2099",
+      "seriesYear": 2004,
+      "issueNumber": "1",
+      "seriesId": 822,
+      "candidateIssueId": 1399,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the source one-shot as Inhumans 2099 (2004) #1."
+    },
+    {
       "sourcePosition": 92,
       "sourceIssueReference": "Son Of M #1",
       "sourceRangeReference": "Son Of M #1 To #6 (Dec 2005 – May 2006)",
@@ -2588,6 +2857,19 @@
       "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
     },
     {
+      "sourceIssueReference": "Mighty Avengers #27",
+      "sourceRangeReference": "Mighty Avengers #27",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "sourcePosition": 133,
+      "normalizedSeriesTitle": "Mighty Avengers",
+      "seriesYear": 2007,
+      "issueNumber": "27",
+      "seriesId": 1866,
+      "candidateIssueId": 25971,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms Mighty Avengers (2007) #27."
+    },
+    {
       "sourcePosition": 136,
       "sourceIssueReference": "War Of Kings #1",
       "sourceRangeReference": "War Of Kings #1 To #6",
@@ -2664,6 +2946,71 @@
       "candidateIssueId": 27063,
       "manualSeriesSelectionApproved": true,
       "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourceIssueReference": "Realm Of Kings: Inhumans #1",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "sourcePosition": 144,
+      "normalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 9053,
+      "candidateIssueId": 28701,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2009 Realm Of Kings Inhumans series."
+    },
+    {
+      "sourceIssueReference": "Realm Of Kings: Inhumans #2",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "sourcePosition": 145,
+      "normalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "2",
+      "seriesId": 9053,
+      "candidateIssueId": 28702,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2009 Realm Of Kings Inhumans series."
+    },
+    {
+      "sourceIssueReference": "Realm Of Kings: Inhumans #3",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "sourcePosition": 146,
+      "normalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "3",
+      "seriesId": 9053,
+      "candidateIssueId": 28703,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2009 Realm Of Kings Inhumans series."
+    },
+    {
+      "sourceIssueReference": "Realm Of Kings: Inhumans #4",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "sourcePosition": 147,
+      "normalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "4",
+      "seriesId": 9053,
+      "candidateIssueId": 28704,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2009 Realm Of Kings Inhumans series."
+    },
+    {
+      "sourceIssueReference": "Realm Of Kings: Inhumans #5",
+      "sourceRangeReference": "Realm Of Kings: Inhumans #1 To #5",
+      "sourceGroup": "IV) Inhumans… In Space! Cosmic Attilan",
+      "sourcePosition": 148,
+      "normalizedSeriesTitle": "Realm Of Kings Inhumans",
+      "seriesYear": 2009,
+      "issueNumber": "5",
+      "seriesId": 9053,
+      "candidateIssueId": 28705,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2009 Realm Of Kings Inhumans series."
     },
     {
       "sourcePosition": 152,
@@ -3056,6 +3403,32 @@
       "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
     },
     {
+      "sourceIssueReference": "Avengers Assemble 22.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "sourcePosition": 192,
+      "normalizedSeriesTitle": "Avengers Assemble",
+      "seriesYear": 2012,
+      "issueNumber": "22",
+      "seriesId": 15373,
+      "candidateIssueId": 48562,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .Inh identity is preserved while first-party metadata renders the issue number as #22."
+    },
+    {
+      "sourceIssueReference": "Avengers Assemble 23.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "sourcePosition": 193,
+      "normalizedSeriesTitle": "Avengers Assemble",
+      "seriesYear": 2012,
+      "issueNumber": "23",
+      "seriesId": 15373,
+      "candidateIssueId": 48563,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .Inh identity is preserved while first-party metadata renders the issue number as #23."
+    },
+    {
       "sourcePosition": 194,
       "sourceIssueReference": "Avengers Assemble 24",
       "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
@@ -3106,6 +3479,32 @@
       "candidateIssueId": 50620,
       "manualSeriesSelectionApproved": true,
       "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
+    },
+    {
+      "sourceIssueReference": "Uncanny X-Men 15.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "sourcePosition": 198,
+      "normalizedSeriesTitle": "Uncanny X-Men",
+      "seriesYear": 2013,
+      "issueNumber": "15",
+      "seriesId": 17602,
+      "candidateIssueId": 48673,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .Inh identity is preserved while first-party metadata renders the issue number as #15."
+    },
+    {
+      "sourceIssueReference": "Indestructible Hulk 18.Inh",
+      "sourceRangeReference": "Avengers Assemble 21.Inh-23.Inh, 24-25; Inhumanity 1-2; Uncanny X-Men 15.Inh; Indestructible Hulk 17.Inh-18.Inh, 19; New Avengers 13.Inh; Iron Man 20",
+      "sourceGroup": "V) Infinity, Inhumanity, and All-New Inhuman",
+      "sourcePosition": 200,
+      "normalizedSeriesTitle": "Indestructible Hulk",
+      "seriesYear": 2012,
+      "issueNumber": "18",
+      "seriesId": 16583,
+      "candidateIssueId": 48653,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .Inh identity is preserved while first-party metadata renders the issue number as #18."
     },
     {
       "sourcePosition": 201,
@@ -3940,6 +4339,19 @@
       "selectionNote": "Source title, year, and issue number match one provider issue."
     },
     {
+      "sourceIssueReference": "Inhumans Prime #1",
+      "sourceRangeReference": "Collects: Royals (2017) #1 to #5, Inhumans Prime #1",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 280,
+      "normalizedSeriesTitle": "Inhumans Prime",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 22994,
+      "candidateIssueId": 62652,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms Inhumans Prime (2017) #1."
+    },
+    {
       "sourcePosition": 282,
       "sourceIssueReference": "Royals #6",
       "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
@@ -4029,6 +4441,188 @@
       "candidateIssueId": 65297,
       "manualSeriesSelectionApproved": false,
       "selectionNote": "Source title, year, and issue number match one provider issue."
+    },
+    {
+      "sourceIssueReference": "Inhumans: Judgement Day",
+      "sourceRangeReference": "Collects: Royals (2017) #6 to #12, Inhumans: Judgement Day",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 289,
+      "normalizedSeriesTitle": "Inhumans: Judgement Day",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 23907,
+      "candidateIssueId": 65910,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The official record changed Judgement to Judgment without changing this one-shot's identity."
+    },
+    {
+      "sourceIssueReference": "Inhumans: Once & Future Kings #1",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 291,
+      "normalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "seriesYear": 2017,
+      "issueNumber": "1",
+      "seriesId": 23283,
+      "candidateIssueId": 63973,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2017 Once And Future Kings limited series."
+    },
+    {
+      "sourceIssueReference": "Inhumans: Once & Future Kings #2",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 292,
+      "normalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "seriesYear": 2017,
+      "issueNumber": "2",
+      "seriesId": 23283,
+      "candidateIssueId": 64401,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2017 Once And Future Kings limited series."
+    },
+    {
+      "sourceIssueReference": "Inhumans: Once & Future Kings #3",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 293,
+      "normalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "seriesYear": 2017,
+      "issueNumber": "3",
+      "seriesId": 23283,
+      "candidateIssueId": 64815,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2017 Once And Future Kings limited series."
+    },
+    {
+      "sourceIssueReference": "Inhumans: Once & Future Kings #4",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 294,
+      "normalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "seriesYear": 2017,
+      "issueNumber": "4",
+      "seriesId": 23283,
+      "candidateIssueId": 65079,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2017 Once And Future Kings limited series."
+    },
+    {
+      "sourceIssueReference": "Inhumans: Once & Future Kings #5",
+      "sourceRangeReference": "Collects: Inhumans: Once & Future Kings #1 to #5",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 295,
+      "normalizedSeriesTitle": "Inhumans: Once And Future Kings",
+      "seriesYear": 2017,
+      "issueNumber": "5",
+      "seriesId": 23283,
+      "candidateIssueId": 65287,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "First-party issue identity confirms the 2017 Once And Future Kings limited series."
+    },
+    {
+      "sourceIssueReference": "Avengers #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 297,
+      "normalizedSeriesTitle": "Avengers",
+      "seriesYear": 2016,
+      "issueNumber": "1.1",
+      "seriesId": 22547,
+      "candidateIssueId": 62507,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
+    },
+    {
+      "sourceIssueReference": "Spider-Man/Deadpool #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 298,
+      "normalizedSeriesTitle": "Spider-Man/Deadpool",
+      "seriesYear": 2016,
+      "issueNumber": "1.1",
+      "seriesId": 19679,
+      "candidateIssueId": 62511,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
+    },
+    {
+      "sourceIssueReference": "All-New X-Men #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 299,
+      "normalizedSeriesTitle": "All-New X-Men",
+      "seriesYear": 2015,
+      "issueNumber": "1.1",
+      "seriesId": 20622,
+      "candidateIssueId": 62601,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
+    },
+    {
+      "sourceIssueReference": "Champions #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 300,
+      "normalizedSeriesTitle": "Champions",
+      "seriesYear": 2016,
+      "issueNumber": "1.1",
+      "seriesId": 22552,
+      "candidateIssueId": 62604,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
+    },
+    {
+      "sourceIssueReference": "Doctor Strange #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 301,
+      "normalizedSeriesTitle": "Doctor Strange",
+      "seriesYear": 2015,
+      "issueNumber": "1.1",
+      "seriesId": 20457,
+      "candidateIssueId": 62603,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
+    },
+    {
+      "sourceIssueReference": "Uncanny Inhumans #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 302,
+      "normalizedSeriesTitle": "Uncanny Inhumans",
+      "seriesYear": 2015,
+      "issueNumber": "1.1",
+      "seriesId": 19780,
+      "candidateIssueId": 62602,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
+    },
+    {
+      "sourceIssueReference": "Guardians of the Galaxy #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 303,
+      "normalizedSeriesTitle": "Guardians of the Galaxy",
+      "seriesYear": 2015,
+      "issueNumber": "1.1",
+      "seriesId": 20465,
+      "candidateIssueId": 62637,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
+    },
+    {
+      "sourceIssueReference": "The Totally Awesome Hulk #1.MU",
+      "sourceRangeReference": "Collects: Avengers #1.MU, Spider-Man/Deadpool #1.MU, All-New X-Men #1.MU, Champions #1.MU, Doctor Strange #1.MU, Uncanny Inhumans #1.MU, Guardians of the Galaxy #1.MU, The Totally Awesome Hulk #1.MU",
+      "sourceGroup": "Latest Additions:",
+      "sourcePosition": 304,
+      "normalizedSeriesTitle": "The Totally Awesome Hulk",
+      "seriesYear": 2015,
+      "issueNumber": "1.1",
+      "seriesId": 20614,
+      "candidateIssueId": 62648,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "The source's .MU identity is preserved while first-party metadata renders the issue number as #1.1."
     },
     {
       "sourcePosition": 306,
@@ -4564,5 +5158,5 @@
       "selectionNote": "Source chronology and explicit issue reference select one reviewed direct series."
     }
   ],
-  "packetDigest": "9f64bff5ac3fb910300f5c96ea976c646fd057a09b4c28e55920cf15b38d49ae"
+  "packetDigest": "e747ca08a08ed79b4aeebe4467edcb90e7e5546262248fbef1dc9a87b47c1f9a"
 }
