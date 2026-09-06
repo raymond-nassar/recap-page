@@ -12,6 +12,19 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Magneto guide gaps
+
+In plain English: The bundled Magneto guide now includes 56 exact comics that previously appeared
+as broken placeholders. One repeated publication is now represented once instead of twice. Marvel
+Treasury Edition #27 remains as a source-provenance placeholder because it is real but has no
+verified current provider identity; it was not deleted, substituted, or mapped to another comic.
+Existing saved Reading Lists and reading progress are not rewritten; newly imported copies receive
+the settled 752-item order.
+
+For maintainers, all 811 source positions remain accounted for as 751 exact rows, 48 repeated
+references, one provider-ID-free provenance gap, and 11 prose exclusions. All 57 settled former
+gaps retain auditable transition evidence.
+
 ### Settled the Young Avengers guide gaps
 
 In plain English: The bundled Young Avengers guide now includes 51 exact comics that previously

@@ -2,7 +2,7 @@
   "candidateId": "the-defenders-reading-order",
   "packetDigest": "475cc8c202d29a0e929d10909f5ad09ebe0c725ed725274fb3d159976306e328",
   "mappingDigest": "03a012cbe16a76318aa5d32c606f4dad3c15e3ab6ffc73a6d80ed60373756ea0",
-  "libraryDigest": "60b29a053dfd2f99cf9343d7ff07bbc5f611e3c4e4bca9255c715e5b2ecb00bb",
+  "libraryDigest": "2e963e7a40045769c52c0605eec31dd1f5d1256afad170416e12c3b7d007ee41",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 331,
@@ -551,14 +551,15 @@
     },
     {
       "orderId": "guardians-of-the-galaxy-reading-order",
-      "sharedCount": 6,
+      "sharedCount": 7,
       "sharedIds": [
         "20333",
         "20334",
         "20335",
         "20336",
         "20030",
-        "15429"
+        "15429",
+        "62818"
       ],
       "relationship": "partial"
     },
@@ -1329,5 +1330,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "e6fd9cec0c51f44a21e30e7fd5ea81a25bd6913270077958539d13257144c517"
+  "reportDigest": "353df3aa098880cef2f4369367bde88bebcdbd8429f91233dcad164c64aa2559"
 }

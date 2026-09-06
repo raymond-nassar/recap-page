@@ -2629,39 +2629,6 @@
       "coverIssueId": 10590
     },
     {
-      "id": "magneto-reading-order",
-      "name": "Magneto",
-      "description": "A source-ordered Magneto reading guide from early X-Men appearances through modern stories, with unresolved source identities retained as plain-text provenance.",
-      "type": "character-run",
-      "spotlightKind": "complete-guide",
-      "depth": "complete",
-      "beginner": false,
-      "group": null,
-      "groupName": null,
-      "variant": null,
-      "sourceFile": "magneto-reading-order.md",
-      "sourcePage": "https://www.comicbookherald.com/magneto-reading-order/",
-      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
-      "sourceLicense": null,
-      "out": "magneto_reading_order.json",
-      "characters": [
-        "Magneto",
-        "X-Men",
-        "Scarlet Witch",
-        "Quicksilver"
-      ],
-      "keywords": [
-        "Magneto",
-        "X-Men",
-        "Scarlet Witch",
-        "Quicksilver",
-        "Comic Book Herald"
-      ],
-      "expect": 753,
-      "timeline": null,
-      "coverIssueId": 13741
-    },
-    {
       "id": "loki-reading-order",
       "name": "Loki",
       "description": "A complete Loki reading path from the character origins through the latest source additions.",
@@ -2856,6 +2823,39 @@
       "expect": 169,
       "timeline": null,
       "coverIssueId": 4500
+    },
+    {
+      "id": "magneto-reading-order",
+      "name": "Magneto",
+      "description": "A source-ordered Magneto reading guide from early X-Men appearances through modern stories, with unresolved source identities retained as plain-text provenance.",
+      "type": "character-run",
+      "spotlightKind": "complete-guide",
+      "depth": "complete",
+      "beginner": false,
+      "group": null,
+      "groupName": null,
+      "variant": null,
+      "sourceFile": "magneto-reading-order.md",
+      "sourcePage": "https://www.comicbookherald.com/magneto-reading-order/",
+      "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
+      "sourceLicense": null,
+      "out": "magneto_reading_order.json",
+      "characters": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver"
+      ],
+      "keywords": [
+        "Magneto",
+        "X-Men",
+        "Scarlet Witch",
+        "Quicksilver",
+        "Comic Book Herald"
+      ],
+      "expect": 752,
+      "timeline": null,
+      "coverIssueId": 13741
     },
     {
       "id": "xmen-claremont",

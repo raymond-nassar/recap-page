@@ -37,7 +37,7 @@ const currentOverlaps = [
   ['fantastic-four-reading-order', 23],
   ['iron-man-reading-order', 6],
   ['loki-reading-order', 2],
-  ['magneto-reading-order', 13],
+  ['magneto-reading-order', 17],
   ['modern-x-men-fast-track', 42],
   ['punisher-reading-order', 38],
   ['question-of-the-week-do-you-have-a-hulk-reading-order', 32],
