@@ -8981,13 +8981,23 @@ const SCENARIOS = [
         const routed = await activateByKeyboard(selector, viewId);
         t.check(`routing to ${viewId} closes narrow Navigation and leaves visible focus`, routed.hidden && routed.focusVisible, JSON.stringify(routed));
       }
+      await openNavigation();
+      const reachedFinalControl = await tabToSelector('#sidebar-panel .ri[data-view="about"]');
       const tabExit = await page.evaluate(() => ({
+        beforeOpened: (window.__opened ?? []).length,
+      }));
+      await page.keyboard.press('Tab');
+      const tabExitAfter = await page.evaluate(() => ({
+        afterOpened: (window.__opened ?? []).length,
         onMain: document.querySelector('#main')?.contains(document.activeElement) ?? false,
-        active: document.activeElement?.id ?? document.activeElement?.className ?? null,
+        active: document.activeElement?.id ?? document.activeElement?.className ?? document.activeElement?.tagName ?? null,
       }));
       t.check('navigation tab sequence exits into main content without opening the reader',
-        tabExit.onMain && typeof tabExit.active === 'string' && (tabExit.active || '').length > 0,
-        JSON.stringify(tabExit));
+        reachedFinalControl
+        && tabExitAfter.onMain
+        && tabExitAfter.afterOpened === tabExit.beforeOpened
+        && typeof tabExitAfter.active === 'string',
+        JSON.stringify({ reachedFinalControl, tabExit, tabExitAfter }));
 
       await activateByKeyboard('#sidebar-panel .ri[data-view="browse"]', 'view-browse');
       await click(page, '#view-browse [data-category="timeline"]');
@@ -9125,9 +9135,27 @@ const SCENARIOS = [
           const pill = document.querySelector('#api-status');
           pill.className = 'pill pill-warn';
           pill.textContent = 'API unreachable. Lists and progress still work';
+          const style = getComputedStyle(pill);
+          const rect = pill.getBoundingClientRect();
+          const textRange = document.createRange();
+          textRange.selectNodeContents(pill);
+          const textRects = [...textRange.getClientRects()];
+          const fitsRects = textRects.every((textRect) =>
+            textRect.left >= rect.left - 1
+            && textRect.right <= rect.right + 1
+            && textRect.top >= rect.top - 1
+            && textRect.bottom <= rect.bottom + 1);
+          const clippedByOverflow = (
+            ((style.overflowX === 'hidden' || style.overflowX === 'clip') && pill.scrollWidth > pill.clientWidth + 1)
+            || ((style.overflowY === 'hidden' || style.overflowY === 'clip') && pill.scrollHeight > pill.clientHeight + 1)
+          );
+          const clippedByEllipsis = style.textOverflow === 'ellipsis' && pill.scrollWidth > pill.clientWidth + 1;
           return {
             text: pill.textContent.trim(),
-            visible: pill.getBoundingClientRect().height > 0,
+            visible: rect.height > 0 && rect.width > 0,
+            painted: style.visibility !== 'hidden' && style.display !== 'none' && Number(style.opacity) > 0,
+            fit: fitsRects && pill.scrollWidth <= pill.clientWidth + 1 && pill.scrollHeight <= pill.clientHeight + 1,
+            clipped: clippedByOverflow || clippedByEllipsis,
           };
         })(),
         queueVisible: (() => {
@@ -9135,10 +9163,27 @@ const SCENARIOS = [
           queue.hidden = false;
           queue.className = 'pill pill-muted';
           queue.textContent = '12 requests queued';
+          const style = getComputedStyle(queue);
           const rect = queue.getBoundingClientRect();
+          const textRange = document.createRange();
+          textRange.selectNodeContents(queue);
+          const textRects = [...textRange.getClientRects()];
+          const fitsRects = textRects.every((textRect) =>
+            textRect.left >= rect.left - 1
+            && textRect.right <= rect.right + 1
+            && textRect.top >= rect.top - 1
+            && textRect.bottom <= rect.bottom + 1);
+          const clippedByOverflow = (
+            ((style.overflowX === 'hidden' || style.overflowX === 'clip') && queue.scrollWidth > queue.clientWidth + 1)
+            || ((style.overflowY === 'hidden' || style.overflowY === 'clip') && queue.scrollHeight > queue.clientHeight + 1)
+          );
+          const clippedByEllipsis = style.textOverflow === 'ellipsis' && queue.scrollWidth > queue.clientWidth + 1;
           return {
             text: queue.textContent.trim(),
             visible: rect.width > 0 && rect.height > 0,
+            painted: style.visibility !== 'hidden' && style.display !== 'none' && Number(style.opacity) > 0,
+            fit: fitsRects && queue.scrollWidth <= queue.clientWidth + 1 && queue.scrollHeight <= queue.clientHeight + 1,
+            clipped: clippedByOverflow || clippedByEllipsis,
           };
         })(),
       }));
@@ -9156,8 +9201,14 @@ const SCENARIOS = [
         && darkReduced.durations.length === 0
         && darkReduced.apiLong.text === 'API unreachable. Lists and progress still work'
         && darkReduced.apiLong.visible
+        && darkReduced.apiLong.painted
+        && darkReduced.apiLong.fit
+        && !darkReduced.apiLong.clipped
         && darkReduced.queueVisible.text === '12 requests queued'
-        && darkReduced.queueVisible.visible,
+        && darkReduced.queueVisible.visible
+        && darkReduced.queueVisible.painted
+        && darkReduced.queueVisible.fit
+        && !darkReduced.queueVisible.clipped,
         JSON.stringify(darkReduced));
       await page.emulateMediaFeatures([]);
 
