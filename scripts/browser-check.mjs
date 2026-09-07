@@ -8968,6 +8968,7 @@ const SCENARIOS = [
       t.check('a passive reading repaint keeps narrow Navigation open and focus available',
         passive.hidden === false && passive.focusInside,
         JSON.stringify(passive));
+      const journeyOpenedBaseline = await page.evaluate(() => (window.__opened ?? []).length);
 
       for (const [selector, viewId] of [
         ['.brand[data-view="home"]', 'view-home'],
@@ -8979,13 +8980,12 @@ const SCENARIOS = [
         ['#sidebar-panel .ri[data-view="about"]', 'view-about'],
       ]) {
         const routed = await activateByKeyboard(selector, viewId);
-        t.check(`routing to ${viewId} closes narrow Navigation and leaves visible focus`, routed.hidden && routed.focusVisible, JSON.stringify(routed));
+        t.check(`routing to ${viewId} closes narrow Navigation and leaves visible focus`,
+          routed.hidden && routed.focusVisible && routed.openedCount === journeyOpenedBaseline,
+          JSON.stringify({ routed, journeyOpenedBaseline }));
       }
       await openNavigation();
       const reachedFinalControl = await tabToSelector('#sidebar-panel .ri[data-view="about"]');
-      const tabExit = await page.evaluate(() => ({
-        beforeOpened: (window.__opened ?? []).length,
-      }));
       await page.keyboard.press('Tab');
       const tabExitAfter = await page.evaluate(() => ({
         afterOpened: (window.__opened ?? []).length,
@@ -8995,9 +8995,9 @@ const SCENARIOS = [
       t.check('navigation tab sequence exits into main content without opening the reader',
         reachedFinalControl
         && tabExitAfter.onMain
-        && tabExitAfter.afterOpened === tabExit.beforeOpened
+        && tabExitAfter.afterOpened === journeyOpenedBaseline
         && typeof tabExitAfter.active === 'string',
-        JSON.stringify({ reachedFinalControl, tabExit, tabExitAfter }));
+        JSON.stringify({ reachedFinalControl, journeyOpenedBaseline, tabExitAfter }));
 
       await activateByKeyboard('#sidebar-panel .ri[data-view="browse"]', 'view-browse');
       await click(page, '#view-browse [data-category="timeline"]');
