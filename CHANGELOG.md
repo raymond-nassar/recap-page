@@ -23,6 +23,34 @@ For maintainers: `sidebar.collapsed` remains desktop-only persistence, while nar
 state is ephemeral. Ctrl+\ still drives the same toggle entry point across both desktop and narrow
 layouts.
 
+### Settled the Wolverine guide gaps
+
+In plain English: The bundled Wolverine guide now opens 14 exact comics that previously appeared as
+plain source notes. Twenty-five comics without an individual provider page remain visible as source
+notes, and only the two named Marvel Infinite comics are omitted under the owner's reader policy.
+Five later recommendations, including Weapon X-Traction, remain outside the frozen guide boundary.
+Existing progress, notes, and availability choices stay connected to all 756 retained source notes,
+including after deleting and importing the guide again.
+
+For maintainers, all 1,328 frozen source occurrences remain accounted for as 451 exact rows, 71
+repeated references, 50 explicit exclusions, and 756 provider-unavailable provenance rows. The
+owner-reviewed 60-row settlement remains classified as 15 exact identities, 3 source-level repeats,
+27 availability-only rows, 10 source-semantic rows, and 5 post-boundary rows. The retained
+placeholder identity vector is unchanged from the previous bundled guide.
+
+### Settled the Amazing Spider-Man complete guide gaps
+
+In plain English: The complete Amazing Spider-Man guide now includes 90 exact comics that
+previously appeared as broken placeholders. Seven source identities remain visible without made-up
+links: six could not be found through the current provider, and the original 1989 Parallel Lives
+edition could not be safely replaced by a later edition. Existing saved Reading Lists, progress,
+notes, and availability choices are not rewritten.
+
+For maintainers, all 103 former gap rows remain accounted for as 88 exact rows representing 90
+atomic identities, three repeated references, five source-semantic exclusions, six
+provider-unavailability rows, and one availability-only row. The seven retained placeholder keys
+remain unchanged.
+
 ### Settled the Captain America modern guide
 
 In plain English: The modern Captain America guide now opens the one comic that its source names

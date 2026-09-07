@@ -436,12 +436,14 @@ than being guessed or dropped.
 The Amazing Spider-Man complete guide is compiled by hand, like the Best of Spider-Man reading it
 shares a story with, rather than carried through the frozen-packet pipeline used by the other
 mapped complete guides: it is not derived from Marvel metadata and cannot be checked against it,
-only the issue ids and titles come from Marvel, by resolving each issue the source guide names. Of 2,047
-source-defined rows, 1,944 resolve to an exact Marvel issue: 1,942 carry maintained-provider metadata,
-while two retain owner-confirmed official issue links beside an explicit provider refusal. The
-remaining 103 ship as plain-text placeholders, never an invented identity, and are tracked for
-follow-up research in a linked GitHub issue. It overlaps 32 other catalog entries, the largest being 209 shared issues with
-the Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
+only the issue ids and titles come from Marvel, by resolving each issue the source guide names. The
+settled guide publishes 2,041 checklist entries: 2,034 exact Marvel issues and seven explicit
+plain-text placeholders. Its former 103-row gap ledger resolves 88 source rows to 90 atomic
+identities, records three repeats and five source-semantic exclusions outside the reading sequence,
+and retains six provider-unavailability rows plus the original 1989 Parallel Lives identity without
+invented ids, nonexistence claims, adjacent or base-number substitutions, or a later-edition
+replacement. It overlaps 32 other catalog entries, the largest being 209 shared issues with the
+Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
 Spider-Verse orders.
 
 Some source guides name one comic in more than one collected range. The frozen packet preserves that
@@ -462,6 +464,16 @@ Vegas #3-4 identities remain explicit source corrections, so the published guide
 canonical issues. Its settled metadata ledger records the nine historical failed lookups separately
 from all thirteen owner-supplied identities. Crimson Dynamo #5-6 ids 309 and 293 are verified
 provenance outside the accepted source boundary and are not added to the guide.
+
+Wolverine preserves all 1,328 frozen source occurrences as 451 exact rows, 71 later occurrences of
+an earlier exact identity, 50 explicit exclusions, and 756 provider-unavailable source identities
+that remain visible provenance. The 60-row owner settlement records 15 exact identities, 3
+source-level repeats, 27 availability-only rows, 10 source-semantic rows, and 5 later-source rows
+outside the frozen boundary. The availability result does not authorize a substitute: only the two
+named Avengers vs. X-Men: Infinite issues are omitted by owner policy, and all other unavailable
+in-boundary identities remain visible. Retained placeholders continue to use their original
+title-derived identifiers, so deleting and importing the guide again does not disconnect progress,
+notes, or availability overrides.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and

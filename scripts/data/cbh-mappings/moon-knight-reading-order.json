@@ -8743,10 +8743,10 @@
   },
   "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
   "relationshipReview": {
-    "reportDigest": "995030c5dbe9b1d686193fca336733b09b82fe38ebce4ec8087935576f665fcb",
+    "reportDigest": "8cfe56921b95a62cb37c6a241812b6a81b0cf7c29ffc658e67fe28467ac7bdf5",
     "packetDigest": "a033c4c388c2cb0d8032574795a69cec52f95b87d0c8b8db1683c20cdd9883a5",
     "mappingDigest": "6befde5c931e0f85f3704913150012b7e241792edb3eed6164804dc55aba37ee",
-    "libraryDigest": "9683eeb3db3c42d7c39d9ecb75c67caa3cea6204de3e5bed45d6c34d8c506b6f",
+    "libraryDigest": "f8c99a02ba5938d453b3e337404784a97202efd3c9b7685e612d27c73d71e43a",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 414,
@@ -10218,9 +10218,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing moon-knight-reading-order comparison scope was re-reviewed after the Captain America settlement changed one included library order. All 162 relationships retain their publication decisions.",
+    "rationale": "The existing moon-knight-reading-order comparison scope was re-reviewed after the Amazing Spider-Man and Wolverine settlements changed included library orders. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "a5aa071f4fe49577f3d7b497197f368e63d11b934119673853501633bed8aa64"
+    "approvalDigest": "2081e6453b74f418cedcc920a629e5230f5518d2187bac0bffe8c3c398d5c70d"
   },
   "sourceGapResolutions": [
     {

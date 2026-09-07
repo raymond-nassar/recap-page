@@ -5,731 +5,59 @@
   "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-03T06:33:08.920Z",
+  "generatedAt": "2026-09-07T07:16:05.457Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 2047,
+  "count": 2041,
   "collections": 0,
-  "placeholders": 103,
+  "placeholders": 7,
   "unresolved": [
-    {
-      "title": "Marvel Calendar #1978",
-      "url": null,
-      "read": false,
-      "index": 198,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, the Spectacular Spider-Man Annual #4",
-      "url": null,
-      "read": false,
-      "index": 288,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, The Spectacular Spider-Man #101",
-      "url": null,
-      "read": false,
-      "index": 295,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, The Spectacular Spider-Man #102",
-      "url": null,
-      "read": false,
-      "index": 296,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, The Spectacular Spider-Man #103",
-      "url": null,
-      "read": false,
-      "index": 297,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, The Spectacular Spider-Man #104",
-      "url": null,
-      "read": false,
-      "index": 298,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, The Spectacular Spider-Man #105",
-      "url": null,
-      "read": false,
-      "index": 299,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, The Spectacular Spider-Man #106",
-      "url": null,
-      "read": false,
-      "index": 300,
-      "section": null
-    },
     {
       "title": "Peter Parker, The Spectacular Spider-Man #112",
       "url": null,
       "read": false,
-      "index": 306,
-      "section": null
-    },
-    {
-      "title": "Peter Parker, The Spectacular Spider-Man #113",
-      "url": null,
-      "read": false,
-      "index": 307,
+      "index": 305,
       "section": null
     },
     {
       "title": "Peter Parker, The Spectacular Spider-Man #114",
       "url": null,
       "read": false,
-      "index": 308,
+      "index": 307,
       "section": null
     },
     {
       "title": "Peter Parker, The Spectacular Spider-Man Annual #5",
       "url": null,
       "read": false,
-      "index": 309,
-      "section": null
-    },
-    {
-      "title": "Spider-Man vs. Wolverine",
-      "url": null,
-      "read": false,
-      "index": 340,
+      "index": 308,
       "section": null
     },
     {
       "title": "Marvel Graphic Novel: Amazing Spider-Man - Parallel Lives",
       "url": null,
       "read": false,
-      "index": 390,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: Spirits of the Earth OGN",
-      "url": null,
-      "read": false,
-      "index": 427,
-      "section": null
-    },
-    {
-      "title": "Avengers #236",
-      "url": null,
-      "read": false,
-      "index": 428,
-      "section": null
-    },
-    {
-      "title": "Avengers #237",
-      "url": null,
-      "read": false,
-      "index": 429,
-      "section": null
-    },
-    {
-      "title": "Avengers #314",
-      "url": null,
-      "read": false,
-      "index": 430,
-      "section": null
-    },
-    {
-      "title": "Avengers #315",
-      "url": null,
-      "read": false,
-      "index": 431,
-      "section": null
-    },
-    {
-      "title": "Avengers #316",
-      "url": null,
-      "read": false,
-      "index": 432,
-      "section": null
-    },
-    {
-      "title": "Avengers #317",
-      "url": null,
-      "read": false,
-      "index": 433,
-      "section": null
-    },
-    {
-      "title": "Avengers #318",
-      "url": null,
-      "read": false,
-      "index": 434,
+      "index": 389,
       "section": null
     },
     {
       "title": "Avengers #329",
       "url": null,
       "read": false,
-      "index": 435,
-      "section": null
-    },
-    {
-      "title": "Cloak & Dagger #18",
-      "url": null,
-      "read": false,
-      "index": 557,
-      "section": null
-    },
-    {
-      "title": "Spider-Man/Dr. Strange: The Way to Dusty Death",
-      "url": null,
-      "read": false,
-      "index": 590,
-      "section": null
-    },
-    {
-      "title": "Spider-Man/Punisher/Sabretooth: Designer Genes",
-      "url": null,
-      "read": false,
-      "index": 601,
-      "section": null
-    },
-    {
-      "title": "Amazing Spider-Man Ashcan Edition #1",
-      "url": null,
-      "read": false,
-      "index": 618,
-      "section": null
-    },
-    {
-      "title": "Amazing Fantasy #16",
-      "url": null,
-      "read": false,
-      "index": 619,
-      "section": null
-    },
-    {
-      "title": "Amazing Fantasy #17",
-      "url": null,
-      "read": false,
-      "index": 620,
-      "section": null
-    },
-    {
-      "title": "Amazing Fantasy #18",
-      "url": null,
-      "read": false,
-      "index": 621,
-      "section": null
-    },
-    {
-      "title": "Annual '96 and Annual '97",
-      "url": null,
-      "read": false,
-      "index": 648,
-      "section": null
-    },
-    {
-      "title": "Clone Subplot Pages",
-      "url": null,
-      "read": false,
-      "index": 664,
-      "section": null
-    },
-    {
-      "title": "Web Of Spider-Man #120",
-      "url": null,
-      "read": false,
-      "index": 665,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: Funeral For An Octopus #1",
-      "url": null,
-      "read": false,
-      "index": 679,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: Funeral For An Octopus #2",
-      "url": null,
-      "read": false,
-      "index": 680,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: Funeral For An Octopus #3",
-      "url": null,
-      "read": false,
-      "index": 681,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: The Clone Journal",
-      "url": null,
-      "read": false,
-      "index": 682,
-      "section": null
-    },
-    {
-      "title": "Spider-Man Unlimited #9",
-      "url": null,
-      "read": false,
-      "index": 698,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: The Jackal Files",
-      "url": null,
-      "read": false,
-      "index": 704,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: Maximum Clonage Alpha, Omega",
-      "url": null,
-      "read": false,
-      "index": 705,
-      "section": null
-    },
-    {
-      "title": "Scarlet Spider Unlimited #1",
-      "url": null,
-      "read": false,
-      "index": 722,
-      "section": null
-    },
-    {
-      "title": "Green Goblin #3",
-      "url": null,
-      "read": false,
-      "index": 731,
-      "section": null
-    },
-    {
-      "title": "Daredevil #354",
-      "url": null,
-      "read": false,
-      "index": 762,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: 101 Ways To End The Clone Saga",
-      "url": null,
-      "read": false,
-      "index": 802,
-      "section": null
-    },
-    {
-      "title": "X-Man Annual #1",
-      "url": null,
-      "read": false,
-      "index": 819,
-      "section": null
-    },
-    {
-      "title": "Webspinners #10",
-      "url": null,
-      "read": false,
-      "index": 909,
-      "section": null
-    },
-    {
-      "title": "Webspinners #11",
-      "url": null,
-      "read": false,
-      "index": 910,
-      "section": null
-    },
-    {
-      "title": "Webspinners #12",
-      "url": null,
-      "read": false,
-      "index": 911,
-      "section": null
-    },
-    {
-      "title": "35, #37",
-      "url": null,
-      "read": false,
-      "index": 985,
-      "section": null
-    },
-    {
-      "title": "Doctor Octopus: Negative Exposure #1",
-      "url": null,
-      "read": false,
-      "index": 1021,
-      "section": null
-    },
-    {
-      "title": "Doctor Octopus: Negative Exposure #2",
-      "url": null,
-      "read": false,
-      "index": 1022,
-      "section": null
-    },
-    {
-      "title": "Doctor Octopus: Negative Exposure #3",
-      "url": null,
-      "read": false,
-      "index": 1023,
-      "section": null
-    },
-    {
-      "title": "Doctor Octopus: Negative Exposure #4",
-      "url": null,
-      "read": false,
-      "index": 1024,
-      "section": null
-    },
-    {
-      "title": "Doctor Octopus: Negative Exposure #5",
-      "url": null,
-      "read": false,
-      "index": 1025,
-      "section": null
-    },
-    {
-      "title": "The Pulse #1",
-      "url": null,
-      "read": false,
-      "index": 1051,
-      "section": null
-    },
-    {
-      "title": "The Pulse #2",
-      "url": null,
-      "read": false,
-      "index": 1052,
-      "section": null
-    },
-    {
-      "title": "The Pulse #3",
-      "url": null,
-      "read": false,
-      "index": 1053,
-      "section": null
-    },
-    {
-      "title": "The Pulse #4",
-      "url": null,
-      "read": false,
-      "index": 1054,
-      "section": null
-    },
-    {
-      "title": "The Pulse #5",
-      "url": null,
-      "read": false,
-      "index": 1055,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #536",
-      "url": null,
-      "read": false,
-      "index": 1130,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #537",
-      "url": null,
-      "read": false,
-      "index": 1131,
-      "section": null
-    },
-    {
-      "title": "New Avengers: Illuminati One-Shot",
-      "url": null,
-      "read": false,
-      "index": 1132,
-      "section": null
-    },
-    {
-      "title": "The Sensational Spider-Man #29",
-      "url": null,
-      "read": false,
-      "index": 1150,
-      "section": null
-    },
-    {
-      "title": "The Sensational Spider-Man #30",
-      "url": null,
-      "read": false,
-      "index": 1151,
-      "section": null
-    },
-    {
-      "title": "The Sensational Spider-Man #31",
-      "url": null,
-      "read": false,
-      "index": 1152,
-      "section": null
-    },
-    {
-      "title": "The Sensational Spider-Man #34",
-      "url": null,
-      "read": false,
-      "index": 1153,
-      "section": null
-    },
-    {
-      "title": "Secret Invasion: Amazing Spider-Man #1",
-      "url": null,
-      "read": false,
-      "index": 1200,
-      "section": null
-    },
-    {
-      "title": "Secret Invasion: Amazing Spider-Man #2",
-      "url": null,
-      "read": false,
-      "index": 1201,
-      "section": null
-    },
-    {
-      "title": "Secret Invasion: Amazing Spider-Man #3",
-      "url": null,
-      "read": false,
-      "index": 1202,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: Presidents' Day Special",
-      "url": null,
-      "read": false,
-      "index": 1217,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: The Short Halloween",
-      "url": null,
-      "read": false,
-      "index": 1231,
-      "section": null
-    },
-    {
-      "title": "Dark Reign: The List - Amazing Spider-Man",
-      "url": null,
-      "read": false,
-      "index": 1246,
-      "section": null
-    },
-    {
-      "title": "Web of Spider-Man (vol. 2) #11",
-      "url": null,
-      "read": false,
-      "index": 1286,
-      "section": null
-    },
-    {
-      "title": "Spider-Man Saga",
-      "url": null,
-      "read": false,
-      "index": 1293,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #579",
-      "url": null,
-      "read": false,
-      "index": 1310,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #580",
-      "url": null,
-      "read": false,
-      "index": 1311,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #581",
-      "url": null,
-      "read": false,
-      "index": 1312,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #582",
-      "url": null,
-      "read": false,
-      "index": 1313,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #583",
-      "url": null,
-      "read": false,
-      "index": 1314,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #584",
-      "url": null,
-      "read": false,
-      "index": 1315,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #585",
-      "url": null,
-      "read": false,
-      "index": 1316,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #586",
-      "url": null,
-      "read": false,
-      "index": 1317,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #587",
-      "url": null,
-      "read": false,
-      "index": 1318,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #588",
-      "url": null,
-      "read": false,
-      "index": 1319,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #600",
-      "url": null,
-      "read": false,
-      "index": 1336,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #601",
-      "url": null,
-      "read": false,
-      "index": 1337,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #602",
-      "url": null,
-      "read": false,
-      "index": 1338,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #603",
-      "url": null,
-      "read": false,
-      "index": 1339,
-      "section": null
-    },
-    {
-      "title": "Fantastic Four #604",
-      "url": null,
-      "read": false,
-      "index": 1340,
-      "section": null
-    },
-    {
-      "title": "Black Panther #524",
-      "url": null,
-      "read": false,
-      "index": 1363,
-      "section": null
-    },
-    {
-      "title": "Daredevil #8 crossover",
-      "url": null,
-      "read": false,
-      "index": 1369,
+      "index": 434,
       "section": null
     },
     {
       "title": "Mighty Avengers #4.1",
       "url": null,
       "read": false,
-      "index": 1449,
+      "index": 1444,
       "section": null
     },
     {
       "title": "Mighty Avengers #5.1",
       "url": null,
       "read": false,
-      "index": 1450,
-      "section": null
-    },
-    {
-      "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #1",
-      "url": null,
-      "read": false,
-      "index": 1525,
-      "section": null
-    },
-    {
-      "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #2",
-      "url": null,
-      "read": false,
-      "index": 1526,
-      "section": null
-    },
-    {
-      "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #3",
-      "url": null,
-      "read": false,
-      "index": 1527,
-      "section": null
-    },
-    {
-      "title": "Superior Foes of Spider-Man (full run)",
-      "url": null,
-      "read": false,
-      "index": 1657,
-      "section": null
-    },
-    {
-      "title": "Red Goblin: Read Death #1",
-      "url": null,
-      "read": false,
-      "index": 1743,
-      "section": null
-    },
-    {
-      "title": "Amazing Spider-Man: Sins Rising #1",
-      "url": null,
-      "read": false,
-      "index": 1776,
-      "section": null
-    },
-    {
-      "title": "Spider-Man: The Sins of Norman Osborn #1",
-      "url": null,
-      "read": false,
-      "index": 1779,
-      "section": null
-    },
-    {
-      "title": "Amazing Spider-Man: Gang War Prelude #1",
-      "url": null,
-      "read": false,
-      "index": 1958,
-      "section": null
-    },
-    {
-      "title": "Venom War: Fantastic Four #1",
-      "url": null,
-      "read": false,
-      "index": 2013,
-      "section": null
-    },
-    {
-      "title": "Venom War: It's Jeff #1",
-      "url": null,
-      "read": false,
-      "index": 2014,
+      "index": 1445,
       "section": null
     }
   ],
@@ -6814,22 +6142,6 @@
       ]
     },
     {
-      "issueId": -131482720,
-      "title": "Marvel Calendar #1978",
-      "number": "1978",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": 6578,
       "title": "The Amazing Spider-Man (1963) #186",
       "number": "186",
@@ -9673,20 +8985,51 @@
       ]
     },
     {
-      "issueId": -1304470718,
-      "title": "Peter Parker, the Spectacular Spider-Man Annual #4",
+      "issueId": 55222,
+      "title": "Peter Parker, the Spectacular Spider-Man Annual (1979) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/55222/peter_parker_the_spectacular_spider-man_annual_1979_4",
+      "seriesId": 20403,
+      "seriesName": "Peter Parker, the Spectacular Spider-Man Annual (1979 - 1991)",
+      "onSale": "1984-10-01T00:00:00+0000",
+      "mu": "2017-01-09T00:00:00+0000",
+      "digitalId": 37683,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5825e34e046eb",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Morelli",
+          "role": "penciler"
+        },
+        {
+          "name": "Josef Rubinstein",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Randall",
+          "role": "penciler"
+        },
+        {
+          "name": "Sal Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Mantlo",
+          "role": "writer"
+        },
+        {
+          "name": "Bob DeNatale",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 6659,
@@ -9879,10 +9222,10 @@
       ]
     },
     {
-      "issueId": -9191571,
-      "title": "Peter Parker, The Spectacular Spider-Man #101",
+      "issueId": 14545,
+      "title": "Spectacular Spider-Man (1976) #101",
       "number": "101",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/14545",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -9892,13 +9235,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -2139897602,
-      "title": "Peter Parker, The Spectacular Spider-Man #102",
+      "issueId": 14546,
+      "title": "Spectacular Spider-Man (1976) #102",
       "number": "102",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/14546",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -9908,13 +9251,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -2123119983,
-      "title": "Peter Parker, The Spectacular Spider-Man #103",
+      "issueId": 14547,
+      "title": "Spectacular Spider-Man (1976) #103",
       "number": "103",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/14547",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -9924,13 +9267,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -2106342364,
-      "title": "Peter Parker, The Spectacular Spider-Man #104",
+      "issueId": 14548,
+      "title": "Spectacular Spider-Man (1976) #104",
       "number": "104",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/14548",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -9940,13 +9283,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -2089564745,
-      "title": "Peter Parker, The Spectacular Spider-Man #105",
+      "issueId": 14549,
+      "title": "Spectacular Spider-Man (1976) #105",
       "number": "105",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/14549",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -9956,13 +9299,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -2072787126,
-      "title": "Peter Parker, The Spectacular Spider-Man #106",
+      "issueId": 14550,
+      "title": "Spectacular Spider-Man (1976) #106",
       "number": "106",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/14550",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -9972,7 +9315,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 14551,
@@ -10150,10 +9493,10 @@
       "placeholder": true
     },
     {
-      "issueId": -2122972888,
-      "title": "Peter Parker, The Spectacular Spider-Man #113",
+      "issueId": 14558,
+      "title": "Spectacular Spider-Man (1976) #113",
       "number": "113",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/14558",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -10163,7 +9506,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": -2005529555,
@@ -11109,20 +10452,35 @@
       ]
     },
     {
-      "issueId": -2096480407,
-      "title": "Spider-Man vs. Wolverine",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 41003,
+      "title": "Spider-Man Versus Wolverine (1987) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/41003/spider-man_versus_wolverine_1987_1",
+      "seriesId": 15218,
+      "seriesName": "Spider-Man Versus Wolverine (1987)",
+      "onSale": "1987-02-01T00:00:00+0000",
+      "mu": "2011-05-12T08:26:00+0000",
+      "digitalId": 21200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5d8e38e7c50e4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 6699,
@@ -13796,132 +13154,246 @@
       ]
     },
     {
-      "issueId": -1733477577,
-      "title": "Spider-Man: Spirits of the Earth OGN",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 59118,
+      "title": "Spider-Man: Spirits of the Earth Graphic Novel (1990)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/59118/spider-man_spirits_of_the_earth_graphic_novel_1990",
+      "seriesId": 21519,
+      "seriesName": "Spider-Man: Spirits of the Earth Graphic Novel (1990)",
+      "onSale": "1990-01-01T00:00:00+0000",
+      "mu": "2019-09-16T00:00:00+0000",
+      "digitalId": 41039,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/60/5d7ba7f601a8e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Charles Vess",
+          "role": "cover artist"
+        }
+      ]
     },
     {
-      "issueId": -896678176,
-      "title": "Avengers #236",
+      "issueId": 7104,
+      "title": "Avengers (1963) #236",
       "number": "236",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/7104/avengers_1963_236",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1983-10-01T00:00:00+0000",
+      "mu": "1983-10-01T00:00:00+0000",
+      "digitalId": 29338,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/e0/5873e13844562",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers (1963) #231-241"
     },
     {
-      "issueId": -879900557,
-      "title": "Avengers #237",
+      "issueId": 7105,
+      "title": "Avengers (1963) #237",
       "number": "237",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/7105/avengers_1963_237",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1983-11-01T00:00:00+0000",
+      "mu": "1983-11-01T00:00:00+0000",
+      "digitalId": 29346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5873e1dc1033d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Joe Sinnott",
+          "role": "cover artist"
+        },
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Avengers (1963) #231-241"
     },
     {
-      "issueId": -772380123,
-      "title": "Avengers #314",
+      "issueId": 7191,
+      "title": "Avengers (1963) #314",
       "number": "314",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/7191/avengers_1963_314",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-02-01T00:00:00+0000",
+      "mu": "1990-02-01T00:00:00+0000",
+      "digitalId": 29812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/20/588b7271f1747",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -789157742,
-      "title": "Avengers #315",
+      "issueId": 7192,
+      "title": "Avengers (1963) #315",
       "number": "315",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/7192/avengers_1963_315",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-03-01T00:00:00+0000",
+      "mu": "1990-03-01T00:00:00+0000",
+      "digitalId": 34472,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/a0/588b797ddae58",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -805935361,
-      "title": "Avengers #316",
+      "issueId": 7193,
+      "title": "Avengers (1963) #316",
       "number": "316",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/7193/avengers_1963_316",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-04-01T00:00:00+0000",
+      "mu": "1990-04-01T00:00:00+0000",
+      "digitalId": 29624,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/03/588b8142d6823",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -822712980,
-      "title": "Avengers #317",
+      "issueId": 7194,
+      "title": "Avengers (1963) #317",
       "number": "317",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/7194/avengers_1963_317",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-05-01T00:00:00+0000",
+      "mu": "1990-05-01T00:00:00+0000",
+      "digitalId": 29625,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/20/588b89986a386",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -705269647,
-      "title": "Avengers #318",
+      "issueId": 7195,
+      "title": "Avengers (1963) #318",
       "number": "318",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/7195/avengers_1963_318",
+      "seriesId": 1991,
+      "seriesName": "Avengers (1963 - 1996)",
+      "onSale": "1990-06-01T00:00:00+0000",
+      "mu": "1990-06-01T00:00:00+0000",
+      "digitalId": 29627,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/90/588b9c92ebff7",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Tom Palmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Paul Ryan",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -722540133,
@@ -17606,20 +17078,36 @@
       ]
     },
     {
-      "issueId": -1174576771,
-      "title": "Cloak & Dagger #18",
+      "issueId": 63311,
+      "title": "The Mutant Misadventures of Cloak and Dagger (1988) #18",
       "number": "18",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/63311/the_mutant_misadventures_of_cloak_and_dagger_1988_18",
+      "seriesId": 16368,
+      "seriesName": "The Mutant Misadventures of Cloak and Dagger (1988 - 1990)",
+      "onSale": "1991-06-01T00:00:00+0000",
+      "mu": "1991-06-01T00:00:00+0000",
+      "digitalId": 45153,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/d0/591c90899fb78",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Sam De La Rosa",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Ross",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Silver Surfer (1987) 34-38, 40, 44-60; Thanos Quest 1-2; Infinity Gauntlet 1-6; Cloak & Dagger (1988) 18; Spider-Man (1990) 17; Incredible Hulk 383-385; Dr. Strange, Sorceror Supreme 31-36; Quasar 26-27; Sleepwalker 7"
     },
     {
       "issueId": 10775,
@@ -18806,20 +18294,44 @@
       ]
     },
     {
-      "issueId": -1659149112,
-      "title": "Spider-Man/Dr. Strange: The Way to Dusty Death",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 64880,
+      "title": "Spider-Man/Doctor Strange: The Way to Dusty Death (1992)",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/64880/spider-mandoctor_strange_the_way_to_dusty_death_1992",
+      "seriesId": 23622,
+      "seriesName": "Spider-Man/Doctor Strange: The Way to Dusty Death (1992)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "2017-07-31T00:00:00+0000",
+      "digitalId": 46031,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/90/5978db707d694",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Beachum",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Texeira",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Bair",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Roy Thomas",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "IV) Dr. Strange in the 1990s - Roy Thomas Returns + Infinity Gauntlet | Collects: Doctor Strange: Sorcerer Supreme #41-59, Annual #2-3, Spider-Man/Dr. Strange: The Way To Dusty Death, Silver Surfer Vol. 3 #67, Morbius: The Living Vampire #9, Secret Defenders #1-11, Material From Incredible Hulk Annual #18, Namor The Sub-Mariner Annual #2, And Silver Surfer Annual #5"
     },
     {
       "issueId": 62680,
@@ -19140,10 +18652,10 @@
       ]
     },
     {
-      "issueId": -1003665773,
+      "issueId": 84575,
       "title": "Spider-Man/Punisher/Sabretooth: Designer Genes",
       "number": null,
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/84575",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -19153,7 +18665,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 6795,
@@ -19696,68 +19208,119 @@
       ]
     },
     {
-      "issueId": -764542678,
-      "title": "Amazing Spider-Man Ashcan Edition #1",
+      "issueId": 131929,
+      "title": "AMAZING SPIDER-MAN ASHCAN (1994) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/131929/amazing_spider-man_ashcan_1994_1",
+      "seriesId": 44814,
+      "seriesName": "AMAZING SPIDER-MAN ASHCAN (1994 - Present)",
+      "onSale": "1994-01-01T00:00:00+0000",
+      "mu": "1994-01-01T00:00:00+0000",
+      "digitalId": 75286,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/68657ba1cbc99",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -725822948,
-      "title": "Amazing Fantasy #16",
+      "issueId": 82391,
+      "title": "Amazing Fantasy (1995) #16",
       "number": "16",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/82391/amazing_fantasy_1995_16",
+      "seriesId": 29303,
+      "seriesName": "Amazing Fantasy (1995 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 52743,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5d323f372d807",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -709045329,
-      "title": "Amazing Fantasy #17",
+      "issueId": 82392,
+      "title": "Amazing Fantasy (1995) #17",
       "number": "17",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/82392/amazing_fantasy_1995_17",
+      "seriesId": 29303,
+      "seriesName": "Amazing Fantasy (1995 - 1996)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "1996-01-01T00:00:00+0000",
+      "digitalId": 52745,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/5d324ff404888",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Lee",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alexi Taylor",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Greg Loudon",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Ken Meyer Jr.",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Terese Nielsen",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -625157234,
-      "title": "Amazing Fantasy #18",
+      "issueId": 82393,
+      "title": "Amazing Fantasy (1995) #18",
       "number": "18",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/82393/amazing_fantasy_1995_18",
+      "seriesId": 29303,
+      "seriesName": "Amazing Fantasy (1995 - 1996)",
+      "onSale": "1996-03-01T00:00:00+0000",
+      "mu": "1996-03-01T00:00:00+0000",
+      "digitalId": 52746,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5d324fd25556d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Lee",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 11918,
@@ -20563,22 +20126,6 @@
       ]
     },
     {
-      "issueId": -6045093,
-      "title": "Annual '96 and Annual '97",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": 64239,
       "title": "Untold Tales of Spider-Man: Strange Encounter (1998) #1",
       "number": "1",
@@ -21128,26 +20675,10 @@
       ]
     },
     {
-      "issueId": -2107175931,
-      "title": "Clone Subplot Pages",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1531099926,
-      "title": "Web Of Spider-Man #120",
+      "issueId": 11997,
+      "title": "Web of Spider-Man (1985) #120",
       "number": "120",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/11997",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -21157,7 +20688,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 11998,
@@ -21579,10 +21110,10 @@
       ]
     },
     {
-      "issueId": -630179643,
-      "title": "Spider-Man: Funeral For An Octopus #1",
+      "issueId": 59563,
+      "title": "Spider-Man: Funeral for an Octopus (1995) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/59563",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -21592,13 +21123,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -613402024,
-      "title": "Spider-Man: Funeral For An Octopus #2",
+      "issueId": 59564,
+      "title": "Spider-Man: Funeral for an Octopus (1995) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/59564",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -21608,13 +21139,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -596624405,
-      "title": "Spider-Man: Funeral For An Octopus #3",
+      "issueId": 59565,
+      "title": "Spider-Man: Funeral for an Octopus (1995) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/59565",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -21624,13 +21155,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -1169089058,
-      "title": "Spider-Man: The Clone Journal",
-      "number": null,
-      "url": null,
+      "issueId": 59713,
+      "title": "Spider-Man: The Clone Journal (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59713",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -21640,7 +21171,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 12001,
@@ -22180,10 +21711,10 @@
       ]
     },
     {
-      "issueId": -1173976996,
-      "title": "Spider-Man Unlimited #9",
+      "issueId": 42900,
+      "title": "Spider-Man Unlimited (1993) #9",
       "number": "9",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/42900",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -22193,7 +21724,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 6821,
@@ -22363,10 +21894,10 @@
       ]
     },
     {
-      "issueId": -1107729971,
-      "title": "Spider-Man: The Jackal Files",
-      "number": null,
-      "url": null,
+      "issueId": 59815,
+      "title": "Spider-Man: The Jackal Files (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59815",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -22376,13 +21907,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -767462543,
-      "title": "Spider-Man: Maximum Clonage Alpha, Omega",
-      "number": null,
-      "url": null,
+      "issueId": 59813,
+      "title": "Spider-Man: Maximum Clonage Alpha (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59813",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -22392,7 +21923,23 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
+    },
+    {
+      "issueId": 59814,
+      "title": "Spider-Man: Maximum Clonage Omega (1995) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/59814",
+      "seriesId": null,
+      "seriesName": null,
+      "onSale": null,
+      "mu": null,
+      "digitalId": null,
+      "cover": null,
+      "description": null,
+      "pageCount": null,
+      "creators": [],
+      "detailsRefused": true
     },
     {
       "issueId": 6822,
@@ -22961,20 +22508,35 @@
       ]
     },
     {
-      "issueId": -48021923,
-      "title": "Scarlet Spider Unlimited #1",
+      "issueId": 61249,
+      "title": "SCARLET SPIDER UNLIMITED 1 (1995) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61249/scarlet_spider_unlimited_1_1995_1",
+      "seriesId": 22525,
+      "seriesName": "SCARLET SPIDER UNLIMITED 1 (1995)",
+      "onSale": "1995-11-01T00:00:00+0000",
+      "mu": "1995-11-01T00:00:00+0000",
+      "digitalId": 42508,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/50/5cbf2aef1fe55",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "John Nyberg",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tod Smith",
+          "role": "penciler"
+        },
+        {
+          "name": "Glenn Herdling",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 61255,
@@ -23253,20 +22815,31 @@
       ]
     },
     {
-      "issueId": -16314743,
-      "title": "Green Goblin #3",
+      "issueId": 61240,
+      "title": "Green Goblin (1995) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/61240/green_goblin_1995_3",
+      "seriesId": 7077,
+      "seriesName": "Green Goblin (1995 - 1996)",
+      "onSale": "1995-12-01T00:00:00+0000",
+      "mu": "1995-12-01T00:00:00+0000",
+      "digitalId": 42489,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/90/5b4e4f0ca081a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Scott Mcdaniel",
+          "role": "cover artist"
+        },
+        {
+          "name": "Tom Defalco",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 61247,
@@ -24279,20 +23852,40 @@
       ]
     },
     {
-      "issueId": -1771977138,
-      "title": "Daredevil #354",
+      "issueId": 8356,
+      "title": "Daredevil (1964) #354",
       "number": "354",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/8356/daredevil_1964_354",
+      "seriesId": 2002,
+      "seriesName": "Daredevil (1964 - 1998)",
+      "onSale": "1996-07-01T00:00:00+0000",
+      "mu": "1996-07-01T00:00:00+0000",
+      "digitalId": 39282,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5b57469d3aed5",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Matt Ryan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cary Nord",
+          "role": "penciler"
+        },
+        {
+          "name": "Rick Leonardi",
+          "role": "penciler"
+        },
+        {
+          "name": "Karl Kesel",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "II Redux) Ann Nocenti and Joe Kelly Take Daredevil From the Late 80's Through the 1990's"
     },
     {
       "issueId": 62272,
@@ -25552,20 +25145,35 @@
       ]
     },
     {
-      "issueId": -209087079,
-      "title": "Spider-Man: 101 Ways To End The Clone Saga",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62304,
+      "title": "SPIDER-MAN: 101 WAYS TO END THE CLONE SAGA 1 (1997) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62304/spider-man_101_ways_to_end_the_clone_saga_1_1997_1",
+      "seriesId": 22893,
+      "seriesName": "SPIDER-MAN: 101 WAYS TO END THE CLONE SAGA 1 (1997)",
+      "onSale": "1997-01-01T00:00:00+0000",
+      "mu": "1997-01-01T00:00:00+0000",
+      "digitalId": 43069,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/59b3104f67eaf",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mike Christian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ben Herrera",
+          "role": "penciler"
+        },
+        {
+          "name": "Mark Bernardo",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 63933,
@@ -26084,20 +25692,39 @@
       ]
     },
     {
-      "issueId": -993394199,
-      "title": "X-Man Annual #1",
+      "issueId": 18174,
+      "title": "X-Man Annual (1996) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/18174/x-man_annual_1996_1",
+      "seriesId": 3642,
+      "seriesName": "X-Man Annual (1996 - 1997)",
+      "onSale": "1996-01-01T00:00:00+0000",
+      "mu": "2009-10-09T00:00:00+0000",
+      "digitalId": 7761,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/c0/5964d615cfac6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Mark Farmer",
+          "role": "cover artist"
+        },
+        {
+          "name": "Robin Riggs",
+          "role": "cover artist"
+        },
+        {
+          "name": "Alan Davis",
+          "role": "penciler"
+        },
+        {
+          "name": "Terry Kavanagh",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 6839,
@@ -28872,54 +28499,6 @@
       ]
     },
     {
-      "issueId": -1866656957,
-      "title": "Webspinners #10",
-      "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1883434576,
-      "title": "Webspinners #11",
-      "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1833101719,
-      "title": "Webspinners #12",
-      "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": 48443,
       "title": "Amazing Spider-Man (1999) #20",
       "number": "20",
@@ -31033,20 +30612,66 @@
       ]
     },
     {
-      "issueId": -249936868,
-      "title": "35, #37",
-      "number": "37",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 10545,
+      "title": "Peter Parker: Spider-Man (1999) #35",
+      "number": "35",
+      "url": "https://www.marvel.com/comics/issue/10545/peter_parker_spider-man_1999_35",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "2001-11-01T00:00:00+0000",
+      "mu": "2001-11-01T00:00:00+0000",
+      "digitalId": 2364,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/58247ba41e81d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "issueId": 10547,
+      "title": "Peter Parker: Spider-Man (1999) #37",
+      "number": "37",
+      "url": "https://www.marvel.com/comics/issue/10547/peter_parker_spider-man_1999_37",
+      "seriesId": 2060,
+      "seriesName": "Peter Parker: Spider-Man (1999 - 2003)",
+      "onSale": "2002-01-01T00:00:00+0000",
+      "mu": "2002-01-01T00:00:00+0000",
+      "digitalId": 2366,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/90/58247ea5bce63",
+        "ext": "jpg"
+      },
+      "description": null,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Wayne Faucher",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Buckingham",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Jenkins",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 43141,
@@ -32093,84 +31718,119 @@
       ]
     },
     {
-      "issueId": -1831967315,
-      "title": "Doctor Octopus: Negative Exposure #1",
+      "issueId": 295,
+      "title": "Spider-Man/Doctor Octopus: Negative Exposure (2003) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/295/spider-mandoctor_octopus_negative_exposure_2003_1",
+      "seriesId": 527,
+      "seriesName": "Spider-Man/Doctor Octopus: Negative Exposure (2003 - 2004)",
+      "onSale": "2003-10-01T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5707,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/5d24ea285c204",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Staz Johnson",
+          "role": "penciler"
+        }
+      ]
     },
     {
-      "issueId": -1815189696,
-      "title": "Doctor Octopus: Negative Exposure #2",
+      "issueId": 357,
+      "title": "Spider-Man/Doctor Octopus: Negative Exposure (2003) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/357/spider-mandoctor_octopus_negative_exposure_2003_2",
+      "seriesId": 527,
+      "seriesName": "Spider-Man/Doctor Octopus: Negative Exposure (2003 - 2004)",
+      "onSale": "2003-11-05T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5708,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/40/5d24f31b5565c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Staz Johnson",
+          "role": "penciler"
+        }
+      ]
     },
     {
-      "issueId": -1798412077,
-      "title": "Doctor Octopus: Negative Exposure #3",
+      "issueId": 296,
+      "title": "Spider-Man/Doctor Octopus: Negative Exposure (2003) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/296/spider-mandoctor_octopus_negative_exposure_2003_3",
+      "seriesId": 527,
+      "seriesName": "Spider-Man/Doctor Octopus: Negative Exposure (2003 - 2004)",
+      "onSale": "2003-12-03T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5709,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/f0/5d24f707b1611",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Staz Johnson",
+          "role": "penciler"
+        }
+      ]
     },
     {
-      "issueId": -1781634458,
-      "title": "Doctor Octopus: Negative Exposure #4",
+      "issueId": 355,
+      "title": "Spider-Man/Doctor Octopus: Negative Exposure (2003) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/355/spider-mandoctor_octopus_negative_exposure_2003_4",
+      "seriesId": 527,
+      "seriesName": "Spider-Man/Doctor Octopus: Negative Exposure (2003 - 2004)",
+      "onSale": "2004-01-07T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5710,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/90/5d25e408b807f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Staz Johnson",
+          "role": "penciler"
+        }
+      ]
     },
     {
-      "issueId": -1764856839,
-      "title": "Doctor Octopus: Negative Exposure #5",
+      "issueId": 328,
+      "title": "Spider-Man/Doctor Octopus: Negative Exposure (2003) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/328/spider-mandoctor_octopus_negative_exposure_2003_5",
+      "seriesId": 527,
+      "seriesName": "Spider-Man/Doctor Octopus: Negative Exposure (2003 - 2004)",
+      "onSale": "2004-02-04T00:00:00+0000",
+      "mu": "2008-09-17T00:00:00+0000",
+      "digitalId": 5711,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/70/5d25eaac7b7c9",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Staz Johnson",
+          "role": "penciler"
+        }
+      ]
     },
     {
       "issueId": 43170,
@@ -32649,84 +32309,94 @@
       "creators": []
     },
     {
-      "issueId": -1148030397,
-      "title": "The Pulse #1",
+      "issueId": 168,
+      "title": "Pulse (2004) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/168/pulse_2004_1",
+      "seriesId": 674,
+      "seriesName": "Pulse (2004 - 2006)",
+      "onSale": "2004-02-18T00:00:00+0000",
+      "mu": "2004-02-18T00:00:00+0000",
+      "digitalId": 551,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/40/56425aa850c47",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1198363254,
-      "title": "The Pulse #2",
+      "issueId": 421,
+      "title": "Pulse (2004) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/421/pulse_2004_2",
+      "seriesId": 674,
+      "seriesName": "Pulse (2004 - 2006)",
+      "onSale": "2004-03-31T00:00:00+0000",
+      "mu": "2004-03-31T00:00:00+0000",
+      "digitalId": 3851,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/565354dd5d76f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1181585635,
-      "title": "The Pulse #3",
+      "issueId": 638,
+      "title": "Pulse (2004) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/638/pulse_2004_3",
+      "seriesId": 674,
+      "seriesName": "Pulse (2004 - 2006)",
+      "onSale": "2004-05-12T00:00:00+0000",
+      "mu": "2004-05-12T00:00:00+0000",
+      "digitalId": 3852,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/80/565355c370b6e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1097697540,
-      "title": "The Pulse #4",
+      "issueId": 553,
+      "title": "Pulse (2004) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/553/pulse_2004_4",
+      "seriesId": 674,
+      "seriesName": "Pulse (2004 - 2006)",
+      "onSale": "2004-07-14T00:00:00+0000",
+      "mu": "2004-07-14T00:00:00+0000",
+      "digitalId": 3853,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/56535504c57b2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1080919921,
-      "title": "The Pulse #5",
+      "issueId": 803,
+      "title": "Pulse (2004) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/803/pulse_2004_5",
+      "seriesId": 674,
+      "seriesName": "Pulse (2004 - 2006)",
+      "onSale": "2004-09-08T00:00:00+0000",
+      "mu": "2004-09-08T00:00:00+0000",
+      "digitalId": 3854,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/03/5653553e344a0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
       "issueId": 474,
@@ -34537,52 +34207,105 @@
       ]
     },
     {
-      "issueId": -2009587571,
-      "title": "Fantastic Four #536",
+      "issueId": 3909,
+      "title": "Fantastic Four (1998) #536",
       "number": "536",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/3909/fantastic_four_1998_536",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2006-03-29T00:00:00+0000",
+      "mu": "2006-03-29T00:00:00+0000",
+      "digitalId": 1872,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/4bc4790a6079b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kev Walker",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -2026365190,
-      "title": "Fantastic Four #537",
+      "issueId": 4039,
+      "title": "Fantastic Four (1998) #537",
       "number": "537",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/4039/fantastic_four_1998_537",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2006-04-26T00:00:00+0000",
+      "mu": "2006-04-26T00:00:00+0000",
+      "digitalId": 3706,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/4d25090fb0433",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Cam Smith",
+          "role": "cover artist"
+        },
+        {
+          "name": "Kris Justice",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "J. Michael Straczynski",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -315376681,
-      "title": "New Avengers: Illuminati One-Shot",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 5723,
+      "title": "New Avengers: Illuminati (2006) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/5723/new_avengers_illuminati_2006_1",
+      "seriesId": 1137,
+      "seriesName": "New Avengers: Illuminati (2006 - 2008)",
+      "onSale": "2006-12-20T00:00:00+0000",
+      "mu": "2011-06-23T12:53:00+0000",
+      "digitalId": 6525,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/570e6223be57c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
+      "pageCount": 0,
       "creators": [],
-      "placeholder": true
+      "collectedIn": "New Avengers: Illuminati"
     },
     {
       "issueId": 3537,
@@ -35120,68 +34843,136 @@
       ]
     },
     {
-      "issueId": -481821665,
-      "title": "The Sensational Spider-Man #29",
+      "issueId": 4789,
+      "title": "The Sensational Spider-Man (2006) #29",
       "number": "29",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/4789/the_sensational_spider-man_2006_29",
+      "seriesId": 722,
+      "seriesName": "The Sensational Spider-Man (2006 - 2007)",
+      "onSale": "2006-08-16T00:00:00+0000",
+      "mu": "2006-08-16T00:00:00+0000",
+      "digitalId": 6811,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/596fb05d43f5e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto Aguirre-Sacasa",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -532007427,
-      "title": "The Sensational Spider-Man #30",
+      "issueId": 5079,
+      "title": "The Sensational Spider-Man (2006) #30",
       "number": "30",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/5079/the_sensational_spider-man_2006_30",
+      "seriesId": 722,
+      "seriesName": "The Sensational Spider-Man (2006 - 2007)",
+      "onSale": "2006-09-20T00:00:00+0000",
+      "mu": "2006-09-20T00:00:00+0000",
+      "digitalId": 6812,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/596fb8aa147d7",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Clayton Crain",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto Aguirre-Sacasa",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -548785046,
-      "title": "The Sensational Spider-Man #31",
+      "issueId": 5231,
+      "title": "The Sensational Spider-Man (2006) #31",
       "number": "31",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/5231/the_sensational_spider-man_2006_31",
+      "seriesId": 722,
+      "seriesName": "The Sensational Spider-Man (2006 - 2007)",
+      "onSale": "2006-10-25T00:00:00+0000",
+      "mu": "2006-10-25T00:00:00+0000",
+      "digitalId": 6813,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/4d24ea0729ffa",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto Aguirre-Sacasa",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -464896951,
-      "title": "The Sensational Spider-Man #34",
+      "issueId": 5796,
+      "title": "The Sensational Spider-Man (2006) #34",
       "number": "34",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/5796/the_sensational_spider-man_2006_34",
+      "seriesId": 722,
+      "seriesName": "The Sensational Spider-Man (2006 - 2007)",
+      "onSale": "2007-01-17T00:00:00+0000",
+      "mu": "2007-01-17T00:00:00+0000",
+      "digitalId": 8545,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/40/5970b0a99489d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "Angel Medina",
+          "role": "penciler"
+        },
+        {
+          "name": "Sean Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Roberto Aguirre-Sacasa",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 5960,
@@ -36754,52 +36545,129 @@
       ]
     },
     {
-      "issueId": -203252775,
-      "title": "Secret Invasion: Amazing Spider-Man #1",
+      "issueId": 21784,
+      "title": "Secret Invasion: The Amazing Spider-Man (2008) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/21784/secret_invasion_the_amazing_spider-man_2008_1",
+      "seriesId": 5362,
+      "seriesName": "Secret Invasion: The Amazing Spider-Man (2008)",
+      "onSale": "2008-08-27T00:00:00+0000",
+      "mu": "2008-08-27T00:00:00+0000",
+      "digitalId": 11482,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5151f35265d5b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Santucci",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -186475156,
-      "title": "Secret Invasion: Amazing Spider-Man #2",
+      "issueId": 22026,
+      "title": "Secret Invasion: The Amazing Spider-Man (2008) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/22026/secret_invasion_the_amazing_spider-man_2008_2",
+      "seriesId": 5362,
+      "seriesName": "Secret Invasion: The Amazing Spider-Man (2008)",
+      "onSale": "2008-09-24T00:00:00+0000",
+      "mu": "2008-09-24T00:00:00+0000",
+      "digitalId": 11483,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/5151f36116f33",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Santucci",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -169697537,
-      "title": "Secret Invasion: Amazing Spider-Man #3",
+      "issueId": 22353,
+      "title": "Secret Invasion: The Amazing Spider-Man (2008) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/22353/secret_invasion_the_amazing_spider-man_2008_3",
+      "seriesId": 5362,
+      "seriesName": "Secret Invasion: The Amazing Spider-Man (2008)",
+      "onSale": "2008-10-22T00:00:00+0000",
+      "mu": "2008-10-22T00:00:00+0000",
+      "digitalId": 11484,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/10/5151f36c5291a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Andy Lanning",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dave Meikis",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Victor Olazaba",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marco Santucci",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Mckone",
+          "role": "penciler"
+        },
+        {
+          "name": "Brian Reed",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 22469,
@@ -37268,10 +37136,10 @@
       ]
     },
     {
-      "issueId": -278094540,
-      "title": "Spider-Man: Presidents' Day Special",
-      "number": null,
-      "url": null,
+      "issueId": 24125,
+      "title": "Presidents' Day Celebration Digital Comic 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/24125",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -37281,7 +37149,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 23180,
@@ -37847,20 +37715,35 @@
       ]
     },
     {
-      "issueId": -1035612779,
-      "title": "Spider-Man: The Short Halloween",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 24202,
+      "title": "SPIDER-MAN: THE SHORT HALLOWEEN 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/24202/spider-man_the_short_halloween_1_2009_1",
+      "seriesId": 43533,
+      "seriesName": "SPIDER-MAN: THE SHORT HALLOWEEN 1 (2009 - Present)",
+      "onSale": "2009-05-27T00:00:00+0000",
+      "mu": "2009-05-27T00:00:00+0000",
+      "digitalId": 12491,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/c0/672a2e394396b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Kevin Maguire",
+          "role": "penciler"
+        },
+        {
+          "name": "Bill Hader",
+          "role": "writer"
+        },
+        {
+          "name": "Seth Meyers",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 24844,
@@ -38312,20 +38195,35 @@
       ]
     },
     {
-      "issueId": -399874501,
-      "title": "Dark Reign: The List - Amazing Spider-Man",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 27417,
+      "title": "Dark Reign - The List: Amazing Spider-Man One-Shot (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27417/dark_reign_-_the_list_amazing_spider-man_one-shot_2009_1",
+      "seriesId": 8746,
+      "seriesName": "Dark Reign - The List: Amazing Spider-Man One-Shot (2009)",
+      "onSale": "2009-11-18T00:00:00+0000",
+      "mu": "2011-02-24T15:30:04+0000",
+      "digitalId": 17610,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/5b5a314687eca",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Adam Kubert",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Morales",
+          "role": "cover artist"
+        },
+        {
+          "name": "Dan Slott",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 24419,
@@ -39700,10 +39598,10 @@
       "creators": []
     },
     {
-      "issueId": -1341034321,
-      "title": "Web of Spider-Man (vol. 2) #11",
+      "issueId": 31663,
+      "title": "Web of Spider-Man (2009) #11",
       "number": "11",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/31663",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -39713,7 +39611,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 30317,
@@ -39902,10 +39800,10 @@
       ]
     },
     {
-      "issueId": -714282159,
-      "title": "Spider-Man Saga",
-      "number": null,
-      "url": null,
+      "issueId": 38032,
+      "title": "Spider-Man Saga (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/38032",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -39915,7 +39813,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 31664,
@@ -40526,164 +40424,154 @@
       ]
     },
     {
-      "issueId": -47297696,
-      "title": "Fantastic Four #579",
+      "issueId": 29599,
+      "title": "Fantastic Four (1998) #579",
       "number": "579",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29599/fantastic_four_1998_579",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-05-26T00:00:00+0000",
+      "mu": "2011-01-28T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1944301476,
-      "title": "Fantastic Four #580",
+      "issueId": 29600,
+      "title": "Fantastic Four (1998) #580",
       "number": "580",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29600/fantastic_four_1998_580",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-06-23T00:00:00+0000",
+      "mu": "2011-02-18T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1927523857,
-      "title": "Fantastic Four #581",
+      "issueId": 29601,
+      "title": "Fantastic Four (1998) #581",
       "number": "581",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29601/fantastic_four_1998_581",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-07-28T00:00:00+0000",
+      "mu": "2011-06-10T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1977856714,
-      "title": "Fantastic Four #582",
+      "issueId": 29602,
+      "title": "Fantastic Four (1998) #582",
       "number": "582",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29602/fantastic_four_1998_582",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-08-25T00:00:00+0000",
+      "mu": "2011-07-08T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1961079095,
-      "title": "Fantastic Four #583",
+      "issueId": 29603,
+      "title": "Fantastic Four (1998) #583",
       "number": "583",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29603/fantastic_four_1998_583",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-09-22T00:00:00+0000",
+      "mu": "2011-09-30T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -2011411952,
-      "title": "Fantastic Four #584",
+      "issueId": 29604,
+      "title": "Fantastic Four (1998) #584",
       "number": "584",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29604/fantastic_four_1998_584",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-10-27T00:00:00+0000",
+      "mu": "2011-10-14T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -1994634333,
-      "title": "Fantastic Four #585",
+      "issueId": 29605,
+      "title": "Fantastic Four (1998) #585",
       "number": "585",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29605/fantastic_four_1998_585",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-11-24T00:00:00+0000",
+      "mu": "2010-11-24T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -2044967190,
-      "title": "Fantastic Four #586",
+      "issueId": 29606,
+      "title": "Fantastic Four (1998) #586",
       "number": "586",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/29606/fantastic_four_1998_586",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2010-12-22T00:00:00+0000",
+      "mu": "2012-10-05T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -2028189571,
-      "title": "Fantastic Four #587",
+      "issueId": 36060,
+      "title": "Fantastic Four (1998) #587",
       "number": "587",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/36060/fantastic_four_1998_587",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2011-01-26T00:00:00+0000",
+      "mu": "2011-12-09T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
-      "issueId": -2078522428,
-      "title": "Fantastic Four #588",
+      "issueId": 36059,
+      "title": "Fantastic Four (1998) #588",
       "number": "588",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
+      "url": "https://www.marvel.com/comics/issue/36059/fantastic_four_1998_588",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2011-02-23T00:00:00+0000",
+      "mu": "2012-01-06T00:00:00+0000",
       "digitalId": null,
       "cover": null,
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": []
     },
     {
       "issueId": 37398,
@@ -41154,84 +41042,155 @@
       ]
     },
     {
-      "issueId": -1650895719,
-      "title": "Fantastic Four #600",
+      "issueId": 37399,
+      "title": "Fantastic Four (1998) #600",
       "number": "600",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/37399/fantastic_four_1998_600",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2011-11-23T00:00:00+0000",
+      "mu": "2013-04-08T00:00:00+0000",
+      "digitalId": 24795,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/20/57e976329adaf",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 104,
+      "creators": [
+        {
+          "name": "FIRM 15",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -1667673338,
-      "title": "Fantastic Four #601",
+      "issueId": 38796,
+      "title": "Fantastic Four (1998) #601",
       "number": "601",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/38796/fantastic_four_1998_601",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2011-12-21T00:00:00+0000",
+      "mu": "2011-12-21T00:00:00+0000",
+      "digitalId": 25060,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/60/51dc1b51ab390",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Mark Pennington",
+          "role": "cover artist"
+        },
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Choi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -1617340481,
-      "title": "Fantastic Four #602",
+      "issueId": 38795,
+      "title": "Fantastic Four (1998) #602",
       "number": "602",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/38795/fantastic_four_1998_602",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2012-01-25T00:00:00+0000",
+      "mu": "2012-01-25T00:00:00+0000",
+      "digitalId": 25337,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/51dc1b58c4571",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Barry Kitson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Choi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -1634118100,
-      "title": "Fantastic Four #603",
+      "issueId": 38797,
+      "title": "Fantastic Four (1998) #603",
       "number": "603",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/38797/fantastic_four_1998_603",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2012-02-22T00:00:00+0000",
+      "mu": "2013-03-11T00:00:00+0000",
+      "digitalId": 25582,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/80/51dc1b442b14f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -1718006195,
-      "title": "Fantastic Four #604",
+      "issueId": 40471,
+      "title": "Fantastic Four (1998) #604",
       "number": "604",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/40471/fantastic_four_1998_604",
+      "seriesId": 421,
+      "seriesName": "Fantastic Four (1998 - 2012)",
+      "onSale": "2012-03-14T00:00:00+0000",
+      "mu": "2012-03-14T00:00:00+0000",
+      "digitalId": 25787,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/56bcad8b08e57",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Rick Magyar",
+          "role": "cover artist"
+        },
+        {
+          "name": "Steve Epting",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Choi",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 38442,
@@ -41939,20 +41898,28 @@
       "creators": []
     },
     {
-      "issueId": -1214965198,
-      "title": "Black Panther #524",
+      "issueId": 36783,
+      "title": "Black Panther: The Most Dangerous Man Alive (2011) #524",
       "number": "524",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/36783/black_panther_the_most_dangerous_man_alive_2011_524",
+      "seriesId": 11665,
+      "seriesName": "Black Panther: The Most Dangerous Man Alive (2011 - 2012)",
+      "onSale": "2011-10-12T00:00:00+0000",
+      "mu": "2012-10-01T00:00:00+0000",
+      "digitalId": 24082,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/70/4e861b4d9b6b1",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "David Liss",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "2000's Black Panther (2005 to 2012)"
     },
     {
       "issueId": 41146,
@@ -42116,22 +42083,6 @@
           "role": "writer"
         }
       ]
-    },
-    {
-      "issueId": -1865801446,
-      "title": "Daredevil #8 crossover",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
     },
     {
       "issueId": 40355,
@@ -46649,10 +46600,10 @@
       ]
     },
     {
-      "issueId": -1825863204,
-      "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #1",
+      "issueId": 58648,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #1",
       "number": "1",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/58648",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -46662,13 +46613,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -1842640823,
-      "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #2",
+      "issueId": 58649,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #2",
       "number": "2",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/58649",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -46678,13 +46629,13 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
-      "issueId": -1859418442,
-      "title": "Amazing Spider-Man & Silk: The Spider(fly) Effect #3",
+      "issueId": 58650,
+      "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #3",
       "number": "3",
-      "url": null,
+      "url": "https://www.marvel.com/comics/issue/58650",
       "seriesId": null,
       "seriesName": null,
       "onSale": null,
@@ -46694,7 +46645,7 @@
       "description": null,
       "pageCount": null,
       "creators": [],
-      "placeholder": true
+      "detailsRefused": true
     },
     {
       "issueId": 58651,
@@ -50860,22 +50811,6 @@
       ]
     },
     {
-      "issueId": -2091240857,
-      "title": "Superior Foes of Spider-Man (full run)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": 71142,
       "title": "Peter Parker: The Spectacular Spider-Man (2017) #311",
       "number": "311",
@@ -53851,20 +53786,43 @@
       ]
     },
     {
-      "issueId": -1167115091,
-      "title": "Red Goblin: Read Death #1",
+      "issueId": 80107,
+      "title": "Red Goblin: Red Death (2019) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/80107/red_goblin_red_death_2019_1",
+      "seriesId": 28313,
+      "seriesName": "Red Goblin: Red Death (2019)",
+      "onSale": "2019-10-30T00:00:00+0000",
+      "mu": "2020-05-04T00:00:00+0000",
+      "digitalId": 52863,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/5daf6983e5c3f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Philip Tan",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "cover artist"
+        },
+        {
+          "name": "Patrick Gleason",
+          "role": "writer"
+        },
+        {
+          "name": "Rob Fee",
+          "role": "writer"
+        },
+        {
+          "name": "Sean Ryan",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 71332,
@@ -54923,20 +54881,35 @@
       ]
     },
     {
-      "issueId": -527858747,
-      "title": "Amazing Spider-Man: Sins Rising #1",
+      "issueId": 88919,
+      "title": "Amazing Spider-Man: Sins Rising Prelude (2020) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/88919/amazing_spider-man_sins_rising_prelude_2020_1",
+      "seriesId": 30597,
+      "seriesName": "Amazing Spider-Man: Sins Rising Prelude (2020)",
+      "onSale": "2020-07-22T00:00:00+0000",
+      "mu": "2020-10-26T00:00:00+0000",
+      "digitalId": 54577,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/70/5e99c3041a6c5",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Guillermo Sanna",
+          "role": "penciler"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 77116,
@@ -55037,20 +55010,35 @@
       ]
     },
     {
-      "issueId": -1248637040,
-      "title": "Spider-Man: The Sins of Norman Osborn #1",
+      "issueId": 90780,
+      "title": "Amazing Spider-Man: The Sins of Norman Osborn (2020) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/90780/amazing_spider-man_the_sins_of_norman_osborn_2020_1",
+      "seriesId": 31209,
+      "seriesName": "Amazing Spider-Man: The Sins of Norman Osborn (2020)",
+      "onSale": "2020-09-16T00:00:00+0000",
+      "mu": "2020-12-21T00:00:00+0000",
+      "digitalId": 55404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5f594327ac3ff",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Federico Vicentini",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ryan Ottley",
+          "role": "penciler"
+        },
+        {
+          "name": "Nick Spencer",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 77118,
@@ -61687,20 +61675,43 @@
       ]
     },
     {
-      "issueId": -962300614,
-      "title": "Amazing Spider-Man: Gang War Prelude #1",
+      "issueId": 112117,
+      "title": "Amazing Spider-Man: Gang War First Strike (2023) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/112117/amazing_spider-man_gang_war_first_strike_2023_1",
+      "seriesId": 38646,
+      "seriesName": "Amazing Spider-Man: Gang War First Strike (2023)",
+      "onSale": "2023-11-29T00:00:00+0000",
+      "mu": "2023-11-28T00:00:00+0000",
+      "digitalId": 64075,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/6553ccd72438e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Hanna",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Cody Ziglar",
+          "role": "writer"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 109626,
@@ -63477,36 +63488,64 @@
       ]
     },
     {
-      "issueId": -1432874839,
-      "title": "Venom War: Fantastic Four #1",
+      "issueId": 118738,
+      "title": "VENOM WAR: FANTASTIC FOUR #1 [VW] (2024) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/118738/venom_war_fantastic_four_1_vw_2024_1",
+      "seriesId": 41649,
+      "seriesName": "VENOM WAR: FANTASTIC FOUR #1 [VW] (2024 - Present)",
+      "onSale": "2024-10-30T00:00:00+0000",
+      "mu": "2024-10-30T00:00:00+0000",
+      "digitalId": 68952,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/66a3ed48ce387",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Joey Vazquez",
+          "role": "cover artist"
+        },
+        {
+          "name": "David Baldeon",
+          "role": "penciler"
+        },
+        {
+          "name": "Adam Warren",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Venom War (2024) #1-5, Venom (2021) #35-39, Venom War: Spider-Man (2024) #1-4, Venom War: Lethal Protectors (2024) #1-3, Venom War: Fantastic Four (2024) #1, Venom War: It's Jeff (2024) #1, Venom War: Wolverine (2024) #1-3, Venom War: Deadpool (2024) #1-3, Venom War: Carnage (2024) #1-3, Venom War: Zombiotes (2024) #1-3, Venom War: Venomous (2024) #1-3, Black Widow: Venomous (2024) #1, and Venom War: Daredevil (2024) #1."
     },
     {
-      "issueId": -963958784,
-      "title": "Venom War: It's Jeff #1",
+      "issueId": 118739,
+      "title": "VENOM WAR: IT'S JEFF #1 [VW] (2024) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/118739/venom_war_its_jeff_1_vw_2024_1",
+      "seriesId": 41650,
+      "seriesName": "VENOM WAR: IT'S JEFF #1 [VW] (2024 - Present)",
+      "onSale": "2024-11-20T00:00:00+0000",
+      "mu": "2024-11-20T00:00:00+0000",
+      "digitalId": 69187,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/10/673370561c430",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "G Gurihiru",
+          "role": "penciler"
+        },
+        {
+          "name": "Kelly Thompson",
+          "role": "writer"
+        }
+      ],
+      "collectedIn": "Collects: Venom War (2024) #1-5, Venom (2021) #35-39, Venom War: Spider-Man (2024) #1-4, Venom War: Lethal Protectors (2024) #1-3, Venom War: Fantastic Four (2024) #1, Venom War: It's Jeff (2024) #1, Venom War: Wolverine (2024) #1-3, Venom War: Deadpool (2024) #1-3, Venom War: Carnage (2024) #1-3, Venom War: Zombiotes (2024) #1-3, Venom War: Venomous (2024) #1-3, Black Widow: Venomous (2024) #1, and Venom War: Daredevil (2024) #1."
     },
     {
       "issueId": 109642,

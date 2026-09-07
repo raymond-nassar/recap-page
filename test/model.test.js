@@ -1033,8 +1033,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // whose optional details were refused. Silver Surfer now adds one exact official issue whose
   // optional details were refused. Loki now replaces 18 placeholders with 16 complete records and
   // two exact provider refusals. Venom adds 33 exact official-link-only empty records. Doctor
-  // Strange adds 23, and Magneto now adds two exact provider refusals, bringing the current total
-  // to 172 across seventeen affected orders.
+  // Strange adds 23, Magneto adds two exact provider refusals, and the final Amazing Spider-Man
+  // settlement adds 23 exact provider refusals, bringing the current total to 195 across
+  // seventeen affected orders.
   // Written down as observations rather than
   // floors: they move whenever an order is added or re-vendored, and moving one should mean editing
   // this line deliberately rather than watching a range quietly widen.
@@ -1066,12 +1067,16 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // availability settlement.
   // Hulk carries no placeholders after nine exact resolutions and ten approved exclusions. Its
   // nine exact records retain explicit official links with unknown optional provider metadata.
-  // Three Amazing Spider-Man placeholders now resolve to seven exact issues. Five carry provider
-  // metadata, while two keep official issue links beside an explicit provider refusal.
+  // An earlier Amazing Spider-Man settlement resolved three placeholders to seven exact issues.
+  // The final settlement replaces 96 more placeholders with 67 complete records and 23 explicit
+  // provider refusals. Three repeats and five semantic exclusions reduce the published total by
+  // six entries, and seven explicit placeholders remain.
+  // Wolverine replaces 29 placeholders with 14 exact issues while preserving the remaining 756
+  // title-derived placeholder identities.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1248, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1248, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 172);
+  assert.equal(claimed, 1123, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1123, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 195);
   assert.equal(affected, 17);
 });
 
@@ -1294,6 +1299,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // explicit exclusions.
   // Hulk replaces 19 distinct negative placeholders with nine exact refused records. One of
   // those exact identities already appears elsewhere, so the distinct refused total falls by 11.
-  assert.equal(refused.length, 1381);
+  // The final Amazing Spider-Man settlement replaces 96 distinct negative placeholders with 23
+  // distinct exact refused identities, reducing the current distinct refused total by 73.
+  // Wolverine replaces 29 negative placeholder identities with provider-resolved exact issues.
+  assert.equal(refused.length, 1279);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

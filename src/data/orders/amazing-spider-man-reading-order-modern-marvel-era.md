@@ -206,7 +206,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man Annual (1964) #11](https://www.marvel.com/comics/issue/16885/amazing_spider-man_annual_1964_11)
 - [ ] [Amazing Spider-Man Annual (1964) #12](https://www.marvel.com/comics/issue/16886/amazing_spider-man_annual_1964_12)
 - [ ] [Nova (1976) #12](https://www.marvel.com/comics/issue/23366/nova_1976_12)
-- [ ] Marvel Calendar #1978
 - [ ] [The Amazing Spider-Man (1963) #186](https://www.marvel.com/comics/issue/6578/the_amazing_spider-man_1963_186)
 - [ ] [The Amazing Spider-Man (1963) #187](https://www.marvel.com/comics/issue/6579/the_amazing_spider-man_1963_187)
 - [ ] [The Amazing Spider-Man (1963) #188](https://www.marvel.com/comics/issue/6580/the_amazing_spider-man_1963_188)
@@ -296,26 +295,26 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #98](https://www.marvel.com/comics/issue/14803/peter_parker_the_spectacular_spider-man_1976_98)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #99](https://www.marvel.com/comics/issue/14804/peter_parker_the_spectacular_spider-man_1976_99)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #100](https://www.marvel.com/comics/issue/14544/peter_parker_the_spectacular_spider-man_1976_100)
-- [ ] Peter Parker, the Spectacular Spider-Man Annual #4
+- [ ] [Peter Parker, The Spectacular Spider-Man Annual (1979) #4](https://www.marvel.com/comics/issue/55222)
 - [ ] [The Amazing Spider-Man (1963) #259](https://www.marvel.com/comics/issue/6659/the_amazing_spider-man_1963_259)
 - [ ] [The Amazing Spider-Man (1963) #260](https://www.marvel.com/comics/issue/6661/the_amazing_spider-man_1963_260)
 - [ ] [The Amazing Spider-Man (1963) #261](https://www.marvel.com/comics/issue/6662/the_amazing_spider-man_1963_261)
 - [ ] [The Amazing Spider-Man (1963) #262](https://www.marvel.com/comics/issue/6663/the_amazing_spider-man_1963_262)
 - [ ] [The Amazing Spider-Man (1963) #263](https://www.marvel.com/comics/issue/6664/the_amazing_spider-man_1963_263)
 - [ ] [Web of Spider-Man (1985) #1](https://www.marvel.com/comics/issue/11973/web_of_spider-man_1985_1)
-- [ ] Peter Parker, The Spectacular Spider-Man #101
-- [ ] Peter Parker, The Spectacular Spider-Man #102
-- [ ] Peter Parker, The Spectacular Spider-Man #103
-- [ ] Peter Parker, The Spectacular Spider-Man #104
-- [ ] Peter Parker, The Spectacular Spider-Man #105
-- [ ] Peter Parker, The Spectacular Spider-Man #106
+- [ ] [Spectacular Spider-Man (1976) #101](https://www.marvel.com/comics/issue/14545)
+- [ ] [Spectacular Spider-Man (1976) #102](https://www.marvel.com/comics/issue/14546)
+- [ ] [Spectacular Spider-Man (1976) #103](https://www.marvel.com/comics/issue/14547)
+- [ ] [Spectacular Spider-Man (1976) #104](https://www.marvel.com/comics/issue/14548)
+- [ ] [Spectacular Spider-Man (1976) #105](https://www.marvel.com/comics/issue/14549)
+- [ ] [Spectacular Spider-Man (1976) #106](https://www.marvel.com/comics/issue/14550)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #107](https://www.marvel.com/comics/issue/14551/peter_parker_the_spectacular_spider-man_1976_107)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #108](https://www.marvel.com/comics/issue/14552/peter_parker_the_spectacular_spider-man_1976_108)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #109](https://www.marvel.com/comics/issue/14553/peter_parker_the_spectacular_spider-man_1976_109)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #110](https://www.marvel.com/comics/issue/14555/peter_parker_the_spectacular_spider-man_1976_110)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #111](https://www.marvel.com/comics/issue/14556/peter_parker_the_spectacular_spider-man_1976_111)
 - [ ] Peter Parker, The Spectacular Spider-Man #112
-- [ ] Peter Parker, The Spectacular Spider-Man #113
+- [ ] [Spectacular Spider-Man (1976) #113](https://www.marvel.com/comics/issue/14558)
 - [ ] Peter Parker, The Spectacular Spider-Man #114
 - [ ] Peter Parker, The Spectacular Spider-Man Annual #5
 - [ ] [The Amazing Spider-Man (1963) #264](https://www.marvel.com/comics/issue/6665/the_amazing_spider-man_1963_264)
@@ -348,7 +347,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker, the Spectacular Spider-Man Annual (1979) #7](https://www.marvel.com/comics/issue/105814/peter_parker_the_spectacular_spider-man_annual_1979_7)
 - [ ] [Web of Spider-Man (1985) #31](https://www.marvel.com/comics/issue/12027/web_of_spider-man_1985_31)
 - [ ] [Web of Spider-Man (1985) #32](https://www.marvel.com/comics/issue/12028/web_of_spider-man_1985_32)
-- [ ] Spider-Man vs. Wolverine
+- [ ] [Spider-Man Versus Wolverine (1987) #1](https://www.marvel.com/comics/issue/41003)
 - [ ] [The Amazing Spider-Man (1963) #295](https://www.marvel.com/comics/issue/6699/the_amazing_spider-man_1963_295)
 - [ ] [The Amazing Spider-Man (1963) #296](https://www.marvel.com/comics/issue/6700/the_amazing_spider-man_1963_296)
 - [ ] [The Amazing Spider-Man (1963) #297](https://www.marvel.com/comics/issue/6701/the_amazing_spider-man_1963_297)
@@ -435,14 +434,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (1963) #348](https://www.marvel.com/comics/issue/6758/the_amazing_spider-man_1963_348)
 - [ ] [The Amazing Spider-Man (1963) #349](https://www.marvel.com/comics/issue/6759/the_amazing_spider-man_1963_349)
 - [ ] [The Amazing Spider-Man (1963) #350](https://www.marvel.com/comics/issue/6761/the_amazing_spider-man_1963_350)
-- [ ] Spider-Man: Spirits of the Earth OGN
-- [ ] Avengers #236
-- [ ] Avengers #237
-- [ ] Avengers #314
-- [ ] Avengers #315
-- [ ] Avengers #316
-- [ ] Avengers #317
-- [ ] Avengers #318
+- [ ] [Spider-Man: Spirits of the Earth Graphic Novel (1990)](https://www.marvel.com/comics/issue/59118)
+- [ ] [Avengers (1963) #236](https://www.marvel.com/comics/issue/7104)
+- [ ] [Avengers (1963) #237](https://www.marvel.com/comics/issue/7105)
+- [ ] [Avengers (1963) #314](https://www.marvel.com/comics/issue/7191)
+- [ ] [Avengers (1963) #315](https://www.marvel.com/comics/issue/7192)
+- [ ] [Avengers (1963) #316](https://www.marvel.com/comics/issue/7193)
+- [ ] [Avengers (1963) #317](https://www.marvel.com/comics/issue/7194)
+- [ ] [Avengers (1963) #318](https://www.marvel.com/comics/issue/7195)
 - [ ] Avengers #329
 - [ ] [New Avengers (2004) #3](https://www.marvel.com/comics/issue/1532/new_avengers_2004_3)
 - [ ] [Avengers (2010) #1](https://www.marvel.com/comics/issue/29195/avengers_2010_1)
@@ -565,7 +564,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Infinity Gauntlet (1991) #4](https://www.marvel.com/comics/issue/9289/infinity_gauntlet_1991_4)
 - [ ] [Infinity Gauntlet (1991) #5](https://www.marvel.com/comics/issue/9290/infinity_gauntlet_1991_5)
 - [ ] [Infinity Gauntlet (1991) #6](https://www.marvel.com/comics/issue/9291/infinity_gauntlet_1991_6)
-- [ ] Cloak & Dagger #18
+- [ ] [The Mutant Misadventures of Cloak and Dagger (1988) #18](https://www.marvel.com/comics/issue/63311)
 - [ ] [Spider-Man (1990) #17](https://www.marvel.com/comics/issue/10775/spider-man_1990_17)
 - [ ] [Incredible Hulk (1962) #383](https://www.marvel.com/comics/issue/9194/incredible_hulk_1962_383)
 - [ ] [Incredible Hulk (1962) #384](https://www.marvel.com/comics/issue/9195/incredible_hulk_1962_384)
@@ -598,7 +597,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (1963) #376](https://www.marvel.com/comics/issue/6789/the_amazing_spider-man_1963_376)
 - [ ] [The Amazing Spider-Man (1963) #377](https://www.marvel.com/comics/issue/6790/the_amazing_spider-man_1963_377)
 - [ ] [Amazing Spider-Man Annual (1964) #27](https://www.marvel.com/comics/issue/16902/amazing_spider-man_annual_1964_27)
-- [ ] Spider-Man/Dr. Strange: The Way to Dusty Death
+- [ ] [Spider-Man/Doctor Strange: The Way to Dusty Death (1992)](https://www.marvel.com/comics/issue/64880)
 - [ ] [SPIDER-MAN SPECIAL EDITION: THE TRIAL OF VENOM (1992) #1](https://www.marvel.com/comics/issue/62680/spider-man_special_edition_the_trial_of_venom_1992_1)
 - [ ] [The Amazing Spider-Man (1963) #378](https://www.marvel.com/comics/issue/6791/the_amazing_spider-man_1963_378)
 - [ ] [The Amazing Spider-Man (1963) #379](https://www.marvel.com/comics/issue/6792/the_amazing_spider-man_1963_379)
@@ -609,7 +608,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Spider-Man (1990) #35](https://www.marvel.com/comics/issue/10795/spider-man_1990_35)
 - [ ] [Spider-Man (1990) #36](https://www.marvel.com/comics/issue/10796/spider-man_1990_36)
 - [ ] [Spider-Man (1990) #37](https://www.marvel.com/comics/issue/10797/spider-man_1990_37)
-- [ ] Spider-Man/Punisher/Sabretooth: Designer Genes
+- [ ] [Spider-Man/Punisher/Sabretooth: Designer Genes](https://www.marvel.com/comics/issue/84575)
 - [ ] [The Amazing Spider-Man (1963) #381](https://www.marvel.com/comics/issue/6795/the_amazing_spider-man_1963_381)
 - [ ] [The Amazing Spider-Man (1963) #382](https://www.marvel.com/comics/issue/6796/the_amazing_spider-man_1963_382)
 - [ ] [The Amazing Spider-Man (1963) #383](https://www.marvel.com/comics/issue/6797/the_amazing_spider-man_1963_383)
@@ -626,10 +625,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man Annual (1964) #28](https://www.marvel.com/comics/issue/16903/amazing_spider-man_annual_1964_28)
 - [ ] [Spider-Man (1990) #45](https://www.marvel.com/comics/issue/10806/spider-man_1990_45)
 - [ ] [Web of Spider-Man (1985) #112](https://www.marvel.com/comics/issue/11988/web_of_spider-man_1985_112)
-- [ ] Amazing Spider-Man Ashcan Edition #1
-- [ ] Amazing Fantasy #16
-- [ ] Amazing Fantasy #17
-- [ ] Amazing Fantasy #18
+- [ ] [Amazing Spider-Man Ashcan (1994) #1](https://www.marvel.com/comics/issue/131929)
+- [ ] [Amazing Fantasy (1995) #16](https://www.marvel.com/comics/issue/82391)
+- [ ] [Amazing Fantasy (1995) #17](https://www.marvel.com/comics/issue/82392)
+- [ ] [Amazing Fantasy (1995) #18](https://www.marvel.com/comics/issue/82393)
 - [ ] [Untold Tales of Spider-Man (1995) #1](https://www.marvel.com/comics/issue/11918/untold_tales_of_spider-man_1995_1)
 - [ ] [Untold Tales of Spider-Man (1995) #2](https://www.marvel.com/comics/issue/11929/untold_tales_of_spider-man_1995_2)
 - [ ] [Untold Tales of Spider-Man (1995) #3](https://www.marvel.com/comics/issue/11936/untold_tales_of_spider-man_1995_3)
@@ -656,7 +655,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Untold Tales of Spider-Man (1995) #23](https://www.marvel.com/comics/issue/11933/untold_tales_of_spider-man_1995_23)
 - [ ] [Untold Tales of Spider-Man (1995) #24](https://www.marvel.com/comics/issue/11934/untold_tales_of_spider-man_1995_24)
 - [ ] [Untold Tales of Spider-Man (1995) #25](https://www.marvel.com/comics/issue/11935/untold_tales_of_spider-man_1995_25)
-- [ ] Annual '96 and Annual '97
 - [ ] [Untold Tales of Spider-Man: Strange Encounter (1998) #1](https://www.marvel.com/comics/issue/64239/untold_tales_of_spider-man_strange_encounter_1998_1)
 - [ ] [Amazing Spider-Man Annual (2010) #37](https://www.marvel.com/comics/issue/30196/amazing_spider-man_annual_2010_37)
 - [ ] [Web of Spider-Man (1985) #117](https://www.marvel.com/comics/issue/11993/web_of_spider-man_1985_117)
@@ -672,8 +670,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #218](https://www.marvel.com/comics/issue/14674/peter_parker_the_spectacular_spider-man_1976_218)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #219](https://www.marvel.com/comics/issue/14675/peter_parker_the_spectacular_spider-man_1976_219)
 - [ ] [Spider-Man Unlimited (1993) #7](https://www.marvel.com/comics/issue/38357/spider-man_unlimited_1993_7)
-- [ ] Clone Subplot Pages
-- [ ] Web Of Spider-Man #120
+- [ ] [Web of Spider-Man (1985) #120](https://www.marvel.com/comics/issue/11997)
 - [ ] [Web of Spider-Man (1985) #121](https://www.marvel.com/comics/issue/11998/web_of_spider-man_1985_121)
 - [ ] [Web of Spider-Man (1985) #122](https://www.marvel.com/comics/issue/11999/web_of_spider-man_1985_122)
 - [ ] [Web of Spider-Man (1985) #123](https://www.marvel.com/comics/issue/12000/web_of_spider-man_1985_123)
@@ -687,10 +684,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #221](https://www.marvel.com/comics/issue/14678/peter_parker_the_spectacular_spider-man_1976_221)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #222](https://www.marvel.com/comics/issue/14679/peter_parker_the_spectacular_spider-man_1976_222)
 - [ ] [Spider-Man Unlimited (1993) #8](https://www.marvel.com/comics/issue/38834/spider-man_unlimited_1993_8)
-- [ ] Spider-Man: Funeral For An Octopus #1
-- [ ] Spider-Man: Funeral For An Octopus #2
-- [ ] Spider-Man: Funeral For An Octopus #3
-- [ ] Spider-Man: The Clone Journal
+- [ ] [Spider-Man: Funeral for an Octopus (1995) #1](https://www.marvel.com/comics/issue/59563)
+- [ ] [Spider-Man: Funeral for an Octopus (1995) #2](https://www.marvel.com/comics/issue/59564)
+- [ ] [Spider-Man: Funeral for an Octopus (1995) #3](https://www.marvel.com/comics/issue/59565)
+- [ ] [Spider-Man: The Clone Journal (1995) #1](https://www.marvel.com/comics/issue/59713)
 - [ ] [Web of Spider-Man (1985) #124](https://www.marvel.com/comics/issue/12001/web_of_spider-man_1985_124)
 - [ ] [Web of Spider-Man (1985) #125](https://www.marvel.com/comics/issue/12002/web_of_spider-man_1985_125)
 - [ ] [Web of Spider-Man (1985) #126](https://www.marvel.com/comics/issue/12003/web_of_spider-man_1985_126)
@@ -706,14 +703,15 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #224](https://www.marvel.com/comics/issue/14681/peter_parker_the_spectacular_spider-man_1976_224)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #225](https://www.marvel.com/comics/issue/14682/peter_parker_the_spectacular_spider-man_1976_225)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #226](https://www.marvel.com/comics/issue/14683/peter_parker_the_spectacular_spider-man_1976_226)
-- [ ] Spider-Man Unlimited #9
+- [ ] [Spider-Man Unlimited (1993) #9](https://www.marvel.com/comics/issue/42900)
 - [ ] [The Amazing Spider-Man (1963) #404](https://www.marvel.com/comics/issue/6821/the_amazing_spider-man_1963_404)
 - [ ] [Peter Parker, the Spectacular Spider-Man (1976) #227](https://www.marvel.com/comics/issue/14684/peter_parker_the_spectacular_spider-man_1976_227)
 - [ ] [Spider-Man (1990) #61](https://www.marvel.com/comics/issue/10824/spider-man_1990_61)
 - [ ] [Web of Spider-Man (1985) #127](https://www.marvel.com/comics/issue/12004/web_of_spider-man_1985_127)
 - [ ] [New Warriors (1990) #61](https://www.marvel.com/comics/issue/59812/new_warriors_1990_61)
-- [ ] Spider-Man: The Jackal Files
-- [ ] Spider-Man: Maximum Clonage Alpha, Omega
+- [ ] [Spider-Man: The Jackal Files (1995) #1](https://www.marvel.com/comics/issue/59815)
+- [ ] [Spider-Man: Maximum Clonage Alpha (1995) #1](https://www.marvel.com/comics/issue/59813)
+- [ ] [Spider-Man: Maximum Clonage Omega (1995) #1](https://www.marvel.com/comics/issue/59814)
 - [ ] [The Amazing Spider-Man (1963) #405](https://www.marvel.com/comics/issue/6822/the_amazing_spider-man_1963_405)
 - [ ] [The Amazing Spider-Man (1963) #406](https://www.marvel.com/comics/issue/6823/the_amazing_spider-man_1963_406)
 - [ ] [Spider-Man (1990) #62](https://www.marvel.com/comics/issue/10825/spider-man_1990_62)
@@ -730,7 +728,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Web of Spider-Man Super Special (1995) #1](https://www.marvel.com/comics/issue/59714/web_of_spider-man_super_special_1995_1)
 - [ ] [New Warriors (1990) #65](https://www.marvel.com/comics/issue/61242/new_warriors_1990_65)
 - [ ] [New Warriors (1990) #66](https://www.marvel.com/comics/issue/61243/new_warriors_1990_66)
-- [ ] Scarlet Spider Unlimited #1
+- [ ] [Scarlet Spider Unlimited 1 (1995) #1](https://www.marvel.com/comics/issue/61249)
 - [ ] [Web of Scarlet Spider (1995) #1](https://www.marvel.com/comics/issue/61255/web_of_scarlet_spider_1995_1)
 - [ ] [Web of Scarlet Spider (1995) #2](https://www.marvel.com/comics/issue/61256/web_of_scarlet_spider_1995_2)
 - [ ] [Amazing Scarlet Spider (1995) #1](https://www.marvel.com/comics/issue/61238/amazing_scarlet_spider_1995_1)
@@ -739,7 +737,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Scarlet Spider (1995) #2](https://www.marvel.com/comics/issue/61246/scarlet_spider_1995_2)
 - [ ] [Spectacular Scarlet Spider (1995) #1](https://www.marvel.com/comics/issue/61250/spectacular_scarlet_spider_1995_1)
 - [ ] [Spectacular Scarlet Spider (1995) #2](https://www.marvel.com/comics/issue/61251/spectacular_scarlet_spider_1995_2)
-- [ ] Green Goblin #3
+- [ ] [Green Goblin (1995) #3](https://www.marvel.com/comics/issue/61240)
 - [ ] [Sensational Spider-Man (1996)](https://www.marvel.com/comics/issue/61247/sensational_spider-man_1996)
 - [ ] [The Amazing Spider-Man (1963) #407](https://www.marvel.com/comics/issue/6824/the_amazing_spider-man_1963_407)
 - [ ] [The Amazing Spider-Man (1963) #408](https://www.marvel.com/comics/issue/6825/the_amazing_spider-man_1963_408)
@@ -770,7 +768,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (1963) #411](https://www.marvel.com/comics/issue/6829/the_amazing_spider-man_1963_411)
 - [ ] [The Amazing Spider-Man (1963) #412](https://www.marvel.com/comics/issue/6830/the_amazing_spider-man_1963_412)
 - [ ] [The Amazing Spider-Man (1963) #413](https://www.marvel.com/comics/issue/6831/the_amazing_spider-man_1963_413)
-- [ ] Daredevil #354
+- [ ] [Daredevil (1964) #354](https://www.marvel.com/comics/issue/8356)
 - [ ] [Sensational Spider-Man (1996) #4](https://www.marvel.com/comics/issue/62272/sensational_spider-man_1996_4)
 - [ ] [Sensational Spider-Man (1996) #5](https://www.marvel.com/comics/issue/62273/sensational_spider-man_1996_5)
 - [ ] [Sensational Spider-Man (1996) #6](https://www.marvel.com/comics/issue/62274/sensational_spider-man_1996_6)
@@ -810,7 +808,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Spider-Man (1990) #75](https://www.marvel.com/comics/issue/10839/spider-man_1990_75)
 - [ ] [Spider-Man Team-Up (1995) #5](https://www.marvel.com/comics/issue/62317/spider-man_team-up_1995_5)
 - [ ] [Spider-Man Unlimited (1993) #14](https://www.marvel.com/comics/issue/62318/spider-man_unlimited_1993_14)
-- [ ] Spider-Man: 101 Ways To End The Clone Saga
+- [ ] [Spider-Man: 101 Ways to End the Clone Saga 1 (1997) #1](https://www.marvel.com/comics/issue/62304)
 - [ ] [Spider-Man: Hobgoblin Lives (1997) #1](https://www.marvel.com/comics/issue/63933/spider-man_hobgoblin_lives_1997_1)
 - [ ] [Spider-Man: Hobgoblin Lives (1997) #2](https://www.marvel.com/comics/issue/63934/spider-man_hobgoblin_lives_1997_2)
 - [ ] [Spider-Man: Hobgoblin Lives (1997) #3](https://www.marvel.com/comics/issue/63935/spider-man_hobgoblin_lives_1997_3)
@@ -827,7 +825,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [X-Man (1995) #27](https://www.marvel.com/comics/issue/18196/x-man_1995_27)
 - [ ] [X-Man (1995) #28](https://www.marvel.com/comics/issue/18197/x-man_1995_28)
 - [ ] [X-Man (1995) #29](https://www.marvel.com/comics/issue/18198/x-man_1995_29)
-- [ ] X-Man Annual #1
+- [ ] [X-Man Annual (1996) #1](https://www.marvel.com/comics/issue/18174)
 - [ ] [The Amazing Spider-Man (1963) #420](https://www.marvel.com/comics/issue/6839/the_amazing_spider-man_1963_420)
 - [ ] [Sensational Spider-Man (1996) #12](https://www.marvel.com/comics/issue/63889/sensational_spider-man_1996_12)
 - [ ] [Sensational Spider-Man (1996) #13](https://www.marvel.com/comics/issue/63890/sensational_spider-man_1996_13)
@@ -917,9 +915,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker: Spider-Man (1999) #21](https://www.marvel.com/comics/issue/10530/peter_parker_spider-man_1999_21)
 - [ ] [Peter Parker: Spider-Man (1999) #22](https://www.marvel.com/comics/issue/10531/peter_parker_spider-man_1999_22)
 - [ ] [Peter Parker: Spider-Man (1999) #26](https://www.marvel.com/comics/issue/10535/peter_parker_spider-man_1999_26)
-- [ ] Webspinners #10
-- [ ] Webspinners #11
-- [ ] Webspinners #12
 - [ ] [Amazing Spider-Man (1999) #20](https://www.marvel.com/comics/issue/48443/amazing_spider-man_1999_20)
 - [ ] [Amazing Spider-Man (1999) #21](https://www.marvel.com/comics/issue/48444/amazing_spider-man_1999_21)
 - [ ] [Amazing Spider-Man (1999) #22](https://www.marvel.com/comics/issue/48445/amazing_spider-man_1999_22)
@@ -993,7 +988,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker: Spider-Man (1999) #48](https://www.marvel.com/comics/issue/10559/peter_parker_spider-man_1999_48)
 - [ ] [Peter Parker: Spider-Man (1999) #49](https://www.marvel.com/comics/issue/10560/peter_parker_spider-man_1999_49)
 - [ ] [Peter Parker: Spider-Man (1999) #50](https://www.marvel.com/comics/issue/10562/peter_parker_spider-man_1999_50)
-- [ ] 35, #37
+- [ ] [Peter Parker: Spider-Man (1999) #35](https://www.marvel.com/comics/issue/10545)
+- [ ] [Peter Parker: Spider-Man (1999) #37](https://www.marvel.com/comics/issue/10547)
 - [ ] [Amazing Spider-Man (1999) #40](https://www.marvel.com/comics/issue/43141/amazing_spider-man_1999_40)
 - [ ] [Amazing Spider-Man (1999) #41](https://www.marvel.com/comics/issue/43143/amazing_spider-man_1999_41)
 - [ ] [Amazing Spider-Man (1999) #42](https://www.marvel.com/comics/issue/43145/amazing_spider-man_1999_42)
@@ -1029,11 +1025,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Peter Parker: Spider-Man (1999) #55](https://www.marvel.com/comics/issue/10567/peter_parker_spider-man_1999_55)
 - [ ] [Peter Parker: Spider-Man (1999) #56](https://www.marvel.com/comics/issue/10568/peter_parker_spider-man_1999_56)
 - [ ] [Peter Parker: Spider-Man (1999) #57](https://www.marvel.com/comics/issue/10569/peter_parker_spider-man_1999_57)
-- [ ] Doctor Octopus: Negative Exposure #1
-- [ ] Doctor Octopus: Negative Exposure #2
-- [ ] Doctor Octopus: Negative Exposure #3
-- [ ] Doctor Octopus: Negative Exposure #4
-- [ ] Doctor Octopus: Negative Exposure #5
+- [ ] [Doctor Octopus: Negative Exposure (2003) #1](https://www.marvel.com/comics/issue/295)
+- [ ] [Doctor Octopus: Negative Exposure (2003) #2](https://www.marvel.com/comics/issue/357)
+- [ ] [Doctor Octopus: Negative Exposure (2003) #3](https://www.marvel.com/comics/issue/296)
+- [ ] [Doctor Octopus: Negative Exposure (2003) #4](https://www.marvel.com/comics/issue/355)
+- [ ] [Doctor Octopus: Negative Exposure (2003) #5](https://www.marvel.com/comics/issue/328)
 - [ ] [Amazing Spider-Man (1999) #57](https://www.marvel.com/comics/issue/43170/amazing_spider-man_1999_57)
 - [ ] [Amazing Spider-Man (1999) #58](https://www.marvel.com/comics/issue/43171/amazing_spider-man_1999_58)
 - [ ] [Amazing Spider-Man (1999) #500](https://www.marvel.com/comics/issue/277/amazing_spider-man_1999_500)
@@ -1059,11 +1055,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Venom (2003) #16](https://www.marvel.com/comics/issue/732/venom_2003_16)
 - [ ] [Venom (2003) #17](https://www.marvel.com/comics/issue/575/venom_2003_17)
 - [ ] [Venom (2003) #18](https://www.marvel.com/comics/issue/777/venom_2003_18)
-- [ ] The Pulse #1
-- [ ] The Pulse #2
-- [ ] The Pulse #3
-- [ ] The Pulse #4
-- [ ] The Pulse #5
+- [ ] [Pulse (2004) #1](https://www.marvel.com/comics/issue/168)
+- [ ] [Pulse (2004) #2](https://www.marvel.com/comics/issue/421)
+- [ ] [Pulse (2004) #3](https://www.marvel.com/comics/issue/638)
+- [ ] [Pulse (2004) #4](https://www.marvel.com/comics/issue/553)
+- [ ] [Pulse (2004) #5](https://www.marvel.com/comics/issue/803)
 - [ ] [Marvel Knights Spider-Man (2004) #1](https://www.marvel.com/comics/issue/474/marvel_knights_spider-man_2004_1)
 - [ ] [Marvel Knights Spider-Man (2004) #2](https://www.marvel.com/comics/issue/634/marvel_knights_spider-man_2004_2)
 - [ ] [Marvel Knights Spider-Man (2004) #3](https://www.marvel.com/comics/issue/699/marvel_knights_spider-man_2004_3)
@@ -1138,9 +1134,9 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Friendly Neighborhood Spider-Man (2005) #8](https://www.marvel.com/comics/issue/4224/friendly_neighborhood_spider-man_2005_8)
 - [ ] [Friendly Neighborhood Spider-Man (2005) #9](https://www.marvel.com/comics/issue/4323/friendly_neighborhood_spider-man_2005_9)
 - [ ] [Friendly Neighborhood Spider-Man (2005) #10](https://www.marvel.com/comics/issue/4479/friendly_neighborhood_spider-man_2005_10)
-- [ ] Fantastic Four #536
-- [ ] Fantastic Four #537
-- [ ] New Avengers: Illuminati One-Shot
+- [ ] [Fantastic Four (1998) #536](https://www.marvel.com/comics/issue/3909)
+- [ ] [Fantastic Four (1998) #537](https://www.marvel.com/comics/issue/4039)
+- [ ] [New Avengers: Illuminati (2006) #1](https://www.marvel.com/comics/issue/5723)
 - [ ] [Amazing Spider-Man (1999) #529](https://www.marvel.com/comics/issue/3537/amazing_spider-man_1999_529)
 - [ ] [Amazing Spider-Man (1999) #530](https://www.marvel.com/comics/issue/3942/amazing_spider-man_1999_530)
 - [ ] [Amazing Spider-Man (1999) #531](https://www.marvel.com/comics/issue/4065/amazing_spider-man_1999_531)
@@ -1158,10 +1154,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man (1999) #536](https://www.marvel.com/comics/issue/5094/amazing_spider-man_1999_536)
 - [ ] [Amazing Spider-Man (1999) #537](https://www.marvel.com/comics/issue/5245/amazing_spider-man_1999_537)
 - [ ] [Amazing Spider-Man (1999) #538](https://www.marvel.com/comics/issue/5808/amazing_spider-man_1999_538)
-- [ ] The Sensational Spider-Man #29
-- [ ] The Sensational Spider-Man #30
-- [ ] The Sensational Spider-Man #31
-- [ ] The Sensational Spider-Man #34
+- [ ] [The Sensational Spider-Man (2006) #29](https://www.marvel.com/comics/issue/4789)
+- [ ] [The Sensational Spider-Man (2006) #30](https://www.marvel.com/comics/issue/5079)
+- [ ] [The Sensational Spider-Man (2006) #31](https://www.marvel.com/comics/issue/5231)
+- [ ] [The Sensational Spider-Man (2006) #34](https://www.marvel.com/comics/issue/5796)
 - [ ] [Amazing Spider-Man (1999) #539](https://www.marvel.com/comics/issue/5960/amazing_spider-man_1999_539)
 - [ ] [Amazing Spider-Man (1999) #540](https://www.marvel.com/comics/issue/6174/amazing_spider-man_1999_540)
 - [ ] [Amazing Spider-Man (1999) #541](https://www.marvel.com/comics/issue/6323/amazing_spider-man_1999_541)
@@ -1208,9 +1204,9 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man (1999) #576](https://www.marvel.com/comics/issue/22466/amazing_spider-man_1999_576)
 - [ ] [Amazing Spider-Man (1999) #577](https://www.marvel.com/comics/issue/22468/amazing_spider-man_1999_577)
 - [ ] [AMAZING SPIDER-MAN ANNUAL 1 (2008) #1](https://www.marvel.com/comics/issue/22344/amazing_spider-man_annual_1_2008_1)
-- [ ] Secret Invasion: Amazing Spider-Man #1
-- [ ] Secret Invasion: Amazing Spider-Man #2
-- [ ] Secret Invasion: Amazing Spider-Man #3
+- [ ] [Secret Invasion: The Amazing Spider-Man (2008) #1](https://www.marvel.com/comics/issue/21784)
+- [ ] [Secret Invasion: The Amazing Spider-Man (2008) #2](https://www.marvel.com/comics/issue/22026)
+- [ ] [Secret Invasion: The Amazing Spider-Man (2008) #3](https://www.marvel.com/comics/issue/22353)
 - [ ] [Amazing Spider-Man (1999) #578](https://www.marvel.com/comics/issue/22469/amazing_spider-man_1999_578)
 - [ ] [Amazing Spider-Man (1999) #579](https://www.marvel.com/comics/issue/22862/amazing_spider-man_1999_579)
 - [ ] [Amazing Spider-Man (1999) #580](https://www.marvel.com/comics/issue/22863/amazing_spider-man_1999_580)
@@ -1225,7 +1221,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man (1999) #589](https://www.marvel.com/comics/issue/23739/amazing_spider-man_1999_589)
 - [ ] [Amazing Spider-Man (1999) #590](https://www.marvel.com/comics/issue/23928/amazing_spider-man_1999_590)
 - [ ] [Amazing Spider-Man (1999) #591](https://www.marvel.com/comics/issue/23926/amazing_spider-man_1999_591)
-- [ ] Spider-Man: Presidents' Day Special
+- [ ] [Presidents' Day Celebration Digital Comic 1 (2009) #1](https://www.marvel.com/comics/issue/24125)
 - [ ] [Amazing Spider-Man: Extra! (2008) #2](https://www.marvel.com/comics/issue/23180/amazing_spider-man_extra_2008_2)
 - [ ] [Amazing Spider-Man: Extra! (2008) #3](https://www.marvel.com/comics/issue/23834/amazing_spider-man_extra_2008_3)
 - [ ] [Amazing Spider-Man (1999) #592](https://www.marvel.com/comics/issue/23927/amazing_spider-man_1999_592)
@@ -1239,7 +1235,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man (1999) #600](https://www.marvel.com/comics/issue/24407/amazing_spider-man_1999_600)
 - [ ] [Amazing Spider-Man (1999) #601](https://www.marvel.com/comics/issue/24408/amazing_spider-man_1999_601)
 - [ ] [AMAZING SPIDER-MAN ANNUAL (2024) #36](https://www.marvel.com/comics/issue/24426/amazing_spider-man_annual_2024_36)
-- [ ] Spider-Man: The Short Halloween
+- [ ] [Spider-Man: The Short Halloween 1 (2009) #1](https://www.marvel.com/comics/issue/24202)
 - [ ] [Dark Reign: Mister Negative (2009) #1](https://www.marvel.com/comics/issue/24844/dark_reign_mister_negative_2009_1)
 - [ ] [Dark Reign: Mister Negative (2009) #2](https://www.marvel.com/comics/issue/24845/dark_reign_mister_negative_2009_2)
 - [ ] [Dark Reign: Mister Negative (2009) #3](https://www.marvel.com/comics/issue/24846/dark_reign_mister_negative_2009_3)
@@ -1254,7 +1250,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man (1999) #609](https://www.marvel.com/comics/issue/24416/amazing_spider-man_1999_609)
 - [ ] [Amazing Spider-Man (1999) #610](https://www.marvel.com/comics/issue/24417/amazing_spider-man_1999_610)
 - [ ] [Amazing Spider-Man (1999) #611](https://www.marvel.com/comics/issue/24418/amazing_spider-man_1999_611)
-- [ ] Dark Reign: The List - Amazing Spider-Man
+- [ ] [Dark Reign - The List: Amazing Spider-Man One-Shot (2009) #1](https://www.marvel.com/comics/issue/27417)
 - [ ] [Amazing Spider-Man (1999) #612](https://www.marvel.com/comics/issue/24419/amazing_spider-man_1999_612)
 - [ ] [Amazing Spider-Man (1999) #613](https://www.marvel.com/comics/issue/24420/amazing_spider-man_1999_613)
 - [ ] [Amazing Spider-Man (1999) #614](https://www.marvel.com/comics/issue/24421/amazing_spider-man_1999_614)
@@ -1294,14 +1290,14 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Web of Spider-Man (2009) #8](https://www.marvel.com/comics/issue/31668/web_of_spider-man_2009_8)
 - [ ] [Web of Spider-Man (2009) #9](https://www.marvel.com/comics/issue/31670/web_of_spider-man_2009_9)
 - [ ] [Web of Spider-Man (2009) #10](https://www.marvel.com/comics/issue/31660/web_of_spider-man_2009_10)
-- [ ] Web of Spider-Man (vol. 2) #11
+- [ ] [Web of Spider-Man (2009) #11](https://www.marvel.com/comics/issue/31663)
 - [ ] [Amazing Spider-Man (1999) #642](https://www.marvel.com/comics/issue/30317/amazing_spider-man_1999_642)
 - [ ] [Amazing Spider-Man (1999) #643](https://www.marvel.com/comics/issue/30318/amazing_spider-man_1999_643)
 - [ ] [Amazing Spider-Man (1999) #644](https://www.marvel.com/comics/issue/30319/amazing_spider-man_1999_644)
 - [ ] [Amazing Spider-Man (1999) #645](https://www.marvel.com/comics/issue/30320/amazing_spider-man_1999_645)
 - [ ] [Amazing Spider-Man (1999) #646](https://www.marvel.com/comics/issue/30321/amazing_spider-man_1999_646)
 - [ ] [Amazing Spider-Man (1999) #647](https://www.marvel.com/comics/issue/30322/amazing_spider-man_1999_647)
-- [ ] Spider-Man Saga
+- [ ] [Spider-Man Saga (2010) #1](https://www.marvel.com/comics/issue/38032)
 - [ ] [Web of Spider-Man (2009) #12](https://www.marvel.com/comics/issue/31664/web_of_spider-man_2009_12)
 - [ ] [Amazing Spider-Man (1999) #649](https://www.marvel.com/comics/issue/30324/amazing_spider-man_1999_649)
 - [ ] [Amazing Spider-Man (1999) #650](https://www.marvel.com/comics/issue/30325/amazing_spider-man_1999_650)
@@ -1318,16 +1314,16 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Amazing Spider-Man (1999) #661](https://www.marvel.com/comics/issue/35533/amazing_spider-man_1999_661)
 - [ ] [Amazing Spider-Man (1999) #662](https://www.marvel.com/comics/issue/35534/amazing_spider-man_1999_662)
 - [ ] [Amazing Spider-Man (1999) #654.1](https://www.marvel.com/comics/issue/39291/amazing_spider-man_1999_654.1)
-- [ ] Fantastic Four #579
-- [ ] Fantastic Four #580
-- [ ] Fantastic Four #581
-- [ ] Fantastic Four #582
-- [ ] Fantastic Four #583
-- [ ] Fantastic Four #584
-- [ ] Fantastic Four #585
-- [ ] Fantastic Four #586
-- [ ] Fantastic Four #587
-- [ ] Fantastic Four #588
+- [ ] [Fantastic Four (1998) #579](https://www.marvel.com/comics/issue/29599)
+- [ ] [Fantastic Four (1998) #580](https://www.marvel.com/comics/issue/29600)
+- [ ] [Fantastic Four (1998) #581](https://www.marvel.com/comics/issue/29601)
+- [ ] [Fantastic Four (1998) #582](https://www.marvel.com/comics/issue/29602)
+- [ ] [Fantastic Four (1998) #583](https://www.marvel.com/comics/issue/29603)
+- [ ] [Fantastic Four (1998) #584](https://www.marvel.com/comics/issue/29604)
+- [ ] [Fantastic Four (1998) #585](https://www.marvel.com/comics/issue/29605)
+- [ ] [Fantastic Four (1998) #586](https://www.marvel.com/comics/issue/29606)
+- [ ] [Fantastic Four (1998) #587](https://www.marvel.com/comics/issue/36060)
+- [ ] [Fantastic Four (1998) #588](https://www.marvel.com/comics/issue/36059)
 - [ ] [FF (2011) #1](https://www.marvel.com/comics/issue/37398/ff_2011_1)
 - [ ] [FF (2011) #2](https://www.marvel.com/comics/issue/37400/ff_2011_2)
 - [ ] [FF (2011) #3](https://www.marvel.com/comics/issue/37404/ff_2011_3)
@@ -1344,11 +1340,11 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [FF (2011) #14](https://www.marvel.com/comics/issue/41206/ff_2011_14)
 - [ ] [FF (2011) #15](https://www.marvel.com/comics/issue/41204/ff_2011_15)
 - [ ] [FF (2011) #16](https://www.marvel.com/comics/issue/41201/ff_2011_16)
-- [ ] Fantastic Four #600
-- [ ] Fantastic Four #601
-- [ ] Fantastic Four #602
-- [ ] Fantastic Four #603
-- [ ] Fantastic Four #604
+- [ ] [Fantastic Four (1998) #600](https://www.marvel.com/comics/issue/37399)
+- [ ] [Fantastic Four (1998) #601](https://www.marvel.com/comics/issue/38796)
+- [ ] [Fantastic Four (1998) #602](https://www.marvel.com/comics/issue/38795)
+- [ ] [Fantastic Four (1998) #603](https://www.marvel.com/comics/issue/38797)
+- [ ] [Fantastic Four (1998) #604](https://www.marvel.com/comics/issue/40471)
 - [ ] [Fear Itself: Spider-Man (2011) #1](https://www.marvel.com/comics/issue/38442/fear_itself_spider-man_2011_1)
 - [ ] [Fear Itself: Spider-Man (2011) #2](https://www.marvel.com/comics/issue/38443/fear_itself_spider-man_2011_2)
 - [ ] [Fear Itself: Spider-Man (2011) #3](https://www.marvel.com/comics/issue/38450/fear_itself_spider-man_2011_3)
@@ -1371,13 +1367,12 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Spider-Island: Avengers (2011) #1](https://www.marvel.com/comics/issue/39753/spider-island_avengers_2011_1)
 - [ ] [Spider-Island: Spider-Woman (2011) #1](https://www.marvel.com/comics/issue/39755/spider-island_spider-woman_2011_1)
 - [ ] [Spider-Island: I Love New York City (2011) #1](https://www.marvel.com/comics/issue/41643/spider-island_i_love_new_york_city_2011_1)
-- [ ] Black Panther #524
+- [ ] [Black Panther: The Most Dangerous Man Alive (2011) #524](https://www.marvel.com/comics/issue/36783)
 - [ ] [Spider-Island: Heroes for Hire (2011) #1](https://www.marvel.com/comics/issue/41146/spider-island_heroes_for_hire_2011_1)
 - [ ] [Amazing Spider-Man (1999) #674](https://www.marvel.com/comics/issue/35511/amazing_spider-man_1999_674)
 - [ ] [Amazing Spider-Man (1999) #675](https://www.marvel.com/comics/issue/35507/amazing_spider-man_1999_675)
 - [ ] [Amazing Spider-Man (1999) #676](https://www.marvel.com/comics/issue/35499/amazing_spider-man_1999_676)
 - [ ] [Amazing Spider-Man (1999) #677](https://www.marvel.com/comics/issue/35491/amazing_spider-man_1999_677)
-- [ ] Daredevil #8 crossover
 - [ ] [Carnage, U.S.A. (2011) #1](https://www.marvel.com/comics/issue/40355/carnage_usa_2011_1)
 - [ ] [Carnage, U.S.A. (2011) #2](https://www.marvel.com/comics/issue/40353/carnage_usa_2011_2)
 - [ ] [Carnage, U.S.A. (2011) #3](https://www.marvel.com/comics/issue/40356/carnage_usa_2011_3)
@@ -1533,9 +1528,9 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (2017) #1.4](https://www.marvel.com/comics/issue/56494/the_amazing_spider-man_2017_1.4)
 - [ ] [The Amazing Spider-Man (2017) #1.5](https://www.marvel.com/comics/issue/56495/the_amazing_spider-man_2017_1.5)
 - [ ] [The Amazing Spider-Man (2017) #1.6](https://www.marvel.com/comics/issue/56496/the_amazing_spider-man_2017_1.6)
-- [ ] Amazing Spider-Man & Silk: The Spider(fly) Effect #1
-- [ ] Amazing Spider-Man & Silk: The Spider(fly) Effect #2
-- [ ] Amazing Spider-Man & Silk: The Spider(fly) Effect #3
+- [ ] [Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #1](https://www.marvel.com/comics/issue/58648)
+- [ ] [Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #2](https://www.marvel.com/comics/issue/58649)
+- [ ] [Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #3](https://www.marvel.com/comics/issue/58650)
 - [ ] [Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #4](https://www.marvel.com/comics/issue/58651/amazing_spider-man_silk_the_spiderfly_effect_2016_4)
 - [ ] [Spider-Man/Deadpool (2016) #1](https://www.marvel.com/comics/issue/52557/spider-mandeadpool_2016_1)
 - [ ] [Spider-Man/Deadpool (2016) #2](https://www.marvel.com/comics/issue/52559/spider-mandeadpool_2016_2)
@@ -1665,7 +1660,6 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (2017) #800](https://www.marvel.com/comics/issue/67304/the_amazing_spider-man_2017_800)
 - [ ] [The Amazing Spider-Man (2017) #801](https://www.marvel.com/comics/issue/67652/the_amazing_spider-man_2017_801)
 - [ ] [AMAZING SPIDER-MAN ANNUAL 42 (2018) #42](https://www.marvel.com/comics/issue/66184/amazing_spider-man_annual_42_2018_42)
-- [ ] Superior Foes of Spider-Man (full run)
 - [ ] [Peter Parker: The Spectacular Spider-Man (2017) #311](https://www.marvel.com/comics/issue/71142/peter_parker_the_spectacular_spider-man_2017_311)
 - [ ] [Peter Parker: The Spectacular Spider-Man (2017) #312](https://www.marvel.com/comics/issue/71143/peter_parker_the_spectacular_spider-man_2017_312)
 - [ ] [Peter Parker: The Spectacular Spider-Man (2017) #313](https://www.marvel.com/comics/issue/71144/peter_parker_the_spectacular_spider-man_2017_313)
@@ -1751,7 +1745,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (2018) #29](https://www.marvel.com/comics/issue/70725/the_amazing_spider-man_2018_29)
 - [ ] [The Amazing Spider-Man (2018) #30](https://www.marvel.com/comics/issue/70726/the_amazing_spider-man_2018_30)
 - [ ] [The Amazing Spider-Man (2018) #31](https://www.marvel.com/comics/issue/77099/the_amazing_spider-man_2018_31)
-- [ ] Red Goblin: Read Death #1
+- [ ] [Red Goblin: Red Death (2019) #1](https://www.marvel.com/comics/issue/80107)
 - [ ] [Miles Morales: Spider-Man (2018) #11](https://www.marvel.com/comics/issue/71332/miles_morales_spider-man_2018_11)
 - [ ] [Miles Morales: Spider-Man (2018) #12](https://www.marvel.com/comics/issue/71333/miles_morales_spider-man_2018_12)
 - [ ] [Miles Morales: Spider-Man (2018) #13](https://www.marvel.com/comics/issue/77156/miles_morales_spider-man_2018_13)
@@ -1784,10 +1778,10 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (2018) #45](https://www.marvel.com/comics/issue/77113/the_amazing_spider-man_2018_45)
 - [ ] [The Amazing Spider-Man (2018) #46](https://www.marvel.com/comics/issue/77114/the_amazing_spider-man_2018_46)
 - [ ] [The Amazing Spider-Man (2018) #47](https://www.marvel.com/comics/issue/77115/the_amazing_spider-man_2018_47)
-- [ ] Amazing Spider-Man: Sins Rising #1
+- [ ] [Amazing Spider-Man: Sins Rising Prelude (2020) #1](https://www.marvel.com/comics/issue/88919)
 - [ ] [The Amazing Spider-Man (2018) #48](https://www.marvel.com/comics/issue/77116/the_amazing_spider-man_2018_48)
 - [ ] [The Amazing Spider-Man (2018) #49](https://www.marvel.com/comics/issue/77117/the_amazing_spider-man_2018_49)
-- [ ] Spider-Man: The Sins of Norman Osborn #1
+- [ ] [Amazing Spider-Man: The Sins of Norman Osborn (2020) #1](https://www.marvel.com/comics/issue/90780)
 - [ ] [The Amazing Spider-Man (2018) #50](https://www.marvel.com/comics/issue/77118/the_amazing_spider-man_2018_50)
 - [ ] [The Amazing Spider-Man (2018) #51](https://www.marvel.com/comics/issue/77119/the_amazing_spider-man_2018_51)
 - [ ] [The Amazing Spider-Man (2018) #52](https://www.marvel.com/comics/issue/77120/the_amazing_spider-man_2018_52)
@@ -1966,7 +1960,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [The Amazing Spider-Man (2022) #36](https://www.marvel.com/comics/issue/102204/the_amazing_spider-man_2022_36)
 - [ ] [The Amazing Spider-Man (2022) #37](https://www.marvel.com/comics/issue/107957/the_amazing_spider-man_2022_37)
 - [ ] [The Amazing Spider-Man (2022) #38](https://www.marvel.com/comics/issue/107958/the_amazing_spider-man_2022_38)
-- [ ] Amazing Spider-Man: Gang War Prelude #1
+- [ ] [Amazing Spider-Man: Gang War First Strike (2023) #1](https://www.marvel.com/comics/issue/112117)
 - [ ] [The Amazing Spider-Man (2022) #39](https://www.marvel.com/comics/issue/109626/the_amazing_spider-man_2022_39)
 - [ ] [The Amazing Spider-Man (2022) #40](https://www.marvel.com/comics/issue/109627/the_amazing_spider-man_2022_40)
 - [ ] [The Amazing Spider-Man (2022) #41](https://www.marvel.com/comics/issue/109628/the_amazing_spider-man_2022_41)
@@ -2021,8 +2015,8 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [Venom War: Lethal Protectors (2024) #1](https://www.marvel.com/comics/issue/118734/venom_war_lethal_protectors_2024_1)
 - [ ] [Venom War: Lethal Protectors (2024) #2](https://www.marvel.com/comics/issue/118735/venom_war_lethal_protectors_2024_2)
 - [ ] [Venom War: Lethal Protectors (2024) #3](https://www.marvel.com/comics/issue/118736/venom_war_lethal_protectors_2024_3)
-- [ ] Venom War: Fantastic Four #1
-- [ ] Venom War: It's Jeff #1
+- [ ] [Venom War: Fantastic Four #1 [VW\] (2024) #1](https://www.marvel.com/comics/issue/118738)
+- [ ] [Venom War: It's Jeff #1 [VW\] (2024) #1](https://www.marvel.com/comics/issue/118739)
 - [ ] [The Amazing Spider-Man (2022) #55](https://www.marvel.com/comics/issue/109642/the_amazing_spider-man_2022_55)
 - [ ] [The Amazing Spider-Man (2022) #56](https://www.marvel.com/comics/issue/109643/the_amazing_spider-man_2022_56)
 - [ ] [The Amazing Spider-Man (2022) #57](https://www.marvel.com/comics/issue/109644/the_amazing_spider-man_2022_57)

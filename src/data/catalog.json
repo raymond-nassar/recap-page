@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T23:55:52.020Z",
+  "generatedAt": "2026-09-07T07:16:05.457Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3015,8 +3015,8 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 1222,
-      "placeholderCount": 785,
+      "count": 1207,
+      "placeholderCount": 756,
       "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
@@ -3043,7 +3043,7 @@
       "source": "https://www.comicbookherald.com/wolverine-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T20:07:18.806Z"
+      "updatedAt": "2026-09-07T08:41:05.684Z"
     },
     {
       "id": "question-of-the-week-do-you-have-a-hulk-reading-order",
@@ -8958,9 +8958,9 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 2047,
-      "placeholderCount": 103,
-      "emptyRecordCount": 2,
+      "count": 2041,
+      "placeholderCount": 7,
+      "emptyRecordCount": 25,
       "collections": 0,
       "characters": [
         "Spider-Man",
@@ -8984,7 +8984,7 @@
       "source": "https://www.comicbookherald.com/amazing-spider-man-reading-order-modern-marvel-era/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-09-03T06:33:08.920Z"
+      "updatedAt": "2026-09-07T07:16:05.457Z"
     },
     {
       "id": "silent-war",

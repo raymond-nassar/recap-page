@@ -12433,10 +12433,10 @@
     "coverIssueId": 16096
   },
   "relationshipReview": {
-    "reportDigest": "cec9f4e9cdf2e8f4cc7f7f3c00c5ebf9a65d8495be0dd59760bd67467bfa78d3",
+    "reportDigest": "3b33bd0414f10f4f03c9eb9856ca66db307be3d03713621aeb2a6549bcd4d492",
     "packetDigest": "035dbbc4c860542a50055abc087147f241bf75b5bc69fc34b0238675b0f7d047",
     "mappingDigest": "ea48b22d38e10c3884b22ee36ef730d33e446f54e7ae17357ce8dd9479ab2950",
-    "libraryDigest": "f1b6152bdf309a02053a0be9c65c1e76c0442d431de86e480c54b4748d17bae9",
+    "libraryDigest": "5067c9e061f6c4fbbb73da4e362f1e743b1642ce1b36135583b25598c215fc77",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 426,
@@ -12507,7 +12507,7 @@
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The partial relationship is limited to the 28 exact shared provider issue identities recorded in the refreshed report.",
+        "rationale": "The partial relationship is limited to the 32 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06"
       },
       {
@@ -13713,7 +13713,7 @@
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The partial relationship is limited to the 5 exact shared provider issue identities recorded in the refreshed report.",
+        "rationale": "The partial relationship is limited to the 6 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06"
       },
       {
@@ -13899,9 +13899,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing silver-surfer-reading-order comparison scope was re-reviewed after the Captain America settlement changed one included library order. All 161 relationships retain their publication decisions.",
+    "rationale": "The existing silver-surfer-reading-order comparison scope was re-reviewed after the Amazing Spider-Man and Wolverine settlements changed included library orders. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "ab4fe4bbfb03f7ad51cf34125ac146316219f4fa2d3dd0640c13255b3a61ffe6"
+    "approvalDigest": "3ef04fab0e98eccd2179cfc531e782ad186ed6de2f6fe91427dfa466adaaf76a"
   },
   "sourceGapResolutions": [
     {

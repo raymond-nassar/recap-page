@@ -24442,14 +24442,14 @@
     "spotlightKind": "complete-guide"
   },
   "relationshipReview": {
-    "reportDigest": "1863aebe99b12fe5b652b2ce815e214354b5b3f36fe08877a6f73b63436d3479",
+    "reportDigest": "055cf173d38171a540a6a724a9fe741b56cf590207d1b8aa289e0a716ddbb15f",
     "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
     "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-    "libraryDigest": "b8f6eea1fe9a494159d9388155794fa1088b68e1867c570e3c6f39b973c818e5",
+    "libraryDigest": "8a540f2f317265890e2b3f39933c92bbe16d0fbc817deafdd381069d95d97ff6",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing captain-marvel-ms-marvel-reading-order comparison scope was re-reviewed after the Captain America settlement changed one included library order. All 157 relationships retain their publication decisions.",
+    "rationale": "The existing captain-marvel-ms-marvel-reading-order comparison scope was re-reviewed after the Amazing Spider-Man and Wolverine settlements changed included library orders. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
     "dispositions": [
       {
@@ -24529,13 +24529,15 @@
         "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
         "relationship": "partial",
         "decision": "approved",
-        "rationale": "Reviewed 3 exact shared provider identities; this remains a partial relationship, not an exact duplicate.",
+        "rationale": "The partial relationship is limited to the 5 exact shared provider issue identities recorded in the refreshed report.",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Terra",
         "reviewedAt": "2026-09-06",
-        "sharedCount": 3,
+        "sharedCount": 5,
         "sharedIds": [
           "16890",
+          "7104",
+          "7105",
           "39263",
           "39262"
         ]
@@ -26577,7 +26579,7 @@
         ]
       }
     ],
-    "approvalDigest": "038ae3afcbb92e36de7c218cd93a610c639b7851b3b94cbe0115bc707ef6bcc6",
+    "approvalDigest": "919db0f9e0cb0287a66c75e02dea22b33cef5577aa469058cec79346e2c29769",
     "sourceCounts": {
       "sourceOccurrenceCount": 599,
       "sourceIdentityCount": 527,

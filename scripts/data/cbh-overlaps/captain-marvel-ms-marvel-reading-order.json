@@ -2,7 +2,7 @@
   "candidateId": "captain-marvel-ms-marvel-reading-order",
   "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
   "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-  "libraryDigest": "b8f6eea1fe9a494159d9388155794fa1088b68e1867c570e3c6f39b973c818e5",
+  "libraryDigest": "8a540f2f317265890e2b3f39933c92bbe16d0fbc817deafdd381069d95d97ff6",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 599,
@@ -59,9 +59,11 @@
     },
     {
       "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-      "sharedCount": 3,
+      "sharedCount": 5,
       "sharedIds": [
         "16890",
+        "7104",
+        "7105",
         "39263",
         "39262"
       ],
@@ -1354,5 +1356,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "1863aebe99b12fe5b652b2ce815e214354b5b3f36fe08877a6f73b63436d3479"
+  "reportDigest": "055cf173d38171a540a6a724a9fe741b56cf590207d1b8aa289e0a716ddbb15f"
 }
