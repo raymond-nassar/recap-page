@@ -8328,10 +8328,76 @@ const SCENARIOS = [
         narrow.width === 320 && narrow.overflow <= 1, JSON.stringify(narrow));
 
       await page.setViewport({ width: 1280, height: 900 });
+      const settleLayout = () => page.evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      const captureZoomState = () => page.evaluate(() => {
+        const button = document.querySelector('.ri[data-view="library"]');
+        const panel = document.querySelector('#sidebar-panel');
+        const rect = button ? button.getBoundingClientRect() : null;
+        const viewport = visualViewport;
+        return {
+          scale: viewport?.scale ?? null,
+          innerWidth,
+          narrow: matchMedia('(max-width: 880px)').matches,
+          panelHidden: panel ? panel.hidden : null,
+          activeElement: document.activeElement
+            ? {
+              tag: document.activeElement.tagName,
+              id: document.activeElement.id || null,
+              className: document.activeElement.className || null,
+            }
+            : null,
+          targetRect: rect
+            ? {
+              left: rect.left,
+              top: rect.top,
+              right: rect.right,
+              bottom: rect.bottom,
+              width: rect.width,
+              height: rect.height,
+            }
+            : null,
+          viewportBounds: viewport
+            ? {
+              left: viewport.offsetLeft,
+              top: viewport.offsetTop,
+              right: viewport.offsetLeft + viewport.width,
+              bottom: viewport.offsetTop + viewport.height,
+              width: viewport.width,
+              height: viewport.height,
+            }
+            : null,
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        };
+      });
+      const waitForStage = async (stage, wait) => {
+        try {
+          await wait();
+        } catch (error) {
+          const state = await captureZoomState().catch((stateError) => ({
+            captureError: stateError?.message ?? String(stateError),
+          }));
+          console.error(`[spacing-scale timeout stage=${stage}] ${JSON.stringify(state)}`);
+          throw error;
+        }
+      };
+      await settleLayout();
+      await waitForStage('desktop-readiness', () => page.waitForFunction(() => {
+        const isNarrow = matchMedia('(max-width: 880px)').matches;
+        const panel = document.querySelector('#sidebar-panel');
+        const button = document.querySelector('.ri[data-view="library"]');
+        if (isNarrow || !panel || panel.hidden || !button) {
+          return false;
+        }
+        const rect = button.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+      }));
+      await settleLayout();
       await page.evaluate(() => scrollTo(0, 0));
       const client = await page.createCDPSession();
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
-      await page.waitForFunction(() => visualViewport.scale === 2);
+      await waitForStage('zoom-scale', () => page.waitForFunction(() => visualViewport.scale === 2));
       await page.$eval('.ri[data-view="library"]', (button) => {
         button.focus();
         button.scrollIntoView({ block: 'nearest', inline: 'nearest' });
@@ -8346,11 +8412,11 @@ const SCENARIOS = [
           && rect.right - right <= 1
           && document.documentElement.scrollWidth - document.documentElement.clientWidth <= 1;
       };
-      await page.waitForFunction(controlIsContained);
+      await waitForStage('containment-first', () => page.waitForFunction(controlIsContained));
       await page.evaluate(() => new Promise((resolve) => {
         requestAnimationFrame(() => requestAnimationFrame(resolve));
       }));
-      await page.waitForFunction(controlIsContained);
+      await waitForStage('containment-second', () => page.waitForFunction(controlIsContained));
       const zoomed = await page.$eval('.ri[data-view="library"]', (button) => {
         const rect = button.getBoundingClientRect();
         const left = visualViewport.offsetLeft;
