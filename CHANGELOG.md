@@ -12,6 +12,18 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Punisher guide metadata gaps
+
+In plain English: The bundled Punisher guide now opens 64 exact comics that previously appeared
+as source notes. The other 94 source notes remain visible because the provider does not currently
+identify those exact comics, and all existing reading progress, notes, and availability choices
+keep their original identities.
+
+The settlement accounts for all 181 requested occurrences: 64 exact comics, 94
+provider-unavailable identities, and 23 repeated references. It publishes 544 exact entries and 94
+placeholders while retaining the complete 857-position source ledger and its 74 non-issue
+exclusions.
+
 ### Simplified the project home
 
 The project website has shorter copy, fewer repeated links, and simpler navigation. Fresh,
