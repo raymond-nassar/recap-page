@@ -1,7 +1,7 @@
 {
   "id": "iron-man-reading-order",
   "inventoryId": "iron-man-reading-order",
-  "packetDigest": "b2c67419dce8fff82401ee9e32498c97086409bae1e514f10d9ab4ac70feb805",
+  "packetDigest": "3f1fcc4fe3e6c6f0f768b411cf3d18453c7231dccf360e41c2ab407c5b55c76a",
   "sourceUrl": "https://www.comicbookherald.com/iron-man-reading-order/",
   "sourceRetrievedAt": "2026-08-26",
   "sourceRetrievalStatus": "retrieved",
@@ -26849,7 +26849,7 @@
       "note": "Marvel series 31324 (X-Men (2021 - Present)) is the reviewed metadata series for this source reference."
     }
   ],
-  "mappingDigest": "3b1656e2f3d9eda936d2930e7d1fbb3db5ab7a094268e40a2cf0560aa463828c",
+  "mappingDigest": "211950976521b9e1b07163f5bcde3b2b6f104e37e21459ff47c015d7c03a8aa1",
   "reviewStatus": "approved",
   "packetReview": "MRT-002 resume coordinator final central source and 811-row mapping review",
   "approvedManifest": {
@@ -26889,9 +26889,9 @@
     "coverIssueId": 11280
   },
   "relationshipReview": {
-    "reportDigest": "0e0fb1bf9acd4835f860209a69ce4f307ac1527971ea946ca156cebb5aab6cab",
-    "packetDigest": "b2c67419dce8fff82401ee9e32498c97086409bae1e514f10d9ab4ac70feb805",
-    "mappingDigest": "3b1656e2f3d9eda936d2930e7d1fbb3db5ab7a094268e40a2cf0560aa463828c",
+    "reportDigest": "790912c76543798f7af663cd312f5fbdeecaaf8fc7ada59bb09fe10cc16279ad",
+    "packetDigest": "3f1fcc4fe3e6c6f0f768b411cf3d18453c7231dccf360e41c2ab407c5b55c76a",
+    "mappingDigest": "211950976521b9e1b07163f5bcde3b2b6f104e37e21459ff47c015d7c03a8aa1",
     "libraryDigest": "832e7575b71050011dc71951b9b7db38865cd252f2b3dcf0fea72ba7ad6962c3",
     "peerDigests": {},
     "dispositions": [
@@ -28528,7 +28528,7 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002 resume coordinator",
     "rationale": "Every current-library comparison was reviewed against the complete-guide boundary; the iron-man-2020 partial overlap is approved as intentional provenance per its disposition, and no exact or subset relationship exists with any other order.",
-    "approvalDigest": "ab8143711cd8f1c1cbfa36facf5f3f07b760693399c4dc784115fa5448c6f897",
+    "approvalDigest": "1702d846acc31ff28ee9847b742498de16441dfcf57e8e7f208a0ee4e9019762",
     "sourceCounts": {
       "sourceOccurrenceCount": 815,
       "sourceIdentityCount": 811,
