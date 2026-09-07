@@ -18,7 +18,7 @@
 // hazard; for a check that writes corrupt state and starts fresh, it is exactly the isolation
 // wanted. Running on a port the app never uses means this file structurally cannot read, damage
 // or clear the reading progress saved at 127.0.0.1:8787. That is also the whole of the cleanup
-// story. The cache-generation and catalog-gap scenarios are the exceptions because their acceptance
+// story. The app-origin scenarios are the exceptions because their acceptance
 // explicitly requires the app origin. Their targeted runs use 127.0.0.1:8787 inside Edge's temporary
 // automation profile, not the person's installed browser profile.
 //
@@ -7508,6 +7508,119 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'issue-return-visibility',
+    title: 'Back from a late issue restores visible exact focus without changing the Reading List',
+    async run(page, t) {
+      const browserErrors = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      await page.setViewport({ width: 1280, height: 900 });
+      await importLongOrder(page);
+      await openFullOrder(page);
+      await page.keyboard.press('Tab');
+
+      const snapshot = () => page.evaluate(async () => {
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const active = document.activeElement;
+        const ring = active.matches('input[name="filter"]') ? active.nextElementSibling : active;
+        const rect = ring.getBoundingClientRect();
+        const style = getComputedStyle(ring);
+        const margin = parseFloat(style.outlineWidth) + Math.max(0, parseFloat(style.outlineOffset));
+        const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
+        return {
+          issueId: active.dataset.issueId ?? null,
+          control: active.dataset.focusControl ?? null,
+          filterFocus: active.matches('input[name="filter"]:checked'),
+          heading: active.id,
+          visible: rect.width > 0 && rect.height > 0
+            && rect.top >= margin && rect.bottom + margin <= innerHeight
+            && rect.left >= margin && rect.right + margin <= innerWidth
+            && (hit === ring || ring.contains(hit)),
+          focusRing: active.matches(':focus-visible')
+            && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+          top: rect.top,
+          bottom: rect.bottom,
+          scrollY,
+          hash: location.hash,
+          filter: document.querySelector('input[name="filter"]:checked')?.value,
+          full: document.querySelector('#full').open,
+          rows: document.querySelectorAll('#rows .row').length,
+          state: localStorage.getItem('mrt.state.v2'),
+        };
+      });
+      const savedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      for (const [filter, control] of [['all', 'title'], ['unread', 'title'], ['unread', 'cover']]) {
+        await click(page, `input[name="filter"][value="${filter}"]`);
+        const selector = `#rows [data-issue-id="910180"][data-focus-control="${control}"]`;
+        const before = await page.$eval(selector, (link) => {
+          link.scrollIntoView({ block: 'center' });
+          link.focus();
+          return { hash: location.hash, scrollY };
+        });
+        t.check(`${filter}/${control}: the source is below the first viewport`,
+          before.scrollY > 900, JSON.stringify(before));
+        await page.keyboard.press('Enter');
+        await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+        t.check(`${filter}/${control}: keyboard inspection opens the selected issue`,
+          await page.evaluate(() => location.hash.startsWith('#/issue/910180?list=')));
+        await page.evaluate(() => history.back());
+        await page.waitForFunction((source) => document.activeElement === document.querySelector(source),
+          {}, selector);
+        const returned = await snapshot();
+        t.check(`${filter}/${control}: Back restores the exact source control`,
+          returned.issueId === '910180' && returned.control === control, JSON.stringify(returned));
+        t.check(`${filter}/${control}: the entire focus ring is visible and unobscured`,
+          returned.visible && returned.focusRing,
+          JSON.stringify({ top: returned.top, bottom: returned.bottom, scrollY: returned.scrollY,
+            visible: returned.visible, focusRing: returned.focusRing }));
+        t.check(`${filter}/${control}: the source route, filter and full list are preserved`,
+          returned.hash === before.hash && returned.filter === filter && returned.full && returned.rows === 219,
+          JSON.stringify({ hash: returned.hash, filter: returned.filter, full: returned.full, rows: returned.rows }));
+        t.check(`${filter}/${control}: inspection and Back leave saved progress unchanged`,
+          returned.state === savedState);
+      }
+
+      const missing = '#rows [data-issue-id="910180"][data-focus-control="title"]';
+      await page.focus(missing);
+      const beforeFallback = await page.evaluate(() => location.hash);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.evaluate((selector) => {
+        addEventListener('hashchange', () => {
+          const source = document.querySelector(selector);
+          window.__mrtRemovedReturnSource = !!source;
+          source?.remove();
+        }, { once: true });
+        history.back();
+      }, missing);
+      await page.waitForFunction(() => document.activeElement?.matches('input[name="filter"]:checked'));
+      const fallback = await snapshot();
+      t.check('a removed opener falls back to the checked filter with a fully visible focus ring',
+        await page.evaluate(() => window.__mrtRemovedReturnSource)
+          && fallback.filterFocus && fallback.visible && fallback.focusRing,
+        JSON.stringify({ top: fallback.top, bottom: fallback.bottom, scrollY: fallback.scrollY,
+          visible: fallback.visible, focusRing: fallback.focusRing }));
+      t.check('the fallback preserves the source route, filter, disclosure and saved progress',
+        fallback.hash === beforeFallback && fallback.filter === 'unread'
+          && fallback.full && fallback.state === savedState);
+      await page.keyboard.press('ArrowRight');
+      t.check('the fallback filter remains keyboard usable',
+        await page.evaluate(() => document.activeElement.matches('input[name="filter"]:checked')
+          && document.activeElement.value !== 'unread'));
+
+      await click(page, '.brand[data-view="home"]');
+      const home = await snapshot();
+      t.check('ordinary Home navigation still starts at the top with a visible focused heading',
+        /^#\/home(?:\/|$)/.test(home.hash) && home.scrollY === 0 && home.heading === 'home-h'
+          && home.visible && home.focusRing,
+        JSON.stringify({ hash: home.hash, scrollY: home.scrollY, heading: home.heading, visible: home.visible }));
+      t.check('the return-focus journeys produce no console or page errors',
+        browserErrors.length === 0, browserErrors.join(' / '));
+    },
+  },
+  {
     id: 'reading-screen',
     title: 'the reading screen uses the desktop it is given and states progress in words',
     async run(page, t) {
@@ -9507,7 +9620,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);
