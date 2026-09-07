@@ -2463,8 +2463,8 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 638,
-      "placeholderCount": 158,
-      "emptyRecordCount": 0,
+      "placeholderCount": 94,
+      "emptyRecordCount": 2,
       "collections": 76,
       "characters": [
         "Punisher",
@@ -2488,7 +2488,7 @@
       "source": "https://www.comicbookherald.com/punisher-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-27T13:31:19.178Z"
+      "updatedAt": "2026-09-07T21:02:50.494Z"
     },
     {
       "id": "rocket-raccoon-reading-order",
