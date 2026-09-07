@@ -244,7 +244,8 @@ Marvel 2099 publishes a selected alternate-universe guide from its complete 271-
 order. The packet preserves 172 distinct exact issues, one later source occurrence of the same
 2099 A.D. Apocalypse issue, and 98 owner-approved positions whose exact configured Marvel Unlimited
 metadata could not be confirmed. The exclusions remain machine-checked in source order and are
-tracked in Issue #343 rather than guessed, substituted, or silently removed. The complete-library
+settled through the owner's authorization in Issue #343 rather than guessed, substituted, or
+silently removed. The complete-library
 report records one partial relationship: Fantastic Four 2099 #1 also appears in the broader
 Fantastic Four reading order.
 

@@ -1,7 +1,7 @@
 {
   "id": "marvel-2099",
   "inventoryId": "marvel-2099",
-  "packetDigest": "737f8fd6c65a2f24dc3bea4dfc394a7974308852f1cda00abbccccc77660b691",
+  "packetDigest": "e1f518eabfc22f4ccfbf9ba4c0155d692b3f36117b0e8d5e4cd61f04eda043f2",
   "sourceProvider": "comic-book-reading-orders",
   "sourceUrl": "https://comicbookreadingorders.com/marvel/events/marvel-2099-reading-order/",
   "sourceRetrievedAt": "2026-08-28",
@@ -7775,7 +7775,7 @@
       ]
     }
   ],
-  "mappingDigest": "83b58141a6112d7cebc2951acfd8c7680db90c63221a2a3321c8b210c464c745",
+  "mappingDigest": "0825b760659378ef902d3df970a313c1eb282c8fbac332e68ff939712d6a3158",
   "packetReview": "MRT-003-C02-AU01-PUB central CBRO source review",
   "approvedManifest": {
     "id": "marvel-2099",
@@ -7809,9 +7809,9 @@
     "coverIssueId": 10865
   },
   "relationshipReview": {
-    "reportDigest": "f562b41d9a637b42d872e0c2e8ccb2b395c7d3fe1fc3bc3310ed14b6dd49fad9",
-    "packetDigest": "737f8fd6c65a2f24dc3bea4dfc394a7974308852f1cda00abbccccc77660b691",
-    "mappingDigest": "83b58141a6112d7cebc2951acfd8c7680db90c63221a2a3321c8b210c464c745",
+    "reportDigest": "dd937e9d90d739baca47d98f0688b3547a285ba16a09bc1f5cd9e23eaddd6a97",
+    "packetDigest": "e1f518eabfc22f4ccfbf9ba4c0155d692b3f36117b0e8d5e4cd61f04eda043f2",
+    "mappingDigest": "0825b760659378ef902d3df970a313c1eb282c8fbac332e68ff939712d6a3158",
     "libraryDigest": "9405b7c357884f0d8318fcd03808b1d9e67487f741dc5763559b41bf8487e6e6",
     "peerDigests": {},
     "dispositions": [
@@ -9694,7 +9694,7 @@
     "authorityIdentity": "GitHub Copilot",
     "rationale": "Every current library comparison was reviewed for the selected alternate-universe Marvel 2099 guide.",
     "reviewedAt": "2026-08-28T06:53:35.491Z",
-    "approvalDigest": "234df4247958c47c8064e2d53e082074ad20b4caaa8221f01771d8a2c66acb57",
+    "approvalDigest": "f4205107ce0526dfffb0cf6d2a00e77b16b7005685febad891e5f79e43464d15",
     "sourceCounts": {
       "sourceOccurrenceCount": 271,
       "sourceIdentityCount": 172,

@@ -3073,6 +3073,21 @@ test('Marvel 2099 publishes 172 exact issues while conserving all 271 source pos
   assert.equal(packet.repeatedSourceReferences.length, 1);
   assert.equal(packet.excludedSourceRows.length, 98);
   assert.equal(packet.sourceOccurrenceCount, 271);
+  assert.deepEqual(packet.sourceReview.metadataGapSettlement, {
+    settlementIssue: 'https://github.com/raymond-nassar/recap-page/issues/343',
+    settledAt: '2026-09-06',
+    disposition: 'owner-approved-metadata-omissions-preserved',
+    sourceOccurrenceCount: 271,
+    publishedIssueCount: 172,
+    repeatedSourceReferenceCount: 1,
+    authorizedOmissionCount: 98,
+    authorizedOmissionDigest: CBRO_MARVEL_2099_EXCLUSION_SHA256,
+  });
+  assert.equal(
+    packet.sourceReview.metadataGapSettlement.authorizedOmissionDigest,
+    digestCanonicalJson(packet.excludedSourceRows),
+  );
+  assert.deepEqual(mapping.excludedSourceRows, packet.excludedSourceRows);
   assert.deepEqual(
     [...sourcePositionsForPacket(packet), ...packet.repeatedSourceReferences.map((row) => row.sourcePosition),
       ...packet.excludedSourceRows.map((row) => row.sourcePosition)].sort((left, right) => left - right),
