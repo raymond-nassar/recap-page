@@ -29,68 +29,73 @@
         real string instead of a glyph. See docs/ux/sidebar-flow.md.
       -->
       <aside class="rail" id="sidebar">
-        <button type="button" class="rail-toggle" id="btn-rail-toggle"
-                aria-expanded="true" aria-controls="sidebar-nav" aria-label="Collapse sidebar"
-                aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
-          <span class="gi" aria-hidden="true">&#xE700;</span>
-        </button>
+        <div class="rail-header">
+          <button type="button" class="rail-toggle" id="btn-rail-toggle"
+                  aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar"
+                  aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
+            <span class="gi" aria-hidden="true">&#xE700;</span>
+            <span class="rail-toggle-label">Navigation</span>
+          </button>
 
-        <button type="button" class="brand" data-view="home">
-          <img class="mark" src="./icons/icon.svg" alt="" aria-hidden="true" />
-          <b class="lbl">Recap&nbsp;Page</b>
-        </button>
+          <button type="button" class="brand" data-view="home">
+            <img class="mark" src="./icons/icon.svg" alt="" aria-hidden="true" />
+            <b class="lbl">Recap&nbsp;Page</b>
+          </button>
+        </div>
 
-        <nav id="sidebar-nav" aria-label="Main">
-          <div class="nav-scroll">
-            <div class="nav-group">
-              <h2 id="rail-reading" class="rail-h">Reading</h2>
-              <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
-              <ul class="rail-list" aria-labelledby="rail-reading">
-                <li><button type="button" class="ri" data-view="library">
-                  <span class="gi" aria-hidden="true">&#xE8F1;</span>
-                  <span class="lbl">Library</span>
-                </button></li>
-              </ul>
+        <div id="sidebar-panel">
+          <nav id="sidebar-nav" aria-label="Main">
+            <div class="nav-scroll">
+              <div class="nav-group">
+                <h2 id="rail-reading" class="rail-h">Reading</h2>
+                <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
+                <ul class="rail-list" aria-labelledby="rail-reading">
+                  <li><button type="button" class="ri" data-view="library">
+                    <span class="gi" aria-hidden="true">&#xE8F1;</span>
+                    <span class="lbl">Library</span>
+                  </button></li>
+                </ul>
+              </div>
+
+              <div class="nav-group">
+                <h2 class="rail-h">Discover</h2>
+                <ul class="rail-list">
+                  <li><button type="button" class="ri" data-view="browse">
+                    <span class="gi" aria-hidden="true">&#xE721;</span>
+                    <span class="lbl">Browse</span>
+                  </button></li>
+                  <li><button type="button" class="ri" data-view="add">
+                    <span class="gi" aria-hidden="true">&#xE710;</span>
+                    <span class="lbl">Add comics</span>
+                  </button></li>
+                </ul>
+              </div>
             </div>
 
-            <div class="nav-group">
-              <h2 class="rail-h">Discover</h2>
+            <!-- Pinned to the bottom of the rail rather than left to the end of a scrolling column.
+                 Measured at 1280x900 with one order in the library, the rail's content was 991px in
+                 a 900px viewport, so settings, about and both status pills were all below the fold
+                 on a first run. They are the two things a reader needs to be able to find without
+                 knowing they are there. -->
+            <div class="nav-group nav-foot">
+              <h2 class="rail-h">App</h2>
               <ul class="rail-list">
-                <li><button type="button" class="ri" data-view="browse">
-                  <span class="gi" aria-hidden="true">&#xE721;</span>
-                  <span class="lbl">Browse</span>
+                <li><button type="button" class="ri" data-view="data">
+                  <span class="gi" aria-hidden="true">&#xE713;</span>
+                  <span class="lbl">Backup &amp; settings</span>
                 </button></li>
-                <li><button type="button" class="ri" data-view="add">
-                  <span class="gi" aria-hidden="true">&#xE710;</span>
-                  <span class="lbl">Add comics</span>
+                <li><button type="button" class="ri" data-view="about">
+                  <span class="gi" aria-hidden="true">&#xE946;</span>
+                  <span class="lbl">About this app</span>
                 </button></li>
               </ul>
             </div>
-          </div>
+          </nav>
 
-          <!-- Pinned to the bottom of the rail rather than left to the end of a scrolling column.
-               Measured at 1280x900 with one order in the library, the rail's content was 991px in
-               a 900px viewport, so settings, about and both status pills were all below the fold
-               on a first run. They are the two things a reader needs to be able to find without
-               knowing they are there. -->
-          <div class="nav-group nav-foot">
-            <h2 class="rail-h">App</h2>
-            <ul class="rail-list">
-              <li><button type="button" class="ri" data-view="data">
-                <span class="gi" aria-hidden="true">&#xE713;</span>
-                <span class="lbl">Backup &amp; settings</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="about">
-                <span class="gi" aria-hidden="true">&#xE946;</span>
-                <span class="lbl">About this app</span>
-              </button></li>
-            </ul>
+          <div class="rail-foot">
+            <span id="api-status" class="pill pill-muted">Checking API…</span>
+            <span id="queue-status" class="pill pill-muted" hidden></span>
           </div>
-        </nav>
-
-        <div class="rail-foot">
-          <span id="api-status" class="pill pill-muted">Checking API…</span>
-          <span id="queue-status" class="pill pill-muted" hidden></span>
         </div>
       </aside>
 
@@ -910,7 +915,7 @@
                 <tbody>
                   <tr><th scope="row"><kbd>↵</kbd></th><td>Open the current issue in Marvel Unlimited</td></tr>
                   <tr><th scope="row"><kbd>D</kbd></th><td>Mark it read and move to the next one</td></tr>
-                  <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the sidebar, anywhere in the app</td></tr>
+                  <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the desktop sidebar, or show and hide Navigation on narrow screens</td></tr>
                 </tbody>
               </table>
               <p class="rail-hint">
