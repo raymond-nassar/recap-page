@@ -2545,7 +2545,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The full source page and cache-only provider settlement are frozen. Unresolved source identities remain individual open metadata gaps rather than being omitted or substituted.",
+    "reason": "The settled source page preserves 370 occurrences as 140 exact rows, 75 repeats, 26 source-semantic exclusions, and 129 owner-observed provider-unavailability rows without substitutions or nonexistence claims.",
     "sourceRetrievedAt": "2026-08-28",
     "overlapIds": [
       "hickman-full",
@@ -2816,7 +2816,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "A serialized live provider audit verified 480 exact issue identities; the full-page ledger preserves 145 repeats, 158 unresolved metadata gaps, and 74 explicit non-issue exclusions while publication awaits delivery.",
+    "reason": "The reviewed settlement publishes 544 exact issue identities, preserves 94 provider-unavailable identities as placeholders, and keeps 145 repeats plus 74 explicit non-issue exclusions in the full-page ledger.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "amazing-spider-man-reading-order-modern-marvel-era",

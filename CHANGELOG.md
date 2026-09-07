@@ -23,6 +23,32 @@ For maintainers: `sidebar.collapsed` remains desktop-only persistence, while nar
 state is ephemeral. Ctrl+\ still drives the same toggle entry point across both desktop and narrow
 layouts.
 
+### Settled the Punisher guide metadata gaps
+
+In plain English: The bundled Punisher guide now opens 64 exact comics that previously appeared
+as source notes. The other 94 source notes remain visible because the provider does not currently
+identify those exact comics, and all existing reading progress, notes, and availability choices
+keep their original identities.
+
+The settlement accounts for all 181 requested occurrences: 64 exact comics, 94
+provider-unavailable identities, and 23 repeated references. It publishes 544 exact entries and 94
+placeholders while retaining the complete 857-position source ledger and its 74 non-issue
+exclusions.
+
+### Simplified the project home
+
+The project website has shorter copy, fewer repeated links, and simpler navigation. Fresh,
+narrower app screenshots put the reading content first and display at a readable size rather
+than in small side-by-side cards. Help, documentation, feedback, and the important privacy and
+setup guidance remain available. Nothing saved in the app is affected.
+
+### Settled the Nick Fury and S.H.I.E.L.D. guide gaps
+
+In plain English: The bundled Nick Fury guide now opens 62 exact comics that previously appeared
+as source notes. The other 129 source notes remain visible because no current provider identity was
+verified for them, without replacing them with a different comic or claiming they do not exist.
+Existing reading progress, notes, and availability choices for those source notes are unchanged.
+
 ### Settled the Wolverine guide gaps
 
 In plain English: The bundled Wolverine guide now opens 14 exact comics that previously appeared as

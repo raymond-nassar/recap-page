@@ -11,11 +11,11 @@ Marvel Unlimited link is available, **Read** opens the official reader in a new 
 new tab looks up that link and falls back to the issue's official page on marvel.com when none can
 be resolved. You need your own subscription to read included issues.
 
-![Recap Page Home recommending Setup to Modern Timeline and showing Reading Paths among its discovery
-choices with cover art off](docs/screenshots/home-1280.png)
+![Recap Page Home with a recommended starting guide and focused discovery choices,
+with cover art off](docs/screenshots/home-960.png)
 
-![Avengers Disassembled open at the first issue with no progress marked and cover art
-off](docs/screenshots/avengers-disassembled-reading-1280.png)
+![Avengers Disassembled showing the next issue, reading progress, and upcoming comics,
+with cover art off](docs/screenshots/avengers-disassembled-reading-960.png)
 
 ## Made for long reading journeys
 

@@ -9462,7 +9462,7 @@ const SCENARIOS = [
         await page.$eval('#demo', (section) => section.scrollIntoView({ block: 'start' }));
         await page.waitForFunction(() => (
           [...document.images].every((image) => (
-            image.complete && image.naturalWidth === 1280 && image.naturalHeight === 900
+            image.complete && image.naturalWidth === 960 && image.naturalHeight === 900
           ))
         ));
         const desktop = await page.evaluate(() => ({
@@ -9490,20 +9490,24 @@ const SCENARIOS = [
             complete: image.complete,
             width: image.naturalWidth,
             height: image.naturalHeight,
+            displayedWidth: image.getBoundingClientRect().width,
           })),
+          demoColumns: getComputedStyle(document.querySelector('.demo-grid')).gridTemplateColumns,
         }));
         t.check('desktop renders every project-home region without horizontal overflow',
           desktop.width === 1280
           && desktop.overflow <= 1
           && desktop.regions.length === 8
-          && desktop.navigation.length === 7
+          && desktop.navigation.length === 5
           && desktop.navigation.every((item) => item.visible),
           JSON.stringify(desktop));
         t.check('both canonical product images load at their checked dimensions',
           desktop.images.length === 2
           && desktop.images.every((image) => (
-            image.complete && image.width === 1280 && image.height === 900
-          )),
+            image.complete && image.width === 960 && image.height === 900
+            && image.displayedWidth >= 900
+          ))
+          && desktop.demoColumns.split(' ').length === 1,
           JSON.stringify(desktop.images));
         t.check('the information page loads no web resource or active project service',
           webRequests.length === 0,
@@ -9544,10 +9548,10 @@ const SCENARIOS = [
           && narrow.splitColumns.split(' ').length === 1
           && narrow.clipped.length === 0,
           JSON.stringify(narrow));
-        t.check('every primary route remains visible and full-width at the narrow layout',
-          narrow.navigation.length === 7
+        t.check('every primary route remains visible and touch-sized at the narrow layout',
+          narrow.navigation.length === 5
           && narrow.navigation.every((item) => (
-            item.visible && item.height >= 44 && item.width <= 296
+            item.visible && item.height >= 44 && item.width >= 44 && item.width <= 296
           )),
           JSON.stringify(narrow.navigation));
 

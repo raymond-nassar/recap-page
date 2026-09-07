@@ -11,7 +11,7 @@ const LINK_TEXT = '((?:[^\\]\\\\]|\\\\.)*)';
 const CHECKBOX_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[( |x|X)\\]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
 const CHECKBOX_PLAIN_RE = /^\s*[-*]\s*\[( |x|X)\]\s*(.+?)\s*$/;
 const BULLET_LINK_RE = new RegExp(`^\\s*[-*]\\s*\\[${LINK_TEXT}\\]\\(([^)\\s]+)(?:\\s+"[^"]*")?\\)`);
-const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=([1-9]\d*)\s*-->\s*$/;
+const SOURCE_OCCURRENCE_RE = /\s*<!--\s*mrt:source-occurrence=((?:source-position:)?[1-9]\d*)\s*-->\s*$/;
 
 function sourceIdentity(title) {
   const match = SOURCE_OCCURRENCE_RE.exec(title);
