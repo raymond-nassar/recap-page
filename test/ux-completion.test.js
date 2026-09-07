@@ -82,9 +82,7 @@ test('one shared breadcrumb renderer covers routed views but never Home or dialo
 
 test('the narrow rail override follows the base rule it must replace', () => {
   const baseRail = styles.match(/\.rail\s*\{[^}]*position:\s*sticky;[^}]*height:\s*100vh;[^}]*\}/s);
-  const narrowRail = styles.match(
-    /@media \(max-width:\s*880px\)\s*\{\s*\.shell, \.shell\.railed\s*\{[^}]*grid-template-columns:\s*1fr;[^}]*\}\s*\.rail\s*\{[^}]*position:\s*static;[^}]*height:\s*auto;[^}]*\}\s*\}/s,
-  );
+  const narrowRail = styles.match(/@media \(max-width:\s*880px\)\s*\{[\s\S]*?\.shell, \.shell\.railed\s*\{[^}]*grid-template-columns:\s*1fr;[\s\S]*?\.rail\s*\{[^}]*position:\s*static;[^}]*height:\s*auto;[^}]*\}/s);
   assert.ok(baseRail, 'the base rail no longer owns the wide sticky viewport');
   assert.ok(narrowRail, 'the 880px layout no longer restores document flow');
   assert.ok(

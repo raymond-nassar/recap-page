@@ -286,9 +286,103 @@ a { color: var(--blue); }
 }
 
 @media (max-width: 880px) {
-  .shell, .shell.railed { grid-template-columns: 1fr; }
-  .rail { position: static; height: auto; }
+  .shell, .shell.railed { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .rail {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-2);
+  }
+  .rail-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+  .rail-toggle {
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    margin: 0;
+    color: var(--text);
+  }
+  .railed .rail-toggle { margin: 0; }
+  .rail-toggle-label { display: inline; font-size: var(--t-body); font-weight: 600; }
+  .brand {
+    margin: 0;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: min(100%, 12rem);
+  }
+  .railed .brand {
+    justify-content: flex-start;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .railed .brand b,
+  .railed .ri .lbl {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .railed .ri {
+    justify-content: flex-start;
+    padding: var(--space-4) var(--space-4);
+  }
+  .railed .ri .init { display: none; }
+  .railed .rail-h,
+  .railed .ri .n,
+  .railed .ri .rail-list-name,
+  .railed .ri .bar { display: block; }
+  .railed .ri .n { display: inline; }
+  .railed .ri[aria-current]::before, .railed .ri.on::before { height: 60%; }
+  .railed .rail-foot {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    justify-items: start;
+  }
+  .railed .rail-foot .pill {
+    width: auto;
+    height: auto;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 999px;
+    overflow: visible;
+    color: var(--muted);
+    border-width: 1px;
+  }
+  .railed .rail-foot .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-muted { color: var(--muted); border-color: var(--line); background: none; }
+  #sidebar-panel {
+    display: block;
+  }
+  #sidebar-nav {
+    display: block;
+    min-height: auto;
+  }
+  .nav-scroll {
+    min-height: auto;
+    overflow-y: visible;
+  }
+  .nav-foot {
+    border-top: 0;
+    margin-top: var(--space-5);
+    padding-top: 0;
+  }
 }
+.rail-header { display: block; }
+#sidebar-panel { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+#sidebar-panel[hidden] { display: none !important; }
 /* The rail used to scroll as one column, so everything past the fold went with it. The reading
    orders and the task shortcuts scroll; the app group and the status pills are pinned, which is
    the footer area a navigation pane is supposed to have. */
@@ -313,12 +407,13 @@ a { color: var(--blue); }
 }
 
 .rail-toggle {
-  width: 40px; height: 40px; min-height: 40px; border: 0; border-radius: 8px;
+  width: 44px; height: 44px; min-height: 44px; border: 0; border-radius: 8px;
   background: none; color: var(--muted); display: grid; place-items: center;
   margin: 0 0 var(--space-4);
 }
 .rail-toggle:hover { background: rgb(var(--tint-base) / 3.922%); color: var(--text); }
 .railed .rail-toggle { margin-left: auto; margin-right: auto; }
+.rail-toggle-label { display: none; }
 
 .brand {
   display: flex; align-items: center; gap: var(--space-4); margin: 0 0 var(--space-6);
@@ -364,7 +459,8 @@ a { color: var(--blue); }
    ring. Drawing it inside the button clears all 14. -3px is the shallowest offset that does,
    because the ring is 3px wide and any less leaves its outer edge past the button. */
 .rail .ri:focus-visible,
-.rail .brand:focus-visible { outline-offset: -3px; }
+.rail .brand:focus-visible,
+.rail .rail-toggle:focus-visible { outline-offset: -3px; }
 
 /* The selected state is a purple accent bar AND a raised surface AND a heavier label, so it
    never depends on colour alone. */
@@ -440,6 +536,83 @@ a { color: var(--blue); }
 
 .rail-hint { color: var(--muted); font-size: var(--t-body); margin: var(--space-3) var(--space-4); }
 .rail-foot { margin-top: auto; padding: var(--space-6) var(--space-4) 0; display: grid; gap: var(--space-3); }
+
+@media (max-width: 880px) {
+  .rail-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+  .rail-toggle {
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    margin: 0;
+    color: var(--text);
+  }
+  .railed .rail-toggle { margin: 0; }
+  .rail-toggle-label { display: inline; font-size: var(--t-body); font-weight: 600; }
+  .brand {
+    margin: 0;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: min(100%, 11rem);
+  }
+  .railed .brand {
+    justify-content: flex-start;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .railed .brand b,
+  .railed .ri .lbl {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .railed .ri {
+    justify-content: flex-start;
+    padding: var(--space-4) var(--space-4);
+  }
+  .railed .ri .init { display: none; }
+  .railed .rail-h,
+  .railed .ri .n,
+  .railed .ri .rail-list-name,
+  .railed .ri .bar { display: block; }
+  .railed .ri .n { display: inline; }
+  .railed .ri[aria-current]::before, .railed .ri.on::before { height: 60%; }
+  .railed .rail-foot {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    justify-items: start;
+  }
+  .railed .rail-foot .pill {
+    width: auto;
+    height: auto;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 999px;
+    overflow: visible;
+    color: var(--muted);
+    border-width: 1px;
+  }
+  .railed .rail-foot .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-muted { color: var(--muted); border-color: var(--line); background: none; }
+  #sidebar-panel { display: block; }
+  #sidebar-nav { display: block; min-height: auto; }
+  .nav-scroll { min-height: auto; overflow-y: visible; }
+  .nav-foot { border-top: 0; margin-top: var(--space-5); padding-top: 0; }
+}
 
 .pill {
   font-size: var(--t-caption); border-radius: 999px; padding: var(--space-2) var(--space-4);

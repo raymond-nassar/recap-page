@@ -19,6 +19,17 @@ into view, including issues far down a long list. If that control is no longer p
 existing fallback control is brought into view instead. The selected filter, expanded list,
 and saved reading progress are unchanged.
 
+### Show reading content sooner on narrow screens
+
+In plain English: On narrow screens, the sidebar is now a compact header with a visible
+Navigation button. Opening it reveals the same destinations and status messages in the page flow,
+and view changes close it safely so reading content appears much earlier. Desktop still keeps the
+expanded and compact rails, and your saved Reading Lists and progress are unchanged.
+
+For maintainers: `sidebar.collapsed` remains desktop-only persistence, while narrow open and closed
+state is ephemeral. Ctrl+\ still drives the same toggle entry point across both desktop and narrow
+layouts.
+
 ### Settled the Punisher guide metadata gaps
 
 In plain English: The bundled Punisher guide now opens 64 exact comics that previously appeared
