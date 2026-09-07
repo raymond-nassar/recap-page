@@ -6192,7 +6192,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:866` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1039` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -8821,7 +8821,7 @@ const SCENARIOS = [
     id: 'narrow-navigation',
     title: 'narrow navigation keeps labels visible, focus safe, and route compatible',
     async run(page, t) {
-      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: false });
       await page.setViewport({ width: 880, height: 900 });
       await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
       await page.waitForFunction(
@@ -8829,38 +8829,97 @@ const SCENARIOS = [
           && document.querySelector('#sidebar-panel')?.hidden === true,
         { timeout: 15000 },
       );
+      const openNavigation = async () => {
+        await page.$eval('#btn-rail-toggle', (button) => button.focus());
+        const expanded = await page.$eval('#btn-rail-toggle', (button) => button.getAttribute('aria-expanded'));
+        if (expanded !== 'true') await page.keyboard.press('Space');
+        await page.waitForFunction(
+          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-expanded') === 'true'
+            && document.querySelector('#sidebar-panel')?.hidden === false,
+          { timeout: 15000 },
+        );
+      };
+      const tabToSelector = async (selector, maxTabs = 16) => {
+        for (let index = 0; index < maxTabs; index += 1) {
+          const match = await page.evaluate((target) => {
+            const active = document.activeElement;
+            return Boolean(active && active.matches?.(target) && active.getClientRects().length > 0);
+          }, selector);
+          if (match) return true;
+          await page.keyboard.press('Tab');
+        }
+        return false;
+      };
+      const activateByKeyboard = async (selector, viewId) => {
+        await openNavigation();
+        const reached = await tabToSelector(selector);
+        if (!reached) return { reached: false };
+        await page.keyboard.press('Enter');
+        await page.waitForSelector(`#${viewId}:not([hidden])`, { timeout: 15000 });
+        return page.evaluate(() => ({
+          hidden: document.querySelector('#sidebar-panel')?.hidden ?? null,
+          focusVisible: document.activeElement?.getClientRects().length > 0,
+          openedCount: (window.__opened ?? []).length,
+        }));
+      };
 
-      await page.$eval('#btn-rail-toggle', (button) => button.focus());
-      await page.keyboard.press('Space');
+      await openNavigation();
       const opened = await page.evaluate(() => {
         const button = document.querySelector('#btn-rail-toggle');
         const panel = document.querySelector('#sidebar-panel');
+        const viewport = {
+          left: visualViewport?.offsetLeft ?? 0,
+          right: (visualViewport?.offsetLeft ?? 0) + (visualViewport?.width ?? innerWidth),
+          top: visualViewport?.offsetTop ?? 0,
+          bottom: (visualViewport?.offsetTop ?? 0) + (visualViewport?.height ?? innerHeight),
+        };
         const required = ['Continue reading', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app'];
-        const names = [...panel.querySelectorAll('.ri, .brand')]
-          .map((node) => node.textContent.replace(/\s+/g, ' ').trim())
-          .filter(Boolean);
+        const controls = ['.brand[data-view="home"]', '#sidebar-panel #list-nav .ri', '#sidebar-panel .ri[data-view="library"]', '#sidebar-panel .ri[data-view="browse"]', '#sidebar-panel .ri[data-view="add"]', '#sidebar-panel .ri[data-view="data"]', '#sidebar-panel .ri[data-view="about"]']
+          .map((selector) => panel.querySelector(selector))
+          .filter(Boolean)
+          .map((node) => {
+            const rect = node.getBoundingClientRect();
+            const style = getComputedStyle(node);
+            return {
+              text: node.textContent.replace(/\s+/g, ' ').trim(),
+              rendered: rect.width > 0 && rect.height > 0,
+              painted: style.visibility !== 'hidden' && style.display !== 'none' && Number(style.opacity) > 0,
+              clipped: rect.left < viewport.left || rect.right > viewport.right + 1 || rect.top < viewport.top || rect.bottom > viewport.bottom + 1,
+            };
+          });
         return {
           ariaLabel: button.getAttribute('aria-label'),
-          controls: button.getAttribute('aria-controls'),
+          controlsId: button.getAttribute('aria-controls'),
           expanded: button.getAttribute('aria-expanded'),
           focused: document.activeElement?.id,
           panelHidden: panel.hidden,
-          labelsPresent: required.every((label) => names.some((name) => name.includes(label))),
+          labelsPresent: required.every((label) => controls.some((control) => control.text.includes(label))),
+          labelsReady: controls.every((control) => control.rendered && control.painted && !control.clipped),
+          controls,
         };
       });
       t.check('Space opens Navigation with the expected control relationship and keeps focus on the toggle',
         opened.ariaLabel === 'Navigation'
-        && opened.controls === 'sidebar-panel'
+        && opened.controlsId === 'sidebar-panel'
         && opened.expanded === 'true'
         && opened.focused === 'btn-rail-toggle'
         && opened.panelHidden === false
-        && opened.labelsPresent,
+        && opened.labelsPresent
+        && opened.labelsReady,
         JSON.stringify(opened));
 
-      await page.keyboard.press('Enter');
-      await page.waitForFunction(() => document.querySelector('#sidebar-panel')?.hidden === true);
-      await page.keyboard.press('Enter');
-      await page.waitForFunction(() => document.querySelector('#sidebar-panel')?.hidden === false);
+      await page.$eval('#btn-rail-toggle', (button) => button.focus());
+      const brandReached = await tabToSelector('.brand[data-view="home"]');
+      await page.keyboard.press('Escape');
+      const escapedFromHeader = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel')?.hidden ?? null,
+        focus: document.activeElement?.id ?? null,
+      }));
+      t.check('Escape from a focused header brand closes Navigation and rescues focus to the toggle',
+        brandReached && escapedFromHeader.hidden && escapedFromHeader.focus === 'btn-rail-toggle',
+        JSON.stringify({ brandReached, escapedFromHeader }));
+
+      await openNavigation();
       await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
       await page.keyboard.press('Escape');
       const escaped = await page.evaluate(() => ({
@@ -8871,7 +8930,7 @@ const SCENARIOS = [
         escaped.hidden && escaped.focus === 'btn-rail-toggle',
         JSON.stringify(escaped));
 
-      await page.keyboard.press('Enter');
+      await openNavigation();
       await page.$eval('#sidebar-panel .ri[data-view="browse"]', (button) => button.focus());
       await page.keyboard.down('Control');
       await page.keyboard.press('\\');
@@ -8882,9 +8941,9 @@ const SCENARIOS = [
       }));
       t.check('Ctrl+\\ from a panel descendant closes Navigation and rescues focus', ctrlClose.hidden && ctrlClose.focus === 'btn-rail-toggle', JSON.stringify(ctrlClose));
 
-      await click(page, '#btn-rail-toggle');
-      await click(page, '#sidebar-panel .ri[data-view="add"]');
-      await click(page, '#view-add [data-view="add-manual"]');
+      await activateByKeyboard('#sidebar-panel .ri[data-view="add"]', 'view-add');
+      await page.$eval('#view-add [data-view="add-manual"]', (button) => button.focus());
+      await page.keyboard.press('Enter');
       await page.waitForSelector('#manual-title', { timeout: 15000 });
       await page.$eval('#manual-title', (input) => input.focus());
       await page.keyboard.down('Control');
@@ -8897,10 +8956,9 @@ const SCENARIOS = [
       t.check('Ctrl+\\ from a text field toggles Navigation without stealing text-field focus',
         textFieldShortcut.hidden === false && textFieldShortcut.active === 'manual-title',
         JSON.stringify(textFieldShortcut));
-      await click(page, '#sidebar-panel #list-nav .ri');
-      await page.waitForSelector('#view-read:not([hidden])');
+      await activateByKeyboard('#sidebar-panel #list-nav .ri', 'view-read');
       await page.$eval('#btn-rail-toggle', (button) => button.focus());
-      await page.keyboard.press('Enter');
+      await page.keyboard.press('Space');
       await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
       await page.keyboard.press('d');
       const passive = await page.evaluate(() => ({
@@ -8912,45 +8970,62 @@ const SCENARIOS = [
         JSON.stringify(passive));
 
       for (const [selector, viewId] of [
+        ['.brand[data-view="home"]', 'view-home'],
+        ['#sidebar-panel #list-nav .ri', 'view-read'],
         ['#sidebar-panel .ri[data-view="library"]', 'view-library'],
         ['#sidebar-panel .ri[data-view="browse"]', 'view-browse'],
         ['#sidebar-panel .ri[data-view="add"]', 'view-add'],
         ['#sidebar-panel .ri[data-view="data"]', 'view-data'],
         ['#sidebar-panel .ri[data-view="about"]', 'view-about'],
-        ['.brand[data-view="home"]', 'view-home'],
-        ['#sidebar-panel #list-nav .ri', 'view-read'],
       ]) {
-        await click(page, '#btn-rail-toggle');
-        await click(page, selector);
-        await page.waitForSelector(`#${viewId}:not([hidden])`);
-        const routed = await page.evaluate(() => ({
-          hidden: document.querySelector('#sidebar-panel').hidden,
-          focusVisible: document.activeElement?.getClientRects().length > 0,
-        }));
+        const routed = await activateByKeyboard(selector, viewId);
         t.check(`routing to ${viewId} closes narrow Navigation and leaves visible focus`, routed.hidden && routed.focusVisible, JSON.stringify(routed));
       }
+      const tabExit = await page.evaluate(() => ({
+        onMain: document.querySelector('#main')?.contains(document.activeElement) ?? false,
+        active: document.activeElement?.id ?? document.activeElement?.className ?? null,
+      }));
+      t.check('navigation tab sequence exits into main content without opening the reader',
+        tabExit.onMain && typeof tabExit.active === 'string' && (tabExit.active || '').length > 0,
+        JSON.stringify(tabExit));
 
-      await click(page, '#btn-rail-toggle');
-      await click(page, '#sidebar-panel .ri[data-view="browse"]');
+      await activateByKeyboard('#sidebar-panel .ri[data-view="browse"]', 'view-browse');
       await click(page, '#view-browse [data-category="timeline"]');
-      await click(page, '#btn-rail-toggle');
-      await click(page, '#sidebar-panel .ri[data-view="add"]');
+      const timelineChild = await page.evaluate(() => ({
+        view: document.querySelector('.view:not([hidden])')?.id ?? null,
+        parentCurrent: Boolean(document.querySelector('.ri[data-view="browse"][aria-current="page"]')),
+        trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('Browse child keeps its parent selection and breadcrumb context',
+        timelineChild.parentCurrent && timelineChild.trail.includes('Browse'),
+        JSON.stringify(timelineChild));
+
+      await activateByKeyboard('#sidebar-panel .ri[data-view="add"]', 'view-add');
       await click(page, '#view-add [data-view="add-series"]');
-      await click(page, '#btn-rail-toggle');
-      await click(page, '#sidebar-panel .ri[data-view="library"]');
+      const addChild = await page.evaluate(() => ({
+        view: document.querySelector('.view:not([hidden])')?.id ?? null,
+        parentCurrent: Boolean(document.querySelector('.ri[data-view="add"][aria-current="page"]')),
+        trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('Add child keeps its parent selection and breadcrumb context',
+        addChild.parentCurrent && addChild.trail.includes('Add comics'),
+        JSON.stringify(addChild));
+
+      await activateByKeyboard('#sidebar-panel .ri[data-view="library"]', 'view-library');
       await click(page, '#view-library [data-view="progress"]');
       const hierarchy = await page.evaluate(() => ({
-        browseCurrent: Boolean(document.querySelector('.ri[data-view="browse"][aria-current="page"]')),
-        addCurrent: Boolean(document.querySelector('.ri[data-view="add"][aria-current="page"]')),
-        libraryCurrent: Boolean(document.querySelector('.ri[data-view="library"][aria-current="page"]')),
-        breadcrumb: [...document.querySelectorAll('.breadcrumb a, .breadcrumb li > span')]
+        view: document.querySelector('.view:not([hidden])')?.id ?? null,
+        parentCurrent: Boolean(document.querySelector('.ri[data-view="library"][aria-current="page"]')),
+        trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
           .map((node) => node.textContent.trim()),
       }));
       t.check('hub children keep parent selection and breadcrumb hierarchy',
-        hierarchy.browseCurrent || hierarchy.addCurrent || hierarchy.libraryCurrent,
+        hierarchy.parentCurrent && hierarchy.trail.includes('Library'),
         JSON.stringify(hierarchy));
 
-      await click(page, '#list-nav .ri');
+      await activateByKeyboard('#sidebar-panel #list-nav .ri', 'view-read');
       await click(page, '#btn-hero-inspect');
       await page.waitForSelector('#view-issue:not([hidden])');
       const issueHash = await page.evaluate(() => location.hash);
@@ -8967,47 +9042,122 @@ const SCENARIOS = [
         issueHash === afterHistory.hash && afterHistory.breadcrumb.length >= 2,
         JSON.stringify(afterHistory));
 
-      await click(page, '#btn-rail-toggle');
-      await page.$eval('#main', (main) => main.focus());
+      await openNavigation();
+      const beforeEscapeOutside = await page.evaluate(() => !document.querySelector('#sidebar-panel').hidden);
+      await page.$eval('#main', (main) => {
+        main.tabIndex = -1;
+        main.focus();
+      });
       await page.keyboard.press('Escape');
       const noGlobalEscape = await page.evaluate(() => !document.querySelector('#sidebar-panel').hidden);
-      t.check('Escape outside the sidebar does not become a global close command', noGlobalEscape, String(noGlobalEscape));
+      t.check('Escape outside the sidebar does not become a global close command',
+        beforeEscapeOutside && noGlobalEscape,
+        JSON.stringify({ beforeEscapeOutside, noGlobalEscape }));
 
       const toggleBefore = await page.evaluate(() => ({
         hash: location.hash,
+        historyLength: history.length,
+        historyState: JSON.stringify(history.state ?? null),
         read: JSON.parse(localStorage.getItem('mrt.state.v2'))?.read?.[900001] ?? null,
       }));
-      await click(page, '#btn-rail-toggle');
-      await click(page, '#btn-rail-toggle');
+      await openNavigation();
+      await page.keyboard.press('Escape');
       const after = await page.evaluate(() => ({
         hash: location.hash,
+        historyLength: history.length,
+        historyState: JSON.stringify(history.state ?? null),
         read: JSON.parse(localStorage.getItem('mrt.state.v2'))?.read?.[900001] ?? null,
       }));
       t.check('Navigation toggles do not change hash history state or reading progress',
-        toggleBefore.hash === after.hash && toggleBefore.read === after.read,
+        toggleBefore.hash === after.hash
+        && toggleBefore.historyLength === after.historyLength
+        && toggleBefore.historyState === after.historyState
+        && toggleBefore.read === after.read,
         JSON.stringify({ toggleBefore, after }));
 
       await page.setViewport({ width: 620, height: 900 });
       await page.evaluate(() => {
-        document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('mrt.settings', JSON.stringify({
           ...JSON.parse(localStorage.getItem('mrt.settings') ?? '{}'),
+          theme: 'dark',
           covers: false,
         }));
       });
       await page.reload({ waitUntil: 'load' });
-      await click(page, '#list-nav .ri');
-      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
-      await click(page, '#btn-rail-toggle');
+      await activateByKeyboard('#sidebar-panel #list-nav .ri', 'view-read');
+      await openNavigation();
       await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
       const darkReduced = await page.evaluate(() => ({
+        storedTheme: JSON.parse(localStorage.getItem('mrt.settings') ?? '{}')?.theme ?? null,
+        appliedTheme: document.documentElement.getAttribute('data-theme') ?? null,
+        colorScheme: getComputedStyle(document.documentElement).colorScheme,
         reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
-        buttonBottom: document.querySelector('#btn-hero-read')?.getBoundingClientRect().bottom ?? 0,
-        labelsVisible: [...document.querySelectorAll('#sidebar-panel .ri .lbl')]
-          .every((node) => node.getBoundingClientRect().height > 0),
+        selectedCount: document.querySelectorAll('.ri[aria-current="page"]').length,
+        selectedBoundary: [...document.querySelectorAll('.ri[aria-current="page"]')].every((node) => {
+          const style = getComputedStyle(node);
+          return Number.parseFloat(style.borderTopWidth) > 0 || Number.parseFloat(style.outlineWidth) > 0;
+        }),
+        labelsVisible: [...document.querySelectorAll('#sidebar-panel .ri .lbl')].every((node) => {
+          const rect = node.getBoundingClientRect();
+          return rect.width > 0 && rect.height > 0;
+        }),
+        action: (() => {
+          const button = document.querySelector('#btn-hero-read');
+          if (!button) return null;
+          button.scrollIntoView({ block: 'center' });
+          const rect = button.getBoundingClientRect();
+          const sidebarBottom = document.querySelector('#sidebar')?.getBoundingClientRect().bottom ?? 0;
+          return {
+            top: rect.top,
+            bottom: rect.bottom,
+            visible: rect.bottom > 0 && rect.top < innerHeight,
+            unobscured: rect.top >= sidebarBottom,
+          };
+        })(),
+        animations: document.getAnimations().length,
+        durations: [...document.querySelectorAll('a, .card, .route')]
+          .flatMap((element) => {
+            const style = getComputedStyle(element);
+            return [style.animationDuration, style.transitionDuration];
+          })
+          .filter((duration) => duration !== '0s'),
+        apiLong: (() => {
+          const pill = document.querySelector('#api-status');
+          pill.className = 'pill pill-warn';
+          pill.textContent = 'API unreachable. Lists and progress still work';
+          return {
+            text: pill.textContent.trim(),
+            visible: pill.getBoundingClientRect().height > 0,
+          };
+        })(),
+        queueVisible: (() => {
+          const queue = document.querySelector('#queue-status');
+          queue.hidden = false;
+          queue.className = 'pill pill-muted';
+          queue.textContent = '12 requests queued';
+          const rect = queue.getBoundingClientRect();
+          return {
+            text: queue.textContent.trim(),
+            visible: rect.width > 0 && rect.height > 0,
+          };
+        })(),
       }));
       t.check('620 dark cover-off reduced-motion keeps labels readable and reading action reachable',
-        darkReduced.reduced && darkReduced.labelsVisible && darkReduced.buttonBottom > 0,
+        darkReduced.storedTheme === 'dark'
+        && darkReduced.appliedTheme === 'dark'
+        && darkReduced.colorScheme.includes('dark')
+        && darkReduced.reduced
+        && darkReduced.selectedCount > 0
+        && darkReduced.selectedBoundary
+        && darkReduced.labelsVisible
+        && darkReduced.action?.visible
+        && darkReduced.action?.unobscured
+        && darkReduced.animations === 0
+        && darkReduced.durations.length === 0
+        && darkReduced.apiLong.text === 'API unreachable. Lists and progress still work'
+        && darkReduced.apiLong.visible
+        && darkReduced.queueVisible.text === '12 requests queued'
+        && darkReduced.queueVisible.visible,
         JSON.stringify(darkReduced));
       await page.emulateMediaFeatures([]);
 
@@ -9018,15 +9168,24 @@ const SCENARIOS = [
         const focused = document.querySelector('#btn-rail-toggle');
         focused.focus();
         const style = getComputedStyle(focused);
+        const selected = document.querySelector('.ri[aria-current="page"]');
+        const selectedStyle = selected ? getComputedStyle(selected) : null;
         return {
           active: matchMedia('(forced-colors: active)').matches,
           outlineWidth: Number.parseFloat(style.outlineWidth),
           outlineColor: style.outlineColor,
-          selectedBorder: getComputedStyle(document.querySelector('.ri[aria-current="page"]') ?? focused).borderTopColor,
+          selectedExists: Boolean(selected),
+          selectedBorderWidth: selectedStyle ? Number.parseFloat(selectedStyle.borderTopWidth) : 0,
+          selectedBorderColor: selectedStyle?.borderTopColor ?? null,
         };
       });
       t.check('320 forced colors keeps focus and selection boundaries visible',
-        forced.active && forced.outlineWidth > 0 && forced.outlineColor !== 'rgba(0, 0, 0, 0)',
+        forced.active
+        && forced.outlineWidth > 0
+        && forced.outlineColor !== 'rgba(0, 0, 0, 0)'
+        && forced.selectedExists
+        && forced.selectedBorderWidth > 0
+        && forced.selectedBorderColor !== 'rgba(0, 0, 0, 0)',
         JSON.stringify(forced));
 
       await page.evaluate(() => {

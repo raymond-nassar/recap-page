@@ -1087,8 +1087,13 @@ function wireSidebar() {
   $('#sidebar').addEventListener('keydown', (e) => {
     if (e.defaultPrevented || e.key !== 'Escape' || !isNarrow || !narrowOpen) return;
     if (document.querySelector('dialog[open]')) return;
+    const header = document.querySelector('.rail-header');
+    const panel = document.querySelector('#sidebar-panel');
+    const target = e.target instanceof Node ? e.target : null;
+    const fromHeaderOrPanel = Boolean(target && (header?.contains(target) || panel?.contains(target)));
     e.preventDefault();
-    setNarrowOpen(false, { rescueFocus: true });
+    setNarrowOpen(false, { rescueFocus: !fromHeaderOrPanel });
+    if (fromHeaderOrPanel) $('#btn-rail-toggle').focus();
   });
 
   window.addEventListener('resize', () => {

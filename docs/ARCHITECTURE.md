@@ -16,7 +16,7 @@ the prose rather than in a binary nobody can diff.
 ## The three entry points
 
 The app is served from one origin and has three pages, each loading exactly one module. The tracker
-itself is loaded at `src/index.html:1043`. The launch page, which is the tab a reader's issue opens
+itself is loaded at `src/index.html:1048`. The launch page, which is the tab a reader's issue opens
 into, is loaded at `src/open.html:19`. A fault-injection harness that exists for development and is
 no part of the running app is loaded at `src/dev-faults.html:135`.
 
@@ -110,7 +110,7 @@ object the view layer itself created and can throw away.
 
 **The API client and its response cache are replaceable at runtime.** Saving a new API base builds
 a fresh pair and hands the replacement client to both the Hydrator and SynopsisRunner, at
-`src/js/main.js:1925-1936`. An in-flight synopsis run is cancelled and its tab-memory prose is
+`src/js/main.js:1987-1998`. An in-flight synopsis run is cancelled and its tab-memory prose is
 cleared rather than carried across services. The rate limiter is deliberately not rebuilt, because
 the budget it tracks belongs to the reader's connection rather than to whichever base URL is
 configured. The Store is not replaced.
@@ -214,7 +214,7 @@ On a targeted run, the vendor reuses pinned payloads for skipped orders before d
 catalog. It then atomically writes the output batch assembled by that invocation, including
 `catalog.json` and any generated overlap artifacts, at `scripts/vendor-orders.mjs:587-635`. At
 runtime the catalog is fetched once from the same origin and parsed at
-`src/js/main.js:1667-1677`, so browsing does not depend on the metadata service.
+`src/js/main.js:1729-1739`, so browsing does not depend on the metadata service.
 
 Series and creator names are searched in vendored indexes. Selecting one then pages its issues from
 the API. API responses use `no-store`, and cache writes remove synopsis prose before IndexedDB sees
@@ -282,7 +282,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2352-2371`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2357-2376`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -514,7 +514,7 @@ paths remains a separate stop in each sequence.
 Home and Browse render the same gateway descriptor from the resolved catalog and both open one
 Reading paths view. The controller constructs that view with catalog loading, Store reads, route
 intent and history effects rather than giving it those concrete owners, at
-`src/js/main.js:2925-2960`. The selected id lives only in the validated `path` query of the hash
+`src/js/main.js:2987-3022`. The selected id lives only in the validated `path` query of the hash
 route, not in saved reader state, as enforced at `src/js/lib/route.js:160-195`.
 
 The view owns the resolved paths, selected structure, selector identity and async generation. It
@@ -534,7 +534,7 @@ Catalog shelves, Preview and generated publishing pages share one constructed pr
 contract for cards, path choice, source disclosure and path links. That internal module owns the
 choice without importing the controller or another concrete view, while the controller injects
 navigation, imports, Store effects and publishing-page orchestration at
-`src/js/main.js:2804-2923`.
+`src/js/main.js:2866-2985`.
 
 ## Modern Timeline position is a Store projection
 
@@ -555,8 +555,8 @@ The shared presentation contract removes the previous positional state and paint
 current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:280-330`. Only a visible current story receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
-`src/js/main.js:2833-2865`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2352-2371`. That refresh leaves cards, controls, focus, scroll and
+`src/js/main.js:2895-2927`, while the existing Store-driven render path calls the position-only
+refresh at `src/js/main.js:2357-2376`. That refresh leaves cards, controls, focus, scroll and
 transient path choice intact across same-tab and cross-tab state changes.
 
 ## Where to read next
