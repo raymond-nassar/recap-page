@@ -1243,7 +1243,17 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-003-C02-AU01-PUB coordinator",
     "rationale": "The complete 271-position source boundary, 172 canonical exact issues, one repeated occurrence, 98 owner-approved metadata exclusions, and alternate-universe taxonomy were reviewed centrally.",
-    "reviewedAt": "2026-08-28T05:05:56.384Z"
+    "reviewedAt": "2026-08-28T05:05:56.384Z",
+    "metadataGapSettlement": {
+      "settlementIssue": "https://github.com/raymond-nassar/recap-page/issues/343",
+      "settledAt": "2026-09-06",
+      "disposition": "owner-approved-metadata-omissions-preserved",
+      "sourceOccurrenceCount": 271,
+      "publishedIssueCount": 172,
+      "repeatedSourceReferenceCount": 1,
+      "authorizedOmissionCount": 98,
+      "authorizedOmissionDigest": "e582db0e2d1edf641ae7a59790459d040c86503e12d33b20cc5744c5a32a6f46"
+    }
   },
   "rows": [
     {
@@ -3311,5 +3321,5 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "737f8fd6c65a2f24dc3bea4dfc394a7974308852f1cda00abbccccc77660b691"
+  "packetDigest": "e1f518eabfc22f4ccfbf9ba4c0155d692b3f36117b0e8d5e4cd61f04eda043f2"
 }
