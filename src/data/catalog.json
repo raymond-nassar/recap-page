@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06T13:35:20.257Z",
+  "generatedAt": "2026-09-06T23:55:52.020Z",
   "lists": [
     {
       "id": "x-men-age-of-x",
@@ -3417,7 +3417,7 @@
       "depth": "complete",
       "spotlightKind": "complete-guide",
       "count": 169,
-      "placeholderCount": 4,
+      "placeholderCount": 1,
       "emptyRecordCount": 0,
       "collections": 35,
       "characters": [
@@ -3444,7 +3444,7 @@
       "source": "https://www.comicbookherald.com/young-avengers-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-09-06T09:48:24.096Z"
+      "updatedAt": "2026-09-06T23:55:52.020Z"
     },
     {
       "id": "magneto-reading-order",

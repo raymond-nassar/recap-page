@@ -38,13 +38,14 @@ gaps retain auditable transition evidence.
 
 ### Settled the Young Avengers guide gaps
 
-In plain English: The bundled Young Avengers guide now includes 51 exact comics that previously
-appeared as broken placeholders. Four context entries remain as placeholders because they do not
-identify a single comic. Existing saved Reading Lists and reading progress are not rewritten;
-newly imported copies receive the settled 169-item order.
+In plain English: The bundled Young Avengers guide now includes 54 exact comics from its former
+placeholder set. Marvel Rising #0, The Last Annihilation: Wiccan & Hulkling #1, and the 2022
+Hulkling & Wiccan #1 now open their exact comics. Death's Head: Clone Drive remains a source note
+because it names a four-issue collection rather than one comic. Existing saved Reading Lists and
+reading progress are not rewritten; newly imported copies still receive the 169-item order.
 
-For maintainers, all 220 source positions remain accounted for as 165 exact rows, four context
-placeholders, and 51 explicit exclusions. All 51 former provider gaps retain auditable transition
+For maintainers, all 220 source positions remain accounted for as 168 exact rows, one context
+placeholder, and 51 explicit exclusions. All 54 former provider gaps retain auditable transition
 evidence.
 
 ### Settled the Inhumans guide gaps
