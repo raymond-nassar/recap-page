@@ -12433,10 +12433,10 @@
     "coverIssueId": 16096
   },
   "relationshipReview": {
-    "reportDigest": "cec9f4e9cdf2e8f4cc7f7f3c00c5ebf9a65d8495be0dd59760bd67467bfa78d3",
+    "reportDigest": "da56673f9da3c909b1e9e1ebed28fe296ac979f19e134cbbf9edf12608db4d7a",
     "packetDigest": "035dbbc4c860542a50055abc087147f241bf75b5bc69fc34b0238675b0f7d047",
     "mappingDigest": "ea48b22d38e10c3884b22ee36ef730d33e446f54e7ae17357ce8dd9479ab2950",
-    "libraryDigest": "f1b6152bdf309a02053a0be9c65c1e76c0442d431de86e480c54b4748d17bae9",
+    "libraryDigest": "3284a702c1f65e500ee43858077edf6c10db5d022077114a4b4a0a5deb3b65d5",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 426,
@@ -12507,7 +12507,7 @@
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The partial relationship is limited to the 28 exact shared provider issue identities recorded in the refreshed report.",
+        "rationale": "The partial relationship is limited to the 32 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06"
       },
       {
@@ -13899,9 +13899,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing silver-surfer-reading-order comparison scope was re-reviewed after the Captain America settlement changed one included library order. All 161 relationships retain their publication decisions.",
+    "rationale": "The existing silver-surfer-reading-order comparison scope was re-reviewed after the Amazing Spider-Man settlement changed one included library order. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "ab4fe4bbfb03f7ad51cf34125ac146316219f4fa2d3dd0640c13255b3a61ffe6"
+    "approvalDigest": "8a0db0cd3782b89044dbffdcb6c44281c2eff78a5bf999cf5b3a89d35a5781c3"
   },
   "sourceGapResolutions": [
     {

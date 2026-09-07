@@ -12,6 +12,19 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Amazing Spider-Man complete guide gaps
+
+In plain English: The complete Amazing Spider-Man guide now includes 90 exact comics that
+previously appeared as broken placeholders. Seven source identities remain visible without made-up
+links: six could not be found through the current provider, and the original 1989 Parallel Lives
+edition could not be safely replaced by a later edition. Existing saved Reading Lists, progress,
+notes, and availability choices are not rewritten.
+
+For maintainers, all 103 former gap rows remain accounted for as 88 exact rows representing 90
+atomic identities, three repeated references, five source-semantic exclusions, six
+provider-unavailability rows, and one availability-only row. The seven retained placeholder keys
+remain unchanged.
+
 ### Settled the Captain America modern guide
 
 In plain English: The modern Captain America guide now opens the one comic that its source names

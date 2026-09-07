@@ -1,0 +1,1596 @@
+{
+  "schemaVersion": 1,
+  "id": "amazing-spider-man-reading-order-modern-marvel-era-metadata-settlement",
+  "settlementIssue": "https://github.com/raymond-nassar/recap-page/issues/248",
+  "settledAt": "2026-09-06",
+  "sourceRowCount": 103,
+  "exactSourceRowCount": 88,
+  "exactAtomicIdentityCount": 90,
+  "repeatedSourceReferenceCount": 3,
+  "sourceSemanticExclusionCount": 5,
+  "providerUnavailabilityCount": 6,
+  "availabilityOnlyCount": 1,
+  "ownerLookupCount": 0,
+  "retainedPlaceholderIds": [
+    {
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #112",
+      "issueId": -2106195269
+    },
+    {
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #114",
+      "issueId": -2005529555
+    },
+    {
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man Annual #5",
+      "issueId": -938181069
+    },
+    {
+      "sourceIssueReference": "Marvel Graphic Novel: Amazing Spider-Man - Parallel Lives",
+      "issueId": -734556372
+    },
+    {
+      "sourceIssueReference": "Avengers #329",
+      "issueId": -722540133
+    },
+    {
+      "sourceIssueReference": "Mighty Avengers #4.1",
+      "issueId": -2132547036
+    },
+    {
+      "sourceIssueReference": "Mighty Avengers #5.1",
+      "issueId": -1666885343
+    }
+  ],
+  "rows": [
+    {
+      "unresolvedOrdinal": 1,
+      "guideItem": 199,
+      "sourceIssueReference": "Marvel Calendar #1978",
+      "classification": "source-semantic-exclusion",
+      "disposition": "calendar, not a comic issue"
+    },
+    {
+      "unresolvedOrdinal": 2,
+      "guideItem": 289,
+      "sourceIssueReference": "Peter Parker, the Spectacular Spider-Man Annual #4",
+      "classification": "exact",
+      "disposition": "Peter Parker, The Spectacular Spider-Man Annual (1979) #4; Marvel issue 55222",
+      "selectedIssues": [
+        {
+          "title": "Peter Parker, The Spectacular Spider-Man Annual (1979) #4",
+          "issueId": 55222
+        }
+      ],
+      "selectedIssueIds": [
+        55222
+      ]
+    },
+    {
+      "unresolvedOrdinal": 3,
+      "guideItem": 296,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #101",
+      "classification": "exact",
+      "disposition": "Spectacular Spider-Man (1976) #101; Marvel issue 14545",
+      "selectedIssues": [
+        {
+          "title": "Spectacular Spider-Man (1976) #101",
+          "issueId": 14545
+        }
+      ],
+      "selectedIssueIds": [
+        14545
+      ]
+    },
+    {
+      "unresolvedOrdinal": 4,
+      "guideItem": 297,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #102",
+      "classification": "exact",
+      "disposition": "Spectacular Spider-Man (1976) #102; Marvel issue 14546",
+      "selectedIssues": [
+        {
+          "title": "Spectacular Spider-Man (1976) #102",
+          "issueId": 14546
+        }
+      ],
+      "selectedIssueIds": [
+        14546
+      ]
+    },
+    {
+      "unresolvedOrdinal": 5,
+      "guideItem": 298,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #103",
+      "classification": "exact",
+      "disposition": "Spectacular Spider-Man (1976) #103; Marvel issue 14547",
+      "selectedIssues": [
+        {
+          "title": "Spectacular Spider-Man (1976) #103",
+          "issueId": 14547
+        }
+      ],
+      "selectedIssueIds": [
+        14547
+      ]
+    },
+    {
+      "unresolvedOrdinal": 6,
+      "guideItem": 299,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #104",
+      "classification": "exact",
+      "disposition": "Spectacular Spider-Man (1976) #104; Marvel issue 14548",
+      "selectedIssues": [
+        {
+          "title": "Spectacular Spider-Man (1976) #104",
+          "issueId": 14548
+        }
+      ],
+      "selectedIssueIds": [
+        14548
+      ]
+    },
+    {
+      "unresolvedOrdinal": 7,
+      "guideItem": 300,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #105",
+      "classification": "exact",
+      "disposition": "Spectacular Spider-Man (1976) #105; Marvel issue 14549",
+      "selectedIssues": [
+        {
+          "title": "Spectacular Spider-Man (1976) #105",
+          "issueId": 14549
+        }
+      ],
+      "selectedIssueIds": [
+        14549
+      ]
+    },
+    {
+      "unresolvedOrdinal": 8,
+      "guideItem": 301,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #106",
+      "classification": "exact",
+      "disposition": "Spectacular Spider-Man (1976) #106; Marvel issue 14550",
+      "selectedIssues": [
+        {
+          "title": "Spectacular Spider-Man (1976) #106",
+          "issueId": 14550
+        }
+      ],
+      "selectedIssueIds": [
+        14550
+      ]
+    },
+    {
+      "unresolvedOrdinal": 9,
+      "guideItem": 307,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #112",
+      "classification": "provider-unavailability",
+      "disposition": "Owner completed provider search without an exact page; not evidence of nonexistence",
+      "nonexistenceClaim": false,
+      "substitutionAuthorized": false
+    },
+    {
+      "unresolvedOrdinal": 10,
+      "guideItem": 308,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #113",
+      "classification": "exact",
+      "disposition": "Spectacular Spider-Man (1976) #113; Marvel issue 14558",
+      "selectedIssues": [
+        {
+          "title": "Spectacular Spider-Man (1976) #113",
+          "issueId": 14558
+        }
+      ],
+      "selectedIssueIds": [
+        14558
+      ]
+    },
+    {
+      "unresolvedOrdinal": 11,
+      "guideItem": 309,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man #114",
+      "classification": "provider-unavailability",
+      "disposition": "Owner completed provider search without an exact page; not evidence of nonexistence",
+      "nonexistenceClaim": false,
+      "substitutionAuthorized": false
+    },
+    {
+      "unresolvedOrdinal": 12,
+      "guideItem": 310,
+      "sourceIssueReference": "Peter Parker, The Spectacular Spider-Man Annual #5",
+      "classification": "provider-unavailability",
+      "disposition": "Owner completed provider search without an exact page; not evidence of nonexistence",
+      "nonexistenceClaim": false,
+      "substitutionAuthorized": false
+    },
+    {
+      "unresolvedOrdinal": 13,
+      "guideItem": 341,
+      "sourceIssueReference": "Spider-Man vs. Wolverine",
+      "classification": "exact",
+      "disposition": "Spider-Man Versus Wolverine (1987) #1; Marvel issue 41003",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man Versus Wolverine (1987) #1",
+          "issueId": 41003
+        }
+      ],
+      "selectedIssueIds": [
+        41003
+      ]
+    },
+    {
+      "unresolvedOrdinal": 14,
+      "guideItem": 391,
+      "sourceIssueReference": "Marvel Graphic Novel: Amazing Spider-Man - Parallel Lives",
+      "classification": "availability-only",
+      "disposition": "Preserve the original 1989 identity; issue 40361 remains a rejected later-edition substitute",
+      "rejectedIssueIds": [
+        40361
+      ],
+      "sourceEdition": 1989
+    },
+    {
+      "unresolvedOrdinal": 15,
+      "guideItem": 428,
+      "sourceIssueReference": "Spider-Man: Spirits of the Earth OGN",
+      "classification": "exact",
+      "disposition": "Spider-Man: Spirits of the Earth Graphic Novel (1990); Marvel issue 59118",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: Spirits of the Earth Graphic Novel (1990)",
+          "issueId": 59118
+        }
+      ],
+      "selectedIssueIds": [
+        59118
+      ]
+    },
+    {
+      "unresolvedOrdinal": 16,
+      "guideItem": 429,
+      "sourceIssueReference": "Avengers #236",
+      "classification": "exact",
+      "disposition": "Avengers (1963) #236; Marvel issue 7104",
+      "selectedIssues": [
+        {
+          "title": "Avengers (1963) #236",
+          "issueId": 7104
+        }
+      ],
+      "selectedIssueIds": [
+        7104
+      ]
+    },
+    {
+      "unresolvedOrdinal": 17,
+      "guideItem": 430,
+      "sourceIssueReference": "Avengers #237",
+      "classification": "exact",
+      "disposition": "Avengers (1963) #237; Marvel issue 7105",
+      "selectedIssues": [
+        {
+          "title": "Avengers (1963) #237",
+          "issueId": 7105
+        }
+      ],
+      "selectedIssueIds": [
+        7105
+      ]
+    },
+    {
+      "unresolvedOrdinal": 18,
+      "guideItem": 431,
+      "sourceIssueReference": "Avengers #314",
+      "classification": "exact",
+      "disposition": "Avengers (1963) #314; Marvel issue 7191",
+      "selectedIssues": [
+        {
+          "title": "Avengers (1963) #314",
+          "issueId": 7191
+        }
+      ],
+      "selectedIssueIds": [
+        7191
+      ]
+    },
+    {
+      "unresolvedOrdinal": 19,
+      "guideItem": 432,
+      "sourceIssueReference": "Avengers #315",
+      "classification": "exact",
+      "disposition": "Avengers (1963) #315; Marvel issue 7192",
+      "selectedIssues": [
+        {
+          "title": "Avengers (1963) #315",
+          "issueId": 7192
+        }
+      ],
+      "selectedIssueIds": [
+        7192
+      ]
+    },
+    {
+      "unresolvedOrdinal": 20,
+      "guideItem": 433,
+      "sourceIssueReference": "Avengers #316",
+      "classification": "exact",
+      "disposition": "Avengers (1963) #316; Marvel issue 7193",
+      "selectedIssues": [
+        {
+          "title": "Avengers (1963) #316",
+          "issueId": 7193
+        }
+      ],
+      "selectedIssueIds": [
+        7193
+      ]
+    },
+    {
+      "unresolvedOrdinal": 21,
+      "guideItem": 434,
+      "sourceIssueReference": "Avengers #317",
+      "classification": "exact",
+      "disposition": "Avengers (1963) #317; Marvel issue 7194",
+      "selectedIssues": [
+        {
+          "title": "Avengers (1963) #317",
+          "issueId": 7194
+        }
+      ],
+      "selectedIssueIds": [
+        7194
+      ]
+    },
+    {
+      "unresolvedOrdinal": 22,
+      "guideItem": 435,
+      "sourceIssueReference": "Avengers #318",
+      "classification": "exact",
+      "disposition": "Avengers (1963) #318; Marvel issue 7195",
+      "selectedIssues": [
+        {
+          "title": "Avengers (1963) #318",
+          "issueId": 7195
+        }
+      ],
+      "selectedIssueIds": [
+        7195
+      ]
+    },
+    {
+      "unresolvedOrdinal": 23,
+      "guideItem": 436,
+      "sourceIssueReference": "Avengers #329",
+      "classification": "provider-unavailability",
+      "disposition": "Owner completed provider search without an exact page; do not infer an adjacent ID",
+      "nonexistenceClaim": false,
+      "substitutionAuthorized": false
+    },
+    {
+      "unresolvedOrdinal": 24,
+      "guideItem": 558,
+      "sourceIssueReference": "Cloak & Dagger #18",
+      "classification": "exact",
+      "disposition": "The Mutant Misadventures of Cloak and Dagger (1988) #18; Marvel issue 63311",
+      "selectedIssues": [
+        {
+          "title": "The Mutant Misadventures of Cloak and Dagger (1988) #18",
+          "issueId": 63311
+        }
+      ],
+      "selectedIssueIds": [
+        63311
+      ]
+    },
+    {
+      "unresolvedOrdinal": 25,
+      "guideItem": 591,
+      "sourceIssueReference": "Spider-Man/Dr. Strange: The Way to Dusty Death",
+      "classification": "exact",
+      "disposition": "Spider-Man/Doctor Strange: The Way to Dusty Death (1992); Marvel issue 64880",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man/Doctor Strange: The Way to Dusty Death (1992)",
+          "issueId": 64880
+        }
+      ],
+      "selectedIssueIds": [
+        64880
+      ]
+    },
+    {
+      "unresolvedOrdinal": 26,
+      "guideItem": 602,
+      "sourceIssueReference": "Spider-Man/Punisher/Sabretooth: Designer Genes",
+      "classification": "exact",
+      "disposition": "Spider-Man/Punisher/Sabretooth: Designer Genes; Marvel issue 84575",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man/Punisher/Sabretooth: Designer Genes",
+          "issueId": 84575
+        }
+      ],
+      "selectedIssueIds": [
+        84575
+      ]
+    },
+    {
+      "unresolvedOrdinal": 27,
+      "guideItem": 619,
+      "sourceIssueReference": "Amazing Spider-Man Ashcan Edition #1",
+      "classification": "exact",
+      "disposition": "Amazing Spider-Man Ashcan (1994) #1; Marvel issue 131929",
+      "selectedIssues": [
+        {
+          "title": "Amazing Spider-Man Ashcan (1994) #1",
+          "issueId": 131929
+        }
+      ],
+      "selectedIssueIds": [
+        131929
+      ]
+    },
+    {
+      "unresolvedOrdinal": 28,
+      "guideItem": 620,
+      "sourceIssueReference": "Amazing Fantasy #16",
+      "classification": "exact",
+      "disposition": "Amazing Fantasy (1995) #16; Marvel issue 82391",
+      "selectedIssues": [
+        {
+          "title": "Amazing Fantasy (1995) #16",
+          "issueId": 82391
+        }
+      ],
+      "selectedIssueIds": [
+        82391
+      ]
+    },
+    {
+      "unresolvedOrdinal": 29,
+      "guideItem": 621,
+      "sourceIssueReference": "Amazing Fantasy #17",
+      "classification": "exact",
+      "disposition": "Amazing Fantasy (1995) #17; Marvel issue 82392",
+      "selectedIssues": [
+        {
+          "title": "Amazing Fantasy (1995) #17",
+          "issueId": 82392
+        }
+      ],
+      "selectedIssueIds": [
+        82392
+      ]
+    },
+    {
+      "unresolvedOrdinal": 30,
+      "guideItem": 622,
+      "sourceIssueReference": "Amazing Fantasy #18",
+      "classification": "exact",
+      "disposition": "Amazing Fantasy (1995) #18; Marvel issue 82393",
+      "selectedIssues": [
+        {
+          "title": "Amazing Fantasy (1995) #18",
+          "issueId": 82393
+        }
+      ],
+      "selectedIssueIds": [
+        82393
+      ]
+    },
+    {
+      "unresolvedOrdinal": 31,
+      "guideItem": 649,
+      "sourceIssueReference": "Annual '96 and Annual '97",
+      "classification": "source-semantic-exclusion",
+      "disposition": "Series-ambiguous source labels; candidate issues 22636 and 59367 remain rejected",
+      "preservedLabels": [
+        "Annual '96",
+        "Annual '97"
+      ],
+      "rejectedIssueIds": [
+        22636,
+        59367
+      ]
+    },
+    {
+      "unresolvedOrdinal": 32,
+      "guideItem": 665,
+      "sourceIssueReference": "Clone Subplot Pages",
+      "classification": "source-semantic-exclusion",
+      "disposition": "loose subplot pages, not an atomic comic"
+    },
+    {
+      "unresolvedOrdinal": 33,
+      "guideItem": 666,
+      "sourceIssueReference": "Web Of Spider-Man #120",
+      "classification": "exact",
+      "disposition": "Web of Spider-Man (1985) #120; Marvel issue 11997",
+      "selectedIssues": [
+        {
+          "title": "Web of Spider-Man (1985) #120",
+          "issueId": 11997
+        }
+      ],
+      "selectedIssueIds": [
+        11997
+      ]
+    },
+    {
+      "unresolvedOrdinal": 34,
+      "guideItem": 680,
+      "sourceIssueReference": "Spider-Man: Funeral For An Octopus #1",
+      "classification": "exact",
+      "disposition": "Spider-Man: Funeral for an Octopus (1995) #1; Marvel issue 59563",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: Funeral for an Octopus (1995) #1",
+          "issueId": 59563
+        }
+      ],
+      "selectedIssueIds": [
+        59563
+      ]
+    },
+    {
+      "unresolvedOrdinal": 35,
+      "guideItem": 681,
+      "sourceIssueReference": "Spider-Man: Funeral For An Octopus #2",
+      "classification": "exact",
+      "disposition": "Spider-Man: Funeral for an Octopus (1995) #2; Marvel issue 59564",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: Funeral for an Octopus (1995) #2",
+          "issueId": 59564
+        }
+      ],
+      "selectedIssueIds": [
+        59564
+      ]
+    },
+    {
+      "unresolvedOrdinal": 36,
+      "guideItem": 682,
+      "sourceIssueReference": "Spider-Man: Funeral For An Octopus #3",
+      "classification": "exact",
+      "disposition": "Spider-Man: Funeral for an Octopus (1995) #3; Marvel issue 59565",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: Funeral for an Octopus (1995) #3",
+          "issueId": 59565
+        }
+      ],
+      "selectedIssueIds": [
+        59565
+      ]
+    },
+    {
+      "unresolvedOrdinal": 37,
+      "guideItem": 683,
+      "sourceIssueReference": "Spider-Man: The Clone Journal",
+      "classification": "exact",
+      "disposition": "Spider-Man: The Clone Journal (1995) #1; Marvel issue 59713",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: The Clone Journal (1995) #1",
+          "issueId": 59713
+        }
+      ],
+      "selectedIssueIds": [
+        59713
+      ]
+    },
+    {
+      "unresolvedOrdinal": 38,
+      "guideItem": 699,
+      "sourceIssueReference": "Spider-Man Unlimited #9",
+      "classification": "exact",
+      "disposition": "Spider-Man Unlimited (1993) #9; Marvel issue 42900",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man Unlimited (1993) #9",
+          "issueId": 42900
+        }
+      ],
+      "selectedIssueIds": [
+        42900
+      ]
+    },
+    {
+      "unresolvedOrdinal": 39,
+      "guideItem": 705,
+      "sourceIssueReference": "Spider-Man: The Jackal Files",
+      "classification": "exact",
+      "disposition": "Spider-Man: The Jackal Files (1995) #1; Marvel issue 59815",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: The Jackal Files (1995) #1",
+          "issueId": 59815
+        }
+      ],
+      "selectedIssueIds": [
+        59815
+      ]
+    },
+    {
+      "unresolvedOrdinal": 40,
+      "guideItem": 706,
+      "sourceIssueReference": "Spider-Man: Maximum Clonage Alpha, Omega",
+      "classification": "exact",
+      "disposition": "Spider-Man: Maximum Clonage Alpha (1995) #1, issue 59813; Spider-Man: Maximum Clonage Omega (1995) #1, issue 59814",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: Maximum Clonage Alpha (1995) #1",
+          "issueId": 59813
+        },
+        {
+          "title": "Spider-Man: Maximum Clonage Omega (1995) #1",
+          "issueId": 59814
+        }
+      ],
+      "selectedIssueIds": [
+        59813,
+        59814
+      ]
+    },
+    {
+      "unresolvedOrdinal": 41,
+      "guideItem": 723,
+      "sourceIssueReference": "Scarlet Spider Unlimited #1",
+      "classification": "exact",
+      "disposition": "Scarlet Spider Unlimited 1 (1995) #1; Marvel issue 61249",
+      "selectedIssues": [
+        {
+          "title": "Scarlet Spider Unlimited 1 (1995) #1",
+          "issueId": 61249
+        }
+      ],
+      "selectedIssueIds": [
+        61249
+      ]
+    },
+    {
+      "unresolvedOrdinal": 42,
+      "guideItem": 732,
+      "sourceIssueReference": "Green Goblin #3",
+      "classification": "exact",
+      "disposition": "Green Goblin (1995) #3; Marvel issue 61240",
+      "selectedIssues": [
+        {
+          "title": "Green Goblin (1995) #3",
+          "issueId": 61240
+        }
+      ],
+      "selectedIssueIds": [
+        61240
+      ]
+    },
+    {
+      "unresolvedOrdinal": 43,
+      "guideItem": 763,
+      "sourceIssueReference": "Daredevil #354",
+      "classification": "exact",
+      "disposition": "Daredevil (1964) #354; Marvel issue 8356",
+      "selectedIssues": [
+        {
+          "title": "Daredevil (1964) #354",
+          "issueId": 8356
+        }
+      ],
+      "selectedIssueIds": [
+        8356
+      ]
+    },
+    {
+      "unresolvedOrdinal": 44,
+      "guideItem": 803,
+      "sourceIssueReference": "Spider-Man: 101 Ways To End The Clone Saga",
+      "classification": "exact",
+      "disposition": "Spider-Man: 101 Ways to End the Clone Saga 1 (1997) #1; Marvel issue 62304",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: 101 Ways to End the Clone Saga 1 (1997) #1",
+          "issueId": 62304
+        }
+      ],
+      "selectedIssueIds": [
+        62304
+      ]
+    },
+    {
+      "unresolvedOrdinal": 45,
+      "guideItem": 820,
+      "sourceIssueReference": "X-Man Annual #1",
+      "classification": "exact",
+      "disposition": "X-Man Annual (1996) #1; Marvel issue 18174",
+      "selectedIssues": [
+        {
+          "title": "X-Man Annual (1996) #1",
+          "issueId": 18174
+        }
+      ],
+      "selectedIssueIds": [
+        18174
+      ]
+    },
+    {
+      "unresolvedOrdinal": 46,
+      "guideItem": 910,
+      "sourceIssueReference": "Webspinners #10",
+      "classification": "repeat",
+      "disposition": "Repeats Webspinners: Tales of Spider-Man (1999) #10; Marvel issue 12103"
+    },
+    {
+      "unresolvedOrdinal": 47,
+      "guideItem": 911,
+      "sourceIssueReference": "Webspinners #11",
+      "classification": "repeat",
+      "disposition": "Repeats Webspinners: Tales of Spider-Man (1999) #11; Marvel issue 12104"
+    },
+    {
+      "unresolvedOrdinal": 48,
+      "guideItem": 912,
+      "sourceIssueReference": "Webspinners #12",
+      "classification": "repeat",
+      "disposition": "Repeats Webspinners: Tales of Spider-Man (1999) #12; Marvel issue 12105"
+    },
+    {
+      "unresolvedOrdinal": 49,
+      "guideItem": 986,
+      "sourceIssueReference": "35, #37",
+      "classification": "exact",
+      "disposition": "Peter Parker: Spider-Man (1999) #35, issue 10545; #37, issue 10547",
+      "selectedIssues": [
+        {
+          "title": "Peter Parker: Spider-Man (1999) #35",
+          "issueId": 10545
+        },
+        {
+          "title": "Peter Parker: Spider-Man (1999) #37",
+          "issueId": 10547
+        }
+      ],
+      "selectedIssueIds": [
+        10545,
+        10547
+      ]
+    },
+    {
+      "unresolvedOrdinal": 50,
+      "guideItem": 1022,
+      "sourceIssueReference": "Doctor Octopus: Negative Exposure #1",
+      "classification": "exact",
+      "disposition": "Doctor Octopus: Negative Exposure (2003) #1; Marvel issue 295",
+      "selectedIssues": [
+        {
+          "title": "Doctor Octopus: Negative Exposure (2003) #1",
+          "issueId": 295
+        }
+      ],
+      "selectedIssueIds": [
+        295
+      ],
+      "rejectedIssueIds": [
+        354
+      ]
+    },
+    {
+      "unresolvedOrdinal": 51,
+      "guideItem": 1023,
+      "sourceIssueReference": "Doctor Octopus: Negative Exposure #2",
+      "classification": "exact",
+      "disposition": "Doctor Octopus: Negative Exposure (2003) #2; Marvel issue 357",
+      "selectedIssues": [
+        {
+          "title": "Doctor Octopus: Negative Exposure (2003) #2",
+          "issueId": 357
+        }
+      ],
+      "selectedIssueIds": [
+        357
+      ]
+    },
+    {
+      "unresolvedOrdinal": 52,
+      "guideItem": 1024,
+      "sourceIssueReference": "Doctor Octopus: Negative Exposure #3",
+      "classification": "exact",
+      "disposition": "Doctor Octopus: Negative Exposure (2003) #3; Marvel issue 296",
+      "selectedIssues": [
+        {
+          "title": "Doctor Octopus: Negative Exposure (2003) #3",
+          "issueId": 296
+        }
+      ],
+      "selectedIssueIds": [
+        296
+      ]
+    },
+    {
+      "unresolvedOrdinal": 53,
+      "guideItem": 1025,
+      "sourceIssueReference": "Doctor Octopus: Negative Exposure #4",
+      "classification": "exact",
+      "disposition": "Doctor Octopus: Negative Exposure (2003) #4; Marvel issue 355",
+      "selectedIssues": [
+        {
+          "title": "Doctor Octopus: Negative Exposure (2003) #4",
+          "issueId": 355
+        }
+      ],
+      "selectedIssueIds": [
+        355
+      ]
+    },
+    {
+      "unresolvedOrdinal": 54,
+      "guideItem": 1026,
+      "sourceIssueReference": "Doctor Octopus: Negative Exposure #5",
+      "classification": "exact",
+      "disposition": "Doctor Octopus: Negative Exposure (2003) #5; Marvel issue 328",
+      "selectedIssues": [
+        {
+          "title": "Doctor Octopus: Negative Exposure (2003) #5",
+          "issueId": 328
+        }
+      ],
+      "selectedIssueIds": [
+        328
+      ]
+    },
+    {
+      "unresolvedOrdinal": 55,
+      "guideItem": 1052,
+      "sourceIssueReference": "The Pulse #1",
+      "classification": "exact",
+      "disposition": "Pulse (2004) #1; Marvel issue 168",
+      "selectedIssues": [
+        {
+          "title": "Pulse (2004) #1",
+          "issueId": 168
+        }
+      ],
+      "selectedIssueIds": [
+        168
+      ]
+    },
+    {
+      "unresolvedOrdinal": 56,
+      "guideItem": 1053,
+      "sourceIssueReference": "The Pulse #2",
+      "classification": "exact",
+      "disposition": "Pulse (2004) #2; Marvel issue 421",
+      "selectedIssues": [
+        {
+          "title": "Pulse (2004) #2",
+          "issueId": 421
+        }
+      ],
+      "selectedIssueIds": [
+        421
+      ]
+    },
+    {
+      "unresolvedOrdinal": 57,
+      "guideItem": 1054,
+      "sourceIssueReference": "The Pulse #3",
+      "classification": "exact",
+      "disposition": "Pulse (2004) #3; Marvel issue 638",
+      "selectedIssues": [
+        {
+          "title": "Pulse (2004) #3",
+          "issueId": 638
+        }
+      ],
+      "selectedIssueIds": [
+        638
+      ]
+    },
+    {
+      "unresolvedOrdinal": 58,
+      "guideItem": 1055,
+      "sourceIssueReference": "The Pulse #4",
+      "classification": "exact",
+      "disposition": "Pulse (2004) #4; Marvel issue 553",
+      "selectedIssues": [
+        {
+          "title": "Pulse (2004) #4",
+          "issueId": 553
+        }
+      ],
+      "selectedIssueIds": [
+        553
+      ]
+    },
+    {
+      "unresolvedOrdinal": 59,
+      "guideItem": 1056,
+      "sourceIssueReference": "The Pulse #5",
+      "classification": "exact",
+      "disposition": "Pulse (2004) #5; Marvel issue 803",
+      "selectedIssues": [
+        {
+          "title": "Pulse (2004) #5",
+          "issueId": 803
+        }
+      ],
+      "selectedIssueIds": [
+        803
+      ]
+    },
+    {
+      "unresolvedOrdinal": 60,
+      "guideItem": 1131,
+      "sourceIssueReference": "Fantastic Four #536",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #536; Marvel issue 3909",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #536",
+          "issueId": 3909
+        }
+      ],
+      "selectedIssueIds": [
+        3909
+      ]
+    },
+    {
+      "unresolvedOrdinal": 61,
+      "guideItem": 1132,
+      "sourceIssueReference": "Fantastic Four #537",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #537; Marvel issue 4039",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #537",
+          "issueId": 4039
+        }
+      ],
+      "selectedIssueIds": [
+        4039
+      ]
+    },
+    {
+      "unresolvedOrdinal": 62,
+      "guideItem": 1133,
+      "sourceIssueReference": "New Avengers: Illuminati One-Shot",
+      "classification": "exact",
+      "disposition": "New Avengers: Illuminati (2006) #1; Marvel issue 5723",
+      "selectedIssues": [
+        {
+          "title": "New Avengers: Illuminati (2006) #1",
+          "issueId": 5723
+        }
+      ],
+      "selectedIssueIds": [
+        5723
+      ]
+    },
+    {
+      "unresolvedOrdinal": 63,
+      "guideItem": 1151,
+      "sourceIssueReference": "The Sensational Spider-Man #29",
+      "classification": "exact",
+      "disposition": "The Sensational Spider-Man (2006) #29; Marvel issue 4789",
+      "selectedIssues": [
+        {
+          "title": "The Sensational Spider-Man (2006) #29",
+          "issueId": 4789
+        }
+      ],
+      "selectedIssueIds": [
+        4789
+      ]
+    },
+    {
+      "unresolvedOrdinal": 64,
+      "guideItem": 1152,
+      "sourceIssueReference": "The Sensational Spider-Man #30",
+      "classification": "exact",
+      "disposition": "The Sensational Spider-Man (2006) #30; Marvel issue 5079",
+      "selectedIssues": [
+        {
+          "title": "The Sensational Spider-Man (2006) #30",
+          "issueId": 5079
+        }
+      ],
+      "selectedIssueIds": [
+        5079
+      ]
+    },
+    {
+      "unresolvedOrdinal": 65,
+      "guideItem": 1153,
+      "sourceIssueReference": "The Sensational Spider-Man #31",
+      "classification": "exact",
+      "disposition": "The Sensational Spider-Man (2006) #31; Marvel issue 5231",
+      "selectedIssues": [
+        {
+          "title": "The Sensational Spider-Man (2006) #31",
+          "issueId": 5231
+        }
+      ],
+      "selectedIssueIds": [
+        5231
+      ]
+    },
+    {
+      "unresolvedOrdinal": 66,
+      "guideItem": 1154,
+      "sourceIssueReference": "The Sensational Spider-Man #34",
+      "classification": "exact",
+      "disposition": "The Sensational Spider-Man (2006) #34; Marvel issue 5796",
+      "selectedIssues": [
+        {
+          "title": "The Sensational Spider-Man (2006) #34",
+          "issueId": 5796
+        }
+      ],
+      "selectedIssueIds": [
+        5796
+      ]
+    },
+    {
+      "unresolvedOrdinal": 67,
+      "guideItem": 1201,
+      "sourceIssueReference": "Secret Invasion: Amazing Spider-Man #1",
+      "classification": "exact",
+      "disposition": "Secret Invasion: The Amazing Spider-Man (2008) #1; Marvel issue 21784",
+      "selectedIssues": [
+        {
+          "title": "Secret Invasion: The Amazing Spider-Man (2008) #1",
+          "issueId": 21784
+        }
+      ],
+      "selectedIssueIds": [
+        21784
+      ]
+    },
+    {
+      "unresolvedOrdinal": 68,
+      "guideItem": 1202,
+      "sourceIssueReference": "Secret Invasion: Amazing Spider-Man #2",
+      "classification": "exact",
+      "disposition": "Secret Invasion: The Amazing Spider-Man (2008) #2; Marvel issue 22026",
+      "selectedIssues": [
+        {
+          "title": "Secret Invasion: The Amazing Spider-Man (2008) #2",
+          "issueId": 22026
+        }
+      ],
+      "selectedIssueIds": [
+        22026
+      ]
+    },
+    {
+      "unresolvedOrdinal": 69,
+      "guideItem": 1203,
+      "sourceIssueReference": "Secret Invasion: Amazing Spider-Man #3",
+      "classification": "exact",
+      "disposition": "Secret Invasion: The Amazing Spider-Man (2008) #3; Marvel issue 22353",
+      "selectedIssues": [
+        {
+          "title": "Secret Invasion: The Amazing Spider-Man (2008) #3",
+          "issueId": 22353
+        }
+      ],
+      "selectedIssueIds": [
+        22353
+      ]
+    },
+    {
+      "unresolvedOrdinal": 70,
+      "guideItem": 1218,
+      "sourceIssueReference": "Spider-Man: Presidents' Day Special",
+      "classification": "exact",
+      "disposition": "Presidents' Day Celebration Digital Comic 1 (2009) #1; Marvel issue 24125",
+      "selectedIssues": [
+        {
+          "title": "Presidents' Day Celebration Digital Comic 1 (2009) #1",
+          "issueId": 24125
+        }
+      ],
+      "selectedIssueIds": [
+        24125
+      ]
+    },
+    {
+      "unresolvedOrdinal": 71,
+      "guideItem": 1232,
+      "sourceIssueReference": "Spider-Man: The Short Halloween",
+      "classification": "exact",
+      "disposition": "Spider-Man: The Short Halloween 1 (2009) #1; Marvel issue 24202",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man: The Short Halloween 1 (2009) #1",
+          "issueId": 24202
+        }
+      ],
+      "selectedIssueIds": [
+        24202
+      ]
+    },
+    {
+      "unresolvedOrdinal": 72,
+      "guideItem": 1247,
+      "sourceIssueReference": "Dark Reign: The List - Amazing Spider-Man",
+      "classification": "exact",
+      "disposition": "Dark Reign - The List: Amazing Spider-Man One-Shot (2009) #1; Marvel issue 27417",
+      "selectedIssues": [
+        {
+          "title": "Dark Reign - The List: Amazing Spider-Man One-Shot (2009) #1",
+          "issueId": 27417
+        }
+      ],
+      "selectedIssueIds": [
+        27417
+      ]
+    },
+    {
+      "unresolvedOrdinal": 73,
+      "guideItem": 1287,
+      "sourceIssueReference": "Web of Spider-Man (vol. 2) #11",
+      "classification": "exact",
+      "disposition": "Web of Spider-Man (2009) #11; Marvel issue 31663",
+      "selectedIssues": [
+        {
+          "title": "Web of Spider-Man (2009) #11",
+          "issueId": 31663
+        }
+      ],
+      "selectedIssueIds": [
+        31663
+      ]
+    },
+    {
+      "unresolvedOrdinal": 74,
+      "guideItem": 1294,
+      "sourceIssueReference": "Spider-Man Saga",
+      "classification": "exact",
+      "disposition": "Spider-Man Saga (2010) #1; Marvel issue 38032",
+      "selectedIssues": [
+        {
+          "title": "Spider-Man Saga (2010) #1",
+          "issueId": 38032
+        }
+      ],
+      "selectedIssueIds": [
+        38032
+      ]
+    },
+    {
+      "unresolvedOrdinal": 75,
+      "guideItem": 1311,
+      "sourceIssueReference": "Fantastic Four #579",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #579; Marvel issue 29599",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #579",
+          "issueId": 29599
+        }
+      ],
+      "selectedIssueIds": [
+        29599
+      ]
+    },
+    {
+      "unresolvedOrdinal": 76,
+      "guideItem": 1312,
+      "sourceIssueReference": "Fantastic Four #580",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #580; Marvel issue 29600",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #580",
+          "issueId": 29600
+        }
+      ],
+      "selectedIssueIds": [
+        29600
+      ]
+    },
+    {
+      "unresolvedOrdinal": 77,
+      "guideItem": 1313,
+      "sourceIssueReference": "Fantastic Four #581",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #581; Marvel issue 29601",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #581",
+          "issueId": 29601
+        }
+      ],
+      "selectedIssueIds": [
+        29601
+      ]
+    },
+    {
+      "unresolvedOrdinal": 78,
+      "guideItem": 1314,
+      "sourceIssueReference": "Fantastic Four #582",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #582; Marvel issue 29602",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #582",
+          "issueId": 29602
+        }
+      ],
+      "selectedIssueIds": [
+        29602
+      ]
+    },
+    {
+      "unresolvedOrdinal": 79,
+      "guideItem": 1315,
+      "sourceIssueReference": "Fantastic Four #583",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #583; Marvel issue 29603",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #583",
+          "issueId": 29603
+        }
+      ],
+      "selectedIssueIds": [
+        29603
+      ]
+    },
+    {
+      "unresolvedOrdinal": 80,
+      "guideItem": 1316,
+      "sourceIssueReference": "Fantastic Four #584",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #584; Marvel issue 29604",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #584",
+          "issueId": 29604
+        }
+      ],
+      "selectedIssueIds": [
+        29604
+      ]
+    },
+    {
+      "unresolvedOrdinal": 81,
+      "guideItem": 1317,
+      "sourceIssueReference": "Fantastic Four #585",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #585; Marvel issue 29605",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #585",
+          "issueId": 29605
+        }
+      ],
+      "selectedIssueIds": [
+        29605
+      ]
+    },
+    {
+      "unresolvedOrdinal": 82,
+      "guideItem": 1318,
+      "sourceIssueReference": "Fantastic Four #586",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #586; Marvel issue 29606",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #586",
+          "issueId": 29606
+        }
+      ],
+      "selectedIssueIds": [
+        29606
+      ]
+    },
+    {
+      "unresolvedOrdinal": 83,
+      "guideItem": 1319,
+      "sourceIssueReference": "Fantastic Four #587",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #587; Marvel issue 36060",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #587",
+          "issueId": 36060
+        }
+      ],
+      "selectedIssueIds": [
+        36060
+      ]
+    },
+    {
+      "unresolvedOrdinal": 84,
+      "guideItem": 1320,
+      "sourceIssueReference": "Fantastic Four #588",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #588; Marvel issue 36059",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #588",
+          "issueId": 36059
+        }
+      ],
+      "selectedIssueIds": [
+        36059
+      ]
+    },
+    {
+      "unresolvedOrdinal": 85,
+      "guideItem": 1337,
+      "sourceIssueReference": "Fantastic Four #600",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #600; Marvel issue 37399",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #600",
+          "issueId": 37399
+        }
+      ],
+      "selectedIssueIds": [
+        37399
+      ]
+    },
+    {
+      "unresolvedOrdinal": 86,
+      "guideItem": 1338,
+      "sourceIssueReference": "Fantastic Four #601",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #601; Marvel issue 38796",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #601",
+          "issueId": 38796
+        }
+      ],
+      "selectedIssueIds": [
+        38796
+      ]
+    },
+    {
+      "unresolvedOrdinal": 87,
+      "guideItem": 1339,
+      "sourceIssueReference": "Fantastic Four #602",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #602; Marvel issue 38795",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #602",
+          "issueId": 38795
+        }
+      ],
+      "selectedIssueIds": [
+        38795
+      ]
+    },
+    {
+      "unresolvedOrdinal": 88,
+      "guideItem": 1340,
+      "sourceIssueReference": "Fantastic Four #603",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #603; Marvel issue 38797",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #603",
+          "issueId": 38797
+        }
+      ],
+      "selectedIssueIds": [
+        38797
+      ]
+    },
+    {
+      "unresolvedOrdinal": 89,
+      "guideItem": 1341,
+      "sourceIssueReference": "Fantastic Four #604",
+      "classification": "exact",
+      "disposition": "Fantastic Four (1998) #604; Marvel issue 40471",
+      "selectedIssues": [
+        {
+          "title": "Fantastic Four (1998) #604",
+          "issueId": 40471
+        }
+      ],
+      "selectedIssueIds": [
+        40471
+      ]
+    },
+    {
+      "unresolvedOrdinal": 90,
+      "guideItem": 1364,
+      "sourceIssueReference": "Black Panther #524",
+      "classification": "exact",
+      "disposition": "Black Panther: The Most Dangerous Man Alive (2011) #524; Marvel issue 36783",
+      "selectedIssues": [
+        {
+          "title": "Black Panther: The Most Dangerous Man Alive (2011) #524",
+          "issueId": 36783
+        }
+      ],
+      "selectedIssueIds": [
+        36783
+      ]
+    },
+    {
+      "unresolvedOrdinal": 91,
+      "guideItem": 1370,
+      "sourceIssueReference": "Daredevil #8 crossover",
+      "classification": "source-semantic-exclusion",
+      "disposition": "crossover note, not an issue identity"
+    },
+    {
+      "unresolvedOrdinal": 92,
+      "guideItem": 1450,
+      "sourceIssueReference": "Mighty Avengers #4.1",
+      "classification": "provider-unavailability",
+      "disposition": "Owner completed provider search without an exact page; do not substitute Mighty Avengers #4",
+      "nonexistenceClaim": false,
+      "substitutionAuthorized": false
+    },
+    {
+      "unresolvedOrdinal": 93,
+      "guideItem": 1451,
+      "sourceIssueReference": "Mighty Avengers #5.1",
+      "classification": "provider-unavailability",
+      "disposition": "Owner completed provider search without an exact page; do not substitute Mighty Avengers #5",
+      "nonexistenceClaim": false,
+      "substitutionAuthorized": false
+    },
+    {
+      "unresolvedOrdinal": 94,
+      "guideItem": 1526,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(fly) Effect #1",
+      "classification": "exact",
+      "disposition": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #1; Marvel issue 58648",
+      "selectedIssues": [
+        {
+          "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #1",
+          "issueId": 58648
+        }
+      ],
+      "selectedIssueIds": [
+        58648
+      ]
+    },
+    {
+      "unresolvedOrdinal": 95,
+      "guideItem": 1527,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(fly) Effect #2",
+      "classification": "exact",
+      "disposition": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #2; Marvel issue 58649",
+      "selectedIssues": [
+        {
+          "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #2",
+          "issueId": 58649
+        }
+      ],
+      "selectedIssueIds": [
+        58649
+      ]
+    },
+    {
+      "unresolvedOrdinal": 96,
+      "guideItem": 1528,
+      "sourceIssueReference": "Amazing Spider-Man & Silk: The Spider(fly) Effect #3",
+      "classification": "exact",
+      "disposition": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #3; Marvel issue 58650",
+      "selectedIssues": [
+        {
+          "title": "Amazing Spider-Man & Silk: The Spider(Fly) Effect (2016) #3",
+          "issueId": 58650
+        }
+      ],
+      "selectedIssueIds": [
+        58650
+      ]
+    },
+    {
+      "unresolvedOrdinal": 97,
+      "guideItem": 1658,
+      "sourceIssueReference": "Superior Foes of Spider-Man (full run)",
+      "classification": "source-semantic-exclusion",
+      "disposition": "full-run label, expansion forbidden"
+    },
+    {
+      "unresolvedOrdinal": 98,
+      "guideItem": 1744,
+      "sourceIssueReference": "Red Goblin: Read Death #1",
+      "classification": "exact",
+      "disposition": "Red Goblin: Red Death (2019) #1; Marvel issue 80107",
+      "selectedIssues": [
+        {
+          "title": "Red Goblin: Red Death (2019) #1",
+          "issueId": 80107
+        }
+      ],
+      "selectedIssueIds": [
+        80107
+      ]
+    },
+    {
+      "unresolvedOrdinal": 99,
+      "guideItem": 1777,
+      "sourceIssueReference": "Amazing Spider-Man: Sins Rising #1",
+      "classification": "exact",
+      "disposition": "Amazing Spider-Man: Sins Rising Prelude (2020) #1; Marvel issue 88919",
+      "selectedIssues": [
+        {
+          "title": "Amazing Spider-Man: Sins Rising Prelude (2020) #1",
+          "issueId": 88919
+        }
+      ],
+      "selectedIssueIds": [
+        88919
+      ]
+    },
+    {
+      "unresolvedOrdinal": 100,
+      "guideItem": 1780,
+      "sourceIssueReference": "Spider-Man: The Sins of Norman Osborn #1",
+      "classification": "exact",
+      "disposition": "Amazing Spider-Man: The Sins of Norman Osborn (2020) #1; Marvel issue 90780",
+      "selectedIssues": [
+        {
+          "title": "Amazing Spider-Man: The Sins of Norman Osborn (2020) #1",
+          "issueId": 90780
+        }
+      ],
+      "selectedIssueIds": [
+        90780
+      ]
+    },
+    {
+      "unresolvedOrdinal": 101,
+      "guideItem": 1959,
+      "sourceIssueReference": "Amazing Spider-Man: Gang War Prelude #1",
+      "classification": "exact",
+      "disposition": "Amazing Spider-Man: Gang War First Strike (2023) #1; Marvel issue 112117",
+      "selectedIssues": [
+        {
+          "title": "Amazing Spider-Man: Gang War First Strike (2023) #1",
+          "issueId": 112117
+        }
+      ],
+      "selectedIssueIds": [
+        112117
+      ]
+    },
+    {
+      "unresolvedOrdinal": 102,
+      "guideItem": 2014,
+      "sourceIssueReference": "Venom War: Fantastic Four #1",
+      "classification": "exact",
+      "disposition": "Venom War: Fantastic Four #1 [VW] (2024) #1; Marvel issue 118738",
+      "selectedIssues": [
+        {
+          "title": "Venom War: Fantastic Four #1 [VW] (2024) #1",
+          "issueId": 118738
+        }
+      ],
+      "selectedIssueIds": [
+        118738
+      ]
+    },
+    {
+      "unresolvedOrdinal": 103,
+      "guideItem": 2015,
+      "sourceIssueReference": "Venom War: It's Jeff #1",
+      "classification": "exact",
+      "disposition": "Venom War: It's Jeff #1 [VW] (2024) #1; Marvel issue 118739",
+      "selectedIssues": [
+        {
+          "title": "Venom War: It's Jeff #1 [VW] (2024) #1",
+          "issueId": 118739
+        }
+      ],
+      "selectedIssueIds": [
+        118739
+      ]
+    }
+  ]
+}
