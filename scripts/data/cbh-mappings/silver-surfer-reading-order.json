@@ -12433,10 +12433,10 @@
     "coverIssueId": 16096
   },
   "relationshipReview": {
-    "reportDigest": "da56673f9da3c909b1e9e1ebed28fe296ac979f19e134cbbf9edf12608db4d7a",
+    "reportDigest": "3b33bd0414f10f4f03c9eb9856ca66db307be3d03713621aeb2a6549bcd4d492",
     "packetDigest": "035dbbc4c860542a50055abc087147f241bf75b5bc69fc34b0238675b0f7d047",
     "mappingDigest": "ea48b22d38e10c3884b22ee36ef730d33e446f54e7ae17357ce8dd9479ab2950",
-    "libraryDigest": "3284a702c1f65e500ee43858077edf6c10db5d022077114a4b4a0a5deb3b65d5",
+    "libraryDigest": "5067c9e061f6c4fbbb73da4e362f1e743b1642ce1b36135583b25598c215fc77",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 426,
@@ -13713,7 +13713,7 @@
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The partial relationship is limited to the 5 exact shared provider issue identities recorded in the refreshed report.",
+        "rationale": "The partial relationship is limited to the 6 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06"
       },
       {
@@ -13899,9 +13899,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing silver-surfer-reading-order comparison scope was re-reviewed after the Amazing Spider-Man settlement changed one included library order. Every relationship remains distinct and retains its publication decision.",
+    "rationale": "The existing silver-surfer-reading-order comparison scope was re-reviewed after the Amazing Spider-Man and Wolverine settlements changed included library orders. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "8a0db0cd3782b89044dbffdcb6c44281c2eff78a5bf999cf5b3a89d35a5781c3"
+    "approvalDigest": "3ef04fab0e98eccd2179cfc531e782ad186ed6de2f6fe91427dfa466adaaf76a"
   },
   "sourceGapResolutions": [
     {

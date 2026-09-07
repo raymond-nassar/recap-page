@@ -465,6 +465,16 @@ canonical issues. Its settled metadata ledger records the nine historical failed
 from all thirteen owner-supplied identities. Crimson Dynamo #5-6 ids 309 and 293 are verified
 provenance outside the accepted source boundary and are not added to the guide.
 
+Wolverine preserves all 1,328 frozen source occurrences as 451 exact rows, 71 later occurrences of
+an earlier exact identity, 50 explicit exclusions, and 756 provider-unavailable source identities
+that remain visible provenance. The 60-row owner settlement records 15 exact identities, 3
+source-level repeats, 27 availability-only rows, 10 source-semantic rows, and 5 later-source rows
+outside the frozen boundary. The availability result does not authorize a substitute: only the two
+named Avengers vs. X-Men: Infinite issues are omitted by owner policy, and all other unavailable
+in-boundary identities remain visible. Retained placeholders continue to use their original
+title-derived identifiers, so deleting and importing the guide again does not disconnect progress,
+notes, or availability overrides.
+
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and
 Infinity Wars remain in every distinct guide. The linked Annihilation: Conquest Starlord miniseries

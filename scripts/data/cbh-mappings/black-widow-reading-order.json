@@ -43134,10 +43134,10 @@
     "coverIssueId": 11295
   },
   "relationshipReview": {
-    "reportDigest": "54809ea4d83ad9359da49986af4eaa50b55f67d5644e92602bf68cd77c122c9a",
+    "reportDigest": "c63bd358ad073cbe1a52fa21024ad760843c2ad4d9c35934ac5929ae97b81d6f",
     "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
     "mappingDigest": "6ccf074e84532129997b6f4d6a3abd19ff341cb70b4a20314af6feda3b62cc1e",
-    "libraryDigest": "c6ab26645687b49c22746cc7b6a8ee3d1703ff366e3a6117fd163dbd6ad6302f",
+    "libraryDigest": "2ac5801b9fe00b242fae8348616c652d3c028c4882a9707a465a540981044ff2",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 773,
@@ -44504,7 +44504,7 @@
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The partial relationship is limited to the 11 exact shared provider issue identities recorded in the refreshed report.",
+        "rationale": "The partial relationship is limited to the 12 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06"
       },
       {
@@ -44708,9 +44708,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing black-widow-reading-order comparison scope was re-reviewed after the Amazing Spider-Man settlement changed one included library order. Every relationship remains distinct and retains its publication decision.",
+    "rationale": "The existing black-widow-reading-order comparison scope was re-reviewed after the Amazing Spider-Man and Wolverine settlements changed included library orders. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "6b61ed9002e3193e1b24d1da2cfcade7f0881e0c73452d894987aef51b205657"
+    "approvalDigest": "7e1bf05c5daeb4d98fa43d82bff21e5949b080f0a0716bcac5341f169931ece4"
   },
   "sourceGapResolutions": [
     {

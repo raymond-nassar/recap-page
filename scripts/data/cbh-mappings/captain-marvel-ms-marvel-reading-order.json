@@ -24442,14 +24442,14 @@
     "spotlightKind": "complete-guide"
   },
   "relationshipReview": {
-    "reportDigest": "32fcb61d30fe630007251e61ad4c74ad43a80d3ad9e5483a265728973cfb7a18",
+    "reportDigest": "055cf173d38171a540a6a724a9fe741b56cf590207d1b8aa289e0a716ddbb15f",
     "packetDigest": "34799381b847b3b24a10cff9e9f2ffd1789b6a2f0ee9eb7ac856e08c89007886",
     "mappingDigest": "b7f8262b3a9dc5cc7bda09b619c3437fabf9d65b39f5b3360b36bfa9e93081f4",
-    "libraryDigest": "ac451ac03303f95d1f97d251cb6b67dcd7f394aefb8eb3eeacc3d80d4e17632b",
+    "libraryDigest": "8a540f2f317265890e2b3f39933c92bbe16d0fbc817deafdd381069d95d97ff6",
     "peerDigests": {},
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing captain-marvel-ms-marvel-reading-order comparison scope was re-reviewed after the Amazing Spider-Man settlement changed one included library order. Every relationship remains distinct and retains its publication decision.",
+    "rationale": "The existing captain-marvel-ms-marvel-reading-order comparison scope was re-reviewed after the Amazing Spider-Man and Wolverine settlements changed included library orders. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
     "dispositions": [
       {
@@ -26579,7 +26579,7 @@
         ]
       }
     ],
-    "approvalDigest": "1f93e1d33bf71b17418a8a65f433532e79b8e87a0b6d2d5c7de556a5e26dc1b6",
+    "approvalDigest": "919db0f9e0cb0287a66c75e02dea22b33cef5577aa469058cec79346e2c29769",
     "sourceCounts": {
       "sourceOccurrenceCount": 599,
       "sourceIdentityCount": 527,

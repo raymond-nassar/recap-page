@@ -1071,9 +1071,11 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // The final settlement replaces 96 more placeholders with 67 complete records and 23 explicit
   // provider refusals. Three repeats and five semantic exclusions reduce the published total by
   // six entries, and seven explicit placeholders remain.
+  // Wolverine replaces 29 placeholders with 14 exact issues while preserving the remaining 756
+  // title-derived placeholder identities.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1152, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1152, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(claimed, 1123, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 1123, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
   assert.equal(empty, 195);
   assert.equal(affected, 17);
 });
@@ -1299,6 +1301,7 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // those exact identities already appears elsewhere, so the distinct refused total falls by 11.
   // The final Amazing Spider-Man settlement replaces 96 distinct negative placeholders with 23
   // distinct exact refused identities, reducing the current distinct refused total by 73.
-  assert.equal(refused.length, 1308);
+  // Wolverine replaces 29 negative placeholder identities with provider-resolved exact issues.
+  assert.equal(refused.length, 1279);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
 });

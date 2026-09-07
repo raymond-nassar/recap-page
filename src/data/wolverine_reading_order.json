@@ -5,11 +5,11 @@
   "source": "https://www.comicbookherald.com/wolverine-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-26T20:07:18.806Z",
+  "generatedAt": "2026-09-07T08:41:05.684Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 1222,
+  "count": 1207,
   "collections": 0,
-  "placeholders": 785,
+  "placeholders": 756,
   "unresolved": [
     {
       "title": "Iron Fist #15",
@@ -404,13 +404,6 @@
       "section": null
     },
     {
-      "title": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
-      "url": null,
-      "read": false,
-      "index": 125,
-      "section": null
-    },
-    {
       "title": "Material from Marvel Holiday Special (1991) #2",
       "url": null,
       "read": false,
@@ -422,13 +415,6 @@
       "url": null,
       "read": false,
       "index": 127,
-      "section": null
-    },
-    {
-      "title": "Shadow Society",
-      "url": null,
-      "read": false,
-      "index": 128,
       "section": null
     },
     {
@@ -590,13 +576,6 @@
       "url": null,
       "read": false,
       "index": 152,
-      "section": null
-    },
-    {
-      "title": "Spider-Man Vs. Wolverine",
-      "url": null,
-      "read": false,
-      "index": 153,
       "section": null
     },
     {
@@ -817,13 +796,6 @@
       "section": null
     },
     {
-      "title": "Wolverine: Inner Fury",
-      "url": null,
-      "read": false,
-      "index": 195,
-      "section": null
-    },
-    {
       "title": "Wolverine: Killing",
       "url": null,
       "read": false,
@@ -943,20 +915,6 @@
       "section": null
     },
     {
-      "title": "Wolverine and Nick Fury: Scorpio Rising",
-      "url": null,
-      "read": false,
-      "index": 221,
-      "section": null
-    },
-    {
-      "title": "Ghost Rider/Wolverine/Punisher: The Dark Design",
-      "url": null,
-      "read": false,
-      "index": 222,
-      "section": null
-    },
-    {
       "title": "Wolverine #87",
       "url": null,
       "read": false,
@@ -1069,4441 +1027,4280 @@
       "section": null
     },
     {
-      "title": "Age of Apocalypse reading order",
+      "title": "Wolverine #101",
       "url": null,
       "read": false,
       "index": 241,
       "section": null
     },
     {
-      "title": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
+      "title": "Wolverine #102",
       "url": null,
       "read": false,
       "index": 242,
       "section": null
     },
     {
-      "title": "Wolverine #101",
+      "title": "Wolverine #103",
       "url": null,
       "read": false,
       "index": 243,
       "section": null
     },
     {
-      "title": "Wolverine #102",
-      "url": null,
-      "read": false,
-      "index": 244,
-      "section": null
-    },
-    {
-      "title": "Wolverine #103",
+      "title": "Wolverine #105",
       "url": null,
       "read": false,
       "index": 245,
       "section": null
     },
     {
-      "title": "Wolverine #105",
-      "url": null,
-      "read": false,
-      "index": 247,
-      "section": null
-    },
-    {
       "title": "Wolverine #106",
       "url": null,
       "read": false,
-      "index": 248,
+      "index": 246,
       "section": null
     },
     {
       "title": "Wolverine #107",
       "url": null,
       "read": false,
-      "index": 249,
+      "index": 247,
       "section": null
     },
     {
       "title": "Wolverine #108",
       "url": null,
       "read": false,
-      "index": 250,
+      "index": 248,
       "section": null
     },
     {
       "title": "Wolverine #109",
       "url": null,
       "read": false,
-      "index": 251,
+      "index": 249,
       "section": null
     },
     {
       "title": "102.5",
       "url": null,
       "read": false,
-      "index": 252,
+      "index": 250,
       "section": null
     },
     {
       "title": "Wolverine Annual 96",
       "url": null,
       "read": false,
-      "index": 253,
+      "index": 251,
       "section": null
     },
     {
       "title": "Uncanny X-Men #332",
       "url": null,
       "read": false,
-      "index": 254,
+      "index": 252,
       "section": null
     },
     {
       "title": "Venom: Tooth and Claw #1",
       "url": null,
       "read": false,
-      "index": 255,
+      "index": 253,
       "section": null
     },
     {
       "title": "Venom: Tooth and Claw #2",
       "url": null,
       "read": false,
-      "index": 256,
+      "index": 254,
       "section": null
     },
     {
       "title": "Venom: Tooth and Claw #3",
       "url": null,
       "read": false,
-      "index": 257,
-      "section": null
-    },
-    {
-      "title": "Logan: Shadow Society",
-      "url": null,
-      "read": false,
-      "index": 258,
-      "section": null
-    },
-    {
-      "title": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
-      "url": null,
-      "read": false,
-      "index": 259,
+      "index": 255,
       "section": null
     },
     {
       "title": "Wolverine #119",
       "url": null,
       "read": false,
-      "index": 260,
+      "index": 256,
       "section": null
     },
     {
       "title": "Wolverine #120",
       "url": null,
       "read": false,
-      "index": 261,
+      "index": 257,
       "section": null
     },
     {
       "title": "Wolverine #121",
       "url": null,
       "read": false,
-      "index": 262,
+      "index": 258,
       "section": null
     },
     {
       "title": "Wolverine #122",
       "url": null,
       "read": false,
-      "index": 263,
+      "index": 259,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #123",
       "url": null,
       "read": false,
-      "index": 264,
+      "index": 260,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #124",
       "url": null,
       "read": false,
-      "index": 265,
+      "index": 261,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #125",
       "url": null,
       "read": false,
-      "index": 266,
+      "index": 262,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #127",
       "url": null,
       "read": false,
-      "index": 268,
+      "index": 264,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #128",
       "url": null,
       "read": false,
-      "index": 269,
+      "index": 265,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #129",
       "url": null,
       "read": false,
-      "index": 270,
+      "index": 266,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #130",
       "url": null,
       "read": false,
-      "index": 271,
+      "index": 267,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #131",
       "url": null,
       "read": false,
-      "index": 272,
+      "index": 268,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #132",
       "url": null,
       "read": false,
-      "index": 273,
+      "index": 269,
       "section": null
     },
     {
       "title": "Wolverine: Black Rio",
       "url": null,
       "read": false,
-      "index": 274,
+      "index": 270,
       "section": null
     },
     {
       "title": "Wolverine #133",
       "url": null,
       "read": false,
-      "index": 275,
+      "index": 271,
       "section": null
     },
     {
       "title": "Wolverine #134",
       "url": null,
       "read": false,
-      "index": 276,
+      "index": 272,
       "section": null
     },
     {
       "title": "Wolverine #135",
       "url": null,
       "read": false,
-      "index": 277,
+      "index": 273,
       "section": null
     },
     {
       "title": "Wolverine #136",
       "url": null,
       "read": false,
-      "index": 278,
+      "index": 274,
       "section": null
     },
     {
       "title": "Wolverine #137",
       "url": null,
       "read": false,
-      "index": 279,
+      "index": 275,
       "section": null
     },
     {
       "title": "Wolverine #138",
       "url": null,
       "read": false,
-      "index": 280,
+      "index": 276,
       "section": null
     },
     {
       "title": "Wolverine #139",
       "url": null,
       "read": false,
-      "index": 281,
+      "index": 277,
       "section": null
     },
     {
       "title": "Wolverine #141",
       "url": null,
       "read": false,
-      "index": 283,
+      "index": 279,
       "section": null
     },
     {
       "title": "Wolverine #142",
       "url": null,
       "read": false,
-      "index": 284,
+      "index": 280,
       "section": null
     },
     {
       "title": "Wolverine #143",
       "url": null,
       "read": false,
-      "index": 285,
+      "index": 281,
       "section": null
     },
     {
       "title": "Wolverine #144",
       "url": null,
       "read": false,
-      "index": 286,
+      "index": 282,
       "section": null
     },
     {
       "title": "Wolverine #145",
       "url": null,
       "read": false,
-      "index": 287,
+      "index": 283,
       "section": null
     },
     {
       "title": "Wolverine #146",
       "url": null,
       "read": false,
-      "index": 288,
+      "index": 284,
       "section": null
     },
     {
       "title": "Wolverine #147",
       "url": null,
       "read": false,
-      "index": 289,
+      "index": 285,
       "section": null
     },
     {
       "title": "Wolverine #148",
       "url": null,
       "read": false,
-      "index": 290,
+      "index": 286,
       "section": null
     },
     {
       "title": "Wolverine #149",
       "url": null,
       "read": false,
-      "index": 291,
+      "index": 287,
       "section": null
     },
     {
       "title": "Hulk (1999) #8",
       "url": null,
       "read": false,
-      "index": 292,
-      "section": null
-    },
-    {
-      "title": "Wolveirne/Cable one-shot",
-      "url": null,
-      "read": false,
-      "index": 293,
+      "index": 288,
       "section": null
     },
     {
       "title": "Wolverine #150",
       "url": null,
       "read": false,
-      "index": 294,
+      "index": 289,
       "section": null
     },
     {
       "title": "Wolverine #151",
       "url": null,
       "read": false,
-      "index": 295,
+      "index": 290,
       "section": null
     },
     {
       "title": "Wolverine #152",
       "url": null,
       "read": false,
-      "index": 296,
+      "index": 291,
       "section": null
     },
     {
       "title": "Wolverine #153",
       "url": null,
       "read": false,
-      "index": 297,
+      "index": 292,
       "section": null
     },
     {
       "title": "Wolverine #154",
       "url": null,
       "read": false,
-      "index": 298,
+      "index": 293,
       "section": null
     },
     {
       "title": "Wolverine #156",
       "url": null,
       "read": false,
-      "index": 300,
+      "index": 295,
       "section": null
     },
     {
       "title": "Wolverine #157",
       "url": null,
       "read": false,
-      "index": 301,
+      "index": 296,
       "section": null
     },
     {
       "title": "Wolverine #158",
       "url": null,
       "read": false,
-      "index": 302,
+      "index": 297,
       "section": null
     },
     {
       "title": "Annual Ã¢â‚¬â„¢99",
       "url": null,
       "read": false,
-      "index": 303,
+      "index": 298,
       "section": null
     },
     {
       "title": "Wolverine: The Origin #1",
       "url": null,
       "read": false,
-      "index": 304,
+      "index": 299,
       "section": null
     },
     {
       "title": "Wolverine: The Origin #2",
       "url": null,
       "read": false,
-      "index": 305,
+      "index": 300,
       "section": null
     },
     {
       "title": "Wolverine: The Origin #3",
       "url": null,
       "read": false,
-      "index": 306,
+      "index": 301,
       "section": null
     },
     {
       "title": "Wolverine: The Origin #4",
       "url": null,
       "read": false,
-      "index": 307,
+      "index": 302,
       "section": null
     },
     {
       "title": "Wolverine: The Origin #5",
       "url": null,
       "read": false,
-      "index": 308,
+      "index": 303,
       "section": null
     },
     {
       "title": "Wolverine: The Origin #6",
       "url": null,
       "read": false,
-      "index": 309,
+      "index": 304,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #159",
       "url": null,
       "read": false,
-      "index": 310,
+      "index": 305,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #160",
       "url": null,
       "read": false,
-      "index": 311,
+      "index": 306,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #161",
       "url": null,
       "read": false,
-      "index": 312,
+      "index": 307,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #162",
       "url": null,
       "read": false,
-      "index": 313,
+      "index": 308,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #163",
       "url": null,
       "read": false,
-      "index": 314,
+      "index": 309,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #164",
       "url": null,
       "read": false,
-      "index": 315,
+      "index": 310,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #165",
       "url": null,
       "read": false,
-      "index": 316,
+      "index": 311,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #166",
       "url": null,
       "read": false,
-      "index": 317,
+      "index": 312,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #167",
       "url": null,
       "read": false,
-      "index": 318,
+      "index": 313,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #168",
       "url": null,
       "read": false,
-      "index": 319,
+      "index": 314,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #169",
       "url": null,
       "read": false,
-      "index": 320,
+      "index": 315,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #170",
       "url": null,
       "read": false,
-      "index": 321,
+      "index": 316,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #171",
       "url": null,
       "read": false,
-      "index": 322,
+      "index": 317,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #172",
       "url": null,
       "read": false,
-      "index": 323,
+      "index": 318,
       "section": null
     },
     {
       "title": "Annual #2000",
       "url": null,
       "read": false,
-      "index": 324,
+      "index": 319,
       "section": null
     },
     {
       "title": "Annual #2001",
       "url": null,
       "read": false,
-      "index": 325,
+      "index": 320,
       "section": null
     },
     {
       "title": "Wolverine #162",
       "url": null,
       "read": false,
-      "index": 326,
+      "index": 321,
       "section": null
     },
     {
       "title": "Wolverine #163",
       "url": null,
       "read": false,
-      "index": 327,
+      "index": 322,
       "section": null
     },
     {
       "title": "Wolverine #164",
       "url": null,
       "read": false,
-      "index": 328,
+      "index": 323,
       "section": null
     },
     {
       "title": "Wolverine #165",
       "url": null,
       "read": false,
-      "index": 329,
+      "index": 324,
       "section": null
     },
     {
       "title": "Wolverine #166",
       "url": null,
       "read": false,
-      "index": 330,
+      "index": 325,
       "section": null
     },
     {
       "title": "173-174",
       "url": null,
       "read": false,
-      "index": 331,
+      "index": 326,
       "section": null
     },
     {
       "title": "176",
       "url": null,
       "read": false,
-      "index": 332,
+      "index": 327,
       "section": null
     },
     {
       "title": "Deadpool #57",
       "url": null,
       "read": false,
-      "index": 333,
+      "index": 328,
       "section": null
     },
     {
       "title": "Deadpool #58",
       "url": null,
       "read": false,
-      "index": 334,
+      "index": 329,
       "section": null
     },
     {
       "title": "Deadpool #59",
       "url": null,
       "read": false,
-      "index": 335,
+      "index": 330,
       "section": null
     },
     {
       "title": "Deadpool #60",
       "url": null,
       "read": false,
-      "index": 336,
+      "index": 331,
       "section": null
     },
     {
       "title": "Weapon X (2002) 1/2",
       "url": null,
       "read": false,
-      "index": 337,
+      "index": 332,
       "section": null
     },
     {
       "title": "1-28",
       "url": null,
       "read": false,
-      "index": 338,
+      "index": 333,
       "section": null
     },
     {
       "title": "Weapon X: The Draft Ã¢â‚¬â€œ Sauron",
       "url": null,
       "read": false,
-      "index": 339,
+      "index": 334,
       "section": null
     },
     {
       "title": "Wild Child",
       "url": null,
       "read": false,
-      "index": 340,
+      "index": 335,
       "section": null
     },
     {
       "title": "Kane",
       "url": null,
       "read": false,
-      "index": 341,
+      "index": 336,
       "section": null
     },
     {
       "title": "Marrow",
       "url": null,
       "read": false,
-      "index": 342,
+      "index": 337,
       "section": null
     },
     {
       "title": "Agent Zero",
       "url": null,
       "read": false,
-      "index": 343,
+      "index": 338,
       "section": null
     },
     {
       "title": "Weapon X: Days Of Future Now #1",
       "url": null,
       "read": false,
-      "index": 344,
+      "index": 339,
       "section": null
     },
     {
       "title": "Weapon X: Days Of Future Now #2",
       "url": null,
       "read": false,
-      "index": 345,
+      "index": 340,
       "section": null
     },
     {
       "title": "Weapon X: Days Of Future Now #3",
       "url": null,
       "read": false,
-      "index": 346,
+      "index": 341,
       "section": null
     },
     {
       "title": "Weapon X: Days Of Future Now #4",
       "url": null,
       "read": false,
-      "index": 347,
+      "index": 342,
       "section": null
     },
     {
       "title": "Weapon X: Days Of Future Now #5",
       "url": null,
       "read": false,
-      "index": 348,
+      "index": 343,
       "section": null
     },
     {
       "title": "Material From Wolverine (1988) 175",
       "url": null,
       "read": false,
-      "index": 349,
+      "index": 344,
       "section": null
     },
     {
       "title": "Deadpool (2012) 27",
       "url": null,
       "read": false,
-      "index": 350,
+      "index": 345,
       "section": null
     },
     {
       "title": "Wolverine #173",
       "url": null,
       "read": false,
-      "index": 351,
+      "index": 346,
       "section": null
     },
     {
       "title": "Wolverine #174",
       "url": null,
       "read": false,
-      "index": 352,
+      "index": 347,
       "section": null
     },
     {
       "title": "Wolverine #175",
       "url": null,
       "read": false,
-      "index": 353,
+      "index": 348,
       "section": null
     },
     {
       "title": "Wolverine #176",
       "url": null,
       "read": false,
-      "index": 354,
+      "index": 349,
       "section": null
     },
     {
       "title": "Wolverine #178",
       "url": null,
       "read": false,
-      "index": 356,
+      "index": 351,
       "section": null
     },
     {
       "title": "Wolverine #179",
       "url": null,
       "read": false,
-      "index": 357,
+      "index": 352,
       "section": null
     },
     {
       "title": "Wolverine #180",
       "url": null,
       "read": false,
-      "index": 358,
+      "index": 353,
       "section": null
     },
     {
       "title": "Wolverine #181",
       "url": null,
       "read": false,
-      "index": 359,
+      "index": 354,
       "section": null
     },
     {
       "title": "Wolverine #182",
       "url": null,
       "read": false,
-      "index": 360,
+      "index": 355,
       "section": null
     },
     {
       "title": "Wolverine #183",
       "url": null,
       "read": false,
-      "index": 361,
+      "index": 356,
       "section": null
     },
     {
       "title": "Wolverine #184",
       "url": null,
       "read": false,
-      "index": 362,
+      "index": 357,
       "section": null
     },
     {
       "title": "Wolverine #186",
       "url": null,
       "read": false,
-      "index": 364,
+      "index": 359,
       "section": null
     },
     {
       "title": "Wolverine #187",
       "url": null,
       "read": false,
-      "index": 365,
+      "index": 360,
       "section": null
     },
     {
       "title": "Wolverine #188",
       "url": null,
       "read": false,
-      "index": 366,
+      "index": 361,
       "section": null
     },
     {
       "title": "Wolverine #189",
       "url": null,
       "read": false,
-      "index": 367,
+      "index": 362,
       "section": null
     },
     {
       "title": "Wolverine: Xisle #1",
       "url": null,
       "read": false,
-      "index": 368,
+      "index": 363,
       "section": null
     },
     {
       "title": "Wolverine: Xisle #2",
       "url": null,
       "read": false,
-      "index": 369,
+      "index": 364,
       "section": null
     },
     {
       "title": "Wolverine: Xisle #3",
       "url": null,
       "read": false,
-      "index": 370,
+      "index": 365,
       "section": null
     },
     {
       "title": "Wolverine: Xisle #4",
       "url": null,
       "read": false,
-      "index": 371,
+      "index": 366,
       "section": null
     },
     {
       "title": "Wolverine: Xisle #5",
       "url": null,
       "read": false,
-      "index": 372,
+      "index": 367,
       "section": null
     },
     {
       "title": "Wolverine: Snikt #1",
       "url": null,
       "read": false,
-      "index": 373,
+      "index": 368,
       "section": null
     },
     {
       "title": "Wolverine: Snikt #2",
       "url": null,
       "read": false,
-      "index": 374,
+      "index": 369,
       "section": null
     },
     {
       "title": "Wolverine: Snikt #3",
       "url": null,
       "read": false,
-      "index": 375,
+      "index": 370,
       "section": null
     },
     {
       "title": "Wolverine: Snikt #4",
       "url": null,
       "read": false,
-      "index": 376,
+      "index": 371,
       "section": null
     },
     {
       "title": "Wolverine: Snikt #5",
       "url": null,
       "read": false,
-      "index": 377,
+      "index": 372,
       "section": null
     },
     {
       "title": "Punisher War Journal #6",
       "url": null,
       "read": false,
-      "index": 378,
+      "index": 373,
       "section": null
     },
     {
       "title": "Punisher War Journal #7",
       "url": null,
       "read": false,
-      "index": 379,
+      "index": 374,
       "section": null
     },
     {
       "title": "Wolverine/Punisher: Damaging Evidence #1",
       "url": null,
       "read": false,
-      "index": 380,
+      "index": 375,
       "section": null
     },
     {
       "title": "Wolverine/Punisher: Damaging Evidence #2",
       "url": null,
       "read": false,
-      "index": 381,
+      "index": 376,
       "section": null
     },
     {
       "title": "Wolverine/Punisher: Damaging Evidence #3",
       "url": null,
       "read": false,
-      "index": 382,
+      "index": 377,
       "section": null
     },
     {
       "title": "Punisher War Zone 19",
       "url": null,
       "read": false,
-      "index": 383,
+      "index": 378,
       "section": null
     },
     {
       "title": "Wolverine/Punisher: Revelation #1",
       "url": null,
       "read": false,
-      "index": 384,
+      "index": 379,
       "section": null
     },
     {
       "title": "Wolverine/Punisher: Revelation #2",
       "url": null,
       "read": false,
-      "index": 385,
+      "index": 380,
       "section": null
     },
     {
       "title": "Wolverine/Punisher: Revelation #3",
       "url": null,
       "read": false,
-      "index": 386,
+      "index": 381,
       "section": null
     },
     {
       "title": "Wolverine/Punisher: Revelation #4",
       "url": null,
       "read": false,
-      "index": 387,
+      "index": 382,
       "section": null
     },
     {
       "title": "Punisher #16",
       "url": null,
       "read": false,
-      "index": 388,
+      "index": 383,
       "section": null
     },
     {
       "title": "Punisher #17",
       "url": null,
       "read": false,
-      "index": 389,
+      "index": 384,
       "section": null
     },
     {
       "title": "Wolverine 186",
       "url": null,
       "read": false,
-      "index": 390,
+      "index": 385,
       "section": null
     },
     {
       "title": "Wolverine/Punisher #1",
       "url": null,
       "read": false,
-      "index": 391,
+      "index": 386,
       "section": null
     },
     {
       "title": "Wolverine/Punisher #2",
       "url": null,
       "read": false,
-      "index": 392,
+      "index": 387,
       "section": null
     },
     {
       "title": "Wolverine/Punisher #3",
       "url": null,
       "read": false,
-      "index": 393,
+      "index": 388,
       "section": null
     },
     {
       "title": "Wolverine/Punisher #4",
       "url": null,
       "read": false,
-      "index": 394,
+      "index": 389,
       "section": null
     },
     {
       "title": "Wolverine/Punisher #5",
       "url": null,
       "read": false,
-      "index": 395,
+      "index": 390,
       "section": null
     },
     {
       "title": "Astonishing Tales: Wolverine/Punisher #1",
       "url": null,
       "read": false,
-      "index": 396,
+      "index": 391,
       "section": null
     },
     {
       "title": "Astonishing Tales: Wolverine/Punisher #2",
       "url": null,
       "read": false,
-      "index": 397,
+      "index": 392,
       "section": null
     },
     {
       "title": "Astonishing Tales: Wolverine/Punisher #3",
       "url": null,
       "read": false,
-      "index": 398,
+      "index": 393,
       "section": null
     },
     {
       "title": "Astonishing Tales: Wolverine/Punisher #4",
       "url": null,
       "read": false,
-      "index": 399,
+      "index": 394,
       "section": null
     },
     {
       "title": "Astonishing Tales: Wolverine/Punisher #5",
       "url": null,
       "read": false,
-      "index": 400,
+      "index": 395,
       "section": null
     },
     {
       "title": "Astonishing Tales: Wolverine/Punisher #6",
       "url": null,
       "read": false,
-      "index": 401,
+      "index": 396,
       "section": null
     },
     {
       "title": "New X-Men Annual #1",
       "url": null,
       "read": false,
-      "index": 407,
+      "index": 402,
       "section": null
     },
     {
       "title": "New X-Men #155",
       "url": null,
       "read": false,
-      "index": 446,
+      "index": 441,
       "section": null
     },
     {
       "title": "New X-Men #156",
       "url": null,
       "read": false,
-      "index": 447,
+      "index": 442,
       "section": null
     },
     {
       "title": "Astonishing X-Men Annual #1",
       "url": null,
       "read": false,
-      "index": 472,
+      "index": 467,
       "section": null
     },
     {
       "title": "Wolverine: Soultaker #1",
       "url": null,
       "read": false,
-      "index": 479,
+      "index": 474,
       "section": null
     },
     {
       "title": "Wolverine: Soultaker #2",
       "url": null,
       "read": false,
-      "index": 480,
+      "index": 475,
       "section": null
     },
     {
       "title": "Wolverine: Soultaker #3",
       "url": null,
       "read": false,
-      "index": 481,
+      "index": 476,
       "section": null
     },
     {
       "title": "Wolverine: Soultaker #4",
       "url": null,
       "read": false,
-      "index": 482,
+      "index": 477,
       "section": null
     },
     {
       "title": "Wolverine: Soultaker #5",
       "url": null,
       "read": false,
-      "index": 483,
-      "section": null
-    },
-    {
-      "title": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
-      "url": null,
-      "read": false,
-      "index": 484,
+      "index": 478,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #187",
       "url": null,
       "read": false,
-      "index": 493,
+      "index": 487,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #188",
       "url": null,
       "read": false,
-      "index": 494,
+      "index": 488,
       "section": null
     },
     {
       "title": "Wolverine (vol. 2) #189",
       "url": null,
       "read": false,
-      "index": 495,
+      "index": 489,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #34",
       "url": null,
       "read": false,
-      "index": 497,
+      "index": 491,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #35",
       "url": null,
       "read": false,
-      "index": 498,
+      "index": 492,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #36",
       "url": null,
       "read": false,
-      "index": 499,
+      "index": 493,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #37",
       "url": null,
       "read": false,
-      "index": 500,
+      "index": 494,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #38",
       "url": null,
       "read": false,
-      "index": 501,
+      "index": 495,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #40",
       "url": null,
       "read": false,
-      "index": 503,
-      "section": null
-    },
-    {
-      "title": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
-      "url": null,
-      "read": false,
-      "index": 504,
+      "index": 497,
       "section": null
     },
     {
       "title": "Sabretooth (vol. 3) #1",
       "url": null,
       "read": false,
-      "index": 505,
+      "index": 498,
       "section": null
     },
     {
       "title": "Sabretooth (vol. 3) #2",
       "url": null,
       "read": false,
-      "index": 506,
+      "index": 499,
       "section": null
     },
     {
       "title": "Sabretooth (vol. 3) #4",
       "url": null,
       "read": false,
-      "index": 508,
+      "index": 501,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #41",
       "url": null,
       "read": false,
-      "index": 509,
+      "index": 502,
       "section": null
     },
     {
       "title": "49",
       "url": null,
       "read": false,
-      "index": 510,
+      "index": 503,
       "section": null
     },
     {
       "title": "Giant-Size Wolverine #1",
       "url": null,
       "read": false,
-      "index": 511,
+      "index": 504,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #42",
       "url": null,
       "read": false,
-      "index": 513,
+      "index": 506,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #43",
       "url": null,
       "read": false,
-      "index": 514,
+      "index": 507,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #44",
       "url": null,
       "read": false,
-      "index": 515,
+      "index": 508,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #45",
       "url": null,
       "read": false,
-      "index": 516,
+      "index": 509,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #46",
       "url": null,
       "read": false,
-      "index": 517,
+      "index": 510,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #47",
       "url": null,
       "read": false,
-      "index": 518,
+      "index": 511,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #48",
       "url": null,
       "read": false,
-      "index": 519,
+      "index": 512,
       "section": null
     },
     {
       "title": "Wolverine: Origins #6",
       "url": null,
       "read": false,
-      "index": 520,
+      "index": 513,
       "section": null
     },
     {
       "title": "Wolverine: Origins #7",
       "url": null,
       "read": false,
-      "index": 521,
+      "index": 514,
       "section": null
     },
     {
       "title": "Wolverine: Origins #8",
       "url": null,
       "read": false,
-      "index": 522,
+      "index": 515,
       "section": null
     },
     {
       "title": "Wolverine: Origins #9",
       "url": null,
       "read": false,
-      "index": 523,
+      "index": 516,
       "section": null
     },
     {
       "title": "Wolverine: Origins #10",
       "url": null,
       "read": false,
-      "index": 524,
+      "index": 517,
       "section": null
     },
     {
       "title": "Wolverine: Origins #11",
       "url": null,
       "read": false,
-      "index": 525,
+      "index": 518,
       "section": null
     },
     {
       "title": "Wolverine: Origins #12",
       "url": null,
       "read": false,
-      "index": 526,
+      "index": 519,
       "section": null
     },
     {
       "title": "Wolverine: Origins #13",
       "url": null,
       "read": false,
-      "index": 527,
+      "index": 520,
       "section": null
     },
     {
       "title": "Wolverine: Origins #14",
       "url": null,
       "read": false,
-      "index": 528,
+      "index": 521,
       "section": null
     },
     {
       "title": "Wolverine: Origins #15",
       "url": null,
       "read": false,
-      "index": 529,
+      "index": 522,
       "section": null
     },
     {
       "title": "Annual #1",
       "url": null,
       "read": false,
-      "index": 530,
+      "index": 523,
       "section": null
     },
     {
       "title": "What If: Wolverine #1",
       "url": null,
       "read": false,
-      "index": 531,
+      "index": 524,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #50",
       "url": null,
       "read": false,
-      "index": 532,
+      "index": 525,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #51",
       "url": null,
       "read": false,
-      "index": 533,
+      "index": 526,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #52",
       "url": null,
       "read": false,
-      "index": 534,
+      "index": 527,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #53",
       "url": null,
       "read": false,
-      "index": 535,
+      "index": 528,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #54",
       "url": null,
       "read": false,
-      "index": 536,
+      "index": 529,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #55",
       "url": null,
       "read": false,
-      "index": 537,
+      "index": 530,
       "section": null
     },
     {
       "title": "Wolverine and Black Cat: Claws #1",
       "url": null,
       "read": false,
-      "index": 538,
+      "index": 531,
       "section": null
     },
     {
       "title": "Wolverine and Black Cat: Claws #2",
       "url": null,
       "read": false,
-      "index": 539,
+      "index": 532,
       "section": null
     },
     {
       "title": "Wolverine and Black Cat: Claws #3",
       "url": null,
       "read": false,
-      "index": 540,
+      "index": 533,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #56",
       "url": null,
       "read": false,
-      "index": 541,
+      "index": 534,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #57",
       "url": null,
       "read": false,
-      "index": 542,
+      "index": 535,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #58",
       "url": null,
       "read": false,
-      "index": 543,
+      "index": 536,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #59",
       "url": null,
       "read": false,
-      "index": 544,
+      "index": 537,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #60",
       "url": null,
       "read": false,
-      "index": 545,
+      "index": 538,
       "section": null
     },
     {
       "title": "Wolverine (vol. 3) #61",
       "url": null,
       "read": false,
-      "index": 546,
+      "index": 539,
       "section": null
     },
     {
       "title": "154-155",
       "url": null,
       "read": false,
-      "index": 548,
+      "index": 541,
       "section": null
     },
     {
       "title": "Deadpool (1997) 27",
       "url": null,
       "read": false,
-      "index": 549,
+      "index": 542,
       "section": null
     },
     {
       "title": "Cable & Deadpool #44",
       "url": null,
       "read": false,
-      "index": 551,
+      "index": 544,
       "section": null
     },
     {
       "title": "Wolverine: Origins #21",
       "url": null,
       "read": false,
-      "index": 552,
+      "index": 545,
       "section": null
     },
     {
       "title": "Wolverine: Origins #22",
       "url": null,
       "read": false,
-      "index": 553,
+      "index": 546,
       "section": null
     },
     {
       "title": "Wolverine: Origins #23",
       "url": null,
       "read": false,
-      "index": 554,
+      "index": 547,
       "section": null
     },
     {
       "title": "Wolverine: Origins #24",
       "url": null,
       "read": false,
-      "index": 555,
+      "index": 548,
       "section": null
     },
     {
       "title": "Wolverine: Origins #25",
       "url": null,
       "read": false,
-      "index": 556,
+      "index": 549,
       "section": null
     },
     {
       "title": "Wolverine/Deadpool: The Decoy 1",
       "url": null,
       "read": false,
-      "index": 557,
+      "index": 550,
       "section": null
     },
     {
       "title": "Material From Wolverine Annual Ã¢â‚¬â„¢95",
       "url": null,
       "read": false,
-      "index": 558,
+      "index": 551,
       "section": null
     },
     {
       "title": "Logan #1",
       "url": null,
       "read": false,
-      "index": 559,
+      "index": 552,
       "section": null
     },
     {
       "title": "Logan #2",
       "url": null,
       "read": false,
-      "index": 560,
-      "section": null
-    },
-    {
-      "title": "X-Men: Messiah Complex One-Shot",
-      "url": null,
-      "read": false,
-      "index": 562,
+      "index": 553,
       "section": null
     },
     {
       "title": "Wolverine (2003) 56",
       "url": null,
       "read": false,
-      "index": 575,
+      "index": 568,
       "section": null
     },
     {
       "title": "62-65",
       "url": null,
       "read": false,
-      "index": 576,
+      "index": 569,
       "section": null
     },
     {
       "title": "material from 73-74",
       "url": null,
       "read": false,
-      "index": 577,
+      "index": 570,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #1",
       "url": null,
       "read": false,
-      "index": 582,
+      "index": 575,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #2",
       "url": null,
       "read": false,
-      "index": 583,
+      "index": 576,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #3",
       "url": null,
       "read": false,
-      "index": 584,
+      "index": 577,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #4",
       "url": null,
       "read": false,
-      "index": 585,
+      "index": 578,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #5",
       "url": null,
       "read": false,
-      "index": 586,
+      "index": 579,
       "section": null
     },
     {
       "title": "Wolverine: Chop Shop",
       "url": null,
       "read": false,
-      "index": 587,
+      "index": 580,
       "section": null
     },
     {
       "title": "Wolverine: Switchback",
       "url": null,
       "read": false,
-      "index": 588,
+      "index": 581,
       "section": null
     },
     {
       "title": "Wolverine Holiday Special: Flies to a Spider",
       "url": null,
       "read": false,
-      "index": 589,
+      "index": 582,
       "section": null
     },
     {
       "title": "Wolverine: Dead ManÃ¢â‚¬â„¢s Hand",
       "url": null,
       "read": false,
-      "index": 590,
+      "index": 583,
       "section": null
     },
     {
       "title": "Dark Reign: The List Ã¢â‚¬â€œ Wolverine #1",
       "url": null,
       "read": false,
-      "index": 602,
+      "index": 595,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #6",
       "url": null,
       "read": false,
-      "index": 603,
+      "index": 596,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #7",
       "url": null,
       "read": false,
-      "index": 604,
+      "index": 597,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #8",
       "url": null,
       "read": false,
-      "index": 605,
+      "index": 598,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #9",
       "url": null,
       "read": false,
-      "index": 606,
+      "index": 599,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #10",
       "url": null,
       "read": false,
-      "index": 607,
+      "index": 600,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #11",
       "url": null,
       "read": false,
-      "index": 608,
+      "index": 601,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #12",
       "url": null,
       "read": false,
-      "index": 609,
+      "index": 602,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #13",
       "url": null,
       "read": false,
-      "index": 610,
+      "index": 603,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #14",
       "url": null,
       "read": false,
-      "index": 611,
+      "index": 604,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #15",
       "url": null,
       "read": false,
-      "index": 612,
+      "index": 605,
       "section": null
     },
     {
       "title": "Wolverine: Weapon X #16",
       "url": null,
       "read": false,
-      "index": 613,
+      "index": 606,
       "section": null
     },
     {
       "title": "Dark X-Men: The Beginning 3",
       "url": null,
       "read": false,
-      "index": 614,
+      "index": 607,
       "section": null
     },
     {
       "title": "All-New Wolverine Saga",
       "url": null,
       "read": false,
-      "index": 615,
+      "index": 608,
       "section": null
     },
     {
       "title": "Wolverine: Origins #16",
       "url": null,
       "read": false,
-      "index": 616,
+      "index": 609,
       "section": null
     },
     {
       "title": "Wolverine: Origins #17",
       "url": null,
       "read": false,
-      "index": 617,
+      "index": 610,
       "section": null
     },
     {
       "title": "Wolverine: Origins #18",
       "url": null,
       "read": false,
-      "index": 618,
+      "index": 611,
       "section": null
     },
     {
       "title": "Wolverine: Origins #19",
       "url": null,
       "read": false,
-      "index": 619,
+      "index": 612,
       "section": null
     },
     {
       "title": "Wolverine: Origins #20",
       "url": null,
       "read": false,
-      "index": 620,
+      "index": 613,
       "section": null
     },
     {
       "title": "Wolverine: Origins #26",
       "url": null,
       "read": false,
-      "index": 621,
+      "index": 614,
       "section": null
     },
     {
       "title": "Wolverine: Origins #27",
       "url": null,
       "read": false,
-      "index": 622,
+      "index": 615,
       "section": null
     },
     {
       "title": "Wolverine: Origins #28",
       "url": null,
       "read": false,
-      "index": 623,
+      "index": 616,
       "section": null
     },
     {
       "title": "Wolverine: Origins #29",
       "url": null,
       "read": false,
-      "index": 624,
+      "index": 617,
       "section": null
     },
     {
       "title": "Wolverine: Origins #30",
       "url": null,
       "read": false,
-      "index": 625,
+      "index": 618,
       "section": null
     },
     {
       "title": "Wolverine: Origins #31",
       "url": null,
       "read": false,
-      "index": 626,
+      "index": 619,
       "section": null
     },
     {
       "title": "Wolverine: Origins #32",
       "url": null,
       "read": false,
-      "index": 627,
+      "index": 620,
       "section": null
     },
     {
       "title": "X-Men: Original Sin #1",
       "url": null,
       "read": false,
-      "index": 628,
-      "section": null
-    },
-    {
-      "title": "X-Force/Cable: Messiah War",
-      "url": null,
-      "read": false,
-      "index": 631,
+      "index": 621,
       "section": null
     },
     {
       "title": "X-Men: Future History Ã¢â‚¬â€œ The Messiah War Sourcebook",
       "url": null,
       "read": false,
-      "index": 638,
+      "index": 631,
       "section": null
     },
     {
       "title": "X-Force (vol. 3) #19",
       "url": null,
       "read": false,
-      "index": 643,
+      "index": 636,
       "section": null
     },
     {
       "title": "X-Force (vol. 3) #20",
       "url": null,
       "read": false,
-      "index": 644,
+      "index": 637,
       "section": null
     },
     {
       "title": "21-25",
       "url": null,
       "read": false,
-      "index": 645,
+      "index": 638,
       "section": null
     },
     {
       "title": "New X-Men #32",
       "url": null,
       "read": false,
-      "index": 646,
-      "section": null
-    },
-    {
-      "title": "X Necrosha",
-      "url": null,
-      "read": false,
-      "index": 654,
-      "section": null
-    },
-    {
-      "title": "X Necrosha: The Gathering",
-      "url": null,
-      "read": false,
-      "index": 655,
+      "index": 639,
       "section": null
     },
     {
       "title": "Wolverine: Origins #33",
       "url": null,
       "read": false,
-      "index": 656,
+      "index": 649,
       "section": null
     },
     {
       "title": "Wolverine: Origins #34",
       "url": null,
       "read": false,
-      "index": 657,
+      "index": 650,
       "section": null
     },
     {
       "title": "Wolverine: Origins #35",
       "url": null,
       "read": false,
-      "index": 658,
+      "index": 651,
       "section": null
     },
     {
       "title": "Wolverine: Origins #36",
       "url": null,
       "read": false,
-      "index": 659,
+      "index": 652,
       "section": null
     },
     {
       "title": "Wolverine: Origins #37",
       "url": null,
       "read": false,
-      "index": 660,
+      "index": 653,
       "section": null
     },
     {
       "title": "Wolverine: Origins #38",
       "url": null,
       "read": false,
-      "index": 661,
+      "index": 654,
       "section": null
     },
     {
       "title": "Wolverine: Origins #39",
       "url": null,
       "read": false,
-      "index": 662,
+      "index": 655,
       "section": null
     },
     {
       "title": "Wolverine: Origins #40",
       "url": null,
       "read": false,
-      "index": 663,
+      "index": 656,
       "section": null
     },
     {
       "title": "Wolverine: Origins #41",
       "url": null,
       "read": false,
-      "index": 664,
+      "index": 657,
       "section": null
     },
     {
       "title": "Wolverine: Origins #42",
       "url": null,
       "read": false,
-      "index": 665,
+      "index": 658,
       "section": null
     },
     {
       "title": "Wolverine: Origins #43",
       "url": null,
       "read": false,
-      "index": 666,
+      "index": 659,
       "section": null
     },
     {
       "title": "Wolverine: Origins #44",
       "url": null,
       "read": false,
-      "index": 667,
+      "index": 660,
       "section": null
     },
     {
       "title": "Wolverine: Origins #45",
       "url": null,
       "read": false,
-      "index": 668,
+      "index": 661,
       "section": null
     },
     {
       "title": "Wolverine: Origins #46",
       "url": null,
       "read": false,
-      "index": 669,
+      "index": 662,
       "section": null
     },
     {
       "title": "Wolverine: Origins #47",
       "url": null,
       "read": false,
-      "index": 670,
+      "index": 663,
       "section": null
     },
     {
       "title": "Wolverine: Origins #48",
       "url": null,
       "read": false,
-      "index": 671,
+      "index": 664,
       "section": null
     },
     {
       "title": "Wolverine: Origins #49",
       "url": null,
       "read": false,
-      "index": 672,
+      "index": 665,
       "section": null
     },
     {
       "title": "Wolverine: Origins #50",
       "url": null,
       "read": false,
-      "index": 673,
+      "index": 666,
       "section": null
     },
     {
       "title": "Dark Wolverine #85",
       "url": null,
       "read": false,
-      "index": 674,
+      "index": 667,
       "section": null
     },
     {
       "title": "Dark Wolverine #86",
       "url": null,
       "read": false,
-      "index": 675,
-      "section": null
-    },
-    {
-      "title": "Second Coming: Prepare",
-      "url": null,
-      "read": false,
-      "index": 676,
+      "index": 668,
       "section": null
     },
     {
       "title": "Second Coming #1",
       "url": null,
       "read": false,
-      "index": 677,
+      "index": 670,
       "section": null
     },
     {
       "title": "Second Coming #2",
       "url": null,
       "read": false,
-      "index": 678,
+      "index": 671,
       "section": null
     },
     {
       "title": "Astonishing Spider-Man & Wolverine #1",
       "url": null,
       "read": false,
-      "index": 691,
+      "index": 684,
       "section": null
     },
     {
       "title": "Astonishing Spider-Man & Wolverine #2",
       "url": null,
       "read": false,
-      "index": 692,
+      "index": 685,
       "section": null
     },
     {
       "title": "Astonishing Spider-Man & Wolverine #3",
       "url": null,
       "read": false,
-      "index": 693,
+      "index": 686,
       "section": null
     },
     {
       "title": "Astonishing Spider-Man & Wolverine #4",
       "url": null,
       "read": false,
-      "index": 694,
+      "index": 687,
       "section": null
     },
     {
       "title": "Astonishing Spider-Man & Wolverine #6",
       "url": null,
       "read": false,
-      "index": 696,
+      "index": 689,
       "section": null
     },
     {
       "title": "Wolverine #9",
       "url": null,
       "read": false,
-      "index": 697,
+      "index": 690,
       "section": null
     },
     {
       "title": "Wolverine: Road To Hell 1",
       "url": null,
       "read": false,
-      "index": 699,
+      "index": 692,
       "section": null
     },
     {
       "title": "Wolverine and Jubilee #1",
       "url": null,
       "read": false,
-      "index": 704,
+      "index": 697,
       "section": null
     },
     {
       "title": "Wolverine and Jubilee #2",
       "url": null,
       "read": false,
-      "index": 705,
+      "index": 698,
       "section": null
     },
     {
       "title": "Wolverine and Jubilee #3",
       "url": null,
       "read": false,
-      "index": 706,
+      "index": 699,
       "section": null
     },
     {
       "title": "Wolverine and Jubilee #4",
       "url": null,
       "read": false,
-      "index": 707,
+      "index": 700,
       "section": null
     },
     {
       "title": "Uncanny X-Men #244",
       "url": null,
       "read": false,
-      "index": 708,
+      "index": 701,
       "section": null
     },
     {
       "title": "#5.1",
       "url": null,
       "read": false,
-      "index": 712,
+      "index": 705,
       "section": null
     },
     {
       "title": "300-304",
       "url": null,
       "read": false,
-      "index": 720,
+      "index": 713,
       "section": null
     },
     {
       "title": "Schism #1",
       "url": null,
       "read": false,
-      "index": 721,
+      "index": 714,
       "section": null
     },
     {
       "title": "Schism #2",
       "url": null,
       "read": false,
-      "index": 722,
+      "index": 715,
       "section": null
     },
     {
       "title": "Schism #3",
       "url": null,
       "read": false,
-      "index": 723,
+      "index": 716,
       "section": null
     },
     {
       "title": "Schism #4",
       "url": null,
       "read": false,
-      "index": 724,
+      "index": 717,
       "section": null
     },
     {
       "title": "Schism #5",
       "url": null,
       "read": false,
-      "index": 725,
+      "index": 718,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #17",
       "url": null,
       "read": false,
-      "index": 742,
+      "index": 735,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #19",
       "url": null,
       "read": false,
-      "index": 744,
+      "index": 737,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #20",
       "url": null,
       "read": false,
-      "index": 745,
+      "index": 738,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #21",
       "url": null,
       "read": false,
-      "index": 746,
+      "index": 739,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #22",
       "url": null,
       "read": false,
-      "index": 747,
+      "index": 740,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #24",
       "url": null,
       "read": false,
-      "index": 749,
+      "index": 742,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #25",
       "url": null,
       "read": false,
-      "index": 750,
+      "index": 743,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #26",
       "url": null,
       "read": false,
-      "index": 751,
+      "index": 744,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #28",
       "url": null,
       "read": false,
-      "index": 753,
+      "index": 746,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #29",
       "url": null,
       "read": false,
-      "index": 754,
+      "index": 747,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #30",
       "url": null,
       "read": false,
-      "index": 755,
+      "index": 748,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #31",
       "url": null,
       "read": false,
-      "index": 756,
+      "index": 749,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #32",
       "url": null,
       "read": false,
-      "index": 757,
+      "index": 750,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #33",
       "url": null,
       "read": false,
-      "index": 758,
+      "index": 751,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #34",
       "url": null,
       "read": false,
-      "index": 759,
+      "index": 752,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #35",
       "url": null,
       "read": false,
-      "index": 760,
+      "index": 753,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #38",
       "url": null,
       "read": false,
-      "index": 763,
+      "index": 756,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #39",
       "url": null,
       "read": false,
-      "index": 764,
+      "index": 757,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #40",
       "url": null,
       "read": false,
-      "index": 765,
+      "index": 758,
       "section": null
     },
     {
       "title": "Wolverine & The X-Men #41",
       "url": null,
       "read": false,
-      "index": 766,
+      "index": 759,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #1",
       "url": null,
       "read": false,
-      "index": 768,
+      "index": 761,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #2",
       "url": null,
       "read": false,
-      "index": 769,
+      "index": 762,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #3",
       "url": null,
       "read": false,
-      "index": 770,
+      "index": 763,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #4",
       "url": null,
       "read": false,
-      "index": 771,
+      "index": 764,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #5",
       "url": null,
       "read": false,
-      "index": 772,
+      "index": 765,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #6",
       "url": null,
       "read": false,
-      "index": 773,
+      "index": 766,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #7",
       "url": null,
       "read": false,
-      "index": 774,
+      "index": 767,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #8",
       "url": null,
       "read": false,
-      "index": 775,
+      "index": 768,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #9",
       "url": null,
       "read": false,
-      "index": 776,
+      "index": 769,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #10",
       "url": null,
       "read": false,
-      "index": 777,
+      "index": 770,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #11",
       "url": null,
       "read": false,
-      "index": 778,
+      "index": 771,
       "section": null
     },
     {
       "title": "Wolverine: The Best There Is #12",
       "url": null,
       "read": false,
-      "index": 779,
+      "index": 772,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #1",
       "url": null,
       "read": false,
-      "index": 780,
+      "index": 773,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #2",
       "url": null,
       "read": false,
-      "index": 781,
+      "index": 774,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #3",
       "url": null,
       "read": false,
-      "index": 782,
+      "index": 775,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #4",
       "url": null,
       "read": false,
-      "index": 783,
+      "index": 776,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men: Alpha and Omega #1",
       "url": null,
       "read": false,
-      "index": 784,
+      "index": 777,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men: Alpha and Omega #2",
       "url": null,
       "read": false,
-      "index": 785,
+      "index": 778,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men: Alpha and Omega #3",
       "url": null,
       "read": false,
-      "index": 786,
+      "index": 779,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #5",
       "url": null,
       "read": false,
-      "index": 804,
+      "index": 797,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #6",
       "url": null,
       "read": false,
-      "index": 805,
+      "index": 798,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #7",
       "url": null,
       "read": false,
-      "index": 806,
+      "index": 799,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #8",
       "url": null,
       "read": false,
-      "index": 807,
+      "index": 800,
       "section": null
     },
     {
       "title": "Wolverine #305",
       "url": null,
       "read": false,
-      "index": 808,
+      "index": 801,
       "section": null
     },
     {
       "title": "Wolverine #306",
       "url": null,
       "read": false,
-      "index": 809,
+      "index": 802,
       "section": null
     },
     {
       "title": "Wolverine #307",
       "url": null,
       "read": false,
-      "index": 810,
+      "index": 803,
       "section": null
     },
     {
       "title": "Wolverine #308",
       "url": null,
       "read": false,
-      "index": 811,
+      "index": 804,
       "section": null
     },
     {
       "title": "Wolverine #309",
       "url": null,
       "read": false,
-      "index": 812,
+      "index": 805,
       "section": null
     },
     {
       "title": "Wolverine #310",
       "url": null,
       "read": false,
-      "index": 813,
+      "index": 806,
       "section": null
     },
     {
       "title": "Wolverine #311",
       "url": null,
       "read": false,
-      "index": 814,
+      "index": 807,
       "section": null
     },
     {
       "title": "Wolverine #313",
       "url": null,
       "read": false,
-      "index": 816,
+      "index": 809,
       "section": null
     },
     {
       "title": "Wolverine #315",
       "url": null,
       "read": false,
-      "index": 818,
+      "index": 811,
       "section": null
     },
     {
       "title": "Wolverine #316",
       "url": null,
       "read": false,
-      "index": 819,
+      "index": 812,
       "section": null
     },
     {
       "title": "Wolverine #317",
       "url": null,
       "read": false,
-      "index": 820,
+      "index": 813,
       "section": null
     },
     {
       "title": "AvX: VS #1",
       "url": null,
       "read": false,
-      "index": 834,
+      "index": 827,
       "section": null
     },
     {
       "title": "AvX: VS #2",
       "url": null,
       "read": false,
-      "index": 835,
+      "index": 828,
       "section": null
     },
     {
       "title": "AvX: VS #3",
       "url": null,
       "read": false,
-      "index": 836,
+      "index": 829,
       "section": null
     },
     {
       "title": "AvX: VS #4",
       "url": null,
       "read": false,
-      "index": 837,
+      "index": 830,
       "section": null
     },
     {
       "title": "AvX: VS #5",
       "url": null,
       "read": false,
-      "index": 838,
+      "index": 831,
       "section": null
     },
     {
       "title": "AvX: VS #6",
       "url": null,
       "read": false,
-      "index": 839,
+      "index": 832,
       "section": null
     },
     {
       "title": "Avengers vs. X-Men: Infinite #1",
       "url": null,
       "read": false,
-      "index": 840,
-      "section": null
-    },
-    {
-      "title": "6",
-      "url": null,
-      "read": false,
-      "index": 841,
-      "section": null
-    },
-    {
-      "title": "10",
-      "url": null,
-      "read": false,
-      "index": 842,
-      "section": null
-    },
-    {
-      "title": "Material from Marvel Point One",
-      "url": null,
-      "read": false,
-      "index": 843,
+      "index": 833,
       "section": null
     },
     {
       "title": "X-Men Legacy #269",
       "url": null,
       "read": false,
-      "index": 868,
+      "index": 858,
       "section": null
     },
     {
       "title": "X-Men Legacy #270",
       "url": null,
       "read": false,
-      "index": 869,
+      "index": 859,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #9",
       "url": null,
       "read": false,
-      "index": 870,
+      "index": 860,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #10",
       "url": null,
       "read": false,
-      "index": 871,
+      "index": 861,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #11",
       "url": null,
       "read": false,
-      "index": 872,
+      "index": 862,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #12",
       "url": null,
       "read": false,
-      "index": 873,
+      "index": 863,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #13",
       "url": null,
       "read": false,
-      "index": 874,
+      "index": 864,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #14",
       "url": null,
       "read": false,
-      "index": 875,
+      "index": 865,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #15",
       "url": null,
       "read": false,
-      "index": 876,
+      "index": 866,
       "section": null
     },
     {
       "title": "Wolverine and The X-Men #16",
       "url": null,
       "read": false,
-      "index": 877,
-      "section": null
-    },
-    {
-      "title": "18",
-      "url": null,
-      "read": false,
-      "index": 878,
+      "index": 867,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #14",
       "url": null,
       "read": false,
-      "index": 894,
+      "index": 883,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #15",
       "url": null,
       "read": false,
-      "index": 895,
+      "index": 884,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #16",
       "url": null,
       "read": false,
-      "index": 896,
+      "index": 885,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #17",
       "url": null,
       "read": false,
-      "index": 897,
+      "index": 886,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #18",
       "url": null,
       "read": false,
-      "index": 898,
+      "index": 887,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #19",
       "url": null,
       "read": false,
-      "index": 899,
+      "index": 888,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #20",
       "url": null,
       "read": false,
-      "index": 900,
+      "index": 889,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #21",
       "url": null,
       "read": false,
-      "index": 901,
+      "index": 890,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #22",
       "url": null,
       "read": false,
-      "index": 902,
+      "index": 891,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #23",
       "url": null,
       "read": false,
-      "index": 903,
+      "index": 892,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #24",
       "url": null,
       "read": false,
-      "index": 904,
+      "index": 893,
       "section": null
     },
     {
       "title": "Savage Wolverine #1",
       "url": null,
       "read": false,
-      "index": 905,
+      "index": 894,
       "section": null
     },
     {
       "title": "Savage Wolverine #2",
       "url": null,
       "read": false,
-      "index": 906,
+      "index": 895,
       "section": null
     },
     {
       "title": "Savage Wolverine #3",
       "url": null,
       "read": false,
-      "index": 907,
+      "index": 896,
       "section": null
     },
     {
       "title": "Savage Wolverine #4",
       "url": null,
       "read": false,
-      "index": 908,
+      "index": 897,
       "section": null
     },
     {
       "title": "Savage Wolverine #5",
       "url": null,
       "read": false,
-      "index": 909,
+      "index": 898,
       "section": null
     },
     {
       "title": "Savage Wolverine #7",
       "url": null,
       "read": false,
-      "index": 911,
+      "index": 900,
       "section": null
     },
     {
       "title": "Savage Wolverine #8",
       "url": null,
       "read": false,
-      "index": 912,
+      "index": 901,
       "section": null
     },
     {
       "title": "Savage Wolverine #9",
       "url": null,
       "read": false,
-      "index": 913,
+      "index": 902,
       "section": null
     },
     {
       "title": "Savage Wolverine #11",
       "url": null,
       "read": false,
-      "index": 915,
+      "index": 904,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #25",
       "url": null,
       "read": false,
-      "index": 916,
+      "index": 905,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #26",
       "url": null,
       "read": false,
-      "index": 917,
+      "index": 906,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #27",
       "url": null,
       "read": false,
-      "index": 918,
+      "index": 907,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #28",
       "url": null,
       "read": false,
-      "index": 919,
+      "index": 908,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #29",
       "url": null,
       "read": false,
-      "index": 920,
+      "index": 909,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #30",
       "url": null,
       "read": false,
-      "index": 932,
+      "index": 921,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #31",
       "url": null,
       "read": false,
-      "index": 933,
+      "index": 922,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #32",
       "url": null,
       "read": false,
-      "index": 934,
+      "index": 923,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #33",
       "url": null,
       "read": false,
-      "index": 935,
+      "index": 924,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #34",
       "url": null,
       "read": false,
-      "index": 936,
+      "index": 925,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #35",
       "url": null,
       "read": false,
-      "index": 937,
+      "index": 926,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #1",
       "url": null,
       "read": false,
-      "index": 938,
+      "index": 927,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #2",
       "url": null,
       "read": false,
-      "index": 939,
+      "index": 928,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #3",
       "url": null,
       "read": false,
-      "index": 940,
+      "index": 929,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #4",
       "url": null,
       "read": false,
-      "index": 941,
+      "index": 930,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #5",
       "url": null,
       "read": false,
-      "index": 942,
+      "index": 931,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #6",
       "url": null,
       "read": false,
-      "index": 943,
+      "index": 932,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #7",
       "url": null,
       "read": false,
-      "index": 944,
+      "index": 933,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #8",
       "url": null,
       "read": false,
-      "index": 945,
+      "index": 934,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #9",
       "url": null,
       "read": false,
-      "index": 946,
+      "index": 935,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #10",
       "url": null,
       "read": false,
-      "index": 947,
+      "index": 936,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #11",
       "url": null,
       "read": false,
-      "index": 948,
+      "index": 937,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #12",
       "url": null,
       "read": false,
-      "index": 949,
+      "index": 938,
       "section": null
     },
     {
       "title": "Wolverine: JapanÃ¢â‚¬â„¢s Most Wanted #13",
       "url": null,
       "read": false,
-      "index": 950,
+      "index": 939,
       "section": null
     },
     {
       "title": "Wolverine (vol. 5) #9",
       "url": null,
       "read": false,
-      "index": 951,
+      "index": 940,
       "section": null
     },
     {
       "title": "Wolverine (vol. 5) #11",
       "url": null,
       "read": false,
-      "index": 953,
+      "index": 942,
       "section": null
     },
     {
       "title": "Wolverine (vol. 5) #12",
       "url": null,
       "read": false,
-      "index": 954,
+      "index": 943,
       "section": null
     },
     {
       "title": "Wolverine (vol. 5) #13",
       "url": null,
       "read": false,
-      "index": 955,
+      "index": 944,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #38",
       "url": null,
       "read": false,
-      "index": 956,
+      "index": 945,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #39",
       "url": null,
       "read": false,
-      "index": 957,
+      "index": 946,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #40",
       "url": null,
       "read": false,
-      "index": 958,
+      "index": 947,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #41",
       "url": null,
       "read": false,
-      "index": 959,
+      "index": 948,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 1) #42",
       "url": null,
       "read": false,
-      "index": 960,
+      "index": 949,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men Annual #1",
       "url": null,
       "read": false,
-      "index": 961,
+      "index": 950,
       "section": null
     },
     {
       "title": "Amazing X-Men (vol. 2) #1",
       "url": null,
       "read": false,
-      "index": 962,
+      "index": 951,
       "section": null
     },
     {
       "title": "Amazing X-Men (vol. 2) #2",
       "url": null,
       "read": false,
-      "index": 963,
+      "index": 952,
       "section": null
     },
     {
       "title": "Amazing X-Men (vol. 2) #3",
       "url": null,
       "read": false,
-      "index": 964,
+      "index": 953,
       "section": null
     },
     {
       "title": "Amazing X-Men (vol. 2) #4",
       "url": null,
       "read": false,
-      "index": 965,
+      "index": 954,
       "section": null
     },
     {
       "title": "Amazing X-Men (vol. 2) #5",
       "url": null,
       "read": false,
-      "index": 966,
+      "index": 955,
       "section": null
     },
     {
       "title": "Amazing X-Men (vol. 2) #6",
       "url": null,
       "read": false,
-      "index": 967,
+      "index": 956,
       "section": null
     },
     {
       "title": "Savage Wolverine #12",
       "url": null,
       "read": false,
-      "index": 968,
+      "index": 957,
       "section": null
     },
     {
       "title": "Savage Wolverine #13",
       "url": null,
       "read": false,
-      "index": 969,
+      "index": 958,
       "section": null
     },
     {
       "title": "Savage Wolverine #14",
       "url": null,
       "read": false,
-      "index": 970,
+      "index": 959,
       "section": null
     },
     {
       "title": "Savage Wolverine #15",
       "url": null,
       "read": false,
-      "index": 971,
+      "index": 960,
       "section": null
     },
     {
       "title": "Savage Wolverine #17",
       "url": null,
       "read": false,
-      "index": 973,
+      "index": 962,
       "section": null
     },
     {
       "title": "Wolverine (vol. 6) #9",
       "url": null,
       "read": false,
-      "index": 974,
+      "index": 963,
       "section": null
     },
     {
       "title": "Wolverine (vol. 6) #10",
       "url": null,
       "read": false,
-      "index": 975,
+      "index": 964,
       "section": null
     },
     {
       "title": "Wolverine (vol. 6) #11",
       "url": null,
       "read": false,
-      "index": 976,
+      "index": 965,
       "section": null
     },
     {
       "title": "Wolverine (vol. 6) #12",
       "url": null,
       "read": false,
-      "index": 977,
+      "index": 966,
       "section": null
     },
     {
       "title": "Wolverine Annual #1",
       "url": null,
       "read": false,
-      "index": 978,
+      "index": 967,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #1",
       "url": null,
       "read": false,
-      "index": 979,
+      "index": 968,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #2",
       "url": null,
       "read": false,
-      "index": 980,
+      "index": 969,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #3",
       "url": null,
       "read": false,
-      "index": 981,
+      "index": 970,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #4",
       "url": null,
       "read": false,
-      "index": 982,
+      "index": 971,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #5",
       "url": null,
       "read": false,
-      "index": 983,
+      "index": 972,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #6",
       "url": null,
       "read": false,
-      "index": 984,
+      "index": 973,
       "section": null
     },
     {
       "title": "Savage Wolverine #18",
       "url": null,
       "read": false,
-      "index": 985,
+      "index": 974,
       "section": null
     },
     {
       "title": "Savage Wolverine #19",
       "url": null,
       "read": false,
-      "index": 986,
+      "index": 975,
       "section": null
     },
     {
       "title": "Savage Wolverine #20",
       "url": null,
       "read": false,
-      "index": 987,
+      "index": 976,
       "section": null
     },
     {
       "title": "Savage Wolverine #21",
       "url": null,
       "read": false,
-      "index": 988,
+      "index": 977,
       "section": null
     },
     {
       "title": "Savage Wolverine #22",
       "url": null,
       "read": false,
-      "index": 989,
+      "index": 978,
       "section": null
     },
     {
       "title": "Savage Wolverine #23",
       "url": null,
       "read": false,
-      "index": 990,
+      "index": 979,
       "section": null
     },
     {
       "title": "Death of Wolverine #2",
       "url": null,
       "read": false,
-      "index": 992,
+      "index": 981,
       "section": null
     },
     {
       "title": "Death of Wolverine #4",
       "url": null,
       "read": false,
-      "index": 994,
+      "index": 983,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Weapon X Program #1",
       "url": null,
       "read": false,
-      "index": 995,
+      "index": 984,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Weapon X Program #2",
       "url": null,
       "read": false,
-      "index": 996,
+      "index": 985,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Weapon X Program #3",
       "url": null,
       "read": false,
-      "index": 997,
+      "index": 986,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Weapon X Program #4",
       "url": null,
       "read": false,
-      "index": 998,
+      "index": 987,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Weapon X Program #5",
       "url": null,
       "read": false,
-      "index": 999,
+      "index": 988,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Logan Legacy #1",
       "url": null,
       "read": false,
-      "index": 1000,
+      "index": 989,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Logan Legacy #2",
       "url": null,
       "read": false,
-      "index": 1001,
+      "index": 990,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Logan Legacy #3",
       "url": null,
       "read": false,
-      "index": 1002,
+      "index": 991,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Logan Legacy #4",
       "url": null,
       "read": false,
-      "index": 1003,
+      "index": 992,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Logan Legacy #5",
       "url": null,
       "read": false,
-      "index": 1004,
+      "index": 993,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Logan Legacy #6",
       "url": null,
       "read": false,
-      "index": 1005,
+      "index": 994,
       "section": null
     },
     {
       "title": "Death of Wolverine: The Logan Legacy #7",
       "url": null,
       "read": false,
-      "index": 1006,
-      "section": null
-    },
-    {
-      "title": "Death of Wolverine: Deadpool and Captain America",
-      "url": null,
-      "read": false,
-      "index": 1007,
-      "section": null
-    },
-    {
-      "title": "Death of Wolverine: Life After Logan",
-      "url": null,
-      "read": false,
-      "index": 1008,
+      "index": 995,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #10",
       "url": null,
       "read": false,
-      "index": 1009,
+      "index": 998,
       "section": null
     },
     {
       "title": "Wolverine and the X-Men (vol. 2) #11",
       "url": null,
       "read": false,
-      "index": 1010,
+      "index": 999,
       "section": null
     },
     {
       "title": "Nightcrawler (vol. 4) #7",
       "url": null,
       "read": false,
-      "index": 1011,
+      "index": 1000,
       "section": null
     },
     {
       "title": "Wolverines #1",
       "url": null,
       "read": false,
-      "index": 1012,
+      "index": 1001,
       "section": null
     },
     {
       "title": "Wolverines #2",
       "url": null,
       "read": false,
-      "index": 1013,
+      "index": 1002,
       "section": null
     },
     {
       "title": "Wolverines #4",
       "url": null,
       "read": false,
-      "index": 1015,
+      "index": 1004,
       "section": null
     },
     {
       "title": "Wolverines #5",
       "url": null,
       "read": false,
-      "index": 1016,
+      "index": 1005,
       "section": null
     },
     {
       "title": "Wolverines #6",
       "url": null,
       "read": false,
-      "index": 1017,
+      "index": 1006,
       "section": null
     },
     {
       "title": "Wolverines #7",
       "url": null,
       "read": false,
-      "index": 1018,
+      "index": 1007,
       "section": null
     },
     {
       "title": "Wolverines #8",
       "url": null,
       "read": false,
-      "index": 1019,
+      "index": 1008,
       "section": null
     },
     {
       "title": "Wolverines #10",
       "url": null,
       "read": false,
-      "index": 1021,
+      "index": 1010,
       "section": null
     },
     {
       "title": "Wolverines #11",
       "url": null,
       "read": false,
-      "index": 1022,
+      "index": 1011,
       "section": null
     },
     {
       "title": "Wolverines #12",
       "url": null,
       "read": false,
-      "index": 1023,
+      "index": 1012,
       "section": null
     },
     {
       "title": "Wolverines #13",
       "url": null,
       "read": false,
-      "index": 1024,
+      "index": 1013,
       "section": null
     },
     {
       "title": "Wolverines #14",
       "url": null,
       "read": false,
-      "index": 1025,
+      "index": 1014,
       "section": null
     },
     {
       "title": "Wolverines #15",
       "url": null,
       "read": false,
-      "index": 1026,
+      "index": 1015,
       "section": null
     },
     {
       "title": "Wolverines #16",
       "url": null,
       "read": false,
-      "index": 1027,
+      "index": 1016,
       "section": null
     },
     {
       "title": "Wolverines #17",
       "url": null,
       "read": false,
-      "index": 1028,
+      "index": 1017,
       "section": null
     },
     {
       "title": "Wolverines #18",
       "url": null,
       "read": false,
-      "index": 1029,
+      "index": 1018,
       "section": null
     },
     {
       "title": "Wolverines #19",
       "url": null,
       "read": false,
-      "index": 1030,
+      "index": 1019,
       "section": null
     },
     {
       "title": "Wolverines #20",
       "url": null,
       "read": false,
-      "index": 1031,
+      "index": 1020,
       "section": null
     },
     {
       "title": "Old Man Logan #1",
       "url": null,
       "read": false,
-      "index": 1032,
+      "index": 1021,
       "section": null
     },
     {
       "title": "Old Man Logan #2",
       "url": null,
       "read": false,
-      "index": 1033,
+      "index": 1022,
       "section": null
     },
     {
       "title": "Old Man Logan #3",
       "url": null,
       "read": false,
-      "index": 1034,
+      "index": 1023,
       "section": null
     },
     {
       "title": "Old Man Logan #4",
       "url": null,
       "read": false,
-      "index": 1035,
+      "index": 1024,
       "section": null
     },
     {
       "title": "Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #1",
       "url": null,
       "read": false,
-      "index": 1037,
+      "index": 1026,
       "section": null
     },
     {
       "title": "Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #2",
       "url": null,
       "read": false,
-      "index": 1038,
+      "index": 1027,
       "section": null
     },
     {
       "title": "Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #3",
       "url": null,
       "read": false,
-      "index": 1039,
+      "index": 1028,
       "section": null
     },
     {
       "title": "Wolverine: Old Man Logan Vol. 1: Berzerker Ã¢â‚¬â€œ Old Man Logan #4",
       "url": null,
       "read": false,
-      "index": 1040,
+      "index": 1029,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #2",
       "url": null,
       "read": false,
-      "index": 1042,
+      "index": 1031,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #3",
       "url": null,
       "read": false,
-      "index": 1043,
+      "index": 1032,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #4",
       "url": null,
       "read": false,
-      "index": 1044,
+      "index": 1033,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #5",
       "url": null,
       "read": false,
-      "index": 1045,
+      "index": 1034,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #6",
       "url": null,
       "read": false,
-      "index": 1046,
+      "index": 1035,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #7",
       "url": null,
       "read": false,
-      "index": 1047,
+      "index": 1036,
       "section": null
     },
     {
       "title": "All-New Wolverine #7",
       "url": null,
       "read": false,
-      "index": 1053,
+      "index": 1042,
       "section": null
     },
     {
       "title": "All-New Wolverine #8",
       "url": null,
       "read": false,
-      "index": 1054,
+      "index": 1043,
       "section": null
     },
     {
       "title": "All-New Wolverine #9",
       "url": null,
       "read": false,
-      "index": 1055,
+      "index": 1044,
       "section": null
     },
     {
       "title": "All-New Wolverine #10",
       "url": null,
       "read": false,
-      "index": 1056,
+      "index": 1045,
       "section": null
     },
     {
       "title": "All-New Wolverine #12",
       "url": null,
       "read": false,
-      "index": 1058,
+      "index": 1047,
       "section": null
     },
     {
       "title": "Civil War II: X-Men #1",
       "url": null,
       "read": false,
-      "index": 1059,
+      "index": 1048,
       "section": null
     },
     {
       "title": "Civil War II: X-Men #2",
       "url": null,
       "read": false,
-      "index": 1060,
+      "index": 1049,
       "section": null
     },
     {
       "title": "Civil War II: X-Men #3",
       "url": null,
       "read": false,
-      "index": 1061,
+      "index": 1050,
       "section": null
     },
     {
       "title": "Civil War II: X-Men #4",
       "url": null,
       "read": false,
-      "index": 1062,
+      "index": 1051,
       "section": null
     },
     {
       "title": "Old Man Logan #14",
       "url": null,
       "read": false,
-      "index": 1063,
+      "index": 1052,
       "section": null
     },
     {
       "title": "Old Man Logan #15",
       "url": null,
       "read": false,
-      "index": 1064,
+      "index": 1053,
       "section": null
     },
     {
       "title": "Old Man Logan #16",
       "url": null,
       "read": false,
-      "index": 1065,
+      "index": 1054,
       "section": null
     },
     {
       "title": "Old Man Logan #17",
       "url": null,
       "read": false,
-      "index": 1066,
+      "index": 1055,
       "section": null
     },
     {
       "title": "Old Man Logan #18",
       "url": null,
       "read": false,
-      "index": 1067,
+      "index": 1056,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #13",
       "url": null,
       "read": false,
-      "index": 1068,
+      "index": 1057,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #14",
       "url": null,
       "read": false,
-      "index": 1069,
+      "index": 1058,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #15",
       "url": null,
       "read": false,
-      "index": 1070,
+      "index": 1059,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #16",
       "url": null,
       "read": false,
-      "index": 1071,
+      "index": 1060,
       "section": null
     },
     {
       "title": "Extraordinary X-Men #20",
       "url": null,
       "read": false,
-      "index": 1082,
+      "index": 1071,
       "section": null
     },
     {
       "title": "X-Men Prime (2017) #1",
       "url": null,
       "read": false,
-      "index": 1083,
+      "index": 1072,
       "section": null
     },
     {
       "title": "Old Man Logan #19",
       "url": null,
       "read": false,
-      "index": 1084,
+      "index": 1073,
       "section": null
     },
     {
       "title": "Old Man Logan #20",
       "url": null,
       "read": false,
-      "index": 1085,
+      "index": 1074,
       "section": null
     },
     {
       "title": "Old Man Logan #21",
       "url": null,
       "read": false,
-      "index": 1086,
+      "index": 1075,
       "section": null
     },
     {
       "title": "Old Man Logan #22",
       "url": null,
       "read": false,
-      "index": 1087,
+      "index": 1076,
       "section": null
     },
     {
       "title": "Old Man Logan #23",
       "url": null,
       "read": false,
-      "index": 1088,
+      "index": 1077,
       "section": null
     },
     {
       "title": "Old Man Logan #24",
       "url": null,
       "read": false,
-      "index": 1089,
+      "index": 1078,
       "section": null
     },
     {
       "title": "Weapon X #1",
       "url": null,
       "read": false,
-      "index": 1090,
+      "index": 1079,
       "section": null
     },
     {
       "title": "Weapon X #2",
       "url": null,
       "read": false,
-      "index": 1091,
+      "index": 1080,
       "section": null
     },
     {
       "title": "Weapon X #3",
       "url": null,
       "read": false,
-      "index": 1092,
+      "index": 1081,
       "section": null
     },
     {
       "title": "Weapon X #4",
       "url": null,
       "read": false,
-      "index": 1093,
+      "index": 1082,
       "section": null
     },
     {
       "title": "Totally Awesome Hulk (2015) #19",
       "url": null,
       "read": false,
-      "index": 1094,
+      "index": 1083,
       "section": null
     },
     {
       "title": "Weapons of Mutant Destruction: Alpha (2017) #1",
       "url": null,
       "read": false,
-      "index": 1095,
+      "index": 1084,
       "section": null
     },
     {
       "title": "Weapon X #5",
       "url": null,
       "read": false,
-      "index": 1096,
+      "index": 1085,
       "section": null
     },
     {
       "title": "Totally Awesome Hulk #20",
       "url": null,
       "read": false,
-      "index": 1098,
+      "index": 1087,
       "section": null
     },
     {
       "title": "Totally Awesome Hulk #22",
       "url": null,
       "read": false,
-      "index": 1100,
+      "index": 1089,
       "section": null
     },
     {
       "title": "Weapon X #7",
       "url": null,
       "read": false,
-      "index": 1101,
+      "index": 1090,
       "section": null
     },
     {
       "title": "Weapon X #8",
       "url": null,
       "read": false,
-      "index": 1102,
+      "index": 1091,
       "section": null
     },
     {
       "title": "Weapon X #9",
       "url": null,
       "read": false,
-      "index": 1103,
+      "index": 1092,
       "section": null
     },
     {
       "title": "Weapon X #10",
       "url": null,
       "read": false,
-      "index": 1104,
+      "index": 1093,
       "section": null
     },
     {
       "title": "Weapon X #11",
       "url": null,
       "read": false,
-      "index": 1105,
+      "index": 1094,
       "section": null
     },
     {
       "title": "X-Men Gold #1",
       "url": null,
       "read": false,
-      "index": 1106,
+      "index": 1095,
       "section": null
     },
     {
       "title": "X-Men Gold #2",
       "url": null,
       "read": false,
-      "index": 1107,
+      "index": 1096,
       "section": null
     },
     {
       "title": "X-Men Gold #3",
       "url": null,
       "read": false,
-      "index": 1108,
+      "index": 1097,
       "section": null
     },
     {
       "title": "X-Men Gold #4",
       "url": null,
       "read": false,
-      "index": 1109,
+      "index": 1098,
       "section": null
     },
     {
       "title": "X-Men Gold #5",
       "url": null,
       "read": false,
-      "index": 1110,
+      "index": 1099,
       "section": null
     },
     {
       "title": "X-Men Gold #6",
       "url": null,
       "read": false,
-      "index": 1111,
+      "index": 1100,
       "section": null
     },
     {
       "title": "X-Men Gold #7",
       "url": null,
       "read": false,
-      "index": 1112,
+      "index": 1101,
       "section": null
     },
     {
       "title": "X-Men Gold #8",
       "url": null,
       "read": false,
-      "index": 1113,
+      "index": 1102,
       "section": null
     },
     {
       "title": "X-Men Gold #10",
       "url": null,
       "read": false,
-      "index": 1115,
+      "index": 1104,
       "section": null
     },
     {
       "title": "X-Men Gold #11",
       "url": null,
       "read": false,
-      "index": 1116,
+      "index": 1105,
       "section": null
     },
     {
       "title": "Generations: Banner Hulk & Totally Awesome Hulk #1",
       "url": null,
       "read": false,
-      "index": 1117,
+      "index": 1106,
       "section": null
     },
     {
       "title": "Generations: Captain Marvel & Ms. Marvel (2017) #1",
       "url": null,
       "read": false,
-      "index": 1119,
-      "section": null
-    },
-    {
-      "title": "Marvel Legacy Primer pages",
-      "url": null,
-      "read": false,
-      "index": 1128,
-      "section": null
-    },
-    {
-      "title": "FOOM Magazine (2017)",
-      "url": null,
-      "read": false,
-      "index": 1129,
+      "index": 1108,
       "section": null
     },
     {
       "title": "X-Men Blue #13",
       "url": null,
       "read": false,
-      "index": 1130,
+      "index": 1117,
       "section": null
     },
     {
       "title": "X-Men Blue #14",
       "url": null,
       "read": false,
-      "index": 1131,
+      "index": 1118,
       "section": null
     },
     {
       "title": "X-Men Blue #15",
       "url": null,
       "read": false,
-      "index": 1132,
+      "index": 1119,
       "section": null
     },
     {
       "title": "X-Men Gold #13",
       "url": null,
       "read": false,
-      "index": 1133,
+      "index": 1120,
       "section": null
     },
     {
       "title": "X-Men Gold #14",
       "url": null,
       "read": false,
-      "index": 1134,
+      "index": 1121,
       "section": null
     },
     {
       "title": "X-Men Gold #15",
       "url": null,
       "read": false,
-      "index": 1135,
+      "index": 1122,
       "section": null
     },
     {
       "title": "Weapon X #12",
       "url": null,
       "read": false,
-      "index": 1136,
+      "index": 1123,
       "section": null
     },
     {
       "title": "Weapon X #13",
       "url": null,
       "read": false,
-      "index": 1137,
+      "index": 1124,
       "section": null
     },
     {
       "title": "Weapon X #15",
       "url": null,
       "read": false,
-      "index": 1139,
+      "index": 1126,
       "section": null
     },
     {
       "title": "Weapon X #16",
       "url": null,
       "read": false,
-      "index": 1140,
+      "index": 1127,
       "section": null
     },
     {
       "title": "Weapon X #17",
       "url": null,
       "read": false,
-      "index": 1141,
+      "index": 1128,
       "section": null
     },
     {
       "title": "Weapon X #18",
       "url": null,
       "read": false,
-      "index": 1142,
+      "index": 1129,
       "section": null
     },
     {
       "title": "Weapon X #19",
       "url": null,
       "read": false,
-      "index": 1143,
+      "index": 1130,
       "section": null
     },
     {
       "title": "Weapon X #20",
       "url": null,
       "read": false,
-      "index": 1144,
+      "index": 1131,
       "section": null
     },
     {
       "title": "Weapon X #21",
       "url": null,
       "read": false,
-      "index": 1145,
-      "section": null
-    },
-    {
-      "title": "Deadpool Vs. Old Man Logan",
-      "url": null,
-      "read": false,
-      "index": 1146,
+      "index": 1132,
       "section": null
     },
     {
       "title": "Phoenix Resurrection: The Return Of Jean Grey #1",
       "url": null,
       "read": false,
-      "index": 1147,
+      "index": 1133,
       "section": null
     },
     {
       "title": "Phoenix Resurrection: The Return Of Jean Grey #2",
       "url": null,
       "read": false,
-      "index": 1148,
+      "index": 1134,
       "section": null
     },
     {
       "title": "Phoenix Resurrection: The Return Of Jean Grey #3",
       "url": null,
       "read": false,
-      "index": 1149,
+      "index": 1135,
       "section": null
     },
     {
       "title": "Phoenix Resurrection: The Return Of Jean Grey #4",
       "url": null,
       "read": false,
-      "index": 1150,
+      "index": 1136,
       "section": null
     },
     {
       "title": "Phoenix Resurrection: The Return Of Jean Grey #5",
       "url": null,
       "read": false,
-      "index": 1151,
+      "index": 1137,
       "section": null
     },
     {
       "title": "X-Men Gold (2017) #12",
       "url": null,
       "read": false,
-      "index": 1152,
+      "index": 1138,
       "section": null
     },
     {
       "title": "16-20",
       "url": null,
       "read": false,
-      "index": 1153,
+      "index": 1139,
       "section": null
     },
     {
       "title": "X-Men Gold #21",
       "url": null,
       "read": false,
-      "index": 1154,
+      "index": 1140,
       "section": null
     },
     {
       "title": "X-Men Gold #22",
       "url": null,
       "read": false,
-      "index": 1155,
+      "index": 1141,
       "section": null
     },
     {
       "title": "X-Men Gold #23",
       "url": null,
       "read": false,
-      "index": 1156,
+      "index": 1142,
       "section": null
     },
     {
       "title": "X-Men Gold #24",
       "url": null,
       "read": false,
-      "index": 1157,
+      "index": 1143,
       "section": null
     },
     {
       "title": "X-Men Gold #25",
       "url": null,
       "read": false,
-      "index": 1158,
+      "index": 1144,
       "section": null
     },
     {
       "title": "Old Man Logan #25",
       "url": null,
       "read": false,
-      "index": 1159,
+      "index": 1145,
       "section": null
     },
     {
       "title": "Old Man Logan #26",
       "url": null,
       "read": false,
-      "index": 1160,
+      "index": 1146,
       "section": null
     },
     {
       "title": "Old Man Logan #27",
       "url": null,
       "read": false,
-      "index": 1161,
+      "index": 1147,
       "section": null
     },
     {
       "title": "Old Man Logan #29",
       "url": null,
       "read": false,
-      "index": 1163,
+      "index": 1149,
       "section": null
     },
     {
       "title": "Old Man Logan #30",
       "url": null,
       "read": false,
-      "index": 1164,
+      "index": 1150,
       "section": null
     },
     {
       "title": "Old Man Logan #31",
       "url": null,
       "read": false,
-      "index": 1165,
+      "index": 1151,
       "section": null
     },
     {
       "title": "Old Man Logan #32",
       "url": null,
       "read": false,
-      "index": 1166,
+      "index": 1152,
       "section": null
     },
     {
       "title": "Old Man Logan #34",
       "url": null,
       "read": false,
-      "index": 1168,
+      "index": 1154,
       "section": null
     },
     {
       "title": "Old Man Logan #35",
       "url": null,
       "read": false,
-      "index": 1169,
-      "section": null
-    },
-    {
-      "title": "Infinity Countdown Prime (2018)",
-      "url": null,
-      "read": false,
-      "index": 1170,
-      "section": null
-    },
-    {
-      "title": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
-      "url": null,
-      "read": false,
-      "index": 1176,
+      "index": 1155,
       "section": null
     },
     {
       "title": "WhereÃ¢â‚¬â„¢s Wolverine pages and Material from Marvel Legacay (2017) #1",
       "url": null,
       "read": false,
-      "index": 1195,
+      "index": 1180,
       "section": null
     },
     {
       "title": "Old Man Logan #37",
       "url": null,
       "read": false,
-      "index": 1197,
+      "index": 1182,
       "section": null
     },
     {
       "title": "Old Man Logan #38",
       "url": null,
       "read": false,
-      "index": 1198,
+      "index": 1183,
       "section": null
     },
     {
       "title": "Old Man Logan #39",
       "url": null,
       "read": false,
-      "index": 1199,
+      "index": 1184,
       "section": null
     },
     {
       "title": "Old Man Logan #40",
       "url": null,
       "read": false,
-      "index": 1200,
+      "index": 1185,
       "section": null
     },
     {
       "title": "Old Man Logan #41",
       "url": null,
       "read": false,
-      "index": 1201,
+      "index": 1186,
       "section": null
     },
     {
       "title": "Old Man Logan #42",
       "url": null,
       "read": false,
-      "index": 1202,
+      "index": 1187,
       "section": null
     },
     {
       "title": "Old Man Logan #43",
       "url": null,
       "read": false,
-      "index": 1203,
+      "index": 1188,
       "section": null
     },
     {
       "title": "Old Man Logan #44",
       "url": null,
       "read": false,
-      "index": 1204,
+      "index": 1189,
       "section": null
     },
     {
       "title": "Old Man Logan #45",
       "url": null,
       "read": false,
-      "index": 1205,
+      "index": 1190,
       "section": null
     },
     {
       "title": "Old Man Logan #46",
       "url": null,
       "read": false,
-      "index": 1216,
+      "index": 1201,
       "section": null
     },
     {
       "title": "Old Man Logan #47",
       "url": null,
       "read": false,
-      "index": 1217,
+      "index": 1202,
       "section": null
     },
     {
       "title": "Old Man Logan #48",
       "url": null,
       "read": false,
-      "index": 1218,
+      "index": 1203,
       "section": null
     },
     {
       "title": "Old Man Logan #49",
       "url": null,
       "read": false,
-      "index": 1219,
+      "index": 1204,
       "section": null
     },
     {
       "title": "Old Man Logan #50",
       "url": null,
       "read": false,
-      "index": 1220,
+      "index": 1205,
       "section": null
     },
     {
       "title": "Dead Man Logan #1",
       "url": null,
       "read": false,
-      "index": 1221,
+      "index": 1206,
       "section": null
     }
   ],
@@ -8546,20 +8343,35 @@
       "placeholder": true
     },
     {
-      "issueId": -2064604260,
-      "title": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 108820,
+      "title": "GHOST RIDER/WOLVERINE/PUNISHER: HEARTS OF DARKNESS 1 (1991) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/108820/ghost_riderwolverinepunisher_hearts_of_darkness_1_1991_1",
+      "seriesId": 37388,
+      "seriesName": "GHOST RIDER/WOLVERINE/PUNISHER: HEARTS OF DARKNESS 1 (1991 - Present)",
+      "onSale": "1991-12-01T00:00:00+0000",
+      "mu": "1991-12-01T00:00:00+0000",
+      "digitalId": 62133,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/f0/67a2a8dd4a03e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 56,
+      "creators": [
+        {
+          "name": "Klaus Janson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -196998224,
@@ -8594,20 +8406,39 @@
       "placeholder": true
     },
     {
-      "issueId": -654163775,
-      "title": "Shadow Society",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62695,
+      "title": "LOGAN: SHADOW SOCIETY 1 (1997) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/62695/logan_shadow_society_1_1997_1",
+      "seriesId": 23010,
+      "seriesName": "LOGAN: SHADOW SOCIETY 1 (1997)",
+      "onSale": "1996-12-01T00:00:00+0000",
+      "mu": "1996-12-01T00:00:00+0000",
+      "digitalId": 44454,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/30/5cb635a62a74e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Octavio Cariello",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Aiken",
+          "role": "penciler"
+        },
+        {
+          "name": "Tomm Coker",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -1463336403,
@@ -9009,20 +8840,35 @@
       "placeholder": true
     },
     {
-      "issueId": -687504101,
-      "title": "Spider-Man Vs. Wolverine",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 41003,
+      "title": "Spider-Man Versus Wolverine (1987) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/41003/spider-man_versus_wolverine_1987_1",
+      "seriesId": 15218,
+      "seriesName": "Spider-Man Versus Wolverine (1987)",
+      "onSale": "1987-02-01T00:00:00+0000",
+      "mu": "2011-05-12T08:26:00+0000",
+      "digitalId": 21200,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5d8e38e7c50e4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Williamson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mark Bright",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 9151,
@@ -9963,20 +9809,27 @@
       ]
     },
     {
-      "issueId": -140988572,
-      "title": "Wolverine: Inner Fury",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 88616,
+      "title": "Wolverine: Inner Fury (1992) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/88616/wolverine_inner_fury_1992_1",
+      "seriesId": 30515,
+      "seriesName": "Wolverine: Inner Fury (1992)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "2020-03-05T00:00:00+0000",
+      "digitalId": 54395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5e56b5971ba32",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        }
+      ]
     },
     {
       "issueId": -1040040582,
@@ -10571,36 +10424,62 @@
       "placeholder": true
     },
     {
-      "issueId": -651771951,
-      "title": "Wolverine and Nick Fury: Scorpio Rising",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 66659,
+      "title": "Wolverine/Nick Fury: Scorpio Rising (1994) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66659/wolverinenick_fury_scorpio_rising_1994_1",
+      "seriesId": 24132,
+      "seriesName": "Wolverine/Nick Fury: Scorpio Rising (1994)",
+      "onSale": "1994-10-01T00:00:00+0000",
+      "mu": "2018-04-30T00:00:00+0000",
+      "digitalId": 47633,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/8/b0/5ae3414e061dc",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Shawn Mcmanus",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Chaykin",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -1031410090,
-      "title": "Ghost Rider/Wolverine/Punisher: The Dark Design",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 62690,
+      "title": "Ghost Rider/Wolverine/Punisher: The Dark Design (1994)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/62690/ghost_riderwolverinepunisher_the_dark_design_1994",
+      "seriesId": 23006,
+      "seriesName": "Ghost Rider/Wolverine/Punisher: The Dark Design (1994)",
+      "onSale": "1994-12-01T00:00:00+0000",
+      "mu": "2017-10-23T00:00:00+0000",
+      "digitalId": 44444,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/59e79a411336f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Al Milgrom",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Garney",
+          "role": "penciler"
+        },
+        {
+          "name": "Howard Mackie",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -2099744606,
@@ -10933,38 +10812,6 @@
       "placeholder": true
     },
     {
-      "issueId": -725368264,
-      "title": "Age of Apocalypse reading order",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1852933737,
-      "title": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": -1860575833,
       "title": "Wolverine #101",
       "number": "101",
@@ -11207,38 +11054,6 @@
       "issueId": -96909312,
       "title": "Venom: Tooth and Claw #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1533577832,
-      "title": "Logan: Shadow Society",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -854141492,
-      "title": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
-      "number": null,
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -11805,22 +11620,6 @@
       "issueId": -976802551,
       "title": "Hulk (1999) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1993467059,
-      "title": "Wolveirne/Cable one-shot",
-      "number": null,
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -15795,22 +15594,6 @@
       "placeholder": true
     },
     {
-      "issueId": -1990355168,
-      "title": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": 2092,
       "title": "House of M (2005) #1",
       "number": "1",
@@ -16279,22 +16062,6 @@
       "issueId": -1233700224,
       "title": "Wolverine (vol. 3) #40",
       "number": "40",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -928949280,
-      "title": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
-      "number": null,
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -17295,20 +17062,35 @@
       ]
     },
     {
-      "issueId": -2038803463,
-      "title": "X-Men: Messiah Complex One-Shot",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 16600,
+      "title": "X-Men: Messiah Complex (2007) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/16600/x-men_messiah_complex_2007_1",
+      "seriesId": 2901,
+      "seriesName": "X-Men: Messiah Complex (2007 - 2008)",
+      "onSale": "2007-10-31T00:00:00+0000",
+      "mu": "2008-05-09T00:00:00+0000",
+      "digitalId": 8872,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/f0/513a8972c747e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "David Finch",
+          "role": "penciler"
+        },
+        {
+          "name": "Marc Silvestri",
+          "role": "penciler"
+        },
+        {
+          "name": "Ed Brubaker",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 17206,
@@ -18874,20 +18656,39 @@
       ]
     },
     {
-      "issueId": -1189012665,
-      "title": "X-Force/Cable: Messiah War",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 27620,
+      "title": "X-FORCE/CABLE: MESSIAH WAR 1 (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/27620/x-forcecable_messiah_war_1_2009_1",
+      "seriesId": 7002,
+      "seriesName": "X-FORCE/CABLE: MESSIAH WAR 1 (2009)",
+      "onSale": "2009-03-25T00:00:00+0000",
+      "mu": "2009-03-25T00:00:00+0000",
+      "digitalId": 13177,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/52c5d057533be",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Dave Wilkins",
+          "role": "penciler"
+        },
+        {
+          "name": "Kaare Andrews",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Choi",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 23971,
@@ -19465,36 +19266,94 @@
       ]
     },
     {
-      "issueId": -2070758320,
-      "title": "X Necrosha",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 28103,
+      "title": "X Necrosha (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/28103/x_necrosha_2009_1",
+      "seriesId": 9070,
+      "seriesName": "X Necrosha (2009)",
+      "onSale": "2009-10-28T00:00:00+0000",
+      "mu": "2010-09-02T00:00:00+0000",
+      "digitalId": 13921,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/d0/57680fa66ae27",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ibraim Roberson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        },
+        {
+          "name": "Craig Kyle",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        },
+        {
+          "name": "Zeb Wells",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -1969088560,
-      "title": "X Necrosha: The Gathering",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 29945,
+      "title": "X Necrosha: The Gathering (2009) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/29945/x_necrosha_the_gathering_2009_1",
+      "seriesId": 9177,
+      "seriesName": "X Necrosha: The Gathering (2009)",
+      "onSale": "2009-12-09T00:00:00+0000",
+      "mu": "2011-05-10T08:49:06+0000",
+      "digitalId": 20636,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/f0/5768037ad8ed4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Clayton Crain",
+          "role": "penciler"
+        },
+        {
+          "name": "Ibraim Roberson",
+          "role": "penciler"
+        },
+        {
+          "name": "Kalman Andrasofszky",
+          "role": "penciler"
+        },
+        {
+          "name": "Leonardo Manco",
+          "role": "penciler"
+        },
+        {
+          "name": "Mateus Santolouco",
+          "role": "penciler"
+        },
+        {
+          "name": "Christopher Yost",
+          "role": "writer"
+        },
+        {
+          "name": "Craig Kyle",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -163793822,
@@ -19817,20 +19676,47 @@
       "placeholder": true
     },
     {
-      "issueId": -654921425,
-      "title": "Second Coming: Prepare",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 33554,
+      "title": "Second Coming: Prepare (2010) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/33554/second_coming_prepare_2010_1",
+      "seriesId": 9851,
+      "seriesName": "Second Coming: Prepare (2010)",
+      "onSale": "2010-02-24T00:00:00+0000",
+      "mu": "2018-06-18T00:00:00+0000",
+      "digitalId": 14072,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/5b22f0a399d75",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Michel Lacombe",
+          "role": "cover artist"
+        },
+        {
+          "name": "Daniel Acuna",
+          "role": "penciler"
+        },
+        {
+          "name": "Stuart Immonen",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph York",
+          "role": "writer"
+        },
+        {
+          "name": "John Rhett Thomas",
+          "role": "writer"
+        },
+        {
+          "name": "Mike Carey",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -462507324,
@@ -23599,54 +23485,6 @@
       "placeholder": true
     },
     {
-      "issueId": -1919526153,
-      "title": "6",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1583378440,
-      "title": "10",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -893618071,
-      "title": "Material from Marvel Point One",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": 40251,
       "title": "Avengers Academy (2010) #29",
       "number": "29",
@@ -24558,22 +24396,6 @@
       "issueId": -589063123,
       "title": "Wolverine and The X-Men #16",
       "number": "16",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1449157488,
-      "title": "18",
-      "number": null,
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -27107,36 +26929,62 @@
       "placeholder": true
     },
     {
-      "issueId": -1507653072,
-      "title": "Death of Wolverine: Deadpool and Captain America",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 50983,
+      "title": "DEATH OF WOLVERINE: DEADPOOL & CAPTAIN AMERICA 1 (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/50983/death_of_wolverine_deadpool_captain_america_1_2014_1",
+      "seriesId": 19087,
+      "seriesName": "DEATH OF WOLVERINE: DEADPOOL & CAPTAIN AMERICA 1 (2014)",
+      "onSale": "2014-10-29T00:00:00+0000",
+      "mu": "2015-04-27T00:00:00+0000",
+      "digitalId": 35016,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/e0/543d7d6c400e0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Ed Mcguinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        }
+      ]
     },
     {
-      "issueId": -1351985290,
-      "title": "Death of Wolverine: Life After Logan",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 51050,
+      "title": "DEATH OF WOLVERINE: LIFE AFTER LOGAN 1 (2014) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/51050/death_of_wolverine_life_after_logan_1_2014_1",
+      "seriesId": 19161,
+      "seriesName": "DEATH OF WOLVERINE: LIFE AFTER LOGAN 1 (2014)",
+      "onSale": "2014-11-05T00:00:00+0000",
+      "mu": "2015-05-04T00:00:00+0000",
+      "digitalId": 35394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/00/54468a7e8a36e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Javier Pulido",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeff Loveness",
+          "role": "writer"
+        },
+        {
+          "name": "Joshua Hale Fialkov",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": -1863111703,
@@ -29563,38 +29411,6 @@
       ]
     },
     {
-      "issueId": -1101031630,
-      "title": "Marvel Legacy Primer pages",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -533640957,
-      "title": "FOOM Magazine (2017)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
       "issueId": -1222984233,
       "title": "X-Men Blue #13",
       "number": "13",
@@ -29853,22 +29669,6 @@
       "issueId": -732391417,
       "title": "Weapon X #21",
       "number": "21",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
-    },
-    {
-      "issueId": -1859213594,
-      "title": "Deadpool Vs. Old Man Logan",
-      "number": null,
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -30272,20 +30072,35 @@
       "placeholder": true
     },
     {
-      "issueId": -1504980741,
-      "title": "Infinity Countdown Prime (2018)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 66283,
+      "title": "Infinity Countdown Prime (2018) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/66283/infinity_countdown_prime_2018_1",
+      "seriesId": 24300,
+      "seriesName": "Infinity Countdown Prime (2018)",
+      "onSale": "2018-02-21T00:00:00+0000",
+      "mu": "2018-08-27T00:00:00+0000",
+      "digitalId": 47335,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/90/5a84851766948",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Mike Deodato",
+          "role": "penciler"
+        },
+        {
+          "name": "Gerry Duggan",
+          "role": "writer"
+        },
+        {
+          "name": "Mike O'sullivan",
+          "role": "writer"
+        }
+      ]
     },
     {
       "issueId": 66416,
@@ -30497,22 +30312,6 @@
           "role": "writer"
         }
       ]
-    },
-    {
-      "issueId": -832872061,
-      "title": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true
     },
     {
       "issueId": 66912,
