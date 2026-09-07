@@ -8,8 +8,8 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const README = readFileSync(join(ROOT, 'README.md'), 'utf8');
 const SCREENSHOTS = join(ROOT, 'docs', 'screenshots');
 const EXPECTED = [
-  'avengers-disassembled-reading-1280.png',
-  'home-1280.png',
+  'avengers-disassembled-reading-960.png',
+  'home-960.png',
 ];
 
 function pngDimensions(path) {
@@ -29,11 +29,11 @@ test('the README overview stays count-free as the catalog grows', () => {
   );
 });
 
-test('the README shows exactly the two current 1280 by 900 product views', () => {
+test('the README shows exactly the two focused 960 by 900 product views', () => {
   const images = [...README.matchAll(/!\[[^\]]+\]\(([^)]+\.png)\)/g)].map((match) => match[1]);
   assert.deepEqual(images, [
-    'docs/screenshots/home-1280.png',
-    'docs/screenshots/avengers-disassembled-reading-1280.png',
+    'docs/screenshots/home-960.png',
+    'docs/screenshots/avengers-disassembled-reading-960.png',
   ]);
 
   const files = readdirSync(SCREENSHOTS).filter((file) => file.endsWith('.png')).sort();
@@ -41,6 +41,6 @@ test('the README shows exactly the two current 1280 by 900 product views', () =>
   for (const file of EXPECTED) {
     const path = join(SCREENSHOTS, file);
     assert.equal(existsSync(path), true, `${file} is missing`);
-    assert.deepEqual(pngDimensions(path), { width: 1280, height: 900 });
+    assert.deepEqual(pngDimensions(path), { width: 960, height: 900 });
   }
 });
