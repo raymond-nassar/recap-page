@@ -24,6 +24,13 @@ provider-unavailable identities, and 23 repeated references. It publishes 544 ex
 placeholders while retaining the complete 857-position source ledger and its 74 non-issue
 exclusions.
 
+### Simplified the project home
+
+The project website has shorter copy, fewer repeated links, and simpler navigation. Fresh,
+narrower app screenshots put the reading content first and display at a readable size rather
+than in small side-by-side cards. Help, documentation, feedback, and the important privacy and
+setup guidance remain available. Nothing saved in the app is affected.
+
 ### Settled the Nick Fury and S.H.I.E.L.D. guide gaps
 
 In plain English: The bundled Nick Fury guide now opens 62 exact comics that previously appeared
