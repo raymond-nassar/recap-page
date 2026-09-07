@@ -12,6 +12,17 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Show reading content sooner on narrow screens
+
+In plain English: On narrow screens, the sidebar is now a compact header with a visible
+Navigation button. Opening it reveals the same destinations and status messages in the page flow,
+and view changes close it safely so reading content appears much earlier. Desktop still keeps the
+expanded and compact rails, and your saved Reading Lists and progress are unchanged.
+
+For maintainers: `sidebar.collapsed` remains desktop-only persistence, while narrow open and closed
+state is ephemeral. Ctrl+\ still drives the same toggle entry point across both desktop and narrow
+layouts.
+
 ### Settled the Captain America modern guide
 
 In plain English: The modern Captain America guide now opens the one comic that its source names

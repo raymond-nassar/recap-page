@@ -8602,6 +8602,547 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'narrow-content',
+    title: 'narrow navigation keeps one compact header and moves reading content earlier',
+    async run(page, t) {
+      const baseline = {
+        880: { heading: 533.1875, actionTop: 981.703125 },
+        620: { heading: 529.1875, actionTop: 1238.703125 },
+        320: { heading: 529.1875, actionTop: 1531.0625 },
+      };
+      const measureReading = () => page.evaluate(() => {
+        const sidebar = document.querySelector('#sidebar');
+        const panel = document.querySelector('#sidebar-panel');
+        const main = document.querySelector('#main');
+        const heading = document.querySelector('#order-name');
+        const action = document.querySelector('#btn-hero-read');
+        const keyboardTargets = [...panel.querySelectorAll(
+          'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        )].filter((node) => !node.disabled && node.getClientRects().length > 0);
+        const headingRect = heading?.getBoundingClientRect();
+        const actionRect = action?.getBoundingClientRect();
+        return {
+          headerHeight: sidebar?.getBoundingClientRect().height ?? 0,
+          mainTop: main?.getBoundingClientRect().top ?? 0,
+          headingTop: headingRect?.top ?? null,
+          actionTop: actionRect?.top ?? null,
+          actionBottom: actionRect?.bottom ?? null,
+          panelHidden: panel?.hidden ?? null,
+          keyboardTargets: keyboardTargets.length,
+          overflow: document.documentElement.scrollWidth - innerWidth,
+        };
+      });
+      const measureHeading = () => page.evaluate(() => {
+        const visible = document.querySelector('.view:not([hidden])');
+        const heading = visible?.querySelector('h1');
+        return {
+          headerHeight: document.querySelector('#sidebar')?.getBoundingClientRect().height ?? 0,
+          headingTop: heading?.getBoundingClientRect().top ?? null,
+          visibleId: visible?.id ?? null,
+        };
+      });
+
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await page.waitForSelector('#btn-hero-read', { timeout: 15000 });
+      for (const width of [880, 620, 320]) {
+        await page.setViewport({ width, height: 900 });
+        await page.waitForFunction((want) => innerWidth === want, { timeout: 15000 }, width);
+        await page.waitForFunction(
+          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+          { timeout: 15000 },
+        );
+        const sample = await measureReading();
+        const movedHeading = baseline[width].heading - sample.headingTop;
+        const movedAction = baseline[width].actionTop - sample.actionTop;
+        t.check(`the ${width}px closed header stays compact and keeps content flow`,
+          sample.headerHeight <= 80
+          && sample.mainTop <= sample.headerHeight + 1
+          && sample.panelHidden === true
+          && sample.keyboardTargets === 0
+          && sample.overflow <= 1,
+          JSON.stringify(sample));
+        t.check(`the ${width}px reading heading and action move upward by at least 350px`,
+          movedHeading >= 350
+          && movedAction >= 350,
+          JSON.stringify({ movedHeading, movedAction, sample }));
+        if (width !== 320) {
+          t.check(`the ${width}px first reading action is above the first viewport fold`,
+            (sample.actionBottom ?? 9999) <= 900,
+            JSON.stringify(sample));
+        }
+      }
+
+      await page.$eval('#btn-hero-read', (button) => button.scrollIntoView({ block: 'center' }));
+      const narrowAction = await page.$eval('#btn-hero-read', (button) => {
+        const rect = button.getBoundingClientRect();
+        const headerBottom = document.querySelector('#sidebar').getBoundingClientRect().bottom;
+        return {
+          top: rect.top,
+          bottom: rect.bottom,
+          headerBottom,
+          visible: rect.bottom > 0 && rect.top < innerHeight,
+        };
+      });
+      t.check('at 320px the reading action stays scroll-reachable and unobscured',
+        narrowAction.visible && narrowAction.top >= narrowAction.headerBottom,
+        JSON.stringify(narrowAction));
+
+      await seedFixtureState(page, { sidebarCollapsed: false, openRead: true });
+      await page.setViewport({ width: 880, height: 900 });
+      await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
+      await page.waitForFunction(
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        { timeout: 15000 },
+      );
+      const savedExpanded = await measureReading();
+      t.check('saved desktop-expanded preference still boots narrow closed with a compact header',
+        savedExpanded.headerHeight <= 80
+        && savedExpanded.panelHidden === true
+        && savedExpanded.keyboardTargets === 0,
+        JSON.stringify(savedExpanded));
+
+      await page.evaluate(() => {
+        localStorage.removeItem('mrt.state.v2');
+        localStorage.removeItem('mrt.settings');
+        localStorage.removeItem('sidebar.collapsed');
+      });
+      await page.reload({ waitUntil: 'load' });
+      await page.setViewport({ width: 880, height: 900 });
+      await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
+      await page.waitForFunction(
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        { timeout: 15000 },
+      );
+      const emptyHome = await measureHeading();
+      t.check('empty Home keeps the compact header and an early heading',
+        emptyHome.visibleId === 'view-home'
+        && emptyHome.headerHeight <= 80
+        && (emptyHome.headingTop ?? 9999) <= 160,
+        JSON.stringify(emptyHome));
+
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await click(page, '.brand[data-view="home"]');
+      const savedHome = await measureHeading();
+      t.check('saved Home keeps the compact header and an early heading',
+        savedHome.visibleId === 'view-home'
+        && savedHome.headerHeight <= 80
+        && (savedHome.headingTop ?? 9999) <= 160,
+        JSON.stringify(savedHome));
+
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel .ri[data-view="library"]');
+      const library = await measureHeading();
+      t.check('Library keeps the compact header and an early heading',
+        library.visibleId === 'view-library'
+        && library.headerHeight <= 80
+        && (library.headingTop ?? 9999) <= 160,
+        JSON.stringify(library));
+
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel #list-nav .ri');
+      await click(page, '#btn-hero-inspect');
+      await page.waitForSelector('#view-issue:not([hidden])', { timeout: 15000 });
+      const issue = await measureHeading();
+      t.check('Issue detail keeps the compact header and an early heading',
+        issue.visibleId === 'view-issue'
+        && issue.headerHeight <= 80
+        && (issue.headingTop ?? 9999) <= 160,
+        JSON.stringify(issue));
+    },
+  },
+  {
+    id: 'narrow-navigation',
+    title: 'narrow navigation keeps labels visible, focus safe, and route compatible',
+    async run(page, t) {
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await page.setViewport({ width: 880, height: 900 });
+      await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
+      await page.waitForFunction(
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation'
+          && document.querySelector('#sidebar-panel')?.hidden === true,
+        { timeout: 15000 },
+      );
+
+      await page.$eval('#btn-rail-toggle', (button) => button.focus());
+      await page.keyboard.press('Space');
+      const opened = await page.evaluate(() => {
+        const button = document.querySelector('#btn-rail-toggle');
+        const panel = document.querySelector('#sidebar-panel');
+        const required = ['Continue reading', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app'];
+        const names = [...panel.querySelectorAll('.ri, .brand')]
+          .map((node) => node.textContent.replace(/\s+/g, ' ').trim())
+          .filter(Boolean);
+        return {
+          ariaLabel: button.getAttribute('aria-label'),
+          controls: button.getAttribute('aria-controls'),
+          expanded: button.getAttribute('aria-expanded'),
+          focused: document.activeElement?.id,
+          panelHidden: panel.hidden,
+          labelsPresent: required.every((label) => names.some((name) => name.includes(label))),
+        };
+      });
+      t.check('Space opens Navigation with the expected control relationship and keeps focus on the toggle',
+        opened.ariaLabel === 'Navigation'
+        && opened.controls === 'sidebar-panel'
+        && opened.expanded === 'true'
+        && opened.focused === 'btn-rail-toggle'
+        && opened.panelHidden === false
+        && opened.labelsPresent,
+        JSON.stringify(opened));
+
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#sidebar-panel')?.hidden === true);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => document.querySelector('#sidebar-panel')?.hidden === false);
+      await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
+      await page.keyboard.press('Escape');
+      const escaped = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        focus: document.activeElement?.id,
+      }));
+      t.check('Escape from a focused panel button closes Navigation and rescues focus to the toggle',
+        escaped.hidden && escaped.focus === 'btn-rail-toggle',
+        JSON.stringify(escaped));
+
+      await page.keyboard.press('Enter');
+      await page.$eval('#sidebar-panel .ri[data-view="browse"]', (button) => button.focus());
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      const ctrlClose = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        focus: document.activeElement?.id,
+      }));
+      t.check('Ctrl+\\ from a panel descendant closes Navigation and rescues focus', ctrlClose.hidden && ctrlClose.focus === 'btn-rail-toggle', JSON.stringify(ctrlClose));
+
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel .ri[data-view="add"]');
+      await click(page, '#view-add [data-view="add-manual"]');
+      await page.waitForSelector('#manual-title', { timeout: 15000 });
+      await page.$eval('#manual-title', (input) => input.focus());
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      const textFieldShortcut = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        active: document.activeElement?.id ?? null,
+      }));
+      t.check('Ctrl+\\ from a text field toggles Navigation without stealing text-field focus',
+        textFieldShortcut.hidden === false && textFieldShortcut.active === 'manual-title',
+        JSON.stringify(textFieldShortcut));
+      await click(page, '#sidebar-panel #list-nav .ri');
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.$eval('#btn-rail-toggle', (button) => button.focus());
+      await page.keyboard.press('Enter');
+      await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
+      await page.keyboard.press('d');
+      const passive = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        focusInside: document.querySelector('#sidebar-panel').contains(document.activeElement),
+      }));
+      t.check('a passive reading repaint keeps narrow Navigation open and focus available',
+        passive.hidden === false && passive.focusInside,
+        JSON.stringify(passive));
+
+      for (const [selector, viewId] of [
+        ['#sidebar-panel .ri[data-view="library"]', 'view-library'],
+        ['#sidebar-panel .ri[data-view="browse"]', 'view-browse'],
+        ['#sidebar-panel .ri[data-view="add"]', 'view-add'],
+        ['#sidebar-panel .ri[data-view="data"]', 'view-data'],
+        ['#sidebar-panel .ri[data-view="about"]', 'view-about'],
+        ['.brand[data-view="home"]', 'view-home'],
+        ['#sidebar-panel #list-nav .ri', 'view-read'],
+      ]) {
+        await click(page, '#btn-rail-toggle');
+        await click(page, selector);
+        await page.waitForSelector(`#${viewId}:not([hidden])`);
+        const routed = await page.evaluate(() => ({
+          hidden: document.querySelector('#sidebar-panel').hidden,
+          focusVisible: document.activeElement?.getClientRects().length > 0,
+        }));
+        t.check(`routing to ${viewId} closes narrow Navigation and leaves visible focus`, routed.hidden && routed.focusVisible, JSON.stringify(routed));
+      }
+
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel .ri[data-view="browse"]');
+      await click(page, '#view-browse [data-category="timeline"]');
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel .ri[data-view="add"]');
+      await click(page, '#view-add [data-view="add-series"]');
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel .ri[data-view="library"]');
+      await click(page, '#view-library [data-view="progress"]');
+      const hierarchy = await page.evaluate(() => ({
+        browseCurrent: Boolean(document.querySelector('.ri[data-view="browse"][aria-current="page"]')),
+        addCurrent: Boolean(document.querySelector('.ri[data-view="add"][aria-current="page"]')),
+        libraryCurrent: Boolean(document.querySelector('.ri[data-view="library"][aria-current="page"]')),
+        breadcrumb: [...document.querySelectorAll('.breadcrumb a, .breadcrumb li > span')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('hub children keep parent selection and breadcrumb hierarchy',
+        hierarchy.browseCurrent || hierarchy.addCurrent || hierarchy.libraryCurrent,
+        JSON.stringify(hierarchy));
+
+      await click(page, '#list-nav .ri');
+      await click(page, '#btn-hero-inspect');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      const issueHash = await page.evaluate(() => location.hash);
+      await page.goBack({ waitUntil: 'load' });
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.goForward({ waitUntil: 'load' });
+      await page.waitForSelector('#view-issue:not([hidden])');
+      const afterHistory = await page.evaluate(() => ({
+        hash: location.hash,
+        breadcrumb: [...document.querySelectorAll('.breadcrumb a, .breadcrumb li > span')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('saved-list issue route survives Back and Forward with breadcrumb context',
+        issueHash === afterHistory.hash && afterHistory.breadcrumb.length >= 2,
+        JSON.stringify(afterHistory));
+
+      await click(page, '#btn-rail-toggle');
+      await page.$eval('#main', (main) => main.focus());
+      await page.keyboard.press('Escape');
+      const noGlobalEscape = await page.evaluate(() => !document.querySelector('#sidebar-panel').hidden);
+      t.check('Escape outside the sidebar does not become a global close command', noGlobalEscape, String(noGlobalEscape));
+
+      const toggleBefore = await page.evaluate(() => ({
+        hash: location.hash,
+        read: JSON.parse(localStorage.getItem('mrt.state.v2'))?.read?.[900001] ?? null,
+      }));
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#btn-rail-toggle');
+      const after = await page.evaluate(() => ({
+        hash: location.hash,
+        read: JSON.parse(localStorage.getItem('mrt.state.v2'))?.read?.[900001] ?? null,
+      }));
+      t.check('Navigation toggles do not change hash history state or reading progress',
+        toggleBefore.hash === after.hash && toggleBefore.read === after.read,
+        JSON.stringify({ toggleBefore, after }));
+
+      await page.setViewport({ width: 620, height: 900 });
+      await page.evaluate(() => {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('mrt.settings', JSON.stringify({
+          ...JSON.parse(localStorage.getItem('mrt.settings') ?? '{}'),
+          covers: false,
+        }));
+      });
+      await page.reload({ waitUntil: 'load' });
+      await click(page, '#list-nav .ri');
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await click(page, '#btn-rail-toggle');
+      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+      const darkReduced = await page.evaluate(() => ({
+        reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        buttonBottom: document.querySelector('#btn-hero-read')?.getBoundingClientRect().bottom ?? 0,
+        labelsVisible: [...document.querySelectorAll('#sidebar-panel .ri .lbl')]
+          .every((node) => node.getBoundingClientRect().height > 0),
+      }));
+      t.check('620 dark cover-off reduced-motion keeps labels readable and reading action reachable',
+        darkReduced.reduced && darkReduced.labelsVisible && darkReduced.buttonBottom > 0,
+        JSON.stringify(darkReduced));
+      await page.emulateMediaFeatures([]);
+
+      await page.setViewport({ width: 320, height: 900 });
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+      const forced = await page.evaluate(() => {
+        const focused = document.querySelector('#btn-rail-toggle');
+        focused.focus();
+        const style = getComputedStyle(focused);
+        return {
+          active: matchMedia('(forced-colors: active)').matches,
+          outlineWidth: Number.parseFloat(style.outlineWidth),
+          outlineColor: style.outlineColor,
+          selectedBorder: getComputedStyle(document.querySelector('.ri[aria-current="page"]') ?? focused).borderTopColor,
+        };
+      });
+      t.check('320 forced colors keeps focus and selection boundaries visible',
+        forced.active && forced.outlineWidth > 0 && forced.outlineColor !== 'rgba(0, 0, 0, 0)',
+        JSON.stringify(forced));
+
+      await page.evaluate(() => {
+        const root = document.documentElement;
+        const names = ['--t-caption', '--t-body', '--t-subtitle', '--t-title', '--t-display', '--t-overline'];
+        const original = Object.fromEntries(names.map((name) => [name, getComputedStyle(root).getPropertyValue(name).trim()]));
+        for (const name of names) {
+          const value = Number.parseFloat(original[name]);
+          if (!Number.isFinite(value)) continue;
+          root.style.setProperty(name, `${value * 2}px`);
+        }
+      });
+      const doubled = await page.evaluate(() => {
+        const clipped = [...document.querySelectorAll('#sidebar *')]
+          .filter((node) => node.scrollWidth - node.clientWidth > 1)
+          .map((node) => node.className || node.id || node.tagName);
+        const header = document.querySelector('#sidebar').getBoundingClientRect().height;
+        const controls = [...document.querySelectorAll('#sidebar-panel .ri')]
+          .every((node) => node.getBoundingClientRect().height >= 44);
+        return { clipped, header, controls };
+      });
+      t.check('320 doubled UI text keeps narrow labels reachable without clipping',
+        doubled.clipped.length === 0 && doubled.controls && doubled.header >= 44,
+        JSON.stringify(doubled));
+      await page.evaluate(() => {
+        document.documentElement.removeAttribute('style');
+      });
+      await client.detach();
+    },
+  },
+  {
+    id: 'sidebar-transitions',
+    title: 'sidebar transitions keep desktop preference persistence and narrow state separate',
+    async run(page, t) {
+      const installWriteCounter = () => page.evaluate(() => {
+        const real = Storage.prototype.setItem;
+        window.__mrtSidebarWrites = [];
+        Storage.prototype.setItem = function setItem(key, value) {
+          if (key === 'sidebar.collapsed') window.__mrtSidebarWrites.push(String(value));
+          return real.call(this, key, value);
+        };
+      });
+      const sidebarState = () => page.evaluate(() => {
+        const panel = document.querySelector('#sidebar-panel');
+        const shell = document.querySelector('#shell');
+        return {
+          width: innerWidth,
+          panelHidden: panel.hidden,
+          expanded: document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded'),
+          railedClass: shell.classList.contains('railed'),
+          stored: localStorage.getItem('sidebar.collapsed'),
+          writes: [...(window.__mrtSidebarWrites ?? [])],
+          focusInPanel: panel.contains(document.activeElement),
+          focusId: document.activeElement?.id ?? null,
+        };
+      });
+      const resizeTo = async (width, {
+        narrow = null, railed = null, panelHidden = null,
+      } = {}) => {
+        await page.setViewport({ width, height: 900 });
+        await page.evaluate(() => window.dispatchEvent(new Event('resize')));
+        await page.waitForFunction((want) => innerWidth === want, { timeout: 15000 }, width);
+        try {
+          await page.waitForFunction((wantNarrow, wantRailed, wantHidden) => {
+            const toggle = document.querySelector('#btn-rail-toggle');
+            const panel = document.querySelector('#sidebar-panel');
+            const shell = document.querySelector('#shell');
+            const isNarrowNow = toggle?.getAttribute('aria-label') === 'Navigation';
+            if (wantNarrow !== null && isNarrowNow !== wantNarrow) return false;
+            if (wantRailed !== null && shell?.classList.contains('railed') !== wantRailed) return false;
+            if (wantHidden !== null && panel?.hidden !== wantHidden) return false;
+            return true;
+          }, { timeout: 15000 }, narrow, railed, panelHidden);
+        } catch {
+          const seen = await sidebarState();
+          throw new Error(`resize ${width} expected narrow=${narrow} railed=${railed} hidden=${panelHidden} but saw ${JSON.stringify(seen)}`);
+        }
+      };
+
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await installWriteCounter();
+
+      await resizeTo(1280, { narrow: false, railed: false, panelHidden: false });
+      const absentWide = await sidebarState();
+      await resizeTo(950, { narrow: false, railed: true, panelHidden: false });
+      const absentCompact = await sidebarState();
+      await click(page, '#btn-rail-toggle');
+      await page.waitForFunction(() => document.querySelector('#shell')?.classList.contains('railed') === false, { timeout: 15000 });
+      const absentManual = await sidebarState();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await click(page, '#btn-rail-toggle');
+      await resizeTo(700, { narrow: true, panelHidden: false });
+      const absentNarrowStay = await sidebarState();
+      await click(page, '#btn-rail-toggle');
+      await resizeTo(950, { narrow: false, railed: false, panelHidden: false });
+      const absentReturn = await sidebarState();
+      t.check('absent preference defaults wide-expanded then compact at 950 and keeps deliberate desktop expansion across narrow',
+        absentWide.railedClass === false
+        && absentCompact.railedClass === true
+        && absentManual.stored === 'false'
+        && absentNarrowStay.panelHidden === false
+        && absentReturn.railedClass === false
+        && absentReturn.stored === 'false',
+        JSON.stringify({ absentWide, absentCompact, absentManual, absentNarrowStay, absentReturn }));
+
+      await seedFixtureState(page, { sidebarCollapsed: true, openRead: true });
+      await installWriteCounter();
+      await resizeTo(1280, { narrow: false, railed: true, panelHidden: false });
+      const savedTrueWide = await sidebarState();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#btn-rail-toggle');
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      const savedTrueBeforeReload = await sidebarState();
+      await resizeTo(1280, { narrow: false, railed: true, panelHidden: false });
+      await page.reload({ waitUntil: 'load' });
+      const savedTrueReload = await sidebarState();
+      t.check('stored true stays compact on desktop and never rewrites during narrow interaction',
+        savedTrueWide.railedClass === true
+        && savedTrueReload.railedClass === true
+        && savedTrueReload.stored === 'true'
+        && savedTrueBeforeReload.writes.length === 0,
+        JSON.stringify({ savedTrueWide, savedTrueBeforeReload, savedTrueReload }));
+
+      await page.setViewport({ width: 880, height: 900 });
+      await seedFixtureState(page, { sidebarCollapsed: false, openRead: true });
+      await installWriteCounter();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      const savedFalseNarrow = await sidebarState();
+      await resizeTo(950, { narrow: false, railed: false, panelHidden: false });
+      const savedFalse950 = await sidebarState();
+      await resizeTo(1000, { narrow: false, railed: false, panelHidden: false });
+      const savedFalse1000 = await sidebarState();
+      await resizeTo(1280, { narrow: false, railed: false, panelHidden: false });
+      await resizeTo(999, { narrow: false, railed: true, panelHidden: false });
+      const savedFalse999 = await sidebarState();
+      await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+      const savedFalse881 = await sidebarState();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+      await resizeTo(1280, { narrow: false, railed: false, panelHidden: false });
+      const savedFalseBeforeReload = await sidebarState();
+      await page.reload({ waitUntil: 'load' });
+      const savedFalseReload = await sidebarState();
+      t.check('stored false stays expanded on wide desktop, auto-compacts under 1000 without writes, and returns expanded after narrow',
+        savedFalseNarrow.panelHidden === true
+        && savedFalse950.railedClass === false
+        && savedFalse1000.railedClass === false
+        && savedFalse999.railedClass === true
+        && savedFalse881.railedClass === true
+        && savedFalseReload.railedClass === false
+        && savedFalseReload.stored === 'false'
+        && savedFalseBeforeReload.writes.length === 0,
+        JSON.stringify({
+          savedFalseNarrow,
+          savedFalse950,
+          savedFalse1000,
+          savedFalse999,
+          savedFalse881,
+          savedFalseBeforeReload,
+          savedFalseReload,
+        }));
+
+      await resizeTo(900, { narrow: false, railed: true, panelHidden: false });
+      await page.$eval('.ri[data-view="library"]', (button) => button.focus());
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      const focusRescue = await sidebarState();
+      await resizeTo(900, { narrow: false, railed: true, panelHidden: false });
+      await page.$eval('#btn-hero-read', (button) => button.focus());
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      const noSteal = await sidebarState();
+      t.check('resize and close rescue focus only when sidebar content would become hidden',
+        focusRescue.focusId === 'btn-rail-toggle' && noSteal.focusId === 'btn-hero-read',
+        JSON.stringify({ focusRescue, noSteal }));
+    },
+  },
+  {
     id: 'pages-home-navigation',
     title: 'the project home stays informational, keyboard complete and narrow-safe',
     async run(page, t) {
@@ -8788,6 +9329,36 @@ const SCENARIOS = [
   },
 ];
 
+MUTATIONS.push(
+  {
+    id: 'narrow-content-panel-open',
+    breaks: 'narrow-content',
+    why: 'narrow closed mode leaves the controlled panel visible, restoring the stacked chrome height',
+    rewriteMain: (source) => source.replace(
+      'panel.hidden = isNarrow && !narrowOpen;',
+      'panel.hidden = false;',
+    ),
+  },
+  {
+    id: 'narrow-navigation-focus-rescue-off',
+    breaks: 'narrow-navigation',
+    why: 'closing narrow navigation skips the descendant-focus rescue before hiding the panel',
+    rewriteMain: (source) => source.replace(
+      'if (!next && rescueFocus && activeInsidePanel) toggle.focus();',
+      'if (false && !next && rescueFocus && activeInsidePanel) toggle.focus();',
+    ),
+  },
+  {
+    id: 'sidebar-transitions-narrow-write',
+    breaks: 'sidebar-transitions',
+    why: 'narrow toggles start writing sidebar.collapsed, conflating ephemeral narrow state with desktop preference',
+    rewriteMain: (source) => source.replace(
+      'setNarrowOpen(!narrowOpen, { announceIt: true });',
+      'try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch {} setNarrowOpen(!narrowOpen, { announceIt: true });',
+    ),
+  },
+);
+
 MUTATIONS.push({
   id: 'reading-paths-sibling-first',
   breaks: 'reading-paths',
@@ -8859,6 +9430,51 @@ async function readState(page) {
     return JSON.parse(raw);
   } catch {
     return null;
+  }
+}
+
+function fixtureReadingState() {
+  const issues = Object.fromEntries(ORDER.items.map((item) => [item.issueId, { ...item, source: 'curated' }]));
+  return {
+    schemaVersion: 2,
+    issues,
+    read: {},
+    overrides: {},
+    notes: {},
+    lists: {
+      fixture: {
+        id: 'fixture',
+        name: ORDER.name,
+        description: ORDER.description,
+        note: '',
+        created: 1234,
+        catalogId: ORDER.id,
+        itemIds: ORDER.items.map((item) => item.issueId),
+        collectedIn: {},
+      },
+    },
+    listOrder: ['fixture'],
+    active: 'fixture',
+  };
+}
+
+async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false } = {}) {
+  await open(page, '/?catalog=browser-check');
+  await page.evaluate((saved, collapsed) => {
+    localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    localStorage.setItem('mrt.settings', JSON.stringify({
+      filter: 'all',
+      covers: true,
+      theme: 'system',
+      apiBase: '',
+    }));
+    if (collapsed === null) localStorage.removeItem('sidebar.collapsed');
+    else localStorage.setItem('sidebar.collapsed', String(collapsed));
+  }, fixtureReadingState(), sidebarCollapsed);
+  await page.reload({ waitUntil: 'load' });
+  if (openRead) {
+    await click(page, '#list-nav .ri');
+    await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
   }
 }
 

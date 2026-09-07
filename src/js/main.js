@@ -995,9 +995,10 @@ function setTheme(next) {
 // Collapsed means a 48px icon rail, not a hidden pane: nothing leaves the tab order and no
 // destination becomes unreachable. See docs/ux/sidebar-flow.md.
 let railed = false;
-// Tracked so the responsive rule fires only when the breakpoint is actually crossed. Without
-// it every resize event would re-apply the default and undo a deliberate toggle.
-let wasNarrow = null;
+let isNarrow = false;
+let narrowOpen = false;
+// Tracked so the 1000px responsive default fires only on crossings.
+let wasCompact = null;
 
 function loadRailed() {
   try {
@@ -1008,18 +1009,52 @@ function loadRailed() {
   return null;
 }
 
+function renderSidebar() {
+  const shell = $('#shell');
+  const toggle = $('#btn-rail-toggle');
+  const panel = $('#sidebar-panel');
+  const compactDesktop = !isNarrow && railed;
+  shell.classList.toggle('railed', compactDesktop);
+  panel.hidden = isNarrow && !narrowOpen;
+
+  if (isNarrow) {
+    toggle.setAttribute('aria-expanded', String(narrowOpen));
+    toggle.setAttribute('aria-label', 'Navigation');
+    toggle.dataset.tip = 'Navigation · Ctrl+\\';
+  } else {
+    const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
+    toggle.setAttribute('aria-expanded', String(!railed));
+    toggle.setAttribute('aria-label', label);
+    toggle.dataset.tip = `${label} · Ctrl+\\`;
+  }
+  if (!compactDesktop || isNarrow) hideRailTip();
+}
+
+function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
+  if (!isNarrow) return;
+  const panel = $('#sidebar-panel');
+  const toggle = $('#btn-rail-toggle');
+  const activeInsidePanel = panel?.contains(document.activeElement);
+  if (!next && rescueFocus && activeInsidePanel) toggle.focus();
+  narrowOpen = Boolean(next);
+  renderSidebar();
+  if (announceIt) announce(narrowOpen ? 'Navigation shown.' : 'Navigation hidden.');
+}
+
+function toggleSidebar() {
+  if (isNarrow) {
+    setNarrowOpen(!narrowOpen, { announceIt: true });
+    return;
+  }
+  setRailed(!railed, { announceIt: true, persist: true });
+}
+
 // Only a deliberate toggle is a preference, so persisting is opt-in. The responsive rule and
 // the first-run default also move the sidebar, and writing those to storage would let the act
 // of resizing a window overwrite a choice the reader actually made.
 function setRailed(next, { announceIt = false, persist = false } = {}) {
   railed = Boolean(next);
-  $('#shell').classList.toggle('railed', railed);
-  const toggle = $('#btn-rail-toggle');
-  const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
-  toggle.setAttribute('aria-expanded', String(!railed));
-  toggle.setAttribute('aria-label', label);
-  toggle.dataset.tip = `${label} · Ctrl+\\`;
-  if (!railed) hideRailTip();
+  renderSidebar();
   if (persist) {
     try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch { /* non-fatal */ }
   }
@@ -1028,34 +1063,54 @@ function setRailed(next, { announceIt = false, persist = false } = {}) {
 
 function wireSidebar() {
   const saved = loadRailed();
-  wasNarrow = window.innerWidth < RAIL_BREAKPOINT;
+  const narrowMedia = window.matchMedia('(max-width: 880px)');
+  wasCompact = window.innerWidth < RAIL_BREAKPOINT;
+  isNarrow = narrowMedia.matches;
+  narrowOpen = false;
   // A saved choice is a deliberate one and outranks the responsive default, so a reader who
   // expanded the sidebar on a narrow window does not find it collapsed again on every visit.
   // The default itself is not written back: until the reader touches the toggle there is no
   // preference to record, and recording one would freeze the first window size they happened
   // to open the app at.
-  setRailed(saved !== null ? saved : wasNarrow);
+  setRailed(saved !== null ? saved : wasCompact);
 
-  $('#btn-rail-toggle').addEventListener('click', () => setRailed(!railed, { announceIt: true, persist: true }));
+  $('#btn-rail-toggle').addEventListener('click', toggleSidebar);
 
   document.addEventListener('keydown', (e) => {
     // Ctrl+\ and nothing else: the sidebar is chrome, so its shortcut must not fight a
     // text field the way the single-letter reading shortcuts would.
     if (e.key !== '\\' || !e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) return;
     e.preventDefault();
-    setRailed(!railed, { announceIt: true, persist: true });
+    toggleSidebar();
+  });
+
+  $('#sidebar').addEventListener('keydown', (e) => {
+    if (e.defaultPrevented || e.key !== 'Escape' || !isNarrow || !narrowOpen) return;
+    if (document.querySelector('dialog[open]')) return;
+    e.preventDefault();
+    setNarrowOpen(false, { rescueFocus: true });
   });
 
   window.addEventListener('resize', () => {
-    const isNarrow = window.innerWidth < RAIL_BREAKPOINT;
-    // Only on the crossing. Applying this on every resize event would undo a toggle the
-    // reader had just made, and a window drag fires hundreds of them.
-    if (isNarrow === wasNarrow) return;
-    wasNarrow = isNarrow;
-    // A narrow window has no room for the full sidebar, so it always collapses. Widening
-    // restores what the reader chose rather than assuming they want it open, so dragging a
-    // window wide does not undo a deliberate collapse.
-    setRailed(isNarrow || (loadRailed() ?? false));
+    const compact = window.innerWidth < RAIL_BREAKPOINT;
+    if (compact !== wasCompact) {
+      wasCompact = compact;
+      railed = compact || (loadRailed() ?? false);
+    }
+    const nextNarrow = narrowMedia.matches;
+    if (nextNarrow !== isNarrow) {
+      const panel = $('#sidebar-panel');
+      const activeInside = panel?.contains(document.activeElement);
+      isNarrow = nextNarrow;
+      if (nextNarrow) {
+        narrowOpen = false;
+        if (activeInside) $('#btn-rail-toggle').focus();
+      } else {
+        narrowOpen = false;
+      }
+      hideRailTip();
+    }
+    renderSidebar();
   });
 
   wireRailTips();
@@ -1067,6 +1122,7 @@ function wireSidebar() {
 function wireRailTips() {
   const rail = $('#sidebar');
   const show = (e) => {
+    if (isNarrow) return hideRailTip();
     const target = e.target instanceof Element ? e.target.closest('.ri, .brand, .pill, .rail-toggle') : null;
     if (!target || (!railed && !target.matches('.rail-toggle'))) return hideRailTip();
     const text = (target.dataset.tip || target.querySelector('.lbl')?.textContent || target.textContent || '').trim();
@@ -1333,6 +1389,7 @@ function showView(next, { focus = true, push = false } = {}) {
       issueSynopsisId = null;
     }
   }
+  setNarrowOpen(false, { rescueFocus: !focus });
 
   view = next;
   addView.enter(next);

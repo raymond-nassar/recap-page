@@ -46,17 +46,21 @@ returns through the actual pages visited.
 
 ## Collapse Behavior
 
-- The Fluent `GlobalNavButton` toggle stays visible in both states.
-- Expanded mode shows icons, labels and the active list's compact progress.
-- Collapsed mode is a 48px icon rail. Labels remain in the accessibility tree.
-- Hover and keyboard focus reveal the label in a tooltip.
-- The choice persists in `localStorage` under `sidebar.collapsed`.
-- The rail auto-collapses below 1000px, with `Ctrl+\` as the keyboard shortcut.
-- The 150ms transition respects `prefers-reduced-motion`.
+- Desktop keeps two rails: expanded at 252px and compact at 48px.
+- The compact desktop rail keeps labels in the accessibility tree and uses tooltips for visible names.
+- `sidebar.collapsed` stores desktop intent only. It changes only on deliberate desktop toggle.
+- Crossing below 1000px auto-compacts desktop presentation; crossing back restores the saved choice.
+- At or below 880px, the rail becomes an in-flow compact header with a visible Navigation label.
+- Narrow mode starts closed regardless of saved desktop choice.
+- Narrow open and closed state is ephemeral and is never written to storage.
+- In narrow mode, the controlled panel holds nav plus API and queue status explanations.
+- `Ctrl+\` toggles desktop expand and compact or narrow show and hide with the same exact shortcut.
+- Escape closes only from inside the narrow sidebar when open; it is not a global escape rule.
+- Routed view changes close narrow navigation before layout work; passive rerenders do not.
 
 ## Accessibility Requirements
 
-- The toggle carries `aria-expanded`, `aria-controls="sidebar-nav"` and an accessible name.
+- The toggle carries `aria-expanded`, `aria-controls="sidebar-panel"` and an accessible name.
 - The active rail item carries `aria-current="page"`.
 - Every icon-only target keeps a text accessible name and a 44 by 44 pixel minimum target.
 - Collapse announcements use the polite live region.

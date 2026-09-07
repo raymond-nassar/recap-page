@@ -282,7 +282,7 @@ so the row goes back to how it was and the reason appears in a notice. A change 
 must never be left on screen looking saved.
 
 **Refreshing shared state does not mean rebuilding every view.** The callback runs the shared
-refresh fan-out at `src/js/main.js:2352-2372`, including the rail, reading view, Home, Library hub
+refresh fan-out at `src/js/main.js:2352-2371`, including the rail, reading view, Home, Library hub
 and detail, Progress, API queue, Add destination, blocked state, breadcrumbs and route
 synchronization. Catalog and generated publishing panels render when their routes need them. Inside
 the reading view, each row is compared against a cache key built from the whole item and its node is
@@ -332,7 +332,7 @@ flowchart TD
     change["any change the reader makes"] --> live["mrt.state.v2"]
     prefs["cover art, theme, API base, chosen filter"] --> settings["mrt.settings"]
     purge["completed cache cleanup generation"] --> marker["mrt.cache-purge.v1"]
-    rail["collapsing the sidebar"] --> sidebar["sidebar.collapsed"]
+    rail["desktop collapse or expand toggle"] --> sidebar["sidebar.collapsed"]
     education["save-location explanation completed"] --> educationKey["mrt.saveEducation.v1"]
     meta["metadata fetched from the API"] --> idb["IndexedDB database mrt-cache-v2, store responses"]
     old["metadata cached by older code"] --> legacy["legacy IndexedDB database mrt-cache, retired when no old tab keeps it open"]
@@ -375,7 +375,7 @@ Every `localStorage` name the tracker writes, and why it exists:
 | `mrt.state.salvage.TIMESTAMP` | a failed read when the slot already holds a different incident, at `src/js/storage.js:175-181` | the reader, from Backup and settings | So a second corruption months later cannot clobber the copy taken for the first one. A `.N` is appended when that name is taken too, which one boot can reach on its own, because starting fresh salvages before it clears. |
 | `mrt.settings` | the settings form, the cover art switch, the theme control and the reading filter, at `src/js/main.js:632-639` | nothing | Preferences, not data. Deliberately outside the state so a settings write can never fail a progress write. An older `cachePurge` field is read once as migration input but is no longer authoritative or written by current code. |
 | `mrt.cache-purge.v1` | successful cache cleanup, at `src/js/main.js:601-619` | nothing | A monotonic cleanup generation held apart from settings so an older tab cannot lower it by serializing the settings shape it knows. Current tabs serialize its read-max-write step through one origin-wide browser lock. |
-| `sidebar.collapsed` | the sidebar toggle, at `src/js/main.js:1024` | nothing | Whether the rail is collapsed. Wrapped in its own try, because losing it is not worth an error. |
+| `sidebar.collapsed` | deliberate desktop sidebar toggles, at `src/js/main.js:1062-1079` | nothing | Whether the desktop rail is compact. Narrow open and closed state is ephemeral and never writes this key. Wrapped in its own try, because losing it is not worth an error. |
 | `mrt.saveEducation.v1` | the first nonempty saved list and first confirmed progress change, through `src/js/lib/saveEducation.js:25-74` | nothing | A one-way preference recording whether the reading screen still needs to explain where progress is saved. It is separate from reader data, reconciles across tabs, and a failed preference write never turns a successful progress write into a failure. |
 
 Nine rows in all: eight fixed names, and one family whose suffix is the moment it was written. Four
@@ -556,7 +556,7 @@ current label, hidden message, completion state or unavailable message at
 `src/js/views/shared/catalog-presentation.js:280-330`. Only a visible current story receives
 `aria-current="step"`. The controller injects live state and current-view knowledge at
 `src/js/main.js:2833-2865`, while the existing Store-driven render path calls the position-only
-refresh at `src/js/main.js:2352-2372`. That refresh leaves cards, controls, focus, scroll and
+refresh at `src/js/main.js:2352-2371`. That refresh leaves cards, controls, focus, scroll and
 transient path choice intact across same-tab and cross-tab state changes.
 
 ## Where to read next
