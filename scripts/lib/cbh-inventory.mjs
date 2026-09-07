@@ -177,6 +177,7 @@ const SOURCE_GAP_RESOLUTION_FIELDS = new Set([
   'previousIssueNumber',
   'resolutionKind',
   'canonicalRow',
+  'canonicalGapPosition',
   'selectedIssueId',
   'resolvedNormalizedSeriesTitle',
   'resolvedSeriesYear',
@@ -486,7 +487,12 @@ function assertSourceGapResolution(
   if (!Number.isInteger(resolution.sourcePosition) || resolution.sourcePosition < 1) {
     throw new Error(`${label} sourcePosition must be a positive integer`);
   }
-  const validKinds = new Set(['canonical-repeat', 'exact-issue', 'source-exclusion']);
+  const validKinds = new Set([
+    'canonical-repeat',
+    'canonical-gap-repeat',
+    'exact-issue',
+    'source-exclusion',
+  ]);
   if (!validKinds.has(resolution.resolutionKind)) {
     throw new Error(`${label} resolutionKind is unsupported`);
   }
@@ -541,6 +547,25 @@ function assertSourceGapResolution(
       || (repeated.sourceRangeReference ?? null)
         !== (resolution.previousSourceRangeReference ?? null)) {
       throw new Error(`${label} does not match its resolved repeated source reference`);
+    }
+  } else if (resolution.resolutionKind === 'canonical-gap-repeat') {
+    if (!Number.isInteger(resolution.canonicalGapPosition)
+      || resolution.canonicalGapPosition < 1) {
+      throw new Error(`${label} canonicalGapPosition must name a canonical source gap`);
+    }
+    if (Object.hasOwn(resolution, 'canonicalRow')
+      || Object.hasOwn(resolution, 'selectedIssueId')
+      || Object.hasOwn(resolution, 'exclusionReason')
+      || Object.hasOwn(resolution, 'decisionScope')) {
+      throw new Error(`${label} canonical-gap-repeat contains unsupported disposition fields`);
+    }
+    const repeated = repeatsByPosition.get(resolution.sourcePosition);
+    if (!repeated
+      || repeated.canonicalGapPosition !== resolution.canonicalGapPosition
+      || repeated.sourceIssueReference !== resolution.previousSourceIssueReference
+      || (repeated.sourceRangeReference ?? null)
+        !== (resolution.previousSourceRangeReference ?? null)) {
+      throw new Error(`${label} does not match its resolved source-gap repeat`);
     }
   } else if (resolution.resolutionKind === 'exact-issue') {
     if (!Number.isInteger(resolution.selectedIssueId) || resolution.selectedIssueId < 1) {
@@ -810,7 +835,8 @@ export function sourcePositionsForPacket(packet, {
       if (!canonical) {
         throw new Error(`${packetId} repeated source position ${reference.sourcePosition} must target a canonical source gap`);
       }
-      if (canonical.sourcePosition >= reference.sourcePosition) {
+      if (Object.hasOwn(reference, 'canonicalRow')
+        && canonical.sourcePosition >= reference.sourcePosition) {
         throw new Error(`${packetId} repeated source position ${reference.sourcePosition} must target an earlier canonical identity`);
       }
       const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
@@ -835,7 +861,7 @@ export function sourcePositionsForPacket(packet, {
       const canonicalGapPosition = reference.canonicalGapPosition
         ?? reference.canonicalGapSourcePosition;
       const canonical = gapsBySourcePosition.get(canonicalGapPosition);
-      if (!canonical || canonical.sourcePosition >= sourcePosition) {
+      if (!canonical) {
         throw new Error(`${packetId} repeated source position ${sourcePosition} must target an earlier canonical source gap`);
       }
       const fields = ['normalizedSeriesTitle', 'seriesYear', 'issueNumber'];
@@ -1073,7 +1099,7 @@ export function assertGapTransition(previousPacket, proposedPacket, proposedMapp
       continue;
     }
     const repeated = proposedRepeats.get(previous.sourcePosition);
-    if (repeated) {
+    if (repeated && Object.hasOwn(repeated, 'canonicalRow')) {
       const resolution = proposedResolutions.get(previous.sourcePosition);
       const canonical = proposedPacket.rows[repeated.canonicalRow - 1];
       const canonicalMapping = proposedMapping.rows[repeated.canonicalRow - 1];
@@ -1097,6 +1123,27 @@ export function assertGapTransition(previousPacket, proposedPacket, proposedMapp
         || sourceIdentityKey(repeated) !== sourceIdentityKey(canonical)
         || sourceIdentityKey(canonicalMapping) !== sourceIdentityKey(canonical)) {
         throw new Error(`Source gap at position ${previous.sourcePosition} has mismatched repeat resolution evidence`);
+      }
+      continue;
+    }
+    if (repeated && Object.hasOwn(repeated, 'canonicalGapPosition')) {
+      const resolution = proposedResolutions.get(previous.sourcePosition);
+      const canonicalGap = proposedGaps.get(repeated.canonicalGapPosition);
+      const previousIdentity = {
+        previousSourceIssueReference: previous.sourceIssueReference,
+        previousSourceRangeReference: previous.sourceRangeReference ?? null,
+        previousNormalizedSeriesTitle: previous.normalizedSeriesTitle,
+        previousSeriesYear: previous.seriesYear,
+        previousIssueNumber: String(previous.issueNumber),
+      };
+      if (previous.kind !== 'published-metadata-gap'
+        || previous.status !== 'open'
+        || !canonicalGap
+        || resolution?.resolutionKind !== 'canonical-gap-repeat'
+        || Object.entries(previousIdentity).some(([field, value]) => resolution[field] !== value)
+        || resolution.canonicalGapPosition !== repeated.canonicalGapPosition
+        || sourceIdentityKey(repeated) !== sourceIdentityKey(canonicalGap)) {
+        throw new Error(`Source gap at position ${previous.sourcePosition} has mismatched source-gap repeat resolution evidence`);
       }
       continue;
     }

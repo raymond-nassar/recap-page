@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Settled the Nick Fury and S.H.I.E.L.D. guide gaps
+
+In plain English: The bundled Nick Fury guide now opens 62 exact comics that previously appeared
+as source notes. The other 129 source notes remain visible because no current provider identity was
+verified for them, without replacing them with a different comic or claiming they do not exist.
+Existing reading progress, notes, and availability choices for those source notes are unchanged.
+
 ### Settled the Wolverine guide gaps
 
 In plain English: The bundled Wolverine guide now opens 14 exact comics that previously appeared as

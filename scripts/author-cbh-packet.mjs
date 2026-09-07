@@ -246,7 +246,7 @@ export function buildMarkdown(mapping) {
   selectedIssueIds(mapping);
   const placeholderIdentityMode = mapping.placeholderIdentityMode ?? 'source-occurrence';
   assert(
-    placeholderIdentityMode === 'source-occurrence' || placeholderIdentityMode === 'title',
+    ['source-occurrence', 'legacy-source-position', 'title'].includes(placeholderIdentityMode),
     `${mapping.id} placeholder identity mode is invalid`,
   );
   const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
@@ -280,9 +280,12 @@ export function buildMarkdown(mapping) {
       if (entry.kind === 'exact') {
         return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->](${entry.value.marvelIssueUrl})`];
       }
-      const annotation = placeholderIdentityMode === 'source-occurrence'
-        ? ` <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->`
-        : '';
+      const sourceKey = placeholderIdentityMode === 'source-occurrence'
+        ? String(entry.value.sourcePosition)
+        : placeholderIdentityMode === 'legacy-source-position'
+          ? `source-position:${entry.value.sourcePosition}`
+          : null;
+      const annotation = sourceKey ? ` <!-- mrt:source-occurrence=${sourceKey} -->` : '';
       return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference)
         .replace(TYPHOGRAPHIC_DASHES, '-').replace(/\s+/g, ' ')}${annotation}`];
     });

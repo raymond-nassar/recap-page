@@ -5,1387 +5,1072 @@
   "source": "https://www.comicbookherald.com/omnibussin-nick-fury-from-war-world-ii-to-s-h-i-e-l-d/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-08-28T02:42:59.318Z",
+  "generatedAt": "2026-09-07T19:47:51.755Z",
   "apiBase": "https://marvel.emreparker.com/v1",
-  "count": 272,
-  "collections": 43,
-  "placeholders": 194,
+  "count": 269,
+  "collections": 40,
+  "placeholders": 129,
   "unresolved": [
-    {
-      "title": "Marvel Spotlight (1971) #31",
-      "url": null,
-      "read": false,
-      "index": 0,
-      "section": "Marvel Spotlight (1971) #31"
-    },
     {
       "title": "Sgt. Fury #44",
       "url": null,
       "read": false,
       "index": 44,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:52"
     },
     {
       "title": "Sgt. Fury #45",
       "url": null,
       "read": false,
       "index": 45,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:53"
     },
     {
       "title": "Sgt. Fury #46",
       "url": null,
       "read": false,
       "index": 46,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:54"
     },
     {
       "title": "Sgt. Fury #47",
       "url": null,
       "read": false,
       "index": 47,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:55"
     },
     {
       "title": "Sgt. Fury #48",
       "url": null,
       "read": false,
       "index": 48,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:56"
     },
     {
       "title": "Sgt. Fury #49",
       "url": null,
       "read": false,
       "index": 49,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:57"
     },
     {
       "title": "Sgt. Fury #50",
       "url": null,
       "read": false,
       "index": 50,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:58"
     },
     {
       "title": "Sgt. Fury #51",
       "url": null,
       "read": false,
       "index": 51,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:59"
     },
     {
       "title": "Sgt. Fury #52",
       "url": null,
       "read": false,
       "index": 52,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:60"
     },
     {
       "title": "Sgt. Fury #53",
       "url": null,
       "read": false,
       "index": 53,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:61"
     },
     {
       "title": "Sgt. Fury #54",
       "url": null,
       "read": false,
       "index": 54,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:62"
     },
     {
       "title": "Sgt. Fury #55",
       "url": null,
       "read": false,
       "index": 55,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:63"
     },
     {
       "title": "Sgt. Fury #56",
       "url": null,
       "read": false,
       "index": 56,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:64"
     },
     {
       "title": "Sgt. Fury #57",
       "url": null,
       "read": false,
       "index": 57,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:65"
     },
     {
       "title": "Sgt. Fury #58",
       "url": null,
       "read": false,
       "index": 58,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:66"
     },
     {
       "title": "Sgt. Fury #59",
       "url": null,
       "read": false,
       "index": 59,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:67"
     },
     {
       "title": "Sgt. Fury #60",
       "url": null,
       "read": false,
       "index": 60,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:68"
     },
     {
       "title": "Sgt. Fury #61",
       "url": null,
       "read": false,
       "index": 61,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:69"
     },
     {
       "title": "Sgt. Fury #62",
       "url": null,
       "read": false,
       "index": 62,
-      "section": "issue #33 to #62"
+      "section": "issue #33 to #62",
+      "sourceKey": "source-position:70"
     },
     {
       "title": "Sgt. Fury Annual #3",
       "url": null,
       "read": false,
       "index": 63,
-      "section": "Sgt. Fury Annual #3"
+      "section": "Sgt. Fury Annual #3",
+      "sourceKey": "source-position:85"
     },
     {
       "title": "Captain Savage (1967) #1",
       "url": null,
       "read": false,
       "index": 64,
-      "section": "Captain Savage (1967) #1"
+      "section": "Captain Savage (1967) #1",
+      "sourceKey": "source-position:92"
     },
     {
       "title": "Sgt. Fury #63",
       "url": null,
       "read": false,
       "index": 65,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:106"
     },
     {
       "title": "Sgt. Fury #64",
       "url": null,
       "read": false,
       "index": 66,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:107"
     },
     {
       "title": "Sgt. Fury #65",
       "url": null,
       "read": false,
       "index": 67,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:108"
     },
     {
       "title": "Sgt. Fury #66",
       "url": null,
       "read": false,
       "index": 68,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:109"
     },
     {
       "title": "Sgt. Fury #67",
       "url": null,
       "read": false,
       "index": 69,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:110"
     },
     {
       "title": "Sgt. Fury #68",
       "url": null,
       "read": false,
       "index": 70,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:111"
     },
     {
       "title": "Sgt. Fury #69",
       "url": null,
       "read": false,
       "index": 71,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:112"
     },
     {
       "title": "Sgt. Fury #70",
       "url": null,
       "read": false,
       "index": 72,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:113"
     },
     {
       "title": "Sgt. Fury #71",
       "url": null,
       "read": false,
       "index": 73,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:114"
     },
     {
       "title": "Sgt. Fury #72",
       "url": null,
       "read": false,
       "index": 74,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:115"
     },
     {
       "title": "Sgt. Fury #73",
       "url": null,
       "read": false,
       "index": 75,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:116"
     },
     {
       "title": "Sgt. Fury #74",
       "url": null,
       "read": false,
       "index": 76,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:117"
     },
     {
       "title": "Sgt. Fury #75",
       "url": null,
       "read": false,
       "index": 77,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:118"
     },
     {
       "title": "Sgt. Fury #76",
       "url": null,
       "read": false,
       "index": 78,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:119"
     },
     {
       "title": "Sgt. Fury #77",
       "url": null,
       "read": false,
       "index": 79,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:120"
     },
     {
       "title": "Sgt. Fury #78",
       "url": null,
       "read": false,
       "index": 80,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:121"
     },
     {
       "title": "Sgt. Fury #79",
       "url": null,
       "read": false,
       "index": 81,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:122"
     },
     {
       "title": "Sgt. Fury #80",
       "url": null,
       "read": false,
       "index": 82,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:123"
     },
     {
       "title": "Sgt. Fury #81",
       "url": null,
       "read": false,
       "index": 83,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:124"
     },
     {
       "title": "Sgt. Fury #82",
       "url": null,
       "read": false,
       "index": 84,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:125"
     },
     {
       "title": "Sgt. Fury #83",
       "url": null,
       "read": false,
       "index": 85,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:126"
     },
     {
       "title": "Sgt. Fury #84",
       "url": null,
       "read": false,
       "index": 86,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:127"
     },
     {
       "title": "Sgt. Fury #85",
       "url": null,
       "read": false,
       "index": 87,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:128"
     },
     {
       "title": "Sgt. Fury #86",
       "url": null,
       "read": false,
       "index": 88,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:129"
     },
     {
       "title": "Sgt. Fury #87",
       "url": null,
       "read": false,
       "index": 89,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:130"
     },
     {
       "title": "Sgt. Fury #88",
       "url": null,
       "read": false,
       "index": 90,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:131"
     },
     {
       "title": "Sgt. Fury #89",
       "url": null,
       "read": false,
       "index": 91,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:132"
     },
     {
       "title": "Sgt. Fury #90",
       "url": null,
       "read": false,
       "index": 92,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:133"
     },
     {
       "title": "Sgt. Fury #91",
       "url": null,
       "read": false,
       "index": 93,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:134"
     },
     {
       "title": "Sgt. Fury #92",
       "url": null,
       "read": false,
       "index": 94,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:135"
     },
     {
       "title": "Sgt. Fury #93",
       "url": null,
       "read": false,
       "index": 95,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:136"
     },
     {
       "title": "Sgt. Fury #94",
       "url": null,
       "read": false,
       "index": 96,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:137"
     },
     {
       "title": "Sgt. Fury #95",
       "url": null,
       "read": false,
       "index": 97,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:138"
     },
     {
       "title": "Sgt. Fury #96",
       "url": null,
       "read": false,
       "index": 98,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:139"
     },
     {
       "title": "Sgt. Fury #97",
       "url": null,
       "read": false,
       "index": 99,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:140"
     },
     {
       "title": "Sgt. Fury #98",
       "url": null,
       "read": false,
       "index": 100,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:141"
     },
     {
       "title": "Sgt. Fury #99",
       "url": null,
       "read": false,
       "index": 101,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:142"
     },
     {
       "title": "Sgt. Fury #100",
       "url": null,
       "read": false,
       "index": 102,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:143"
     },
     {
       "title": "Sgt. Fury #101",
       "url": null,
       "read": false,
       "index": 103,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:144"
     },
     {
       "title": "Sgt. Fury #102",
       "url": null,
       "read": false,
       "index": 104,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:145"
     },
     {
       "title": "Sgt. Fury #103",
       "url": null,
       "read": false,
       "index": 105,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:146"
     },
     {
       "title": "Sgt. Fury #104",
       "url": null,
       "read": false,
       "index": 106,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:147"
     },
     {
       "title": "Sgt. Fury #105",
       "url": null,
       "read": false,
       "index": 107,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:148"
     },
     {
       "title": "Sgt. Fury #106",
       "url": null,
       "read": false,
       "index": 108,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:149"
     },
     {
       "title": "Sgt. Fury #107",
       "url": null,
       "read": false,
       "index": 109,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:150"
     },
     {
       "title": "Sgt. Fury #108",
       "url": null,
       "read": false,
       "index": 110,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:151"
     },
     {
       "title": "Sgt. Fury #109",
       "url": null,
       "read": false,
       "index": 111,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:152"
     },
     {
       "title": "Sgt. Fury #110",
       "url": null,
       "read": false,
       "index": 112,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:153"
     },
     {
       "title": "Sgt. Fury #111",
       "url": null,
       "read": false,
       "index": 113,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:154"
     },
     {
       "title": "Sgt. Fury #112",
       "url": null,
       "read": false,
       "index": 114,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:155"
     },
     {
       "title": "Sgt. Fury #113",
       "url": null,
       "read": false,
       "index": 115,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:156"
     },
     {
       "title": "Sgt. Fury #114",
       "url": null,
       "read": false,
       "index": 116,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:157"
     },
     {
       "title": "Sgt. Fury #115",
       "url": null,
       "read": false,
       "index": 117,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:158"
     },
     {
       "title": "Sgt. Fury #116",
       "url": null,
       "read": false,
       "index": 118,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:159"
     },
     {
       "title": "Sgt. Fury #117",
       "url": null,
       "read": false,
       "index": 119,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:160"
     },
     {
       "title": "Sgt. Fury #118",
       "url": null,
       "read": false,
       "index": 120,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:161"
     },
     {
       "title": "Sgt. Fury #119",
       "url": null,
       "read": false,
       "index": 121,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:162"
     },
     {
       "title": "Sgt. Fury #120",
       "url": null,
       "read": false,
       "index": 122,
-      "section": "issue #63 to #120"
+      "section": "issue #63 to #120",
+      "sourceKey": "source-position:163"
     },
     {
       "title": "Marvel Holiday Special 1993",
       "url": null,
       "read": false,
       "index": 126,
-      "section": "Marvel Holiday Special 1993"
+      "section": "Marvel Holiday Special 1993",
+      "sourceKey": "source-position:167"
     },
     {
       "title": "Captain America/Nick Fury: The Other World War",
       "url": null,
       "read": false,
       "index": 127,
-      "section": "Captain America/Nick Fury: The Other World War"
+      "section": "Captain America/Nick Fury: The Other World War",
+      "sourceKey": "source-position:168"
     },
     {
       "title": "2009?s Sgt. Fury and His Howling Commandos one-shot",
       "url": null,
       "read": false,
       "index": 128,
-      "section": "2009?s Sgt. Fury and His Howling Commandos one-shot"
-    },
-    {
-      "title": "Nick Fury vs SHIELD #1",
-      "url": null,
-      "read": false,
-      "index": 129,
-      "section": "Nick Fury vs SHIELD (1988) #1-6"
-    },
-    {
-      "title": "Nick Fury vs SHIELD #2",
-      "url": null,
-      "read": false,
-      "index": 130,
-      "section": "Nick Fury vs SHIELD (1988) #1-6"
-    },
-    {
-      "title": "Nick Fury vs SHIELD #3",
-      "url": null,
-      "read": false,
-      "index": 131,
-      "section": "Nick Fury vs SHIELD (1988) #1-6"
-    },
-    {
-      "title": "Nick Fury vs SHIELD #4",
-      "url": null,
-      "read": false,
-      "index": 132,
-      "section": "Nick Fury vs SHIELD (1988) #1-6"
-    },
-    {
-      "title": "Nick Fury vs SHIELD #5",
-      "url": null,
-      "read": false,
-      "index": 133,
-      "section": "Nick Fury vs SHIELD (1988) #1-6"
-    },
-    {
-      "title": "Nick Fury vs SHIELD #6",
-      "url": null,
-      "read": false,
-      "index": 134,
-      "section": "Nick Fury vs SHIELD (1988) #1-6"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #1",
-      "url": null,
-      "read": false,
-      "index": 135,
-      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #2",
-      "url": null,
-      "read": false,
-      "index": 136,
-      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #3",
-      "url": null,
-      "read": false,
-      "index": 137,
-      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #4",
-      "url": null,
-      "read": false,
-      "index": 138,
-      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #5",
-      "url": null,
-      "read": false,
-      "index": 139,
-      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #6",
-      "url": null,
-      "read": false,
-      "index": 140,
-      "section": "Nick Fury: Agent of SHIELD (1989) #1-6"
-    },
-    {
-      "title": "Fury one-shot",
-      "url": null,
-      "read": false,
-      "index": 141,
-      "section": "Fury one-shot"
-    },
-    {
-      "title": "Marvel Two-In-One #26",
-      "url": null,
-      "read": false,
-      "index": 145,
-      "section": "Marvel Two-In-One (1974) #26-27"
-    },
-    {
-      "title": "Marvel Two-In-One #27",
-      "url": null,
-      "read": false,
-      "index": 146,
-      "section": "Marvel Two-In-One (1974) #26-27"
+      "section": "2009?s Sgt. Fury and His Howling Commandos one-shot",
+      "sourceKey": "source-position:169"
     },
     {
       "title": "Hulk Comic UK #1",
       "url": null,
       "read": false,
-      "index": 147,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 146,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:213"
     },
     {
       "title": "Hulk Comic UK #2",
       "url": null,
       "read": false,
-      "index": 148,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 147,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:214"
     },
     {
       "title": "Hulk Comic UK #3",
       "url": null,
       "read": false,
-      "index": 149,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 148,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:215"
     },
     {
       "title": "Hulk Comic UK #4",
       "url": null,
       "read": false,
-      "index": 150,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 149,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:216"
     },
     {
       "title": "Hulk Comic UK #5",
       "url": null,
       "read": false,
-      "index": 151,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 150,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:217"
     },
     {
       "title": "Hulk Comic UK #6",
       "url": null,
       "read": false,
-      "index": 152,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 151,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:218"
     },
     {
       "title": "Hulk Comic UK #7",
       "url": null,
       "read": false,
-      "index": 153,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 152,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:219"
     },
     {
       "title": "Hulk Comic UK #8",
       "url": null,
       "read": false,
-      "index": 154,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 153,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:220"
     },
     {
       "title": "Hulk Comic UK #9",
       "url": null,
       "read": false,
-      "index": 155,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 154,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:221"
     },
     {
       "title": "Hulk Comic UK #10",
       "url": null,
       "read": false,
-      "index": 156,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 155,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:222"
     },
     {
       "title": "Hulk Comic UK #11",
       "url": null,
       "read": false,
-      "index": 157,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 156,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:223"
     },
     {
       "title": "Hulk Comic UK #12",
       "url": null,
       "read": false,
-      "index": 158,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 157,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:224"
     },
     {
       "title": "Hulk Comic UK #13",
       "url": null,
       "read": false,
-      "index": 159,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 158,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:225"
     },
     {
       "title": "Hulk Comic UK #14",
       "url": null,
       "read": false,
-      "index": 160,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 159,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:226"
     },
     {
       "title": "Hulk Comic UK #15",
       "url": null,
       "read": false,
-      "index": 161,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 160,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:227"
     },
     {
       "title": "Hulk Comic UK #16",
       "url": null,
       "read": false,
-      "index": 162,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 161,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:228"
     },
     {
       "title": "Hulk Comic UK #17",
       "url": null,
       "read": false,
-      "index": 163,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 162,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:229"
     },
     {
       "title": "Hulk Comic UK #18",
       "url": null,
       "read": false,
-      "index": 164,
-      "section": "Hulk Comic UK (1979) #1-19"
+      "index": 163,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:230"
     },
     {
       "title": "Hulk Comic UK #19",
       "url": null,
       "read": false,
-      "index": 165,
-      "section": "Hulk Comic UK (1979) #1-19"
-    },
-    {
-      "title": "Marvel Two-In-One #51",
-      "url": null,
-      "read": false,
-      "index": 166,
-      "section": "Marvel Two-In-One #51"
+      "index": 164,
+      "section": "Hulk Comic UK (1979) #1-19",
+      "sourceKey": "source-position:231"
     },
     {
       "title": "Marvel Team-Up #139",
       "url": null,
       "read": false,
-      "index": 171,
-      "section": "Marvel Team-Up #139"
+      "index": 170,
+      "section": "Marvel Team-Up #139",
+      "sourceKey": "source-position:237"
     },
     {
       "title": "Wolverine/Nick Fury: The Scorpio Connection",
       "url": null,
       "read": false,
-      "index": 172,
-      "section": "Wolverine/Nick Fury: The Scorpio Connection"
+      "index": 171,
+      "section": "Wolverine/Nick Fury: The Scorpio Connection",
+      "sourceKey": "source-position:238"
     },
     {
       "title": "Fury (1994) #1",
       "url": null,
       "read": false,
-      "index": 173,
-      "section": "Fury (1994) #1"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #7",
-      "url": null,
-      "read": false,
-      "index": 174,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #8",
-      "url": null,
-      "read": false,
-      "index": 175,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #9",
-      "url": null,
-      "read": false,
-      "index": 176,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #10",
-      "url": null,
-      "read": false,
-      "index": 177,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #11",
-      "url": null,
-      "read": false,
-      "index": 178,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #12",
-      "url": null,
-      "read": false,
-      "index": 179,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #13",
-      "url": null,
-      "read": false,
-      "index": 180,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #14",
-      "url": null,
-      "read": false,
-      "index": 181,
-      "section": "Nick Fury: Agent of SHIELD (1989) #7-14"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #15",
-      "url": null,
-      "read": false,
-      "index": 182,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #16",
-      "url": null,
-      "read": false,
-      "index": 183,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #17",
-      "url": null,
-      "read": false,
-      "index": 184,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #18",
-      "url": null,
-      "read": false,
-      "index": 185,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #19",
-      "url": null,
-      "read": false,
-      "index": 186,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #20",
-      "url": null,
-      "read": false,
-      "index": 187,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #21",
-      "url": null,
-      "read": false,
-      "index": 188,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #22",
-      "url": null,
-      "read": false,
-      "index": 189,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #23",
-      "url": null,
-      "read": false,
-      "index": 190,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #24",
-      "url": null,
-      "read": false,
-      "index": 191,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #25",
-      "url": null,
-      "read": false,
-      "index": 192,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #26",
-      "url": null,
-      "read": false,
-      "index": 193,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #27",
-      "url": null,
-      "read": false,
-      "index": 194,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #28",
-      "url": null,
-      "read": false,
-      "index": 195,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #29",
-      "url": null,
-      "read": false,
-      "index": 196,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #30",
-      "url": null,
-      "read": false,
-      "index": 197,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #31",
-      "url": null,
-      "read": false,
-      "index": 198,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #32",
-      "url": null,
-      "read": false,
-      "index": 199,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #33",
-      "url": null,
-      "read": false,
-      "index": 200,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #34",
-      "url": null,
-      "read": false,
-      "index": 201,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #35",
-      "url": null,
-      "read": false,
-      "index": 202,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #36",
-      "url": null,
-      "read": false,
-      "index": 203,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #37",
-      "url": null,
-      "read": false,
-      "index": 204,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #38",
-      "url": null,
-      "read": false,
-      "index": 205,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #39",
-      "url": null,
-      "read": false,
-      "index": 206,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #40",
-      "url": null,
-      "read": false,
-      "index": 207,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #41",
-      "url": null,
-      "read": false,
-      "index": 208,
-      "section": "Nick Fury: Agent of SHIELD #15-41"
-    },
-    {
-      "title": "Fury of SHIELD",
-      "url": null,
-      "read": false,
-      "index": 213,
-      "section": "Fury of SHIELD"
-    },
-    {
-      "title": "Fury/Agent 13",
-      "url": null,
-      "read": false,
-      "index": 214,
-      "section": "Fury/Agent 13"
-    },
-    {
-      "title": "Secret War: From the Files of Nick Fury",
-      "url": null,
-      "read": false,
-      "index": 220,
-      "section": "Secret War: From the Files of Nick Fury"
-    },
-    {
-      "title": "Mighty Avengers (2007) #12",
-      "url": null,
-      "read": false,
-      "index": 221,
-      "section": "Mighty Avengers (2007) #12"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #42",
-      "url": null,
-      "read": false,
-      "index": 222,
-      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #43",
-      "url": null,
-      "read": false,
-      "index": 223,
-      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #44",
-      "url": null,
-      "read": false,
-      "index": 224,
-      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #45",
-      "url": null,
-      "read": false,
-      "index": 225,
-      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #46",
-      "url": null,
-      "read": false,
-      "index": 226,
-      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
-    },
-    {
-      "title": "Nick Fury: Agent of SHIELD #47",
-      "url": null,
-      "read": false,
-      "index": 227,
-      "section": "Nick Fury: Agent of SHIELD (1989) #42-47"
+      "index": 172,
+      "section": "Fury (1994) #1",
+      "sourceKey": "source-position:251"
     },
     {
       "title": "Fury of SHIELD #1",
       "url": null,
       "read": false,
-      "index": 228,
-      "section": "Fury of SHIELD #1-4"
+      "index": 225,
+      "section": "Fury of SHIELD #1-4",
+      "sourceKey": "source-position:316"
     },
     {
       "title": "Fury of SHIELD #2",
       "url": null,
       "read": false,
-      "index": 229,
-      "section": "Fury of SHIELD #1-4"
+      "index": 226,
+      "section": "Fury of SHIELD #1-4",
+      "sourceKey": "source-position:317"
     },
     {
       "title": "Fury of SHIELD #3",
       "url": null,
       "read": false,
-      "index": 230,
-      "section": "Fury of SHIELD #1-4"
+      "index": 227,
+      "section": "Fury of SHIELD #1-4",
+      "sourceKey": "source-position:318"
     },
     {
       "title": "Fury of SHIELD #4",
       "url": null,
       "read": false,
-      "index": 231,
-      "section": "Fury of SHIELD #1-4"
+      "index": 228,
+      "section": "Fury of SHIELD #1-4",
+      "sourceKey": "source-position:319"
     },
     {
       "title": "Fury/Agent 13 #1",
       "url": null,
       "read": false,
-      "index": 232,
-      "section": "Fury/Agent 13 #1-2"
+      "index": 229,
+      "section": "Fury/Agent 13 #1-2",
+      "sourceKey": "source-position:320"
     },
     {
       "title": "Fury/Agent 13 #2",
       "url": null,
       "read": false,
-      "index": 233,
-      "section": "Fury/Agent 13 #1-2"
+      "index": 230,
+      "section": "Fury/Agent 13 #1-2",
+      "sourceKey": "source-position:321"
     },
     {
       "title": "Fury #1",
+      "url": null,
+      "read": false,
+      "index": 231,
+      "section": "Fury (2001) #1-6",
+      "sourceKey": "source-position:331"
+    },
+    {
+      "title": "Fury #2",
+      "url": null,
+      "read": false,
+      "index": 232,
+      "section": "Fury (2001) #1-6",
+      "sourceKey": "source-position:332"
+    },
+    {
+      "title": "Fury #3",
+      "url": null,
+      "read": false,
+      "index": 233,
+      "section": "Fury (2001) #1-6",
+      "sourceKey": "source-position:333"
+    },
+    {
+      "title": "Fury #4",
       "url": null,
       "read": false,
       "index": 234,
-      "section": "Fury (2001) #1-6"
-    },
-    {
-      "title": "Fury #2",
-      "url": null,
-      "read": false,
-      "index": 235,
-      "section": "Fury (2001) #1-6"
-    },
-    {
-      "title": "Fury #3",
-      "url": null,
-      "read": false,
-      "index": 236,
-      "section": "Fury (2001) #1-6"
-    },
-    {
-      "title": "Fury #4",
-      "url": null,
-      "read": false,
-      "index": 237,
-      "section": "Fury (2001) #1-6"
+      "section": "Fury (2001) #1-6",
+      "sourceKey": "source-position:334"
     },
     {
       "title": "Fury #5",
       "url": null,
       "read": false,
-      "index": 238,
-      "section": "Fury (2001) #1-6"
+      "index": 235,
+      "section": "Fury (2001) #1-6",
+      "sourceKey": "source-position:335"
     },
     {
       "title": "Fury #6",
       "url": null,
       "read": false,
-      "index": 239,
-      "section": "Fury (2001) #1-6"
+      "index": 236,
+      "section": "Fury (2001) #1-6",
+      "sourceKey": "source-position:336"
     },
     {
       "title": "Fury #1",
       "url": null,
       "read": false,
-      "index": 246,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 243,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:343"
     },
     {
       "title": "Fury #2",
       "url": null,
       "read": false,
-      "index": 247,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 244,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:344"
     },
     {
       "title": "Fury #3",
       "url": null,
       "read": false,
-      "index": 248,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 245,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:345"
     },
     {
       "title": "Fury #4",
       "url": null,
       "read": false,
-      "index": 249,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 246,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:346"
     },
     {
       "title": "Fury #5",
       "url": null,
       "read": false,
-      "index": 250,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 247,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:347"
     },
     {
       "title": "Fury #6",
       "url": null,
       "read": false,
-      "index": 251,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 248,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:348"
     },
     {
       "title": "Fury #7",
       "url": null,
       "read": false,
-      "index": 252,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 249,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:349"
     },
     {
       "title": "Fury #8",
       "url": null,
       "read": false,
-      "index": 253,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 250,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:350"
     },
     {
       "title": "Fury #9",
       "url": null,
       "read": false,
-      "index": 254,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 251,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:351"
     },
     {
       "title": "Fury #10",
       "url": null,
       "read": false,
-      "index": 255,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 252,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:352"
     },
     {
       "title": "Fury #11",
       "url": null,
       "read": false,
-      "index": 256,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 253,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:353"
     },
     {
       "title": "Fury #12",
       "url": null,
       "read": false,
-      "index": 257,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
+      "index": 254,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:354"
     },
     {
       "title": "Fury #13",
       "url": null,
       "read": false,
-      "index": 258,
-      "section": "Fury (2012): MAX ? My War Gone By #1-13"
-    },
-    {
-      "title": "S.H.I.E.L.D. Infinity",
-      "url": null,
-      "read": false,
-      "index": 265,
-      "section": "S.H.I.E.L.D. Infinity"
-    },
-    {
-      "title": "S.H.I.E.L.D. #5",
-      "url": null,
-      "read": false,
-      "index": 270,
-      "section": "S.H.I.E.L.D. (2018) #5-6"
-    },
-    {
-      "title": "S.H.I.E.L.D. #6",
-      "url": null,
-      "read": false,
-      "index": 271,
-      "section": "S.H.I.E.L.D. (2018) #5-6"
+      "index": 255,
+      "section": "Fury (2012): MAX ? My War Gone By #1-13",
+      "sourceKey": "source-position:355"
     }
   ],
   "items": [
     {
-      "issueId": -972249149,
+      "issueId": 19749,
       "title": "Marvel Spotlight (1971) #31",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "number": "31",
+      "url": "https://www.marvel.com/comics/issue/19749/marvel_spotlight_1971_31",
+      "seriesId": 3717,
+      "seriesName": "Marvel Spotlight (1971 - 1977)",
+      "onSale": "1976-12-01T00:00:00+0000",
+      "mu": "2023-04-06T00:00:00+0000",
+      "digitalId": 47656,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/642ddeb737347",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Howard Chaykin",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Spotlight (1971) #31"
     },
     {
@@ -2800,7 +2485,7 @@
     {
       "issueId": -955661018,
       "title": "Sgt. Fury Annual #3",
-      "number": null,
+      "number": "3",
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -2817,7 +2502,7 @@
     {
       "issueId": -1140361922,
       "title": "Captain Savage (1967) #1",
-      "number": null,
+      "number": "1",
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -4029,225 +3714,388 @@
       "collectedIn": "2009?s Sgt. Fury and His Howling Commandos one-shot"
     },
     {
-      "issueId": -1780675076,
-      "title": "Nick Fury vs SHIELD #1",
+      "issueId": 49976,
+      "title": "Nick Fury Vs. S.H.I.E.L.D. (1988) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/49976/nick_fury_vs_shield_1988_1",
+      "seriesId": 18780,
+      "seriesName": "Nick Fury Vs. S.H.I.E.L.D. (1988)",
+      "onSale": "1988-06-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 31905,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/f0/581ba53144318",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
     },
     {
-      "issueId": -1797452695,
-      "title": "Nick Fury vs SHIELD #2",
+      "issueId": 49977,
+      "title": "Nick Fury Vs. S.H.I.E.L.D. (1988) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/49977/nick_fury_vs_shield_1988_2",
+      "seriesId": 18780,
+      "seriesName": "Nick Fury Vs. S.H.I.E.L.D. (1988)",
+      "onSale": "1988-07-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 31906,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/581ba659a6244",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bill Sienkiewicz",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
     },
     {
-      "issueId": -1814230314,
-      "title": "Nick Fury vs SHIELD #3",
+      "issueId": 49978,
+      "title": "Nick Fury Vs. S.H.I.E.L.D. (1988) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/49978/nick_fury_vs_shield_1988_3",
+      "seriesId": 18780,
+      "seriesName": "Nick Fury Vs. S.H.I.E.L.D. (1988)",
+      "onSale": "1988-08-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 31909,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/581ba735df505",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Jim Steranko",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
     },
     {
-      "issueId": -1831007933,
-      "title": "Nick Fury vs SHIELD #4",
+      "issueId": 49979,
+      "title": "Nick Fury Vs. S.H.I.E.L.D. (1988) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/49979/nick_fury_vs_shield_1988_4",
+      "seriesId": 18780,
+      "seriesName": "Nick Fury Vs. S.H.I.E.L.D. (1988)",
+      "onSale": "1988-09-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 31910,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/581ba82af40f7",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Nowlan",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
     },
     {
-      "issueId": -1847785552,
-      "title": "Nick Fury vs SHIELD #5",
+      "issueId": 49980,
+      "title": "Nick Fury Vs. S.H.I.E.L.D. (1988) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/49980/nick_fury_vs_shield_1988_5",
+      "seriesId": 18780,
+      "seriesName": "Nick Fury Vs. S.H.I.E.L.D. (1988)",
+      "onSale": "1988-10-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 31911,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/20/581cd01949ff9",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Kevin Nowlan",
+          "role": "penciler"
+        },
+        {
+          "name": "Paul Neary",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
     },
     {
-      "issueId": -1596121267,
-      "title": "Nick Fury vs SHIELD #6",
+      "issueId": 49981,
+      "title": "Nick Fury Vs. S.H.I.E.L.D. (1988) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/49981/nick_fury_vs_shield_1988_6",
+      "seriesId": 18780,
+      "seriesName": "Nick Fury Vs. S.H.I.E.L.D. (1988)",
+      "onSale": "1988-11-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 31912,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/10/581cd0ecd0069",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Paul Neary",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Palmer",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury vs SHIELD (1988) #1-6"
     },
     {
-      "issueId": -1612898886,
-      "title": "Nick Fury: Agent of SHIELD #1",
+      "issueId": 27710,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #1",
       "number": "1",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27710/nick_fury_agent_of_shield_1989_1",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1989-09-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37954,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/4/10/583344f8454fd",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Hall",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
     },
     {
-      "issueId": -542997129,
-      "title": "Nick Fury: Agent of SHIELD #2",
+      "issueId": 27721,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #2",
       "number": "2",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27721/nick_fury_agent_of_shield_1989_2",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1989-10-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37953,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/2/b0/5833474adb001",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
     },
     {
-      "issueId": -559774748,
-      "title": "Nick Fury: Agent of SHIELD #3",
+      "issueId": 27732,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #3",
       "number": "3",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27732/nick_fury_agent_of_shield_1989_3",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1989-11-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37967,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/f0/583349784320f",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
     },
     {
-      "issueId": -576552367,
-      "title": "Nick Fury: Agent of SHIELD #4",
+      "issueId": 27743,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #4",
       "number": "4",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27743/nick_fury_agent_of_shield_1989_4",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1989-11-30T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37956,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/80/58334ace743c6",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
     },
     {
-      "issueId": -593329986,
-      "title": "Nick Fury: Agent of SHIELD #5",
+      "issueId": 27752,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27752/nick_fury_agent_of_shield_1989_5",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1989-12-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37958,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/e0/583478a0e7a8d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
     },
     {
-      "issueId": -610107605,
-      "title": "Nick Fury: Agent of SHIELD #6",
+      "issueId": 27753,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27753/nick_fury_agent_of_shield_1989_6",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1989-12-15T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37961,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/20/5834ac2f3623c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #1-6"
-    },
-    {
-      "issueId": -626885224,
-      "title": "Fury one-shot",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Fury one-shot"
     },
     {
       "issueId": 20357,
@@ -4374,37 +4222,67 @@
       "collectedIn": "Defenders (1972) #48-50"
     },
     {
-      "issueId": -643809938,
-      "title": "Marvel Two-In-One #26",
+      "issueId": 19494,
+      "title": "Marvel Two-in-One (1974) #26",
       "number": "26",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/19494/marvel_two-in-one_1974_26",
+      "seriesId": 3715,
+      "seriesName": "Marvel Two-in-One (1974 - 1983)",
+      "onSale": "1977-04-01T00:00:00+0000",
+      "mu": "1977-04-01T00:00:00+0000",
+      "digitalId": 47662,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5a7e0b4f1cfc2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Two-In-One (1974) #26-27"
     },
     {
-      "issueId": -627032319,
-      "title": "Marvel Two-In-One #27",
+      "issueId": 19495,
+      "title": "Marvel Two-in-One (1974) #27",
       "number": "27",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/19495/marvel_two-in-one_1974_27",
+      "seriesId": 3715,
+      "seriesName": "Marvel Two-in-One (1974 - 1983)",
+      "onSale": "1977-05-01T00:00:00+0000",
+      "mu": "1977-05-01T00:00:00+0000",
+      "digitalId": 19480,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/b0/5a7e14a0518d0",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Pablo Marcos",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ron Wilson",
+          "role": "penciler"
+        },
+        {
+          "name": "Marv Wolfman",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Two-In-One (1974) #26-27"
     },
     {
@@ -4731,20 +4609,35 @@
       "collectedIn": "Hulk Comic UK (1979) #1-19"
     },
     {
-      "issueId": -342158572,
-      "title": "Marvel Two-In-One #51",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 19522,
+      "title": "Marvel Two-in-One (1974) #51",
+      "number": "51",
+      "url": "https://www.marvel.com/comics/issue/19522/marvel_two-in-one_1974_51",
+      "seriesId": 3715,
+      "seriesName": "Marvel Two-in-One (1974 - 1983)",
+      "onSale": "1979-05-01T00:00:00+0000",
+      "mu": "1979-05-01T00:00:00+0000",
+      "digitalId": 51503,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5cbf2d0b82468",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Bob Mcleod",
+          "role": "cover artist"
+        },
+        {
+          "name": "Frank Miller",
+          "role": "penciler"
+        },
+        {
+          "name": "Peter B. Gillis",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Two-In-One #51"
     },
     {
@@ -4882,7 +4775,7 @@
     {
       "issueId": -392491429,
       "title": "Marvel Team-Up #139",
-      "number": null,
+      "number": "139",
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -4916,7 +4809,7 @@
     {
       "issueId": -493502915,
       "title": "Fury (1994) #1",
-      "number": null,
+      "number": "1",
       "url": null,
       "seriesId": null,
       "seriesName": null,
@@ -4931,598 +4824,1175 @@
       "collectedIn": "Fury (1994) #1"
     },
     {
-      "issueId": -459947677,
-      "title": "Nick Fury: Agent of SHIELD #7",
+      "issueId": 27754,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #7",
       "number": "7",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27754/nick_fury_agent_of_shield_1989_7",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-01-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37962,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5834adcd8e4ce",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -443170058,
-      "title": "Nick Fury: Agent of SHIELD #8",
+      "issueId": 27755,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #8",
       "number": "8",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27755/nick_fury_agent_of_shield_1989_8",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-02-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37959,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/90/5834aeda7f07e",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -426392439,
-      "title": "Nick Fury: Agent of SHIELD #9",
+      "issueId": 27756,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #9",
       "number": "9",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27756/nick_fury_agent_of_shield_1989_9",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-03-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37966,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/50/5834afc76f99a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -409614820,
-      "title": "Nick Fury: Agent of SHIELD #10",
+      "issueId": 27711,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #10",
       "number": "10",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27711/nick_fury_agent_of_shield_1989_10",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-04-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 37968,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/80/5834b198dadbd",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -392837201,
-      "title": "Nick Fury: Agent of SHIELD #11",
+      "issueId": 27712,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #11",
       "number": "11",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27712/nick_fury_agent_of_shield_1989_11",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-05-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38345,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/60/5834b257cf4c1",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Cam Kennedy",
+          "role": "penciler"
+        },
+        {
+          "name": "Alan Grant",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -644501486,
-      "title": "Nick Fury: Agent of SHIELD #12",
+      "issueId": 27713,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #12",
       "number": "12",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27713/nick_fury_agent_of_shield_1989_12",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-06-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38347,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/03/5834b32444d09",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Mike Bair",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -627723867,
-      "title": "Nick Fury: Agent of SHIELD #13",
+      "issueId": 27714,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #13",
       "number": "13",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27714/nick_fury_agent_of_shield_1989_13",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-07-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38346,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5834b3cb414d4",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -611093343,
-      "title": "Nick Fury: Agent of SHIELD #14",
+      "issueId": 27715,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #14",
       "number": "14",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27715/nick_fury_agent_of_shield_1989_14",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-08-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38350,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/80/5834b4db963ad",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Harras",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #7-14"
     },
     {
-      "issueId": -577538105,
-      "title": "Nick Fury: Agent of SHIELD #15",
+      "issueId": 27716,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #15",
       "number": "15",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27716/nick_fury_agent_of_shield_1989_15",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-09-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38351,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/a0/5834b5dadc7fe",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romeo Tanghal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bill Jaaska",
+          "role": "penciler"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -594315724,
-      "title": "Nick Fury: Agent of SHIELD #16",
+      "issueId": 27717,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #16",
       "number": "16",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27717/nick_fury_agent_of_shield_1989_16",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-10-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38352,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5834b6e90a647",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romeo Tanghal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -678203819,
-      "title": "Nick Fury: Agent of SHIELD #17",
+      "issueId": 27718,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #17",
       "number": "17",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27718/nick_fury_agent_of_shield_1989_17",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-11-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38357,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/50/5834b7ba5b643",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Kim Demulder",
+          "role": "cover artist"
+        },
+        {
+          "name": "Romeo Tanghal",
+          "role": "cover artist"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "Keith Pollard",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -694981438,
-      "title": "Nick Fury: Agent of SHIELD #18",
+      "issueId": 27719,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #18",
       "number": "18",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27719/nick_fury_agent_of_shield_1989_18",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1990-12-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 43997,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/a0/5834b892d704a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "SG",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -644648581,
-      "title": "Nick Fury: Agent of SHIELD #19",
+      "issueId": 27720,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #19",
       "number": "19",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27720/nick_fury_agent_of_shield_1989_19",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-01-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38360,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/03/5834b9b033036",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Fred Fredericks",
+          "role": "cover artist"
+        },
+        {
+          "name": "SG",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bryan Hitch",
+          "role": "penciler"
+        },
+        {
+          "name": "Herb Trimpe",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -661426200,
-      "title": "Nick Fury: Agent of SHIELD #20",
+      "issueId": 27722,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #20",
       "number": "20",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27722/nick_fury_agent_of_shield_1989_20",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-02-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38361,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/10/5834baaa690fb",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Dan Panosian",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -476872391,
-      "title": "Nick Fury: Agent of SHIELD #21",
+      "issueId": 27723,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #21",
       "number": "21",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27723/nick_fury_agent_of_shield_1989_21",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-03-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38362,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/f/40/5834bbadd45de",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -493650010,
-      "title": "Nick Fury: Agent of SHIELD #22",
+      "issueId": 27724,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #22",
       "number": "22",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27724/nick_fury_agent_of_shield_1989_22",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-04-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5834bc77126d8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "John Beatty",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -711906152,
-      "title": "Nick Fury: Agent of SHIELD #23",
+      "issueId": 27725,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #23",
       "number": "23",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27725/nick_fury_agent_of_shield_1989_23",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-05-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38389,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/60/5834bd4c69320",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Doug Hazlewood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -695128533,
-      "title": "Nick Fury: Agent of SHIELD #24",
+      "issueId": 27726,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #24",
       "number": "24",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27726/nick_fury_agent_of_shield_1989_24",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-06-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38390,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/e0/5834be2f4f94c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Jack Torrance",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Norm Dwyer",
+          "role": "penciler"
+        },
+        {
+          "name": "Doug Murray",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -745461390,
-      "title": "Nick Fury: Agent of SHIELD #25",
+      "issueId": 27727,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #25",
       "number": "25",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27727/nick_fury_agent_of_shield_1989_25",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-07-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38392,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/70/5834bf31b9560",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Doug Hazlewood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -728683771,
-      "title": "Nick Fury: Agent of SHIELD #26",
+      "issueId": 27728,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #26",
       "number": "26",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27728/nick_fury_agent_of_shield_1989_26",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-08-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 43998,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/03/5834c03065f89",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Doug Hazlewood",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -644795676,
-      "title": "Nick Fury: Agent of SHIELD #27",
+      "issueId": 27729,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #27",
       "number": "27",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27729/nick_fury_agent_of_shield_1989_27",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-09-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38395,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/50/5835a7cc06f1d",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Ernie Stiner",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -628018057,
-      "title": "Nick Fury: Agent of SHIELD #28",
+      "issueId": 27730,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #28",
       "number": "28",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27730/nick_fury_agent_of_shield_1989_28",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-10-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38396,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/f0/5835a8b7e92fa",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Butch Guice",
+          "role": "penciler"
+        },
+        {
+          "name": "Ernie Stiner",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -678350914,
-      "title": "Nick Fury: Agent of SHIELD #29",
+      "issueId": 27731,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #29",
       "number": "29",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27731/nick_fury_agent_of_shield_1989_29",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-11-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38394,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/d0/5835a975c0bff",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ernie Stiner",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -661573295,
-      "title": "Nick Fury: Agent of SHIELD #30",
+      "issueId": 27733,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #30",
       "number": "30",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27733/nick_fury_agent_of_shield_1989_30",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1991-12-10T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38398,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/40/5835aa2fb49da",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 36,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ernie Stiner",
+          "role": "penciler"
+        },
+        {
+          "name": "D.G. Chichester",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -577685200,
-      "title": "Nick Fury: Agent of SHIELD #31",
+      "issueId": 27734,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #31",
       "number": "31",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27734/nick_fury_agent_of_shield_1989_31",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-01-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38399,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/5835aad97d460",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Ernie Stiner",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -560907581,
-      "title": "Nick Fury: Agent of SHIELD #32",
+      "issueId": 27735,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #32",
       "number": "32",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27735/nick_fury_agent_of_shield_1989_32",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-02-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38400,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5835ad758dbd2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Dave Hoover",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -273275297,
-      "title": "Nick Fury: Agent of SHIELD #33",
+      "issueId": 27736,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #33",
       "number": "33",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27736/nick_fury_agent_of_shield_1989_33",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-03-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38402,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/b0/5835af57c80e2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -290052916,
-      "title": "Nick Fury: Agent of SHIELD #34",
+      "issueId": 27737,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #34",
       "number": "34",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27737/nick_fury_agent_of_shield_1989_34",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-04-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38403,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5835b14a3e7b1",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -306830535,
-      "title": "Nick Fury: Agent of SHIELD #35",
+      "issueId": 27738,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #35",
       "number": "35",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27738/nick_fury_agent_of_shield_1989_35",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-05-01T00:00:00+0000",
+      "mu": "2016-12-19T00:00:00+0000",
+      "digitalId": 38404,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/e/e0/5835b1ebdd2ca",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -323608154,
-      "title": "Nick Fury: Agent of SHIELD #36",
+      "issueId": 27739,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #36",
       "number": "36",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27739/nick_fury_agent_of_shield_1989_36",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-06-01T00:00:00+0000",
+      "mu": "1992-06-01T00:00:00+0000",
+      "digitalId": 45923,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/a/00/5978db909dca2",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -340385773,
-      "title": "Nick Fury: Agent of SHIELD #37",
+      "issueId": 27740,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #37",
       "number": "37",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27740/nick_fury_agent_of_shield_1989_37",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-07-01T00:00:00+0000",
+      "mu": "1992-07-01T00:00:00+0000",
+      "digitalId": 45924,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/1/10/5978dc4405906",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "M.C. Wyman",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Sharp",
+          "role": "writer"
+        },
+        {
+          "name": "Eliot R. Brown",
+          "role": "writer"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -357163392,
-      "title": "Nick Fury: Agent of SHIELD #38",
+      "issueId": 27741,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #38",
       "number": "38",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27741/nick_fury_agent_of_shield_1989_38",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-08-01T00:00:00+0000",
+      "mu": "1992-08-01T00:00:00+0000",
+      "digitalId": 45925,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5978dc0f6de2c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jerry Decaire",
+          "role": "penciler"
+        },
+        {
+          "name": "Bob Sharp",
+          "role": "writer"
+        },
+        {
+          "name": "Eliot R. Brown",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -373941011,
-      "title": "Nick Fury: Agent of SHIELD #39",
+      "issueId": 27742,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #39",
       "number": "39",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27742/nick_fury_agent_of_shield_1989_39",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-09-01T00:00:00+0000",
+      "mu": "1992-09-01T00:00:00+0000",
+      "digitalId": 45926,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/f0/5978dbfed072c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "Bob Sharp",
+          "role": "writer"
+        },
+        {
+          "name": "Eliot R. Brown",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -390718630,
-      "title": "Nick Fury: Agent of SHIELD #40",
+      "issueId": 27744,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #40",
       "number": "40",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27744/nick_fury_agent_of_shield_1989_40",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-10-01T00:00:00+0000",
+      "mu": "1992-10-01T00:00:00+0000",
+      "digitalId": 45927,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5978dba603456",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Charles Barnett III",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
-      "issueId": -407496249,
-      "title": "Nick Fury: Agent of SHIELD #41",
+      "issueId": 27745,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #41",
       "number": "41",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27745/nick_fury_agent_of_shield_1989_41",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-11-01T00:00:00+0000",
+      "mu": "1992-11-01T00:00:00+0000",
+      "digitalId": 45928,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/5/20/5978dc69686b8",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Charles Barnett III",
+          "role": "cover artist"
+        },
+        {
+          "name": "Scott Lobdell",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD #15-41"
     },
     {
@@ -5644,40 +6114,6 @@
         }
       ],
       "collectedIn": "Captain America/Nick Fury: Blood Truce"
-    },
-    {
-      "issueId": -323755249,
-      "title": "Fury of SHIELD",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Fury of SHIELD"
-    },
-    {
-      "issueId": -441198582,
-      "title": "Fury/Agent 13",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
-      "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
-      "collectedIn": "Fury/Agent 13"
     },
     {
       "issueId": 104,
@@ -5820,139 +6256,259 @@
       "collectedIn": "Secret War #1-5"
     },
     {
-      "issueId": -2129964628,
-      "title": "Secret War: From the Files of Nick Fury",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 2009,
+      "title": "Secret War: From The Files Of Nick Fury (2005) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/2009/secret_war_from_the_files_of_nick_fury_2005_1",
+      "seriesId": 883,
+      "seriesName": "Secret War: From The Files Of Nick Fury (2005)",
+      "onSale": "2005-07-01T00:00:00+0000",
+      "mu": "2023-02-16T00:00:00+0000",
+      "digitalId": 22363,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/63ed4c5c41478",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Gabriele Dell'otto",
+          "role": "penciler"
+        },
+        {
+          "name": "Patrick McGrath",
+          "role": "penciler"
+        },
+        {
+          "name": "Mike Raicht",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Secret War: From the Files of Nick Fury"
     },
     {
-      "issueId": -2113187009,
-      "title": "Mighty Avengers (2007) #12",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 21001,
+      "title": "The Mighty Avengers (2007) #12",
+      "number": "12",
+      "url": "https://www.marvel.com/comics/issue/21001/the_mighty_avengers_2007_12",
+      "seriesId": 1866,
+      "seriesName": "The Mighty Avengers (2007 - 2010)",
+      "onSale": "2008-04-23T00:00:00+0000",
+      "mu": "2008-04-23T00:00:00+0000",
+      "digitalId": 10638,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/40/4d24eb19eb913",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Alex Maleev",
+          "role": "cover artist"
+        },
+        {
+          "name": "Marko Djurdjevic",
+          "role": "penciler (cover)"
+        },
+        {
+          "name": "Brian Michael Bendis",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Mighty Avengers (2007) #12"
     },
     {
-      "issueId": -16036220,
-      "title": "Nick Fury: Agent of SHIELD #42",
+      "issueId": 27746,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #42",
       "number": "42",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27746/nick_fury_agent_of_shield_1989_42",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1992-12-01T00:00:00+0000",
+      "mu": "1992-12-01T00:00:00+0000",
+      "digitalId": 45929,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/10/5978dc57df510",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
     },
     {
-      "issueId": -2146742247,
-      "title": "Nick Fury: Agent of SHIELD #43",
+      "issueId": 27747,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #43",
       "number": "43",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27747/nick_fury_agent_of_shield_1989_43",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1993-01-01T00:00:00+0000",
+      "mu": "1993-01-01T00:00:00+0000",
+      "digitalId": 45930,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/60/5978dc2f2d775",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
     },
     {
-      "issueId": -49591458,
-      "title": "Nick Fury: Agent of SHIELD #44",
+      "issueId": 27748,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #44",
       "number": "44",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27748/nick_fury_agent_of_shield_1989_44",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1993-02-01T00:00:00+0000",
+      "mu": "1993-02-01T00:00:00+0000",
+      "digitalId": 45931,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/30/5978dcb810012",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
     },
     {
-      "issueId": -32813839,
-      "title": "Nick Fury: Agent of SHIELD #45",
+      "issueId": 27749,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #45",
       "number": "45",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27749/nick_fury_agent_of_shield_1989_45",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1993-03-01T00:00:00+0000",
+      "mu": "1993-03-01T00:00:00+0000",
+      "digitalId": 45932,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/3/d0/5978dca470363",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
     },
     {
-      "issueId": -83146696,
-      "title": "Nick Fury: Agent of SHIELD #46",
+      "issueId": 27750,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #46",
       "number": "46",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27750/nick_fury_agent_of_shield_1989_46",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1993-04-01T00:00:00+0000",
+      "mu": "1993-04-01T00:00:00+0000",
+      "digitalId": 45933,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/50/5978dc8d76bda",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Donald Hudson",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
     },
     {
-      "issueId": -66369077,
-      "title": "Nick Fury: Agent of SHIELD #47",
+      "issueId": 27751,
+      "title": "Nick Fury, Agent of S.H.I.E.L.D. (1989) #47",
       "number": "47",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/27751/nick_fury_agent_of_shield_1989_47",
+      "seriesId": 8852,
+      "seriesName": "Nick Fury, Agent of S.H.I.E.L.D. (1989 - 1992)",
+      "onSale": "1993-05-01T00:00:00+0000",
+      "mu": "1993-05-01T00:00:00+0000",
+      "digitalId": 45934,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/7/30/5978dc7c01f67",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 0,
+      "creators": [
+        {
+          "name": "Brian Garvey",
+          "role": "cover artist"
+        },
+        {
+          "name": "John Heebink",
+          "role": "penciler"
+        },
+        {
+          "name": "Gregory Wright",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Nick Fury: Agent of SHIELD (1989) #42-47"
     },
     {
@@ -6659,20 +7215,35 @@
       "collectedIn": "S.H.I.E.L.D. (2010) #1-6"
     },
     {
-      "issueId": -133825325,
-      "title": "S.H.I.E.L.D. Infinity",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 38181,
+      "title": "S.H.I.E.L.D. (2011)",
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/38181/shield_2011",
+      "seriesId": 13744,
+      "seriesName": "S.H.I.E.L.D. (2011 - 2018)",
+      "onSale": "2011-04-13T00:00:00+0000",
+      "mu": "2012-03-22T00:00:00+0000",
+      "digitalId": 20477,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/9/b0/5c59b5f0e5f43",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Gerald Parel",
+          "role": "penciler"
+        },
+        {
+          "name": "Nicholas Pitarra",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "S.H.I.E.L.D. Infinity"
     },
     {
@@ -6792,37 +7363,59 @@
       "collectedIn": "S.H.I.E.L.D. (2011) #1-4"
     },
     {
-      "issueId": -318379134,
-      "title": "S.H.I.E.L.D. #5",
+      "issueId": 38176,
+      "title": "S.H.I.E.L.D. (2011) #5",
       "number": "5",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/38176/shield_2011_5",
+      "seriesId": 13744,
+      "seriesName": "S.H.I.E.L.D. (2011 - 2018)",
+      "onSale": "2018-05-23T00:00:00+0000",
+      "mu": "2018-11-26T00:00:00+0000",
+      "digitalId": 26181,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/b/e0/5afc7fd45021a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "cover artist"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "S.H.I.E.L.D. (2018) #5-6"
     },
     {
-      "issueId": -301601515,
-      "title": "S.H.I.E.L.D. #6",
+      "issueId": 38175,
+      "title": "S.H.I.E.L.D. (2011) #6",
       "number": "6",
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "url": "https://www.marvel.com/comics/issue/38175/shield_2011_6",
+      "seriesId": 13744,
+      "seriesName": "S.H.I.E.L.D. (2011 - 2018)",
+      "onSale": "2018-06-13T00:00:00+0000",
+      "mu": "2018-12-17T00:00:00+0000",
+      "digitalId": 40670,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/d/60/5b17054357752",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Dustin Weaver",
+          "role": "penciler"
+        },
+        {
+          "name": "Jonathan Hickman",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "S.H.I.E.L.D. (2018) #5-6"
     }
   ]
