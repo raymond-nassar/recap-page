@@ -830,11 +830,12 @@ only permitted outputs are:
 ```text
 index.html
 site.css
-assets/home-1280.png
-assets/avengers-disassembled-reading-1280.png
+assets/home-960.png
+assets/avengers-disassembled-reading-960.png
 ```
 
-The two images must remain byte-identical to their namesakes under `docs/screenshots/`. Do not add
+The two 960 by 900 images use a clean demo profile, cover art off, and the collapsed sidebar.
+Keep them byte-identical to their namesakes under `docs/screenshots/`. Do not add
 `src`, an app manifest, a service worker, a script, a form, an iframe, an external font, analytics,
 telemetry or another application origin to the artifact.
 

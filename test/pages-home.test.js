@@ -54,22 +54,20 @@ const QUESTION_CONTEXT_LINKS = [
 ];
 const EXPECTED_HREFS = [
   '#main',
-  '#overview',
   '#demo',
   '#getting-started',
   '#troubleshooting',
   '#documentation',
-  '#project-questions',
   '#feedback',
-  `${REPOSITORY}#readme`,
   '#getting-started',
+  `${REPOSITORY}#readme`,
   'https://apps.microsoft.com/detail/9PDJ7XR9Q40Q',
   `${REPOSITORY}/releases/latest/download/marvel-reading-tracker-windows.zip`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
   APP_ORIGIN,
-  `${REPOSITORY}/releases`,
   `${REPOSITORY}/blob/main/docs/RUNNING.md#troubleshooting`,
   `${REPOSITORY}/blob/main/SUPPORT.md`,
+  '#project-questions',
   `${REPOSITORY}/blob/main/docs/RUNNING.md`,
   `${REPOSITORY}/blob/main/docs/ARCHITECTURE.md`,
   `${REPOSITORY}/blob/main/docs/DATA_PROVENANCE.md`,
@@ -81,15 +79,12 @@ const EXPECTED_HREFS = [
   `${REPOSITORY}/blob/main/CHANGELOG.md`,
   `${REPOSITORY}/blob/main/docs/WHY_A_BROWSER_APP.md`,
   QUESTION_FORM_URL,
-  `${REPOSITORY}/blob/main/SUPPORT.md`,
-  `${REPOSITORY}/blob/main/SUPPORT.md`,
   `${REPOSITORY}/issues/new?template=bug.yml`,
   `${REPOSITORY}/issues/new?template=feature.yml`,
   `${REPOSITORY}/issues/new?template=data-order.yml`,
   `${REPOSITORY}/blob/main/SECURITY.md`,
   REPOSITORY,
   `${REPOSITORY}/issues`,
-  `${REPOSITORY}/issues/403`,
   `${REPOSITORY}/commits/main`,
   `${REPOSITORY}/releases`,
   `${REPOSITORY}/blob/main/PRIVACY.md`,
@@ -148,8 +143,8 @@ async function copyApprovedSources(root) {
 test('the source inventory and generated contract stay exact', async () => {
   assert.deepEqual((await readdir(join(ROOT, 'pages'))).sort(), ['index.html', 'site.css']);
   assert.deepEqual(PAGE_OUTPUTS, [
-    'assets/avengers-disassembled-reading-1280.png',
-    'assets/home-1280.png',
+    'assets/avengers-disassembled-reading-960.png',
+    'assets/home-960.png',
     'index.html',
     'site.css',
   ]);
@@ -158,8 +153,8 @@ test('the source inventory and generated contract stay exact', async () => {
     [
       'pages/index.html',
       'pages/site.css',
-      'docs/screenshots/home-1280.png',
-      'docs/screenshots/avengers-disassembled-reading-1280.png',
+      'docs/screenshots/home-960.png',
+      'docs/screenshots/avengers-disassembled-reading-960.png',
     ],
   );
 });
@@ -204,6 +199,17 @@ test('the page exposes every task through semantic no-script structure', () => {
   assert.doesNotMatch(html, /<(?:script|form|iframe)\b/i);
   assert.doesNotMatch(html, /\b(?:localStorage|serviceWorker|manifest\.webmanifest|localhost)\b/i);
   assert.doesNotMatch(html, /\btarget="/i);
+  assert.match(html, /GitHub hosts this site and receives web request information, including your IP address/);
+  assert.match(html, /This site cannot access your reading data\. The app runs only on your computer/);
+});
+
+test('the project home keeps its copy concise and its navigation focused', () => {
+  const visibleCopy = html.slice(html.indexOf('<body>')).replace(/<[^>]+>/g, ' ');
+  const words = visibleCopy.match(/\S+/g) ?? [];
+  assert.ok(words.length <= 600, `${words.length} words exceed the 600-word page budget`);
+  const navigation = html.match(/<nav class="section-nav"[^>]*>[\s\S]*?<\/nav>/)?.[0] ?? '';
+  assert.equal((navigation.match(/<a\b/g) ?? []).length, 5);
+  assert.doesNotMatch(html, /class="eyebrow"/);
 });
 
 test('the project icon is self-contained so the owner-site root is never requested', () => {
@@ -252,7 +258,7 @@ test('the exact-origin warning appears before the only local-app link', () => {
   assert.ok(warning >= 0 && address > warning && appLink > address);
   assert.match(
     html.slice(warning, appLink),
-    /different hostname or port uses separate browser storage and looks like a fresh app/,
+    /different hostname or port\s+uses separate browser storage and looks like a fresh app/,
   );
 });
 
@@ -260,13 +266,16 @@ test('the demo is exactly the two current described product views', () => {
   const images = [...html.matchAll(/<img\b[\s\S]*?\/>/g)].map((tag) => attributes(tag[0]));
   assert.deepEqual(
     images.map(({ src }) => src),
-    ['./assets/home-1280.png', './assets/avengers-disassembled-reading-1280.png'],
+    ['./assets/home-960.png', './assets/avengers-disassembled-reading-960.png'],
   );
   for (const image of images) {
     assert.ok(image.alt?.length > 20, `${image.src} has no useful text alternative`);
-    assert.equal(image.width, '1280');
+    assert.equal(image.width, '960');
     assert.equal(image.height, '900');
     assert.equal(image.loading, 'lazy');
+    const bytes = readFileSync(join(ROOT, 'docs', 'screenshots', image.src.split('/').at(-1)));
+    assert.equal(bytes.readUInt32BE(16), Number(image.width));
+    assert.equal(bytes.readUInt32BE(20), Number(image.height));
   }
 });
 
@@ -275,14 +284,14 @@ test('the public question disclosure is complete before the form link', () => {
     html.indexOf('<section id="project-questions"'),
     html.indexOf('<section id="feedback"'),
   );
-  assert.match(section, /You need a GitHub account and must sign in/);
-  assert.match(section, /username, question, and every reply are public/);
-  assert.match(section, /GitHub hosts and processes that content/);
-  assert.match(section, /Recap Page sends nothing to the form automatically/);
-  assert.match(section, /Name the maintained source you checked and what remains unclear/);
-  assert.match(section, /Do not include reading progress, lists, notes, backups, personal information,\s+attachments, or vulnerability details/);
-  assert.match(section, /Troubleshooting, defects, improvements, catalogue corrections, and security reports/);
-  assert.ok(section.indexOf('Before you open the question form') < section.indexOf(QUESTION_FORM_URL));
+  const disclosure = section.slice(0, section.indexOf(QUESTION_FORM_URL)).replace(/\s+/g, ' ');
+  assert.match(disclosure, /GitHub sign-in is required/);
+  assert.match(disclosure, /username, question, and replies are public/);
+  assert.match(disclosure, /GitHub hosts and processes this content/);
+  assert.match(disclosure, /Recap Page sends nothing automatically/);
+  assert.match(disclosure, /Name the documentation you checked and what remains unclear/);
+  assert.match(disclosure, /Do not include reading progress, lists, notes, backups, personal information, attachments, or vulnerability details/);
+  assert.match(disclosure, /Before you post/);
   assert.equal([...section.matchAll(new RegExp(QUESTION_FORM_URL.replace('?', '\\?'), 'g'))].length, 1);
 
   const currentSources = [

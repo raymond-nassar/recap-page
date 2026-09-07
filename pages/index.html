@@ -21,28 +21,13 @@
 
     <header class="masthead">
       <div class="shell">
-        <p class="eyebrow">Recap Page project home</p>
-        <h1>Find your way into Recap Page</h1>
-        <p class="lede">
-          Understand the local reading companion, see the real app, run it safely, find help,
-          explore how it works, or choose the right place to ask a question.
-        </p>
-        <aside class="hosting-note" aria-labelledby="hosting-note-title">
-          <h2 id="hosting-note-title">The project site is not the tracker</h2>
-          <p>
-            GitHub hosts this information page and receives ordinary web request information,
-            including your IP address. Recap Page itself still runs only on your computer. This
-            page cannot read your lists, notes, settings, backups, or reading progress.
-          </p>
-        </aside>
+        <p class="site-name">Recap Page</p>
         <nav class="section-nav" aria-label="Page sections">
           <ul>
-            <li><a href="#overview">Overview</a></li>
             <li><a href="#demo">See the app</a></li>
             <li><a href="#getting-started">Get started</a></li>
-            <li><a href="#troubleshooting">Troubleshoot</a></li>
+            <li><a href="#troubleshooting">Help</a></li>
             <li><a href="#documentation">Documentation</a></li>
-            <li><a href="#project-questions">Project questions</a></li>
             <li><a href="#feedback">Feedback</a></li>
           </ul>
         </nav>
@@ -51,67 +36,49 @@
 
     <main id="main">
       <section id="overview" class="section shell" aria-labelledby="overview-title">
-        <div class="section-heading">
-          <p class="eyebrow">Overview</p>
-          <h2 id="overview-title">A private companion for long Marvel reading journeys</h2>
-          <p>
-            Recap Page organizes curated reading lists, keeps your place issue by issue, and opens
-            the official Marvel Unlimited reader. It includes no comics and does not replace a
-            Marvel Unlimited subscription.
-          </p>
-        </div>
-        <div class="card-grid">
-          <article class="card">
-            <h3>Start with a story</h3>
-            <p>Browse events, eras, characters, connected reading paths, and MCU Prep guides.</p>
-          </article>
-          <article class="card">
-            <h3>Keep your place locally</h3>
-            <p>Your reading state stays in the browser profile and address where you made it.</p>
-          </article>
-          <article class="card">
-            <h3>Read on Marvel Unlimited</h3>
-            <p>Recap Page opens the official reader or the issue page. It never shows comic pages.</p>
-          </article>
-        </div>
+        <h1 id="overview-title">Your Marvel reading companion</h1>
+        <p class="lede">
+          Choose a reading list, keep your place, and open your next comic in Marvel Unlimited.
+        </p>
+        <p>
+          Runs on your computer. No Recap Page account. Comics and a Marvel Unlimited subscription
+          are not included.
+        </p>
         <p class="action-row">
-          <a class="button" href="https://github.com/raymond-nassar/recap-page#readme">
-            Read the project overview
+          <a class="button" href="#getting-started">Get started</a>
+          <a href="https://github.com/raymond-nassar/recap-page#readme">
+            Read the overview
           </a>
-          <a class="button button-secondary" href="#getting-started">Choose how to run it</a>
         </p>
       </section>
 
       <section id="demo" class="section section-tinted" aria-labelledby="demo-title">
         <div class="shell">
           <div class="section-heading">
-            <p class="eyebrow">See the real app</p>
-            <h2 id="demo-title">From choosing a path to reading the next issue</h2>
-            <p>
-              These current product views use no comic cover art and no private reading profile.
-            </p>
+            <h2 id="demo-title">See the app</h2>
+            <p>Sample views, with cover art off.</p>
           </div>
           <div class="demo-grid">
             <figure class="demo">
               <img
-                src="./assets/home-1280.png"
-                width="1280"
+                src="./assets/home-960.png"
+                width="960"
                 height="900"
                 loading="lazy"
-                alt="Recap Page Home recommending Setup to Modern Timeline and showing Reading Paths among its discovery choices with cover art off"
+                alt="Home with a recommended starting guide, Modern Timeline, Storylines, and Character spotlights"
               />
-              <figcaption>Home offers clear starting points and connected Reading Paths.</figcaption>
+              <figcaption>Choose where to start.</figcaption>
             </figure>
             <figure class="demo">
               <img
-                src="./assets/avengers-disassembled-reading-1280.png"
-                width="1280"
+                src="./assets/avengers-disassembled-reading-960.png"
+                width="960"
                 height="900"
                 loading="lazy"
-                alt="Avengers Disassembled open at the first issue with no progress marked and cover art off"
+                alt="Avengers Disassembled showing the next issue, reading progress, and upcoming comics"
               />
               <figcaption>
-                A Reading List keeps the next issue, story order, and progress together.
+                Keep your next issue and reading progress in view.
               </figcaption>
             </figure>
           </div>
@@ -120,60 +87,51 @@
 
       <section id="getting-started" class="section shell" aria-labelledby="getting-started-title">
         <div class="section-heading">
-          <p class="eyebrow">Get started</p>
-          <h2 id="getting-started-title">Run Recap Page on your computer</h2>
+          <h2 id="getting-started-title">Get started</h2>
         </div>
-        <aside class="origin-warning" aria-labelledby="origin-warning-title">
-          <h3 id="origin-warning-title">Always use this exact address</h3>
-          <p><code>http://127.0.0.1:8787/</code></p>
-          <p>
-            A different hostname or port uses separate browser storage and looks like a fresh app.
-            Check the address before assuming that progress was lost.
-          </p>
-        </aside>
         <div class="card-grid">
           <article class="card route-card">
-            <h3>Install from Microsoft Store</h3>
-            <p>The Store is the primary Windows installation and update route.</p>
-            <a href="https://apps.microsoft.com/detail/9PDJ7XR9Q40Q">Open Microsoft Store</a>
+            <h3>Windows</h3>
+            <p>Install and get updates through the Store.</p>
+            <a class="button" href="https://apps.microsoft.com/detail/9PDJ7XR9Q40Q">
+              Open Microsoft Store
+            </a>
           </article>
           <article class="card route-card">
-            <h3>Use the standalone Windows archive</h3>
-            <p>Download, unzip, and start the included local copy without an installer.</p>
+            <h3>Standalone archive</h3>
+            <p>Unzip, then run <strong>Start on Windows.cmd</strong>.</p>
             <a
               href="https://github.com/raymond-nassar/recap-page/releases/latest/download/marvel-reading-tracker-windows.zip"
             >
-              Download the latest archive
+              Download for Windows
             </a>
           </article>
           <article class="card route-card">
-            <h3>Run from source</h3>
-            <p>Use Node.js 20 or newer, then follow the maintained setup steps.</p>
+            <h3>From source</h3>
+            <p>Requires Node.js 20 or newer.</p>
             <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
-              Read the complete running guide
+              Follow the setup guide
             </a>
           </article>
         </div>
+        <aside class="origin-warning" aria-labelledby="origin-warning-title">
+          <h3 id="origin-warning-title">Keep your progress in the same place</h3>
+          <p><code>http://127.0.0.1:8787/</code></p>
+          <p>
+            Use the same browser profile and this exact address. A different hostname or port
+            uses separate browser storage and looks like a fresh app.
+          </p>
+        </aside>
         <p class="action-row">
           <a class="button" href="http://127.0.0.1:8787/">Open the local app</a>
-          <a
-            class="button button-secondary"
-            href="https://github.com/raymond-nassar/recap-page/releases"
-          >
-            Browse releases
-          </a>
+          <span>Already installed and running?</span>
         </p>
       </section>
 
       <section id="troubleshooting" class="section section-tinted" aria-labelledby="troubleshooting-title">
         <div class="shell split">
           <div class="section-heading">
-            <p class="eyebrow">Troubleshoot</p>
-            <h2 id="troubleshooting-title">Start with the five common problems</h2>
-            <p>
-              The running guide covers a busy port, missing Node.js, a blank page, a Read button
-              that appears to do nothing, and progress that seems to have disappeared.
-            </p>
+            <h2 id="troubleshooting-title">Need help?</h2>
           </div>
           <div class="route-list">
             <a
@@ -181,14 +139,18 @@
               href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md#troubleshooting"
             >
               <strong>Open troubleshooting</strong>
-              <span>Use the maintained step-by-step checks.</span>
+              <span>Startup, blank pages, reader links, or missing progress.</span>
             </a>
             <a
               class="route"
               href="https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md"
             >
               <strong>Ask for support</strong>
-              <span>Learn what to include and which service owns the problem.</span>
+              <span>What to include in a help request.</span>
+            </a>
+            <a class="route" href="#project-questions">
+              <strong>Ask about the project</strong>
+              <span>How it works and why decisions were made.</span>
             </a>
           </div>
         </div>
@@ -196,43 +158,38 @@
 
       <section id="documentation" class="section shell" aria-labelledby="documentation-title">
         <div class="section-heading">
-          <p class="eyebrow">Documentation</p>
-          <h2 id="documentation-title">Go to the maintained source</h2>
-          <p>
-            This home points to each document that owns the detail instead of copying a second
-            version that can drift.
-          </p>
+          <h2 id="documentation-title">Documentation</h2>
         </div>
         <div class="link-grid">
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/RUNNING.md">
-            <strong>Running</strong><span>Install, open, upgrade, and troubleshoot.</span>
+            <strong>Running</strong><span>Setup and upgrades.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/ARCHITECTURE.md">
-            <strong>Architecture</strong><span>Modules, storage, data flow, and boundaries.</span>
+            <strong>Architecture</strong><span>How the app works.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/DATA_PROVENANCE.md">
-            <strong>Data provenance</strong><span>Sources, permissions, and licence limits.</span>
+            <strong>Data sources</strong><span>Origins and permissions.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md">
-            <strong>Privacy</strong><span>Local storage and direct network requests.</span>
+            <strong>Privacy</strong><span>Storage and network requests.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
-            <strong>Security</strong><span>Supported versions and private reporting.</span>
+            <strong>Security</strong><span>Private reporting.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/MAINTAINING.md">
-            <strong>Maintaining</strong><span>Checks, data work, Pages, and releases.</span>
+            <strong>Maintaining</strong><span>Data, releases, and this site.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/CONTRIBUTING.md">
-            <strong>Contributing</strong><span>What changes are welcome and how they are judged.</span>
+            <strong>Contributing</strong><span>Help improve the app.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/GOVERNANCE.md">
-            <strong>Governance</strong><span>Roadmap, release, and maintainer decisions.</span>
+            <strong>Governance</strong><span>How decisions are made.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/CHANGELOG.md">
-            <strong>Changelog</strong><span>What changed in each release.</span>
+            <strong>Changelog</strong><span>What's new.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/docs/WHY_A_BROWSER_APP.md">
-            <strong>Why a browser app</strong><span>The measured platform decision.</span>
+            <strong>Why a browser app</strong><span>The platform choice.</span>
           </a>
         </div>
       </section>
@@ -240,42 +197,28 @@
       <section id="project-questions" class="section section-tinted" aria-labelledby="project-questions-title">
         <div class="shell split">
           <div class="section-heading">
-            <p class="eyebrow">Project questions</p>
-            <h2 id="project-questions-title">Ask a public project question</h2>
+            <h2 id="project-questions-title">Ask about the project</h2>
             <p>
-              Start with the maintained documents above. If they do not explain how Recap Page works
-              or why a documented decision was made, use the public question form for a human answer.
+              Get a human answer from the maintainer. Name the documentation you checked and what
+              remains unclear.
             </p>
           </div>
           <aside class="disclosure" aria-labelledby="question-disclosure-title">
-            <h3 id="question-disclosure-title">Before you open the question form</h3>
-            <ul>
-              <li>You need a GitHub account and must sign in.</li>
-              <li>Your username, question, and every reply are public.</li>
-              <li>GitHub hosts and processes that content.</li>
-              <li>Recap Page sends nothing to the form automatically.</li>
-              <li>Name the maintained source you checked and what remains unclear.</li>
-              <li>
-                Do not include reading progress, lists, notes, backups, personal information,
-                attachments, or vulnerability details.
-              </li>
-            </ul>
+            <h3 id="question-disclosure-title">Before you post</h3>
             <p>
-              Troubleshooting, defects, improvements, catalogue corrections, and security reports
-              use the separate routes below.
+              GitHub sign-in is required. Your username, question, and replies are public.
+              GitHub hosts and processes this content; Recap Page sends nothing automatically.
+            </p>
+            <p>
+              Do not include reading progress, lists, notes, backups, personal information,
+              attachments, or vulnerability details.
             </p>
             <p class="action-row">
               <a
                 class="button"
                 href="https://github.com/raymond-nassar/recap-page/issues/new?template=project-question.yml"
               >
-                Ask a public project question
-              </a>
-              <a
-                class="button button-secondary"
-                href="https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md"
-              >
-                Use the maintainer support route
+                Ask a public question
               </a>
             </p>
           </aside>
@@ -284,43 +227,33 @@
 
       <section id="feedback" class="section shell" aria-labelledby="feedback-title">
         <div class="section-heading">
-          <p class="eyebrow">Feedback and reports</p>
-          <h2 id="feedback-title">Choose the route that matches what happened</h2>
-          <p>
-            These destinations already own support, product feedback, catalogue corrections, and
-            private security reports.
-          </p>
+          <h2 id="feedback-title">Feedback</h2>
         </div>
         <div class="link-grid">
-          <a href="https://github.com/raymond-nassar/recap-page/blob/main/SUPPORT.md">
-            <strong>Support question</strong><span>Start with troubleshooting and ask for help.</span>
-          </a>
           <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=bug.yml">
-            <strong>Something is broken</strong><span>Report behavior that breaks an app promise.</span>
+            <strong>Report a bug</strong><span>Something isn't working.</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=feature.yml">
-            <strong>Suggest an improvement</strong><span>Describe the reading problem to solve.</span>
+            <strong>Suggest an improvement</strong><span>What would help you read?</span>
           </a>
           <a href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml">
-            <strong>Correct reading data</strong><span>Report a position, issue, cover, or detail.</span>
+            <strong>Correct reading data</strong><span>An issue, detail, or order is wrong.</span>
           </a>
           <a class="security-route" href="https://github.com/raymond-nassar/recap-page/blob/main/SECURITY.md">
-            <strong>Report a security problem privately</strong>
-            <span>Never put vulnerability details in a public issue or pull request.</span>
+            <strong>Report a security problem</strong>
+            <span>Privately, never in a public issue or pull request.</span>
           </a>
         </div>
       </section>
 
-      <section id="source-history" class="section section-tinted" aria-labelledby="source-history-title">
+      <section id="source-history" class="section section-compact section-tinted" aria-labelledby="source-history-title">
         <div class="shell">
           <div class="section-heading">
-            <p class="eyebrow">Source and history</p>
-            <h2 id="source-history-title">Inspect the project and its decisions</h2>
+            <h2 id="source-history-title">Project links</h2>
           </div>
           <div class="project-links">
             <a href="https://github.com/raymond-nassar/recap-page">Source repository</a>
             <a href="https://github.com/raymond-nassar/recap-page/issues">Issue history</a>
-            <a href="https://github.com/raymond-nassar/recap-page/issues/403">This home base issue</a>
             <a href="https://github.com/raymond-nassar/recap-page/commits/main">Commit history</a>
             <a href="https://github.com/raymond-nassar/recap-page/releases">Releases</a>
           </div>
@@ -330,10 +263,12 @@
 
     <footer class="footer">
       <div class="shell">
+        <p class="hosting-note">
+          GitHub hosts this site and receives web request information, including your IP address.
+          This site cannot access your reading data. The app runs only on your computer.
+        </p>
         <p>
-          Recap Page is an unofficial fan project. It is not affiliated with or endorsed by Marvel
-          Entertainment. It contains metadata and links only, and reading requires your own Marvel
-          Unlimited subscription.
+          Unofficial fan project. Not affiliated with or endorsed by Marvel Entertainment.
         </p>
         <p>
           <a href="https://github.com/raymond-nassar/recap-page/blob/main/PRIVACY.md">Privacy</a>
