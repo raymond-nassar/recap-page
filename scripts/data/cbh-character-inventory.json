@@ -1700,7 +1700,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The 815-occurrence source boundary reduces to 811 distinct issues once the two repeated Tony Stark: Iron Man (2018) #15/#16 occurrences and the two never-published Iron Man: Viva Las Vegas #3-4 rows are recorded, and all 811 resolve exactly, including the owner-supplied exact ids for Crimson Dynamo #1-4 and Iron Man Legacy #2, #5, and #10, which this project's live metadata index does not currently list.",
+    "reason": "The frozen source contains 815 occurrences representing 813 source identities. Two Tony Stark: Iron Man (2018) #15/#16 occurrences repeat earlier identities, and the two never-published Iron Man: Viva Las Vegas #3-4 identities remain explicit source corrections, leaving 811 canonical rows that all resolve exactly. The complete owner settlement preserves Crimson Dynamo #1-4 and Iron Man Legacy #2, #5, and #10 in those rows, while verified Crimson Dynamo #5-6 ids 309 and 293 remain provenance only because they are outside the accepted source boundary.",
     "sourceRetrievedAt": "2026-08-23",
     "overlapIds": [
       "iron-man-2020"

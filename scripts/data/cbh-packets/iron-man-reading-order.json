@@ -90,7 +90,156 @@
     "authorityType": "stronger-model",
     "authorityIdentity": "MRT-002 resume coordinator",
     "rationale": "Central review re-derived the exact 815-row source ledger from the committed evidence-boundary artifact and the live source page, reconciled all twelve retained sections, resolved all 811 canonical issues (including the owner-supplied exact ids for Crimson Dynamo #1-4 and Iron Man Legacy #2, #5, and #10, which this project's live metadata index does not currently list), recorded the two repeated Tony Stark: Iron Man (2018) #15/#16 occurrences, and recorded Iron Man: Viva Las Vegas #3-4 as a closed source correction rather than an unresolved gap.",
-    "reviewedAt": "2026-08-26"
+    "reviewedAt": "2026-08-26",
+    "metadataGapLedger": {
+      "settlementIssue": "https://github.com/raymond-nassar/recap-page/issues/245",
+      "settledAt": "2026-09-06",
+      "sourceOccurrenceCount": 815,
+      "distinctSourceIdentityCount": 813,
+      "canonicalRowCount": 811,
+      "historicalFailedLookups": [
+        {
+          "sourcePosition": 425,
+          "sourceIssueReference": "Crimson Dynamo #1",
+          "disposition": "resolved-exact-identity",
+          "selectedIssueId": 72824
+        },
+        {
+          "sourcePosition": 426,
+          "sourceIssueReference": "Crimson Dynamo #2",
+          "disposition": "resolved-exact-identity",
+          "selectedIssueId": 72825
+        },
+        {
+          "sourcePosition": 427,
+          "sourceIssueReference": "Crimson Dynamo #3",
+          "disposition": "resolved-exact-identity",
+          "selectedIssueId": 391
+        },
+        {
+          "sourcePosition": 428,
+          "sourceIssueReference": "Crimson Dynamo #4",
+          "disposition": "resolved-exact-identity",
+          "selectedIssueId": 390
+        },
+        {
+          "sourcePosition": 507,
+          "sourceIssueReference": "Iron Man: Viva Las Vegas #3",
+          "disposition": "excluded-never-published"
+        },
+        {
+          "sourcePosition": 508,
+          "sourceIssueReference": "Iron Man: Viva Las Vegas #4",
+          "disposition": "excluded-never-published"
+        },
+        {
+          "sourcePosition": 569,
+          "sourceIssueReference": "Iron Man Legacy #2",
+          "disposition": "resolved-exact-identity",
+          "selectedIssueId": 30104
+        },
+        {
+          "sourcePosition": 572,
+          "sourceIssueReference": "Iron Man Legacy #5",
+          "disposition": "resolved-exact-identity",
+          "selectedIssueId": 30107
+        },
+        {
+          "sourcePosition": 577,
+          "sourceIssueReference": "Iron Man Legacy #10",
+          "disposition": "resolved-exact-identity",
+          "selectedIssueId": 30101
+        }
+      ],
+      "ownerSuppliedIdentities": [
+        {
+          "sourceIssueReference": "Crimson Dynamo #1",
+          "selectedIssueId": 72824,
+          "evidenceRole": "historical-gap-resolution",
+          "canonicalSourcePosition": 425
+        },
+        {
+          "sourceIssueReference": "Crimson Dynamo #2",
+          "selectedIssueId": 72825,
+          "evidenceRole": "historical-gap-resolution",
+          "canonicalSourcePosition": 426
+        },
+        {
+          "sourceIssueReference": "Crimson Dynamo #3",
+          "selectedIssueId": 391,
+          "evidenceRole": "historical-gap-resolution",
+          "canonicalSourcePosition": 427
+        },
+        {
+          "sourceIssueReference": "Crimson Dynamo #4",
+          "selectedIssueId": 390,
+          "evidenceRole": "historical-gap-resolution",
+          "canonicalSourcePosition": 428
+        },
+        {
+          "sourceIssueReference": "Crimson Dynamo #5",
+          "selectedIssueId": 309,
+          "evidenceRole": "verified-outside-accepted-source-boundary"
+        },
+        {
+          "sourceIssueReference": "Crimson Dynamo #6",
+          "selectedIssueId": 293,
+          "evidenceRole": "verified-outside-accepted-source-boundary"
+        },
+        {
+          "sourceIssueReference": "Iron Man: Viva Las Vegas #1",
+          "selectedIssueId": 21234,
+          "evidenceRole": "published-series-boundary-evidence",
+          "canonicalSourcePosition": 505,
+          "supportsExcludedSourcePositions": [
+            507,
+            508
+          ]
+        },
+        {
+          "sourceIssueReference": "Iron Man: Viva Las Vegas #2",
+          "selectedIssueId": 21377,
+          "evidenceRole": "published-series-boundary-evidence",
+          "canonicalSourcePosition": 506,
+          "supportsExcludedSourcePositions": [
+            507,
+            508
+          ]
+        },
+        {
+          "sourceIssueReference": "Tony Stark: Iron Man #15",
+          "selectedIssueId": 70799,
+          "evidenceRole": "canonical-and-repeated-source-identity",
+          "canonicalSourcePosition": 708,
+          "repeatedSourcePosition": 716
+        },
+        {
+          "sourceIssueReference": "Tony Stark: Iron Man #16",
+          "selectedIssueId": 70800,
+          "evidenceRole": "canonical-and-repeated-source-identity",
+          "canonicalSourcePosition": 709,
+          "repeatedSourcePosition": 717
+        },
+        {
+          "sourceIssueReference": "Iron Man Legacy #2",
+          "selectedIssueId": 30104,
+          "evidenceRole": "historical-gap-resolution",
+          "canonicalSourcePosition": 569
+        },
+        {
+          "sourceIssueReference": "Iron Man Legacy #5",
+          "selectedIssueId": 30107,
+          "evidenceRole": "historical-gap-resolution",
+          "canonicalSourcePosition": 572
+        },
+        {
+          "sourceIssueReference": "Iron Man Legacy #10",
+          "selectedIssueId": 30101,
+          "evidenceRole": "historical-gap-resolution",
+          "canonicalSourcePosition": 577
+        }
+      ]
+    }
   },
   "rows": [
     {
@@ -9015,5 +9164,5 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "b2c67419dce8fff82401ee9e32498c97086409bae1e514f10d9ab4ac70feb805"
+  "packetDigest": "3f1fcc4fe3e6c6f0f768b411cf3d18453c7231dccf360e41c2ab407c5b55c76a"
 }

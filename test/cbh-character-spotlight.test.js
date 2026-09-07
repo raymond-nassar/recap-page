@@ -2798,17 +2798,23 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   const report = await readJson(`scripts/data/cbh-overlaps/${ironManCandidateId}.json`);
   const generated = await readJson('src/data/iron_man_reading_order.json');
   const record = inventory.find((candidate) => candidate.id === ironManCandidateId);
+  const parsed = parseChecklist(await readFile(
+    path.join(root, `src/data/orders/${ironManCandidateId}.md`),
+    'utf8',
+  ));
 
   assert.equal(record.centralDisposition, 'pilot-approved');
   assert.equal(record.deliveryStatus, 'shipped');
   assert.equal(record.metadataHorizonStatus, 'approved');
   assert.deepEqual(record.catalogIds, [ironManCandidateId]);
-  assert.match(record.reason, /815-occurrence source boundary reduces to 811 distinct issues/i);
+  assert.match(record.reason, /815 occurrences representing 813 source identities/i);
+  assert.match(record.reason, /leaving 811 canonical rows/i);
   for (const required of [
     'Tony Stark: Iron Man (2018) #15/#16',
     'Crimson Dynamo #1-4',
     'Iron Man: Viva Las Vegas #3-4',
     'Iron Man Legacy #2, #5, and #10',
+    'Crimson Dynamo #5-6 ids 309 and 293 remain provenance only',
   ]) {
     assert.match(record.reason, new RegExp(required.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   }
@@ -2865,6 +2871,126 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
       [508, 'Iron Man: Viva Las Vegas #4'],
     ],
   );
+
+  const ledger = packet.sourceReview.metadataGapLedger;
+  assert.equal(ledger.settlementIssue, 'https://github.com/raymond-nassar/recap-page/issues/245');
+  assert.equal(ledger.settledAt, '2026-09-06');
+  assert.deepEqual(
+    {
+      sourceOccurrenceCount: ledger.sourceOccurrenceCount,
+      distinctSourceIdentityCount: ledger.distinctSourceIdentityCount,
+      canonicalRowCount: ledger.canonicalRowCount,
+    },
+    {
+      sourceOccurrenceCount: packet.sourceOccurrenceCount,
+      distinctSourceIdentityCount: packet.rows.length + packet.excludedSourceRows.length,
+      canonicalRowCount: mapping.rows.length,
+    },
+  );
+  assert.deepEqual(
+    ledger.historicalFailedLookups.map((entry) => [
+      entry.sourcePosition,
+      entry.sourceIssueReference,
+      entry.disposition,
+      entry.selectedIssueId ?? null,
+    ]),
+    [
+      [425, 'Crimson Dynamo #1', 'resolved-exact-identity', 72824],
+      [426, 'Crimson Dynamo #2', 'resolved-exact-identity', 72825],
+      [427, 'Crimson Dynamo #3', 'resolved-exact-identity', 391],
+      [428, 'Crimson Dynamo #4', 'resolved-exact-identity', 390],
+      [507, 'Iron Man: Viva Las Vegas #3', 'excluded-never-published', null],
+      [508, 'Iron Man: Viva Las Vegas #4', 'excluded-never-published', null],
+      [569, 'Iron Man Legacy #2', 'resolved-exact-identity', 30104],
+      [572, 'Iron Man Legacy #5', 'resolved-exact-identity', 30107],
+      [577, 'Iron Man Legacy #10', 'resolved-exact-identity', 30101],
+    ],
+  );
+
+  const expectedOwnerIdentities = [
+    ['Crimson Dynamo #1', 72824, 'historical-gap-resolution'],
+    ['Crimson Dynamo #2', 72825, 'historical-gap-resolution'],
+    ['Crimson Dynamo #3', 391, 'historical-gap-resolution'],
+    ['Crimson Dynamo #4', 390, 'historical-gap-resolution'],
+    ['Crimson Dynamo #5', 309, 'verified-outside-accepted-source-boundary'],
+    ['Crimson Dynamo #6', 293, 'verified-outside-accepted-source-boundary'],
+    ['Iron Man: Viva Las Vegas #1', 21234, 'published-series-boundary-evidence'],
+    ['Iron Man: Viva Las Vegas #2', 21377, 'published-series-boundary-evidence'],
+    ['Tony Stark: Iron Man #15', 70799, 'canonical-and-repeated-source-identity'],
+    ['Tony Stark: Iron Man #16', 70800, 'canonical-and-repeated-source-identity'],
+    ['Iron Man Legacy #2', 30104, 'historical-gap-resolution'],
+    ['Iron Man Legacy #5', 30107, 'historical-gap-resolution'],
+    ['Iron Man Legacy #10', 30101, 'historical-gap-resolution'],
+  ];
+  assert.deepEqual(
+    ledger.ownerSuppliedIdentities.map((entry) => [
+      entry.sourceIssueReference,
+      entry.selectedIssueId,
+      entry.evidenceRole,
+    ]),
+    expectedOwnerIdentities,
+  );
+
+  const canonicalPositions = sourcePositionsForPacket(packet);
+  assert.deepEqual(canonicalPositions, mapping.rows.map((row) => row.sourcePosition));
+  const mappingByPosition = new Map(mapping.rows.map((row) => [row.sourcePosition, row]));
+  const repeatByPosition = new Map(
+    packet.repeatedSourceReferences.map((entry) => [entry.sourcePosition, entry]),
+  );
+  const exclusionByPosition = new Map(
+    packet.excludedSourceRows.map((entry) => [entry.sourcePosition, entry]),
+  );
+  const productIssueIds = new Set([
+    ...mapping.rows.map((row) => String(row.selectedIssueId)),
+    ...parsed.entries.map((entry) => String(entry.issueId)),
+    ...generated.items.map((item) => String(item.issueId)),
+  ]);
+
+  for (const entry of ledger.historicalFailedLookups) {
+    if (entry.disposition === 'resolved-exact-identity') {
+      const row = mappingByPosition.get(entry.sourcePosition);
+      assert.equal(row?.sourceIssueReference, entry.sourceIssueReference);
+      assert.equal(String(row?.selectedIssueId), String(entry.selectedIssueId));
+    } else {
+      const exclusion = exclusionByPosition.get(entry.sourcePosition);
+      assert.equal(exclusion?.sourceIssueReference, entry.sourceIssueReference);
+      assert.equal(entry.selectedIssueId, undefined);
+    }
+  }
+
+  for (const entry of ledger.ownerSuppliedIdentities) {
+    if (entry.evidenceRole === 'verified-outside-accepted-source-boundary') {
+      assert.equal(entry.canonicalSourcePosition, undefined);
+      assert.equal(entry.repeatedSourcePosition, undefined);
+      assert.equal(packet.rows.some((row) => row.sourceIssueReference === entry.sourceIssueReference), false);
+      assert.equal(
+        packet.rows.some((row) => String(row.candidateIssueId) === String(entry.selectedIssueId)),
+        false,
+      );
+      assert.equal(mapping.rows.some((row) => row.sourceIssueReference === entry.sourceIssueReference), false);
+      assert.equal(productIssueIds.has(String(entry.selectedIssueId)), false);
+      continue;
+    }
+
+    const row = mappingByPosition.get(entry.canonicalSourcePosition);
+    assert.equal(row?.sourceIssueReference, entry.sourceIssueReference);
+    assert.equal(String(row?.selectedIssueId), String(entry.selectedIssueId));
+
+    if (entry.evidenceRole === 'published-series-boundary-evidence') {
+      assert.deepEqual(
+        entry.supportsExcludedSourcePositions,
+        packet.excludedSourceRows.map((excluded) => excluded.sourcePosition),
+      );
+      continue;
+    }
+
+    if (entry.evidenceRole === 'canonical-and-repeated-source-identity') {
+      const repeat = repeatByPosition.get(entry.repeatedSourcePosition);
+      assert.equal(repeat?.sourceIssueReference, entry.sourceIssueReference);
+      assert.equal(canonicalPositions[repeat.canonicalRow - 1], entry.canonicalSourcePosition);
+    }
+  }
+
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: ironManCandidateId,
     inventoryRecord: record,
@@ -2872,6 +2998,13 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   }));
   assert.doesNotThrow(() => validateMappingDigest(mapping));
   assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: report.libraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
   assert.equal(mapping.rows.length, 811);
   assert.equal(new Set(mapping.rows.map((row) => String(row.selectedIssueId))).size, 811);
   assert.ok(mapping.rows.every((row) => row.resolutionStatus === 'exact'));
@@ -2880,32 +3013,6 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
     packet.rows.map((row) => row.sourceIssueReference),
   );
 
-  const ownerSuppliedIds = {
-    'Tony Stark: Iron Man #15': 70799,
-    'Tony Stark: Iron Man #16': 70800,
-    'Iron Man: Viva Las Vegas #1': 21234,
-    'Iron Man: Viva Las Vegas #2': 21377,
-    'Iron Man Legacy #2': 30104,
-    'Iron Man Legacy #5': 30107,
-    'Iron Man Legacy #10': 30101,
-    'Crimson Dynamo #1': 72824,
-    'Crimson Dynamo #2': 72825,
-    'Crimson Dynamo #3': 391,
-    'Crimson Dynamo #4': 390,
-  };
-  const rowBySourceReference = new Map(
-    mapping.rows.map((row) => [row.sourceIssueReference, row]),
-  );
-  for (const [reference, issueId] of Object.entries(ownerSuppliedIds)) {
-    const row = rowBySourceReference.get(reference);
-    assert.ok(row, `expected a mapping row for ${reference}`);
-    assert.equal(String(row.selectedIssueId), String(issueId), `${reference} should resolve to ${issueId}`);
-  }
-
-  const parsed = parseChecklist(await readFile(
-    path.join(root, `src/data/orders/${ironManCandidateId}.md`),
-    'utf8',
-  ));
   assert.deepEqual(
     parsed.entries.map((entry) => String(entry.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),

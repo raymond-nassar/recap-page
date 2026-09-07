@@ -455,10 +455,12 @@ Annihilators: Earthfall #1-4 blocks remain explicit evidence rather than exclusi
 published checklist still contains 76 unique comics. Sources with no repeated whole issue omit the
 optional ledger and keep their existing evidence shape.
 
-This representation does not make an unavailable issue optional. Iron Man's 815 source occurrences
-can be represented as 813 distinct issues, including both later Tony Stark: Iron Man #15-16
-references, but the guide remains deferred because the metadata contract cannot resolve nine other
-source-required issues. No shortened Iron Man order is published.
+Iron Man preserves 815 source occurrences across 813 source identities. Two later Tony Stark:
+Iron Man #15-16 references repeat earlier canonical identities, and the never-published Viva Las
+Vegas #3-4 identities remain explicit source corrections, so the published guide contains 811
+canonical issues. Its settled metadata ledger records the nine historical failed lookups separately
+from all thirteen owner-supplied identities. Crimson Dynamo #5-6 ids 309 and 293 are verified
+provenance outside the accepted source boundary and are not added to the guide.
 
 Star-Lord's Complete guide preserves all 99 issues in displayed source order. Its 25 shared issues
 with each of Rocket Raccoon and Groot, 7 with War of Kings, and 1 with Infinity Countdown and
