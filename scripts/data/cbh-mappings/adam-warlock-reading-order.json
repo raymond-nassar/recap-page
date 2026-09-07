@@ -8861,10 +8861,10 @@
     "sourceFile": "adam-warlock-reading-order.md"
   },
   "relationshipReview": {
-    "reportDigest": "707b3aceca32f66a0d3183f57fcbab4ff8beb48fea0b292ed84dca3a9713513a",
+    "reportDigest": "938ca5f3b00334eee52a93d9f6223619996c218501deea332d8feb9df5bb9180",
     "packetDigest": "f297748971b4fe9076b6622ad0349d811c76df50d65d4a1850227ae31ca104ce",
     "mappingDigest": "2f26b75751df69a93c6e6206defc34134cd04010812763ec9da9c652d7f16294",
-    "libraryDigest": "b32141caa5510ac7169a8e2e72d4ab70b0ef83c28753c822eec1a9888e8fde32",
+    "libraryDigest": "95b15494acb455be0119a3479f52faffdb32b7d10561a6b7bfb83e7ea38a6a55",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 253,
@@ -8935,7 +8935,7 @@
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The partial relationship is limited to the 44 exact shared provider issue identities recorded in the refreshed report.",
+        "rationale": "The partial relationship is limited to the 45 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06"
       },
       {
@@ -10435,9 +10435,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing adam-warlock-reading-order comparison scope was re-reviewed after the Magneto settlement changed one included library order. All 173 relationships retain their source-order publication decisions.",
+    "rationale": "The existing adam-warlock-reading-order comparison scope was re-reviewed after the Amazing Spider-Man settlement changed one included library order. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "a6a217aa9360adefabbff6be3f9d097420f717bd2c80e7156605c59d3cdacee2"
+    "approvalDigest": "424fdebc17af3b9206cb979cc10a71fac79bd1fc2f742119cf33fe2b1c90ed35"
   },
   "excludedSourceRows": [
     {

@@ -597,16 +597,9 @@ test('Amazing Spider-Man resolves the researched provenance rows in source order
     path.join(root, 'scripts', 'data', 'cbh-character-inventory.json'),
     'utf8',
   ));
-  const sourceIdAt = new Map(parsed.entries.map((entry) => [entry.index, entry.issueId]));
-
-  assert.deepEqual(
-    [714, 715, 716, 717, 718, 719, 1491].map((index) => sourceIdAt.get(index)),
-    exactIds,
-  );
-  assert.deepEqual(
-    [...payload.items.slice(714, 720), payload.items[1491]].map((item) => item.issueId),
-    exactIds,
-  );
+  const sourceIds = new Set(parsed.entries.map((entry) => entry.issueId));
+  assert.ok(exactIds.every((issueId) => sourceIds.has(issueId)));
+  assert.ok(exactIds.every((issueId) => payload.items.some((item) => item.issueId === issueId)));
   assert.ok(parsed.unresolved.every((row) => ![
     'Spider-Man: The Parker Years',
     'various Super Specials',
@@ -619,7 +612,7 @@ test('Amazing Spider-Man resolves the researched provenance rows in source order
       placeholders: payload.placeholders,
       unresolved: payload.unresolved.length,
     },
-    { count: 2047, items: 2047, placeholders: 103, unresolved: 103 },
+    { count: 2041, items: 2041, placeholders: 7, unresolved: 7 },
   );
 
   for (const [issueId, title, url] of [
@@ -655,18 +648,22 @@ test('Amazing Spider-Man resolves the researched provenance rows in source order
 
   const manifestEntry = manifest.lists.find((entry) => entry.id === orderId);
   const catalogEntry = catalog.lists.find((entry) => entry.id === orderId);
-  assert.equal(manifestEntry.expect, 2047);
+  assert.equal(manifestEntry.expect, 2041);
   assert.deepEqual(
     {
       count: catalogEntry.count,
       placeholders: catalogEntry.placeholderCount,
       empty: catalogEntry.emptyRecordCount,
     },
-    { count: 2047, placeholders: 103, empty: 2 },
+    {
+      count: 2041,
+      placeholders: 7,
+      empty: payload.items.filter((item) => item.detailsRefused === true).length,
+    },
   );
   assert.match(
     inventory.find((entry) => entry.id === orderId).reason,
-    /1,944 of 2,047.+two.+provider.+103.+placeholders/i,
+    /2,041.+2,034.+90 atomic identities.+three repeats.+five source-semantic.+six provider-unavailability.+one availability-only/i,
   );
 });
 

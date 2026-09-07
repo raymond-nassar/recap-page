@@ -152,7 +152,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "1,944 of 2,047 source-defined issues resolve to exact Marvel identities in source order. Of those, 1,942 carry maintained-provider metadata and two use owner-confirmed official Marvel issue URLs the provider does not list. The remaining 103 rows ship as explicit plain-text placeholders (no invented Marvel issue ids or links) and are tracked for follow-up research in issue #248. The separate Complete guide remains distinct despite 32 approved partial relationships.",
+    "reason": "The settled guide publishes 2,041 checklist entries in source order: 2,034 exact Marvel issues and seven explicit plain-text placeholders. The resolved 103-row gap ledger contributes 90 atomic identities from 88 exact source rows, removes three repeats and five source-semantic exclusions from the reading sequence, and retains six provider-unavailability rows plus one availability-only row without invented ids, nonexistence claims, or substitutions. The separate Complete guide remains distinct despite 32 approved partial relationships.",
     "sourceRetrievedAt": "2026-08-27",
     "overlapIds": [
       "spider-man-best-of",

@@ -2,7 +2,7 @@
   "candidateId": "silver-surfer-reading-order",
   "packetDigest": "035dbbc4c860542a50055abc087147f241bf75b5bc69fc34b0238675b0f7d047",
   "mappingDigest": "ea48b22d38e10c3884b22ee36ef730d33e446f54e7ae17357ce8dd9479ab2950",
-  "libraryDigest": "f1b6152bdf309a02053a0be9c65c1e76c0442d431de86e480c54b4748d17bae9",
+  "libraryDigest": "3284a702c1f65e500ee43858077edf6c10db5d022077114a4b4a0a5deb3b65d5",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 426,
@@ -61,7 +61,7 @@
     },
     {
       "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-      "sharedCount": 28,
+      "sharedCount": 32,
       "sharedIds": [
         "15169",
         "15170",
@@ -90,7 +90,11 @@
         "15194",
         "15195",
         "15196",
-        "15198"
+        "15198",
+        "29603",
+        "29604",
+        "29605",
+        "29606"
       ],
       "relationship": "partial"
     },
@@ -1242,5 +1246,5 @@
       "relationship": "partial"
     }
   ],
-  "reportDigest": "cec9f4e9cdf2e8f4cc7f7f3c00c5ebf9a65d8495be0dd59760bd67467bfa78d3"
+  "reportDigest": "da56673f9da3c909b1e9e1ebed28fe296ac979f19e134cbbf9edf12608db4d7a"
 }

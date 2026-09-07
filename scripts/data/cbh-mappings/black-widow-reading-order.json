@@ -43134,10 +43134,10 @@
     "coverIssueId": 11295
   },
   "relationshipReview": {
-    "reportDigest": "3824319e3619ff79bc136f93830b28bbadd27c6a3fb034f5c7b037286add9dd1",
+    "reportDigest": "54809ea4d83ad9359da49986af4eaa50b55f67d5644e92602bf68cd77c122c9a",
     "packetDigest": "6801ed05aae2104d5cd0c5738c7668a852897b13ea63acb8763576a6aae88b4f",
     "mappingDigest": "6ccf074e84532129997b6f4d6a3abd19ff341cb70b4a20314af6feda3b62cc1e",
-    "libraryDigest": "6adeb5344e846b966c434d7fe46b842f035ed53e88b7bff58dabb85aabe74380",
+    "libraryDigest": "c6ab26645687b49c22746cc7b6a8ee3d1703ff366e3a6117fd163dbd6ad6302f",
     "peerDigests": {},
     "sourceCounts": {
       "sourceOccurrenceCount": 773,
@@ -43217,7 +43217,7 @@
         "decision": "approved",
         "authorityType": "stronger-model",
         "authorityIdentity": "GPT-5.6 Sol",
-        "rationale": "The partial relationship is limited to the 3 exact shared provider issue identities recorded in the refreshed report.",
+        "rationale": "The partial relationship is limited to the 5 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06"
       },
       {
@@ -44708,9 +44708,9 @@
     ],
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing black-widow-reading-order comparison scope was re-reviewed after the Magneto settlement changed one included library order. All 173 relationships retain their source-order publication decisions.",
+    "rationale": "The existing black-widow-reading-order comparison scope was re-reviewed after the Amazing Spider-Man settlement changed one included library order. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "approvalDigest": "1c81208896542d3d68447f6f816f789392611d22746e883c0874fdff59366e70"
+    "approvalDigest": "6b61ed9002e3193e1b24d1da2cfcade7f0881e0c73452d894987aef51b205657"
   },
   "sourceGapResolutions": [
     {

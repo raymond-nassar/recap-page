@@ -436,12 +436,14 @@ than being guessed or dropped.
 The Amazing Spider-Man complete guide is compiled by hand, like the Best of Spider-Man reading it
 shares a story with, rather than carried through the frozen-packet pipeline used by the other
 mapped complete guides: it is not derived from Marvel metadata and cannot be checked against it,
-only the issue ids and titles come from Marvel, by resolving each issue the source guide names. Of 2,047
-source-defined rows, 1,944 resolve to an exact Marvel issue: 1,942 carry maintained-provider metadata,
-while two retain owner-confirmed official issue links beside an explicit provider refusal. The
-remaining 103 ship as plain-text placeholders, never an invented identity, and are tracked for
-follow-up research in a linked GitHub issue. It overlaps 32 other catalog entries, the largest being 209 shared issues with
-the Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
+only the issue ids and titles come from Marvel, by resolving each issue the source guide names. The
+settled guide publishes 2,041 checklist entries: 2,034 exact Marvel issues and seven explicit
+plain-text placeholders. Its former 103-row gap ledger resolves 88 source rows to 90 atomic
+identities, records three repeats and five source-semantic exclusions outside the reading sequence,
+and retains six provider-unavailability rows plus the original 1989 Parallel Lives identity without
+invented ids, nonexistence claims, adjacent or base-number substitutions, or a later-edition
+replacement. It overlaps 32 other catalog entries, the largest being 209 shared issues with the
+Best of Spider-Man reading and 16 each with the Hickman Fantastic Four, No Way Home, and
 Spider-Verse orders.
 
 Some source guides name one comic in more than one collected range. The frozen packet preserves that
