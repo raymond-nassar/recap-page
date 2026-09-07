@@ -5,20 +5,12 @@
   "source": "https://www.comicbookherald.com/young-avengers-reading-order/",
   "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
   "sourceLicense": null,
-  "generatedAt": "2026-09-06T09:48:24.096Z",
+  "generatedAt": "2026-09-06T23:55:52.020Z",
   "apiBase": "https://marvel.emreparker.com/v1",
   "count": 169,
   "collections": 35,
-  "placeholders": 4,
+  "placeholders": 1,
   "unresolved": [
-    {
-      "title": "Marvel Rising (2018)",
-      "url": null,
-      "read": false,
-      "index": 127,
-      "section": "Marvel Rising (2018)",
-      "sourceKey": "169"
-    },
     {
       "title": "Death’s Head: Clone Drive",
       "url": null,
@@ -26,22 +18,6 @@
       "index": 146,
       "section": "Death’s Head: Clone Drive",
       "sourceKey": "194"
-    },
-    {
-      "title": "The Last Annihilation: Wiccan & Hulkling",
-      "url": null,
-      "read": false,
-      "index": 162,
-      "section": "The Last Annihilation: Wiccan & Hulkling",
-      "sourceKey": "214"
-    },
-    {
-      "title": "Hulkling & Wiccan",
-      "url": null,
-      "read": false,
-      "index": 163,
-      "section": "Hulkling & Wiccan",
-      "sourceKey": "215"
     }
   ],
   "items": [
@@ -3945,20 +3921,35 @@
       "collectedIn": "West Coast Avengers #1 To #4"
     },
     {
-      "issueId": -1216054808,
+      "issueId": 66916,
       "title": "Marvel Rising (2018)",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "number": "0",
+      "url": "https://www.marvel.com/comics/issue/66916/marvel_rising_2018",
+      "seriesId": 25804,
+      "seriesName": "Marvel Rising (2018)",
+      "onSale": "2018-04-25T00:00:00+0000",
+      "mu": "2018-04-25T00:00:00+0000",
+      "digitalId": 47810,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/c/70/5ad7ae49a158c",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 32,
+      "creators": [
+        {
+          "name": "Helen Chen",
+          "role": "penciler"
+        },
+        {
+          "name": "Marco Failla",
+          "role": "penciler"
+        },
+        {
+          "name": "Devin Grayson",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "Marvel Rising (2018)"
     },
     {
@@ -5143,37 +5134,59 @@
       "collectedIn": "Marvel Voices: Pride (2021)"
     },
     {
-      "issueId": -238152891,
-      "title": "The Last Annihilation: Wiccan & Hulkling",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 95675,
+      "title": "The Last Annihilation: Wiccan & Hulkling (2021) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+      "seriesId": 32833,
+      "seriesName": "The Last Annihilation: Wiccan & Hulkling (2021)",
+      "onSale": "2021-09-01T00:00:00+0000",
+      "mu": "2021-12-06T00:00:00+0000",
+      "digitalId": 57691,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/a0/612e8de15783b",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 40,
+      "creators": [
+        {
+          "name": "Jan Bazaldua",
+          "role": "cover artist"
+        },
+        {
+          "name": "Luciano Vecchio",
+          "role": "penciler"
+        },
+        {
+          "name": "Anthony Oliveira",
+          "role": "writer"
+        }
+      ],
       "collectedIn": "The Last Annihilation: Wiccan & Hulkling"
     },
     {
-      "issueId": -254930510,
-      "title": "Hulkling & Wiccan",
-      "number": null,
-      "url": null,
-      "seriesId": null,
-      "seriesName": null,
-      "onSale": null,
-      "mu": null,
-      "digitalId": null,
-      "cover": null,
+      "issueId": 102630,
+      "title": "Hulkling & Wiccan (2022) #1",
+      "number": "1",
+      "url": "https://www.marvel.com/comics/issue/102630/hulkling_wiccan_2022_1",
+      "seriesId": 35433,
+      "seriesName": "Hulkling & Wiccan (2022)",
+      "onSale": "2022-06-15T00:00:00+0000",
+      "mu": "2022-04-07T00:00:00+0000",
+      "digitalId": 59605,
+      "cover": {
+        "path": "https://i.annihil.us/u/prod/marvel/i/mg/6/00/62b9e2420a85a",
+        "ext": "jpg"
+      },
       "description": null,
-      "pageCount": null,
-      "creators": [],
-      "placeholder": true,
+      "pageCount": 48,
+      "creators": [
+        {
+          "name": "Jasmine Alvarez",
+          "role": "penciler"
+        }
+      ],
       "collectedIn": "Hulkling & Wiccan"
     },
     {

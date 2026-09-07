@@ -1,7 +1,7 @@
 {
   "id": "young-avengers-reading-order",
   "inventoryId": "young-avengers-reading-order",
-  "packetDigest": "a11055aecc8fff6f5e7b509be271b72f567e5348ef58d23ee6b5dea67daf5e7d",
+  "packetDigest": "f55f1b5039ae0ed8a595f6e09724c7d7f6d1d02a46c6cbb0c987c135a1db7858",
   "sourceUrl": "https://www.comicbookherald.com/young-avengers-reading-order/",
   "sourceRetrievedAt": "2026-08-27",
   "sourceProvider": "comic-book-herald",
@@ -113,7 +113,7 @@
     },
     {
       "sourcePosition": 54,
-      "sourceIssueReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceIssueReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "reason": "Narrative or descriptive prose without an issue identity.",
       "decisionScope": "source-boundary"
     },
@@ -325,32 +325,6 @@
   "sourceOccurrenceCount": 220,
   "sourceGaps": [
     {
-      "sourcePosition": 169,
-      "sourceIssueReference": "Marvel Rising (2018)",
-      "sourceRangeReference": "Marvel Rising (2018)",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Marvel Rising",
-      "seriesYear": 2018,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
-          "retrievedAt": "2026-08-27"
-        },
-        {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "d83dae41843b820a0154345d9f417c3b501c9c5634473731bfda39467aa8f576"
-    },
-    {
       "sourcePosition": 194,
       "sourceIssueReference": "Death’s Head: Clone Drive",
       "sourceRangeReference": "Death’s Head: Clone Drive",
@@ -360,73 +334,31 @@
       "issueNumber": null,
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The archived source link identifies the Clone Drive collection, and Marvel states that it collects Death's Head (2019) #1-4. The one-position source contract therefore preserves the collection as provenance-only instead of selecting or expanding issues.",
       "evidenceSources": [
         {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
-          "retrievedAt": "2026-08-27"
+          "kind": "official-marvel-series",
+          "url": "https://www.marvel.com/comics/series/27031/",
+          "retrievedAt": "2026-09-06"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "be1423c9b3134bc8dd4051b784c5d2c1cc8c68ac858a646cfd18b1daa26175a6"
-    },
-    {
-      "sourcePosition": 214,
-      "sourceIssueReference": "The Last Annihilation: Wiccan & Hulkling",
-      "sourceRangeReference": "The Last Annihilation: Wiccan & Hulkling",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-archive",
+          "url": "https://web.archive.org/web/20260315024600id_/https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-09-06"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
-          "retrievedAt": "2026-08-27"
-        }
-      ],
-      "evidenceDigest": "bc493536785e29393761385713f622fea8a597ad27e88c991adfd77395d8b52a"
-    },
-    {
-      "sourcePosition": 215,
-      "sourceIssueReference": "Hulkling & Wiccan",
-      "sourceRangeReference": "Hulkling & Wiccan",
-      "sourceGroup": "Latest Additions:",
-      "normalizedSeriesTitle": "Hulkling & Wiccan",
-      "seriesYear": null,
-      "issueNumber": null,
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-27",
-      "auditBasis": "Provider settlement: context. Exact provider series context exists; source names a work without an issue number, so no issue is selected. See issue #333.",
-      "evidenceSources": [
-        {
-          "kind": "missing-comics-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/333",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-collection",
+          "url": "https://www.amazon.com/gp/product/B07Z8H13MR",
+          "retrievedAt": "2026-09-06"
         },
         {
-          "kind": "source-boundary",
-          "url": "https://www.comicbookherald.com/young-avengers-reading-order/",
-          "retrievedAt": "2026-08-27"
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/431",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "d67748bb038588e5051a732c43ba8816a344f5994cfa9a9aaaa59d73073aec4b"
+      "evidenceDigest": "2ae0e04009277ad8c319afb0d98babf25eb01428d10b727d4735c89c6c199593"
     }
   ],
   "reviewStatus": "approved",
@@ -699,7 +631,7 @@
     {
       "sourcePosition": 44,
       "sourceIssueReference": "Avengers: The Children's Crusade #1",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "1",
@@ -717,7 +649,7 @@
     {
       "sourcePosition": 45,
       "sourceIssueReference": "Avengers: The Children's Crusade #2",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "2",
@@ -735,7 +667,7 @@
     {
       "sourcePosition": 46,
       "sourceIssueReference": "Avengers: The Children's Crusade #3",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "3",
@@ -753,7 +685,7 @@
     {
       "sourcePosition": 47,
       "sourceIssueReference": "Avengers: The Children's Crusade #4",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "4",
@@ -771,7 +703,7 @@
     {
       "sourcePosition": 48,
       "sourceIssueReference": "Avengers: The Children's Crusade #5",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "5",
@@ -789,7 +721,7 @@
     {
       "sourcePosition": 49,
       "sourceIssueReference": "Avengers: The Children's Crusade #6",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "6",
@@ -807,7 +739,7 @@
     {
       "sourcePosition": 50,
       "sourceIssueReference": "Avengers: The Children's Crusade #7",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "7",
@@ -825,7 +757,7 @@
     {
       "sourcePosition": 51,
       "sourceIssueReference": "Avengers: The Children's Crusade #8",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "8",
@@ -843,7 +775,7 @@
     {
       "sourcePosition": 52,
       "sourceIssueReference": "Avengers: The Children's Crusade #9",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "9",
@@ -861,7 +793,7 @@
     {
       "sourcePosition": 53,
       "sourceIssueReference": "Uncanny X-Men #526",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "normalizedSeriesTitle": "Uncanny X-Men",
       "sourceSeriesYear": null,
       "sourceIssueNumber": "526",
@@ -3145,6 +3077,20 @@
       "onSaleDate": "2018-11-21T00:00:00+0000"
     },
     {
+      "id": 66916,
+      "title": "Marvel Rising",
+      "issueTitle": "Marvel Rising (2018)",
+      "seriesTitle": "Marvel Rising",
+      "apiSeriesName": "Marvel Rising (2018)",
+      "seriesId": 25804,
+      "issueNumber": "0",
+      "seriesYear": 2018,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/66916/marvel_rising_2018",
+      "onSaleDate": "2018-04-25T00:00:00+0000"
+    },
+    {
       "id": 95052,
       "title": "Marvel's Voices: Pride",
       "issueTitle": "Marvel's Voices: Pride (2021) #1",
@@ -3157,6 +3103,34 @@
       "manualSeriesSelectionApproved": true,
       "detailUrl": "https://www.marvel.com/comics/issue/95052/marvels_voices_pride_2021_1",
       "onSaleDate": "2021-06-23T00:00:00+0000"
+    },
+    {
+      "id": 95675,
+      "title": "The Last Annihilation: Wiccan & Hulkling",
+      "issueTitle": "The Last Annihilation: Wiccan & Hulkling (2021) #1",
+      "seriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "apiSeriesName": "The Last Annihilation: Wiccan & Hulkling (2021)",
+      "seriesId": 32833,
+      "issueNumber": "1",
+      "seriesYear": 2021,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+      "onSaleDate": "2021-09-01T00:00:00+0000"
+    },
+    {
+      "id": 102630,
+      "title": "Hulkling & Wiccan",
+      "issueTitle": "Hulkling & Wiccan (2022) #1",
+      "seriesTitle": "Hulkling & Wiccan",
+      "apiSeriesName": "Hulkling & Wiccan (2022)",
+      "seriesId": 35433,
+      "issueNumber": "1",
+      "seriesYear": 2022,
+      "manualSeriesSelection": false,
+      "manualSeriesSelectionApproved": false,
+      "detailUrl": "https://www.marvel.com/comics/issue/102630/hulkling_wiccan_2022_1",
+      "onSaleDate": "2022-06-15T00:00:00+0000"
     },
     {
       "id": 101168,
@@ -3883,7 +3857,7 @@
     {
       "sourcePosition": 43,
       "sourceIssueReference": "Avengers: The Children's Crusade ? Young Avengers #1",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "AVENGERS: THE CHILDREN'S CRUSADE - YOUNG AVENGERS 1",
       "seriesYear": 2010,
@@ -3908,7 +3882,7 @@
     {
       "sourcePosition": 44,
       "sourceIssueReference": "Avengers: The Children's Crusade #1",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -3933,7 +3907,7 @@
     {
       "sourcePosition": 45,
       "sourceIssueReference": "Avengers: The Children's Crusade #2",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -3958,7 +3932,7 @@
     {
       "sourcePosition": 46,
       "sourceIssueReference": "Avengers: The Children's Crusade #3",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -3983,7 +3957,7 @@
     {
       "sourcePosition": 47,
       "sourceIssueReference": "Avengers: The Children's Crusade #4",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -4008,7 +3982,7 @@
     {
       "sourcePosition": 48,
       "sourceIssueReference": "Avengers: The Children's Crusade #5",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -4033,7 +4007,7 @@
     {
       "sourcePosition": 49,
       "sourceIssueReference": "Avengers: The Children's Crusade #6",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -4058,7 +4032,7 @@
     {
       "sourcePosition": 50,
       "sourceIssueReference": "Avengers: The Children's Crusade #7",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -4083,7 +4057,7 @@
     {
       "sourcePosition": 51,
       "sourceIssueReference": "Avengers: The Children's Crusade #8",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -4108,7 +4082,7 @@
     {
       "sourcePosition": 52,
       "sourceIssueReference": "Avengers: The Children's Crusade #9",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Avengers: The Children's Crusade",
       "seriesYear": 2010,
@@ -4133,7 +4107,7 @@
     {
       "sourcePosition": 53,
       "sourceIssueReference": "Uncanny X-Men #526",
-      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "sourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "sourceGroup": "Young Avengers Origins!",
       "normalizedSeriesTitle": "Uncanny X-Men",
       "seriesYear": 1963,
@@ -6406,6 +6380,31 @@
       "providerResponseSha256": "a49a96b174627c4a746ac1f4ef9aead6679a6ab7f42e5b3b5530580b5ee271ea"
     },
     {
+      "sourcePosition": 169,
+      "sourceIssueReference": "Marvel Rising (2018)",
+      "sourceRangeReference": "Marvel Rising (2018)",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Marvel Rising",
+      "seriesYear": 2018,
+      "issueNumber": "0",
+      "seriesId": 25804,
+      "candidateIssueId": 66916,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 66916 is the reviewed exact official Marvel identity for this frozen source position; maintained provider metadata supplies the published fields.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "66916"
+      ],
+      "selectedIssueId": 66916,
+      "resolvedIssueTitle": "Marvel Rising (2018)",
+      "metadataIssueNumber": "0",
+      "resolvedSeriesTitle": "Marvel Rising (2018)",
+      "metadataSeriesYear": 2018,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/66916/marvel_rising_2018",
+      "providerResponseUrl": "https://marvel.emreparker.com/v1/issues/66916",
+      "providerResponseSha256": "3ed6091d7216e910c3091aa730644b936f70af6fcb6bf32151a6f37ebe545999"
+    },
+    {
       "sourcePosition": 171,
       "sourceIssueReference": "Exiles #1",
       "sourceRangeReference": "Exiles (2018) #1 to #6",
@@ -7231,6 +7230,56 @@
       "providerResponseSha256": "a80941545018fde1a22cc2807d4b7e3d3ce3e9d390614f501a8ba1682a4e2321"
     },
     {
+      "sourcePosition": 214,
+      "sourceIssueReference": "The Last Annihilation: Wiccan & Hulkling",
+      "sourceRangeReference": "The Last Annihilation: Wiccan & Hulkling",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "seriesYear": 2021,
+      "issueNumber": "1",
+      "seriesId": 32833,
+      "candidateIssueId": 95675,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 95675 is the reviewed exact official Marvel identity for this frozen source position; maintained provider metadata supplies the published fields.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "95675"
+      ],
+      "selectedIssueId": 95675,
+      "resolvedIssueTitle": "The Last Annihilation: Wiccan & Hulkling (2021) #1",
+      "metadataIssueNumber": "1",
+      "resolvedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling (2021)",
+      "metadataSeriesYear": 2021,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+      "providerResponseUrl": "https://marvel.emreparker.com/v1/issues/95675",
+      "providerResponseSha256": "08dea78b3957ee8abac138704b12909650488d007b44b23a887fe9b41fa8b239"
+    },
+    {
+      "sourcePosition": 215,
+      "sourceIssueReference": "Hulkling & Wiccan",
+      "sourceRangeReference": "Hulkling & Wiccan",
+      "sourceGroup": "Latest Additions:",
+      "normalizedSeriesTitle": "Hulkling & Wiccan",
+      "seriesYear": 2022,
+      "issueNumber": "1",
+      "seriesId": 35433,
+      "candidateIssueId": 102630,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 102630 is the reviewed exact official Marvel identity for this frozen source position; maintained provider metadata supplies the published fields.",
+      "resolutionStatus": "exact",
+      "candidateIssueIds": [
+        "102630"
+      ],
+      "selectedIssueId": 102630,
+      "resolvedIssueTitle": "Hulkling & Wiccan (2022) #1",
+      "metadataIssueNumber": "1",
+      "resolvedSeriesTitle": "Hulkling & Wiccan (2022)",
+      "metadataSeriesYear": 2022,
+      "marvelIssueUrl": "https://www.marvel.com/comics/issue/102630/hulkling_wiccan_2022_1",
+      "providerResponseUrl": "https://marvel.emreparker.com/v1/issues/102630",
+      "providerResponseSha256": "7c5334758112091a49d38f0affb89807e10ea29b4fb1b1ae7ab0135ab0a88ead"
+    },
+    {
       "sourcePosition": 216,
       "sourceIssueReference": "Marvel Voices: Pride (2022)",
       "sourceRangeReference": "Marvel Voices: Pride (2022)",
@@ -7356,7 +7405,7 @@
       "providerResponseSha256": "8f4c62d45786c4eb525c8c5ec5125c9f35345f96a830a641d2cc5cc4190e8991"
     }
   ],
-  "packetReview": "The frozen packet preserves the full source boundary, all 51 exact researched settlements, all four context-only gaps, every source exclusion, and the complete-library relationship review.",
+  "packetReview": "The frozen packet preserves the full source boundary, all 54 exact researched settlements, the one context-only collected-work gap, every source exclusion, and the complete-library relationship review.",
   "approvedManifest": {
     "id": "young-avengers-reading-order",
     "name": "Young Avengers",
@@ -7756,7 +7805,7 @@
     {
       "sourcePosition": 43,
       "previousSourceIssueReference": "Avengers: The Children's Crusade ? Young Avengers #1",
-      "previousSourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade – Young Avengers 1, Uncanny X-Men 526",
+      "previousSourceRangeReference": "Collects: Avengers: The Children’s Crusade 1-9, Avengers: The Children’s Crusade \u2013 Young Avengers 1, Uncanny X-Men 526",
       "previousNormalizedSeriesTitle": "Avengers: The Children's Crusade ? Young Avengers",
       "previousSeriesYear": null,
       "previousIssueNumber": "1",
@@ -8650,6 +8699,49 @@
       "evidenceDigest": "2e45106a8790beb2d17b094ddbe82eb4d9f0060ca4aaaa5b5cabbdb01fa5f606"
     },
     {
+      "sourcePosition": 169,
+      "previousSourceIssueReference": "Marvel Rising (2018)",
+      "previousSourceRangeReference": "Marvel Rising (2018)",
+      "previousNormalizedSeriesTitle": "Marvel Rising",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66916,
+      "resolvedNormalizedSeriesTitle": "Marvel Rising",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "0",
+      "auditBasis": "The archived source product link establishes source applicability, while corrected official Marvel series 25804 lists only issue 66916 and the official issue page confirms this exact atomic identity; maintained-provider detail metadata supplies the published fields.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/66916",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66916/marvel_rising_2018",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "official-marvel-series",
+          "url": "https://www.marvel.com/comics/series/25804/marvel_rising_2018",
+          "retrievedAt": "2026-09-07"
+        },
+        {
+          "kind": "source-archive",
+          "url": "https://web.archive.org/web/20260315024600id_/https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/431",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "checkedAt": "2026-09-07",
+      "evidenceDigest": "6e389d3d19e57e30e5fb92d26f0bab31bf6ad3b6320314b10e6b60c51e557d34"
+    },
+    {
       "sourcePosition": 213,
       "previousSourceIssueReference": "Marvel Voices: Pride (2021)",
       "previousSourceRangeReference": "Marvel Voices: Pride (2021)",
@@ -8676,6 +8768,82 @@
       ],
       "checkedAt": "2026-09-05",
       "evidenceDigest": "503cd517e88d237ad30d9c2d715bc0487244e703c5427b7b484870ac33506dfb"
+    },
+    {
+      "sourcePosition": 214,
+      "previousSourceIssueReference": "The Last Annihilation: Wiccan & Hulkling",
+      "previousSourceRangeReference": "The Last Annihilation: Wiccan & Hulkling",
+      "previousNormalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 95675,
+      "resolvedNormalizedSeriesTitle": "The Last Annihilation: Wiccan & Hulkling",
+      "resolvedSeriesYear": 2021,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "The archived source product link and official Marvel issue identity establish this exact atomic issue; maintained-provider detail metadata supplies the published fields.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/95675",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "source-archive",
+          "url": "https://web.archive.org/web/20260315024600id_/https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/431",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "checkedAt": "2026-09-06",
+      "evidenceDigest": "14b5c5ca5db740c5f83ed286844f5d7e3dbc5605cba9a10f0ee72b9b0673e78c"
+    },
+    {
+      "sourcePosition": 215,
+      "previousSourceIssueReference": "Hulkling & Wiccan",
+      "previousSourceRangeReference": "Hulkling & Wiccan",
+      "previousNormalizedSeriesTitle": "Hulkling & Wiccan",
+      "previousSeriesYear": null,
+      "previousIssueNumber": "null",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 102630,
+      "resolvedNormalizedSeriesTitle": "Hulkling & Wiccan",
+      "resolvedSeriesYear": 2022,
+      "resolvedIssueNumber": "1",
+      "auditBasis": "The archived source product link and official Marvel issue identity establish this exact atomic issue; maintained-provider detail metadata supplies the published fields.",
+      "evidenceSources": [
+        {
+          "kind": "metadata-provider",
+          "url": "https://marvel.emreparker.com/v1/issues/102630",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/102630/hulkling_wiccan_2022_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "source-archive",
+          "url": "https://web.archive.org/web/20260315024600id_/https://www.comicbookherald.com/young-avengers-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "source-owner-decision",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/431",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "checkedAt": "2026-09-06",
+      "evidenceDigest": "636f8fd94ed5ccdc70423aaf3fed45b36d4485af9088432a5156e099961d662e"
     },
     {
       "sourcePosition": 216,
@@ -8818,15 +8986,14 @@
       "evidenceDigest": "8d5913d91e752d5561d1d25993f64cf96fb7299f242d4b862aec26aff87122c2"
     }
   ],
-  "mappingDigest": "d40894c865e6f492da6f0610da4d26c01765069a0597fec2fc136e305e4a1501",
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The complete-library report compares all eligible orders with 165 exact Young Avengers selections. All 9 non-none relationships were reviewed against their shared issue ids; no exact duplicate exists.",
+    "rationale": "The complete-library report compares all eligible orders with 168 exact Young Avengers selections. All 11 non-none relationships were reviewed against their shared issue ids; no exact duplicate exists.",
     "reviewedAt": "2026-09-06T00:00:00.000Z",
-    "reportDigest": "095a8adae42cd9887ff753e42da1fb1e171f492de5d695d697b2d3414a0871bc",
-    "packetDigest": "a11055aecc8fff6f5e7b509be271b72f567e5348ef58d23ee6b5dea67daf5e7d",
-    "mappingDigest": "d40894c865e6f492da6f0610da4d26c01765069a0597fec2fc136e305e4a1501",
+    "reportDigest": "7c2c1b464532ad1afbdadf1e0ddc05b90e3f1c4a0aed143d459bdd3e57275b48",
+    "packetDigest": "f55f1b5039ae0ed8a595f6e09724c7d7f6d1d02a46c6cbb0c987c135a1db7858",
+    "mappingDigest": "b713a118d1b69cf6f3e852a825761df3e6d97e911336621a5d130b021b920946",
     "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
     "peerDigests": {},
     "dispositions": [
@@ -9201,11 +9368,11 @@
       },
       {
         "orderId": "guardians-of-the-galaxy-reading-order",
-        "relationship": "none",
+        "relationship": "partial",
         "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "existing-library-policy",
-        "rationale": "No shared selected issue ids exist in the reviewed active-library comparison.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "The partial relationship is limited to the reported exact shared issue ids.",
         "reviewedAt": "2026-09-06T00:00:00.000Z"
       },
       {
@@ -9363,11 +9530,11 @@
       },
       {
         "orderId": "last-annihilation",
-        "relationship": "none",
+        "relationship": "partial",
         "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "existing-library-policy",
-        "rationale": "No shared selected issue ids exist in the reviewed active-library comparison.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "The partial relationship is limited to the reported exact shared issue ids.",
         "reviewedAt": "2026-09-06T00:00:00.000Z"
       },
       {
@@ -10076,11 +10243,12 @@
     "sourceCounts": {
       "sourceOccurrenceCount": 220,
       "sourceIdentityCount": 169,
-      "includedIssueCount": 165,
-      "sourceGapCount": 4,
+      "includedIssueCount": 168,
+      "sourceGapCount": 1,
       "repeatedSourceReferenceCount": 0,
       "excludedSourceRowCount": 51
     },
-    "approvalDigest": "4ad1326af0afb806e2bab044b1b58e37c961ad41c736677b8a7925bad2d38964"
-  }
+    "approvalDigest": "bde4c8bda1fcae8586e476eeea5fbb7999b25249f4d97fdb235eb933644a47e8"
+  },
+  "mappingDigest": "b713a118d1b69cf6f3e852a825761df3e6d97e911336621a5d130b021b920946"
 }

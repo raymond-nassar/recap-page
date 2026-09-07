@@ -152,7 +152,7 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 - [ ] [West Coast Avengers (2018) #3 <!-- mrt:source-occurrence=165 -->](https://www.marvel.com/comics/issue/70103/west_coast_avengers_2018_3)
 - [ ] [West Coast Avengers (2018) #4 <!-- mrt:source-occurrence=166 -->](https://www.marvel.com/comics/issue/70104/west_coast_avengers_2018_4)
 ## Marvel Rising (2018)
-- [ ] Marvel Rising (2018) <!-- mrt:source-occurrence=169 -->
+- [ ] [Marvel Rising (2018) #0 <!-- mrt:source-occurrence=169 -->](https://www.marvel.com/comics/issue/66916/marvel_rising_2018)
 ## Exiles (2018) #1 to #6
 - [ ] [Exiles (2018) #1 <!-- mrt:source-occurrence=171 -->](https://www.marvel.com/comics/issue/66769/exiles_2018_1)
 - [ ] [Exiles (2018) #2 <!-- mrt:source-occurrence=172 -->](https://www.marvel.com/comics/issue/66911/exiles_2018_2)
@@ -196,9 +196,9 @@ See [the data provenance record](../../../docs/DATA_PROVENANCE.md) for the permi
 ## Marvel Voices: Pride (2021)
 - [ ] [Marvel's Voices: Pride (2021) #1 <!-- mrt:source-occurrence=213 -->](https://www.marvel.com/comics/issue/95052/marvels_voices_pride_2021_1)
 ## The Last Annihilation: Wiccan & Hulkling
-- [ ] The Last Annihilation: Wiccan & Hulkling <!-- mrt:source-occurrence=214 -->
+- [ ] [The Last Annihilation: Wiccan & Hulkling (2021) #1 <!-- mrt:source-occurrence=214 -->](https://www.marvel.com/comics/issue/95675/the_last_annihilation_wiccan_hulkling_2021_1)
 ## Hulkling & Wiccan
-- [ ] Hulkling & Wiccan <!-- mrt:source-occurrence=215 -->
+- [ ] [Hulkling & Wiccan (2022) #1 <!-- mrt:source-occurrence=215 -->](https://www.marvel.com/comics/issue/102630/hulkling_wiccan_2022_1)
 ## Marvel Voices: Pride (2022)
 - [ ] [Marvel's Voices: Pride (2022) #1 <!-- mrt:source-occurrence=216 -->](https://www.marvel.com/comics/issue/101168/marvels_voices_pride_2022_1)
 ## Marvel Voices: Pride (2023)

@@ -24,10 +24,11 @@ const expectedVector = [
   [144, 57530], [145, 57611], [149, 57612], [150, 58372], [151, 58373],
   [152, 58374], [153, 59419], [155, 59420], [156, 60134], [157, 60135],
   [158, 60136], [159, 60137], [160, 61035], [161, 61036], [163, 70101],
-  [164, 70102], [165, 70103], [166, 70104], [213, 95052], [216, 101168],
-  [217, 107310], [218, 110207], [219, 97124], [220, 105865],
+  [164, 70102], [165, 70103], [166, 70104], [169, 66916], [213, 95052],
+  [214, 95675], [215, 102630], [216, 101168], [217, 107310], [218, 110207],
+  [219, 97124], [220, 105865],
 ];
-const contextPositions = [169, 194, 214, 215];
+const contextPositions = [194];
 const settledPositions = new Set(expectedVector.map(([sourcePosition]) => sourcePosition));
 const settledIds = new Set(expectedVector.map(([, issueId]) => issueId));
 
@@ -35,7 +36,7 @@ async function readJson(...segments) {
   return JSON.parse(await readFile(path.join(root, ...segments), 'utf8'));
 }
 
-test('Young Avengers publishes the reviewed 51-issue settlement in frozen source order', async () => {
+test('Young Avengers publishes the reviewed 54-issue settlement in frozen source order', async () => {
   const [ledger, packet, mapping, overlap, inventory, manifest, payload, catalog, markdown] = await Promise.all([
     readJson('scripts', 'data', 'cbh-source-ledgers', `${id}.json`),
     readJson('scripts', 'data', 'cbh-packets', `${id}.json`),
@@ -64,17 +65,22 @@ test('Young Avengers publishes the reviewed 51-issue settlement in frozen source
     repeat: 0,
     gap: 0,
   });
-  assert.equal(packet.rows.length, 165);
-  assert.equal(packet.sourceGaps.length, 4);
+  assert.equal(packet.rows.length, 168);
+  assert.equal(packet.sourceGaps.length, 1);
   assert.equal(packet.excludedSourceRows.length, 51);
-  assert.equal(packet.sourceGapResolutions.length, 51);
+  assert.equal(packet.sourceGapResolutions.length, 54);
   assert.equal(packet.rows.length + packet.sourceGaps.length + packet.excludedSourceRows.length, 220);
-  assert.equal(new Set(packet.rows.map((row) => row.candidateIssueId)).size, 165);
+  assert.equal(new Set(packet.rows.map((row) => row.candidateIssueId)).size, 168);
   assert.deepEqual(packet.sourceGaps.map((gap) => gap.sourcePosition), contextPositions);
   assert.equal(new Set(packet.excludedSourceRows.map((row) => row.sourcePosition)).size, 51);
-  assert.equal(packet.sourceGaps.every((gap) => gap.evidenceSources.some((source) => (
-    source.url === 'https://github.com/raymond-nassar/recap-page/issues/333'
-  ))), true);
+  const [contextGap] = packet.sourceGaps;
+  assert.equal(contextGap.evidenceSources.some((source) => (
+    source.url === 'https://github.com/raymond-nassar/recap-page/issues/431'
+  )), true);
+  assert.equal(contextGap.evidenceSources.some((source) => (
+    source.url === 'https://www.marvel.com/comics/series/27031/'
+  )), true);
+  assert.match(contextGap.auditBasis, /collects Death's Head \(2019\) #1-4/);
 
   assert.doesNotThrow(() => validateFrozenPacket(packet, {
     expectedId: id,
@@ -85,7 +91,7 @@ test('Young Avengers publishes the reviewed 51-issue settlement in frozen source
   assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
   assert.doesNotThrow(() => validateReportDigest(overlap));
   assert.equal(overlap.comparisonCount, 138);
-  assert.equal(overlap.comparisons.filter((entry) => entry.relationship !== 'none').length, 9);
+  assert.equal(overlap.comparisons.filter((entry) => entry.relationship !== 'none').length, 11);
   assert.equal(overlap.comparisons.every((entry) => (
     entry.relationship === 'none' || entry.relationship === 'partial'
   )), true);
@@ -96,8 +102,8 @@ test('Young Avengers publishes the reviewed 51-issue settlement in frozen source
     resolution.resolutionKind === 'exact-issue'
   )), true);
 
-  assert.equal(parsed.entries.length, 165);
-  assert.equal(parsed.unresolved.length, 4);
+  assert.equal(parsed.entries.length, 168);
+  assert.equal(parsed.unresolved.length, 1);
   assert.equal(new Set([...parsed.entries, ...parsed.unresolved].map((entry) => entry.sourceKey)).size, 169);
   assert.equal([...parsed.entries, ...parsed.unresolved].every((entry) => entry.sourceKey != null), true);
   assert.deepEqual(
@@ -113,9 +119,9 @@ test('Young Avengers publishes the reviewed 51-issue settlement in frozen source
 
   assert.deepEqual(manifestRecord, mapping.approvedManifest);
   assert.equal(payload.count, 169);
-  assert.equal(payload.placeholders, 4);
-  assert.equal(payload.items.filter((item) => !item.placeholder).length, 165);
-  assert.equal(payload.items.filter((item) => item.placeholder).length, 4);
+  assert.equal(payload.placeholders, 1);
+  assert.equal(payload.items.filter((item) => !item.placeholder).length, 168);
+  assert.equal(payload.items.filter((item) => item.placeholder).length, 1);
   assert.deepEqual(
     payload.items.filter((item) => !item.placeholder).map((item) => String(item.issueId)),
     mapping.rows.map((row) => String(row.selectedIssueId)),
@@ -131,7 +137,7 @@ test('Young Avengers publishes the reviewed 51-issue settlement in frozen source
     expectedVector.map(([, issueId]) => issueId),
   );
   assert.equal(catalogRecord.count, payload.count);
-  assert.equal(catalogRecord.placeholderCount, 4);
+  assert.equal(catalogRecord.placeholderCount, 1);
   assert.equal(catalogRecord.coverIssueId, 4500);
   assert.equal(
     `${catalogRecord.cover.path}.${catalogRecord.cover.ext}`,
@@ -141,7 +147,7 @@ test('Young Avengers publishes the reviewed 51-issue settlement in frozen source
   const settledCandidates = mapping.candidateMetadata.filter((candidate) => (
     settledIds.has(Number(candidate.id))
   ));
-  assert.equal(settledCandidates.length, 51);
+  assert.equal(settledCandidates.length, 54);
   assert.equal(settledCandidates.every((candidate) => (
     candidate.detailUrl.startsWith(`https://www.marvel.com/comics/issue/${candidate.id}/`)
   )), true);
