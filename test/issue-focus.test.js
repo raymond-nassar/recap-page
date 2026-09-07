@@ -266,7 +266,7 @@ test('same-tab focus navigation stores an ephemeral opener and pushes exactly on
   assert.match(navigate, /history\.pushState\(null, '', href\)/);
   assert.doesNotMatch(navigate, /localStorage|store\.update/);
   const restore = main.slice(main.indexOf('async function restoreIssueFocusOpener'), main.indexOf('function loadBundledOrder'));
-  assert.match(restore, /target\.focus\(\{ preventScroll: true \}\)/);
+  assert.match(restore, /target\.focus\(\)/);
   assert.match(restore, /focusViewHeading\(view\)/);
   const sync = main.slice(main.indexOf('function syncHash'), main.indexOf('function applyRoute'));
   assert.match(sync, /delete current\.issueFocusOpener/);

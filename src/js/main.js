@@ -1524,18 +1524,18 @@ async function restoreIssueFocusOpener(sourceView) {
   await new Promise((resolve) => requestAnimationFrame(resolve));
   const target = matchingIssueOpener(opener);
   if (target?.isConnected) {
-    target.focus({ preventScroll: true });
+    target.focus();
     return;
   }
   if (sourceView === 'read' && view === 'read') {
     const checked = [...document.querySelectorAll('input[name="filter"]')].find((radio) => radio.checked);
     if (checked?.isConnected) {
-      checked.focus({ preventScroll: true });
+      checked.focus();
       return;
     }
     const summary = $('#full').querySelector('summary');
     if (summary?.isConnected) {
-      summary.focus({ preventScroll: true });
+      summary.focus();
       return;
     }
   }

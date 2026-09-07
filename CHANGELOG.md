@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Kept the selected issue visible after returning from details
+
+Returning from issue details now brings the original Reading List control and its focus indicator
+into view, including issues far down a long list. If that control is no longer present, the
+existing fallback control is brought into view instead. The selected filter, expanded list,
+and saved reading progress are unchanged.
+
 ### Show reading content sooner on narrow screens
 
 In plain English: On narrow screens, the sidebar is now a compact header with a visible
