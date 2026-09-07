@@ -1,17 +1,18 @@
 {
   "candidateId": "nick-fury-reading-order",
-  "packetDigest": "bdb98b2a201a4b5536f2cffedd12e1b8f4d1d8ef5c652cdcbde5ccfd8e6b58ef",
-  "mappingDigest": "7bba0ec8abf7a2ce4a046f59ab93101204dad68e835532bcff55551dc609b68c",
-  "libraryDigest": "ef08bfbca1539f69ad7ea7b9f2e6593e4a6e10ce6997955a320de9869cc21224",
+  "packetDigest": "9cd2210252ba8494ac7bd2b3248f873d1413256c7068762d0b3028f66e7c7cce",
+  "mappingDigest": "e90556393994f8fac5c5851cecb192619648df0016455eab09ef9b262406503c",
+  "libraryDigest": "ca10dc9b367cf0df2b272dbd5bf87b8e355e4b3ccf602c1e6a41dfec0b19b6aa",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 370,
-    "sourceIdentityCount": 272,
-    "includedIssueCount": 78,
-    "sourceGapCount": 194,
-    "repeatedSourceReferenceCount": 74
+    "sourceIdentityCount": 269,
+    "includedIssueCount": 140,
+    "sourceGapCount": 129,
+    "repeatedSourceReferenceCount": 75,
+    "excludedSourceRowCount": 26
   },
-  "candidateCount": 78,
+  "candidateCount": 140,
   "comparisonCount": 138,
   "comparisons": [
     {
@@ -118,9 +119,11 @@
     },
     {
       "orderId": "civil-war-avengers",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 1,
+      "sharedIds": [
+        "21001"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "civil-war-essential",
@@ -860,5 +863,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "291099b6bc78165e3bafdbf36229d981553897d249803dafc6aaf6f56965af0e"
+  "reportDigest": "dfd40fcb5d65587381fb358edc16e7bf2fdd608aed8f1dd26ea15eec99bee937"
 }

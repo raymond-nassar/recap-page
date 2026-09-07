@@ -2545,7 +2545,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The full source page and cache-only provider settlement are frozen. Unresolved source identities remain individual open metadata gaps rather than being omitted or substituted.",
+    "reason": "The settled source page preserves 370 occurrences as 140 exact rows, 75 repeats, 26 source-semantic exclusions, and 129 owner-observed provider-unavailability rows without substitutions or nonexistence claims.",
     "sourceRetrievedAt": "2026-08-28",
     "overlapIds": [
       "hickman-full",

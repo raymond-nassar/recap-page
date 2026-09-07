@@ -8226,10 +8226,10 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 272,
-      "placeholderCount": 194,
+      "count": 269,
+      "placeholderCount": 129,
       "emptyRecordCount": 0,
-      "collections": 43,
+      "collections": 40,
       "characters": [
         "Nick Fury",
         "S.H.I.E.L.D.",
