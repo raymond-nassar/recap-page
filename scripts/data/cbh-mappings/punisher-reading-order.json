@@ -22678,12 +22678,12 @@
   "relationshipReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GPT-5.6 Sol",
-    "rationale": "The existing punisher-reading-order comparison scope was re-reviewed after the Amazing Spider-Man settlement changed one included library order. Every relationship remains distinct and retains its publication decision.",
+    "rationale": "The existing punisher-reading-order comparison scope was re-reviewed after the Amazing Spider-Man and Wolverine settlements changed included library orders. Every relationship remains distinct and retains its publication decision.",
     "reviewedAt": "2026-09-06",
-    "reportDigest": "3aef03b625e5aac4ede95e0ac558ab481a71e64c8e59eec4bbfd5111f8e00993",
+    "reportDigest": "3bf9074400be4e9ae88fc75352c287c108ce2ad9b8ccba986a40c2619ae0b41e",
     "packetDigest": "ff88a21e032af67bf42c2c4a6424ed8e0eebc08b02710cac8f2eba92feaafb42",
     "mappingDigest": "ca9165c8db00878066426b13090acb92fb79fcd17d59ee129a51d5b6e1c26b80",
-    "libraryDigest": "ad064601dd1af2c5c5cd88807d9c733e9f3316230733f49a90a975fcc1e28ddd",
+    "libraryDigest": "0a007049a495cbebb43542f6b3b197b672879371b82d2a20c7c24e2eeb70918d",
     "peerDigests": {},
     "dispositions": [
       {
@@ -24332,14 +24332,17 @@
       },
       {
         "orderId": "wolverine-reading-order",
-        "relationship": "none",
+        "relationship": "partial",
         "decision": "approved",
-        "authorityType": "policy",
-        "authorityIdentity": "MRT overlap policy",
-        "rationale": "No shared issue identities.",
+        "authorityType": "stronger-model",
+        "authorityIdentity": "GPT-5.6 Sol",
+        "rationale": "The partial relationship is limited to the 2 exact shared provider issue identities recorded in the refreshed report.",
         "reviewedAt": "2026-09-06",
-        "sharedCount": 0,
-        "sharedIds": []
+        "sharedCount": 2,
+        "sharedIds": [
+          "108820",
+          "62690"
+        ]
       },
       {
         "orderId": "world-war-hulk-aftersmash",
@@ -24562,7 +24565,7 @@
         "sharedIds": []
       }
     ],
-    "approvalDigest": "edc7150e3fd6145493a212aeb81dfd6309165ac1e99de895763e66452b694ef3",
+    "approvalDigest": "8e6d69a926b4c886aa1cc9e0a287bb4bf2b6ba886b819bcf84d9821b5b35b09d",
     "sourceCounts": {
       "sourceOccurrenceCount": 857,
       "sourceIdentityCount": 638,

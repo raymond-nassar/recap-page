@@ -23,7 +23,7 @@
     },
     {
       "sourcePosition": 223,
-      "canonicalRow": 82,
+      "canonicalRow": 86,
       "sourceIssueReference": "X-Men (1991) #25",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "X-Men",
@@ -32,12 +32,21 @@
     },
     {
       "sourcePosition": 224,
-      "canonicalRow": 80,
+      "canonicalRow": 83,
       "sourceIssueReference": "Wolverine (1988) #75",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverine",
       "seriesYear": 1988,
       "issueNumber": "75"
+    },
+    {
+      "sourcePosition": 278,
+      "canonicalRow": 71,
+      "sourceIssueReference": "Logan: Shadow Society",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Logan: Shadow Society",
+      "seriesYear": 1997,
+      "issueNumber": "1"
     },
     {
       "sourcePosition": 422,
@@ -257,7 +266,7 @@
     },
     {
       "sourcePosition": 701,
-      "canonicalRow": 211,
+      "canonicalRow": 218,
       "sourceIssueReference": "X-Force (2008) #11",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "X-Force",
@@ -371,6 +380,15 @@
       "normalizedSeriesTitle": "Wolverine",
       "seriesYear": 2003,
       "issueNumber": "20"
+    },
+    {
+      "sourcePosition": 954,
+      "canonicalRow": 286,
+      "sourceIssueReference": "18",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine & the X-Men",
+      "seriesYear": 2011,
+      "issueNumber": "18"
     },
     {
       "sourcePosition": 997,
@@ -527,7 +545,7 @@
     },
     {
       "sourcePosition": 1241,
-      "canonicalRow": 140,
+      "canonicalRow": 146,
       "sourceIssueReference": "Astonishing X-Men (2004) #1",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -536,7 +554,7 @@
     },
     {
       "sourcePosition": 1242,
-      "canonicalRow": 141,
+      "canonicalRow": 147,
       "sourceIssueReference": "Astonishing X-Men (2004) #2",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -545,7 +563,7 @@
     },
     {
       "sourcePosition": 1243,
-      "canonicalRow": 142,
+      "canonicalRow": 148,
       "sourceIssueReference": "Astonishing X-Men (2004) #3",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -554,7 +572,7 @@
     },
     {
       "sourcePosition": 1244,
-      "canonicalRow": 143,
+      "canonicalRow": 149,
       "sourceIssueReference": "Astonishing X-Men (2004) #4",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -563,7 +581,7 @@
     },
     {
       "sourcePosition": 1245,
-      "canonicalRow": 144,
+      "canonicalRow": 150,
       "sourceIssueReference": "Astonishing X-Men (2004) #5",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -572,7 +590,7 @@
     },
     {
       "sourcePosition": 1246,
-      "canonicalRow": 145,
+      "canonicalRow": 151,
       "sourceIssueReference": "Astonishing X-Men (2004) #6",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -581,7 +599,7 @@
     },
     {
       "sourcePosition": 1247,
-      "canonicalRow": 146,
+      "canonicalRow": 152,
       "sourceIssueReference": "Astonishing X-Men (2004) #7",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -590,7 +608,7 @@
     },
     {
       "sourcePosition": 1248,
-      "canonicalRow": 147,
+      "canonicalRow": 153,
       "sourceIssueReference": "Astonishing X-Men (2004) #8",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -599,7 +617,7 @@
     },
     {
       "sourcePosition": 1249,
-      "canonicalRow": 148,
+      "canonicalRow": 154,
       "sourceIssueReference": "Astonishing X-Men (2004) #9",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -608,7 +626,7 @@
     },
     {
       "sourcePosition": 1250,
-      "canonicalRow": 149,
+      "canonicalRow": 155,
       "sourceIssueReference": "Astonishing X-Men (2004) #10",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -617,7 +635,7 @@
     },
     {
       "sourcePosition": 1251,
-      "canonicalRow": 150,
+      "canonicalRow": 156,
       "sourceIssueReference": "Astonishing X-Men (2004) #11",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -626,7 +644,7 @@
     },
     {
       "sourcePosition": 1252,
-      "canonicalRow": 151,
+      "canonicalRow": 157,
       "sourceIssueReference": "Astonishing X-Men (2004) #12",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Astonishing X-Men",
@@ -726,9 +744,33 @@
       "decisionScope": "wolverine-metadata-gap-repeat"
     },
     {
+      "sourcePosition": 260,
+      "sourceIssueReference": "Age of Apocalypse reading order",
+      "reason": "The source names an event reading order, not one atomic comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
+      "sourcePosition": 261,
+      "sourceIssueReference": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
+      "reason": "The source combines a numbered range with an unspecified crossover and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
       "sourcePosition": 277,
       "sourceIssueReference": "Logan: Path of the Warlord",
       "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 135.",
+      "decisionScope": "wolverine-metadata-gap-repeat"
+    },
+    {
+      "sourcePosition": 279,
+      "sourceIssueReference": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
+      "reason": "The source combines a numbered range with unspecified tie-ins and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
+      "sourcePosition": 313,
+      "sourceIssueReference": "Wolveirne/Cable one-shot",
+      "reason": "Repeated availability-only metadata-gap reference; the canonical provenance row is source position 150.",
       "decisionScope": "wolverine-metadata-gap-repeat"
     },
     {
@@ -766,6 +808,18 @@
       "sourceIssueReference": "Wolverine #16",
       "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 52.",
       "decisionScope": "wolverine-metadata-gap-repeat"
+    },
+    {
+      "sourcePosition": 534,
+      "sourceIssueReference": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
+      "reason": "The source combines a numbered range with unspecified event tie-ins and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
+      "sourcePosition": 554,
+      "sourceIssueReference": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
+      "reason": "The source combines a numbered range with a separate Director's Cut edition and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
     },
     {
       "sourcePosition": 637,
@@ -846,10 +900,52 @@
       "decisionScope": "wolverine-metadata-gap-repeat"
     },
     {
+      "sourcePosition": 917,
+      "sourceIssueReference": "6",
+      "reason": "Owner policy omits this Marvel Infinite comic because it is unavailable in the Marvel Unlimited web reader.",
+      "decisionScope": "owner-authorized-unavailable-exclusion"
+    },
+    {
+      "sourcePosition": 918,
+      "sourceIssueReference": "10",
+      "reason": "Owner policy omits this Marvel Infinite comic because it is unavailable in the Marvel Unlimited web reader.",
+      "decisionScope": "owner-authorized-unavailable-exclusion"
+    },
+    {
+      "sourcePosition": 919,
+      "sourceIssueReference": "Material from Marvel Point One",
+      "reason": "The source names partial material, not a standalone whole comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
       "sourcePosition": 1165,
       "sourceIssueReference": "Annual #1",
       "reason": "Repeated open metadata-gap reference; the canonical provenance row is source position 580.",
       "decisionScope": "wolverine-metadata-gap-repeat"
+    },
+    {
+      "sourcePosition": 1222,
+      "sourceIssueReference": "Marvel Legacy Primer pages",
+      "reason": "The source names partial primer pages, not a standalone whole comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
+      "sourcePosition": 1223,
+      "sourceIssueReference": "FOOM Magazine (2017)",
+      "reason": "The source names a non-numbered extra and does not define one atomic comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
+      "sourcePosition": 1240,
+      "sourceIssueReference": "Deadpool Vs. Old Man Logan",
+      "reason": "The source names a multi-issue series or collection without one issue identity.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
+    },
+    {
+      "sourcePosition": 1282,
+      "sourceIssueReference": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
+      "reason": "The source combines one issue with partial material and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion"
     },
     {
       "sourcePosition": 1327,
@@ -1328,16 +1424,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "04f725a9720f97e666a51f49360c501bbe6a011db6c4021b1887b56f056d702e"
+      "evidenceDigest": "f58223f05d29877e08b271e946a4a4fd9e2da94f2e6e91afa2003a442a0c7e80"
     },
     {
       "sourcePosition": 86,
@@ -1348,16 +1444,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "ffa432e91fd433053667249845be55ea985d9946ee56690f56d00acbd66df22e"
+      "evidenceDigest": "0b9a2d565b7f2f82d59fd433141a77723fa8f9dc827f0e4f4163259fad9d3f82"
     },
     {
       "sourcePosition": 90,
@@ -1588,16 +1684,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "980ca2bfe5f5b7061e981820ffbcceebaed66b2de9dae7b1febd3101101676cb"
+      "evidenceDigest": "f34d0625058275fe4a0bb908dc6b280a2ef9ce79d5a56c5f977958b7d8601634"
     },
     {
       "sourcePosition": 102,
@@ -1608,16 +1704,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "d0ea6d1f075dad14045f115b2de8706ba5aa19215f747f208092da3afe28119a"
+      "evidenceDigest": "722ac5c63de7fe19a8fd131f4ec9af8ae082e6d58f44e3287c86f9aa1163c78d"
     },
     {
       "sourcePosition": 103,
@@ -1980,26 +2076,6 @@
       "evidenceDigest": "f8cbddf4f1d1f50e82f7785ddcd0d5705cc7bd3da6d0db066bc30b032aa3dd83"
     },
     {
-      "sourcePosition": 132,
-      "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "8fd93a54214422f4842cf1d2f947b094ce1431398c1cb99e37aa2e26289493fa"
-    },
-    {
       "sourcePosition": 133,
       "sourceIssueReference": "Material from Marvel Holiday Special (1991) #2",
       "sourceRangeReference": null,
@@ -2028,36 +2104,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "a1368f1c84cd7fde37e3d62f96d9a70d46ef61e9c4a99aa0f51eab8e03f2b78c"
-    },
-    {
-      "sourcePosition": 136,
-      "sourceIssueReference": "Shadow Society",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Shadow Society",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "9f7c3401e1f48ac01642c3aefc696662d05f3289dbffb028104eada95489dada"
+      "evidenceDigest": "5482567c56c12ed7aad471b67fa25a07e73a79641cdb02c629a802b436912617"
     },
     {
       "sourcePosition": 137,
@@ -2208,16 +2264,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "dc8adc33e8e3da8147caea66acfeed29d95d1032088858d284c85ff27a8a1f35"
+      "evidenceDigest": "1861fa5ba22d99fedebad0a08be46f14e56f744c07c7e349aecae8afe55b23e3"
     },
     {
       "sourcePosition": 146,
@@ -2308,16 +2364,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "8206874c6d50d3ad8070949641eef947ab15f0be342074d559316c3f97625396"
+      "evidenceDigest": "aed4b983c88d5d67eceef2aee5acf276d6250d6323d47f9bec6f60ee0ed53d7d"
     },
     {
       "sourcePosition": 151,
@@ -2448,16 +2504,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "62a53acd063adf3d4de1be8f738780cc94449bb27515f78f137cd8c7140a92b8"
+      "evidenceDigest": "b6f600d7688e9a03b392e4d6dca7355bcc7b98d07800d5fb1add647d6ac41e5e"
     },
     {
       "sourcePosition": 158,
@@ -2518,26 +2574,6 @@
         }
       ],
       "evidenceDigest": "bc84407143cae6b92fc3b58edc5df3b3b4888cf5367e997601418719d161457f"
-    },
-    {
-      "sourcePosition": 161,
-      "sourceIssueReference": "Spider-Man Vs. Wolverine",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Spider-Man Vs. Wolverine",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "0ee3ac508c1d2d91bfbe8958d0cd813f9ff590f0ccda830444a2062b3b9e5b24"
     },
     {
       "sourcePosition": 163,
@@ -3160,26 +3196,6 @@
       "evidenceDigest": "32e2f44a559a4710096a2ceed2d82361ea17c26b1f9956550adb21e13cd1fc42"
     },
     {
-      "sourcePosition": 212,
-      "sourceIssueReference": "Wolverine: Inner Fury",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Inner Fury",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "ddb866a3388b8637e0ea981c8f4ddaa17032e139d581cb0481975c9994a07948"
-    },
-    {
       "sourcePosition": 213,
       "sourceIssueReference": "Wolverine: Killing",
       "sourceRangeReference": null,
@@ -3188,16 +3204,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "89ed7e57006c6e257fa7e0576f93af0d02d5098fff42a2ffc2903bbe9e134eb3"
+      "evidenceDigest": "f2e04d465950cfff5bef47aa08c8536c61baf6026b0eae45ae902614cb5820a9"
     },
     {
       "sourcePosition": 214,
@@ -3208,16 +3224,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "4c07bdb8dd510bf9df371ba98cb76fdd82e3ff10269361fb12920caf417d7b3c"
+      "evidenceDigest": "26b397694cebd648176e54d213ee9fc507a2e0848ccb51303e9befb750cbe9a3"
     },
     {
       "sourcePosition": 215,
@@ -3508,56 +3524,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "56a2cc142f1eab05e8feba2201aa033a258a26d6260c462e4802ce8e70750e44"
-    },
-    {
-      "sourcePosition": 240,
-      "sourceIssueReference": "Wolverine and Nick Fury: Scorpio Rising",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine and Nick Fury: Scorpio Rising",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "8534bfad13d2a20f17752fbe9d6678f105714de6f8386fad453a9ad9a00aab8c"
-    },
-    {
-      "sourcePosition": 241,
-      "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: The Dark Design",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: The Dark Design",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "14fdb22f240b6b10ab8e4253dcbf8efa8b668d2f20284094259e3be8bc344e8e"
+      "evidenceDigest": "2d590f03bbb314ac10fd522e16018008372b0005b4561f8443db5fa43a572dc9"
     },
     {
       "sourcePosition": 242,
@@ -3880,46 +3856,6 @@
       "evidenceDigest": "84ed5b7ba1b11d4c441dfdd4a3ac10a7e2724b4cb764203d376855543ca1042c"
     },
     {
-      "sourcePosition": 260,
-      "sourceIssueReference": "Age of Apocalypse reading order",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Age of Apocalypse reading order",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "c70995ca0fcad389a5f514866bd113d993e9a0629eb7e68dff877ed08ad4c5f7"
-    },
-    {
-      "sourcePosition": 261,
-      "sourceIssueReference": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine (vol. 2)",
-      "seriesYear": 0,
-      "issueNumber": "103",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "4c5d11359269e542ca5d8b30b45f6435a8c714b24f515cc6dc58da5bca44d1ef"
-    },
-    {
       "sourcePosition": 262,
       "sourceIssueReference": "Wolverine #101",
       "sourceRangeReference": null,
@@ -4200,46 +4136,6 @@
       "evidenceDigest": "b7305f3366b584330dbba3b908db71dde841a55f39144abae93fa069151813c8"
     },
     {
-      "sourcePosition": 278,
-      "sourceIssueReference": "Logan: Shadow Society",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Logan: Shadow Society",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "0537506e2b3810020d4440eb925c48f377b1cabafbff4b4a339aa103a97bbf7a"
-    },
-    {
-      "sourcePosition": 279,
-      "sourceIssueReference": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine (vol. 2)",
-      "seriesYear": 0,
-      "issueNumber": "115",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "d85c0be2ae0f1c5a781cdee80819fa5859b2081c096fb8eaf780db8de57d68ac"
-    },
-    {
       "sourcePosition": 280,
       "sourceIssueReference": "Wolverine #119",
       "sourceRangeReference": null,
@@ -4508,16 +4404,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "907e9fcc6f349938f8f83317a1dc3f5ce61e61076da7bdd203205672e43dd8db"
+      "evidenceDigest": "95d72c27464814c8e8140ae3fa71f59b1364f511951031a9fd3feb914730c830"
     },
     {
       "sourcePosition": 295,
@@ -4858,26 +4754,6 @@
         }
       ],
       "evidenceDigest": "63c608da92312f7424c2e0f0a9ec6d8adc0b760960d0d67c5e467ea9160b3cfe"
-    },
-    {
-      "sourcePosition": 313,
-      "sourceIssueReference": "Wolveirne/Cable one-shot",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolveirne/Cable one-shot",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "aa455b3e30c7817d2d778e1e14d18b0082807c19480f1f42ab9e5742a0dd607b"
     },
     {
       "sourcePosition": 314,
@@ -5628,16 +5504,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "d99df0b01dceb2e29b1909364ab1ead57beffbfe69a737bb207cc9c3268c29a2"
+      "evidenceDigest": "2e94b2a5ba957259f7d92a8e1718f5a1447cf577acb724de680cff2698513fac"
     },
     {
       "sourcePosition": 353,
@@ -5768,16 +5644,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "6ec53cc339dc7af0917de3de1dd3a32f64767d7cd1afc438f5d09bf9067da31e"
+      "evidenceDigest": "3e90179b625b6b1113caf09d7f08820626c9d66a5d1e7947e10ed34efbe394c6"
     },
     {
       "sourcePosition": 360,
@@ -5788,16 +5664,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "ce5a2f1de82add7edf125f9f05149ce5110006eafb15f59663475a915ebb16f4"
+      "evidenceDigest": "6ee89107480129ac68c2d321861512a7bc63cd2114a4e2adb07e370f911785c5"
     },
     {
       "sourcePosition": 361,
@@ -5808,16 +5684,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "73ee4afae07578df496d7bf2c184e338d485f238e9cf65c5cc569c0546e0b9cd"
+      "evidenceDigest": "6ed82c2b6cbfff50cc976a842f44821b08b19d3a20a8b7b1440409d22c19f37d"
     },
     {
       "sourcePosition": 362,
@@ -5828,16 +5704,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "68e1442f0860444efbe8b31f49b542f453dea22cd79f96f8a39d0e19fa15c73f"
+      "evidenceDigest": "ec8c4c1423432ac1d25c6b2a2f4a95b069234819dc97cc331d7939cc9cf5b710"
     },
     {
       "sourcePosition": 363,
@@ -5848,16 +5724,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "ac2d1401470efbce8c33eb213130cfe9ec7bc799cea12aa29cd576d83ab9d38d"
+      "evidenceDigest": "c97f9392dfb612f125ae3abd60816add4376350c6c291d836b92bf6d31392d68"
     },
     {
       "sourcePosition": 364,
@@ -7160,26 +7036,6 @@
       "evidenceDigest": "a816db8fef470cd46df37cac938dcf3c61d956c2d1a2e4775e41c8da4742dcff"
     },
     {
-      "sourcePosition": 534,
-      "sourceIssueReference": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine (vol. 3)",
-      "seriesYear": 0,
-      "issueNumber": "33",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "42fce0af355bbc263433b3138e56eb2a238270ed8c703d1571d6fc54c6df27c3"
-    },
-    {
       "sourcePosition": 543,
       "sourceIssueReference": "Wolverine (vol. 2) #187",
       "sourceRangeReference": null,
@@ -7360,26 +7216,6 @@
       "evidenceDigest": "4ef62238d8357268d3174487606aad10e65c5be2f6e902b84803546ebe906955"
     },
     {
-      "sourcePosition": 554,
-      "sourceIssueReference": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Wolverine: Origins",
-      "seriesYear": 0,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "5d7b451d6485a6fc8dba618a249ceba5eef9593621127ad82da283cc102f756a"
-    },
-    {
       "sourcePosition": 555,
       "sourceIssueReference": "Sabretooth (vol. 3) #1",
       "sourceRangeReference": null,
@@ -7468,16 +7304,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "4614e7325491187f51219680b73ee8f06897c53aa5a4e3b3a2dfccd19ae2eb56"
+      "evidenceDigest": "cf022cdd62dc1b45b846c9d82e30ca61a3c0c76b8958114199b43048670daf88"
     },
     {
       "sourcePosition": 561,
@@ -8420,26 +8256,6 @@
       "evidenceDigest": "be1d760e0cf83d3126ff76d1d824d0eb3d8da9a09229116f853880b0028d1861"
     },
     {
-      "sourcePosition": 612,
-      "sourceIssueReference": "X-Men: Messiah Complex One-Shot",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "X-Men: Messiah Complex One-Shot",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "747e6152dca412a7bf4b8a7fac8460738034069ca87bec9e44de09c83be8e196"
-    },
-    {
       "sourcePosition": 625,
       "sourceIssueReference": "Wolverine (2003) 56",
       "sourceRangeReference": null,
@@ -8608,16 +8424,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "d4b9fead6b4f7180819b046600edf3de4c1c99a2d8167aca6982ed4b7cbabb80"
+      "evidenceDigest": "009bb20cc71a45d4b933414d06287c37c006e03d2c9c503d2803298c50aaca48"
     },
     {
       "sourcePosition": 639,
@@ -8628,16 +8444,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "c70af58e7f80885714ee5e09a1757e13d2d1518622f1baebeb76b5d01e7a44a0"
+      "evidenceDigest": "de5d7c94bff64ee29ae90166bd19d1b377eba4b9252712af5dc22d6112c17137"
     },
     {
       "sourcePosition": 640,
@@ -8648,16 +8464,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "8b8dc4f34db9faab604603870724db6aa6655b8337a157b262855828b676b757"
+      "evidenceDigest": "8243b624462950c24f2cfe547dbc168d24d45ffddd067eb61b66068ec58ff676"
     },
     {
       "sourcePosition": 641,
@@ -8668,16 +8484,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "0903c34e1900b1353fb961bda95aa9d54e324b8c3fa641dc829d915627c04aa8"
+      "evidenceDigest": "80e3fd86c6056f32fac625b0715ff8a6809e2e4c6c85428e1154a3dd33c04db1"
     },
     {
       "sourcePosition": 653,
@@ -8948,16 +8764,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "2cae00420e056d640bc9518221dece4061af2775f1ef32adaa8db867f4e86435"
+      "evidenceDigest": "31f49d7ca6d8346cd156e924679a4419fc593e7b845ff094ce93b5a58c68e00f"
     },
     {
       "sourcePosition": 667,
@@ -9220,26 +9036,6 @@
       "evidenceDigest": "f6e2597aaf5a367086c8736d5d81cdb3b95575c1e4eeec770a827b105c051778"
     },
     {
-      "sourcePosition": 687,
-      "sourceIssueReference": "X-Force/Cable: Messiah War",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "X-Force/Cable: Messiah War",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "0547c955291d78cb266ff0fc837e1542da349bb5d897f66729bdb21b44450a37"
-    },
-    {
       "sourcePosition": 694,
       "sourceIssueReference": "X-Men: Future History Ã¢â‚¬â€œ The Messiah War Sourcebook",
       "sourceRangeReference": null,
@@ -9248,16 +9044,16 @@
       "issueNumber": "unresolved",
       "kind": "published-metadata-gap",
       "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner search found no individual Marvel issue page. This records provider availability only; the exact source identity remains published provenance and no substitution is authorized.",
       "evidenceSources": [
         {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
         }
       ],
-      "evidenceDigest": "fc42d5530efe52ae90c46d28a72362b05bfeeef9ea19fad2f40edc90ef5e6841"
+      "evidenceDigest": "0d89141f5aff9041d301c98446803e946546259ddd0831c2a8d3e9bb19dc44ea"
     },
     {
       "sourcePosition": 699,
@@ -9338,46 +9134,6 @@
         }
       ],
       "evidenceDigest": "a608cb4f76dd0181d4371257ca5c5107d5b5b990578fdce29a0c21251c65c81f"
-    },
-    {
-      "sourcePosition": 711,
-      "sourceIssueReference": "X Necrosha",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "X Necrosha",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "9bf9bc295a68c187f7c20f0c04f394ec18c76603b1773efc4e6414801c590206"
-    },
-    {
-      "sourcePosition": 712,
-      "sourceIssueReference": "X Necrosha: The Gathering",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "X Necrosha: The Gathering",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "8f42e69bca2b97828569e5b574c48bbf97d4d059d71716d5afc74edecd3747b7"
     },
     {
       "sourcePosition": 713,
@@ -9778,26 +9534,6 @@
         }
       ],
       "evidenceDigest": "9fe389ebc2577f29d19ca7b2c4f3ca3f5d38fc7c392017771ec7a256e614cc5e"
-    },
-    {
-      "sourcePosition": 733,
-      "sourceIssueReference": "Second Coming: Prepare",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Second Coming: Prepare",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "f55ec5fc6297ac97797463c56de5506805561424a0375825d7ada548fc1f328f"
     },
     {
       "sourcePosition": 734,
@@ -11440,66 +11176,6 @@
       "evidenceDigest": "85419582076903acadc4570b0bf663dafc1ed18d9de47908efd1f797e0207250"
     },
     {
-      "sourcePosition": 917,
-      "sourceIssueReference": "6",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "6",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "a2ca789f1559faac61bfe6feb1db28e16c7d0195e6ce3e95107f6f4c9e429730"
-    },
-    {
-      "sourcePosition": 918,
-      "sourceIssueReference": "10",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "10",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "80f726095901b248415757f08bc29dccf60ce7c6c998f86337a96a1679231612"
-    },
-    {
-      "sourcePosition": 919,
-      "sourceIssueReference": "Material from Marvel Point One",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Material from Marvel Point One",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "48a4904afa1ea39d7439ffc51bab9e0ee8291642304dbb08b0644a58e0cc4af6"
-    },
-    {
       "sourcePosition": 944,
       "sourceIssueReference": "X-Men Legacy #269",
       "sourceRangeReference": null,
@@ -11698,26 +11374,6 @@
         }
       ],
       "evidenceDigest": "74a17cc68b94ab3c1d98f633c60c4b8be1e15821696f25220e079dd043c1cc55"
-    },
-    {
-      "sourcePosition": 954,
-      "sourceIssueReference": "18",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "18",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "6f2a80183acf9ecf6b6adfb7c6aa48742a63b2234874c228c83fc406aa7b71ba"
     },
     {
       "sourcePosition": 970,
@@ -13640,46 +13296,6 @@
       "evidenceDigest": "487e533078d6a79cece793b5ab5dfbc38fe02e3275fe89601607e9e864438c88"
     },
     {
-      "sourcePosition": 1100,
-      "sourceIssueReference": "Death of Wolverine: Deadpool and Captain America",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Death of Wolverine: Deadpool and Captain America",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "89eaf29429e5de3f969807a9bf8ea89cb52b01f5928888a6db9750f34ba63cde"
-    },
-    {
-      "sourcePosition": 1101,
-      "sourceIssueReference": "Death of Wolverine: Life After Logan",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Death of Wolverine: Life After Logan",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "df7564057837734ebfa166a88d330d98e5f57a4ed3c09a5e7a2ce3d96d69d78d"
-    },
-    {
       "sourcePosition": 1102,
       "sourceIssueReference": "Wolverine and the X-Men (vol. 2) #10",
       "sourceRangeReference": null,
@@ -15420,46 +15036,6 @@
       "evidenceDigest": "8b641722c740032ab9ad2bbf96a58b84342a94843593195a3d722998da4e606a"
     },
     {
-      "sourcePosition": 1222,
-      "sourceIssueReference": "Marvel Legacy Primer pages",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Marvel Legacy Primer pages",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "4124b0efe6e2885f697b1d8dbd35d1e4e236f3bd1bdc5c85db91b42fcd5d7e6c"
-    },
-    {
-      "sourcePosition": 1223,
-      "sourceIssueReference": "FOOM Magazine (2017)",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "FOOM Magazine",
-      "seriesYear": 2017,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "f56fd7266a21ad21466d61b349533d62f4f40baebf2a470bb1cb3e4d0e868c83"
-    },
-    {
       "sourcePosition": 1224,
       "sourceIssueReference": "X-Men Blue #13",
       "sourceRangeReference": null,
@@ -15758,26 +15334,6 @@
         }
       ],
       "evidenceDigest": "5ffcd125f2b3a6513fe95cacc6cf03ccedae302b0b0203f9dd59e89f5c32e813"
-    },
-    {
-      "sourcePosition": 1240,
-      "sourceIssueReference": "Deadpool Vs. Old Man Logan",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Deadpool Vs. Old Man Logan",
-      "seriesYear": 0,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "cace10c5a882deb665bb63d6cb676bb2a2416b9263959d9f192b82ba82f29e30"
     },
     {
       "sourcePosition": 1253,
@@ -16200,46 +15756,6 @@
       "evidenceDigest": "77df9e7e9e584e837de92251a76893abd71c9d165020f2194d43de95db150f5a"
     },
     {
-      "sourcePosition": 1276,
-      "sourceIssueReference": "Infinity Countdown Prime (2018)",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Infinity Countdown Prime",
-      "seriesYear": 2018,
-      "issueNumber": "unresolved",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "909e4b6ca9b076a757082aaae6f84309a43a87eecdd45ff3d922d2dd45c6b619"
-    },
-    {
-      "sourcePosition": 1282,
-      "sourceIssueReference": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
-      "sourceRangeReference": null,
-      "normalizedSeriesTitle": "Infinity Countdown: Adam Warlock",
-      "seriesYear": 2018,
-      "issueNumber": "1",
-      "kind": "published-metadata-gap",
-      "status": "open",
-      "checkedAt": "2026-08-26",
-      "auditBasis": "The frozen source row has no verified exact metadata match in the retained resolution output and remains published provenance pending Issue #262.",
-      "evidenceSources": [
-        {
-          "kind": "github-issue",
-          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
-          "retrievedAt": "2026-08-26"
-        }
-      ],
-      "evidenceDigest": "462eb61179b3484fad77de276bd480ce47f9e3fe83129e8ebdd94ad2b1693537"
-    },
-    {
       "sourcePosition": 1301,
       "sourceIssueReference": "WhereÃ¢â‚¬â„¢s Wolverine pages and Material from Marvel Legacay (2017) #1",
       "sourceRangeReference": null,
@@ -16560,7 +16076,7 @@
       "evidenceDigest": "e4283266022c9d74b957c4e16b89cdc015771113436f48c97c1ec1b89038b875"
     }
   ],
-  "expectedCount": 437,
+  "expectedCount": 451,
   "proposedManifest": {
     "id": "wolverine-reading-order",
     "name": "Wolverine",
@@ -16588,7 +16104,7 @@
       "Old Man Logan",
       "Comic Book Herald"
     ],
-    "expect": 1222,
+    "expect": 1207,
     "timeline": null,
     "coverIssueId": 8797
   },
@@ -16598,8 +16114,414 @@
   "sourceReview": {
     "authorityType": "stronger-model",
     "authorityIdentity": "GitHub Copilot",
-    "rationale": "Re-fetched the source with a browser user agent, verified the supplied raw SHA-256 digest, froze the prescribed terminal boundary, resolved only existing exact metadata records, and retained unresolved rows as explicit provenance linked to Issue #262.",
-    "reviewedAt": "2026-08-26T19:13:50Z"
+    "rationale": "Verified the frozen 1,328-occurrence boundary, resolved exact identities supported by reviewed Marvel records, preserved provider-unavailable source identities as provenance, and recorded repeats and exclusions without substitution or boundary widening.",
+    "reviewedAt": "2026-08-26T19:13:50Z",
+    "metadataGapLedger": {
+      "settlementIssue": "https://github.com/raymond-nassar/recap-page/issues/262",
+      "settlementComment": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+      "settledAt": "2026-09-06",
+      "disposition": "owner-reviewed-wolverine-metadata-settlement",
+      "providerAvailabilityStatement": "Owner search results report provider availability only; exact source identities remain controlling and no substitution is authorized.",
+      "classificationCounts": {
+        "exact": 15,
+        "repeat": 3,
+        "availabilityOnly": 27,
+        "sourceSemantic": 10,
+        "postBoundary": 5
+      },
+      "structuralCounts": {
+        "sourceOccurrenceCount": 1328,
+        "canonicalRowCount": 451,
+        "repeatedSourceReferenceCount": 71,
+        "excludedSourceRowCount": 50,
+        "retainedGapCount": 756,
+        "publishedItemCount": 1207
+      },
+      "retainedAvailabilityProvenanceCount": 25,
+      "explicitInfiniteExclusionCount": 2,
+      "settledReferenceDigest": "06a62b89d5be22d965bbc88300cfb46425af59a4836a4ee308bd9a45e004a921",
+      "settledReferences": [
+        {
+          "sourcePosition": 85,
+          "sourceIssueReference": "Wolverine/Nick Fury: The Scorpio Connection Graphic Novel",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 86,
+          "sourceIssueReference": "Wolverine: The Jungle Adventure",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 101,
+          "sourceIssueReference": "Wolverine: Bloodlust",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 102,
+          "sourceIssueReference": "Wolverine: Bloody Choices",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 132,
+          "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 108820
+        },
+        {
+          "sourcePosition": 135,
+          "sourceIssueReference": "Logan: Path Of The Warlord",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 136,
+          "sourceIssueReference": "Shadow Society",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 62695
+        },
+        {
+          "sourcePosition": 145,
+          "sourceIssueReference": "Wolverine: Hunger",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 150,
+          "sourceIssueReference": "Wolverine/Cable",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 157,
+          "sourceIssueReference": "Wolverine: The Amazing Immortal Man & Other Bloody Tales",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 161,
+          "sourceIssueReference": "Spider-Man Vs. Wolverine",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 41003
+        },
+        {
+          "sourcePosition": 212,
+          "sourceIssueReference": "Wolverine: Inner Fury",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 88616
+        },
+        {
+          "sourcePosition": 213,
+          "sourceIssueReference": "Wolverine: Killing",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 214,
+          "sourceIssueReference": "Wolverine: Global Jeopardy",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 239,
+          "sourceIssueReference": "Wolverine: Evilution",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 240,
+          "sourceIssueReference": "Wolverine and Nick Fury: Scorpio Rising",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 66659
+        },
+        {
+          "sourcePosition": 241,
+          "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: The Dark Design",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 62690
+        },
+        {
+          "sourcePosition": 260,
+          "sourceIssueReference": "Age of Apocalypse reading order",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 261,
+          "sourceIssueReference": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 277,
+          "sourceIssueReference": "Logan: Path of the Warlord",
+          "classification": "repeat",
+          "representation": "gap-repeat-exclusion",
+          "canonicalSourcePosition": 135
+        },
+        {
+          "sourcePosition": 278,
+          "sourceIssueReference": "Logan: Shadow Society",
+          "classification": "repeat",
+          "representation": "canonical-repeat",
+          "canonicalSourcePosition": 136
+        },
+        {
+          "sourcePosition": 279,
+          "sourceIssueReference": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 294,
+          "sourceIssueReference": "Wolverine: Black Rio",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 313,
+          "sourceIssueReference": "Wolveirne/Cable one-shot",
+          "classification": "repeat",
+          "representation": "gap-repeat-exclusion",
+          "canonicalSourcePosition": 150
+        },
+        {
+          "sourcePosition": 352,
+          "sourceIssueReference": "176",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 359,
+          "sourceIssueReference": "Weapon X: The Draft Ã¢â‚¬â€œ Sauron",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 360,
+          "sourceIssueReference": "Wild Child",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 361,
+          "sourceIssueReference": "Kane",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 362,
+          "sourceIssueReference": "Marrow",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 363,
+          "sourceIssueReference": "Agent Zero",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 534,
+          "sourceIssueReference": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 554,
+          "sourceIssueReference": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 560,
+          "sourceIssueReference": "49",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 612,
+          "sourceIssueReference": "X-Men: Messiah Complex One-Shot",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 16600
+        },
+        {
+          "sourcePosition": 638,
+          "sourceIssueReference": "Wolverine: Chop Shop",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 639,
+          "sourceIssueReference": "Wolverine: Switchback",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 640,
+          "sourceIssueReference": "Wolverine Holiday Special: Flies to a Spider",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 641,
+          "sourceIssueReference": "Wolverine: Dead ManÃ¢â‚¬â„¢s Hand",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 666,
+          "sourceIssueReference": "All-New Wolverine Saga",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 687,
+          "sourceIssueReference": "X-Force/Cable: Messiah War",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 27620
+        },
+        {
+          "sourcePosition": 694,
+          "sourceIssueReference": "X-Men: Future History Ã¢â‚¬â€œ The Messiah War Sourcebook",
+          "classification": "availability-only",
+          "representation": "retained-provenance"
+        },
+        {
+          "sourcePosition": 711,
+          "sourceIssueReference": "X Necrosha",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 28103
+        },
+        {
+          "sourcePosition": 712,
+          "sourceIssueReference": "X Necrosha: The Gathering",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 29945
+        },
+        {
+          "sourcePosition": 733,
+          "sourceIssueReference": "Second Coming: Prepare",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 33554
+        },
+        {
+          "sourcePosition": 917,
+          "sourceIssueReference": "6",
+          "classification": "availability-only",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 918,
+          "sourceIssueReference": "10",
+          "classification": "availability-only",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 919,
+          "sourceIssueReference": "Material from Marvel Point One",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 954,
+          "sourceIssueReference": "18",
+          "classification": "exact",
+          "representation": "canonical-repeat",
+          "selectedIssueId": 40087,
+          "canonicalSourcePosition": 819
+        },
+        {
+          "sourcePosition": 1100,
+          "sourceIssueReference": "Death of Wolverine: Deadpool and Captain America",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 50983
+        },
+        {
+          "sourcePosition": 1101,
+          "sourceIssueReference": "Death of Wolverine: Life After Logan",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 51050
+        },
+        {
+          "sourcePosition": 1222,
+          "sourceIssueReference": "Marvel Legacy Primer pages",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 1223,
+          "sourceIssueReference": "FOOM Magazine (2017)",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 1240,
+          "sourceIssueReference": "Deadpool Vs. Old Man Logan",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": 1276,
+          "sourceIssueReference": "Infinity Countdown Prime (2018)",
+          "classification": "exact",
+          "representation": "exact-row",
+          "selectedIssueId": 66283
+        },
+        {
+          "sourcePosition": 1282,
+          "sourceIssueReference": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
+          "classification": "source-semantic",
+          "representation": "explicit-exclusion"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Savage Avengers (2019) #1-5 plus Material from Free Comic Book Day 2019 (Avengers)",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Wolverine: Black",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "White",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Deadpool / Wolverine: Weapon X-Traction (one-shot)",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        },
+        {
+          "sourcePosition": null,
+          "sourceIssueReference": "Logan: Black",
+          "classification": "post-boundary",
+          "representation": "ledger-only"
+        }
+      ]
+    }
   },
   "rows": [
     {
@@ -17362,6 +17284,28 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
+      "seriesYear": 1991,
+      "issueNumber": "1",
+      "seriesId": 37388,
+      "candidateIssueId": 108820,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 108820 is the reviewed exact official identity for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Shadow Society",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Logan: Shadow Society",
+      "seriesYear": 1997,
+      "issueNumber": "1",
+      "seriesId": 23010,
+      "candidateIssueId": 62695,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 62695 is the reviewed exact official identity for this frozen source position."
+    },
+    {
       "sourceIssueReference": "X-Men: First Class (2006) #4",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "X-Men: First Class",
@@ -17371,6 +17315,17 @@
       "candidateIssueId": 5722,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Spider-Man Vs. Wolverine",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Spider-Man Versus Wolverine",
+      "seriesYear": 1987,
+      "issueNumber": "1",
+      "seriesId": 15218,
+      "candidateIssueId": 41003,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 41003 is the reviewed exact official identity for this frozen source position."
     },
     {
       "sourceIssueReference": "Incredible Hulk (1962) #340",
@@ -17483,6 +17438,17 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Wolverine: Inner Fury",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine: Inner Fury",
+      "seriesYear": 1992,
+      "issueNumber": "1",
+      "seriesId": 30515,
+      "candidateIssueId": 88616,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 88616 is the reviewed exact official identity for this frozen source position."
+    },
+    {
       "sourceIssueReference": "Sabretooth (1993) #4",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Sabretooth",
@@ -17569,6 +17535,28 @@
       "candidateIssueId": 7389,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "Wolverine and Nick Fury: Scorpio Rising",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Wolverine/Nick Fury: Scorpio Rising",
+      "seriesYear": 1994,
+      "issueNumber": "1",
+      "seriesId": 24132,
+      "candidateIssueId": 66659,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 66659 is the reviewed exact official identity for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Ghost Rider/Wolverine/Punisher: The Dark Design",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: The Dark Design",
+      "seriesYear": 1994,
+      "issueNumber": "0",
+      "seriesId": 23006,
+      "candidateIssueId": 62690,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 62690 is the reviewed exact official identity for this frozen source position."
     },
     {
       "sourceIssueReference": "Wolverine (1988) #90",
@@ -18627,6 +18615,17 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "X-Men: Messiah Complex One-Shot",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-Men: Messiah Complex",
+      "seriesYear": 2007,
+      "issueNumber": "1",
+      "seriesId": 2901,
+      "candidateIssueId": 16600,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 16600 is the reviewed exact official identity for this frozen source position."
+    },
+    {
       "sourceIssueReference": "Uncanny X-Men (1963) #492",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Uncanny X-Men",
@@ -18946,6 +18945,17 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "X-Force/Cable: Messiah War",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X-FORCE/CABLE: MESSIAH WAR 1",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 7002,
+      "candidateIssueId": 27620,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 27620 is the reviewed exact official identity for this frozen source position."
+    },
+    {
       "sourceIssueReference": "Cable (2008) #13",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Cable",
@@ -19131,6 +19141,39 @@
       "candidateIssueId": 30701,
       "manualSeriesSelectionApproved": false,
       "selectionNote": null
+    },
+    {
+      "sourceIssueReference": "X Necrosha",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X Necrosha",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 9070,
+      "candidateIssueId": 28103,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 28103 is the reviewed exact official identity for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "X Necrosha: The Gathering",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "X Necrosha: The Gathering",
+      "seriesYear": 2009,
+      "issueNumber": "1",
+      "seriesId": 9177,
+      "candidateIssueId": 29945,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 29945 is the reviewed exact official identity for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Second Coming: Prepare",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Second Coming: Prepare",
+      "seriesYear": 2010,
+      "issueNumber": "1",
+      "seriesId": 9851,
+      "candidateIssueId": 33554,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 33554 is the reviewed exact official identity for this frozen source position."
     },
     {
       "sourceIssueReference": "Uncanny X-Men (1963) #523",
@@ -20651,6 +20694,28 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Death of Wolverine: Deadpool and Captain America",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Wolverine: Deadpool & Captain America",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 19087,
+      "candidateIssueId": 50983,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 50983 is the reviewed exact official identity for this frozen source position."
+    },
+    {
+      "sourceIssueReference": "Death of Wolverine: Life After Logan",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Death of Wolverine: Life After Logan",
+      "seriesYear": 2014,
+      "issueNumber": "1",
+      "seriesId": 19161,
+      "candidateIssueId": 51050,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 51050 is the reviewed exact official identity for this frozen source position."
+    },
+    {
       "sourceIssueReference": "Wolverines (2015) #3",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Wolverines",
@@ -21036,6 +21101,17 @@
       "selectionNote": null
     },
     {
+      "sourceIssueReference": "Infinity Countdown Prime (2018)",
+      "sourceRangeReference": null,
+      "normalizedSeriesTitle": "Infinity Countdown Prime",
+      "seriesYear": 2018,
+      "issueNumber": "1",
+      "seriesId": 24300,
+      "candidateIssueId": 66283,
+      "manualSeriesSelectionApproved": true,
+      "selectionNote": "Issue 66283 is the reviewed exact official identity for this frozen source position."
+    },
+    {
       "sourceIssueReference": "Infinity Countdown (2018) #1",
       "sourceRangeReference": null,
       "normalizedSeriesTitle": "Infinity Countdown",
@@ -21410,5 +21486,795 @@
       "selectionNote": null
     }
   ],
-  "packetDigest": "e705fae6a2621c621dac2b50185c1ccffb0d314a6e8fdcc8d9b81e85b2386ba2"
+  "packetDigest": "18ed5e17e5c91c2ca2e4c127a38f140b4395f0c354e1cec93128fdb260d4941d",
+  "sourceGapResolutions": [
+    {
+      "sourcePosition": 132,
+      "previousSourceIssueReference": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 108820,
+      "resolvedNormalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: Hearts of Darkness",
+      "resolvedSeriesYear": 1991,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/108820/ghost_riderwolverinepunisher_hearts_of_darkness_1_1991_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "7617bdbd4bcdf65ff7a2a308d1d35953cabf90fe5de19946e74d76aae8f13a99"
+    },
+    {
+      "sourcePosition": 136,
+      "previousSourceIssueReference": "Shadow Society",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Shadow Society",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62695,
+      "resolvedNormalizedSeriesTitle": "Logan: Shadow Society",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62695/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "c5832a78b4836ab04b95c23393f22e6666347450199ed9cd713d866607bcfbf1"
+    },
+    {
+      "sourcePosition": 161,
+      "previousSourceIssueReference": "Spider-Man Vs. Wolverine",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Spider-Man Vs. Wolverine",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 41003,
+      "resolvedNormalizedSeriesTitle": "Spider-Man Versus Wolverine",
+      "resolvedSeriesYear": 1987,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/41003/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "369b2130f6e71ab2b0e247714edca4e814077cfa8955770d71085c21c765cdee"
+    },
+    {
+      "sourcePosition": 212,
+      "previousSourceIssueReference": "Wolverine: Inner Fury",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Inner Fury",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 88616,
+      "resolvedNormalizedSeriesTitle": "Wolverine: Inner Fury",
+      "resolvedSeriesYear": 1992,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/88616/wolverine_inner_fury_1992_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "2c759b969befe843f51b21acf5cbae5e521f3247b94e374aec2fde2f886457bc"
+    },
+    {
+      "sourcePosition": 240,
+      "previousSourceIssueReference": "Wolverine and Nick Fury: Scorpio Rising",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine and Nick Fury: Scorpio Rising",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66659,
+      "resolvedNormalizedSeriesTitle": "Wolverine/Nick Fury: Scorpio Rising",
+      "resolvedSeriesYear": 1994,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66659/wolverinenick_fury_scorpio_rising_1994_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "8d259bdcd994bdcd9b08c8b397df1ef2493b9dd2083218be1b8f6faa77be37c3"
+    },
+    {
+      "sourcePosition": 241,
+      "previousSourceIssueReference": "Ghost Rider/Wolverine/Punisher: The Dark Design",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: The Dark Design",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 62690,
+      "resolvedNormalizedSeriesTitle": "Ghost Rider/Wolverine/Punisher: The Dark Design",
+      "resolvedSeriesYear": 1994,
+      "resolvedIssueNumber": "0",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62690/ghost_riderwolverinepunisher_the_dark_design_1994",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "d912b48cfcf66fd09d9f09180235be385496978fe9a53f4b79def262928d88f0"
+    },
+    {
+      "sourcePosition": 260,
+      "previousSourceIssueReference": "Age of Apocalypse reading order",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Age of Apocalypse reading order",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names an event reading order, not one atomic comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "ef621ee9ff310eb3b84c48b0f5d955e0add515f49c3666ac21e067a6313f43c3"
+    },
+    {
+      "sourcePosition": 261,
+      "previousSourceIssueReference": "Wolverine (vol. 2) #103-104 and the full Onslaught crossover",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine (vol. 2)",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "103",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source combines a numbered range with an unspecified crossover and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "296715a037ca1803ee1a7dfd31ec18c526d92b020ba5c7d4e78a45bb683f9841"
+    },
+    {
+      "sourcePosition": 278,
+      "previousSourceIssueReference": "Logan: Shadow Society",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Logan: Shadow Society",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "canonical-repeat",
+      "canonicalRow": 71,
+      "selectedIssueId": 62695,
+      "resolvedNormalizedSeriesTitle": "Logan: Shadow Society",
+      "resolvedSeriesYear": 1997,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed exact identity is already represented by the earlier canonical source occurrence.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/62695/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "ec4fea83a71a3962f56c9a65cef4a41dd1b254d53e60b6e404a3941a4d5e9aa2"
+    },
+    {
+      "sourcePosition": 279,
+      "previousSourceIssueReference": "Wolverine (vol. 2) #115-118 and related Operation Zero Tolerance tie-ins",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine (vol. 2)",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "115",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source combines a numbered range with unspecified tie-ins and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "c740c9a571b5c1598535c106eb2858a1bfb5164b6480ea274e1a76d44a04a2f4"
+    },
+    {
+      "sourcePosition": 313,
+      "previousSourceIssueReference": "Wolveirne/Cable one-shot",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolveirne/Cable one-shot",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Repeated availability-only metadata-gap reference; the canonical provenance row is source position 150.",
+      "decisionScope": "wolverine-metadata-gap-repeat",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "9c30b25e942118824e1c2b8daf1e74fe053fd9bb29c823a4dcb03368e7e1b83e"
+    },
+    {
+      "sourcePosition": 534,
+      "previousSourceIssueReference": "Wolverine (vol. 3) #33-35 and related House of M tie-ins",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine (vol. 3)",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "33",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source combines a numbered range with unspecified event tie-ins and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "4ef285991d3871cc737fb91c3c771f56354811facae9a2c4aa418e50ad3818eb"
+    },
+    {
+      "sourcePosition": 554,
+      "previousSourceIssueReference": "Wolverine: Origins #1-5 and DirectorÃ¢â‚¬â„¢s Cut",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Wolverine: Origins",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source combines a numbered range with a separate Director's Cut edition and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "be5f5bbbb2a970a6e3b89a5c53b73703941b77987fde28449d784c0b6d3d8adb"
+    },
+    {
+      "sourcePosition": 612,
+      "previousSourceIssueReference": "X-Men: Messiah Complex One-Shot",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "X-Men: Messiah Complex One-Shot",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 16600,
+      "resolvedNormalizedSeriesTitle": "X-Men: Messiah Complex",
+      "resolvedSeriesYear": 2007,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/16600/x-men_messiah_complex_2007_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "7deb6f68fe5ea41ddd561d1276c0e15df9f5c359f6fd28ce333dbad218ec38d7"
+    },
+    {
+      "sourcePosition": 687,
+      "previousSourceIssueReference": "X-Force/Cable: Messiah War",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "X-Force/Cable: Messiah War",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 27620,
+      "resolvedNormalizedSeriesTitle": "X-FORCE/CABLE: MESSIAH WAR 1",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/27620/x-forcecable_messiah_war_1_2009_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "037e2aa96488d1c8a3503d9901f22eb69f7b8324dafdb87aa006e69c830cd6a0"
+    },
+    {
+      "sourcePosition": 711,
+      "previousSourceIssueReference": "X Necrosha",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "X Necrosha",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 28103,
+      "resolvedNormalizedSeriesTitle": "X Necrosha",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/28103/x_necrosha_2009_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "bed8135ae7aa9ae3fbaf7260e003cebfdfbc354629638119ede39b685f777530"
+    },
+    {
+      "sourcePosition": 712,
+      "previousSourceIssueReference": "X Necrosha: The Gathering",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "X Necrosha: The Gathering",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 29945,
+      "resolvedNormalizedSeriesTitle": "X Necrosha: The Gathering",
+      "resolvedSeriesYear": 2009,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/29945/x_necrosha_the_gathering_2009_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "ab44960b0859159cabc4bdfea843000fde729069a72caf94adf6303ee3c48243"
+    },
+    {
+      "sourcePosition": 733,
+      "previousSourceIssueReference": "Second Coming: Prepare",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Second Coming: Prepare",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 33554,
+      "resolvedNormalizedSeriesTitle": "Second Coming: Prepare",
+      "resolvedSeriesYear": 2010,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/33554/second_coming_prepare_2010_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "e863757490441b4f5803b4d019bd251497c767decde749d335b0b80d710e276e"
+    },
+    {
+      "sourcePosition": 917,
+      "previousSourceIssueReference": "6",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "6",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Owner policy omits this Marvel Infinite comic because it is unavailable in the Marvel Unlimited web reader.",
+      "decisionScope": "owner-authorized-unavailable-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner expressly authorized this Marvel Infinite availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "4529043770204213c167064288e93872378599027e90d9889190fddf09be5fc5"
+    },
+    {
+      "sourcePosition": 918,
+      "previousSourceIssueReference": "10",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "10",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "Owner policy omits this Marvel Infinite comic because it is unavailable in the Marvel Unlimited web reader.",
+      "decisionScope": "owner-authorized-unavailable-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The owner expressly authorized this Marvel Infinite availability exclusion.",
+      "evidenceSources": [
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "cc70122170e0ad2f6e78c702590678af691956323ac14ecf56ebdaac4c05eb77"
+    },
+    {
+      "sourcePosition": 919,
+      "previousSourceIssueReference": "Material from Marvel Point One",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Material from Marvel Point One",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names partial material, not a standalone whole comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "b0dd6be4c682f82e993d13543c8124fce749f30d9efa828dc457aa8bdd10b0a5"
+    },
+    {
+      "sourcePosition": 954,
+      "previousSourceIssueReference": "18",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "18",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "canonical-repeat",
+      "canonicalRow": 286,
+      "selectedIssueId": 40087,
+      "resolvedNormalizedSeriesTitle": "Wolverine & the X-Men",
+      "resolvedSeriesYear": 2011,
+      "resolvedIssueNumber": "18",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed exact identity is already represented by the earlier canonical source occurrence.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/40087/wolverine_the_x-men_2011_18",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "85fcace7e8d2e8230cd6c3a7936a90249dfc4d9d72e5ce42b660f45deb8ec618"
+    },
+    {
+      "sourcePosition": 1100,
+      "previousSourceIssueReference": "Death of Wolverine: Deadpool and Captain America",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Death of Wolverine: Deadpool and Captain America",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 50983,
+      "resolvedNormalizedSeriesTitle": "Death of Wolverine: Deadpool & Captain America",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/50983/death_of_wolverine_deadpool_captain_america_1_2014_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "46f049ae0ea26968c05fdf9897c926317fcc65b7a2780565819365d3748436bb"
+    },
+    {
+      "sourcePosition": 1101,
+      "previousSourceIssueReference": "Death of Wolverine: Life After Logan",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Death of Wolverine: Life After Logan",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 51050,
+      "resolvedNormalizedSeriesTitle": "Death of Wolverine: Life After Logan",
+      "resolvedSeriesYear": 2014,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/51050/death_of_wolverine_life_after_logan_1_2014_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "fcdd101f3f47c5bb3bdf95c88e24fbe64619c5327895e6c033ff582c62c6c83d"
+    },
+    {
+      "sourcePosition": 1222,
+      "previousSourceIssueReference": "Marvel Legacy Primer pages",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Marvel Legacy Primer pages",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names partial primer pages, not a standalone whole comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "609825f2c407108d1335d953fcac05bafba9d521c8de48188bbb0808d8b76d0c"
+    },
+    {
+      "sourcePosition": 1223,
+      "previousSourceIssueReference": "FOOM Magazine (2017)",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "FOOM Magazine",
+      "previousSeriesYear": 2017,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names a non-numbered extra and does not define one atomic comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "7a10d5fe3c55b96c46022b26bca5394bdc938045a74270bf8116b90cf03a182c"
+    },
+    {
+      "sourcePosition": 1240,
+      "previousSourceIssueReference": "Deadpool Vs. Old Man Logan",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Deadpool Vs. Old Man Logan",
+      "previousSeriesYear": 0,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source names a multi-issue series or collection without one issue identity.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "290c40151cc07d4c2e69f3fa8383c8236a03b39c7ee9ce23f51ab500ae696404"
+    },
+    {
+      "sourcePosition": 1276,
+      "previousSourceIssueReference": "Infinity Countdown Prime (2018)",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Infinity Countdown Prime",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "unresolved",
+      "resolutionKind": "exact-issue",
+      "selectedIssueId": 66283,
+      "resolvedNormalizedSeriesTitle": "Infinity Countdown Prime",
+      "resolvedSeriesYear": 2018,
+      "resolvedIssueNumber": "1",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The reviewed official Marvel issue identity matches the preserved source comic.",
+      "evidenceSources": [
+        {
+          "kind": "official-marvel-issue",
+          "url": "https://www.marvel.com/comics/issue/66283/infinity_countdown_prime_2018_1",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "owner-availability-review",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262#issuecomment-5565397378",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "004c666ffc82a8c3086f703c6d725496073bca3ed6921ec56cd3265e83dbe077"
+    },
+    {
+      "sourcePosition": 1282,
+      "previousSourceIssueReference": "Infinity Countdown: Adam Warlock (2018) #1 and Material from Free Comic Book Day 2018 (Amazing Spider-Man)",
+      "previousSourceRangeReference": null,
+      "previousNormalizedSeriesTitle": "Infinity Countdown: Adam Warlock",
+      "previousSeriesYear": 2018,
+      "previousIssueNumber": "1",
+      "resolutionKind": "source-exclusion",
+      "exclusionReason": "The source combines one issue with partial material and cannot be represented by one comic.",
+      "decisionScope": "wolverine-source-semantic-exclusion",
+      "checkedAt": "2026-09-06",
+      "auditBasis": "The preserved source text does not define a distinct whole-comic identity for publication.",
+      "evidenceSources": [
+        {
+          "kind": "frozen-source",
+          "url": "https://www.comicbookherald.com/wolverine-reading-order/",
+          "retrievedAt": "2026-09-06"
+        },
+        {
+          "kind": "tracking-issue",
+          "url": "https://github.com/raymond-nassar/recap-page/issues/262",
+          "retrievedAt": "2026-09-06"
+        }
+      ],
+      "evidenceDigest": "58cdd0f6e52de0907fe32d9a13385cc3acda43ac3e1f468b2bf4f452b47cf769"
+    }
+  ]
 }

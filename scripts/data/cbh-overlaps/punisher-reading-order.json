@@ -2,7 +2,7 @@
   "candidateId": "punisher-reading-order",
   "packetDigest": "ff88a21e032af67bf42c2c4a6424ed8e0eebc08b02710cac8f2eba92feaafb42",
   "mappingDigest": "ca9165c8db00878066426b13090acb92fb79fcd17d59ee129a51d5b6e1c26b80",
-  "libraryDigest": "ad064601dd1af2c5c5cd88807d9c733e9f3316230733f49a90a975fcc1e28ddd",
+  "libraryDigest": "0a007049a495cbebb43542f6b3b197b672879371b82d2a20c7c24e2eeb70918d",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 857,
@@ -979,9 +979,12 @@
     },
     {
       "orderId": "wolverine-reading-order",
-      "sharedCount": 0,
-      "sharedIds": [],
-      "relationship": "none"
+      "sharedCount": 2,
+      "sharedIds": [
+        "108820",
+        "62690"
+      ],
+      "relationship": "partial"
     },
     {
       "orderId": "world-war-hulk-aftersmash",
@@ -1104,5 +1107,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "3aef03b625e5aac4ede95e0ac558ab481a71e64c8e59eec4bbfd5111f8e00993"
+  "reportDigest": "3bf9074400be4e9ae88fc75352c287c108ce2ad9b8ccba986a40c2619ae0b41e"
 }

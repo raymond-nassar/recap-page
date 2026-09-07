@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -18,7 +19,7 @@ import {
 } from '../scripts/lib/cbh-inventory.mjs';
 import { issueIdsFromValue } from '../scripts/lib/cbh-overlap.mjs';
 import { placeholderId } from '../scripts/lib/placeholder-id.mjs';
-import { assertApprovedRelationshipReview } from '../scripts/author-cbh-packet.mjs';
+import { assertApprovedRelationshipReview, buildMarkdown } from '../scripts/author-cbh-packet.mjs';
 import { buildReportForMapping as buildCurrentReportForMapping } from '../scripts/report-order-overlap.mjs';
 import { CBH_LATER_ORDER_IDS } from '../scripts/lib/cbro-evidence.mjs';
 import { moonKnightSourceLedger } from '../scripts/data/cbh-source-ledgers/moon-knight-reading-order.mjs';
@@ -39,6 +40,7 @@ const batchCandidateIds = ['phalanx-reading-order', 'marvels-best-phoenix-comics
 const cosmicCandidateId = 'rocket-raccoon-reading-order';
 const grootCandidateId = 'groot-reading-order';
 const ironManCandidateId = 'iron-man-reading-order';
+const wolverineCandidateId = 'wolverine-reading-order';
 const hulkCandidateId = 'question-of-the-week-do-you-have-a-hulk-reading-order';
 const doctorStrangeCandidateId = 'doctor-strange-reading-order';
 const magnetoCandidateId = 'magneto-reading-order';
@@ -3023,6 +3025,236 @@ test('Iron Man ships with its exact boundary and generated surfaces', async () =
   );
   assert.equal(generated.count, 811);
   assert.equal(generated.items.length, 811);
+});
+
+test('Wolverine settles every reviewed gap without substitution or boundary widening', async () => {
+  const inventory = await readJson('scripts/data/cbh-character-inventory.json');
+  const manifest = await readJson('src/data/curated-lists.json');
+  const catalog = await readJson('src/data/catalog.json');
+  const packet = await readJson(`scripts/data/cbh-packets/${wolverineCandidateId}.json`);
+  const mapping = await readJson(`scripts/data/cbh-mappings/${wolverineCandidateId}.json`);
+  const report = await readJson(`scripts/data/cbh-overlaps/${wolverineCandidateId}.json`);
+  const generated = await readJson('src/data/wolverine_reading_order.json');
+  const markdown = await readFile(
+    path.join(root, `src/data/orders/${wolverineCandidateId}.md`),
+    'utf8',
+  );
+  const parsed = parseChecklist(markdown);
+  const record = inventory.find((candidate) => candidate.id === wolverineCandidateId);
+  const manifestEntry = manifest.lists.find((entry) => entry.id === wolverineCandidateId);
+  const catalogEntry = catalog.lists.find((entry) => entry.id === wolverineCandidateId);
+  const ledger = packet.sourceReview.metadataGapLedger;
+
+  assert.equal(mapping.placeholderIdentityMode, 'title');
+  assert.equal(buildMarkdown(mapping), markdown);
+  assert.deepEqual(ledger.classificationCounts, {
+    exact: 15,
+    repeat: 3,
+    availabilityOnly: 27,
+    sourceSemantic: 10,
+    postBoundary: 5,
+  });
+  assert.deepEqual(ledger.structuralCounts, {
+    sourceOccurrenceCount: 1328,
+    canonicalRowCount: 451,
+    repeatedSourceReferenceCount: 71,
+    excludedSourceRowCount: 50,
+    retainedGapCount: 756,
+    publishedItemCount: 1207,
+  });
+  assert.equal(ledger.settlementIssue, 'https://github.com/raymond-nassar/recap-page/issues/262');
+  assert.equal(ledger.settledAt, '2026-09-06');
+  assert.equal(ledger.settledReferences.length, 60);
+  assert.equal(ledger.settledReferenceDigest, digestCanonicalJson(ledger.settledReferences));
+  assert.equal(
+    ledger.settledReferences.filter((entry) => entry.classification === 'availability-only').length,
+    27,
+  );
+  assert.equal(
+    ledger.settledReferences.filter((entry) => entry.representation === 'retained-provenance').length,
+    25,
+  );
+  assert.equal(
+    ledger.settledReferences.filter((entry) => entry.classification === 'post-boundary').length,
+    5,
+  );
+
+  const expectedExactClassifications = [
+    [132, 108820], [136, 62695], [161, 41003], [212, 88616], [240, 66659],
+    [241, 62690], [612, 16600], [687, 27620], [711, 28103], [712, 29945],
+    [733, 33554], [954, 40087], [1100, 50983], [1101, 51050], [1276, 66283],
+  ];
+  assert.deepEqual(
+    ledger.settledReferences
+      .filter((entry) => entry.classification === 'exact')
+      .map((entry) => [entry.sourcePosition, entry.selectedIssueId]),
+    expectedExactClassifications,
+  );
+  for (const [sourcePosition, selectedIssueId] of expectedExactClassifications) {
+    if (sourcePosition === 954) continue;
+    assert.equal(
+      mapping.rows.find((row) => row.sourcePosition === sourcePosition)?.selectedIssueId,
+      selectedIssueId,
+    );
+  }
+  assert.equal(
+    mapping.rows.filter((row) => Number(row.selectedIssueId) === 40087).length,
+    1,
+  );
+  const repeat278 = packet.repeatedSourceReferences.find((entry) => entry.sourcePosition === 278);
+  const repeat954 = packet.repeatedSourceReferences.find((entry) => entry.sourcePosition === 954);
+  const canonicalPositions = sourcePositionsForPacket(packet);
+  assert.equal(canonicalPositions[repeat278.canonicalRow - 1], 136);
+  assert.equal(canonicalPositions[repeat954.canonicalRow - 1], 819);
+  assert.equal(mapping.rows[repeat954.canonicalRow - 1].selectedIssueId, 40087);
+
+  assert.deepEqual(
+    packet.excludedSourceRows
+      .filter((entry) => [277, 313].includes(entry.sourcePosition))
+      .map((entry) => [entry.sourcePosition, entry.decisionScope]),
+    [
+      [277, 'wolverine-metadata-gap-repeat'],
+      [313, 'wolverine-metadata-gap-repeat'],
+    ],
+  );
+  assert.deepEqual(
+    packet.excludedSourceRows
+      .filter((entry) => entry.decisionScope === 'owner-authorized-unavailable-exclusion')
+      .map((entry) => entry.sourcePosition),
+    [917, 918],
+  );
+  assert.deepEqual(
+    packet.excludedSourceRows
+      .filter((entry) => entry.decisionScope === 'wolverine-source-semantic-exclusion')
+      .map((entry) => entry.sourcePosition),
+    [260, 261, 279, 534, 554, 919, 1222, 1223, 1240, 1282],
+  );
+
+  const settledAvailabilityGaps = packet.sourceGaps.filter((gap) => (
+    ledger.settledReferences.some((entry) => (
+      entry.sourcePosition === gap.sourcePosition
+      && entry.representation === 'retained-provenance'
+    ))
+  ));
+  assert.equal(settledAvailabilityGaps.length, 25);
+  assert.ok(settledAvailabilityGaps.every((gap) => (
+    gap.kind === 'published-metadata-gap'
+      && gap.status === 'open'
+      && /provider availability only/i.test(gap.auditBasis)
+      && !/never existed|nonexistent/i.test(gap.auditBasis)
+      && gap.evidenceSources.some((source) => source.url === ledger.settlementComment)
+  )));
+
+  assert.equal(packet.sourceGapResolutions.length, 29);
+  assert.ok(packet.sourceGapResolutions.every((resolution) => (
+    sourceGapResolutionDigestFor(resolution) === resolution.evidenceDigest
+  )));
+  assert.equal(
+    packet.sourceGapResolutions.filter((entry) => entry.resolutionKind === 'exact-issue').length,
+    14,
+  );
+  assert.equal(
+    packet.sourceGapResolutions.filter((entry) => entry.resolutionKind === 'canonical-repeat').length,
+    2,
+  );
+  assert.equal(
+    packet.sourceGapResolutions.filter((entry) => entry.resolutionKind === 'source-exclusion').length,
+    13,
+  );
+
+  const allSourcePositions = [
+    ...canonicalPositions,
+    ...packet.repeatedSourceReferences.map((entry) => entry.sourcePosition),
+    ...packet.excludedSourceRows.map((entry) => entry.sourcePosition),
+    ...packet.sourceGaps.map((entry) => entry.sourcePosition),
+  ].sort((left, right) => left - right);
+  assert.deepEqual(allSourcePositions, Array.from({ length: 1328 }, (_, index) => index + 1));
+  assert.doesNotThrow(() => validateFrozenPacket(packet, {
+    expectedId: wolverineCandidateId,
+    inventoryRecord: record,
+    catalogEntries: manifest.lists,
+  }));
+  assert.doesNotThrow(() => validateMappingDigest(mapping));
+  assert.doesNotThrow(() => assertMappingMatchesPacketOccurrences(packet, mapping));
+  assert.doesNotThrow(() => validateReportDigest(report));
+  assert.doesNotThrow(() => assertApprovedRelationshipReview({
+    packet,
+    mapping,
+    report,
+    currentLibraryDigest: report.libraryDigest,
+    expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
+  }));
+
+  assert.equal(record.deliveryStatus, 'shipped');
+  assert.match(record.reason, /451 exact rows/i);
+  assert.equal(manifestEntry.expect, 1207);
+  assert.equal(catalogEntry.count, 1207);
+  assert.equal(catalogEntry.placeholderCount, 756);
+  assert.equal(generated.count, 1207);
+  assert.equal(generated.items.length, 1207);
+  assert.equal(generated.placeholders, 756);
+  assert.equal(generated.unresolved.length, 756);
+  assert.equal(parsed.entries.length, 451);
+  assert.equal(parsed.unresolved.length, 756);
+  const retainedPlaceholderIds = packet.sourceGaps
+    .slice()
+    .sort((left, right) => left.sourcePosition - right.sourcePosition)
+    .map((gap) => [
+      gap.sourceIssueReference,
+      placeholderId(wolverineCandidateId, gap.sourceIssueReference),
+    ]);
+  const serializedRetainedIds = JSON.stringify(retainedPlaceholderIds);
+  assert.equal(retainedPlaceholderIds.length, 756);
+  assert.equal(Buffer.byteLength(serializedRetainedIds, 'utf8'), 29635);
+  assert.equal(
+    createHash('sha256').update(serializedRetainedIds, 'utf8').digest('hex'),
+    '46c7c305a8a4df1f9c89b258b3ce07c3f7be521d9d3f9220c055222d4e3007f5',
+  );
+  assert.deepEqual(retainedPlaceholderIds[0], ['Iron Fist #15', -559201242]);
+  assert.deepEqual(retainedPlaceholderIds.at(-1), ['Dead Man Logan #1', -780461888]);
+  assert.deepEqual(
+    parsed.unresolved.map((entry) => entry.sourceKey ?? null),
+    Array.from({ length: 756 }, () => null),
+  );
+  assert.deepEqual(
+    generated.items
+      .filter((item) => item.placeholder)
+      .map((item) => [item.title, item.issueId]),
+    retainedPlaceholderIds,
+  );
+  assert.deepEqual(
+    parsed.unresolved.map((entry) => [
+      entry.title,
+      placeholderId(wolverineCandidateId, entry.title, entry.sourceKey),
+    ]),
+    retainedPlaceholderIds,
+  );
+  assert.deepEqual(
+    generated.items
+      .filter((item) => !item.placeholder)
+      .map((item) => String(item.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+  assert.ok([62695, 41003].every((issueId) => (
+    generated.items.some((item) => item.issueId === issueId && item.placeholder !== true)
+  )));
+  assert.deepEqual(
+    parsed.entries.map((entry) => String(entry.issueId)),
+    mapping.rows.map((row) => String(row.selectedIssueId)),
+  );
+
+  const postBoundaryReferences = new Set(
+    ledger.settledReferences
+      .filter((entry) => entry.classification === 'post-boundary')
+      .map((entry) => entry.sourceIssueReference),
+  );
+  assert.equal(postBoundaryReferences.size, 5);
+  assert.equal([
+    ...packet.rows,
+    ...packet.repeatedSourceReferences,
+    ...packet.excludedSourceRows,
+    ...packet.sourceGaps,
+  ].some((entry) => postBoundaryReferences.has(entry.sourceIssueReference)), false);
 });
 
 test('Hulk settles every reviewed source position without substituting excluded identities', async () => {

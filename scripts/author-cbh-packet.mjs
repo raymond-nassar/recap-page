@@ -244,6 +244,11 @@ function checklistTitleForRow(row) {
 export function buildMarkdown(mapping) {
   const manifest = manifestEntryForMapping(mapping);
   selectedIssueIds(mapping);
+  const placeholderIdentityMode = mapping.placeholderIdentityMode ?? 'source-occurrence';
+  assert(
+    placeholderIdentityMode === 'source-occurrence' || placeholderIdentityMode === 'title',
+    `${mapping.id} placeholder identity mode is invalid`,
+  );
   const repeatedCount = mapping.repeatedSourceReferences?.length ?? 0;
   const rowsBySourcePosition = new Map(mapping.rows.map((row) => [row.sourcePosition, {
     kind: 'exact',
@@ -275,8 +280,11 @@ export function buildMarkdown(mapping) {
       if (entry.kind === 'exact') {
         return [...heading, `- [ ] [${escapeLinkText(checklistTitleForRow(entry.value))} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->](${entry.value.marvelIssueUrl})`];
       }
+      const annotation = placeholderIdentityMode === 'source-occurrence'
+        ? ` <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->`
+        : '';
       return [...heading, `- [ ] ${escapeLinkText(entry.value.sourceIssueReference)
-        .replace(TYPHOGRAPHIC_DASHES, '-').replace(/\s+/g, ' ')} <!-- mrt:source-occurrence=${entry.value.sourcePosition} -->`];
+        .replace(TYPHOGRAPHIC_DASHES, '-').replace(/\s+/g, ' ')}${annotation}`];
     });
   return `# ${manifest.name}: Issue-by-Issue Reading Checklist\n\n${trail}\n\n${checklist.join('\n')}\n`;
 }

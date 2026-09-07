@@ -3015,8 +3015,8 @@
       "type": "character-run",
       "depth": "complete",
       "spotlightKind": "complete-guide",
-      "count": 1222,
-      "placeholderCount": 785,
+      "count": 1207,
+      "placeholderCount": 756,
       "emptyRecordCount": 0,
       "collections": 0,
       "characters": [
@@ -3043,7 +3043,7 @@
       "source": "https://www.comicbookherald.com/wolverine-reading-order/",
       "sourceOrigin": "Compiled for this project from Comic Book Herald's guide",
       "sourceLicense": null,
-      "updatedAt": "2026-08-26T20:07:18.806Z"
+      "updatedAt": "2026-09-07T08:41:05.684Z"
     },
     {
       "id": "question-of-the-week-do-you-have-a-hulk-reading-order",

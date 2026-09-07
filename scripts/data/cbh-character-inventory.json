@@ -3633,7 +3633,7 @@
     "guideType": "character-run",
     "window": null,
     "disposition": "new-order",
-    "reason": "The source boundary is frozen and the available metadata rows are published while unresolved rows remain explicit provenance linked to Issue #262.",
+    "reason": "The settled 1,328-occurrence Wolverine ledger publishes 451 exact rows, records 71 full-identity repeats and 50 explicit exclusions, and keeps 756 provider-unavailable source identities as visible provenance. Owner searches authorize no substitution or boundary widening.",
     "sourceRetrievedAt": "2026-08-26",
     "overlapIds": [],
     "catalogIds": [

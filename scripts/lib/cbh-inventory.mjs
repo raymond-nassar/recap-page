@@ -99,6 +99,7 @@ const PACKET_FIELDS = new Set([
 const MAPPING_DIGEST_FIELDS = Object.freeze([
   'id',
   'inventoryId',
+  'placeholderIdentityMode',
   'packetDigest',
   'sourceUrl',
   'sourceSection',
