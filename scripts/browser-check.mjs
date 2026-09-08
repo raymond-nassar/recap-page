@@ -6192,7 +6192,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1039` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1040` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -7760,6 +7760,143 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'reading-list-empty-441',
+    title: 'empty Reading Lists offer an add path without claiming completion',
+    async run(page, t) {
+      await seedFixtureState(page);
+      const original = await readState(page);
+      await click(page, '.ri[data-view="library"]');
+      await click(page, '#btn-new-list');
+      await page.waitForSelector('#ask[open] #ask-input');
+      await page.$eval('#ask-input', (input) => { input.value = 'Empty list 441'; });
+      await click(page, '#ask-ok');
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.waitForFunction(() => !document.querySelector('#ask').open);
+      const created = await readState(page);
+      const listId = created.active;
+      t.check('creation selects a new empty list while preserving the earlier list',
+        listId !== original.active
+        && created.listOrder.length === 2
+        && created.lists[listId].name === 'Empty list 441'
+        && created.lists[listId].itemIds.length === 0
+        && JSON.stringify(created.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+
+      const readingStatus = () => page.evaluate(() => ({
+        empty: document.querySelector('#reading-empty')?.hidden === false,
+        emptyHeading: document.querySelector('#reading-empty-h')?.textContent,
+        completed: document.querySelector('#all-read').hidden === false,
+        hero: document.querySelector('#hero').hidden === false,
+        ring: document.querySelector('#ring-sub').textContent,
+        count: document.querySelector('#full-count').textContent,
+        focused: document.activeElement?.id,
+      }));
+      const initial = await readingStatus();
+      t.check('a fresh empty list has honest copy, no completion, and a focused Reading heading',
+        initial.empty && initial.emptyHeading === 'No issues yet'
+        && !initial.completed && !initial.hero
+        && initial.ring === 'Nothing in this list' && initial.count === 'No issues yet'
+        && initial.focused === 'order-name', JSON.stringify(initial));
+
+      await click(page, '.brand[data-view="home"]');
+      const homeEmpty = await page.evaluate(() => ({
+        visible: !document.querySelector('#home-continue').hidden,
+        next: document.querySelector('#chero-next').textContent,
+        count: document.querySelector('#chero-count').textContent,
+        readHidden: document.querySelector('#btn-chero-read').hidden,
+      }));
+      t.check('Home keeps the saved empty list visible without saying it is read',
+        homeEmpty.visible
+        && homeEmpty.next === 'No issues in this Reading List yet. Open it to add comics.'
+        && homeEmpty.count === '0 of 0 issues read' && homeEmpty.readHidden, JSON.stringify(homeEmpty));
+      await click(page, '#btn-chero-open');
+      await page.reload({ waitUntil: 'load' });
+      const unchanged = await readState(page);
+      t.check('rendering, Home navigation and reload do not add issues or mark progress',
+        unchanged.active === listId && (await readingStatus()).empty
+        && JSON.stringify(unchanged.lists) === JSON.stringify(created.lists)
+        && JSON.stringify(unchanged.read) === JSON.stringify(created.read));
+
+      await page.focus('#btn-empty-add');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-add:not([hidden])');
+      t.check('the empty-state action opens the existing Add comics hub with heading focus',
+        await page.$eval('#add-h', (heading) => heading === document.activeElement)
+        && (await readState(page)).active === listId);
+      await click(page, '#view-add [data-view="add-manual"]');
+      const destination = await page.$eval('#view-add-manual .add-target', (node) => node.textContent);
+      t.check('the existing add form names the intended saved list', destination.includes('Empty list 441'), destination);
+      await addByHand(page, 'First manual issue 441', '');
+      await addByHand(page, 'Second manual issue 441', '');
+      const added = await readState(page);
+      const ids = added.lists[listId].itemIds;
+      t.check('explicit adds fill only the intended list and leave both comics unread',
+        ids.length === 2
+        && added.issues[ids[0]].title === 'First manual issue 441'
+        && added.issues[ids[1]].title === 'Second manual issue 441'
+        && added.listOrder.length === 2
+        && JSON.stringify(added.lists[original.active]) === JSON.stringify(original.lists[original.active])
+        && JSON.stringify(added.read) === JSON.stringify(created.read));
+
+      await page.goBack();
+      await page.waitForSelector('#view-add:not([hidden])');
+      await page.goBack();
+      await page.waitForSelector('#view-read:not([hidden])');
+      const returned = await readingStatus();
+      t.check('Back returns to the same list and its Reading heading after adding',
+        returned.focused === 'order-name' && returned.hero && !returned.empty && !returned.completed
+        && (await readState(page)).active === listId, JSON.stringify(returned));
+
+      await click(page, '#btn-hero-done');
+      const partial = await readingStatus();
+      t.check('partial progress keeps a next issue and accurate counts',
+        partial.hero && !partial.empty && !partial.completed
+        && partial.ring === '1 of 2 read' && partial.count === '1 unread'
+        && await page.$eval('#hero-title', (node) => node.textContent === 'Second manual issue 441'),
+        JSON.stringify(partial));
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home partial progress retains its next-issue action',
+        await page.$eval('#chero-count', (node) => node.textContent === '1 of 2 issues read')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'Next: Second manual issue 441')
+        && await page.$eval('#btn-chero-read', (node) => !node.hidden));
+      await click(page, '#btn-chero-open');
+      await click(page, '#btn-hero-done');
+      const completed = await readingStatus();
+      t.check('a nonempty completed list retains completion copy, counts and heading focus',
+        completed.completed && !completed.empty && !completed.hero
+        && completed.ring === 'All read' && completed.count === 'All read'
+        && completed.focused === 'all-read-h'
+        && await page.$eval('#all-read-h', (node) => node.textContent === 'That is the whole order, read.'),
+        JSON.stringify(completed));
+      const completedState = await readState(page);
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home completion remains accurate for a nonempty list',
+        await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 issues read')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every issue in this order.')
+        && await page.$eval('#btn-chero-read', (node) => node.hidden));
+      await click(page, '#btn-chero-open');
+      await openFullOrder(page);
+      for (const id of ids) {
+        const selector = `#rows button[data-act="remove"][data-key="${id}"]`;
+        await page.focus(selector);
+        await click(page, selector);
+      }
+      const removed = await readingStatus();
+      t.check('removing the final issue restores the same empty state',
+        removed.empty && !removed.completed && !removed.hero
+        && removed.count === 'No issues yet' && removed.ring === 'Nothing in this list',
+        JSON.stringify(removed));
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home also returns to empty wording after last removal',
+        await page.$eval('#chero-next', (node) => node.textContent === 'No issues in this Reading List yet. Open it to add comics.')
+        && await page.$eval('#chero-count', (node) => node.textContent === '0 of 0 issues read'));
+      const final = await readState(page);
+      t.check('removal and subsequent rendering preserve saved lists and global read history',
+        final.active === listId && final.listOrder.length === 2 && final.lists[listId].itemIds.length === 0
+        && JSON.stringify(final.read) === JSON.stringify(completedState.read)
+        && JSON.stringify(final.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+    },
+  },
+  {
     id: 'reading-screen',
     title: 'the reading screen uses the desktop it is given and states progress in words',
     async run(page, t) {
@@ -8222,6 +8359,179 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'reading-path-stop-actions',
+    title: 'Reading Paths stops reuse preview, saved lists and visible return focus',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      });
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      const first = '[data-reading-path-action="browser-check"]';
+      const last = '[data-reading-path-action="browser-check-three-short"]';
+      await open(page, '/?catalog=reading-path-stop-actions#/reading-paths?path=bc-path');
+      await page.waitForSelector(last);
+      const before = await readState(page);
+      await page.focus(first);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      const single = await page.evaluate(() => ({
+        title: document.querySelector('#preview-h').textContent,
+        choices: document.querySelectorAll('#preview-paths input').length,
+        meta: document.querySelector('#preview-meta').textContent,
+        source: document.querySelector('#preview-source').textContent,
+        href: document.querySelector('#preview-source a')?.href,
+      }));
+      t.check('an unowned single stop opens preview with its source and missing-link disclosure',
+        single.title === 'Browser Check Order' && single.choices === 0
+        && single.meta.includes('1 issue has no Marvel Unlimited link')
+        && single.source.includes('Fixture section')
+        && single.href === 'https://example.com/shared-page', JSON.stringify(single));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction((selector) => !document.querySelector('#preview').open
+        && document.activeElement === document.querySelector(selector), {}, first);
+
+      await page.focus(last);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] input[data-key="browser-check-three-main"]');
+      await click(page, '#preview input[data-key="browser-check-three-main"]');
+      const complete = await page.$eval('#preview-meta', (node) => node.textContent);
+      const completeSource = await page.$eval('#preview-source', (node) => node.textContent);
+      await click(page, '#preview input[data-key="browser-check-three-short"]');
+      const short = await page.evaluate(() => ({
+        meta: document.querySelector('#preview-meta').textContent,
+        source: document.querySelector('#preview-source').textContent,
+        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        add: document.querySelector('#preview-add button')?.dataset.key,
+      }));
+      t.check('grouped stops retain both reading choices and choice-specific gap metadata',
+        complete.includes('2 issues have no details')
+        && short.meta.includes('1 issue has no Marvel Unlimited link')
+        && completeSource.includes('Complete fixture source')
+        && short.source.includes('Essential fixture source')
+        && short.selected === 'browser-check-three-short' && short.add === short.selected,
+        JSON.stringify({ complete, short }));
+      await page.focus('#preview .preview-issue-link');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.querySelector('#preview').open
+        && document.activeElement?.classList.contains('preview-issue-link'));
+      const returned = await page.evaluate(() => ({
+        path: document.querySelector('#reading-path-select').value,
+        choices: document.querySelectorAll('#preview-paths input').length,
+        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        meta: document.querySelector('#preview-meta').textContent,
+      }));
+      t.check('Back from preview issue details restores the path, chooser and selected reading',
+        returned.path === 'bc-path' && returned.choices === 2
+        && returned.selected === 'browser-check-three-short'
+        && returned.meta.includes('1 issue has no Marvel Unlimited link'), JSON.stringify(returned));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction((selector) => !document.querySelector('#preview').open
+        && document.activeElement === document.querySelector(selector), {}, last);
+      t.check('inspection and reading-option changes neither import nor mark anything read',
+        JSON.stringify(await readState(page)) === JSON.stringify(before));
+
+      const library = fixtureReadingState();
+      const saved = library.lists.fixture;
+      library.lists = {
+        sibling: { ...saved, id: 'sibling', name: 'Saved complete version', catalogId: 'browser-check-three-main' },
+        exact: { ...saved, id: 'exact', name: 'Saved short version', catalogId: 'browser-check-three-short' },
+      };
+      library.listOrder = ['sibling', 'exact'];
+      library.active = 'sibling';
+      library.read = { [saved.itemIds[0]]: 1 };
+      const adopt = async (state) => page.evaluate((next) => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const newValue = JSON.stringify(next);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage, url: location.href,
+        }));
+      }, state);
+      await page.evaluate((selector) => { window.__stopAction438 = document.querySelector(selector); }, last);
+      await adopt(library);
+      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved list', {}, last);
+      t.check('a foreign progress refresh keeps the focused stop control instead of replacing it',
+        await page.evaluate(() => document.activeElement === window.__stopAction438));
+      const beforeRefusedSelection = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        window.__setItem438 = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (key === 'mrt.state.v2') throw new DOMException('Fixture storage refusal', 'QuotaExceededError');
+          return window.__setItem438.call(this, key, value);
+        };
+      });
+      await page.keyboard.press('Enter');
+      t.check('a refused saved-list selection stays on the path and surfaces the failure without changing storage',
+        await page.evaluate((raw) => location.hash === '#/reading-paths?path=bc-path'
+          && localStorage.getItem('mrt.state.v2') === raw
+          && document.querySelector('#reading-paths-report').textContent.includes('could not be opened'), beforeRefusedSelection));
+      await page.evaluate(() => { Storage.prototype.setItem = window.__setItem438; });
+      await page.focus(last);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash.startsWith('#/read/exact'));
+      t.check('an owned stop opens the exact saved list whose progress it shows',
+        (await readState(page)).active === 'exact'
+        && await page.$eval('#hero-title', (node) => node.textContent) === 'Saved short version');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction((selector) => location.hash === '#/reading-paths?path=bc-path'
+        && document.activeElement === document.querySelector(selector), {}, last);
+      const visible = await page.$eval(last, (node) => {
+        const rect = node.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom, height: innerHeight, scroll: scrollY };
+      });
+      t.check('Back brings a far-down original stop fully into view without a stored scroll position',
+        visible.top >= 0 && visible.bottom <= visible.height && visible.scroll > 0, JSON.stringify(visible));
+      delete library.lists.exact;
+      library.listOrder = ['sibling'];
+      await adopt(library);
+      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved version', {}, last);
+      const sibling = await page.$eval(last, (node) => ({
+        name: node.getAttribute('aria-label'),
+        progress: node.closest('li').querySelector('.reading-path-stop-progress').textContent,
+      }));
+      t.check('alternate ownership names the saved version without implying the exact stop was added',
+        sibling.name.includes('Saved complete version')
+        && sibling.progress.includes('Alternate reading version.'), JSON.stringify(sibling));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash.startsWith('#/read/sibling'));
+      const after = await readState(page);
+      t.check('opening a saved sibling preserves lists, read markers, notes and availability overrides',
+        ['lists', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(after[key]) === JSON.stringify(library[key])));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction((selector) => document.activeElement === document.querySelector(selector), {}, last);
+
+      for (const theme of ['dark', 'light']) {
+        await page.setViewport({ width: 320, height: 900 });
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+        await page.focus(last);
+        const layout = await page.$$eval('[data-reading-path-action]', (buttons) => ({
+          viewport: innerWidth, width: document.documentElement.scrollWidth,
+          buttons: buttons.map((button) => {
+            const rect = button.getBoundingClientRect();
+            const style = getComputedStyle(button);
+            return {
+              left: rect.left, right: rect.right, height: rect.height,
+              fits: button.scrollWidth <= button.clientWidth,
+              text: button.textContent, name: button.getAttribute('aria-label'),
+              color: style.color, background: style.backgroundColor,
+            };
+          }),
+        }));
+        t.check(`${theme} narrow stop actions wrap without overflow and retain labelled 44px targets`,
+          layout.width === layout.viewport && layout.buttons.length === 12
+          && layout.buttons.every((button) => button.left >= 0 && button.right <= layout.viewport
+            && button.height >= 44 && button.fits && button.name.includes(button.text)
+            && button.color !== button.background), JSON.stringify(layout));
+      }
+      t.check('stop journeys produce no page errors or reader-tab launches',
+        errors.length === 0 && await page.evaluate(() => window.__opened.length === 0), errors.join(' / '));
+    },
+  },
+  {
     id: 'reading-paths',
     title: 'one reading-path view preserves route, progress, overlap and focus',
     async run(page, t) {
@@ -8351,7 +8661,7 @@ const SCENARIOS = [
         (node) => node.textContent.trim(),
       );
       t.check('the first imported sibling in catalog order supplies fallback progress and its name',
-        fallback === '2 of 4 issues read in Fallback complete import. Reading.',
+        fallback === '2 of 4 issues read in Fallback complete import. Reading. Alternate reading version.',
         fallback);
 
       await page.keyboard.press('ArrowDown');
@@ -10509,6 +10819,19 @@ async function preparePage(page, origin, mutation) {
       'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG, 'reading-paths': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },
+      'reading-path-stop-actions': {
+        ...CATALOG,
+        lists: CATALOG.lists.map((list) => (
+          list.id === 'browser-check-three-main' ? { ...list, sourceOrigin: 'Complete fixture source' }
+            : list.id === 'browser-check-three-short' ? { ...list, sourceOrigin: 'Essential fixture source' } : list
+        )),
+        paths: [{
+          ...CATALOG.paths[0],
+          steps: ['browser-check', 'browser-check-two',
+            ...Array.from({ length: 9 }, (_, index) => `browser-check-extra-${index + 1}`),
+            'browser-check-three-short'],
+        }, CATALOG.paths[1]],
+      },
       actual: ACTUAL_CATALOG,
     },
     ORDER,
@@ -10651,7 +10974,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility', 'reading-shortcut'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);

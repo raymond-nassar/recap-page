@@ -313,6 +313,12 @@
                 </div>
               </section>
 
+              <section id="reading-empty" class="empty-state" hidden aria-labelledby="reading-empty-h">
+                <h2 id="reading-empty-h">No issues yet</h2>
+                <p>No comics have been added to this Reading List. Add comics to start reading.</p>
+                <button type="button" class="btn" id="btn-empty-add" data-view="add">Add comics</button>
+              </section>
+
               <div id="all-read" class="empty-state" hidden>
                 <div class="empty-glyph" aria-hidden="true">✓</div>
                 <h2 id="all-read-h" tabindex="-1">That is the whole order, read.</h2>
@@ -1003,6 +1009,7 @@
       </div>
       <p class="result-meta" id="preview-meta"></p>
       <p class="rail-hint" id="preview-desc"></p>
+      <div id="preview-source"></div>
       <!-- Where a story can be read more than one way, the choice between its paths lives here
            rather than on the shelf card. Measured at 1280x900: the chooser cost 123px on a 277px
            card and took the grid from 1149px to 1458px, and the labels are authored prose that

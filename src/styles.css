@@ -733,6 +733,7 @@ body.nocovers .tgl .sw::after { left: 2px; }
 }
 .empty-state h2 { margin: 0 0 var(--space-4); font-size: var(--t-subtitle); color: var(--text); font-weight: 600; }
 .empty-state p { margin: 0 auto; max-width: 52ch; font-size: var(--t-body); }
+.empty-state .btn { margin-top: var(--space-5); }
 
 /* ============================================================ hero */
 
@@ -2060,6 +2061,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .reading-path-stop-copy { min-width: 0; padding: var(--space-5) var(--space-6); border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
 .reading-path-stop h3 { margin: 0; font-size: var(--t-subtitle); overflow-wrap: anywhere; }
 .reading-path-stop-meta, .reading-path-stop-progress { margin: var(--space-2) 0 0; color: var(--muted); font-size: var(--t-caption); }
+.reading-path-action { margin-top: var(--space-4); min-height: 44px; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .reading-path-stop[data-progress="done"] .reading-path-stop-progress { color: var(--teal); }
 .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
 @media (max-width: 620px) {

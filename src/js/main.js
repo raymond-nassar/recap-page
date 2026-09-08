@@ -1405,11 +1405,17 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       readingView.setFullOrderFromRoute(openFromRoute);
       if (openFromRoute && readingView.hasRowsPending()) readingView.renderRows();
     }
-    showView(route.view, { focus }); if (route.view === 'reading-paths') void readingPathsView.render();
+    showView(route.view, { focus });
+    if (route.view === 'reading-paths') {
+      void readingPathsView.render({ opener: focus ? history.state?.readingPathOpener : null })
+        .then((pathId) => {
+          if (focus && view === route.view && pathId === requestedReadingPathId) void restoreIssueFocusOpener(route.view);
+        });
+    }
   } finally {
     applyingRoute = false;
   }
-  if (focus) void restoreIssueFocusOpener(route.view);
+  if (focus && route.view !== 'reading-paths') void restoreIssueFocusOpener(route.view);
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
@@ -1550,7 +1556,10 @@ async function restoreIssueFocusOpener(sourceView) {
     try {
       const catalog = await loadCatalog();
       const list = catalog.lists.find((entry) => entry.id === opener.contextId);
-      if (list) await previewView.open(list);
+      const story = sourceView === 'reading-paths'
+        ? readingPathsView.selected()?.stops.find((stop) => stop.lists.some((entry) => entry.id === list?.id))
+        : null;
+      if (list && view === sourceView) await previewView.open(list, story);
     } catch {
       focusViewHeading(sourceView);
       return;
@@ -2901,6 +2910,17 @@ const libraryView = createLibraryView({
 
 let requestedReadingPathId = null;
 
+function openSavedCatalogList(list, saved, report) {
+  store.update((state) => setActive(state, saved.id));
+  if (!store.lastUpdateOk) {
+    notify(report, `${list.name} could not be opened because that selection could not be saved.`,
+      'error', `open:${list.id}`);
+    return;
+  }
+  if ($('#preview').open) $('#preview').close();
+  showView('read', { push: true });
+}
+
 const catalogPresentation = createCatalogPresentation({
   el,
   elements: { query: $ },
@@ -2908,19 +2928,7 @@ const catalogPresentation = createCatalogPresentation({
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   onAdd: (list, button, report) => importCurated(list, button, { report }),
   onGoToStop: goToStop,
-  onOpen: (list, saved, report) => {
-    store.update((state) => setActive(state, saved.id));
-    if (!store.lastUpdateOk) {
-      notify(
-        report,
-        `${list.name} could not be opened because that selection could not be saved.`,
-        'error',
-        `open:${list.id}`,
-      );
-      return;
-    }
-    showView('read', { push: true });
-  },
+  onOpen: openSavedCatalogList,
   onPreview: (list, story) => previewView.open(list, story),
   pathHref: (stop) => formatRoute({
     view: stop.shelf,
@@ -2977,6 +2985,7 @@ const previewView = createPreviewView({
     heading: $('#preview-h'),
     meta: $('#preview-meta'),
     paths: $('#preview-paths'),
+    source: $('#preview-source'),
   }),
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   issueFocusAnchor,
@@ -3013,11 +3022,7 @@ const previewView = createPreviewView({
       text: `The issue list could not be loaded: ${error.message}. You can still add the order.`,
     }));
   },
-  onOpen: (_list, saved) => {
-    store.update((state) => setActive(state, saved.id));
-    if ($('#preview').open) $('#preview').close();
-    showView('read', { push: true });
-  },
+  onOpen: (list, saved) => openSavedCatalogList(list, saved, '#preview-report'),
   presentation: catalogPresentation,
   restoreFocus,
 });
@@ -3053,6 +3058,22 @@ const readingPathsView = createReadingPathsView({
     retry,
     isCurrent,
   }),
+  onOpenStop: (stop, progress) => {
+    const current = history.state && typeof history.state === 'object' ? history.state : {};
+    history.replaceState({
+      ...current,
+      readingPathOpener: { pathId: requestedReadingPathId, stepId: stop.stepId },
+    }, '', location.href);
+    if (progress) {
+      openSavedCatalogList(
+        { id: progress.catalogId, name: progress.name },
+        { id: progress.listId },
+        '#reading-paths-report',
+      );
+    } else {
+      void previewView.open(catalogPresentation.chosenPath(stop), stop);
+    }
+  },
   onSelectedPath: (pathId) => {
     requestedReadingPathId = pathId;
     syncHash({ push: true });
