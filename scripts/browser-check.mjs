@@ -3021,6 +3021,7 @@ const SCENARIOS = [
       await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
       const home = await page.evaluate(() => ({
         recommendation: document.querySelector('#home-recommended-h')?.textContent.trim() ?? '',
+        context: document.querySelector('#home-recommended p')?.textContent.trim() ?? '',
         homeCount: document.querySelector(
           '#home-primary-paths [data-category="timeline"] .home-path-count',
         )?.textContent.trim() ?? '',
@@ -3033,6 +3034,9 @@ const SCENARIOS = [
       );
       t.check('Home recommends the setup guide and both gateways count 148 normal Reading Lists',
         home.recommendation === 'Recommended start: Setup to Modern Timeline'
+        && home.context.startsWith('New to Marvel?')
+        && home.context.includes('historical context on the characters and events ahead')
+        && home.context.includes('Setup is optional; you can enter the Modern Timeline directly.')
         && home.homeCount === '148 Reading Lists'
         && browseCount === '148 Reading Lists',
         JSON.stringify({ ...home, browseCount }));
@@ -3048,6 +3052,17 @@ const SCENARIOS = [
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => document.querySelector('#preview')?.open
         && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
+      await page.waitForSelector('#preview .preview-issue-link');
+      const setupPreview = await page.evaluate(() => ({
+        meta: document.querySelector('#preview-meta')?.textContent ?? '',
+        source: document.querySelector('#preview-source')?.textContent ?? '',
+        issues: document.querySelectorAll('#preview .preview-issue-link').length,
+      }));
+      t.check('Setup preview retains its issue count, reading commitment, source and issue list',
+        setupPreview.meta.includes('21 issues') && setupPreview.meta.includes('about 7 hours')
+        && setupPreview.source.includes('Compiled for this project')
+        && setupPreview.issues === 21,
+        JSON.stringify(setupPreview));
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open
         && document.activeElement?.id === 'btn-home-recommended');
@@ -3064,11 +3079,13 @@ const SCENARIOS = [
         && afterHomePreview.focus === 'btn-home-recommended',
         JSON.stringify({ beforeHomePreview, afterHomePreview }));
 
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse:not([hidden])');
-      await click(page, '#view-browse [data-primary-paths] [data-category="timeline"]');
+      await page.focus('#home-primary-paths [data-category="timeline"]');
+      await page.keyboard.press('Enter');
       await page.waitForSelector('#modern-timeline-feature .catalog-card', { timeout: 15000 });
       await page.waitForSelector('#catalog-results .catalog-card');
+      t.check('Home enters Modern Timeline directly without adding the optional Setup',
+        await page.evaluate(() => location.hash === '#/catalog'
+          && Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2'))?.lists ?? {}).length === 0));
       const timeline = await page.evaluate(() => {
         const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
         const feature = document.querySelector('#modern-timeline-feature');
@@ -3130,6 +3147,7 @@ const SCENARIOS = [
       });
       t.check('Modern Timeline shows the existing setup guide as one shared rich card',
         timeline.featureHeading === 'Setup to Modern Timeline'
+        && timeline.featureCopy.startsWith(home.context)
         && timeline.featureCopy.includes('This app chooses 1998 as the start of its Modern Timeline.')
         && timeline.featureCopy.includes('It is not an official Marvel editorial-era boundary.')
         && timeline.featureIdentity === 'setup-to-modern-timeline'
@@ -3438,7 +3456,9 @@ const SCENARIOS = [
         && ageFeature.story === 'list:setup-to-modern-timeline'
         && ageFeature.heading === 'Setup to Modern Timeline'
         && ageFeature.headingId === ageFeature.labelledBy
-        && ageFeature.context.includes('earlier stories that lead into this age')
+        && ageFeature.context.startsWith('New to Marvel?')
+        && ageFeature.context.includes('historical context on the characters and events ahead')
+        && ageFeature.context.includes('Setup is optional; you can enter this age directly.')
         && ageFeature.meta === '21 issues'
         && JSON.stringify(ageFeature.actions) === JSON.stringify([
           {
