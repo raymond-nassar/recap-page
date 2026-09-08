@@ -51,7 +51,7 @@ export function createHomeView({
           text: 'Recommended start: Setup to Modern Timeline',
         }),
         el('p', {
-          text: "A guided path through the earlier stories that prepare you for this app's Modern Timeline.",
+          text: 'New to Marvel? Explore earlier stories for historical context on the characters and events ahead. Setup is optional; you can enter the Modern Timeline directly.',
         }),
       ]),
       el('button', {

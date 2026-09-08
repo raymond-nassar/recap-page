@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Clarified the optional Setup recommendation
+
+Home, Modern Timeline and its opening age now explain Setup as optional historical context for
+new readers, not a prerequisite. Direct entry, preview details, list contents and saved progress
+are unchanged.
+
 ### Waited for cross-tab timeline readiness in browser checks
 
 The cross-tab timeline check now waits for the updated marker instead of assuming a fixed delay is

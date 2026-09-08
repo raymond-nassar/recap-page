@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createHomeView } from '../src/js/views/home.js';
+import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -234,6 +235,55 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(h.nodes.continueRead.attributes['aria-label'], 'Read next: Next issue in Marvel Unlimited');
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
   assert.equal(h.calls.covers.length, 1);
+});
+
+test('446 Setup offers consistent optional historical context without gating direct entry', async () => {
+  const h = harness();
+  h.view.render();
+  await new Promise((resolve) => setImmediate(resolve));
+  const recommendation = findById(h.nodes.categoriesRoot, 'home-recommended');
+  const homeCopy = recommendation.children[0].children[1].textContent;
+  assert.match(homeCopy, /^New to Marvel\? .*historical context.*characters and events/);
+  assert.match(homeCopy, /optional; you can enter the Modern Timeline directly\./);
+  assert.equal(recommendation.hidden, false);
+  const timeline = h.nodes.gateways[0].nodes.primary.children[0].children[0];
+  timeline.onclick();
+  assert.deepEqual(h.calls.navigate, ['catalog']);
+  assert.deepEqual(h.state.listOrder, []);
+
+  const list = {
+    id: 'setup-to-modern-timeline',
+    name: 'Setup to Modern Timeline',
+    description: 'Earlier stories.',
+    count: 21,
+  };
+  let feature;
+  const presentation = createCatalogPresentation({
+    el: element,
+    elements: { query: (selector) => selector.endsWith('-results')
+      ? { before: (value) => { feature = value; } }
+      : null },
+    hueOf: () => 0,
+    isInLibrary: () => false,
+    onPreview: () => {},
+    paintCoverUrl: () => {},
+    shortTitle: (title) => title,
+  });
+  for (const surface of ['catalog', 'age-marvel-knights-heroes-return']) {
+    presentation.ensureSetupGuideFeature([list], surface, (lists) => lists[0]);
+    const copy = feature.children[0].children[1].textContent;
+    assert.match(copy, /^New to Marvel\? .*historical context.*characters and events/);
+    assert.match(copy, /optional;/);
+    if (surface === 'catalog') {
+      assert.ok(copy.startsWith(homeCopy));
+      assert.match(copy, /1998.*not an official Marvel editorial-era boundary/);
+    } else {
+      assert.match(copy, /you can enter this age directly\./);
+      assert.doesNotMatch(copy, /Read this orientation guide first/);
+    }
+    assert.equal(feature.dataset.featuredList, list.id);
+    assert.equal(findById(feature, `${feature.id}-h`).textContent, list.name);
+  }
 });
 
 test('Home view completion state removes the read action without inventing a next issue', () => {
