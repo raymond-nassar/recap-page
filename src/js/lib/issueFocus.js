@@ -1,6 +1,7 @@
 import { normalizeIssue } from './model.js';
 import { availability, describe, SHORT, STATE } from './availability.js';
 import { detailUrl, isLaunchable } from '../reader.js';
+import { ApiError } from '../api.js';
 
 function issueDate(value) {
   return value ? String(value).slice(0, 10) : '';
@@ -138,6 +139,12 @@ export async function resolveIssueFocus({
         contextStatus,
         error,
         contextError,
+        failure: error instanceof TypeError
+          || (error instanceof ApiError && (error.transient || error.status === 408))
+          ? 'transient'
+          : error instanceof ApiError && (error.status === 404 || error.status === 410)
+            ? 'not-found'
+            : 'unavailable',
       };
     }
   }

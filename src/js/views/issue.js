@@ -37,14 +37,31 @@ export function createIssueView({
     const nodes = elements();
     const issue = result?.issue;
     currentResult = result;
+    const retryable = !issue && activeRoute?.issueId > 0 && result?.failure === 'transient';
+    const restoreFocus = !retryable && nodes.retry.ownerDocument?.activeElement === nodes.retry;
+    nodes.retry.hidden = !retryable;
+    nodes.retry.textContent = 'Retry';
+    nodes.retry.removeAttribute('aria-disabled');
+    nodes.retry.removeAttribute('aria-busy');
+    function restoreRetryFocus() {
+      if (restoreFocus) {
+        nodes.heading.setAttribute('tabindex', '-1');
+        nodes.heading.focus({ preventScroll: true });
+      }
+    }
     if (!issue) {
       nodes.card.hidden = true;
       nodes.heading.textContent = 'Issue unavailable';
       nodes.context.textContent = '';
       nodes.status.textContent = activeRoute?.issueId < 0
         ? 'This local issue is no longer in saved data or the bundled order named by the link.'
-        : 'Issue details could not be loaded. Your saved lists and progress are unchanged.';
+        : result?.failure === 'not-found'
+          ? 'The metadata service has no details for this issue. Your saved lists and progress are unchanged.'
+          : retryable
+            ? 'Issue details could not be loaded. Check your connection or try again shortly. Your saved lists and progress are unchanged.'
+            : 'Issue details could not be loaded. Your saved lists and progress are unchanged.';
       renderBreadcrumbs();
+      restoreRetryFocus();
       return;
     }
 
@@ -89,9 +106,10 @@ export function createIssueView({
     nodes.synopsis.hidden = issue.issueId < 0 || isSynopsisActive();
     nodes.cancelSynopsis.hidden = true;
     renderBreadcrumbs();
+    restoreRetryFocus();
   }
 
-  async function render(route) {
+  async function render(route, { retry = false } = {}) {
     if (!route) return;
     activeLoad?.abort();
     const controller = new AbortController();
@@ -103,6 +121,10 @@ export function createIssueView({
     nodes.heading.textContent = 'Loading issue details';
     nodes.context.textContent = '';
     nodes.status.textContent = 'Loading issue details…';
+    nodes.retry.hidden = !retry;
+    nodes.retry.textContent = retry ? 'Retrying…' : 'Retry';
+    nodes.retry.setAttribute('aria-disabled', 'true');
+    nodes.retry.setAttribute('aria-busy', 'true');
     let catalog = null;
     if (route.context?.kind === 'order') {
       try {
@@ -110,6 +132,7 @@ export function createIssueView({
       } catch {
         catalog = null;
       }
+      if (activeLoad !== controller || controller.signal.aborted) return;
     }
     try {
       const result = await resolveIssueFocus({
@@ -123,7 +146,10 @@ export function createIssueView({
       });
       if (activeLoad !== controller || controller.signal.aborted) return;
       paint(decorateResult(result, { catalog, route }));
-      if (result.contextStatus === 'stale' && route.context) onStaleContext(route);
+      if (result.contextStatus === 'stale' && route.context) {
+        activeRoute = { ...route, context: null };
+        onStaleContext(route);
+      }
     } catch (error) {
       if (error?.name === 'AbortError' || activeLoad !== controller) return;
       paint({
@@ -143,6 +169,7 @@ export function createIssueView({
     activeLoad = null;
     activeRoute = null;
     currentResult = null;
+    elements().retry.hidden = true;
   }
 
   function repaintSynopsis(status) {
@@ -162,6 +189,10 @@ export function createIssueView({
     });
     nodes.synopsis.addEventListener('click', onStartSynopsis);
     nodes.cancelSynopsis.addEventListener('click', onCancelSynopsis);
+    nodes.retry.addEventListener('click', () => {
+      if (activeLoad || !activeRoute || currentResult?.failure !== 'transient') return;
+      return render(activeRoute, { retry: true });
+    });
   }
 
   return {

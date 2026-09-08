@@ -2762,6 +2762,7 @@ const issueView = createIssueView({
     note: $('#issue-focus-note'),
     number: $('#issue-focus-fn'),
     read: $('#btn-issue-read'),
+    retry: $('#btn-issue-retry'),
     series: $('#issue-focus-fs'),
     status: $('#issue-focus-status'),
     synopsis: $('#btn-issue-synopsis'),
