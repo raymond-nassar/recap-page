@@ -15,7 +15,7 @@ const VIEW = sliceElement(
   openingTags(HTML, 'section').find((tag) => getAttribute(tag.open, 'id') === 'view-data')?.start,
 );
 
-const HEADING_LEVELS = [1, 2, 3, 4, 3, 2, 3, 3, 2, 3, 3, 2, 3, 2];
+const HEADING_LEVELS = [1, 2, 3, 4, 3, 2, 3, 3, 3, 2, 3, 3, 2, 3, 2];
 const GROUP_LABELS = ['Data safety', 'Personalization', 'Connectivity', 'Advanced'];
 const REQUIRED_IDS = [
   'btn-export-json',
@@ -24,6 +24,9 @@ const REQUIRED_IDS = [
   'btn-undo-restore',
   'opt-covers',
   'opt-theme',
+  'opt-reading-shortcut',
+  'reading-shortcut-help',
+  'reading-shortcut-report',
   'api-base',
   'btn-check-local-connection',
   'local-connection-status',

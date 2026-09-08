@@ -7621,6 +7621,145 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'reading-shortcut',
+    title: 'D can be switched off locally and a held key marks only one issue',
+    async run(page, t) {
+      await open(page, '/');
+      const fixture = fixtureReadingState();
+      const first = ORDER.items[0];
+      fixture.issues = Object.fromEntries(Array.from({ length: 12 }, (_, i) => {
+        const issueId = 43900 + i;
+        return [issueId, { ...first, issueId, title: `Shortcut fixture #${i + 1}`, hydrated: true }];
+      }));
+      fixture.lists.fixture.itemIds = Object.keys(fixture.issues).map(Number);
+      await page.evaluate((state) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+      }, fixture);
+      await open(page, '/#/read/fixture');
+      const count = async () => Object.keys((await readState(page)).read).length;
+      const presentation = () => page.evaluate(() => {
+        const done = document.querySelector('#btn-hero-done');
+        return {
+          checked: document.querySelector('#opt-reading-shortcut').checked,
+          aria: done.getAttribute('aria-keyshortcuts'),
+          tooltip: done.getAttribute('data-tooltip'),
+          hook: done.classList.contains('has-tooltip'),
+          description: document.querySelector('#reading-shortcut-description').textContent,
+        };
+      });
+      const enabled = (value) => value.checked && value.aria === 'd'
+        && value.tooltip === 'Keyboard shortcut: D' && value.hook
+        && value.description.includes('Turn off in Backup & settings');
+      const disabled = (value) => !value.checked && value.aria === null
+        && value.tooltip === null && !value.hook && value.description.startsWith('Disabled.');
+      t.check('older preferences keep D enabled with accurate hints', enabled(await presentation()));
+      await page.$eval('#btn-hero-done', (button) => { button.focus(); button.click(); });
+      t.check('Done next keeps focus after the click',
+        await page.$eval('#btn-hero-done', (button) => document.activeElement === button) && await count() === 1);
+      await page.keyboard.press('d');
+      t.check('fresh D after clicking Done next marks exactly one more issue', await count() === 2);
+      await page.keyboard.down('d');
+      const held = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      for (let i = 0; i < 3; i += 1) await page.keyboard.down('d');
+      await page.keyboard.up('d');
+      t.check('held D does not write beyond the first press',
+        await count() === 3 && held === await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
+      await page.keyboard.press('d');
+      t.check('release then fresh D marks the next issue', await count() === 4);
+
+      await click(page, '.ri[data-view="data"]');
+      const beforePreference = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('the switch is labelled and describes its local-only boundary',
+        await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.includes('Enable D')
+          && input.getAttribute('aria-describedby') === 'reading-shortcut-help')
+        && await page.$eval('#reading-shortcut-help', (help) => help.textContent.includes('separately from reading progress and backups')));
+      await click(page, '#opt-reading-shortcut');
+      t.check('off removes shortcut metadata and changes the reference without touching progress',
+        disabled(await presentation())
+        && beforePreference === await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
+      await page.select('#opt-theme', 'light');
+      await page.reload({ waitUntil: 'load' });
+      t.check('off survives another setting write and reload',
+        disabled(await presentation())
+        && await page.$eval('#opt-theme', (select) => select.value === 'light'));
+      await click(page, '#list-nav .ri');
+      await page.focus('.ri[data-view="library"]');
+      await page.keyboard.press('d');
+      t.check('disabled D with navigation focus does not change progress or view',
+        await count() === 4 && await visibleView(page) === 'view-read');
+      await page.focus('#btn-hero-done');
+      await page.keyboard.press('Enter');
+      t.check('native Enter still activates Done next once without launching',
+        await count() === 5 && await page.evaluate(() => window.__opened.length) === 0);
+
+      await click(page, '.ri[data-view="data"]');
+      await click(page, '#btn-export-json');
+      await page.waitForFunction(() => window.__mrtDownloads.some((entry) => entry.type === 'application/json'));
+      const backup = await page.evaluate(() => window.__mrtDownloads.find((entry) => entry.type === 'application/json').text);
+      t.check('backup contains progress but no shortcut preference',
+        Object.keys(JSON.parse(backup).read).length === 5 && !backup.includes('readingShortcut'));
+      await page.evaluate((text) => {
+        const input = document.querySelector('#restore-file');
+        const files = new DataTransfer();
+        files.items.add(new File([text], 'shortcut-backup.json', { type: 'application/json' }));
+        input.files = files.files;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      }, backup);
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Restored.'));
+      t.check('restore leaves the disabled local preference and progress intact',
+        disabled(await presentation()) && await count() === 5);
+      await click(page, '#btn-undo-restore');
+      t.check('undo restore also leaves the shortcut off', disabled(await presentation()));
+      await click(page, '#opt-reading-shortcut');
+      t.check('re-enabling restores all advertised D behavior', enabled(await presentation()));
+      await click(page, '#list-nav .ri');
+      await page.focus('#btn-hero-done');
+      await page.keyboard.press('D');
+      t.check('enabled uppercase D still advances on the focused button', await count() === 6);
+      await click(page, '#btn-list-note');
+      await page.keyboard.press('d');
+      t.check('an open note dialog consumes typing instead of marking progress',
+        await count() === 6 && await page.$eval('dialog[open] textarea', (input) => input.value === 'd'));
+      await click(page, '#ask-cancel');
+
+      for (const mode of ['throw', 'drop']) {
+        await click(page, '.ri[data-view="data"]');
+        const saved = await page.evaluate(() => localStorage.getItem('mrt.settings'));
+        await page.evaluate((fault) => {
+          window.__shortcutSetItem = Storage.prototype.setItem;
+          Storage.prototype.setItem = function (key, value) {
+            if (key === 'mrt.settings') {
+              if (fault === 'throw') throw new DOMException('Fixture quota refusal', 'QuotaExceededError');
+              return;
+            }
+            return window.__shortcutSetItem.call(this, key, value);
+          };
+        }, mode);
+        await click(page, '#opt-reading-shortcut');
+        const report = await page.$eval('#reading-shortcut-report', (box) => box.textContent);
+        t.check(`${mode}: failed settings write is explicitly session-only, not falsely saved`,
+          saved === await page.evaluate(() => localStorage.getItem('mrt.settings'))
+          && disabled(await presentation())
+          && report.includes('could not be saved') && report.includes('after reload'));
+        await click(page, '#list-nav .ri');
+        await page.focus('#btn-hero-done');
+        await page.keyboard.press('d');
+        t.check(`${mode}: D stays off for this tab despite the failed preference write`, await count() === 6);
+        await page.evaluate(() => { Storage.prototype.setItem = window.__shortcutSetItem; });
+        await click(page, '.ri[data-view="data"]');
+        await click(page, '#opt-reading-shortcut');
+        t.check(`${mode}: a successful retry clears the warning and restores hints`,
+          enabled(await presentation())
+          && await page.$eval('#reading-shortcut-report', (box) => box.textContent.trim() === ''));
+      }
+      await click(page, '#opt-reading-shortcut');
+      await page.reload({ waitUntil: 'load' });
+      t.check('a later successful off choice survives reload after storage faults',
+        disabled(await presentation()) && await count() === 6);
+    },
+  },
+  {
     id: 'reading-list-empty-441',
     title: 'empty Reading Lists offer an add path without claiming completion',
     async run(page, t) {
@@ -10835,7 +10974,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-list-empty-441'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);

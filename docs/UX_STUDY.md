@@ -67,7 +67,7 @@ Severity: 2, single-rater estimate
 Rationale: occurs on the single most repeated action in the product, persists for the life of the
 list, and grows with list length, but degrades speed rather than blocking the task
 Confidence: Measured
-Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:80-85`, `src/js/main.js:2423-2443`
+Evidence: `docs/ux-artifacts/render-cost.json`, `src/js/main.js:80-85`, `src/js/main.js:2460-2480`
 Source: live UI framing, reacted to the store wiring while reading `src/js/main.js`
 Impact: marking one issue read rebuilds the rail, all 219 rows and the progress block, which is
 4,485 DOM nodes and 1,533 row controls, at a median of 21.9 ms synchronous and 75.7 ms to paint,
@@ -86,7 +86,7 @@ Severity: 3, single-rater estimate
 Rationale: affects several primary flows, is permanent rather than transient, and splits the
 product's voice in two at exactly the moments a reader is deciding something
 Confidence: Observed
-Evidence: `src/js/main.js:1793`, `src/js/views/reading.js:246-254`, `src/js/views/reading.js:271-285`, against
+Evidence: `src/js/main.js:1828`, `src/js/views/reading.js:246-254`, `src/js/views/reading.js:271-285`, against
 `src/js/main.js:496-521`
 Source: heuristic 4 sweep, code-only framing
 Impact: the application has a careful in-page notice system with live regions, and then reports
@@ -111,7 +111,7 @@ Severity: 3, single-rater estimate
 Rationale: irreversible, affects data the reader curated by hand, and the inconsistency with
 restore makes the gap harder to anticipate
 Confidence: Observed
-Evidence: `src/js/views/reading.js:271-285`, `src/js/views/data.js:182-187`
+Evidence: `src/js/views/reading.js:271-285`, `src/js/views/data.js:184-189`
 Source: heuristic 3 sweep, code-only framing
 Impact: deletion is guarded only by a native `confirm()` and there is no undo afterwards. Read
 progress survives, because it is global, but the list name and its curated order do not. Restoring
@@ -140,7 +140,7 @@ Severity: 2, single-rater estimate
 Rationale: affects repeat use rather than first use, and the cost is a slower path rather than a
 blocked one
 Confidence: Observed
-Evidence: `src/index.html:305-306`, `src/js/views/reading.js:854-872`
+Evidence: `src/index.html:305-306`, `src/js/views/reading.js:854-873`
 Source: heuristic 6 sweep, code-only framing
 Impact: the hero button carries a `kbd` hint, so the shortcut is discoverable at that one spot and
 nowhere else. There is no shortcut reference anywhere in the interface, so a reader who has
@@ -148,7 +148,7 @@ scrolled past the hero has no way to recall what is available.
 Recommendation: add a short shortcut reference to the About view, and keep it as the single place
 the list is maintained
 Backlog item: BL-026
-Resolved: BL-026 added the reference to the About view at `src/index.html:919-930`, covering Enter,
+Resolved: BL-026 added the reference to the About view at `src/index.html:929-940`, covering Enter,
 D and the sidebar toggle. The hero now reveals its shortcuts on hover or keyboard focus, so they
 stay discoverable at the point of use without permanent keycaps, while recall does not depend on
 being scrolled to it.
@@ -498,7 +498,7 @@ those shots is to show what was going ungated. `docs/ux-artifacts/14-accent-surf
 `docs/ux-artifacts/14-accent-surfaces-light.png` show two of the three at once, the red brand mark
 at the top of the rail and the 3px accent bar beside the selected item. The rail item has to be
 selected before the shot is taken, because nothing carries `aria-current` on a fresh load:
-`showView` writes it only to `.ri[data-view]` at `src/js/main.js:1412-1414`, and no rail item declares
+`showView` writes it only to `.ri[data-view]` at `src/js/main.js:1447-1449`, and no rail item declares
 `data-view="home"`. The brand does, but the brand is not an `.ri`. So a capture of the page as it
 first loads photographs a bar that is not rendered and passes for a picture of nothing.
 `docs/ux-artifacts/14-blocked-banner-dark.png` and `docs/ux-artifacts/14-blocked-banner-light.png`
@@ -646,7 +646,7 @@ Severity: 3, single-rater estimate
 Rationale: breaks the product's only workflow shortcut at exactly the moment a reader would repeat
 it, and the failure is silent
 Confidence: Observed
-Evidence: `src/js/views/reading.js:854-872`, `src/index.html:305-306`
+Evidence: `src/js/views/reading.js:854-873`, `src/index.html:305-306`
 Source: heuristic 7 sweep, code-only framing, confirmed against the live tab ring
 Impact: the shortcut handler returns early when the active element is a button, link or input. The
 hero advertises D for Done, next. Clicking that button leaves it focused, so the very next press of
@@ -743,7 +743,7 @@ Evidence: `src/index.html:47-92`, `src/js/lib/route.js:20-31`.
 
 Every routed page except Home now states its stable hierarchy in one breadcrumb trail. Preview and
 Ask remain dialogs without breadcrumbs. Evidence: `src/js/lib/route.js:60-137`,
-`src/js/main.js:1443-1482`, `test/ux-completion.test.js:69-80`.
+`src/js/main.js:1478-1517`, `test/ux-completion.test.js:69-80`.
 
 The two missing Library sub-views recorded as UX-I-003 are now present, closing the grouping gap.
 
@@ -758,7 +758,7 @@ Rationale: affects every view for the life of the product. It cannot be worked a
 quietly removes browser behaviours the reader already expects
 Confidence: Verified absent, confirmed by measurement
 Evidence: `absent: pushState|replaceState|location.hash|hashchange|popstate|history\., grep across
-src/ returning no matches`, `src/js/main.js:1389-1440`,
+src/ returning no matches`, `src/js/main.js:1424-1475`,
 `docs/ux-artifacts/live-inspection.json`
 Source: Step 5 information architecture review, addressability
 Impact: view switching mutates a module-level variable and toggles the `hidden` attribute. No

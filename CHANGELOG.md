@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Made the D reading shortcut optional
+
+Backup & settings now includes a switch to turn off D for marking an issue read. It stays enabled
+unless you turn it off, and your choice is kept in this browser. Holding D no longer marks several
+issues read; release it before pressing again. Done, next still works with the shortcut off, and
+the shortcut hints reflect your choice. Reading progress and backup files are unchanged.
+
 ### Help empty Reading Lists get started
 
 Empty Reading Lists now say that no issues have been added and offer Add comics for the saved

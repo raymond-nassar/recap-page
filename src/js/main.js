@@ -553,6 +553,7 @@ function loadSettings() {
       // settings file from a future build that adds a theme degrades to the reader's own
       // preference instead of overriding it.
       theme: normaliseTheme(raw.theme),
+      readingShortcut: raw.readingShortcut !== false,
       // Not checked against the filters that exist here, because that is a question about the
       // document rather than about storage. wireReading() answers it and writes the answer back,
       // which is why a value of the wrong type is passed through rather than coerced: coercing it
@@ -565,6 +566,7 @@ function loadSettings() {
       apiBase: DEFAULT_BASE,
       covers: true,
       theme: DEFAULT_THEME,
+      readingShortcut: true,
       filter: 'all',
       rejectedApiBase: null,
     };
@@ -629,13 +631,16 @@ function saveSettings() {
   // so there would be nothing left on screen holding the old value.
   const apiBase = settings.rejectedApiBase ?? settings.apiBase;
   try {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+    const serialized = JSON.stringify({
       apiBase,
       covers: settings.covers,
       theme: settings.theme,
       filter: settings.filter,
-    }));
-  } catch { /* non-fatal */ }
+      readingShortcut: settings.readingShortcut,
+    });
+    localStorage.setItem(SETTINGS_KEY, serialized);
+    return localStorage.getItem(SETTINGS_KEY) === serialized;
+  } catch { return false; }
 }
 
 // Bumped when something already in the cache has to go. 1 is BL-134: entries written by builds
@@ -989,6 +994,36 @@ function setTheme(next) {
 // no-op: the attribute is already absent, the meta tag already says "dark light", and the control
 // already reads 'system'. It was found by mutation, not by review: removing it left a browser
 // check that was written to catch exactly that still reporting a pass.
+
+function applyReadingShortcutSetting() {
+  const enabled = settings.readingShortcut;
+  $('#opt-reading-shortcut').checked = enabled;
+  const done = $('#btn-hero-done');
+  done.classList.toggle('has-tooltip', enabled);
+  if (enabled) {
+    done.setAttribute('data-tooltip', 'Keyboard shortcut: D');
+    done.setAttribute('aria-keyshortcuts', 'd');
+  } else {
+    done.removeAttribute('data-tooltip');
+    done.removeAttribute('aria-keyshortcuts');
+  }
+  $('#reading-shortcut-description').textContent = enabled
+    ? 'Mark it read and move to the next one. Turn off in Backup & settings.'
+    : 'Disabled. Turn on in Backup & settings to mark the current issue read and move to the next one.';
+}
+
+function setReadingShortcut(on) {
+  settings.readingShortcut = Boolean(on);
+  const saved = saveSettings();
+  applyReadingShortcutSetting();
+  const status = `D reading shortcut ${settings.readingShortcut ? 'on' : 'off'}.`;
+  if (!saved) {
+    notify('#reading-shortcut-report', `${status} This applies to this tab, but could not be saved. It may change after reload.`, 'error');
+    return;
+  }
+  $('#reading-shortcut-report').replaceChildren();
+  announce(status);
+}
 
 // ------------------------------------------------------------------ sidebar
 
@@ -1946,6 +1981,7 @@ const dataView = createDataView({
     apiBase: $('#api-base'),
     optCovers: $('#opt-covers'),
     optTheme: $('#opt-theme'),
+    optReadingShortcut: $('#opt-reading-shortcut'),
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
     btnExportMd: $('#btn-export-md-2'),
@@ -1982,6 +2018,7 @@ const dataView = createDataView({
   },
   onSetCovers: (on) => setCovers(on),
   onSetTheme: (value) => setTheme(value),
+  onSetReadingShortcut: (on) => setReadingShortcut(on),
   onCheckLocalConnection: () => refreshLocalConnection({ explicit: true }),
   onApiBaseSubmit: (value) => {
     settings.apiBase = value;
@@ -2460,6 +2497,7 @@ export function boot() {
   store.load();
   applyCoversSetting();
   applyThemeSetting();
+  applyReadingShortcutSetting();
   ensurePublishingViews();
   wireSidebar();
   wireNav();

@@ -414,6 +414,7 @@ function harness(overrides = {}) {
     settings,
     setActive(listId) { state = setActive(state, listId); },
     setWriteFailures(count) { writeFailures = count; },
+    setDialogOpen(open) { selectorMap.set('dialog[open]', open ? node() : null); },
     state: () => state,
     view,
     restore() { delete globalThis.document; },
@@ -540,6 +541,97 @@ test('wireShortcuts keeps Reading-local launch and done actions inside the view'
     globalThis.document.listeners.keydown(done);
     assert.equal(done.prevented, true);
     assert.match(h.calls.announce[0], /Issue Two marked read/);
+  } finally {
+    h.restore();
+  }
+});
+
+test('disabled D leaves progress and the key alone, while re-enabled D works on Done next', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    h.view.wireShortcuts();
+    h.settings.readingShortcut = false;
+    globalThis.document.activeElement = { tagName: 'BUTTON' };
+    const before = h.state();
+    for (const key of ['d', 'D']) {
+      const event = { key, preventDefault() { this.prevented = true; } };
+      globalThis.document.listeners.keydown(event);
+      assert.equal(event.prevented, undefined);
+      assert.equal(h.state(), before);
+      assert.equal(h.calls.announce.length, 0);
+    }
+    h.nodes.btnHeroDone.fire('click');
+    assert.ok(h.state().read['2'], 'the button remains usable with D off');
+    h.settings.readingShortcut = true;
+    globalThis.document.listeners.keydown({ key: 'D', preventDefault() {} });
+    assert.ok(h.state().read['3'], 'D still works after clicking Done next');
+  } finally {
+    h.restore();
+  }
+});
+
+test('repeated D keydown never saves or announces another issue, but a fresh press does', () => {
+  const h = harness();
+  try {
+    h.view.wireShortcuts();
+    const press = (repeat) => {
+      const event = { key: 'd', repeat, preventDefault() { this.prevented = true; } };
+      globalThis.document.listeners.keydown(event);
+      return event;
+    };
+    assert.equal(press(false).prevented, true);
+    const afterFirst = h.state();
+    for (let i = 0; i < 3; i += 1) {
+      assert.equal(press(true).prevented, undefined);
+      assert.equal(h.state(), afterFirst);
+      assert.equal(h.calls.announce.length, 1);
+    }
+    assert.equal(press(false).prevented, true);
+    assert.ok(h.state().read['3']);
+    assert.equal(h.calls.announce.length, 2);
+  } finally {
+    h.restore();
+  }
+});
+
+test('enabled reading shortcuts retain typing, modifier, dialog and native Enter guards', () => {
+  let current = true;
+  const h = harness({ isCurrent: () => current });
+  try {
+    h.view.wireShortcuts();
+    const before = h.state();
+    const refused = (key, extra = {}) => {
+      const event = { key, ...extra, preventDefault() { this.prevented = true; } };
+      globalThis.document.listeners.keydown(event);
+      assert.equal(event.prevented, undefined);
+      assert.equal(h.state(), before);
+      assert.equal(h.calls.launch.length, 0);
+    };
+    for (const target of [
+      { tagName: 'INPUT', type: 'search' }, { tagName: 'TEXTAREA' },
+      { tagName: 'SELECT' }, { tagName: 'DIV', isContentEditable: true },
+    ]) {
+      globalThis.document.activeElement = target;
+      refused('d');
+      refused('Enter');
+    }
+    for (const target of [{ tagName: 'BUTTON' }, { tagName: 'A', href: 'https://example.test' }]) {
+      globalThis.document.activeElement = target;
+      refused('Enter');
+    }
+    globalThis.document.activeElement = null;
+    for (const modifier of ['ctrlKey', 'altKey', 'metaKey']) refused('d', { [modifier]: true });
+    h.setDialogOpen(true);
+    refused('d');
+    refused('Enter');
+    h.setDialogOpen(false);
+    current = false;
+    refused('d');
+    refused('Enter');
+    current = true;
+    globalThis.document.listeners.keydown({ key: 'Enter', preventDefault() {} });
+    assert.equal(h.calls.launch.length, 1, 'unclaimed Enter still launches synchronously');
   } finally {
     h.restore();
   }
