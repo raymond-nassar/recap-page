@@ -2697,12 +2697,17 @@ const readingView = createReadingView({
   detailUrl,
   el,
   fact,
+  focusCurrentView: () => {
+    focusViewHeading(view);
+    document.activeElement?.scrollIntoView({ block: 'nearest' });
+  },
   getSettings: () => settings,
   getState: () => store.state,
   getSynopsis: (issueId) => sessionSynopsis.get(issueId),
   hydrationAnnouncement,
   isCurrent: () => view === 'read',
   isHydrationActive: () => hydrator.active,
+  isStateBlocked: () => store.blocked,
   isSynopsisActive: () => synopsisRunner.active,
   issueFocusAnchor,
   launch: openInReader,

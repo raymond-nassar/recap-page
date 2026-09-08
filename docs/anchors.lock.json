@@ -1614,18 +1614,18 @@
     "fp": "5b0a81126933765d",
     "head": "export class LongAddRunner {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:37-45|0": {
-    "anchor": "src/js/views/reading.js:37-45",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:38-46|0": {
+    "anchor": "src/js/views/reading.js:38-46",
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:552|0": {
-    "anchor": "src/js/views/reading.js:552",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:557|0": {
+    "anchor": "src/js/views/reading.js:557",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:648-650|0": {
-    "anchor": "src/js/views/reading.js:648-650",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:653-655|0": {
+    "anchor": "src/js/views/reading.js:653-655",
     "fp": "962c8048b2876981",
     "head": "onclick: () => {"
   },
@@ -1634,8 +1634,8 @@
     "fp": "611b45392207b80a",
     "head": "function renderAll() {"
   },
-  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2941-2973|0": {
-    "anchor": "src/js/main.js:2941-2973",
+  "docs/ARCHITECTURE.md|modern-timeline-position-is-a-store-projection|src/js/main.js:2946-2978|0": {
+    "anchor": "src/js/main.js:2946-2978",
     "fp": "68405df558b78554",
     "head": "const catalogView = createCatalogView({"
   },
@@ -1689,13 +1689,13 @@
     "fp": "91cf3f5c9862a25a",
     "head": "if (event.key === STATE_KEY) {"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2924-3028|0": {
-    "anchor": "src/js/main.js:2924-3028",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:2929-3033|0": {
+    "anchor": "src/js/main.js:2929-3033",
     "fp": "7740ace9c9892372",
     "head": "const catalogPresentation = createCatalogPresentation({"
   },
-  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3030-3081|0": {
-    "anchor": "src/js/main.js:3030-3081",
+  "docs/ARCHITECTURE.md|reading-paths-are-a-catalog-projection|src/js/main.js:3035-3086|0": {
+    "anchor": "src/js/main.js:3035-3086",
     "fp": "b946d5bb90431e4d",
     "head": "const readingPathsView = createReadingPathsView({"
   },
@@ -1909,13 +1909,13 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:460|0": {
-    "anchor": "src/js/views/reading.js:460",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:465|0": {
+    "anchor": "src/js/views/reading.js:465",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:76-84|0": {
-    "anchor": "src/js/views/reading.js:76-84",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:77-85|0": {
+    "anchor": "src/js/views/reading.js:77-85",
     "fp": "b79dcc7a949b3231",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3890-3901|0": {
-    "anchor": "CHANGELOG.md:3890-3901",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3898-3909|0": {
+    "anchor": "CHANGELOG.md:3898-3909",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3903-3913|0": {
-    "anchor": "CHANGELOG.md:3903-3913",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3911-3921|0": {
+    "anchor": "CHANGELOG.md:3911-3921",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2124,13 +2124,13 @@
     "fp": "d420778b2fabaf12",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:686-687|0": {
-    "anchor": "src/js/views/reading.js:686-687",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:691-692|0": {
+    "anchor": "src/js/views/reading.js:691-692",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:183-186|0": {
-    "anchor": "src/js/views/reading.js:183-186",
+  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:187-190|0": {
+    "anchor": "src/js/views/reading.js:187-190",
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
@@ -2154,8 +2154,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:686-687|0": {
-    "anchor": "src/js/views/reading.js:686-687",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:691-692|0": {
+    "anchor": "src/js/views/reading.js:691-692",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2164,8 +2164,8 @@
     "fp": "5371d8b78b1307a0",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
-  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:30-35|0": {
-    "anchor": "src/js/views/reading.js:30-35",
+  "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:31-36|0": {
+    "anchor": "src/js/views/reading.js:31-36",
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
@@ -2269,9 +2269,9 @@
     "fp": "713b8b6372bfe540",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:755-839|0": {
-    "anchor": "src/js/views/reading.js:755-839",
-    "fp": "a5fc62c5026c9542",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:760-841|0": {
+    "anchor": "src/js/views/reading.js:760-841",
+    "fp": "5fa18d2d14f0f183",
     "head": "function issueRowActions(item, listId) {"
   },
   "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1040-1041|0": {
@@ -2339,13 +2339,13 @@
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:30-35|0": {
-    "anchor": "src/js/views/reading.js:30-35",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:31-36|0": {
+    "anchor": "src/js/views/reading.js:31-36",
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:682-685|0": {
-    "anchor": "src/js/views/reading.js:682-685",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:687-690|0": {
+    "anchor": "src/js/views/reading.js:687-690",
     "fp": "531118c6bf7fabc3",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2369,8 +2369,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:854-873|0": {
-    "anchor": "src/js/views/reading.js:854-873",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:856-875|0": {
+    "anchor": "src/js/views/reading.js:856-875",
     "fp": "2b7209286c1d66d5",
     "head": "function wireShortcuts() {"
   },
@@ -2399,13 +2399,13 @@
     "fp": "192110749958f5f4",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:246-254|0": {
-    "anchor": "src/js/views/reading.js:246-254",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:250-258|0": {
+    "anchor": "src/js/views/reading.js:250-258",
     "fp": "b88dc597b86a6fbe",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:271-285|0": {
-    "anchor": "src/js/views/reading.js:271-285",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:275-289|0": {
+    "anchor": "src/js/views/reading.js:275-289",
     "fp": "209e6471be991453",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2414,8 +2414,8 @@
     "fp": "ae14dd291f0e8f99",
     "head": "nodes.undoRestore.addEventListener('click', () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:271-285|0": {
-    "anchor": "src/js/views/reading.js:271-285",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:275-289|0": {
+    "anchor": "src/js/views/reading.js:275-289",
     "fp": "209e6471be991453",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2429,8 +2429,8 @@
     "fp": "f88e018be4221bed",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:854-873|0": {
-    "anchor": "src/js/views/reading.js:854-873",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:856-875|0": {
+    "anchor": "src/js/views/reading.js:856-875",
     "fp": "2b7209286c1d66d5",
     "head": "function wireShortcuts() {"
   },
@@ -2444,8 +2444,8 @@
     "fp": "33eb001b939b3f47",
     "head": "export const READING_FILTERS = ["
   },
-  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:137|0": {
-    "anchor": "src/js/views/reading.js:137",
+  "docs/UX_STUDY.md|ux-i-002-the-filter-selection-resets-on-every-re|src/js/views/reading.js:140|0": {
+    "anchor": "src/js/views/reading.js:140",
     "fp": "b7554b1d675a5f56",
     "head": "let filter = DEFAULT_FILTER;"
   },
@@ -2459,8 +2459,8 @@
     "fp": "c739d03d04000a3b",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:687|0": {
-    "anchor": "src/js/views/reading.js:687",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:692|0": {
+    "anchor": "src/js/views/reading.js:692",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -6029,13 +6029,13 @@
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:641|0": {
-    "anchor": "src/js/views/reading.js:641",
+  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:646|0": {
+    "anchor": "src/js/views/reading.js:646",
     "fp": "1c4f24ab55f1e36b",
     "head": "'aria-pressed': String(item.read),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:642|0": {
-    "anchor": "src/js/views/reading.js:642",
+  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:647|0": {
+    "anchor": "src/js/views/reading.js:647",
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },

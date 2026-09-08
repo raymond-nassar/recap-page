@@ -8,7 +8,7 @@ import {
   markRead,
   moveItem,
   pendingIssueIds,
-  removeFromList,
+  removeFromList, restoreRemovedIssue,
   renameList,
   restoreList,
   setActive,
@@ -27,6 +27,7 @@ import { shortcutAllowed } from '../lib/shortcuts.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
+const UNDO_REMOVE = 'undo-remove';
 const SHORT_LABEL = {
   [STATE.SCHEDULED]: 'scheduled',
   [STATE.UNKNOWN]: 'unknown',
@@ -96,12 +97,14 @@ export function createReadingView({
   detailUrl,
   el,
   fact,
+  focusCurrentView,
   getSettings,
   getState,
   getSynopsis,
   hydrationAnnouncement,
   isCurrent,
   isHydrationActive,
+  isStateBlocked,
   isSynopsisActive,
   issueFocusAnchor,
   launch,
@@ -141,6 +144,7 @@ export function createReadingView({
   let filterAddressed = false;
   let applyingRouteToDisclosure = false;
   let lastDeleted = null;
+  let lastRemoved = null;
   let rowCache = new Map();
   let rowCacheListId = null;
   let rowsPending = false;
@@ -390,6 +394,7 @@ export function createReadingView({
   }
 
   function render() {
+    if (lastRemoved && !removalContextMatches(lastRemoved)) forgetRemoved(lastRemoved);
     const id = activeListId();
     const list = getState().lists[id];
 
@@ -805,10 +810,7 @@ export function createReadingView({
         class: 'mini mini-danger has-tooltip',
         'aria-label': labelledName('Remove from list', item.title),
         dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from list' },
-        onclick: () => {
-          updateState((state) => removeFromList(state, listId, item.issueId));
-          announceIfSaved(`Removed ${item.title}.`);
-        },
+        onclick: () => removeIssue(listId, item.issueId),
       }, [
         el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '✕' }),
         el('span', { class: 'mini-label', text: 'Remove from list' }),
@@ -934,6 +936,104 @@ export function createReadingView({
     rowCache = new Map();
     rowCacheListId = null;
     rowsPending = false;
+  }
+
+  function removalContextMatches(removed, state = getState()) {
+    const list = state.lists[removed.listId];
+    // Rename and list notes retain these references; structural edits and dataset adoption do not.
+    // A failed restore can retain both while latching writes, so identity is not sufficient alone.
+    return !isStateBlocked() && list?.itemIds === removed.itemIds
+      && list.collectedIn === removed.editions && !list.itemIds.includes(removed.issueId);
+  }
+
+  function forgetRemoved(removed) {
+    if (!removed || lastRemoved !== removed) return false;
+    lastRemoved = null;
+    const focused = document.activeElement;
+    clearNotice(UNDO_REMOVE);
+    if (focused && !focused.isConnected) focusCurrentView();
+    return true;
+  }
+
+  function focusRemovalTarget(target) {
+    if (target && target !== document.body && target.isConnected && target.getClientRects().length) {
+      target.focus();
+      target.scrollIntoView({ block: 'nearest' });
+    } else {
+      focusCurrentView();
+    }
+  }
+
+  function offerUndoRemove(removed, failed = false) {
+    const msg = failed
+      ? `${removed.title} could not be put back: that change could not be saved.`
+      : `Removed ${removed.title} from ${getState().lists[removed.listId].name}. Reading progress was kept.`;
+    notify('#app-report', msg, failed ? 'error' : 'ok', UNDO_REMOVE, {
+      label: failed ? 'Try again' : 'Undo remove',
+      onClick: () => undoRemove(removed),
+    }, {
+      label: 'Dismiss',
+      onClick: () => { if (forgetRemoved(removed)) focusCurrentView(); },
+    });
+  }
+
+  function removeIssue(listId, issueId) {
+    let removed = null;
+    const { ok, state } = updateState((current) => {
+      const list = current.lists[listId];
+      const index = list?.itemIds.indexOf(issueId) ?? -1;
+      if (index < 0) return current;
+      const next = removeFromList(current, listId, issueId);
+      removed = {
+        listId, issueId, index,
+        title: current.issues[issueId]?.title ?? `Issue ${issueId}`,
+        collectedIn: list.collectedIn?.[issueId],
+        itemIds: next.lists[listId].itemIds,
+        editions: next.lists[listId].collectedIn,
+      };
+      return next;
+    });
+    if (!ok || !removed || !removalContextMatches(removed, state)) {
+      announce(ok ? 'That issue is no longer in this list. Nothing was removed.'
+        : 'That issue could not be removed: the change was not saved.');
+      focusRemovalTarget(document.activeElement);
+      return;
+    }
+    lastRemoved = removed;
+    offerUndoRemove(removed);
+    // notify scrolls the report after the row's successor has received focus.
+    focusRemovalTarget(document.activeElement);
+  }
+
+  function undoRemove(removed) {
+    if (lastRemoved !== removed || !removalContextMatches(removed)) {
+      forgetRemoved(removed);
+      announce('That removal can no longer be undone.');
+      focusRemovalTarget(document.activeElement);
+      return;
+    }
+    let restored = null;
+    const { ok, state } = updateState((current) => {
+      if (!removalContextMatches(removed, current)) return current;
+      const next = restoreRemovedIssue(current, removed.listId, removed.issueId, removed);
+      if (next !== current) restored = next.lists[removed.listId];
+      return next;
+    });
+    // Store repaints synchronously and can spend this record on success or foreign-state adoption.
+    // Only an actual saved insertion proves success; the current global offer is not the result.
+    if (!ok || !restored || state.lists[removed.listId] !== restored) {
+      if (lastRemoved === removed && removalContextMatches(removed)) offerUndoRemove(removed, true);
+      else announce(`${removed.title} could not be put back. That removal can no longer be undone.`);
+      focusCurrentView();
+      return;
+    }
+    forgetRemoved(removed);
+    const target = isCurrent() && activeListId() === removed.listId && $('#full').open
+      ? [...$('#rows').querySelectorAll('[data-act="read"]')]
+        .find((control) => Number(control.dataset.key) === removed.issueId)
+      : null;
+    focusRemovalTarget(target);
+    announce(`${removed.title} is back in ${restored.name}, in its original position.`);
   }
 
   return {

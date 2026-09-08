@@ -127,6 +127,23 @@ address.
 Progress is also separate by browser and browser profile. Opening Recap Page in Firefox does not
 show progress saved in Edge, and it does not remove the Edge copy.
 
+## Undo an issue removal
+
+**Remove from list** takes an issue out immediately. **Undo remove** puts it back in the same
+position and collected edition without undoing later read progress, notes or availability choices.
+Other Reading Lists are not changed.
+
+Only the most recently **successfully** removed issue can be put back this way. The offer has no
+countdown and stays in memory for this tab, not in backups. **Dismiss**, reloading the page or
+closing the tab ends it. A failed removal does not replace an earlier valid offer.
+
+Navigation, filters, read progress, issue notes, renaming the list and editing its note keep the
+offer. Changing that list's issue order, membership or edition assignments ends it. Deleting or
+replacing the source list, adopting saved data from another tab, or reloading data during a restore
+also ends it; undoing a whole-list deletion does not bring the old issue-removal offer back.
+If a recovery leaves the saved data uncertain, the offer is withdrawn rather than risking the
+wrong list. A refused Undo shows **Try again** only while the original context is still valid.
+
 ## Upgrade safely
 
 Microsoft Store installations receive product updates only through Microsoft Store. Recap Page has

@@ -10818,12 +10818,14 @@ async function preparePage(page, origin, mutation) {
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/views/catalog.js', mutation?.rewriteCatalogView],
+    ['/js/views/reading.js', mutation?.rewriteReading],
     ['/js/views/library.js', mutation?.rewriteLibrary],
     ['/js/views/reading-paths.js', mutation?.rewriteReadingPaths],
     ['/js/views/shared/saved-lists.js', mutation?.rewriteSavedLists],
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
+    ['/js/lib/model.js', mutation?.rewriteModel],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
   ]) {
@@ -11443,6 +11445,413 @@ async function main() {
 
   process.exit(code);
 }
+
+async function seedRemovalFixture(page, saved = fixtureReadingState()) {
+  await open(page, '/?catalog=browser-check');
+  await page.evaluate((state) => {
+    localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
+  }, saved);
+  await open(page, '/#/read/fixture?full=1');
+  await page.waitForSelector('#rows .row');
+}
+
+async function removeFixtureIssue(page, issueId) {
+  const selector = `#rows [data-key="${issueId}"][data-act="remove"]`;
+  await page.waitForSelector(selector, { visible: true });
+  await page.focus(selector);
+  await page.evaluate((target) => document.querySelector(target).click(), selector);
+}
+
+async function removalNotice(page) {
+  return page.evaluate(() => {
+    const notice = document.querySelector('#app-report .notice');
+    return {
+      text: notice?.querySelector('.grow')?.textContent ?? '',
+      buttons: [...(notice?.querySelectorAll('button') ?? [])].map((button) => button.textContent.trim()),
+    };
+  });
+}
+
+async function removalFocus(page) {
+  return page.evaluate(() => {
+    const focused = document.activeElement;
+    const rect = focused?.getBoundingClientRect();
+    return {
+      id: focused?.id,
+      key: focused?.dataset.key,
+      act: focused?.dataset.act,
+      heading: document.querySelector('.view:not([hidden])')?.getAttribute('aria-labelledby'),
+      rect: rect ? { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right } : null,
+      // Edge rounds scroll offsets to pixels: the focused successor's bottom measured 900.20 at 900px.
+      visible: !!focused?.isConnected && focused !== document.body && !focused.closest('[hidden]')
+        && rect?.width > 0 && rect.height > 0 && rect.top >= -1 && rect.bottom <= innerHeight + 1
+        && rect.left >= -1 && rect.right <= innerWidth + 1,
+    };
+  });
+}
+
+async function switchRemovalList(page, id) {
+  await page.evaluate((listId) => { location.hash = `#/read/${listId}?full=1`; }, id);
+  await page.waitForFunction((listId) => JSON.parse(localStorage.getItem('mrt.state.v2')).active === listId
+    && !document.querySelector('#view-read').hidden, {}, id);
+  await page.waitForSelector('#rows .row');
+}
+
+async function editRemovalText(page, trigger, field, text) {
+  await click(page, trigger);
+  await page.waitForSelector(`#ask[open] ${field}`);
+  await page.$eval(field, (input, value) => { input.value = value; }, text);
+  await click(page, '#ask-ok');
+  await page.waitForFunction((value) => {
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    return !document.querySelector('#ask').open && (Object.values(state.notes).includes(value)
+      || Object.values(state.lists).some((list) => list.name === value || list.note === value));
+  }, {}, text);
+}
+
+async function restoreRemovalFixture(page, saved) {
+  await click(page, '.ri[data-view="data"]');
+  await page.evaluate((state) => {
+    document.querySelector('#restore-report').replaceChildren();
+    const files = new DataTransfer();
+    files.items.add(new File([JSON.stringify(state)], 'removal-fixture.json', { type: 'application/json' }));
+    const input = document.querySelector('#restore-file');
+    input.files = files.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }, saved);
+  await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
+}
+
+async function installRemovalFault(page, mode) {
+  await page.evaluate((nextMode) => {
+    const fault = window.__removalFault444 ??= {
+      set: Storage.prototype.setItem,
+      get: Storage.prototype.getItem,
+      writes: 0,
+      blocked: false,
+    };
+    fault.mode = nextMode;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === 'mrt.state.v2') {
+        fault.writes += 1;
+        if (fault.mode === 'refuse-once') {
+          fault.mode = null;
+          throw new DOMException('Removal fixture write refusal', 'QuotaExceededError');
+        }
+      }
+      const result = fault.set.call(this, key, value);
+      if (key === 'mrt.state.v2' && fault.mode === 'unknown-restore') fault.blocked = true;
+      return result;
+    };
+    Storage.prototype.getItem = function (key) {
+      if (key === 'mrt.state.v2' && fault.blocked) throw new Error('Unknown removal fixture state');
+      return fault.get.call(this, key);
+    };
+  }, mode);
+}
+
+SCENARIOS.push(
+  {
+    id: 'issue-removal-undo',
+    title: 'latest issue removal has untimed membership-only Undo and useful visible focus',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      const items = LONG_ORDER.items.slice(0, 20);
+      const ids = items.map((item) => item.issueId);
+      const removedId = ids[14];
+      const saved = fixtureReadingState();
+      saved.issues = Object.fromEntries(items.map((item) => [item.issueId, { ...item, source: 'curated' }]));
+      saved.read = { [ids[1]]: 1234 };
+      saved.notes = { [removedId]: 'Original issue note' };
+      saved.overrides = { [removedId]: 'available' };
+      saved.lists.fixture.itemIds = ids;
+      saved.lists.fixture.collectedIn = { [removedId]: 'Book Two: exact edition', [ids[15]]: 'Book Two: exact edition' };
+      saved.lists.other = {
+        ...saved.lists.fixture, id: 'other', name: 'Other saved list', catalogId: null,
+        itemIds: [removedId, ids[7]], collectedIn: { [removedId]: 'Different book' },
+      };
+      saved.listOrder.push('other');
+      await seedRemovalFixture(page, saved);
+      const before = await readState(page);
+      const target = `#rows [data-key="${removedId}"][data-act="remove"]`;
+      await page.focus(target);
+      const scrolled = await page.$eval('#app-report', (node) => node.getBoundingClientRect().bottom < 0);
+      t.check('the removal starts genuinely scrolled away from the notice pane', scrolled);
+      await removeFixtureIssue(page, removedId);
+      const removed = await readState(page);
+      const notice = await removalNotice(page);
+      t.check('removal is immediate and offers exactly Undo remove plus Dismiss',
+        removed.lists.fixture.itemIds.length === 19 && notice.buttons.join('/') === 'Undo remove/Dismiss',
+        JSON.stringify(notice));
+      t.check('only the chosen membership and its edition are removed',
+        JSON.stringify(removed.lists.fixture.itemIds) === JSON.stringify(ids.filter((id) => id !== removedId))
+        && !Object.hasOwn(removed.lists.fixture.collectedIn, removedId));
+      t.check('removal preserves shared maps and the other list',
+        ['issues', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(removed[key]) === JSON.stringify(before[key]))
+        && JSON.stringify(removed.lists.other) === JSON.stringify(before.lists.other));
+      let focus = await removalFocus(page);
+      t.check('notice publication leaves the non-destructive successor visibly focused',
+        focus.visible && focus.act === 'read' && focus.key === String(ids[15]), JSON.stringify(focus));
+
+      await switchRemovalList(page, 'other');
+      await click(page, `#rows [data-key="${removedId}"][data-act="read"]`);
+      await click(page, `#rows [data-key="${removedId}"][data-act="override"]`);
+      await editRemovalText(page, `#rows [data-key="${removedId}"][data-act="note"]`, '#ask-area', 'Later shared issue note');
+      await switchRemovalList(page, 'fixture');
+      await editRemovalText(page, '#btn-rename-list', '#ask-input', 'Renamed after removal');
+      await editRemovalText(page, '#btn-list-note', '#ask-area', 'Later list note');
+      await click(page, 'input[name="filter"][value="unread"]');
+      const edited = await readState(page);
+      t.check('navigation, local shared changes, rename, list note and filter retain the offer',
+        (await removalNotice(page)).buttons[0] === 'Undo remove'
+        && edited.notes[removedId] === 'Later shared issue note' && edited.overrides[removedId] === 'unavailable'
+        && !!edited.read[removedId] && edited.lists.fixture.note === 'Later list note');
+      await clickNoticeButton(page, 'Undo remove');
+      const restored = await readState(page);
+      t.check('Undo restores the original index and exact collected-edition association',
+        JSON.stringify(restored.lists.fixture.itemIds) === JSON.stringify(ids)
+        && restored.lists.fixture.collectedIn[removedId] === 'Book Two: exact edition',
+        JSON.stringify(restored.lists.fixture));
+      t.check('Undo preserves all later shared values, list metadata and the other list',
+        ['issues', 'read', 'notes', 'overrides', 'active', 'listOrder'].every((key) => (
+          JSON.stringify(restored[key]) === JSON.stringify(edited[key])
+        )) && restored.lists.fixture.name === 'Renamed after removal'
+        && restored.lists.fixture.note === 'Later list note'
+        && JSON.stringify(restored.lists.other) === JSON.stringify(edited.lists.other));
+      focus = await removalFocus(page);
+      t.check('a restored issue hidden by the current filter leaves visible heading focus without changing the filter',
+        focus.visible && focus.id === focus.heading
+        && await page.$eval('input[name="filter"]:checked', (input) => input.value === 'unread'), JSON.stringify(focus));
+
+      await click(page, 'input[name="filter"][value="all"]');
+      await removeFixtureIssue(page, ids[15]);
+      const readBeforeUndo = (await readState(page)).read;
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('visible same-list Undo focuses the restored issue, not a destructive action',
+        focus.visible && focus.act === 'read' && focus.key === String(ids[15]), JSON.stringify(focus));
+      t.check('restoring and focusing never mark an issue read',
+        JSON.stringify((await readState(page)).read) === JSON.stringify(readBeforeUndo));
+
+      await removeFixtureIssue(page, ids[4]);
+      await page.evaluate(() => { window.__oldRemoval444 = [...document.querySelectorAll('#app-report button')]; });
+      await removeFixtureIssue(page, ids[5]);
+      const latest = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__oldRemoval444.forEach((button) => button.click()));
+      t.check('stale Undo and Dismiss controls cannot operate on the newer pending removal',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, latest)
+        && (await removalNotice(page)).buttons[0] === 'Undo remove');
+      await clickNoticeButton(page, 'Undo remove');
+      const latestRestored = await readState(page);
+      t.check('only the latest successfully removed issue is restored',
+        !latestRestored.lists.fixture.itemIds.includes(ids[4]) && latestRestored.lists.fixture.itemIds.includes(ids[5]));
+
+      await removeFixtureIssue(page, ids[6]);
+      await page.$eval('#full', (full) => { full.open = false; });
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('Undo in a closed list keeps it closed and focuses a visible heading',
+        focus.visible && focus.id === focus.heading && await page.$eval('#full', (full) => !full.open), JSON.stringify(focus));
+      await openFullOrder(page);
+      await removeFixtureIssue(page, ids[7]);
+      await switchRemovalList(page, 'other');
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('another active list stays active and does not receive focus on its matching issue row',
+        (await readState(page)).active === 'other' && focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+
+      await switchRemovalList(page, 'fixture');
+      await removeFixtureIssue(page, ids[8]);
+      await click(page, '.ri[data-view="data"]');
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('Undo from another view stays there with visible current-heading focus',
+        await visibleView(page) === 'view-data' && focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+      await switchRemovalList(page, 'fixture');
+      await removeFixtureIssue(page, ids[9]);
+      await page.evaluate(() => { window.__dismissedRemoval444 = document.querySelector('#app-report button'); });
+      await click(page, '.brand[data-view="home"]');
+      await clickNoticeButton(page, 'Dismiss');
+      const dismissed = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__dismissedRemoval444.click());
+      focus = await removalFocus(page);
+      t.check('dismissal spends the record without restoring anything and keeps useful visible focus',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, dismissed)
+        && !(await removalNotice(page)).buttons.includes('Undo remove')
+        && focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+
+      const last = fixtureReadingState();
+      last.issues = { [NEGATIVE_ORDER_ITEM.issueId]: { ...NEGATIVE_ORDER_ITEM, source: 'manual' } };
+      last.lists.fixture.itemIds = [NEGATIVE_ORDER_ITEM.issueId];
+      await seedRemovalFixture(page, last);
+      await removeFixtureIssue(page, NEGATIVE_ORDER_ITEM.issueId);
+      focus = await removalFocus(page);
+      t.check('removing the last manual issue leaves visible non-destructive focus and an Undo',
+        (await readState(page)).lists.fixture.itemIds.length === 0
+        && focus.visible && focus.act !== 'remove' && (await removalNotice(page)).buttons[0] === 'Undo remove',
+        JSON.stringify(focus));
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('the last manual issue returns with its same negative identity and visible row focus',
+        focus.visible && focus.key === String(NEGATIVE_ORDER_ITEM.issueId)
+        && (await readState(page)).lists.fixture.itemIds[0] === NEGATIVE_ORDER_ITEM.issueId, JSON.stringify(focus));
+      await removeFixtureIssue(page, NEGATIVE_ORDER_ITEM.issueId);
+      await page.reload({ waitUntil: 'load' });
+      t.check('reload ends the memory-only offer without persisting a history field or restoring the issue',
+        (await readState(page)).lists.fixture.itemIds.length === 0
+        && !(await removalNotice(page)).buttons.includes('Undo remove')
+        && !JSON.stringify(await readState(page)).includes('undo-remove'));
+      t.check('the removal journey has no page errors', errors.length === 0, errors.join(' / '));
+    },
+  },
+  {
+    id: 'issue-removal-undo-failures',
+    title: 'issue Undo retries only in its original known context and never revives after replacement',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      const ids = ORDER.items.map((item) => item.issueId);
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      const priorNotice = await removalNotice(page);
+      const removed = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await installRemovalFault(page, 'refuse-once');
+      await removeFixtureIssue(page, ids[2]);
+      t.check('a failed second removal preserves the first offer and all saved membership',
+        JSON.stringify(await removalNotice(page)) === JSON.stringify(priorNotice)
+        && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, removed));
+      t.check('the refused removal is reported by the real Store',
+        await page.$eval('#save-report', (node) => node.textContent.includes('not saved')));
+      await installRemovalFault(page, 'refuse-once');
+      await clickNoticeButton(page, 'Undo remove');
+      let focus = await removalFocus(page);
+      t.check('failed Undo keeps a retry and Dismiss without claiming saved restoration',
+        (await removalNotice(page)).buttons.join('/') === 'Try again/Dismiss'
+        && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, removed));
+      t.check('a focused Undo replaced by Retry leaves useful visible heading focus',
+        focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+      t.check('faults hit exactly the two intended main-key write attempts',
+        await page.evaluate(() => window.__removalFault444.writes === 2));
+      await clickNoticeButton(page, 'Try again');
+      t.check('the retry saves the original ordered membership once',
+        JSON.stringify((await readState(page)).lists.fixture.itemIds) === JSON.stringify(ids)
+        && !(await removalNotice(page)).buttons.includes('Try again'));
+
+      await removeFixtureIssue(page, ids[1]);
+      await installRemovalFault(page, 'refuse-once');
+      await clickNoticeButton(page, 'Undo remove');
+      await page.evaluate(() => { window.__retryRemoval444 = document.querySelector('#app-report button'); });
+      await clickNoticeButton(page, 'Dismiss');
+      const spent = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__retryRemoval444.click());
+      t.check('dismissing a failed retry spends its record',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, spent)
+        && !(await removalNotice(page)).buttons.includes('Try again'));
+      await removeFixtureIssue(page, ids[0]);
+      await page.evaluate(() => { window.__deletedSource444 = document.querySelector('#app-report button'); });
+      await deleteActiveList(page);
+      await page.waitForFunction(() => !JSON.parse(localStorage.getItem('mrt.state.v2')).lists.fixture);
+      t.check('whole-list deletion replaces the invalid issue offer with its own Undo',
+        (await removalNotice(page)).buttons[0] === 'Undo delete');
+      await clickNoticeButton(page, 'Undo delete');
+      const wholeListRestored = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__deletedSource444.click());
+      t.check('whole-list Undo never resurrects the earlier removed-issue offer',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, wholeListRestored)
+        && JSON.stringify((await readState(page)).lists.fixture.itemIds) === JSON.stringify([ids[2]])
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      await page.evaluate(() => { window.__restoredSource444 = document.querySelector('#app-report button'); });
+      await restoreRemovalFixture(page, fixtureReadingState());
+      const replaced = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__restoredSource444.click());
+      t.check('backup restoration withdraws the offer and a stale action cannot change the restored dataset',
+        await page.$eval('#restore-report', (node) => node.textContent.startsWith('Restored.'))
+        && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, replaced)
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      await click(page, '.ri[data-view="data"]');
+      const foreign = await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const next = JSON.parse(oldValue);
+        next.writeToken = 'foreign-removal-444';
+        const newValue = JSON.stringify(next);
+        const button = document.querySelector('#app-report button');
+        button.focus();
+        window.__adoptedSource444 = button;
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage, url: location.href,
+        }));
+        return newValue;
+      });
+      await page.waitForFunction(() => ![...document.querySelectorAll('#app-report button')]
+        .some((button) => button.textContent === 'Undo remove'));
+      focus = await removalFocus(page);
+      await page.evaluate(() => window.__adoptedSource444.click());
+      t.check('byte-equivalent membership adopted off-route spends the offer without rewriting it',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, foreign)
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+      t.check('withdrawing a focused offer leaves visible current-view focus',
+        focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      await page.evaluate(() => { window.__unknownSource444 = document.querySelector('#app-report button'); });
+      await installRemovalFault(page, 'unknown-restore');
+      await restoreRemovalFixture(page, fixtureReadingState());
+      const unknown = await page.evaluate(() => ({
+        report: document.querySelector('#restore-report').textContent,
+        ring: document.querySelector('#ring-sub').textContent,
+        raw: window.__removalFault444.get.call(localStorage, 'mrt.state.v2'),
+        writes: window.__removalFault444.writes,
+      }));
+      t.check('the unknown-restore fault reaches one main write while keeping the old in-memory list',
+        unknown.writes === 1 && unknown.report.includes('Restore did not finish')
+        && unknown.ring.includes('of 2 read')
+        && JSON.parse(unknown.raw).lists.fixture.itemIds.length === 3, JSON.stringify(unknown));
+      t.check('unknown durable state withdraws Undo immediately despite retained source references',
+        !(await removalNotice(page)).buttons.some((label) => ['Undo remove', 'Try again'].includes(label)));
+      await page.evaluate(() => window.__unknownSource444.click());
+      t.check('a stale action into unknown data cannot recreate a successful-looking retry',
+        !(await removalNotice(page)).buttons.includes('Try again')
+        && await page.evaluate(() => window.__removalFault444.writes === 1));
+      await page.evaluate(() => {
+        Storage.prototype.setItem = window.__removalFault444.set;
+        Storage.prototype.getItem = window.__removalFault444.get;
+      });
+      await page.reload({ waitUntil: 'load' });
+      t.check('reload reads the actual restored data without reviving tab-memory recovery',
+        (await readState(page)).lists.fixture.itemIds.length === 3
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+      t.check('the refusal and replacement journey has no page errors', errors.length === 0, errors.join(' / '));
+    },
+  },
+);
+
+MUTATIONS.push(
+  {
+    id: 'issue-removal-index-lost',
+    breaks: 'issue-removal-undo',
+    why: 'Undo appends the issue instead of restoring its original position',
+    rewriteModel: (source) => source.replace('itemIds.splice(index, 0, id);', 'itemIds.push(id);'),
+  },
+  {
+    id: 'issue-removal-blocked-context',
+    breaks: 'issue-removal-undo-failures',
+    why: 'an unknown restore retains a removal offer solely because the old list references survived',
+    rewriteReading: (source) => source.replace('return !isStateBlocked() && list?.itemIds === removed.itemIds',
+      'return list?.itemIds === removed.itemIds'),
+  },
+);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal
