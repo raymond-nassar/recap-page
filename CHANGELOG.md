@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Restored the local regression baseline
+
+Reading List action icons are now explicitly decorative without changing their labels or behavior.
+Maintainer checks accept Windows checklist line endings and reliably exercise Reading shortcuts,
+saved Reading Path stops, availability round trips and reverse-Tab focus. Saved reading data is unchanged.
+
 ### Hid redundant series progress bars from assistive technology
 
 Progress by series no longer exposes unnamed bars to assistive technology. The bars remain

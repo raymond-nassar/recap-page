@@ -3046,7 +3046,7 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
   const ledger = packet.sourceReview.metadataGapLedger;
 
   assert.equal(mapping.placeholderIdentityMode, 'title');
-  assert.equal(buildMarkdown(mapping), markdown);
+  assert.equal(buildMarkdown(mapping), markdown.replace(/\r\n/g, '\n'));
   assert.deepEqual(ledger.classificationCounts, {
     exact: 15,
     repeat: 3,
