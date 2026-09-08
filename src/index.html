@@ -33,7 +33,7 @@
           <button type="button" class="rail-toggle" id="btn-rail-toggle"
                   aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar"
                   aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
-            <span class="gi" aria-hidden="true">&#xE700;</span>
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#menu"/></svg>
             <span class="rail-toggle-label">Navigation</span>
           </button>
 
@@ -51,7 +51,7 @@
                 <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
                 <ul class="rail-list" aria-labelledby="rail-reading">
                   <li><button type="button" class="ri" data-view="library">
-                    <span class="gi" aria-hidden="true">&#xE8F1;</span>
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                     <span class="lbl">Library</span>
                   </button></li>
                 </ul>
@@ -61,11 +61,11 @@
                 <h2 class="rail-h">Discover</h2>
                 <ul class="rail-list">
                   <li><button type="button" class="ri" data-view="browse">
-                    <span class="gi" aria-hidden="true">&#xE721;</span>
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
                     <span class="lbl">Browse</span>
                   </button></li>
                   <li><button type="button" class="ri" data-view="add">
-                    <span class="gi" aria-hidden="true">&#xE710;</span>
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
                     <span class="lbl">Add comics</span>
                   </button></li>
                 </ul>
@@ -81,11 +81,11 @@
               <h2 class="rail-h">App</h2>
               <ul class="rail-list">
                 <li><button type="button" class="ri" data-view="data">
-                  <span class="gi" aria-hidden="true">&#xE713;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#settings"/></svg>
                   <span class="lbl">Backup &amp; settings</span>
                 </button></li>
                 <li><button type="button" class="ri" data-view="about">
-                  <span class="gi" aria-hidden="true">&#xE946;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#info"/></svg>
                   <span class="lbl">About this app</span>
                 </button></li>
               </ul>
@@ -427,13 +427,13 @@
               <h2 id="library-tools-h">Across your library</h2>
               <div class="search-hub-grid">
                 <button type="button" class="search-hub-card" data-view="library-read">
-                  <span class="gi" aria-hidden="true">&#xE73E;</span><span>Everything read</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#check"/></svg><span>Everything read</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="progress">
-                  <span class="gi" aria-hidden="true">&#xE9D2;</span><span>Progress by series</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#progress"/></svg><span>Progress by series</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="library-manual">
-                  <span class="gi" aria-hidden="true">&#xE70F;</span><span>Added by hand</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#edit"/></svg><span>Added by hand</span>
                 </button>
               </div>
             </section>
@@ -575,19 +575,19 @@
             <div class="head"><div class="head-left"><h1 id="add-h">Add comics</h1></div></div>
             <div class="search-hub-grid add-hub-grid">
               <button type="button" class="search-hub-card" data-view="add-search">
-                <span class="gi" aria-hidden="true">&#xE721;</span><span>Search issues</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg><span>Search issues</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-series">
-                <span class="gi" aria-hidden="true">&#xE8F1;</span><span>Find a series</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg><span>Find a series</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-creator">
-                <span class="gi" aria-hidden="true">&#xE77B;</span><span>Browse a creator</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg><span>Browse a creator</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-import">
-                <span class="gi" aria-hidden="true">&#xE77F;</span><span>Paste a Reading List</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-manual">
-                <span class="gi" aria-hidden="true">&#xE948;</span><span>Add an issue by hand</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg><span>Add an issue by hand</span>
               </button>
             </div>
           </section>
@@ -602,7 +602,7 @@
                 <label for="search-q">Search issue titles</label>
                 <div class="field-row">
                   <input type="search" id="search-q" placeholder="e.g. Secret Wars" autocomplete="off" />
-                  <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search issues" aria-label="Search issue titles"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                  <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search issues" aria-label="Search issue titles"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                 </div>
               </form>
               <!--
@@ -617,19 +617,19 @@
               <h2 id="search-browse-h">Browse by</h2>
               <div class="search-hub-grid">
                 <button type="button" class="search-hub-card" data-view="add-series">
-                  <span class="gi" aria-hidden="true">&#xE8F1;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                   <span>Series</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="add-creator">
-                  <span class="gi" aria-hidden="true">&#xE77B;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg>
                   <span>Creators</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="spotlights">
-                  <span class="gi" aria-hidden="true">&#xE716;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg>
                   <span>Characters</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="catalog">
-                  <span class="gi" aria-hidden="true">&#xE736;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#guide"/></svg>
                   <span>Reading guides</span>
                 </button>
               </div>
@@ -638,11 +638,11 @@
               <h2 id="search-other-h">Other ways to add</h2>
               <div class="search-hub-grid">
                 <button type="button" class="search-hub-card" data-view="add-import">
-                  <span class="gi" aria-hidden="true">&#xE77F;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg>
                   <span>Paste a Reading List</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="add-manual">
-                  <span class="gi" aria-hidden="true">&#xE948;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg>
                   <span>Add an issue by hand</span>
                 </button>
               </div>
@@ -657,7 +657,7 @@
                   <label for="series-q">Find a series</label>
                   <div class="field-row">
                     <input type="search" id="series-q" placeholder="e.g. New Avengers (2013)" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search series" aria-label="Find a series"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search series" aria-label="Find a series"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                   </div>
                 </form>
                 <div id="series-results" class="results"></div>
@@ -672,7 +672,7 @@
                   <label for="creator-q">Find a creator</label>
                   <div class="field-row">
                     <input type="search" id="creator-q" placeholder="e.g. Hickman" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search creators" aria-label="Find a creator"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search creators" aria-label="Find a creator"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                   </div>
                 </form>
                 <div id="creator-results" class="results"></div>

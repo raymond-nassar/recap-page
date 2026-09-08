@@ -12,6 +12,11 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Made navigation and search icons portable
+
+Navigation and search controls now use local SVG drawings instead of Windows-only icon fonts.
+Labels, actions, theme colours and saved reading data are unchanged.
+
 ### Retry issue details in place
 
 Temporary issue-detail failures now offer Retry without leaving the comic. Retry stays busy
