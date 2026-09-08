@@ -397,13 +397,13 @@ a { color: var(--blue); }
 }
 .railed .nav-scroll::-webkit-scrollbar { display: none; }
 
-/* Fluent's PUA glyphs. They are decorative: every button keeps its label in the DOM as
-   the accessible name, so a machine without the font shows a blank box, never a control
-   with no name. */
+/* Local SVG symbols keep compact controls recognizable without installed icon fonts.
+   The host supplies the stroke so external symbols inherit theme and system colours.
+   Button labels remain the accessible names. */
 .gi {
-  font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", sans-serif;
+  fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
   font-size: var(--icon); line-height: 1; flex: 0 0 auto;
-  width: 1.25rem; text-align: center;
+  width: 1.25rem; height: 1em; display: inline-block; vertical-align: middle;
 }
 
 .rail-toggle {
@@ -810,7 +810,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
    is still reachable as the tooltip and as the accessible name. Square to the same 44px target the
    search inputs beside it keep. */
 .btn-icon { padding: 0; min-width: 44px; min-height: 44px; justify-content: center; }
-.btn-icon .gi { width: auto; }
+.btn-icon .gi { width: 1em; }
 .btn:hover { filter: brightness(1.1); }
 .btn:disabled { opacity: .5; cursor: default; filter: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }

@@ -10862,6 +10862,242 @@ MUTATIONS.push(
 
 // ------------------------------------------------------------------ page helpers
 
+MUTATIONS.push(
+  {
+    id: 'portable-icons-no-paint',
+    breaks: 'portable-icons-451',
+    why: 'local symbol references remain present but their strokes no longer paint',
+    script: () => document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.gi').forEach((icon) => { icon.style.strokeWidth = '0'; });
+    }),
+  },
+  {
+    id: 'portable-icons-focus-stop',
+    breaks: 'portable-icons-451',
+    why: 'a decorative navigation drawing becomes a separate keyboard stop',
+    script: () => document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.gi').setAttribute('tabindex', '0');
+    }),
+  },
+);
+
+SCENARIOS.push({
+  id: 'portable-icons-451',
+  title: 'local navigation/search drawings survive missing icon fonts and preserve controls',
+  async run(page, t) {
+    const assetRequests = [];
+    page.on('request', (request) => {
+      if (request.resourceType() === 'font' || /\/icons\//.test(request.url())) {
+        assetRequests.push(request.url());
+      }
+    });
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.gi').forEach((icon) => {
+          icon.style.fontFamily = 'monospace';
+        });
+      });
+    });
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await open(page, '/');
+    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 12);
+    const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].map((icon) => {
+      const button = icon.closest('button');
+      return {
+        tag: icon.tagName,
+        gateway: icon.classList.contains('home-path-icon') || icon.classList.contains('home-path-arrow'),
+        name: (button.getAttribute('aria-label') || button.textContent).replace(/\s+/g, ' ').trim(),
+        decorative: icon.getAttribute('aria-hidden') === 'true'
+          && icon.getAttribute('focusable') === 'false' && icon.tabIndex === -1,
+        reference: icon.querySelector('use')?.getAttribute('href'),
+      };
+    }));
+    t.check('all 23 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+      === JSON.stringify([
+        'Collapse sidebar', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app',
+        'Everything read', 'Progress by series', 'Added by hand', 'Search issues', 'Find a series',
+        'Browse a creator', 'Paste a Reading List', 'Add an issue by hand', 'Search issue titles',
+        'Series', 'Creators', 'Characters', 'Reading guides', 'Paste a Reading List',
+        'Add an issue by hand', 'Find a series', 'Find a creator',
+      ]), JSON.stringify(inventory));
+    t.check('all 47 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 47 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('both gateways preserve six labelled category destinations and their icon/arrow pairs',
+      await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
+        .flatMap((root) => [...root.querySelectorAll('button.home-path')])
+        .filter((button) => button.getAttribute('aria-label')?.includes('Browse')
+          || button.getAttribute('aria-label')?.includes('Movies and streaming')
+          || button.getAttribute('aria-label')?.includes('Publication history')
+          || button.getAttribute('aria-label')?.includes('Follow connected stories'))
+        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 12));
+    t.check('all icon references stay local', inventory.every((i) => i.reference?.startsWith('./icons/ui.svg#')));
+
+    const seen = new Set();
+    const routes = ['home', 'browse', 'marvel-ages', 'age-modern', 'library', 'add', 'add-search', 'add-series', 'add-creator'];
+    for (const route of routes) {
+      await page.evaluate((view) => { location.hash = `#/${view}`; }, route);
+      await page.waitForSelector(`#view-${route}:not([hidden])`);
+      await page.evaluate(() => document.querySelectorAll('.gi').forEach((icon) => {
+        icon.style.fontFamily = 'monospace';
+      }));
+      // A loaded document alone does not prove an external use has resolved its symbol.
+      await page.waitForFunction(() => [...document.querySelectorAll('.gi')].filter((icon) =>
+        icon.getBoundingClientRect().width > 0).every((icon) => icon.querySelector('use')?.getBBox().width > 0));
+      const geometry = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) =>
+        icon.getBoundingClientRect().width > 0).map((icon) => {
+        const box = icon.getBoundingClientRect();
+        const target = icon.closest('button').getBoundingClientRect();
+        const paint = getComputedStyle(icon);
+        return {
+          symbol: icon.querySelector('use').getAttribute('href'),
+          fits: box.left >= target.left && box.right <= target.right
+            && box.top >= target.top && box.bottom <= target.bottom,
+          target: target.width >= 44 && target.height >= 44,
+          painted: paint.stroke !== 'none' && parseFloat(paint.strokeWidth) > 0
+            && paint.visibility === 'visible' && Number(paint.opacity) > 0,
+          font: paint.fontFamily,
+        };
+      }));
+      geometry.forEach((icon) => seen.add(icon.symbol));
+      t.check(`${route}: visible symbols paint without icon fonts inside unchanged 44px targets`,
+        geometry.length > 0 && geometry.every((i) => i.fits && i.target && i.painted && i.font === 'monospace'),
+        JSON.stringify(geometry));
+    }
+    t.check('all 17 authored symbol shapes were rendered', seen.size === 17, [...seen].join(', '));
+
+    await page.evaluate(() => { location.hash = '#/add-search'; });
+    await page.waitForSelector('#view-add-search:not([hidden])');
+    const iconSelector = '#form-search .gi';
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const colour = await page.$eval(iconSelector, (icon) => ({
+        stroke: getComputedStyle(icon).stroke,
+        color: getComputedStyle(icon).color,
+      }));
+      t.check(`${theme}: the search stroke inherits currentColor`, colour.stroke === colour.color,
+        JSON.stringify(colour));
+    }
+    const icon = await page.$(iconSelector);
+    const painted = await icon.screenshot();
+    await page.$eval(`${iconSelector} use`, (use) => { use.style.visibility = 'hidden'; });
+    const blank = await icon.screenshot();
+    await page.$eval(`${iconSelector} use`, (use) => { use.style.visibility = ''; });
+    t.check('the search SVG produces actual pixels, not just a nonempty layout box',
+      !Buffer.from(painted).equals(Buffer.from(blank)));
+
+    const client = await page.createCDPSession();
+    await client.send('Emulation.setEmulatedMedia', { features: [
+      { name: 'forced-colors', value: 'active' },
+      { name: 'prefers-reduced-motion', value: 'reduce' },
+    ] });
+    for (const state of ['normal', 'hover', 'focus', 'disabled']) {
+      const button = '#form-search button[type="submit"]';
+      if (state === 'hover') await page.hover(button);
+      if (state === 'focus') await page.focus(button);
+      if (state === 'disabled') await page.$eval(button, (el) => { el.disabled = true; });
+      const forced = await page.$eval(iconSelector, (el) => ({
+        active: matchMedia('(forced-colors: active)').matches,
+        stroke: getComputedStyle(el).stroke, color: getComputedStyle(el).color,
+        background: getComputedStyle(el.closest('button')).backgroundColor,
+        width: parseFloat(getComputedStyle(el).strokeWidth),
+      }));
+      t.check(`forced colours ${state}: search stroke follows a perceivable system colour`,
+        forced.active && forced.width > 0 && forced.stroke === forced.color
+          && forced.stroke !== forced.background, JSON.stringify(forced));
+    }
+    await page.$eval('#form-search button', (button) => { button.disabled = false; });
+    await page.focus('.ri[data-view="library"]');
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#view-library:not([hidden])');
+    const selected = await page.$eval('.ri[data-view="library"]', (button) => ({
+      current: button.getAttribute('aria-current'),
+      stroke: getComputedStyle(button.querySelector('.gi')).stroke,
+      color: getComputedStyle(button).color,
+      border: getComputedStyle(button).borderTopWidth,
+    }));
+    t.check('keyboard navigation still selects Library with a visible forced-colour icon and border',
+      selected.current && selected.stroke === selected.color && parseFloat(selected.border) >= 1,
+      JSON.stringify(selected));
+    const { nodes } = await client.send('Accessibility.getFullAXTree');
+    t.check('decorative SVGs add no image announcements to the Library accessibility tree',
+      !nodes.some((node) => !node.ignored && ['image', 'graphics-symbol'].includes(node.role?.value)));
+    await client.send('Emulation.setEmulatedMedia', { features: [
+      { name: 'prefers-reduced-motion', value: 'reduce' },
+    ] });
+
+    for (const route of ['add-search', 'add-series', 'add-creator']) {
+      await page.evaluate((view) => {
+        location.hash = `#/${view}`;
+        window.__iconSubmits = [];
+        document.addEventListener('submit', (event) => {
+          window.__iconSubmits.push(event.target.id);
+        }, { once: true, capture: true });
+      }, route);
+      await page.waitForSelector(`#view-${route}:not([hidden])`);
+      await page.focus(`#view-${route} button[type="submit"]`);
+      await page.keyboard.press('Enter');
+      t.check(`${route}: the named search button still submits from the keyboard`,
+        await page.evaluate(() => window.__iconSubmits.length === 1));
+    }
+    await page.evaluate(() => { location.hash = '#/add-search'; });
+    await page.waitForSelector('#view-add-search:not([hidden])');
+    for (const [width, zoom] of [[320, 1], [640, 2]]) {
+      await page.setViewport({ width, height: 900 });
+      await page.evaluate((scale) => { document.documentElement.style.zoom = String(scale); }, zoom);
+      const narrow = await page.evaluate(() => {
+        const visible = [...document.querySelectorAll('.gi')].filter((el) => el.getBoundingClientRect().width);
+        return {
+          count: visible.length,
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          fits: visible.every((el) => {
+            const icon = el.getBoundingClientRect();
+            const button = el.closest('button').getBoundingClientRect();
+            return icon.left >= button.left && icon.right <= button.right
+              && icon.top >= button.top && icon.bottom <= button.bottom;
+          }),
+          coversOff: document.body.classList.contains('nocovers'),
+          reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        };
+      });
+      t.check(`${width}px at ${zoom * 100}%: icons fit with covers off and reduced motion`,
+        narrow.count > 0 && !narrow.overflow && narrow.fits && narrow.coversOff && narrow.reduced,
+        JSON.stringify(narrow));
+    }
+    t.check('no remote icon or font request was introduced',
+      assetRequests.length > 0 && assetRequests.every((url) => new URL(url).origin === page.__origin),
+      JSON.stringify(assetRequests));
+    if (process.env.MRT_ICON_EVIDENCE && !page.__mutation) {
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => {
+        document.documentElement.style.zoom = '1';
+        const gallery = document.createElement('div');
+        gallery.id = 'portable-icon-evidence';
+        Object.assign(gallery.style, {
+          position: 'fixed', inset: '0', zIndex: '9999', background: 'var(--bg)',
+          color: 'var(--text)', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '24px', padding: '32px',
+        });
+        const symbols = new Set();
+        document.querySelectorAll('.gi').forEach((icon) => {
+          const symbol = icon.querySelector('use').getAttribute('href');
+          if (symbols.has(symbol)) return;
+          symbols.add(symbol);
+          const cell = document.createElement('div');
+          const drawing = icon.cloneNode(true);
+          drawing.style.width = '48px';
+          drawing.style.height = '48px';
+          cell.append(drawing, document.createTextNode(` ${symbol.split('#')[1]}`));
+          gallery.append(cell);
+        });
+        document.body.append(gallery);
+      });
+      await page.screenshot({ path: process.env.MRT_ICON_EVIDENCE });
+    }
+    await client.detach();
+  },
+});
+
 async function open(page, path) {
   await page.goto(`${page.__origin}${path}`, { waitUntil: 'load' });
 }

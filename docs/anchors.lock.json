@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3919-3930|0": {
-    "anchor": "CHANGELOG.md:3919-3930",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3924-3935|0": {
+    "anchor": "CHANGELOG.md:3924-3935",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3932-3942|0": {
-    "anchor": "CHANGELOG.md:3932-3942",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3937-3947|0": {
+    "anchor": "CHANGELOG.md:3937-3947",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2056,17 +2056,17 @@
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:407-440|0": {
     "anchor": "src/index.html:407-440",
-    "fp": "c739d03d04000a3b",
+    "fp": "fd069560bcd47f29",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:47-92|0": {
     "anchor": "src/index.html:47-92",
-    "fp": "5371d8b78b1307a0",
+    "fp": "40b8e4c7235d6233",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/index.html:47-92|1": {
     "anchor": "src/index.html:47-92",
-    "fp": "5371d8b78b1307a0",
+    "fp": "40b8e4c7235d6233",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
   "docs/UX_STUDY.md|information-architecture-review|src/js/lib/route.js:20-31|0": {
@@ -2161,7 +2161,7 @@
   },
   "docs/UX_STUDY.md|step-1-heuristic-evaluation#10|src/index.html:47-92|0": {
     "anchor": "src/index.html:47-92",
-    "fp": "5371d8b78b1307a0",
+    "fp": "40b8e4c7235d6233",
     "head": "<nav id=\"sidebar-nav\" aria-label=\"Main\">"
   },
   "docs/UX_STUDY.md|step-1-heuristic-evaluation#2|src/js/views/reading.js:31-36|0": {
@@ -2456,7 +2456,7 @@
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:407-440|0": {
     "anchor": "src/index.html:407-440",
-    "fp": "c739d03d04000a3b",
+    "fp": "fd069560bcd47f29",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
   "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:692|0": {

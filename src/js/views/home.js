@@ -1,7 +1,17 @@
+import { uiIcon } from '../lib/uiIcon.js';
+
 const CONTINUE_NO_LIST = 'Continue reading';
+const CATEGORY_ICONS = {
+  E736: 'guide',
+  E8FD: 'storylines',
+  E77B: 'person',
+  E714: 'screen',
+  E8F1: 'books',
+};
 
 export function createHomeView({
   categoriesForCatalog,
+  createIcon = uiIcon,
   clearCatalogNotice,
   el,
   elements,
@@ -143,7 +153,6 @@ export function createHomeView({
   }
 
   function categoryTile(category) {
-    const glyph = String.fromCodePoint(Number.parseInt(category.icon, 16));
     const count = `${category.count} ${category.count === 1
       ? (category.singular ?? 'Reading List')
       : (category.plural ?? 'Reading Lists')}`;
@@ -154,21 +163,13 @@ export function createHomeView({
       dataset: { category: category.key },
       onclick: () => onNavigateCategory(category),
     }, [
-      el('span', {
-        class: 'gi home-path-icon',
-        'aria-hidden': 'true',
-        text: glyph,
-      }),
+      createIcon(CATEGORY_ICONS[category.icon], 'gi home-path-icon'),
       el('span', { class: 'home-path-copy' }, [
         el('span', { class: 'eyebrow home-path-label', text: category.label }),
         el('span', { class: 'home-path-title', text: category.heading }),
         el('span', { class: 'home-path-count', text: count }),
       ]),
-      el('span', {
-        class: 'gi home-path-arrow',
-        'aria-hidden': 'true',
-        text: String.fromCodePoint(0xE72A),
-      }),
+      createIcon('arrow-right', 'gi home-path-arrow'),
     ]));
   }
 

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <symbol id="menu" viewBox="0 0 24 24">
+    <path d="M4 6h16M4 12h16M4 18h16"/>
+  </symbol>
+  <symbol id="books" viewBox="0 0 24 24">
+    <path d="M3 4h5v16H3zM8 4h5v16H8zM15 5l4-1 3 15-4 1zM4 16h3M9 16h3"/>
+  </symbol>
+  <symbol id="search" viewBox="0 0 24 24">
+    <circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>
+  </symbol>
+  <symbol id="add" viewBox="0 0 24 24">
+    <path d="M12 4v16M4 12h16"/>
+  </symbol>
+  <symbol id="settings" viewBox="0 0 24 24">
+    <path d="M4 6h3m4 0h9M4 12h9m4 0h3M4 18h3m4 0h9"/>
+    <circle cx="9" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="9" cy="18" r="2"/>
+  </symbol>
+  <symbol id="info" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v.1"/>
+  </symbol>
+  <symbol id="check" viewBox="0 0 24 24">
+    <path d="m4 12 5 5L20 6"/>
+  </symbol>
+  <symbol id="progress" viewBox="0 0 24 24">
+    <path d="M4 20V10h4v10M10 20V6h4v14M16 20V3h4v17M3 20h18"/>
+  </symbol>
+  <symbol id="edit" viewBox="0 0 24 24">
+    <path d="m4 15 11-11 5 5L9 20l-6 1zM13 6l5 5M4 15l5 5"/>
+  </symbol>
+  <symbol id="person" viewBox="0 0 24 24">
+    <circle cx="12" cy="7" r="4"/><path d="M4 21v-3a8 5 0 0 1 16 0v3"/>
+  </symbol>
+  <symbol id="paste" viewBox="0 0 24 24">
+    <path d="M8 5H5v16h14V5h-3M8 3h8v4H8zM8 12h8M8 16h6"/>
+  </symbol>
+  <symbol id="issue-add" viewBox="0 0 24 24">
+    <path d="M13 21H4V3h10l5 5v4M14 3v5h5M18 14v8M14 18h8"/>
+  </symbol>
+  <symbol id="characters" viewBox="0 0 24 24">
+    <circle cx="9" cy="7" r="3"/><path d="M2 21v-4a7 4 0 0 1 14 0v4M16 4a3 3 0 0 1 0 6M19 13a4 4 0 0 1 3 4v4"/>
+  </symbol>
+  <symbol id="guide" viewBox="0 0 24 24">
+    <path d="M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1v15"/>
+  </symbol>
+  <symbol id="storylines" viewBox="0 0 24 24">
+    <path d="M8 3v18M16 3v18M3 8h18M3 16h18"/>
+  </symbol>
+  <symbol id="screen" viewBox="0 0 24 24">
+    <path d="M3 4h18v13H3zM8 21h8M12 17v4M10 7l5 3-5 3z"/>
+  </symbol>
+  <symbol id="arrow-right" viewBox="0 0 24 24">
+    <path d="M4 12h16m-7-7 7 7-7 7"/>
+  </symbol>
+</svg>

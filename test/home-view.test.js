@@ -131,7 +131,7 @@ function harness({
       key: 'timeline',
       route: 'catalog',
       tier: 'primary',
-      icon: 'E8A5',
+      icon: 'E736',
       heading: 'Modern Timeline',
       label: 'Browse by year',
       count: 2,
@@ -155,6 +155,9 @@ function harness({
   };
   const view = createHomeView({
     categoriesForCatalog: () => categories,
+    createIcon: (name, className) => node({
+      class: className, 'aria-hidden': 'true', focusable: 'false', symbol: name,
+    }),
     clearCatalogNotice: () => {},
     el: element,
     elements: () => ({
