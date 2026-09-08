@@ -242,6 +242,7 @@ function harness(overrides = {}) {
     ringLabel: node({ id: 'ring-label' }),
     ringSub: node({ id: 'ring-sub' }),
     hero: node({ id: 'hero' }),
+    readingEmpty: node({ id: 'reading-empty', hidden: true }),
     allRead: node({ id: 'all-read', hidden: true }),
     shelfSec: node({ id: 'shelf-sec' }),
     shelfNote: node({ id: 'shelf-note' }),
@@ -307,6 +308,7 @@ function harness(overrides = {}) {
     ['#ring-label', nodes.ringLabel],
     ['#ring-sub', nodes.ringSub],
     ['#hero', nodes.hero],
+    ['#reading-empty', nodes.readingEmpty],
     ['#all-read', nodes.allRead],
     ['#shelf-sec', nodes.shelfSec],
     ['#shelf-note', nodes.shelfNote],
@@ -460,6 +462,66 @@ test('wire and render build reading controls and call launch inside the same ges
     h.nodes.btnCancelSynopsis.fire('click');
     assert.deepEqual(h.calls.hydrate, ['list-a', 'cancel']);
     assert.deepEqual(h.calls.synopsis, ['start', 'cancel']);
+  } finally {
+    h.restore();
+  }
+});
+
+test('441 Reading distinguishes empty, partial and completed lists without changing state', () => {
+  for (const phase of ['empty', 'partial', 'completed']) {
+    let state = createList(createEmptyState(), { id: 'empty-441', name: 'Empty 441' });
+    if (phase !== 'empty') {
+      state = addIssuesToList(state, 'empty-441', [issue(1, 'First'), issue(2, 'Second')]).state;
+      state = markRead(state, 1, true);
+      if (phase === 'completed') state = markRead(state, 2, true);
+    }
+    state = setActive(state, 'empty-441');
+    const before = structuredClone(state);
+    const h = harness({ state });
+    try {
+      h.view.render();
+      assert.equal(h.nodes.readingEmpty.hidden, phase !== 'empty', phase);
+      assert.equal(h.nodes.allRead.hidden, phase !== 'completed', phase);
+      assert.equal(h.nodes.hero.hidden, phase !== 'partial', phase);
+      assert.equal(h.nodes.heroTitle.textContent, phase === 'partial' ? 'Second' : 'Nothing up next');
+      assert.equal(h.nodes.ringSub.textContent, {
+        empty: 'Nothing in this list', partial: '1 of 2 read', completed: 'All read',
+      }[phase]);
+      assert.equal(h.nodes.fullCount.textContent, {
+        empty: 'No issues yet', partial: '1 unread', completed: 'All read',
+      }[phase]);
+      assert.deepEqual(structuredClone(h.state()), before, 'render must not add or mark issues');
+      assert.deepEqual(h.calls.launch, []);
+    } finally {
+      h.restore();
+    }
+  }
+});
+
+test('441 removing the last issue restores the empty state without deleting the list or progress', () => {
+  let state = createList(createEmptyState(), { id: 'last-441', name: 'Last 441' });
+  state = addIssuesToList(state, 'last-441', [issue(1, 'Last issue')]).state;
+  state = markRead(state, 1, true);
+  state = setActive(state, 'last-441');
+  const h = harness({ state });
+  try {
+    h.view.render();
+    assert.equal(h.nodes.allRead.hidden, false);
+    let remove;
+    walk(h.nodes.rows, (entry) => {
+      if (entry.dataset?.act === 'remove') remove = entry;
+    });
+    assert.ok(remove, 'the rendered row must expose a real removal action');
+    remove.fire('click');
+    const afterRemoval = structuredClone(h.state());
+    h.view.render();
+    assert.equal(h.nodes.readingEmpty.hidden, false);
+    assert.equal(h.nodes.allRead.hidden, true);
+    assert.equal(h.nodes.hero.hidden, true);
+    assert.equal(h.nodes.fullCount.textContent, 'No issues yet');
+    assert.deepEqual(h.state().lists['last-441'].itemIds, []);
+    assert.deepEqual(h.state().read, state.read, 'removal does not discard global reading progress');
+    assert.deepEqual(structuredClone(h.state()), afterRemoval, 'render is read-only after removal too');
   } finally {
     h.restore();
   }

@@ -110,7 +110,9 @@ export function createHomeView({
         labelledName(nodes.continueRead.textContent, `${issue.title} in Marvel Unlimited`),
       );
     } else {
-      nodes.continueNext.textContent = 'You have read every issue in this order.';
+      nodes.continueNext.textContent = total === 0
+        ? 'No issues in this Reading List yet. Open it to add comics.'
+        : 'You have read every issue in this order.';
       nodes.continueRead.hidden = true;
       paintCoverUrl(
         nodes.continueImage,
