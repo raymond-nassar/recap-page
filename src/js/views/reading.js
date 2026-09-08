@@ -439,12 +439,13 @@ export function createReadingView({
   function renderHero() {
     const id = activeListId();
     const issue = upNext(getState(), id);
-    const finished = !issue;
+    const empty = getState().lists[id]?.itemIds.length === 0;
 
-    $('#hero').hidden = finished;
-    $('#all-read').hidden = !finished;
-    $('#shelf-sec').hidden = finished;
-    if (finished) {
+    $('#hero').hidden = !issue;
+    $('#reading-empty').hidden = !empty;
+    $('#all-read').hidden = empty || !getState().lists[id] || !!issue;
+    $('#shelf-sec').hidden = !issue;
+    if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
       return;
     }
@@ -768,7 +769,7 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `Move ${item.title} up`,
+        'aria-label': labelledName('Move up', item.title),
         dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, -1)),
       }, [
@@ -778,7 +779,7 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `Move ${item.title} down`,
+        'aria-label': labelledName('Move down', item.title),
         dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, 1)),
       }, [
@@ -788,11 +789,11 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `${availabilityOverrideAction(item.override)} for ${item.title}`,
+        'aria-label': labelledName('Change Unlimited status', `${item.title}; ${availabilityOverrideAction(item.override)}`),
         dataset: {
           key: item.issueId,
           act: 'override',
-          tooltip: availabilityOverrideAction(item.override),
+          tooltip: labelledName('Change Unlimited status', availabilityOverrideAction(item.override)),
         },
         onclick: () => cycleOverride(item),
       }, [
@@ -802,8 +803,8 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini mini-danger has-tooltip',
-        'aria-label': `Remove ${item.title} from this list`,
-        dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from this list' },
+        'aria-label': labelledName('Remove from list', item.title),
+        dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from list' },
         onclick: () => {
           updateState((state) => removeFromList(state, listId, item.issueId));
           announceIfSaved(`Removed ${item.title}.`);
@@ -864,6 +865,7 @@ export function createReadingView({
         e.preventDefault();
         launch(issue, e);
       } else if (e.key === 'd' || e.key === 'D') {
+        if (getSettings().readingShortcut === false || e.repeat) return;
         e.preventDefault();
         markCurrentRead();
       }

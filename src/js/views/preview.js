@@ -96,6 +96,7 @@ export function createPreviewView({
       depthLabel(list.depth),
     ].filter(Boolean).join(' · ');
     nodes.description.textContent = list.description || '';
+    nodes.source.replaceChildren(...[presentation.attributionLine(list)].filter(Boolean));
     nodes.add.replaceChildren(addButton(list));
   }
 

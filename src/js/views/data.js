@@ -98,6 +98,7 @@ export function createDataView({
   onUndoRestore,
   onSetCovers,
   onSetTheme,
+  onSetReadingShortcut,
   onCheckLocalConnection,
   onApiBaseSubmit,
   onClearCache,
@@ -136,6 +137,7 @@ export function createDataView({
     nodes.apiBase.value = getApiBase();
     nodes.optCovers.addEventListener('change', (e) => onSetCovers(e.target.checked));
     nodes.optTheme.addEventListener('change', (e) => onSetTheme(e.target.value));
+    nodes.optReadingShortcut.addEventListener('change', (e) => onSetReadingShortcut(e.target.checked));
     nodes.btnCheckLocalConnection.addEventListener('click', () => {
       void onCheckLocalConnection();
     });

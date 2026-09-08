@@ -79,6 +79,19 @@ test('wire delegates cover toggle to onSetCovers', () => {
   assert.deepEqual(calls, [true]);
 });
 
+test('wire delegates both reading shortcut choices to onSetReadingShortcut', () => {
+  const calls = [];
+  const nodes = stubElements();
+  const view = createDataView(stubDeps({
+    elements: () => nodes,
+    onSetReadingShortcut: (on) => calls.push(on),
+  }));
+  view.wire();
+  nodes.optReadingShortcut._fire({ target: { checked: false } });
+  nodes.optReadingShortcut._fire({ target: { checked: true } });
+  assert.deepEqual(calls, [false, true]);
+});
+
 test('wire delegates erase confirmation to onErase via askConfirm', async () => {
   const calls = [];
   let confirmCalled = false;
@@ -192,6 +205,7 @@ function stubElements() {
     apiBase: stubNode(),
     optCovers: stubNode(),
     optTheme: stubNode(),
+    optReadingShortcut: stubNode(),
     btnCheckLocalConnection: stubNode(),
     btnExportJson: stubNode(),
     btnExportMd: stubNode(),
@@ -222,6 +236,7 @@ function stubDeps(overrides = {}) {
     onUndoRestore: () => ({ ok: true, errors: [] }),
     onSetCovers: () => {},
     onSetTheme: () => {},
+    onSetReadingShortcut: () => {},
     onCheckLocalConnection: () => {},
     onApiBaseSubmit: () => {},
     onClearCache: async () => {},
