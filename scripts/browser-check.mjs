@@ -1540,6 +1540,15 @@ const MUTATIONS = [
     ),
   },
   {
+    id: 'modern-timeline-position-foreign-refresh-off',
+    breaks: 'modern-timeline-position',
+    why: 'foreign progress is adopted but the retained timeline marker is never repainted',
+    rewriteCatalogView: (source) => source.replace(
+      'return paintTimelineContext(timelineContext, { announceChange: true }).changed;',
+      'return false;',
+    ),
+  },
+  {
     id: 'modern-timeline-position-semantics-off',
     breaks: 'modern-timeline-position',
     why: 'the visible current label and programmatic current-step state are removed together',
@@ -3924,7 +3933,15 @@ const SCENARIOS = [
         '900001',
       ));
       t.check('the sibling tab writes the earlier unread mark', peerUnread, String(peerUnread));
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      // Saved storage precedes the source tab's deferred refresh. Poll without relying on
+      // animation frames in the background tab, and keep the full snapshot on timeout.
+      const markerReady = await page.waitForFunction(() => document.querySelector(
+        '#catalog-results .catalog-card[aria-current="step"]',
+      )?.dataset.story === 'list:browser-check', { polling: 100, timeout: 15000 })
+        .then(() => true, (error) => {
+          if (error.name !== 'TimeoutError') throw error;
+          return false;
+        });
       const foreign = await page.evaluate((before) => ({
         story: document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
           ?.dataset.story ?? '',
@@ -3942,7 +3959,8 @@ const SCENARIOS = [
       }), beforeForeign);
       await peer.close();
       t.check('an earlier unread mark from another tab moves only the position state',
-        foreign.story === 'list:browser-check'
+        markerReady
+          && foreign.story === 'list:browser-check'
           && foreign.stateUnread
           && foreign.heldConnected
           && foreign.focus === 'catalog-q'
@@ -3950,7 +3968,7 @@ const SCENARIOS = [
           && foreign.scrollSame
           && foreign.cards === beforeForeign.cards
           && foreign.catalogRequests === beforeForeign.catalogRequests,
-        JSON.stringify({ beforeForeign, foreign }));
+        JSON.stringify({ beforeForeign, foreign, markerReady }));
 
       await page.$eval('#catalog-q', (input) => {
         input.value = 'Second Stop';

@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Waited for cross-tab timeline readiness in browser checks
+
+The cross-tab timeline check now waits for the updated marker instead of assuming a fixed delay is
+enough. It still rejects a missing update and preserves its focus, scroll, retained-card and request
+checks. App behavior and saved reading data are unchanged.
+
 ### Undo the most recent issue removal
 
 Removing an issue now offers **Undo remove** and **Dismiss**, with no countdown. Undo restores
