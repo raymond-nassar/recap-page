@@ -864,6 +864,7 @@ export function createReadingView({
         e.preventDefault();
         launch(issue, e);
       } else if (e.key === 'd' || e.key === 'D') {
+        if (getSettings().readingShortcut === false || e.repeat) return;
         e.preventDefault();
         markCurrentRead();
       }

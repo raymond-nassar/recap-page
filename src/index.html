@@ -776,6 +776,16 @@
             <section class="setgroup">
               <h2>Personalization</h2>
               <div class="card card-static setting">
+                <h3>Reading shortcut</h3>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-reading-shortcut" aria-describedby="reading-shortcut-help" /> Enable D to mark read and move next</label>
+                <p id="reading-shortcut-help" class="rail-hint setting-desc">
+                  Turn this off to avoid marking an issue read by pressing D. Done, next still works.
+                  Your choice is kept in this browser, separately from reading progress and backups.
+                </p>
+                <div id="reading-shortcut-report" class="results"></div>
+              </div>
+
+              <div class="card card-static setting">
                 <h3>Cover art</h3>
                 <label class="checkbox setting-ctl"><input type="checkbox" id="opt-covers" /> Show cover art</label>
                 <details class="setting-more">
@@ -914,7 +924,7 @@
               <table class="keys">
                 <tbody>
                   <tr><th scope="row"><kbd>↵</kbd></th><td>Open the current issue in Marvel Unlimited</td></tr>
-                  <tr><th scope="row"><kbd>D</kbd></th><td>Mark it read and move to the next one</td></tr>
+                  <tr><th scope="row"><kbd>D</kbd></th><td id="reading-shortcut-description">Mark it read and move to the next one. Turn off in Backup &amp; settings.</td></tr>
                   <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the desktop sidebar, or show and hide Navigation on narrow screens</td></tr>
                 </tbody>
               </table>
