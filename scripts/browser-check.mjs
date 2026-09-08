@@ -7636,7 +7636,12 @@ const SCENARIOS = [
         localStorage.setItem('mrt.state.v2', JSON.stringify(state));
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
       }, fixture);
+      await page.reload({ waitUntil: 'load' });
       await open(page, '/#/read/fixture');
+      await page.waitForSelector(
+        `#view-read:not([hidden]) #btn-hero-inspect[data-context-id="fixture"][data-issue-id="${fixture.lists.fixture.itemIds[0]}"]`,
+        { visible: true, timeout: 15000 },
+      );
       const count = async () => Object.keys((await readState(page)).read).length;
       const presentation = () => page.evaluate(() => {
         const done = document.querySelector('#btn-hero-done');
@@ -8412,7 +8417,9 @@ const SCENARIOS = [
         && short.source.includes('Essential fixture source')
         && short.selected === 'browser-check-three-short' && short.add === short.selected,
         JSON.stringify({ complete, short }));
-      await page.focus('#preview .preview-issue-link');
+      const shortIssue = '#preview[open] .preview-issue-link[data-context-id="browser-check-three-short"]';
+      await page.waitForSelector(shortIssue, { visible: true, timeout: 15000 });
+      await page.focus(shortIssue);
       await page.keyboard.press('Enter');
       await page.waitForSelector('#view-issue:not([hidden])');
       await page.evaluate(() => history.back());
@@ -8443,6 +8450,8 @@ const SCENARIOS = [
       library.listOrder = ['sibling', 'exact'];
       library.active = 'sibling';
       library.read = { [saved.itemIds[0]]: 1 };
+      library.notes = { [saved.itemIds[1]]: 'Keep this saved issue note' };
+      library.overrides = { [saved.itemIds[2]]: 'unavailable' };
       const adopt = async (state) => page.evaluate((next) => {
         const oldValue = localStorage.getItem('mrt.state.v2');
         const newValue = JSON.stringify(next);
@@ -8473,9 +8482,22 @@ const SCENARIOS = [
       await page.focus(last);
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => location.hash.startsWith('#/read/exact'));
+      const exact = await readState(page);
+      const exactView = await page.evaluate(() => ({
+        visible: !document.querySelector('#view-read').hidden,
+        name: document.querySelector('#order-name').textContent,
+        next: document.querySelector('#hero-title').textContent,
+        context: document.querySelector('#btn-hero-inspect').dataset.contextId,
+        issue: document.querySelector('#btn-hero-inspect').dataset.issueId,
+      }));
+      const beforeSelection = JSON.parse(beforeRefusedSelection);
       t.check('an owned stop opens the exact saved list whose progress it shows',
-        (await readState(page)).active === 'exact'
-        && await page.$eval('#hero-title', (node) => node.textContent) === 'Saved short version');
+        exact.active === 'exact' && exactView.visible && exactView.name === 'Saved short version'
+        && exactView.context === 'exact' && exactView.issue === String(saved.itemIds[1])
+        && exactView.next === library.issues[saved.itemIds[1]].title
+        && ['lists', 'listOrder', 'issues', 'read', 'notes', 'overrides'].every((key) => (
+          JSON.stringify(exact[key]) === JSON.stringify(beforeSelection[key])
+        )), JSON.stringify(exactView));
       await page.evaluate(() => history.back());
       await page.waitForFunction((selector) => location.hash === '#/reading-paths?path=bc-path'
         && document.activeElement === document.querySelector(selector), {}, last);
@@ -10186,6 +10208,8 @@ const SCENARIOS = [
       ];
       const nextActions = ['Mark as available', 'Mark as unavailable', 'Clear availability override', 'Mark as available'];
       const normalize = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+      // The observed round trip changed only these write stamps, not any saved user content.
+      const userState = ({ writeToken: _token, exportedAt: _stamp, ...content }) => content;
       const first = ORDER.items[0];
       const second = ORDER.items[1];
       for (const width of [1280, 320]) {
@@ -10193,14 +10217,21 @@ const SCENARIOS = [
         for (const { mu, badge } of metadata) {
           const saved = fixtureReadingState();
           saved.issues[first.issueId].mu = mu;
+          saved.read[second.issueId] = 1234;
+          saved.notes[second.issueId] = 'Keep this issue note';
+          saved.overrides[second.issueId] = 'unavailable';
+          saved.lists.fixture.note = 'Keep this list note';
           await open(page, '/');
           await page.evaluate((state) => {
             localStorage.setItem('mrt.state.v2', JSON.stringify(state));
           }, saved);
-          await page.reload({ waitUntil: 'load' });
-          await open(page, '/#/read/fixture?full=1');
-          await page.waitForSelector('#rows .row', { timeout: 15000 });
-          const before = await readState(page);
+          // The catalog query forces a new document, not another route in the outgoing app.
+          await open(page, '/?catalog=browser-check#/read/fixture?full=1');
+          await page.waitForFunction((ids) => !document.querySelector('#view-read').hidden
+            && document.querySelector('#full').open
+            && [...document.querySelectorAll('#rows .row .cb')].map((button) => Number(button.dataset.key)).join(',') === ids.join(','),
+          { timeout: 15000 }, saved.lists.fixture.itemIds);
+          const before = userState(await readState(page));
           for (let step = 0; step < nextActions.length; step += 1) {
             const scope = `${width}px ${badge} step ${step}`;
             const row = '#rows .row:first-of-type';
@@ -10217,22 +10248,27 @@ const SCENARIOS = [
               const computed = await page.accessibility.snapshot({ root: button, interestingOnly: false });
               const rendered = await button.evaluate((element) => {
                 const label = element.querySelector('.mini-label');
+                const icon = element.querySelector('.mini-icon');
                 return {
                   label: label.textContent.trim(),
                   labelVisible: getComputedStyle(label).display !== 'none' && label.getClientRects().length > 0,
-                  iconDecorative: element.querySelector('.mini-icon').getAttribute('aria-hidden') === 'true',
+                  iconDecorative: icon.getAttribute('aria-hidden') === 'true',
+                  iconFocusable: icon.tabIndex >= 0,
+                  glyph: icon.textContent,
                   tooltip: element.dataset.tooltip,
                   tooltipContent: getComputedStyle(element, '::after').content,
                   hasTooltip: element.classList.contains('has-tooltip'),
                 };
               });
               const name = computed?.name ?? '';
+              const exposesGlyph = (node) => node?.name === rendered.glyph || node?.children?.some(exposesGlyph);
               t.check(`${scope}: ${phrase} keeps its intact label and issue identity in the computed name`,
                 computed?.role === 'button' && rendered.label === phrase
                 && normalize(name).includes(normalize(rendered.label)) && name.includes(first.title),
                 JSON.stringify({ name, ...rendered }));
               t.check(`${scope}: ${phrase} has the intended text or icon presentation and meaningful tooltip`,
-                rendered.labelVisible === (width === 320) && rendered.iconDecorative
+                rendered.labelVisible === (width === 320) && rendered.iconDecorative && !rendered.iconFocusable
+                && !exposesGlyph(computed)
                 && rendered.hasTooltip && rendered.tooltip.includes(phrase) && rendered.tooltipContent.includes(phrase),
                 JSON.stringify(rendered));
               if (act === 'override') {
@@ -10243,8 +10279,9 @@ const SCENARIOS = [
             }
             if (step < nextActions.length - 1) await click(page, `${row} [data-act="override"]`);
           }
+          const after = userState(await readState(page));
           t.check(`${width}px ${badge}: cycling back to the metadata state preserves the saved list and progress`,
-            JSON.stringify(await readState(page)) === JSON.stringify(before));
+            JSON.stringify(after) === JSON.stringify(before), JSON.stringify({ before, after }));
           if (width === 320) await click(page, `#rows [data-key="${second.issueId}"][data-act="more"]`);
           const other = await page.$(`#rows [data-key="${second.issueId}"][data-act="up"]`);
           const otherName = (await page.accessibility.snapshot({ root: other, interestingOnly: false }))?.name ?? '';
@@ -10431,7 +10468,12 @@ SCENARIOS.push({
               && await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'false'),
             JSON.stringify(returned));
           await page.keyboard.press('Enter');
-          await page.keyboard.press('Shift+Tab');
+          await page.keyboard.down('Shift');
+          try {
+            await page.keyboard.press('Tab');
+          } finally {
+            await page.keyboard.up('Shift');
+          }
           t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
             await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
               && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));

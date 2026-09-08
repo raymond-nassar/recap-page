@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Restored the local regression baseline
+
+Reading List action icons are now explicitly decorative without changing their labels or behavior.
+Maintainer checks accept Windows checklist line endings and reliably exercise Reading shortcuts,
+saved Reading Path stops, availability round trips and reverse-Tab focus. Saved reading data is unchanged.
+
 ### Kept narrow Reading List rows and actions usable
 
 Narrow Reading Lists give titles and metadata their own space, and expanded row actions now

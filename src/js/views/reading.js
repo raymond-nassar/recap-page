@@ -773,7 +773,7 @@ export function createReadingView({
         dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, -1)),
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↑' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↑' }),
         el('span', { class: 'mini-label', text: 'Move up' }),
       ]),
       el('button', {
@@ -783,7 +783,7 @@ export function createReadingView({
         dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, 1)),
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↓' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↓' }),
         el('span', { class: 'mini-label', text: 'Move down' }),
       ]),
       el('button', {
@@ -797,7 +797,7 @@ export function createReadingView({
         },
         onclick: () => cycleOverride(item),
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '⚑' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '⚑' }),
         el('span', { class: 'mini-label', text: 'Change Unlimited status' }),
       ]),
       el('button', {
@@ -810,7 +810,7 @@ export function createReadingView({
           announceIfSaved(`Removed ${item.title}.`);
         },
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '✕' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '✕' }),
         el('span', { class: 'mini-label', text: 'Remove from list' }),
       ]),
     ]);
