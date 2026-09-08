@@ -768,7 +768,7 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `Move ${item.title} up`,
+        'aria-label': labelledName('Move up', item.title),
         dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, -1)),
       }, [
@@ -778,7 +778,7 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `Move ${item.title} down`,
+        'aria-label': labelledName('Move down', item.title),
         dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, 1)),
       }, [
@@ -788,11 +788,11 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `${availabilityOverrideAction(item.override)} for ${item.title}`,
+        'aria-label': labelledName('Change Unlimited status', `${item.title}; ${availabilityOverrideAction(item.override)}`),
         dataset: {
           key: item.issueId,
           act: 'override',
-          tooltip: availabilityOverrideAction(item.override),
+          tooltip: labelledName('Change Unlimited status', availabilityOverrideAction(item.override)),
         },
         onclick: () => cycleOverride(item),
       }, [
@@ -802,8 +802,8 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini mini-danger has-tooltip',
-        'aria-label': `Remove ${item.title} from this list`,
-        dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from this list' },
+        'aria-label': labelledName('Remove from list', item.title),
+        dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from list' },
         onclick: () => {
           updateState((state) => removeFromList(state, listId, item.issueId));
           announceIfSaved(`Removed ${item.title}.`);

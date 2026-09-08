@@ -97,7 +97,7 @@ test('icon-only controls expose their meaning on hover and keyboard focus', () =
     'Open issue page on marvel.com',
     'Move up',
     'Move down',
-    'Remove from this list',
+    'Remove from list',
   ]) {
     assert.ok(reading.includes(`tooltip: '${tooltip}'`), `the row controls are missing the ${tooltip} tooltip`);
   }

@@ -9720,6 +9720,92 @@ const SCENARIOS = [
       }
     },
   },
+  {
+    id: 'issue-action-names',
+    title: 'issue action names contain their labels and track every availability override',
+    async run(page, t) {
+      const actions = [
+        ['up', 'Move up'],
+        ['down', 'Move down'],
+        ['override', 'Change Unlimited status'],
+        ['remove', 'Remove from list'],
+      ];
+      const metadata = [
+        { mu: null, badge: 'unknown' },
+        { mu: '2999-01-01', badge: 'scheduled' },
+        { mu: '2000-01-01', badge: 'expected' },
+      ];
+      const nextActions = ['Mark as available', 'Mark as unavailable', 'Clear availability override', 'Mark as available'];
+      const normalize = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+      const first = ORDER.items[0];
+      const second = ORDER.items[1];
+      for (const width of [1280, 320]) {
+        await page.setViewport({ width, height: 900 });
+        for (const { mu, badge } of metadata) {
+          const saved = fixtureReadingState();
+          saved.issues[first.issueId].mu = mu;
+          await open(page, '/');
+          await page.evaluate((state) => {
+            localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+          }, saved);
+          await page.reload({ waitUntil: 'load' });
+          await open(page, '/#/read/fixture?full=1');
+          await page.waitForSelector('#rows .row', { timeout: 15000 });
+          const before = await readState(page);
+          for (let step = 0; step < nextActions.length; step += 1) {
+            const scope = `${width}px ${badge} step ${step}`;
+            const row = '#rows .row:first-of-type';
+            const expectedBadge = step === 1 ? 'override-available' : step === 2 ? 'override-unavailable' : badge;
+            await page.waitForSelector(`${row} .badge-${expectedBadge}`, { timeout: 15000 });
+            if (width === 320) {
+              await click(page, `${row} [data-act="more"]`);
+              t.check(`${scope}: the first-row menu is open`,
+                await page.$eval(`${row} [data-act="more"]`, (button) => button.getAttribute('aria-expanded') === 'true'));
+            }
+            await page.$eval(row, (element) => element.scrollIntoView({ block: 'start' }));
+            for (const [act, phrase] of step === 0 ? actions : [actions[2]]) {
+              const button = await page.$(`${row} [data-act="${act}"]`);
+              const computed = await page.accessibility.snapshot({ root: button, interestingOnly: false });
+              const rendered = await button.evaluate((element) => {
+                const label = element.querySelector('.mini-label');
+                return {
+                  label: label.textContent.trim(),
+                  labelVisible: getComputedStyle(label).display !== 'none' && label.getClientRects().length > 0,
+                  iconDecorative: element.querySelector('.mini-icon').getAttribute('aria-hidden') === 'true',
+                  tooltip: element.dataset.tooltip,
+                  tooltipContent: getComputedStyle(element, '::after').content,
+                  hasTooltip: element.classList.contains('has-tooltip'),
+                };
+              });
+              const name = computed?.name ?? '';
+              t.check(`${scope}: ${phrase} keeps its intact label and issue identity in the computed name`,
+                computed?.role === 'button' && rendered.label === phrase
+                && normalize(name).includes(normalize(rendered.label)) && name.includes(first.title),
+                JSON.stringify({ name, ...rendered }));
+              t.check(`${scope}: ${phrase} has the intended text or icon presentation and meaningful tooltip`,
+                rendered.labelVisible === (width === 320) && rendered.iconDecorative
+                && rendered.hasTooltip && rendered.tooltip.includes(phrase) && rendered.tooltipContent.includes(phrase),
+                JSON.stringify(rendered));
+              if (act === 'override') {
+                t.check(`${scope}: the name and tooltip describe the next override action`,
+                  name.endsWith(nextActions[step]) && rendered.tooltip.endsWith(nextActions[step]),
+                  `${name} / ${rendered.tooltip}`);
+              }
+            }
+            if (step < nextActions.length - 1) await click(page, `${row} [data-act="override"]`);
+          }
+          t.check(`${width}px ${badge}: cycling back to the metadata state preserves the saved list and progress`,
+            JSON.stringify(await readState(page)) === JSON.stringify(before));
+          if (width === 320) await click(page, `#rows [data-key="${second.issueId}"][data-act="more"]`);
+          const other = await page.$(`#rows [data-key="${second.issueId}"][data-act="up"]`);
+          const otherName = (await page.accessibility.snapshot({ root: other, interestingOnly: false }))?.name ?? '';
+          t.check(`${width}px ${badge}: repeated Move up controls distinguish issue identities`,
+            otherName.includes('Move up') && otherName.includes(second.title) && !otherName.includes(first.title),
+            otherName);
+        }
+      }
+    },
+  },
 ];
 
 MUTATIONS.push(
@@ -10512,7 +10598,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility', 'issue-action-names'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);
