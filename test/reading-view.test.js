@@ -12,7 +12,9 @@ import {
   setActive,
   setIssueNote,
   setListNote,
+  renameList, moveItem, removeFromList, setOverride, upsertIssue, exportBackup,
 } from '../src/js/lib/model.js';
+import { Store, KEY } from '../src/js/storage.js';
 import { DEFAULT_FILTER, READING_FILTERS } from '../src/js/lib/readingFilters.js';
 import {
   createReadingView,
@@ -55,6 +57,7 @@ function queryAll(root, selector) {
     if (selector === '#reading-filters' && node.id === 'reading-filters') found.push(node);
     if (selector === '.order-strip' && node.className.split(/\s+/).includes('order-strip')) found.push(node);
     if (selector === 'input[name="filter"]' && node.tag === 'input' && node.name === 'filter') found.push(node);
+    if (selector === '[data-act="read"]' && node.dataset?.act === 'read') found.push(node);
   });
   return found;
 }
@@ -106,6 +109,8 @@ function node(props = {}, children = []) {
       this.focused = options ?? true;
     },
     getAttribute(name) { return this.attributes[name]; },
+    getClientRects() { return this.hidden ? [] : [{}]; },
+    scrollIntoView(options) { this.scrolled = options; },
     insertBefore(next, ref) {
       const child = attach(this, next);
       const existing = this.childNodes.indexOf(child);
@@ -208,13 +213,16 @@ function installDate(isoText) {
 }
 
 function harness(overrides = {}) {
-  let state = overrides.state ?? seededState();
+  const readerStore = overrides.store;
+  let state = readerStore?.state ?? overrides.state ?? seededState();
   const settings = overrides.settings ?? { covers: true, filter: DEFAULT_FILTER };
   const calls = {
     announce: [],
     announceIfSaved: [],
     announceState: [],
     clearNotice: [],
+    focusCurrentView: 0,
+    storeChanges: [],
     hydrate: [],
     issueFocus: [],
     launch: [],
@@ -227,6 +235,7 @@ function harness(overrides = {}) {
     synopsis: [],
   };
   let writeFailures = 0;
+  const notices = new Map();
   const nodes = {
     readingFilters: node({ id: 'reading-filters', tag: 'fieldset' }),
     saveEducationSettings: node({ id: 'save-education-settings', tag: 'button' }),
@@ -352,16 +361,18 @@ function harness(overrides = {}) {
     askConfirm: overrides.askConfirm ?? (async () => true),
     askNote: overrides.askNote ?? (async () => null),
     askText: overrides.askText ?? (async () => null),
-    clearNotice: (key) => calls.clearNotice.push(key),
+    clearNotice: (key) => { calls.clearNotice.push(key); notices.delete(key); },
     detailUrl: (item) => item.url ?? `https://example.test/${item.issueId}`,
     el: element,
     fact: (key, value, className) => ({ key, value, className }),
+    focusCurrentView: () => { calls.focusCurrentView += 1; nodes.orderName.focus(); },
     getSettings: () => settings,
     getState: () => state,
     getSynopsis: overrides.getSynopsis ?? (() => null),
     hydrationAnnouncement: (status) => ({ state: status?.phase ?? 'idle', msg: status?.phase ?? null }),
     isCurrent: overrides.isCurrent ?? (() => true),
     isHydrationActive: overrides.isHydrationActive ?? (() => false),
+    isStateBlocked: () => readerStore?.blocked ?? false,
     isSynopsisActive: overrides.isSynopsisActive ?? (() => false),
     issueFocusAnchor: (item, options) => element('a', {
       class: options.className,
@@ -375,7 +386,9 @@ function harness(overrides = {}) {
     launch: (...args) => calls.launch.push(args),
     noSynopsisMarker: Symbol('no-synopsis'),
     notify: (selector, msg, kind, key, action, dismiss) => {
-      calls.notify.push({ selector, msg, kind, key, action, dismiss });
+      const notice = { selector, msg, kind, key, action, dismiss };
+      calls.notify.push(notice);
+      notices.set(key, notice);
     },
     onCancelHydrate: () => calls.hydrate.push('cancel'),
     onCancelSynopsis: () => calls.synopsis.push('cancel'),
@@ -396,6 +409,10 @@ function harness(overrides = {}) {
     synopsisAnnouncement: (status) => ({ state: status?.phase ?? 'idle', msg: status?.phase ?? null }),
     synopsisStatusLine: (status) => status ? `${status.phase}:${status.done ?? 0}/${status.total ?? 0}` : '',
     updateState: (updater) => {
+      if (readerStore) {
+        const next = readerStore.update(updater);
+        return { ok: readerStore.lastUpdateOk, state: next };
+      }
       if (writeFailures > 0) {
         writeFailures -= 1;
         return { ok: false, state };
@@ -408,9 +425,17 @@ function harness(overrides = {}) {
   });
 
   globalThis.document = documentStub;
+  if (readerStore) {
+    readerStore.onChange = (next, error) => {
+      state = next;
+      view.render();
+      calls.storeChanges.push({ error, offered: notices.has('undo-remove'), blocked: readerStore.blocked });
+    };
+  }
   return {
     calls,
     nodes,
+    notices,
     settings,
     setActive(listId) { state = setActive(state, listId); },
     setWriteFailures(count) { writeFailures = count; },
@@ -787,4 +812,321 @@ test('main constructs Reading once and delegates reading-owned work through the 
   ]) {
     assert.match(main, pattern);
   }
+});
+
+function removalHarness(overrides = {}) {
+  const storage = {
+    map: new Map([[KEY, JSON.stringify(exportBackup(overrides.state ?? seededState()))]]),
+    writes: [],
+    failWrites: 0,
+    failKey: null,
+    restoreMode: null,
+    unreadable: false,
+    thirdParty: null,
+    getItem(key) {
+      if (key === KEY && this.unreadable) throw new Error('Unknown saved state');
+      return this.map.get(key) ?? null;
+    },
+    setItem(key, value) {
+      this.writes.push(key);
+      if (key === this.failKey || (key === KEY && this.failWrites > 0)) {
+        if (key === KEY) this.failWrites -= 1;
+        throw new DOMException('Refused fixture write', 'QuotaExceededError');
+      }
+      if (key === KEY && this.restoreMode === 'unchanged') return;
+      this.map.set(key, key === KEY && this.restoreMode === 'third-party' ? this.thirdParty : String(value));
+      if (key === KEY && this.restoreMode === 'unknown') this.unreadable = true;
+    },
+    removeItem(key) { this.map.delete(key); },
+  };
+  const store = new Store({ storage });
+  store.load();
+  const h = harness({ ...overrides, store });
+  h.view.wire();
+  h.view.render();
+  return { ...h, store, storage };
+}
+
+function removalAction(h, issueId) {
+  let found;
+  walk(h.nodes.rows, (entry) => {
+    if (entry.dataset?.act === 'remove' && Number(entry.dataset.key) === issueId) found = entry;
+  });
+  assert.ok(found, `Remove control for ${issueId} exists`);
+  return found;
+}
+
+function removalOffer(h) {
+  const notice = h.notices.get('undo-remove');
+  assert.ok(notice?.action, 'the saved removal offers an actionable Undo');
+  assert.equal(notice.dismiss.label, 'Dismiss');
+  return notice;
+}
+
+test('444 removal Undo survives synchronous Store repaint without replaying later metadata or progress', () => {
+  const h = removalHarness();
+  try {
+    removalAction(h, 2).fire('click');
+    const offer = removalOffer(h);
+    assert.equal(offer.action.label, 'Undo remove');
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 3]);
+    assert.equal(h.state().lists['list-a'].collectedIn[2], undefined);
+    assert.match(offer.msg, /Reading progress was kept/);
+    assert.equal(h.calls.storeChanges.length, 1, 'actual Store synchronously repainted before offering Undo');
+
+    h.store.update((state) => {
+      let next = upsertIssue(state, { issueId: 2, title: 'Later metadata', hydrated: true });
+      next = markRead(next, 2, true, 444);
+      next = setOverride(next, 2, 'unavailable');
+      next = setIssueNote(next, 2, 'Later issue note');
+      next = renameList(next, 'list-a', 'Renamed', 'Later description');
+      next = setListNote(next, 'list-a', 'Later list note');
+      return setActive(next, 'list-b');
+    });
+    const current = h.state();
+    assert.equal(removalOffer(h), offer, 'independent and list-metadata changes retain the same offer');
+    offer.action.onClick();
+    const restored = h.state();
+    assert.deepEqual(restored.lists['list-a'].itemIds, [1, 2, 3]);
+    assert.equal(restored.lists['list-a'].collectedIn[2], 'Trade One');
+    assert.equal(restored.lists['list-a'].name, 'Renamed');
+    assert.equal(restored.lists['list-a'].note, 'Later list note');
+    for (const key of ['issues', 'read', 'notes', 'overrides', 'listOrder', 'active']) {
+      assert.equal(restored[key], current[key], key);
+    }
+    assert.equal(restored.lists['list-b'], current.lists['list-b']);
+    assert.equal(h.notices.has('undo-remove'), false);
+    assert.match(h.calls.announce.at(-1), /back in Renamed, in its original position/);
+    assert.equal(h.calls.storeChanges.at(-1).offered, false, 'success consumed the record during repaint');
+    assert.deepEqual(JSON.parse(h.storage.getItem(KEY)).lists['list-a'].itemIds, [1, 2, 3]);
+  } finally { h.restore(); }
+});
+
+test('444 latest removal binds Undo and Dismiss to their own record across different active lists', () => {
+  const h = removalHarness();
+  try {
+    removalAction(h, 2).fire('click');
+    const older = removalOffer(h);
+    h.store.update((state) => setActive(state, 'list-b'));
+    removalAction(h, 4).fire('click');
+    const latest = removalOffer(h);
+    const raw = h.storage.getItem(KEY);
+    older.action.onClick();
+    older.dismiss.onClick();
+    assert.equal(h.storage.getItem(KEY), raw, 'stale controls cannot write or spend the newer record');
+    assert.equal(removalOffer(h), latest);
+    latest.action.onClick();
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 3]);
+    assert.deepEqual(h.state().lists['list-b'].itemIds, [4, 5]);
+    assert.equal(h.state().active, 'list-b');
+    const restored = h.storage.getItem(KEY);
+    latest.action.onClick();
+    older.action.onClick();
+    assert.equal(h.storage.getItem(KEY), restored, 'repeated controls cannot duplicate either issue');
+  } finally { h.restore(); }
+});
+
+test('444 failed removal and stale row no-op preserve an earlier valid offer without announcing success', () => {
+  const h = removalHarness();
+  try {
+    h.storage.failWrites = 1;
+    removalAction(h, 2).fire('click');
+    assert.equal(h.notices.has('undo-remove'), false);
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 2, 3]);
+    assert.match(h.calls.announce.at(-1), /could not be removed/);
+    const row = removalAction(h, 2);
+    row.fire('click');
+    const offer = removalOffer(h);
+    const raw = h.storage.getItem(KEY);
+    const notices = h.calls.notify.length;
+    row.fire('click');
+    assert.equal(h.store.lastUpdateOk, true, 'actual Store calls the stale model no-op successful');
+    assert.match(h.calls.announce.at(-1), /Nothing was removed/);
+    h.storage.failWrites = 1;
+    removalAction(h, 3).fire('click');
+    assert.equal(h.store.lastUpdateOk, false);
+    assert.match(h.calls.storeChanges.at(-1).error, /not saved/);
+    assert.match(h.calls.announce.at(-1), /could not be removed/);
+    assert.equal(h.calls.notify.length, notices);
+    assert.equal(h.storage.getItem(KEY), raw);
+    assert.equal(removalOffer(h), offer);
+    offer.action.onClick();
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 2, 3]);
+  } finally { h.restore(); }
+});
+
+test('444 a refused Undo retains a retry only until success or explicit dismissal', () => {
+  const h = removalHarness();
+  try {
+    for (const dismiss of [false, true]) {
+      removalAction(h, 2).fire('click');
+      const offer = removalOffer(h);
+      const raw = h.storage.getItem(KEY);
+      h.storage.failWrites = 1;
+      offer.action.onClick();
+      const retry = removalOffer(h);
+      assert.equal(retry.action.label, 'Try again');
+      assert.equal(retry.kind, 'error');
+      assert.equal(h.storage.getItem(KEY), raw);
+      assert.equal(h.calls.storeChanges.at(-1).offered, true, 'failed write rollback preserved the offer through repaint');
+      assert.ok(h.calls.focusCurrentView > 0);
+      if (dismiss) retry.dismiss.onClick();
+      retry.action.onClick();
+      if (dismiss) {
+        assert.equal(h.storage.getItem(KEY), raw, 'dismissal spends the retry, not only its notice');
+      } else {
+        assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 2, 3]);
+      }
+      assert.equal(h.notices.has('undo-remove'), false);
+    }
+  } finally { h.restore(); }
+});
+
+test('444 navigation, filters, disclosure and unrelated list edits do not inherently lose Undo', () => {
+  let reading = true;
+  const h = removalHarness({ isCurrent: () => reading });
+  try {
+    removalAction(h, 2).fire('click');
+    const offer = removalOffer(h);
+    reading = false;
+    h.view.setFilter('read');
+    h.view.setFullOrderFromRoute(false);
+    h.store.update((state) => moveItem(setIssueNote(state, 3, 'Independent note'), 'list-b', 5, -1));
+    h.view.render();
+    assert.equal(removalOffer(h), offer);
+    const before = h.state();
+    offer.action.onClick();
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 2, 3]);
+    assert.equal(h.state().lists['list-b'], before.lists['list-b']);
+    assert.equal(h.view.currentFilter(), 'read');
+    assert.equal(h.nodes.full.open, false);
+    assert.equal(h.state().read, before.read);
+    assert.ok(h.calls.focusCurrentView > 0, 'off-route Undo uses the current view instead of a hidden row');
+  } finally { h.restore(); }
+});
+
+test('444 structural source edits withdraw Undo immediately even when the list ID survives', () => {
+  const edits = [
+    ['reorder', (state) => moveItem(state, 'list-a', 3, -1)],
+    ['add', (state) => addIssuesToList(state, 'list-a', [issue(6, 'Six')]).state],
+    ['re-add removed issue', (state) => addIssuesToList(state, 'list-a', [issue(2, 'Two')]).state],
+    ['remove another issue', (state) => removeFromList(state, 'list-a', 3)],
+    ['edition edit', (state) => ({
+      ...state,
+      lists: Object.assign(Object.create(null), state.lists, {
+        'list-a': { ...state.lists['list-a'], collectedIn: { 3: 'Later edition' } },
+      }),
+    })],
+    ['same-ID replacement', (state) => ({
+      ...state,
+      lists: Object.assign(Object.create(null), state.lists, {
+        'list-a': { ...state.lists['list-a'], itemIds: [...state.lists['list-a'].itemIds] },
+      }),
+    })],
+  ];
+  for (const [name, edit] of edits) {
+    const h = removalHarness({ isCurrent: () => false });
+    try {
+      removalAction(h, 2).fire('click');
+      const offer = removalOffer(h);
+      const changes = h.calls.storeChanges.length;
+      h.store.update(edit);
+      assert.equal(h.calls.storeChanges.length, changes + 1, name);
+      assert.equal(h.calls.storeChanges.at(-1).offered, false, name);
+      assert.equal(h.notices.has('undo-remove'), false, name);
+      const raw = h.storage.getItem(KEY);
+      offer.action.onClick();
+      assert.equal(h.storage.getItem(KEY), raw, name);
+    } finally { h.restore(); }
+  }
+});
+
+test('444 foreign adoption and conflicting Undo writes withdraw offers without rewriting adopted data', () => {
+  for (const conflict of [false, true]) {
+    const h = removalHarness({ isCurrent: () => false });
+    try {
+      removalAction(h, 2).fire('click');
+      const offer = removalOffer(h);
+      const foreign = JSON.stringify({ writeToken: 'foreign-444', ...exportBackup(h.state()) });
+      h.storage.map.set(KEY, foreign);
+      if (!conflict) {
+        h.store.adoptForeignWrite(foreign);
+        assert.equal(h.notices.has('undo-remove'), false, 'same-content adoption is still a different context');
+      }
+      offer.action.onClick();
+      assert.equal(h.storage.getItem(KEY), foreign);
+      assert.equal(h.notices.has('undo-remove'), false);
+      assert.equal(h.calls.storeChanges.at(-1).offered, false);
+      assert.equal(h.calls.notify.some((n) => n.action?.label === 'Try again'), false);
+    } finally { h.restore(); }
+  }
+});
+
+test('444 restore reconciliation distinguishes early refusals, reconstructed unchanged state and both unknown outcomes', () => {
+  const cases = [
+    { name: 'invalid backup', input: '{invalid', changed: false, retains: true, same: true },
+    { name: 'pre-swap refusal', failKey: 'mrt.state.restore.tmp', changed: false, retains: true, same: true },
+    { name: 'unchanged after swap', mode: 'unchanged', changed: false },
+    { name: 'successful restore', changed: true },
+    { name: 'unknown durable data', mode: 'unknown', changed: null, blocked: true, same: true },
+    { name: 'third-party reconciliation', mode: 'third-party', changed: null },
+  ];
+  for (const entry of cases) {
+    const h = removalHarness({ isCurrent: () => false });
+    try {
+      removalAction(h, 2).fire('click');
+      const offer = removalOffer(h);
+      const source = h.state().lists['list-a'];
+      const changes = h.calls.storeChanges.length;
+      h.storage.restoreMode = entry.mode;
+      h.storage.failKey = entry.failKey;
+      h.storage.thirdParty = JSON.stringify({
+        writeToken: 'other-restore-444',
+        ...exportBackup(renameList(h.state(), 'list-a', 'Third-party list')),
+      });
+      const result = h.store.restore(entry.input ?? exportBackup(h.state()));
+      assert.equal(result.changed, entry.changed, entry.name);
+      assert.equal(result.ok, entry.changed === true, entry.name);
+      assert.equal(h.store.blocked, entry.blocked ?? false, entry.name);
+      assert.equal(h.state().lists['list-a'].itemIds === source.itemIds, entry.same ?? false, entry.name);
+      assert.equal(h.notices.has('undo-remove'), entry.retains ?? false, entry.name);
+      if (entry.retains) {
+        assert.equal(h.calls.storeChanges.length, changes, 'early refusal has no repaint or replacement');
+        offer.action.onClick();
+        assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 2, 3]);
+      } else {
+        assert.equal(h.calls.storeChanges.length, changes + 1, entry.name);
+        assert.equal(h.calls.storeChanges.at(-1).offered, false, entry.name);
+        const raw = h.storage.map.get(KEY);
+        offer.action.onClick();
+        assert.equal(h.storage.map.get(KEY), raw, entry.name);
+        assert.equal(h.notices.has('undo-remove'), false, entry.name);
+      }
+    } finally { h.restore(); }
+  }
+});
+
+test('444 whole-list Undo cannot resurrect a removed-issue offer and a new view has no removal history', async () => {
+  const h = removalHarness();
+  try {
+    removalAction(h, 2).fire('click');
+    const offer = removalOffer(h);
+    await h.nodes.btnDeleteList.fire('click');
+    const deleted = h.notices.get('undo-delete');
+    assert.ok(deleted?.action);
+    assert.equal(h.notices.has('undo-remove'), false);
+    deleted.action.onClick();
+    assert.deepEqual(h.state().lists['list-a'].itemIds, [1, 3]);
+    const raw = h.storage.getItem(KEY);
+    offer.action.onClick();
+    assert.equal(h.storage.getItem(KEY), raw);
+    assert.equal(h.notices.has('undo-remove'), false);
+    assert.equal(h.notices.has('undo-delete'), false);
+    const reloaded = removalHarness({ state: h.state() });
+    try {
+      assert.equal(reloaded.notices.has('undo-remove'), false);
+      assert.deepEqual(reloaded.state().lists['list-a'].itemIds, [1, 3]);
+      assert.deepEqual(Object.keys(exportBackup(reloaded.state())), Object.keys(exportBackup(createEmptyState())));
+    } finally { reloaded.restore(); }
+  } finally { h.restore(); }
 });

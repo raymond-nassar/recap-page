@@ -1284,3 +1284,20 @@ export function heldCount(state, items) {
   }
   return seen.size;
 }
+
+// Membership is the only lost data: adding through addIssuesToList would also merge old metadata.
+export function restoreRemovedIssue(state, listId, issueId, { index, collectedIn } = {}) {
+  const list = state.lists[listId];
+  const id = Number(issueId);
+  if (!list || !Number.isInteger(id) || id === 0 || list.itemIds.includes(id)
+    || !Number.isInteger(index) || index < 0 || index > list.itemIds.length) return state;
+  const itemIds = [...list.itemIds];
+  itemIds.splice(index, 0, id);
+  const editions = { ...(list.collectedIn ?? {}) };
+  if (collectedIn === undefined) delete editions[id];
+  else editions[id] = collectedIn;
+  return {
+    ...state,
+    lists: withList(state.lists, listId, { ...list, itemIds, collectedIn: editions }),
+  };
+}

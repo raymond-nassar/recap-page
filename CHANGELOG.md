@@ -12,6 +12,14 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Undo the most recent issue removal
+
+Removing an issue now offers **Undo remove** and **Dismiss**, with no countdown. Undo restores
+the original position and collected-edition label without rolling back later progress or notes.
+Only the most recent successful removal is kept, in memory for this tab. Invalid offers disappear
+when the source order changes or saved data is replaced or cannot be identified safely; a refused
+Undo keeps a retry only while its original context remains valid.
+
 ### Restored the local regression baseline
 
 Reading List action icons are now explicitly decorative without changing their labels or behavior.

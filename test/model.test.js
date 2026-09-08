@@ -5,11 +5,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import {
   createEmptyState, createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList,
-  removeFromList, moveItem, moveItemTo, markRead, toggleRead, isRead, markManyRead,
+  removeFromList, restoreRemovedIssue, moveItem, moveItemTo, markRead, toggleRead, isRead, markManyRead,
   setOverride, upNext, listProgress, seriesProgress, listItems, pendingIssueIds,
   hydrationOrder, migrate, validateBackup, exportBackup, normalizeIssue, upsertIssue,
   normalizeCover, coverUrl, listForCatalogId, listCollections, SCHEMA_VERSION, MAX_NAME, MAX_DESCRIPTION,
-  newId, hasMetadata, countOrderGaps, orderGapSentences, markDetailsRefused,
+  newId, hasMetadata, countOrderGaps, orderGapSentences, markDetailsRefused, setIssueNote, setListNote,
 } from '../src/js/lib/model.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -1307,4 +1307,59 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Wolverine replaces 29 negative placeholder identities with provider-resolved exact issues.
   assert.equal(refused.length, 1213);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
+});
+
+test('444 membership recovery restores exact positions and optional editions, including manual identities', () => {
+  for (const index of [0, 1, 2]) {
+    for (const collectedIn of [undefined, 'Book One: reader edition']) {
+      let before = createList(createEmptyState(), { id: '__proto__', name: 'Recover' });
+      before = addIssuesToList(before, '__proto__', [1, -2, 3].map((id) => issue(id, { collectedIn }))).state;
+      const id = before.lists.__proto__.itemIds[index];
+      const removed = removeFromList(before, '__proto__', id);
+      const restored = restoreRemovedIssue(removed, '__proto__', id, { index, collectedIn });
+      assert.deepEqual(restored.lists.__proto__, before.lists.__proto__);
+      assert.equal(Object.getPrototypeOf(restored.lists), null);
+      assert.deepEqual(removed.lists.__proto__.itemIds, [1, -2, 3].filter((n) => n !== id));
+    }
+  }
+});
+
+test('444 membership recovery preserves current shared metadata, progress, notes, overrides and other lists', () => {
+  const { state: initial, id } = withList();
+  let state = initial;
+  state = createList(state, { id: 'other', name: 'Other', itemIds: [2, 3] });
+  state = removeFromList(state, id, 2);
+  state = upsertIssue(state, issue(2, { title: 'Later title' }));
+  state = markRead(state, 2, true, 444);
+  state = setIssueNote(state, 2, 'Later issue note');
+  state = setOverride(state, 2, 'unavailable');
+  state = renameList(state, id, 'Renamed', 'Later description');
+  state = setListNote(state, id, 'Later list note');
+  state = moveItem(state, 'other', 3, -1);
+  state = setActive(state, 'other');
+  const restored = restoreRemovedIssue(state, id, 2, { index: 1, collectedIn: 'Original book' });
+  assert.deepEqual(restored.lists[id], {
+    ...state.lists[id], itemIds: [1, 2, 3], collectedIn: { 2: 'Original book' },
+  });
+  for (const key of ['issues', 'read', 'notes', 'overrides', 'listOrder', 'active']) {
+    assert.equal(restored[key], state[key], key);
+  }
+  assert.equal(restored.lists.other, state.lists.other);
+  assert.equal(state.lists[id].collectedIn[2], undefined);
+  assert.equal(restored.issues[2].title, 'Later title');
+});
+
+test('444 membership recovery refuses missing lists, duplicates and invalid insertion data', () => {
+  const { state, id } = withList();
+  assert.equal(restoreRemovedIssue(state, 'missing', 4, { index: 1 }), state);
+  assert.equal(restoreRemovedIssue(state, id, 2, { index: 1 }), state);
+  for (const index of [-1, 4, 0.5, undefined]) {
+    assert.equal(restoreRemovedIssue(state, id, 4, { index }), state);
+  }
+  for (const issueId of [0, 0.5, 'invalid', NaN]) {
+    assert.equal(restoreRemovedIssue(state, id, issueId, { index: 1 }), state);
+  }
+  const restored = restoreRemovedIssue(state, id, -4, { index: 3 });
+  assert.deepEqual(restored.lists[id].itemIds, [1, 2, 3, -4]);
+  assert.equal(Object.hasOwn(restored.lists[id].collectedIn, -4), false);
 });
