@@ -8083,6 +8083,179 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'reading-path-stop-actions',
+    title: 'Reading Paths stops reuse preview, saved lists and visible return focus',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      });
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      const first = '[data-reading-path-action="browser-check"]';
+      const last = '[data-reading-path-action="browser-check-three-short"]';
+      await open(page, '/?catalog=reading-path-stop-actions#/reading-paths?path=bc-path');
+      await page.waitForSelector(last);
+      const before = await readState(page);
+      await page.focus(first);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      const single = await page.evaluate(() => ({
+        title: document.querySelector('#preview-h').textContent,
+        choices: document.querySelectorAll('#preview-paths input').length,
+        meta: document.querySelector('#preview-meta').textContent,
+        source: document.querySelector('#preview-source').textContent,
+        href: document.querySelector('#preview-source a')?.href,
+      }));
+      t.check('an unowned single stop opens preview with its source and missing-link disclosure',
+        single.title === 'Browser Check Order' && single.choices === 0
+        && single.meta.includes('1 issue has no Marvel Unlimited link')
+        && single.source.includes('Fixture section')
+        && single.href === 'https://example.com/shared-page', JSON.stringify(single));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction((selector) => !document.querySelector('#preview').open
+        && document.activeElement === document.querySelector(selector), {}, first);
+
+      await page.focus(last);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] input[data-key="browser-check-three-main"]');
+      await click(page, '#preview input[data-key="browser-check-three-main"]');
+      const complete = await page.$eval('#preview-meta', (node) => node.textContent);
+      const completeSource = await page.$eval('#preview-source', (node) => node.textContent);
+      await click(page, '#preview input[data-key="browser-check-three-short"]');
+      const short = await page.evaluate(() => ({
+        meta: document.querySelector('#preview-meta').textContent,
+        source: document.querySelector('#preview-source').textContent,
+        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        add: document.querySelector('#preview-add button')?.dataset.key,
+      }));
+      t.check('grouped stops retain both reading choices and choice-specific gap metadata',
+        complete.includes('2 issues have no details')
+        && short.meta.includes('1 issue has no Marvel Unlimited link')
+        && completeSource.includes('Complete fixture source')
+        && short.source.includes('Essential fixture source')
+        && short.selected === 'browser-check-three-short' && short.add === short.selected,
+        JSON.stringify({ complete, short }));
+      await page.focus('#preview .preview-issue-link');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.querySelector('#preview').open
+        && document.activeElement?.classList.contains('preview-issue-link'));
+      const returned = await page.evaluate(() => ({
+        path: document.querySelector('#reading-path-select').value,
+        choices: document.querySelectorAll('#preview-paths input').length,
+        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        meta: document.querySelector('#preview-meta').textContent,
+      }));
+      t.check('Back from preview issue details restores the path, chooser and selected reading',
+        returned.path === 'bc-path' && returned.choices === 2
+        && returned.selected === 'browser-check-three-short'
+        && returned.meta.includes('1 issue has no Marvel Unlimited link'), JSON.stringify(returned));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction((selector) => !document.querySelector('#preview').open
+        && document.activeElement === document.querySelector(selector), {}, last);
+      t.check('inspection and reading-option changes neither import nor mark anything read',
+        JSON.stringify(await readState(page)) === JSON.stringify(before));
+
+      const library = fixtureReadingState();
+      const saved = library.lists.fixture;
+      library.lists = {
+        sibling: { ...saved, id: 'sibling', name: 'Saved complete version', catalogId: 'browser-check-three-main' },
+        exact: { ...saved, id: 'exact', name: 'Saved short version', catalogId: 'browser-check-three-short' },
+      };
+      library.listOrder = ['sibling', 'exact'];
+      library.active = 'sibling';
+      library.read = { [saved.itemIds[0]]: 1 };
+      const adopt = async (state) => page.evaluate((next) => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const newValue = JSON.stringify(next);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage, url: location.href,
+        }));
+      }, state);
+      await page.evaluate((selector) => { window.__stopAction438 = document.querySelector(selector); }, last);
+      await adopt(library);
+      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved list', {}, last);
+      t.check('a foreign progress refresh keeps the focused stop control instead of replacing it',
+        await page.evaluate(() => document.activeElement === window.__stopAction438));
+      const beforeRefusedSelection = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        window.__setItem438 = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (key === 'mrt.state.v2') throw new DOMException('Fixture storage refusal', 'QuotaExceededError');
+          return window.__setItem438.call(this, key, value);
+        };
+      });
+      await page.keyboard.press('Enter');
+      t.check('a refused saved-list selection stays on the path and surfaces the failure without changing storage',
+        await page.evaluate((raw) => location.hash === '#/reading-paths?path=bc-path'
+          && localStorage.getItem('mrt.state.v2') === raw
+          && document.querySelector('#reading-paths-report').textContent.includes('could not be opened'), beforeRefusedSelection));
+      await page.evaluate(() => { Storage.prototype.setItem = window.__setItem438; });
+      await page.focus(last);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash.startsWith('#/read/exact'));
+      t.check('an owned stop opens the exact saved list whose progress it shows',
+        (await readState(page)).active === 'exact'
+        && await page.$eval('#hero-title', (node) => node.textContent) === 'Saved short version');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction((selector) => location.hash === '#/reading-paths?path=bc-path'
+        && document.activeElement === document.querySelector(selector), {}, last);
+      const visible = await page.$eval(last, (node) => {
+        const rect = node.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom, height: innerHeight, scroll: scrollY };
+      });
+      t.check('Back brings a far-down original stop fully into view without a stored scroll position',
+        visible.top >= 0 && visible.bottom <= visible.height && visible.scroll > 0, JSON.stringify(visible));
+      delete library.lists.exact;
+      library.listOrder = ['sibling'];
+      await adopt(library);
+      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved version', {}, last);
+      const sibling = await page.$eval(last, (node) => ({
+        name: node.getAttribute('aria-label'),
+        progress: node.closest('li').querySelector('.reading-path-stop-progress').textContent,
+      }));
+      t.check('alternate ownership names the saved version without implying the exact stop was added',
+        sibling.name.includes('Saved complete version')
+        && sibling.progress.includes('Alternate reading version.'), JSON.stringify(sibling));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash.startsWith('#/read/sibling'));
+      const after = await readState(page);
+      t.check('opening a saved sibling preserves lists, read markers, notes and availability overrides',
+        ['lists', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(after[key]) === JSON.stringify(library[key])));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction((selector) => document.activeElement === document.querySelector(selector), {}, last);
+
+      for (const theme of ['dark', 'light']) {
+        await page.setViewport({ width: 320, height: 900 });
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+        await page.focus(last);
+        const layout = await page.$$eval('[data-reading-path-action]', (buttons) => ({
+          viewport: innerWidth, width: document.documentElement.scrollWidth,
+          buttons: buttons.map((button) => {
+            const rect = button.getBoundingClientRect();
+            const style = getComputedStyle(button);
+            return {
+              left: rect.left, right: rect.right, height: rect.height,
+              fits: button.scrollWidth <= button.clientWidth,
+              text: button.textContent, name: button.getAttribute('aria-label'),
+              color: style.color, background: style.backgroundColor,
+            };
+          }),
+        }));
+        t.check(`${theme} narrow stop actions wrap without overflow and retain labelled 44px targets`,
+          layout.width === layout.viewport && layout.buttons.length === 12
+          && layout.buttons.every((button) => button.left >= 0 && button.right <= layout.viewport
+            && button.height >= 44 && button.fits && button.name.includes(button.text)
+            && button.color !== button.background), JSON.stringify(layout));
+      }
+      t.check('stop journeys produce no page errors or reader-tab launches',
+        errors.length === 0 && await page.evaluate(() => window.__opened.length === 0), errors.join(' / '));
+    },
+  },
+  {
     id: 'reading-paths',
     title: 'one reading-path view preserves route, progress, overlap and focus',
     async run(page, t) {
@@ -8212,7 +8385,7 @@ const SCENARIOS = [
         (node) => node.textContent.trim(),
       );
       t.check('the first imported sibling in catalog order supplies fallback progress and its name',
-        fallback === '2 of 4 issues read in Fallback complete import. Reading.',
+        fallback === '2 of 4 issues read in Fallback complete import. Reading. Alternate reading version.',
         fallback);
 
       await page.keyboard.press('ArrowDown');
@@ -10370,6 +10543,19 @@ async function preparePage(page, origin, mutation) {
       'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG, 'reading-paths': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },
+      'reading-path-stop-actions': {
+        ...CATALOG,
+        lists: CATALOG.lists.map((list) => (
+          list.id === 'browser-check-three-main' ? { ...list, sourceOrigin: 'Complete fixture source' }
+            : list.id === 'browser-check-three-short' ? { ...list, sourceOrigin: 'Essential fixture source' } : list
+        )),
+        paths: [{
+          ...CATALOG.paths[0],
+          steps: ['browser-check', 'browser-check-two',
+            ...Array.from({ length: 9 }, (_, index) => `browser-check-extra-${index + 1}`),
+            'browser-check-three-short'],
+        }, CATALOG.paths[1]],
+      },
       actual: ACTUAL_CATALOG,
     },
     ORDER,
@@ -10512,7 +10698,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);

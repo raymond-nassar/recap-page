@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Open stories directly from Reading Paths
+
+Each Reading Paths stop now opens its existing preview and reading options, or the saved list
+whose progress it shows. Alternate saved versions are named explicitly. Preview keeps source
+and metadata-gap disclosures beside the choice, and inspecting a story does not add it or mark
+anything read. Returning restores the selected path and brings the original stop into view.
+
 ### Kept the selected issue visible after returning from details
 
 Returning from issue details now brings the original Reading List control and its focus indicator
