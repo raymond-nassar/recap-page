@@ -16,7 +16,9 @@ Releases are tagged `v<version>`. Quote the version shown under **About this app
 
 The cross-tab timeline check now waits for the updated marker instead of assuming a fixed delay is
 enough. It still rejects a missing update and preserves its focus, scroll, retained-card and request
-checks. App behavior and saved reading data are unchanged.
+checks. The Reading shortcut check also boots a fresh document at its seeded Reading route before
+sending keys, rather than relying on a Home reload followed by hash-only navigation. App behavior
+and saved reading data are unchanged.
 
 ### Undo the most recent issue removal
 

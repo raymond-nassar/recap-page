@@ -7735,12 +7735,22 @@ const SCENARIOS = [
         localStorage.setItem('mrt.state.v2', JSON.stringify(state));
         localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
       }, fixture);
-      await page.reload({ waitUntil: 'load' });
-      await open(page, '/#/read/fixture');
+      // Reloading the Home route then changing only its hash leaves setup in the same document.
+      // Boot directly into Reading, as the issue-action fixture does, before sending real keys.
+      const fixtureResponse = await page.goto(
+        `${page.__origin}/?catalog=browser-check#/read/fixture`,
+        { waitUntil: 'load' },
+      );
       await page.waitForSelector(
         `#view-read:not([hidden]) #btn-hero-inspect[data-context-id="fixture"][data-issue-id="${fixture.lists.fixture.itemIds[0]}"]`,
         { visible: true, timeout: 15000 },
       );
+      const seeded = await readState(page);
+      t.check('shortcut setup loads a fresh Reading document with the complete seeded list',
+        fixtureResponse?.ok() === true
+          && seeded.active === 'fixture'
+          && JSON.stringify(seeded.lists.fixture.itemIds) === JSON.stringify(fixture.lists.fixture.itemIds),
+        JSON.stringify({ response: fixtureResponse?.status(), active: seeded.active, items: seeded.lists.fixture.itemIds }));
       const count = async () => Object.keys((await readState(page)).read).length;
       const presentation = () => page.evaluate(() => {
         const done = document.querySelector('#btn-hero-done');
