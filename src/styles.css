@@ -142,7 +142,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:894-901`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:895-902`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -508,13 +508,10 @@ a { color: var(--blue); }
 }
 
 .rail-tip {
-  position: fixed; z-index: 60; left: 0; top: 0; pointer-events: none;
-  max-width: 15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   background: var(--card-2); color: var(--text); border: 1px solid var(--line-2);
-  border-radius: 8px; padding: var(--space-2) var(--space-4); font-size: var(--t-caption);
+  border-radius: 8px; font-size: var(--t-caption);
   box-shadow: 0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)));
 }
-.rail-tip[hidden] { display: none; }
 
 /* 44px minimum on an icon-only target, and the glyph centred inside it. */
 .railed .ri { justify-content: center; padding: var(--space-4) 0; min-width: 44px; }
@@ -2010,22 +2007,17 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 
 /* Tooltips supplement the accessible name for icon-only actions and reveal shortcuts without
    carrying permanent keycaps. They never replace the control's visible or accessible label. */
-.has-tooltip { position: relative; }
-.has-tooltip::after {
-  content: attr(data-tooltip); position: absolute; z-index: 25;
-  left: 50%; bottom: calc(100% + .45rem); width: max-content; max-width: 14rem;
-  padding: var(--space-2) var(--space-4); border: 1px solid var(--line-2); border-radius: 6px;
+.visual-tooltip {
+  position: fixed; z-index: 60; left: 0; top: 0; width: max-content;
+  max-width: calc(100vw - 16px); white-space: normal; overflow-wrap: anywhere;
+  font-size: var(--t-caption); line-height: 1.3;
+}
+.visual-tooltip[hidden] { display: none; }
+.tooltip-content { display: block; padding: var(--space-2) var(--space-4); overflow: auto; }
+.action-tip {
+  border: 1px solid var(--line-2); border-radius: 6px;
   background: var(--text); color: var(--card); box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 22%);
-  font-size: var(--t-caption); font-weight: 600; line-height: 1.3;
-  opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-50%);
-}
-.has-tooltip:hover::after, .has-tooltip:focus-visible::after {
-  opacity: 1; visibility: visible;
-}
-.row .cb.has-tooltip::after { left: 0; transform: none; }
-.ract .has-tooltip::after { right: 0; left: auto; transform: none; }
-@media (max-width: 620px) {
-  #btn-hero-done::after { right: 0; left: auto; transform: none; }
+  font-weight: 600;
 }
 
 @media (forced-colors: active) {
@@ -2036,7 +2028,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   .lgroup-h { border-bottom: 1px solid CanvasText; }
   .rcov-i, .rcov-f, .mosaic-i, .mosaic-f { border: 1px solid CanvasText; }
   .cover-fallback.cover-fallback::before, .cover-fallback.cover-fallback::after { color: CanvasText; text-shadow: none; }
-  .has-tooltip::after { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
+  .visual-tooltip { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
   .badge-done { border: 1px solid CanvasText; }
   .badge-none { border: 1px dashed CanvasText; }
 }

@@ -53,6 +53,7 @@ import { createReadingPathsView } from './views/reading-paths.js';
 import { createAddView, persistLongAddPage } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
+import { wireTooltips } from './lib/tooltips.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -1062,7 +1063,7 @@ function renderSidebar() {
     toggle.setAttribute('aria-label', label);
     toggle.dataset.tip = `${label} · Ctrl+\\`;
   }
-  if (!compactDesktop || isNarrow) hideRailTip();
+  tooltips?.refresh();
 }
 
 function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
@@ -1148,43 +1149,26 @@ function wireSidebar() {
       } else {
         narrowOpen = false;
       }
-      hideRailTip();
+      tooltips?.refresh();
     }
     renderSidebar();
   });
 
-  wireRailTips();
+  wireAppTooltips();
 }
 
-// The rail is a scroll container, so a tooltip drawn inside it would be clipped at 48px.
-// One fixed-position element outside the rail avoids that. It is decorative: the button's
-// own label stays in the DOM as its accessible name, visually hidden in rail mode.
-function wireRailTips() {
-  const rail = $('#sidebar');
-  const show = (e) => {
-    if (isNarrow) return hideRailTip();
-    const target = e.target instanceof Element ? e.target.closest('.ri, .brand, .pill, .rail-toggle') : null;
-    if (!target || (!railed && !target.matches('.rail-toggle'))) return hideRailTip();
-    const text = (target.dataset.tip || target.querySelector('.lbl')?.textContent || target.textContent || '').trim();
-    if (!text) return hideRailTip();
-    const tip = $('#rail-tip');
-    tip.textContent = text;
-    tip.hidden = false;
-    const box = target.getBoundingClientRect();
-    tip.style.setProperty('left', `${Math.round(box.right + 8)}px`);
-    tip.style.setProperty('top', `${Math.round(box.top + box.height / 2 - tip.offsetHeight / 2)}px`);
-  };
-  rail.addEventListener('pointerover', show);
-  rail.addEventListener('pointerout', hideRailTip);
-  // Focus as well as hover, or the rail is unusable to anyone navigating by keyboard.
-  rail.addEventListener('focusin', show);
-  rail.addEventListener('focusout', hideRailTip);
-  window.addEventListener('scroll', hideRailTip, true);
-}
-
-function hideRailTip() {
-  const tip = $('#rail-tip');
-  if (tip) tip.hidden = true;
+let tooltips;
+function wireAppTooltips() {
+  tooltips = wireTooltips({
+    resolve(node) {
+      const action = node.closest('.has-tooltip[data-tooltip]');
+      if (action) return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip };
+      const trigger = node.closest('.ri, .brand, .pill, .rail-toggle');
+      if (!trigger?.closest('#sidebar') || isNarrow || (!railed && !trigger.matches('.rail-toggle'))) return null;
+      const text = (trigger.dataset.tip || trigger.querySelector('.lbl')?.textContent || trigger.textContent || '').trim();
+      return text ? { trigger, tip: $('#rail-tip'), text, preferRight: true } : null;
+    },
+  });
 }
 
 // ------------------------------------------------------------------ navigation
@@ -1422,6 +1406,7 @@ function applyRoute(route, { focus, filterIfAbsent }) {
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
 function showView(next, { focus = true, push = false } = {}) {
+  tooltips?.dismiss();
   // There is nothing to read without an active list, so the reading view hands over to the
   // landing page rather than showing an empty frame with a heading over it. `Object.hasOwn` for
   // the same reason as in applyRoute, and past tense for the same reason: the map used to answer a

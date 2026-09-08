@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Keep hints readable and dismissible
+
+Action and collapsed-sidebar hints stay visible while the pointer crosses onto them or a control
+keeps focus. Escape hides the hint without moving focus, and hints wrap within the viewport.
+Control names, shortcut settings and saved reading data are unchanged.
+
 ### Made navigation and search icons portable
 
 Navigation and search controls now use local SVG drawings instead of Windows-only icon fonts.
