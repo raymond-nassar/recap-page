@@ -19,6 +19,13 @@ list, instead of claiming the order is finished. Home also distinguishes an empt
 that is fully read. Removing the last issue returns to the same empty state; completed nonempty
 lists keep their completion message. Saved progress is unchanged.
 
+### Open stories directly from Reading Paths
+
+Each Reading Paths stop now opens its existing preview and reading options, or the saved list
+whose progress it shows. Alternate saved versions are named explicitly. Preview keeps source
+and metadata-gap disclosures beside the choice, and inspecting a story does not add it or mark
+anything read. Returning restores the selected path and brings the original stop into view.
+
 ### Kept the selected issue visible after returning from details
 
 Returning from issue details now brings the original Reading List control and its focus indicator

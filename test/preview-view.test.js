@@ -36,6 +36,7 @@ test('Preview rejects an older issue response after a newer selection opens', as
     heading: node(),
     meta: node(),
     paths: node(),
+    source: node(),
   };
   const pending = new Map();
   const focused = [];
@@ -53,7 +54,11 @@ test('Preview rejects an older issue response after a newer selection opens', as
     onClose: async () => {},
     onIssueLoadFailure: async () => {},
     onOpen: () => {},
-    presentation: { markOwnedPaths: () => {}, pathChooser: () => node() },
+    presentation: {
+      attributionLine: (entry) => node({ textContent: `Source of ${entry.id}` }),
+      markOwnedPaths: () => {},
+      pathChooser: () => node(),
+    },
     restoreFocus: () => {},
   });
 
@@ -66,4 +71,5 @@ test('Preview rejects an older issue response after a newer selection opens', as
 
   assert.deepEqual(focused, [2]);
   assert.equal(nodes.heading.textContent, 'List two');
+  assert.equal(nodes.source.children[0].textContent, 'Source of two');
 });
