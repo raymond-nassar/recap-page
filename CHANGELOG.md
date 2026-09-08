@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Retry issue details in place
+
+Temporary issue-detail failures now offer Retry without leaving the comic. Retry stays busy
+until the request finishes, and leaving the issue prevents late results from replacing the new
+view. Missing service records and missing local-only issues do not offer repeated retries.
+Saved lists, reading progress, notes, synopsis choices and reader launching are unchanged.
+
 ### Clarified the optional Setup recommendation
 
 Home, Modern Timeline and its opening age now explain Setup as optional historical context for

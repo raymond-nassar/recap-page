@@ -7411,6 +7411,170 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'issue-details-retry-454',
+    title: 'issue details recover in place without changing saved reading or stealing focus',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument(() => {
+        const real = window.fetch.bind(window);
+        window.__retry454 = { mode: 'fail', requests: [], aborted: false };
+        window.fetch = (input, options) => {
+          const url = typeof input === 'string' ? input : input.url;
+          const match = /\/issues\/(94545[4-6])(?:\?|$)/.exec(url);
+          if (!match) return real(input, options);
+          const id = Number(match[1]);
+          const fixture = window.__retry454;
+          fixture.requests.push(id);
+          if (id === 945456) return Promise.resolve(new Response('{}', { status: 404 }));
+          if (fixture.mode === 'fail') return Promise.reject(new TypeError('Failed to fetch'));
+          return new Promise((resolve, reject) => {
+            fixture.finish = (success = true) => {
+              if (!success) reject(new TypeError('Failed to fetch'));
+              else resolve(new Response(JSON.stringify({
+                id, title: `Retry fixture ${id}`, issueNumber: '1',
+              }), { headers: { 'content-type': 'application/json' } }));
+            };
+            // Keep the promise pending after abort so the stale-response guard is exercised too.
+            options.signal.addEventListener('abort', () => { fixture.aborted = true; });
+          });
+        };
+      });
+      await seedFixtureState(page);
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const navigate = async (hash) => {
+        await page.evaluate((value) => { location.hash = value; }, hash);
+      };
+      const failed = async () => {
+        await page.waitForFunction(() => (
+          document.querySelector('#issue-focus-h').textContent === 'Issue unavailable'
+          && document.querySelector('#btn-issue-retry').getAttribute('aria-busy') !== 'true'
+        ));
+      };
+      await navigate('#/issue/945454');
+      await failed();
+      const offered = await page.$eval('#btn-issue-retry', (button) => (
+        !button.hidden && button.textContent === 'Retry'
+        && document.querySelectorAll('#btn-issue-retry').length === 1
+        && button.getAttribute('aria-describedby') === 'issue-focus-status'
+        && document.querySelector('#issue-focus-status').getAttribute('aria-live') === 'polite'
+        && !document.querySelector('dialog[open]')
+      ));
+      t.check('a failed positive lookup has exactly one named Retry beside a polite explanation', offered);
+      if (!offered) return;
+
+      await page.focus('#btn-issue-retry');
+      await page.keyboard.press('Tab');
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('Tab');
+      await page.keyboard.up('Shift');
+      const client = await page.createCDPSession();
+      for (const theme of ['light', 'dark', 'forced']) {
+        await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme === 'forced' ? 'light' : theme);
+        await client.send('Emulation.setEmulatedMedia', { features: [
+          { name: 'forced-colors', value: theme === 'forced' ? 'active' : 'none' },
+          { name: 'prefers-reduced-motion', value: 'reduce' },
+        ] });
+        await page.setViewport({ width: 320, height: 900 });
+        const usable = await page.$eval('#btn-issue-retry', (button) => {
+          const box = button.getBoundingClientRect();
+          const style = getComputedStyle(button);
+          return {
+            focused: document.activeElement === button && button.matches(':focus-visible'),
+            outline: style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+            fits: box.left >= 0 && box.right <= innerWidth && box.width > 0 && box.height >= 24,
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            motion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+            forced: matchMedia('(forced-colors: active)').matches,
+          };
+        });
+        t.check(`Retry stays focus-visible and fits at 320px in ${theme} with reduced motion`,
+          usable.focused && usable.outline && usable.fits && !usable.overflow && usable.motion
+          && usable.forced === (theme === 'forced'), JSON.stringify(usable));
+      }
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      await client.detach();
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => { window.__retry454.mode = 'pending'; });
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => window.__retry454.requests.length === 2);
+      await click(page, '#btn-issue-retry');
+      const busy = await page.$eval('#btn-issue-retry', (button) => ({
+        visible: !button.hidden,
+        label: button.textContent,
+        disabled: button.getAttribute('aria-disabled'),
+        busy: button.getAttribute('aria-busy'),
+        focus: document.activeElement === button,
+        requests: window.__retry454.requests,
+      }));
+      t.check('keyboard retry stays focused and busy while duplicate activation sends no request',
+        busy.visible && busy.label === 'Retrying…' && busy.disabled === 'true'
+        && busy.busy === 'true' && busy.focus
+        && JSON.stringify(busy.requests) === '[945454,945454]', JSON.stringify(busy));
+      await page.evaluate(() => window.__retry454.finish(false));
+      await failed();
+      t.check('a repeated failure keeps the same actionable Retry focused',
+        await page.$eval('#btn-issue-retry', (button) => (
+          !button.hidden && button.textContent === 'Retry'
+          && !button.hasAttribute('aria-disabled') && document.activeElement === button
+        )));
+      await page.keyboard.press('Space');
+      await page.waitForFunction(() => window.__retry454.requests.length === 3);
+      await page.evaluate(() => window.__retry454.finish());
+      await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Retry fixture 945454');
+      t.check('successful retry restores the exact issue and moves disappearing-button focus to its heading',
+        await page.evaluate(() => (
+          location.hash === '#/issue/945454'
+          && !document.querySelector('#issue-focus-card').hidden
+          && document.querySelector('#btn-issue-retry').hidden
+          && document.activeElement.id === 'issue-focus-h'
+          && !document.querySelector('dialog[open]')
+        )));
+
+      await page.evaluate(() => { window.__retry454.mode = 'fail'; });
+      await navigate('#/issue/945455');
+      await failed();
+      await page.evaluate(() => { window.__retry454.mode = 'pending'; });
+      await click(page, '#btn-issue-retry');
+      await page.waitForFunction(() => window.__retry454.requests.length === 5);
+      await navigate('#/issue/900001?list=fixture');
+      await page.waitForFunction(() => !document.querySelector('#issue-focus-card').hidden);
+      await page.evaluate(() => window.__retry454.finish());
+      // A resolved response passes through JSON, cache and controller microtasks before it can paint.
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('navigation aborts retry and ignores its late answer without replacing the saved issue',
+        await page.evaluate((title) => (
+          window.__retry454.aborted && location.hash === '#/issue/900001?list=fixture'
+          && document.querySelector('#issue-focus-h').textContent === title
+          && document.querySelector('#btn-issue-retry').hidden
+        ), ORDER.items[0].title));
+
+      await navigate('#/issue/945456');
+      await failed();
+      t.check('permanent absence explains missing service details without Retry',
+        await page.evaluate(() => (
+          document.querySelector('#btn-issue-retry').hidden
+          && document.querySelector('#issue-focus-status').textContent.includes('has no details')
+        )));
+      const requests = await page.evaluate(() => window.__mrtIssueRequests ?? 0);
+      await navigate('#/issue/-945454');
+      await failed();
+      t.check('missing local identity has neither an API request nor a Retry offer',
+        await page.evaluate((count) => (
+          (window.__mrtIssueRequests ?? 0) === count
+          && document.querySelector('#btn-issue-retry').hidden
+          && document.querySelector('#issue-focus-status').textContent.includes('local issue is no longer')
+        ), requests));
+      t.check('all recovery journeys leave saved lists, active choice, progress and notes byte-identical',
+        await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+      t.check('metadata Retry never starts synopsis disclosure or changes reader launch controls',
+        await page.evaluate(() => (
+          (window.__mrtIssueRequests ?? 0) === 0 && !document.querySelector('dialog[open]')
+        )));
+      t.check('issue retry journeys have no unhandled page errors', errors.length === 0, JSON.stringify(errors));
+    },
+  },
+  {
     id: 'issue-focus',
     title: 'issue details stay separate from reading progress and return focus to their source',
     async run(page, t) {

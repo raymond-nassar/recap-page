@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createIssueView } from '../src/js/views/issue.js';
+import { ApiError } from '../src/js/api.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -17,10 +18,11 @@ function node(textContent = '') {
     removeAttribute(name) { delete this.attributes[name]; delete this[name]; },
     replaceChildren(...children) { this.children = children; },
     setAttribute(name, value) { this.attributes[name] = value; },
+    focus() { this.ownerDocument.activeElement = this; },
   };
 }
 
-function harness({ apiIssue, state, synopsis = null } = {}) {
+function harness({ apiIssue, state, synopsis = null, loadCatalog, loadOrder } = {}) {
   const nodes = {
     background: node(),
     byline: node(),
@@ -36,11 +38,15 @@ function harness({ apiIssue, state, synopsis = null } = {}) {
     note: node(),
     number: node(),
     read: node(),
+    retry: node(),
     series: node(),
     status: node(),
     synopsis: node(),
     synopsisStatus: node(),
   };
+  const document = { activeElement: null };
+  for (const value of Object.values(nodes)) value.ownerDocument = document;
+  nodes.retry.hidden = true;
   const calls = {
     breadcrumbs: 0,
     cancelSynopsis: 0,
@@ -65,8 +71,8 @@ function harness({ apiIssue, state, synopsis = null } = {}) {
     },
     getSynopsis: () => synopsis,
     isSynopsisActive: () => synopsisActive,
-    loadCatalog: async () => ({ lists: [] }),
-    loadOrder: async () => ({ items: [] }),
+    loadCatalog: loadCatalog ?? (async () => ({ lists: [] })),
+    loadOrder: loadOrder ?? (async () => ({ items: [] })),
     onCancelSynopsis: () => { calls.cancelSynopsis += 1; },
     onRead: (...args) => calls.read.push(args),
     onStaleContext: (route) => calls.stale.push(route),
@@ -150,7 +156,7 @@ test('Issue view validates stale context before decoration and delegates route c
   assert.match(h.nodes.status.textContent, /no longer contains this issue/);
 });
 
-test('Issue view paints unavailable detail errors without inventing an action', async () => {
+test('Issue view offers in-place Retry for a transient positive lookup failure', async () => {
   const h = harness({ apiIssue: async () => { throw new TypeError('offline'); } });
   await h.view.render({ view: 'issue', issueId: 42, context: null });
 
@@ -159,6 +165,140 @@ test('Issue view paints unavailable detail errors without inventing an action', 
   assert.equal(h.nodes.card.hidden, true);
   assert.match(h.nodes.status.textContent, /could not be loaded/);
   assert.equal(h.calls.breadcrumbs, 1);
+  assert.equal(h.nodes.retry.hidden, false);
+  assert.equal(h.nodes.retry.textContent, 'Retry');
+});
+
+test('Retry keeps the exact issue and valid context, blocks duplicates, and restores focused details', async () => {
+  const requested = [];
+  let finish;
+  const state = {
+    issues: {}, lists: { a: { name: 'List A', itemIds: [42] } },
+    activeListId: 'a', read: { 42: 123 }, notes: { 42: 'Keep this' }, overrides: {},
+  };
+  const before = structuredClone(state);
+  const h = harness({
+    state,
+    apiIssue: (id) => {
+      requested.push(id);
+      if (requested.length === 1) throw new ApiError('Busy', 503, true);
+      return new Promise((resolve) => { finish = resolve; });
+    },
+  });
+  h.view.wire();
+  await h.view.render({ issueId: 42, context: { kind: 'list', id: 'a' } });
+  h.nodes.retry.focus();
+  const retry = h.nodes.retry.listeners.click();
+  h.nodes.retry.listeners.click();
+  assert.deepEqual(requested, [42, 42]);
+  assert.equal(h.nodes.retry.hidden, false);
+  assert.equal(h.nodes.retry.attributes['aria-disabled'], 'true');
+  assert.equal(h.nodes.retry.attributes['aria-busy'], 'true');
+  assert.equal(h.nodes.retry.textContent, 'Retrying…');
+  finish(issue());
+  await retry;
+  assert.equal(h.nodes.heading.textContent, 'Issue title');
+  assert.equal(h.nodes.heading.ownerDocument.activeElement, h.nodes.heading);
+  assert.equal(h.nodes.retry.hidden, true);
+  assert.equal(h.nodes.note.textContent, 'Keep this');
+  assert.equal(h.view.result().context.id, 'a');
+  assert.deepEqual(state, before);
+});
+
+test('Repeated failure keeps Retry focused and discards invalid context before retrying', async () => {
+  let requests = 0;
+  const h = harness({ apiIssue: async () => { requests += 1; throw new TypeError('offline'); } });
+  h.view.wire();
+  await h.view.render({ issueId: 42, context: { kind: 'list', id: 'missing' } });
+  h.nodes.retry.focus();
+  await h.nodes.retry.listeners.click();
+  assert.equal(requests, 2);
+  assert.equal(h.nodes.retry.hidden, false);
+  assert.equal(h.nodes.retry.attributes['aria-disabled'], undefined);
+  assert.equal(h.nodes.retry.ownerDocument.activeElement, h.nodes.retry);
+  assert.equal(h.view.result().context, null);
+  assert.equal(h.view.result().contextStatus, 'none');
+  assert.equal(h.calls.stale.length, 1);
+});
+
+test('Only recoverable API failures offer Retry; local-only identities never request it', async () => {
+  for (const [issueId, error, retryable, message] of [
+    [42, new ApiError('Busy', 429, true), true, /try again/],
+    [42, new ApiError('Timeout', 408, false), true, /try again/],
+    [42, new ApiError('Missing', 404, false), false, /has no details/],
+    [42, new ApiError('Gone', 410, false), false, /has no details/],
+    [42, new ApiError('Forbidden', 403, false), false, /could not be loaded/],
+    [42, new SyntaxError('Malformed JSON'), false, /could not be loaded/],
+    [42, null, false, /could not be loaded/],
+    [-42, new TypeError('offline'), false, /local issue is no longer/],
+  ]) {
+    let requests = 0;
+    const h = harness({ apiIssue: async () => {
+      requests += 1;
+      if (error) throw error;
+      return null;
+    } });
+    h.view.wire();
+    await h.view.render({ issueId });
+    assert.equal(h.nodes.retry.hidden, !retryable);
+    assert.match(h.nodes.status.textContent, message);
+    assert.equal(requests, issueId > 0 ? 1 : 0);
+    if (!retryable) {
+      await h.nodes.retry.listeners.click();
+      assert.equal(requests, issueId > 0 ? 1 : 0);
+    }
+  }
+});
+
+test('Navigation aborts Retry and a late result cannot replace the newer issue', async () => {
+  let finish;
+  let signal;
+  let requests = 0;
+  const h = harness({ apiIssue: async (id, opts) => {
+    if (id === 7) return issue(7);
+    requests += 1;
+    if (requests === 1) throw new TypeError('offline');
+    signal = opts.signal;
+    return new Promise((resolve) => { finish = resolve; });
+  } });
+  h.view.wire();
+  await h.view.render({ issueId: 42 });
+  const pending = h.nodes.retry.listeners.click();
+  h.view.cancel();
+  await h.view.render({ issueId: 7 });
+  finish(issue(42));
+  await pending;
+  assert.equal(signal.aborted, true);
+  assert.equal(h.view.result().issue.issueId, 7);
+  assert.equal(h.nodes.retry.hidden, true);
+});
+
+test('Cancelled catalog work cannot start an API lookup after navigation', async () => {
+  let finish;
+  const h = harness({
+    loadCatalog: () => new Promise((resolve) => { finish = resolve; }),
+    apiIssue: () => assert.fail('cancelled route must not request metadata'),
+  });
+  const pending = h.view.render({ issueId: 42, context: { kind: 'order', id: 'order-a' } });
+  h.view.cancel();
+  finish({ lists: [] });
+  await pending;
+  assert.equal(h.view.result(), null);
+});
+
+test('Retry completion does not steal focus after the reader moves elsewhere', async () => {
+  let requests = 0;
+  const h = harness({ apiIssue: async () => {
+    if (++requests === 1) throw new TypeError('offline');
+    return issue();
+  } });
+  h.view.wire();
+  await h.view.render({ issueId: 42 });
+  h.nodes.retry.focus();
+  const pending = h.nodes.retry.listeners.click();
+  h.nodes.info.focus();
+  await pending;
+  assert.equal(h.nodes.info.ownerDocument.activeElement, h.nodes.info);
 });
 
 test('Issue view cancellation suppresses a pending result and synopsis repaint stays local', async () => {
