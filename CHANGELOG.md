@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Matched issue action names to their visible labels
+
+Reading List actions now keep their visible wording together in their accessible names, followed
+by the issue title, so speech-input users can say the labels they see. The Unlimited status action
+also names the next override choice, and desktop icon tooltips keep the action wording. Availability
+states, list operations, layout and saved reading progress are unchanged.
+
 ### Made the D reading shortcut optional
 
 Backup & settings now includes a switch to turn off D for marking an issue read. It stays enabled
