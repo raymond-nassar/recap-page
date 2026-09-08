@@ -4937,6 +4937,87 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'series-progress-accessibility',
+    title: 'series progress exposes tracked counts without redundant anonymous bars',
+    async run(page, t) {
+      const state = fixtureReadingState();
+      const issues = ['Alpha', 'Beta', 'Gamma'].flatMap((seriesName, series) => (
+        ORDER.items.map((item) => ({
+          ...item,
+          issueId: item.issueId + series * 10,
+          title: `${seriesName} #${item.number}`,
+          seriesId: item.seriesId + series,
+          seriesName,
+          source: 'curated',
+          hydrated: true,
+        }))
+      ));
+      state.issues = Object.fromEntries(issues.map((issue) => [issue.issueId, issue]));
+      state.lists.fixture.itemIds = issues.filter((_, index) => index % 3 !== 2).map((issue) => issue.issueId);
+      state.lists.second = {
+        ...state.lists.fixture,
+        id: 'second',
+        name: 'Second progress list',
+        catalogId: null,
+        itemIds: issues.filter((_, index) => index % 3 !== 1).map((issue) => issue.issueId),
+      };
+      state.listOrder.push('second');
+      state.read = Object.fromEntries([3, 6, 7, 8].map((index) => [issues[index].issueId, 1000]));
+      await page.evaluateOnNewDocument((saved) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+      }, state);
+      await open(page, '/');
+      await click(page, '.ri[data-view="library"]');
+      await click(page, '#view-library [data-view="progress"]');
+      await page.waitForSelector('#view-progress:not([hidden]) .result', { timeout: 15000 });
+      await click(page, '#progress-method > summary');
+
+      for (const scope of ['list', 'all']) {
+        await click(page, `input[name="progress-scope"][value="${scope}"]`);
+        const tracked = scope === 'list' ? 2 : 3;
+        const expected = [
+          { name: 'Alpha', count: `0 of ${tracked} tracked issues read (0%)`, max: tracked, value: 0 },
+          { name: 'Beta', count: `1 of ${tracked} tracked issues read (${scope === 'list' ? 50 : 33}%)`, max: tracked, value: 1 },
+          { name: 'Gamma', count: `${tracked} of ${tracked} tracked issues read (100%)`, max: tracked, value: tracked },
+        ];
+        const rows = await page.$$eval('#series-progress .result', (elements) => elements.map((row) => {
+          const bar = row.querySelector('progress');
+          return {
+            name: row.querySelector('.result-title > span').textContent,
+            count: row.querySelector('.result-meta').textContent,
+            max: bar.max,
+            value: bar.value,
+            hidden: bar.getAttribute('aria-hidden'),
+            visible: bar.getBoundingClientRect().width > 0 && bar.getBoundingClientRect().height > 0,
+          };
+        }).sort((a, b) => a.name.localeCompare(b.name)));
+        t.check(`${scope} keeps three visual series bars`,
+          rows.length === 3 && rows.every((row) => row.visible), JSON.stringify(rows));
+        t.check(`${scope} retains exact zero, partial and fully read tracked counts and values`,
+          JSON.stringify(rows.map(({ name, count, max, value }) => ({ name, count, max, value })))
+          === JSON.stringify(expected), JSON.stringify(rows));
+        t.check(`${scope} explicitly hides only the redundant bars from accessibility APIs`,
+          rows.length === 3 && rows.every((row) => row.hidden === 'true'), JSON.stringify(rows));
+
+        const snapshot = await page.accessibility.snapshot({
+          root: await page.$('#view-progress'),
+          interestingOnly: false,
+        });
+        const nodes = snapshot ? [snapshot] : [];
+        for (const node of nodes) nodes.push(...(node.children ?? []));
+        const text = nodes.filter((node) => node.role === 'StaticText').map((node) => node.name);
+        t.check(`${scope} exposes each visible series name and complete count in the accessibility tree`,
+          expected.every((row) => text.includes(row.name) && text.includes(row.count)), JSON.stringify(text));
+        t.check(`${scope} exposes no redundant progressbar nodes`,
+          snapshot !== null && nodes.every((node) => node.role !== 'progressbar'),
+          JSON.stringify(nodes.filter((node) => node.role === 'progressbar')));
+        t.check(`${scope} keeps the tracked-only methodology accessible`,
+          text.some((value) => value.includes('Tracked means issues you added, not the size of each complete series.')),
+          JSON.stringify(text));
+      }
+    },
+  },
+  {
     id: 'library-view-extraction',
     title: 'Library reports and saved-list shelves keep their composed behavior',
     async run(page, t) {

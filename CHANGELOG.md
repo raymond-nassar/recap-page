@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Hid redundant series progress bars from assistive technology
+
+Progress by series no longer exposes unnamed bars to assistive technology. The bars remain
+visible, while the adjacent series names and tracked/read counts provide the same progress
+information in This list and All lists. Reading calculations and saved progress are unchanged.
+
 ### Kept narrow Reading List rows and actions usable
 
 Narrow Reading Lists give titles and metadata their own space, and expanded row actions now
