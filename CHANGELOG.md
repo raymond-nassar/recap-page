@@ -12,6 +12,12 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Kept narrow Reading List rows and actions usable
+
+Narrow Reading Lists give titles and metadata their own space, and expanded row actions now
+push later content down instead of covering it or being cut off at the end of the list.
+Keyboard dismissal, availability choices, reader launch and saved progress are unchanged.
+
 ### Kept the selected issue visible after returning from details
 
 Returning from issue details now brings the original Reading List control and its focus indicator

@@ -9722,6 +9722,204 @@ const SCENARIOS = [
   },
 ];
 
+SCENARIOS.push({
+  id: 'issue-443-row-actions',
+  title: 'Reading List rows and first/last actions remain unobscured at narrow and desktop sizes',
+  async run(page, t) {
+    await seedFixtureState(page);
+    const entry = ACTUAL_CATALOG.lists.find((list) => list.id === 'house-of-m');
+    const order = JSON.parse(readFileSync(new URL(`../src/data/${entry.file}`, import.meta.url), 'utf8'));
+    const state = fixtureReadingState();
+    state.issues = Object.fromEntries(order.items.map((item) => [item.issueId, { ...item, source: 'curated' }]));
+    state.lists.fixture.itemIds = order.items.map((item) => item.issueId);
+    state.lists.fixture.name = order.name;
+    await page.evaluate((saved) => {
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+      const settings = JSON.parse(localStorage.getItem('mrt.settings'));
+      settings.covers = false;
+      localStorage.setItem('mrt.settings', JSON.stringify(settings));
+    }, state);
+    await open(page, '/#/read/fixture?full=1');
+    await page.waitForSelector('#rows .row');
+    t.check('the reproduction has all 20 House of M issues with covers off',
+      await page.evaluate(() => document.querySelectorAll('#rows .row').length === 20
+        && document.body.classList.contains('nocovers')));
+    const savedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    // Observe real trusted activation at capture, without launching external sites or mutating
+    // progress. This scenario owns layout and targeting; existing journeys own action semantics.
+    await page.evaluate(() => {
+      window.__mrt443Activations = [];
+      document.addEventListener('click', (event) => {
+        const action = event.target.closest('#rows .ract .mini');
+        if (!action) return;
+        window.__mrt443Activations.push({ act: action.dataset.act, trusted: event.isTrusted });
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }, true);
+    });
+    const controlGeometry = (selector) => page.$eval(selector, (control) => {
+      const rect = control.getBoundingClientRect();
+      const style = getComputedStyle(control);
+      const focused = control.matches(':focus-visible');
+      const ring = focused ? parseFloat(style.outlineWidth) + Math.max(0, parseFloat(style.outlineOffset)) : 0;
+      const bounds = { left: rect.left - ring, right: rect.right + ring,
+        top: rect.top - ring, bottom: rect.bottom + ring };
+      const clips = [];
+      let painted = style.visibility === 'visible' && style.display !== 'none' && Number(style.opacity) > 0;
+      for (let parent = control.parentElement; parent; parent = parent.parentElement) {
+        const css = getComputedStyle(parent);
+        painted = painted && css.visibility === 'visible' && css.display !== 'none' && Number(css.opacity) > 0;
+        const r = parent.getBoundingClientRect();
+        if ((/(hidden|clip|auto|scroll)/.test(css.overflowX) && (bounds.left < r.left || bounds.right > r.right))
+          || (/(hidden|clip|auto|scroll)/.test(css.overflowY) && (bounds.top < r.top || bounds.bottom > r.bottom))) {
+          clips.push(parent.id || parent.className);
+        }
+      }
+      const points = [[.5, .5], [.05, .15], [.95, .15], [.05, .85], [.95, .85]];
+      const hits = points.every(([x, y]) => {
+        const hit = document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y);
+        return hit === control || control.contains(hit);
+      });
+      const ringHits = !focused || [
+        [bounds.left + .5, rect.top + rect.height / 2],
+        [bounds.right - .5, rect.top + rect.height / 2],
+        [rect.left + rect.width / 2, bounds.top + .5],
+        [rect.left + rect.width / 2, bounds.bottom - .5],
+      ].every(([x, y]) => {
+        const hit = document.elementFromPoint(x, y);
+        return hit === control || control.contains(hit) || hit?.contains(control);
+      });
+      return { act: control.dataset.act, focused, ring, clips, hits, ringHits, bounds,
+        visible: painted && rect.width > 0 && rect.height > 0 && bounds.left >= 0 && bounds.top >= 0
+          && bounds.right <= innerWidth && bounds.bottom <= innerHeight };
+    });
+
+    const measureLayout = () => page.$$eval('#rows .row', (rows) => {
+      const errors = [];
+      const overlap = (a, b) => a.left < b.right - .5 && a.right > b.left + .5
+        && a.top < b.bottom - .5 && a.bottom > b.top + .5;
+      const groups = (elements, label) => {
+        const rects = elements.map((el) => el.getBoundingClientRect()).filter((r) => r.width && r.height);
+        for (let i = 0; i < rects.length; i += 1) {
+          for (let j = i + 1; j < rects.length; j += 1) {
+            if (overlap(rects[i], rects[j])) errors.push(`${label}: ${i}/${j}`);
+          }
+        }
+      };
+      rows.forEach((row, index) => {
+        groups([...row.children], `row ${index}`);
+        groups([...row.querySelector('.row-info').children], `text ${index}`);
+        groups([...row.querySelector('.rm').children], `metadata ${index}`);
+        const info = row.querySelector('.row-info').getBoundingClientRect();
+        const style = getComputedStyle(row);
+        const available = row.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+        if (innerWidth <= 700 && info.width < available - .5) errors.push(`narrow text width ${index}: ${info.width}/${available}`);
+        for (const el of row.querySelectorAll('.rt, .rm > span, .rnote')) {
+          const r = el.getBoundingClientRect();
+          if (r.left < info.left - .5 || r.right > info.right + .5) errors.push(`text escape ${index}`);
+        }
+      });
+      return { errors, overflow: document.documentElement.scrollWidth > innerWidth };
+    });
+    for (const viewport of [{ width: 320, height: 900 }, { width: 640, height: 450 }, { width: 1280, height: 900 }]) {
+      await page.setViewport(viewport);
+      const size = `${viewport.width}x${viewport.height}`;
+      const layout = await measureLayout();
+      t.check(`${size}: titles, notes, metadata, badges and actions never overlap`,
+        !layout.errors.length && !layout.overflow, JSON.stringify(layout));
+
+      for (const index of [0, 19]) {
+        const row = `#rows .row:nth-child(${index + 1})`;
+        const toggle = `${row} .row-actions-toggle`;
+        const actions = ['open', 'info', 'up', 'down', 'override', 'remove'];
+        const narrow = viewport.width <= 620;
+        await page.mouse.move(0, 0);
+        if (narrow) {
+          await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
+          await page.keyboard.press('Enter');
+          t.check(`${size} row ${index}: Enter opens More actions`,
+            await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
+        }
+        const panel = `${row} .ract`;
+        await page.$eval(panel, (el) => el.scrollIntoView({ block: 'center' }));
+        const panelBounds = await page.$eval(panel, (el) => {
+          const r = el.getBoundingClientRect();
+          const rowRect = el.closest('.row').getBoundingClientRect();
+          return { top: r.top, bottom: r.bottom, rowTop: rowRect.top, rowBottom: rowRect.bottom };
+        });
+        t.check(`${size} row ${index}: expanded actions stay inside their own row`,
+          panelBounds.top >= panelBounds.rowTop && panelBounds.bottom <= panelBounds.rowBottom,
+          JSON.stringify(panelBounds));
+        const hover = await page.$eval(panel, (el) => {
+          const r = el.getBoundingClientRect();
+          return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+        });
+        await page.mouse.move(hover.x, hover.y);
+        const pointers = [];
+        for (const act of actions) {
+          const selector = `${panel} [data-act="${act}"]`;
+          const geometry = await controlGeometry(selector);
+          pointers.push({ act, ...geometry });
+          const point = await page.$eval(selector, (el) => {
+            const r = el.getBoundingClientRect();
+            return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+          });
+          if (geometry.visible && geometry.hits && !geometry.clips.length) {
+            await page.mouse.click(point.x, point.y);
+          }
+        }
+        t.check(`${size} row ${index}: every action has full visible bounds and five pointer hit targets`,
+          pointers.length === 6 && pointers.every((p) => p.visible && p.hits && !p.clips.length),
+          JSON.stringify(pointers));
+        await page.mouse.move(0, 0);
+        await page.$eval(narrow ? toggle : `${row} .rnote`, (el) => el.focus());
+        const keyboard = [];
+        for (const act of actions) {
+          await page.keyboard.press('Tab');
+          const selector = `${panel} [data-act="${act}"]`;
+          const geometry = await controlGeometry(selector);
+          keyboard.push(geometry);
+          if (geometry.focused) await page.keyboard.press('Enter');
+        }
+        t.check(`${size} row ${index}: Tab reaches every action with its complete unobscured focus ring`,
+          keyboard.length === 6 && keyboard.every((g) => g.focused && g.ring > 0
+            && g.visible && g.hits && g.ringHits && !g.clips.length), JSON.stringify(keyboard));
+        const activations = await page.evaluate(() => window.__mrt443Activations.splice(0));
+        t.check(`${size} row ${index}: all six actions receive trusted pointer and keyboard activation`,
+          activations.length === 12 && activations.every((event, i) => event.trusted
+            && event.act === actions[i % actions.length]), JSON.stringify(activations));
+        if (narrow) {
+          await page.keyboard.press('Escape');
+          const returned = await controlGeometry(toggle);
+          t.check(`${size} row ${index}: Escape closes and returns visible focus to More actions`,
+            returned.focused && returned.visible && returned.hits && returned.ringHits && !returned.clips.length
+              && await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'false'),
+            JSON.stringify(returned));
+          await page.keyboard.press('Enter');
+          await page.keyboard.press('Shift+Tab');
+          t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
+            await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
+              && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
+        }
+      }
+    }
+    await page.setViewport({ width: 320, height: 900 });
+    await page.$eval('#rows .row', (row) => {
+      row.querySelector('.rt').textContent = 'AnUnbrokenIssueTitle'.repeat(8);
+      row.querySelector('.rnote').textContent = 'AnUnbrokenIssueNote'.repeat(12);
+      row.querySelector('.rm > span').textContent = 'AnUnbrokenSeriesName'.repeat(8);
+      const extra = row.querySelector('.badge').cloneNode(true);
+      extra.textContent = 'details pending';
+      row.querySelector('.rm').append(extra);
+    });
+    const stressed = await measureLayout();
+    t.check('320x900: unbroken titles, series names, notes and multiple badges wrap inside the row',
+      !stressed.errors.length && !stressed.overflow, JSON.stringify(stressed));
+    t.check('layout and targeting leave saved reading progress and list contents untouched',
+      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedState);
+  },
+});
+
 MUTATIONS.push(
   {
     id: 'narrow-content-panel-open',
@@ -10512,7 +10710,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility', 'issue-443-row-actions'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);

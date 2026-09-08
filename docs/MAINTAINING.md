@@ -105,7 +105,7 @@ MRT_EDGE=/absolute/path/to/browser npm run browser
 The check normally serves the app on an ephemeral port, uses an isolated profile, stubs the catalog
 network before the page loads, and exits nonzero on a failed journey. The temporary port keeps the
 reading progress at the standard app address untouched. The targeted `cache-generations`,
-`catalog-gaps`, `reading-paths`, and `issue-return-visibility` journeys require
+`catalog-gaps`, `reading-paths`, `issue-return-visibility`, and `issue-443-row-actions` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.

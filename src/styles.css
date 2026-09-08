@@ -1055,8 +1055,8 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   }
   .row-actions:not(.is-open) > .ract { display: none; }
   .row-actions.is-open > .ract {
-    position: absolute; z-index: 20; top: calc(100% + .35rem); right: 0;
-    width: max-content; min-width: 12rem; padding: var(--space-3);
+    margin-top: var(--space-3);
+    width: 100%; min-width: 0; padding: var(--space-3);
     flex-direction: column; align-items: stretch; opacity: 1;
     border: 1px solid var(--line-2); border-radius: 8px;
     background: var(--card-2); box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 28%);
@@ -2072,4 +2072,17 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   .reading-path-spine { border-color: CanvasText; }
   .reading-path-marker, .reading-path-stop-copy { border-color: CanvasText; background: Canvas; color: CanvasText; }
   .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
+}
+
+/* A 320px row left only 43px for its title beside the cover and actions. Text and actions
+   get separate full-width rows here; the disclosed panel then grows its row instead of
+   crossing the Full Reading List's clipping edge or covering the following issue. */
+.row-info { min-width: 0; overflow-wrap: anywhere; }
+.row-info .badge { max-width: 100%; white-space: normal; }
+.row-actions > .ract { gap: var(--space-4); }
+@media (max-width: 700px) {
+  .row { grid-template-columns: 26px 44px minmax(0, 1fr); }
+  .row-info, .row-actions { grid-column: 1 / -1; }
+  .row-actions { justify-self: stretch; min-width: 0; }
+  .row-actions > .ract { flex-wrap: wrap; }
 }

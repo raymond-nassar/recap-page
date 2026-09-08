@@ -668,7 +668,7 @@ export function createReadingView({
             tabIndex: '-1', ariaLabel: `Inspect ${item.title}`,
             children: [img, fb],
           }),
-          el('div', {}, [
+          el('div', { class: 'row-info' }, [
             issueFocusAnchor(item, {
               context: { kind: 'list', id },
               surface: 'full-order',

@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3844-3855|0": {
-    "anchor": "CHANGELOG.md:3844-3855",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3850-3861|0": {
+    "anchor": "CHANGELOG.md:3850-3861",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3857-3867|0": {
-    "anchor": "CHANGELOG.md:3857-3867",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3863-3873|0": {
+    "anchor": "CHANGELOG.md:3863-3873",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2281,7 +2281,7 @@
   },
   "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1051-1068|0": {
     "anchor": "src/styles.css:1051-1068",
-    "fp": "7aabd19f89d8772f",
+    "fp": "4516d2da0e913545",
     "head": "@media (max-width: 620px) {"
   },
   "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:108|0": {
