@@ -103,7 +103,7 @@ export const PAIRS = [
   ['--accent', '--card-2', LARGE, 'the fill of a primary button on a raised card'],
   // Found by the same review, one token over, and it is the reason the guard in test/theme.test.js
   // now pins `--on-accent` too. The tick inside a checked checkbox is `--on-accent` on `--teal`
-  // (`src/styles.css:982` and `src/styles.css:984`), which is 1.93:1 in the dark theme. It is
+  // (`src/styles.css:985` and `src/styles.css:987`), which is 1.93:1 in the dark theme. It is
   // listed here and recorded below rather than fixed, because the colour decision belongs to
   // BL-069 and this item is about measuring what nothing measured. The railed status dot is the
   // other thing painted on `--teal` and it carries no foreground at all, since
@@ -133,7 +133,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1821`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1824`'],
 ];
 
 export const STANDALONE_PAIRS = [
@@ -175,7 +175,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1797`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1800`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a

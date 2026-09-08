@@ -6311,7 +6311,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1037` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1040` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -12587,6 +12587,8 @@ MUTATIONS.push({
   window.addEventListener('scroll', hide449, true);
 `),
 });
+
+SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

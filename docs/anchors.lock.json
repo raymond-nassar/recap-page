@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3930-3941|0": {
-    "anchor": "CHANGELOG.md:3930-3941",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3935-3946|0": {
+    "anchor": "CHANGELOG.md:3935-3946",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3943-3953|0": {
-    "anchor": "CHANGELOG.md:3943-3953",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3948-3958|0": {
+    "anchor": "CHANGELOG.md:3948-3958",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2194,8 +2194,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1762-1764|0": {
-    "anchor": "src/styles.css:1762-1764",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1765-1767|0": {
+    "anchor": "src/styles.css:1765-1767",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2214,8 +2214,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1762-1764|0": {
-    "anchor": "src/styles.css:1762-1764",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1765-1767|0": {
+    "anchor": "src/styles.css:1765-1767",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2244,13 +2244,13 @@
     "fp": "4b5c1616f13e28f6",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:963-964|0": {
-    "anchor": "src/styles.css:963-964",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:966-967|0": {
+    "anchor": "src/styles.css:966-967",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:966|0": {
-    "anchor": "src/styles.css:966",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:969|0": {
+    "anchor": "src/styles.css:969",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -2264,8 +2264,8 @@
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:980-983|0": {
-    "anchor": "src/styles.css:980-983",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:983-986|0": {
+    "anchor": "src/styles.css:983-986",
     "fp": "713b8b6372bfe540",
     "head": ".cb {"
   },
@@ -2274,13 +2274,13 @@
     "fp": "5fa18d2d14f0f183",
     "head": "function issueRowActions(item, listId) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1037-1038|0": {
-    "anchor": "src/styles.css:1037-1038",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1040-1041|0": {
+    "anchor": "src/styles.css:1040-1041",
     "fp": "0874e4ac50b18fce",
     "head": ".row-actions { position: relative; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1049-1066|0": {
-    "anchor": "src/styles.css:1049-1066",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1052-1069|0": {
+    "anchor": "src/styles.css:1052-1069",
     "fp": "4516d2da0e913545",
     "head": "@media (max-width: 620px) {"
   },
@@ -2334,8 +2334,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1762-1764|0": {
-    "anchor": "src/styles.css:1762-1764",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1765-1767|0": {
+    "anchor": "src/styles.css:1765-1767",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -5989,8 +5989,8 @@
     "fp": "1e32540f481bdd17",
     "head": "test('every stop is listed on the screen its own link names', () => {"
   },
-  "scripts/browser-check.mjs|preamble|src/styles.css:1037|0": {
-    "anchor": "src/styles.css:1037",
+  "scripts/browser-check.mjs|preamble|src/styles.css:1040|0": {
+    "anchor": "src/styles.css:1040",
     "fp": "bad6625aa1fb228f",
     "head": ".row-actions { position: relative; }"
   },
@@ -6044,13 +6044,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1797|0": {
-    "anchor": "src/styles.css:1797",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1800|0": {
+    "anchor": "src/styles.css:1800",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1821|0": {
-    "anchor": "src/styles.css:1821",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1824|0": {
+    "anchor": "src/styles.css:1824",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6079,13 +6079,13 @@
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:982|0": {
-    "anchor": "src/styles.css:982",
+  "scripts/check-palette.mjs|preamble|src/styles.css:985|0": {
+    "anchor": "src/styles.css:985",
     "fp": "ab1b965d8a6c63ba",
     "head": "background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-ca"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:984|0": {
-    "anchor": "src/styles.css:984",
+  "scripts/check-palette.mjs|preamble|src/styles.css:987|0": {
+    "anchor": "src/styles.css:987",
     "fp": "66318b8a9bc87d06",
     "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },

@@ -12,6 +12,11 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Keep Preview reading options visible on keyboard focus
+
+Tabbing to a reading option in a short or enlarged Preview now scrolls its whole label and focus
+outline into view. Reading choices, Add/Open, Close and saved reading data are unchanged.
+
 ### Keep hints readable and dismissible
 
 Action and collapsed-sidebar hints stay visible while the pointer crosses onto them or a control
