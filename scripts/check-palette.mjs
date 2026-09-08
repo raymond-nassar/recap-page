@@ -103,11 +103,11 @@ export const PAIRS = [
   ['--accent', '--card-2', LARGE, 'the fill of a primary button on a raised card'],
   // Found by the same review, one token over, and it is the reason the guard in test/theme.test.js
   // now pins `--on-accent` too. The tick inside a checked checkbox is `--on-accent` on `--teal`
-  // (`src/styles.css:985` and `src/styles.css:987`), which is 1.93:1 in the dark theme. It is
+  // (`src/styles.css:982` and `src/styles.css:984`), which is 1.93:1 in the dark theme. It is
   // listed here and recorded below rather than fixed, because the colour decision belongs to
   // BL-069 and this item is about measuring what nothing measured. The railed status dot is the
   // other thing painted on `--teal` and it carries no foreground at all, since
-  // `.railed .rail-foot .pill` sets `color: transparent` at `src/styles.css:531-532`, so this is
+  // `.railed .rail-foot .pill` sets `color: transparent` at `src/styles.css:528-529`, so this is
   // the only pair `--teal` backs.
   ['--on-accent', '--teal', LARGE, 'the tick inside a checked read checkbox'],
   // BL-069, out of the BL-067 review, which found `--accent` painting three surfaces no pair reached.
@@ -133,7 +133,7 @@ export const PAIRS = [
   // ghost button has any: its label and its border. Both are listed rather than assumed, because
   // the button that was made quieter is the one it would be worst to make unreadable.
   ['--text', 'the ghost button on the unreadable-data banner', BODY, 'the label of the start-fresh button'],
-  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1824`'],
+  ['--muted', 'the ghost button on the unreadable-data banner', LARGE, 'the border that sets the start-fresh button apart, at `src/styles.css:1821`'],
 ];
 
 export const STANDALONE_PAIRS = [
@@ -175,7 +175,7 @@ export const SURFACES = {
     layer: '--warn',
     fraction: 0.12,
     on: '--panel',
-    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1800`',
+    css: 'color-mix(in srgb, var(--warn) 12%, var(--panel)), at `src/styles.css:1797`',
   },
   // Built on a surface rather than a token, which is the case the first version of this could not
   // express. A ghost button is a tint over whatever it is dropped onto, so on the banner it is a
@@ -185,7 +185,7 @@ export const SURFACES = {
     layer: '--tint-base',
     fraction: 0.05882,
     on: 'the unreadable-data banner',
-    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:816`',
+    css: 'rgb(var(--tint-base) / 5.882%) over the banner, at `src/styles.css:813`',
   },
 };
 
@@ -683,7 +683,7 @@ export function checkAll(css) {
 // so the rail improved by exactly the amount the card bar did. The dark trough was darkened from
 // #2a303c to #232731 to get there, taking the fill from 2.72 to 3.07; the light theme already
 // measured 3.67. The bar is also never the only way to read progress, because the same numbers are
-// stated as text beside it, at `src/js/main.js:1625` in the rail and `src/js/views/shared/saved-lists.js:30` in the
+// stated as text beside it, at `src/js/main.js:1610` in the rail and `src/js/views/shared/saved-lists.js:30` in the
 // saved lists.
 //
 // Those two citations, and the two in the fifth entry below, were all four lines out of date when

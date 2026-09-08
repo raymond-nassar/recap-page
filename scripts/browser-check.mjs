@@ -6311,7 +6311,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1040` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1037` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -10538,6 +10538,11 @@ const SCENARIOS = [
             await page.$eval(row, (element) => element.scrollIntoView({ block: 'start' }));
             for (const [act, phrase] of step === 0 ? actions : [actions[2]]) {
               const button = await page.$(`${row} [data-act="${act}"]`);
+              await button.focus();
+              await page.waitForFunction((text) => {
+                const tip = document.querySelector('#action-tip');
+                return tip && !tip.hidden && tip.textContent === text;
+              }, {}, await button.evaluate((element) => element.dataset.tooltip));
               const computed = await page.accessibility.snapshot({ root: button, interestingOnly: false });
               const rendered = await button.evaluate((element) => {
                 const label = element.querySelector('.mini-label');
@@ -10549,7 +10554,7 @@ const SCENARIOS = [
                   iconFocusable: icon.tabIndex >= 0,
                   glyph: icon.textContent,
                   tooltip: element.dataset.tooltip,
-                  tooltipContent: getComputedStyle(element, '::after').content,
+                  tooltipContent: document.querySelector('#action-tip').textContent,
                   hasTooltip: element.classList.contains('has-tooltip'),
                 };
               });
@@ -10754,6 +10759,19 @@ SCENARIOS.push({
           activations.length === 12 && activations.every((event, i) => event.trusted
             && event.act === actions[i % actions.length]), JSON.stringify(activations));
         if (narrow) {
+          const hintVisible = await page.evaluate(() => {
+            const control = document.activeElement;
+            const tip = document.querySelector('#action-tip');
+            return control?.matches('.has-tooltip') && tip && !tip.hidden
+              && tip.textContent === control.dataset.tooltip;
+          });
+          if (hintVisible) {
+            await page.evaluate(() => { window.__mrt443HintFocus = document.activeElement; });
+            await page.keyboard.press('Escape');
+            t.check(`${size} row ${index}: dismissing the current hint preserves focus and More actions`,
+              await page.$eval(toggle, (el) => document.activeElement === window.__mrt443HintFocus
+                && el.getAttribute('aria-expanded') === 'true' && document.querySelector('#action-tip').hidden));
+          }
           await page.keyboard.press('Escape');
           const returned = await controlGeometry(toggle);
           t.check(`${size} row ${index}: Escape closes and returns visible focus to More actions`,
@@ -12300,6 +12318,275 @@ MUTATIONS.push(
       'return list?.itemIds === removed.itemIds'),
   },
 );
+
+// This probe understands the original pseudo-element as well as the replacement DOM hint:
+// the negative control must fail on lost hover/focus behavior, not on a missing new selector.
+async function tooltipVisual449(page, selector, tipId) {
+  return page.$eval(selector, (trigger, id) => {
+    const rect = (box) => ({ left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height });
+    const box = trigger.getBoundingClientRect();
+    const tip = document.getElementById(id);
+    const pseudo = getComputedStyle(trigger, '::after');
+    const legacy = id === 'action-tip' && pseudo.content !== 'none' && pseudo.content !== 'normal';
+    let visible = !tip.hidden;
+    let bounds = rect(tip.getBoundingClientRect());
+    if (legacy) {
+      visible = pseudo.visibility === 'visible' && pseudo.opacity !== '0';
+      const width = parseFloat(pseudo.width);
+      const height = parseFloat(pseudo.height);
+      const left = box.left + box.width / 2 - width / 2;
+      const top = box.bottom - parseFloat(pseudo.bottom) - height;
+      bounds = { left, right: left + width, top, bottom: top + height, width, height };
+    }
+    return {
+      visible, box: rect(box), bounds, text: legacy ? pseudo.content : tip.textContent,
+      focus: document.activeElement === trigger,
+      described: trigger.getAttribute('aria-describedby'),
+      ariaHidden: tip.getAttribute('aria-hidden'),
+      live: tip.getAttribute('aria-live'),
+      shortcut: trigger.getAttribute('aria-keyshortcuts'),
+      side: legacy ? 'top' : tip.dataset.side,
+      viewport: { left: visualViewport.offsetLeft, top: visualViewport.offsetTop, width: visualViewport.width, height: visualViewport.height },
+      transition: getComputedStyle(tip).transitionDuration,
+      border: getComputedStyle(tip).borderTopWidth,
+    };
+  }, tipId);
+}
+
+SCENARIOS.push({
+  id: 'tooltip-lifecycle-449',
+  title: 'action and rail hints survive pointer travel and dismiss without moving focus',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await seedFixtureState(page, { sidebarCollapsed: true });
+    await page.evaluate(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, readingShortcut: true }));
+    });
+    await open(page, '/?catalog=browser-check#/read/fixture?full=1');
+    await page.waitForSelector('#rows .row');
+    const saved = await readState(page);
+    const settle = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const reset = async () => {
+      await page.mouse.move(page.viewport().width - 1, page.viewport().height - 1);
+      await page.evaluate(() => document.activeElement?.blur());
+      await settle();
+    };
+    const families = [
+      { name: 'action', selector: '#btn-hero-done', tipId: 'action-tip' },
+      { name: 'rail', selector: '#sidebar .ri[data-view="add"]', tipId: 'rail-tip' },
+    ];
+    for (const { name, selector, tipId } of families) {
+      await reset();
+      await page.$eval(selector, (trigger) => trigger.scrollIntoView({ block: 'center' }));
+      await page.hover(selector);
+      await settle();
+      const shown = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: hover reveals the current hint`, shown.visible && shown.text.length > 0, JSON.stringify(shown));
+      const { box, bounds } = shown;
+      const vertical = bounds.bottom <= box.top || bounds.top >= box.bottom;
+      const cross = vertical
+        ? Math.max(box.left + 2, Math.min(box.right - 2, (bounds.left + bounds.right) / 2))
+        : Math.max(box.top + 2, Math.min(box.bottom - 2, (bounds.top + bounds.bottom) / 2));
+      const gap = vertical
+        ? { x: cross, y: bounds.bottom <= box.top ? (bounds.bottom + box.top) / 2 : (bounds.top + box.bottom) / 2 }
+        : { x: bounds.left >= box.right ? (bounds.left + box.right) / 2 : (bounds.right + box.left) / 2, y: cross };
+      await page.mouse.move(gap.x, gap.y, { steps: 12 });
+      await settle();
+      t.check(`${name}: the actual trigger-to-hint gap remains hoverable`,
+        (await tooltipVisual449(page, selector, tipId)).visible);
+      await page.mouse.move(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2, { steps: 12 });
+      await settle();
+      t.check(`${name}: hovering the hint keeps it readable`,
+        (await tooltipVisual449(page, selector, tipId)).visible);
+      await reset();
+      t.check(`${name}: leaving both surfaces closes the hint`, !(await tooltipVisual449(page, selector, tipId)).visible);
+
+      await page.focus(selector);
+      await settle();
+      const focused = await tooltipVisual449(page, selector, tipId);
+      const control = await page.$(selector);
+      const accessible = await page.accessibility.snapshot({ root: control, interestingOnly: false });
+      const announcer = await page.$eval('#announcer', (node) => node.textContent);
+      t.check(`${name}: focus opens a purely visual supplement to a sufficient name`,
+        focused.visible && focused.focus && accessible?.name?.length > 0
+        && focused.ariaHidden === 'true' && focused.live === null && focused.described === null, JSON.stringify({ focused, accessible }));
+      await page.keyboard.press('Escape');
+      await settle();
+      const dismissed = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: Escape dismisses without moving keyboard focus`, !dismissed.visible && dismissed.focus, JSON.stringify(dismissed));
+      await page.$eval(selector, (node) => { node.dataset.tooltipRepaint449 = 'same control'; node.classList.add('tooltip-repaint-449'); });
+      await page.hover(selector);
+      await settle();
+      t.check(`${name}: unchanged focus plus repaint and renewed hover do not undo Escape`,
+        !(await tooltipVisual449(page, selector, tipId)).visible);
+      await reset();
+      await page.focus(selector);
+      await settle();
+      t.check(`${name}: leaving focus and hover permits the next visit to reopen`,
+        (await tooltipVisual449(page, selector, tipId)).visible);
+      t.check(`${name}: tooltip repaint does not add an announcement`,
+        announcer === await page.$eval('#announcer', (node) => node.textContent));
+      await page.$eval(selector, (node) => { node.disabled = true; });
+      await settle();
+      t.check(`${name}: a disabled trigger withdraws its hint`, !(await tooltipVisual449(page, selector, tipId)).visible);
+      await page.$eval(selector, (node) => { node.disabled = false; node.classList.remove('tooltip-repaint-449'); delete node.dataset.tooltipRepaint449; });
+      await reset();
+      await page.focus(selector);
+      await page.$eval(selector, (node) => { node.hidden = true; });
+      await settle();
+      t.check(`${name}: hiding a focused trigger withdraws its hint`,
+        !(await tooltipVisual449(page, selector, tipId)).visible);
+      await page.$eval(selector, (node) => { node.hidden = false; });
+      await reset();
+    }
+
+    const action = families[0];
+    await page.focus(action.selector);
+    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Current action after repaint'; });
+    await settle();
+    t.check('valid action text updates in place without moving focus',
+      (await tooltipVisual449(page, action.selector, action.tipId)).text === 'Current action after repaint');
+    await page.$eval(action.selector, (node) => { node.removeAttribute('data-tooltip'); node.removeAttribute('aria-keyshortcuts'); });
+    await settle();
+    t.check('withdrawing a shortcut withdraws its visible hint and shortcut metadata',
+      !(await tooltipVisual449(page, action.selector, action.tipId)).visible
+      && await page.$eval(action.selector, (node) => !node.hasAttribute('aria-keyshortcuts')));
+    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
+    await reset();
+
+    // The first Escape must not invoke the row menu's focus rescue; the second still must.
+    await page.setViewport({ width: 320, height: 900 });
+    await click(page, '#rows .row:first-child [data-act="more"]');
+    const rowAction = '#rows .row:first-child [data-act="override"]';
+    await page.focus(rowAction);
+    await page.keyboard.press('Escape');
+    t.check('first Escape keeps focus in the open narrow row menu',
+      await page.$eval(rowAction, (node) => document.activeElement === node
+        && node.closest('.row').querySelector('[data-act="more"]').getAttribute('aria-expanded') === 'true'));
+    await page.keyboard.press('Escape');
+    t.check('second Escape retains the existing row-menu dismissal and focus rescue',
+      await page.$eval('#rows .row:first-child [data-act="more"]', (node) => document.activeElement === node && node.getAttribute('aria-expanded') === 'false'));
+
+    const client = await page.createCDPSession();
+    for (const { name, selector, tipId } of families) {
+      await page.setViewport({ width: name === 'rail' ? 1000 : 320, height: 900 });
+      await reset();
+      await page.$eval(selector, (node) => {
+        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] =
+          'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+        node.scrollIntoView({ block: 'center' });
+      });
+      await page.focus(selector);
+      await settle();
+      const long = await tooltipVisual449(page, selector, tipId);
+      const fits = ({ bounds: r, viewport: v, box: b }) => r.left >= v.left && r.top >= v.top
+        && r.right <= v.left + v.width && r.bottom <= v.top + v.height
+        && (r.right <= b.left || r.left >= b.right || r.bottom <= b.top || r.top >= b.bottom);
+      t.check(`${name}: long content wraps within the viewport without covering its control`, long.visible && fits(long), JSON.stringify(long));
+      const occlusion = await page.evaluate((id) => {
+        const tip = document.getElementById(id);
+        const box = tip.getBoundingClientRect();
+        tip.style.visibility = 'hidden';
+        const content = new Set();
+        for (let x = box.left + 4; x < box.right; x += 12) {
+          for (let y = box.top + 4; y < box.bottom; y += 12) {
+            const node = document.elementFromPoint(x, y);
+            if (node?.matches('button, a, p, label, h1, h2, h3, span, b, strong') && node.textContent.trim()) {
+              content.add(node.textContent.trim().slice(0, 90));
+            }
+          }
+        }
+        tip.style.removeProperty('visibility');
+        return [...content];
+      }, tipId);
+      console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      await settle();
+      const zoom = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: 200 percent zoom retains visible, non-overlapping keyboard hints`, zoom.visible && zoom.focus && fits(zoom), JSON.stringify(zoom));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+      await client.send('Emulation.setEmulatedMedia', {
+        features: [{ name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
+      });
+      await settle();
+      const media = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: forced colors keeps a boundary and reduced motion needs no animation`,
+        media.visible && parseFloat(media.border) >= 1 && media.transition === '0s', JSON.stringify(media));
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      await reset();
+    }
+    await client.detach();
+    await page.setViewport({ width: 1280, height: 900 });
+    await reset();
+    await page.focus('#btn-hero-done');
+    await page.evaluate(() => document.querySelector('#ask').showModal());
+    await settle();
+    t.check('a modal dialog withdraws the background hint',
+      await page.$eval('#action-tip', (node) => node.hidden));
+    await page.keyboard.press('Escape');
+    t.check('Escape still dismisses a dialog without a visible hint',
+      await page.$eval('#ask', (node) => !node.open));
+    await page.focus('#sidebar .ri[data-view="add"]');
+    await click(page, '#sidebar .ri[data-view="add"]');
+    await settle();
+    t.check('navigation removes the old hint rather than reviving it at the new heading',
+      await page.evaluate(() => document.querySelector('#rail-tip').hidden && document.querySelector('#action-tip').hidden));
+    await click(page, '.search-hub-card[data-view="add-search"]');
+    await page.focus('#form-search button[type="submit"]');
+    await page.$eval('#form-search button[type="submit"]', (node) => node.remove());
+    await settle();
+    t.check('removing a trigger cleans up its detached hint', await page.$eval('#action-tip', (node) => node.hidden));
+    t.check('the lifecycle scenario produces no page errors', errors.length === 0, errors.join(' / '));
+    const after = await readState(page);
+    t.check('hint interactions leave saved reading progress unchanged', JSON.stringify(after) === JSON.stringify(saved));
+  },
+});
+
+MUTATIONS.push({
+  id: 'tooltip-original-lifecycle-449',
+  breaks: 'tooltip-lifecycle-449',
+  why: 'the original action pseudo-hints and pointerout rail hints cannot survive gap travel or Escape',
+  rewriteMain: (source) => source.replace('  wireAppTooltips();', `
+  const legacyStyle449 = \`
+    .has-tooltip { position: relative; }
+    .has-tooltip::after {
+      content: attr(data-tooltip); position: absolute; z-index: 25;
+      left: 50%; bottom: calc(100% + .45rem); width: max-content; max-width: 14rem;
+      padding: var(--space-2) var(--space-4); border: 1px solid var(--line-2); border-radius: 6px;
+      background: var(--text); color: var(--card);
+      font-size: var(--t-caption); font-weight: 600; line-height: 1.3;
+      opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-50%);
+    }
+    .has-tooltip:hover::after, .has-tooltip:focus-visible::after { opacity: 1; visibility: visible; }
+    .rail-tip { pointer-events: none; max-width: 15rem; white-space: nowrap; overflow: hidden; }
+  \`;
+  const sheet449 = document.styleSheets[0];
+  for (const rule of legacyStyle449.split('}').filter((part) => part.trim())) {
+    sheet449.insertRule(rule + '}', sheet449.cssRules.length);
+  }
+  const rail449 = $('#sidebar');
+  const hide449 = () => { $('#rail-tip').hidden = true; };
+  const show449 = (event) => {
+    if (isNarrow) return hide449();
+    const target = event.target instanceof Element ? event.target.closest('.ri, .brand, .pill, .rail-toggle') : null;
+    if (!target || (!railed && !target.matches('.rail-toggle'))) return hide449();
+    const text = (target.dataset.tip || target.querySelector('.lbl')?.textContent || target.textContent || '').trim();
+    if (!text) return hide449();
+    const tip = $('#rail-tip');
+    tip.textContent = text;
+    tip.hidden = false;
+    const box = target.getBoundingClientRect();
+    tip.style.left = Math.round(box.right + 8) + 'px';
+    tip.style.top = Math.round(box.top + box.height / 2 - tip.offsetHeight / 2) + 'px';
+  };
+  rail449.addEventListener('pointerover', show449);
+  rail449.addEventListener('pointerout', hide449);
+  rail449.addEventListener('focusin', show449);
+  rail449.addEventListener('focusout', hide449);
+  window.addEventListener('scroll', hide449, true);
+`),
+});
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

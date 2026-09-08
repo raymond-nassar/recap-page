@@ -73,7 +73,8 @@ test('reading shortcuts stay discoverable without permanent keycap clutter', () 
     assert.match(button, new RegExp(`data-tooltip="Keyboard shortcut: ${key}"`), `${id} has no visible shortcut tooltip`);
     assert.match(button, new RegExp(`aria-keyshortcuts="${ariaKey}"`), `${id} does not expose its shortcut accessibly`);
   }
-  assert.match(css, /\.has-tooltip:hover::after, \.has-tooltip:focus-visible::after/);
+  assert.match(html, /id="action-tip" hidden aria-hidden="true"/);
+  assert.match(main, /wireTooltips\(/);
   const settings = html.match(/<h3>Keyboard shortcuts<\/h3>[\s\S]*?<\/table>/)?.[0] ?? '';
   assert.equal((settings.match(/<tr>/g) ?? []).length, 3, 'the Settings shortcut reference changed');
 });

@@ -993,7 +993,8 @@
     </div>
 
     <!-- Rail-mode tooltip. Purely visual: the button's own label is its accessible name. -->
-    <div class="rail-tip" id="rail-tip" hidden aria-hidden="true"></div>
+    <div class="rail-tip visual-tooltip" id="rail-tip" hidden aria-hidden="true"><span class="tooltip-content" tabindex="-1"></span></div>
+    <div class="action-tip visual-tooltip" id="action-tip" hidden aria-hidden="true"><span class="tooltip-content" tabindex="-1"></span></div>
 
     <!--
       Preview of a curated order before committing to it. A native <dialog> is used so the
