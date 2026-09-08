@@ -1,4 +1,5 @@
 import { resolveReadingPaths } from '../lib/catalog.js';
+import { labelledName } from '../lib/accname.js';
 import {
   completionState,
   listForCatalogId,
@@ -26,7 +27,7 @@ export function readingPathProgress(state, stop) {
 
 function progressText(progress) {
   if (!progress) return 'Not added';
-  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${orderWord(progress.state)}.`;
+  return `${progress.read} of ${progress.total} issues read in ${progress.name}. ${orderWord(progress.state)}.${progress.match === 'sibling' ? ' Alternate reading version.' : ''}`;
 }
 
 export function createReadingPathsView({
@@ -39,6 +40,7 @@ export function createReadingPathsView({
   loadCatalog,
   onCanonicalPath,
   onLoadFailure,
+  onOpenStop,
   onSelectedPath,
 }) {
   let generation = 0;
@@ -51,7 +53,14 @@ export function createReadingPathsView({
       const stop = selectedPath.stops[Number(output.dataset.readingPathProgress)];
       const progress = readingPathProgress(state, stop);
       output.textContent = progressText(progress);
-      output.closest('.reading-path-stop').dataset.progress = progress?.state ?? 'not-added';
+      const row = output.closest('.reading-path-stop');
+      row.dataset.progress = progress?.state ?? 'not-added';
+      const action = row.querySelector('[data-reading-path-action]');
+      const text = progress
+        ? (progress.match === 'exact' ? 'Open saved list' : 'Open saved version')
+        : (stop.lists.length > 1 ? 'Choose reading option' : 'Preview');
+      action.textContent = text;
+      action.setAttribute('aria-label', labelledName(text, progress?.name ?? stop.name));
     }
   }
 
@@ -77,6 +86,12 @@ export function createReadingPathsView({
           class: 'reading-path-stop-progress',
           dataset: { readingPathProgress: index },
         }),
+        el('button', {
+          type: 'button',
+          class: 'btn btn-g reading-path-action',
+          dataset: { readingPathAction: stop.stepId },
+          onclick: () => onOpenStop(stop, readingPathProgress(getState(), stop)),
+        }),
       ]),
     ])));
     refreshProgress();
@@ -95,7 +110,7 @@ export function createReadingPathsView({
     select.value = selectedId;
   }
 
-  async function render() {
+  async function render({ opener = null } = {}) {
     const currentGeneration = ++generation;
     const nodes = elements();
     clearLoadNotice();
@@ -117,6 +132,11 @@ export function createReadingPathsView({
       nodes.details.hidden = false;
       nodes.status.textContent = `${resolvedPaths.length} Reading paths available.`;
       if (requestedId !== selected.id) onCanonicalPath(selected.id);
+      if (opener?.pathId === selected.id) {
+        [...nodes.spine.querySelectorAll('[data-reading-path-action]')]
+          .find((action) => action.dataset.readingPathAction === opener.stepId)?.focus();
+      }
+      return selected.id;
     } catch (error) {
       if (!isCurrent() || currentGeneration !== generation) return;
       selectedPath = null;
