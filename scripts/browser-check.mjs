@@ -1387,6 +1387,21 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'synopsis-disclosure-default-open-447',
+    breaks: 'synopsis-disclosure-447',
+    why: 'bulk-fetched prose is exposed without an exact-issue reveal',
+    rewriteMain: (source) => source.replaceAll(
+      '  synopsisDisclosure,',
+      '  synopsisDisclosure: { ...synopsisDisclosure, isRevealed: () => true },',
+    ),
+  },
+  {
+    id: 'synopsis-disclosure-source-choice-retained-447',
+    breaks: 'synopsis-disclosure-447',
+    why: 'a source save incorrectly retains the old exact-issue reveal choices',
+    rewriteMain: (source) => source.replace('    synopsisDisclosure.clear();', ''),
+  },
+  {
     id: 'synopsis-consent-decline-off',
     breaks: 'synopsis-consent',
     why: 'declining the synopsis disclaimer starts the run the reader refused',
@@ -6403,6 +6418,228 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'synopsis-disclosure-447',
+    title: '447 exact-issue disclosure preserves consent, focus and tab-only privacy',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument((items) => {
+        const original = window.fetch;
+        window.__disclosure447 = { mode: 'answer', requests: [], held: [], opens: [] };
+        window.open = (...args) => { window.__disclosure447.opens.push(args); return {}; };
+        window.fetch = (input, init) => {
+          const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+          if (url.origin === location.origin) return original(input, init);
+          const match = /\/issues\/(\d+)$/.exec(url.pathname);
+          if (url.pathname.endsWith('/health')) {
+            return Promise.resolve(new Response(JSON.stringify({ issue_count: 3 }), { status: 200 }));
+          }
+          if (!match) return original(input, init);
+          const state = window.__disclosure447;
+          const id = Number(match[1]);
+          state.requests.push({ id, cache: init?.cache, url: url.href });
+          const item = items.find((candidate) => candidate.issueId === id);
+          const answer = () => new Response(JSON.stringify({
+            id, title: item?.title ?? `Synthetic issue ${id}`, issue_number: '1',
+            description: state.mode === 'missing' ? null : `Synthetic plot 447 for ${id}.`,
+          }), { status: 200, headers: { 'content-type': 'application/json' } });
+          if (state.mode === 'failure') return Promise.reject(new TypeError('Synthetic offline response'));
+          if (state.mode === 'hold') {
+            return new Promise((resolve) => {
+              const held = { finish: () => resolve(answer()), aborted: false };
+              init?.signal?.addEventListener('abort', () => { held.aborted = true; }, { once: true });
+              state.held.push(held);
+            });
+          }
+          return Promise.resolve(answer());
+        };
+      }, ORDER.items);
+      await importOrder(page);
+      const first = ORDER.items[0].issueId;
+      const second = ORDER.items[1].issueId;
+      const listId = (await readState(page)).active;
+      const readHash = `#/read/${encodeURIComponent(listId)}`;
+      const frames = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(
+        () => requestAnimationFrame(resolve),
+      )));
+      const navigate = async (hash) => {
+        await page.evaluate((next) => { location.hash = next; }, hash);
+        await page.waitForFunction((next) => location.hash === next, {}, hash);
+        if (hash.startsWith('#/issue/')) {
+          await page.waitForFunction((id) => (
+            !document.querySelector('#view-issue').hidden
+            && !document.querySelector('#issue-focus-card').hidden
+            && document.querySelector('#btn-issue-info').href.includes(`/issue/${id}/`)
+          ), {}, Number(hash.match(/issue\/(\d+)/)[1]));
+        } else await page.waitForSelector('#view-read:not([hidden])');
+      };
+      const inspect = (id) => navigate(`#/issue/${id}?list=${encodeURIComponent(listId)}`);
+      const hidden = (selector) => page.$eval(selector, (node) => node.hidden && node.textContent === '');
+      const fetchBulk = async () => {
+        await click(page, '#btn-synopsis');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent
+          === 'All synopses fetched, for this tab only.');
+      };
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await click(page, '#btn-hero-read');
+      t.check('official reader opens without fetching, revealing or changing saved data',
+        await page.evaluate((before) => window.__disclosure447.opens.length === 1
+          && window.__disclosure447.requests.length === 0
+          && localStorage.getItem('mrt.state.v2') === before, saved));
+      await fetchBulk();
+      t.check('bulk prose starts empty and hidden in the hero', await hidden('#hero-desc'));
+      await page.focus('#btn-hero-description');
+      await page.keyboard.press('Enter');
+      t.check('native Enter reveals exactly one plot with an expanded, named and visibly focused button',
+        await page.evaluate(() => {
+          const button = document.querySelector('#btn-hero-description');
+          const style = getComputedStyle(button);
+          const rect = button.getBoundingClientRect();
+          return document.querySelector('#hero-desc').textContent.startsWith('Synthetic plot 447')
+            && button.getAttribute('aria-expanded') === 'true'
+            && button.getAttribute('aria-controls') === 'hero-desc'
+            && button.getAttribute('aria-label').includes('Hide description')
+            && button === document.activeElement && rect.width > 0 && rect.height > 0
+            && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0
+            && window.__disclosure447.opens.length === 1;
+        }));
+      await page.keyboard.press('Space');
+      t.check('native Space hides plot without moving focus',
+        await hidden('#hero-desc') && await page.$eval('#btn-hero-description',
+          (node) => node === document.activeElement && node.getAttribute('aria-expanded') === 'false'));
+      await page.keyboard.press('Enter');
+      await inspect(first);
+      t.check('Issue Details shares only the exact revealed issue',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
+      await page.focus('#btn-issue-description');
+      await page.keyboard.press('Space');
+      await navigate(readHash);
+      t.check('Hide in details also hides the same hero on revisit', await hidden('#hero-desc'));
+      t.check('fetching and disclosure leave all saved bytes and notes unchanged',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
+      await click(page, '#btn-hero-description');
+      await click(page, '#btn-hero-done');
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[1].title);
+      t.check('Done does not reveal the next issue', await hidden('#hero-desc'));
+      await inspect(first);
+      t.check('the read flag does not erase an exact-issue reveal choice',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
+      await inspect(second);
+      t.check('an unrevealed issue stays collapsed in details', await hidden('#issue-focus-desc'));
+      const afterDone = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+
+      // Known factual metadata comes from the same synthetic source, but only explicit synopsis
+      // consent may put its plot in the separate tab store.
+      const untracked = 947001;
+      await navigate(`#/issue/${untracked}`);
+      t.check('untracked metadata does not expose its returned plot automatically',
+        await page.$eval('#issue-focus-desc', (node) => !node.textContent.includes('Synthetic plot 447')));
+      const requests = await page.evaluate(() => window.__disclosure447.requests.length);
+      await page.focus('#btn-issue-synopsis');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#ask[open]');
+      t.check('individual consent explicitly warns of exposure and retains the storage promises',
+        await page.$eval('#ask-body', (node) => node.textContent.includes('may contain spoilers')
+          && node.textContent.includes('Nothing fetched is saved')));
+      await click(page, '#ask-cancel');
+      await frames();
+      t.check('declining individual consent makes no synopsis request',
+        await page.evaluate((count) => window.__disclosure447.requests.length === count, requests));
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await inspect(second);
+      await navigate(`#/issue/${untracked}`);
+      const beforeOldConsent = await page.evaluate(() => window.__disclosure447.requests.length);
+      await click(page, '#ask-ok');
+      await frames();
+      t.check('leaving and returning while consent is open cannot revive its old request',
+        await page.evaluate((count) => window.__disclosure447.requests.length === count, beforeOldConsent));
+      await page.focus('#btn-issue-synopsis');
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#issue-focus-desc').textContent.startsWith('Synthetic plot 447'));
+      t.check('confirmed individual fetch reveals without a second action and preserves focus',
+        await page.$eval('#btn-issue-description', (node) => node.getAttribute('aria-expanded') === 'true'
+          && document.activeElement === node));
+
+      await navigate('#/issue/947002');
+      await page.evaluate(() => { window.__disclosure447.mode = 'missing'; });
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#btn-issue-synopsis').hidden
+        && document.querySelector('#btn-cancel-issue-synopsis').hidden);
+      t.check('missing synopsis remains readable, without a no-op fetch or disclosure',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.includes('No synopsis')));
+      await page.evaluate(() => { window.__disclosure447.mode = 'answer'; });
+      await navigate('#/issue/947003');
+      await page.evaluate(() => { window.__disclosure447.mode = 'failure'; });
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#issue-synopsis-status').textContent.includes('could not be reached'));
+      t.check('failed synopsis stays retryable and its failure message is visible',
+        await page.$eval('#btn-issue-synopsis', (node) => !node.hidden)
+        && await page.$eval('#issue-synopsis-status', (node) => !node.hidden));
+      await page.evaluate(() => { window.__disclosure447.mode = 'hold'; });
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => window.__disclosure447.held.length === 1);
+      t.check('in-flight individual request exposes status and Stop, not plot',
+        await page.$eval('#btn-cancel-issue-synopsis', (node) => !node.hidden)
+        && await page.$eval('#issue-focus-desc', (node) => !node.textContent.includes('Synthetic plot 447')));
+      await click(page, '#btn-cancel-issue-synopsis');
+      await page.evaluate(() => {
+        window.__disclosure447.mode = 'answer';
+        window.__disclosure447.held[0].finish();
+      });
+      await frames();
+      t.check('Stop aborts and a late successful response cannot reveal or hide Retry',
+        await page.evaluate(() => window.__disclosure447.held[0].aborted
+          && !document.querySelector('#btn-issue-synopsis').hidden
+          && !document.querySelector('#issue-focus-desc').textContent.includes('Synthetic plot 447')));
+
+      await navigate(readHash);
+      await click(page, '#btn-hero-description');
+      await inspect(second);
+      await click(page, '.ri[data-view="data"]');
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.evaluate(() => document.querySelector('#form-settings').requestSubmit());
+      await page.waitForFunction(() => document.querySelector('#api-report').textContent.includes('API URL saved'));
+      t.check('saving even the same source clears both dormant plot paragraphs',
+        await page.evaluate(() => ['#hero-desc', '#issue-focus-desc'].every((selector) => (
+          !document.querySelector(selector).textContent.includes('Synthetic plot 447')
+        ))));
+      await navigate(readHash);
+      await fetchBulk();
+      t.check('refetching after same-source save does not inherit the previous reveal', await hidden('#hero-desc'));
+      await click(page, '#btn-hero-description');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-read:not([hidden])');
+      await fetchBulk();
+      t.check('reload and refetch reset the exact-issue reveal choice', await hidden('#hero-desc'));
+      t.check('all synopsis journeys preserve read progress and notes after the deliberate Done action',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, afterDone));
+      t.check('no disclosure or prose enters localStorage, sessionStorage or exported backups',
+        await page.evaluate(async () => {
+          const { exportBackup } = await import('/js/lib/model.js');
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const durable = JSON.stringify([
+            ...Object.entries(localStorage), ...Object.entries(sessionStorage), exportBackup(state),
+          ]);
+          return !/Synthetic plot 447|synopsisDisclosure|isRevealed/.test(durable);
+        }));
+      t.check('synthetic issue requests retain no-store',
+        await page.evaluate(() => window.__disclosure447.requests.length > 0
+          && window.__disclosure447.requests.every((request) => request.cache === 'no-store')));
+      t.check('disclosure journeys produce no unhandled page errors', errors.length === 0, JSON.stringify(errors));
+    },
+  },
+  {
     id: 'synopsis-consent',
     title: 'synopsis fetching waits for consent that names what will happen',
     async run(page, t) {
@@ -6470,6 +6707,9 @@ const SCENARIOS = [
       );
 
       const expectedIds = ORDER.items.map((issue) => issue.issueId);
+      t.check('bulk-fetched plot stays collapsed before the durability reveal',
+        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
+      await click(page, '#btn-hero-description');
       const observed = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         requests: window.__mrtIssueRequestLog ?? [],
@@ -6576,6 +6816,7 @@ const SCENARIOS = [
         () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
         { timeout: 20000 },
       );
+      await click(page, '#btn-hero-description');
       const before = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         hash: location.hash,
@@ -6622,6 +6863,12 @@ const SCENARIOS = [
         requestsBefore);
       t.check('the next synopsis run asks the new service rather than the previous one',
         nextRequest?.url.startsWith(`${nextBase}/issues/`), JSON.stringify(nextRequest));
+      await page.waitForFunction(
+        () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
+        { timeout: 20000 },
+      );
+      t.check('the new source does not inherit the previous source reveal choice',
+        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
     },
   },
   {
@@ -6667,6 +6914,9 @@ const SCENARIOS = [
         () => (window.__mrtIssueRequestLog ?? []).length === 9,
         { timeout: 20000 },
       );
+      t.check('an arrived current plot stays collapsed during bulk fetching',
+        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
+      await click(page, '#btn-hero-description');
       const running = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent.trim() ?? '',
         fetchHidden: document.querySelector('#btn-synopsis')?.hidden ?? null,
@@ -6701,7 +6951,7 @@ const SCENARIOS = [
       );
       await page.waitForFunction(
         () => document.querySelector('#announcer')?.textContent
-          .includes('What arrived is on screen until you reload.'),
+          .includes('What arrived is held for this tab only.'),
         { timeout: 15000 },
       );
       const stopped = await page.evaluate(() => ({
@@ -6711,7 +6961,7 @@ const SCENARIOS = [
       t.check('stopping the synopsis run prevents any further issue request',
         stopped.requests.length === 9, JSON.stringify(stopped.requests));
       t.check('the cancellation announcement says arrived prose remains for this tab',
-        stopped.announcement.includes('What arrived is on screen until you reload.'),
+        stopped.announcement.includes('What arrived is held for this tab only.'),
         stopped.announcement);
     },
   },

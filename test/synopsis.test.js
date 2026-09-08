@@ -1274,7 +1274,7 @@ test('the spoken form of a stopped run says how many it could not reach', () => 
   const said = synopsisAnnouncement({ phase: 'cancelled', done: 3, total: 5, failed: 2 });
   assert.equal(said.state, 'cancelled');
   assert.match(said.msg, /2 issues could not be reached/);
-  assert.match(said.msg, /What arrived is on screen until you reload/);
+  assert.match(said.msg, /What arrived is held for this tab only/);
 });
 
 test('the spoken form of a clean stop does not mention failures at all', () => {

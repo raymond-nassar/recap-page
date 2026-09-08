@@ -218,6 +218,21 @@ normal browser, allow pop-ups for the local address. Reading comics requires you
 Unlimited subscription. Recap Page opens the official reader when a direct link is available and
 otherwise opens the issue's official page on marvel.com.
 
+### Choosing when to see issue descriptions
+
+**Fetch synopses** asks permission to fetch a Reading List's descriptions but does not reveal
+them. Use **Reveal description (may contain spoilers)** on Reading or Issue Details to see one,
+and **Hide description** to close it. When an individual description has not been fetched,
+Issue Details offers **Fetch and reveal description (may contain spoilers)** with confirmation.
+You can open the official reader without either action.
+
+All issues start collapsed, including already-read and untracked issues. The last reveal or hide
+choice follows only that exact issue between views in the current tab. Changing its read flag
+does not change that choice or reveal the next issue. Reloading or saving the metadata-source
+setting clears descriptions and choices. Neither is saved in your lists or backups, and revealing
+never changes progress or notes. Titles, covers and cross-story references are not guaranteed to
+be spoiler-free.
+
 ### Reading progress has disappeared
 
 Check all three parts of the storage location:

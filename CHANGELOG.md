@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Choose when to reveal issue descriptions
+
+Fetched descriptions now stay collapsed until you reveal that issue, with a Hide control to
+close them again. Individual fetching explicitly offers to fetch and reveal; bulk fetching
+does not reveal upcoming issues. Choices stay with the exact issue in this tab and reset on
+reload or a metadata-source save. Saved lists, progress, notes and backups are unchanged.
+
 ### Keep Preview reading options visible on keyboard focus
 
 Tabbing to a reading option in a short or enlarged Preview now scrolls its whole label and focus

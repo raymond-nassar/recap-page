@@ -1,5 +1,6 @@
 import { labelledName } from '../lib/accname.js';
 import { issuePresentation, resolveIssueFocus } from '../lib/issueFocus.js';
+import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 
 export function createIssueView({
   coverUrl,
@@ -21,11 +22,23 @@ export function createIssueView({
   renderBreadcrumbs,
   seriesOnly,
   synopsisFallback,
+  synopsisDisclosure,
   synopsisStatusLine,
 }) {
   let activeLoad = null;
   let activeRoute = null;
   let currentResult = null;
+  let synopsisEpoch = 0;
+
+  function paintDescription(issue) {
+    const nodes = elements();
+    renderSynopsisDescription({
+      button: nodes.disclosure, description: nodes.description, issue,
+      entry: getSynopsis(issue.issueId),
+      fallback: synopsisFallback(issue, getSynopsis(issue.issueId)),
+      disclosure: synopsisDisclosure,
+    });
+  }
 
   function issueContextText(context) {
     if (!context) return '';
@@ -85,7 +98,7 @@ export function createIssueView({
     nodes.number.textContent = presentation.number;
     paintBackground(nodes.background, issue);
     nodes.byline.textContent = presentation.byline;
-    nodes.description.textContent = presentation.description;
+    paintDescription(issue);
     nodes.facts.replaceChildren(...presentation.facts.map((item) => (
       fact(item.key, item.value, item.className)
     )));
@@ -103,14 +116,22 @@ export function createIssueView({
       nodes.info.removeAttribute('href');
       nodes.info.removeAttribute('aria-label');
     }
-    nodes.synopsis.hidden = issue.issueId < 0 || isSynopsisActive();
-    nodes.cancelSynopsis.hidden = true;
+    const active = nodes.synopsis.ownerDocument?.activeElement;
+    nodes.synopsis.hidden = issue.issueId < 0 || isSynopsisActive() || getSynopsis(issue.issueId) != null;
+    nodes.cancelSynopsis.hidden = !isSynopsisActive();
+    if ([nodes.synopsis, nodes.cancelSynopsis].includes(active) && active.hidden) {
+      const target = [nodes.cancelSynopsis, nodes.disclosure, nodes.synopsis]
+        .find((control) => !control.hidden) ?? nodes.description;
+      if (target === nodes.description) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
     renderBreadcrumbs();
     restoreRetryFocus();
   }
 
   async function render(route, { retry = false } = {}) {
     if (!route) return;
+    synopsisEpoch += 1;
     activeLoad?.abort();
     const controller = new AbortController();
     activeLoad = controller;
@@ -170,6 +191,16 @@ export function createIssueView({
     activeRoute = null;
     currentResult = null;
     elements().retry.hidden = true;
+    resetSynopsis();
+  }
+
+  function resetSynopsis() {
+    synopsisEpoch += 1;
+    const nodes = elements();
+    nodes.description.textContent = '';
+    nodes.description.hidden = true;
+    nodes.disclosure.hidden = true;
+    nodes.disclosure.setAttribute('aria-expanded', 'false');
   }
 
   function repaintSynopsis(status) {
@@ -178,8 +209,6 @@ export function createIssueView({
     nodes.synopsisStatus.textContent = synopsisStatusLine(status);
     nodes.synopsisStatus.hidden = !nodes.synopsisStatus.textContent;
     paint(currentResult);
-    nodes.synopsis.hidden = currentResult.issue.issueId < 0 || isSynopsisActive();
-    nodes.cancelSynopsis.hidden = !isSynopsisActive();
   }
 
   function wire() {
@@ -187,8 +216,26 @@ export function createIssueView({
     nodes.read.addEventListener('click', (event) => {
       if (currentResult?.issue) onRead(currentResult.issue, event);
     });
-    nodes.synopsis.addEventListener('click', onStartSynopsis);
-    nodes.cancelSynopsis.addEventListener('click', onCancelSynopsis);
+    nodes.disclosure.addEventListener('click', () => {
+      if (!currentResult?.issue) return;
+      synopsisDisclosure.toggle(currentResult.issue.issueId);
+      paintDescription(currentResult.issue);
+    });
+    nodes.synopsis.addEventListener('click', async () => {
+      if (!currentResult?.issue) return;
+      const issue = currentResult.issue;
+      // Invalidated even while consent is open, so leaving and returning cannot revive that request.
+      const epoch = ++synopsisEpoch;
+      const isCurrent = () => epoch === synopsisEpoch && currentResult?.issue?.issueId === issue.issueId;
+      const fetched = await onStartSynopsis(isCurrent);
+      if (!fetched || !isCurrent()) return;
+      synopsisDisclosure.reveal(issue.issueId);
+      paintDescription(issue);
+    });
+    nodes.cancelSynopsis.addEventListener('click', () => {
+      synopsisEpoch += 1;
+      onCancelSynopsis();
+    });
     nodes.retry.addEventListener('click', () => {
       if (activeLoad || !activeRoute || currentResult?.failure !== 'transient') return;
       return render(activeRoute, { retry: true });
@@ -199,6 +246,7 @@ export function createIssueView({
     cancel,
     render,
     repaintSynopsis,
+    resetSynopsis,
     result: () => currentResult,
     wire,
   };
