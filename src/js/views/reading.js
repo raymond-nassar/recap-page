@@ -439,12 +439,13 @@ export function createReadingView({
   function renderHero() {
     const id = activeListId();
     const issue = upNext(getState(), id);
-    const finished = !issue;
+    const empty = getState().lists[id]?.itemIds.length === 0;
 
-    $('#hero').hidden = finished;
-    $('#all-read').hidden = !finished;
-    $('#shelf-sec').hidden = finished;
-    if (finished) {
+    $('#hero').hidden = !issue;
+    $('#reading-empty').hidden = !empty;
+    $('#all-read').hidden = empty || !getState().lists[id] || !!issue;
+    $('#shelf-sec').hidden = !issue;
+    if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
       return;
     }
@@ -864,6 +865,7 @@ export function createReadingView({
         e.preventDefault();
         launch(issue, e);
       } else if (e.key === 'd' || e.key === 'D') {
+        if (getSettings().readingShortcut === false || e.repeat) return;
         e.preventDefault();
         markCurrentRead();
       }

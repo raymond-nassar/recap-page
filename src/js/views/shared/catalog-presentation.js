@@ -478,6 +478,7 @@ export function createCatalogPresentation({
   }
 
   return {
+    attributionLine,
     catalogCard,
     chosenPath,
     ensureSetupGuideFeature,

@@ -19,6 +19,27 @@ by the issue title, so speech-input users can say the labels they see. The Unlim
 also names the next override choice, and desktop icon tooltips keep the action wording. Availability
 states, list operations, layout and saved reading progress are unchanged.
 
+### Made the D reading shortcut optional
+
+Backup & settings now includes a switch to turn off D for marking an issue read. It stays enabled
+unless you turn it off, and your choice is kept in this browser. Holding D no longer marks several
+issues read; release it before pressing again. Done, next still works with the shortcut off, and
+the shortcut hints reflect your choice. Reading progress and backup files are unchanged.
+
+### Help empty Reading Lists get started
+
+Empty Reading Lists now say that no issues have been added and offer Add comics for the saved
+list, instead of claiming the order is finished. Home also distinguishes an empty list from one
+that is fully read. Removing the last issue returns to the same empty state; completed nonempty
+lists keep their completion message. Saved progress is unchanged.
+
+### Open stories directly from Reading Paths
+
+Each Reading Paths stop now opens its existing preview and reading options, or the saved list
+whose progress it shows. Alternate saved versions are named explicitly. Preview keeps source
+and metadata-gap disclosures beside the choice, and inspecting a story does not add it or mark
+anything read. Returning restores the selected path and brings the original stop into view.
+
 ### Kept the selected issue visible after returning from details
 
 Returning from issue details now brings the original Reading List control and its focus indicator

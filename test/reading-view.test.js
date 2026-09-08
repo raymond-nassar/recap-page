@@ -242,6 +242,7 @@ function harness(overrides = {}) {
     ringLabel: node({ id: 'ring-label' }),
     ringSub: node({ id: 'ring-sub' }),
     hero: node({ id: 'hero' }),
+    readingEmpty: node({ id: 'reading-empty', hidden: true }),
     allRead: node({ id: 'all-read', hidden: true }),
     shelfSec: node({ id: 'shelf-sec' }),
     shelfNote: node({ id: 'shelf-note' }),
@@ -307,6 +308,7 @@ function harness(overrides = {}) {
     ['#ring-label', nodes.ringLabel],
     ['#ring-sub', nodes.ringSub],
     ['#hero', nodes.hero],
+    ['#reading-empty', nodes.readingEmpty],
     ['#all-read', nodes.allRead],
     ['#shelf-sec', nodes.shelfSec],
     ['#shelf-note', nodes.shelfNote],
@@ -412,6 +414,7 @@ function harness(overrides = {}) {
     settings,
     setActive(listId) { state = setActive(state, listId); },
     setWriteFailures(count) { writeFailures = count; },
+    setDialogOpen(open) { selectorMap.set('dialog[open]', open ? node() : null); },
     state: () => state,
     view,
     restore() { delete globalThis.document; },
@@ -465,6 +468,66 @@ test('wire and render build reading controls and call launch inside the same ges
   }
 });
 
+test('441 Reading distinguishes empty, partial and completed lists without changing state', () => {
+  for (const phase of ['empty', 'partial', 'completed']) {
+    let state = createList(createEmptyState(), { id: 'empty-441', name: 'Empty 441' });
+    if (phase !== 'empty') {
+      state = addIssuesToList(state, 'empty-441', [issue(1, 'First'), issue(2, 'Second')]).state;
+      state = markRead(state, 1, true);
+      if (phase === 'completed') state = markRead(state, 2, true);
+    }
+    state = setActive(state, 'empty-441');
+    const before = structuredClone(state);
+    const h = harness({ state });
+    try {
+      h.view.render();
+      assert.equal(h.nodes.readingEmpty.hidden, phase !== 'empty', phase);
+      assert.equal(h.nodes.allRead.hidden, phase !== 'completed', phase);
+      assert.equal(h.nodes.hero.hidden, phase !== 'partial', phase);
+      assert.equal(h.nodes.heroTitle.textContent, phase === 'partial' ? 'Second' : 'Nothing up next');
+      assert.equal(h.nodes.ringSub.textContent, {
+        empty: 'Nothing in this list', partial: '1 of 2 read', completed: 'All read',
+      }[phase]);
+      assert.equal(h.nodes.fullCount.textContent, {
+        empty: 'No issues yet', partial: '1 unread', completed: 'All read',
+      }[phase]);
+      assert.deepEqual(structuredClone(h.state()), before, 'render must not add or mark issues');
+      assert.deepEqual(h.calls.launch, []);
+    } finally {
+      h.restore();
+    }
+  }
+});
+
+test('441 removing the last issue restores the empty state without deleting the list or progress', () => {
+  let state = createList(createEmptyState(), { id: 'last-441', name: 'Last 441' });
+  state = addIssuesToList(state, 'last-441', [issue(1, 'Last issue')]).state;
+  state = markRead(state, 1, true);
+  state = setActive(state, 'last-441');
+  const h = harness({ state });
+  try {
+    h.view.render();
+    assert.equal(h.nodes.allRead.hidden, false);
+    let remove;
+    walk(h.nodes.rows, (entry) => {
+      if (entry.dataset?.act === 'remove') remove = entry;
+    });
+    assert.ok(remove, 'the rendered row must expose a real removal action');
+    remove.fire('click');
+    const afterRemoval = structuredClone(h.state());
+    h.view.render();
+    assert.equal(h.nodes.readingEmpty.hidden, false);
+    assert.equal(h.nodes.allRead.hidden, true);
+    assert.equal(h.nodes.hero.hidden, true);
+    assert.equal(h.nodes.fullCount.textContent, 'No issues yet');
+    assert.deepEqual(h.state().lists['last-441'].itemIds, []);
+    assert.deepEqual(h.state().read, state.read, 'removal does not discard global reading progress');
+    assert.deepEqual(structuredClone(h.state()), afterRemoval, 'render is read-only after removal too');
+  } finally {
+    h.restore();
+  }
+});
+
 test('wireShortcuts keeps Reading-local launch and done actions inside the view', () => {
   const h = harness();
   try {
@@ -478,6 +541,97 @@ test('wireShortcuts keeps Reading-local launch and done actions inside the view'
     globalThis.document.listeners.keydown(done);
     assert.equal(done.prevented, true);
     assert.match(h.calls.announce[0], /Issue Two marked read/);
+  } finally {
+    h.restore();
+  }
+});
+
+test('disabled D leaves progress and the key alone, while re-enabled D works on Done next', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    h.view.wireShortcuts();
+    h.settings.readingShortcut = false;
+    globalThis.document.activeElement = { tagName: 'BUTTON' };
+    const before = h.state();
+    for (const key of ['d', 'D']) {
+      const event = { key, preventDefault() { this.prevented = true; } };
+      globalThis.document.listeners.keydown(event);
+      assert.equal(event.prevented, undefined);
+      assert.equal(h.state(), before);
+      assert.equal(h.calls.announce.length, 0);
+    }
+    h.nodes.btnHeroDone.fire('click');
+    assert.ok(h.state().read['2'], 'the button remains usable with D off');
+    h.settings.readingShortcut = true;
+    globalThis.document.listeners.keydown({ key: 'D', preventDefault() {} });
+    assert.ok(h.state().read['3'], 'D still works after clicking Done next');
+  } finally {
+    h.restore();
+  }
+});
+
+test('repeated D keydown never saves or announces another issue, but a fresh press does', () => {
+  const h = harness();
+  try {
+    h.view.wireShortcuts();
+    const press = (repeat) => {
+      const event = { key: 'd', repeat, preventDefault() { this.prevented = true; } };
+      globalThis.document.listeners.keydown(event);
+      return event;
+    };
+    assert.equal(press(false).prevented, true);
+    const afterFirst = h.state();
+    for (let i = 0; i < 3; i += 1) {
+      assert.equal(press(true).prevented, undefined);
+      assert.equal(h.state(), afterFirst);
+      assert.equal(h.calls.announce.length, 1);
+    }
+    assert.equal(press(false).prevented, true);
+    assert.ok(h.state().read['3']);
+    assert.equal(h.calls.announce.length, 2);
+  } finally {
+    h.restore();
+  }
+});
+
+test('enabled reading shortcuts retain typing, modifier, dialog and native Enter guards', () => {
+  let current = true;
+  const h = harness({ isCurrent: () => current });
+  try {
+    h.view.wireShortcuts();
+    const before = h.state();
+    const refused = (key, extra = {}) => {
+      const event = { key, ...extra, preventDefault() { this.prevented = true; } };
+      globalThis.document.listeners.keydown(event);
+      assert.equal(event.prevented, undefined);
+      assert.equal(h.state(), before);
+      assert.equal(h.calls.launch.length, 0);
+    };
+    for (const target of [
+      { tagName: 'INPUT', type: 'search' }, { tagName: 'TEXTAREA' },
+      { tagName: 'SELECT' }, { tagName: 'DIV', isContentEditable: true },
+    ]) {
+      globalThis.document.activeElement = target;
+      refused('d');
+      refused('Enter');
+    }
+    for (const target of [{ tagName: 'BUTTON' }, { tagName: 'A', href: 'https://example.test' }]) {
+      globalThis.document.activeElement = target;
+      refused('Enter');
+    }
+    globalThis.document.activeElement = null;
+    for (const modifier of ['ctrlKey', 'altKey', 'metaKey']) refused('d', { [modifier]: true });
+    h.setDialogOpen(true);
+    refused('d');
+    refused('Enter');
+    h.setDialogOpen(false);
+    current = false;
+    refused('d');
+    refused('Enter');
+    current = true;
+    globalThis.document.listeners.keydown({ key: 'Enter', preventDefault() {} });
+    assert.equal(h.calls.launch.length, 1, 'unclaimed Enter still launches synchronously');
   } finally {
     h.restore();
   }
