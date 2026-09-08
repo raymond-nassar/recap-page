@@ -931,6 +931,9 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .paths .path span { font-size: var(--t-caption); }
 .result .paths { margin: var(--space-3) 0 var(--space-3); }
 #preview-paths .paths { margin: var(--space-4) 0 var(--space-2); }
+/* Native focus must reveal the visible pill and its outline, not a hidden 1px radio. */
+#preview-paths .path { position: relative; }
+#preview-paths input { inset: 0; width: 100%; height: 100%; margin: 0; scroll-margin: var(--space-3); }
 
 .rows { display: grid; gap: var(--space-1); list-style: none; margin: 0; padding: 0; }
 /* A collected edition heading. The read count is text beside the bar rather than only the bar,
