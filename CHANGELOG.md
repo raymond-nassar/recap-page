@@ -18,6 +18,12 @@ Reading List action icons are now explicitly decorative without changing their l
 Maintainer checks accept Windows checklist line endings and reliably exercise Reading shortcuts,
 saved Reading Path stops, availability round trips and reverse-Tab focus. Saved reading data is unchanged.
 
+### Hid redundant series progress bars from assistive technology
+
+Progress by series no longer exposes unnamed bars to assistive technology. The bars remain
+visible, while the adjacent series names and tracked/read counts provide the same progress
+information in This list and All lists. Reading calculations and saved progress are unchanged.
+
 ### Kept narrow Reading List rows and actions usable
 
 Narrow Reading Lists give titles and metadata their own space, and expanded row actions now
