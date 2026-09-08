@@ -733,6 +733,7 @@ body.nocovers .tgl .sw::after { left: 2px; }
 }
 .empty-state h2 { margin: 0 0 var(--space-4); font-size: var(--t-subtitle); color: var(--text); font-weight: 600; }
 .empty-state p { margin: 0 auto; max-width: 52ch; font-size: var(--t-body); }
+.empty-state .btn { margin-top: var(--space-5); }
 
 /* ============================================================ hero */
 

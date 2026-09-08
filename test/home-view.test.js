@@ -83,6 +83,7 @@ function harness({
   catalogLoader = null,
   populated = false,
   nextIssue = { issueId: 7, title: 'Next issue', seriesName: 'Series (2026)', number: '3' },
+  progress = { read: 1, total: 2 },
 } = {}) {
   const firstGateway = gateway();
   const secondGateway = gateway();
@@ -165,7 +166,7 @@ function harness({
     getState: () => state,
     hueOf: () => 'hue',
     labelledName: (label, context) => `${label}: ${context}`,
-    listProgress: () => ({ read: 1, total: 2 }),
+    listProgress: () => progress,
     loadCatalog: catalogLoader ?? (async () => catalog),
     onCatalogDropped: (count) => calls.warnings.push(count),
     onCatalogLoadFailure: (options) => calls.failures.push(options),
@@ -236,14 +237,37 @@ test('Home view paints populated Continue details and accessible actions', () =>
 });
 
 test('Home view completion state removes the read action without inventing a next issue', () => {
-  const h = harness({ populated: true, nextIssue: null });
+  const h = harness({ populated: true, nextIssue: null, progress: { read: 2, total: 2 } });
   h.view.render();
 
   assert.equal(h.nodes.continueNext.textContent, 'You have read every issue in this order.');
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueSeries.textContent, 'Alpha order');
   assert.equal(h.nodes.continueNumber.textContent, '');
+  assert.equal(h.nodes.continueCount.textContent, '2 of 2 issues read');
+  assert.equal(h.nodes.continueFill.style.width, '100.0%');
   assert.equal(h.calls.coverFallbacks.length, 1);
+});
+
+test('441 Home describes an empty saved list without claiming completion or changing its contents', () => {
+  const h = harness({ populated: true, nextIssue: null, progress: { read: 0, total: 0 } });
+  h.state.lists.a.itemIds = [];
+  const before = structuredClone(h.state);
+  h.view.wire();
+  h.view.render();
+
+  assert.equal(h.nodes.continueSection.hidden, false);
+  assert.equal(h.nodes.continueNext.textContent, 'No issues in this Reading List yet. Open it to add comics.');
+  assert.equal(h.nodes.continueRead.hidden, true);
+  assert.equal(h.nodes.continueCount.textContent, '0 of 0 issues read');
+  assert.equal(h.nodes.continueFill.style.width, '0%');
+  assert.equal(h.nodes.continueBar.attributes['aria-valuenow'], '0');
+  assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
+  h.nodes.continueRead.listeners.click({});
+  h.nodes.continueOpen.listeners.click();
+  assert.equal(h.calls.read.length, 0);
+  assert.equal(h.calls.open, 1);
+  assert.deepEqual(h.state, before);
 });
 
 test('Home view wires only local controls and delegates controller effects', () => {

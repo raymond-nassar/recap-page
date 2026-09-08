@@ -12,6 +12,13 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Help empty Reading Lists get started
+
+Empty Reading Lists now say that no issues have been added and offer Add comics for the saved
+list, instead of claiming the order is finished. Home also distinguishes an empty list from one
+that is fully read. Removing the last issue returns to the same empty state; completed nonempty
+lists keep their completion message. Saved progress is unchanged.
+
 ### Kept the selected issue visible after returning from details
 
 Returning from issue details now brings the original Reading List control and its focus indicator

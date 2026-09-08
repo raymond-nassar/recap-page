@@ -6192,7 +6192,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1039` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1040` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -7618,6 +7618,143 @@ const SCENARIOS = [
         JSON.stringify({ hash: home.hash, scrollY: home.scrollY, heading: home.heading, visible: home.visible }));
       t.check('the return-focus journeys produce no console or page errors',
         browserErrors.length === 0, browserErrors.join(' / '));
+    },
+  },
+  {
+    id: 'reading-list-empty-441',
+    title: 'empty Reading Lists offer an add path without claiming completion',
+    async run(page, t) {
+      await seedFixtureState(page);
+      const original = await readState(page);
+      await click(page, '.ri[data-view="library"]');
+      await click(page, '#btn-new-list');
+      await page.waitForSelector('#ask[open] #ask-input');
+      await page.$eval('#ask-input', (input) => { input.value = 'Empty list 441'; });
+      await click(page, '#ask-ok');
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.waitForFunction(() => !document.querySelector('#ask').open);
+      const created = await readState(page);
+      const listId = created.active;
+      t.check('creation selects a new empty list while preserving the earlier list',
+        listId !== original.active
+        && created.listOrder.length === 2
+        && created.lists[listId].name === 'Empty list 441'
+        && created.lists[listId].itemIds.length === 0
+        && JSON.stringify(created.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+
+      const readingStatus = () => page.evaluate(() => ({
+        empty: document.querySelector('#reading-empty')?.hidden === false,
+        emptyHeading: document.querySelector('#reading-empty-h')?.textContent,
+        completed: document.querySelector('#all-read').hidden === false,
+        hero: document.querySelector('#hero').hidden === false,
+        ring: document.querySelector('#ring-sub').textContent,
+        count: document.querySelector('#full-count').textContent,
+        focused: document.activeElement?.id,
+      }));
+      const initial = await readingStatus();
+      t.check('a fresh empty list has honest copy, no completion, and a focused Reading heading',
+        initial.empty && initial.emptyHeading === 'No issues yet'
+        && !initial.completed && !initial.hero
+        && initial.ring === 'Nothing in this list' && initial.count === 'No issues yet'
+        && initial.focused === 'order-name', JSON.stringify(initial));
+
+      await click(page, '.brand[data-view="home"]');
+      const homeEmpty = await page.evaluate(() => ({
+        visible: !document.querySelector('#home-continue').hidden,
+        next: document.querySelector('#chero-next').textContent,
+        count: document.querySelector('#chero-count').textContent,
+        readHidden: document.querySelector('#btn-chero-read').hidden,
+      }));
+      t.check('Home keeps the saved empty list visible without saying it is read',
+        homeEmpty.visible
+        && homeEmpty.next === 'No issues in this Reading List yet. Open it to add comics.'
+        && homeEmpty.count === '0 of 0 issues read' && homeEmpty.readHidden, JSON.stringify(homeEmpty));
+      await click(page, '#btn-chero-open');
+      await page.reload({ waitUntil: 'load' });
+      const unchanged = await readState(page);
+      t.check('rendering, Home navigation and reload do not add issues or mark progress',
+        unchanged.active === listId && (await readingStatus()).empty
+        && JSON.stringify(unchanged.lists) === JSON.stringify(created.lists)
+        && JSON.stringify(unchanged.read) === JSON.stringify(created.read));
+
+      await page.focus('#btn-empty-add');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-add:not([hidden])');
+      t.check('the empty-state action opens the existing Add comics hub with heading focus',
+        await page.$eval('#add-h', (heading) => heading === document.activeElement)
+        && (await readState(page)).active === listId);
+      await click(page, '#view-add [data-view="add-manual"]');
+      const destination = await page.$eval('#view-add-manual .add-target', (node) => node.textContent);
+      t.check('the existing add form names the intended saved list', destination.includes('Empty list 441'), destination);
+      await addByHand(page, 'First manual issue 441', '');
+      await addByHand(page, 'Second manual issue 441', '');
+      const added = await readState(page);
+      const ids = added.lists[listId].itemIds;
+      t.check('explicit adds fill only the intended list and leave both comics unread',
+        ids.length === 2
+        && added.issues[ids[0]].title === 'First manual issue 441'
+        && added.issues[ids[1]].title === 'Second manual issue 441'
+        && added.listOrder.length === 2
+        && JSON.stringify(added.lists[original.active]) === JSON.stringify(original.lists[original.active])
+        && JSON.stringify(added.read) === JSON.stringify(created.read));
+
+      await page.goBack();
+      await page.waitForSelector('#view-add:not([hidden])');
+      await page.goBack();
+      await page.waitForSelector('#view-read:not([hidden])');
+      const returned = await readingStatus();
+      t.check('Back returns to the same list and its Reading heading after adding',
+        returned.focused === 'order-name' && returned.hero && !returned.empty && !returned.completed
+        && (await readState(page)).active === listId, JSON.stringify(returned));
+
+      await click(page, '#btn-hero-done');
+      const partial = await readingStatus();
+      t.check('partial progress keeps a next issue and accurate counts',
+        partial.hero && !partial.empty && !partial.completed
+        && partial.ring === '1 of 2 read' && partial.count === '1 unread'
+        && await page.$eval('#hero-title', (node) => node.textContent === 'Second manual issue 441'),
+        JSON.stringify(partial));
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home partial progress retains its next-issue action',
+        await page.$eval('#chero-count', (node) => node.textContent === '1 of 2 issues read')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'Next: Second manual issue 441')
+        && await page.$eval('#btn-chero-read', (node) => !node.hidden));
+      await click(page, '#btn-chero-open');
+      await click(page, '#btn-hero-done');
+      const completed = await readingStatus();
+      t.check('a nonempty completed list retains completion copy, counts and heading focus',
+        completed.completed && !completed.empty && !completed.hero
+        && completed.ring === 'All read' && completed.count === 'All read'
+        && completed.focused === 'all-read-h'
+        && await page.$eval('#all-read-h', (node) => node.textContent === 'That is the whole order, read.'),
+        JSON.stringify(completed));
+      const completedState = await readState(page);
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home completion remains accurate for a nonempty list',
+        await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 issues read')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every issue in this order.')
+        && await page.$eval('#btn-chero-read', (node) => node.hidden));
+      await click(page, '#btn-chero-open');
+      await openFullOrder(page);
+      for (const id of ids) {
+        const selector = `#rows button[data-act="remove"][data-key="${id}"]`;
+        await page.focus(selector);
+        await click(page, selector);
+      }
+      const removed = await readingStatus();
+      t.check('removing the final issue restores the same empty state',
+        removed.empty && !removed.completed && !removed.hero
+        && removed.count === 'No issues yet' && removed.ring === 'Nothing in this list',
+        JSON.stringify(removed));
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home also returns to empty wording after last removal',
+        await page.$eval('#chero-next', (node) => node.textContent === 'No issues in this Reading List yet. Open it to add comics.')
+        && await page.$eval('#chero-count', (node) => node.textContent === '0 of 0 issues read'));
+      const final = await readState(page);
+      t.check('removal and subsequent rendering preserve saved lists and global read history',
+        final.active === listId && final.listOrder.length === 2 && final.lists[listId].itemIds.length === 0
+        && JSON.stringify(final.read) === JSON.stringify(completedState.read)
+        && JSON.stringify(final.lists[original.active]) === JSON.stringify(original.lists[original.active]));
     },
   },
   {
@@ -10512,7 +10649,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'issue-return-visibility', 'reading-list-empty-441'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);

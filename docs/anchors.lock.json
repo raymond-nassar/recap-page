@@ -1619,13 +1619,13 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:551|0": {
-    "anchor": "src/js/views/reading.js:551",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:552|0": {
+    "anchor": "src/js/views/reading.js:552",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:647-649|0": {
-    "anchor": "src/js/views/reading.js:647-649",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:648-650|0": {
+    "anchor": "src/js/views/reading.js:648-650",
     "fp": "962c8048b2876981",
     "head": "onclick: () => {"
   },
@@ -1769,8 +1769,8 @@
     "fp": "0c6537943c08c527",
     "head": "<script type=\"module\" src=\"./dev-faults.js\"></script>"
   },
-  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1048|0": {
-    "anchor": "src/index.html:1048",
+  "docs/ARCHITECTURE.md|the-three-entry-points|src/index.html:1054|0": {
+    "anchor": "src/index.html:1054",
     "fp": "9f74c3a9fa356fa2",
     "head": "<script type=\"module\" src=\"./js/app.js\"></script>"
   },
@@ -1909,8 +1909,8 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:459|0": {
-    "anchor": "src/js/views/reading.js:459",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:460|0": {
+    "anchor": "src/js/views/reading.js:460",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
@@ -1919,8 +1919,8 @@
     "fp": "b79dcc7a949b3231",
     "head": "export function synopsisFallback(issue, sessionEntry = null, noSynopsisMarker = undefined) {"
   },
-  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:972|0": {
-    "anchor": "src/index.html:972",
+  "docs/DATA_PROVENANCE.md|what-the-first-hand-s-own-terms-said|src/index.html:978|0": {
+    "anchor": "src/index.html:978",
     "fp": "cd4793f475d06ae8",
     "head": "<span>Marvel metadata via marvel.emreparker.com. <span data-marvel-copyright>© MARVEL</span></span>"
   },
@@ -1984,13 +1984,13 @@
     "fp": "e9a1e74dee2c791e",
     "head": "// The publication gate answered a question that only gets asked once, and it was asked on"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3844-3855|0": {
-    "anchor": "CHANGELOG.md:3844-3855",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3851-3862|0": {
+    "anchor": "CHANGELOG.md:3851-3862",
     "fp": "7ebb6ef43a1f1241",
     "head": "- **The project now watches its own development tooling for known security problems, and says how"
   },
-  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3857-3867|0": {
-    "anchor": "CHANGELOG.md:3857-3867",
+  "docs/PUBLICATION_RUNBOOK.md|the-prose-that-stops-being-true|CHANGELOG.md:3864-3874|0": {
+    "anchor": "CHANGELOG.md:3864-3874",
     "fp": "c37eedd88ad1c81c",
     "head": "- **The project now has a published security policy, which names a private route for reporting a"
   },
@@ -2049,13 +2049,13 @@
     "fp": "b49d224a819dbd31",
     "head": "test('blank issues stay enabled, because the security policy sends reporters through one', () => {"
   },
-  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:437-439|0": {
-    "anchor": "src/index.html:437-439",
+  "docs/UX_STUDY.md|as-is-journey-map#checking-progress|src/index.html:443-445|0": {
+    "anchor": "src/index.html:443-445",
     "fp": "ab300ebb4156bcfc",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|information-architecture-review|src/index.html:400-433|0": {
-    "anchor": "src/index.html:400-433",
+  "docs/UX_STUDY.md|information-architecture-review|src/index.html:406-439|0": {
+    "anchor": "src/index.html:406-439",
     "fp": "c739d03d04000a3b",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
@@ -2099,13 +2099,13 @@
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:437-439|0": {
-    "anchor": "src/index.html:437-439",
+  "docs/UX_STUDY.md|job-stories|src/index.html:443-445|0": {
+    "anchor": "src/index.html:443-445",
     "fp": "ab300ebb4156bcfc",
     "head": "<div class=\"head\"><div class=\"head-left\"><h1 id=\"progress-h\">Progress by series</h1></div></div>"
   },
-  "docs/UX_STUDY.md|job-stories|src/index.html:438-442|0": {
-    "anchor": "src/index.html:438-442",
+  "docs/UX_STUDY.md|job-stories|src/index.html:444-448|0": {
+    "anchor": "src/index.html:444-448",
     "fp": "3d856d97acb5205e",
     "head": "<fieldset class=\"filters\" id=\"progress-scope\">"
   },
@@ -2124,8 +2124,8 @@
     "fp": "d420778b2fabaf12",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:685-686|0": {
-    "anchor": "src/js/views/reading.js:685-686",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:686-687|0": {
+    "anchor": "src/js/views/reading.js:686-687",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2134,8 +2134,8 @@
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
-  "docs/UX_STUDY.md|keyboard|src/styles.css:896|0": {
-    "anchor": "src/styles.css:896",
+  "docs/UX_STUDY.md|keyboard|src/styles.css:897|0": {
+    "anchor": "src/styles.css:897",
     "fp": "7077ab405dd69458",
     "head": ".fp input { position: absolute; opacity: 0; width: 1px; height: 1px; }"
   },
@@ -2154,8 +2154,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:685-686|0": {
-    "anchor": "src/js/views/reading.js:685-686",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:686-687|0": {
+    "anchor": "src/js/views/reading.js:686-687",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2184,8 +2184,8 @@
     "fp": "8b3c07e445e71673",
     "head": "<!-- Shown only when saved data could not be read. Saving stays paused until the"
   },
-  "docs/UX_STUDY.md|sweep-result|src/index.html:464-469|0": {
-    "anchor": "src/index.html:464-469",
+  "docs/UX_STUDY.md|sweep-result|src/index.html:470-475|0": {
+    "anchor": "src/index.html:470-475",
     "fp": "6806030100fd3d44",
     "head": "<!-- ---------------------------------------- catalog view -->"
   },
@@ -2194,8 +2194,8 @@
     "fp": "5c83ad7d477a49de",
     "head": "function wire(key) {"
   },
-  "docs/UX_STUDY.md|sweep-result|src/styles.css:1764-1766|0": {
-    "anchor": "src/styles.css:1764-1766",
+  "docs/UX_STUDY.md|sweep-result|src/styles.css:1765-1767|0": {
+    "anchor": "src/styles.css:1765-1767",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2214,8 +2214,8 @@
     "fp": "3cbc7d76b21e95fa",
     "head": "// Generated from src/data/hickman_full.json - real issues and real covers. The synopses this"
   },
-  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1764-1766|0": {
-    "anchor": "src/styles.css:1764-1766",
+  "docs/UX_STUDY.md|user-preference-emulation|src/styles.css:1765-1767|0": {
+    "anchor": "src/styles.css:1765-1767",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2239,18 +2239,18 @@
     "fp": "ba9fc4d401e78741",
     "head": "/* Two purples, because one cannot serve both jobs on a dark page. `--accent` is a"
   },
-  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:824|0": {
-    "anchor": "src/styles.css:824",
+  "docs/UX_STUDY.md|ux-a-001-the-primary-call-to-action-and-the-acce|src/styles.css:825|0": {
+    "anchor": "src/styles.css:825",
     "fp": "4b5c1616f13e28f6",
     "head": "kbd { font: inherit; font-size: var(--t-caption); border: 1px solid rgb(var(--tint-base) / 30.196%);"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:965-966|0": {
-    "anchor": "src/styles.css:965-966",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:966-967|0": {
+    "anchor": "src/styles.css:966-967",
     "fp": "4867cdf75f778888",
     "head": ".row.is-read .rt { color: var(--read-fg); text-decoration: line-through; }"
   },
-  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:968|0": {
-    "anchor": "src/styles.css:968",
+  "docs/UX_STUDY.md|ux-a-002-read-rows-are-dimmed-by-a-blanket-opaci|src/styles.css:969|0": {
+    "anchor": "src/styles.css:969",
     "fp": "6ba162a32bf16415",
     "head": ".row.is-read img { opacity: .5; }"
   },
@@ -2259,28 +2259,28 @@
     "fp": "b935ab3d66cca8bc",
     "head": "<section class=\"hero\" id=\"hero\" aria-labelledby=\"hero-title\">"
   },
-  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:745-752|0": {
-    "anchor": "src/styles.css:745-752",
+  "docs/UX_STUDY.md|ux-a-003-hero-text-contrast-is-undeterminable-be|src/styles.css:746-753|0": {
+    "anchor": "src/styles.css:746-753",
     "fp": "d9fb3bc05f56276d",
     "head": "/* The top stop was #171a2099 (60% opaque). At that alpha the blurred cover art"
   },
-  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:982-985|0": {
-    "anchor": "src/styles.css:982-985",
+  "docs/UX_STUDY.md|ux-a-004-row-controls-are-below-24-by-24-pixels-|src/styles.css:983-986|0": {
+    "anchor": "src/styles.css:983-986",
     "fp": "713b8b6372bfe540",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:754-838|0": {
-    "anchor": "src/js/views/reading.js:754-838",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:755-839|0": {
+    "anchor": "src/js/views/reading.js:755-839",
     "fp": "2da155307089baa1",
     "head": "function issueRowActions(item, listId) {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1039-1040|0": {
-    "anchor": "src/styles.css:1039-1040",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1040-1041|0": {
+    "anchor": "src/styles.css:1040-1041",
     "fp": "0874e4ac50b18fce",
     "head": ".row-actions { position: relative; }"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1051-1068|0": {
-    "anchor": "src/styles.css:1051-1068",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/styles.css:1052-1069|0": {
+    "anchor": "src/styles.css:1052-1069",
     "fp": "7aabd19f89d8772f",
     "head": "@media (max-width: 620px) {"
   },
@@ -2294,8 +2294,8 @@
     "fp": "59235d10bc8a1e1c",
     "head": "<div id=\"announcer\" class=\"visually-hidden\" role=\"status\" aria-live=\"polite\" aria-atomic=\"true\"></di"
   },
-  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:607|0": {
-    "anchor": "src/index.html:607",
+  "docs/UX_STUDY.md|ux-a-006-status-messages-are-announced-twice|src/index.html:613|0": {
+    "anchor": "src/index.html:613",
     "fp": "7a1f8a1e2c6321e7",
     "head": "<div id=\"search-results\" class=\"results\"></div>"
   },
@@ -2334,8 +2334,8 @@
     "fp": "53b9bb8e0988cf2b",
     "head": "color-scheme: dark;"
   },
-  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1764-1766|0": {
-    "anchor": "src/styles.css:1764-1766",
+  "docs/UX_STUDY.md|ux-a-008-the-interface-is-locked-to-a-dark-schem|src/styles.css:1765-1767|0": {
+    "anchor": "src/styles.css:1765-1767",
     "fp": "6505ad8d84b22c24",
     "head": "@media (prefers-reduced-motion: reduce) {"
   },
@@ -2344,8 +2344,8 @@
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:681-684|0": {
-    "anchor": "src/js/views/reading.js:681-684",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:682-685|0": {
+    "anchor": "src/js/views/reading.js:682-685",
     "fp": "531118c6bf7fabc3",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2369,8 +2369,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:853-871|0": {
-    "anchor": "src/js/views/reading.js:853-871",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:854-872|0": {
+    "anchor": "src/js/views/reading.js:854-872",
     "fp": "24202dc115b89335",
     "head": "function wireShortcuts() {"
   },
@@ -2424,13 +2424,13 @@
     "fp": "67edc8d71d895b29",
     "head": "<button type=\"button\" class=\"btn btn-g has-tooltip\" id=\"btn-hero-done\" data-tooltip=\"Keyboard shortc"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:913-924|0": {
-    "anchor": "src/index.html:913-924",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/index.html:919-930|0": {
+    "anchor": "src/index.html:919-930",
     "fp": "1416e1b48888515f",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:853-871|0": {
-    "anchor": "src/js/views/reading.js:853-871",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:854-872|0": {
+    "anchor": "src/js/views/reading.js:854-872",
     "fp": "24202dc115b89335",
     "head": "function wireShortcuts() {"
   },
@@ -2454,13 +2454,13 @@
     "fp": "4b2c34e3e004c761",
     "head": "<h3>Library</h3>"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:400-433|0": {
-    "anchor": "src/index.html:400-433",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/index.html:406-439|0": {
+    "anchor": "src/index.html:406-439",
     "fp": "c739d03d04000a3b",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:686|0": {
-    "anchor": "src/js/views/reading.js:686",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:687|0": {
+    "anchor": "src/js/views/reading.js:687",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -5989,8 +5989,8 @@
     "fp": "1e32540f481bdd17",
     "head": "test('every stop is listed on the screen its own link names', () => {"
   },
-  "scripts/browser-check.mjs|preamble|src/styles.css:1039|0": {
-    "anchor": "src/styles.css:1039",
+  "scripts/browser-check.mjs|preamble|src/styles.css:1040|0": {
+    "anchor": "src/styles.css:1040",
     "fp": "bad6625aa1fb228f",
     "head": ".row-actions { position: relative; }"
   },
@@ -6029,13 +6029,13 @@
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:640|0": {
-    "anchor": "src/js/views/reading.js:640",
+  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:641|0": {
+    "anchor": "src/js/views/reading.js:641",
     "fp": "1c4f24ab55f1e36b",
     "head": "'aria-pressed': String(item.read),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:641|0": {
-    "anchor": "src/js/views/reading.js:641",
+  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:642|0": {
+    "anchor": "src/js/views/reading.js:642",
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },
@@ -6044,13 +6044,13 @@
     "fp": "3a90f9bd69dfcf96",
     "head": "el('span', { class: 'yours-count', text: count }),"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1799|0": {
-    "anchor": "src/styles.css:1799",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1800|0": {
+    "anchor": "src/styles.css:1800",
     "fp": "3a5c838f7187d084",
     "head": "background: color-mix(in srgb, var(--warn) 12%, var(--panel));"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:1823|0": {
-    "anchor": "src/styles.css:1823",
+  "scripts/check-palette.mjs|preamble|src/styles.css:1824|0": {
+    "anchor": "src/styles.css:1824",
     "fp": "1eef54d530f1e5d5",
     "head": ".blocked .btn-g { border-color: var(--muted); }"
   },
@@ -6074,18 +6074,18 @@
     "fp": "c91a0a86b137ab9d",
     "head": ".railed .rail-foot .pill { width: 10px; height: 10px; padding: 0; border-radius: 50%; overflow: hidd"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:815|0": {
-    "anchor": "src/styles.css:815",
+  "scripts/check-palette.mjs|preamble|src/styles.css:816|0": {
+    "anchor": "src/styles.css:816",
     "fp": "955a5533014388f9",
     "head": ".btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2)"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:984|0": {
-    "anchor": "src/styles.css:984",
+  "scripts/check-palette.mjs|preamble|src/styles.css:985|0": {
+    "anchor": "src/styles.css:985",
     "fp": "ab1b965d8a6c63ba",
     "head": "background: none; display: grid; place-items: center; color: var(--on-accent); font-size: var(--t-ca"
   },
-  "scripts/check-palette.mjs|preamble|src/styles.css:986|0": {
-    "anchor": "src/styles.css:986",
+  "scripts/check-palette.mjs|preamble|src/styles.css:987|0": {
+    "anchor": "src/styles.css:987",
     "fp": "66318b8a9bc87d06",
     "head": ".row.is-read .cb { background: var(--teal); border-color: var(--teal); }"
   },
