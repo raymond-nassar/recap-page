@@ -24,6 +24,7 @@ import { labelledName } from '../lib/accname.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
+import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -127,6 +128,7 @@ export function createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
+  synopsisDisclosure,
   synopsisStatusLine,
   updateState,
   withSaveEducation,
@@ -310,6 +312,12 @@ export function createReadingView({
     $('#btn-cancel-hydrate').addEventListener('click', onCancelHydrate);
     $('#btn-synopsis').addEventListener('click', onStartSynopsis);
     $('#btn-cancel-synopsis').addEventListener('click', onCancelSynopsis);
+    $('#btn-hero-description').addEventListener('click', () => {
+      const issue = upNext(getState(), activeListId());
+      if (!issue) return;
+      synopsisDisclosure.toggle(issue.issueId);
+      renderHero();
+    });
 
     $('#btn-hero-read').addEventListener('click', (e) => {
       const issue = upNext(getState(), activeListId());
@@ -452,6 +460,7 @@ export function createReadingView({
     $('#shelf-sec').hidden = !issue;
     if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
+      resetSynopsis();
       return;
     }
 
@@ -479,7 +488,11 @@ export function createReadingView({
     inspect.dataset.contextId = id;
 
     $('#hero-by').textContent = presentation.byline;
-    $('#hero-desc').textContent = presentation.description;
+    renderSynopsisDescription({
+      button: $('#btn-hero-description'), description: $('#hero-desc'), issue,
+      entry: getSynopsis(issue.issueId), fallback: presentation.description,
+      disclosure: synopsisDisclosure,
+    });
     $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
       fact(item.key, item.value, item.className)
     )));
@@ -494,6 +507,13 @@ export function createReadingView({
       info.removeAttribute('href');
     }
   }
+  function resetSynopsis() {
+    $('#hero-desc').textContent = '';
+    $('#hero-desc').hidden = true;
+    $('#btn-hero-description').hidden = true;
+    $('#btn-hero-description').setAttribute('aria-expanded', 'false');
+  }
+
   function renderShelf() {
     const id = activeListId();
     const shelf = $('#shelf');
@@ -1049,6 +1069,7 @@ export function createReadingView({
     renderHydration,
     renderRows,
     renderSynopsis,
+    resetSynopsis,
     setFilter,
     setFilterAddressed: (value) => { filterAddressed = value; },
     setFullOrderFromRoute,

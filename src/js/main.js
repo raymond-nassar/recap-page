@@ -25,6 +25,7 @@ import { ResponseCache } from './cache.js';
 import { RateLimiter } from './lib/limiter.js';
 import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
+import { createSynopsisDisclosure } from './lib/synopsisDisclosure.js';
 import { openIssue as openIssueTab, detailUrl } from './reader.js';
 import { APP_VERSION } from './lib/version.js';
 import { isAllowedApiBase } from './lib/apiBase.js';
@@ -90,6 +91,7 @@ const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
 // thing that fetches it.
 const sessionSynopsis = new SessionSynopsis();
+const synopsisDisclosure = createSynopsisDisclosure();
 const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis, onProgress: onSynopsisStatus });
 
 // One key, every tab. A save in another tab is news here, and taking it is what keeps two tabs
@@ -1440,6 +1442,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') void homeView.renderGateways();
+  if (next === 'read') readingView.renderHero();
   if (next === 'issue') void issueView.render(issueRoute);
   renderBreadcrumbs();
   // Here rather than in renderAll, because what this list reports is not part of the state every
@@ -1693,7 +1696,7 @@ export function synopsisAnnouncement(status) {
   if (phase === 'cancelled') {
     const failed = Number(status.failed ?? 0);
     const unreached = failed ? ` ${failed} issue${failed === 1 ? '' : 's'} could not be reached.` : '';
-    return { state: 'cancelled', msg: `Synopsis fetching stopped.${unreached} What arrived is on screen until you reload.` };
+    return { state: 'cancelled', msg: `Synopsis fetching stopped.${unreached} What arrived is held for this tab only.` };
   }
   if (phase === 'partial') {
     const failed = Number(status.failed ?? 0);
@@ -1737,14 +1740,24 @@ async function startSynopsisRun() {
   synopsisRunner.start(list.id);
 }
 
-async function startIssueSynopsis() {
+async function startIssueSynopsis(isCurrent) {
   const issueId = issueView.result()?.issue?.issueId;
-  if (!Number.isInteger(issueId) || issueId < 1) return;
-  const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
-  if (!yes || view !== 'issue' || issueRoute?.issueId !== issueId) return;
+  if (!Number.isInteger(issueId) || issueId < 1 || synopsisRunner.active) return false;
+  const requestApi = api;
+  const disclaimer = synopsisDisclaimer(settings.apiBase);
+  const yes = await askConfirm({
+    ...disclaimer,
+    title: 'Fetch and reveal this description?',
+    body: `This issue's description may contain spoilers. ${disclaimer.body}`,
+    confirmLabel: 'Fetch and reveal',
+  });
+  if (!yes || !isCurrent() || api !== requestApi || synopsisRunner.active
+    || view !== 'issue' || issueRoute?.issueId !== issueId) return false;
   issueSynopsisId = issueId;
   await synopsisRunner.startIssue(issueId);
+  if (!isCurrent() || api !== requestApi || issueSynopsisId !== issueId) return false;
   if (!synopsisRunner.active) issueSynopsisId = null;
+  return !!sessionSynopsis.text(issueId);
 }
 
 // ------------------------------------------------------------------ curated orders
@@ -2022,9 +2035,13 @@ const dataView = createDataView({
     // needs the same rebinding. A run already in flight is stopped rather than switched, and what
     // it fetched is dropped: the reader agreed to a dialog naming the old service, and that
     // agreement does not carry over to a different one.
+    issueSynopsisId = null;
     if (synopsisRunner.active) synopsisRunner.cancel();
     synopsisRunner.api = api;
     sessionSynopsis.clear();
+    synopsisDisclosure.clear();
+    issueView.resetSynopsis();
+    readingView.resetSynopsis();
     readingView.renderSynopsis(null);
     readingView.renderHero();
     notify('#api-report', 'API URL saved. Cached data from the previous URL is kept separate.', 'ok');
@@ -2715,6 +2732,7 @@ const readingView = createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
+  synopsisDisclosure,
   synopsisStatusLine,
   updateState: (updater) => {
     const state = store.update(updater);
@@ -2739,6 +2757,7 @@ const issueView = createIssueView({
     card: $('#issue-focus-card'),
     context: $('#issue-focus-context'),
     description: $('#issue-focus-desc'),
+    disclosure: $('#btn-issue-description'),
     facts: $('#issue-focus-facts'),
     fallback: $('#issue-focus-fb'),
     heading: $('#issue-focus-h'),
@@ -2760,7 +2779,10 @@ const issueView = createIssueView({
   isSynopsisActive: () => synopsisRunner.active,
   loadCatalog,
   loadOrder: loadBundledOrder,
-  onCancelSynopsis: () => synopsisRunner.cancel(),
+  onCancelSynopsis: () => {
+    issueSynopsisId = null;
+    synopsisRunner.cancel();
+  },
   onRead: openInReader,
   onStaleContext: (route) => {
     if (issueRoute !== route) return;
@@ -2773,6 +2795,7 @@ const issueView = createIssueView({
   renderBreadcrumbs,
   seriesOnly,
   synopsisFallback,
+  synopsisDisclosure,
   synopsisStatusLine,
 });
 
