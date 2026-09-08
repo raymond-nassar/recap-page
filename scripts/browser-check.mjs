@@ -8180,6 +8180,21 @@ const SCENARIOS = [
       await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved list', {}, last);
       t.check('a foreign progress refresh keeps the focused stop control instead of replacing it',
         await page.evaluate(() => document.activeElement === window.__stopAction438));
+      const beforeRefusedSelection = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        window.__setItem438 = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (key === 'mrt.state.v2') throw new DOMException('Fixture storage refusal', 'QuotaExceededError');
+          return window.__setItem438.call(this, key, value);
+        };
+      });
+      await page.keyboard.press('Enter');
+      t.check('a refused saved-list selection stays on the path and surfaces the failure without changing storage',
+        await page.evaluate((raw) => location.hash === '#/reading-paths?path=bc-path'
+          && localStorage.getItem('mrt.state.v2') === raw
+          && document.querySelector('#reading-paths-report').textContent.includes('could not be opened'), beforeRefusedSelection));
+      await page.evaluate(() => { Storage.prototype.setItem = window.__setItem438; });
+      await page.focus(last);
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => location.hash.startsWith('#/read/exact'));
       t.check('an owned stop opens the exact saved list whose progress it shows',
