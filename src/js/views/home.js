@@ -1,4 +1,5 @@
 import { uiIcon } from '../lib/uiIcon.js';
+import { isLaunchable } from '../reader.js';
 
 const CONTINUE_NO_LIST = 'Continue reading';
 const CATEGORY_ICONS = {
@@ -31,6 +32,7 @@ export function createHomeView({
   paintCover,
   paintCoverUrl,
   recommendedList,
+  readerPresentation = (issue) => ({ launchable: isLaunchable(issue), temporary: false }),
   renderSavedLists,
   seriesOnly,
   shortTitle,
@@ -43,7 +45,7 @@ export function createHomeView({
     const nodes = elements();
     nodes.continueRead.addEventListener('click', (event) => {
       const issue = upNext(getState(), getActiveListId());
-      if (issue) onRead(issue, event);
+      if (issue) onRead(issue, event, 'saved');
     });
     nodes.continueOpen.addEventListener('click', onOpen);
     nodes.continueReview.addEventListener('click', onReview);
@@ -116,7 +118,10 @@ export function createHomeView({
       paintCover(nodes.continueImage, nodes.continueFallback, issue, 'portrait_incredible');
       nodes.continueSeries.textContent = seriesOnly(issue.seriesName);
       nodes.continueNumber.textContent = issue.number ? `#${issue.number}` : '';
+      const reader = readerPresentation(issue, 'saved');
       nodes.continueRead.hidden = false;
+      nodes.continueRead.disabled = !reader.launchable;
+      nodes.continueRead.textContent = reader.temporary ? 'Read with temporary link' : 'Read next';
       nodes.continueRead.setAttribute(
         'aria-label',
         labelledName(nodes.continueRead.textContent, `${issue.title} in Marvel Unlimited`),
@@ -239,6 +244,7 @@ export function createHomeView({
   return {
     categoryTile,
     render,
+    refreshReader: () => renderContinue(getState().listOrder.length > 0),
     renderGateways,
     wire,
   };

@@ -44,6 +44,32 @@ npm start
 
 You can also double-click **Start on Windows.cmd** on Windows or **Start on macOS.command** on a Mac.
 
+## When Read opens the wrong comic
+
+Open the saved comic's **Issue Details**, then **Edit temporary reader link**. Paste the Marvel
+Unlimited reader address for that exact comic and review the normalized destination before choosing
+**Use temporarily**. This accepts http or https addresses on `read.marvel.com` with a root
+`/#/book/` reference of up to 12 digits, not comic information pages, other hosts or custom ports.
+Page position and extra query details are discarded. The app cannot verify the comic or subscription
+access, and applying the address does not open a reader tab.
+
+Read uses this temporary address across all lists sharing that comic in the current tab. **Use
+original link** removes it. Reloading or closing the document clears it, as do actual saved-data
+replacement or loss of the saved comic reference. Returning through browser page history after
+leaving the document also starts without temporary links. Ordinary progress saves, including another
+tab's updates, do not clear a valid link. An uncertain saved-data outcome withdraws temporary links
+until the saved references can be trusted again; a failed replacement known to leave data unchanged
+does not. A changed comic while editing requires canceling and reopening that editor.
+
+Nothing about this changes comic identity, availability checks, progress, notes, original metadata
+or backups. There is no permanent link database. Another tab does not inherit the link.
+
+**Report details** is optional and separate. Review or edit the small comic/original/proposed-link
+summary, manually copy only what you want to share, and open the project's GitHub correction form.
+Opening it sends no report details; you review and submit on GitHub, which may require sign-in.
+Do not include private notes, lists, progress, credentials, local paths or logs. A report may help
+maintainers investigate a permanent fix, but does not itself correct Marvel data or prove access.
+
 ## The first-run warning
 
 Windows or macOS may ask you to confirm the first run because the files came from the internet.

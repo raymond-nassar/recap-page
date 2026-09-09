@@ -1689,6 +1689,251 @@ const MUTATIONS = [
 // state behind is not evidence either.
 const SCENARIOS = [
   {
+    id: 'temporary-reader-link',
+    title: '453 temporary same-comic links and deliberate manual reporting never change saved facts',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument(() => {
+        window.__mrtBlockExternal = true;
+        window.__link453 = { opens: [] };
+        window.open = (...args) => { window.__link453.opens.push(args); return {}; };
+      });
+      await seedFixtureState(page);
+      const seed = fixtureReadingState();
+      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
+      seed.lists.fixture.itemIds.unshift(-8);
+      seed.notes[-8] = 'Private note excluded from reports';
+      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
+      await page.reload({ waitUntil: 'load' });
+      const go = async (hash, selector) => {
+        await page.evaluate((next) => {
+          // Keep the synthetic route and its notification together: a background repaint can
+          // otherwise restore the previous hash before the queued hashchange is delivered.
+          history.pushState(null, '', next);
+          dispatchEvent(new HashChangeEvent('hashchange'));
+        }, hash);
+        try {
+          await page.waitForSelector(selector);
+        } catch (error) {
+          const state = await page.evaluate(() => ({
+            hash: location.hash,
+            status: document.querySelector('#issue-focus-status')?.textContent,
+            heading: document.querySelector('#issue-focus-h')?.textContent,
+            saved: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2') ?? '{}').issues ?? {}),
+          }));
+          throw new Error(`${error.message}; temporary route ${JSON.stringify(state)}; errors ${JSON.stringify(errors)}`, { cause: error });
+        }
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      };
+      const focusIssue = (id) => go(`#/issue/${id}`, '#issue-focus-card:not([hidden])');
+      const reading = () => go('#/read/fixture', '#view-read:not([hidden])');
+      const paste = async (value) => page.$eval('#reader-link-input', (input, text) => {
+        input.value = text;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }, value);
+      const use = async (id, book) => {
+        await focusIssue(id);
+        await click(page, '#reader-link-edit');
+        await paste(`https://read.marvel.com/#/book/${book}`);
+        await click(page, '#reader-link-apply');
+      };
+      const rendered = (selector) => page.$eval(selector, (node) => node.getClientRects().length > 0);
+      const closed = async (selector) => page.$eval(selector, (node) => {
+        const controls = [...node.querySelectorAll('input,button,textarea,a[href]')];
+        const before = document.activeElement;
+        const excluded = controls.every((control) => {
+          control.focus();
+          return document.activeElement !== control;
+        });
+        before?.focus();
+        return !node.getClientRects().length && excluded;
+      });
+      await focusIssue(-8);
+      t.check('closed editor and report are unrendered and keyboard excluded', await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('manual comic without an original reference has editor but no Read', await page.$eval(
+        '#btn-issue-read', (node) => node.hidden,
+      ) && await page.$eval('#reader-link-edit', (node) => !node.disabled));
+      await click(page, '#reader-link-edit');
+      t.check('explicit Edit renders the editor only', await rendered('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      await paste('https://wrong.example/reader/44');
+      await click(page, '#reader-link-apply');
+      t.check('invalid address retains draft and URL focus', await page.$eval('#reader-link-input', (node) => (
+        node.value.includes('wrong.example') && node.getAttribute('aria-invalid') === 'true' && document.activeElement === node
+      )));
+      await paste('http://read.marvel.com/#/book/00044/page/9');
+      t.check('canonical numeric destination is shown before deliberate use', await page.$eval(
+        '#reader-link-preview', (node) => node.textContent.includes('https://read.marvel.com/#/book/44'),
+      ));
+      await click(page, '#reader-link-apply');
+      t.check('Apply really hides editor controls', await closed('#reader-link-form'));
+      t.check('Use is memory only and does not launch', await page.evaluate((before) => (
+        localStorage.getItem('mrt.state.v2') === before && window.__link453.opens.length === 0
+        && document.activeElement.id === 'reader-link-edit'
+      ), saved));
+      t.check('manual Read becomes usable while Info and original reference stay absent', await page.evaluate(() => (
+        !document.querySelector('#btn-issue-read').hidden && document.querySelector('#btn-issue-info').hidden
+        && document.querySelector('#reader-link-summary').textContent.includes('No original reader reference')
+      )));
+      await click(page, '#reader-link-reportToggle');
+      t.check('explicit report opening renders its controls', await rendered('#reader-link-reportPanel'));
+      t.check('report context excludes notes and local negative identity', await page.$eval('#reader-link-reportText', (node) => (
+        node.value.includes('/#/book/44') && !node.value.includes('-8') && !node.value.includes('Private note')
+      )));
+      t.check('GitHub form has fixed URL and no-referrer with no automatic submission', await page.$eval(
+        '#reader-link-reportLink', (node) => node.href === 'https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml'
+          && node.target === '_blank' && node.rel === 'noopener noreferrer' && node.referrerPolicy === 'no-referrer',
+      ));
+      await page.$eval('#reader-link-reportText', (node) => { node.value = 'Only my reviewed details'; });
+      await page.focus('#reader-link-reportText');
+      await page.keyboard.press('Tab');
+      t.check('manual report remains editable with keyboard navigation', await page.$eval(
+        '#reader-link-reportText', (node) => node.value === 'Only my reviewed details',
+      ));
+      await click(page, '#btn-issue-read');
+      await reading();
+      t.check('context leave really hides the owned root and both panels', await closed('#reader-link-root') && await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      await click(page, '#btn-hero-read');
+      await page.focus('#order-name');
+      await page.keyboard.press('Enter');
+      await openFullOrder(page);
+      await click(page, '#rows [data-key="-8"][data-act="open"]');
+      await go('#/home', '#view-home:not([hidden])');
+      await click(page, '#btn-chero-read');
+      t.check('Issue, hero, Enter, row and Home open independently with numeric temporary destination', await page.evaluate(() => (
+        window.__link453.opens.length === 5 && window.__link453.opens.every(([url, target, features]) => (
+          new URL(url).searchParams.get('d') === '44' && !new URL(url).searchParams.has('i')
+          && target === '_blank' && features === 'noopener'
+        ))
+      )));
+      const positive = ORDER.items[0].issueId;
+      await use(positive, 55);
+      await reading();
+      await click(page, `#shelf [data-key="${positive}"][data-act="open"]`);
+      t.check('upcoming shelf uses the same temporary resolver', await page.evaluate(() => (
+        new URL(window.__link453.opens.at(-1)[0]).searchParams.get('d') === '55'
+      )));
+      await focusIssue(-8);
+      await click(page, '#reader-link-edit');
+      await paste('https://read.marvel.com/#/book/66');
+      await page.keyboard.press('Escape');
+      t.check('Cancel really hides editor controls', await closed('#reader-link-form'));
+      t.check('Cancel retains active link and restores Edit focus', await page.evaluate(() => (
+        document.querySelector('#reader-link-form').hidden && document.activeElement.id === 'reader-link-edit'
+        && document.querySelector('#reader-link-summary').textContent.includes('/#/book/44')
+      )));
+      await page.evaluate(() => {
+        const before = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(before);
+        state.read[999999] = 1;
+        const raw = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', raw);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue: before, newValue: raw }));
+      });
+      await page.waitForFunction(() => document.querySelector('#reader-link-summary').textContent.includes('/#/book/44'));
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      t.check('unrelated foreign progress preserves active temporary mapping', await page.$eval(
+        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
+      ));
+      await click(page, '#reader-link-edit');
+      await page.evaluate(() => {
+        const raw = localStorage.getItem('mrt.state.v2');
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: raw }));
+      });
+      await page.waitForFunction(() => document.querySelector('#reader-link-apply').disabled);
+      t.check('foreign record adoption invalidates only the open draft', await page.$eval(
+        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
+      ));
+      await click(page, '#reader-link-cancel');
+      const restore = async (text) => {
+        await go('#/data', '#view-data:not([hidden])');
+        await page.evaluate((raw) => {
+          document.querySelector('#restore-report').replaceChildren();
+          const transfer = new DataTransfer();
+          transfer.items.add(new File([raw], 'synthetic-reader-link-backup.json', { type: 'application/json' }));
+          const input = document.querySelector('#restore-file');
+          input.files = transfer.files;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }, text);
+        await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
+        await focusIssue(-8);
+      };
+      await restore('invalid json');
+      t.check('known-unchanged restore refusal retains temporary link', await page.$eval(
+        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
+      ));
+      const backup = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        state.lists.fixture.name = 'Synthetic replacement with same comic IDs';
+        return JSON.stringify(state);
+      });
+      await restore(backup);
+      t.check('actual same-identity restore clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await use(-8, 44);
+      await go('#/data', '#view-data:not([hidden])');
+      await click(page, '#btn-undo-restore');
+      await focusIssue(-8);
+      t.check('Undo restore also clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await use(-8, 44);
+      await click(page, '#reader-link-revert');
+      t.check('Use original removes only the temporary destination', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await use(-8, 44);
+      await page.setViewport({ width: 390, height: 900 });
+      await click(page, '#reader-link-edit');
+      await page.focus('#reader-link-input');
+      t.check('narrow form stays in viewport and retains a visible focus outline', await page.evaluate(() => {
+        const input = document.querySelector('#reader-link-input');
+        const rect = input.getBoundingClientRect();
+        return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth
+          && getComputedStyle(input).outlineStyle !== 'none';
+      }));
+      t.check('forced colors retains a visible editor boundary when active', await page.evaluate(() => (
+        !matchMedia('(forced-colors: active)').matches
+        || getComputedStyle(document.querySelector('#reader-link-root')).borderTopStyle !== 'none'
+      )));
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#issue-focus-card:not([hidden])');
+      t.check('reload clears link and draft without changing saved base', await page.evaluate(() => (
+        document.querySelector('#btn-issue-read').hidden && document.querySelector('#reader-link-form').hidden
+        && JSON.parse(localStorage.getItem('mrt.state.v2')).issues[-8].digitalId === null
+      )));
+      for (const control of ['btn-issue-read', 'reader-link-edit', 'reader-link-revert', 'reader-link-input']) {
+        await restore(backup);
+        await use(-8, 44);
+        if (control === 'reader-link-input') await click(page, '#reader-link-edit');
+        await page.focus(`#${control}`);
+        await page.evaluate(() => {
+          localStorage.removeItem('mrt.state.v2');
+          dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
+        });
+        await page.waitForFunction(() => document.querySelector('#reader-link-edit').disabled);
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check(`foreign invalidation rescues disappearing ${control} focus`, await page.evaluate(() => {
+          const active = document.activeElement;
+          return active.id === 'issue-focus-h' && active.getClientRects().length > 0;
+        }));
+      }
+      t.check('actual foreign erase withdraws stale Read and editor', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await restore(backup);
+      await use(-8, 44);
+      await go('#/data', '#view-data:not([hidden])');
+      await page.focus('#api-base');
+      await page.waitForSelector('#list-nav .ri');
+      await page.evaluate(() => {
+        localStorage.removeItem('mrt.state.v2');
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
+      });
+      await page.waitForFunction(() => document.querySelectorAll('#list-nav .ri').length === 0);
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('hidden Issue controls do not steal unrelated settings input focus', await page.evaluate(() => (
+        document.activeElement.id === 'api-base' && document.activeElement.getClientRects().length > 0
+      )));
+      t.check('no runtime error in temporary flow', errors.length === 0, errors);
+    },
+  },
+  {
     id: 'reorientation-445',
     title: '445 earlier-issue review and optional description hiding preserve identity and saved data',
     async run(page, t) {
@@ -6576,7 +6821,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1040` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1049` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -8279,11 +8524,16 @@ const SCENARIOS = [
       await page.setViewport({ width: 320, height: 800 });
       await page.evaluate(() => document.querySelector('#view-library-read .result-focus').click());
       await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      const narrow = await page.evaluate(() => ({
-        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-        targets: [...document.querySelectorAll('#view-issue .cta > :not([hidden])')]
-          .every((node) => node.getBoundingClientRect().height >= 40),
-      }));
+      const narrow = await page.evaluate(() => {
+        const rendered = [...document.querySelectorAll('#view-issue .cta > :not([hidden])')]
+          .filter((node) => node.getClientRects().length > 0)
+          .map((node) => ({ id: node.id, height: node.getBoundingClientRect().height }));
+        return {
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          targets: rendered.length > 0 && rendered.every((node) => node.height >= 40),
+          rendered,
+        };
+      });
       t.check('issue focus stays usable at 320 pixels without horizontal clipping',
         narrow.overflow <= 1 && narrow.targets, JSON.stringify(narrow));
       t.check('the issue-focus journeys produce no console or page errors',

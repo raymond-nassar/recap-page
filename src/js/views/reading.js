@@ -109,7 +109,7 @@ export function createReadingView({
   isStateBlocked,
   isSynopsisActive,
   issueFocusAnchor,
-  launch,
+  launch: launchSaved,
   noSynopsisMarker,
   notify,
   onCancelHydrate,
@@ -122,6 +122,7 @@ export function createReadingView({
   paintHeroBackground,
   preservingFocus,
   recordDirectProgressSave,
+  readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   renderSaveEducation,
   saveSettings,
   seriesOnly,
@@ -135,6 +136,7 @@ export function createReadingView({
   withSaveEducation,
   ymd,
 }) {
+  const launch = (issue, event) => launchSaved(issue, event, 'saved');
   // The hero is hidden when there is no next issue, but its heading stays non-empty so the
   // document never holds an invalid heading state. This must match the initial text in index.html.
   const HERO_NO_ISSUE = 'Nothing up next';
@@ -575,6 +577,7 @@ export function createReadingView({
     paintHeroBackground($('#hero-bg'), issue);
 
     $('#hero-title').textContent = issue.title;
+    refreshHeroReader(issue);
     const inspect = $('#btn-hero-inspect');
     inspect.dataset.focusSource = 'hero';
     inspect.dataset.issueId = String(issue.issueId);
@@ -607,6 +610,18 @@ export function createReadingView({
     $('#btn-hero-description').setAttribute('aria-expanded', 'false');
   }
 
+  function refreshHeroReader(issue = upNext(getState(), activeListId())) {
+    const reader = readerPresentation(issue, 'saved');
+    $('#btn-hero-read').hidden = !reader.launchable;
+    $('#btn-hero-read').textContent = reader.temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+  }
+
+  function refreshReader() {
+    refreshHeroReader();
+    renderShelf();
+    renderRows();
+  }
+
   function renderShelf() {
     const id = activeListId();
     const shelf = $('#shelf');
@@ -630,7 +645,9 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const readContext = 'Open in Marvel Unlimited';
-        const readName = labelledName(label, readContext);
+        const readName = readerPresentation(item, 'saved').temporary
+          ? labelledName('Read with temporary link', `${label}: ${readContext}`)
+          : labelledName(label, readContext);
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [
@@ -652,8 +669,9 @@ export function createReadingView({
             title: `${label}: ${readContext}`,
             'aria-label': readName,
             dataset: { key: item.issueId, act: 'open' },
+            hidden: !readerPresentation(item, 'saved').launchable,
             onclick: (e) => launch(item, e),
-          }, 'Read'),
+          }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
         ]));
       }
     }, {
@@ -733,7 +751,9 @@ export function createReadingView({
         }
 
         const rowKey = rowCacheKey(item, currentId, today, getSettings().covers);
-        const cached = rowCache.get(item.issueId);
+        const readerKey = JSON.stringify(readerPresentation(item, 'saved'));
+        const entry = rowCache.get(item.issueId);
+        const cached = entry?.readerKey === readerKey ? entry : null;
         if (cached && cached.key === rowKey) { desired.push(cached.node); continue; }
 
         const override = item.override;
@@ -817,7 +837,7 @@ export function createReadingView({
           ]),
           issueRowActions(item, id),
         ]);
-        rowCache.set(item.issueId, { key: rowKey, node });
+        rowCache.set(item.issueId, { key: rowKey, readerKey, node });
         desired.push(node);
       }
       if (items.length !== all.length) {
@@ -873,7 +893,13 @@ export function createReadingView({
   function issueRowActions(item, listId) {
     const panelId = `row-actions-${item.issueId}`;
     const panel = el('div', { class: 'ract', id: panelId }, [
-      el('button', { type: 'button', class: 'mini', 'aria-label': `Read ${item.title} in Marvel Unlimited`, dataset: { key: item.issueId, act: 'open' }, onclick: (e) => launch(item, e) }, 'Read'),
+      el('button', {
+        type: 'button', class: 'mini',
+        'aria-label': `Read ${item.title} in Marvel Unlimited${readerPresentation(item, 'saved').temporary ? ' with temporary link' : ''}`,
+        dataset: { key: item.issueId, act: 'open' },
+        hidden: !readerPresentation(item, 'saved').launchable,
+        onclick: (e) => launch(item, e),
+      }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
       detailUrl(item)
         ? el('a', {
           class: 'mini has-tooltip',
@@ -1159,6 +1185,7 @@ export function createReadingView({
     invalidateRowCache,
     render,
     renderHero,
+    refreshReader,
     renderHydration,
     renderRows,
     renderSynopsis,

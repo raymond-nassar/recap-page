@@ -26,7 +26,9 @@ import { RateLimiter } from './lib/limiter.js';
 import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
 import { createSynopsisDisclosure } from './lib/synopsisDisclosure.js';
-import { openIssue as openIssueTab, detailUrl } from './reader.js';
+import { openIssue as openIssueTab, detailUrl, isLaunchable } from './reader.js';
+import { createTemporaryReaderLinks } from './lib/temporaryReaderLink.js';
+import { createReaderLinkView } from './views/reader-link.js';
 import { APP_VERSION } from './lib/version.js';
 import { isAllowedApiBase } from './lib/apiBase.js';
 import { lookupIssue } from './lib/wiki.js';
@@ -72,6 +74,7 @@ const $ = (sel) => document.querySelector(sel);
 const announcer = () => $('#announcer');
 
 const settings = loadSettings();
+const temporaryReaderLinks = createTemporaryReaderLinks();
 const limiter = new RateLimiter();
 let cache = new ResponseCache({ baseUrl: settings.apiBase });
 let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: onApiStatus });
@@ -81,6 +84,7 @@ let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: o
 // silently reverted on the next paint.
 const store = new Store({
   onChange: (_state, err) => {
+    if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
     if (err) notify('#save-report', err, 'error');
   },
@@ -108,13 +112,19 @@ export function dispatchStorageEvent(
     readerStore = store,
     education = saveEducation,
     renderEducation = renderSaveEducation,
+    reconcileReader = readerStore === store ? (changed) => readerLinkView.reconcile({ changed, confirmed: changed !== null }) : () => {},
   } = {},
 ) {
   if (event.key === STATE_KEY) {
-    const sanitizeCurrent = () => (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
-      adoptCurrent: true,
-      onFailure: (error) => notify('#save-report', error, 'error'),
-    }), readingPathsView.refreshProgress());
+    const sanitizeCurrent = () => {
+      let changed = null;
+      (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+        adoptCurrent: true,
+        onAdopt: (raw, adopted) => { changed = adopted ? raw == null : null; },
+        onFailure: (error) => notify('#save-report', error, 'error'),
+      }), readingPathsView.refreshProgress());
+      reconcileReader(changed);
+    };
     if (readerStore === store) {
       clearTimeout(foreignStateSanitationTimer);
       foreignStateSanitationTimer = setTimeout(sanitizeCurrent, 50);
@@ -129,7 +139,8 @@ export function dispatchStorageEvent(
     return;
   }
   if (event.key === null) {
-    readerStore.adoptForeignWrite(null); readingPathsView.refreshProgress();
+    const adopted = readerStore.adoptForeignWrite(null); readingPathsView.refreshProgress();
+    reconcileReader(adopted ? true : null);
     education.adopt(null);
     renderEducation();
   }
@@ -766,6 +777,7 @@ export function sanitizeStoredIssueDescriptions(
   sourceRaw,
   {
     adoptCurrent = false,
+    onAdopt = () => {},
     onFailure = () => {},
     retryConflict = true,
   } = {},
@@ -783,7 +795,7 @@ export function sanitizeStoredIssueDescriptions(
   }
   const needed = rawCarriesIssueDescriptions(currentRaw);
   if (!needed) {
-    if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(currentRaw);
+    if (adoptCurrent && !readerStore.blocked) onAdopt(currentRaw, readerStore.adoptForeignWrite(currentRaw));
     return { needed: false, cleared: true };
   }
 
@@ -799,6 +811,7 @@ export function sanitizeStoredIssueDescriptions(
     if (sanitizer.conflicted && retryConflict) {
       return sanitizeStoredIssueDescriptions(readerStore, sourceRaw, {
         adoptCurrent,
+        onAdopt,
         onFailure,
         retryConflict: false,
       });
@@ -824,7 +837,7 @@ export function sanitizeStoredIssueDescriptions(
     }
   }
   if (result.cleared) {
-    if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(durableRaw);
+    if (adoptCurrent && !readerStore.blocked) onAdopt(durableRaw, readerStore.adoptForeignWrite(durableRaw));
   }
   return result;
 }
@@ -1677,9 +1690,17 @@ export function hydrationAnnouncement(status) {
 
 // ------------------------------------------------------------------ reader deep links
 
-function openInReader(issue, event) {
+function readerPresentation(issue, source) {
+  const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
+  return { launchable: resolved.ok && isLaunchable(resolved.issue), temporary: resolved.ok && resolved.temporary };
+}
+
+function openInReader(issue, event, source) {
   event?.preventDefault();
-  const res = openIssueTab(issue);
+  if (!source) { announce('The comic source is missing. Open its current details and try again.'); return; }
+  const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
+  if (!resolved.ok) { announce(resolved.error); return; }
+  const res = openIssueTab(resolved.issue);
   if (!res.ok) {
     announce(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
     return;
@@ -1995,7 +2016,11 @@ const recoveryView = createRecoveryView({
   salvageCopies: () => store.salvageCopies(),
   salvageRawAt: (key) => store.salvageRawAt(key),
   forgetSalvage: (key) => store.forgetSalvage(key),
-  startFresh: (opts) => store.startFresh(opts),
+  startFresh: (opts) => {
+    const ok = store.startFresh(opts);
+    readerLinkView.reconcile({ changed: ok ? true : store.blocked ? null : false });
+    return ok;
+  },
   notify,
   announce,
   askConfirm,
@@ -2035,11 +2060,13 @@ const dataView = createDataView({
   onExportMarkdown: exportMarkdown,
   onRestore: (text) => {
     const res = store.restore(text);
+    readerLinkView.reconcile({ changed: res.changed });
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
   onUndoRestore: () => {
     const res = store.undoRestore();
+    readerLinkView.reconcile({ changed: res.changed });
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
@@ -2094,7 +2121,8 @@ const dataView = createDataView({
     }
   },
   onErase: () => {
-    const { snapshotKept } = store.eraseAll();
+    const { ok, snapshotKept } = store.eraseAll();
+    readerLinkView.reconcile({ changed: ok ? true : store.blocked ? null : false });
     cache.clear();
     // The undo buffer points at a list from the data that has just been erased, so putting it
     // back would resurrect one list out of a tracker the reader asked to be emptied.
@@ -2499,6 +2527,8 @@ function renderAll() {
   catalogView.refreshProgress();
   renderQueue();
   addView.renderDestination();
+  readerLinkView.refresh();
+  issueView.refreshReader();
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
@@ -2536,6 +2566,8 @@ export function boot() {
   wireNav();
   readingView.wireShortcuts();
   issueView.wire();
+  readerLinkView.wire();
+  globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
   dataView.wire();
   recoveryView.wire();
@@ -2756,6 +2788,7 @@ const readingView = createReadingView({
   paintHeroBackground,
   preservingFocus,
   recordDirectProgressSave,
+  readerPresentation,
   renderSaveEducation,
   saveSettings,
   seriesOnly,
@@ -2771,6 +2804,23 @@ const readingView = createReadingView({
   },
   withSaveEducation,
   ymd,
+});
+
+const readerLinkView = createReaderLinkView({
+  elements: () => Object.fromEntries([
+    'root', 'summary', 'edit', 'form', 'label', 'input', 'preview', 'error',
+    'apply', 'cancel', 'revert', 'status', 'reportToggle', 'reportPanel',
+    'reportText', 'reportStatus', 'regenerate', 'reportLink', 'reportDisclosure',
+  ].map((key) => [key, $(`#reader-link-${key}`)])),
+  getState: () => store.state,
+  links: temporaryReaderLinks,
+  announce,
+  onChange: () => {
+    readingView.refreshReader();
+    homeView.refreshReader();
+    issueView.refreshReader();
+  },
+  focusFallback: () => focusViewHeading(view),
 });
 
 const issueView = createIssueView({
@@ -2815,6 +2865,10 @@ const issueView = createIssueView({
     synopsisRunner.cancel();
   },
   onRead: openInReader,
+  onReaderContext: (result) => {
+    if (result?.issue) readerLinkView.show(result.issue.issueId, { source: result.source });
+    else readerLinkView.leave();
+  },
   onStaleContext: (route) => {
     if (issueRoute !== route) return;
     issueRoute = { ...route, context: null };
@@ -2824,6 +2878,7 @@ const issueView = createIssueView({
   paintBackground: paintHeroBackground,
   paintCover,
   renderBreadcrumbs,
+  readerPresentation,
   seriesOnly,
   synopsisFallback,
   synopsisDisclosure,
@@ -2898,6 +2953,7 @@ const homeView = createHomeView({
   getActiveListId: activeListId,
   getState: () => store.state,
   hueOf,
+  readerPresentation,
   labelledName,
   listProgress,
   loadCatalog,
