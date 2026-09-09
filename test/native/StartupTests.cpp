@@ -212,7 +212,13 @@ void visual(HWND window, const fs::path& root, std::ofstream& report) {
     LOGFONTW font{};
     const auto handle = reinterpret_cast<HFONT>(SendMessageW(heading, WM_GETFONT, 0, 0));
     check(GetObjectW(handle, sizeof(font), &font) != 0, "native selected font unavailable");
-    report << "font-observed=true\n";
+    std::string selectedFont;
+    for (const auto c : std::wstring(font.lfFaceName)) {
+        check(c >= 32 && c < 127, "selected font identity could not be recorded safely");
+        selectedFont += static_cast<char>(c);
+    }
+    check(!selectedFont.empty(), "selected font identity was empty");
+    report << "selected-font=" << selectedFont << "\n";
     HIGHCONTRASTW before{ sizeof(HIGHCONTRASTW), 0, nullptr };
     check(SystemParametersInfoW(SPI_GETHIGHCONTRAST, sizeof(before), &before, 0) != FALSE, "high contrast unavailable");
     auto high = before;
