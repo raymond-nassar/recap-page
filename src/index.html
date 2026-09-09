@@ -29,68 +29,73 @@
         real string instead of a glyph. See docs/ux/sidebar-flow.md.
       -->
       <aside class="rail" id="sidebar">
-        <button type="button" class="rail-toggle" id="btn-rail-toggle"
-                aria-expanded="true" aria-controls="sidebar-nav" aria-label="Collapse sidebar"
-                aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
-          <span class="gi" aria-hidden="true">&#xE700;</span>
-        </button>
+        <div class="rail-header">
+          <button type="button" class="rail-toggle" id="btn-rail-toggle"
+                  aria-expanded="true" aria-controls="sidebar-panel" aria-label="Collapse sidebar"
+                  aria-keyshortcuts="Control+\" data-tip="Collapse sidebar · Ctrl+\">
+            <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#menu"/></svg>
+            <span class="rail-toggle-label">Navigation</span>
+          </button>
 
-        <button type="button" class="brand" data-view="home">
-          <img class="mark" src="./icons/icon.svg" alt="" aria-hidden="true" />
-          <b class="lbl">Recap&nbsp;Page</b>
-        </button>
+          <button type="button" class="brand" data-view="home">
+            <img class="mark" src="./icons/icon.svg" alt="" aria-hidden="true" />
+            <b class="lbl">Recap&nbsp;Page</b>
+          </button>
+        </div>
 
-        <nav id="sidebar-nav" aria-label="Main">
-          <div class="nav-scroll">
-            <div class="nav-group">
-              <h2 id="rail-reading" class="rail-h">Reading</h2>
-              <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
-              <ul class="rail-list" aria-labelledby="rail-reading">
-                <li><button type="button" class="ri" data-view="library">
-                  <span class="gi" aria-hidden="true">&#xE8F1;</span>
-                  <span class="lbl">Library</span>
-                </button></li>
-              </ul>
+        <div id="sidebar-panel">
+          <nav id="sidebar-nav" aria-label="Main">
+            <div class="nav-scroll">
+              <div class="nav-group">
+                <h2 id="rail-reading" class="rail-h">Reading</h2>
+                <ul id="list-nav" class="rail-list" aria-labelledby="rail-reading"></ul>
+                <ul class="rail-list" aria-labelledby="rail-reading">
+                  <li><button type="button" class="ri" data-view="library">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
+                    <span class="lbl">Library</span>
+                  </button></li>
+                </ul>
+              </div>
+
+              <div class="nav-group">
+                <h2 class="rail-h">Discover</h2>
+                <ul class="rail-list">
+                  <li><button type="button" class="ri" data-view="browse">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg>
+                    <span class="lbl">Browse</span>
+                  </button></li>
+                  <li><button type="button" class="ri" data-view="add">
+                    <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#add"/></svg>
+                    <span class="lbl">Add comics</span>
+                  </button></li>
+                </ul>
+              </div>
             </div>
 
-            <div class="nav-group">
-              <h2 class="rail-h">Discover</h2>
+            <!-- Pinned to the bottom of the rail rather than left to the end of a scrolling column.
+                 Measured at 1280x900 with one order in the library, the rail's content was 991px in
+                 a 900px viewport, so settings, about and both status pills were all below the fold
+                 on a first run. They are the two things a reader needs to be able to find without
+                 knowing they are there. -->
+            <div class="nav-group nav-foot">
+              <h2 class="rail-h">App</h2>
               <ul class="rail-list">
-                <li><button type="button" class="ri" data-view="browse">
-                  <span class="gi" aria-hidden="true">&#xE721;</span>
-                  <span class="lbl">Browse</span>
+                <li><button type="button" class="ri" data-view="data">
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#settings"/></svg>
+                  <span class="lbl">Backup &amp; settings</span>
                 </button></li>
-                <li><button type="button" class="ri" data-view="add">
-                  <span class="gi" aria-hidden="true">&#xE710;</span>
-                  <span class="lbl">Add comics</span>
+                <li><button type="button" class="ri" data-view="about">
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#info"/></svg>
+                  <span class="lbl">About this app</span>
                 </button></li>
               </ul>
             </div>
-          </div>
+          </nav>
 
-          <!-- Pinned to the bottom of the rail rather than left to the end of a scrolling column.
-               Measured at 1280x900 with one order in the library, the rail's content was 991px in
-               a 900px viewport, so settings, about and both status pills were all below the fold
-               on a first run. They are the two things a reader needs to be able to find without
-               knowing they are there. -->
-          <div class="nav-group nav-foot">
-            <h2 class="rail-h">App</h2>
-            <ul class="rail-list">
-              <li><button type="button" class="ri" data-view="data">
-                <span class="gi" aria-hidden="true">&#xE713;</span>
-                <span class="lbl">Backup &amp; settings</span>
-              </button></li>
-              <li><button type="button" class="ri" data-view="about">
-                <span class="gi" aria-hidden="true">&#xE946;</span>
-                <span class="lbl">About this app</span>
-              </button></li>
-            </ul>
+          <div class="rail-foot">
+            <span id="api-status" class="pill pill-muted">Checking API…</span>
+            <span id="queue-status" class="pill pill-muted" hidden></span>
           </div>
-        </nav>
-
-        <div class="rail-foot">
-          <span id="api-status" class="pill pill-muted">Checking API…</span>
-          <span id="queue-status" class="pill pill-muted" hidden></span>
         </div>
       </aside>
 
@@ -173,6 +178,7 @@
                   <div class="cta">
                     <button type="button" class="btn" id="btn-chero-read">Read next issue →</button>
                     <button type="button" class="btn btn-g" id="btn-chero-open">Open the list</button>
+                    <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
                   </div>
                 </div>
               </div>
@@ -288,6 +294,7 @@
                          out. -->
                     <h2 id="hero-title">Nothing up next</h2>
                     <p class="byline" id="hero-by"></p>
+                    <button type="button" class="btn btn-g" id="btn-hero-description" aria-controls="hero-desc" aria-expanded="false" hidden>Reveal description (may contain spoilers)</button>
                     <p class="desc" id="hero-desc"></p>
                     <dl class="facts" id="hero-facts"></dl>
                     <div class="cta">
@@ -308,12 +315,32 @@
                 </div>
               </section>
 
+              <section id="reading-empty" class="empty-state" hidden aria-labelledby="reading-empty-h">
+                <h2 id="reading-empty-h">No issues yet</h2>
+                <p>No comics have been added to this Reading List. Add comics to start reading.</p>
+                <button type="button" class="btn" id="btn-empty-add" data-view="add">Add comics</button>
+              </section>
+
               <div id="all-read" class="empty-state" hidden>
                 <div class="empty-glyph" aria-hidden="true">✓</div>
                 <h2 id="all-read-h" tabindex="-1">That is the whole order, read.</h2>
                 <p>Every issue in this list is ticked off. Pick another order, or start a new list.</p>
               </div>
 
+              <button type="button" class="btn btn-g" id="btn-review-earlier" aria-expanded="false" aria-controls="review-earlier">Review earlier issues</button>
+              <section id="review-earlier" class="review-earlier" hidden aria-labelledby="review-h">
+                <h2 id="review-h" tabindex="-1">Review earlier issues</h2>
+                <p id="review-context"></p>
+                <p class="rail-hint">Choose a comic to open its details and deliberately fetch or reveal its description. This is the current order, not a record of your last reading session.</p>
+                <p id="review-position" role="status"></p>
+                <div id="review-candidate"></div>
+                <div class="cta">
+                  <button type="button" class="btn btn-g" id="review-earlier-button" aria-disabled="true">Earlier</button>
+                  <button type="button" class="btn btn-g" id="review-later-button" aria-disabled="true">Later</button>
+                  <button type="button" class="btn btn-g" id="review-full-order">Open full Reading List</button>
+                  <button type="button" class="btn btn-g" id="review-close">Close review</button>
+                </div>
+              </section>
               <!-- coming up -->
               <section class="sec" id="shelf-sec" aria-labelledby="shelf-h">
                 <div class="sec-h">
@@ -355,6 +382,7 @@
               </div>
             </div>
             <div id="issue-focus-status" class="report" role="status" aria-live="polite"></div>
+            <button type="button" class="btn btn-g" id="btn-issue-retry" aria-describedby="issue-focus-status" hidden>Retry</button>
             <section class="hero issue-focus" id="issue-focus-card" hidden aria-labelledby="issue-focus-h">
               <div class="hero-bg" id="issue-focus-bg" aria-hidden="true"></div>
               <div class="hero-fade" aria-hidden="true"></div>
@@ -368,16 +396,45 @@
                 </div>
                 <div class="hero-body">
                   <p class="byline" id="issue-focus-by"></p>
+                  <button type="button" class="btn btn-g" id="btn-issue-description" aria-controls="issue-focus-desc" aria-expanded="false" hidden>Reveal description (may contain spoilers)</button>
                   <p class="desc" id="issue-focus-desc"></p>
                   <dl class="facts" id="issue-focus-facts"></dl>
                   <p class="issue-focus-note" id="issue-focus-note" hidden></p>
+                  <section id="reader-link-root" class="reader-link stack" aria-labelledby="reader-link-heading" hidden>
+                    <h2 id="reader-link-heading">Wrong reader link?</h2>
+                    <p id="reader-link-summary" class="rail-hint"></p>
+                    <div class="cta">
+                      <button type="button" class="btn btn-g" id="reader-link-edit">Edit temporary reader link</button>
+                      <button type="button" class="btn btn-g" id="reader-link-revert" hidden>Use original link</button>
+                    </div>
+                    <form id="reader-link-form" class="stack" hidden>
+                      <label id="reader-link-label" for="reader-link-input">Marvel Unlimited reader address</label>
+                      <input id="reader-link-input" type="url" autocomplete="off" spellcheck="false" />
+                      <p class="rail-hint">Use only a link for this exact comic. Paste an http or https address on read.marvel.com with a /#/book/ numeric reference (up to 12 digits). Comic information pages, other hosts and custom ports are not accepted.</p>
+                      <p id="reader-link-preview" class="rail-hint"></p>
+                      <p id="reader-link-error" class="report"></p>
+                      <div class="cta">
+                        <button id="reader-link-apply" type="submit" class="btn">Use temporarily</button>
+                        <button id="reader-link-cancel" type="button" class="btn btn-g">Cancel</button>
+                      </div>
+                    </form>
+                    <p id="reader-link-status" class="rail-hint"></p>
+                    <button id="reader-link-reportToggle" type="button" class="btn btn-g">Report details</button>
+                    <div id="reader-link-reportPanel" class="stack" hidden>
+                      <p id="reader-link-reportStatus" class="rail-hint"></p>
+                      <textarea id="reader-link-reportText" rows="8" spellcheck="false"></textarea>
+                      <button id="reader-link-regenerate" type="button" class="btn btn-g">Regenerate report details</button>
+                      <p id="reader-link-reportDisclosure" class="rail-hint"></p>
+                      <a id="reader-link-reportLink" class="btn btn-g" href="https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open GitHub correction form (new tab)</a>
+                    </div>
+                  </section>
                   <p class="rail-hint" id="issue-synopsis-status" role="status" hidden></p>
                   <div class="cta">
                     <button type="button" class="btn btn-lg" id="btn-issue-read">
                       Open in Marvel Unlimited
                     </button>
                     <button type="button" class="btn btn-g" id="btn-issue-synopsis">
-                      Fetch synopsis
+                      Fetch and reveal description (may contain spoilers)
                     </button>
                     <button type="button" class="btn btn-g" id="btn-cancel-issue-synopsis" hidden>
                       Stop synopsis
@@ -415,13 +472,13 @@
               <h2 id="library-tools-h">Across your library</h2>
               <div class="search-hub-grid">
                 <button type="button" class="search-hub-card" data-view="library-read">
-                  <span class="gi" aria-hidden="true">&#xE73E;</span><span>Everything read</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#check"/></svg><span>Everything read</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="progress">
-                  <span class="gi" aria-hidden="true">&#xE9D2;</span><span>Progress by series</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#progress"/></svg><span>Progress by series</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="library-manual">
-                  <span class="gi" aria-hidden="true">&#xE70F;</span><span>Added by hand</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#edit"/></svg><span>Added by hand</span>
                 </button>
               </div>
             </section>
@@ -563,19 +620,19 @@
             <div class="head"><div class="head-left"><h1 id="add-h">Add comics</h1></div></div>
             <div class="search-hub-grid add-hub-grid">
               <button type="button" class="search-hub-card" data-view="add-search">
-                <span class="gi" aria-hidden="true">&#xE721;</span><span>Search issues</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg><span>Search issues</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-series">
-                <span class="gi" aria-hidden="true">&#xE8F1;</span><span>Find a series</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg><span>Find a series</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-creator">
-                <span class="gi" aria-hidden="true">&#xE77B;</span><span>Browse a creator</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg><span>Browse a creator</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-import">
-                <span class="gi" aria-hidden="true">&#xE77F;</span><span>Paste a Reading List</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg><span>Paste a Reading List</span>
               </button>
               <button type="button" class="search-hub-card" data-view="add-manual">
-                <span class="gi" aria-hidden="true">&#xE948;</span><span>Add an issue by hand</span>
+                <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg><span>Add an issue by hand</span>
               </button>
             </div>
           </section>
@@ -590,7 +647,7 @@
                 <label for="search-q">Search issue titles</label>
                 <div class="field-row">
                   <input type="search" id="search-q" placeholder="e.g. Secret Wars" autocomplete="off" />
-                  <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search issues" aria-label="Search issue titles"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                  <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search issues" aria-label="Search issue titles"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                 </div>
               </form>
               <!--
@@ -605,19 +662,19 @@
               <h2 id="search-browse-h">Browse by</h2>
               <div class="search-hub-grid">
                 <button type="button" class="search-hub-card" data-view="add-series">
-                  <span class="gi" aria-hidden="true">&#xE8F1;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#books"/></svg>
                   <span>Series</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="add-creator">
-                  <span class="gi" aria-hidden="true">&#xE77B;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#person"/></svg>
                   <span>Creators</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="spotlights">
-                  <span class="gi" aria-hidden="true">&#xE716;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#characters"/></svg>
                   <span>Characters</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="catalog">
-                  <span class="gi" aria-hidden="true">&#xE736;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#guide"/></svg>
                   <span>Reading guides</span>
                 </button>
               </div>
@@ -626,11 +683,11 @@
               <h2 id="search-other-h">Other ways to add</h2>
               <div class="search-hub-grid">
                 <button type="button" class="search-hub-card" data-view="add-import">
-                  <span class="gi" aria-hidden="true">&#xE77F;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#paste"/></svg>
                   <span>Paste a Reading List</span>
                 </button>
                 <button type="button" class="search-hub-card" data-view="add-manual">
-                  <span class="gi" aria-hidden="true">&#xE948;</span>
+                  <svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#issue-add"/></svg>
                   <span>Add an issue by hand</span>
                 </button>
               </div>
@@ -645,7 +702,7 @@
                   <label for="series-q">Find a series</label>
                   <div class="field-row">
                     <input type="search" id="series-q" placeholder="e.g. New Avengers (2013)" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search series" aria-label="Find a series"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search series" aria-label="Find a series"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                   </div>
                 </form>
                 <div id="series-results" class="results"></div>
@@ -660,7 +717,7 @@
                   <label for="creator-q">Find a creator</label>
                   <div class="field-row">
                     <input type="search" id="creator-q" placeholder="e.g. Hickman" autocomplete="off" />
-                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search creators" aria-label="Find a creator"><span class="gi" aria-hidden="true">&#xE721;</span></button>
+                    <button type="submit" class="btn btn-icon has-tooltip" data-tooltip="Search creators" aria-label="Find a creator"><svg class="gi" aria-hidden="true" focusable="false"><use href="./icons/ui.svg#search"/></svg></button>
                   </div>
                 </form>
                 <div id="creator-results" class="results"></div>
@@ -771,6 +828,16 @@
             <section class="setgroup">
               <h2>Personalization</h2>
               <div class="card card-static setting">
+                <h3>Reading shortcut</h3>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-reading-shortcut" aria-describedby="reading-shortcut-help" /> Enable D to mark read and move next</label>
+                <p id="reading-shortcut-help" class="rail-hint setting-desc">
+                  Turn this off to avoid marking an issue read by pressing D. Done, next still works.
+                  Your choice is kept in this browser, separately from reading progress and backups.
+                </p>
+                <div id="reading-shortcut-report" class="results"></div>
+              </div>
+
+              <div class="card card-static setting">
                 <h3>Cover art</h3>
                 <label class="checkbox setting-ctl"><input type="checkbox" id="opt-covers" /> Show cover art</label>
                 <details class="setting-more">
@@ -800,6 +867,17 @@
                     anywhere. High contrast mode and reduced motion are still honoured whichever you pick.
                   </p>
                 </details>
+              </div>
+              <div class="card card-static setting">
+                <h3>Description hiding</h3>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-description-hiding" aria-describedby="description-hiding-help" /> Hide descriptions until I reveal them</label>
+                <p id="description-hiding-help" class="rail-hint setting-desc">
+                  On by default. Turn off to show already-fetched descriptions without Reveal and Hide controls.
+                  Fetching still asks permission. This does not identify spoilers or filter titles and covers.
+                  Changing this choice resets individual reveal choices, not fetched text.
+                  The preference is saved in this browser, separately from progress and backups.
+                </p>
+                <div id="description-hiding-report" class="results"></div>
               </div>
             </section>
 
@@ -909,8 +987,8 @@
               <table class="keys">
                 <tbody>
                   <tr><th scope="row"><kbd>↵</kbd></th><td>Open the current issue in Marvel Unlimited</td></tr>
-                  <tr><th scope="row"><kbd>D</kbd></th><td>Mark it read and move to the next one</td></tr>
-                  <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the sidebar, anywhere in the app</td></tr>
+                  <tr><th scope="row"><kbd>D</kbd></th><td id="reading-shortcut-description">Mark it read and move to the next one. Turn off in Backup &amp; settings.</td></tr>
+                  <tr><th scope="row"><kbd>Ctrl</kbd> + <kbd>\</kbd></th><td>Collapse or expand the desktop sidebar, or show and hide Navigation on narrow screens</td></tr>
                 </tbody>
               </table>
               <p class="rail-hint">
@@ -971,7 +1049,8 @@
     </div>
 
     <!-- Rail-mode tooltip. Purely visual: the button's own label is its accessible name. -->
-    <div class="rail-tip" id="rail-tip" hidden aria-hidden="true"></div>
+    <div class="rail-tip visual-tooltip" id="rail-tip" hidden aria-hidden="true"><span class="tooltip-content" tabindex="-1"></span></div>
+    <div class="action-tip visual-tooltip" id="action-tip" hidden aria-hidden="true"><span class="tooltip-content" tabindex="-1"></span></div>
 
     <!--
       Preview of a curated order before committing to it. A native <dialog> is used so the
@@ -988,6 +1067,7 @@
       </div>
       <p class="result-meta" id="preview-meta"></p>
       <p class="rail-hint" id="preview-desc"></p>
+      <div id="preview-source"></div>
       <!-- Where a story can be read more than one way, the choice between its paths lives here
            rather than on the shelf card. Measured at 1280x900: the chooser cost 123px on a 277px
            card and took the grid from 1149px to 1458px, and the labels are authored prose that

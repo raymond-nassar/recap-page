@@ -17,12 +17,12 @@ export const PAGE_SOURCES = Object.freeze([
   Object.freeze({ source: 'pages/index.html', destination: 'index.html' }),
   Object.freeze({ source: 'pages/site.css', destination: 'site.css' }),
   Object.freeze({
-    source: 'docs/screenshots/home-1280.png',
-    destination: 'assets/home-1280.png',
+    source: 'docs/screenshots/home-960.png',
+    destination: 'assets/home-960.png',
   }),
   Object.freeze({
-    source: 'docs/screenshots/avengers-disassembled-reading-1280.png',
-    destination: 'assets/avengers-disassembled-reading-1280.png',
+    source: 'docs/screenshots/avengers-disassembled-reading-960.png',
+    destination: 'assets/avengers-disassembled-reading-960.png',
   }),
 ]);
 

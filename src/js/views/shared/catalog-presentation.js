@@ -452,8 +452,8 @@ export function createCatalogPresentation({
     const story = { key: `list:${list.id}`, name: list.name, lists: [list] };
     const titleId = `${featureId}-h`;
     const context = surface === 'catalog'
-      ? 'This app chooses 1998 as the start of its Modern Timeline. It is not an official Marvel editorial-era boundary.'
-      : 'Read this orientation guide first for the earlier stories that lead into this age.';
+      ? 'New to Marvel? Explore earlier stories for historical context on the characters and events ahead. Setup is optional; you can enter the Modern Timeline directly. This app chooses 1998 as the start of its Modern Timeline. It is not an official Marvel editorial-era boundary.'
+      : 'New to Marvel? Explore earlier stories for historical context on the characters and events ahead. Setup is optional; you can enter this age directly.';
     const feature = el('section', {
       id: featureId,
       class: 'setup-guide-feature',
@@ -478,6 +478,7 @@ export function createCatalogPresentation({
   }
 
   return {
+    attributionLine,
     catalogCard,
     chosenPath,
     ensureSetupGuideFeature,

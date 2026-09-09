@@ -25,7 +25,10 @@ import { ResponseCache } from './cache.js';
 import { RateLimiter } from './lib/limiter.js';
 import { Hydrator } from './hydrate.js';
 import { NO_SYNOPSIS, SessionSynopsis, SynopsisRunner } from './synopsis.js';
-import { openIssue as openIssueTab, detailUrl } from './reader.js';
+import { createSynopsisDisclosure } from './lib/synopsisDisclosure.js';
+import { openIssue as openIssueTab, detailUrl, isLaunchable } from './reader.js';
+import { createTemporaryReaderLinks } from './lib/temporaryReaderLink.js';
+import { createReaderLinkView } from './views/reader-link.js';
 import { APP_VERSION } from './lib/version.js';
 import { isAllowedApiBase } from './lib/apiBase.js';
 import { lookupIssue } from './lib/wiki.js';
@@ -53,6 +56,7 @@ import { createReadingPathsView } from './views/reading-paths.js';
 import { createAddView, persistLongAddPage } from './views/add.js';
 import { createDataView, eraseOutcome } from './views/data.js';
 import { createRecoveryView } from './views/recovery.js';
+import { wireTooltips } from './lib/tooltips.js';
 
 const SETTINGS_KEY = 'mrt.settings';
 export const CACHE_PURGE_KEY = 'mrt.cache-purge.v1';
@@ -70,6 +74,7 @@ const $ = (sel) => document.querySelector(sel);
 const announcer = () => $('#announcer');
 
 const settings = loadSettings();
+const temporaryReaderLinks = createTemporaryReaderLinks();
 const limiter = new RateLimiter();
 let cache = new ResponseCache({ baseUrl: settings.apiBase });
 let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: onApiStatus });
@@ -79,6 +84,7 @@ let api = new MarvelApi({ baseUrl: settings.apiBase, limiter, cache, onStatus: o
 // silently reverted on the next paint.
 const store = new Store({
   onChange: (_state, err) => {
+    if (store.blocked) temporaryReaderLinks.reconcile(_state, { changed: null });
     renderAll();
     if (err) notify('#save-report', err, 'error');
   },
@@ -89,6 +95,7 @@ const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
 // thing that fetches it.
 const sessionSynopsis = new SessionSynopsis();
+const synopsisDisclosure = createSynopsisDisclosure({ hiding: () => settings.hideDescriptions });
 const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis, onProgress: onSynopsisStatus });
 
 // One key, every tab. A save in another tab is news here, and taking it is what keeps two tabs
@@ -105,13 +112,19 @@ export function dispatchStorageEvent(
     readerStore = store,
     education = saveEducation,
     renderEducation = renderSaveEducation,
+    reconcileReader = readerStore === store ? (changed) => readerLinkView.reconcile({ changed, confirmed: changed !== null }) : () => {},
   } = {},
 ) {
   if (event.key === STATE_KEY) {
-    const sanitizeCurrent = () => (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
-      adoptCurrent: true,
-      onFailure: (error) => notify('#save-report', error, 'error'),
-    }), readingPathsView.refreshProgress());
+    const sanitizeCurrent = () => {
+      let changed = null;
+      (sanitizeStoredIssueDescriptions(readerStore, event.newValue, {
+        adoptCurrent: true,
+        onAdopt: (raw, adopted) => { changed = adopted ? raw == null : null; },
+        onFailure: (error) => notify('#save-report', error, 'error'),
+      }), readingPathsView.refreshProgress());
+      reconcileReader(changed);
+    };
     if (readerStore === store) {
       clearTimeout(foreignStateSanitationTimer);
       foreignStateSanitationTimer = setTimeout(sanitizeCurrent, 50);
@@ -126,7 +139,8 @@ export function dispatchStorageEvent(
     return;
   }
   if (event.key === null) {
-    readerStore.adoptForeignWrite(null); readingPathsView.refreshProgress();
+    const adopted = readerStore.adoptForeignWrite(null); readingPathsView.refreshProgress();
+    reconcileReader(adopted ? true : null);
     education.adopt(null);
     renderEducation();
   }
@@ -553,6 +567,8 @@ function loadSettings() {
       // settings file from a future build that adds a theme degrades to the reader's own
       // preference instead of overriding it.
       theme: normaliseTheme(raw.theme),
+      readingShortcut: raw.readingShortcut !== false,
+      hideDescriptions: raw.hideDescriptions !== false,
       // Not checked against the filters that exist here, because that is a question about the
       // document rather than about storage. wireReading() answers it and writes the answer back,
       // which is why a value of the wrong type is passed through rather than coerced: coercing it
@@ -565,6 +581,8 @@ function loadSettings() {
       apiBase: DEFAULT_BASE,
       covers: true,
       theme: DEFAULT_THEME,
+      readingShortcut: true,
+      hideDescriptions: true,
       filter: 'all',
       rejectedApiBase: null,
     };
@@ -629,13 +647,17 @@ function saveSettings() {
   // so there would be nothing left on screen holding the old value.
   const apiBase = settings.rejectedApiBase ?? settings.apiBase;
   try {
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+    const serialized = JSON.stringify({
       apiBase,
       covers: settings.covers,
       theme: settings.theme,
       filter: settings.filter,
-    }));
-  } catch { /* non-fatal */ }
+      readingShortcut: settings.readingShortcut,
+      hideDescriptions: settings.hideDescriptions,
+    });
+    localStorage.setItem(SETTINGS_KEY, serialized);
+    return localStorage.getItem(SETTINGS_KEY) === serialized;
+  } catch { return false; }
 }
 
 // Bumped when something already in the cache has to go. 1 is BL-134: entries written by builds
@@ -755,6 +777,7 @@ export function sanitizeStoredIssueDescriptions(
   sourceRaw,
   {
     adoptCurrent = false,
+    onAdopt = () => {},
     onFailure = () => {},
     retryConflict = true,
   } = {},
@@ -772,7 +795,7 @@ export function sanitizeStoredIssueDescriptions(
   }
   const needed = rawCarriesIssueDescriptions(currentRaw);
   if (!needed) {
-    if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(currentRaw);
+    if (adoptCurrent && !readerStore.blocked) onAdopt(currentRaw, readerStore.adoptForeignWrite(currentRaw));
     return { needed: false, cleared: true };
   }
 
@@ -788,6 +811,7 @@ export function sanitizeStoredIssueDescriptions(
     if (sanitizer.conflicted && retryConflict) {
       return sanitizeStoredIssueDescriptions(readerStore, sourceRaw, {
         adoptCurrent,
+        onAdopt,
         onFailure,
         retryConflict: false,
       });
@@ -813,7 +837,7 @@ export function sanitizeStoredIssueDescriptions(
     }
   }
   if (result.cleared) {
-    if (adoptCurrent && !readerStore.blocked) readerStore.adoptForeignWrite(durableRaw);
+    if (adoptCurrent && !readerStore.blocked) onAdopt(durableRaw, readerStore.adoptForeignWrite(durableRaw));
   }
   return result;
 }
@@ -990,14 +1014,65 @@ function setTheme(next) {
 // already reads 'system'. It was found by mutation, not by review: removing it left a browser
 // check that was written to catch exactly that still reporting a pass.
 
+function setDescriptionHiding(on) {
+  const next = on !== false;
+  const changed = settings.hideDescriptions !== next;
+  settings.hideDescriptions = next;
+  const saved = saveSettings();
+  $('#opt-description-hiding').checked = next;
+  if (changed) {
+    synopsisDisclosure.clear();
+    readingView.renderHero();
+    issueView.refreshDescription();
+  }
+  const status = `Description hiding ${next ? 'on' : 'off'}.`;
+  if (!saved) {
+    notify('#description-hiding-report', `${status} This applies to this tab, but could not be saved. It may change after reload.`, 'error');
+    return;
+  }
+  $('#description-hiding-report').replaceChildren();
+  announce(status);
+}
+
+function applyReadingShortcutSetting() {
+  const enabled = settings.readingShortcut;
+  $('#opt-reading-shortcut').checked = enabled;
+  const done = $('#btn-hero-done');
+  done.classList.toggle('has-tooltip', enabled);
+  if (enabled) {
+    done.setAttribute('data-tooltip', 'Keyboard shortcut: D');
+    done.setAttribute('aria-keyshortcuts', 'd');
+  } else {
+    done.removeAttribute('data-tooltip');
+    done.removeAttribute('aria-keyshortcuts');
+  }
+  $('#reading-shortcut-description').textContent = enabled
+    ? 'Mark it read and move to the next one. Turn off in Backup & settings.'
+    : 'Disabled. Turn on in Backup & settings to mark the current issue read and move to the next one.';
+}
+
+function setReadingShortcut(on) {
+  settings.readingShortcut = Boolean(on);
+  const saved = saveSettings();
+  applyReadingShortcutSetting();
+  const status = `D reading shortcut ${settings.readingShortcut ? 'on' : 'off'}.`;
+  if (!saved) {
+    notify('#reading-shortcut-report', `${status} This applies to this tab, but could not be saved. It may change after reload.`, 'error');
+    return;
+  }
+  $('#reading-shortcut-report').replaceChildren();
+  announce(status);
+}
+
 // ------------------------------------------------------------------ sidebar
 
 // Collapsed means a 48px icon rail, not a hidden pane: nothing leaves the tab order and no
 // destination becomes unreachable. See docs/ux/sidebar-flow.md.
 let railed = false;
-// Tracked so the responsive rule fires only when the breakpoint is actually crossed. Without
-// it every resize event would re-apply the default and undo a deliberate toggle.
-let wasNarrow = null;
+let isNarrow = false;
+let narrowOpen = false;
+// Tracked so the 1000px responsive default fires only on crossings.
+let wasCompact = null;
 
 function loadRailed() {
   try {
@@ -1008,18 +1083,52 @@ function loadRailed() {
   return null;
 }
 
+function renderSidebar() {
+  const shell = $('#shell');
+  const toggle = $('#btn-rail-toggle');
+  const panel = $('#sidebar-panel');
+  const compactDesktop = !isNarrow && railed;
+  shell.classList.toggle('railed', compactDesktop);
+  panel.hidden = isNarrow && !narrowOpen;
+
+  if (isNarrow) {
+    toggle.setAttribute('aria-expanded', String(narrowOpen));
+    toggle.setAttribute('aria-label', 'Navigation');
+    toggle.dataset.tip = 'Navigation · Ctrl+\\';
+  } else {
+    const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
+    toggle.setAttribute('aria-expanded', String(!railed));
+    toggle.setAttribute('aria-label', label);
+    toggle.dataset.tip = `${label} · Ctrl+\\`;
+  }
+  tooltips?.refresh();
+}
+
+function setNarrowOpen(next, { announceIt = false, rescueFocus = true } = {}) {
+  if (!isNarrow) return;
+  const panel = $('#sidebar-panel');
+  const toggle = $('#btn-rail-toggle');
+  const activeInsidePanel = panel?.contains(document.activeElement);
+  if (!next && rescueFocus && activeInsidePanel) toggle.focus();
+  narrowOpen = Boolean(next);
+  renderSidebar();
+  if (announceIt) announce(narrowOpen ? 'Navigation shown.' : 'Navigation hidden.');
+}
+
+function toggleSidebar() {
+  if (isNarrow) {
+    setNarrowOpen(!narrowOpen, { announceIt: true });
+    return;
+  }
+  setRailed(!railed, { announceIt: true, persist: true });
+}
+
 // Only a deliberate toggle is a preference, so persisting is opt-in. The responsive rule and
 // the first-run default also move the sidebar, and writing those to storage would let the act
 // of resizing a window overwrite a choice the reader actually made.
 function setRailed(next, { announceIt = false, persist = false } = {}) {
   railed = Boolean(next);
-  $('#shell').classList.toggle('railed', railed);
-  const toggle = $('#btn-rail-toggle');
-  const label = railed ? 'Expand sidebar' : 'Collapse sidebar';
-  toggle.setAttribute('aria-expanded', String(!railed));
-  toggle.setAttribute('aria-label', label);
-  toggle.dataset.tip = `${label} · Ctrl+\\`;
-  if (!railed) hideRailTip();
+  renderSidebar();
   if (persist) {
     try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch { /* non-fatal */ }
   }
@@ -1028,67 +1137,76 @@ function setRailed(next, { announceIt = false, persist = false } = {}) {
 
 function wireSidebar() {
   const saved = loadRailed();
-  wasNarrow = window.innerWidth < RAIL_BREAKPOINT;
+  const narrowMedia = window.matchMedia('(max-width: 880px)');
+  wasCompact = window.innerWidth < RAIL_BREAKPOINT;
+  isNarrow = narrowMedia.matches;
+  narrowOpen = false;
   // A saved choice is a deliberate one and outranks the responsive default, so a reader who
   // expanded the sidebar on a narrow window does not find it collapsed again on every visit.
   // The default itself is not written back: until the reader touches the toggle there is no
   // preference to record, and recording one would freeze the first window size they happened
   // to open the app at.
-  setRailed(saved !== null ? saved : wasNarrow);
+  setRailed(saved !== null ? saved : wasCompact);
 
-  $('#btn-rail-toggle').addEventListener('click', () => setRailed(!railed, { announceIt: true, persist: true }));
+  $('#btn-rail-toggle').addEventListener('click', toggleSidebar);
 
   document.addEventListener('keydown', (e) => {
     // Ctrl+\ and nothing else: the sidebar is chrome, so its shortcut must not fight a
     // text field the way the single-letter reading shortcuts would.
     if (e.key !== '\\' || !e.ctrlKey || e.altKey || e.metaKey || e.shiftKey) return;
     e.preventDefault();
-    setRailed(!railed, { announceIt: true, persist: true });
+    toggleSidebar();
+  });
+
+  $('#sidebar').addEventListener('keydown', (e) => {
+    if (e.defaultPrevented || e.key !== 'Escape' || !isNarrow || !narrowOpen) return;
+    if (document.querySelector('dialog[open]')) return;
+    const header = document.querySelector('.rail-header');
+    const panel = document.querySelector('#sidebar-panel');
+    const target = e.target instanceof Node ? e.target : null;
+    const fromHeaderOrPanel = Boolean(target && (header?.contains(target) || panel?.contains(target)));
+    e.preventDefault();
+    setNarrowOpen(false, { rescueFocus: !fromHeaderOrPanel });
+    if (fromHeaderOrPanel) $('#btn-rail-toggle').focus();
   });
 
   window.addEventListener('resize', () => {
-    const isNarrow = window.innerWidth < RAIL_BREAKPOINT;
-    // Only on the crossing. Applying this on every resize event would undo a toggle the
-    // reader had just made, and a window drag fires hundreds of them.
-    if (isNarrow === wasNarrow) return;
-    wasNarrow = isNarrow;
-    // A narrow window has no room for the full sidebar, so it always collapses. Widening
-    // restores what the reader chose rather than assuming they want it open, so dragging a
-    // window wide does not undo a deliberate collapse.
-    setRailed(isNarrow || (loadRailed() ?? false));
+    const compact = window.innerWidth < RAIL_BREAKPOINT;
+    if (compact !== wasCompact) {
+      wasCompact = compact;
+      railed = compact || (loadRailed() ?? false);
+    }
+    const nextNarrow = narrowMedia.matches;
+    if (nextNarrow !== isNarrow) {
+      const panel = $('#sidebar-panel');
+      const activeInside = panel?.contains(document.activeElement);
+      isNarrow = nextNarrow;
+      if (nextNarrow) {
+        narrowOpen = false;
+        if (activeInside) $('#btn-rail-toggle').focus();
+      } else {
+        narrowOpen = false;
+      }
+      tooltips?.refresh();
+    }
+    renderSidebar();
   });
 
-  wireRailTips();
+  wireAppTooltips();
 }
 
-// The rail is a scroll container, so a tooltip drawn inside it would be clipped at 48px.
-// One fixed-position element outside the rail avoids that. It is decorative: the button's
-// own label stays in the DOM as its accessible name, visually hidden in rail mode.
-function wireRailTips() {
-  const rail = $('#sidebar');
-  const show = (e) => {
-    const target = e.target instanceof Element ? e.target.closest('.ri, .brand, .pill, .rail-toggle') : null;
-    if (!target || (!railed && !target.matches('.rail-toggle'))) return hideRailTip();
-    const text = (target.dataset.tip || target.querySelector('.lbl')?.textContent || target.textContent || '').trim();
-    if (!text) return hideRailTip();
-    const tip = $('#rail-tip');
-    tip.textContent = text;
-    tip.hidden = false;
-    const box = target.getBoundingClientRect();
-    tip.style.setProperty('left', `${Math.round(box.right + 8)}px`);
-    tip.style.setProperty('top', `${Math.round(box.top + box.height / 2 - tip.offsetHeight / 2)}px`);
-  };
-  rail.addEventListener('pointerover', show);
-  rail.addEventListener('pointerout', hideRailTip);
-  // Focus as well as hover, or the rail is unusable to anyone navigating by keyboard.
-  rail.addEventListener('focusin', show);
-  rail.addEventListener('focusout', hideRailTip);
-  window.addEventListener('scroll', hideRailTip, true);
-}
-
-function hideRailTip() {
-  const tip = $('#rail-tip');
-  if (tip) tip.hidden = true;
+let tooltips;
+function wireAppTooltips() {
+  tooltips = wireTooltips({
+    resolve(node) {
+      const action = node.closest('.has-tooltip[data-tooltip]');
+      if (action) return { trigger: action, tip: $('#action-tip'), text: action.dataset.tooltip };
+      const trigger = node.closest('.ri, .brand, .pill, .rail-toggle');
+      if (!trigger?.closest('#sidebar') || isNarrow || (!railed && !trigger.matches('.rail-toggle'))) return null;
+      const text = (trigger.dataset.tip || trigger.querySelector('.lbl')?.textContent || trigger.textContent || '').trim();
+      return text ? { trigger, tip: $('#rail-tip'), text, preferRight: true } : null;
+    },
+  });
 }
 
 // ------------------------------------------------------------------ navigation
@@ -1309,17 +1427,24 @@ function applyRoute(route, { focus, filterIfAbsent }) {
       readingView.setFullOrderFromRoute(openFromRoute);
       if (openFromRoute && readingView.hasRowsPending()) readingView.renderRows();
     }
-    showView(route.view, { focus }); if (route.view === 'reading-paths') void readingPathsView.render();
+    showView(route.view, { focus });
+    if (route.view === 'reading-paths') {
+      void readingPathsView.render({ opener: focus ? history.state?.readingPathOpener : null })
+        .then((pathId) => {
+          if (focus && view === route.view && pathId === requestedReadingPathId) void restoreIssueFocusOpener(route.view);
+        });
+    }
   } finally {
     applyingRoute = false;
   }
-  if (focus) void restoreIssueFocusOpener(route.view);
+  if (focus && route.view !== 'reading-paths') void restoreIssueFocusOpener(route.view);
 }
 
 // Moving focus to the new view's heading is what makes the rail usable with a keyboard or a
 // screen reader. Without it, focus stays on the rail button and the view change is silent, so
 // the next Tab continues from the old position and nothing announces where you now are.
 function showView(next, { focus = true, push = false } = {}) {
+  tooltips?.dismiss();
   // There is nothing to read without an active list, so the reading view hands over to the
   // landing page rather than showing an empty frame with a heading over it. `Object.hasOwn` for
   // the same reason as in applyRoute, and past tense for the same reason: the map used to answer a
@@ -1333,6 +1458,7 @@ function showView(next, { focus = true, push = false } = {}) {
       issueSynopsisId = null;
     }
   }
+  setNarrowOpen(false, { rescueFocus: !focus });
 
   view = next;
   addView.enter(next);
@@ -1352,6 +1478,8 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'home') homeView.render();
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') void homeView.renderGateways();
+  if (next === 'read') readingView.renderHero();
+  readingView.renderReview();
   if (next === 'issue') void issueView.render(issueRoute);
   renderBreadcrumbs();
   // Here rather than in renderAll, because what this list reports is not part of the state every
@@ -1445,6 +1573,10 @@ function matchingIssueOpener(opener) {
 async function restoreIssueFocusOpener(sourceView) {
   const opener = history.state?.issueFocusOpener;
   if (!opener || opener.view !== sourceView) return;
+  if (opener.surface === 'reorientation' && !readingView.restoreReview(opener)) {
+    focusViewHeading(sourceView);
+    return;
+  }
   if (opener.surface === 'full-order') {
     readingView.setFullOrderFromRoute(true);
     readingView.renderRows();
@@ -1453,7 +1585,10 @@ async function restoreIssueFocusOpener(sourceView) {
     try {
       const catalog = await loadCatalog();
       const list = catalog.lists.find((entry) => entry.id === opener.contextId);
-      if (list) await previewView.open(list);
+      const story = sourceView === 'reading-paths'
+        ? readingPathsView.selected()?.stops.find((stop) => stop.lists.some((entry) => entry.id === list?.id))
+        : null;
+      if (list && view === sourceView) await previewView.open(list, story);
     } catch {
       focusViewHeading(sourceView);
       return;
@@ -1462,18 +1597,18 @@ async function restoreIssueFocusOpener(sourceView) {
   await new Promise((resolve) => requestAnimationFrame(resolve));
   const target = matchingIssueOpener(opener);
   if (target?.isConnected) {
-    target.focus({ preventScroll: true });
+    target.focus();
     return;
   }
   if (sourceView === 'read' && view === 'read') {
     const checked = [...document.querySelectorAll('input[name="filter"]')].find((radio) => radio.checked);
     if (checked?.isConnected) {
-      checked.focus({ preventScroll: true });
+      checked.focus();
       return;
     }
     const summary = $('#full').querySelector('summary');
     if (summary?.isConnected) {
-      summary.focus({ preventScroll: true });
+      summary.focus();
       return;
     }
   }
@@ -1555,9 +1690,17 @@ export function hydrationAnnouncement(status) {
 
 // ------------------------------------------------------------------ reader deep links
 
-function openInReader(issue, event) {
+function readerPresentation(issue, source) {
+  const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
+  return { launchable: resolved.ok && isLaunchable(resolved.issue), temporary: resolved.ok && resolved.temporary };
+}
+
+function openInReader(issue, event, source) {
   event?.preventDefault();
-  const res = openIssueTab(issue);
+  if (!source) { announce('The comic source is missing. Open its current details and try again.'); return; }
+  const resolved = temporaryReaderLinks.resolve(store.state, issue, { source });
+  if (!resolved.ok) { announce(resolved.error); return; }
+  const res = openIssueTab(resolved.issue);
   if (!res.ok) {
     announce(`${issue.title} has no Marvel reference recorded, so it cannot be opened.`);
     return;
@@ -1602,7 +1745,7 @@ export function synopsisAnnouncement(status) {
   if (phase === 'cancelled') {
     const failed = Number(status.failed ?? 0);
     const unreached = failed ? ` ${failed} issue${failed === 1 ? '' : 's'} could not be reached.` : '';
-    return { state: 'cancelled', msg: `Synopsis fetching stopped.${unreached} What arrived is on screen until you reload.` };
+    return { state: 'cancelled', msg: `Synopsis fetching stopped.${unreached} What arrived is held for this tab only.` };
   }
   if (phase === 'partial') {
     const failed = Number(status.failed ?? 0);
@@ -1646,14 +1789,24 @@ async function startSynopsisRun() {
   synopsisRunner.start(list.id);
 }
 
-async function startIssueSynopsis() {
+async function startIssueSynopsis(isCurrent) {
   const issueId = issueView.result()?.issue?.issueId;
-  if (!Number.isInteger(issueId) || issueId < 1) return;
-  const yes = await askConfirm(synopsisDisclaimer(settings.apiBase));
-  if (!yes || view !== 'issue' || issueRoute?.issueId !== issueId) return;
+  if (!Number.isInteger(issueId) || issueId < 1 || synopsisRunner.active) return false;
+  const requestApi = api;
+  const disclaimer = synopsisDisclaimer(settings.apiBase);
+  const yes = await askConfirm({
+    ...disclaimer,
+    title: 'Fetch and reveal this description?',
+    body: `This issue's description may contain spoilers. ${disclaimer.body}`,
+    confirmLabel: 'Fetch and reveal',
+  });
+  if (!yes || !isCurrent() || api !== requestApi || synopsisRunner.active
+    || view !== 'issue' || issueRoute?.issueId !== issueId) return false;
   issueSynopsisId = issueId;
   await synopsisRunner.startIssue(issueId);
+  if (!isCurrent() || api !== requestApi || issueSynopsisId !== issueId) return false;
   if (!synopsisRunner.active) issueSynopsisId = null;
+  return !!sessionSynopsis.text(issueId);
 }
 
 // ------------------------------------------------------------------ curated orders
@@ -1863,7 +2016,11 @@ const recoveryView = createRecoveryView({
   salvageCopies: () => store.salvageCopies(),
   salvageRawAt: (key) => store.salvageRawAt(key),
   forgetSalvage: (key) => store.forgetSalvage(key),
-  startFresh: (opts) => store.startFresh(opts),
+  startFresh: (opts) => {
+    const ok = store.startFresh(opts);
+    readerLinkView.reconcile({ changed: ok ? true : store.blocked ? null : false });
+    return ok;
+  },
   notify,
   announce,
   askConfirm,
@@ -1875,6 +2032,8 @@ const dataView = createDataView({
     apiBase: $('#api-base'),
     optCovers: $('#opt-covers'),
     optTheme: $('#opt-theme'),
+    optReadingShortcut: $('#opt-reading-shortcut'),
+    optDescriptionHiding: $('#opt-description-hiding'),
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
     btnExportMd: $('#btn-export-md-2'),
@@ -1901,16 +2060,20 @@ const dataView = createDataView({
   onExportMarkdown: exportMarkdown,
   onRestore: (text) => {
     const res = store.restore(text);
+    readerLinkView.reconcile({ changed: res.changed });
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
   onUndoRestore: () => {
     const res = store.undoRestore();
+    readerLinkView.reconcile({ changed: res.changed });
     if (res.ok) readingView.forgetDeleted();
     return res;
   },
   onSetCovers: (on) => setCovers(on),
   onSetTheme: (value) => setTheme(value),
+  onSetReadingShortcut: (on) => setReadingShortcut(on),
+  onSetDescriptionHiding: setDescriptionHiding,
   onCheckLocalConnection: () => refreshLocalConnection({ explicit: true }),
   onApiBaseSubmit: (value) => {
     settings.apiBase = value;
@@ -1929,9 +2092,13 @@ const dataView = createDataView({
     // needs the same rebinding. A run already in flight is stopped rather than switched, and what
     // it fetched is dropped: the reader agreed to a dialog naming the old service, and that
     // agreement does not carry over to a different one.
+    issueSynopsisId = null;
     if (synopsisRunner.active) synopsisRunner.cancel();
     synopsisRunner.api = api;
     sessionSynopsis.clear();
+    synopsisDisclosure.clear();
+    issueView.resetSynopsis();
+    readingView.resetSynopsis();
     readingView.renderSynopsis(null);
     readingView.renderHero();
     notify('#api-report', 'API URL saved. Cached data from the previous URL is kept separate.', 'ok');
@@ -1954,7 +2121,8 @@ const dataView = createDataView({
     }
   },
   onErase: () => {
-    const { snapshotKept } = store.eraseAll();
+    const { ok, snapshotKept } = store.eraseAll();
+    readerLinkView.reconcile({ changed: ok ? true : store.blocked ? null : false });
     cache.clear();
     // The undo buffer points at a list from the data that has just been erased, so putting it
     // back would resurrect one list out of a tracker the reader asked to be emptied.
@@ -2359,6 +2527,8 @@ function renderAll() {
   catalogView.refreshProgress();
   renderQueue();
   addView.renderDestination();
+  readerLinkView.refresh();
+  issueView.refreshReader();
   // Kept in renderAll so the banner cannot go stale. In particular a successful restore
   // clears the block, and leaving the banner up would push the user toward "Start fresh",
   // which would then wipe the backup they had just restored.
@@ -2389,11 +2559,15 @@ export function boot() {
   store.load();
   applyCoversSetting();
   applyThemeSetting();
+  applyReadingShortcutSetting();
+  $('#opt-description-hiding').checked = settings.hideDescriptions;
   ensurePublishingViews();
   wireSidebar();
   wireNav();
   readingView.wireShortcuts();
   issueView.wire();
+  readerLinkView.wire();
+  globalThis.addEventListener('pagehide', () => readerLinkView.clearDocument());
   addView.wire();
   dataView.wire();
   recoveryView.wire();
@@ -2588,12 +2762,17 @@ const readingView = createReadingView({
   detailUrl,
   el,
   fact,
+  focusCurrentView: () => {
+    focusViewHeading(view);
+    document.activeElement?.scrollIntoView({ block: 'nearest' });
+  },
   getSettings: () => settings,
   getState: () => store.state,
   getSynopsis: (issueId) => sessionSynopsis.get(issueId),
   hydrationAnnouncement,
   isCurrent: () => view === 'read',
   isHydrationActive: () => hydrator.active,
+  isStateBlocked: () => store.blocked,
   isSynopsisActive: () => synopsisRunner.active,
   issueFocusAnchor,
   launch: openInReader,
@@ -2609,6 +2788,7 @@ const readingView = createReadingView({
   paintHeroBackground,
   preservingFocus,
   recordDirectProgressSave,
+  readerPresentation,
   renderSaveEducation,
   saveSettings,
   seriesOnly,
@@ -2616,6 +2796,7 @@ const readingView = createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
+  synopsisDisclosure,
   synopsisStatusLine,
   updateState: (updater) => {
     const state = store.update(updater);
@@ -2623,6 +2804,23 @@ const readingView = createReadingView({
   },
   withSaveEducation,
   ymd,
+});
+
+const readerLinkView = createReaderLinkView({
+  elements: () => Object.fromEntries([
+    'root', 'summary', 'edit', 'form', 'label', 'input', 'preview', 'error',
+    'apply', 'cancel', 'revert', 'status', 'reportToggle', 'reportPanel',
+    'reportText', 'reportStatus', 'regenerate', 'reportLink', 'reportDisclosure',
+  ].map((key) => [key, $(`#reader-link-${key}`)])),
+  getState: () => store.state,
+  links: temporaryReaderLinks,
+  announce,
+  onChange: () => {
+    readingView.refreshReader();
+    homeView.refreshReader();
+    issueView.refreshReader();
+  },
+  focusFallback: () => focusViewHeading(view),
 });
 
 const issueView = createIssueView({
@@ -2640,6 +2838,7 @@ const issueView = createIssueView({
     card: $('#issue-focus-card'),
     context: $('#issue-focus-context'),
     description: $('#issue-focus-desc'),
+    disclosure: $('#btn-issue-description'),
     facts: $('#issue-focus-facts'),
     fallback: $('#issue-focus-fb'),
     heading: $('#issue-focus-h'),
@@ -2648,6 +2847,7 @@ const issueView = createIssueView({
     note: $('#issue-focus-note'),
     number: $('#issue-focus-fn'),
     read: $('#btn-issue-read'),
+    retry: $('#btn-issue-retry'),
     series: $('#issue-focus-fs'),
     status: $('#issue-focus-status'),
     synopsis: $('#btn-issue-synopsis'),
@@ -2660,8 +2860,15 @@ const issueView = createIssueView({
   isSynopsisActive: () => synopsisRunner.active,
   loadCatalog,
   loadOrder: loadBundledOrder,
-  onCancelSynopsis: () => synopsisRunner.cancel(),
+  onCancelSynopsis: () => {
+    issueSynopsisId = null;
+    synopsisRunner.cancel();
+  },
   onRead: openInReader,
+  onReaderContext: (result) => {
+    if (result?.issue) readerLinkView.show(result.issue.issueId, { source: result.source });
+    else readerLinkView.leave();
+  },
   onStaleContext: (route) => {
     if (issueRoute !== route) return;
     issueRoute = { ...route, context: null };
@@ -2671,8 +2878,10 @@ const issueView = createIssueView({
   paintBackground: paintHeroBackground,
   paintCover,
   renderBreadcrumbs,
+  readerPresentation,
   seriesOnly,
   synopsisFallback,
+  synopsisDisclosure,
   synopsisStatusLine,
 });
 
@@ -2732,6 +2941,7 @@ const homeView = createHomeView({
     continueNumber: $('#chero-fn'),
     continueRead: $('#btn-chero-read'),
     continueOpen: $('#btn-chero-open'),
+    continueReview: $('#btn-chero-review'),
     yoursSection: $('#home-yours'),
     yoursList: $('#home-yours-list'),
     firstRun: $('#home-first-run'),
@@ -2743,6 +2953,7 @@ const homeView = createHomeView({
   getActiveListId: activeListId,
   getState: () => store.state,
   hueOf,
+  readerPresentation,
   labelledName,
   listProgress,
   loadCatalog,
@@ -2766,6 +2977,10 @@ const homeView = createHomeView({
   onOpen: () => showView('read', { push: true }),
   onRead: openInReader,
   openPreview: (list, story) => previewView.open(list, story),
+  onReview: () => {
+    showView('read', { push: true });
+    readingView.openReview();
+  },
   paintCover,
   paintCoverUrl,
   recommendedList: modernTimelineFeaturedList,
@@ -2801,6 +3016,17 @@ const libraryView = createLibraryView({
 
 let requestedReadingPathId = null;
 
+function openSavedCatalogList(list, saved, report) {
+  store.update((state) => setActive(state, saved.id));
+  if (!store.lastUpdateOk) {
+    notify(report, `${list.name} could not be opened because that selection could not be saved.`,
+      'error', `open:${list.id}`);
+    return;
+  }
+  if ($('#preview').open) $('#preview').close();
+  showView('read', { push: true });
+}
+
 const catalogPresentation = createCatalogPresentation({
   el,
   elements: { query: $ },
@@ -2808,19 +3034,7 @@ const catalogPresentation = createCatalogPresentation({
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   onAdd: (list, button, report) => importCurated(list, button, { report }),
   onGoToStop: goToStop,
-  onOpen: (list, saved, report) => {
-    store.update((state) => setActive(state, saved.id));
-    if (!store.lastUpdateOk) {
-      notify(
-        report,
-        `${list.name} could not be opened because that selection could not be saved.`,
-        'error',
-        `open:${list.id}`,
-      );
-      return;
-    }
-    showView('read', { push: true });
-  },
+  onOpen: openSavedCatalogList,
   onPreview: (list, story) => previewView.open(list, story),
   pathHref: (stop) => formatRoute({
     view: stop.shelf,
@@ -2877,6 +3091,7 @@ const previewView = createPreviewView({
     heading: $('#preview-h'),
     meta: $('#preview-meta'),
     paths: $('#preview-paths'),
+    source: $('#preview-source'),
   }),
   isInLibrary: (catalogId) => listForCatalogId(store.state, catalogId),
   issueFocusAnchor,
@@ -2913,11 +3128,7 @@ const previewView = createPreviewView({
       text: `The issue list could not be loaded: ${error.message}. You can still add the order.`,
     }));
   },
-  onOpen: (_list, saved) => {
-    store.update((state) => setActive(state, saved.id));
-    if ($('#preview').open) $('#preview').close();
-    showView('read', { push: true });
-  },
+  onOpen: (list, saved) => openSavedCatalogList(list, saved, '#preview-report'),
   presentation: catalogPresentation,
   restoreFocus,
 });
@@ -2953,6 +3164,22 @@ const readingPathsView = createReadingPathsView({
     retry,
     isCurrent,
   }),
+  onOpenStop: (stop, progress) => {
+    const current = history.state && typeof history.state === 'object' ? history.state : {};
+    history.replaceState({
+      ...current,
+      readingPathOpener: { pathId: requestedReadingPathId, stepId: stop.stepId },
+    }, '', location.href);
+    if (progress) {
+      openSavedCatalogList(
+        { id: progress.catalogId, name: progress.name },
+        { id: progress.listId },
+        '#reading-paths-report',
+      );
+    } else {
+      void previewView.open(catalogPresentation.chosenPath(stop), stop);
+    }
+  },
   onSelectedPath: (pathId) => {
     requestedReadingPathId = pathId;
     syncHash({ push: true });

@@ -1,7 +1,18 @@
+import { uiIcon } from '../lib/uiIcon.js';
+import { isLaunchable } from '../reader.js';
+
 const CONTINUE_NO_LIST = 'Continue reading';
+const CATEGORY_ICONS = {
+  E736: 'guide',
+  E8FD: 'storylines',
+  E77B: 'person',
+  E714: 'screen',
+  E8F1: 'books',
+};
 
 export function createHomeView({
   categoriesForCatalog,
+  createIcon = uiIcon,
   clearCatalogNotice,
   el,
   elements,
@@ -16,10 +27,12 @@ export function createHomeView({
   onNavigateCategory,
   onOpen,
   onRead,
+  onReview,
   openPreview,
   paintCover,
   paintCoverUrl,
   recommendedList,
+  readerPresentation = (issue) => ({ launchable: isLaunchable(issue), temporary: false }),
   renderSavedLists,
   seriesOnly,
   shortTitle,
@@ -32,9 +45,10 @@ export function createHomeView({
     const nodes = elements();
     nodes.continueRead.addEventListener('click', (event) => {
       const issue = upNext(getState(), getActiveListId());
-      if (issue) onRead(issue, event);
+      if (issue) onRead(issue, event, 'saved');
     });
     nodes.continueOpen.addEventListener('click', onOpen);
+    nodes.continueReview.addEventListener('click', onReview);
   }
 
   function ensureFirstRun() {
@@ -51,7 +65,7 @@ export function createHomeView({
           text: 'Recommended start: Setup to Modern Timeline',
         }),
         el('p', {
-          text: "A guided path through the earlier stories that prepare you for this app's Modern Timeline.",
+          text: 'New to Marvel? Explore earlier stories for historical context on the characters and events ahead. Setup is optional; you can enter the Modern Timeline directly.',
         }),
       ]),
       el('button', {
@@ -104,13 +118,18 @@ export function createHomeView({
       paintCover(nodes.continueImage, nodes.continueFallback, issue, 'portrait_incredible');
       nodes.continueSeries.textContent = seriesOnly(issue.seriesName);
       nodes.continueNumber.textContent = issue.number ? `#${issue.number}` : '';
+      const reader = readerPresentation(issue, 'saved');
       nodes.continueRead.hidden = false;
+      nodes.continueRead.disabled = !reader.launchable;
+      nodes.continueRead.textContent = reader.temporary ? 'Read with temporary link' : 'Read next';
       nodes.continueRead.setAttribute(
         'aria-label',
         labelledName(nodes.continueRead.textContent, `${issue.title} in Marvel Unlimited`),
       );
     } else {
-      nodes.continueNext.textContent = 'You have read every issue in this order.';
+      nodes.continueNext.textContent = total === 0
+        ? 'No issues in this Reading List yet. Open it to add comics.'
+        : 'You have read every issue in this order.';
       nodes.continueRead.hidden = true;
       paintCoverUrl(
         nodes.continueImage,
@@ -141,7 +160,6 @@ export function createHomeView({
   }
 
   function categoryTile(category) {
-    const glyph = String.fromCodePoint(Number.parseInt(category.icon, 16));
     const count = `${category.count} ${category.count === 1
       ? (category.singular ?? 'Reading List')
       : (category.plural ?? 'Reading Lists')}`;
@@ -152,21 +170,13 @@ export function createHomeView({
       dataset: { category: category.key },
       onclick: () => onNavigateCategory(category),
     }, [
-      el('span', {
-        class: 'gi home-path-icon',
-        'aria-hidden': 'true',
-        text: glyph,
-      }),
+      createIcon(CATEGORY_ICONS[category.icon], 'gi home-path-icon'),
       el('span', { class: 'home-path-copy' }, [
         el('span', { class: 'eyebrow home-path-label', text: category.label }),
         el('span', { class: 'home-path-title', text: category.heading }),
         el('span', { class: 'home-path-count', text: count }),
       ]),
-      el('span', {
-        class: 'gi home-path-arrow',
-        'aria-hidden': 'true',
-        text: String.fromCodePoint(0xE72A),
-      }),
+      createIcon('arrow-right', 'gi home-path-arrow'),
     ]));
   }
 
@@ -234,6 +244,7 @@ export function createHomeView({
   return {
     categoryTile,
     render,
+    refreshReader: () => renderContinue(getState().listOrder.length > 0),
     renderGateways,
     wire,
   };

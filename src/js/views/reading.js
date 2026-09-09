@@ -8,7 +8,7 @@ import {
   markRead,
   moveItem,
   pendingIssueIds,
-  removeFromList,
+  removeFromList, restoreRemovedIssue,
   renameList,
   restoreList,
   setActive,
@@ -24,9 +24,12 @@ import { labelledName } from '../lib/accname.js';
 import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
+import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
+import { earlierIssueIds } from '../lib/reorientation.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
+const UNDO_REMOVE = 'undo-remove';
 const SHORT_LABEL = {
   [STATE.SCHEDULED]: 'scheduled',
   [STATE.UNKNOWN]: 'unknown',
@@ -96,15 +99,17 @@ export function createReadingView({
   detailUrl,
   el,
   fact,
+  focusCurrentView,
   getSettings,
   getState,
   getSynopsis,
   hydrationAnnouncement,
   isCurrent,
   isHydrationActive,
+  isStateBlocked,
   isSynopsisActive,
   issueFocusAnchor,
-  launch,
+  launch: launchSaved,
   noSynopsisMarker,
   notify,
   onCancelHydrate,
@@ -117,6 +122,7 @@ export function createReadingView({
   paintHeroBackground,
   preservingFocus,
   recordDirectProgressSave,
+  readerPresentation = (issue) => ({ launchable: !!issuePresentation(issue)?.launchable, temporary: false }),
   renderSaveEducation,
   saveSettings,
   seriesOnly,
@@ -124,11 +130,13 @@ export function createReadingView({
   showView,
   syncHash,
   synopsisAnnouncement,
+  synopsisDisclosure,
   synopsisStatusLine,
   updateState,
   withSaveEducation,
   ymd,
 }) {
+  const launch = (issue, event) => launchSaved(issue, event, 'saved');
   // The hero is hidden when there is no next issue, but its heading stays non-empty so the
   // document never holds an invalid heading state. This must match the initial text in index.html.
   const HERO_NO_ISSUE = 'Nothing up next';
@@ -141,10 +149,88 @@ export function createReadingView({
   let filterAddressed = false;
   let applyingRouteToDisclosure = false;
   let lastDeleted = null;
+  let lastRemoved = null;
   let rowCache = new Map();
   let rowCacheListId = null;
   let rowsPending = false;
   let arrowing = false;
+  let review = null;
+
+  function openReview() {
+    const id = activeListId();
+    if (!getState().lists[id]) {
+      announce('That Reading List is no longer available.');
+      return;
+    }
+    const ids = earlierIssueIds(getState(), id);
+    review = { listId: id, issueId: ids.at(-1) ?? null, position: ids.length - 1 };
+    renderReview();
+    $('#review-h').focus();
+  }
+
+  function renderReview() {
+    const region = $('#review-earlier');
+    if (review && review.listId !== activeListId()) {
+      review = null;
+      if (region.contains(document.activeElement)) focusCurrentView();
+    }
+    region.hidden = !review;
+    $('#btn-review-earlier').setAttribute('aria-expanded', String(!!review));
+    if (!review) return;
+    const list = getState().lists[review.listId];
+    const ids = earlierIssueIds(getState(), review.listId);
+    if (!review.withdrawn && (!list || (review.issueId != null && ids[review.position] !== review.issueId))) {
+      review.issueId = null;
+      review.position = -1;
+      review.withdrawn = true;
+      announce('The Reading List changed. Choose Review earlier issues again to start from its current order.');
+    }
+    const item = review.issueId == null ? null : getState().issues[review.issueId]
+      ?? { issueId: review.issueId, title: `Issue ${review.issueId}` };
+    $('#review-context').textContent = list ? `Earlier in ${list.name}'s current order.` : 'This Reading List is no longer available.';
+    $('#review-position').textContent = item
+      ? `Position ${review.position + 1} of ${list.itemIds.length}. ${isRead(getState(), item.issueId) ? 'Marked read' : 'Not marked read'}.`
+      : review.withdrawn ? 'This selection is no longer valid. Open the picker again to choose from the current order.'
+        : list?.itemIds.length ? 'There are no comics before the next unread issue in this order.'
+          : 'There are no comics in this Reading List yet.';
+    preservingFocus($('#review-candidate'), () => {
+      const candidate = item ? issueFocusAnchor(item, {
+        context: { kind: 'list', id: review.listId },
+        surface: 'reorientation',
+        className: 'btn btn-g',
+        ariaLabel: `Open details for ${item.title}`,
+        children: `Open details for ${item.title}`,
+      }) : null;
+      if (candidate) {
+        candidate.dataset.act = 'review';
+        candidate.dataset.key = `${review.listId}:${item.issueId}`;
+      }
+      $('#review-candidate').replaceChildren(...(candidate ? [candidate] : []));
+    }, { fallback: () => $('#review-h') });
+    for (const [selector, blocked] of [
+      ['#review-earlier-button', !item || review.position === 0],
+      ['#review-later-button', !item || review.position === ids.length - 1],
+    ]) {
+      $(selector).setAttribute('aria-disabled', String(blocked));
+    }
+  }
+
+  function moveReview(delta) {
+    renderReview();
+    if (!review || review.issueId == null) return;
+    const ids = earlierIssueIds(getState(), review.listId);
+    const position = review.position + delta;
+    if (position < 0 || position >= ids.length) return;
+    review.position = position;
+    review.issueId = ids[position];
+    renderReview();
+  }
+
+  function restoreReview(opener) {
+    renderReview();
+    return !!review && review.issueId != null && review.issueId === Number(opener.issueId)
+      && review.listId === opener.contextId;
+  }
 
   const dismissUndoDelete = { label: 'Dismiss', onClick: forgetDeleted };
   const giveUpUndoDelete = { label: 'Give up', onClick: forgetDeleted };
@@ -172,6 +258,20 @@ export function createReadingView({
   }
 
   function wire() {
+    $('#btn-review-earlier').addEventListener('click', openReview);
+    $('#review-earlier-button').addEventListener('click', () => moveReview(-1));
+    $('#review-later-button').addEventListener('click', () => moveReview(1));
+    $('#review-close').addEventListener('click', () => {
+      review = null;
+      renderReview();
+      $('#btn-review-earlier').focus();
+    });
+    $('#review-full-order').addEventListener('click', () => {
+      setFullOrderFromRoute(true);
+      renderRows();
+      syncHash();
+      $('#full > summary').focus();
+    });
     // Build this group once from the shared filter definitions. Rebuilding it with the rows would
     // destroy the active radio and drop keyboard focus, while accepting authored radios would let
     // the controls and predicates disagree.
@@ -306,6 +406,12 @@ export function createReadingView({
     $('#btn-cancel-hydrate').addEventListener('click', onCancelHydrate);
     $('#btn-synopsis').addEventListener('click', onStartSynopsis);
     $('#btn-cancel-synopsis').addEventListener('click', onCancelSynopsis);
+    $('#btn-hero-description').addEventListener('click', () => {
+      const issue = upNext(getState(), activeListId());
+      if (!issue) return;
+      synopsisDisclosure.toggle(issue.issueId);
+      renderHero();
+    });
 
     $('#btn-hero-read').addEventListener('click', (e) => {
       const issue = upNext(getState(), activeListId());
@@ -390,6 +496,8 @@ export function createReadingView({
   }
 
   function render() {
+    renderReview();
+    if (lastRemoved && !removalContextMatches(lastRemoved)) forgetRemoved(lastRemoved);
     const id = activeListId();
     const list = getState().lists[id];
 
@@ -439,13 +547,15 @@ export function createReadingView({
   function renderHero() {
     const id = activeListId();
     const issue = upNext(getState(), id);
-    const finished = !issue;
+    const empty = getState().lists[id]?.itemIds.length === 0;
 
-    $('#hero').hidden = finished;
-    $('#all-read').hidden = !finished;
-    $('#shelf-sec').hidden = finished;
-    if (finished) {
+    $('#hero').hidden = !issue;
+    $('#reading-empty').hidden = !empty;
+    $('#all-read').hidden = empty || !getState().lists[id] || !!issue;
+    $('#shelf-sec').hidden = !issue;
+    if (!issue) {
       $('#hero-title').textContent = HERO_NO_ISSUE;
+      resetSynopsis();
       return;
     }
 
@@ -467,13 +577,18 @@ export function createReadingView({
     paintHeroBackground($('#hero-bg'), issue);
 
     $('#hero-title').textContent = issue.title;
+    refreshHeroReader(issue);
     const inspect = $('#btn-hero-inspect');
     inspect.dataset.focusSource = 'hero';
     inspect.dataset.issueId = String(issue.issueId);
     inspect.dataset.contextId = id;
 
     $('#hero-by').textContent = presentation.byline;
-    $('#hero-desc').textContent = presentation.description;
+    renderSynopsisDescription({
+      button: $('#btn-hero-description'), description: $('#hero-desc'), issue,
+      entry: getSynopsis(issue.issueId), fallback: presentation.description,
+      disclosure: synopsisDisclosure,
+    });
     $('#hero-facts').replaceChildren(...presentation.facts.map((item) => (
       fact(item.key, item.value, item.className)
     )));
@@ -488,6 +603,25 @@ export function createReadingView({
       info.removeAttribute('href');
     }
   }
+  function resetSynopsis() {
+    $('#hero-desc').textContent = '';
+    $('#hero-desc').hidden = true;
+    $('#btn-hero-description').hidden = true;
+    $('#btn-hero-description').setAttribute('aria-expanded', 'false');
+  }
+
+  function refreshHeroReader(issue = upNext(getState(), activeListId())) {
+    const reader = readerPresentation(issue, 'saved');
+    $('#btn-hero-read').hidden = !reader.launchable;
+    $('#btn-hero-read').textContent = reader.temporary ? 'Read with temporary link' : 'Open in Marvel Unlimited';
+  }
+
+  function refreshReader() {
+    refreshHeroReader();
+    renderShelf();
+    renderRows();
+  }
+
   function renderShelf() {
     const id = activeListId();
     const shelf = $('#shelf');
@@ -511,7 +645,9 @@ export function createReadingView({
         const year = ymd(item.onSale).slice(0, 4);
         const label = [short, year].filter(Boolean).join(' ');
         const readContext = 'Open in Marvel Unlimited';
-        const readName = labelledName(label, readContext);
+        const readName = readerPresentation(item, 'saved').temporary
+          ? labelledName('Read with temporary link', `${label}: ${readContext}`)
+          : labelledName(label, readContext);
         const context = { kind: 'list', id };
 
         shelf.append(el('li', { class: 'tile' }, [
@@ -533,8 +669,9 @@ export function createReadingView({
             title: `${label}: ${readContext}`,
             'aria-label': readName,
             dataset: { key: item.issueId, act: 'open' },
+            hidden: !readerPresentation(item, 'saved').launchable,
             onclick: (e) => launch(item, e),
-          }, 'Read'),
+          }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
         ]));
       }
     }, {
@@ -614,7 +751,9 @@ export function createReadingView({
         }
 
         const rowKey = rowCacheKey(item, currentId, today, getSettings().covers);
-        const cached = rowCache.get(item.issueId);
+        const readerKey = JSON.stringify(readerPresentation(item, 'saved'));
+        const entry = rowCache.get(item.issueId);
+        const cached = entry?.readerKey === readerKey ? entry : null;
         if (cached && cached.key === rowKey) { desired.push(cached.node); continue; }
 
         const override = item.override;
@@ -668,7 +807,7 @@ export function createReadingView({
             tabIndex: '-1', ariaLabel: `Inspect ${item.title}`,
             children: [img, fb],
           }),
-          el('div', {}, [
+          el('div', { class: 'row-info' }, [
             issueFocusAnchor(item, {
               context: { kind: 'list', id },
               surface: 'full-order',
@@ -698,7 +837,7 @@ export function createReadingView({
           ]),
           issueRowActions(item, id),
         ]);
-        rowCache.set(item.issueId, { key: rowKey, node });
+        rowCache.set(item.issueId, { key: rowKey, readerKey, node });
         desired.push(node);
       }
       if (items.length !== all.length) {
@@ -754,7 +893,13 @@ export function createReadingView({
   function issueRowActions(item, listId) {
     const panelId = `row-actions-${item.issueId}`;
     const panel = el('div', { class: 'ract', id: panelId }, [
-      el('button', { type: 'button', class: 'mini', 'aria-label': `Read ${item.title} in Marvel Unlimited`, dataset: { key: item.issueId, act: 'open' }, onclick: (e) => launch(item, e) }, 'Read'),
+      el('button', {
+        type: 'button', class: 'mini',
+        'aria-label': `Read ${item.title} in Marvel Unlimited${readerPresentation(item, 'saved').temporary ? ' with temporary link' : ''}`,
+        dataset: { key: item.issueId, act: 'open' },
+        hidden: !readerPresentation(item, 'saved').launchable,
+        onclick: (e) => launch(item, e),
+      }, readerPresentation(item, 'saved').temporary ? 'Read with temporary link' : 'Read'),
       detailUrl(item)
         ? el('a', {
           class: 'mini has-tooltip',
@@ -768,48 +913,45 @@ export function createReadingView({
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `Move ${item.title} up`,
+        'aria-label': labelledName('Move up', item.title),
         dataset: { key: item.issueId, act: 'up', tooltip: 'Move up' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, -1)),
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↑' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↑' }),
         el('span', { class: 'mini-label', text: 'Move up' }),
       ]),
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `Move ${item.title} down`,
+        'aria-label': labelledName('Move down', item.title),
         dataset: { key: item.issueId, act: 'down', tooltip: 'Move down' },
         onclick: () => updateState((state) => moveItem(state, listId, item.issueId, 1)),
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '↓' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '↓' }),
         el('span', { class: 'mini-label', text: 'Move down' }),
       ]),
       el('button', {
         type: 'button',
         class: 'mini has-tooltip',
-        'aria-label': `${availabilityOverrideAction(item.override)} for ${item.title}`,
+        'aria-label': labelledName('Change Unlimited status', `${item.title}; ${availabilityOverrideAction(item.override)}`),
         dataset: {
           key: item.issueId,
           act: 'override',
-          tooltip: availabilityOverrideAction(item.override),
+          tooltip: labelledName('Change Unlimited status', availabilityOverrideAction(item.override)),
         },
         onclick: () => cycleOverride(item),
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '⚑' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '⚑' }),
         el('span', { class: 'mini-label', text: 'Change Unlimited status' }),
       ]),
       el('button', {
         type: 'button',
         class: 'mini mini-danger has-tooltip',
-        'aria-label': `Remove ${item.title} from this list`,
-        dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from this list' },
-        onclick: () => {
-          updateState((state) => removeFromList(state, listId, item.issueId));
-          announceIfSaved(`Removed ${item.title}.`);
-        },
+        'aria-label': labelledName('Remove from list', item.title),
+        dataset: { key: item.issueId, act: 'remove', tooltip: 'Remove from list' },
+        onclick: () => removeIssue(listId, item.issueId),
       }, [
-        el('span', { class: 'mini-icon', 'aria-hidden': true, text: '✕' }),
+        el('span', { class: 'mini-icon', 'aria-hidden': 'true', text: '✕' }),
         el('span', { class: 'mini-label', text: 'Remove from list' }),
       ]),
     ]);
@@ -864,6 +1006,7 @@ export function createReadingView({
         e.preventDefault();
         launch(issue, e);
       } else if (e.key === 'd' || e.key === 'D') {
+        if (getSettings().readingShortcut === false || e.repeat) return;
         e.preventDefault();
         markCurrentRead();
       }
@@ -934,6 +1077,104 @@ export function createReadingView({
     rowsPending = false;
   }
 
+  function removalContextMatches(removed, state = getState()) {
+    const list = state.lists[removed.listId];
+    // Rename and list notes retain these references; structural edits and dataset adoption do not.
+    // A failed restore can retain both while latching writes, so identity is not sufficient alone.
+    return !isStateBlocked() && list?.itemIds === removed.itemIds
+      && list.collectedIn === removed.editions && !list.itemIds.includes(removed.issueId);
+  }
+
+  function forgetRemoved(removed) {
+    if (!removed || lastRemoved !== removed) return false;
+    lastRemoved = null;
+    const focused = document.activeElement;
+    clearNotice(UNDO_REMOVE);
+    if (focused && !focused.isConnected) focusCurrentView();
+    return true;
+  }
+
+  function focusRemovalTarget(target) {
+    if (target && target !== document.body && target.isConnected && target.getClientRects().length) {
+      target.focus();
+      target.scrollIntoView({ block: 'nearest' });
+    } else {
+      focusCurrentView();
+    }
+  }
+
+  function offerUndoRemove(removed, failed = false) {
+    const msg = failed
+      ? `${removed.title} could not be put back: that change could not be saved.`
+      : `Removed ${removed.title} from ${getState().lists[removed.listId].name}. Reading progress was kept.`;
+    notify('#app-report', msg, failed ? 'error' : 'ok', UNDO_REMOVE, {
+      label: failed ? 'Try again' : 'Undo remove',
+      onClick: () => undoRemove(removed),
+    }, {
+      label: 'Dismiss',
+      onClick: () => { if (forgetRemoved(removed)) focusCurrentView(); },
+    });
+  }
+
+  function removeIssue(listId, issueId) {
+    let removed = null;
+    const { ok, state } = updateState((current) => {
+      const list = current.lists[listId];
+      const index = list?.itemIds.indexOf(issueId) ?? -1;
+      if (index < 0) return current;
+      const next = removeFromList(current, listId, issueId);
+      removed = {
+        listId, issueId, index,
+        title: current.issues[issueId]?.title ?? `Issue ${issueId}`,
+        collectedIn: list.collectedIn?.[issueId],
+        itemIds: next.lists[listId].itemIds,
+        editions: next.lists[listId].collectedIn,
+      };
+      return next;
+    });
+    if (!ok || !removed || !removalContextMatches(removed, state)) {
+      announce(ok ? 'That issue is no longer in this list. Nothing was removed.'
+        : 'That issue could not be removed: the change was not saved.');
+      focusRemovalTarget(document.activeElement);
+      return;
+    }
+    lastRemoved = removed;
+    offerUndoRemove(removed);
+    // notify scrolls the report after the row's successor has received focus.
+    focusRemovalTarget(document.activeElement);
+  }
+
+  function undoRemove(removed) {
+    if (lastRemoved !== removed || !removalContextMatches(removed)) {
+      forgetRemoved(removed);
+      announce('That removal can no longer be undone.');
+      focusRemovalTarget(document.activeElement);
+      return;
+    }
+    let restored = null;
+    const { ok, state } = updateState((current) => {
+      if (!removalContextMatches(removed, current)) return current;
+      const next = restoreRemovedIssue(current, removed.listId, removed.issueId, removed);
+      if (next !== current) restored = next.lists[removed.listId];
+      return next;
+    });
+    // Store repaints synchronously and can spend this record on success or foreign-state adoption.
+    // Only an actual saved insertion proves success; the current global offer is not the result.
+    if (!ok || !restored || state.lists[removed.listId] !== restored) {
+      if (lastRemoved === removed && removalContextMatches(removed)) offerUndoRemove(removed, true);
+      else announce(`${removed.title} could not be put back. That removal can no longer be undone.`);
+      focusCurrentView();
+      return;
+    }
+    forgetRemoved(removed);
+    const target = isCurrent() && activeListId() === removed.listId && $('#full').open
+      ? [...$('#rows').querySelectorAll('[data-act="read"]')]
+        .find((control) => Number(control.dataset.key) === removed.issueId)
+      : null;
+    focusRemovalTarget(target);
+    announce(`${removed.title} is back in ${restored.name}, in its original position.`);
+  }
+
   return {
     currentFilter: () => filter,
     endFilterRun,
@@ -944,9 +1185,14 @@ export function createReadingView({
     invalidateRowCache,
     render,
     renderHero,
+    refreshReader,
     renderHydration,
     renderRows,
     renderSynopsis,
+    openReview,
+    renderReview,
+    restoreReview,
+    resetSynopsis,
     setFilter,
     setFilterAddressed: (value) => { filterAddressed = value; },
     setFullOrderFromRoute,

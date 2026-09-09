@@ -18,6 +18,15 @@
    Colours that are the same in both themes stay in the shared block. Only what genuinely
    differs is restated, so the light theme is 25 declarations rather than a second palette. */
 
+.reader-link { min-width: 0; border: 1px solid var(--line); border-radius: var(--r); padding: var(--space-6); }
+.reader-link p, .reader-link button, .reader-link a { overflow-wrap: anywhere; }
+.reader-link input, .reader-link textarea { width: 100%; min-width: 0; box-sizing: border-box; }
+.reader-link .cta { flex-wrap: wrap; }
+#reader-link-root[hidden], #reader-link-form[hidden], #reader-link-reportPanel[hidden] { display: none; }
+@media (forced-colors: active) {
+  .reader-link { border-color: CanvasText; }
+}
+
 :root {
   --r: 14px;
   /* The spacing ladder. Eleven steps replace one-off numeric lengths across margin, padding and gap
@@ -142,7 +151,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:889-896`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:913-920`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -286,9 +295,103 @@ a { color: var(--blue); }
 }
 
 @media (max-width: 880px) {
-  .shell, .shell.railed { grid-template-columns: 1fr; }
-  .rail { position: static; height: auto; }
+  .shell, .shell.railed { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  .rail {
+    position: static;
+    height: auto;
+    overflow: visible;
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-2);
+  }
+  .rail-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+  .rail-toggle {
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    margin: 0;
+    color: var(--text);
+  }
+  .railed .rail-toggle { margin: 0; }
+  .rail-toggle-label { display: inline; font-size: var(--t-body); font-weight: 600; }
+  .brand {
+    margin: 0;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: min(100%, 12rem);
+  }
+  .railed .brand {
+    justify-content: flex-start;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .railed .brand b,
+  .railed .ri .lbl {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .railed .ri {
+    justify-content: flex-start;
+    padding: var(--space-4) var(--space-4);
+  }
+  .railed .ri .init { display: none; }
+  .railed .rail-h,
+  .railed .ri .n,
+  .railed .ri .rail-list-name,
+  .railed .ri .bar { display: block; }
+  .railed .ri .n { display: inline; }
+  .railed .ri[aria-current]::before, .railed .ri.on::before { height: 60%; }
+  .railed .rail-foot {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    justify-items: start;
+  }
+  .railed .rail-foot .pill {
+    width: auto;
+    height: auto;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 999px;
+    overflow: visible;
+    color: var(--muted);
+    border-width: 1px;
+  }
+  .railed .rail-foot .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-muted { color: var(--muted); border-color: var(--line); background: none; }
+  #sidebar-panel {
+    display: block;
+  }
+  #sidebar-nav {
+    display: block;
+    min-height: auto;
+  }
+  .nav-scroll {
+    min-height: auto;
+    overflow-y: visible;
+  }
+  .nav-foot {
+    border-top: 0;
+    margin-top: var(--space-5);
+    padding-top: 0;
+  }
 }
+.rail-header { display: block; }
+#sidebar-panel { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+#sidebar-panel[hidden] { display: none !important; }
 /* The rail used to scroll as one column, so everything past the fold went with it. The reading
    orders and the task shortcuts scroll; the app group and the status pills are pinned, which is
    the footer area a navigation pane is supposed to have. */
@@ -303,22 +406,23 @@ a { color: var(--blue); }
 }
 .railed .nav-scroll::-webkit-scrollbar { display: none; }
 
-/* Fluent's PUA glyphs. They are decorative: every button keeps its label in the DOM as
-   the accessible name, so a machine without the font shows a blank box, never a control
-   with no name. */
+/* Local SVG symbols keep compact controls recognizable without installed icon fonts.
+   The host supplies the stroke so external symbols inherit theme and system colours.
+   Button labels remain the accessible names. */
 .gi {
-  font-family: "Segoe Fluent Icons", "Segoe MDL2 Assets", sans-serif;
+  fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
   font-size: var(--icon); line-height: 1; flex: 0 0 auto;
-  width: 1.25rem; text-align: center;
+  width: 1.25rem; height: 1em; display: inline-block; vertical-align: middle;
 }
 
 .rail-toggle {
-  width: 40px; height: 40px; min-height: 40px; border: 0; border-radius: 8px;
+  width: 44px; height: 44px; min-height: 44px; border: 0; border-radius: 8px;
   background: none; color: var(--muted); display: grid; place-items: center;
   margin: 0 0 var(--space-4);
 }
 .rail-toggle:hover { background: rgb(var(--tint-base) / 3.922%); color: var(--text); }
 .railed .rail-toggle { margin-left: auto; margin-right: auto; }
+.rail-toggle-label { display: none; }
 
 .brand {
   display: flex; align-items: center; gap: var(--space-4); margin: 0 0 var(--space-6);
@@ -364,7 +468,8 @@ a { color: var(--blue); }
    ring. Drawing it inside the button clears all 14. -3px is the shallowest offset that does,
    because the ring is 3px wide and any less leaves its outer edge past the button. */
 .rail .ri:focus-visible,
-.rail .brand:focus-visible { outline-offset: -3px; }
+.rail .brand:focus-visible,
+.rail .rail-toggle:focus-visible { outline-offset: -3px; }
 
 /* The selected state is a purple accent bar AND a raised surface AND a heavier label, so it
    never depends on colour alone. */
@@ -412,13 +517,10 @@ a { color: var(--blue); }
 }
 
 .rail-tip {
-  position: fixed; z-index: 60; left: 0; top: 0; pointer-events: none;
-  max-width: 15rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   background: var(--card-2); color: var(--text); border: 1px solid var(--line-2);
-  border-radius: 8px; padding: var(--space-2) var(--space-4); font-size: var(--t-caption);
+  border-radius: 8px; font-size: var(--t-caption);
   box-shadow: 0 6px 20px rgb(var(--shadow-rgb) / calc(60% * var(--shadow-alpha)));
 }
-.rail-tip[hidden] { display: none; }
 
 /* 44px minimum on an icon-only target, and the glyph centred inside it. */
 .railed .ri { justify-content: center; padding: var(--space-4) 0; min-width: 44px; }
@@ -440,6 +542,83 @@ a { color: var(--blue); }
 
 .rail-hint { color: var(--muted); font-size: var(--t-body); margin: var(--space-3) var(--space-4); }
 .rail-foot { margin-top: auto; padding: var(--space-6) var(--space-4) 0; display: grid; gap: var(--space-3); }
+
+@media (max-width: 880px) {
+  .rail-header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    margin: 0;
+  }
+  .rail-toggle {
+    width: auto;
+    height: auto;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    margin: 0;
+    color: var(--text);
+  }
+  .railed .rail-toggle { margin: 0; }
+  .rail-toggle-label { display: inline; font-size: var(--t-body); font-weight: 600; }
+  .brand {
+    margin: 0;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: min(100%, 11rem);
+  }
+  .railed .brand {
+    justify-content: flex-start;
+    padding-left: var(--space-3);
+    padding-right: var(--space-3);
+  }
+  .railed .brand b,
+  .railed .ri .lbl {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip-path: none;
+    white-space: normal;
+  }
+  .railed .ri {
+    justify-content: flex-start;
+    padding: var(--space-4) var(--space-4);
+  }
+  .railed .ri .init { display: none; }
+  .railed .rail-h,
+  .railed .ri .n,
+  .railed .ri .rail-list-name,
+  .railed .ri .bar { display: block; }
+  .railed .ri .n { display: inline; }
+  .railed .ri[aria-current]::before, .railed .ri.on::before { height: 60%; }
+  .railed .rail-foot {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    justify-items: start;
+  }
+  .railed .rail-foot .pill {
+    width: auto;
+    height: auto;
+    padding: var(--space-2) var(--space-4);
+    border-radius: 999px;
+    overflow: visible;
+    color: var(--muted);
+    border-width: 1px;
+  }
+  .railed .rail-foot .pill-ok { color: var(--teal); border-color: rgb(var(--teal-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-warn { color: var(--amber); border-color: rgb(var(--amber-line) / 25.098%); background: none; }
+  .railed .rail-foot .pill-muted { color: var(--muted); border-color: var(--line); background: none; }
+  #sidebar-panel { display: block; }
+  #sidebar-nav { display: block; min-height: auto; }
+  .nav-scroll { min-height: auto; overflow-y: visible; }
+  .nav-foot { border-top: 0; margin-top: var(--space-5); padding-top: 0; }
+}
 
 .pill {
   font-size: var(--t-caption); border-radius: 999px; padding: var(--space-2) var(--space-4);
@@ -560,6 +739,7 @@ body.nocovers .tgl .sw::after { left: 2px; }
 }
 .empty-state h2 { margin: 0 0 var(--space-4); font-size: var(--t-subtitle); color: var(--text); font-weight: 600; }
 .empty-state p { margin: 0 auto; max-width: 52ch; font-size: var(--t-body); }
+.empty-state .btn { margin-top: var(--space-5); }
 
 /* ============================================================ hero */
 
@@ -636,7 +816,7 @@ body.nocovers .fallback, .fallback.show { display: flex; }
    is still reachable as the tooltip and as the accessible name. Square to the same 44px target the
    search inputs beside it keep. */
 .btn-icon { padding: 0; min-width: 44px; min-height: 44px; justify-content: center; }
-.btn-icon .gi { width: auto; }
+.btn-icon .gi { width: 1em; }
 .btn:hover { filter: brightness(1.1); }
 .btn:disabled { opacity: .5; cursor: default; filter: none; }
 .btn-g { background: rgb(var(--tint-base) / 5.882%); color: var(--text); border-color: var(--line-2); font-weight: 600; }
@@ -760,6 +940,9 @@ details.full > :not(summary) { margin-right: var(--space-6); margin-left: var(--
 .paths .path span { font-size: var(--t-caption); }
 .result .paths { margin: var(--space-3) 0 var(--space-3); }
 #preview-paths .paths { margin: var(--space-4) 0 var(--space-2); }
+/* Native focus must reveal the visible pill and its outline, not a hidden 1px radio. */
+#preview-paths .path { position: relative; }
+#preview-paths input { inset: 0; width: 100%; height: 100%; margin: 0; scroll-margin: var(--space-3); }
 
 .rows { display: grid; gap: var(--space-1); list-style: none; margin: 0; padding: 0; }
 /* A collected edition heading. The read count is text beside the bar rather than only the bar,
@@ -882,8 +1065,8 @@ body.nocovers .row .rf, .row .rf.show { display: flex; }
   }
   .row-actions:not(.is-open) > .ract { display: none; }
   .row-actions.is-open > .ract {
-    position: absolute; z-index: 20; top: calc(100% + .35rem); right: 0;
-    width: max-content; min-width: 12rem; padding: var(--space-3);
+    margin-top: var(--space-3);
+    width: 100%; min-width: 0; padding: var(--space-3);
     flex-direction: column; align-items: stretch; opacity: 1;
     border: 1px solid var(--line-2); border-radius: 8px;
     background: var(--card-2); box-shadow: 0 8px 24px rgb(var(--shadow-rgb) / 28%);
@@ -1836,22 +2019,17 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 
 /* Tooltips supplement the accessible name for icon-only actions and reveal shortcuts without
    carrying permanent keycaps. They never replace the control's visible or accessible label. */
-.has-tooltip { position: relative; }
-.has-tooltip::after {
-  content: attr(data-tooltip); position: absolute; z-index: 25;
-  left: 50%; bottom: calc(100% + .45rem); width: max-content; max-width: 14rem;
-  padding: var(--space-2) var(--space-4); border: 1px solid var(--line-2); border-radius: 6px;
+.visual-tooltip {
+  position: fixed; z-index: 60; left: 0; top: 0; width: max-content;
+  max-width: calc(100vw - 16px); white-space: normal; overflow-wrap: anywhere;
+  font-size: var(--t-caption); line-height: 1.3;
+}
+.visual-tooltip[hidden] { display: none; }
+.tooltip-content { display: block; padding: var(--space-2) var(--space-4); overflow: auto; }
+.action-tip {
+  border: 1px solid var(--line-2); border-radius: 6px;
   background: var(--text); color: var(--card); box-shadow: 0 6px 18px rgb(var(--shadow-rgb) / 22%);
-  font-size: var(--t-caption); font-weight: 600; line-height: 1.3;
-  opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-50%);
-}
-.has-tooltip:hover::after, .has-tooltip:focus-visible::after {
-  opacity: 1; visibility: visible;
-}
-.row .cb.has-tooltip::after { left: 0; transform: none; }
-.ract .has-tooltip::after { right: 0; left: auto; transform: none; }
-@media (max-width: 620px) {
-  #btn-hero-done::after { right: 0; left: auto; transform: none; }
+  font-weight: 600;
 }
 
 @media (forced-colors: active) {
@@ -1862,7 +2040,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   .lgroup-h { border-bottom: 1px solid CanvasText; }
   .rcov-i, .rcov-f, .mosaic-i, .mosaic-f { border: 1px solid CanvasText; }
   .cover-fallback.cover-fallback::before, .cover-fallback.cover-fallback::after { color: CanvasText; text-shadow: none; }
-  .has-tooltip::after { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
+  .visual-tooltip { border: 1px solid CanvasText; background: Canvas; color: CanvasText; }
   .badge-done { border: 1px solid CanvasText; }
   .badge-none { border: 1px dashed CanvasText; }
 }
@@ -1887,6 +2065,7 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
 .reading-path-stop-copy { min-width: 0; padding: var(--space-5) var(--space-6); border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
 .reading-path-stop h3 { margin: 0; font-size: var(--t-subtitle); overflow-wrap: anywhere; }
 .reading-path-stop-meta, .reading-path-stop-progress { margin: var(--space-2) 0 0; color: var(--muted); font-size: var(--t-caption); }
+.reading-path-action { margin-top: var(--space-4); min-height: 44px; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
 .reading-path-stop[data-progress="done"] .reading-path-stop-progress { color: var(--teal); }
 .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
 @media (max-width: 620px) {
@@ -1899,4 +2078,31 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   .reading-path-spine { border-color: CanvasText; }
   .reading-path-marker, .reading-path-stop-copy { border-color: CanvasText; background: Canvas; color: CanvasText; }
   .reading-path-stop[data-progress="not-added"] .reading-path-stop-copy { border-style: dashed; }
+}
+
+/* A 320px row left only 43px for its title beside the cover and actions. Text and actions
+   get separate full-width rows here; the disclosed panel then grows its row instead of
+   crossing the Full Reading List's clipping edge or covering the following issue. */
+.row-info { min-width: 0; overflow-wrap: anywhere; }
+.row-info .badge { max-width: 100%; white-space: normal; }
+.row-actions > .ract { gap: var(--space-4); }
+@media (max-width: 700px) {
+  .row { grid-template-columns: 26px 44px minmax(0, 1fr); }
+  .row-info, .row-actions { grid-column: 1 / -1; }
+  .row-actions { justify-self: stretch; min-width: 0; }
+  .row-actions > .ract { flex-wrap: wrap; }
+}
+/* Optional review stays in normal reading flow, with no separate prose surface. */
+.review-earlier {
+  margin-block: var(--space-6); padding: var(--space-6);
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--card); overflow-wrap: anywhere;
+}
+.review-earlier .cta { flex-wrap: wrap; margin-top: var(--space-4); }
+.review-earlier .btn { white-space: normal; max-width: 100%; }
+.review-earlier [aria-disabled="true"] { color: var(--muted); cursor: default; }
+#btn-review-earlier { margin-bottom: var(--space-6); }
+@media (forced-colors: active) {
+  .review-earlier { border-color: CanvasText; background: Canvas; }
+  .review-earlier [aria-disabled="true"] { color: GrayText; }
 }

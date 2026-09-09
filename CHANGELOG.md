@@ -12,6 +12,164 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Use a temporary reader link for the same comic
+
+Issue Details can use a pasted Marvel Unlimited reader address for a saved comic in this tab,
+with an explicit return to the original link. It works across lists without changing comic facts,
+availability checks, progress, notes or backups. Reloading, closing the document or replacing saved
+data clears it. A separate optional GitHub correction form offers manually reviewed report details;
+nothing is submitted automatically, and a supplied link proves neither comic identity nor access.
+
+### Review earlier comics and choose description hiding
+
+An optional Review earlier issues picker starts just before the next unread comic in your
+selected list's current order and opens existing Issue Details for deliberate synopsis review.
+Ordinary Continue reading stays direct. A new description-hiding setting defaults on; turning
+it off shows already-fetched text without extra disclosure controls. Changing it resets individual
+reveal choices but keeps fetched text. Progress, notes and reading-data backups are unchanged.
+
+### Choose when to reveal issue descriptions
+
+With description hiding on (the default), fetched descriptions stay collapsed until you reveal that issue, with a Hide control to
+close them again. Individual fetching explicitly offers to fetch and reveal; bulk fetching
+does not reveal upcoming issues while hiding is on. Choices stay with the exact issue in this tab and reset on
+reload or a metadata-source save. Saved lists, progress, notes and backups are unchanged.
+
+### Keep Preview reading options visible on keyboard focus
+
+Tabbing to a reading option in a short or enlarged Preview now scrolls its whole label and focus
+outline into view. Reading choices, Add/Open, Close and saved reading data are unchanged.
+
+### Keep hints readable and dismissible
+
+Action and collapsed-sidebar hints stay visible while the pointer crosses onto them or a control
+keeps focus. Escape hides the hint without moving focus, and hints wrap within the viewport.
+Control names, shortcut settings and saved reading data are unchanged.
+
+### Made navigation and search icons portable
+
+Navigation and search controls now use local SVG drawings instead of Windows-only icon fonts.
+Labels, actions, theme colours and saved reading data are unchanged.
+
+### Retry issue details in place
+
+Temporary issue-detail failures now offer Retry without leaving the comic. Retry stays busy
+until the request finishes, and leaving the issue prevents late results from replacing the new
+view. Missing service records and missing local-only issues do not offer repeated retries.
+Saved lists, reading progress, notes, synopsis choices and reader launching are unchanged.
+
+### Clarified the optional Setup recommendation
+
+Home, Modern Timeline and its opening age now explain Setup as optional historical context for
+new readers, not a prerequisite. Direct entry, preview details, list contents and saved progress
+are unchanged.
+
+### Waited for cross-tab timeline readiness in browser checks
+
+The cross-tab timeline check now waits for the updated marker instead of assuming a fixed delay is
+enough. It still rejects a missing update and preserves its focus, scroll, retained-card and request
+checks. The Reading shortcut check also boots a fresh document at its seeded Reading route before
+sending keys, rather than relying on a Home reload followed by hash-only navigation. App behavior
+and saved reading data are unchanged.
+
+### Undo the most recent issue removal
+
+Removing an issue now offers **Undo remove** and **Dismiss**, with no countdown. Undo restores
+the original position and collected-edition label without rolling back later progress or notes.
+Only the most recent successful removal is kept, in memory for this tab. Invalid offers disappear
+when the source order changes or saved data is replaced or cannot be identified safely; a refused
+Undo keeps a retry only while its original context remains valid.
+
+### Restored the local regression baseline
+
+Reading List action icons are now explicitly decorative without changing their labels or behavior.
+Maintainer checks accept Windows checklist line endings and reliably exercise Reading shortcuts,
+saved Reading Path stops, availability round trips and reverse-Tab focus. Saved reading data is unchanged.
+
+### Hid redundant series progress bars from assistive technology
+
+Progress by series no longer exposes unnamed bars to assistive technology. The bars remain
+visible, while the adjacent series names and tracked/read counts provide the same progress
+information in This list and All lists. Reading calculations and saved progress are unchanged.
+
+### Kept narrow Reading List rows and actions usable
+
+Narrow Reading Lists give titles and metadata their own space, and expanded row actions now
+push later content down instead of covering it or being cut off at the end of the list.
+Keyboard dismissal, availability choices, reader launch and saved progress are unchanged.
+
+### Matched issue action names to their visible labels
+
+Reading List actions now keep their visible wording together in their accessible names, followed
+by the issue title, so speech-input users can say the labels they see. The Unlimited status action
+also names the next override choice, and desktop icon tooltips keep the action wording. Availability
+states, list operations, layout and saved reading progress are unchanged.
+
+### Made the D reading shortcut optional
+
+Backup & settings now includes a switch to turn off D for marking an issue read. It stays enabled
+unless you turn it off, and your choice is kept in this browser. Holding D no longer marks several
+issues read; release it before pressing again. Done, next still works with the shortcut off, and
+the shortcut hints reflect your choice. Reading progress and backup files are unchanged.
+
+### Help empty Reading Lists get started
+
+Empty Reading Lists now say that no issues have been added and offer Add comics for the saved
+list, instead of claiming the order is finished. Home also distinguishes an empty list from one
+that is fully read. Removing the last issue returns to the same empty state; completed nonempty
+lists keep their completion message. Saved progress is unchanged.
+
+### Open stories directly from Reading Paths
+
+Each Reading Paths stop now opens its existing preview and reading options, or the saved list
+whose progress it shows. Alternate saved versions are named explicitly. Preview keeps source
+and metadata-gap disclosures beside the choice, and inspecting a story does not add it or mark
+anything read. Returning restores the selected path and brings the original stop into view.
+
+### Kept the selected issue visible after returning from details
+
+Returning from issue details now brings the original Reading List control and its focus indicator
+into view, including issues far down a long list. If that control is no longer present, the
+existing fallback control is brought into view instead. The selected filter, expanded list,
+and saved reading progress are unchanged.
+
+### Show reading content sooner on narrow screens
+
+In plain English: On narrow screens, the sidebar is now a compact header with a visible
+Navigation button. Opening it reveals the same destinations and status messages in the page flow,
+and view changes close it safely so reading content appears much earlier. Desktop still keeps the
+expanded and compact rails, and your saved Reading Lists and progress are unchanged.
+
+For maintainers: `sidebar.collapsed` remains desktop-only persistence, while narrow open and closed
+state is ephemeral. Ctrl+\ still drives the same toggle entry point across both desktop and narrow
+layouts.
+
+### Settled the Punisher guide metadata gaps
+
+In plain English: The bundled Punisher guide now opens 64 exact comics that previously appeared
+as source notes. The other 94 source notes remain visible because the provider does not currently
+identify those exact comics, and all existing reading progress, notes, and availability choices
+keep their original identities.
+
+The settlement accounts for all 181 requested occurrences: 64 exact comics, 94
+provider-unavailable identities, and 23 repeated references. It publishes 544 exact entries and 94
+placeholders while retaining the complete 857-position source ledger and its 74 non-issue
+exclusions.
+
+### Simplified the project home
+
+The project website has shorter copy, fewer repeated links, and simpler navigation. Fresh,
+narrower app screenshots put the reading content first and display at a readable size rather
+than in small side-by-side cards. Help, documentation, feedback, and the important privacy and
+setup guidance remain available. Nothing saved in the app is affected.
+
+### Settled the Nick Fury and S.H.I.E.L.D. guide gaps
+
+In plain English: The bundled Nick Fury guide now opens 62 exact comics that previously appeared
+as source notes. The other 129 source notes remain visible because no current provider identity was
+verified for them, without replacing them with a different comic or claiming they do not exist.
+Existing reading progress, notes, and availability choices for those source notes are unchanged.
+
 ### Settled the Wolverine guide gaps
 
 In plain English: The bundled Wolverine guide now opens 14 exact comics that previously appeared as

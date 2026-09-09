@@ -5,11 +5,11 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import {
   createEmptyState, createList, deleteList, restoreList, duplicateList, renameList, setActive, addIssuesToList,
-  removeFromList, moveItem, moveItemTo, markRead, toggleRead, isRead, markManyRead,
+  removeFromList, restoreRemovedIssue, moveItem, moveItemTo, markRead, toggleRead, isRead, markManyRead,
   setOverride, upNext, listProgress, seriesProgress, listItems, pendingIssueIds,
   hydrationOrder, migrate, validateBackup, exportBackup, normalizeIssue, upsertIssue,
   normalizeCover, coverUrl, listForCatalogId, listCollections, SCHEMA_VERSION, MAX_NAME, MAX_DESCRIPTION,
-  newId, hasMetadata, countOrderGaps, orderGapSentences, markDetailsRefused,
+  newId, hasMetadata, countOrderGaps, orderGapSentences, markDetailsRefused, setIssueNote, setListNote,
 } from '../src/js/lib/model.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -1047,8 +1047,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // four source-preserving metadata gaps with distinct negative identifiers. Doctor Strange
   // carries no placeholders after 23 exact resolutions and 16 availability exclusions. Daredevil now
   // carries no placeholders after its owner-reviewed availability settlement. Venom carries 33
-  // exact official issue records with provider refusals and no placeholders. Punisher adds 158
-  // distinct placeholders; its 23 repeated source occurrences remain evidence, not duplicate rows.
+  // exact official issue records with provider refusals and no placeholders. Punisher now retains
+  // 94 distinct placeholders after 64 exact resolutions; its 23 repeated source occurrences remain
+  // evidence, not duplicate rows.
   // Magneto now carries one provider-ID-free provenance placeholder after settling 57 former gaps.
   // Loki carries no placeholders after its owner-reviewed settlement. Silver
   // Surfer carries no placeholders after one exact resolution and three approved exclusions.
@@ -1062,9 +1063,9 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // resolutions. Fantastic Four carries no placeholders after its
   // owner-reviewed settlement. Guardians carries no placeholders after 18 exact resolutions and
   // 11 explicit exclusions, and Defenders carries no placeholders after its owner-reviewed settlement.
-  // Nick Fury and S.H.I.E.L.D. adds 194 individually preserved source-position gaps without
-  // claiming a metadata match. Adam Warlock carries no placeholders after its owner-reviewed
-  // availability settlement.
+  // Nick Fury and S.H.I.E.L.D. promotes 62 exact identities, retains 129 source-position
+  // placeholders, and removes one repeat and two source-semantic rows from the published total.
+  // Adam Warlock carries no placeholders after its owner-reviewed availability settlement.
   // Hulk carries no placeholders after nine exact resolutions and ten approved exclusions. Its
   // nine exact records retain explicit official links with unknown optional provider metadata.
   // An earlier Amazing Spider-Man settlement resolved three placeholders to seven exact issues.
@@ -1074,10 +1075,10 @@ test('the bundled orders carry a gap the payload field never reported', () => {
   // Wolverine replaces 29 placeholders with 14 exact issues while preserving the remaining 756
   // title-derived placeholder identities.
   // Ant-Man adds three exact official links with explicit provider refusals.
-  assert.equal(claimed, 1123, 'the payload placeholder total moved; re-derive the figures in the record');
-  assert.equal(placeholders, 1123, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
-  assert.equal(empty, 195);
-  assert.equal(affected, 17);
+  assert.equal(claimed, 994, 'the payload placeholder total moved; re-derive the figures in the record');
+  assert.equal(placeholders, 994, 'the bundled unopenable-placeholder total moved; re-derive the figures in the record');
+  assert.equal(empty, 197);
+  assert.equal(affected, 18);
 });
 
 // Every check above passes with the import path reverted, because they all call the counter
@@ -1279,8 +1280,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // 39 negative placeholders with 23 exact refused identities and 16 exclusions. Daredevil adds none after
   // its availability settlement. Venom replaces 33 distinct negative placeholders with 33 exact
   // official issue records whose optional provider metadata was refused, so its distinct refused
-  // contribution remains unchanged. Punisher adds 158 distinct placeholders while retaining 23
-  // repeated source occurrences without duplicate identifiers. Magneto replaces 58 placeholders
+  // contribution remains unchanged. Punisher replaces 64 placeholders with exact official issue
+  // records whose optional provider metadata was refused; one already occurs in another guide.
+  // Its 23 repeated source occurrences remain evidence without duplicate identifiers. Magneto replaces 58 placeholders
   // with two exact provider refusals and one retained provenance placeholder, reducing its distinct
   // refused contribution by 55. Loki now adds two exact provider refusals instead of 18
   // placeholders. Silver Surfer adds one exact official issue
@@ -1293,8 +1295,9 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // Fantastic Four carries no refused identities after its
   // owner-reviewed settlement. Guardians replaces 29 placeholders with 18 exact issues, three of
   // which retain explicit provider refusals. Defenders adds none after its owner-reviewed
-  // settlement, and Nick Fury and S.H.I.E.L.D. adds 194. Adam Warlock carries no refused identities
-  // after its owner-reviewed availability settlement. Inhumans carries no refused identities after
+  // settlement. Nick Fury and S.H.I.E.L.D. replaces 65 placeholder identities with exact, repeat,
+  // or source-semantic outcomes. Adam Warlock carries no refused identities after its
+  // owner-reviewed availability settlement. Inhumans carries no refused identities after
   // 38 provider-resolved records replaced its placeholders and four unavailable identities became
   // explicit exclusions.
   // Hulk replaces 19 distinct negative placeholders with nine exact refused records. One of
@@ -1302,6 +1305,61 @@ test('the bundled orders really do contain issues no lookup can answer for', () 
   // The final Amazing Spider-Man settlement replaces 96 distinct negative placeholders with 23
   // distinct exact refused identities, reducing the current distinct refused total by 73.
   // Wolverine replaces 29 negative placeholder identities with provider-resolved exact issues.
-  assert.equal(refused.length, 1279);
+  assert.equal(refused.length, 1213);
   assert.equal(pendingIssueIds(s).length, 0, 'the app is still offering to fetch details that do not exist');
+});
+
+test('444 membership recovery restores exact positions and optional editions, including manual identities', () => {
+  for (const index of [0, 1, 2]) {
+    for (const collectedIn of [undefined, 'Book One: reader edition']) {
+      let before = createList(createEmptyState(), { id: '__proto__', name: 'Recover' });
+      before = addIssuesToList(before, '__proto__', [1, -2, 3].map((id) => issue(id, { collectedIn }))).state;
+      const id = before.lists.__proto__.itemIds[index];
+      const removed = removeFromList(before, '__proto__', id);
+      const restored = restoreRemovedIssue(removed, '__proto__', id, { index, collectedIn });
+      assert.deepEqual(restored.lists.__proto__, before.lists.__proto__);
+      assert.equal(Object.getPrototypeOf(restored.lists), null);
+      assert.deepEqual(removed.lists.__proto__.itemIds, [1, -2, 3].filter((n) => n !== id));
+    }
+  }
+});
+
+test('444 membership recovery preserves current shared metadata, progress, notes, overrides and other lists', () => {
+  const { state: initial, id } = withList();
+  let state = initial;
+  state = createList(state, { id: 'other', name: 'Other', itemIds: [2, 3] });
+  state = removeFromList(state, id, 2);
+  state = upsertIssue(state, issue(2, { title: 'Later title' }));
+  state = markRead(state, 2, true, 444);
+  state = setIssueNote(state, 2, 'Later issue note');
+  state = setOverride(state, 2, 'unavailable');
+  state = renameList(state, id, 'Renamed', 'Later description');
+  state = setListNote(state, id, 'Later list note');
+  state = moveItem(state, 'other', 3, -1);
+  state = setActive(state, 'other');
+  const restored = restoreRemovedIssue(state, id, 2, { index: 1, collectedIn: 'Original book' });
+  assert.deepEqual(restored.lists[id], {
+    ...state.lists[id], itemIds: [1, 2, 3], collectedIn: { 2: 'Original book' },
+  });
+  for (const key of ['issues', 'read', 'notes', 'overrides', 'listOrder', 'active']) {
+    assert.equal(restored[key], state[key], key);
+  }
+  assert.equal(restored.lists.other, state.lists.other);
+  assert.equal(state.lists[id].collectedIn[2], undefined);
+  assert.equal(restored.issues[2].title, 'Later title');
+});
+
+test('444 membership recovery refuses missing lists, duplicates and invalid insertion data', () => {
+  const { state, id } = withList();
+  assert.equal(restoreRemovedIssue(state, 'missing', 4, { index: 1 }), state);
+  assert.equal(restoreRemovedIssue(state, id, 2, { index: 1 }), state);
+  for (const index of [-1, 4, 0.5, undefined]) {
+    assert.equal(restoreRemovedIssue(state, id, 4, { index }), state);
+  }
+  for (const issueId of [0, 0.5, 'invalid', NaN]) {
+    assert.equal(restoreRemovedIssue(state, id, issueId, { index: 1 }), state);
+  }
+  const restored = restoreRemovedIssue(state, id, -4, { index: 3 });
+  assert.deepEqual(restored.lists[id].itemIds, [1, 2, 3, -4]);
+  assert.equal(Object.hasOwn(restored.lists[id].collectedIn, -4), false);
 });

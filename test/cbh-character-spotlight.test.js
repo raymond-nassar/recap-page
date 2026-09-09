@@ -1797,9 +1797,9 @@ test('the Punisher guide preserves its full source ledger through publication', 
   ];
 
   assert.equal(packet.sourceOccurrenceCount, 857);
-  assert.equal(packet.rows.length, 480);
+  assert.equal(packet.rows.length, 544);
   assert.equal(packet.repeatedSourceReferences.length, 145);
-  assert.equal(packet.sourceGaps.length, 158);
+  assert.equal(packet.sourceGaps.length, 94);
   assert.equal(packet.excludedSourceRows.length, 74);
   assert.equal(new Set([
     ...packet.rows,
@@ -1853,8 +1853,8 @@ test('the Punisher guide preserves its full source ledger through publication', 
       392 + index,
       `Punisher Presents: Barracuda MAX (2007) #${index + 1}`,
       2007,
-      'published-metadata-gap',
-      'open',
+      'availability-exclusion',
+      'closed',
     ]),
   );
   assert.deepEqual(
@@ -1923,9 +1923,9 @@ test('the Punisher guide preserves its full source ledger through publication', 
       },
     ],
   );
-  assert.equal(mapping.rows.length, 480);
+  assert.equal(mapping.rows.length, 544);
   assert.equal(mapping.approvedSourceCount, 857);
-  assert.equal(report.candidateCount, 480);
+  assert.equal(report.candidateCount, 544);
   assert.equal(report.comparisonCount, 158);
   assert.equal(report.comparisonCount, manifest.lists.length - 16);
   assert.deepEqual(regeneratedReport, report);
@@ -1936,11 +1936,11 @@ test('the Punisher guide preserves its full source ledger through publication', 
     currentLibraryDigest: reviewedLibraryDigest,
     expectedOrderIds: report.comparisons.map((comparison) => comparison.orderId),
   }));
-  assert.equal(parsed.entries.length, 480);
-  assert.equal(parsed.unresolved.length, 158);
+  assert.equal(parsed.entries.length, 544);
+  assert.equal(parsed.unresolved.length, 94);
   assert.equal(generated.count, 638);
-  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 480);
-  assert.equal(generated.placeholders, 158);
+  assert.equal(generated.items.filter((item) => item.issueId > 0).length, 544);
+  assert.equal(generated.placeholders, 94);
   assert.equal(new Set(generated.items.map((item) => item.issueId)).size, 638);
   assert.deepEqual(
     generated.items
@@ -3046,7 +3046,7 @@ test('Wolverine settles every reviewed gap without substitution or boundary wide
   const ledger = packet.sourceReview.metadataGapLedger;
 
   assert.equal(mapping.placeholderIdentityMode, 'title');
-  assert.equal(buildMarkdown(mapping), markdown);
+  assert.equal(buildMarkdown(mapping), markdown.replace(/\r\n/g, '\n'));
   assert.deepEqual(ledger.classificationCounts, {
     exact: 15,
     repeat: 3,
@@ -3569,6 +3569,8 @@ test('Moon Knight settles issue 310 with exact identities and availability exclu
     youngAvengersCandidateId,
     'marvel-2099',
     runawaysCandidateId,
+    'adam-warlock-reading-order',
+    guardiansCandidateId,
   ]);
 
   assert.equal(record.deliveryStatus, 'shipped');

@@ -31,7 +31,7 @@ export function createProgressView({
         el('div', { class: 'result-title' }, [el('span', { text: row.seriesName }), ...chip]),
         el('div', { class: 'result-meta', text: `${row.read} of ${row.tracked} tracked issues read (${pct}%)` }),
       ]),
-      el('progress', { max: String(Math.max(1, row.tracked)), value: String(row.read) }),
+      el('progress', { max: String(Math.max(1, row.tracked)), value: String(row.read), 'aria-hidden': 'true' }),
     ]);
   }
 

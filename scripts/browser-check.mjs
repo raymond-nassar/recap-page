@@ -18,7 +18,7 @@
 // hazard; for a check that writes corrupt state and starts fresh, it is exactly the isolation
 // wanted. Running on a port the app never uses means this file structurally cannot read, damage
 // or clear the reading progress saved at 127.0.0.1:8787. That is also the whole of the cleanup
-// story. The cache-generation and catalog-gap scenarios are the exceptions because their acceptance
+// story. The app-origin scenarios are the exceptions because their acceptance
 // explicitly requires the app origin. Their targeted runs use 127.0.0.1:8787 inside Edge's temporary
 // automation profile, not the person's installed browser profile.
 //
@@ -489,6 +489,15 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // are injected into the page rather than edited into a source file, so a killed run cannot leave
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
+  {
+    id: 'reorientation-return-lost-445',
+    breaks: 'reorientation-445',
+    why: 'Back loses the exact earlier-issue picker link and focuses the view heading instead',
+    rewriteMain: (source) => source.replace(
+      "opener.surface === 'reorientation' && !readingView.restoreReview(opener)",
+      "opener.surface === 'reorientation'",
+    ),
+  },
   {
     id: 'cache-deleted-means-unreachable',
     breaks: 'cache-generations',
@@ -1387,6 +1396,21 @@ const MUTATIONS = [
     },
   },
   {
+    id: 'synopsis-disclosure-default-open-447',
+    breaks: 'synopsis-disclosure-447',
+    why: 'bulk-fetched prose is exposed without an exact-issue reveal',
+    rewriteMain: (source) => source.replaceAll(
+      '  synopsisDisclosure,',
+      '  synopsisDisclosure: { ...synopsisDisclosure, isRevealed: () => true },',
+    ),
+  },
+  {
+    id: 'synopsis-disclosure-source-choice-retained-447',
+    breaks: 'synopsis-disclosure-447',
+    why: 'a source save incorrectly retains the old exact-issue reveal choices',
+    rewriteMain: (source) => source.replace('    synopsisDisclosure.clear();', ''),
+  },
+  {
     id: 'synopsis-consent-decline-off',
     breaks: 'synopsis-consent',
     why: 'declining the synopsis disclaimer starts the run the reader refused',
@@ -1540,6 +1564,15 @@ const MUTATIONS = [
     ),
   },
   {
+    id: 'modern-timeline-position-foreign-refresh-off',
+    breaks: 'modern-timeline-position',
+    why: 'foreign progress is adopted but the retained timeline marker is never repainted',
+    rewriteCatalogView: (source) => source.replace(
+      'return paintTimelineContext(timelineContext, { announceChange: true }).changed;',
+      'return false;',
+    ),
+  },
+  {
     id: 'modern-timeline-position-semantics-off',
     breaks: 'modern-timeline-position',
     why: 'the visible current label and programmatic current-step state are removed together',
@@ -1655,6 +1688,492 @@ const MUTATIONS = [
 // they run in cannot matter. A scenario that passed only because the one before it left the right
 // state behind is not evidence either.
 const SCENARIOS = [
+  {
+    id: 'temporary-reader-link',
+    title: '453 temporary same-comic links and deliberate manual reporting never change saved facts',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument(() => {
+        window.__mrtBlockExternal = true;
+        window.__link453 = { opens: [] };
+        window.open = (...args) => { window.__link453.opens.push(args); return {}; };
+      });
+      await seedFixtureState(page);
+      const seed = fixtureReadingState();
+      seed.issues[-8] = { issueId: -8, title: 'Synthetic manual comic 453', source: 'manual', digitalId: null };
+      seed.lists.fixture.itemIds.unshift(-8);
+      seed.notes[-8] = 'Private note excluded from reports';
+      await page.evaluate((state) => localStorage.setItem('mrt.state.v2', JSON.stringify(state)), seed);
+      await page.reload({ waitUntil: 'load' });
+      const go = async (hash, selector) => {
+        await page.evaluate((next) => {
+          // Keep the synthetic route and its notification together: a background repaint can
+          // otherwise restore the previous hash before the queued hashchange is delivered.
+          history.pushState(null, '', next);
+          dispatchEvent(new HashChangeEvent('hashchange'));
+        }, hash);
+        try {
+          await page.waitForSelector(selector);
+        } catch (error) {
+          const state = await page.evaluate(() => ({
+            hash: location.hash,
+            status: document.querySelector('#issue-focus-status')?.textContent,
+            heading: document.querySelector('#issue-focus-h')?.textContent,
+            saved: Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2') ?? '{}').issues ?? {}),
+          }));
+          throw new Error(`${error.message}; temporary route ${JSON.stringify(state)}; errors ${JSON.stringify(errors)}`, { cause: error });
+        }
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      };
+      const focusIssue = (id) => go(`#/issue/${id}`, '#issue-focus-card:not([hidden])');
+      const reading = () => go('#/read/fixture', '#view-read:not([hidden])');
+      const paste = async (value) => page.$eval('#reader-link-input', (input, text) => {
+        input.value = text;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+      }, value);
+      const use = async (id, book) => {
+        await focusIssue(id);
+        await click(page, '#reader-link-edit');
+        await paste(`https://read.marvel.com/#/book/${book}`);
+        await click(page, '#reader-link-apply');
+      };
+      const rendered = (selector) => page.$eval(selector, (node) => node.getClientRects().length > 0);
+      const closed = async (selector) => page.$eval(selector, (node) => {
+        const controls = [...node.querySelectorAll('input,button,textarea,a[href]')];
+        const before = document.activeElement;
+        const excluded = controls.every((control) => {
+          control.focus();
+          return document.activeElement !== control;
+        });
+        before?.focus();
+        return !node.getClientRects().length && excluded;
+      });
+      await focusIssue(-8);
+      t.check('closed editor and report are unrendered and keyboard excluded', await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('manual comic without an original reference has editor but no Read', await page.$eval(
+        '#btn-issue-read', (node) => node.hidden,
+      ) && await page.$eval('#reader-link-edit', (node) => !node.disabled));
+      await click(page, '#reader-link-edit');
+      t.check('explicit Edit renders the editor only', await rendered('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      await paste('https://wrong.example/reader/44');
+      await click(page, '#reader-link-apply');
+      t.check('invalid address retains draft and URL focus', await page.$eval('#reader-link-input', (node) => (
+        node.value.includes('wrong.example') && node.getAttribute('aria-invalid') === 'true' && document.activeElement === node
+      )));
+      await paste('http://read.marvel.com/#/book/00044/page/9');
+      t.check('canonical numeric destination is shown before deliberate use', await page.$eval(
+        '#reader-link-preview', (node) => node.textContent.includes('https://read.marvel.com/#/book/44'),
+      ));
+      await click(page, '#reader-link-apply');
+      t.check('Apply really hides editor controls', await closed('#reader-link-form'));
+      t.check('Use is memory only and does not launch', await page.evaluate((before) => (
+        localStorage.getItem('mrt.state.v2') === before && window.__link453.opens.length === 0
+        && document.activeElement.id === 'reader-link-edit'
+      ), saved));
+      t.check('manual Read becomes usable while Info and original reference stay absent', await page.evaluate(() => (
+        !document.querySelector('#btn-issue-read').hidden && document.querySelector('#btn-issue-info').hidden
+        && document.querySelector('#reader-link-summary').textContent.includes('No original reader reference')
+      )));
+      await click(page, '#reader-link-reportToggle');
+      t.check('explicit report opening renders its controls', await rendered('#reader-link-reportPanel'));
+      t.check('report context excludes notes and local negative identity', await page.$eval('#reader-link-reportText', (node) => (
+        node.value.includes('/#/book/44') && !node.value.includes('-8') && !node.value.includes('Private note')
+      )));
+      t.check('GitHub form has fixed URL and no-referrer with no automatic submission', await page.$eval(
+        '#reader-link-reportLink', (node) => node.href === 'https://github.com/raymond-nassar/recap-page/issues/new?template=data-order.yml'
+          && node.target === '_blank' && node.rel === 'noopener noreferrer' && node.referrerPolicy === 'no-referrer',
+      ));
+      await page.$eval('#reader-link-reportText', (node) => { node.value = 'Only my reviewed details'; });
+      await page.focus('#reader-link-reportText');
+      await page.keyboard.press('Tab');
+      t.check('manual report remains editable with keyboard navigation', await page.$eval(
+        '#reader-link-reportText', (node) => node.value === 'Only my reviewed details',
+      ));
+      await click(page, '#btn-issue-read');
+      await reading();
+      t.check('context leave really hides the owned root and both panels', await closed('#reader-link-root') && await closed('#reader-link-form') && await closed('#reader-link-reportPanel'));
+      await click(page, '#btn-hero-read');
+      await page.focus('#order-name');
+      await page.keyboard.press('Enter');
+      await openFullOrder(page);
+      await click(page, '#rows [data-key="-8"][data-act="open"]');
+      await go('#/home', '#view-home:not([hidden])');
+      await click(page, '#btn-chero-read');
+      t.check('Issue, hero, Enter, row and Home open independently with numeric temporary destination', await page.evaluate(() => (
+        window.__link453.opens.length === 5 && window.__link453.opens.every(([url, target, features]) => (
+          new URL(url).searchParams.get('d') === '44' && !new URL(url).searchParams.has('i')
+          && target === '_blank' && features === 'noopener'
+        ))
+      )));
+      const positive = ORDER.items[0].issueId;
+      await use(positive, 55);
+      await reading();
+      await click(page, `#shelf [data-key="${positive}"][data-act="open"]`);
+      t.check('upcoming shelf uses the same temporary resolver', await page.evaluate(() => (
+        new URL(window.__link453.opens.at(-1)[0]).searchParams.get('d') === '55'
+      )));
+      await focusIssue(-8);
+      await click(page, '#reader-link-edit');
+      await paste('https://read.marvel.com/#/book/66');
+      await page.keyboard.press('Escape');
+      t.check('Cancel really hides editor controls', await closed('#reader-link-form'));
+      t.check('Cancel retains active link and restores Edit focus', await page.evaluate(() => (
+        document.querySelector('#reader-link-form').hidden && document.activeElement.id === 'reader-link-edit'
+        && document.querySelector('#reader-link-summary').textContent.includes('/#/book/44')
+      )));
+      await page.evaluate(() => {
+        const before = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(before);
+        state.read[999999] = 1;
+        const raw = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', raw);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue: before, newValue: raw }));
+      });
+      await page.waitForFunction(() => document.querySelector('#reader-link-summary').textContent.includes('/#/book/44'));
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      t.check('unrelated foreign progress preserves active temporary mapping', await page.$eval(
+        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
+      ));
+      await click(page, '#reader-link-edit');
+      await page.evaluate(() => {
+        const raw = localStorage.getItem('mrt.state.v2');
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: raw }));
+      });
+      await page.waitForFunction(() => document.querySelector('#reader-link-apply').disabled);
+      t.check('foreign record adoption invalidates only the open draft', await page.$eval(
+        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
+      ));
+      await click(page, '#reader-link-cancel');
+      const restore = async (text) => {
+        await go('#/data', '#view-data:not([hidden])');
+        await page.evaluate((raw) => {
+          document.querySelector('#restore-report').replaceChildren();
+          const transfer = new DataTransfer();
+          transfer.items.add(new File([raw], 'synthetic-reader-link-backup.json', { type: 'application/json' }));
+          const input = document.querySelector('#restore-file');
+          input.files = transfer.files;
+          input.dispatchEvent(new Event('change', { bubbles: true }));
+        }, text);
+        await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
+        await focusIssue(-8);
+      };
+      await restore('invalid json');
+      t.check('known-unchanged restore refusal retains temporary link', await page.$eval(
+        '#reader-link-summary', (node) => node.textContent.includes('/#/book/44'),
+      ));
+      const backup = await page.evaluate(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        state.lists.fixture.name = 'Synthetic replacement with same comic IDs';
+        return JSON.stringify(state);
+      });
+      await restore(backup);
+      t.check('actual same-identity restore clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await use(-8, 44);
+      await go('#/data', '#view-data:not([hidden])');
+      await click(page, '#btn-undo-restore');
+      await focusIssue(-8);
+      t.check('Undo restore also clears temporary link', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await use(-8, 44);
+      await click(page, '#reader-link-revert');
+      t.check('Use original removes only the temporary destination', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await use(-8, 44);
+      await page.setViewport({ width: 390, height: 900 });
+      await click(page, '#reader-link-edit');
+      await page.focus('#reader-link-input');
+      t.check('narrow form stays in viewport and retains a visible focus outline', await page.evaluate(() => {
+        const input = document.querySelector('#reader-link-input');
+        const rect = input.getBoundingClientRect();
+        return rect.width > 0 && rect.left >= 0 && rect.right <= innerWidth
+          && getComputedStyle(input).outlineStyle !== 'none';
+      }));
+      t.check('forced colors retains a visible editor boundary when active', await page.evaluate(() => (
+        !matchMedia('(forced-colors: active)').matches
+        || getComputedStyle(document.querySelector('#reader-link-root')).borderTopStyle !== 'none'
+      )));
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#issue-focus-card:not([hidden])');
+      t.check('reload clears link and draft without changing saved base', await page.evaluate(() => (
+        document.querySelector('#btn-issue-read').hidden && document.querySelector('#reader-link-form').hidden
+        && JSON.parse(localStorage.getItem('mrt.state.v2')).issues[-8].digitalId === null
+      )));
+      for (const control of ['btn-issue-read', 'reader-link-edit', 'reader-link-revert', 'reader-link-input']) {
+        await restore(backup);
+        await use(-8, 44);
+        if (control === 'reader-link-input') await click(page, '#reader-link-edit');
+        await page.focus(`#${control}`);
+        await page.evaluate(() => {
+          localStorage.removeItem('mrt.state.v2');
+          dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
+        });
+        await page.waitForFunction(() => document.querySelector('#reader-link-edit').disabled);
+        await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+        t.check(`foreign invalidation rescues disappearing ${control} focus`, await page.evaluate(() => {
+          const active = document.activeElement;
+          return active.id === 'issue-focus-h' && active.getClientRects().length > 0;
+        }));
+      }
+      t.check('actual foreign erase withdraws stale Read and editor', await page.$eval('#btn-issue-read', (node) => node.hidden));
+      await restore(backup);
+      await use(-8, 44);
+      await go('#/data', '#view-data:not([hidden])');
+      await page.focus('#api-base');
+      await page.waitForSelector('#list-nav .ri');
+      await page.evaluate(() => {
+        localStorage.removeItem('mrt.state.v2');
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', newValue: null }));
+      });
+      await page.waitForFunction(() => document.querySelectorAll('#list-nav .ri').length === 0);
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('hidden Issue controls do not steal unrelated settings input focus', await page.evaluate(() => (
+        document.activeElement.id === 'api-base' && document.activeElement.getClientRects().length > 0
+      )));
+      t.check('no runtime error in temporary flow', errors.length === 0, errors);
+    },
+  },
+  {
+    id: 'reorientation-445',
+    title: '445 earlier-issue review and optional description hiding preserve identity and saved data',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument(() => {
+        const original = window.fetch;
+        window.__review445 = { requests: [], opens: [], fault: null };
+        window.open = (...args) => { window.__review445.opens.push(args); return {}; };
+        const write = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (key === 'mrt.settings' && window.__review445.fault === 'throw') throw new DOMException('Synthetic quota', 'QuotaExceededError');
+          if (key === 'mrt.settings' && window.__review445.fault === 'ignore') return;
+          return write.call(this, key, value);
+        };
+        window.fetch = (input, init) => {
+          const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+          if (url.origin === location.origin) return original(input, init);
+          if (url.pathname.endsWith('/health')) return Promise.resolve(new Response(JSON.stringify({ issue_count: 3 })));
+          const match = /\/issues\/(\d+)$/.exec(url.pathname);
+          if (!match) return original(input, init);
+          const id = Number(match[1]);
+          window.__review445.requests.push({ id, cache: init?.cache });
+          return Promise.resolve(new Response(JSON.stringify({
+            id, title: `Synthetic ${id}`, description: `Synthetic narrative 445 for ${id}.`,
+          }), { headers: { 'content-type': 'application/json' } }));
+        };
+      });
+      await importOrder(page);
+      const ids = ORDER.items.map((item) => item.issueId);
+      await click(page, '#btn-hero-done');
+      await click(page, '#btn-hero-done');
+      const listId = (await readState(page)).active;
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const frames = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(
+        () => requestAnimationFrame(resolve),
+      )));
+      const go = async (hash, selector) => {
+        await page.evaluate((next) => { location.hash = next; }, hash);
+        await page.waitForSelector(selector);
+        await frames();
+      };
+      const reading = () => go(`#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
+      const settings = () => go('#/data', '#view-data:not([hidden])');
+      const setMode = async (value) => {
+        await page.$eval('#opt-description-hiding', (node, checked) => {
+          node.checked = checked;
+          node.dispatchEvent(new Event('change', { bubbles: true }));
+        }, value);
+        await frames();
+      };
+      const candidate = () => page.$eval('#review-candidate a', (node) => Number(node.dataset.issueId));
+      const inspect = async () => {
+        await page.focus('#review-candidate a');
+        await page.keyboard.press('Enter');
+        await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      };
+      const fetchOne = async () => {
+        await click(page, '#btn-issue-synopsis');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => !document.querySelector('#issue-focus-desc').hidden
+          && document.querySelector('#issue-focus-desc').textContent.startsWith('Synthetic narrative 445'));
+      };
+      await go('#/home', '#view-home:not([hidden])');
+      await click(page, '#btn-chero-review');
+      t.check('Home opens the exact current-order predecessor without fetching or revealing', await candidate() === ids[1]
+        && await page.evaluate(() => window.__review445.requests.length === 0
+          && document.activeElement.id === 'review-h'));
+      await click(page, '#review-earlier-button');
+      t.check('Earlier moves to the prior identity', await candidate() === ids[0]);
+      await click(page, '#review-later-button');
+      await inspect();
+      await fetchOne();
+      await page.goBack();
+      await page.waitForSelector('#view-read:not([hidden])');
+      await frames();
+      t.check('Back restores the exact earlier comic link and its visible keyboard focus', await page.$eval('#review-candidate a', (node, id) => {
+        const box = node.getBoundingClientRect();
+        return Number(node.dataset.issueId) === id && document.activeElement === node
+          && box.top >= 0 && box.bottom <= innerHeight;
+      }, ids[1]));
+      await inspect();
+      t.check('same issue retains its explicit reveal without another request', await page.$eval('#issue-focus-desc',
+        (node) => !node.hidden && node.textContent.startsWith('Synthetic narrative 445')));
+      await click(page, '#btn-issue-description');
+      await settings();
+      await setMode(false);
+      const requests = await page.evaluate(() => window.__review445.requests.length);
+      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      t.check('OFF shows held Details prose without disclosure controls', await page.evaluate(() => (
+        !document.querySelector('#issue-focus-desc').hidden && document.querySelector('#btn-issue-description').hidden
+      )));
+      await settings();
+      await setMode(true);
+      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      t.check('OFF to ON clears old choices and collapses held text', await page.$eval('#issue-focus-desc',
+        (node) => node.hidden && node.textContent === ''));
+      await click(page, '#btn-issue-description');
+      await settings();
+      await setMode(true);
+      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      t.check('an unchanged setting preserves deliberate individual choices', await page.$eval('#issue-focus-desc', (node) => !node.hidden));
+      await go(`#/issue/${ids[2]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await fetchOne();
+      await settings();
+      await setMode(false);
+      await reading();
+      t.check('Reading uses the same OFF policy for the current next issue', await page.evaluate(() => (
+        !document.querySelector('#hero-desc').hidden && document.querySelector('#btn-hero-description').hidden
+      )));
+      t.check('only deliberately requested exact IDs used no-store', await page.evaluate((expected) => (
+        window.__review445.requests.length === 2
+        && window.__review445.requests.every((r, i) => r.id === expected[i] && r.cache === 'no-store')
+      ), [ids[1], ids[2]]));
+      t.check('picker, Details, fetching and settings preserve saved progress and notes bytes',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
+      await settings();
+      for (const fault of ['throw', 'ignore']) {
+        await page.evaluate((mode) => { window.__review445.fault = mode; }, fault);
+        await setMode(true);
+        t.check(`${fault} settings write reports tab-only failure without fetching or false saved feedback`,
+          await page.$eval('#description-hiding-report', (node) => /could not be saved.*reload/.test(node.textContent))
+          && await page.evaluate((count) => window.__review445.requests.length === count + 1, requests));
+        await page.evaluate(() => { window.__review445.fault = null; });
+        await setMode(false);
+      }
+      await page.reload({ waitUntil: 'networkidle0' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      t.check('OFF persists but synopsis text and individual choices do not survive reload',
+        await page.$eval('#opt-description-hiding', (node) => !node.checked)
+        && await page.evaluate(() => !localStorage.getItem('mrt.settings').includes('Synthetic narrative')));
+      for (const raw of [undefined, 'false', 0, null]) {
+        await page.evaluate((value) => {
+          const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+          if (value === undefined) delete prefs.hideDescriptions;
+          else prefs.hideDescriptions = value;
+          localStorage.setItem('mrt.settings', JSON.stringify(prefs));
+        }, raw);
+        await page.reload({ waitUntil: 'networkidle0' });
+        await page.waitForSelector('#view-data:not([hidden])');
+        t.check(`missing/invalid preference ${String(raw)} defaults ON`, await page.$eval('#opt-description-hiding', (node) => node.checked));
+      }
+      await reading();
+      await click(page, '#btn-review-earlier');
+      for (const theme of ['dark', 'light']) {
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+        await page.setViewport({ width: 620, height: 900 });
+        await page.focus('#review-candidate a');
+        t.check(`${theme} constrained review stays readable with visible focus`, await page.$eval('#review-candidate a', (node) => (
+          getComputedStyle(node).outlineStyle !== 'none'
+          && document.documentElement.scrollWidth <= innerWidth
+        )));
+      }
+      await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+      t.check('enlarged text does not overflow review', await page.$eval('#review-earlier',
+        (node) => node.scrollWidth <= node.clientWidth));
+      await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, '#btn-hero-read');
+      t.check('ordinary Continue still opens a separate reader without marking progress',
+        await page.evaluate((before) => window.__review445.opens.length === 1
+          && localStorage.getItem('mrt.state.v2') === before, saved));
+      const visibleFocus = (selector) => page.$eval(selector, (node) => {
+        const box = node.getBoundingClientRect();
+        return node === document.activeElement && box.top >= 0 && box.bottom <= innerHeight
+          && getComputedStyle(node).outlineStyle !== 'none';
+      });
+      await page.focus('#review-candidate a');
+      const renamed = await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        state.lists[state.active].name = 'Repainted storyline 445';
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+        return { saved: newValue, requests: window.__review445.requests.length };
+      });
+      await page.waitForFunction(() => document.querySelector('#review-context').textContent.includes('Repainted storyline 445'));
+      t.check('valid Store repaint retains visible focus on the exact picker candidate',
+        await visibleFocus('#review-candidate a') && await candidate() === ids[1]);
+      t.check('valid repaint adds no requests or writes beyond the explicit fixture rename',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before.saved
+          && window.__review445.requests.length === before.requests, renamed));
+      await page.focus('#review-candidate a');
+      await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        delete state.read[state.lists[state.active].itemIds[0]];
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+      });
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[0].title);
+      t.check('an earlier unread hole withdraws the stale candidate instead of switching issues',
+        await page.$eval('#review-position', (node) => /no longer valid/.test(node.textContent)));
+      t.check('withdrawn focused candidate moves visible focus to the review heading',
+        await visibleFocus('#review-h'));
+      await click(page, '#btn-review-earlier');
+      t.check('first-position next unread has an honest no-earlier state',
+        await page.$eval('#review-position', (node) => /no comics before/.test(node.textContent)));
+      await click(page, '#review-full-order');
+      t.check('full-order escape keeps its existing focus destination',
+        await page.$eval('#full > summary', (node) => node === document.activeElement));
+      await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        const list = state.lists[state.active];
+        for (const id of list.itemIds) state.read[id] = 1;
+        delete state.issues[list.itemIds.at(-1)];
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+      });
+      await page.waitForSelector('#all-read:not([hidden])');
+      await click(page, '#btn-review-earlier');
+      t.check('completed list starts at its final comic even without metadata', await candidate() === ids[2]
+        && await page.$eval('#review-candidate', (node) => node.textContent.includes('Issue 900003')));
+      await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        state.lists['other-445'] = { id: 'other-445', name: 'Other storyline 445', itemIds: [], note: '' };
+        state.listOrder.push('other-445');
+        state.active = 'other-445';
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+      });
+      await page.waitForFunction(() => document.querySelector('#order-name').textContent === 'Other storyline 445');
+      t.check('switching current list withdraws the earlier picker', await page.$eval('#review-earlier', (node) => node.hidden));
+      await click(page, '#btn-review-earlier');
+      t.check('empty list has an explicit state and no candidate', await page.$eval('#review-position', (node) => /no comics in/.test(node.textContent))
+        && await page.$$eval('#review-candidate a', (nodes) => nodes.length === 0));
+      t.check('no page errors', errors.length === 0, errors.join('\n'));
+    },
+  },
   {
     id: 'shelf-sections',
     title: 'each reading kind has its own browse screen and grouping',
@@ -3012,6 +3531,7 @@ const SCENARIOS = [
       await page.waitForSelector('#home-first-run:not([hidden]) #btn-home-recommended', { timeout: 15000 });
       const home = await page.evaluate(() => ({
         recommendation: document.querySelector('#home-recommended-h')?.textContent.trim() ?? '',
+        context: document.querySelector('#home-recommended p')?.textContent.trim() ?? '',
         homeCount: document.querySelector(
           '#home-primary-paths [data-category="timeline"] .home-path-count',
         )?.textContent.trim() ?? '',
@@ -3024,6 +3544,9 @@ const SCENARIOS = [
       );
       t.check('Home recommends the setup guide and both gateways count 148 normal Reading Lists',
         home.recommendation === 'Recommended start: Setup to Modern Timeline'
+        && home.context.startsWith('New to Marvel?')
+        && home.context.includes('historical context on the characters and events ahead')
+        && home.context.includes('Setup is optional; you can enter the Modern Timeline directly.')
         && home.homeCount === '148 Reading Lists'
         && browseCount === '148 Reading Lists',
         JSON.stringify({ ...home, browseCount }));
@@ -3039,6 +3562,17 @@ const SCENARIOS = [
       await page.keyboard.press('Enter');
       await page.waitForFunction(() => document.querySelector('#preview')?.open
         && document.querySelector('#preview-h')?.textContent.trim() === 'Setup to Modern Timeline');
+      await page.waitForSelector('#preview .preview-issue-link');
+      const setupPreview = await page.evaluate(() => ({
+        meta: document.querySelector('#preview-meta')?.textContent ?? '',
+        source: document.querySelector('#preview-source')?.textContent ?? '',
+        issues: document.querySelectorAll('#preview .preview-issue-link').length,
+      }));
+      t.check('Setup preview retains its issue count, reading commitment, source and issue list',
+        setupPreview.meta.includes('21 issues') && setupPreview.meta.includes('about 7 hours')
+        && setupPreview.source.includes('Compiled for this project')
+        && setupPreview.issues === 21,
+        JSON.stringify(setupPreview));
       await click(page, '#preview-close');
       await page.waitForFunction(() => !document.querySelector('#preview')?.open
         && document.activeElement?.id === 'btn-home-recommended');
@@ -3055,11 +3589,13 @@ const SCENARIOS = [
         && afterHomePreview.focus === 'btn-home-recommended',
         JSON.stringify({ beforeHomePreview, afterHomePreview }));
 
-      await click(page, '.ri[data-view="browse"]');
-      await page.waitForSelector('#view-browse:not([hidden])');
-      await click(page, '#view-browse [data-primary-paths] [data-category="timeline"]');
+      await page.focus('#home-primary-paths [data-category="timeline"]');
+      await page.keyboard.press('Enter');
       await page.waitForSelector('#modern-timeline-feature .catalog-card', { timeout: 15000 });
       await page.waitForSelector('#catalog-results .catalog-card');
+      t.check('Home enters Modern Timeline directly without adding the optional Setup',
+        await page.evaluate(() => location.hash === '#/catalog'
+          && Object.keys(JSON.parse(localStorage.getItem('mrt.state.v2'))?.lists ?? {}).length === 0));
       const timeline = await page.evaluate(() => {
         const cards = [...document.querySelectorAll('#catalog-results .catalog-card')];
         const feature = document.querySelector('#modern-timeline-feature');
@@ -3121,6 +3657,7 @@ const SCENARIOS = [
       });
       t.check('Modern Timeline shows the existing setup guide as one shared rich card',
         timeline.featureHeading === 'Setup to Modern Timeline'
+        && timeline.featureCopy.startsWith(home.context)
         && timeline.featureCopy.includes('This app chooses 1998 as the start of its Modern Timeline.')
         && timeline.featureCopy.includes('It is not an official Marvel editorial-era boundary.')
         && timeline.featureIdentity === 'setup-to-modern-timeline'
@@ -3429,7 +3966,9 @@ const SCENARIOS = [
         && ageFeature.story === 'list:setup-to-modern-timeline'
         && ageFeature.heading === 'Setup to Modern Timeline'
         && ageFeature.headingId === ageFeature.labelledBy
-        && ageFeature.context.includes('earlier stories that lead into this age')
+        && ageFeature.context.startsWith('New to Marvel?')
+        && ageFeature.context.includes('historical context on the characters and events ahead')
+        && ageFeature.context.includes('Setup is optional; you can enter this age directly.')
         && ageFeature.meta === '21 issues'
         && JSON.stringify(ageFeature.actions) === JSON.stringify([
           {
@@ -3924,7 +4463,15 @@ const SCENARIOS = [
         '900001',
       ));
       t.check('the sibling tab writes the earlier unread mark', peerUnread, String(peerUnread));
-      await new Promise((resolve) => setTimeout(resolve, 700));
+      // Saved storage precedes the source tab's deferred refresh. Poll without relying on
+      // animation frames in the background tab, and keep the full snapshot on timeout.
+      const markerReady = await page.waitForFunction(() => document.querySelector(
+        '#catalog-results .catalog-card[aria-current="step"]',
+      )?.dataset.story === 'list:browser-check', { polling: 100, timeout: 15000 })
+        .then(() => true, (error) => {
+          if (error.name !== 'TimeoutError') throw error;
+          return false;
+        });
       const foreign = await page.evaluate((before) => ({
         story: document.querySelector('#catalog-results .catalog-card[aria-current="step"]')
           ?.dataset.story ?? '',
@@ -3942,7 +4489,8 @@ const SCENARIOS = [
       }), beforeForeign);
       await peer.close();
       t.check('an earlier unread mark from another tab moves only the position state',
-        foreign.story === 'list:browser-check'
+        markerReady
+          && foreign.story === 'list:browser-check'
           && foreign.stateUnread
           && foreign.heldConnected
           && foreign.focus === 'catalog-q'
@@ -3950,7 +4498,7 @@ const SCENARIOS = [
           && foreign.scrollSame
           && foreign.cards === beforeForeign.cards
           && foreign.catalogRequests === beforeForeign.catalogRequests,
-        JSON.stringify({ beforeForeign, foreign }));
+        JSON.stringify({ beforeForeign, foreign, markerReady }));
 
       await page.$eval('#catalog-q', (input) => {
         input.value = 'Second Stop';
@@ -4934,6 +5482,87 @@ const SCENARIOS = [
         && all.method === 'All lists counts each issue once, even when it appears in more than one list. Tracked means issues you added, not the size of each complete series.'
         && all.row === initial.row,
         JSON.stringify(all));
+    },
+  },
+  {
+    id: 'series-progress-accessibility',
+    title: 'series progress exposes tracked counts without redundant anonymous bars',
+    async run(page, t) {
+      const state = fixtureReadingState();
+      const issues = ['Alpha', 'Beta', 'Gamma'].flatMap((seriesName, series) => (
+        ORDER.items.map((item) => ({
+          ...item,
+          issueId: item.issueId + series * 10,
+          title: `${seriesName} #${item.number}`,
+          seriesId: item.seriesId + series,
+          seriesName,
+          source: 'curated',
+          hydrated: true,
+        }))
+      ));
+      state.issues = Object.fromEntries(issues.map((issue) => [issue.issueId, issue]));
+      state.lists.fixture.itemIds = issues.filter((_, index) => index % 3 !== 2).map((issue) => issue.issueId);
+      state.lists.second = {
+        ...state.lists.fixture,
+        id: 'second',
+        name: 'Second progress list',
+        catalogId: null,
+        itemIds: issues.filter((_, index) => index % 3 !== 1).map((issue) => issue.issueId),
+      };
+      state.listOrder.push('second');
+      state.read = Object.fromEntries([3, 6, 7, 8].map((index) => [issues[index].issueId, 1000]));
+      await page.evaluateOnNewDocument((saved) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+      }, state);
+      await open(page, '/');
+      await click(page, '.ri[data-view="library"]');
+      await click(page, '#view-library [data-view="progress"]');
+      await page.waitForSelector('#view-progress:not([hidden]) .result', { timeout: 15000 });
+      await click(page, '#progress-method > summary');
+
+      for (const scope of ['list', 'all']) {
+        await click(page, `input[name="progress-scope"][value="${scope}"]`);
+        const tracked = scope === 'list' ? 2 : 3;
+        const expected = [
+          { name: 'Alpha', count: `0 of ${tracked} tracked issues read (0%)`, max: tracked, value: 0 },
+          { name: 'Beta', count: `1 of ${tracked} tracked issues read (${scope === 'list' ? 50 : 33}%)`, max: tracked, value: 1 },
+          { name: 'Gamma', count: `${tracked} of ${tracked} tracked issues read (100%)`, max: tracked, value: tracked },
+        ];
+        const rows = await page.$$eval('#series-progress .result', (elements) => elements.map((row) => {
+          const bar = row.querySelector('progress');
+          return {
+            name: row.querySelector('.result-title > span').textContent,
+            count: row.querySelector('.result-meta').textContent,
+            max: bar.max,
+            value: bar.value,
+            hidden: bar.getAttribute('aria-hidden'),
+            visible: bar.getBoundingClientRect().width > 0 && bar.getBoundingClientRect().height > 0,
+          };
+        }).sort((a, b) => a.name.localeCompare(b.name)));
+        t.check(`${scope} keeps three visual series bars`,
+          rows.length === 3 && rows.every((row) => row.visible), JSON.stringify(rows));
+        t.check(`${scope} retains exact zero, partial and fully read tracked counts and values`,
+          JSON.stringify(rows.map(({ name, count, max, value }) => ({ name, count, max, value })))
+          === JSON.stringify(expected), JSON.stringify(rows));
+        t.check(`${scope} explicitly hides only the redundant bars from accessibility APIs`,
+          rows.length === 3 && rows.every((row) => row.hidden === 'true'), JSON.stringify(rows));
+
+        const snapshot = await page.accessibility.snapshot({
+          root: await page.$('#view-progress'),
+          interestingOnly: false,
+        });
+        const nodes = snapshot ? [snapshot] : [];
+        for (const node of nodes) nodes.push(...(node.children ?? []));
+        const text = nodes.filter((node) => node.role === 'StaticText').map((node) => node.name);
+        t.check(`${scope} exposes each visible series name and complete count in the accessibility tree`,
+          expected.every((row) => text.includes(row.name) && text.includes(row.count)), JSON.stringify(text));
+        t.check(`${scope} exposes no redundant progressbar nodes`,
+          snapshot !== null && nodes.every((node) => node.role !== 'progressbar'),
+          JSON.stringify(nodes.filter((node) => node.role === 'progressbar')));
+        t.check(`${scope} keeps the tracked-only methodology accessible`,
+          text.some((value) => value.includes('Tracked means issues you added, not the size of each complete series.')),
+          JSON.stringify(text));
+      }
     },
   },
   {
@@ -6192,7 +6821,7 @@ const SCENARIOS = [
       //
       // checkVisibility() with no argument answers a narrower question than it looks like it does:
       // it defaults every option off and so returns true for both `visibility: hidden` and
-      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:866` hides the row
+      // `opacity: 0`. The second is not hypothetical here. `src/styles.css:1049` hides the row
       // actions with exactly `opacity: 0`, so it is this stylesheet's established way of putting a
       // control out of reach, and the defaults are blind to it. Measured in the same Edge this
       // drives: with the two buttons faded that way both rows passed while nothing sat under the
@@ -6284,6 +6913,228 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'synopsis-disclosure-447',
+    title: '447 exact-issue disclosure preserves consent, focus and tab-only privacy',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument((items) => {
+        const original = window.fetch;
+        window.__disclosure447 = { mode: 'answer', requests: [], held: [], opens: [] };
+        window.open = (...args) => { window.__disclosure447.opens.push(args); return {}; };
+        window.fetch = (input, init) => {
+          const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+          if (url.origin === location.origin) return original(input, init);
+          const match = /\/issues\/(\d+)$/.exec(url.pathname);
+          if (url.pathname.endsWith('/health')) {
+            return Promise.resolve(new Response(JSON.stringify({ issue_count: 3 }), { status: 200 }));
+          }
+          if (!match) return original(input, init);
+          const state = window.__disclosure447;
+          const id = Number(match[1]);
+          state.requests.push({ id, cache: init?.cache, url: url.href });
+          const item = items.find((candidate) => candidate.issueId === id);
+          const answer = () => new Response(JSON.stringify({
+            id, title: item?.title ?? `Synthetic issue ${id}`, issue_number: '1',
+            description: state.mode === 'missing' ? null : `Synthetic plot 447 for ${id}.`,
+          }), { status: 200, headers: { 'content-type': 'application/json' } });
+          if (state.mode === 'failure') return Promise.reject(new TypeError('Synthetic offline response'));
+          if (state.mode === 'hold') {
+            return new Promise((resolve) => {
+              const held = { finish: () => resolve(answer()), aborted: false };
+              init?.signal?.addEventListener('abort', () => { held.aborted = true; }, { once: true });
+              state.held.push(held);
+            });
+          }
+          return Promise.resolve(answer());
+        };
+      }, ORDER.items);
+      await importOrder(page);
+      const first = ORDER.items[0].issueId;
+      const second = ORDER.items[1].issueId;
+      const listId = (await readState(page)).active;
+      const readHash = `#/read/${encodeURIComponent(listId)}`;
+      const frames = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(
+        () => requestAnimationFrame(resolve),
+      )));
+      const navigate = async (hash) => {
+        await page.evaluate((next) => { location.hash = next; }, hash);
+        await page.waitForFunction((next) => location.hash === next, {}, hash);
+        if (hash.startsWith('#/issue/')) {
+          await page.waitForFunction((id) => (
+            !document.querySelector('#view-issue').hidden
+            && !document.querySelector('#issue-focus-card').hidden
+            && document.querySelector('#btn-issue-info').href.includes(`/issue/${id}/`)
+          ), {}, Number(hash.match(/issue\/(\d+)/)[1]));
+        } else await page.waitForSelector('#view-read:not([hidden])');
+      };
+      const inspect = (id) => navigate(`#/issue/${id}?list=${encodeURIComponent(listId)}`);
+      const hidden = (selector) => page.$eval(selector, (node) => node.hidden && node.textContent === '');
+      const fetchBulk = async () => {
+        await click(page, '#btn-synopsis');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => document.querySelector('#synopsis-status').textContent
+          === 'All synopses fetched, for this tab only.');
+      };
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await click(page, '#btn-hero-read');
+      t.check('official reader opens without fetching, revealing or changing saved data',
+        await page.evaluate((before) => window.__disclosure447.opens.length === 1
+          && window.__disclosure447.requests.length === 0
+          && localStorage.getItem('mrt.state.v2') === before, saved));
+      await fetchBulk();
+      t.check('bulk prose starts empty and hidden in the hero', await hidden('#hero-desc'));
+      await page.focus('#btn-hero-description');
+      await page.keyboard.press('Enter');
+      t.check('native Enter reveals exactly one plot with an expanded, named and visibly focused button',
+        await page.evaluate(() => {
+          const button = document.querySelector('#btn-hero-description');
+          const style = getComputedStyle(button);
+          const rect = button.getBoundingClientRect();
+          return document.querySelector('#hero-desc').textContent.startsWith('Synthetic plot 447')
+            && button.getAttribute('aria-expanded') === 'true'
+            && button.getAttribute('aria-controls') === 'hero-desc'
+            && button.getAttribute('aria-label').includes('Hide description')
+            && button === document.activeElement && rect.width > 0 && rect.height > 0
+            && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0
+            && window.__disclosure447.opens.length === 1;
+        }));
+      await page.keyboard.press('Space');
+      t.check('native Space hides plot without moving focus',
+        await hidden('#hero-desc') && await page.$eval('#btn-hero-description',
+          (node) => node === document.activeElement && node.getAttribute('aria-expanded') === 'false'));
+      await page.keyboard.press('Enter');
+      await inspect(first);
+      t.check('Issue Details shares only the exact revealed issue',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
+      await page.focus('#btn-issue-description');
+      await page.keyboard.press('Space');
+      await navigate(readHash);
+      t.check('Hide in details also hides the same hero on revisit', await hidden('#hero-desc'));
+      t.check('fetching and disclosure leave all saved bytes and notes unchanged',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
+      await click(page, '#btn-hero-description');
+      await click(page, '#btn-hero-done');
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[1].title);
+      t.check('Done does not reveal the next issue', await hidden('#hero-desc'));
+      await inspect(first);
+      t.check('the read flag does not erase an exact-issue reveal choice',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.startsWith('Synthetic plot 447')));
+      await inspect(second);
+      t.check('an unrevealed issue stays collapsed in details', await hidden('#issue-focus-desc'));
+      const afterDone = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+
+      // Known factual metadata comes from the same synthetic source, but only explicit synopsis
+      // consent may put its plot in the separate tab store.
+      const untracked = 947001;
+      await navigate(`#/issue/${untracked}`);
+      t.check('untracked metadata does not expose its returned plot automatically',
+        await page.$eval('#issue-focus-desc', (node) => !node.textContent.includes('Synthetic plot 447')));
+      const requests = await page.evaluate(() => window.__disclosure447.requests.length);
+      await page.focus('#btn-issue-synopsis');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#ask[open]');
+      t.check('individual consent explicitly warns of exposure and retains the storage promises',
+        await page.$eval('#ask-body', (node) => node.textContent.includes('may contain spoilers')
+          && node.textContent.includes('Nothing fetched is saved')));
+      await click(page, '#ask-cancel');
+      await frames();
+      t.check('declining individual consent makes no synopsis request',
+        await page.evaluate((count) => window.__disclosure447.requests.length === count, requests));
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await inspect(second);
+      await navigate(`#/issue/${untracked}`);
+      const beforeOldConsent = await page.evaluate(() => window.__disclosure447.requests.length);
+      await click(page, '#ask-ok');
+      await frames();
+      t.check('leaving and returning while consent is open cannot revive its old request',
+        await page.evaluate((count) => window.__disclosure447.requests.length === count, beforeOldConsent));
+      await page.focus('#btn-issue-synopsis');
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#issue-focus-desc').textContent.startsWith('Synthetic plot 447'));
+      t.check('confirmed individual fetch reveals without a second action and preserves focus',
+        await page.$eval('#btn-issue-description', (node) => node.getAttribute('aria-expanded') === 'true'
+          && document.activeElement === node));
+
+      await navigate('#/issue/947002');
+      await page.evaluate(() => { window.__disclosure447.mode = 'missing'; });
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#btn-issue-synopsis').hidden
+        && document.querySelector('#btn-cancel-issue-synopsis').hidden);
+      t.check('missing synopsis remains readable, without a no-op fetch or disclosure',
+        await page.$eval('#issue-focus-desc', (node) => !node.hidden && node.textContent.includes('No synopsis')));
+      await page.evaluate(() => { window.__disclosure447.mode = 'answer'; });
+      await navigate('#/issue/947003');
+      await page.evaluate(() => { window.__disclosure447.mode = 'failure'; });
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => document.querySelector('#issue-synopsis-status').textContent.includes('could not be reached'));
+      t.check('failed synopsis stays retryable and its failure message is visible',
+        await page.$eval('#btn-issue-synopsis', (node) => !node.hidden)
+        && await page.$eval('#issue-synopsis-status', (node) => !node.hidden));
+      await page.evaluate(() => { window.__disclosure447.mode = 'hold'; });
+      await click(page, '#btn-issue-synopsis');
+      await page.waitForSelector('#ask[open]');
+      await click(page, '#ask-ok');
+      await page.waitForFunction(() => window.__disclosure447.held.length === 1);
+      t.check('in-flight individual request exposes status and Stop, not plot',
+        await page.$eval('#btn-cancel-issue-synopsis', (node) => !node.hidden)
+        && await page.$eval('#issue-focus-desc', (node) => !node.textContent.includes('Synthetic plot 447')));
+      await click(page, '#btn-cancel-issue-synopsis');
+      await page.evaluate(() => {
+        window.__disclosure447.mode = 'answer';
+        window.__disclosure447.held[0].finish();
+      });
+      await frames();
+      t.check('Stop aborts and a late successful response cannot reveal or hide Retry',
+        await page.evaluate(() => window.__disclosure447.held[0].aborted
+          && !document.querySelector('#btn-issue-synopsis').hidden
+          && !document.querySelector('#issue-focus-desc').textContent.includes('Synthetic plot 447')));
+
+      await navigate(readHash);
+      await click(page, '#btn-hero-description');
+      await inspect(second);
+      await click(page, '.ri[data-view="data"]');
+      await page.waitForSelector('#view-data:not([hidden])');
+      await page.evaluate(() => document.querySelector('#form-settings').requestSubmit());
+      await page.waitForFunction(() => document.querySelector('#api-report').textContent.includes('API URL saved'));
+      t.check('saving even the same source clears both dormant plot paragraphs',
+        await page.evaluate(() => ['#hero-desc', '#issue-focus-desc'].every((selector) => (
+          !document.querySelector(selector).textContent.includes('Synthetic plot 447')
+        ))));
+      await navigate(readHash);
+      await fetchBulk();
+      t.check('refetching after same-source save does not inherit the previous reveal', await hidden('#hero-desc'));
+      await click(page, '#btn-hero-description');
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForSelector('#view-read:not([hidden])');
+      await fetchBulk();
+      t.check('reload and refetch reset the exact-issue reveal choice', await hidden('#hero-desc'));
+      t.check('all synopsis journeys preserve read progress and notes after the deliberate Done action',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, afterDone));
+      t.check('no disclosure or prose enters localStorage, sessionStorage or exported backups',
+        await page.evaluate(async () => {
+          const { exportBackup } = await import('/js/lib/model.js');
+          const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+          const durable = JSON.stringify([
+            ...Object.entries(localStorage), ...Object.entries(sessionStorage), exportBackup(state),
+          ]);
+          return !/Synthetic plot 447|synopsisDisclosure|isRevealed/.test(durable);
+        }));
+      t.check('synthetic issue requests retain no-store',
+        await page.evaluate(() => window.__disclosure447.requests.length > 0
+          && window.__disclosure447.requests.every((request) => request.cache === 'no-store')));
+      t.check('disclosure journeys produce no unhandled page errors', errors.length === 0, JSON.stringify(errors));
+    },
+  },
+  {
     id: 'synopsis-consent',
     title: 'synopsis fetching waits for consent that names what will happen',
     async run(page, t) {
@@ -6351,6 +7202,9 @@ const SCENARIOS = [
       );
 
       const expectedIds = ORDER.items.map((issue) => issue.issueId);
+      t.check('bulk-fetched plot stays collapsed before the durability reveal',
+        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
+      await click(page, '#btn-hero-description');
       const observed = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         requests: window.__mrtIssueRequestLog ?? [],
@@ -6457,6 +7311,7 @@ const SCENARIOS = [
         () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
         { timeout: 20000 },
       );
+      await click(page, '#btn-hero-description');
       const before = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent ?? '',
         hash: location.hash,
@@ -6503,6 +7358,12 @@ const SCENARIOS = [
         requestsBefore);
       t.check('the next synopsis run asks the new service rather than the previous one',
         nextRequest?.url.startsWith(`${nextBase}/issues/`), JSON.stringify(nextRequest));
+      await page.waitForFunction(
+        () => document.querySelector('#synopsis-status')?.textContent === 'All synopses fetched, for this tab only.',
+        { timeout: 20000 },
+      );
+      t.check('the new source does not inherit the previous source reveal choice',
+        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
     },
   },
   {
@@ -6548,6 +7409,9 @@ const SCENARIOS = [
         () => (window.__mrtIssueRequestLog ?? []).length === 9,
         { timeout: 20000 },
       );
+      t.check('an arrived current plot stays collapsed during bulk fetching',
+        await page.$eval('#hero-desc', (node) => node.hidden && node.textContent === ''));
+      await click(page, '#btn-hero-description');
       const running = await page.evaluate(() => ({
         description: document.querySelector('#hero-desc')?.textContent.trim() ?? '',
         fetchHidden: document.querySelector('#btn-synopsis')?.hidden ?? null,
@@ -6582,7 +7446,7 @@ const SCENARIOS = [
       );
       await page.waitForFunction(
         () => document.querySelector('#announcer')?.textContent
-          .includes('What arrived is on screen until you reload.'),
+          .includes('What arrived is held for this tab only.'),
         { timeout: 15000 },
       );
       const stopped = await page.evaluate(() => ({
@@ -6592,7 +7456,7 @@ const SCENARIOS = [
       t.check('stopping the synopsis run prevents any further issue request',
         stopped.requests.length === 9, JSON.stringify(stopped.requests));
       t.check('the cancellation announcement says arrived prose remains for this tab',
-        stopped.announcement.includes('What arrived is on screen until you reload.'),
+        stopped.announcement.includes('What arrived is held for this tab only.'),
         stopped.announcement);
     },
   },
@@ -7292,6 +8156,170 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'issue-details-retry-454',
+    title: 'issue details recover in place without changing saved reading or stealing focus',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument(() => {
+        const real = window.fetch.bind(window);
+        window.__retry454 = { mode: 'fail', requests: [], aborted: false };
+        window.fetch = (input, options) => {
+          const url = typeof input === 'string' ? input : input.url;
+          const match = /\/issues\/(94545[4-6])(?:\?|$)/.exec(url);
+          if (!match) return real(input, options);
+          const id = Number(match[1]);
+          const fixture = window.__retry454;
+          fixture.requests.push(id);
+          if (id === 945456) return Promise.resolve(new Response('{}', { status: 404 }));
+          if (fixture.mode === 'fail') return Promise.reject(new TypeError('Failed to fetch'));
+          return new Promise((resolve, reject) => {
+            fixture.finish = (success = true) => {
+              if (!success) reject(new TypeError('Failed to fetch'));
+              else resolve(new Response(JSON.stringify({
+                id, title: `Retry fixture ${id}`, issueNumber: '1',
+              }), { headers: { 'content-type': 'application/json' } }));
+            };
+            // Keep the promise pending after abort so the stale-response guard is exercised too.
+            options.signal.addEventListener('abort', () => { fixture.aborted = true; });
+          });
+        };
+      });
+      await seedFixtureState(page);
+      const before = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const navigate = async (hash) => {
+        await page.evaluate((value) => { location.hash = value; }, hash);
+      };
+      const failed = async () => {
+        await page.waitForFunction(() => (
+          document.querySelector('#issue-focus-h').textContent === 'Issue unavailable'
+          && document.querySelector('#btn-issue-retry').getAttribute('aria-busy') !== 'true'
+        ));
+      };
+      await navigate('#/issue/945454');
+      await failed();
+      const offered = await page.$eval('#btn-issue-retry', (button) => (
+        !button.hidden && button.textContent === 'Retry'
+        && document.querySelectorAll('#btn-issue-retry').length === 1
+        && button.getAttribute('aria-describedby') === 'issue-focus-status'
+        && document.querySelector('#issue-focus-status').getAttribute('aria-live') === 'polite'
+        && !document.querySelector('dialog[open]')
+      ));
+      t.check('a failed positive lookup has exactly one named Retry beside a polite explanation', offered);
+      if (!offered) return;
+
+      await page.focus('#btn-issue-retry');
+      await page.keyboard.press('Tab');
+      await page.keyboard.down('Shift');
+      await page.keyboard.press('Tab');
+      await page.keyboard.up('Shift');
+      const client = await page.createCDPSession();
+      for (const theme of ['light', 'dark', 'forced']) {
+        await page.evaluate((value) => document.documentElement.setAttribute('data-theme', value), theme === 'forced' ? 'light' : theme);
+        await client.send('Emulation.setEmulatedMedia', { features: [
+          { name: 'forced-colors', value: theme === 'forced' ? 'active' : 'none' },
+          { name: 'prefers-reduced-motion', value: 'reduce' },
+        ] });
+        await page.setViewport({ width: 320, height: 900 });
+        const usable = await page.$eval('#btn-issue-retry', (button) => {
+          const box = button.getBoundingClientRect();
+          const style = getComputedStyle(button);
+          return {
+            focused: document.activeElement === button && button.matches(':focus-visible'),
+            outline: style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+            fits: box.left >= 0 && box.right <= innerWidth && box.width > 0 && box.height >= 24,
+            overflow: document.documentElement.scrollWidth > innerWidth,
+            motion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+            forced: matchMedia('(forced-colors: active)').matches,
+          };
+        });
+        t.check(`Retry stays focus-visible and fits at 320px in ${theme} with reduced motion`,
+          usable.focused && usable.outline && usable.fits && !usable.overflow && usable.motion
+          && usable.forced === (theme === 'forced'), JSON.stringify(usable));
+      }
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      await client.detach();
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => { window.__retry454.mode = 'pending'; });
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => window.__retry454.requests.length === 2);
+      await click(page, '#btn-issue-retry');
+      const busy = await page.$eval('#btn-issue-retry', (button) => ({
+        visible: !button.hidden,
+        label: button.textContent,
+        disabled: button.getAttribute('aria-disabled'),
+        busy: button.getAttribute('aria-busy'),
+        focus: document.activeElement === button,
+        requests: window.__retry454.requests,
+      }));
+      t.check('keyboard retry stays focused and busy while duplicate activation sends no request',
+        busy.visible && busy.label === 'Retrying…' && busy.disabled === 'true'
+        && busy.busy === 'true' && busy.focus
+        && JSON.stringify(busy.requests) === '[945454,945454]', JSON.stringify(busy));
+      await page.evaluate(() => window.__retry454.finish(false));
+      await failed();
+      t.check('a repeated failure keeps the same actionable Retry focused',
+        await page.$eval('#btn-issue-retry', (button) => (
+          !button.hidden && button.textContent === 'Retry'
+          && !button.hasAttribute('aria-disabled') && document.activeElement === button
+        )));
+      await page.keyboard.press('Space');
+      await page.waitForFunction(() => window.__retry454.requests.length === 3);
+      await page.evaluate(() => window.__retry454.finish());
+      await page.waitForFunction(() => document.querySelector('#issue-focus-h').textContent === 'Retry fixture 945454');
+      t.check('successful retry restores the exact issue and moves disappearing-button focus to its heading',
+        await page.evaluate(() => (
+          location.hash === '#/issue/945454'
+          && !document.querySelector('#issue-focus-card').hidden
+          && document.querySelector('#btn-issue-retry').hidden
+          && document.activeElement.id === 'issue-focus-h'
+          && !document.querySelector('dialog[open]')
+        )));
+
+      await page.evaluate(() => { window.__retry454.mode = 'fail'; });
+      await navigate('#/issue/945455');
+      await failed();
+      await page.evaluate(() => { window.__retry454.mode = 'pending'; });
+      await click(page, '#btn-issue-retry');
+      await page.waitForFunction(() => window.__retry454.requests.length === 5);
+      await navigate('#/issue/900001?list=fixture');
+      await page.waitForFunction(() => !document.querySelector('#issue-focus-card').hidden);
+      await page.evaluate(() => window.__retry454.finish());
+      // A resolved response passes through JSON, cache and controller microtasks before it can paint.
+      await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      t.check('navigation aborts retry and ignores its late answer without replacing the saved issue',
+        await page.evaluate((title) => (
+          window.__retry454.aborted && location.hash === '#/issue/900001?list=fixture'
+          && document.querySelector('#issue-focus-h').textContent === title
+          && document.querySelector('#btn-issue-retry').hidden
+        ), ORDER.items[0].title));
+
+      await navigate('#/issue/945456');
+      await failed();
+      t.check('permanent absence explains missing service details without Retry',
+        await page.evaluate(() => (
+          document.querySelector('#btn-issue-retry').hidden
+          && document.querySelector('#issue-focus-status').textContent.includes('has no details')
+        )));
+      const requests = await page.evaluate(() => window.__mrtIssueRequests ?? 0);
+      await navigate('#/issue/-945454');
+      await failed();
+      t.check('missing local identity has neither an API request nor a Retry offer',
+        await page.evaluate((count) => (
+          (window.__mrtIssueRequests ?? 0) === count
+          && document.querySelector('#btn-issue-retry').hidden
+          && document.querySelector('#issue-focus-status').textContent.includes('local issue is no longer')
+        ), requests));
+      t.check('all recovery journeys leave saved lists, active choice, progress and notes byte-identical',
+        await page.evaluate((saved) => localStorage.getItem('mrt.state.v2') === saved, before));
+      t.check('metadata Retry never starts synopsis disclosure or changes reader launch controls',
+        await page.evaluate(() => (
+          (window.__mrtIssueRequests ?? 0) === 0 && !document.querySelector('dialog[open]')
+        )));
+      t.check('issue retry journeys have no unhandled page errors', errors.length === 0, JSON.stringify(errors));
+    },
+  },
+  {
     id: 'issue-focus',
     title: 'issue details stay separate from reading progress and return focus to their source',
     async run(page, t) {
@@ -7496,15 +8524,424 @@ const SCENARIOS = [
       await page.setViewport({ width: 320, height: 800 });
       await page.evaluate(() => document.querySelector('#view-library-read .result-focus').click());
       await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
-      const narrow = await page.evaluate(() => ({
-        overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-        targets: [...document.querySelectorAll('#view-issue .cta > :not([hidden])')]
-          .every((node) => node.getBoundingClientRect().height >= 40),
-      }));
+      const narrow = await page.evaluate(() => {
+        const rendered = [...document.querySelectorAll('#view-issue .cta > :not([hidden])')]
+          .filter((node) => node.getClientRects().length > 0)
+          .map((node) => ({ id: node.id, height: node.getBoundingClientRect().height }));
+        return {
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          targets: rendered.length > 0 && rendered.every((node) => node.height >= 40),
+          rendered,
+        };
+      });
       t.check('issue focus stays usable at 320 pixels without horizontal clipping',
         narrow.overflow <= 1 && narrow.targets, JSON.stringify(narrow));
       t.check('the issue-focus journeys produce no console or page errors',
         browserErrors.length === 0, browserErrors.join(' / '));
+    },
+  },
+  {
+    id: 'issue-return-visibility',
+    title: 'Back from a late issue restores visible exact focus without changing the Reading List',
+    async run(page, t) {
+      const browserErrors = [];
+      page.on('console', (message) => {
+        if (message.type() === 'error') browserErrors.push(message.text());
+      });
+      page.on('pageerror', (error) => browserErrors.push(error.message));
+      await page.setViewport({ width: 1280, height: 900 });
+      await importLongOrder(page);
+      await openFullOrder(page);
+      await page.keyboard.press('Tab');
+
+      const snapshot = () => page.evaluate(async () => {
+        await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        const active = document.activeElement;
+        const ring = active.matches('input[name="filter"]') ? active.nextElementSibling : active;
+        const rect = ring.getBoundingClientRect();
+        const style = getComputedStyle(ring);
+        const margin = parseFloat(style.outlineWidth) + Math.max(0, parseFloat(style.outlineOffset));
+        const hit = document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2);
+        return {
+          issueId: active.dataset.issueId ?? null,
+          control: active.dataset.focusControl ?? null,
+          filterFocus: active.matches('input[name="filter"]:checked'),
+          heading: active.id,
+          visible: rect.width > 0 && rect.height > 0
+            && rect.top >= margin && rect.bottom + margin <= innerHeight
+            && rect.left >= margin && rect.right + margin <= innerWidth
+            && (hit === ring || ring.contains(hit)),
+          focusRing: active.matches(':focus-visible')
+            && style.outlineStyle !== 'none' && parseFloat(style.outlineWidth) > 0,
+          top: rect.top,
+          bottom: rect.bottom,
+          scrollY,
+          hash: location.hash,
+          filter: document.querySelector('input[name="filter"]:checked')?.value,
+          full: document.querySelector('#full').open,
+          rows: document.querySelectorAll('#rows .row').length,
+          state: localStorage.getItem('mrt.state.v2'),
+        };
+      });
+      const savedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      for (const [filter, control] of [['all', 'title'], ['unread', 'title'], ['unread', 'cover']]) {
+        await click(page, `input[name="filter"][value="${filter}"]`);
+        const selector = `#rows [data-issue-id="910180"][data-focus-control="${control}"]`;
+        const before = await page.$eval(selector, (link) => {
+          link.scrollIntoView({ block: 'center' });
+          link.focus();
+          return { hash: location.hash, scrollY };
+        });
+        t.check(`${filter}/${control}: the source is below the first viewport`,
+          before.scrollY > 900, JSON.stringify(before));
+        await page.keyboard.press('Enter');
+        await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+        t.check(`${filter}/${control}: keyboard inspection opens the selected issue`,
+          await page.evaluate(() => location.hash.startsWith('#/issue/910180?list=')));
+        await page.evaluate(() => history.back());
+        await page.waitForFunction((source) => document.activeElement === document.querySelector(source),
+          {}, selector);
+        const returned = await snapshot();
+        t.check(`${filter}/${control}: Back restores the exact source control`,
+          returned.issueId === '910180' && returned.control === control, JSON.stringify(returned));
+        t.check(`${filter}/${control}: the entire focus ring is visible and unobscured`,
+          returned.visible && returned.focusRing,
+          JSON.stringify({ top: returned.top, bottom: returned.bottom, scrollY: returned.scrollY,
+            visible: returned.visible, focusRing: returned.focusRing }));
+        t.check(`${filter}/${control}: the source route, filter and full list are preserved`,
+          returned.hash === before.hash && returned.filter === filter && returned.full && returned.rows === 219,
+          JSON.stringify({ hash: returned.hash, filter: returned.filter, full: returned.full, rows: returned.rows }));
+        t.check(`${filter}/${control}: inspection and Back leave saved progress unchanged`,
+          returned.state === savedState);
+      }
+
+      const missing = '#rows [data-issue-id="910180"][data-focus-control="title"]';
+      await page.focus(missing);
+      const beforeFallback = await page.evaluate(() => location.hash);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await page.evaluate((selector) => {
+        addEventListener('hashchange', () => {
+          const source = document.querySelector(selector);
+          window.__mrtRemovedReturnSource = !!source;
+          source?.remove();
+        }, { once: true });
+        history.back();
+      }, missing);
+      await page.waitForFunction(() => document.activeElement?.matches('input[name="filter"]:checked'));
+      const fallback = await snapshot();
+      t.check('a removed opener falls back to the checked filter with a fully visible focus ring',
+        await page.evaluate(() => window.__mrtRemovedReturnSource)
+          && fallback.filterFocus && fallback.visible && fallback.focusRing,
+        JSON.stringify({ top: fallback.top, bottom: fallback.bottom, scrollY: fallback.scrollY,
+          visible: fallback.visible, focusRing: fallback.focusRing }));
+      t.check('the fallback preserves the source route, filter, disclosure and saved progress',
+        fallback.hash === beforeFallback && fallback.filter === 'unread'
+          && fallback.full && fallback.state === savedState);
+      await page.keyboard.press('ArrowRight');
+      t.check('the fallback filter remains keyboard usable',
+        await page.evaluate(() => document.activeElement.matches('input[name="filter"]:checked')
+          && document.activeElement.value !== 'unread'));
+
+      await click(page, '.brand[data-view="home"]');
+      const home = await snapshot();
+      t.check('ordinary Home navigation still starts at the top with a visible focused heading',
+        /^#\/home(?:\/|$)/.test(home.hash) && home.scrollY === 0 && home.heading === 'home-h'
+          && home.visible && home.focusRing,
+        JSON.stringify({ hash: home.hash, scrollY: home.scrollY, heading: home.heading, visible: home.visible }));
+      t.check('the return-focus journeys produce no console or page errors',
+        browserErrors.length === 0, browserErrors.join(' / '));
+    },
+  },
+  {
+    id: 'reading-shortcut',
+    title: 'D can be switched off locally and a held key marks only one issue',
+    async run(page, t) {
+      await open(page, '/');
+      const fixture = fixtureReadingState();
+      const first = ORDER.items[0];
+      fixture.issues = Object.fromEntries(Array.from({ length: 12 }, (_, i) => {
+        const issueId = 43900 + i;
+        return [issueId, { ...first, issueId, title: `Shortcut fixture #${i + 1}`, hydrated: true }];
+      }));
+      fixture.lists.fixture.itemIds = Object.keys(fixture.issues).map(Number);
+      await page.evaluate((state) => {
+        localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, theme: 'dark' }));
+      }, fixture);
+      // Reloading the Home route then changing only its hash leaves setup in the same document.
+      // Boot directly into Reading, as the issue-action fixture does, before sending real keys.
+      const fixtureResponse = await page.goto(
+        `${page.__origin}/?catalog=browser-check#/read/fixture`,
+        { waitUntil: 'load' },
+      );
+      await page.waitForSelector(
+        `#view-read:not([hidden]) #btn-hero-inspect[data-context-id="fixture"][data-issue-id="${fixture.lists.fixture.itemIds[0]}"]`,
+        { visible: true, timeout: 15000 },
+      );
+      const seeded = await readState(page);
+      t.check('shortcut setup loads a fresh Reading document with the complete seeded list',
+        fixtureResponse?.ok() === true
+          && seeded.active === 'fixture'
+          && JSON.stringify(seeded.lists.fixture.itemIds) === JSON.stringify(fixture.lists.fixture.itemIds),
+        JSON.stringify({ response: fixtureResponse?.status(), active: seeded.active, items: seeded.lists.fixture.itemIds }));
+      const count = async () => Object.keys((await readState(page)).read).length;
+      const presentation = () => page.evaluate(() => {
+        const done = document.querySelector('#btn-hero-done');
+        return {
+          checked: document.querySelector('#opt-reading-shortcut').checked,
+          aria: done.getAttribute('aria-keyshortcuts'),
+          tooltip: done.getAttribute('data-tooltip'),
+          hook: done.classList.contains('has-tooltip'),
+          description: document.querySelector('#reading-shortcut-description').textContent,
+        };
+      });
+      const enabled = (value) => value.checked && value.aria === 'd'
+        && value.tooltip === 'Keyboard shortcut: D' && value.hook
+        && value.description.includes('Turn off in Backup & settings');
+      const disabled = (value) => !value.checked && value.aria === null
+        && value.tooltip === null && !value.hook && value.description.startsWith('Disabled.');
+      t.check('older preferences keep D enabled with accurate hints', enabled(await presentation()));
+      await page.$eval('#btn-hero-done', (button) => { button.focus(); button.click(); });
+      t.check('Done next keeps focus after the click',
+        await page.$eval('#btn-hero-done', (button) => document.activeElement === button) && await count() === 1);
+      await page.keyboard.press('d');
+      t.check('fresh D after clicking Done next marks exactly one more issue', await count() === 2);
+      await page.keyboard.down('d');
+      const held = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      for (let i = 0; i < 3; i += 1) await page.keyboard.down('d');
+      await page.keyboard.up('d');
+      t.check('held D does not write beyond the first press',
+        await count() === 3 && held === await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
+      await page.keyboard.press('d');
+      t.check('release then fresh D marks the next issue', await count() === 4);
+
+      await click(page, '.ri[data-view="data"]');
+      const beforePreference = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      t.check('the switch is labelled and describes its local-only boundary',
+        await page.$eval('#opt-reading-shortcut', (input) => input.labels[0].textContent.includes('Enable D')
+          && input.getAttribute('aria-describedby') === 'reading-shortcut-help')
+        && await page.$eval('#reading-shortcut-help', (help) => help.textContent.includes('separately from reading progress and backups')));
+      await click(page, '#opt-reading-shortcut');
+      t.check('off removes shortcut metadata and changes the reference without touching progress',
+        disabled(await presentation())
+        && beforePreference === await page.evaluate(() => localStorage.getItem('mrt.state.v2')));
+      await page.select('#opt-theme', 'light');
+      await page.reload({ waitUntil: 'load' });
+      t.check('off survives another setting write and reload',
+        disabled(await presentation())
+        && await page.$eval('#opt-theme', (select) => select.value === 'light'));
+      await click(page, '#list-nav .ri');
+      await page.focus('.ri[data-view="library"]');
+      await page.keyboard.press('d');
+      t.check('disabled D with navigation focus does not change progress or view',
+        await count() === 4 && await visibleView(page) === 'view-read');
+      await page.focus('#btn-hero-done');
+      await page.keyboard.press('Enter');
+      t.check('native Enter still activates Done next once without launching',
+        await count() === 5 && await page.evaluate(() => window.__opened.length) === 0);
+
+      await click(page, '.ri[data-view="data"]');
+      await click(page, '#btn-export-json');
+      await page.waitForFunction(() => window.__mrtDownloads.some((entry) => entry.type === 'application/json'));
+      const backup = await page.evaluate(() => window.__mrtDownloads.find((entry) => entry.type === 'application/json').text);
+      t.check('backup contains progress but no shortcut preference',
+        Object.keys(JSON.parse(backup).read).length === 5 && !backup.includes('readingShortcut'));
+      await page.evaluate((text) => {
+        const input = document.querySelector('#restore-file');
+        const files = new DataTransfer();
+        files.items.add(new File([text], 'shortcut-backup.json', { type: 'application/json' }));
+        input.files = files.files;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+      }, backup);
+      await page.waitForFunction(() => document.querySelector('#restore-report').textContent.includes('Restored.'));
+      t.check('restore leaves the disabled local preference and progress intact',
+        disabled(await presentation()) && await count() === 5);
+      await click(page, '#btn-undo-restore');
+      t.check('undo restore also leaves the shortcut off', disabled(await presentation()));
+      await click(page, '#opt-reading-shortcut');
+      t.check('re-enabling restores all advertised D behavior', enabled(await presentation()));
+      await click(page, '#list-nav .ri');
+      await page.focus('#btn-hero-done');
+      await page.keyboard.press('D');
+      t.check('enabled uppercase D still advances on the focused button', await count() === 6);
+      await click(page, '#btn-list-note');
+      await page.keyboard.press('d');
+      t.check('an open note dialog consumes typing instead of marking progress',
+        await count() === 6 && await page.$eval('dialog[open] textarea', (input) => input.value === 'd'));
+      await click(page, '#ask-cancel');
+
+      for (const mode of ['throw', 'drop']) {
+        await click(page, '.ri[data-view="data"]');
+        const saved = await page.evaluate(() => localStorage.getItem('mrt.settings'));
+        await page.evaluate((fault) => {
+          window.__shortcutSetItem = Storage.prototype.setItem;
+          Storage.prototype.setItem = function (key, value) {
+            if (key === 'mrt.settings') {
+              if (fault === 'throw') throw new DOMException('Fixture quota refusal', 'QuotaExceededError');
+              return;
+            }
+            return window.__shortcutSetItem.call(this, key, value);
+          };
+        }, mode);
+        await click(page, '#opt-reading-shortcut');
+        const report = await page.$eval('#reading-shortcut-report', (box) => box.textContent);
+        t.check(`${mode}: failed settings write is explicitly session-only, not falsely saved`,
+          saved === await page.evaluate(() => localStorage.getItem('mrt.settings'))
+          && disabled(await presentation())
+          && report.includes('could not be saved') && report.includes('after reload'));
+        await click(page, '#list-nav .ri');
+        await page.focus('#btn-hero-done');
+        await page.keyboard.press('d');
+        t.check(`${mode}: D stays off for this tab despite the failed preference write`, await count() === 6);
+        await page.evaluate(() => { Storage.prototype.setItem = window.__shortcutSetItem; });
+        await click(page, '.ri[data-view="data"]');
+        await click(page, '#opt-reading-shortcut');
+        t.check(`${mode}: a successful retry clears the warning and restores hints`,
+          enabled(await presentation())
+          && await page.$eval('#reading-shortcut-report', (box) => box.textContent.trim() === ''));
+      }
+      await click(page, '#opt-reading-shortcut');
+      await page.reload({ waitUntil: 'load' });
+      t.check('a later successful off choice survives reload after storage faults',
+        disabled(await presentation()) && await count() === 6);
+    },
+  },
+  {
+    id: 'reading-list-empty-441',
+    title: 'empty Reading Lists offer an add path without claiming completion',
+    async run(page, t) {
+      await seedFixtureState(page);
+      const original = await readState(page);
+      await click(page, '.ri[data-view="library"]');
+      await click(page, '#btn-new-list');
+      await page.waitForSelector('#ask[open] #ask-input');
+      await page.$eval('#ask-input', (input) => { input.value = 'Empty list 441'; });
+      await click(page, '#ask-ok');
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.waitForFunction(() => !document.querySelector('#ask').open);
+      const created = await readState(page);
+      const listId = created.active;
+      t.check('creation selects a new empty list while preserving the earlier list',
+        listId !== original.active
+        && created.listOrder.length === 2
+        && created.lists[listId].name === 'Empty list 441'
+        && created.lists[listId].itemIds.length === 0
+        && JSON.stringify(created.lists[original.active]) === JSON.stringify(original.lists[original.active]));
+
+      const readingStatus = () => page.evaluate(() => ({
+        empty: document.querySelector('#reading-empty')?.hidden === false,
+        emptyHeading: document.querySelector('#reading-empty-h')?.textContent,
+        completed: document.querySelector('#all-read').hidden === false,
+        hero: document.querySelector('#hero').hidden === false,
+        ring: document.querySelector('#ring-sub').textContent,
+        count: document.querySelector('#full-count').textContent,
+        focused: document.activeElement?.id,
+      }));
+      const initial = await readingStatus();
+      t.check('a fresh empty list has honest copy, no completion, and a focused Reading heading',
+        initial.empty && initial.emptyHeading === 'No issues yet'
+        && !initial.completed && !initial.hero
+        && initial.ring === 'Nothing in this list' && initial.count === 'No issues yet'
+        && initial.focused === 'order-name', JSON.stringify(initial));
+
+      await click(page, '.brand[data-view="home"]');
+      const homeEmpty = await page.evaluate(() => ({
+        visible: !document.querySelector('#home-continue').hidden,
+        next: document.querySelector('#chero-next').textContent,
+        count: document.querySelector('#chero-count').textContent,
+        readHidden: document.querySelector('#btn-chero-read').hidden,
+      }));
+      t.check('Home keeps the saved empty list visible without saying it is read',
+        homeEmpty.visible
+        && homeEmpty.next === 'No issues in this Reading List yet. Open it to add comics.'
+        && homeEmpty.count === '0 of 0 issues read' && homeEmpty.readHidden, JSON.stringify(homeEmpty));
+      await click(page, '#btn-chero-open');
+      await page.reload({ waitUntil: 'load' });
+      const unchanged = await readState(page);
+      t.check('rendering, Home navigation and reload do not add issues or mark progress',
+        unchanged.active === listId && (await readingStatus()).empty
+        && JSON.stringify(unchanged.lists) === JSON.stringify(created.lists)
+        && JSON.stringify(unchanged.read) === JSON.stringify(created.read));
+
+      await page.focus('#btn-empty-add');
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-add:not([hidden])');
+      t.check('the empty-state action opens the existing Add comics hub with heading focus',
+        await page.$eval('#add-h', (heading) => heading === document.activeElement)
+        && (await readState(page)).active === listId);
+      await click(page, '#view-add [data-view="add-manual"]');
+      const destination = await page.$eval('#view-add-manual .add-target', (node) => node.textContent);
+      t.check('the existing add form names the intended saved list', destination.includes('Empty list 441'), destination);
+      await addByHand(page, 'First manual issue 441', '');
+      await addByHand(page, 'Second manual issue 441', '');
+      const added = await readState(page);
+      const ids = added.lists[listId].itemIds;
+      t.check('explicit adds fill only the intended list and leave both comics unread',
+        ids.length === 2
+        && added.issues[ids[0]].title === 'First manual issue 441'
+        && added.issues[ids[1]].title === 'Second manual issue 441'
+        && added.listOrder.length === 2
+        && JSON.stringify(added.lists[original.active]) === JSON.stringify(original.lists[original.active])
+        && JSON.stringify(added.read) === JSON.stringify(created.read));
+
+      await page.goBack();
+      await page.waitForSelector('#view-add:not([hidden])');
+      await page.goBack();
+      await page.waitForSelector('#view-read:not([hidden])');
+      const returned = await readingStatus();
+      t.check('Back returns to the same list and its Reading heading after adding',
+        returned.focused === 'order-name' && returned.hero && !returned.empty && !returned.completed
+        && (await readState(page)).active === listId, JSON.stringify(returned));
+
+      await click(page, '#btn-hero-done');
+      const partial = await readingStatus();
+      t.check('partial progress keeps a next issue and accurate counts',
+        partial.hero && !partial.empty && !partial.completed
+        && partial.ring === '1 of 2 read' && partial.count === '1 unread'
+        && await page.$eval('#hero-title', (node) => node.textContent === 'Second manual issue 441'),
+        JSON.stringify(partial));
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home partial progress retains its next-issue action',
+        await page.$eval('#chero-count', (node) => node.textContent === '1 of 2 issues read')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'Next: Second manual issue 441')
+        && await page.$eval('#btn-chero-read', (node) => !node.hidden));
+      await click(page, '#btn-chero-open');
+      await click(page, '#btn-hero-done');
+      const completed = await readingStatus();
+      t.check('a nonempty completed list retains completion copy, counts and heading focus',
+        completed.completed && !completed.empty && !completed.hero
+        && completed.ring === 'All read' && completed.count === 'All read'
+        && completed.focused === 'all-read-h'
+        && await page.$eval('#all-read-h', (node) => node.textContent === 'That is the whole order, read.'),
+        JSON.stringify(completed));
+      const completedState = await readState(page);
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home completion remains accurate for a nonempty list',
+        await page.$eval('#chero-count', (node) => node.textContent === '2 of 2 issues read')
+        && await page.$eval('#chero-next', (node) => node.textContent === 'You have read every issue in this order.')
+        && await page.$eval('#btn-chero-read', (node) => node.hidden));
+      await click(page, '#btn-chero-open');
+      await openFullOrder(page);
+      for (const id of ids) {
+        const selector = `#rows button[data-act="remove"][data-key="${id}"]`;
+        await page.focus(selector);
+        await click(page, selector);
+      }
+      const removed = await readingStatus();
+      t.check('removing the final issue restores the same empty state',
+        removed.empty && !removed.completed && !removed.hero
+        && removed.count === 'No issues yet' && removed.ring === 'Nothing in this list',
+        JSON.stringify(removed));
+      await click(page, '.brand[data-view="home"]');
+      t.check('Home also returns to empty wording after last removal',
+        await page.$eval('#chero-next', (node) => node.textContent === 'No issues in this Reading List yet. Open it to add comics.')
+        && await page.$eval('#chero-count', (node) => node.textContent === '0 of 0 issues read'));
+      const final = await readState(page);
+      t.check('removal and subsequent rendering preserve saved lists and global read history',
+        final.active === listId && final.listOrder.length === 2 && final.lists[listId].itemIds.length === 0
+        && JSON.stringify(final.read) === JSON.stringify(completedState.read)
+        && JSON.stringify(final.lists[original.active]) === JSON.stringify(original.lists[original.active]));
     },
   },
   {
@@ -7970,6 +9407,196 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'reading-path-stop-actions',
+    title: 'Reading Paths stops reuse preview, saved lists and visible return focus',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluateOnNewDocument(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      });
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      const first = '[data-reading-path-action="browser-check"]';
+      const last = '[data-reading-path-action="browser-check-three-short"]';
+      await open(page, '/?catalog=reading-path-stop-actions#/reading-paths?path=bc-path');
+      await page.waitForSelector(last);
+      const before = await readState(page);
+      await page.focus(first);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] .preview-issue-link');
+      const single = await page.evaluate(() => ({
+        title: document.querySelector('#preview-h').textContent,
+        choices: document.querySelectorAll('#preview-paths input').length,
+        meta: document.querySelector('#preview-meta').textContent,
+        source: document.querySelector('#preview-source').textContent,
+        href: document.querySelector('#preview-source a')?.href,
+      }));
+      t.check('an unowned single stop opens preview with its source and missing-link disclosure',
+        single.title === 'Browser Check Order' && single.choices === 0
+        && single.meta.includes('1 issue has no Marvel Unlimited link')
+        && single.source.includes('Fixture section')
+        && single.href === 'https://example.com/shared-page', JSON.stringify(single));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction((selector) => !document.querySelector('#preview').open
+        && document.activeElement === document.querySelector(selector), {}, first);
+
+      await page.focus(last);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#preview[open] input[data-key="browser-check-three-main"]');
+      await click(page, '#preview input[data-key="browser-check-three-main"]');
+      const complete = await page.$eval('#preview-meta', (node) => node.textContent);
+      const completeSource = await page.$eval('#preview-source', (node) => node.textContent);
+      await click(page, '#preview input[data-key="browser-check-three-short"]');
+      const short = await page.evaluate(() => ({
+        meta: document.querySelector('#preview-meta').textContent,
+        source: document.querySelector('#preview-source').textContent,
+        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        add: document.querySelector('#preview-add button')?.dataset.key,
+      }));
+      t.check('grouped stops retain both reading choices and choice-specific gap metadata',
+        complete.includes('2 issues have no details')
+        && short.meta.includes('1 issue has no Marvel Unlimited link')
+        && completeSource.includes('Complete fixture source')
+        && short.source.includes('Essential fixture source')
+        && short.selected === 'browser-check-three-short' && short.add === short.selected,
+        JSON.stringify({ complete, short }));
+      const shortIssue = '#preview[open] .preview-issue-link[data-context-id="browser-check-three-short"]';
+      await page.waitForSelector(shortIssue, { visible: true, timeout: 15000 });
+      await page.focus(shortIssue);
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      await page.evaluate(() => history.back());
+      await page.waitForFunction(() => document.querySelector('#preview').open
+        && document.activeElement?.classList.contains('preview-issue-link'));
+      const returned = await page.evaluate(() => ({
+        path: document.querySelector('#reading-path-select').value,
+        choices: document.querySelectorAll('#preview-paths input').length,
+        selected: document.querySelector('#preview input:checked')?.dataset.key,
+        meta: document.querySelector('#preview-meta').textContent,
+      }));
+      t.check('Back from preview issue details restores the path, chooser and selected reading',
+        returned.path === 'bc-path' && returned.choices === 2
+        && returned.selected === 'browser-check-three-short'
+        && returned.meta.includes('1 issue has no Marvel Unlimited link'), JSON.stringify(returned));
+      await page.keyboard.press('Escape');
+      await page.waitForFunction((selector) => !document.querySelector('#preview').open
+        && document.activeElement === document.querySelector(selector), {}, last);
+      t.check('inspection and reading-option changes neither import nor mark anything read',
+        JSON.stringify(await readState(page)) === JSON.stringify(before));
+
+      const library = fixtureReadingState();
+      const saved = library.lists.fixture;
+      library.lists = {
+        sibling: { ...saved, id: 'sibling', name: 'Saved complete version', catalogId: 'browser-check-three-main' },
+        exact: { ...saved, id: 'exact', name: 'Saved short version', catalogId: 'browser-check-three-short' },
+      };
+      library.listOrder = ['sibling', 'exact'];
+      library.active = 'sibling';
+      library.read = { [saved.itemIds[0]]: 1 };
+      library.notes = { [saved.itemIds[1]]: 'Keep this saved issue note' };
+      library.overrides = { [saved.itemIds[2]]: 'unavailable' };
+      const adopt = async (state) => page.evaluate((next) => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const newValue = JSON.stringify(next);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage, url: location.href,
+        }));
+      }, state);
+      await page.evaluate((selector) => { window.__stopAction438 = document.querySelector(selector); }, last);
+      await adopt(library);
+      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved list', {}, last);
+      t.check('a foreign progress refresh keeps the focused stop control instead of replacing it',
+        await page.evaluate(() => document.activeElement === window.__stopAction438));
+      const beforeRefusedSelection = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => {
+        window.__setItem438 = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (key === 'mrt.state.v2') throw new DOMException('Fixture storage refusal', 'QuotaExceededError');
+          return window.__setItem438.call(this, key, value);
+        };
+      });
+      await page.keyboard.press('Enter');
+      t.check('a refused saved-list selection stays on the path and surfaces the failure without changing storage',
+        await page.evaluate((raw) => location.hash === '#/reading-paths?path=bc-path'
+          && localStorage.getItem('mrt.state.v2') === raw
+          && document.querySelector('#reading-paths-report').textContent.includes('could not be opened'), beforeRefusedSelection));
+      await page.evaluate(() => { Storage.prototype.setItem = window.__setItem438; });
+      await page.focus(last);
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash.startsWith('#/read/exact'));
+      const exact = await readState(page);
+      const exactView = await page.evaluate(() => ({
+        visible: !document.querySelector('#view-read').hidden,
+        name: document.querySelector('#order-name').textContent,
+        next: document.querySelector('#hero-title').textContent,
+        context: document.querySelector('#btn-hero-inspect').dataset.contextId,
+        issue: document.querySelector('#btn-hero-inspect').dataset.issueId,
+      }));
+      const beforeSelection = JSON.parse(beforeRefusedSelection);
+      t.check('an owned stop opens the exact saved list whose progress it shows',
+        exact.active === 'exact' && exactView.visible && exactView.name === 'Saved short version'
+        && exactView.context === 'exact' && exactView.issue === String(saved.itemIds[1])
+        && exactView.next === library.issues[saved.itemIds[1]].title
+        && ['lists', 'listOrder', 'issues', 'read', 'notes', 'overrides'].every((key) => (
+          JSON.stringify(exact[key]) === JSON.stringify(beforeSelection[key])
+        )), JSON.stringify(exactView));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction((selector) => location.hash === '#/reading-paths?path=bc-path'
+        && document.activeElement === document.querySelector(selector), {}, last);
+      const visible = await page.$eval(last, (node) => {
+        const rect = node.getBoundingClientRect();
+        return { top: rect.top, bottom: rect.bottom, height: innerHeight, scroll: scrollY };
+      });
+      t.check('Back brings a far-down original stop fully into view without a stored scroll position',
+        visible.top >= 0 && visible.bottom <= visible.height && visible.scroll > 0, JSON.stringify(visible));
+      delete library.lists.exact;
+      library.listOrder = ['sibling'];
+      await adopt(library);
+      await page.waitForFunction((selector) => document.querySelector(selector)?.textContent === 'Open saved version', {}, last);
+      const sibling = await page.$eval(last, (node) => ({
+        name: node.getAttribute('aria-label'),
+        progress: node.closest('li').querySelector('.reading-path-stop-progress').textContent,
+      }));
+      t.check('alternate ownership names the saved version without implying the exact stop was added',
+        sibling.name.includes('Saved complete version')
+        && sibling.progress.includes('Alternate reading version.'), JSON.stringify(sibling));
+      await page.keyboard.press('Enter');
+      await page.waitForFunction(() => location.hash.startsWith('#/read/sibling'));
+      const after = await readState(page);
+      t.check('opening a saved sibling preserves lists, read markers, notes and availability overrides',
+        ['lists', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(after[key]) === JSON.stringify(library[key])));
+      await page.evaluate(() => history.back());
+      await page.waitForFunction((selector) => document.activeElement === document.querySelector(selector), {}, last);
+
+      for (const theme of ['dark', 'light']) {
+        await page.setViewport({ width: 320, height: 900 });
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+        await page.focus(last);
+        const layout = await page.$$eval('[data-reading-path-action]', (buttons) => ({
+          viewport: innerWidth, width: document.documentElement.scrollWidth,
+          buttons: buttons.map((button) => {
+            const rect = button.getBoundingClientRect();
+            const style = getComputedStyle(button);
+            return {
+              left: rect.left, right: rect.right, height: rect.height,
+              fits: button.scrollWidth <= button.clientWidth,
+              text: button.textContent, name: button.getAttribute('aria-label'),
+              color: style.color, background: style.backgroundColor,
+            };
+          }),
+        }));
+        t.check(`${theme} narrow stop actions wrap without overflow and retain labelled 44px targets`,
+          layout.width === layout.viewport && layout.buttons.length === 12
+          && layout.buttons.every((button) => button.left >= 0 && button.right <= layout.viewport
+            && button.height >= 44 && button.fits && button.name.includes(button.text)
+            && button.color !== button.background), JSON.stringify(layout));
+      }
+      t.check('stop journeys produce no page errors or reader-tab launches',
+        errors.length === 0 && await page.evaluate(() => window.__opened.length === 0), errors.join(' / '));
+    },
+  },
+  {
     id: 'reading-paths',
     title: 'one reading-path view preserves route, progress, overlap and focus',
     async run(page, t) {
@@ -8099,7 +9726,7 @@ const SCENARIOS = [
         (node) => node.textContent.trim(),
       );
       t.check('the first imported sibling in catalog order supplies fallback progress and its name',
-        fallback === '2 of 4 issues read in Fallback complete import. Reading.',
+        fallback === '2 of 4 issues read in Fallback complete import. Reading. Alternate reading version.',
         fallback);
 
       await page.keyboard.press('ArrowDown');
@@ -8328,10 +9955,76 @@ const SCENARIOS = [
         narrow.width === 320 && narrow.overflow <= 1, JSON.stringify(narrow));
 
       await page.setViewport({ width: 1280, height: 900 });
+      const settleLayout = () => page.evaluate(() => new Promise((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(resolve));
+      }));
+      const captureZoomState = () => page.evaluate(() => {
+        const button = document.querySelector('.ri[data-view="library"]');
+        const panel = document.querySelector('#sidebar-panel');
+        const rect = button ? button.getBoundingClientRect() : null;
+        const viewport = visualViewport;
+        return {
+          scale: viewport?.scale ?? null,
+          innerWidth,
+          narrow: matchMedia('(max-width: 880px)').matches,
+          panelHidden: panel ? panel.hidden : null,
+          activeElement: document.activeElement
+            ? {
+              tag: document.activeElement.tagName,
+              id: document.activeElement.id || null,
+              className: document.activeElement.className || null,
+            }
+            : null,
+          targetRect: rect
+            ? {
+              left: rect.left,
+              top: rect.top,
+              right: rect.right,
+              bottom: rect.bottom,
+              width: rect.width,
+              height: rect.height,
+            }
+            : null,
+          viewportBounds: viewport
+            ? {
+              left: viewport.offsetLeft,
+              top: viewport.offsetTop,
+              right: viewport.offsetLeft + viewport.width,
+              bottom: viewport.offsetTop + viewport.height,
+              width: viewport.width,
+              height: viewport.height,
+            }
+            : null,
+          overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+        };
+      });
+      const waitForStage = async (stage, wait) => {
+        try {
+          await wait();
+        } catch (error) {
+          const state = await captureZoomState().catch((stateError) => ({
+            captureError: stateError?.message ?? String(stateError),
+          }));
+          console.error(`[spacing-scale timeout stage=${stage}] ${JSON.stringify(state)}`);
+          throw error;
+        }
+      };
+      await settleLayout();
+      await waitForStage('desktop-readiness', () => page.waitForFunction(() => {
+        const isNarrow = matchMedia('(max-width: 880px)').matches;
+        const panel = document.querySelector('#sidebar-panel');
+        const button = document.querySelector('.ri[data-view="library"]');
+        if (isNarrow || !panel || panel.hidden || !button) {
+          return false;
+        }
+        const rect = button.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+      }));
+      await settleLayout();
       await page.evaluate(() => scrollTo(0, 0));
       const client = await page.createCDPSession();
       await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
-      await page.waitForFunction(() => visualViewport.scale === 2);
+      await waitForStage('zoom-scale', () => page.waitForFunction(() => visualViewport.scale === 2));
       await page.$eval('.ri[data-view="library"]', (button) => {
         button.focus();
         button.scrollIntoView({ block: 'nearest', inline: 'nearest' });
@@ -8346,11 +10039,11 @@ const SCENARIOS = [
           && rect.right - right <= 1
           && document.documentElement.scrollWidth - document.documentElement.clientWidth <= 1;
       };
-      await page.waitForFunction(controlIsContained);
+      await waitForStage('containment-first', () => page.waitForFunction(controlIsContained));
       await page.evaluate(() => new Promise((resolve) => {
         requestAnimationFrame(() => requestAnimationFrame(resolve));
       }));
-      await page.waitForFunction(controlIsContained);
+      await waitForStage('containment-second', () => page.waitForFunction(controlIsContained));
       const zoomed = await page.$eval('.ri[data-view="library"]', (button) => {
         const rect = button.getBoundingClientRect();
         const left = visualViewport.offsetLeft;
@@ -8602,6 +10295,757 @@ const SCENARIOS = [
     },
   },
   {
+    id: 'narrow-content',
+    title: 'narrow navigation keeps one compact header and moves reading content earlier',
+    async run(page, t) {
+      const baseline = {
+        880: { heading: 533.1875, actionTop: 981.703125 },
+        620: { heading: 529.1875, actionTop: 1238.703125 },
+        320: { heading: 529.1875, actionTop: 1531.0625 },
+      };
+      const measureReading = () => page.evaluate(() => {
+        const sidebar = document.querySelector('#sidebar');
+        const panel = document.querySelector('#sidebar-panel');
+        const main = document.querySelector('#main');
+        const heading = document.querySelector('#order-name');
+        const action = document.querySelector('#btn-hero-read');
+        const keyboardTargets = [...panel.querySelectorAll(
+          'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        )].filter((node) => !node.disabled && node.getClientRects().length > 0);
+        const headingRect = heading?.getBoundingClientRect();
+        const actionRect = action?.getBoundingClientRect();
+        return {
+          headerHeight: sidebar?.getBoundingClientRect().height ?? 0,
+          mainTop: main?.getBoundingClientRect().top ?? 0,
+          headingTop: headingRect?.top ?? null,
+          actionTop: actionRect?.top ?? null,
+          actionBottom: actionRect?.bottom ?? null,
+          panelHidden: panel?.hidden ?? null,
+          keyboardTargets: keyboardTargets.length,
+          overflow: document.documentElement.scrollWidth - innerWidth,
+        };
+      });
+      const measureHeading = () => page.evaluate(() => {
+        const visible = document.querySelector('.view:not([hidden])');
+        const heading = visible?.querySelector('h1');
+        return {
+          headerHeight: document.querySelector('#sidebar')?.getBoundingClientRect().height ?? 0,
+          headingTop: heading?.getBoundingClientRect().top ?? null,
+          visibleId: visible?.id ?? null,
+        };
+      });
+
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await page.waitForSelector('#btn-hero-read', { timeout: 15000 });
+      for (const width of [880, 620, 320]) {
+        await page.setViewport({ width, height: 900 });
+        await page.waitForFunction((want) => innerWidth === want, { timeout: 15000 }, width);
+        await page.waitForFunction(
+          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+          { timeout: 15000 },
+        );
+        const sample = await measureReading();
+        const movedHeading = baseline[width].heading - sample.headingTop;
+        const movedAction = baseline[width].actionTop - sample.actionTop;
+        t.check(`the ${width}px closed header stays compact and keeps content flow`,
+          sample.headerHeight <= 80
+          && sample.mainTop <= sample.headerHeight + 1
+          && sample.panelHidden === true
+          && sample.keyboardTargets === 0
+          && sample.overflow <= 1,
+          JSON.stringify(sample));
+        t.check(`the ${width}px reading heading and action move upward by at least 350px`,
+          movedHeading >= 350
+          && movedAction >= 350,
+          JSON.stringify({ movedHeading, movedAction, sample }));
+        if (width !== 320) {
+          t.check(`the ${width}px first reading action is above the first viewport fold`,
+            (sample.actionBottom ?? 9999) <= 900,
+            JSON.stringify(sample));
+        }
+      }
+
+      await page.$eval('#btn-hero-read', (button) => button.scrollIntoView({ block: 'center' }));
+      const narrowAction = await page.$eval('#btn-hero-read', (button) => {
+        const rect = button.getBoundingClientRect();
+        const headerBottom = document.querySelector('#sidebar').getBoundingClientRect().bottom;
+        return {
+          top: rect.top,
+          bottom: rect.bottom,
+          headerBottom,
+          visible: rect.bottom > 0 && rect.top < innerHeight,
+        };
+      });
+      t.check('at 320px the reading action stays scroll-reachable and unobscured',
+        narrowAction.visible && narrowAction.top >= narrowAction.headerBottom,
+        JSON.stringify(narrowAction));
+
+      await seedFixtureState(page, { sidebarCollapsed: false, openRead: true });
+      await page.setViewport({ width: 880, height: 900 });
+      await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
+      await page.waitForFunction(
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        { timeout: 15000 },
+      );
+      const savedExpanded = await measureReading();
+      t.check('saved desktop-expanded preference still boots narrow closed with a compact header',
+        savedExpanded.headerHeight <= 80
+        && savedExpanded.panelHidden === true
+        && savedExpanded.keyboardTargets === 0,
+        JSON.stringify(savedExpanded));
+
+      await page.evaluate(() => {
+        localStorage.removeItem('mrt.state.v2');
+        localStorage.removeItem('mrt.settings');
+        localStorage.removeItem('sidebar.collapsed');
+      });
+      await page.reload({ waitUntil: 'load' });
+      await page.setViewport({ width: 880, height: 900 });
+      await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
+      await page.waitForFunction(
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation',
+        { timeout: 15000 },
+      );
+      const emptyHome = await measureHeading();
+      t.check('empty Home keeps the compact header and an early heading',
+        emptyHome.visibleId === 'view-home'
+        && emptyHome.headerHeight <= 80
+        && (emptyHome.headingTop ?? 9999) <= 160,
+        JSON.stringify(emptyHome));
+
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
+      await click(page, '.brand[data-view="home"]');
+      const savedHome = await measureHeading();
+      t.check('saved Home keeps the compact header and an early heading',
+        savedHome.visibleId === 'view-home'
+        && savedHome.headerHeight <= 80
+        && (savedHome.headingTop ?? 9999) <= 160,
+        JSON.stringify(savedHome));
+
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel .ri[data-view="library"]');
+      const library = await measureHeading();
+      t.check('Library keeps the compact header and an early heading',
+        library.visibleId === 'view-library'
+        && library.headerHeight <= 80
+        && (library.headingTop ?? 9999) <= 160,
+        JSON.stringify(library));
+
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#sidebar-panel #list-nav .ri');
+      await click(page, '#btn-hero-inspect');
+      await page.waitForSelector('#view-issue:not([hidden])', { timeout: 15000 });
+      const issue = await measureHeading();
+      t.check('Issue detail keeps the compact header and an early heading',
+        issue.visibleId === 'view-issue'
+        && issue.headerHeight <= 80
+        && (issue.headingTop ?? 9999) <= 160,
+        JSON.stringify(issue));
+    },
+  },
+  {
+    id: 'narrow-navigation',
+    title: 'narrow navigation keeps labels visible, focus safe, and route compatible',
+    async run(page, t) {
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: false });
+      await page.setViewport({ width: 880, height: 900 });
+      await page.waitForFunction(() => innerWidth === 880, { timeout: 15000 });
+      await page.waitForFunction(
+        () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-label') === 'Navigation'
+          && document.querySelector('#sidebar-panel')?.hidden === true,
+        { timeout: 15000 },
+      );
+      const openNavigation = async () => {
+        await page.$eval('#btn-rail-toggle', (button) => button.focus());
+        const expanded = await page.$eval('#btn-rail-toggle', (button) => button.getAttribute('aria-expanded'));
+        if (expanded !== 'true') await page.keyboard.press('Space');
+        await page.waitForFunction(
+          () => document.querySelector('#btn-rail-toggle')?.getAttribute('aria-expanded') === 'true'
+            && document.querySelector('#sidebar-panel')?.hidden === false,
+          { timeout: 15000 },
+        );
+      };
+      const tabToSelector = async (selector, maxTabs = 16) => {
+        for (let index = 0; index < maxTabs; index += 1) {
+          const match = await page.evaluate((target) => {
+            const active = document.activeElement;
+            return Boolean(active && active.matches?.(target) && active.getClientRects().length > 0);
+          }, selector);
+          if (match) return true;
+          await page.keyboard.press('Tab');
+        }
+        return false;
+      };
+      const activateByKeyboard = async (selector, viewId) => {
+        await openNavigation();
+        const reached = await tabToSelector(selector);
+        if (!reached) return { reached: false };
+        await page.keyboard.press('Enter');
+        await page.waitForSelector(`#${viewId}:not([hidden])`, { timeout: 15000 });
+        return page.evaluate(() => ({
+          hidden: document.querySelector('#sidebar-panel')?.hidden ?? null,
+          focusVisible: document.activeElement?.getClientRects().length > 0,
+          openedCount: (window.__opened ?? []).length,
+        }));
+      };
+
+      await openNavigation();
+      const opened = await page.evaluate(() => {
+        const button = document.querySelector('#btn-rail-toggle');
+        const panel = document.querySelector('#sidebar-panel');
+        const viewport = {
+          left: visualViewport?.offsetLeft ?? 0,
+          right: (visualViewport?.offsetLeft ?? 0) + (visualViewport?.width ?? innerWidth),
+          top: visualViewport?.offsetTop ?? 0,
+          bottom: (visualViewport?.offsetTop ?? 0) + (visualViewport?.height ?? innerHeight),
+        };
+        const required = ['Continue reading', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app'];
+        const controls = ['.brand[data-view="home"]', '#sidebar-panel #list-nav .ri', '#sidebar-panel .ri[data-view="library"]', '#sidebar-panel .ri[data-view="browse"]', '#sidebar-panel .ri[data-view="add"]', '#sidebar-panel .ri[data-view="data"]', '#sidebar-panel .ri[data-view="about"]']
+          .map((selector) => panel.querySelector(selector))
+          .filter(Boolean)
+          .map((node) => {
+            const rect = node.getBoundingClientRect();
+            const style = getComputedStyle(node);
+            return {
+              text: node.textContent.replace(/\s+/g, ' ').trim(),
+              rendered: rect.width > 0 && rect.height > 0,
+              painted: style.visibility !== 'hidden' && style.display !== 'none' && Number(style.opacity) > 0,
+              clipped: rect.left < viewport.left || rect.right > viewport.right + 1 || rect.top < viewport.top || rect.bottom > viewport.bottom + 1,
+            };
+          });
+        return {
+          ariaLabel: button.getAttribute('aria-label'),
+          controlsId: button.getAttribute('aria-controls'),
+          expanded: button.getAttribute('aria-expanded'),
+          focused: document.activeElement?.id,
+          panelHidden: panel.hidden,
+          labelsPresent: required.every((label) => controls.some((control) => control.text.includes(label))),
+          labelsReady: controls.every((control) => control.rendered && control.painted && !control.clipped),
+          controls,
+        };
+      });
+      t.check('Space opens Navigation with the expected control relationship and keeps focus on the toggle',
+        opened.ariaLabel === 'Navigation'
+        && opened.controlsId === 'sidebar-panel'
+        && opened.expanded === 'true'
+        && opened.focused === 'btn-rail-toggle'
+        && opened.panelHidden === false
+        && opened.labelsPresent
+        && opened.labelsReady,
+        JSON.stringify(opened));
+
+      await page.$eval('#btn-rail-toggle', (button) => button.focus());
+      const brandReached = await tabToSelector('.brand[data-view="home"]');
+      await page.keyboard.press('Escape');
+      const escapedFromHeader = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel')?.hidden ?? null,
+        focus: document.activeElement?.id ?? null,
+      }));
+      t.check('Escape from a focused header brand closes Navigation and rescues focus to the toggle',
+        brandReached && escapedFromHeader.hidden && escapedFromHeader.focus === 'btn-rail-toggle',
+        JSON.stringify({ brandReached, escapedFromHeader }));
+
+      await openNavigation();
+      await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
+      await page.keyboard.press('Escape');
+      const escaped = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        focus: document.activeElement?.id,
+      }));
+      t.check('Escape from a focused panel button closes Navigation and rescues focus to the toggle',
+        escaped.hidden && escaped.focus === 'btn-rail-toggle',
+        JSON.stringify(escaped));
+
+      await openNavigation();
+      await page.$eval('#sidebar-panel .ri[data-view="browse"]', (button) => button.focus());
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      const ctrlClose = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        focus: document.activeElement?.id,
+      }));
+      t.check('Ctrl+\\ from a panel descendant closes Navigation and rescues focus', ctrlClose.hidden && ctrlClose.focus === 'btn-rail-toggle', JSON.stringify(ctrlClose));
+
+      await activateByKeyboard('#sidebar-panel .ri[data-view="add"]', 'view-add');
+      await page.$eval('#view-add [data-view="add-manual"]', (button) => button.focus());
+      await page.keyboard.press('Enter');
+      await page.waitForSelector('#manual-title', { timeout: 15000 });
+      await page.$eval('#manual-title', (input) => input.focus());
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      const textFieldShortcut = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        active: document.activeElement?.id ?? null,
+      }));
+      t.check('Ctrl+\\ from a text field toggles Navigation without stealing text-field focus',
+        textFieldShortcut.hidden === false && textFieldShortcut.active === 'manual-title',
+        JSON.stringify(textFieldShortcut));
+      await activateByKeyboard('#sidebar-panel #list-nav .ri', 'view-read');
+      await page.$eval('#btn-rail-toggle', (button) => button.focus());
+      await page.keyboard.press('Space');
+      await page.$eval('#sidebar-panel .ri[data-view="library"]', (button) => button.focus());
+      await page.keyboard.press('d');
+      const passive = await page.evaluate(() => ({
+        hidden: document.querySelector('#sidebar-panel').hidden,
+        focusInside: document.querySelector('#sidebar-panel').contains(document.activeElement),
+      }));
+      t.check('a passive reading repaint keeps narrow Navigation open and focus available',
+        passive.hidden === false && passive.focusInside,
+        JSON.stringify(passive));
+      const journeyOpenedBaseline = await page.evaluate(() => (window.__opened ?? []).length);
+
+      for (const [selector, viewId] of [
+        ['.brand[data-view="home"]', 'view-home'],
+        ['#sidebar-panel #list-nav .ri', 'view-read'],
+        ['#sidebar-panel .ri[data-view="library"]', 'view-library'],
+        ['#sidebar-panel .ri[data-view="browse"]', 'view-browse'],
+        ['#sidebar-panel .ri[data-view="add"]', 'view-add'],
+        ['#sidebar-panel .ri[data-view="data"]', 'view-data'],
+        ['#sidebar-panel .ri[data-view="about"]', 'view-about'],
+      ]) {
+        const routed = await activateByKeyboard(selector, viewId);
+        t.check(`routing to ${viewId} closes narrow Navigation and leaves visible focus`,
+          routed.hidden && routed.focusVisible && routed.openedCount === journeyOpenedBaseline,
+          JSON.stringify({ routed, journeyOpenedBaseline }));
+      }
+      await openNavigation();
+      const reachedFinalControl = await tabToSelector('#sidebar-panel .ri[data-view="about"]');
+      await page.keyboard.press('Tab');
+      const tabExitAfter = await page.evaluate(() => ({
+        afterOpened: (window.__opened ?? []).length,
+        onMain: document.querySelector('#main')?.contains(document.activeElement) ?? false,
+        active: document.activeElement?.id ?? document.activeElement?.className ?? document.activeElement?.tagName ?? null,
+      }));
+      t.check('navigation tab sequence exits into main content without opening the reader',
+        reachedFinalControl
+        && tabExitAfter.onMain
+        && tabExitAfter.afterOpened === journeyOpenedBaseline
+        && typeof tabExitAfter.active === 'string',
+        JSON.stringify({ reachedFinalControl, journeyOpenedBaseline, tabExitAfter }));
+
+      await activateByKeyboard('#sidebar-panel .ri[data-view="browse"]', 'view-browse');
+      await click(page, '#view-browse [data-category="timeline"]');
+      const timelineChild = await page.evaluate(() => ({
+        view: document.querySelector('.view:not([hidden])')?.id ?? null,
+        parentCurrent: Boolean(document.querySelector('.ri[data-view="browse"][aria-current="page"]')),
+        trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('Browse child keeps its parent selection and breadcrumb context',
+        timelineChild.parentCurrent && timelineChild.trail.includes('Browse'),
+        JSON.stringify(timelineChild));
+
+      await activateByKeyboard('#sidebar-panel .ri[data-view="add"]', 'view-add');
+      await click(page, '#view-add [data-view="add-series"]');
+      const addChild = await page.evaluate(() => ({
+        view: document.querySelector('.view:not([hidden])')?.id ?? null,
+        parentCurrent: Boolean(document.querySelector('.ri[data-view="add"][aria-current="page"]')),
+        trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('Add child keeps its parent selection and breadcrumb context',
+        addChild.parentCurrent && addChild.trail.includes('Add comics'),
+        JSON.stringify(addChild));
+
+      await activateByKeyboard('#sidebar-panel .ri[data-view="library"]', 'view-library');
+      await click(page, '#view-library [data-view="progress"]');
+      const hierarchy = await page.evaluate(() => ({
+        view: document.querySelector('.view:not([hidden])')?.id ?? null,
+        parentCurrent: Boolean(document.querySelector('.ri[data-view="library"][aria-current="page"]')),
+        trail: [...document.querySelectorAll('.view:not([hidden]) .breadcrumb a, .view:not([hidden]) .breadcrumb [aria-current="page"]')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('hub children keep parent selection and breadcrumb hierarchy',
+        hierarchy.parentCurrent && hierarchy.trail.includes('Library'),
+        JSON.stringify(hierarchy));
+
+      await activateByKeyboard('#sidebar-panel #list-nav .ri', 'view-read');
+      await click(page, '#btn-hero-inspect');
+      await page.waitForSelector('#view-issue:not([hidden])');
+      const issueHash = await page.evaluate(() => location.hash);
+      await page.goBack({ waitUntil: 'load' });
+      await page.waitForSelector('#view-read:not([hidden])');
+      await page.goForward({ waitUntil: 'load' });
+      await page.waitForSelector('#view-issue:not([hidden])');
+      const afterHistory = await page.evaluate(() => ({
+        hash: location.hash,
+        breadcrumb: [...document.querySelectorAll('.breadcrumb a, .breadcrumb li > span')]
+          .map((node) => node.textContent.trim()),
+      }));
+      t.check('saved-list issue route survives Back and Forward with breadcrumb context',
+        issueHash === afterHistory.hash && afterHistory.breadcrumb.length >= 2,
+        JSON.stringify(afterHistory));
+
+      await openNavigation();
+      const beforeEscapeOutside = await page.evaluate(() => !document.querySelector('#sidebar-panel').hidden);
+      await page.$eval('#main', (main) => {
+        main.tabIndex = -1;
+        main.focus();
+      });
+      await page.keyboard.press('Escape');
+      const noGlobalEscape = await page.evaluate(() => !document.querySelector('#sidebar-panel').hidden);
+      t.check('Escape outside the sidebar does not become a global close command',
+        beforeEscapeOutside && noGlobalEscape,
+        JSON.stringify({ beforeEscapeOutside, noGlobalEscape }));
+
+      const toggleBefore = await page.evaluate(() => ({
+        hash: location.hash,
+        historyLength: history.length,
+        historyState: JSON.stringify(history.state ?? null),
+        read: JSON.parse(localStorage.getItem('mrt.state.v2'))?.read?.[900001] ?? null,
+      }));
+      await openNavigation();
+      await page.keyboard.press('Escape');
+      const after = await page.evaluate(() => ({
+        hash: location.hash,
+        historyLength: history.length,
+        historyState: JSON.stringify(history.state ?? null),
+        read: JSON.parse(localStorage.getItem('mrt.state.v2'))?.read?.[900001] ?? null,
+      }));
+      t.check('Navigation toggles do not change hash history state or reading progress',
+        toggleBefore.hash === after.hash
+        && toggleBefore.historyLength === after.historyLength
+        && toggleBefore.historyState === after.historyState
+        && toggleBefore.read === after.read,
+        JSON.stringify({ toggleBefore, after }));
+
+      await page.setViewport({ width: 620, height: 900 });
+      await page.evaluate(() => {
+        localStorage.setItem('mrt.settings', JSON.stringify({
+          ...JSON.parse(localStorage.getItem('mrt.settings') ?? '{}'),
+          theme: 'dark',
+          covers: false,
+        }));
+      });
+      await page.reload({ waitUntil: 'load' });
+      await activateByKeyboard('#sidebar-panel #list-nav .ri', 'view-read');
+      await openNavigation();
+      await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+      const darkReduced = await page.evaluate(() => ({
+        storedTheme: JSON.parse(localStorage.getItem('mrt.settings') ?? '{}')?.theme ?? null,
+        appliedTheme: document.documentElement.getAttribute('data-theme') ?? null,
+        colorScheme: getComputedStyle(document.documentElement).colorScheme,
+        reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        selectedCount: document.querySelectorAll('.ri[aria-current="page"]').length,
+        selectedBoundary: [...document.querySelectorAll('.ri[aria-current="page"]')].every((node) => {
+          const style = getComputedStyle(node);
+          return Number.parseFloat(style.borderTopWidth) > 0 || Number.parseFloat(style.outlineWidth) > 0;
+        }),
+        labelsVisible: [...document.querySelectorAll('#sidebar-panel .ri .lbl')].every((node) => {
+          const rect = node.getBoundingClientRect();
+          return rect.width > 0 && rect.height > 0;
+        }),
+        action: (() => {
+          const button = document.querySelector('#btn-hero-read');
+          if (!button) return null;
+          button.scrollIntoView({ block: 'center' });
+          const rect = button.getBoundingClientRect();
+          const sidebarBottom = document.querySelector('#sidebar')?.getBoundingClientRect().bottom ?? 0;
+          return {
+            top: rect.top,
+            bottom: rect.bottom,
+            visible: rect.bottom > 0 && rect.top < innerHeight,
+            unobscured: rect.top >= sidebarBottom,
+          };
+        })(),
+        animations: document.getAnimations().length,
+        durations: [...document.querySelectorAll('a, .card, .route')]
+          .flatMap((element) => {
+            const style = getComputedStyle(element);
+            return [style.animationDuration, style.transitionDuration];
+          })
+          .filter((duration) => duration !== '0s'),
+        apiLong: (() => {
+          const pill = document.querySelector('#api-status');
+          pill.className = 'pill pill-warn';
+          pill.textContent = 'API unreachable. Lists and progress still work';
+          const style = getComputedStyle(pill);
+          const rect = pill.getBoundingClientRect();
+          const textRange = document.createRange();
+          textRange.selectNodeContents(pill);
+          const textRects = [...textRange.getClientRects()];
+          const fitsRects = textRects.every((textRect) =>
+            textRect.left >= rect.left - 1
+            && textRect.right <= rect.right + 1
+            && textRect.top >= rect.top - 1
+            && textRect.bottom <= rect.bottom + 1);
+          const clippedByOverflow = (
+            ((style.overflowX === 'hidden' || style.overflowX === 'clip') && pill.scrollWidth > pill.clientWidth + 1)
+            || ((style.overflowY === 'hidden' || style.overflowY === 'clip') && pill.scrollHeight > pill.clientHeight + 1)
+          );
+          const clippedByEllipsis = style.textOverflow === 'ellipsis' && pill.scrollWidth > pill.clientWidth + 1;
+          return {
+            text: pill.textContent.trim(),
+            visible: rect.height > 0 && rect.width > 0,
+            painted: style.visibility !== 'hidden' && style.display !== 'none' && Number(style.opacity) > 0,
+            fit: fitsRects && pill.scrollWidth <= pill.clientWidth + 1 && pill.scrollHeight <= pill.clientHeight + 1,
+            clipped: clippedByOverflow || clippedByEllipsis,
+          };
+        })(),
+        queueVisible: (() => {
+          const queue = document.querySelector('#queue-status');
+          queue.hidden = false;
+          queue.className = 'pill pill-muted';
+          queue.textContent = '12 requests queued';
+          const style = getComputedStyle(queue);
+          const rect = queue.getBoundingClientRect();
+          const textRange = document.createRange();
+          textRange.selectNodeContents(queue);
+          const textRects = [...textRange.getClientRects()];
+          const fitsRects = textRects.every((textRect) =>
+            textRect.left >= rect.left - 1
+            && textRect.right <= rect.right + 1
+            && textRect.top >= rect.top - 1
+            && textRect.bottom <= rect.bottom + 1);
+          const clippedByOverflow = (
+            ((style.overflowX === 'hidden' || style.overflowX === 'clip') && queue.scrollWidth > queue.clientWidth + 1)
+            || ((style.overflowY === 'hidden' || style.overflowY === 'clip') && queue.scrollHeight > queue.clientHeight + 1)
+          );
+          const clippedByEllipsis = style.textOverflow === 'ellipsis' && queue.scrollWidth > queue.clientWidth + 1;
+          return {
+            text: queue.textContent.trim(),
+            visible: rect.width > 0 && rect.height > 0,
+            painted: style.visibility !== 'hidden' && style.display !== 'none' && Number(style.opacity) > 0,
+            fit: fitsRects && queue.scrollWidth <= queue.clientWidth + 1 && queue.scrollHeight <= queue.clientHeight + 1,
+            clipped: clippedByOverflow || clippedByEllipsis,
+          };
+        })(),
+      }));
+      t.check('620 dark cover-off reduced-motion keeps labels readable and reading action reachable',
+        darkReduced.storedTheme === 'dark'
+        && darkReduced.appliedTheme === 'dark'
+        && darkReduced.colorScheme.includes('dark')
+        && darkReduced.reduced
+        && darkReduced.selectedCount > 0
+        && darkReduced.selectedBoundary
+        && darkReduced.labelsVisible
+        && darkReduced.action?.visible
+        && darkReduced.action?.unobscured
+        && darkReduced.animations === 0
+        && darkReduced.durations.length === 0
+        && darkReduced.apiLong.text === 'API unreachable. Lists and progress still work'
+        && darkReduced.apiLong.visible
+        && darkReduced.apiLong.painted
+        && darkReduced.apiLong.fit
+        && !darkReduced.apiLong.clipped
+        && darkReduced.queueVisible.text === '12 requests queued'
+        && darkReduced.queueVisible.visible
+        && darkReduced.queueVisible.painted
+        && darkReduced.queueVisible.fit
+        && !darkReduced.queueVisible.clipped,
+        JSON.stringify(darkReduced));
+      await page.emulateMediaFeatures([]);
+
+      await page.setViewport({ width: 320, height: 900 });
+      const client = await page.createCDPSession();
+      await client.send('Emulation.setEmulatedMedia', { features: [{ name: 'forced-colors', value: 'active' }] });
+      const forced = await page.evaluate(() => {
+        const focused = document.querySelector('#btn-rail-toggle');
+        focused.focus();
+        const style = getComputedStyle(focused);
+        const selected = document.querySelector('.ri[aria-current="page"]');
+        const selectedStyle = selected ? getComputedStyle(selected) : null;
+        return {
+          active: matchMedia('(forced-colors: active)').matches,
+          outlineWidth: Number.parseFloat(style.outlineWidth),
+          outlineColor: style.outlineColor,
+          selectedExists: Boolean(selected),
+          selectedBorderWidth: selectedStyle ? Number.parseFloat(selectedStyle.borderTopWidth) : 0,
+          selectedBorderColor: selectedStyle?.borderTopColor ?? null,
+        };
+      });
+      t.check('320 forced colors keeps focus and selection boundaries visible',
+        forced.active
+        && forced.outlineWidth > 0
+        && forced.outlineColor !== 'rgba(0, 0, 0, 0)'
+        && forced.selectedExists
+        && forced.selectedBorderWidth > 0
+        && forced.selectedBorderColor !== 'rgba(0, 0, 0, 0)',
+        JSON.stringify(forced));
+
+      await page.evaluate(() => {
+        const root = document.documentElement;
+        const names = ['--t-caption', '--t-body', '--t-subtitle', '--t-title', '--t-display', '--t-overline'];
+        const original = Object.fromEntries(names.map((name) => [name, getComputedStyle(root).getPropertyValue(name).trim()]));
+        for (const name of names) {
+          const value = Number.parseFloat(original[name]);
+          if (!Number.isFinite(value)) continue;
+          root.style.setProperty(name, `${value * 2}px`);
+        }
+      });
+      const doubled = await page.evaluate(() => {
+        const clipped = [...document.querySelectorAll('#sidebar *')]
+          .filter((node) => node.scrollWidth - node.clientWidth > 1)
+          .map((node) => node.className || node.id || node.tagName);
+        const header = document.querySelector('#sidebar').getBoundingClientRect().height;
+        const controls = [...document.querySelectorAll('#sidebar-panel .ri')]
+          .every((node) => node.getBoundingClientRect().height >= 44);
+        return { clipped, header, controls };
+      });
+      t.check('320 doubled UI text keeps narrow labels reachable without clipping',
+        doubled.clipped.length === 0 && doubled.controls && doubled.header >= 44,
+        JSON.stringify(doubled));
+      await page.evaluate(() => {
+        document.documentElement.removeAttribute('style');
+      });
+      await client.detach();
+    },
+  },
+  {
+    id: 'sidebar-transitions',
+    title: 'sidebar transitions keep desktop preference persistence and narrow state separate',
+    async run(page, t) {
+      const installWriteCounter = () => page.evaluate(() => {
+        const real = Storage.prototype.setItem;
+        window.__mrtSidebarWrites = [];
+        Storage.prototype.setItem = function setItem(key, value) {
+          if (key === 'sidebar.collapsed') window.__mrtSidebarWrites.push(String(value));
+          return real.call(this, key, value);
+        };
+      });
+      const sidebarState = () => page.evaluate(() => {
+        const panel = document.querySelector('#sidebar-panel');
+        const shell = document.querySelector('#shell');
+        return {
+          width: innerWidth,
+          panelHidden: panel.hidden,
+          expanded: document.querySelector('#btn-rail-toggle').getAttribute('aria-expanded'),
+          railedClass: shell.classList.contains('railed'),
+          stored: localStorage.getItem('sidebar.collapsed'),
+          writes: [...(window.__mrtSidebarWrites ?? [])],
+          focusInPanel: panel.contains(document.activeElement),
+          focusId: document.activeElement?.id ?? null,
+        };
+      });
+      const resizeTo = async (width, {
+        narrow = null, railed = null, panelHidden = null,
+      } = {}) => {
+        await page.setViewport({ width, height: 900 });
+        await page.evaluate(() => window.dispatchEvent(new Event('resize')));
+        await page.waitForFunction((want) => innerWidth === want, { timeout: 15000 }, width);
+        try {
+          await page.waitForFunction((wantNarrow, wantRailed, wantHidden) => {
+            const toggle = document.querySelector('#btn-rail-toggle');
+            const panel = document.querySelector('#sidebar-panel');
+            const shell = document.querySelector('#shell');
+            const isNarrowNow = toggle?.getAttribute('aria-label') === 'Navigation';
+            if (wantNarrow !== null && isNarrowNow !== wantNarrow) return false;
+            if (wantRailed !== null && shell?.classList.contains('railed') !== wantRailed) return false;
+            if (wantHidden !== null && panel?.hidden !== wantHidden) return false;
+            return true;
+          }, { timeout: 15000 }, narrow, railed, panelHidden);
+        } catch {
+          const seen = await sidebarState();
+          throw new Error(`resize ${width} expected narrow=${narrow} railed=${railed} hidden=${panelHidden} but saw ${JSON.stringify(seen)}`);
+        }
+      };
+
+      await seedFixtureState(page, { sidebarCollapsed: null, openRead: true });
+      await installWriteCounter();
+
+      await resizeTo(1280, { narrow: false, railed: false, panelHidden: false });
+      const absentWide = await sidebarState();
+      await resizeTo(950, { narrow: false, railed: true, panelHidden: false });
+      const absentCompact = await sidebarState();
+      await click(page, '#btn-rail-toggle');
+      await page.waitForFunction(() => document.querySelector('#shell')?.classList.contains('railed') === false, { timeout: 15000 });
+      const absentManual = await sidebarState();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await click(page, '#btn-rail-toggle');
+      await resizeTo(700, { narrow: true, panelHidden: false });
+      const absentNarrowStay = await sidebarState();
+      await click(page, '#btn-rail-toggle');
+      await resizeTo(950, { narrow: false, railed: false, panelHidden: false });
+      const absentReturn = await sidebarState();
+      t.check('absent preference defaults wide-expanded then compact at 950 and keeps deliberate desktop expansion across narrow',
+        absentWide.railedClass === false
+        && absentCompact.railedClass === true
+        && absentManual.stored === 'false'
+        && absentNarrowStay.panelHidden === false
+        && absentReturn.railedClass === false
+        && absentReturn.stored === 'false',
+        JSON.stringify({ absentWide, absentCompact, absentManual, absentNarrowStay, absentReturn }));
+
+      await seedFixtureState(page, { sidebarCollapsed: true, openRead: true });
+      await installWriteCounter();
+      await resizeTo(1280, { narrow: false, railed: true, panelHidden: false });
+      const savedTrueWide = await sidebarState();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await click(page, '#btn-rail-toggle');
+      await click(page, '#btn-rail-toggle');
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      await page.keyboard.down('Control');
+      await page.keyboard.press('\\');
+      await page.keyboard.up('Control');
+      const savedTrueBeforeReload = await sidebarState();
+      await resizeTo(1280, { narrow: false, railed: true, panelHidden: false });
+      await page.reload({ waitUntil: 'load' });
+      const savedTrueReload = await sidebarState();
+      t.check('stored true stays compact on desktop and never rewrites during narrow interaction',
+        savedTrueWide.railedClass === true
+        && savedTrueReload.railedClass === true
+        && savedTrueReload.stored === 'true'
+        && savedTrueBeforeReload.writes.length === 0,
+        JSON.stringify({ savedTrueWide, savedTrueBeforeReload, savedTrueReload }));
+
+      await page.setViewport({ width: 880, height: 900 });
+      await seedFixtureState(page, { sidebarCollapsed: false, openRead: true });
+      await installWriteCounter();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      const savedFalseNarrow = await sidebarState();
+      await resizeTo(950, { narrow: false, railed: false, panelHidden: false });
+      const savedFalse950 = await sidebarState();
+      await resizeTo(1000, { narrow: false, railed: false, panelHidden: false });
+      const savedFalse1000 = await sidebarState();
+      await resizeTo(1280, { narrow: false, railed: false, panelHidden: false });
+      await resizeTo(999, { narrow: false, railed: true, panelHidden: false });
+      const savedFalse999 = await sidebarState();
+      await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+      const savedFalse881 = await sidebarState();
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      await resizeTo(881, { narrow: false, railed: true, panelHidden: false });
+      await resizeTo(1280, { narrow: false, railed: false, panelHidden: false });
+      const savedFalseBeforeReload = await sidebarState();
+      await page.reload({ waitUntil: 'load' });
+      const savedFalseReload = await sidebarState();
+      t.check('stored false stays expanded on wide desktop, auto-compacts under 1000 without writes, and returns expanded after narrow',
+        savedFalseNarrow.panelHidden === true
+        && savedFalse950.railedClass === false
+        && savedFalse1000.railedClass === false
+        && savedFalse999.railedClass === true
+        && savedFalse881.railedClass === true
+        && savedFalseReload.railedClass === false
+        && savedFalseReload.stored === 'false'
+        && savedFalseBeforeReload.writes.length === 0,
+        JSON.stringify({
+          savedFalseNarrow,
+          savedFalse950,
+          savedFalse1000,
+          savedFalse999,
+          savedFalse881,
+          savedFalseBeforeReload,
+          savedFalseReload,
+        }));
+
+      await resizeTo(900, { narrow: false, railed: true, panelHidden: false });
+      await page.$eval('.ri[data-view="library"]', (button) => button.focus());
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      const focusRescue = await sidebarState();
+      await resizeTo(900, { narrow: false, railed: true, panelHidden: false });
+      await page.$eval('#btn-hero-read', (button) => button.focus());
+      await resizeTo(880, { narrow: true, panelHidden: true });
+      const noSteal = await sidebarState();
+      t.check('resize and close rescue focus only when sidebar content would become hidden',
+        focusRescue.focusId === 'btn-rail-toggle' && noSteal.focusId === 'btn-hero-read',
+        JSON.stringify({ focusRescue, noSteal }));
+    },
+  },
+  {
     id: 'pages-home-navigation',
     title: 'the project home stays informational, keyboard complete and narrow-safe',
     async run(page, t) {
@@ -8645,7 +11089,7 @@ const SCENARIOS = [
         await page.$eval('#demo', (section) => section.scrollIntoView({ block: 'start' }));
         await page.waitForFunction(() => (
           [...document.images].every((image) => (
-            image.complete && image.naturalWidth === 1280 && image.naturalHeight === 900
+            image.complete && image.naturalWidth === 960 && image.naturalHeight === 900
           ))
         ));
         const desktop = await page.evaluate(() => ({
@@ -8673,20 +11117,24 @@ const SCENARIOS = [
             complete: image.complete,
             width: image.naturalWidth,
             height: image.naturalHeight,
+            displayedWidth: image.getBoundingClientRect().width,
           })),
+          demoColumns: getComputedStyle(document.querySelector('.demo-grid')).gridTemplateColumns,
         }));
         t.check('desktop renders every project-home region without horizontal overflow',
           desktop.width === 1280
           && desktop.overflow <= 1
           && desktop.regions.length === 8
-          && desktop.navigation.length === 7
+          && desktop.navigation.length === 5
           && desktop.navigation.every((item) => item.visible),
           JSON.stringify(desktop));
         t.check('both canonical product images load at their checked dimensions',
           desktop.images.length === 2
           && desktop.images.every((image) => (
-            image.complete && image.width === 1280 && image.height === 900
-          )),
+            image.complete && image.width === 960 && image.height === 900
+            && image.displayedWidth >= 900
+          ))
+          && desktop.demoColumns.split(' ').length === 1,
           JSON.stringify(desktop.images));
         t.check('the information page loads no web resource or active project service',
           webRequests.length === 0,
@@ -8727,10 +11175,10 @@ const SCENARIOS = [
           && narrow.splitColumns.split(' ').length === 1
           && narrow.clipped.length === 0,
           JSON.stringify(narrow));
-        t.check('every primary route remains visible and full-width at the narrow layout',
-          narrow.navigation.length === 7
+        t.check('every primary route remains visible and touch-sized at the narrow layout',
+          narrow.navigation.length === 5
           && narrow.navigation.every((item) => (
-            item.visible && item.height >= 44 && item.width <= 296
+            item.visible && item.height >= 44 && item.width >= 44 && item.width <= 296
           )),
           JSON.stringify(narrow.navigation));
 
@@ -8786,7 +11234,359 @@ const SCENARIOS = [
       }
     },
   },
+  {
+    id: 'issue-action-names',
+    title: 'issue action names contain their labels and track every availability override',
+    async run(page, t) {
+      const actions = [
+        ['up', 'Move up'],
+        ['down', 'Move down'],
+        ['override', 'Change Unlimited status'],
+        ['remove', 'Remove from list'],
+      ];
+      const metadata = [
+        { mu: null, badge: 'unknown' },
+        { mu: '2999-01-01', badge: 'scheduled' },
+        { mu: '2000-01-01', badge: 'expected' },
+      ];
+      const nextActions = ['Mark as available', 'Mark as unavailable', 'Clear availability override', 'Mark as available'];
+      const normalize = (text) => text.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+      // The observed round trip changed only these write stamps, not any saved user content.
+      const userState = ({ writeToken: _token, exportedAt: _stamp, ...content }) => content;
+      const first = ORDER.items[0];
+      const second = ORDER.items[1];
+      for (const width of [1280, 320]) {
+        await page.setViewport({ width, height: 900 });
+        for (const { mu, badge } of metadata) {
+          const saved = fixtureReadingState();
+          saved.issues[first.issueId].mu = mu;
+          saved.read[second.issueId] = 1234;
+          saved.notes[second.issueId] = 'Keep this issue note';
+          saved.overrides[second.issueId] = 'unavailable';
+          saved.lists.fixture.note = 'Keep this list note';
+          await open(page, '/');
+          await page.evaluate((state) => {
+            localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+          }, saved);
+          // The catalog query forces a new document, not another route in the outgoing app.
+          await open(page, '/?catalog=browser-check#/read/fixture?full=1');
+          await page.waitForFunction((ids) => !document.querySelector('#view-read').hidden
+            && document.querySelector('#full').open
+            && [...document.querySelectorAll('#rows .row .cb')].map((button) => Number(button.dataset.key)).join(',') === ids.join(','),
+          { timeout: 15000 }, saved.lists.fixture.itemIds);
+          const before = userState(await readState(page));
+          for (let step = 0; step < nextActions.length; step += 1) {
+            const scope = `${width}px ${badge} step ${step}`;
+            const row = '#rows .row:first-of-type';
+            const expectedBadge = step === 1 ? 'override-available' : step === 2 ? 'override-unavailable' : badge;
+            await page.waitForSelector(`${row} .badge-${expectedBadge}`, { timeout: 15000 });
+            if (width === 320) {
+              await click(page, `${row} [data-act="more"]`);
+              t.check(`${scope}: the first-row menu is open`,
+                await page.$eval(`${row} [data-act="more"]`, (button) => button.getAttribute('aria-expanded') === 'true'));
+            }
+            await page.$eval(row, (element) => element.scrollIntoView({ block: 'start' }));
+            for (const [act, phrase] of step === 0 ? actions : [actions[2]]) {
+              const button = await page.$(`${row} [data-act="${act}"]`);
+              await button.focus();
+              await page.waitForFunction((text) => {
+                const tip = document.querySelector('#action-tip');
+                return tip && !tip.hidden && tip.textContent === text;
+              }, {}, await button.evaluate((element) => element.dataset.tooltip));
+              const computed = await page.accessibility.snapshot({ root: button, interestingOnly: false });
+              const rendered = await button.evaluate((element) => {
+                const label = element.querySelector('.mini-label');
+                const icon = element.querySelector('.mini-icon');
+                return {
+                  label: label.textContent.trim(),
+                  labelVisible: getComputedStyle(label).display !== 'none' && label.getClientRects().length > 0,
+                  iconDecorative: icon.getAttribute('aria-hidden') === 'true',
+                  iconFocusable: icon.tabIndex >= 0,
+                  glyph: icon.textContent,
+                  tooltip: element.dataset.tooltip,
+                  tooltipContent: document.querySelector('#action-tip').textContent,
+                  hasTooltip: element.classList.contains('has-tooltip'),
+                };
+              });
+              const name = computed?.name ?? '';
+              const exposesGlyph = (node) => node?.name === rendered.glyph || node?.children?.some(exposesGlyph);
+              t.check(`${scope}: ${phrase} keeps its intact label and issue identity in the computed name`,
+                computed?.role === 'button' && rendered.label === phrase
+                && normalize(name).includes(normalize(rendered.label)) && name.includes(first.title),
+                JSON.stringify({ name, ...rendered }));
+              t.check(`${scope}: ${phrase} has the intended text or icon presentation and meaningful tooltip`,
+                rendered.labelVisible === (width === 320) && rendered.iconDecorative && !rendered.iconFocusable
+                && !exposesGlyph(computed)
+                && rendered.hasTooltip && rendered.tooltip.includes(phrase) && rendered.tooltipContent.includes(phrase),
+                JSON.stringify(rendered));
+              if (act === 'override') {
+                t.check(`${scope}: the name and tooltip describe the next override action`,
+                  name.endsWith(nextActions[step]) && rendered.tooltip.endsWith(nextActions[step]),
+                  `${name} / ${rendered.tooltip}`);
+              }
+            }
+            if (step < nextActions.length - 1) await click(page, `${row} [data-act="override"]`);
+          }
+          const after = userState(await readState(page));
+          t.check(`${width}px ${badge}: cycling back to the metadata state preserves the saved list and progress`,
+            JSON.stringify(after) === JSON.stringify(before), JSON.stringify({ before, after }));
+          if (width === 320) await click(page, `#rows [data-key="${second.issueId}"][data-act="more"]`);
+          const other = await page.$(`#rows [data-key="${second.issueId}"][data-act="up"]`);
+          const otherName = (await page.accessibility.snapshot({ root: other, interestingOnly: false }))?.name ?? '';
+          t.check(`${width}px ${badge}: repeated Move up controls distinguish issue identities`,
+            otherName.includes('Move up') && otherName.includes(second.title) && !otherName.includes(first.title),
+            otherName);
+        }
+      }
+    },
+  },
 ];
+
+SCENARIOS.push({
+  id: 'issue-443-row-actions',
+  title: 'Reading List rows and first/last actions remain unobscured at narrow and desktop sizes',
+  async run(page, t) {
+    await seedFixtureState(page);
+    const entry = ACTUAL_CATALOG.lists.find((list) => list.id === 'house-of-m');
+    const order = JSON.parse(readFileSync(new URL(`../src/data/${entry.file}`, import.meta.url), 'utf8'));
+    const state = fixtureReadingState();
+    state.issues = Object.fromEntries(order.items.map((item) => [item.issueId, { ...item, source: 'curated' }]));
+    state.lists.fixture.itemIds = order.items.map((item) => item.issueId);
+    state.lists.fixture.name = order.name;
+    await page.evaluate((saved) => {
+      localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+      const settings = JSON.parse(localStorage.getItem('mrt.settings'));
+      settings.covers = false;
+      localStorage.setItem('mrt.settings', JSON.stringify(settings));
+    }, state);
+    await open(page, '/#/read/fixture?full=1');
+    await page.waitForSelector('#rows .row');
+    t.check('the reproduction has all 20 House of M issues with covers off',
+      await page.evaluate(() => document.querySelectorAll('#rows .row').length === 20
+        && document.body.classList.contains('nocovers')));
+    const savedState = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+    // Observe real trusted activation at capture, without launching external sites or mutating
+    // progress. This scenario owns layout and targeting; existing journeys own action semantics.
+    await page.evaluate(() => {
+      window.__mrt443Activations = [];
+      document.addEventListener('click', (event) => {
+        const action = event.target.closest('#rows .ract .mini');
+        if (!action) return;
+        window.__mrt443Activations.push({ act: action.dataset.act, trusted: event.isTrusted });
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      }, true);
+    });
+    const controlGeometry = (selector) => page.$eval(selector, (control) => {
+      const rect = control.getBoundingClientRect();
+      const style = getComputedStyle(control);
+      const focused = control.matches(':focus-visible');
+      const ring = focused ? parseFloat(style.outlineWidth) + Math.max(0, parseFloat(style.outlineOffset)) : 0;
+      const bounds = { left: rect.left - ring, right: rect.right + ring,
+        top: rect.top - ring, bottom: rect.bottom + ring };
+      const clips = [];
+      let painted = style.visibility === 'visible' && style.display !== 'none' && Number(style.opacity) > 0;
+      for (let parent = control.parentElement; parent; parent = parent.parentElement) {
+        const css = getComputedStyle(parent);
+        painted = painted && css.visibility === 'visible' && css.display !== 'none' && Number(css.opacity) > 0;
+        const r = parent.getBoundingClientRect();
+        if ((/(hidden|clip|auto|scroll)/.test(css.overflowX) && (bounds.left < r.left || bounds.right > r.right))
+          || (/(hidden|clip|auto|scroll)/.test(css.overflowY) && (bounds.top < r.top || bounds.bottom > r.bottom))) {
+          clips.push(parent.id || parent.className);
+        }
+      }
+      const points = [[.5, .5], [.05, .15], [.95, .15], [.05, .85], [.95, .85]];
+      const hits = points.every(([x, y]) => {
+        const hit = document.elementFromPoint(rect.left + rect.width * x, rect.top + rect.height * y);
+        return hit === control || control.contains(hit);
+      });
+      const ringHits = !focused || [
+        [bounds.left + .5, rect.top + rect.height / 2],
+        [bounds.right - .5, rect.top + rect.height / 2],
+        [rect.left + rect.width / 2, bounds.top + .5],
+        [rect.left + rect.width / 2, bounds.bottom - .5],
+      ].every(([x, y]) => {
+        const hit = document.elementFromPoint(x, y);
+        return hit === control || control.contains(hit) || hit?.contains(control);
+      });
+      return { act: control.dataset.act, focused, ring, clips, hits, ringHits, bounds,
+        visible: painted && rect.width > 0 && rect.height > 0 && bounds.left >= 0 && bounds.top >= 0
+          && bounds.right <= innerWidth && bounds.bottom <= innerHeight };
+    });
+
+    const measureLayout = () => page.$$eval('#rows .row', (rows) => {
+      const errors = [];
+      const overlap = (a, b) => a.left < b.right - .5 && a.right > b.left + .5
+        && a.top < b.bottom - .5 && a.bottom > b.top + .5;
+      const groups = (elements, label) => {
+        const rects = elements.map((el) => el.getBoundingClientRect()).filter((r) => r.width && r.height);
+        for (let i = 0; i < rects.length; i += 1) {
+          for (let j = i + 1; j < rects.length; j += 1) {
+            if (overlap(rects[i], rects[j])) errors.push(`${label}: ${i}/${j}`);
+          }
+        }
+      };
+      rows.forEach((row, index) => {
+        groups([...row.children], `row ${index}`);
+        groups([...row.querySelector('.row-info').children], `text ${index}`);
+        groups([...row.querySelector('.rm').children], `metadata ${index}`);
+        const info = row.querySelector('.row-info').getBoundingClientRect();
+        const style = getComputedStyle(row);
+        const available = row.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+        if (innerWidth <= 700 && info.width < available - .5) errors.push(`narrow text width ${index}: ${info.width}/${available}`);
+        for (const el of row.querySelectorAll('.rt, .rm > span, .rnote')) {
+          const r = el.getBoundingClientRect();
+          if (r.left < info.left - .5 || r.right > info.right + .5) errors.push(`text escape ${index}`);
+        }
+      });
+      return { errors, overflow: document.documentElement.scrollWidth > innerWidth };
+    });
+    for (const viewport of [{ width: 320, height: 900 }, { width: 640, height: 450 }, { width: 1280, height: 900 }]) {
+      await page.setViewport(viewport);
+      const size = `${viewport.width}x${viewport.height}`;
+      const layout = await measureLayout();
+      t.check(`${size}: titles, notes, metadata, badges and actions never overlap`,
+        !layout.errors.length && !layout.overflow, JSON.stringify(layout));
+
+      for (const index of [0, 19]) {
+        const row = `#rows .row:nth-child(${index + 1})`;
+        const toggle = `${row} .row-actions-toggle`;
+        const actions = ['open', 'info', 'up', 'down', 'override', 'remove'];
+        const narrow = viewport.width <= 620;
+        await page.mouse.move(0, 0);
+        if (narrow) {
+          await page.$eval(toggle, (el) => { el.scrollIntoView({ block: 'center' }); el.focus(); });
+          await page.keyboard.press('Enter');
+          t.check(`${size} row ${index}: Enter opens More actions`,
+            await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'true'));
+        }
+        const panel = `${row} .ract`;
+        await page.$eval(panel, (el) => el.scrollIntoView({ block: 'center' }));
+        const panelBounds = await page.$eval(panel, (el) => {
+          const r = el.getBoundingClientRect();
+          const rowRect = el.closest('.row').getBoundingClientRect();
+          return { top: r.top, bottom: r.bottom, rowTop: rowRect.top, rowBottom: rowRect.bottom };
+        });
+        t.check(`${size} row ${index}: expanded actions stay inside their own row`,
+          panelBounds.top >= panelBounds.rowTop && panelBounds.bottom <= panelBounds.rowBottom,
+          JSON.stringify(panelBounds));
+        const hover = await page.$eval(panel, (el) => {
+          const r = el.getBoundingClientRect();
+          return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+        });
+        await page.mouse.move(hover.x, hover.y);
+        const pointers = [];
+        for (const act of actions) {
+          const selector = `${panel} [data-act="${act}"]`;
+          const geometry = await controlGeometry(selector);
+          pointers.push({ act, ...geometry });
+          const point = await page.$eval(selector, (el) => {
+            const r = el.getBoundingClientRect();
+            return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+          });
+          if (geometry.visible && geometry.hits && !geometry.clips.length) {
+            await page.mouse.click(point.x, point.y);
+          }
+        }
+        t.check(`${size} row ${index}: every action has full visible bounds and five pointer hit targets`,
+          pointers.length === 6 && pointers.every((p) => p.visible && p.hits && !p.clips.length),
+          JSON.stringify(pointers));
+        await page.mouse.move(0, 0);
+        await page.$eval(narrow ? toggle : `${row} .rnote`, (el) => el.focus());
+        const keyboard = [];
+        for (const act of actions) {
+          await page.keyboard.press('Tab');
+          const selector = `${panel} [data-act="${act}"]`;
+          const geometry = await controlGeometry(selector);
+          keyboard.push(geometry);
+          if (geometry.focused) await page.keyboard.press('Enter');
+        }
+        t.check(`${size} row ${index}: Tab reaches every action with its complete unobscured focus ring`,
+          keyboard.length === 6 && keyboard.every((g) => g.focused && g.ring > 0
+            && g.visible && g.hits && g.ringHits && !g.clips.length), JSON.stringify(keyboard));
+        const activations = await page.evaluate(() => window.__mrt443Activations.splice(0));
+        t.check(`${size} row ${index}: all six actions receive trusted pointer and keyboard activation`,
+          activations.length === 12 && activations.every((event, i) => event.trusted
+            && event.act === actions[i % actions.length]), JSON.stringify(activations));
+        if (narrow) {
+          const hintVisible = await page.evaluate(() => {
+            const control = document.activeElement;
+            const tip = document.querySelector('#action-tip');
+            return control?.matches('.has-tooltip') && tip && !tip.hidden
+              && tip.textContent === control.dataset.tooltip;
+          });
+          if (hintVisible) {
+            await page.evaluate(() => { window.__mrt443HintFocus = document.activeElement; });
+            await page.keyboard.press('Escape');
+            t.check(`${size} row ${index}: dismissing the current hint preserves focus and More actions`,
+              await page.$eval(toggle, (el) => document.activeElement === window.__mrt443HintFocus
+                && el.getAttribute('aria-expanded') === 'true' && document.querySelector('#action-tip').hidden));
+          }
+          await page.keyboard.press('Escape');
+          const returned = await controlGeometry(toggle);
+          t.check(`${size} row ${index}: Escape closes and returns visible focus to More actions`,
+            returned.focused && returned.visible && returned.hits && returned.ringHits && !returned.clips.length
+              && await page.$eval(toggle, (el) => el.getAttribute('aria-expanded') === 'false'),
+            JSON.stringify(returned));
+          await page.keyboard.press('Enter');
+          await page.keyboard.down('Shift');
+          try {
+            await page.keyboard.press('Tab');
+          } finally {
+            await page.keyboard.up('Shift');
+          }
+          t.check(`${size} row ${index}: leaving the disclosure closes it without moving focus back`,
+            await page.$eval(row, (el) => document.activeElement === el.querySelector('.rnote')
+              && el.querySelector('.row-actions-toggle').getAttribute('aria-expanded') === 'false'));
+        }
+      }
+    }
+    await page.setViewport({ width: 320, height: 900 });
+    await page.$eval('#rows .row', (row) => {
+      row.querySelector('.rt').textContent = 'AnUnbrokenIssueTitle'.repeat(8);
+      row.querySelector('.rnote').textContent = 'AnUnbrokenIssueNote'.repeat(12);
+      row.querySelector('.rm > span').textContent = 'AnUnbrokenSeriesName'.repeat(8);
+      const extra = row.querySelector('.badge').cloneNode(true);
+      extra.textContent = 'details pending';
+      row.querySelector('.rm').append(extra);
+    });
+    const stressed = await measureLayout();
+    t.check('320x900: unbroken titles, series names, notes and multiple badges wrap inside the row',
+      !stressed.errors.length && !stressed.overflow, JSON.stringify(stressed));
+    t.check('layout and targeting leave saved reading progress and list contents untouched',
+      await page.evaluate(() => localStorage.getItem('mrt.state.v2')) === savedState);
+  },
+});
+
+MUTATIONS.push(
+  {
+    id: 'narrow-content-panel-open',
+    breaks: 'narrow-content',
+    why: 'narrow closed mode leaves the controlled panel visible, restoring the stacked chrome height',
+    rewriteMain: (source) => source.replace(
+      'panel.hidden = isNarrow && !narrowOpen;',
+      'panel.hidden = false;',
+    ),
+  },
+  {
+    id: 'narrow-navigation-focus-rescue-off',
+    breaks: 'narrow-navigation',
+    why: 'closing narrow navigation skips the descendant-focus rescue before hiding the panel',
+    rewriteMain: (source) => source.replace(
+      'if (!next && rescueFocus && activeInsidePanel) toggle.focus();',
+      'if (false && !next && rescueFocus && activeInsidePanel) toggle.focus();',
+    ),
+  },
+  {
+    id: 'sidebar-transitions-narrow-write',
+    breaks: 'sidebar-transitions',
+    why: 'narrow toggles start writing sidebar.collapsed, conflating ephemeral narrow state with desktop preference',
+    rewriteMain: (source) => source.replace(
+      'setNarrowOpen(!narrowOpen, { announceIt: true });',
+      'try { localStorage.setItem(SIDEBAR_KEY, String(railed)); } catch {} setNarrowOpen(!narrowOpen, { announceIt: true });',
+    ),
+  },
+);
 
 MUTATIONS.push({
   id: 'reading-paths-sibling-first',
@@ -8830,6 +11630,242 @@ MUTATIONS.push(
 
 // ------------------------------------------------------------------ page helpers
 
+MUTATIONS.push(
+  {
+    id: 'portable-icons-no-paint',
+    breaks: 'portable-icons-451',
+    why: 'local symbol references remain present but their strokes no longer paint',
+    script: () => document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.gi').forEach((icon) => { icon.style.strokeWidth = '0'; });
+    }),
+  },
+  {
+    id: 'portable-icons-focus-stop',
+    breaks: 'portable-icons-451',
+    why: 'a decorative navigation drawing becomes a separate keyboard stop',
+    script: () => document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.gi').setAttribute('tabindex', '0');
+    }),
+  },
+);
+
+SCENARIOS.push({
+  id: 'portable-icons-451',
+  title: 'local navigation/search drawings survive missing icon fonts and preserve controls',
+  async run(page, t) {
+    const assetRequests = [];
+    page.on('request', (request) => {
+      if (request.resourceType() === 'font' || /\/icons\//.test(request.url())) {
+        assetRequests.push(request.url());
+      }
+    });
+    await page.evaluateOnNewDocument(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false }));
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.gi').forEach((icon) => {
+          icon.style.fontFamily = 'monospace';
+        });
+      });
+    });
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await open(page, '/');
+    await page.waitForFunction(() => document.querySelectorAll('.home-path-icon').length === 12);
+    const inventory = await page.evaluate(() => [...document.querySelectorAll('.gi')].map((icon) => {
+      const button = icon.closest('button');
+      return {
+        tag: icon.tagName,
+        gateway: icon.classList.contains('home-path-icon') || icon.classList.contains('home-path-arrow'),
+        name: (button.getAttribute('aria-label') || button.textContent).replace(/\s+/g, ' ').trim(),
+        decorative: icon.getAttribute('aria-hidden') === 'true'
+          && icon.getAttribute('focusable') === 'false' && icon.tabIndex === -1,
+        reference: icon.querySelector('use')?.getAttribute('href'),
+      };
+    }));
+    t.check('all 23 static controls retain their meaningful names', JSON.stringify(inventory.filter((i) => !i.gateway).map((i) => i.name))
+      === JSON.stringify([
+        'Collapse sidebar', 'Library', 'Browse', 'Add comics', 'Backup & settings', 'About this app',
+        'Everything read', 'Progress by series', 'Added by hand', 'Search issues', 'Find a series',
+        'Browse a creator', 'Paste a Reading List', 'Add an issue by hand', 'Search issue titles',
+        'Series', 'Creators', 'Characters', 'Reading guides', 'Paste a Reading List',
+        'Add an issue by hand', 'Find a series', 'Find a creator',
+      ]), JSON.stringify(inventory));
+    t.check('all 47 static and generated SVGs are decorative and cannot become keyboard stops',
+      inventory.length === 47 && inventory.every((i) => i.tag === 'svg' && i.decorative));
+    t.check('both gateways preserve six labelled category destinations and their icon/arrow pairs',
+      await page.evaluate(() => [...document.querySelectorAll('[data-primary-paths], [data-secondary-paths]')]
+        .flatMap((root) => [...root.querySelectorAll('button.home-path')])
+        .filter((button) => button.getAttribute('aria-label')?.includes('Browse')
+          || button.getAttribute('aria-label')?.includes('Movies and streaming')
+          || button.getAttribute('aria-label')?.includes('Publication history')
+          || button.getAttribute('aria-label')?.includes('Follow connected stories'))
+        .filter((button) => button.querySelectorAll('svg.gi').length === 2).length === 12));
+    t.check('all icon references stay local', inventory.every((i) => i.reference?.startsWith('./icons/ui.svg#')));
+
+    const seen = new Set();
+    const routes = ['home', 'browse', 'marvel-ages', 'age-modern', 'library', 'add', 'add-search', 'add-series', 'add-creator'];
+    for (const route of routes) {
+      await page.evaluate((view) => { location.hash = `#/${view}`; }, route);
+      await page.waitForSelector(`#view-${route}:not([hidden])`);
+      await page.evaluate(() => document.querySelectorAll('.gi').forEach((icon) => {
+        icon.style.fontFamily = 'monospace';
+      }));
+      // A loaded document alone does not prove an external use has resolved its symbol.
+      await page.waitForFunction(() => [...document.querySelectorAll('.gi')].filter((icon) =>
+        icon.getBoundingClientRect().width > 0).every((icon) => icon.querySelector('use')?.getBBox().width > 0));
+      const geometry = await page.evaluate(() => [...document.querySelectorAll('.gi')].filter((icon) =>
+        icon.getBoundingClientRect().width > 0).map((icon) => {
+        const box = icon.getBoundingClientRect();
+        const target = icon.closest('button').getBoundingClientRect();
+        const paint = getComputedStyle(icon);
+        return {
+          symbol: icon.querySelector('use').getAttribute('href'),
+          fits: box.left >= target.left && box.right <= target.right
+            && box.top >= target.top && box.bottom <= target.bottom,
+          target: target.width >= 44 && target.height >= 44,
+          painted: paint.stroke !== 'none' && parseFloat(paint.strokeWidth) > 0
+            && paint.visibility === 'visible' && Number(paint.opacity) > 0,
+          font: paint.fontFamily,
+        };
+      }));
+      geometry.forEach((icon) => seen.add(icon.symbol));
+      t.check(`${route}: visible symbols paint without icon fonts inside unchanged 44px targets`,
+        geometry.length > 0 && geometry.every((i) => i.fits && i.target && i.painted && i.font === 'monospace'),
+        JSON.stringify(geometry));
+    }
+    t.check('all 17 authored symbol shapes were rendered', seen.size === 17, [...seen].join(', '));
+
+    await page.evaluate(() => { location.hash = '#/add-search'; });
+    await page.waitForSelector('#view-add-search:not([hidden])');
+    const iconSelector = '#form-search .gi';
+    for (const theme of ['light', 'dark']) {
+      await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+      const colour = await page.$eval(iconSelector, (icon) => ({
+        stroke: getComputedStyle(icon).stroke,
+        color: getComputedStyle(icon).color,
+      }));
+      t.check(`${theme}: the search stroke inherits currentColor`, colour.stroke === colour.color,
+        JSON.stringify(colour));
+    }
+    const icon = await page.$(iconSelector);
+    const painted = await icon.screenshot();
+    await page.$eval(`${iconSelector} use`, (use) => { use.style.visibility = 'hidden'; });
+    const blank = await icon.screenshot();
+    await page.$eval(`${iconSelector} use`, (use) => { use.style.visibility = ''; });
+    t.check('the search SVG produces actual pixels, not just a nonempty layout box',
+      !Buffer.from(painted).equals(Buffer.from(blank)));
+
+    const client = await page.createCDPSession();
+    await client.send('Emulation.setEmulatedMedia', { features: [
+      { name: 'forced-colors', value: 'active' },
+      { name: 'prefers-reduced-motion', value: 'reduce' },
+    ] });
+    for (const state of ['normal', 'hover', 'focus', 'disabled']) {
+      const button = '#form-search button[type="submit"]';
+      if (state === 'hover') await page.hover(button);
+      if (state === 'focus') await page.focus(button);
+      if (state === 'disabled') await page.$eval(button, (el) => { el.disabled = true; });
+      const forced = await page.$eval(iconSelector, (el) => ({
+        active: matchMedia('(forced-colors: active)').matches,
+        stroke: getComputedStyle(el).stroke, color: getComputedStyle(el).color,
+        background: getComputedStyle(el.closest('button')).backgroundColor,
+        width: parseFloat(getComputedStyle(el).strokeWidth),
+      }));
+      t.check(`forced colours ${state}: search stroke follows a perceivable system colour`,
+        forced.active && forced.width > 0 && forced.stroke === forced.color
+          && forced.stroke !== forced.background, JSON.stringify(forced));
+    }
+    await page.$eval('#form-search button', (button) => { button.disabled = false; });
+    await page.focus('.ri[data-view="library"]');
+    await page.keyboard.press('Enter');
+    await page.waitForSelector('#view-library:not([hidden])');
+    const selected = await page.$eval('.ri[data-view="library"]', (button) => ({
+      current: button.getAttribute('aria-current'),
+      stroke: getComputedStyle(button.querySelector('.gi')).stroke,
+      color: getComputedStyle(button).color,
+      border: getComputedStyle(button).borderTopWidth,
+    }));
+    t.check('keyboard navigation still selects Library with a visible forced-colour icon and border',
+      selected.current && selected.stroke === selected.color && parseFloat(selected.border) >= 1,
+      JSON.stringify(selected));
+    const { nodes } = await client.send('Accessibility.getFullAXTree');
+    t.check('decorative SVGs add no image announcements to the Library accessibility tree',
+      !nodes.some((node) => !node.ignored && ['image', 'graphics-symbol'].includes(node.role?.value)));
+    await client.send('Emulation.setEmulatedMedia', { features: [
+      { name: 'prefers-reduced-motion', value: 'reduce' },
+    ] });
+
+    for (const route of ['add-search', 'add-series', 'add-creator']) {
+      await page.evaluate((view) => {
+        location.hash = `#/${view}`;
+        window.__iconSubmits = [];
+        document.addEventListener('submit', (event) => {
+          window.__iconSubmits.push(event.target.id);
+        }, { once: true, capture: true });
+      }, route);
+      await page.waitForSelector(`#view-${route}:not([hidden])`);
+      await page.focus(`#view-${route} button[type="submit"]`);
+      await page.keyboard.press('Enter');
+      t.check(`${route}: the named search button still submits from the keyboard`,
+        await page.evaluate(() => window.__iconSubmits.length === 1));
+    }
+    await page.evaluate(() => { location.hash = '#/add-search'; });
+    await page.waitForSelector('#view-add-search:not([hidden])');
+    for (const [width, zoom] of [[320, 1], [640, 2]]) {
+      await page.setViewport({ width, height: 900 });
+      await page.evaluate((scale) => { document.documentElement.style.zoom = String(scale); }, zoom);
+      const narrow = await page.evaluate(() => {
+        const visible = [...document.querySelectorAll('.gi')].filter((el) => el.getBoundingClientRect().width);
+        return {
+          count: visible.length,
+          overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+          fits: visible.every((el) => {
+            const icon = el.getBoundingClientRect();
+            const button = el.closest('button').getBoundingClientRect();
+            return icon.left >= button.left && icon.right <= button.right
+              && icon.top >= button.top && icon.bottom <= button.bottom;
+          }),
+          coversOff: document.body.classList.contains('nocovers'),
+          reduced: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        };
+      });
+      t.check(`${width}px at ${zoom * 100}%: icons fit with covers off and reduced motion`,
+        narrow.count > 0 && !narrow.overflow && narrow.fits && narrow.coversOff && narrow.reduced,
+        JSON.stringify(narrow));
+    }
+    t.check('no remote icon or font request was introduced',
+      assetRequests.length > 0 && assetRequests.every((url) => new URL(url).origin === page.__origin),
+      JSON.stringify(assetRequests));
+    if (process.env.MRT_ICON_EVIDENCE && !page.__mutation) {
+      await page.setViewport({ width: 1280, height: 900 });
+      await page.evaluate(() => {
+        document.documentElement.style.zoom = '1';
+        const gallery = document.createElement('div');
+        gallery.id = 'portable-icon-evidence';
+        Object.assign(gallery.style, {
+          position: 'fixed', inset: '0', zIndex: '9999', background: 'var(--bg)',
+          color: 'var(--text)', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: '24px', padding: '32px',
+        });
+        const symbols = new Set();
+        document.querySelectorAll('.gi').forEach((icon) => {
+          const symbol = icon.querySelector('use').getAttribute('href');
+          if (symbols.has(symbol)) return;
+          symbols.add(symbol);
+          const cell = document.createElement('div');
+          const drawing = icon.cloneNode(true);
+          drawing.style.width = '48px';
+          drawing.style.height = '48px';
+          cell.append(drawing, document.createTextNode(` ${symbol.split('#')[1]}`));
+          gallery.append(cell);
+        });
+        document.body.append(gallery);
+      });
+      await page.screenshot({ path: process.env.MRT_ICON_EVIDENCE });
+    }
+    await client.detach();
+  },
+});
+
 async function open(page, path) {
   await page.goto(`${page.__origin}${path}`, { waitUntil: 'load' });
 }
@@ -8859,6 +11895,51 @@ async function readState(page) {
     return JSON.parse(raw);
   } catch {
     return null;
+  }
+}
+
+function fixtureReadingState() {
+  const issues = Object.fromEntries(ORDER.items.map((item) => [item.issueId, { ...item, source: 'curated' }]));
+  return {
+    schemaVersion: 2,
+    issues,
+    read: {},
+    overrides: {},
+    notes: {},
+    lists: {
+      fixture: {
+        id: 'fixture',
+        name: ORDER.name,
+        description: ORDER.description,
+        note: '',
+        created: 1234,
+        catalogId: ORDER.id,
+        itemIds: ORDER.items.map((item) => item.issueId),
+        collectedIn: {},
+      },
+    },
+    listOrder: ['fixture'],
+    active: 'fixture',
+  };
+}
+
+async function seedFixtureState(page, { sidebarCollapsed = null, openRead = false } = {}) {
+  await open(page, '/?catalog=browser-check');
+  await page.evaluate((saved, collapsed) => {
+    localStorage.setItem('mrt.state.v2', JSON.stringify(saved));
+    localStorage.setItem('mrt.settings', JSON.stringify({
+      filter: 'all',
+      covers: true,
+      theme: 'system',
+      apiBase: '',
+    }));
+    if (collapsed === null) localStorage.removeItem('sidebar.collapsed');
+    else localStorage.setItem('sidebar.collapsed', String(collapsed));
+  }, fixtureReadingState(), sidebarCollapsed);
+  await page.reload({ waitUntil: 'load' });
+  if (openRead) {
+    await click(page, '#list-nav .ri');
+    await page.waitForSelector('#view-read:not([hidden])', { timeout: 15000 });
   }
 }
 
@@ -8953,12 +12034,14 @@ async function preparePage(page, origin, mutation) {
     ['/dev-faults.js', mutation?.rewriteFaults],
     ['/js/main.js', mutation?.rewriteMain],
     ['/js/views/catalog.js', mutation?.rewriteCatalogView],
+    ['/js/views/reading.js', mutation?.rewriteReading],
     ['/js/views/library.js', mutation?.rewriteLibrary],
     ['/js/views/reading-paths.js', mutation?.rewriteReadingPaths],
     ['/js/views/shared/saved-lists.js', mutation?.rewriteSavedLists],
     ['/js/cache.js', mutation?.rewriteCache],
     ['/js/api.js', mutation?.rewriteApi],
     ['/js/lib/catalog.js', mutation?.rewriteCatalog],
+    ['/js/lib/model.js', mutation?.rewriteModel],
     ['/js/lib/localServer.js', mutation?.rewriteLocalServer],
     ['/js/lib/route.js', mutation?.rewriteRoute],
   ]) {
@@ -9361,6 +12444,19 @@ async function preparePage(page, origin, mutation) {
       'multiple-first-stops': MULTI_FIRST_STOP_CATALOG,
       'moved-first-stop': MOVED_FIRST_STOP_CATALOG,
       sparse: SPARSE_PUBLISHING_CATALOG, 'reading-paths': { ...CATALOG, paths: CATALOG.paths.map((path) => path.id === 'bc-age-path' ? { ...path, steps: ['browser-check-age-line', 'x-men-spine'] } : path.id === 'spotlight-arrival' ? { ...path, steps: ['browser-check-three-main', 'browser-check-off'] } : path) },
+      'reading-path-stop-actions': {
+        ...CATALOG,
+        lists: CATALOG.lists.map((list) => (
+          list.id === 'browser-check-three-main' ? { ...list, sourceOrigin: 'Complete fixture source' }
+            : list.id === 'browser-check-three-short' ? { ...list, sourceOrigin: 'Essential fixture source' } : list
+        )),
+        paths: [{
+          ...CATALOG.paths[0],
+          steps: ['browser-check', 'browser-check-two',
+            ...Array.from({ length: 9 }, (_, index) => `browser-check-extra-${index + 1}`),
+            'browser-check-three-short'],
+        }, CATALOG.paths[1]],
+      },
       actual: ACTUAL_CATALOG,
     },
     ORDER,
@@ -9503,7 +12599,7 @@ async function withStack(fn, { port = 0 } = {}) {
 async function main() {
   const prove = process.argv.includes('--prove');
   const only = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length) ?? null;
-  const port = ['cache-generations', 'catalog-gaps', 'reading-paths'].includes(only) ? DEFAULT_PORT : 0;
+  const port = ['cache-generations', 'catalog-gaps', 'reading-paths', 'reading-path-stop-actions', 'issue-return-visibility', 'reading-shortcut', 'reading-list-empty-441', 'issue-action-names', 'issue-443-row-actions'].includes(only) ? DEFAULT_PORT : 0;
 
   const code = await withStack(async ({ browser, origin, driver, edge }) => {
     console.log(`driver  ${driver}`);
@@ -9565,6 +12661,707 @@ async function main() {
 
   process.exit(code);
 }
+
+async function seedRemovalFixture(page, saved = fixtureReadingState()) {
+  await open(page, '/?catalog=browser-check');
+  await page.evaluate((state) => {
+    localStorage.setItem('mrt.state.v2', JSON.stringify(state));
+    localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, filter: 'all' }));
+  }, saved);
+  await open(page, '/#/read/fixture?full=1');
+  await page.waitForSelector('#rows .row');
+}
+
+async function removeFixtureIssue(page, issueId) {
+  const selector = `#rows [data-key="${issueId}"][data-act="remove"]`;
+  await page.waitForSelector(selector, { visible: true });
+  await page.focus(selector);
+  await page.evaluate((target) => document.querySelector(target).click(), selector);
+}
+
+async function removalNotice(page) {
+  return page.evaluate(() => {
+    const notice = document.querySelector('#app-report .notice');
+    return {
+      text: notice?.querySelector('.grow')?.textContent ?? '',
+      buttons: [...(notice?.querySelectorAll('button') ?? [])].map((button) => button.textContent.trim()),
+    };
+  });
+}
+
+async function removalFocus(page) {
+  return page.evaluate(() => {
+    const focused = document.activeElement;
+    const rect = focused?.getBoundingClientRect();
+    return {
+      id: focused?.id,
+      key: focused?.dataset.key,
+      act: focused?.dataset.act,
+      heading: document.querySelector('.view:not([hidden])')?.getAttribute('aria-labelledby'),
+      rect: rect ? { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right } : null,
+      // Edge rounds scroll offsets to pixels: the focused successor's bottom measured 900.20 at 900px.
+      visible: !!focused?.isConnected && focused !== document.body && !focused.closest('[hidden]')
+        && rect?.width > 0 && rect.height > 0 && rect.top >= -1 && rect.bottom <= innerHeight + 1
+        && rect.left >= -1 && rect.right <= innerWidth + 1,
+    };
+  });
+}
+
+async function switchRemovalList(page, id) {
+  await page.evaluate((listId) => { location.hash = `#/read/${listId}?full=1`; }, id);
+  await page.waitForFunction((listId) => JSON.parse(localStorage.getItem('mrt.state.v2')).active === listId
+    && !document.querySelector('#view-read').hidden, {}, id);
+  await page.waitForSelector('#rows .row');
+}
+
+async function editRemovalText(page, trigger, field, text) {
+  await click(page, trigger);
+  await page.waitForSelector(`#ask[open] ${field}`);
+  await page.$eval(field, (input, value) => { input.value = value; }, text);
+  await click(page, '#ask-ok');
+  await page.waitForFunction((value) => {
+    const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+    return !document.querySelector('#ask').open && (Object.values(state.notes).includes(value)
+      || Object.values(state.lists).some((list) => list.name === value || list.note === value));
+  }, {}, text);
+}
+
+async function restoreRemovalFixture(page, saved) {
+  await click(page, '.ri[data-view="data"]');
+  await page.evaluate((state) => {
+    document.querySelector('#restore-report').replaceChildren();
+    const files = new DataTransfer();
+    files.items.add(new File([JSON.stringify(state)], 'removal-fixture.json', { type: 'application/json' }));
+    const input = document.querySelector('#restore-file');
+    input.files = files.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  }, saved);
+  await page.waitForFunction(() => document.querySelector('#restore-report').textContent.trim().length > 0);
+}
+
+async function installRemovalFault(page, mode) {
+  await page.evaluate((nextMode) => {
+    const fault = window.__removalFault444 ??= {
+      set: Storage.prototype.setItem,
+      get: Storage.prototype.getItem,
+      writes: 0,
+      blocked: false,
+    };
+    fault.mode = nextMode;
+    Storage.prototype.setItem = function (key, value) {
+      if (key === 'mrt.state.v2') {
+        fault.writes += 1;
+        if (fault.mode === 'refuse-once') {
+          fault.mode = null;
+          throw new DOMException('Removal fixture write refusal', 'QuotaExceededError');
+        }
+      }
+      const result = fault.set.call(this, key, value);
+      if (key === 'mrt.state.v2' && fault.mode === 'unknown-restore') fault.blocked = true;
+      return result;
+    };
+    Storage.prototype.getItem = function (key) {
+      if (key === 'mrt.state.v2' && fault.blocked) throw new Error('Unknown removal fixture state');
+      return fault.get.call(this, key);
+    };
+  }, mode);
+}
+
+SCENARIOS.push(
+  {
+    id: 'issue-removal-undo',
+    title: 'latest issue removal has untimed membership-only Undo and useful visible focus',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      const items = LONG_ORDER.items.slice(0, 20);
+      const ids = items.map((item) => item.issueId);
+      const removedId = ids[14];
+      const saved = fixtureReadingState();
+      saved.issues = Object.fromEntries(items.map((item) => [item.issueId, { ...item, source: 'curated' }]));
+      saved.read = { [ids[1]]: 1234 };
+      saved.notes = { [removedId]: 'Original issue note' };
+      saved.overrides = { [removedId]: 'available' };
+      saved.lists.fixture.itemIds = ids;
+      saved.lists.fixture.collectedIn = { [removedId]: 'Book Two: exact edition', [ids[15]]: 'Book Two: exact edition' };
+      saved.lists.other = {
+        ...saved.lists.fixture, id: 'other', name: 'Other saved list', catalogId: null,
+        itemIds: [removedId, ids[7]], collectedIn: { [removedId]: 'Different book' },
+      };
+      saved.listOrder.push('other');
+      await seedRemovalFixture(page, saved);
+      const before = await readState(page);
+      const target = `#rows [data-key="${removedId}"][data-act="remove"]`;
+      await page.focus(target);
+      const scrolled = await page.$eval('#app-report', (node) => node.getBoundingClientRect().bottom < 0);
+      t.check('the removal starts genuinely scrolled away from the notice pane', scrolled);
+      await removeFixtureIssue(page, removedId);
+      const removed = await readState(page);
+      const notice = await removalNotice(page);
+      t.check('removal is immediate and offers exactly Undo remove plus Dismiss',
+        removed.lists.fixture.itemIds.length === 19 && notice.buttons.join('/') === 'Undo remove/Dismiss',
+        JSON.stringify(notice));
+      t.check('only the chosen membership and its edition are removed',
+        JSON.stringify(removed.lists.fixture.itemIds) === JSON.stringify(ids.filter((id) => id !== removedId))
+        && !Object.hasOwn(removed.lists.fixture.collectedIn, removedId));
+      t.check('removal preserves shared maps and the other list',
+        ['issues', 'read', 'notes', 'overrides'].every((key) => JSON.stringify(removed[key]) === JSON.stringify(before[key]))
+        && JSON.stringify(removed.lists.other) === JSON.stringify(before.lists.other));
+      let focus = await removalFocus(page);
+      t.check('notice publication leaves the non-destructive successor visibly focused',
+        focus.visible && focus.act === 'read' && focus.key === String(ids[15]), JSON.stringify(focus));
+
+      await switchRemovalList(page, 'other');
+      await click(page, `#rows [data-key="${removedId}"][data-act="read"]`);
+      await click(page, `#rows [data-key="${removedId}"][data-act="override"]`);
+      await editRemovalText(page, `#rows [data-key="${removedId}"][data-act="note"]`, '#ask-area', 'Later shared issue note');
+      await switchRemovalList(page, 'fixture');
+      await editRemovalText(page, '#btn-rename-list', '#ask-input', 'Renamed after removal');
+      await editRemovalText(page, '#btn-list-note', '#ask-area', 'Later list note');
+      await click(page, 'input[name="filter"][value="unread"]');
+      const edited = await readState(page);
+      t.check('navigation, local shared changes, rename, list note and filter retain the offer',
+        (await removalNotice(page)).buttons[0] === 'Undo remove'
+        && edited.notes[removedId] === 'Later shared issue note' && edited.overrides[removedId] === 'unavailable'
+        && !!edited.read[removedId] && edited.lists.fixture.note === 'Later list note');
+      await clickNoticeButton(page, 'Undo remove');
+      const restored = await readState(page);
+      t.check('Undo restores the original index and exact collected-edition association',
+        JSON.stringify(restored.lists.fixture.itemIds) === JSON.stringify(ids)
+        && restored.lists.fixture.collectedIn[removedId] === 'Book Two: exact edition',
+        JSON.stringify(restored.lists.fixture));
+      t.check('Undo preserves all later shared values, list metadata and the other list',
+        ['issues', 'read', 'notes', 'overrides', 'active', 'listOrder'].every((key) => (
+          JSON.stringify(restored[key]) === JSON.stringify(edited[key])
+        )) && restored.lists.fixture.name === 'Renamed after removal'
+        && restored.lists.fixture.note === 'Later list note'
+        && JSON.stringify(restored.lists.other) === JSON.stringify(edited.lists.other));
+      focus = await removalFocus(page);
+      t.check('a restored issue hidden by the current filter leaves visible heading focus without changing the filter',
+        focus.visible && focus.id === focus.heading
+        && await page.$eval('input[name="filter"]:checked', (input) => input.value === 'unread'), JSON.stringify(focus));
+
+      await click(page, 'input[name="filter"][value="all"]');
+      await removeFixtureIssue(page, ids[15]);
+      const readBeforeUndo = (await readState(page)).read;
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('visible same-list Undo focuses the restored issue, not a destructive action',
+        focus.visible && focus.act === 'read' && focus.key === String(ids[15]), JSON.stringify(focus));
+      t.check('restoring and focusing never mark an issue read',
+        JSON.stringify((await readState(page)).read) === JSON.stringify(readBeforeUndo));
+
+      await removeFixtureIssue(page, ids[4]);
+      await page.evaluate(() => { window.__oldRemoval444 = [...document.querySelectorAll('#app-report button')]; });
+      await removeFixtureIssue(page, ids[5]);
+      const latest = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__oldRemoval444.forEach((button) => button.click()));
+      t.check('stale Undo and Dismiss controls cannot operate on the newer pending removal',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, latest)
+        && (await removalNotice(page)).buttons[0] === 'Undo remove');
+      await clickNoticeButton(page, 'Undo remove');
+      const latestRestored = await readState(page);
+      t.check('only the latest successfully removed issue is restored',
+        !latestRestored.lists.fixture.itemIds.includes(ids[4]) && latestRestored.lists.fixture.itemIds.includes(ids[5]));
+
+      await removeFixtureIssue(page, ids[6]);
+      await page.$eval('#full', (full) => { full.open = false; });
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('Undo in a closed list keeps it closed and focuses a visible heading',
+        focus.visible && focus.id === focus.heading && await page.$eval('#full', (full) => !full.open), JSON.stringify(focus));
+      await openFullOrder(page);
+      await removeFixtureIssue(page, ids[7]);
+      await switchRemovalList(page, 'other');
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('another active list stays active and does not receive focus on its matching issue row',
+        (await readState(page)).active === 'other' && focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+
+      await switchRemovalList(page, 'fixture');
+      await removeFixtureIssue(page, ids[8]);
+      await click(page, '.ri[data-view="data"]');
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('Undo from another view stays there with visible current-heading focus',
+        await visibleView(page) === 'view-data' && focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+      await switchRemovalList(page, 'fixture');
+      await removeFixtureIssue(page, ids[9]);
+      await page.evaluate(() => { window.__dismissedRemoval444 = document.querySelector('#app-report button'); });
+      await click(page, '.brand[data-view="home"]');
+      await clickNoticeButton(page, 'Dismiss');
+      const dismissed = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__dismissedRemoval444.click());
+      focus = await removalFocus(page);
+      t.check('dismissal spends the record without restoring anything and keeps useful visible focus',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, dismissed)
+        && !(await removalNotice(page)).buttons.includes('Undo remove')
+        && focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+
+      const last = fixtureReadingState();
+      last.issues = { [NEGATIVE_ORDER_ITEM.issueId]: { ...NEGATIVE_ORDER_ITEM, source: 'manual' } };
+      last.lists.fixture.itemIds = [NEGATIVE_ORDER_ITEM.issueId];
+      await seedRemovalFixture(page, last);
+      await removeFixtureIssue(page, NEGATIVE_ORDER_ITEM.issueId);
+      focus = await removalFocus(page);
+      t.check('removing the last manual issue leaves visible non-destructive focus and an Undo',
+        (await readState(page)).lists.fixture.itemIds.length === 0
+        && focus.visible && focus.act !== 'remove' && (await removalNotice(page)).buttons[0] === 'Undo remove',
+        JSON.stringify(focus));
+      await clickNoticeButton(page, 'Undo remove');
+      focus = await removalFocus(page);
+      t.check('the last manual issue returns with its same negative identity and visible row focus',
+        focus.visible && focus.key === String(NEGATIVE_ORDER_ITEM.issueId)
+        && (await readState(page)).lists.fixture.itemIds[0] === NEGATIVE_ORDER_ITEM.issueId, JSON.stringify(focus));
+      await removeFixtureIssue(page, NEGATIVE_ORDER_ITEM.issueId);
+      await page.reload({ waitUntil: 'load' });
+      t.check('reload ends the memory-only offer without persisting a history field or restoring the issue',
+        (await readState(page)).lists.fixture.itemIds.length === 0
+        && !(await removalNotice(page)).buttons.includes('Undo remove')
+        && !JSON.stringify(await readState(page)).includes('undo-remove'));
+      t.check('the removal journey has no page errors', errors.length === 0, errors.join(' / '));
+    },
+  },
+  {
+    id: 'issue-removal-undo-failures',
+    title: 'issue Undo retries only in its original known context and never revives after replacement',
+    async run(page, t) {
+      await page.setViewport({ width: 1280, height: 900 });
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      const ids = ORDER.items.map((item) => item.issueId);
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      const priorNotice = await removalNotice(page);
+      const removed = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await installRemovalFault(page, 'refuse-once');
+      await removeFixtureIssue(page, ids[2]);
+      t.check('a failed second removal preserves the first offer and all saved membership',
+        JSON.stringify(await removalNotice(page)) === JSON.stringify(priorNotice)
+        && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, removed));
+      t.check('the refused removal is reported by the real Store',
+        await page.$eval('#save-report', (node) => node.textContent.includes('not saved')));
+      await installRemovalFault(page, 'refuse-once');
+      await clickNoticeButton(page, 'Undo remove');
+      let focus = await removalFocus(page);
+      t.check('failed Undo keeps a retry and Dismiss without claiming saved restoration',
+        (await removalNotice(page)).buttons.join('/') === 'Try again/Dismiss'
+        && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, removed));
+      t.check('a focused Undo replaced by Retry leaves useful visible heading focus',
+        focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+      t.check('faults hit exactly the two intended main-key write attempts',
+        await page.evaluate(() => window.__removalFault444.writes === 2));
+      await clickNoticeButton(page, 'Try again');
+      t.check('the retry saves the original ordered membership once',
+        JSON.stringify((await readState(page)).lists.fixture.itemIds) === JSON.stringify(ids)
+        && !(await removalNotice(page)).buttons.includes('Try again'));
+
+      await removeFixtureIssue(page, ids[1]);
+      await installRemovalFault(page, 'refuse-once');
+      await clickNoticeButton(page, 'Undo remove');
+      await page.evaluate(() => { window.__retryRemoval444 = document.querySelector('#app-report button'); });
+      await clickNoticeButton(page, 'Dismiss');
+      const spent = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__retryRemoval444.click());
+      t.check('dismissing a failed retry spends its record',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, spent)
+        && !(await removalNotice(page)).buttons.includes('Try again'));
+      await removeFixtureIssue(page, ids[0]);
+      await page.evaluate(() => { window.__deletedSource444 = document.querySelector('#app-report button'); });
+      await deleteActiveList(page);
+      await page.waitForFunction(() => !JSON.parse(localStorage.getItem('mrt.state.v2')).lists.fixture);
+      t.check('whole-list deletion replaces the invalid issue offer with its own Undo',
+        (await removalNotice(page)).buttons[0] === 'Undo delete');
+      await clickNoticeButton(page, 'Undo delete');
+      const wholeListRestored = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__deletedSource444.click());
+      t.check('whole-list Undo never resurrects the earlier removed-issue offer',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, wholeListRestored)
+        && JSON.stringify((await readState(page)).lists.fixture.itemIds) === JSON.stringify([ids[2]])
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      await page.evaluate(() => { window.__restoredSource444 = document.querySelector('#app-report button'); });
+      await restoreRemovalFixture(page, fixtureReadingState());
+      const replaced = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      await page.evaluate(() => window.__restoredSource444.click());
+      t.check('backup restoration withdraws the offer and a stale action cannot change the restored dataset',
+        await page.$eval('#restore-report', (node) => node.textContent.startsWith('Restored.'))
+        && await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, replaced)
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      await click(page, '.ri[data-view="data"]');
+      const foreign = await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const next = JSON.parse(oldValue);
+        next.writeToken = 'foreign-removal-444';
+        const newValue = JSON.stringify(next);
+        const button = document.querySelector('#app-report button');
+        button.focus();
+        window.__adoptedSource444 = button;
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', {
+          key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage, url: location.href,
+        }));
+        return newValue;
+      });
+      await page.waitForFunction(() => ![...document.querySelectorAll('#app-report button')]
+        .some((button) => button.textContent === 'Undo remove'));
+      focus = await removalFocus(page);
+      await page.evaluate(() => window.__adoptedSource444.click());
+      t.check('byte-equivalent membership adopted off-route spends the offer without rewriting it',
+        await page.evaluate((raw) => localStorage.getItem('mrt.state.v2') === raw, foreign)
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+      t.check('withdrawing a focused offer leaves visible current-view focus',
+        focus.visible && focus.id === focus.heading, JSON.stringify(focus));
+
+      await seedRemovalFixture(page);
+      await removeFixtureIssue(page, ids[1]);
+      await page.evaluate(() => { window.__unknownSource444 = document.querySelector('#app-report button'); });
+      await installRemovalFault(page, 'unknown-restore');
+      await restoreRemovalFixture(page, fixtureReadingState());
+      const unknown = await page.evaluate(() => ({
+        report: document.querySelector('#restore-report').textContent,
+        ring: document.querySelector('#ring-sub').textContent,
+        raw: window.__removalFault444.get.call(localStorage, 'mrt.state.v2'),
+        writes: window.__removalFault444.writes,
+      }));
+      t.check('the unknown-restore fault reaches one main write while keeping the old in-memory list',
+        unknown.writes === 1 && unknown.report.includes('Restore did not finish')
+        && unknown.ring.includes('of 2 read')
+        && JSON.parse(unknown.raw).lists.fixture.itemIds.length === 3, JSON.stringify(unknown));
+      t.check('unknown durable state withdraws Undo immediately despite retained source references',
+        !(await removalNotice(page)).buttons.some((label) => ['Undo remove', 'Try again'].includes(label)));
+      await page.evaluate(() => window.__unknownSource444.click());
+      t.check('a stale action into unknown data cannot recreate a successful-looking retry',
+        !(await removalNotice(page)).buttons.includes('Try again')
+        && await page.evaluate(() => window.__removalFault444.writes === 1));
+      await page.evaluate(() => {
+        Storage.prototype.setItem = window.__removalFault444.set;
+        Storage.prototype.getItem = window.__removalFault444.get;
+      });
+      await page.reload({ waitUntil: 'load' });
+      t.check('reload reads the actual restored data without reviving tab-memory recovery',
+        (await readState(page)).lists.fixture.itemIds.length === 3
+        && !(await removalNotice(page)).buttons.includes('Undo remove'));
+      t.check('the refusal and replacement journey has no page errors', errors.length === 0, errors.join(' / '));
+    },
+  },
+);
+
+MUTATIONS.push(
+  {
+    id: 'issue-removal-index-lost',
+    breaks: 'issue-removal-undo',
+    why: 'Undo appends the issue instead of restoring its original position',
+    rewriteModel: (source) => source.replace('itemIds.splice(index, 0, id);', 'itemIds.push(id);'),
+  },
+  {
+    id: 'issue-removal-blocked-context',
+    breaks: 'issue-removal-undo-failures',
+    why: 'an unknown restore retains a removal offer solely because the old list references survived',
+    rewriteReading: (source) => source.replace('return !isStateBlocked() && list?.itemIds === removed.itemIds',
+      'return list?.itemIds === removed.itemIds'),
+  },
+);
+
+// This probe understands the original pseudo-element as well as the replacement DOM hint:
+// the negative control must fail on lost hover/focus behavior, not on a missing new selector.
+async function tooltipVisual449(page, selector, tipId) {
+  return page.$eval(selector, (trigger, id) => {
+    const rect = (box) => ({ left: box.left, right: box.right, top: box.top, bottom: box.bottom, width: box.width, height: box.height });
+    const box = trigger.getBoundingClientRect();
+    const tip = document.getElementById(id);
+    const pseudo = getComputedStyle(trigger, '::after');
+    const legacy = id === 'action-tip' && pseudo.content !== 'none' && pseudo.content !== 'normal';
+    let visible = !tip.hidden;
+    let bounds = rect(tip.getBoundingClientRect());
+    if (legacy) {
+      visible = pseudo.visibility === 'visible' && pseudo.opacity !== '0';
+      const width = parseFloat(pseudo.width);
+      const height = parseFloat(pseudo.height);
+      const left = box.left + box.width / 2 - width / 2;
+      const top = box.bottom - parseFloat(pseudo.bottom) - height;
+      bounds = { left, right: left + width, top, bottom: top + height, width, height };
+    }
+    return {
+      visible, box: rect(box), bounds, text: legacy ? pseudo.content : tip.textContent,
+      focus: document.activeElement === trigger,
+      described: trigger.getAttribute('aria-describedby'),
+      ariaHidden: tip.getAttribute('aria-hidden'),
+      live: tip.getAttribute('aria-live'),
+      shortcut: trigger.getAttribute('aria-keyshortcuts'),
+      side: legacy ? 'top' : tip.dataset.side,
+      viewport: { left: visualViewport.offsetLeft, top: visualViewport.offsetTop, width: visualViewport.width, height: visualViewport.height },
+      transition: getComputedStyle(tip).transitionDuration,
+      border: getComputedStyle(tip).borderTopWidth,
+    };
+  }, tipId);
+}
+
+SCENARIOS.push({
+  id: 'tooltip-lifecycle-449',
+  title: 'action and rail hints survive pointer travel and dismiss without moving focus',
+  async run(page, t) {
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await seedFixtureState(page, { sidebarCollapsed: true });
+    await page.evaluate(() => {
+      localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, readingShortcut: true }));
+    });
+    await open(page, '/?catalog=browser-check&tooltip-document=449#/read/fixture?full=1');
+    const setupState = () => page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      return {
+        route: location.hash,
+        view: document.querySelector('.view:not([hidden])')?.id,
+        full: document.querySelector('#full')?.open,
+        active: state?.active,
+        itemIds: state?.lists?.fixture?.itemIds,
+        rows: document.querySelectorAll('#rows .row').length,
+      };
+    });
+    try {
+      await page.waitForFunction(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state?.active === 'fixture' && !document.querySelector('#view-read')?.hidden
+          && document.querySelector('#full')?.open && document.querySelectorAll('#rows .row').length > 0;
+      }, { timeout: 15000 });
+    } catch (error) {
+      throw new Error(`Tooltip fixture setup failed: ${JSON.stringify({ ...await setupState(), errors })}`, { cause: error });
+    }
+    const setup = await setupState();
+    t.check('fresh tooltip document retains the active fixture, open full list and actual rows',
+      setup.active === 'fixture' && setup.view === 'view-read' && setup.full && setup.rows > 0,
+      JSON.stringify(setup));
+    const saved = await readState(page);
+    const settle = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+    const reset = async () => {
+      await page.mouse.move(page.viewport().width - 1, page.viewport().height - 1);
+      await page.evaluate(() => document.activeElement?.blur());
+      await settle();
+    };
+    const families = [
+      { name: 'action', selector: '#btn-hero-done', tipId: 'action-tip' },
+      { name: 'rail', selector: '#sidebar .ri[data-view="add"]', tipId: 'rail-tip' },
+    ];
+    for (const { name, selector, tipId } of families) {
+      await reset();
+      await page.$eval(selector, (trigger) => trigger.scrollIntoView({ block: 'center' }));
+      await page.hover(selector);
+      await settle();
+      const shown = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: hover reveals the current hint`, shown.visible && shown.text.length > 0, JSON.stringify(shown));
+      const { box, bounds } = shown;
+      const vertical = bounds.bottom <= box.top || bounds.top >= box.bottom;
+      const cross = vertical
+        ? Math.max(box.left + 2, Math.min(box.right - 2, (bounds.left + bounds.right) / 2))
+        : Math.max(box.top + 2, Math.min(box.bottom - 2, (bounds.top + bounds.bottom) / 2));
+      const gap = vertical
+        ? { x: cross, y: bounds.bottom <= box.top ? (bounds.bottom + box.top) / 2 : (bounds.top + box.bottom) / 2 }
+        : { x: bounds.left >= box.right ? (bounds.left + box.right) / 2 : (bounds.right + box.left) / 2, y: cross };
+      await page.mouse.move(gap.x, gap.y, { steps: 12 });
+      await settle();
+      t.check(`${name}: the actual trigger-to-hint gap remains hoverable`,
+        (await tooltipVisual449(page, selector, tipId)).visible);
+      await page.mouse.move(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2, { steps: 12 });
+      await settle();
+      t.check(`${name}: hovering the hint keeps it readable`,
+        (await tooltipVisual449(page, selector, tipId)).visible);
+      await reset();
+      t.check(`${name}: leaving both surfaces closes the hint`, !(await tooltipVisual449(page, selector, tipId)).visible);
+
+      await page.focus(selector);
+      await settle();
+      const focused = await tooltipVisual449(page, selector, tipId);
+      const control = await page.$(selector);
+      const accessible = await page.accessibility.snapshot({ root: control, interestingOnly: false });
+      const announcer = await page.$eval('#announcer', (node) => node.textContent);
+      t.check(`${name}: focus opens a purely visual supplement to a sufficient name`,
+        focused.visible && focused.focus && accessible?.name?.length > 0
+        && focused.ariaHidden === 'true' && focused.live === null && focused.described === null, JSON.stringify({ focused, accessible }));
+      await page.keyboard.press('Escape');
+      await settle();
+      const dismissed = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: Escape dismisses without moving keyboard focus`, !dismissed.visible && dismissed.focus, JSON.stringify(dismissed));
+      await page.$eval(selector, (node) => { node.dataset.tooltipRepaint449 = 'same control'; node.classList.add('tooltip-repaint-449'); });
+      await page.hover(selector);
+      await settle();
+      t.check(`${name}: unchanged focus plus repaint and renewed hover do not undo Escape`,
+        !(await tooltipVisual449(page, selector, tipId)).visible);
+      await reset();
+      await page.focus(selector);
+      await settle();
+      t.check(`${name}: leaving focus and hover permits the next visit to reopen`,
+        (await tooltipVisual449(page, selector, tipId)).visible);
+      t.check(`${name}: tooltip repaint does not add an announcement`,
+        announcer === await page.$eval('#announcer', (node) => node.textContent));
+      await page.$eval(selector, (node) => { node.disabled = true; });
+      await settle();
+      t.check(`${name}: a disabled trigger withdraws its hint`, !(await tooltipVisual449(page, selector, tipId)).visible);
+      await page.$eval(selector, (node) => { node.disabled = false; node.classList.remove('tooltip-repaint-449'); delete node.dataset.tooltipRepaint449; });
+      await reset();
+      await page.focus(selector);
+      await page.$eval(selector, (node) => { node.hidden = true; });
+      await settle();
+      t.check(`${name}: hiding a focused trigger withdraws its hint`,
+        !(await tooltipVisual449(page, selector, tipId)).visible);
+      await page.$eval(selector, (node) => { node.hidden = false; });
+      await reset();
+    }
+
+    const action = families[0];
+    await page.focus(action.selector);
+    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Current action after repaint'; });
+    await settle();
+    t.check('valid action text updates in place without moving focus',
+      (await tooltipVisual449(page, action.selector, action.tipId)).text === 'Current action after repaint');
+    await page.$eval(action.selector, (node) => { node.removeAttribute('data-tooltip'); node.removeAttribute('aria-keyshortcuts'); });
+    await settle();
+    t.check('withdrawing a shortcut withdraws its visible hint and shortcut metadata',
+      !(await tooltipVisual449(page, action.selector, action.tipId)).visible
+      && await page.$eval(action.selector, (node) => !node.hasAttribute('aria-keyshortcuts')));
+    await page.$eval(action.selector, (node) => { node.dataset.tooltip = 'Keyboard shortcut: D'; node.setAttribute('aria-keyshortcuts', 'd'); });
+    await reset();
+
+    // The first Escape must not invoke the row menu's focus rescue; the second still must.
+    await page.setViewport({ width: 320, height: 900 });
+    await click(page, '#rows .row:first-child [data-act="more"]');
+    const rowAction = '#rows .row:first-child [data-act="override"]';
+    await page.focus(rowAction);
+    await page.keyboard.press('Escape');
+    t.check('first Escape keeps focus in the open narrow row menu',
+      await page.$eval(rowAction, (node) => document.activeElement === node
+        && node.closest('.row').querySelector('[data-act="more"]').getAttribute('aria-expanded') === 'true'));
+    await page.keyboard.press('Escape');
+    t.check('second Escape retains the existing row-menu dismissal and focus rescue',
+      await page.$eval('#rows .row:first-child [data-act="more"]', (node) => document.activeElement === node && node.getAttribute('aria-expanded') === 'false'));
+
+    const client = await page.createCDPSession();
+    for (const { name, selector, tipId } of families) {
+      await page.setViewport({ width: name === 'rail' ? 1000 : 320, height: 900 });
+      await reset();
+      await page.$eval(selector, (node) => {
+        node.dataset[node.closest('#sidebar') ? 'tip' : 'tooltip'] =
+          'A longer hint keeps the action understandable while wrapping at the edge of the visible page. It remains readable when the pointer moves onto the hint, without hiding the control or changing keyboard focus.';
+        node.scrollIntoView({ block: 'center' });
+      });
+      await page.focus(selector);
+      await settle();
+      const long = await tooltipVisual449(page, selector, tipId);
+      const fits = ({ bounds: r, viewport: v, box: b }) => r.left >= v.left && r.top >= v.top
+        && r.right <= v.left + v.width && r.bottom <= v.top + v.height
+        && (r.right <= b.left || r.left >= b.right || r.bottom <= b.top || r.top >= b.bottom);
+      t.check(`${name}: long content wraps within the viewport without covering its control`, long.visible && fits(long), JSON.stringify(long));
+      const occlusion = await page.evaluate((id) => {
+        const tip = document.getElementById(id);
+        const box = tip.getBoundingClientRect();
+        tip.style.visibility = 'hidden';
+        const content = new Set();
+        for (let x = box.left + 4; x < box.right; x += 12) {
+          for (let y = box.top + 4; y < box.bottom; y += 12) {
+            const node = document.elementFromPoint(x, y);
+            if (node?.matches('button, a, p, label, h1, h2, h3, span, b, strong') && node.textContent.trim()) {
+              content.add(node.textContent.trim().slice(0, 90));
+            }
+          }
+        }
+        tip.style.removeProperty('visibility');
+        return [...content];
+      }, tipId);
+      console.log(`  ${name} rendered meaningful content beneath long hint: ${JSON.stringify(occlusion)}`);
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 2 });
+      await settle();
+      const zoom = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: 200 percent zoom retains visible, non-overlapping keyboard hints`, zoom.visible && zoom.focus && fits(zoom), JSON.stringify(zoom));
+      await client.send('Emulation.setPageScaleFactor', { pageScaleFactor: 1 });
+      await client.send('Emulation.setEmulatedMedia', {
+        features: [{ name: 'forced-colors', value: 'active' }, { name: 'prefers-reduced-motion', value: 'reduce' }],
+      });
+      await settle();
+      const media = await tooltipVisual449(page, selector, tipId);
+      t.check(`${name}: forced colors keeps a boundary and reduced motion needs no animation`,
+        media.visible && parseFloat(media.border) >= 1 && media.transition === '0s', JSON.stringify(media));
+      await client.send('Emulation.setEmulatedMedia', { features: [] });
+      await reset();
+    }
+    await client.detach();
+    await page.setViewport({ width: 1280, height: 900 });
+    await reset();
+    await page.focus('#btn-hero-done');
+    await page.evaluate(() => document.querySelector('#ask').showModal());
+    await settle();
+    t.check('a modal dialog withdraws the background hint',
+      await page.$eval('#action-tip', (node) => node.hidden));
+    await page.keyboard.press('Escape');
+    t.check('Escape still dismisses a dialog without a visible hint',
+      await page.$eval('#ask', (node) => !node.open));
+    await page.focus('#sidebar .ri[data-view="add"]');
+    await click(page, '#sidebar .ri[data-view="add"]');
+    await settle();
+    t.check('navigation removes the old hint rather than reviving it at the new heading',
+      await page.evaluate(() => document.querySelector('#rail-tip').hidden && document.querySelector('#action-tip').hidden));
+    await click(page, '.search-hub-card[data-view="add-search"]');
+    await page.focus('#form-search button[type="submit"]');
+    await page.$eval('#form-search button[type="submit"]', (node) => node.remove());
+    await settle();
+    t.check('removing a trigger cleans up its detached hint', await page.$eval('#action-tip', (node) => node.hidden));
+    t.check('the lifecycle scenario produces no page errors', errors.length === 0, errors.join(' / '));
+    const after = await readState(page);
+    t.check('hint interactions leave saved reading progress unchanged', JSON.stringify(after) === JSON.stringify(saved));
+  },
+});
+
+MUTATIONS.push({
+  id: 'tooltip-original-lifecycle-449',
+  breaks: 'tooltip-lifecycle-449',
+  why: 'the original action pseudo-hints and pointerout rail hints cannot survive gap travel or Escape',
+  rewriteMain: (source) => source.replace('  wireAppTooltips();', `
+  const legacyStyle449 = \`
+    .has-tooltip { position: relative; }
+    .has-tooltip::after {
+      content: attr(data-tooltip); position: absolute; z-index: 25;
+      left: 50%; bottom: calc(100% + .45rem); width: max-content; max-width: 14rem;
+      padding: var(--space-2) var(--space-4); border: 1px solid var(--line-2); border-radius: 6px;
+      background: var(--text); color: var(--card);
+      font-size: var(--t-caption); font-weight: 600; line-height: 1.3;
+      opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-50%);
+    }
+    .has-tooltip:hover::after, .has-tooltip:focus-visible::after { opacity: 1; visibility: visible; }
+    .rail-tip { pointer-events: none; max-width: 15rem; white-space: nowrap; overflow: hidden; }
+  \`;
+  const sheet449 = document.styleSheets[0];
+  for (const rule of legacyStyle449.split('}').filter((part) => part.trim())) {
+    sheet449.insertRule(rule + '}', sheet449.cssRules.length);
+  }
+  const rail449 = $('#sidebar');
+  const hide449 = () => { $('#rail-tip').hidden = true; };
+  const show449 = (event) => {
+    if (isNarrow) return hide449();
+    const target = event.target instanceof Element ? event.target.closest('.ri, .brand, .pill, .rail-toggle') : null;
+    if (!target || (!railed && !target.matches('.rail-toggle'))) return hide449();
+    const text = (target.dataset.tip || target.querySelector('.lbl')?.textContent || target.textContent || '').trim();
+    if (!text) return hide449();
+    const tip = $('#rail-tip');
+    tip.textContent = text;
+    tip.hidden = false;
+    const box = target.getBoundingClientRect();
+    tip.style.left = Math.round(box.right + 8) + 'px';
+    tip.style.top = Math.round(box.top + box.height / 2 - tip.offsetHeight / 2) + 'px';
+  };
+  rail449.addEventListener('pointerover', show449);
+  rail449.addEventListener('pointerout', hide449);
+  rail449.addEventListener('focusin', show449);
+  rail449.addEventListener('focusout', hide449);
+  window.addEventListener('scroll', hide449, true);
+`),
+});
+
+SCENARIOS.push((await import('./browser-preview-scroll-452.mjs')).previewScroll452);
 
 // Without this an unexpected throw leaves an unhandled rejection, which Node reports as a bare
 // stack and exits 1 on. Exit 1 is this check's word for "an assertion failed", so an internal

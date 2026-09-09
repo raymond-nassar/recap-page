@@ -29,12 +29,12 @@ test('the issue-focus opener stores only stable source identity', () => {
   }
 });
 
-test('Back restores exact full-order focus and uses the accepted fallback order', () => {
+test('Back scrolls to exact full-order focus and uses the accepted fallback order', () => {
   const restore = main.slice(
     main.indexOf('async function restoreIssueFocusOpener'),
     main.indexOf('function loadBundledOrder'),
   );
-  const exact = restore.indexOf('target.focus({ preventScroll: true })');
+  const exact = restore.indexOf('target.focus()');
   const checked = restore.indexOf("document.querySelectorAll('input[name=\"filter\"]')");
   const summary = restore.indexOf("$('#full').querySelector('summary')");
   const heading = restore.indexOf('focusViewHeading(view)');
@@ -42,7 +42,9 @@ test('Back restores exact full-order focus and uses the accepted fallback order'
   assert.ok(checked < summary, 'the checked filter is not before the summary fallback');
   assert.ok(summary < heading, 'the summary is not before the view-heading fallback');
   assert.match(restore, /readingView\.setFullOrderFromRoute\(true\);\s*readingView\.renderRows\(\);/);
-  assert.match(restore, /target\.focus\(\{ preventScroll: true \}\)/);
+  assert.match(restore, /checked\.focus\(\)/);
+  assert.match(restore, /summary\.focus\(\)/);
+  assert.doesNotMatch(restore, /preventScroll/);
   assert.doesNotMatch(restore, /localStorage|DOMNode|HTMLElement/);
 });
 

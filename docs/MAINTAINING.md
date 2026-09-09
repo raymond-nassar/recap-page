@@ -105,7 +105,8 @@ MRT_EDGE=/absolute/path/to/browser npm run browser
 The check normally serves the app on an ephemeral port, uses an isolated profile, stubs the catalog
 network before the page loads, and exits nonzero on a failed journey. The temporary port keeps the
 reading progress at the standard app address untouched. The targeted `cache-generations`,
-`catalog-gaps`, and `reading-paths` journeys are the exceptions because their contracts require
+`catalog-gaps`, `reading-paths`, `reading-path-stop-actions`, `issue-return-visibility`,
+`reading-shortcut`, `reading-list-empty-441`, `issue-action-names`, and `issue-443-row-actions` journeys require
 `http://127.0.0.1:8787/`; they use that origin only inside Edge's temporary automation profile.
 Stop the normal app server before any targeted run so the runner can bind that port. Each journey
 prints its own assertion and timing totals.
@@ -830,11 +831,12 @@ only permitted outputs are:
 ```text
 index.html
 site.css
-assets/home-1280.png
-assets/avengers-disassembled-reading-1280.png
+assets/home-960.png
+assets/avengers-disassembled-reading-960.png
 ```
 
-The two images must remain byte-identical to their namesakes under `docs/screenshots/`. Do not add
+The two 960 by 900 images use a clean demo profile, cover art off, and the collapsed sidebar.
+Keep them byte-identical to their namesakes under `docs/screenshots/`. Do not add
 `src`, an app manifest, a service worker, a script, a form, an iframe, an external font, analytics,
 telemetry or another application origin to the artifact.
 

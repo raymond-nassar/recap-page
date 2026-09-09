@@ -1,17 +1,18 @@
 {
   "candidateId": "punisher-reading-order",
-  "packetDigest": "ff88a21e032af67bf42c2c4a6424ed8e0eebc08b02710cac8f2eba92feaafb42",
-  "mappingDigest": "ca9165c8db00878066426b13090acb92fb79fcd17d59ee129a51d5b6e1c26b80",
+  "packetDigest": "938fcdbc6cb86a437fca927452fa78fab9e894cef717be02652e00874650fd57",
+  "mappingDigest": "b7c18b291d33774889fdc18d47f5621270215136ad60a1a6b8032cb9a9e4c065",
   "libraryDigest": "0a007049a495cbebb43542f6b3b197b672879371b82d2a20c7c24e2eeb70918d",
   "peerDigests": {},
   "sourceCounts": {
     "sourceOccurrenceCount": 857,
     "sourceIdentityCount": 638,
-    "includedIssueCount": 480,
-    "sourceGapCount": 158,
-    "repeatedSourceReferenceCount": 145
+    "includedIssueCount": 544,
+    "sourceGapCount": 94,
+    "repeatedSourceReferenceCount": 145,
+    "excludedSourceRowCount": 74
   },
-  "candidateCount": 480,
+  "candidateCount": 544,
   "comparisonCount": 158,
   "comparisons": [
     {
@@ -52,7 +53,7 @@
     },
     {
       "orderId": "amazing-spider-man-reading-order-modern-marvel-era",
-      "sharedCount": 11,
+      "sharedCount": 12,
       "sharedIds": [
         "6515",
         "6521",
@@ -64,6 +65,7 @@
         "6596",
         "6597",
         "16889",
+        "84575",
         "39941"
       ],
       "relationship": "partial"
@@ -1107,5 +1109,5 @@
       "relationship": "none"
     }
   ],
-  "reportDigest": "3bf9074400be4e9ae88fc75352c287c108ce2ad9b8ccba986a40c2619ae0b41e"
+  "reportDigest": "a184d5c671f15332387c3422498ed7bde92f1a1bf2a6b819fed0e66438e46dac"
 }

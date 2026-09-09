@@ -44,6 +44,32 @@ npm start
 
 You can also double-click **Start on Windows.cmd** on Windows or **Start on macOS.command** on a Mac.
 
+## When Read opens the wrong comic
+
+Open the saved comic's **Issue Details**, then **Edit temporary reader link**. Paste the Marvel
+Unlimited reader address for that exact comic and review the normalized destination before choosing
+**Use temporarily**. This accepts http or https addresses on `read.marvel.com` with a root
+`/#/book/` reference of up to 12 digits, not comic information pages, other hosts or custom ports.
+Page position and extra query details are discarded. The app cannot verify the comic or subscription
+access, and applying the address does not open a reader tab.
+
+Read uses this temporary address across all lists sharing that comic in the current tab. **Use
+original link** removes it. Reloading or closing the document clears it, as do actual saved-data
+replacement or loss of the saved comic reference. Returning through browser page history after
+leaving the document also starts without temporary links. Ordinary progress saves, including another
+tab's updates, do not clear a valid link. An uncertain saved-data outcome withdraws temporary links
+until the saved references can be trusted again; a failed replacement known to leave data unchanged
+does not. A changed comic while editing requires canceling and reopening that editor.
+
+Nothing about this changes comic identity, availability checks, progress, notes, original metadata
+or backups. There is no permanent link database. Another tab does not inherit the link.
+
+**Report details** is optional and separate. Review or edit the small comic/original/proposed-link
+summary, manually copy only what you want to share, and open the project's GitHub correction form.
+Opening it sends no report details; you review and submit on GitHub, which may require sign-in.
+Do not include private notes, lists, progress, credentials, local paths or logs. A report may help
+maintainers investigate a permanent fix, but does not itself correct Marvel data or prove access.
+
 ## The first-run warning
 
 Windows or macOS may ask you to confirm the first run because the files came from the internet.
@@ -127,6 +153,23 @@ address.
 Progress is also separate by browser and browser profile. Opening Recap Page in Firefox does not
 show progress saved in Edge, and it does not remove the Edge copy.
 
+## Undo an issue removal
+
+**Remove from list** takes an issue out immediately. **Undo remove** puts it back in the same
+position and collected edition without undoing later read progress, notes or availability choices.
+Other Reading Lists are not changed.
+
+Only the most recently **successfully** removed issue can be put back this way. The offer has no
+countdown and stays in memory for this tab, not in backups. **Dismiss**, reloading the page or
+closing the tab ends it. A failed removal does not replace an earlier valid offer.
+
+Navigation, filters, read progress, issue notes, renaming the list and editing its note keep the
+offer. Changing that list's issue order, membership or edition assignments ends it. Deleting or
+replacing the source list, adopting saved data from another tab, or reloading data during a restore
+also ends it; undoing a whole-list deletion does not bring the old issue-removal offer back.
+If a recovery leaves the saved data uncertain, the offer is withdrawn rather than risking the
+wrong list. A refused Undo shows **Try again** only while the original context is still valid.
+
 ## Upgrade safely
 
 Microsoft Store installations receive product updates only through Microsoft Store. Recap Page has
@@ -200,6 +243,44 @@ Open Recap Page in a normal browser window rather than an editor preview. If it 
 normal browser, allow pop-ups for the local address. Reading comics requires your own Marvel
 Unlimited subscription. Recap Page opens the official reader when a direct link is available and
 otherwise opens the issue's official page on marvel.com.
+
+### Choosing when to see issue descriptions
+
+With **Hide descriptions until I reveal them** on (the default), **Fetch synopses** asks permission to fetch a Reading List's descriptions but does not reveal
+them. Use **Reveal description (may contain spoilers)** on Reading or Issue Details to see one,
+and **Hide description** to close it. When an individual description has not been fetched,
+Issue Details offers **Fetch and reveal description (may contain spoilers)** with confirmation.
+You can open the official reader without either action.
+
+With hiding on, all issues start collapsed, including already-read and untracked issues. The last reveal or hide
+choice follows only that exact issue between views in the current tab. Changing its read flag
+does not change that choice or reveal the next issue. Reloading or saving the metadata-source
+setting clears descriptions and choices. Neither is saved in your lists or backups, and revealing
+never changes progress or notes. Titles, covers and cross-story references are not guaranteed to
+be spoiler-free.
+
+Turn description hiding off in **Backup & settings**, under **Personalization**, to display
+already-fetched descriptions without Reveal/Hide controls. Fetching still needs consent. An
+actual change resets individual reveal choices in both views but keeps fetched text; turning
+hiding back on starts collapsed again. Only the boolean preference is saved, separately from
+progress and backups. If it cannot be saved, a warning explains that it applies to this tab only.
+
+### Reviewing earlier comics
+
+Choose **Review earlier issues** on Home or Reading to start immediately before the next unread
+comic in the selected list's current order. **Earlier** and **Later** move through that earlier
+portion, one comic at a time. A completed list starts at its final comic. Empty lists and lists
+whose first comic is unread have no earlier candidate; **Open full Reading List** remains available.
+
+Opening or moving the picker does not fetch or reveal descriptions. Open an exact comic's
+details to use the existing description controls, then go Back to the picker. With hiding off,
+Details can show text you already fetched. Return to Reading's **Read next issue** to continue
+the order; the reader button in Details opens the comic being inspected.
+
+This is current order, not an inferred previous reading session. If the list or selected position
+changes, an invalid selection is withdrawn rather than replaced with another comic. Provider
+descriptions may be missing or insufficient to recap the story. The app does not generate a
+replacement, collect wiki summaries or guarantee an issue-specific spoiler cutoff.
 
 ### Reading progress has disappeared
 

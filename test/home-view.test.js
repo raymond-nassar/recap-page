@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { createHomeView } from '../src/js/views/home.js';
+import { createCatalogPresentation } from '../src/js/views/shared/catalog-presentation.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -83,6 +84,8 @@ function harness({
   catalogLoader = null,
   populated = false,
   nextIssue = { issueId: 7, title: 'Next issue', seriesName: 'Series (2026)', number: '3' },
+  progress = { read: 1, total: 2 },
+  readerPresentation,
 } = {}) {
   const firstGateway = gateway();
   const secondGateway = gateway();
@@ -103,6 +106,7 @@ function harness({
     continueNumber: node(),
     continueRead: node({ text: 'Read next' }),
     continueOpen: node({ text: 'Open Reading List' }),
+    continueReview: node(),
     yoursSection: node(),
     yoursList: node(),
     gateways: [firstGateway, secondGateway],
@@ -129,7 +133,7 @@ function harness({
       key: 'timeline',
       route: 'catalog',
       tier: 'primary',
-      icon: 'E8A5',
+      icon: 'E736',
       heading: 'Modern Timeline',
       label: 'Browse by year',
       count: 2,
@@ -153,6 +157,9 @@ function harness({
   };
   const view = createHomeView({
     categoriesForCatalog: () => categories,
+    createIcon: (name, className) => node({
+      class: className, 'aria-hidden': 'true', focusable: 'false', symbol: name,
+    }),
     clearCatalogNotice: () => {},
     el: element,
     elements: () => ({
@@ -165,13 +172,15 @@ function harness({
     getState: () => state,
     hueOf: () => 'hue',
     labelledName: (label, context) => `${label}: ${context}`,
-    listProgress: () => ({ read: 1, total: 2 }),
+    listProgress: () => progress,
     loadCatalog: catalogLoader ?? (async () => catalog),
     onCatalogDropped: (count) => calls.warnings.push(count),
     onCatalogLoadFailure: (options) => calls.failures.push(options),
     onNavigateCategory: (category) => calls.navigate.push(category.route),
     onOpen: () => { calls.open += 1; },
+    onReview: () => calls.navigate.push('review'),
     onRead: (...args) => calls.read.push(args),
+    readerPresentation,
     openPreview: (entry) => calls.preview.push(entry.id),
     paintCover: (...args) => calls.covers.push(args),
     paintCoverUrl: (...args) => calls.coverFallbacks.push(args),
@@ -215,6 +224,33 @@ test('Home view owns first-run, saved-list, recommendation, and shared gateway p
   assert.deepEqual(h.calls.preview, ['recommended']);
 });
 
+test('453 Home refresh uses effective launchability and saved provenance without repainting gateways', () => {
+  let temporary = false;
+  const h = harness({
+    populated: true,
+    nextIssue: { issueId: -7, title: 'Manual comic', seriesName: '' },
+    readerPresentation: (_issue, source) => {
+      assert.equal(source, 'saved');
+      return { launchable: temporary, temporary };
+    },
+  });
+  h.view.wire();
+  h.view.render();
+  assert.equal(h.nodes.continueRead.hidden, false);
+  assert.equal(h.nodes.continueRead.disabled, true);
+  temporary = true;
+  h.view.refreshReader();
+  assert.equal(h.nodes.continueRead.hidden, false);
+  assert.equal(h.nodes.continueRead.disabled, false);
+  assert.match(h.nodes.continueRead.attributes['aria-label'], /Read with temporary link/);
+  h.nodes.continueRead.listeners.click({});
+  assert.equal(h.calls.read.at(-1)[2], 'saved');
+  assert.equal(h.calls.read.at(-1)[0].digitalId, undefined);
+  temporary = false;
+  h.view.refreshReader();
+  assert.equal(h.nodes.continueRead.disabled, true);
+});
+
 test('Home view paints populated Continue details and accessible actions', () => {
   const h = harness({ populated: true });
   h.view.render();
@@ -235,15 +271,89 @@ test('Home view paints populated Continue details and accessible actions', () =>
   assert.equal(h.calls.covers.length, 1);
 });
 
+test('446 Setup offers consistent optional historical context without gating direct entry', async () => {
+  const h = harness();
+  h.view.render();
+  await new Promise((resolve) => setImmediate(resolve));
+  const recommendation = findById(h.nodes.categoriesRoot, 'home-recommended');
+  const homeCopy = recommendation.children[0].children[1].textContent;
+  assert.match(homeCopy, /^New to Marvel\? .*historical context.*characters and events/);
+  assert.match(homeCopy, /optional; you can enter the Modern Timeline directly\./);
+  assert.equal(recommendation.hidden, false);
+  const timeline = h.nodes.gateways[0].nodes.primary.children[0].children[0];
+  timeline.onclick();
+  assert.deepEqual(h.calls.navigate, ['catalog']);
+  assert.deepEqual(h.state.listOrder, []);
+
+  const list = {
+    id: 'setup-to-modern-timeline',
+    name: 'Setup to Modern Timeline',
+    description: 'Earlier stories.',
+    count: 21,
+  };
+  let feature;
+  const presentation = createCatalogPresentation({
+    el: element,
+    elements: { query: (selector) => selector.endsWith('-results')
+      ? { before: (value) => { feature = value; } }
+      : null },
+    hueOf: () => 0,
+    isInLibrary: () => false,
+    onPreview: () => {},
+    paintCoverUrl: () => {},
+    shortTitle: (title) => title,
+  });
+  for (const surface of ['catalog', 'age-marvel-knights-heroes-return']) {
+    presentation.ensureSetupGuideFeature([list], surface, (lists) => lists[0]);
+    const copy = feature.children[0].children[1].textContent;
+    assert.match(copy, /^New to Marvel\? .*historical context.*characters and events/);
+    assert.match(copy, /optional;/);
+    if (surface === 'catalog') {
+      assert.ok(copy.startsWith(homeCopy));
+      assert.match(copy, /1998.*not an official Marvel editorial-era boundary/);
+    } else {
+      assert.match(copy, /you can enter this age directly\./);
+      assert.doesNotMatch(copy, /Read this orientation guide first/);
+    }
+    assert.equal(feature.dataset.featuredList, list.id);
+    assert.equal(findById(feature, `${feature.id}-h`).textContent, list.name);
+  }
+});
+
 test('Home view completion state removes the read action without inventing a next issue', () => {
-  const h = harness({ populated: true, nextIssue: null });
+  const h = harness({ populated: true, nextIssue: null, progress: { read: 2, total: 2 } });
   h.view.render();
 
   assert.equal(h.nodes.continueNext.textContent, 'You have read every issue in this order.');
   assert.equal(h.nodes.continueRead.hidden, true);
   assert.equal(h.nodes.continueSeries.textContent, 'Alpha order');
   assert.equal(h.nodes.continueNumber.textContent, '');
+  assert.equal(h.nodes.continueCount.textContent, '2 of 2 issues read');
+  assert.equal(h.nodes.continueFill.style.width, '100.0%');
   assert.equal(h.calls.coverFallbacks.length, 1);
+});
+
+test('441 Home describes an empty saved list without claiming completion or changing its contents', () => {
+  const h = harness({ populated: true, nextIssue: null, progress: { read: 0, total: 0 } });
+  h.state.lists.a.itemIds = [];
+  const before = structuredClone(h.state);
+  h.view.wire();
+  h.view.render();
+
+  assert.equal(h.nodes.continueSection.hidden, false);
+  assert.equal(h.nodes.continueNext.textContent, 'No issues in this Reading List yet. Open it to add comics.');
+  assert.equal(h.nodes.continueRead.hidden, true);
+  assert.equal(h.nodes.continueCount.textContent, '0 of 0 issues read');
+  assert.equal(h.nodes.continueFill.style.width, '0%');
+  assert.equal(h.nodes.continueBar.attributes['aria-valuenow'], '0');
+  assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
+  h.nodes.continueRead.listeners.click({});
+  h.nodes.continueOpen.listeners.click();
+  h.nodes.continueReview.listeners.click();
+  assert.equal(h.calls.read.length, 0);
+  assert.equal(h.calls.open, 1);
+  assert.deepEqual(h.calls.navigate, ['review']);
+  assert.deepEqual(h.state, before);
 });
 
 test('Home view wires only local controls and delegates controller effects', () => {
