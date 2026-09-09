@@ -1,6 +1,7 @@
 #pragma once
 
 #include "StartupProcess.h"
+#include <objbase.h>
 #include <evntrace.h>
 #include <evntcons.h>
 #include <tdh.h>

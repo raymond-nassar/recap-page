@@ -1,6 +1,7 @@
 #include "StartupProtocol.h"
 #include "StartupProcess.h"
 #include "StartupObserver.h"
+#include <ole2.h>
 #include <UIAutomation.h>
 #include <filesystem>
 #include <fstream>
