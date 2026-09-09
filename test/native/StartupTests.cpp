@@ -188,18 +188,35 @@ bool sameKernelObject(HANDLE first, HANDLE second) {
     return compare(first, second) != FALSE;
 }
 
-enum class HandleVerdict { excluded, inherited, inconclusive };
+enum class HandleVerdict { excluded, calibratedEventExcluded, inherited, inconclusive };
+
+struct EventExclusionControl {
+    bool retainedEvent = false, guiEqual = false, originalRecorded = false;
+    bool remoteCreated = false, differentSlot = false, returnedEqual = false;
+    bool cleaned = false, finalIdentityAndLifetime = false;
+    bool valid() const {
+        return retainedEvent && guiEqual && originalRecorded && remoteCreated &&
+            differentSlot && returnedEqual && cleaned && finalIdentityAndLifetime;
+    }
+};
+
+bool eventExcluded(HandleVerdict value) {
+    return value == HandleVerdict::excluded || value == HandleVerdict::calibratedEventExcluded;
+}
 
 const char* verdictName(HandleVerdict value) {
     return value == HandleVerdict::excluded ? "excluded"
+        : value == HandleVerdict::calibratedEventExcluded ? "excluded-event-under-calibrated-control"
         : value == HandleVerdict::inherited ? "inherited" : "inconclusive";
 }
 
 HandleVerdict classifyHandle(bool duplicated, DWORD error, bool comparisonKnown, bool equal,
-                            bool controlAndLifetime) {
+                            bool controlAndLifetime, const EventExclusionControl& eventControl = {}) {
     if (!controlAndLifetime) return HandleVerdict::inconclusive;
     if (duplicated && comparisonKnown) return equal ? HandleVerdict::inherited : HandleVerdict::excluded;
     if (!duplicated && error == ERROR_INVALID_HANDLE) return HandleVerdict::excluded;
+    if (!duplicated && error == ERROR_NOT_SUPPORTED && eventControl.valid())
+        return HandleVerdict::calibratedEventExcluded;
     return HandleVerdict::inconclusive;
 }
 
@@ -210,6 +227,28 @@ void handleClassificationCases() {
     check(classifyHandle(false, ERROR_ACCESS_DENIED, false, false, true) == HandleVerdict::inconclusive, "unknown denial became successful exclusion");
     check(classifyHandle(false, 0, false, false, true) == HandleVerdict::inconclusive, "missing error became successful exclusion");
     check(classifyHandle(false, ERROR_INVALID_HANDLE, false, false, false) == HandleVerdict::inconclusive, "unvalidated control became successful exclusion");
+    const EventExclusionControl complete{ true, true, true, true, true, true, true, true };
+    check(classifyHandle(false, ERROR_NOT_SUPPORTED, false, false, true, complete) == HandleVerdict::calibratedEventExcluded,
+          "complete current event control did not qualify event exclusion");
+    for (const auto member : {
+        &EventExclusionControl::retainedEvent, &EventExclusionControl::guiEqual,
+        &EventExclusionControl::originalRecorded, &EventExclusionControl::remoteCreated,
+        &EventExclusionControl::differentSlot, &EventExclusionControl::returnedEqual,
+        &EventExclusionControl::cleaned, &EventExclusionControl::finalIdentityAndLifetime
+    }) {
+        auto missing = complete;
+        missing.*member = false;
+        check(classifyHandle(false, ERROR_NOT_SUPPORTED, false, false, true, missing) == HandleVerdict::inconclusive,
+              "incomplete event control became successful exclusion");
+    }
+    check(classifyHandle(false, ERROR_NOT_SUPPORTED, false, false, false, complete) == HandleVerdict::inconclusive,
+          "stale original observation was accepted with a later control");
+    check(classifyHandle(false, ERROR_ACCESS_DENIED, false, false, true, complete) == HandleVerdict::inconclusive,
+          "event control incorrectly accepted access denial");
+    check(classifyHandle(true, 0, false, false, true, complete) == HandleVerdict::inconclusive,
+          "event control incorrectly accepted unknown comparison");
+    check(classifyHandle(true, 0, true, true, true, complete) == HandleVerdict::inherited,
+          "event control incorrectly accepted inherited identity");
 }
 
 struct DuplicationFact {
@@ -292,8 +331,8 @@ HandleVerdict observeSentinel(Child& gui, Child& coordinator, HANDLE sentinel, s
         creationTime(gui.process.get()) == guiCreation && creationTime(coordinator.process.get()) == coordinatorCreation;
     const bool live = guiBefore == WAIT_TIMEOUT && coordinatorBefore == WAIT_TIMEOUT &&
         guiAfter == WAIT_TIMEOUT && coordinatorAfter == WAIT_TIMEOUT;
-    const auto verdict = classifyHandle(original.result != FALSE, original.error, comparison.known,
-                                         comparison.equal, guiControl && live && identity);
+    auto verdict = classifyHandle(original.result != FALSE, original.error, comparison.known,
+                                   comparison.equal, guiControl && live && identity);
     report << "HANDLE original-slot duplicate_result=" << original.result << " error=" << original.error
            << " copy=" << reinterpret_cast<uintptr_t>(original.handle)
            << " comparison_known=" << comparison.known << " equal=" << comparison.equal
@@ -302,9 +341,17 @@ HandleVerdict observeSentinel(Child& gui, Child& coordinator, HANDLE sentinel, s
            << " coordinator_wait_error=" << coordinatorAfterError
            << " identity=" << identity << " live=" << live << " verdict=" << verdictName(verdict) << "\n";
     report.flush();
+    check(static_cast<bool>(report), "original handle observation could not be retained");
 
-    if (diagnostic && verdict == HandleVerdict::inconclusive && live && identity) {
+    if ((diagnostic || original.error == ERROR_NOT_SUPPORTED) &&
+        verdict == HandleVerdict::inconclusive && live && identity) {
+        EventExclusionControl control;
+        control.retainedEvent = flagsResult && (flags & HANDLE_FLAG_INHERIT);
+        control.guiEqual = guiControl;
+        control.originalRecorded = true;
         const auto remote = duplicateFact(self, sentinel, coordinator.process.get(), DUPLICATE_SAME_ACCESS);
+        control.remoteCreated = remote.result != FALSE;
+        control.differentSlot = remote.result && remote.handle != sentinel;
         report << "HANDLE coordinator-control-create duplicate_result=" << remote.result << " error=" << remote.error
                << " remote_slot=" << reinterpret_cast<uintptr_t>(remote.handle)
                << " reuses_original_slot=" << (remote.handle == sentinel) << " phase=after-original-observation\n";
@@ -312,18 +359,40 @@ HandleVerdict observeSentinel(Child& gui, Child& coordinator, HANDLE sentinel, s
             const auto returned = duplicateFact(coordinator.process.get(), remote.handle, self, DUPLICATE_SAME_ACCESS);
             recap::Handle local(returned.result ? returned.handle : nullptr);
             const auto same = local ? compareFact(sentinel, local.get()) : ComparisonFact{};
+            control.returnedEqual = returned.result && same.known && same.equal;
             report << "HANDLE coordinator-control-return duplicate_result=" << returned.result
                    << " error=" << returned.error << " comparison_known=" << same.known
                    << " equal=" << same.equal << " comparison_error=" << same.error << "\n";
             const auto closed = duplicateFact(coordinator.process.get(), remote.handle, self,
                                                DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
             recap::Handle closingCopy(closed.result ? closed.handle : nullptr);
+            const auto closingComparison = closingCopy ? compareFact(sentinel, closingCopy.get()) : ComparisonFact{};
+            control.cleaned = closed.result && closingComparison.known && closingComparison.equal;
             report << "HANDLE coordinator-control-close duplicate_result=" << closed.result << " error=" << closed.error
+                   << " comparison_known=" << closingComparison.known << " equal=" << closingComparison.equal
                    << " closed_only_test_created_remote_handle=1\n";
             report.flush();
-            check(closed.result != FALSE, "test-created remote sentinel cleanup could not be confirmed");
-            check(returned.result && same.known && same.equal, "same-coordinator positive control was inconclusive");
+            check(control.cleaned, "test-created remote sentinel cleanup could not be confirmed");
         }
+        const DWORD finalGuiWait = WaitForSingleObject(gui.process.get(), 0);
+        const DWORD finalGuiError = finalGuiWait == WAIT_FAILED ? GetLastError() : 0;
+        const DWORD finalCoordinatorWait = WaitForSingleObject(coordinator.process.get(), 0);
+        const DWORD finalCoordinatorError = finalCoordinatorWait == WAIT_FAILED ? GetLastError() : 0;
+        DWORD finalFlags = 0;
+        const BOOL retained = GetHandleInformation(sentinel, &finalFlags);
+        control.finalIdentityAndLifetime = finalGuiWait == WAIT_TIMEOUT && finalCoordinatorWait == WAIT_TIMEOUT &&
+            retained && (finalFlags & HANDLE_FLAG_INHERIT) &&
+            GetProcessId(gui.process.get()) == gui.pid && GetProcessId(coordinator.process.get()) == coordinator.pid &&
+            creationTime(gui.process.get()) == guiCreation && creationTime(coordinator.process.get()) == coordinatorCreation;
+        verdict = classifyHandle(original.result != FALSE, original.error, comparison.known,
+                                 comparison.equal, guiControl && live && identity, control);
+        report << "HANDLE event-specific-control original_error=" << original.error
+               << " different_slot=" << control.differentSlot << " returned_equal=" << control.returnedEqual
+               << " cleaned=" << control.cleaned << " final_identity_live=" << control.finalIdentityAndLifetime
+               << " final_gui_wait=" << finalGuiWait << " final_gui_error=" << finalGuiError
+               << " final_coordinator_wait=" << finalCoordinatorWait << " final_coordinator_error=" << finalCoordinatorError
+               << " verdict=" << verdictName(verdict) << " slot_type=not-inferred\n";
+        report.flush();
     }
     return verdict;
 }
@@ -773,9 +842,9 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
             if (diagnosticVerdict) *diagnosticVerdict = verdict;
             else {
                 check(verdict != HandleVerdict::inherited, "coordinator inherited the unrelated sentinel");
-                check(verdict == HandleVerdict::excluded, "handle inheritance observation was inconclusive");
+                check(eventExcluded(verdict), "handle inheritance observation was inconclusive");
             }
-            if (!consoleOnly && verdict == HandleVerdict::excluded) visual(window, layout, report);
+            if (!consoleOnly && eventExcluded(verdict)) visual(window, layout, report);
         }
     }
     if (id == "F09" || id == "F10") {
@@ -822,7 +891,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
     if (coordinator.process) coordinator.stop();
     if (diagnosticVerdict)
         report << "HANDLE fixture-handshake=complete exclusion=" << verdictName(*diagnosticVerdict)
-               << " visual=" << (*diagnosticVerdict == HandleVerdict::excluded ? "passed" : "not-run") << "\n";
+               << " visual=" << (eventExcluded(*diagnosticVerdict) ? "passed" : "not-run") << "\n";
     else report << "PASS " << id << "\n";
 }
 
@@ -831,7 +900,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
     GetNativeSystemInfo(&host);
     check(host.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64, "handle diagnostic is x64 only");
     handleClassificationCases();
-    report << "HANDLE classification-rows=6 passed=6 allocation-order=gui-control-before-original-slot\n";
+    report << "HANDLE classification-rows=19 passed=19 allocation-order=gui-control-before-original-slot\n";
     proof::Observer observer(true);
     size_t controlStarts = 0;
     std::vector<proof::WindowFact> controls{ calibration(observer, &controlStarts, &report) };
@@ -846,7 +915,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
            << " gui-activations=" << roots.size() << " calibration-controls=" << controlStarts
            << " observer-healthy=" << observer.healthy() << " clock-valid=" << observer.clockValid()
            << " etw-losses=" << observer.eventsLost() << " cleanup=complete\n";
-    check(verdict == HandleVerdict::excluded, "focused handle exclusion remains inconclusive or inherited");
+    check(eventExcluded(verdict), "focused handle exclusion remains inconclusive or inherited");
     report << "PASS focused-handle-diagnostic;feature-acceptance=not-evaluated\n";
 }
 
