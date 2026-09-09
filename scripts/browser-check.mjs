@@ -1852,6 +1852,29 @@ const SCENARIOS = [
       t.check('ordinary Continue still opens a separate reader without marking progress',
         await page.evaluate((before) => window.__review445.opens.length === 1
           && localStorage.getItem('mrt.state.v2') === before, saved));
+      const visibleFocus = (selector) => page.$eval(selector, (node) => {
+        const box = node.getBoundingClientRect();
+        return node === document.activeElement && box.top >= 0 && box.bottom <= innerHeight
+          && getComputedStyle(node).outlineStyle !== 'none';
+      });
+      await page.focus('#review-candidate a');
+      const renamed = await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        state.lists[state.active].name = 'Repainted storyline 445';
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+        return { saved: newValue, requests: window.__review445.requests.length };
+      });
+      await page.waitForFunction(() => document.querySelector('#review-context').textContent.includes('Repainted storyline 445'));
+      t.check('valid Store repaint retains visible focus on the exact picker candidate',
+        await visibleFocus('#review-candidate a') && await candidate() === ids[1]);
+      t.check('valid repaint adds no requests or writes beyond the explicit fixture rename',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before.saved
+          && window.__review445.requests.length === before.requests, renamed));
+      await page.focus('#review-candidate a');
       await page.evaluate(() => {
         const oldValue = localStorage.getItem('mrt.state.v2');
         const state = JSON.parse(oldValue);
@@ -1864,6 +1887,8 @@ const SCENARIOS = [
       await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[0].title);
       t.check('an earlier unread hole withdraws the stale candidate instead of switching issues',
         await page.$eval('#review-position', (node) => /no longer valid/.test(node.textContent)));
+      t.check('withdrawn focused candidate moves visible focus to the review heading',
+        await visibleFocus('#review-h'));
       await click(page, '#btn-review-earlier');
       t.check('first-position next unread has an honest no-earlier state',
         await page.$eval('#review-position', (node) => /no comics before/.test(node.textContent)));

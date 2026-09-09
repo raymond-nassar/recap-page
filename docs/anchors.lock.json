@@ -1619,13 +1619,13 @@
     "fp": "2ce9cb5e784ef76c",
     "head": "export function commitRows(container, desired) {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:665|0": {
-    "anchor": "src/js/views/reading.js:665",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:670|0": {
+    "anchor": "src/js/views/reading.js:670",
     "fp": "931bd75b9e4067fe",
     "head": "preservingFocus(rows, () => {"
   },
-  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:761-763|0": {
-    "anchor": "src/js/views/reading.js:761-763",
+  "docs/ARCHITECTURE.md|marking-one-issue-read|src/js/views/reading.js:766-768|0": {
+    "anchor": "src/js/views/reading.js:766-768",
     "fp": "962c8048b2876981",
     "head": "onclick: () => {"
   },
@@ -1909,8 +1909,8 @@
     "fp": "798530a596821d75",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId)),"
   },
-  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:562|0": {
-    "anchor": "src/js/views/reading.js:562",
+  "docs/DATA_PROVENANCE.md|the-size-of-the-question-measured-and-what-was-d|src/js/views/reading.js:567|0": {
+    "anchor": "src/js/views/reading.js:567",
     "fp": "4facbee243e08cfd",
     "head": "description: synopsisFallback(issue, getSynopsis(issue.issueId), noSynopsisMarker),"
   },
@@ -2124,13 +2124,13 @@
     "fp": "d420778b2fabaf12",
     "head": "function render() {"
   },
-  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:799-800|0": {
-    "anchor": "src/js/views/reading.js:799-800",
+  "docs/UX_STUDY.md|job-stories|src/js/views/reading.js:804-805|0": {
+    "anchor": "src/js/views/reading.js:804-805",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
-  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:276-279|0": {
-    "anchor": "src/js/views/reading.js:276-279",
+  "docs/UX_STUDY.md|keyboard|src/js/views/reading.js:281-284|0": {
+    "anchor": "src/js/views/reading.js:281-284",
     "fp": "94990e1841fd1e69",
     "head": "$('#reading-filters').append(...READING_FILTERS.map((option) => el('label', { class: 'fp' }, ["
   },
@@ -2154,8 +2154,8 @@
     "fp": "e19583cc19f81884",
     "head": "// Contract verified 2026-08-03 (CHG-001): the live API's digitalId is authoritative; the"
   },
-  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:799-800|0": {
-    "anchor": "src/js/views/reading.js:799-800",
+  "docs/UX_STUDY.md|proto-persona#tolerance-for-missing-metadata|src/js/views/reading.js:804-805|0": {
+    "anchor": "src/js/views/reading.js:804-805",
     "fp": "24b19dfd5a6977eb",
     "head": "detailsBadge(el, item),"
   },
@@ -2269,8 +2269,8 @@
     "fp": "713b8b6372bfe540",
     "head": ".cb {"
   },
-  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:868-949|0": {
-    "anchor": "src/js/views/reading.js:868-949",
+  "docs/UX_STUDY.md|ux-a-005-row-actions-are-invisible-until-hover-s|src/js/views/reading.js:873-954|0": {
+    "anchor": "src/js/views/reading.js:873-954",
     "fp": "5fa18d2d14f0f183",
     "head": "function issueRowActions(item, listId) {"
   },
@@ -2344,8 +2344,8 @@
     "fp": "2435be3c1e7a1165",
     "head": "const SHORT_LABEL = {"
   },
-  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:795-798|0": {
-    "anchor": "src/js/views/reading.js:795-798",
+  "docs/UX_STUDY.md|ux-a-009-the-full-availability-description-is-ca|src/js/views/reading.js:800-803|0": {
+    "anchor": "src/js/views/reading.js:800-803",
     "fp": "531118c6bf7fabc3",
     "head": "el('span', { class: `badge ${badgeClass}` }, ["
   },
@@ -2369,8 +2369,8 @@
     "fp": "0c13bbed47c568da",
     "head": "export function isTextEntry(el) {"
   },
-  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:964-983|0": {
-    "anchor": "src/js/views/reading.js:964-983",
+  "docs/UX_STUDY.md|ux-d-003-the-advertised-keyboard-shortcut-stops-|src/js/views/reading.js:969-988|0": {
+    "anchor": "src/js/views/reading.js:969-988",
     "fp": "2b7209286c1d66d5",
     "head": "function wireShortcuts() {"
   },
@@ -2399,13 +2399,13 @@
     "fp": "192110749958f5f4",
     "head": "function notify(sel, msg, kind = 'ok', key = sel, action = null, dismiss = null) {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:339-347|0": {
-    "anchor": "src/js/views/reading.js:339-347",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:344-352|0": {
+    "anchor": "src/js/views/reading.js:344-352",
     "fp": "b88dc597b86a6fbe",
     "head": "$('#btn-rename-list').addEventListener('click', async () => {"
   },
-  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:364-378|0": {
-    "anchor": "src/js/views/reading.js:364-378",
+  "docs/UX_STUDY.md|ux-h-002-native-browser-dialogs-run-alongside-th|src/js/views/reading.js:369-383|0": {
+    "anchor": "src/js/views/reading.js:369-383",
     "fp": "209e6471be991453",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2414,8 +2414,8 @@
     "fp": "ae14dd291f0e8f99",
     "head": "nodes.undoRestore.addEventListener('click', () => {"
   },
-  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:364-378|0": {
-    "anchor": "src/js/views/reading.js:364-378",
+  "docs/UX_STUDY.md|ux-h-003-deleting-a-list-cannot-be-undone-while-|src/js/views/reading.js:369-383|0": {
+    "anchor": "src/js/views/reading.js:369-383",
     "fp": "209e6471be991453",
     "head": "$('#btn-delete-list').addEventListener('click', async () => {"
   },
@@ -2429,8 +2429,8 @@
     "fp": "f88e018be4221bed",
     "head": "<h3>Keyboard shortcuts</h3>"
   },
-  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:964-983|0": {
-    "anchor": "src/js/views/reading.js:964-983",
+  "docs/UX_STUDY.md|ux-h-004-the-advertised-keyboard-shortcut-is-doc|src/js/views/reading.js:969-988|0": {
+    "anchor": "src/js/views/reading.js:969-988",
     "fp": "2b7209286c1d66d5",
     "head": "function wireShortcuts() {"
   },
@@ -2459,8 +2459,8 @@
     "fp": "fd069560bcd47f29",
     "head": "<section id=\"view-library\" class=\"view\" hidden aria-labelledby=\"library-h\">"
   },
-  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:800|0": {
-    "anchor": "src/js/views/reading.js:800",
+  "docs/UX_STUDY.md|ux-i-003-two-library-sub-views-from-the-adopted-|src/js/views/reading.js:805|0": {
+    "anchor": "src/js/views/reading.js:805",
     "fp": "bd66076a7b8dce19",
     "head": "item.source === 'manual' ? el('span', { class: 'badge badge-unknown' }, 'by hand') : null,"
   },
@@ -6029,13 +6029,13 @@
     "fp": "b16e0bda4cf16693",
     "head": "el('span', { class: 'n', text: `${read} / ${total}` }),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:754|0": {
-    "anchor": "src/js/views/reading.js:754",
+  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:759|0": {
+    "anchor": "src/js/views/reading.js:759",
     "fp": "1c4f24ab55f1e36b",
     "head": "'aria-pressed': String(item.read),"
   },
-  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:755|0": {
-    "anchor": "src/js/views/reading.js:755",
+  "scripts/check-palette.mjs|preamble|src/js/views/reading.js:760|0": {
+    "anchor": "src/js/views/reading.js:760",
     "fp": "6260601161fee24f",
     "head": "'aria-label': `Mark ${item.title} as ${item.read ? 'unread' : 'read'}`,"
   },

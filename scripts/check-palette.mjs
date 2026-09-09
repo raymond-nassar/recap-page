@@ -724,8 +724,8 @@ export const KNOWN = [
   //
   // That is a trade of contrast on text for contrast on a glyph, and the glyph is the side that
   // carries nothing. The badge is language a reader has to read. The tick is not read by anybody:
-  // the button takes its accessible name from the `aria-label` at   `src/js/views/reading.js:755`, which
-  // replaces the glyph in the name computation, and `aria-pressed` at   `src/js/views/reading.js:754`
+  // the button takes its accessible name from the `aria-label` at   `src/js/views/reading.js:760`, which
+  // replaces the glyph in the name computation, and `aria-pressed` at   `src/js/views/reading.js:759`
   // carries the state besides. The fill already says the box is checked, emphatically, at 8.99:1
   // against a card and 9.72:1 against the page. Taking that much ratio away from words that are
   // read, to give it to a symbol that is not, is a worse outcome for the reader who needs the

@@ -192,13 +192,18 @@ export function createReadingView({
         : list?.itemIds.length ? 'There are no comics before the next unread issue in this order.'
           : 'There are no comics in this Reading List yet.';
     preservingFocus($('#review-candidate'), () => {
-      $('#review-candidate').replaceChildren(...(item ? [issueFocusAnchor(item, {
+      const candidate = item ? issueFocusAnchor(item, {
         context: { kind: 'list', id: review.listId },
         surface: 'reorientation',
         className: 'btn btn-g',
         ariaLabel: `Open details for ${item.title}`,
         children: `Open details for ${item.title}`,
-      })] : []));
+      }) : null;
+      if (candidate) {
+        candidate.dataset.act = 'review';
+        candidate.dataset.key = `${review.listId}:${item.issueId}`;
+      }
+      $('#review-candidate').replaceChildren(...(candidate ? [candidate] : []));
     }, { fallback: () => $('#review-h') });
     for (const [selector, blocked] of [
       ['#review-earlier-button', !item || review.position === 0],
