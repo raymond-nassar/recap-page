@@ -142,7 +142,7 @@
   --blue: #7fb3ff;
   --logo-fill: #7fb3ff;
   /* The placeholder shown where a cover has not loaded. The hue comes from the series name at
-     `src/js/main.js:897-904`; these pairs supply saturation and lightness where that local hue is
+     `src/js/main.js:900-907`; these pairs supply saturation and lightness where that local hue is
      consumed. Keeping the hue reference on the cover avoids resolving it before the cover exists. */
   --fallback-a: 42% 26%;
   --fallback-b: 38% 14%;
@@ -2082,4 +2082,18 @@ body.nocovers .mosaic-f, .mosaic-f.show { display: flex; }
   .row-info, .row-actions { grid-column: 1 / -1; }
   .row-actions { justify-self: stretch; min-width: 0; }
   .row-actions > .ract { flex-wrap: wrap; }
+}
+/* Optional review stays in normal reading flow, with no separate prose surface. */
+.review-earlier {
+  margin-block: var(--space-6); padding: var(--space-6);
+  border: 1px solid var(--line); border-radius: var(--r);
+  background: var(--card); overflow-wrap: anywhere;
+}
+.review-earlier .cta { flex-wrap: wrap; margin-top: var(--space-4); }
+.review-earlier .btn { white-space: normal; max-width: 100%; }
+.review-earlier [aria-disabled="true"] { color: var(--muted); cursor: default; }
+#btn-review-earlier { margin-bottom: var(--space-6); }
+@media (forced-colors: active) {
+  .review-earlier { border-color: CanvasText; background: Canvas; }
+  .review-earlier [aria-disabled="true"] { color: GrayText; }
 }

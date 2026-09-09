@@ -105,6 +105,7 @@ function harness({
     continueNumber: node(),
     continueRead: node({ text: 'Read next' }),
     continueOpen: node({ text: 'Open Reading List' }),
+    continueReview: node(),
     yoursSection: node(),
     yoursList: node(),
     gateways: [firstGateway, secondGateway],
@@ -176,6 +177,7 @@ function harness({
     onCatalogLoadFailure: (options) => calls.failures.push(options),
     onNavigateCategory: (category) => calls.navigate.push(category.route),
     onOpen: () => { calls.open += 1; },
+    onReview: () => calls.navigate.push('review'),
     onRead: (...args) => calls.read.push(args),
     openPreview: (entry) => calls.preview.push(entry.id),
     paintCover: (...args) => calls.covers.push(args),
@@ -318,8 +320,10 @@ test('441 Home describes an empty saved list without claiming completion or chan
   assert.equal(h.nodes.continueOpen.attributes['aria-label'], 'Open Reading List: Alpha order');
   h.nodes.continueRead.listeners.click({});
   h.nodes.continueOpen.listeners.click();
+  h.nodes.continueReview.listeners.click();
   assert.equal(h.calls.read.length, 0);
   assert.equal(h.calls.open, 1);
+  assert.deepEqual(h.calls.navigate, ['review']);
   assert.deepEqual(h.state, before);
 });
 

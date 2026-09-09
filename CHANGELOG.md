@@ -12,11 +12,19 @@ upgrade that notes a data change because no server can migrate browser-held prog
 Releases are tagged `v<version>`. Quote the version shown under **About this app** in a bug report.
 
 ## Unreleased
+### Review earlier comics and choose description hiding
+
+An optional Review earlier issues picker starts just before the next unread comic in your
+selected list's current order and opens existing Issue Details for deliberate synopsis review.
+Ordinary Continue reading stays direct. A new description-hiding setting defaults on; turning
+it off shows already-fetched text without extra disclosure controls. Changing it resets individual
+reveal choices but keeps fetched text. Progress, notes and reading-data backups are unchanged.
+
 ### Choose when to reveal issue descriptions
 
-Fetched descriptions now stay collapsed until you reveal that issue, with a Hide control to
+With description hiding on (the default), fetched descriptions stay collapsed until you reveal that issue, with a Hide control to
 close them again. Individual fetching explicitly offers to fetch and reveal; bulk fetching
-does not reveal upcoming issues. Choices stay with the exact issue in this tab and reset on
+does not reveal upcoming issues while hiding is on. Choices stay with the exact issue in this tab and reset on
 reload or a metadata-source save. Saved lists, progress, notes and backups are unchanged.
 
 ### Keep Preview reading options visible on keyboard focus

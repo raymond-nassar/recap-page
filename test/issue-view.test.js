@@ -112,6 +112,60 @@ function issue(issueId = 42) {
   };
 }
 
+test('445 a mode reset during explicit fetching keeps returned text without reviving old reveal choices', async () => {
+  let hiding = true;
+  let text = null;
+  let finish;
+  const disclosure = createSynopsisDisclosure({ hiding: () => hiding });
+  const h = harness({
+    apiIssue: async () => issue(),
+    synopsis: () => text,
+    disclosure,
+    onStartSynopsis: () => new Promise((resolve) => { finish = resolve; }),
+  });
+  h.view.wire();
+  await h.view.render({ issueId: 42 });
+  const pending = h.nodes.synopsis.listeners.click();
+  hiding = false;
+  disclosure.clear();
+  hiding = true;
+  disclosure.clear();
+  text = 'Newly fetched synthetic plot';
+  finish(true);
+  await pending;
+  assert.equal(disclosure.isRevealed(42), false);
+  assert.equal(h.nodes.description.textContent, '');
+  hiding = false;
+  disclosure.clear();
+  h.view.refreshDescription();
+  assert.equal(h.nodes.description.textContent, text);
+  assert.equal(h.nodes.disclosure.hidden, true);
+  assert.equal(h.calls.cancelSynopsis, 0);
+});
+
+test('445 unchanged mode preserves explicit fetching and refresh never fetches or changes identity', async () => {
+  let hiding = true;
+  const disclosure = createSynopsisDisclosure({ hiding: () => hiding });
+  const h = harness({
+    apiIssue: async () => issue(),
+    synopsis: 'Held synthetic plot',
+    disclosure,
+    onStartSynopsis: async () => true,
+  });
+  await h.view.render({ issueId: 42 });
+  h.view.wire();
+  await h.nodes.synopsis.listeners.click();
+  assert.equal(disclosure.isRevealed(42), true);
+  hiding = false;
+  disclosure.clear();
+  h.nodes.disclosure.focus();
+  h.view.refreshDescription();
+  assert.equal(h.nodes.disclosure.ownerDocument.activeElement, h.nodes.heading);
+  assert.equal(h.view.result().issue.issueId, 42);
+  assert.equal(h.nodes.description.textContent, 'Held synthetic plot');
+  assert.equal(h.calls.startSynopsis, 0);
+});
+
 test('Issue view owns loading, resolved paint, current result, and local controls', async () => {
   const saved = issue();
   const route = { view: 'issue', issueId: 42, context: { kind: 'list', id: 'a' } };

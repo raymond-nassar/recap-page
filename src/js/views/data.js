@@ -99,6 +99,7 @@ export function createDataView({
   onSetCovers,
   onSetTheme,
   onSetReadingShortcut,
+  onSetDescriptionHiding,
   onCheckLocalConnection,
   onApiBaseSubmit,
   onClearCache,
@@ -138,6 +139,7 @@ export function createDataView({
     nodes.optCovers.addEventListener('change', (e) => onSetCovers(e.target.checked));
     nodes.optTheme.addEventListener('change', (e) => onSetTheme(e.target.value));
     nodes.optReadingShortcut.addEventListener('change', (e) => onSetReadingShortcut(e.target.checked));
+    nodes.optDescriptionHiding.addEventListener('change', (e) => onSetDescriptionHiding(e.target.checked));
     nodes.btnCheckLocalConnection.addEventListener('click', () => {
       void onCheckLocalConnection();
     });

@@ -220,18 +220,41 @@ otherwise opens the issue's official page on marvel.com.
 
 ### Choosing when to see issue descriptions
 
-**Fetch synopses** asks permission to fetch a Reading List's descriptions but does not reveal
+With **Hide descriptions until I reveal them** on (the default), **Fetch synopses** asks permission to fetch a Reading List's descriptions but does not reveal
 them. Use **Reveal description (may contain spoilers)** on Reading or Issue Details to see one,
 and **Hide description** to close it. When an individual description has not been fetched,
 Issue Details offers **Fetch and reveal description (may contain spoilers)** with confirmation.
 You can open the official reader without either action.
 
-All issues start collapsed, including already-read and untracked issues. The last reveal or hide
+With hiding on, all issues start collapsed, including already-read and untracked issues. The last reveal or hide
 choice follows only that exact issue between views in the current tab. Changing its read flag
 does not change that choice or reveal the next issue. Reloading or saving the metadata-source
 setting clears descriptions and choices. Neither is saved in your lists or backups, and revealing
 never changes progress or notes. Titles, covers and cross-story references are not guaranteed to
 be spoiler-free.
+
+Turn description hiding off in **Backup & settings**, under **Personalization**, to display
+already-fetched descriptions without Reveal/Hide controls. Fetching still needs consent. An
+actual change resets individual reveal choices in both views but keeps fetched text; turning
+hiding back on starts collapsed again. Only the boolean preference is saved, separately from
+progress and backups. If it cannot be saved, a warning explains that it applies to this tab only.
+
+### Reviewing earlier comics
+
+Choose **Review earlier issues** on Home or Reading to start immediately before the next unread
+comic in the selected list's current order. **Earlier** and **Later** move through that earlier
+portion, one comic at a time. A completed list starts at its final comic. Empty lists and lists
+whose first comic is unread have no earlier candidate; **Open full Reading List** remains available.
+
+Opening or moving the picker does not fetch or reveal descriptions. Open an exact comic's
+details to use the existing description controls, then go Back to the picker. With hiding off,
+Details can show text you already fetched. Return to Reading's **Read next issue** to continue
+the order; the reader button in Details opens the comic being inspected.
+
+This is current order, not an inferred previous reading session. If the list or selected position
+changes, an invalid selection is withdrawn rather than replaced with another comic. Provider
+descriptions may be missing or insufficient to recap the story. The app does not generate a
+replacement, collect wiki summaries or guarantee an issue-specific spoiler cutoff.
 
 ### Reading progress has disappeared
 

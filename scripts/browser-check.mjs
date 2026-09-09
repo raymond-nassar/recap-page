@@ -490,6 +490,15 @@ const EXPECTED_TITLES = ORDER.items.map((i) => i.title);
 // the tree modified, which is a failure mode a file-editing harness has and this one cannot.
 const MUTATIONS = [
   {
+    id: 'reorientation-return-lost-445',
+    breaks: 'reorientation-445',
+    why: 'Back loses the exact earlier-issue picker link and focuses the view heading instead',
+    rewriteMain: (source) => source.replace(
+      "opener.surface === 'reorientation' && !readingView.restoreReview(opener)",
+      "opener.surface === 'reorientation'",
+    ),
+  },
+  {
     id: 'cache-deleted-means-unreachable',
     breaks: 'cache-generations',
     why: 'a successful legacy delete hides an active-cache clear failure during automatic cleanup',
@@ -1679,6 +1688,222 @@ const MUTATIONS = [
 // they run in cannot matter. A scenario that passed only because the one before it left the right
 // state behind is not evidence either.
 const SCENARIOS = [
+  {
+    id: 'reorientation-445',
+    title: '445 earlier-issue review and optional description hiding preserve identity and saved data',
+    async run(page, t) {
+      const errors = [];
+      page.on('pageerror', (error) => errors.push(error.message));
+      await page.evaluateOnNewDocument(() => {
+        const original = window.fetch;
+        window.__review445 = { requests: [], opens: [], fault: null };
+        window.open = (...args) => { window.__review445.opens.push(args); return {}; };
+        const write = Storage.prototype.setItem;
+        Storage.prototype.setItem = function (key, value) {
+          if (key === 'mrt.settings' && window.__review445.fault === 'throw') throw new DOMException('Synthetic quota', 'QuotaExceededError');
+          if (key === 'mrt.settings' && window.__review445.fault === 'ignore') return;
+          return write.call(this, key, value);
+        };
+        window.fetch = (input, init) => {
+          const url = new URL(typeof input === 'string' ? input : input.url, location.href);
+          if (url.origin === location.origin) return original(input, init);
+          if (url.pathname.endsWith('/health')) return Promise.resolve(new Response(JSON.stringify({ issue_count: 3 })));
+          const match = /\/issues\/(\d+)$/.exec(url.pathname);
+          if (!match) return original(input, init);
+          const id = Number(match[1]);
+          window.__review445.requests.push({ id, cache: init?.cache });
+          return Promise.resolve(new Response(JSON.stringify({
+            id, title: `Synthetic ${id}`, description: `Synthetic narrative 445 for ${id}.`,
+          }), { headers: { 'content-type': 'application/json' } }));
+        };
+      });
+      await importOrder(page);
+      const ids = ORDER.items.map((item) => item.issueId);
+      await click(page, '#btn-hero-done');
+      await click(page, '#btn-hero-done');
+      const listId = (await readState(page)).active;
+      const saved = await page.evaluate(() => localStorage.getItem('mrt.state.v2'));
+      const frames = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(
+        () => requestAnimationFrame(resolve),
+      )));
+      const go = async (hash, selector) => {
+        await page.evaluate((next) => { location.hash = next; }, hash);
+        await page.waitForSelector(selector);
+        await frames();
+      };
+      const reading = () => go(`#/read/${encodeURIComponent(listId)}`, '#view-read:not([hidden])');
+      const settings = () => go('#/data', '#view-data:not([hidden])');
+      const setMode = async (value) => {
+        await page.$eval('#opt-description-hiding', (node, checked) => {
+          node.checked = checked;
+          node.dispatchEvent(new Event('change', { bubbles: true }));
+        }, value);
+        await frames();
+      };
+      const candidate = () => page.$eval('#review-candidate a', (node) => Number(node.dataset.issueId));
+      const inspect = async () => {
+        await page.focus('#review-candidate a');
+        await page.keyboard.press('Enter');
+        await page.waitForSelector('#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      };
+      const fetchOne = async () => {
+        await click(page, '#btn-issue-synopsis');
+        await page.waitForSelector('#ask[open]');
+        await click(page, '#ask-ok');
+        await page.waitForFunction(() => !document.querySelector('#issue-focus-desc').hidden
+          && document.querySelector('#issue-focus-desc').textContent.startsWith('Synthetic narrative 445'));
+      };
+      await go('#/home', '#view-home:not([hidden])');
+      await click(page, '#btn-chero-review');
+      t.check('Home opens the exact current-order predecessor without fetching or revealing', await candidate() === ids[1]
+        && await page.evaluate(() => window.__review445.requests.length === 0
+          && document.activeElement.id === 'review-h'));
+      await click(page, '#review-earlier-button');
+      t.check('Earlier moves to the prior identity', await candidate() === ids[0]);
+      await click(page, '#review-later-button');
+      await inspect();
+      await fetchOne();
+      await page.goBack();
+      await page.waitForSelector('#view-read:not([hidden])');
+      await frames();
+      t.check('Back restores the exact earlier comic link and its visible keyboard focus', await page.$eval('#review-candidate a', (node, id) => {
+        const box = node.getBoundingClientRect();
+        return Number(node.dataset.issueId) === id && document.activeElement === node
+          && box.top >= 0 && box.bottom <= innerHeight;
+      }, ids[1]));
+      await inspect();
+      t.check('same issue retains its explicit reveal without another request', await page.$eval('#issue-focus-desc',
+        (node) => !node.hidden && node.textContent.startsWith('Synthetic narrative 445')));
+      await click(page, '#btn-issue-description');
+      await settings();
+      await setMode(false);
+      const requests = await page.evaluate(() => window.__review445.requests.length);
+      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      t.check('OFF shows held Details prose without disclosure controls', await page.evaluate(() => (
+        !document.querySelector('#issue-focus-desc').hidden && document.querySelector('#btn-issue-description').hidden
+      )));
+      await settings();
+      await setMode(true);
+      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      t.check('OFF to ON clears old choices and collapses held text', await page.$eval('#issue-focus-desc',
+        (node) => node.hidden && node.textContent === ''));
+      await click(page, '#btn-issue-description');
+      await settings();
+      await setMode(true);
+      await go(`#/issue/${ids[1]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      t.check('an unchanged setting preserves deliberate individual choices', await page.$eval('#issue-focus-desc', (node) => !node.hidden));
+      await go(`#/issue/${ids[2]}?list=${encodeURIComponent(listId)}`, '#view-issue:not([hidden]) #issue-focus-card:not([hidden])');
+      await fetchOne();
+      await settings();
+      await setMode(false);
+      await reading();
+      t.check('Reading uses the same OFF policy for the current next issue', await page.evaluate(() => (
+        !document.querySelector('#hero-desc').hidden && document.querySelector('#btn-hero-description').hidden
+      )));
+      t.check('only deliberately requested exact IDs used no-store', await page.evaluate((expected) => (
+        window.__review445.requests.length === 2
+        && window.__review445.requests.every((r, i) => r.id === expected[i] && r.cache === 'no-store')
+      ), [ids[1], ids[2]]));
+      t.check('picker, Details, fetching and settings preserve saved progress and notes bytes',
+        await page.evaluate((before) => localStorage.getItem('mrt.state.v2') === before, saved));
+      await settings();
+      for (const fault of ['throw', 'ignore']) {
+        await page.evaluate((mode) => { window.__review445.fault = mode; }, fault);
+        await setMode(true);
+        t.check(`${fault} settings write reports tab-only failure without fetching or false saved feedback`,
+          await page.$eval('#description-hiding-report', (node) => /could not be saved.*reload/.test(node.textContent))
+          && await page.evaluate((count) => window.__review445.requests.length === count + 1, requests));
+        await page.evaluate(() => { window.__review445.fault = null; });
+        await setMode(false);
+      }
+      await page.reload({ waitUntil: 'networkidle0' });
+      await page.waitForSelector('#view-data:not([hidden])');
+      t.check('OFF persists but synopsis text and individual choices do not survive reload',
+        await page.$eval('#opt-description-hiding', (node) => !node.checked)
+        && await page.evaluate(() => !localStorage.getItem('mrt.settings').includes('Synthetic narrative')));
+      for (const raw of [undefined, 'false', 0, null]) {
+        await page.evaluate((value) => {
+          const prefs = JSON.parse(localStorage.getItem('mrt.settings'));
+          if (value === undefined) delete prefs.hideDescriptions;
+          else prefs.hideDescriptions = value;
+          localStorage.setItem('mrt.settings', JSON.stringify(prefs));
+        }, raw);
+        await page.reload({ waitUntil: 'networkidle0' });
+        await page.waitForSelector('#view-data:not([hidden])');
+        t.check(`missing/invalid preference ${String(raw)} defaults ON`, await page.$eval('#opt-description-hiding', (node) => node.checked));
+      }
+      await reading();
+      await click(page, '#btn-review-earlier');
+      for (const theme of ['dark', 'light']) {
+        await page.evaluate((value) => { document.documentElement.dataset.theme = value; }, theme);
+        await page.setViewport({ width: 620, height: 900 });
+        await page.focus('#review-candidate a');
+        t.check(`${theme} constrained review stays readable with visible focus`, await page.$eval('#review-candidate a', (node) => (
+          getComputedStyle(node).outlineStyle !== 'none'
+          && document.documentElement.scrollWidth <= innerWidth
+        )));
+      }
+      await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });
+      t.check('enlarged text does not overflow review', await page.$eval('#review-earlier',
+        (node) => node.scrollWidth <= node.clientWidth));
+      await page.evaluate(() => { document.documentElement.style.fontSize = ''; });
+      await page.setViewport({ width: 1280, height: 900 });
+      await click(page, '#btn-hero-read');
+      t.check('ordinary Continue still opens a separate reader without marking progress',
+        await page.evaluate((before) => window.__review445.opens.length === 1
+          && localStorage.getItem('mrt.state.v2') === before, saved));
+      await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        delete state.read[state.lists[state.active].itemIds[0]];
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+      });
+      await page.waitForFunction((title) => document.querySelector('#hero-title').textContent === title, {}, ORDER.items[0].title);
+      t.check('an earlier unread hole withdraws the stale candidate instead of switching issues',
+        await page.$eval('#review-position', (node) => /no longer valid/.test(node.textContent)));
+      await click(page, '#btn-review-earlier');
+      t.check('first-position next unread has an honest no-earlier state',
+        await page.$eval('#review-position', (node) => /no comics before/.test(node.textContent)));
+      await click(page, '#review-full-order');
+      t.check('full-order escape keeps its existing focus destination',
+        await page.$eval('#full > summary', (node) => node === document.activeElement));
+      await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        const list = state.lists[state.active];
+        for (const id of list.itemIds) state.read[id] = 1;
+        delete state.issues[list.itemIds.at(-1)];
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+      });
+      await page.waitForSelector('#all-read:not([hidden])');
+      await click(page, '#btn-review-earlier');
+      t.check('completed list starts at its final comic even without metadata', await candidate() === ids[2]
+        && await page.$eval('#review-candidate', (node) => node.textContent.includes('Issue 900003')));
+      await page.evaluate(() => {
+        const oldValue = localStorage.getItem('mrt.state.v2');
+        const state = JSON.parse(oldValue);
+        state.lists['other-445'] = { id: 'other-445', name: 'Other storyline 445', itemIds: [], note: '' };
+        state.listOrder.push('other-445');
+        state.active = 'other-445';
+        delete state.writeToken;
+        const newValue = JSON.stringify(state);
+        localStorage.setItem('mrt.state.v2', newValue);
+        dispatchEvent(new StorageEvent('storage', { key: 'mrt.state.v2', oldValue, newValue, storageArea: localStorage }));
+      });
+      await page.waitForFunction(() => document.querySelector('#order-name').textContent === 'Other storyline 445');
+      t.check('switching current list withdraws the earlier picker', await page.$eval('#review-earlier', (node) => node.hidden));
+      await click(page, '#btn-review-earlier');
+      t.check('empty list has an explicit state and no candidate', await page.$eval('#review-position', (node) => /no comics in/.test(node.textContent))
+        && await page.$$eval('#review-candidate a', (nodes) => nodes.length === 0));
+      t.check('no page errors', errors.length === 0, errors.join('\n'));
+    },
+  },
   {
     id: 'shelf-sections',
     title: 'each reading kind has its own browse screen and grouping',
@@ -12613,8 +12838,31 @@ SCENARIOS.push({
     await page.evaluate(() => {
       localStorage.setItem('mrt.settings', JSON.stringify({ covers: false, readingShortcut: true }));
     });
-    await open(page, '/?catalog=browser-check#/read/fixture?full=1');
-    await page.waitForSelector('#rows .row');
+    await open(page, '/?catalog=browser-check&tooltip-document=449#/read/fixture?full=1');
+    const setupState = () => page.evaluate(() => {
+      const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+      return {
+        route: location.hash,
+        view: document.querySelector('.view:not([hidden])')?.id,
+        full: document.querySelector('#full')?.open,
+        active: state?.active,
+        itemIds: state?.lists?.fixture?.itemIds,
+        rows: document.querySelectorAll('#rows .row').length,
+      };
+    });
+    try {
+      await page.waitForFunction(() => {
+        const state = JSON.parse(localStorage.getItem('mrt.state.v2'));
+        return state?.active === 'fixture' && !document.querySelector('#view-read')?.hidden
+          && document.querySelector('#full')?.open && document.querySelectorAll('#rows .row').length > 0;
+      }, { timeout: 15000 });
+    } catch (error) {
+      throw new Error(`Tooltip fixture setup failed: ${JSON.stringify({ ...await setupState(), errors })}`, { cause: error });
+    }
+    const setup = await setupState();
+    t.check('fresh tooltip document retains the active fixture, open full list and actual rows',
+      setup.active === 'fixture' && setup.view === 'view-read' && setup.full && setup.rows > 0,
+      JSON.stringify(setup));
     const saved = await readState(page);
     const settle = () => page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
     const reset = async () => {

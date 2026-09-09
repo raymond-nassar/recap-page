@@ -26,6 +26,7 @@ export function createHomeView({
   onNavigateCategory,
   onOpen,
   onRead,
+  onReview,
   openPreview,
   paintCover,
   paintCoverUrl,
@@ -45,6 +46,7 @@ export function createHomeView({
       if (issue) onRead(issue, event);
     });
     nodes.continueOpen.addEventListener('click', onOpen);
+    nodes.continueReview.addEventListener('click', onReview);
   }
 
   function ensureFirstRun() {

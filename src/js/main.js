@@ -91,7 +91,7 @@ const hydrator = new Hydrator({ api, store, onProgress: onHydrationStatus });
 // the runner rather than owned by it so the view can read a fetched synopsis without importing the
 // thing that fetches it.
 const sessionSynopsis = new SessionSynopsis();
-const synopsisDisclosure = createSynopsisDisclosure();
+const synopsisDisclosure = createSynopsisDisclosure({ hiding: () => settings.hideDescriptions });
 const synopsisRunner = new SynopsisRunner({ api, store, session: sessionSynopsis, onProgress: onSynopsisStatus });
 
 // One key, every tab. A save in another tab is news here, and taking it is what keeps two tabs
@@ -557,6 +557,7 @@ function loadSettings() {
       // preference instead of overriding it.
       theme: normaliseTheme(raw.theme),
       readingShortcut: raw.readingShortcut !== false,
+      hideDescriptions: raw.hideDescriptions !== false,
       // Not checked against the filters that exist here, because that is a question about the
       // document rather than about storage. wireReading() answers it and writes the answer back,
       // which is why a value of the wrong type is passed through rather than coerced: coercing it
@@ -570,6 +571,7 @@ function loadSettings() {
       covers: true,
       theme: DEFAULT_THEME,
       readingShortcut: true,
+      hideDescriptions: true,
       filter: 'all',
       rejectedApiBase: null,
     };
@@ -640,6 +642,7 @@ function saveSettings() {
       theme: settings.theme,
       filter: settings.filter,
       readingShortcut: settings.readingShortcut,
+      hideDescriptions: settings.hideDescriptions,
     });
     localStorage.setItem(SETTINGS_KEY, serialized);
     return localStorage.getItem(SETTINGS_KEY) === serialized;
@@ -997,6 +1000,26 @@ function setTheme(next) {
 // no-op: the attribute is already absent, the meta tag already says "dark light", and the control
 // already reads 'system'. It was found by mutation, not by review: removing it left a browser
 // check that was written to catch exactly that still reporting a pass.
+
+function setDescriptionHiding(on) {
+  const next = on !== false;
+  const changed = settings.hideDescriptions !== next;
+  settings.hideDescriptions = next;
+  const saved = saveSettings();
+  $('#opt-description-hiding').checked = next;
+  if (changed) {
+    synopsisDisclosure.clear();
+    readingView.renderHero();
+    issueView.refreshDescription();
+  }
+  const status = `Description hiding ${next ? 'on' : 'off'}.`;
+  if (!saved) {
+    notify('#description-hiding-report', `${status} This applies to this tab, but could not be saved. It may change after reload.`, 'error');
+    return;
+  }
+  $('#description-hiding-report').replaceChildren();
+  announce(status);
+}
 
 function applyReadingShortcutSetting() {
   const enabled = settings.readingShortcut;
@@ -1443,6 +1466,7 @@ function showView(next, { focus = true, push = false } = {}) {
   if (next === 'library') renderLibraryHub();
   if (next === 'browse') void homeView.renderGateways();
   if (next === 'read') readingView.renderHero();
+  readingView.renderReview();
   if (next === 'issue') void issueView.render(issueRoute);
   renderBreadcrumbs();
   // Here rather than in renderAll, because what this list reports is not part of the state every
@@ -1536,6 +1560,10 @@ function matchingIssueOpener(opener) {
 async function restoreIssueFocusOpener(sourceView) {
   const opener = history.state?.issueFocusOpener;
   if (!opener || opener.view !== sourceView) return;
+  if (opener.surface === 'reorientation' && !readingView.restoreReview(opener)) {
+    focusViewHeading(sourceView);
+    return;
+  }
   if (opener.surface === 'full-order') {
     readingView.setFullOrderFromRoute(true);
     readingView.renderRows();
@@ -1980,6 +2008,7 @@ const dataView = createDataView({
     optCovers: $('#opt-covers'),
     optTheme: $('#opt-theme'),
     optReadingShortcut: $('#opt-reading-shortcut'),
+    optDescriptionHiding: $('#opt-description-hiding'),
     btnCheckLocalConnection: $('#btn-check-local-connection'),
     btnExportJson: $('#btn-export-json'),
     btnExportMd: $('#btn-export-md-2'),
@@ -2017,6 +2046,7 @@ const dataView = createDataView({
   onSetCovers: (on) => setCovers(on),
   onSetTheme: (value) => setTheme(value),
   onSetReadingShortcut: (on) => setReadingShortcut(on),
+  onSetDescriptionHiding: setDescriptionHiding,
   onCheckLocalConnection: () => refreshLocalConnection({ explicit: true }),
   onApiBaseSubmit: (value) => {
     settings.apiBase = value;
@@ -2500,6 +2530,7 @@ export function boot() {
   applyCoversSetting();
   applyThemeSetting();
   applyReadingShortcutSetting();
+  $('#opt-description-hiding').checked = settings.hideDescriptions;
   ensurePublishingViews();
   wireSidebar();
   wireNav();
@@ -2855,6 +2886,7 @@ const homeView = createHomeView({
     continueNumber: $('#chero-fn'),
     continueRead: $('#btn-chero-read'),
     continueOpen: $('#btn-chero-open'),
+    continueReview: $('#btn-chero-review'),
     yoursSection: $('#home-yours'),
     yoursList: $('#home-yours-list'),
     firstRun: $('#home-first-run'),
@@ -2889,6 +2921,10 @@ const homeView = createHomeView({
   onOpen: () => showView('read', { push: true }),
   onRead: openInReader,
   openPreview: (list, story) => previewView.open(list, story),
+  onReview: () => {
+    showView('read', { push: true });
+    readingView.openReview();
+  },
   paintCover,
   paintCoverUrl,
   recommendedList: modernTimelineFeaturedList,

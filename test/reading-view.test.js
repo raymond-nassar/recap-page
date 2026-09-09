@@ -341,6 +341,12 @@ function harness(overrides = {}) {
     ['#all-read-h', nodes.allReadHeading],
     ['dialog[open]', null],
   ]);
+  for (const id of ['review-earlier', 'btn-review-earlier', 'review-h', 'review-context',
+    'review-position', 'review-candidate', 'review-earlier-button', 'review-later-button',
+    'review-close', 'review-full-order']) {
+    nodes[id] = node({ id, hidden: id === 'review-earlier' });
+    selectorMap.set(`#${id}`, nodes[id]);
+  }
 
   const documentStub = {
     activeElement: null,
@@ -464,6 +470,62 @@ test('reading view exports helpers and keeps forbidden dependencies out of the m
   assert.doesNotMatch(source, /\bfrom\s+['"].*(?:main|storage|api|cache|hydrate|synopsis|reader)\.js['"]/);
   assert.doesNotMatch(source, /\bfrom\s+['"]\.\/(?:issue|home|library|add|data|catalog|progress|recovery|reading-paths)\.js['"]/);
   assert.doesNotMatch(source, /new Store|new MarvelApi|new ResponseCache|new RateLimiter|new Hydrator|new SynopsisRunner/);
+});
+
+test('445 picker preserves exact candidate, traversal and full-order escape without writes or requests', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    h.view.openReview();
+    const before = structuredClone(h.state());
+    assert.equal(h.view.restoreReview({ issueId: 1, contextId: h.state().active }), true);
+    h.nodes['review-earlier-button'].fire('click');
+    h.nodes['review-later-button'].fire('click');
+    assert.equal(h.view.restoreReview({ issueId: 1, contextId: h.state().active }), true);
+    h.nodes['review-full-order'].fire('click');
+    assert.equal(h.nodes.full.open, true);
+    assert.deepEqual(structuredClone(h.state()), before);
+    assert.deepEqual(h.calls.launch, []);
+    assert.deepEqual(h.calls.synopsis, []);
+    h.nodes['review-close'].fire('click');
+    assert.equal(h.nodes['review-earlier'].hidden, true);
+  } finally { h.restore(); }
+});
+
+test('445 picker withdraws reordered or removed candidates and never resurrects a different list on Back', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    h.view.openReview();
+    const id = h.state().active;
+    h.state().lists[id].itemIds = [2, 1, 3];
+    h.view.renderReview();
+    assert.equal(h.view.restoreReview({ issueId: 1, contextId: id }), false);
+    assert.match(h.nodes['review-position'].textContent, /no longer valid/);
+    h.state().lists.b = { id: 'b', name: 'Other', itemIds: [1] };
+    h.setActive('b');
+    h.view.renderReview();
+    h.setActive(id);
+    assert.equal(h.view.restoreReview({ issueId: 1, contextId: id }), false);
+  } finally { h.restore(); }
+});
+
+test('445 picker handles completion, empty ranges and missing identity metadata', () => {
+  const h = harness();
+  try {
+    h.view.wire();
+    const list = h.state().lists[h.state().active];
+    for (const id of list.itemIds) h.state().read[id] = 1;
+    delete h.state().issues[list.itemIds.at(-1)];
+    h.view.openReview();
+    assert.equal(h.view.restoreReview({ issueId: list.itemIds.at(-1), contextId: list.id }), true);
+    list.itemIds = [];
+    h.view.openReview();
+    assert.match(h.nodes['review-position'].textContent, /no comics in/);
+    list.itemIds = [20];
+    h.view.openReview();
+    assert.match(h.nodes['review-position'].textContent, /no comics before/);
+  } finally { h.restore(); }
 });
 
 test('447 hero bulk prose starts hidden and disclosure stays isolated through Done and revisiting', () => {

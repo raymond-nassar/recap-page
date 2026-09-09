@@ -25,6 +25,7 @@ import { issuePresentation } from '../lib/issueFocus.js';
 import { DEFAULT_FILTER, READING_FILTERS, matchesReadingFilter } from '../lib/readingFilters.js';
 import { shortcutAllowed } from '../lib/shortcuts.js';
 import { renderSynopsisDescription } from '../lib/synopsisDisclosure.js';
+import { earlierIssueIds } from '../lib/reorientation.js';
 
 export const RING_CIRCUMFERENCE = 119.4; // 2πr for r=19, matching the SVG in index.html
 const UNDO_DELETE = 'undo-delete';
@@ -151,6 +152,78 @@ export function createReadingView({
   let rowCacheListId = null;
   let rowsPending = false;
   let arrowing = false;
+  let review = null;
+
+  function openReview() {
+    const id = activeListId();
+    if (!getState().lists[id]) {
+      announce('That Reading List is no longer available.');
+      return;
+    }
+    const ids = earlierIssueIds(getState(), id);
+    review = { listId: id, issueId: ids.at(-1) ?? null, position: ids.length - 1 };
+    renderReview();
+    $('#review-h').focus();
+  }
+
+  function renderReview() {
+    const region = $('#review-earlier');
+    if (review && review.listId !== activeListId()) {
+      review = null;
+      if (region.contains(document.activeElement)) focusCurrentView();
+    }
+    region.hidden = !review;
+    $('#btn-review-earlier').setAttribute('aria-expanded', String(!!review));
+    if (!review) return;
+    const list = getState().lists[review.listId];
+    const ids = earlierIssueIds(getState(), review.listId);
+    if (!review.withdrawn && (!list || (review.issueId != null && ids[review.position] !== review.issueId))) {
+      review.issueId = null;
+      review.position = -1;
+      review.withdrawn = true;
+      announce('The Reading List changed. Choose Review earlier issues again to start from its current order.');
+    }
+    const item = review.issueId == null ? null : getState().issues[review.issueId]
+      ?? { issueId: review.issueId, title: `Issue ${review.issueId}` };
+    $('#review-context').textContent = list ? `Earlier in ${list.name}'s current order.` : 'This Reading List is no longer available.';
+    $('#review-position').textContent = item
+      ? `Position ${review.position + 1} of ${list.itemIds.length}. ${isRead(getState(), item.issueId) ? 'Marked read' : 'Not marked read'}.`
+      : review.withdrawn ? 'This selection is no longer valid. Open the picker again to choose from the current order.'
+        : list?.itemIds.length ? 'There are no comics before the next unread issue in this order.'
+          : 'There are no comics in this Reading List yet.';
+    preservingFocus($('#review-candidate'), () => {
+      $('#review-candidate').replaceChildren(...(item ? [issueFocusAnchor(item, {
+        context: { kind: 'list', id: review.listId },
+        surface: 'reorientation',
+        className: 'btn btn-g',
+        ariaLabel: `Open details for ${item.title}`,
+        children: `Open details for ${item.title}`,
+      })] : []));
+    }, { fallback: () => $('#review-h') });
+    for (const [selector, blocked] of [
+      ['#review-earlier-button', !item || review.position === 0],
+      ['#review-later-button', !item || review.position === ids.length - 1],
+    ]) {
+      $(selector).setAttribute('aria-disabled', String(blocked));
+    }
+  }
+
+  function moveReview(delta) {
+    renderReview();
+    if (!review || review.issueId == null) return;
+    const ids = earlierIssueIds(getState(), review.listId);
+    const position = review.position + delta;
+    if (position < 0 || position >= ids.length) return;
+    review.position = position;
+    review.issueId = ids[position];
+    renderReview();
+  }
+
+  function restoreReview(opener) {
+    renderReview();
+    return !!review && review.issueId != null && review.issueId === Number(opener.issueId)
+      && review.listId === opener.contextId;
+  }
 
   const dismissUndoDelete = { label: 'Dismiss', onClick: forgetDeleted };
   const giveUpUndoDelete = { label: 'Give up', onClick: forgetDeleted };
@@ -178,6 +251,20 @@ export function createReadingView({
   }
 
   function wire() {
+    $('#btn-review-earlier').addEventListener('click', openReview);
+    $('#review-earlier-button').addEventListener('click', () => moveReview(-1));
+    $('#review-later-button').addEventListener('click', () => moveReview(1));
+    $('#review-close').addEventListener('click', () => {
+      review = null;
+      renderReview();
+      $('#btn-review-earlier').focus();
+    });
+    $('#review-full-order').addEventListener('click', () => {
+      setFullOrderFromRoute(true);
+      renderRows();
+      syncHash();
+      $('#full > summary').focus();
+    });
     // Build this group once from the shared filter definitions. Rebuilding it with the rows would
     // destroy the active radio and drop keyboard focus, while accepting authored radios would let
     // the controls and predicates disagree.
@@ -402,6 +489,7 @@ export function createReadingView({
   }
 
   function render() {
+    renderReview();
     if (lastRemoved && !removalContextMatches(lastRemoved)) forgetRemoved(lastRemoved);
     const id = activeListId();
     const list = getState().lists[id];
@@ -1069,6 +1157,9 @@ export function createReadingView({
     renderHydration,
     renderRows,
     renderSynopsis,
+    openReview,
+    renderReview,
+    restoreReview,
     resetSynopsis,
     setFilter,
     setFilterAddressed: (value) => { filterAddressed = value; },
