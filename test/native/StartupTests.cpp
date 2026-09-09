@@ -346,8 +346,19 @@ void calibration(proof::Observer& observer) {
     Child control;
     start(control, recap::modulePath(), L"--console-control", CREATE_NEW_CONSOLE);
     proof::until([&] { return observer.console(control.pid); }, "observer did not detect its console control");
-    check(FreeConsole() != FALSE && AttachConsole(control.pid) != FALSE,
-          "observer could not retain the calibration console");
+    check(FreeConsole() != FALSE, "observer could not release its previous console");
+    DWORD attachError = ERROR_SUCCESS;
+    try {
+        proof::until([&] {
+            if (AttachConsole(control.pid)) return true;
+            attachError = GetLastError();
+            check(attachError == ERROR_INVALID_HANDLE && control.exit() == STILL_ACTIVE,
+                  "calibration console attachment was inconclusive");
+            return false;
+        }, "calibration console did not become attachable");
+    } catch (const std::exception& failure) {
+        throw std::runtime_error(std::string(failure.what()) + "; Windows error " + std::to_string(attachError));
+    }
     // Keep the host window alive until its asynchronous application-end event is delivered.
     try {
         control.stop();
