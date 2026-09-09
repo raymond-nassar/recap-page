@@ -114,6 +114,11 @@ function Read-WackReport {
 
   $disposition = if ($overall -eq 'PASS' -and $nonPass.Count -eq 0) {
     'PASS'
+  } elseif ($overall -eq 'PASS' -and $partial -eq 'FALSE' `
+      -and $nonPass.Count -eq 1 `
+      -and $nonPass[0].Name -ceq 'Blocked executables' `
+      -and $nonPass[0].Result -ceq 'FAIL') {
+    'PASS WITH OPTIONAL WARNINGS'
   } elseif ($overall -eq 'WARNING' -and $optionalOnly) {
     'PASS WITH OPTIONAL WARNINGS'
   } else {

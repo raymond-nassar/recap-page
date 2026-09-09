@@ -386,9 +386,17 @@ for the x64 package and once for the final bundle. The x64 run covers the x64 en
 bundle run covers the submitted container and both package manifests. ARM64 runtime behavior remains
 owned by the installed Windows on Arm proof above.
 
-Only `Blocked executables=FAIL` and `DPIAwarenessValidation=WARNING` are accepted as known optional
-results. Any other non-pass category, explicit partial run, explicit outdated-kit marker, malformed
-report, command failure, or cleanup residue fails the workflow. The parser disables DTD and external
+Clean `PASS` remains accepted. The historical `WARNING` result is accepted only with exactly
+`Blocked executables=FAIL` and `DPIAwarenessValidation=WARNING`. An overall `PASS` with an explicit
+complete run also accepts exactly one non-pass result, `Blocked executables=FAIL`, provided the kit
+is current or does not report its version status. That case retains the qualified optional-warning
+disposition and prints the failure; it does not claim every category passed.
+
+This is not general subset acceptance. `WARNING` with only Blocked executables, duplicate results,
+an overall `FAIL`, any other non-pass name/result, an explicit partial run, an outdated-kit marker,
+a malformed report, command failure or cleanup residue still fails. Category-only output does not
+identify which executable was flagged and does not establish Store certification.
+The parser disables DTD and external
 resolution, caps the report at 16 MiB, emits no descriptions or paths, and deletes raw XML, HTML,
 stdout, and stderr after extracting allowlisted fields.
 

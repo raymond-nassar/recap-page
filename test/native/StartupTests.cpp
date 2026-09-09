@@ -13,25 +13,100 @@ namespace fs = std::filesystem;
 using proof::check;
 
 namespace {
+struct StopResult {
+    bool complete = false, terminationAttempted = false, terminationSucceeded = false;
+    DWORD initialWait = WAIT_FAILED, finalWait = WAIT_FAILED, waitError = 0, terminationError = 0;
+};
+
+template<class Operations>
+StopResult stopOwned(Operations& operations) {
+    StopResult result;
+    const auto deadline = operations.now() + recap::CleanupTimeout;
+    result.initialWait = operations.wait(0);
+    result.finalWait = result.initialWait;
+    if (result.initialWait == WAIT_OBJECT_0) { result.complete = true; return result; }
+    if (result.initialWait != WAIT_TIMEOUT) {
+        result.waitError = result.initialWait == WAIT_FAILED ? operations.error() : ERROR_INVALID_DATA;
+        return result;
+    }
+    result.terminationAttempted = true;
+    result.terminationSucceeded = operations.terminate();
+    if (!result.terminationSucceeded) result.terminationError = operations.error();
+    for (;;) {
+        const auto now = operations.now();
+        const auto remaining = now < deadline ? std::min<uint64_t>(20, deadline - now) : 0;
+        result.finalWait = operations.wait(static_cast<DWORD>(remaining));
+        if (result.finalWait == WAIT_OBJECT_0) {
+            result.complete = operations.now() <= deadline &&
+                (result.terminationSucceeded || result.terminationError == ERROR_ACCESS_DENIED);
+            return result;
+        }
+        if (result.finalWait != WAIT_TIMEOUT) {
+            result.waitError = result.finalWait == WAIT_FAILED ? operations.error() : ERROR_INVALID_DATA;
+            return result;
+        }
+        if (operations.now() >= deadline) return result;
+    }
+}
+
+struct StopOperations {
+    HANDLE process;
+    DWORD lastError = 0;
+    uint64_t now() const { return GetTickCount64(); }
+    DWORD wait(DWORD timeout) {
+        const auto result = WaitForSingleObject(process, timeout);
+        lastError = result == WAIT_FAILED ? GetLastError() : 0;
+        return result;
+    }
+    bool terminate() {
+        const bool result = TerminateProcess(process, 2) != FALSE;
+        lastError = result ? 0 : GetLastError();
+        return result;
+    }
+    DWORD error() const { return lastError; }
+};
+
 struct Child {
     recap::Handle process;
     DWORD pid = 0;
+    StopResult cleanup;
+    unsigned int stopCalls = 0;
     ~Child() {
         if (process && WaitForSingleObject(process.get(), 0) == WAIT_TIMEOUT) {
             TerminateProcess(process.get(), 2);
             WaitForSingleObject(process.get(), 2000);
         }
     }
+    bool completed() const {
+        check(static_cast<bool>(process), "owned completion handle is missing");
+        const auto result = WaitForSingleObject(process.get(), 0);
+        if (result == WAIT_FAILED)
+            throw std::runtime_error("owned completion wait failed error=" + std::to_string(GetLastError()));
+        check(result == WAIT_OBJECT_0 || result == WAIT_TIMEOUT, "owned completion wait returned an invalid status");
+        return result == WAIT_OBJECT_0;
+    }
     DWORD exit() const {
+        if (!completed()) return STILL_ACTIVE;
         DWORD code = STILL_ACTIVE;
-        check(GetExitCodeProcess(process.get(), &code) != FALSE, "owned exit query failed");
+        if (!GetExitCodeProcess(process.get(), &code))
+            throw std::runtime_error("owned exit query failed error=" + std::to_string(GetLastError()));
         return code;
     }
     void stop() {
-        if (WaitForSingleObject(process.get(), 0) == WAIT_TIMEOUT) {
-            check(TerminateProcess(process.get(), 2) != FALSE, "owned fixture process could not stop");
-            check(WaitForSingleObject(process.get(), 2000) == WAIT_OBJECT_0, "owned fixture cleanup timed out");
+        ++stopCalls;
+        if (!process) {
+            check(pid == 0, "owned cleanup lost a retained process handle");
+            cleanup.complete = true;
+            cleanup.initialWait = cleanup.finalWait = WAIT_OBJECT_0;
+            return;
         }
+        if (cleanup.complete) { check(completed(), "previously completed owned handle is no longer signaled"); return; }
+        StopOperations operations{ process.get() };
+        cleanup = stopOwned(operations);
+        if (!cleanup.complete)
+            throw std::runtime_error("owned fixture cleanup failed pid=" + std::to_string(pid) +
+                " wait=" + std::to_string(cleanup.finalWait) + " wait_error=" + std::to_string(cleanup.waitError) +
+                " terminate_error=" + std::to_string(cleanup.terminationError));
     }
 };
 
@@ -44,6 +119,8 @@ void start(Child& child, const std::wstring& executable, const std::wstring& arg
         nullptr, nullptr, &startup, &process) != FALSE, "fixture process creation failed");
     child.process = recap::Handle(process.hProcess);
     child.pid = process.dwProcessId;
+    child.cleanup = {};
+    child.stopCalls = 0;
     CloseHandle(process.hThread);
 }
 
@@ -54,6 +131,8 @@ void retain(Child& child, DWORD pid, const std::wstring& expected) {
     check(recap::samePath(proof::imagePath(candidate.get()), expected), "fixture child image differs");
     child.process = std::move(candidate);
     child.pid = pid;
+    child.cleanup = {};
+    child.stopCalls = 0;
 }
 
 std::string read(const fs::path& path) {
@@ -329,6 +408,56 @@ struct FakeOperations {
     }
 };
 
+struct FakeStopOperations {
+    std::vector<DWORD> waits;
+    size_t index = 0;
+    uint64_t clock = 0;
+    bool termination = true;
+    DWORD terminationError = 0, lastError = 0;
+    unsigned int terminations = 0;
+    uint64_t now() const { return clock; }
+    DWORD wait(DWORD timeout) {
+        clock += timeout;
+        const auto result = waits[std::min(index++, waits.size() - 1)];
+        lastError = result == WAIT_FAILED ? ERROR_INVALID_HANDLE : 0;
+        return result;
+    }
+    bool terminate() {
+        ++terminations;
+        lastError = termination ? 0 : terminationError;
+        return termination;
+    }
+    DWORD error() const { return lastError; }
+};
+
+void cleanupCases() {
+    FakeStopOperations signaled{ { WAIT_OBJECT_0 } };
+    check(stopOwned(signaled).complete && signaled.terminations == 0,
+          "signaled cleanup attempted termination");
+    FakeStopOperations race{ { WAIT_TIMEOUT, WAIT_OBJECT_0 } };
+    race.termination = false;
+    race.terminationError = ERROR_ACCESS_DENIED;
+    const auto raced = stopOwned(race);
+    check(raced.complete && raced.terminationError == ERROR_ACCESS_DENIED && race.terminations == 1,
+          "termination race did not require confirmed signaling");
+    FakeStopOperations denied{ { WAIT_TIMEOUT } };
+    denied.termination = false;
+    denied.terminationError = ERROR_ACCESS_DENIED;
+    const auto live = stopOwned(denied);
+    check(!live.complete && live.terminationError == ERROR_ACCESS_DENIED && denied.clock == recap::CleanupTimeout,
+          "live access denial was accepted");
+    FakeStopOperations invalid{ { WAIT_FAILED } };
+    const auto failed = stopOwned(invalid);
+    check(!failed.complete && failed.waitError == ERROR_INVALID_HANDLE && invalid.terminations == 0,
+          "failed cleanup wait was accepted");
+    FakeStopOperations timeout{ { WAIT_TIMEOUT } };
+    check(!stopOwned(timeout).complete && timeout.clock == recap::CleanupTimeout && timeout.terminations == 1,
+          "cleanup deadline was not enforced");
+    FakeStopOperations repeated{ { WAIT_OBJECT_0 } };
+    check(stopOwned(repeated).complete && stopOwned(repeated).complete && repeated.terminations == 0,
+          "repeated confirmed cleanup was not idempotent");
+}
+
 void supervision() {
     FakeOperations race;
     race.fault = true;
@@ -347,6 +476,7 @@ void supervision() {
           "unresponsive worker cleanup was not bounded");
     recap::Publication publication;
     check(publication.claim() && !publication.claim(), "late completion could publish twice");
+    cleanupCases();
 }
 
 proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullptr, std::ofstream* report = nullptr) {
@@ -608,6 +738,7 @@ struct DiagnosticCase {
     uint64_t guiCreated = 0, coordinatorCreated = 0;
     proof::Moment begin, beforeIntervention, end;
     AttachmentFact guiAttachment, coordinatorAttachment;
+    StopResult guiCleanup, coordinatorCleanup;
     bool acquired = false, cleanup = false, lineage = false;
 };
 
@@ -615,7 +746,7 @@ std::string safeDiagnosticError(const std::exception& error) {
     const std::string text(error.what());
     if (text.size() <= 200 && std::all_of(text.begin(), text.end(), [](unsigned char c) {
         return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
-            (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == '_' || c == '-';
+            (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == '_' || c == '-' || c == '=';
     })) return text;
     return "native diagnostic acquisition failed with an unprintable detail";
 }
@@ -666,23 +797,24 @@ DiagnosticCase diagnosticCase(const std::string& id, const fs::path& root, const
                   "attachment target creation identity changed");
         }
         write(layout / L"continue.txt", "continue");
-        proof::until([&] { return gui.exit() != STILL_ACTIVE && coordinator.exit() != STILL_ACTIVE; },
+        proof::until([&] { return gui.completed() && coordinator.completed(); },
                      "diagnostic handshake did not finish");
         check(gui.exit() == 0 && coordinator.exit() == 0, "diagnostic handshake returned failure");
         result.acquired = true;
     } catch (const std::exception& error) {
         result.error = safeDiagnosticError(error);
     }
-    try {
-        const bool detached = id == "D1" || FreeConsole() != FALSE;
-        coordinator.stop();
-        gui.stop();
-        result.cleanup = detached && (!gui.pid || coordinator.pid != 0);
-        check(result.cleanup, "diagnostic process ownership or detach cleanup was incomplete");
-    } catch (const std::exception& error) {
-        result.cleanup = false;
-        result.error = safeDiagnosticError(error);
+    result.cleanup = (id == "D1" || FreeConsole() != FALSE) && (!gui.pid || coordinator.pid != 0);
+    if (!result.cleanup) result.error = "diagnostic process ownership or detach cleanup was incomplete";
+    for (auto* child : { &coordinator, &gui }) {
+        try { child->stop(); }
+        catch (const std::exception& error) {
+            result.cleanup = false;
+            result.error = safeDiagnosticError(error);
+        }
     }
+    result.guiCleanup = gui.cleanup;
+    result.coordinatorCleanup = coordinator.cleanup;
     result.end = proof::moment();
     return result;
 }
@@ -755,7 +887,7 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
     bool complete = observer.healthy() && observer.clockValid() && acquisitionFailure.empty() &&
         cases.size() == 3 && controls.size() == 2;
     report << "DIAG clocks window=uptime-ms process=raw-qpc creation=filetime-100ns qpc_frequency="
-           << observer.frequency() << "\n";
+           << observer.frequency() << " observer_pid=" << GetCurrentProcessId() << "\n";
     for (auto& item : cases) {
         const auto startFor = [&](DWORD pid, DWORD parent) {
             return std::count_if(processes.begin(), processes.end(), [&](const auto& process) {
@@ -773,6 +905,13 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
         };
         item.lineage = startFor(item.gui, GetCurrentProcessId()) &&
             startFor(item.coordinator, item.gui) && ended(item.gui) && ended(item.coordinator);
+        for (const auto& process : processes) {
+            if (process.pid != item.gui && process.pid != item.coordinator) continue;
+            report << "DIAG process case=" << item.id << " role=" << (process.pid == item.gui ? "gui" : "coordinator")
+                   << " pid=" << process.pid << " parent=" << process.parent << " start=" << process.start
+                   << " timestamp_qpc=" << process.timestamp << " exit_known=" << process.exitKnown
+                   << " exit_code=" << process.exitCode << "\n";
+        }
         report << "DIAG case=" << item.id << " acquired=" << item.acquired << " cleanup=" << item.cleanup
                << " lineage=" << item.lineage << " gui_pid=" << item.gui << " coordinator_pid=" << item.coordinator
                << " gui_creation=" << item.guiCreated << " coordinator_creation=" << item.coordinatorCreated
@@ -781,6 +920,16 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
                << " intervention_qpc=" << item.beforeIntervention.qpc
                << " end_tick=" << item.end.tick << " end_qpc=" << item.end.qpc
                << " error=" << (item.error.empty() ? "none" : item.error) << "\n";
+        for (const auto& cleanup : std::vector<std::pair<const char*, StopResult>>{
+            { "gui", item.guiCleanup }, { "coordinator", item.coordinatorCleanup }
+        }) {
+            report << "DIAG cleanup case=" << item.id << " role=" << cleanup.first
+                   << " complete=" << cleanup.second.complete << " initial_wait=" << cleanup.second.initialWait
+                   << " final_wait=" << cleanup.second.finalWait << " wait_error=" << cleanup.second.waitError
+                   << " terminate_attempted=" << cleanup.second.terminationAttempted
+                   << " terminate_succeeded=" << cleanup.second.terminationSucceeded
+                   << " terminate_error=" << cleanup.second.terminationError << "\n";
+        }
         reportAttachment(report, item, "gui", item.gui, item.guiAttachment);
         reportAttachment(report, item, "coordinator", item.coordinator, item.coordinatorAttachment);
         std::set<uintptr_t> associated;
@@ -840,6 +989,7 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
     }
     report << "DIAG observer healthy=" << observer.healthy() << " clock_valid=" << observer.clockValid()
            << " etw_events_lost=" << observer.eventsLost() << " etw_buffers_lost=" << observer.buffersLost()
+           << " process_records=" << processes.size()
            << " console_records=" << observer.consoles().size() << " window_records=" << observer.windows().size()
            << " calibration_starts=" << controlStarts << " calibration_complete=" << controls.size()
            << " acquisition_error=" << (acquisitionFailure.empty() ? "none" : acquisitionFailure) << "\n";
@@ -921,6 +1071,8 @@ int wmain(int argc, wchar_t** argv) {
         check(SUCCEEDED(com), "proof COM initialization failed");
         proof::nativeArchitecture(GetCurrentProcess());
         if (options[L"--mode"] == L"diagnostic") {
+            cleanupCases();
+            report << "DIAG deterministic-cleanup-rows=6 passed=6\n";
             diagnostic(options, report);
             CoUninitialize();
             return 0;

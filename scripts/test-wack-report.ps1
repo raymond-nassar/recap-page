@@ -268,10 +268,75 @@ try {
         -and $Failure.Message -notmatch 'DO_NOT_REPORT'
     }
 
-  if ($passed -ne 16) {
-    throw "Expected 16 fixture tests, observed $passed."
+  $passBlocked = Write-Fixture -Name 'pass-with-sole-blocked' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE">
+  <TEST NAME="App manifest"><RESULT>PASS</RESULT></TEST>
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  $passBlockedResult = Read-Fixture $passBlocked
+  Assert-True `
+    -Name 'qualified PASS with sole optional Blocked result' `
+    -Condition (
+      $passBlockedResult.Disposition -eq 'PASS WITH OPTIONAL WARNINGS' `
+      -and $passBlockedResult.Overall -eq 'PASS' `
+      -and $passBlockedResult.Tests[1].Result -eq 'FAIL'
+    )
+
+  $passBlockedLatest = Write-Fixture -Name 'pass-blocked-current-kit' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-True `
+    -Name 'qualified PASS with explicit latest kit' `
+    -Condition ((Read-Fixture $passBlockedLatest).Disposition -eq 'PASS WITH OPTIONAL WARNINGS')
+
+  $passBlockedUnknownPartial = Write-Fixture -Name 'pass-blocked-unknown-partial' -Xml @'
+<REPORT OVERALL_RESULT="PASS" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS requires explicit complete run' `
+    -Action { Read-Fixture $passBlockedUnknownPartial } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  $passBlockedDuplicate = Write-Fixture -Name 'pass-blocked-duplicate' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+  <TEST NAME="Blocked executables"><RESULT>FAIL</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS rejects duplicate Blocked' `
+    -Action { Read-Fixture $passBlockedDuplicate } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  $passDpi = Write-Fixture -Name 'pass-dpi-only' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="DPIAwarenessValidation"><RESULT>WARNING</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS is not general subset acceptance' `
+    -Action { Read-Fixture $passDpi } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  $passChangedBlocked = Write-Fixture -Name 'pass-blocked-changed-result' -Xml @'
+<REPORT OVERALL_RESULT="PASS" PARTIAL_RUN="FALSE" LATEST_VERSION="TRUE">
+  <TEST NAME="Blocked executables"><RESULT>WARNING</RESULT></TEST>
+</REPORT>
+'@
+  Assert-Throws `
+    -Name 'new optional PASS requires the exact Blocked result' `
+    -Action { Read-Fixture $passChangedBlocked } `
+    -MessagePattern 'outside the exact optional allowlist'
+
+  if ($passed -ne 22) {
+    throw "Expected 22 fixture tests, observed $passed."
   }
-  '16 WACK report parser fixture tests passed.'
+  '22 WACK report parser fixture tests passed.'
 } finally {
   Remove-Item -LiteralPath $scratch -Recurse -Force -ErrorAction SilentlyContinue
 }
