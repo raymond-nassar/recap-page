@@ -238,13 +238,14 @@ function Export-NativePreview {
   $keys = @(
     'pendingOnly', 'nameRoleVerified', 'pendingControlsVerified', 'errorDetailsHidden',
     'wordmarkUnclipped', 'width', 'height', 'dpi', 'fillPixels', 'outlinePixels',
-    'shadowPixels', 'fontPatternAvailable', 'renderedReviewRequired', 'expectedFirstCandidate', 'fontAvailability'
+    'shadowPixels', 'fontPatternAvailable', 'renderedReviewRequired', 'expectedFirstCandidate', 'fontAvailability',
+    'iconTop', 'iconBottom', 'rowCentered'
   )
   if (@(Compare-Object ($render.PSObject.Properties.Name | Sort-Object) ($keys | Sort-Object)).Count -ne 0) {
     throw 'Native preview facts contain unexpected fields.'
   }
   foreach ($flag in @('pendingOnly', 'nameRoleVerified', 'pendingControlsVerified',
-      'errorDetailsHidden', 'wordmarkUnclipped', 'renderedReviewRequired')) {
+      'errorDetailsHidden', 'wordmarkUnclipped', 'renderedReviewRequired', 'rowCentered')) {
     if ($render.$flag -isnot [bool] -or -not $render.$flag) { throw 'Native preview safety gate did not hold.' }
   }
   if ($render.fontPatternAvailable -isnot [bool]) { throw 'Native preview optional metadata status is invalid.' }
@@ -268,6 +269,17 @@ function Export-NativePreview {
   if ($render.dpi -gt 768 -or $render.width -gt 4096 -or $render.height -gt 4096 -or
       $render.fillPixels + $render.outlinePixels + $render.shadowPixels -gt $render.width * $render.height) {
     throw 'Native preview dimensions or ink counts exceed their bound.'
+  }
+  foreach ($coordinate in @('iconTop', 'iconBottom')) {
+    if (($render.$coordinate -isnot [int] -and $render.$coordinate -isnot [long]) -or
+        $render.$coordinate -lt 0 -or $render.$coordinate -ge $render.height) {
+      throw 'Native preview icon coordinates are invalid.'
+    }
+  }
+  if ($render.iconTop -lt 0 -or $render.iconBottom -ge $render.height -or
+      $render.iconBottom -lt $render.iconTop -or
+      [Math]::Abs($render.iconTop + $render.iconBottom - ($render.height - 1)) -gt 2) {
+    throw 'Native preview row is not centered within one device pixel.'
   }
   $bytes = [IO.File]::ReadAllBytes($image)
   if ($bytes.Length -gt 4MB -or $bytes.Length -lt 54 -or

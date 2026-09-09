@@ -4,6 +4,7 @@
 #include <ole2.h>
 #include <UIAutomation.h>
 #include <array>
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -564,6 +565,8 @@ struct RenderEvidence {
     LONG width = 0, height = 0;
     uint64_t fill = 0, outline = 0, shadow = 0;
     bool unclipped = true;
+    LONG iconTop = 0, iconBottom = 0;
+    bool centered = false;
 };
 
 COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evidence = nullptr) {
@@ -599,6 +602,21 @@ COLORREF capture(HWND window, const fs::path& destination, RenderEvidence* evide
         evidence->width = rect.right;
         evidence->height = rect.bottom;
         const auto* pixels = static_cast<const unsigned char*>(data);
+        LONG iconTop = rect.bottom, iconBottom = -1;
+        for (LONG y = 0; y < rect.bottom; ++y) {
+            for (LONG x = 0; x < rect.right; ++x) {
+                const auto offset = (static_cast<size_t>(y) * static_cast<size_t>(rect.right) + static_cast<size_t>(x)) * 4;
+                if (RGB(pixels[offset + 2], pixels[offset + 1], pixels[offset]) == RGB(109, 40, 217)) {
+                    iconTop = std::min(iconTop, y);
+                    iconBottom = std::max(iconBottom, y);
+                }
+            }
+        }
+        check(iconBottom >= iconTop, "original icon fill was not captured");
+        evidence->iconTop = iconTop;
+        evidence->iconBottom = iconBottom;
+        evidence->centered = std::abs(iconTop + iconBottom - (rect.bottom - 1)) <= 2;
+        check(evidence->centered, "NI-001 pending icon row is not centered in the full client");
         for (LONG y = heading.top; y < heading.bottom; ++y) {
             for (LONG x = heading.left; x < heading.right; ++x) {
                 const auto offset = (static_cast<size_t>(y) * static_cast<size_t>(rect.right) + static_cast<size_t>(x)) * 4;
@@ -668,7 +686,8 @@ void writeRenderEvidence(HWND window, const fs::path& root, const RenderEvidence
            << ",\"fillPixels\":" << evidence.fill << ",\"outlinePixels\":" << evidence.outline
            << ",\"shadowPixels\":" << evidence.shadow << ",\"fontPatternAvailable\":"
            << (fontMetadata ? "true" : "false") << ",\"renderedReviewRequired\":true,\"expectedFirstCandidate\":\""
-           << ascii(names[first]) << "\",\"fontAvailability\":[";
+           << ascii(names[first]) << "\",\"iconTop\":" << evidence.iconTop
+           << ",\"iconBottom\":" << evidence.iconBottom << ",\"rowCentered\":true,\"fontAvailability\":[";
     for (size_t index = 0; index < names.size(); ++index)
         output << (index ? "," : "") << "{\"name\":\"" << ascii(names[index])
                << "\",\"available\":" << (available[index] ? "true" : "false") << "}";
@@ -919,6 +938,66 @@ void cleanupCases() {
           "repeated confirmed cleanup was not idempotent");
 }
 
+void windowCorrelationCases() {
+    const auto fact = [](DWORD event, uint64_t time, bool known) {
+        proof::WindowFact value;
+        value.window = 100;
+        value.event = event;
+        value.generated = time;
+        value.generated32 = static_cast<DWORD>(time);
+        value.received = { time, time * 10 };
+        value.sourceThread = 77;
+        value.sourceOwner = 9;
+        value.owner = known ? 9 : 0;
+        value.thread = known ? 77 : 0;
+        value.kind = known ? proof::WindowKind::other : proof::WindowKind::unknown;
+        value.present = value.identityKnown = value.geometryKnown = value.hierarchyKnown = value.metadataKnown = known;
+        value.topLevel = value.onScreen = known;
+        value.visible = event == EVENT_OBJECT_SHOW && known;
+        return value;
+    };
+    const std::vector<proof::WindowFact> safe{
+        fact(EVENT_OBJECT_CREATE, 10, false), fact(EVENT_OBJECT_SHOW, 20, true),
+        fact(EVENT_OBJECT_DESTROY, 30, false)
+    };
+    const auto recovered = proof::correlateWindows(safe, true, true);
+    check(recovered[0].derived && recovered[0].identityKnown && recovered[0].evidence == 1 &&
+          recovered[2].derived && !safe[0].present && !safe[0].geometryKnown && !safe[0].metadataKnown,
+          "same-lifetime recovery altered raw facts or failed identity");
+    std::vector<proof::WindowFact> reused{
+        fact(EVENT_OBJECT_CREATE, 10, false), fact(EVENT_OBJECT_DESTROY, 20, false),
+        fact(EVENT_OBJECT_CREATE, 30, true), fact(EVENT_OBJECT_DESTROY, 40, true)
+    };
+    const auto reuse = proof::correlateWindows(reused, true, true);
+    check(!reuse[0].identityKnown && reuse[0].lifetime != reuse[2].lifetime &&
+          reuse[0].endTick == 20 && reuse[2].beginTick == 30,
+          "identity crossed HWND reuse");
+    auto conflict = safe;
+    conflict[0] = fact(EVENT_OBJECT_CREATE, 10, true);
+    conflict[1].owner = 10;
+    conflict[1].sourceOwner = 10;
+    check(proof::correlateWindows(conflict, true, true)[0].conflict, "conflicting owners were merged");
+    auto threads = safe;
+    threads[0].sourceThread = 88;
+    threads[0].sourceOwner = 10;
+    check(!proof::correlateWindows(threads, true, true)[0].identityKnown, "incompatible source thread was accepted");
+    auto sourceOwner = safe;
+    sourceOwner[1].sourceOwner = 10;
+    check(proof::correlateWindows(sourceOwner, true, true)[1].conflict,
+          "matching thread number hid a conflicting source owner");
+    std::vector<proof::WindowFact> missingShow{
+        fact(EVENT_OBJECT_CREATE, 10, true), fact(EVENT_OBJECT_SHOW, 20, false),
+        fact(EVENT_OBJECT_DESTROY, 30, false)
+    };
+    const auto visibility = proof::correlateWindows(missingShow, true, true);
+    check(visibility[1].identityKnown && visibility[1].visibilityMissing,
+          "derived identity fabricated missing SHOW visibility");
+    check(!proof::correlateWindows({ fact(EVENT_OBJECT_CREATE, 10, false), fact(EVENT_OBJECT_DESTROY, 20, false) },
+                                   true, true)[0].identityKnown, "missing identity evidence was accepted");
+    check(!proof::correlateWindows(safe, false, true)[0].identityKnown, "invalid clocks allowed identity recovery");
+    check(!proof::correlateWindows(safe, true, false)[0].identityKnown, "capture loss allowed identity recovery");
+}
+
 void supervision() {
     FakeOperations race;
     race.fault = true;
@@ -940,6 +1019,7 @@ void supervision() {
     cleanupCases();
     handleClassificationCases();
     uiaOutputCases();
+    windowCorrelationCases();
 }
 
 proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullptr, std::ofstream* report = nullptr) {
@@ -1197,6 +1277,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
     check(host.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64, "handle diagnostic is x64 only");
     handleClassificationCases();
     uiaOutputCases();
+    windowCorrelationCases();
     report << "HANDLE classification-rows=19 passed=19 allocation-order=gui-control-before-original-slot\n";
     proof::Observer observer(true);
     size_t controlStarts = 0;
@@ -1207,7 +1288,7 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
             options.at(L"--fixture"), observer, roots, report, false, &verdict);
     controls.push_back(calibration(observer, &controlStarts, &report));
     observer.stop();
-    observer.assertNoVisibleTerminals(roots, false, controls);
+    observer.assertNoVisibleTerminals(roots, false, controls, report);
     report << "HANDLE acquisition=complete exclusion=" << verdictName(verdict)
            << " gui-activations=" << roots.size() << " calibration-controls=" << controlStarts
            << " observer-healthy=" << observer.healthy() << " clock-valid=" << observer.clockValid()
@@ -1580,7 +1661,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
     controls.push_back(calibration(observer));
     observer.stop();
     const auto roots = observer.registeredRoots(executable, busy ? 1 : 3, busy ? 1 : 0);
-    observer.assertNoVisibleTerminals(roots, !busy, controls);
+    observer.assertNoVisibleTerminals(roots, !busy, controls, report);
     report << "PASS installed-" << (busy ? "busy" : "functionality")
            << ";native-roots=" << roots.size() << ";console-controls=2;visible-product-terminals=0"
            << ";console-records=" << observer.consoles().size()
@@ -1695,7 +1776,7 @@ int wmain(int argc, wchar_t** argv) {
         }
         controls.push_back(calibration(observer));
         observer.stop();
-        observer.assertNoVisibleTerminals(roots, false, controls);
+        observer.assertNoVisibleTerminals(roots, false, controls, report);
         report << "PASS observer;console-controls=2;visible-product-terminals=0;attachment=not-used\n";
         observed("com-uninitialize", [] { CoUninitialize(); });
         return 0;

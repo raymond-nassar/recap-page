@@ -358,7 +358,7 @@ void layout(App& app) {
     const int row = std::max(iconSize, static_cast<int>(word.cy) + app.scale(46));
     const int startX = std::max(padding, (width - iconSize - gap - column) / 2);
     const int startY = app.failed ? app.scale(42)
-        : std::max(app.scale(48), (height - app.scale(56) - row) / 2);
+        : std::max(app.scale(48), std::min((height - row) / 2, height - app.scale(56) - row));
     app.iconRect = { startX, startY + (row - iconSize) / 2,
                      startX + iconSize, startY + (row + iconSize) / 2 };
     MoveWindow(app.heading, startX + iconSize + gap, startY, column, word.cy, TRUE);

@@ -10,6 +10,7 @@
 #include <cstring>
 #include <map>
 #include <memory>
+#include <ostream>
 #include <mutex>
 #include <set>
 #include <thread>
@@ -100,13 +101,15 @@ inline const char* windowKindName(WindowKind kind) {
 }
 
 struct WindowFact {
-    DWORD event = 0, owner = 0, thread = 0, sourceThread = 0, generated32 = 0;
+    DWORD event = 0, owner = 0, thread = 0, callbackThread = 0;
+    DWORD sourceThread = 0, sourceOwner = 0, sourceError = 0, generated32 = 0;
     LONG object = 0, child = 0;
     uintptr_t window = 0;
     uint64_t generated = 0;
     Moment received;
     WindowKind kind = WindowKind::unknown;
     bool metadataKnown = false, present = false, visible = false, topLevel = false, onScreen = false;
+    bool identityKnown = false, geometryKnown = false, hierarchyKnown = false;
     RECT rectangle{};
 };
 
@@ -118,18 +121,121 @@ inline WindowFact windowFact(HWND window) {
     fact.thread = GetWindowThreadProcessId(window, &fact.owner);
     wchar_t name[128]{};
     const auto length = GetClassNameW(window, name, static_cast<int>(std::size(name)));
-    const bool rectangle = GetWindowRect(window, &fact.rectangle) != FALSE;
-    fact.metadataKnown = length > 0 && fact.thread != 0 && fact.owner != 0 && rectangle;
-    if (!fact.metadataKnown) return fact;
-    fact.kind = wcscmp(name, L"RecapPageStartupWindow") == 0 ? WindowKind::startup
-        : wcscmp(name, L"ConsoleWindowClass") == 0 ? WindowKind::console
-        : wcscmp(name, L"CASCADIA_HOSTING_WINDOW_CLASS") == 0 ? WindowKind::terminal : WindowKind::other;
+    fact.geometryKnown = GetWindowRect(window, &fact.rectangle) != FALSE;
+    fact.identityKnown = length > 0 && fact.thread != 0 && fact.owner != 0;
+    if (fact.identityKnown)
+        fact.kind = wcscmp(name, L"RecapPageStartupWindow") == 0 ? WindowKind::startup
+            : wcscmp(name, L"ConsoleWindowClass") == 0 ? WindowKind::console
+            : wcscmp(name, L"CASCADIA_HOSTING_WINDOW_CLASS") == 0 ? WindowKind::terminal : WindowKind::other;
     fact.visible = IsWindowVisible(window) != FALSE;
-    fact.topLevel = GetAncestor(window, GA_ROOT) == window;
-    fact.onScreen = rectangle && fact.rectangle.right > fact.rectangle.left &&
+    const auto root = GetAncestor(window, GA_ROOT);
+    fact.hierarchyKnown = root != nullptr;
+    fact.topLevel = root == window;
+    fact.onScreen = fact.geometryKnown && fact.rectangle.right > fact.rectangle.left &&
         fact.rectangle.bottom > fact.rectangle.top &&
         MonitorFromRect(&fact.rectangle, MONITOR_DEFAULTTONULL) != nullptr;
+    fact.metadataKnown = fact.identityKnown && fact.geometryKnown && fact.hierarchyKnown;
     return fact;
+}
+
+struct WindowResolution {
+    size_t lifetime = 0, evidence = SIZE_MAX;
+    uint64_t beginTick = 0, endTick = UINT64_MAX;
+    DWORD owner = 0, thread = 0;
+    WindowKind kind = WindowKind::unknown;
+    bool identityKnown = false, derived = false, conflict = false, visibilityMissing = false;
+    bool created = false, destroyed = false;
+    const char* reason = "missing-identity";
+};
+
+inline std::vector<WindowResolution> correlateWindows(const std::vector<WindowFact>& facts,
+                                                      bool clocks, bool captureHealthy) {
+    struct Lifetime {
+        std::vector<size_t> rows;
+        bool created = false, closed = false, conflict = false;
+    };
+    std::vector<Lifetime> lifetimes;
+    std::map<uintptr_t, size_t> active;
+    std::vector<WindowResolution> result(facts.size());
+    for (size_t index = 0; index < facts.size(); ++index) {
+        const auto& fact = facts[index];
+        auto found = active.find(fact.window);
+        if (fact.event == EVENT_OBJECT_CREATE || found == active.end()) {
+            const bool collision = found != active.end();
+            if (collision) lifetimes[found->second].conflict = true;
+            lifetimes.push_back({ {}, fact.event == EVENT_OBJECT_CREATE, false, collision });
+            active[fact.window] = lifetimes.size() - 1;
+            found = active.find(fact.window);
+        }
+        auto& lifetime = lifetimes[found->second];
+        if (!lifetime.rows.empty()) {
+            const auto& prior = facts[lifetime.rows.back()];
+            if (fact.generated < prior.generated || fact.received.qpc < prior.received.qpc)
+                lifetime.conflict = true;
+        }
+        lifetime.rows.push_back(index);
+        result[index].lifetime = found->second + 1;
+        if (fact.event == EVENT_OBJECT_DESTROY) {
+            lifetime.closed = true;
+            active.erase(found);
+        }
+    }
+    for (const auto& lifetime : lifetimes) {
+        size_t evidence = SIZE_MAX;
+        bool conflict = lifetime.conflict || !clocks || !captureHealthy;
+        for (const auto index : lifetime.rows) {
+            const auto& fact = facts[index];
+            if (!fact.identityKnown || !fact.present) continue;
+            if (!fact.sourceThread || (fact.sourceOwner && fact.sourceOwner != fact.owner) ||
+                (fact.sourceThread != fact.thread &&
+                (!fact.sourceOwner || fact.sourceOwner != fact.owner))) conflict = true;
+            if (evidence == SIZE_MAX) evidence = index;
+            else {
+                const auto& known = facts[evidence];
+                conflict = conflict || fact.owner != known.owner || fact.thread != known.thread || fact.kind != known.kind;
+            }
+        }
+        for (const auto index : lifetime.rows) {
+            const auto& fact = facts[index];
+            auto& row = result[index];
+            row.created = lifetime.created;
+            row.destroyed = lifetime.closed;
+            row.beginTick = facts[lifetime.rows.front()].generated;
+            row.endTick = lifetime.closed ? facts[lifetime.rows.back()].generated : UINT64_MAX;
+            row.conflict = conflict;
+            row.owner = fact.owner;
+            row.thread = fact.thread;
+            row.kind = fact.kind;
+            row.identityKnown = fact.identityKnown && !conflict;
+            if (!row.identityKnown && !conflict && lifetime.created && evidence != SIZE_MAX) {
+                const auto& known = facts[evidence];
+                const bool compatibleSource = fact.sourceThread != 0 &&
+                    (!fact.sourceOwner || fact.sourceOwner == known.owner) &&
+                    (fact.sourceThread == known.thread || (fact.sourceOwner != 0 && fact.sourceOwner == known.owner));
+                const bool compatiblePartial = (!fact.owner || fact.owner == known.owner) &&
+                    (!fact.thread || fact.thread == known.thread) &&
+                    (fact.kind == WindowKind::unknown || fact.kind == known.kind);
+                if (compatibleSource && compatiblePartial) {
+                    row.owner = known.owner;
+                    row.thread = known.thread;
+                    row.kind = known.kind;
+                    row.identityKnown = true;
+                    row.derived = true;
+                    row.evidence = evidence;
+                }
+            }
+            const bool terminal = row.kind == WindowKind::console || row.kind == WindowKind::terminal;
+            row.visibilityMissing =
+                (fact.event == EVENT_OBJECT_SHOW && (!fact.present || !fact.geometryKnown || !fact.hierarchyKnown)) ||
+                (fact.present && fact.visible && (!fact.geometryKnown || !fact.hierarchyKnown)) ||
+                (terminal && fact.event == EVENT_OBJECT_CREATE && !fact.metadataKnown);
+            row.reason = conflict ? "lifetime-or-capture-conflict"
+                : !row.identityKnown ? "missing-identity"
+                : row.visibilityMissing ? "missing-visibility"
+                : row.derived ? "same-lifetime-identity" : "raw-identity";
+        }
+    }
+    return result;
 }
 
 inline bool visibleIn(const WindowFact& fact, uint64_t begin, uint64_t end, uint64_t receiptLimit = 0) {
@@ -169,7 +275,6 @@ class Observer {
     std::map<DWORD, std::wstring>& images_ = capture_->images_;
     std::vector<ConsoleFact> consoles_;
     std::vector<WindowFact> windows_;
-    std::map<uintptr_t, WindowFact> windowMetadata_;
     std::map<DWORD, std::wstring> roots_;
     std::atomic<bool>& lost_ = capture_->lost_;
     std::atomic<bool> clockValid_{ true };
@@ -271,24 +376,21 @@ class Observer {
         if (!current_ || object != OBJID_WINDOW || child != CHILDID_SELF || !window) return;
         try {
             auto fact = windowFact(window);
-            const auto cached = current_->windowMetadata_.find(fact.window);
-            if (!fact.metadataKnown && event != EVENT_OBJECT_CREATE &&
-                cached != current_->windowMetadata_.end()) {
-                fact = cached->second;
-                fact.present = false;
-                fact.visible = false;
-            }
             fact.event = event;
             fact.object = object;
             fact.child = child;
+            fact.callbackThread = GetCurrentThreadId();
             fact.sourceThread = thread;
+            if (thread) {
+                recap::Handle source(OpenThread(THREAD_QUERY_LIMITED_INFORMATION, FALSE, thread));
+                if (source) fact.sourceOwner = GetProcessIdOfThread(source.get());
+                if (!source || !fact.sourceOwner) fact.sourceError = GetLastError();
+            }
             fact.generated32 = generated;
             fact.received = moment();
             fact.generated = current_->eventTick(generated, fact.received);
-            check(current_->windows_.size() < 8192 && current_->windowMetadata_.size() < 2048,
-                  "window observation bound exceeded");
+            check(current_->windows_.size() < 8192, "window observation bound exceeded");
             current_->windows_.push_back(fact);
-            if (fact.metadataKnown) current_->windowMetadata_[fact.window] = fact;
         } catch (const std::exception&) { current_->lost_.store(true); }
     }
 public:
@@ -404,9 +506,11 @@ public:
     const std::vector<WindowFact>& windows() const { return windows_; }
     const std::vector<ConsoleFact>& consoles() const { return consoles_; }
     bool windowEventSeen(uintptr_t window, DWORD event) const {
-        return std::any_of(windows_.begin(), windows_.end(), [&](const auto& fact) {
-            return fact.window == window && fact.event == event && fact.metadataKnown;
-        });
+        const auto resolution = correlateWindows(windows_, clockValid(), healthy());
+        for (size_t index = 0; index < windows_.size(); ++index)
+            if (windows_[index].window == window && windows_[index].event == event &&
+                resolution[index].identityKnown && !resolution[index].conflict) return true;
+        return false;
     }
     bool passiveVisible(uintptr_t window, uint64_t begin, uint64_t end, uint64_t receiptLimit = 0) const {
         return std::any_of(windows_.begin(), windows_.end(), [&](const auto& fact) {
@@ -472,11 +576,64 @@ public:
         }
         return recap::normalizedPath(path);
     }
+    void reportAttribution(std::ostream& report, const std::vector<WindowResolution>& resolution,
+                           const std::vector<size_t>& offenders, const std::set<DWORD>& owned) {
+        std::set<size_t> emitted;
+        const auto emit = [&](size_t index, const char* category) {
+            if (index >= windows_.size() || !emitted.insert(index).second) return;
+            const auto& raw = windows_[index];
+            const auto& row = resolution[index];
+            report << "DIAG attribution category=" << category << " row=" << index << " reason=" << row.reason
+                   << " event=" << raw.event << " object=" << raw.object << " child=" << raw.child
+                   << " hwnd=" << raw.window << " callback_thread=" << raw.callbackThread
+                   << " source_thread=" << raw.sourceThread
+                   << " source_owner=" << raw.sourceOwner << " source_error=" << raw.sourceError
+                   << " raw_owner=" << raw.owner << " raw_thread=" << raw.thread
+                   << " raw_kind=" << windowKindName(raw.kind) << " raw_identity=" << raw.identityKnown
+                   << " raw_metadata=" << raw.metadataKnown << " raw_present=" << raw.present
+                   << " raw_visible=" << raw.visible << " raw_geometry=" << raw.geometryKnown
+                   << " raw_hierarchy=" << raw.hierarchyKnown << " raw_top=" << raw.topLevel
+                   << " raw_onscreen=" << raw.onScreen << " left=" << raw.rectangle.left
+                   << " top=" << raw.rectangle.top << " right=" << raw.rectangle.right << " bottom=" << raw.rectangle.bottom
+                   << " generation32=" << raw.generated32 << " generation_tick=" << raw.generated
+                   << " receipt_tick=" << raw.received.tick << " receipt_qpc=" << raw.received.qpc
+                   << " lifetime=" << row.lifetime << " created=" << row.created << " destroyed=" << row.destroyed
+                   << " lifetime_begin=" << row.beginTick << " lifetime_end=" << row.endTick
+                   << " derived=" << row.derived << " evidence_row=" << (row.evidence == SIZE_MAX ? -1LL : static_cast<long long>(row.evidence))
+                   << " resolved_owner=" << row.owner << " resolved_thread=" << row.thread
+                   << " resolved_kind=" << windowKindName(row.kind)
+                   << " owned_role=" << (owned.count(row.owner) ? "owned" : "outside-owned")
+                   << " conflict=" << row.conflict << " visibility_missing=" << row.visibilityMissing << "\n";
+        };
+        for (size_t count = 0; count < std::min<size_t>(20, offenders.size()); ++count) {
+            const auto index = offenders[count];
+            emit(index, "offending");
+            size_t neighbors = 0;
+            const auto evidence = resolution[index].evidence;
+            if (evidence != SIZE_MAX && evidence != index) { emit(evidence, "identity-evidence"); ++neighbors; }
+            for (size_t candidate = 0; candidate < windows_.size() && neighbors < 2; ++candidate) {
+                if (candidate != index && windows_[candidate].window == windows_[index].window &&
+                    !emitted.count(candidate)) { emit(candidate, "same-hwnd-context"); ++neighbors; }
+            }
+        }
+        report << "DIAG attribution-summary offenders=" << offenders.size()
+               << " omitted_offenders=" << (offenders.size() > 20 ? offenders.size() - 20 : 0)
+               << " emitted_rows=" << emitted.size() << " total_window_rows=" << windows_.size()
+               << " healthy=" << healthy() << " clocks=" << clockValid()
+               << " etw_events_lost=" << eventsLost() << " etw_buffers_lost=" << buffersLost() << "\n";
+        report.flush();
+    }
+
     void assertNoVisibleTerminals(const std::vector<DWORD>& roots, bool installed,
-                                 const std::vector<WindowFact>& controls) {
+                                 const std::vector<WindowFact>& controls, std::ostream& report) {
         check(stopped_ && windowObservation_, "visible-terminal verdict requires completed window observation");
-        assertHealthy();
-        check(clockValid() && controls.size() == 2, "passive observation calibration or clocks were incomplete");
+        const auto resolution = correlateWindows(windows_, clockValid(), healthy());
+        if (!healthy() || !clockValid() || controls.size() != 2) {
+            std::vector<size_t> rows;
+            for (size_t index = 0; index < windows_.size(); ++index) rows.push_back(index);
+            reportAttribution(report, resolution, rows, {});
+            throw std::runtime_error("passive observation calibration clocks or capture were incomplete");
+        }
         const auto events = processes();
         std::map<DWORD, ProcessEvent> starts;
         std::set<DWORD> ends, owned(roots.begin(), roots.end());
@@ -539,19 +696,72 @@ public:
         std::set<uintptr_t> associated;
         for (const auto& event : consoles_)
             if (owned.count(event.pid) && event.window) associated.insert(event.window);
-        for (const auto& fact : windows_) {
-            const bool control = std::any_of(controls.begin(), controls.end(), [&](const auto& known) {
-                return fact.window == known.window && fact.owner == known.owner;
-            });
+        std::set<size_t> calibrationLifetimes;
+        for (const auto& known : controls) {
+            std::set<size_t> candidates;
+            std::vector<size_t> context;
+            for (size_t index = 0; index < windows_.size(); ++index) {
+                if (windows_[index].window != known.window) continue;
+                context.push_back(index);
+                const auto& row = resolution[index];
+                if (row.identityKnown && !row.conflict && row.created && row.destroyed &&
+                    row.owner == known.owner && row.thread == known.thread && row.kind == known.kind &&
+                    row.beginTick <= known.received.tick && known.received.tick <= row.endTick)
+                    candidates.insert(row.lifetime);
+            }
+            if (candidates.size() != 1) {
+                reportAttribution(report, resolution, context, owned);
+                throw std::runtime_error("calibration window lifetime made passive observation inconclusive");
+            }
+            calibrationLifetimes.insert(*candidates.begin());
+        }
+        std::set<DWORD> observers{ GetCurrentProcessId() };
+        const auto observerImage = recap::modulePath();
+        for (const auto& [pid, event] : starts) {
+            if (event.parent == GetCurrentProcessId() &&
+                event.command.find(L"--mode visual-worker") != std::wstring::npos &&
+                recap::samePath(executablePath(pid, event), observerImage) && ends.count(pid)) observers.insert(pid);
+        }
+        std::vector<size_t> inconclusive, visible;
+        for (size_t index = 0; index < windows_.size(); ++index) {
+            const auto& fact = windows_[index];
+            const auto& identity = resolution[index];
+            const bool control = identity.identityKnown && !identity.conflict &&
+                calibrationLifetimes.count(identity.lifetime);
             if (control) continue;
-            check(fact.metadataKnown, "unmapped window lifecycle made passive observation inconclusive");
-            const bool terminal = fact.kind == WindowKind::console || fact.kind == WindowKind::terminal ||
+            const bool observerOnly = identity.identityKnown && !identity.conflict && identity.kind == WindowKind::other &&
+                observers.count(identity.owner) && !associated.count(fact.window);
+            if (observerOnly) continue;
+            const bool terminal = identity.kind == WindowKind::console || identity.kind == WindowKind::terminal ||
                 associated.count(fact.window);
-            if (!terminal || !visibleIn(fact, 0, UINT64_MAX)) continue;
-            check(owned.count(fact.owner) || associated.count(fact.window),
-                  "unmapped visible terminal made passive observation inconclusive");
+            if (!identity.identityKnown || identity.conflict || identity.visibilityMissing ||
+                (terminal && fact.event == EVENT_OBJECT_CREATE && !fact.metadataKnown)) {
+                inconclusive.push_back(index);
+                continue;
+            }
+            auto measured = fact;
+            measured.owner = identity.owner;
+            measured.thread = identity.thread;
+            measured.kind = identity.kind;
+            measured.identityKnown = identity.identityKnown;
+            measured.metadataKnown = identity.identityKnown && fact.geometryKnown && fact.hierarchyKnown;
+            if (!terminal || !visibleIn(measured, 0, UINT64_MAX)) continue;
+            if (!owned.count(identity.owner) && !associated.count(fact.window)) inconclusive.push_back(index);
+            else visible.push_back(index);
+        }
+        if (!inconclusive.empty()) {
+            reportAttribution(report, resolution, inconclusive, owned);
+            throw std::runtime_error("unmapped window lifecycle made passive observation inconclusive");
+        }
+        if (!visible.empty()) {
+            reportAttribution(report, resolution, visible, owned);
             throw std::runtime_error("product process created a visible terminal");
         }
+        size_t derived = 0;
+        for (const auto& row : resolution) if (row.derived) ++derived;
+        report << "DIAG attribution-complete raw_rows=" << windows_.size() << " derived_identities=" << derived
+               << " visible_terminals=0 unknown=0 clocks=1 capture_healthy=1\n";
+        report.flush();
     }
 };
 } // namespace proof
