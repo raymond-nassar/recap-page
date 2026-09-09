@@ -100,7 +100,7 @@ jobs:
         timeout-minutes: 12
         shell: pwsh
         run: ./scripts/build-native-launcher.ps1 -IncludeProofTools
-      - name: Prove the three aimed startup negatives
+      - name: Prove startup negatives and reviewed placement
         if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true) }}
         timeout-minutes: 12
         shell: pwsh

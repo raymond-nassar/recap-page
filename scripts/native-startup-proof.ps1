@@ -357,7 +357,7 @@ try {
     }
     $resources = Join-Path $env:RUNNER_TEMP "recap-native-negative-inputs-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT\Launcher.res"
     if (-not (Test-Path -LiteralPath $resources -PathType Leaf)) { throw 'The producer resource object is missing.' }
-    $mutations = @('N1', 'N2', 'N3')
+    $mutations = @('N1', 'N2', 'N3', 'LC-001')
     if ($Diagnostic) { $mutations = @('N3') }
     foreach ($negative in $mutations) {
       $copy = Join-Path $scratch $negative
@@ -382,6 +382,23 @@ try {
         $after = 'EXTENDED_STARTUPINFO_PRESENT'
         $case = 'F01'
         $expectedFailure = 'F01 coordinator created a visible terminal'
+      } elseif ($negative -eq 'LC-001') {
+        $changed = Join-Path $copy 'Launcher.cpp'
+        $placement = [regex]::Matches([IO.File]::ReadAllText($changed),
+          '(?ms)^bool placeFailureWindow\(App& app\) \{.*?^\}')
+        if ($placement.Count -ne 1) { throw 'The LC-001 placement seam is not unique.' }
+        $before = $placement[0].Value
+        $after = @'
+bool placeFailureWindow(App& app) {
+    RECT work{};
+    if (!SystemParametersInfoW(SPI_GETWORKAREA, 0, &work, 0)) return false;
+    const int width = std::min(app.scale(640), static_cast<int>(work.right - work.left));
+    const int height = std::min(app.scale(520), static_cast<int>(work.bottom - work.top));
+    return SetWindowPos(app.window, nullptr, 0, 0, width, height, SWP_NOMOVE | SWP_NOZORDER) != FALSE;
+}
+'@
+        $case = 'F03'
+        $expectedFailure = 'LC-001 failure rectangle escaped the current monitor work area'
       }
       $text = [IO.File]::ReadAllText($changed)
       if ([regex]::Matches($text, [regex]::Escape($before)).Count -ne 1) {
@@ -410,7 +427,9 @@ try {
       if ($result.ExitCode -ne 1 -or -not $result.Text.Contains($expectedFailure)) {
         throw "$negative did not fail its intended assertion."
       }
-      Write-Output "PASS aimed-negative=$negative;case=$case;expected-failure-observed=true"
+      $kind = 'aimed-negative'
+      if ($negative -eq 'LC-001') { $kind = 'review-original-condition' }
+      Write-Output "PASS $kind=$negative;case=$case;expected-failure-observed=true"
     }
     if ($Diagnostic) {
       $runtimeHash = (Get-FileHash -LiteralPath $packageRuntime -Algorithm SHA256).Hash.ToLowerInvariant()

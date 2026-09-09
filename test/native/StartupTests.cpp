@@ -1052,6 +1052,40 @@ void preflight(const fs::path& root, const std::wstring& native) {
     check(rejected, "escaping runtime was accepted");
 }
 
+RECT positionPendingAtEdge(HWND window) {
+    checkpoint("ENTER", "failure-edge-setup");
+    MONITORINFO monitor{ sizeof(MONITORINFO) };
+    check(GetMonitorInfoW(MonitorFromWindow(window, MONITOR_DEFAULTTONEAREST), &monitor) != FALSE,
+          "failure fixture current work area unavailable");
+    const auto dpi = GetDpiForWindow(window);
+    const int width = std::min(MulDiv(300, static_cast<int>(dpi), 96),
+                               static_cast<int>(monitor.rcWork.right - monitor.rcWork.left));
+    const int height = std::min(MulDiv(280, static_cast<int>(dpi), 96),
+                                static_cast<int>(monitor.rcWork.bottom - monitor.rcWork.top));
+    check(SetWindowPos(window, nullptr, monitor.rcWork.right - width, monitor.rcWork.bottom - height,
+                       width, height, SWP_NOZORDER | SWP_NOACTIVATE) != FALSE,
+          "pending failure fixture could not be placed near the edge");
+    checkpoint("EXIT", "failure-edge-setup");
+    return monitor.rcWork;
+}
+
+void failureFits(HWND window, const RECT& work) {
+    checkpoint("ENTER", "failure-work-area");
+    RECT rectangle{};
+    check(GetWindowRect(window, &rectangle) != FALSE, "failure rectangle unavailable");
+    const auto fits = [&](const RECT& value) {
+        return value.left >= work.left && value.top >= work.top && value.right <= work.right &&
+            value.bottom <= work.bottom && value.right > value.left && value.bottom > value.top;
+    };
+    check(fits(rectangle), "LC-001 failure rectangle escaped the current monitor work area");
+    for (const int id : { 203, 204 }) {
+        RECT control{};
+        check(GetWindowRect(GetDlgItem(window, id), &control) != FALSE && fits(control),
+              "LC-001 failure control escaped the current monitor work area");
+    }
+    checkpoint("EXIT", "failure-work-area");
+}
+
 void fixture(const std::string& id, const fs::path& root, const fs::path& native,
              const fs::path& runtime, const fs::path& source, proof::Observer& observer,
              std::vector<DWORD>& roots, std::ofstream& report, bool consoleOnly,
@@ -1108,6 +1142,8 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         retain(sentinel, static_cast<DWORD>(std::stoul(read(layout / L"sentinel.txt"))),
                (layout / L"runtime" / L"node.exe").wstring());
     }
+    RECT failureWork{};
+    if (id == "F03" || id == "F07") failureWork = positionPendingAtEdge(window);
     if (id == "F02" || id == "F03") {
         if (id == "F02") PostMessageW(window, WM_SYSCOMMAND, SC_CLOSE, 0);
         else sendChecked(GetDlgItem(window, 203), BM_CLICK);
@@ -1131,6 +1167,7 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
                 ? "F03 pending close lost the startup owner" : "failure feedback owner exited early");
             return IsWindowVisible(window) && controlText(GetDlgItem(window, 203)) == L"Close";
         }, "readable error feedback did not appear", id == "F10" ? 190000 : 15000);
+        if (id == "F03" || id == "F07") failureFits(window, failureWork);
         accessible(window, true);
         const auto detail = controlText(GetDlgItem(window, 204));
         check(!detail.empty(), "error feedback was empty");

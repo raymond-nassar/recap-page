@@ -223,7 +223,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
       assert.equal(runInNewContext(consoleDiagnostic, context), expectedConsole);
       assert.equal(runInNewContext(handleDiagnostic, context), expectedHandle);
     }
-    assert.equal(nativeStep('Prove the three aimed startup negatives').match(/if: \$\{\{ (.+) \}\}/)?.[1], `!(${diagnostic})`);
+    assert.equal(nativeStep('Prove startup negatives and reviewed placement').match(/if: \$\{\{ (.+) \}\}/)?.[1], `!(${diagnostic})`);
     const acquisition = nativeStep('Acquire both native and WACK diagnostic facts');
     assert.equal((acquisition.match(/\btry \{/g) ?? []).length, 2);
     assert.equal((acquisition.match(/\bcatch \{/g) ?? []).length, 2);
@@ -280,5 +280,8 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(proof, /\$bytes\.Length -gt 4MB/);
   assert.match(proof, /renderedReviewRequired/);
   assert.match(proof, /preview_ready=true/);
+  assert.match(proof, /@\('N1', 'N2', 'N3', 'LC-001'\)/);
+  assert.match(proof, /review-original-condition/);
+  assert.match(proof, /LC-001 failure rectangle escaped the current monitor work area/);
   assert.doesNotMatch(previews.join('\n'), /\*{2}|\.xml|\.pfx|\.cer|trace|error|desktop/);
 });

@@ -464,6 +464,23 @@ void drawClose(App& app, const DRAWITEMSTRUCT& item) {
     }
 }
 
+bool clampWindow(RECT& rectangle, HMONITOR selected = nullptr);
+
+bool placeFailureWindow(App& app) {
+    const auto monitor = MonitorFromWindow(app.window, MONITOR_DEFAULTTONEAREST);
+    if (!monitor) {
+        SetLastError(ERROR_INVALID_MONITOR_HANDLE);
+        return false;
+    }
+    RECT rectangle{};
+    if (!GetWindowRect(app.window, &rectangle)) return false;
+    rectangle.right = rectangle.left + app.scale(640);
+    rectangle.bottom = rectangle.top + app.scale(520);
+    if (!clampWindow(rectangle, monitor)) return false;
+    return SetWindowPos(app.window, nullptr, rectangle.left, rectangle.top,
+        rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER) != FALSE;
+}
+
 void showFailure(App& app, const std::wstring& message) {
     app.terminal = true;
     app.failed = true;
@@ -476,11 +493,12 @@ void showFailure(App& app, const std::wstring& message) {
     for (const auto c : message) { if (c == L'\n') text += L'\r'; text += c; }
     SetWindowTextW(app.detail, text.c_str());
     ShowWindow(app.detail, SW_SHOW);
-    RECT work{};
-    SystemParametersInfoW(SPI_GETWORKAREA, 0, &work, 0);
-    const int width = std::min(app.scale(640), static_cast<int>(work.right - work.left));
-    const int height = std::min(app.scale(520), static_cast<int>(work.bottom - work.top));
-    SetWindowPos(app.window, nullptr, 0, 0, width, height, SWP_NOMOVE | SWP_NOZORDER);
+    std::wstring placementError;
+    if (!placeFailureWindow(app)) {
+        placementError = recap::windowsError(L"The error window could not be placed on this display", GetLastError());
+        text += L"\r\n\r\n" + placementError;
+        SetWindowTextW(app.detail, text.c_str());
+    }
     layout(app);
     ShowWindow(app.window, SW_SHOWNORMAL);
     if (!SetForegroundWindow(app.window)) {
@@ -491,11 +509,14 @@ void showFailure(App& app, const std::wstring& message) {
     RedrawWindow(app.window, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ALLCHILDREN);
     NotifyWinEvent(EVENT_OBJECT_NAMECHANGE, app.status, OBJID_CLIENT, CHILDID_SELF);
     NotifyWinEvent(EVENT_OBJECT_VALUECHANGE, app.detail, OBJID_CLIENT, CHILDID_SELF);
+    if (!placementError.empty())
+        MessageBoxW(nullptr, text.c_str(), L"Recap Page startup error", MB_OK | MB_ICONERROR);
 }
 
-bool clampWindow(RECT& rectangle) {
+bool clampWindow(RECT& rectangle, HMONITOR selected) {
     MONITORINFO monitor{ sizeof(MONITORINFO) };
-    if (!GetMonitorInfoW(MonitorFromRect(&rectangle, MONITOR_DEFAULTTONEAREST), &monitor)) return false;
+    const auto target = selected ? selected : MonitorFromRect(&rectangle, MONITOR_DEFAULTTONEAREST);
+    if (!GetMonitorInfoW(target, &monitor)) return false;
     const LONG width = std::min(rectangle.right - rectangle.left, monitor.rcWork.right - monitor.rcWork.left);
     const LONG height = std::min(rectangle.bottom - rectangle.top, monitor.rcWork.bottom - monitor.rcWork.top);
     rectangle.left = std::max(monitor.rcWork.left, std::min(rectangle.left, monitor.rcWork.right - width));
