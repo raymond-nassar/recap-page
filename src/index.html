@@ -178,6 +178,7 @@
                   <div class="cta">
                     <button type="button" class="btn" id="btn-chero-read">Read next issue →</button>
                     <button type="button" class="btn btn-g" id="btn-chero-open">Open the list</button>
+                    <button type="button" class="btn btn-g" id="btn-chero-review">Review earlier issues</button>
                   </div>
                 </div>
               </div>
@@ -326,6 +327,20 @@
                 <p>Every issue in this list is ticked off. Pick another order, or start a new list.</p>
               </div>
 
+              <button type="button" class="btn btn-g" id="btn-review-earlier" aria-expanded="false" aria-controls="review-earlier">Review earlier issues</button>
+              <section id="review-earlier" class="review-earlier" hidden aria-labelledby="review-h">
+                <h2 id="review-h" tabindex="-1">Review earlier issues</h2>
+                <p id="review-context"></p>
+                <p class="rail-hint">Choose a comic to open its details and deliberately fetch or reveal its description. This is the current order, not a record of your last reading session.</p>
+                <p id="review-position" role="status"></p>
+                <div id="review-candidate"></div>
+                <div class="cta">
+                  <button type="button" class="btn btn-g" id="review-earlier-button" aria-disabled="true">Earlier</button>
+                  <button type="button" class="btn btn-g" id="review-later-button" aria-disabled="true">Later</button>
+                  <button type="button" class="btn btn-g" id="review-full-order">Open full Reading List</button>
+                  <button type="button" class="btn btn-g" id="review-close">Close review</button>
+                </div>
+              </section>
               <!-- coming up -->
               <section class="sec" id="shelf-sec" aria-labelledby="shelf-h">
                 <div class="sec-h">
@@ -824,6 +839,17 @@
                     anywhere. High contrast mode and reduced motion are still honoured whichever you pick.
                   </p>
                 </details>
+              </div>
+              <div class="card card-static setting">
+                <h3>Description hiding</h3>
+                <label class="checkbox setting-ctl"><input type="checkbox" id="opt-description-hiding" aria-describedby="description-hiding-help" /> Hide descriptions until I reveal them</label>
+                <p id="description-hiding-help" class="rail-hint setting-desc">
+                  On by default. Turn off to show already-fetched descriptions without Reveal and Hide controls.
+                  Fetching still asks permission. This does not identify spoilers or filter titles and covers.
+                  Changing this choice resets individual reveal choices, not fetched text.
+                  The preference is saved in this browser, separately from progress and backups.
+                </p>
+                <div id="description-hiding-report" class="results"></div>
               </div>
             </section>
 

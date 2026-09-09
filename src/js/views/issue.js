@@ -211,6 +211,17 @@ export function createIssueView({
     paint(currentResult);
   }
 
+  function refreshDescription() {
+    if (!currentResult?.issue) return;
+    const nodes = elements();
+    const focused = nodes.disclosure.ownerDocument?.activeElement === nodes.disclosure;
+    paintDescription(currentResult.issue);
+    if (focused && nodes.disclosure.hidden) {
+      nodes.heading.setAttribute('tabindex', '-1');
+      nodes.heading.focus({ preventScroll: true });
+    }
+  }
+
   function wire() {
     const nodes = elements();
     nodes.read.addEventListener('click', (event) => {
@@ -226,10 +237,11 @@ export function createIssueView({
       const issue = currentResult.issue;
       // Invalidated even while consent is open, so leaving and returning cannot revive that request.
       const epoch = ++synopsisEpoch;
+      const generation = synopsisDisclosure.generation();
       const isCurrent = () => epoch === synopsisEpoch && currentResult?.issue?.issueId === issue.issueId;
       const fetched = await onStartSynopsis(isCurrent);
       if (!fetched || !isCurrent()) return;
-      synopsisDisclosure.reveal(issue.issueId);
+      if (generation === synopsisDisclosure.generation()) synopsisDisclosure.reveal(issue.issueId);
       paintDescription(issue);
     });
     nodes.cancelSynopsis.addEventListener('click', () => {
@@ -246,6 +258,7 @@ export function createIssueView({
     cancel,
     render,
     repaintSynopsis,
+    refreshDescription,
     resetSynopsis,
     result: () => currentResult,
     wire,
