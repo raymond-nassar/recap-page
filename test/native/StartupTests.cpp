@@ -5,6 +5,7 @@
 #include <UIAutomation.h>
 #include <array>
 #include <cstdlib>
+#include <exception>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -17,8 +18,55 @@ using proof::check;
 namespace {
 std::ofstream* liveReport = nullptr;
 fs::path liveReportPath;
+std::string lastStage = "not-started";
+
+struct CalibrationFailure : std::runtime_error {
+    const char* code;
+    const char* stage;
+    std::exception_ptr primary;
+    std::vector<std::exception_ptr> secondary;
+    CalibrationFailure(const char* errorCode, const char* failedStage, std::exception_ptr original,
+                       std::vector<std::exception_ptr> additional)
+        : std::runtime_error("calibration-failed"), code(errorCode), stage(failedStage),
+          primary(std::move(original)), secondary(std::move(additional)) {}
+};
+
+const char* failureCode(const std::exception& failure) {
+    if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure)) return calibration->code;
+    static constexpr const char* labels[][2] = {
+        { "N1 missing frame was accepted as opened", "n1-missing-frame-accepted" },
+        { "F03 pending close lost the startup owner", "n2-pending-owner-lost" },
+        { "F01 coordinator created a visible terminal", "n3-visible-coordinator-terminal" },
+        { "LC-001 failure rectangle escaped the current monitor work area", "lc001-failure-outside-work-area" },
+        { "observer did not detect its console control", "calibration-console-start-missing" },
+        { "calibration did not expose a passive visible terminal", "calibration-passive-terminal-missing" },
+        { "observer could not release its previous console", "calibration-previous-console-release-failed" },
+        { "calibration console attachment was inconclusive", "calibration-attachment-inconclusive" },
+        { "calibration console did not become attachable", "calibration-attachment-timeout" },
+        { "calibration membership was incomplete", "calibration-membership-incomplete" },
+        { "calibration console membership did not match its owned processes", "calibration-membership-mismatch" },
+        { "calibration visible console window could not be mapped", "calibration-window-unmapped" },
+        { "calibration window create/show events were incomplete", "calibration-window-events-incomplete" },
+        { "observer did not detect console control exit", "calibration-console-end-missing" },
+        { "observer could not detach the calibration console", "calibration-detach-failed" },
+        { "calibration window destroy event was incomplete", "calibration-window-destroy-missing" },
+        { "unmapped window lifecycle made passive observation inconclusive", "window-lifecycle-inconclusive" },
+        { "calibration window lifetime made passive observation inconclusive", "calibration-lifetime-inconclusive" },
+        { "product process created a visible terminal", "product-visible-terminal" }
+    };
+    for (const auto& label : labels) if (strcmp(failure.what(), label[0]) == 0) return label[1];
+    return "unclassified-proof-error";
+}
+
+void writeFailure(std::ostream& report, const std::exception& failure, const std::string& stage) {
+    report << "FAIL code=" << failureCode(failure) << " stage=" << stage << "\n";
+    if (const auto* calibration = dynamic_cast<const CalibrationFailure*>(&failure))
+        report << "DIAG calibration-exception primary=1 secondary_failures=" << calibration->secondary.size() << "\n";
+    report.flush();
+}
 
 void checkpoint(const char* edge, const char* stage) {
+    lastStage = stage;
     if (!liveReport) return;
     *liveReport << "CHECK " << edge << " " << stage << " tick=" << GetTickCount64() << "\n";
     liveReport->flush();
@@ -1022,87 +1070,201 @@ void supervision() {
     windowCorrelationCases();
 }
 
-proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullptr, std::ofstream* report = nullptr) {
+struct CalibrationState {
+    const char* stage = "calibration-start";
+    proof::Moment begin, beforeAttach;
+    proof::WindowFact window;
+    bool beginKnown = false, beforeAttachKnown = false;
+    bool attached = false, attachmentKnown = false, membersKnown = false;
+    bool controlMember = false, observerMember = false, releaseKnown = false, detachKnown = false;
+    DWORD attachAttempts = 0, attachError = 0, memberCount = 0, memberError = 0, releaseError = 0, detachError = 0;
+};
+
+void reportCalibrationFailure(proof::Observer& observer, std::ofstream& report, const Child& control,
+                              const CalibrationState& state, const std::exception& failure) {
+    checkpoint("FAIL", "calibration");
+    report << "DIAG calibration-failure code=" << failureCode(failure) << " stage=" << state.stage << " primary=1\n";
+    FILETIME created{}, exited{}, kernel{}, user{};
+    const bool creationKnown = control.process && GetProcessTimes(control.process.get(), &created, &exited, &kernel, &user);
+    const auto creationError = control.process && !creationKnown ? GetLastError() : ERROR_SUCCESS;
+    const auto wait = control.process ? WaitForSingleObject(control.process.get(), 0) : WAIT_FAILED;
+    const auto waitError = control.process && wait == WAIT_FAILED ? GetLastError() : ERROR_SUCCESS;
+    const auto creation = (static_cast<uint64_t>(created.dwHighDateTime) << 32) | created.dwLowDateTime;
+    report << "DIAG calibration-control pid=" << control.pid << " handle_known=" << static_cast<bool>(control.process)
+           << " creation_known=" << creationKnown << " creation=" << creation << " creation_error=" << creationError
+           << " wait_known=" << static_cast<bool>(control.process) << " wait=" << wait << " wait_error=" << waitError
+           << " attachment_known=" << state.attachmentKnown << " attached=" << state.attached
+           << " attach_attempts=" << state.attachAttempts << " attach_error=" << state.attachError
+           << " members_known=" << state.membersKnown << " members=" << state.memberCount
+           << " member_error=" << state.memberError << " control_member=" << state.controlMember
+           << " observer_member=" << state.observerMember << " release_known=" << state.releaseKnown
+           << " release_error=" << state.releaseError << " detach_known=" << state.detachKnown
+           << " detach_error=" << state.detachError << " begin_known=" << state.beginKnown
+           << " begin_tick=" << state.begin.tick << " begin_qpc=" << state.begin.qpc
+           << " before_attach_known=" << state.beforeAttachKnown << " before_attach_tick=" << state.beforeAttach.tick
+           << " before_attach_qpc=" << state.beforeAttach.qpc << " before_teardown=1\n";
+    observer.reportCalibrationWindows(report, control.pid, state.window, state.begin, state.beforeAttach);
+    report.flush();
+    check(static_cast<bool>(report), "calibration report could not be written");
+}
+
+proof::WindowFact calibration(proof::Observer& observer, std::ofstream& report, size_t* started = nullptr) {
     checkpoint("ENTER", "calibration");
     Child control;
-    const auto begin = proof::moment();
-    start(control, recap::modulePath(), L"--console-control", CREATE_NEW_CONSOLE);
-    if (started) ++*started;
-    if (report) {
-        *report << "DIAG calibration-start pid=" << control.pid << " begin_tick=" << begin.tick
-                << " begin_qpc=" << begin.qpc << "\n";
-        report->flush();
-    }
-    proof::until([&] { return observer.console(control.pid); }, "observer did not detect its console control");
-    if (observer.observesWindows()) {
-        proof::until([&] {
-            return std::any_of(observer.windows().begin(), observer.windows().end(), [&](const auto& fact) {
-                return (fact.kind == proof::WindowKind::console || fact.kind == proof::WindowKind::terminal) &&
-                    proof::visibleIn(fact, begin.tick, GetTickCount64() + 1);
-            });
-        }, "calibration did not expose a passive visible terminal");
-    }
-    const auto beforeAttach = proof::moment();
-    check(FreeConsole() != FALSE, "observer could not release its previous console");
-    DWORD attachError = ERROR_SUCCESS;
+    CalibrationState state;
+    const auto step = [&](const char* stage, auto action) {
+        state.stage = stage;
+        observed(stage, action);
+    };
     try {
-        proof::until([&] {
-            if (AttachConsole(control.pid)) return true;
-            attachError = GetLastError();
-            check(attachError == ERROR_INVALID_HANDLE && control.exit() == STILL_ACTIVE,
-                  "calibration console attachment was inconclusive");
-            return false;
-        }, "calibration console did not become attachable");
-    } catch (const std::exception& failure) {
-        throw std::runtime_error(std::string(failure.what()) + "; Windows error " + std::to_string(attachError));
-    }
-    proof::WindowFact consoleWindow;
-    DWORD memberCount = 0;
-    // Keep the host window alive until its asynchronous application-end event is delivered.
-    try {
-        if (observer.observesWindows()) {
-            std::array<DWORD, 128> members{};
-            memberCount = GetConsoleProcessList(members.data(), static_cast<DWORD>(members.size()));
-            check(memberCount > 0 && memberCount <= members.size(), "calibration membership was incomplete");
-            const auto end = members.begin() + memberCount;
-            check(std::find(members.begin(), end, control.pid) != end &&
-                  std::find(members.begin(), end, GetCurrentProcessId()) != end,
-                  "calibration console membership did not match its owned processes");
-            const auto window = proof::windowFact(GetConsoleWindow());
-            check(window.metadataKnown && window.present && window.topLevel && window.visible && window.onScreen,
-                  "calibration visible console window could not be mapped");
-            consoleWindow = window;
-            consoleWindow.received = proof::moment();
+        step("calibration-control-start", [&] {
+            state.begin = proof::moment();
+            state.beginKnown = true;
+            start(control, recap::modulePath(), L"--console-control", CREATE_NEW_CONSOLE);
+            if (started) ++*started;
+            report << "DIAG calibration-start pid=" << control.pid << " begin_tick=" << state.begin.tick
+                   << " begin_qpc=" << state.begin.qpc << "\n";
+            report.flush();
+        });
+        step("calibration-console-start", [&] {
+            proof::until([&] { return observer.console(control.pid); }, "observer did not detect its console control");
+        });
+        if (observer.observesWindows()) step("calibration-passive-visible", [&] {
             proof::until([&] {
-                return observer.windowEventSeen(consoleWindow.window, EVENT_OBJECT_CREATE) &&
-                    observer.windowEventSeen(consoleWindow.window, EVENT_OBJECT_SHOW) &&
-                    observer.passiveVisible(consoleWindow.window, begin.tick, beforeAttach.tick + 1, beforeAttach.qpc);
-            }, "calibration window create/show events were incomplete");
+                return std::any_of(observer.windows().begin(), observer.windows().end(), [&](const auto& fact) {
+                    return (fact.kind == proof::WindowKind::console || fact.kind == proof::WindowKind::terminal) &&
+                        proof::visibleIn(fact, state.begin.tick, GetTickCount64() + 1);
+                });
+            }, "calibration did not expose a passive visible terminal");
+        });
+        step("calibration-release-previous", [&] {
+            state.beforeAttach = proof::moment();
+            state.beforeAttachKnown = true;
+            const bool released = FreeConsole() != FALSE;
+            state.releaseKnown = true;
+            state.releaseError = released ? ERROR_SUCCESS : GetLastError();
+            check(released, "observer could not release its previous console");
+        });
+        step("calibration-attach", [&] {
+            proof::until([&] {
+                ++state.attachAttempts;
+                state.attachmentKnown = true;
+                state.attached = AttachConsole(control.pid) != FALSE;
+                state.attachError = state.attached ? ERROR_SUCCESS : GetLastError();
+                if (state.attached) return true;
+                check(state.attachError == ERROR_INVALID_HANDLE && control.exit() == STILL_ACTIVE,
+                      "calibration console attachment was inconclusive");
+                return false;
+            }, "calibration console did not become attachable");
+        });
+        if (observer.observesWindows()) {
+            step("calibration-membership", [&] {
+                std::array<DWORD, 128> members{};
+                state.memberCount = GetConsoleProcessList(members.data(), static_cast<DWORD>(members.size()));
+                state.memberError = state.memberCount ? ERROR_SUCCESS : GetLastError();
+                state.membersKnown = state.memberCount > 0 && state.memberCount <= members.size();
+                check(state.membersKnown, "calibration membership was incomplete");
+                const auto end = members.begin() + state.memberCount;
+                state.controlMember = std::find(members.begin(), end, control.pid) != end;
+                state.observerMember = std::find(members.begin(), end, GetCurrentProcessId()) != end;
+                check(state.controlMember && state.observerMember,
+                      "calibration console membership did not match its owned processes");
+            });
+            step("calibration-window-sample", [&] {
+                state.window = proof::windowFact(GetConsoleWindow());
+                check(state.window.metadataKnown && state.window.present && state.window.topLevel &&
+                      state.window.visible && state.window.onScreen, "calibration visible console window could not be mapped");
+                state.window.received = proof::moment();
+            });
+            step("calibration-window-events", [&] {
+                proof::until([&] {
+                    return observer.windowEventSeen(state.window.window, EVENT_OBJECT_CREATE) &&
+                        observer.windowEventSeen(state.window.window, EVENT_OBJECT_SHOW) &&
+                        observer.passiveVisible(state.window.window, state.begin.tick,
+                                                state.beforeAttach.tick + 1, state.beforeAttach.qpc);
+                }, "calibration window create/show events were incomplete");
+            });
         }
-        control.stop();
-        proof::until([&] { return observer.console(control.pid, EVENT_CONSOLE_END_APPLICATION); },
-                     "observer did not detect console control exit");
-    } catch (const std::exception& failure) {
-        if (!FreeConsole())
-            throw std::runtime_error(std::string(failure.what()) + "; calibration console detach failed");
-        throw;
-    }
-    check(FreeConsole() != FALSE, "observer could not detach the calibration console");
-    if (observer.observesWindows()) {
-        proof::until([&] { return observer.windowEventSeen(consoleWindow.window, EVENT_OBJECT_DESTROY); },
-                     "calibration window destroy event was incomplete");
-    }
-    if (report) {
+        // Retain the attached host until its queued application-end event is observed.
+        step("calibration-control-stop", [&] { control.stop(); });
+        step("calibration-console-end", [&] {
+            proof::until([&] { return observer.console(control.pid, EVENT_CONSOLE_END_APPLICATION); },
+                         "observer did not detect console control exit");
+        });
+        step("calibration-detach", [&] {
+            const bool detached = FreeConsole() != FALSE;
+            state.detachKnown = true;
+            state.detachError = detached ? ERROR_SUCCESS : GetLastError();
+            if (detached) state.attached = false;
+            check(detached, "observer could not detach the calibration console");
+        });
+        if (observer.observesWindows()) step("calibration-window-destroy", [&] {
+            proof::until([&] { return observer.windowEventSeen(state.window.window, EVENT_OBJECT_DESTROY); },
+                         "calibration window destroy event was incomplete");
+        });
         const auto end = proof::moment();
-        *report << "DIAG calibration-complete pid=" << control.pid << " hwnd=" << consoleWindow.window
-                << " owner=" << consoleWindow.owner << " kind=" << proof::windowKindName(consoleWindow.kind)
-                << " sampled_visible=" << consoleWindow.visible << " sampled_onscreen=" << consoleWindow.onScreen
-                << " members=" << memberCount << " before_attach_tick=" << beforeAttach.tick
-                << " before_attach_qpc=" << beforeAttach.qpc << " end_tick=" << end.tick
-                << " end_qpc=" << end.qpc << " create_observed=1 show_observed=1 destroy_observed=1\n";
+        report << "DIAG calibration-complete pid=" << control.pid << " hwnd=" << state.window.window
+               << " owner=" << state.window.owner << " kind=" << proof::windowKindName(state.window.kind)
+               << " sampled_visible=" << state.window.visible << " sampled_onscreen=" << state.window.onScreen
+               << " members=" << state.memberCount << " before_attach_tick=" << state.beforeAttach.tick
+               << " before_attach_qpc=" << state.beforeAttach.qpc << " end_tick=" << end.tick
+               << " end_qpc=" << end.qpc << " create_observed=1 show_observed=1 destroy_observed=1\n";
+        checkpoint("EXIT", "calibration");
+        return state.window;
+    } catch (const std::exception& failure) {
+        const auto primary = std::current_exception();
+        std::vector<std::exception_ptr> secondary;
+        bool snapshotComplete = false;
+        try {
+            reportCalibrationFailure(observer, report, control, state, failure);
+            snapshotComplete = true;
+        }
+        catch (const std::exception&) { secondary.push_back(std::current_exception()); }
+        const auto cleanupBegin = GetTickCount64();
+        try { control.stop(); }
+        catch (const std::exception&) { secondary.push_back(std::current_exception()); }
+        const bool detachAttempted = state.attached;
+        bool detached = !detachAttempted;
+        DWORD detachError = ERROR_SUCCESS;
+        if (detachAttempted) {
+            detached = FreeConsole() != FALSE;
+            if (!detached) {
+                detachError = GetLastError();
+                secondary.push_back(std::make_exception_ptr(std::runtime_error("calibration cleanup detach failed")));
+            }
+        }
+        report << "DIAG calibration-cleanup control_complete=" << control.cleanup.complete
+               << " wait=" << control.cleanup.finalWait << " wait_error=" << control.cleanup.waitError
+               << " terminate_attempted=" << control.cleanup.terminationAttempted
+               << " terminate_succeeded=" << control.cleanup.terminationSucceeded
+               << " terminate_error=" << control.cleanup.terminationError
+               << " detach_attempted=" << detachAttempted << " detached=" << detached << " detach_error=" << detachError
+               << " secondary_failures=" << secondary.size() << " elapsed_ms=" << GetTickCount64() - cleanupBegin
+               << " failure_snapshot_complete=" << snapshotComplete << "\n";
+        report.flush();
+        throw CalibrationFailure(failureCode(failure), state.stage, primary, std::move(secondary));
     }
-    checkpoint("EXIT", "calibration");
-    return consoleWindow;
+}
+
+void failureReportingCases() {
+    const std::array<std::pair<std::string, const char*>, 9> cases{{
+        { "calibration window create/show events were incomplete", "calibration-window-events-incomplete" },
+        { "N1 missing frame was accepted as opened", "n1-missing-frame-accepted" },
+        { "F03 pending close lost the startup owner", "n2-pending-owner-lost" },
+        { "F01 coordinator created a visible terminal", "n3-visible-coordinator-terminal" },
+        { "LC-001 failure rectangle escaped the current monitor work area", "lc001-failure-outside-work-area" },
+        { "C:\\private\\foreign-fixture", "unclassified-proof-error" },
+        { "foreign-\xce\xa9-payload", "unclassified-proof-error" },
+        { std::string(5000, 'x'), "unclassified-proof-error" },
+        { "foreign-unknown-payload", "unclassified-proof-error" }
+    }};
+    for (const auto& [message, code] : cases) {
+        const std::runtime_error error(message);
+        std::ostringstream output;
+        writeFailure(output, error, "failure-envelope-cases");
+        check(output.str() == std::string("FAIL code=") + code + " stage=failure-envelope-cases\n",
+              "fixed failure envelope differed");
+    }
 }
 
 void preflight(const fs::path& root, const std::wstring& native) {
@@ -1281,12 +1443,12 @@ void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::
     report << "HANDLE classification-rows=19 passed=19 allocation-order=gui-control-before-original-slot\n";
     proof::Observer observer(true);
     size_t controlStarts = 0;
-    std::vector<proof::WindowFact> controls{ calibration(observer, &controlStarts, &report) };
+    std::vector<proof::WindowFact> controls{ calibration(observer, report, &controlStarts) };
     std::vector<DWORD> roots;
     HandleVerdict verdict = HandleVerdict::inconclusive;
     fixture("F01", options.at(L"--root"), options.at(L"--launcher"), options.at(L"--runtime"),
             options.at(L"--fixture"), observer, roots, report, false, &verdict);
-    controls.push_back(calibration(observer, &controlStarts, &report));
+    controls.push_back(calibration(observer, report, &controlStarts));
     observer.stop();
     observer.assertNoVisibleTerminals(roots, false, controls, report);
     report << "HANDLE acquisition=complete exclusion=" << verdictName(verdict)
@@ -1482,7 +1644,7 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
     std::vector<DiagnosticCase> cases;
     std::string acquisitionFailure;
     try {
-        controls.push_back(calibration(observer, &controlStarts, &report));
+        controls.push_back(calibration(observer, report, &controlStarts));
         for (const auto* id : { "D1", "D2", "D3" }) {
             cases.push_back(diagnosticCase(id, options.at(L"--root"),
                 options.at(std::string(id) == "D3" ? L"--mutant" : L"--launcher"),
@@ -1494,7 +1656,7 @@ void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstre
             report.flush();
             check(observed.cleanup, "diagnostic owned cleanup could not be confirmed");
         }
-        controls.push_back(calibration(observer, &controlStarts, &report));
+        controls.push_back(calibration(observer, report, &controlStarts));
     } catch (const std::exception& error) {
         acquisitionFailure = safeDiagnosticError(error);
     }
@@ -1625,7 +1787,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
     proof::Observer observer(true);
-    std::vector<proof::WindowFact> controls{ calibration(observer) };
+    std::vector<proof::WindowFact> controls{ calibration(observer, report) };
     write(control / L"ready.txt", "ready");
     bool dismissed = false;
     proof::until([&] {
@@ -1658,7 +1820,7 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
         }
         return busy ? dismissed : fs::exists(control / L"finish.txt");
     }, "installed observer deadline exceeded", 600000);
-    controls.push_back(calibration(observer));
+    controls.push_back(calibration(observer, report));
     observer.stop();
     const auto roots = observer.registeredRoots(executable, busy ? 1 : 3, busy ? 1 : 0);
     observer.assertNoVisibleTerminals(roots, !busy, controls, report);
@@ -1757,6 +1919,23 @@ int wmain(int argc, wchar_t** argv) {
             observed("com-uninitialize", [] { CoUninitialize(); });
             return 0;
         }
+        if (options[L"--mode"] == L"calibration") {
+            SYSTEM_INFO host{};
+            GetNativeSystemInfo(&host);
+            check(host.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64, "calibration preflight is x64 only");
+            observed("failure-envelope-cases", [] { failureReportingCases(); });
+            report << "DIAG failure-envelope-cases cases=9 passed=9\n";
+            proof::Observer observer(true);
+            size_t started = 0;
+            calibration(observer, report, &started);
+            calibration(observer, report, &started);
+            observer.stop();
+            observer.assertHealthy();
+            check(started == 2 && observer.clockValid(), "calibration preflight was incomplete");
+            report << "PASS calibration-preflight;controls=2;product-starts=0;node-starts=0\n";
+            observed("com-uninitialize", [] { CoUninitialize(); });
+            return 0;
+        }
         const bool onlyDecoder = options[L"--case"] == L"N1";
         decoder(fs::path(options[L"--goldens"]), onlyDecoder);
         if (onlyDecoder) { report << "PASS N1 baseline\n"; observed("com-uninitialize", [] { CoUninitialize(); }); return 0; }
@@ -1765,7 +1944,7 @@ int wmain(int argc, wchar_t** argv) {
         fs::create_directories(root);
         preflight(root, options[L"--launcher"]);
         proof::Observer observer(true);
-        std::vector<proof::WindowFact> controls{ calibration(observer) };
+        std::vector<proof::WindowFact> controls{ calibration(observer, report) };
         std::vector<DWORD> roots;
         const std::wstring only = options[L"--case"];
         for (int index = 1; index <= 11; ++index) {
@@ -1774,14 +1953,15 @@ int wmain(int argc, wchar_t** argv) {
             fixture(id, root, options[L"--launcher"], options[L"--runtime"], options[L"--fixture"],
                     observer, roots, report, options[L"--console-only"] == L"true");
         }
-        controls.push_back(calibration(observer));
+        controls.push_back(calibration(observer, report));
         observer.stop();
         observer.assertNoVisibleTerminals(roots, false, controls, report);
         report << "PASS observer;console-controls=2;visible-product-terminals=0;attachment=not-used\n";
         observed("com-uninitialize", [] { CoUninitialize(); });
         return 0;
     } catch (const std::exception& failure) {
-        report << "FAIL " << failure.what() << "\n";
+        const auto* calibrationFailure = dynamic_cast<const CalibrationFailure*>(&failure);
+        writeFailure(report, failure, calibrationFailure ? calibrationFailure->stage : lastStage);
         if (SUCCEEDED(com)) observed("com-uninitialize", [] { CoUninitialize(); });
         return 1;
     }

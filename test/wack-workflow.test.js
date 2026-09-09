@@ -1,6 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 import { runInNewContext } from 'node:vm';
 
 const workflow = readFileSync(new URL('../.github/workflows/wack.yml', import.meta.url), 'utf8');
@@ -240,7 +242,7 @@ test('native producer outputs and job deadlines bind every package consumer', ()
   }
 });
 
-test('native artifact transfer pins exact inputs and refuses digest mismatches', () => {
+test('native artifact transfer pins exact inputs and refuses digest mismatches', (t) => {
   assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 4);
   assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
   assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
@@ -282,6 +284,26 @@ test('native artifact transfer pins exact inputs and refuses digest mismatches',
   assert.match(proof, /preview_ready=true/);
   assert.match(proof, /@\('N1', 'N2', 'N3', 'LC-001'\)/);
   assert.match(proof, /review-original-condition/);
-  assert.match(proof, /LC-001 failure rectangle escaped the current monitor work area/);
+  assert.match(proof, /FAIL code=lc001-failure-outside-work-area/);
+  assert.match(proof, /--mode', 'calibration'/);
+  assert.match(proof, /-TotalTimeoutMs 60000/);
+  assert.ok(proof.indexOf('calibration-preflight.txt') < proof.indexOf('$runtimeInfo = (& node'));
+  assert.ok(proof.indexOf('calibration-preflight.txt') < proof.indexOf('$mutations ='));
+  const native = readFileSync(new URL('./native/StartupTests.cpp', import.meta.url), 'utf8');
+  assert.match(native, /LC-001 failure rectangle escaped the current monitor work area/);
+  assert.doesNotMatch(native, /calibration\(observer\)/);
+  assert.match(native, /reportCalibrationFailure/);
+  assert.match(native, /checkpoint\("FAIL", "calibration"\)/);
+  assert.match(native, /writeFailure\(report, failure,/);
+  if (process.platform === 'win32') {
+    const output = execFileSync('powershell.exe', [
+      '-NoProfile', '-NonInteractive', '-File',
+      fileURLToPath(new URL('./native/proof-report.ps1', import.meta.url)),
+    ], { encoding: 'utf8', timeout: 15000, maxBuffer: 128 * 1024 });
+    assert.match(output, /PASS proof-report-fixtures assertions=35/);
+    t.diagnostic(output.trim());
+  } else {
+    t.diagnostic('Windows-only inert PowerShell reporting fixtures were not executed on this host.');
+  }
   assert.doesNotMatch(previews.join('\n'), /\*{2}|\.xml|\.pfx|\.cer|trace|error|desktop/);
 });

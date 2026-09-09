@@ -320,6 +320,18 @@ function Export-NativePreview {
 }
 
 try {
+  if ($Negatives) {
+    if ($Architecture -ne 'x64') { throw 'The calibration preflight requires the native x64 producer.' }
+    $report = Join-Path $scratch 'calibration-preflight.txt'
+    $results = @(Invoke-NativeProof -Executable $driver `
+      -Arguments @('--mode', 'calibration', '--report', $report) -Report $report -TotalTimeoutMs 60000)
+    $result = $results[-1]
+    $results | Select-Object -SkipLast 1 | Write-Output
+    if ($result.ExitCode -ne 0 -or -not $result.Cleanup -or
+        -not $result.Text.Contains('PASS calibration-preflight;controls=2;product-starts=0;node-starts=0')) {
+      throw 'The calibration preflight failed; no mutation or product fixture was started.'
+    }
+  }
   $packageRuntime = $null
   if ($Diagnostic -and $DiagnosticTarget -in @('handles', 'f01-smoke')) {
     $packageRuntime = Join-Path $scratch 'node.exe'
@@ -381,19 +393,19 @@ try {
       $before = '    const auto frame = decodeFrame(capture);'
       $after = '    if (capture.output.empty() && exitKnown && exitCode == 0) return { true, {} };' + "`n" + $before
       $case = 'N1'
-      $expectedFailure = 'N1 missing frame was accepted as opened'
+      $expectedFailure = 'FAIL code=n1-missing-frame-accepted'
       if ($negative -eq 'N2') {
         $changed = Join-Path $copy 'Launcher.cpp'
         $before = 'ShowWindow(window, SW_HIDE);'
         $after = 'DestroyWindow(window);'
         $case = 'F03'
-        $expectedFailure = 'F03 pending close lost the startup owner'
+        $expectedFailure = 'FAIL code=n2-pending-owner-lost'
       } elseif ($negative -eq 'N3') {
         $changed = Join-Path $copy 'StartupProcess.h'
         $before = 'CREATE_NO_WINDOW | EXTENDED_STARTUPINFO_PRESENT'
         $after = 'EXTENDED_STARTUPINFO_PRESENT'
         $case = 'F01'
-        $expectedFailure = 'F01 coordinator created a visible terminal'
+        $expectedFailure = 'FAIL code=n3-visible-coordinator-terminal'
       } elseif ($negative -eq 'LC-001') {
         $changed = Join-Path $copy 'Launcher.cpp'
         $placement = [regex]::Matches([IO.File]::ReadAllText($changed),
@@ -410,7 +422,7 @@ bool placeFailureWindow(App& app) {
 }
 '@
         $case = 'F03'
-        $expectedFailure = 'LC-001 failure rectangle escaped the current monitor work area'
+        $expectedFailure = 'FAIL code=lc001-failure-outside-work-area'
       }
       $text = [IO.File]::ReadAllText($changed)
       if ([regex]::Matches($text, [regex]::Escape($before)).Count -ne 1) {

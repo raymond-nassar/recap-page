@@ -624,6 +624,51 @@ public:
         report.flush();
     }
 
+    void reportCalibrationWindows(std::ostream& report, DWORD control, const WindowFact& sample,
+                                  Moment begin, Moment beforeAttach) {
+        uintptr_t window = sample.window;
+        const char* source = window ? "sample" : "unavailable";
+        if (!window) for (const auto& fact : consoles_) {
+            if (fact.pid == control && fact.window) { window = fact.window; source = "console-event"; }
+        }
+        const auto rawSeen = [&](DWORD event) {
+            return window && std::any_of(windows_.begin(), windows_.end(), [&](const auto& fact) {
+                return fact.window == window && fact.event == event;
+            });
+        };
+        report << "DIAG calibration-window hwnd=" << window << " window_source=" << source
+               << " window_available=" << (window != 0) << " sample_available=" << (sample.window != 0)
+               << " sample_owner=" << sample.owner << " sample_thread=" << sample.thread
+               << " sample_kind=" << windowKindName(sample.kind) << " sample_identity=" << sample.identityKnown
+               << " sample_metadata=" << sample.metadataKnown << " sample_geometry=" << sample.geometryKnown
+               << " sample_hierarchy=" << sample.hierarchyKnown << " sample_present=" << sample.present
+               << " sample_visible=" << sample.visible << " sample_top=" << sample.topLevel
+               << " sample_onscreen=" << sample.onScreen << " sample_left=" << sample.rectangle.left
+               << " sample_top_y=" << sample.rectangle.top << " sample_right=" << sample.rectangle.right
+               << " sample_bottom=" << sample.rectangle.bottom << " sample_time_available=" << (sample.received.qpc != 0)
+               << " sample_tick=" << sample.received.tick
+               << " sample_qpc=" << sample.received.qpc << " control_available=" << (control != 0)
+               << " console_start=" << (control && console(control))
+               << " console_end=" << (control && console(control, EVENT_CONSOLE_END_APPLICATION))
+               << " raw_create=" << rawSeen(EVENT_OBJECT_CREATE) << " raw_show=" << rawSeen(EVENT_OBJECT_SHOW)
+               << " raw_hide=" << rawSeen(EVENT_OBJECT_HIDE) << " raw_destroy=" << rawSeen(EVENT_OBJECT_DESTROY)
+               << " strict_create=" << (window && windowEventSeen(window, EVENT_OBJECT_CREATE))
+               << " strict_show=" << (window && windowEventSeen(window, EVENT_OBJECT_SHOW))
+               << " strict_hide=" << (window && windowEventSeen(window, EVENT_OBJECT_HIDE))
+               << " strict_destroy=" << (window && windowEventSeen(window, EVENT_OBJECT_DESTROY))
+               << " passive_fence_available=" << (window && beforeAttach.qpc != 0)
+               << " passive_fence=" << (window && beforeAttach.qpc &&
+                   passiveVisible(window, begin.tick, beforeAttach.tick + 1, beforeAttach.qpc))
+               << " healthy=" << healthy() << " clocks=" << clockValid() << " stopped=" << stopped_ << "\n";
+        const auto resolution = correlateWindows(windows_, clockValid(), healthy());
+        std::vector<size_t> context;
+        for (size_t index = 0; index < windows_.size(); ++index)
+            if (!window || windows_[index].window == window) context.push_back(index);
+        std::set<DWORD> owned{ GetCurrentProcessId() };
+        if (control) owned.insert(control);
+        reportAttribution(report, resolution, context, owned);
+    }
+
     void assertNoVisibleTerminals(const std::vector<DWORD>& roots, bool installed,
                                  const std::vector<WindowFact>& controls, std::ostream& report) {
         check(stopped_ && windowObservation_, "visible-terminal verdict requires completed window observation");
