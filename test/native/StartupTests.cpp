@@ -188,6 +188,146 @@ bool sameKernelObject(HANDLE first, HANDLE second) {
     return compare(first, second) != FALSE;
 }
 
+enum class HandleVerdict { excluded, inherited, inconclusive };
+
+const char* verdictName(HandleVerdict value) {
+    return value == HandleVerdict::excluded ? "excluded"
+        : value == HandleVerdict::inherited ? "inherited" : "inconclusive";
+}
+
+HandleVerdict classifyHandle(bool duplicated, DWORD error, bool comparisonKnown, bool equal,
+                            bool controlAndLifetime) {
+    if (!controlAndLifetime) return HandleVerdict::inconclusive;
+    if (duplicated && comparisonKnown) return equal ? HandleVerdict::inherited : HandleVerdict::excluded;
+    if (!duplicated && error == ERROR_INVALID_HANDLE) return HandleVerdict::excluded;
+    return HandleVerdict::inconclusive;
+}
+
+void handleClassificationCases() {
+    check(classifyHandle(true, 0, true, false, true) == HandleVerdict::excluded, "unequal valid handle did not establish exclusion");
+    check(classifyHandle(true, 0, true, true, true) == HandleVerdict::inherited, "equal sentinel was not rejected");
+    check(classifyHandle(false, ERROR_INVALID_HANDLE, false, false, true) == HandleVerdict::excluded, "controlled invalid handle did not establish exclusion");
+    check(classifyHandle(false, ERROR_ACCESS_DENIED, false, false, true) == HandleVerdict::inconclusive, "unknown denial became successful exclusion");
+    check(classifyHandle(false, 0, false, false, true) == HandleVerdict::inconclusive, "missing error became successful exclusion");
+    check(classifyHandle(false, ERROR_INVALID_HANDLE, false, false, false) == HandleVerdict::inconclusive, "unvalidated control became successful exclusion");
+}
+
+struct DuplicationFact {
+    BOOL result = FALSE;
+    DWORD error = 0;
+    HANDLE handle = nullptr;
+};
+
+DuplicationFact duplicateFact(HANDLE sourceProcess, HANDLE source, HANDLE targetProcess, DWORD options) {
+    DuplicationFact fact;
+    SetLastError(ERROR_SUCCESS);
+    fact.result = DuplicateHandle(sourceProcess, source, targetProcess, &fact.handle, 0, FALSE, options);
+    fact.error = GetLastError();
+    return fact;
+}
+
+struct ComparisonFact {
+    bool known = false, equal = false;
+    DWORD error = 0;
+};
+
+ComparisonFact compareFact(HANDLE original, HANDLE copy) {
+    ComparisonFact fact;
+    DWORD originalFlags = 0, copyFlags = 0;
+    if (!GetHandleInformation(original, &originalFlags) || !GetHandleInformation(copy, &copyFlags)) {
+        fact.error = GetLastError();
+        return fact;
+    }
+    SetLastError(ERROR_SUCCESS);
+    fact.equal = sameKernelObject(original, copy);
+    fact.error = GetLastError();
+    fact.known = fact.equal || fact.error == ERROR_SUCCESS || fact.error == ERROR_NOT_SAME_OBJECT;
+    return fact;
+}
+
+uint64_t creationTime(HANDLE process);
+
+HandleVerdict observeSentinel(Child& gui, Child& coordinator, HANDLE sentinel, std::ofstream& report,
+                              bool diagnostic) {
+    const auto self = GetCurrentProcess();
+    const DWORD requestedRights = SYNCHRONIZE | PROCESS_QUERY_LIMITED_INFORMATION | PROCESS_TERMINATE | PROCESS_DUP_HANDLE;
+    DWORD flags = 0;
+    SetLastError(ERROR_SUCCESS);
+    const BOOL flagsResult = GetHandleInformation(sentinel, &flags);
+    const DWORD flagsError = GetLastError();
+    const auto guiCreation = creationTime(gui.process.get()), coordinatorCreation = creationTime(coordinator.process.get());
+    const DWORD guiBefore = WaitForSingleObject(gui.process.get(), 0);
+    const DWORD guiWaitError = guiBefore == WAIT_FAILED ? GetLastError() : 0;
+    const DWORD coordinatorBefore = WaitForSingleObject(coordinator.process.get(), 0);
+    const DWORD coordinatorWaitError = coordinatorBefore == WAIT_FAILED ? GetLastError() : 0;
+    report << "HANDLE setup observer_pid=" << GetCurrentProcessId() << " gui_pid=" << gui.pid
+           << " coordinator_pid=" << coordinator.pid << " gui_creation=" << guiCreation
+           << " coordinator_creation=" << coordinatorCreation << " coordinator_requested_rights=" << requestedRights
+           << " gui_rights=create-process-full-access"
+           << " slot=" << reinterpret_cast<uintptr_t>(sentinel)
+           << " sentinel_flags_result=" << flagsResult << " sentinel_flags=" << flags
+           << " sentinel_flags_error=" << flagsError << " gui_wait_before=" << guiBefore
+           << " gui_wait_error=" << guiWaitError << " coordinator_wait_before=" << coordinatorBefore
+           << " coordinator_wait_error=" << coordinatorWaitError << "\n";
+
+    const auto guiDuplicate = duplicateFact(gui.process.get(), sentinel, self, DUPLICATE_SAME_ACCESS);
+    recap::Handle guiCopy(guiDuplicate.result ? guiDuplicate.handle : nullptr);
+    const auto guiComparison = guiCopy ? compareFact(sentinel, guiCopy.get()) : ComparisonFact{};
+    const bool guiControl = flagsResult && (flags & HANDLE_FLAG_INHERIT) &&
+        guiDuplicate.result && guiComparison.known && guiComparison.equal;
+    report << "HANDLE gui-control duplicate_result=" << guiDuplicate.result << " error=" << guiDuplicate.error
+           << " copy=" << reinterpret_cast<uintptr_t>(guiDuplicate.handle)
+           << " comparison_known=" << guiComparison.known << " equal=" << guiComparison.equal
+           << " comparison_error=" << guiComparison.error << " valid=" << guiControl << "\n";
+
+    const auto original = duplicateFact(coordinator.process.get(), sentinel, self, DUPLICATE_SAME_ACCESS);
+    recap::Handle originalCopy(original.result ? original.handle : nullptr);
+    const auto comparison = originalCopy ? compareFact(sentinel, originalCopy.get()) : ComparisonFact{};
+    const DWORD guiAfter = WaitForSingleObject(gui.process.get(), 0);
+    const DWORD guiAfterError = guiAfter == WAIT_FAILED ? GetLastError() : 0;
+    const DWORD coordinatorAfter = WaitForSingleObject(coordinator.process.get(), 0);
+    const DWORD coordinatorAfterError = coordinatorAfter == WAIT_FAILED ? GetLastError() : 0;
+    const bool identity = GetProcessId(gui.process.get()) == gui.pid &&
+        GetProcessId(coordinator.process.get()) == coordinator.pid &&
+        creationTime(gui.process.get()) == guiCreation && creationTime(coordinator.process.get()) == coordinatorCreation;
+    const bool live = guiBefore == WAIT_TIMEOUT && coordinatorBefore == WAIT_TIMEOUT &&
+        guiAfter == WAIT_TIMEOUT && coordinatorAfter == WAIT_TIMEOUT;
+    const auto verdict = classifyHandle(original.result != FALSE, original.error, comparison.known,
+                                         comparison.equal, guiControl && live && identity);
+    report << "HANDLE original-slot duplicate_result=" << original.result << " error=" << original.error
+           << " copy=" << reinterpret_cast<uintptr_t>(original.handle)
+           << " comparison_known=" << comparison.known << " equal=" << comparison.equal
+           << " comparison_error=" << comparison.error << " gui_wait_after=" << guiAfter
+           << " gui_wait_error=" << guiAfterError << " coordinator_wait_after=" << coordinatorAfter
+           << " coordinator_wait_error=" << coordinatorAfterError
+           << " identity=" << identity << " live=" << live << " verdict=" << verdictName(verdict) << "\n";
+    report.flush();
+
+    if (diagnostic && verdict == HandleVerdict::inconclusive && live && identity) {
+        const auto remote = duplicateFact(self, sentinel, coordinator.process.get(), DUPLICATE_SAME_ACCESS);
+        report << "HANDLE coordinator-control-create duplicate_result=" << remote.result << " error=" << remote.error
+               << " remote_slot=" << reinterpret_cast<uintptr_t>(remote.handle)
+               << " reuses_original_slot=" << (remote.handle == sentinel) << " phase=after-original-observation\n";
+        if (remote.result) {
+            const auto returned = duplicateFact(coordinator.process.get(), remote.handle, self, DUPLICATE_SAME_ACCESS);
+            recap::Handle local(returned.result ? returned.handle : nullptr);
+            const auto same = local ? compareFact(sentinel, local.get()) : ComparisonFact{};
+            report << "HANDLE coordinator-control-return duplicate_result=" << returned.result
+                   << " error=" << returned.error << " comparison_known=" << same.known
+                   << " equal=" << same.equal << " comparison_error=" << same.error << "\n";
+            const auto closed = duplicateFact(coordinator.process.get(), remote.handle, self,
+                                               DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
+            recap::Handle closingCopy(closed.result ? closed.handle : nullptr);
+            report << "HANDLE coordinator-control-close duplicate_result=" << closed.result << " error=" << closed.error
+                   << " closed_only_test_created_remote_handle=1\n";
+            report.flush();
+            check(closed.result != FALSE, "test-created remote sentinel cleanup could not be confirmed");
+            check(returned.result && same.known && same.equal, "same-coordinator positive control was inconclusive");
+        }
+    }
+    return verdict;
+}
+
 template<class T> struct Com {
     T* value = nullptr;
     Com() = default;
@@ -477,6 +617,7 @@ void supervision() {
     recap::Publication publication;
     check(publication.claim() && !publication.claim(), "late completion could publish twice");
     cleanupCases();
+    handleClassificationCases();
 }
 
 proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullptr, std::ofstream* report = nullptr) {
@@ -589,7 +730,8 @@ void preflight(const fs::path& root, const std::wstring& native) {
 
 void fixture(const std::string& id, const fs::path& root, const fs::path& native,
              const fs::path& runtime, const fs::path& source, proof::Observer& observer,
-             std::vector<DWORD>& roots, std::ofstream& report, bool consoleOnly) {
+             std::vector<DWORD>& roots, std::ofstream& report, bool consoleOnly,
+             HandleVerdict* diagnosticVerdict = nullptr) {
     const auto layout = root / (id == "F01" ? L"fixture space \u03a9" : fs::path(id).wstring());
     fs::create_directories(layout / L"runtime");
     fs::copy_file(native, layout / L"RecapPageLauncher.exe");
@@ -627,13 +769,13 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
                 check(!observer.visibleForProcess(coordinator.pid), "F01 coordinator created a visible terminal");
                 return GetTickCount64() >= fence;
             }, "passive F01 observation fence did not complete");
-            HANDLE duplicate = nullptr;
-            if (DuplicateHandle(coordinator.process.get(), sentinelHandle.get(), GetCurrentProcess(),
-                &duplicate, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
-                recap::Handle copied(duplicate);
-                check(!sameKernelObject(sentinelHandle.get(), copied.get()), "coordinator inherited the unrelated sentinel");
-            } else check(GetLastError() == ERROR_INVALID_HANDLE, "handle inheritance observation was inconclusive");
-            if (!consoleOnly) visual(window, layout, report);
+            const auto verdict = observeSentinel(gui, coordinator, sentinelHandle.get(), report, diagnosticVerdict != nullptr);
+            if (diagnosticVerdict) *diagnosticVerdict = verdict;
+            else {
+                check(verdict != HandleVerdict::inherited, "coordinator inherited the unrelated sentinel");
+                check(verdict == HandleVerdict::excluded, "handle inheritance observation was inconclusive");
+            }
+            if (!consoleOnly && verdict == HandleVerdict::excluded) visual(window, layout, report);
         }
     }
     if (id == "F09" || id == "F10") {
@@ -678,7 +820,34 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         sentinel.stop();
     }
     if (coordinator.process) coordinator.stop();
-    report << "PASS " << id << "\n";
+    if (diagnosticVerdict)
+        report << "HANDLE fixture-handshake=complete exclusion=" << verdictName(*diagnosticVerdict)
+               << " visual=" << (*diagnosticVerdict == HandleVerdict::excluded ? "passed" : "not-run") << "\n";
+    else report << "PASS " << id << "\n";
+}
+
+void handleDiagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
+    SYSTEM_INFO host{};
+    GetNativeSystemInfo(&host);
+    check(host.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64, "handle diagnostic is x64 only");
+    handleClassificationCases();
+    report << "HANDLE classification-rows=6 passed=6 allocation-order=gui-control-before-original-slot\n";
+    proof::Observer observer(true);
+    size_t controlStarts = 0;
+    std::vector<proof::WindowFact> controls{ calibration(observer, &controlStarts, &report) };
+    std::vector<DWORD> roots;
+    HandleVerdict verdict = HandleVerdict::inconclusive;
+    fixture("F01", options.at(L"--root"), options.at(L"--launcher"), options.at(L"--runtime"),
+            options.at(L"--fixture"), observer, roots, report, false, &verdict);
+    controls.push_back(calibration(observer, &controlStarts, &report));
+    observer.stop();
+    observer.assertNoVisibleTerminals(roots, false, controls);
+    report << "HANDLE acquisition=complete exclusion=" << verdictName(verdict)
+           << " gui-activations=" << roots.size() << " calibration-controls=" << controlStarts
+           << " observer-healthy=" << observer.healthy() << " clock-valid=" << observer.clockValid()
+           << " etw-losses=" << observer.eventsLost() << " cleanup=complete\n";
+    check(verdict == HandleVerdict::excluded, "focused handle exclusion remains inconclusive or inherited");
+    report << "PASS focused-handle-diagnostic;feature-acceptance=not-evaluated\n";
 }
 
 uint64_t creationTime(HANDLE process) {
@@ -1076,6 +1245,11 @@ int wmain(int argc, wchar_t** argv) {
             cleanupCases();
             report << "DIAG deterministic-cleanup-rows=6 passed=6\n";
             diagnostic(options, report);
+            CoUninitialize();
+            return 0;
+        }
+        if (options[L"--mode"] == L"handles") {
+            handleDiagnostic(options, report);
             CoUninitialize();
             return 0;
         }

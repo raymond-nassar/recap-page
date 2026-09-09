@@ -13,6 +13,12 @@ on:
         type: boolean
         required: false
         default: false
+      diagnostic_target:
+        description: Bounded diagnostic target when diagnostic_only is enabled
+        type: choice
+        options: [console-wack, handles]
+        required: false
+        default: console-wack
   pull_request:
     branches: [main]
     paths:
@@ -55,7 +61,7 @@ jobs:
   native:
     name: Build and prove the native startup boundary
     runs-on: windows-2022
-    timeout-minutes: 150
+    timeout-minutes: 171
     outputs:
       native_sha256: ${{ steps.build.outputs.native_sha256 }}
       proof_sha256: ${{ steps.build.outputs.proof_sha256 }}
@@ -66,10 +72,15 @@ jobs:
         env:
           NATIVE_ONLY: ${{ inputs.native_only }}
           DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
+          DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
         run: |
           if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
               $env:NATIVE_ONLY -eq 'true' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
             throw 'native_only and diagnostic_only cannot both be enabled.'
+          }
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
+              $env:DIAGNOSTIC_TARGET -eq 'handles' -and $env:DIAGNOSTIC_ONLY -ne 'true') {
+            throw 'The handles target requires diagnostic_only.'
           }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
@@ -95,7 +106,7 @@ jobs:
         shell: pwsh
         run: ./scripts/native-startup-proof.ps1 -Negatives
       - name: Install the checksum-verified diagnostic package tool
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
         timeout-minutes: 6
         shell: pwsh
         run: |
@@ -116,15 +127,15 @@ jobs:
           }
           $toolRoot >> $env:GITHUB_PATH
       - name: Build one diagnostic package set
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
         timeout-minutes: 15
         run: npm run msix:pack
       - name: Inspect the diagnostic package set
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
         timeout-minutes: 8
         run: npm run msix:inspect -- --structural
       - name: Acquire both native and WACK diagnostic facts
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target != 'handles' }}
         timeout-minutes: 70
         shell: pwsh
         run: |
@@ -152,6 +163,11 @@ jobs:
           if ($failures.Count -ne 0) {
             throw [AggregateException]::new('Diagnostic acquisition or certification failed.', [Exception[]]$failures)
           }
+      - name: Acquire the focused handle diagnostic
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true && inputs.diagnostic_target == 'handles' }}
+        timeout-minutes: 20
+        shell: pwsh
+        run: ./scripts/native-startup-proof.ps1 -Diagnostic -DiagnosticTarget handles
       - name: Transfer only the native launchers and their provenance
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         timeout-minutes: 2
@@ -182,10 +198,12 @@ jobs:
         shell: powershell
         env:
           DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
+          DIAGNOSTIC_TARGET: ${{ inputs.diagnostic_target }}
         run: |
           $failures = @()
           $paths = @('./dist/native-launcher', './dist/native-proof')
-          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
+              $env:DIAGNOSTIC_ONLY -eq 'true' -and $env:DIAGNOSTIC_TARGET -ne 'handles') {
             try {
               Get-AppxPackage -Name PanelStackLabs.RecapPage |
                 Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc' |
@@ -212,9 +230,11 @@ jobs:
             $paths += @(
               './dist/msix', './dist/msix-proof',
               (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'),
-              (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'),
-              (Join-Path $env:RUNNER_TEMP "recap-native-negative-inputs-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT")
+              (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0')
             )
+          }
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
+            $paths += (Join-Path $env:RUNNER_TEMP "recap-native-negative-inputs-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT")
           }
           foreach ($path in $paths) {
             try {

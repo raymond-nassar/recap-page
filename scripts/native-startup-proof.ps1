@@ -3,7 +3,9 @@ param(
   [ValidateSet('x64', 'arm64')]
   [string]$Architecture = 'x64',
   [switch]$Negatives,
-  [switch]$Diagnostic
+  [switch]$Diagnostic,
+  [ValidateSet('console-wack', 'handles')]
+  [string]$DiagnosticTarget = 'console-wack'
 )
 
 Set-StrictMode -Version Latest
@@ -13,6 +15,7 @@ if ($env:GITHUB_ACTIONS -ne 'true' -or $env:RUNNER_OS -ne 'Windows') {
 }
 if ($Negatives -and $Diagnostic) { throw 'Native proof modes cannot be combined.' }
 if ($Diagnostic -and $Architecture -ne 'x64') { throw 'Diagnostic mode is x64 only.' }
+if ($DiagnosticTarget -eq 'handles' -and -not $Diagnostic) { throw 'The handles target requires diagnostic mode.' }
 $root = Split-Path -Parent $PSScriptRoot
 & node (Join-Path $root 'scripts\lib\native-launcher.mjs') --verify --proof
 if ($LASTEXITCODE -ne 0) { throw 'Native proof inputs did not validate.' }
@@ -60,7 +63,14 @@ function Invoke-NativeProof {
 
 try {
   $packageRuntime = $null
-  if (-not $Negatives) {
+  if ($Diagnostic -and $DiagnosticTarget -eq 'handles') {
+    $packageRuntime = Join-Path $scratch 'node.exe'
+    Invoke-WebRequest -Uri 'https://nodejs.org/dist/v24.19.0/win-x64/node.exe' -OutFile $packageRuntime
+    $runtimeHash = (Get-FileHash -LiteralPath $packageRuntime -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($runtimeHash -cne '3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237') {
+      throw 'The focused diagnostic Node executable differs from the inspected official bytes.'
+    }
+  } elseif (-not $Negatives) {
     $version = (Get-Content -LiteralPath (Join-Path $root 'package.json') -Raw | ConvertFrom-Json).version
     $package = Join-Path $root "dist\msix\RecapPage_${version}.0_$Architecture.msix"
     $layout = Join-Path $scratch 'package'
@@ -72,7 +82,7 @@ try {
     }
     $packageRuntime = Join-Path $layout 'runtime\node.exe'
   }
-  if ($Negatives -or $Diagnostic) {
+  if ($Negatives -or ($Diagnostic -and $DiagnosticTarget -eq 'console-wack')) {
     if ($Architecture -ne 'x64') { throw 'Aimed negatives run only on the x64 producer.' }
     if ($Negatives) {
       $runtimeInfo = (& node -p 'JSON.stringify({path:process.execPath,version:process.version,architecture:process.arch})') |
@@ -187,6 +197,23 @@ try {
       }
       Write-Output 'DIAG acquisition complete; feature-acceptance=not-evaluated'
     }
+  } elseif ($Diagnostic -and $DiagnosticTarget -eq 'handles') {
+    $runtimeInfo = (& $packageRuntime -p 'JSON.stringify({version:process.version,architecture:process.arch})') |
+      ConvertFrom-Json
+    if ($LASTEXITCODE -ne 0 -or $runtimeInfo.version -cne 'v24.19.0' -or $runtimeInfo.architecture -cne 'x64') {
+      throw 'The focused diagnostic runtime did not report the required version and architecture.'
+    }
+    Write-Output "HANDLE runtime version=$($runtimeInfo.version) architecture=x64 sha256=$runtimeHash"
+    $report = Join-Path $scratch 'handles.txt'
+    $arguments = @('--mode', 'handles', '--report', $report, '--root', (Join-Path $scratch 'fixture'),
+      '--launcher', $launcher, '--runtime', $packageRuntime, '--fixture', $fixture)
+    $results = @(Invoke-NativeProof -Executable $driver -Arguments $arguments -Report $report)
+    $result = $results[-1]
+    $results | Select-Object -SkipLast 1 | Write-Output
+    if ($result.ExitCode -ne 0 -or -not $result.Text.Contains('PASS focused-handle-diagnostic')) {
+      throw 'The focused handle diagnostic did not establish conclusive exclusion and its permitted visual checks.'
+    }
+    Write-Output 'HANDLE diagnostic complete; feature-acceptance=not-evaluated'
   } else {
     $report = Join-Path $scratch 'result.txt'
     $arguments = @('--report', $report, '--goldens', $goldens, '--root', (Join-Path $scratch 'fixtures'),

@@ -191,13 +191,31 @@ test('native producer outputs and job deadlines bind every package consumer', ()
       return jobs[0].match(new RegExp(` {6}- name: ${escaped}\\r?\\n[\\s\\S]*?(?=\\r?\\n {6}- name:|$)`))?.[0] ?? '';
     };
     const diagnostic = "github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true";
+    const consoleDiagnostic = `${diagnostic} && inputs.diagnostic_target != 'handles'`;
+    const handleDiagnostic = `${diagnostic} && inputs.diagnostic_target == 'handles'`;
     for (const name of [
       'Install the checksum-verified diagnostic package tool',
       'Build one diagnostic package set',
       'Inspect the diagnostic package set',
       'Acquire both native and WACK diagnostic facts',
     ]) {
-      assert.equal(nativeStep(name).match(/if: \$\{\{ (.+) \}\}/)?.[1], diagnostic);
+      assert.equal(nativeStep(name).match(/if: \$\{\{ (.+) \}\}/)?.[1], consoleDiagnostic);
+    }
+    const handleStep = nativeStep('Acquire the focused handle diagnostic');
+    assert.equal(handleStep.match(/if: \$\{\{ (.+) \}\}/)?.[1], handleDiagnostic);
+    assert.match(handleStep, /native-startup-proof\.ps1 -Diagnostic -DiagnosticTarget handles/);
+    assert.doesNotMatch(handleStep, /msix:pack|msix:inspect|run-wack|-Negatives/);
+    assert.match(jobs[0], /\$env:DIAGNOSTIC_TARGET -eq 'handles' -and \$env:DIAGNOSTIC_ONLY -ne 'true'/);
+    for (const [event, inputs, expectedConsole, expectedHandle] of [
+      ['workflow_dispatch', { diagnostic_only: true }, true, false],
+      ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'console-wack' }, true, false],
+      ['workflow_dispatch', { diagnostic_only: true, diagnostic_target: 'handles' }, false, true],
+      ['workflow_dispatch', { diagnostic_only: false, diagnostic_target: 'handles' }, false, false],
+      ['pull_request', { diagnostic_only: true, diagnostic_target: 'handles' }, false, false],
+    ]) {
+      const context = { github: { event_name: event }, inputs };
+      assert.equal(runInNewContext(consoleDiagnostic, context), expectedConsole);
+      assert.equal(runInNewContext(handleDiagnostic, context), expectedHandle);
     }
     assert.equal(nativeStep('Prove the three aimed startup negatives').match(/if: \$\{\{ (.+) \}\}/)?.[1], `!(${diagnostic})`);
     const acquisition = nativeStep('Acquire both native and WACK diagnostic facts');
