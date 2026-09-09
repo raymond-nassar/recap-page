@@ -294,9 +294,9 @@ test('injected reader form retains invalid drafts and never saves or opens autom
   assert.equal(h.links.size, 0);
   assert.equal(h.nodes.form.hidden, false);
   assert.equal(h.nodes.input.getAttribute('aria-invalid'), 'true');
-  assert.match(h.nodes.error.textContent, /read.marvel.com/);
+  assert.match(h.nodes.error.textContent, /read\.marvel\.com/);
   h.paste('http://read.marvel.com/#/book/022/5');
-  assert.match(h.nodes.preview.textContent, /https:\/\/read.marvel.com\/#\/book\/22/);
+  assert.match(h.nodes.preview.textContent, /https:\/\/read\.marvel\.com\/#\/book\/22/);
   assert.equal(h.links.size, 0);
   h.nodes.form.fire('submit');
   assert.equal(h.links.get(h.state(), 7), 22);
