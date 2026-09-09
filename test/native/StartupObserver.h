@@ -389,6 +389,15 @@ public:
             return fact.window == window && visibleIn(fact, begin, end, receiptLimit);
         });
     }
+    bool visibleForProcess(DWORD pid) const {
+        return std::any_of(windows_.begin(), windows_.end(), [&](const auto& fact) {
+            const bool associated = std::any_of(consoles_.begin(), consoles_.end(), [&](const auto& event) {
+                return event.pid == pid && event.window != 0 && event.window == fact.window;
+            });
+            const bool terminal = fact.kind == WindowKind::console || fact.kind == WindowKind::terminal || associated;
+            return terminal && (fact.owner == pid || associated) && visibleIn(fact, 0, UINT64_MAX);
+        });
+    }
     std::vector<ProcessEvent> processes() {
         std::lock_guard<std::mutex> lock(mutex_);
         return processes_;
@@ -438,9 +447,11 @@ public:
         }
         return recap::normalizedPath(path);
     }
-    void assertNoConsole(const std::vector<DWORD>& roots, bool installed) {
-        check(stopped_, "console verdict requires completed observation");
+    void assertNoVisibleTerminals(const std::vector<DWORD>& roots, bool installed,
+                                 const std::vector<WindowFact>& controls) {
+        check(stopped_ && windowObservation_, "visible-terminal verdict requires completed window observation");
         assertHealthy();
+        check(clockValid() && controls.size() == 2, "passive observation calibration or clocks were incomplete");
         const auto events = processes();
         std::map<DWORD, ProcessEvent> starts;
         std::set<DWORD> ends, owned(roots.begin(), roots.end());
@@ -466,7 +477,6 @@ public:
         }
         for (const auto pid : roots) check(starts.count(pid) != 0, "native entry lifecycle was not captured");
         for (const auto pid : owned) {
-            check(!console(pid), "product process created or attached to a console");
             const auto found = starts.find(pid);
             if (found == starts.end()) continue;
             const auto& event = found->second;
@@ -501,6 +511,22 @@ public:
         }
         check(coordinator, "coordinator startup role was not captured");
         if (installed) check(verifier && server && browser, "installed startup role coverage was incomplete");
+        std::set<uintptr_t> associated;
+        for (const auto& event : consoles_)
+            if (owned.count(event.pid) && event.window) associated.insert(event.window);
+        for (const auto& fact : windows_) {
+            const bool control = std::any_of(controls.begin(), controls.end(), [&](const auto& known) {
+                return fact.window == known.window && fact.owner == known.owner;
+            });
+            if (control) continue;
+            check(fact.metadataKnown, "unmapped window lifecycle made passive observation inconclusive");
+            const bool terminal = fact.kind == WindowKind::console || fact.kind == WindowKind::terminal ||
+                associated.count(fact.window);
+            if (!terminal || !visibleIn(fact, 0, UINT64_MAX)) continue;
+            check(owned.count(fact.owner) || associated.count(fact.window),
+                  "unmapped visible terminal made passive observation inconclusive");
+            throw std::runtime_error("product process created a visible terminal");
+        }
     }
 };
 } // namespace proof

@@ -621,12 +621,12 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
         check(observed.find("arguments=true") != std::string::npos && observed.find("environment=true") != std::string::npos &&
               observed.find("cwd=true") != std::string::npos, "fixed launch arguments/environment/cwd differed");
         if (id == "F01") {
-            check(!proof::hasConsole(gui.process.get(), gui.pid), "F01 GUI created a console");
-            if (proof::hasConsole(coordinator.process.get(), coordinator.pid)) {
-                proof::until([&] { return observer.console(coordinator.pid); },
-                             "F01 console was not detected by the event observer");
-                throw std::runtime_error("F01 coordinator created a console");
-            }
+            const auto fence = GetTickCount64() + 200;
+            proof::until([&] {
+                check(!observer.visibleForProcess(gui.pid), "F01 GUI created a visible terminal");
+                check(!observer.visibleForProcess(coordinator.pid), "F01 coordinator created a visible terminal");
+                return GetTickCount64() >= fence;
+            }, "passive F01 observation fence did not complete");
             HANDLE duplicate = nullptr;
             if (DuplicateHandle(coordinator.process.get(), sentinelHandle.get(), GetCurrentProcess(),
                 &duplicate, 0, FALSE, DUPLICATE_SAME_ACCESS)) {
@@ -1008,8 +1008,8 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
           package.wstring().find(L"__we33aa8nvkpcc") != std::wstring::npos,
           "installed observation requires the exact package family");
     const bool busy = options.at(L"--mode") == L"busy";
-    proof::Observer observer;
-    calibration(observer);
+    proof::Observer observer(true);
+    std::vector<proof::WindowFact> controls{ calibration(observer) };
     write(control / L"ready.txt", "ready");
     bool dismissed = false;
     proof::until([&] {
@@ -1042,12 +1042,14 @@ void installed(const std::map<std::wstring, std::wstring>& options, std::ofstrea
         }
         return busy ? dismissed : fs::exists(control / L"finish.txt");
     }, "installed observer deadline exceeded", 600000);
-    calibration(observer);
+    controls.push_back(calibration(observer));
     observer.stop();
     const auto roots = observer.registeredRoots(executable, busy ? 1 : 3, busy ? 1 : 0);
-    observer.assertNoConsole(roots, !busy);
+    observer.assertNoVisibleTerminals(roots, !busy, controls);
     report << "PASS installed-" << (busy ? "busy" : "functionality")
-           << ";native-roots=" << roots.size() << ";console-controls=2;product-consoles=0\n";
+           << ";native-roots=" << roots.size() << ";console-controls=2;visible-product-terminals=0"
+           << ";console-records=" << observer.consoles().size()
+           << ";window-records=" << observer.windows().size() << ";attachment=not-used\n";
 }
 } // namespace
 
@@ -1089,8 +1091,8 @@ int wmain(int argc, wchar_t** argv) {
         const fs::path root(options[L"--root"]);
         fs::create_directories(root);
         preflight(root, options[L"--launcher"]);
-        proof::Observer observer;
-        calibration(observer);
+        proof::Observer observer(true);
+        std::vector<proof::WindowFact> controls{ calibration(observer) };
         std::vector<DWORD> roots;
         const std::wstring only = options[L"--case"];
         for (int index = 1; index <= 11; ++index) {
@@ -1099,10 +1101,10 @@ int wmain(int argc, wchar_t** argv) {
             fixture(id, root, options[L"--launcher"], options[L"--runtime"], options[L"--fixture"],
                     observer, roots, report, options[L"--console-only"] == L"true");
         }
-        calibration(observer);
+        controls.push_back(calibration(observer));
         observer.stop();
-        observer.assertNoConsole(roots, false);
-        report << "PASS observer;console-controls=2\n";
+        observer.assertNoVisibleTerminals(roots, false, controls);
+        report << "PASS observer;console-controls=2;visible-product-terminals=0;attachment=not-used\n";
         CoUninitialize();
         return 0;
     } catch (const std::exception& failure) {

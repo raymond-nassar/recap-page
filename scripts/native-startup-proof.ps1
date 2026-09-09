@@ -125,7 +125,7 @@ try {
         $before = 'CREATE_NO_WINDOW | EXTENDED_STARTUPINFO_PRESENT'
         $after = 'EXTENDED_STARTUPINFO_PRESENT'
         $case = 'F01'
-        $expectedFailure = 'F01 coordinator created a console'
+        $expectedFailure = 'F01 coordinator created a visible terminal'
       }
       $text = [IO.File]::ReadAllText($changed)
       if ([regex]::Matches($text, [regex]::Escape($before)).Count -ne 1) {
