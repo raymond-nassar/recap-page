@@ -76,6 +76,76 @@ struct ProcessEvent {
     DWORD exitCode = 0;
 };
 
+struct Moment {
+    uint64_t tick = 0, qpc = 0;
+};
+
+inline Moment moment() {
+    LARGE_INTEGER counter{};
+    check(QueryPerformanceCounter(&counter) != FALSE, "performance clock unavailable");
+    return { GetTickCount64(), static_cast<uint64_t>(counter.QuadPart) };
+}
+
+enum class WindowKind { unknown, other, startup, console, terminal };
+
+inline const char* windowKindName(WindowKind kind) {
+    switch (kind) {
+    case WindowKind::other: return "other";
+    case WindowKind::startup: return "startup";
+    case WindowKind::console: return "console";
+    case WindowKind::terminal: return "terminal";
+    default: return "unknown";
+    }
+}
+
+struct WindowFact {
+    DWORD event = 0, owner = 0, thread = 0, sourceThread = 0, generated32 = 0;
+    LONG object = 0, child = 0;
+    uintptr_t window = 0;
+    uint64_t generated = 0;
+    Moment received;
+    WindowKind kind = WindowKind::unknown;
+    bool metadataKnown = false, present = false, visible = false, topLevel = false, onScreen = false;
+    RECT rectangle{};
+};
+
+inline WindowFact windowFact(HWND window) {
+    WindowFact fact;
+    fact.window = reinterpret_cast<uintptr_t>(window);
+    fact.present = window && IsWindow(window);
+    if (!fact.present) return fact;
+    fact.thread = GetWindowThreadProcessId(window, &fact.owner);
+    wchar_t name[128]{};
+    const auto length = GetClassNameW(window, name, static_cast<int>(std::size(name)));
+    const bool rectangle = GetWindowRect(window, &fact.rectangle) != FALSE;
+    fact.metadataKnown = length > 0 && fact.thread != 0 && fact.owner != 0 && rectangle;
+    if (!fact.metadataKnown) return fact;
+    fact.kind = wcscmp(name, L"RecapPageStartupWindow") == 0 ? WindowKind::startup
+        : wcscmp(name, L"ConsoleWindowClass") == 0 ? WindowKind::console
+        : wcscmp(name, L"CASCADIA_HOSTING_WINDOW_CLASS") == 0 ? WindowKind::terminal : WindowKind::other;
+    fact.visible = IsWindowVisible(window) != FALSE;
+    fact.topLevel = GetAncestor(window, GA_ROOT) == window;
+    fact.onScreen = rectangle && fact.rectangle.right > fact.rectangle.left &&
+        fact.rectangle.bottom > fact.rectangle.top &&
+        MonitorFromRect(&fact.rectangle, MONITOR_DEFAULTTONULL) != nullptr;
+    return fact;
+}
+
+inline bool visibleIn(const WindowFact& fact, uint64_t begin, uint64_t end, uint64_t receiptLimit = 0) {
+    return fact.metadataKnown && fact.topLevel && fact.onScreen &&
+        fact.generated >= begin && fact.generated < end &&
+        (!receiptLimit || fact.received.qpc < receiptLimit) &&
+        (fact.event == EVENT_OBJECT_SHOW || (fact.present && fact.visible));
+}
+
+struct ConsoleFact {
+    DWORD event = 0, pid = 0, sourceThread = 0, generated32 = 0;
+    LONG child = 0;
+    uintptr_t window = 0;
+    uint64_t generated = 0;
+    Moment received;
+};
+
 class Observer {
     inline static thread_local Observer* current_ = nullptr;
     std::wstring name_;
@@ -83,13 +153,19 @@ class Observer {
     TRACEHANDLE session_ = 0, consumer_ = INVALID_PROCESSTRACE_HANDLE;
     std::thread consumerThread_;
     HWINEVENTHOOK consoleHook_ = nullptr;
+    HWINEVENTHOOK windowHook_ = nullptr;
     std::mutex mutex_;
     std::vector<ProcessEvent> processes_;
     std::map<DWORD, std::wstring> images_;
-    std::vector<std::pair<DWORD, DWORD>> consoles_;
+    std::vector<ConsoleFact> consoles_;
+    std::vector<WindowFact> windows_;
+    std::map<uintptr_t, WindowFact> windowMetadata_;
     std::map<DWORD, std::wstring> roots_;
     std::atomic<bool> lost_{ false };
+    std::atomic<bool> clockValid_{ true };
     bool stopped_ = false;
+    bool windowObservation_ = false;
+    uint64_t frequency_ = 0;
 
     EVENT_TRACE_PROPERTIES* properties() {
         return reinterpret_cast<EVENT_TRACE_PROPERTIES*>(properties_.data());
@@ -160,15 +236,59 @@ class Observer {
             self->lost_.store(true);
         }
     }
-    static void CALLBACK consoleEvent(HWINEVENTHOOK, DWORD event, HWND, LONG object, LONG, DWORD, DWORD) {
+    uint64_t eventTick(DWORD generated, const Moment& received) {
+        const DWORD delay = static_cast<DWORD>(received.tick) - generated;
+        if (delay > 120000 || delay > received.tick) {
+            lost_.store(true);
+            clockValid_.store(false);
+        }
+        return received.tick - std::min<uint64_t>(delay, received.tick);
+    }
+    static void CALLBACK consoleEvent(HWINEVENTHOOK, DWORD event, HWND window, LONG object,
+                                      LONG child, DWORD thread, DWORD generated) {
         if (!current_) return;
         if (current_->consoles_.size() >= 8192) { current_->lost_.store(true); return; }
-        current_->consoles_.emplace_back(event, static_cast<DWORD>(object));
+        try {
+            const auto received = moment();
+            current_->consoles_.push_back({
+                event, static_cast<DWORD>(object), thread, generated, child,
+                reinterpret_cast<uintptr_t>(window), current_->eventTick(generated, received), received
+            });
+        } catch (const std::exception&) { current_->lost_.store(true); }
+    }
+    static void CALLBACK windowEvent(HWINEVENTHOOK, DWORD event, HWND window, LONG object,
+                                     LONG child, DWORD thread, DWORD generated) {
+        if (!current_ || object != OBJID_WINDOW || child != CHILDID_SELF || !window) return;
+        try {
+            auto fact = windowFact(window);
+            const auto cached = current_->windowMetadata_.find(fact.window);
+            if (!fact.metadataKnown && event != EVENT_OBJECT_CREATE &&
+                cached != current_->windowMetadata_.end()) {
+                fact = cached->second;
+                fact.present = false;
+                fact.visible = false;
+            }
+            fact.event = event;
+            fact.object = object;
+            fact.child = child;
+            fact.sourceThread = thread;
+            fact.generated32 = generated;
+            fact.received = moment();
+            fact.generated = current_->eventTick(generated, fact.received);
+            check(current_->windows_.size() < 8192 && current_->windowMetadata_.size() < 2048,
+                  "window observation bound exceeded");
+            current_->windows_.push_back(fact);
+            if (fact.metadataKnown) current_->windowMetadata_[fact.window] = fact;
+        } catch (const std::exception&) { current_->lost_.store(true); }
     }
 public:
-    Observer() {
+    explicit Observer(bool observeWindows = false) : windowObservation_(observeWindows) {
         check(current_ == nullptr, "observer already active");
         consoles_.reserve(8192);
+        if (windowObservation_) windows_.reserve(8192);
+        LARGE_INTEGER frequency{};
+        check(QueryPerformanceFrequency(&frequency) != FALSE && frequency.QuadPart > 0, "clock frequency unavailable");
+        frequency_ = static_cast<uint64_t>(frequency.QuadPart);
         name_ = L"RecapPageStartupProof-" + std::to_wstring(GetCurrentProcessId()) + L"-" + std::to_wstring(GetTickCount64());
         properties_.resize(sizeof(EVENT_TRACE_PROPERTIES) + (name_.size() + 1) * sizeof(wchar_t));
         auto* settings = properties();
@@ -188,6 +308,7 @@ public:
         EVENT_TRACE_LOGFILEW log{};
         log.LoggerName = name_.data();
         log.ProcessTraceMode = PROCESS_TRACE_MODE_REAL_TIME | PROCESS_TRACE_MODE_EVENT_RECORD;
+        if (windowObservation_) log.ProcessTraceMode |= PROCESS_TRACE_MODE_RAW_TIMESTAMP;
         log.EventRecordCallback = record;
         log.Context = this;
         consumer_ = OpenTraceW(&log);
@@ -204,12 +325,24 @@ public:
             ControlTraceW(session_, name_.c_str(), properties(), EVENT_TRACE_CONTROL_STOP);
             throw std::runtime_error("console observer could not start");
         }
+        if (windowObservation_) {
+            windowHook_ = SetWinEventHook(EVENT_OBJECT_CREATE, EVENT_OBJECT_HIDE, nullptr,
+                windowEvent, 0, 0, WINEVENT_OUTOFCONTEXT);
+            if (!windowHook_) {
+                UnhookWinEvent(consoleHook_);
+                current_ = nullptr;
+                CloseTrace(consumer_);
+                ControlTraceW(session_, name_.c_str(), properties(), EVENT_TRACE_CONTROL_STOP);
+                throw std::runtime_error("window lifecycle observer could not start");
+            }
+        }
         try {
             consumerThread_ = std::thread([this] {
                 const auto status = ProcessTrace(&consumer_, 1, nullptr, nullptr);
                 if (status != ERROR_SUCCESS && status != ERROR_CANCELLED) lost_.store(true);
             });
         } catch (const std::system_error&) {
+            if (windowHook_) UnhookWinEvent(windowHook_);
             UnhookWinEvent(consoleHook_);
             current_ = nullptr;
             CloseTrace(consumer_);
@@ -230,11 +363,31 @@ public:
         if (status == ERROR_SUCCESS) CloseTrace(consumer_);
         pump(0);
         if (consoleHook_ && !UnhookWinEvent(consoleHook_)) lost_.store(true);
+        if (windowHook_ && !UnhookWinEvent(windowHook_)) lost_.store(true);
         current_ = nullptr;
         stopped_ = true;
     }
     bool console(DWORD pid, DWORD event = EVENT_CONSOLE_START_APPLICATION) const {
-        return std::find(consoles_.begin(), consoles_.end(), std::make_pair(event, pid)) != consoles_.end();
+        return std::any_of(consoles_.begin(), consoles_.end(),
+            [&](const auto& fact) { return fact.pid == pid && fact.event == event; });
+    }
+    bool observesWindows() const { return windowObservation_; }
+    uint64_t frequency() const { return frequency_; }
+    bool clockValid() const { return clockValid_.load(); }
+    bool healthy() const { return !lost_.load(); }
+    ULONG eventsLost() { return properties()->EventsLost; }
+    ULONG buffersLost() { return properties()->LogBuffersLost + properties()->RealTimeBuffersLost; }
+    const std::vector<WindowFact>& windows() const { return windows_; }
+    const std::vector<ConsoleFact>& consoles() const { return consoles_; }
+    bool windowEventSeen(uintptr_t window, DWORD event) const {
+        return std::any_of(windows_.begin(), windows_.end(), [&](const auto& fact) {
+            return fact.window == window && fact.event == event && fact.metadataKnown;
+        });
+    }
+    bool passiveVisible(uintptr_t window, uint64_t begin, uint64_t end, uint64_t receiptLimit = 0) const {
+        return std::any_of(windows_.begin(), windows_.end(), [&](const auto& fact) {
+            return fact.window == window && visibleIn(fact, begin, end, receiptLimit);
+        });
     }
     std::vector<ProcessEvent> processes() {
         std::lock_guard<std::mutex> lock(mutex_);

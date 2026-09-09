@@ -3,6 +3,7 @@
 #include "StartupObserver.h"
 #include <ole2.h>
 #include <UIAutomation.h>
+#include <array>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -348,10 +349,26 @@ void supervision() {
     check(publication.claim() && !publication.claim(), "late completion could publish twice");
 }
 
-void calibration(proof::Observer& observer) {
+proof::WindowFact calibration(proof::Observer& observer, size_t* started = nullptr, std::ofstream* report = nullptr) {
     Child control;
+    const auto begin = proof::moment();
     start(control, recap::modulePath(), L"--console-control", CREATE_NEW_CONSOLE);
+    if (started) ++*started;
+    if (report) {
+        *report << "DIAG calibration-start pid=" << control.pid << " begin_tick=" << begin.tick
+                << " begin_qpc=" << begin.qpc << "\n";
+        report->flush();
+    }
     proof::until([&] { return observer.console(control.pid); }, "observer did not detect its console control");
+    if (observer.observesWindows()) {
+        proof::until([&] {
+            return std::any_of(observer.windows().begin(), observer.windows().end(), [&](const auto& fact) {
+                return (fact.kind == proof::WindowKind::console || fact.kind == proof::WindowKind::terminal) &&
+                    proof::visibleIn(fact, begin.tick, GetTickCount64() + 1);
+            });
+        }, "calibration did not expose a passive visible terminal");
+    }
+    const auto beforeAttach = proof::moment();
     check(FreeConsole() != FALSE, "observer could not release its previous console");
     DWORD attachError = ERROR_SUCCESS;
     try {
@@ -365,8 +382,29 @@ void calibration(proof::Observer& observer) {
     } catch (const std::exception& failure) {
         throw std::runtime_error(std::string(failure.what()) + "; Windows error " + std::to_string(attachError));
     }
+    proof::WindowFact consoleWindow;
+    DWORD memberCount = 0;
     // Keep the host window alive until its asynchronous application-end event is delivered.
     try {
+        if (observer.observesWindows()) {
+            std::array<DWORD, 128> members{};
+            memberCount = GetConsoleProcessList(members.data(), static_cast<DWORD>(members.size()));
+            check(memberCount > 0 && memberCount <= members.size(), "calibration membership was incomplete");
+            const auto end = members.begin() + memberCount;
+            check(std::find(members.begin(), end, control.pid) != end &&
+                  std::find(members.begin(), end, GetCurrentProcessId()) != end,
+                  "calibration console membership did not match its owned processes");
+            const auto window = proof::windowFact(GetConsoleWindow());
+            check(window.metadataKnown && window.present && window.topLevel && window.visible && window.onScreen,
+                  "calibration visible console window could not be mapped");
+            consoleWindow = window;
+            consoleWindow.received = proof::moment();
+            proof::until([&] {
+                return observer.windowEventSeen(consoleWindow.window, EVENT_OBJECT_CREATE) &&
+                    observer.windowEventSeen(consoleWindow.window, EVENT_OBJECT_SHOW) &&
+                    observer.passiveVisible(consoleWindow.window, begin.tick, beforeAttach.tick + 1, beforeAttach.qpc);
+            }, "calibration window create/show events were incomplete");
+        }
         control.stop();
         proof::until([&] { return observer.console(control.pid, EVENT_CONSOLE_END_APPLICATION); },
                      "observer did not detect console control exit");
@@ -376,6 +414,20 @@ void calibration(proof::Observer& observer) {
         throw;
     }
     check(FreeConsole() != FALSE, "observer could not detach the calibration console");
+    if (observer.observesWindows()) {
+        proof::until([&] { return observer.windowEventSeen(consoleWindow.window, EVENT_OBJECT_DESTROY); },
+                     "calibration window destroy event was incomplete");
+    }
+    if (report) {
+        const auto end = proof::moment();
+        *report << "DIAG calibration-complete pid=" << control.pid << " hwnd=" << consoleWindow.window
+                << " owner=" << consoleWindow.owner << " kind=" << proof::windowKindName(consoleWindow.kind)
+                << " sampled_visible=" << consoleWindow.visible << " sampled_onscreen=" << consoleWindow.onScreen
+                << " members=" << memberCount << " before_attach_tick=" << beforeAttach.tick
+                << " before_attach_qpc=" << beforeAttach.qpc << " end_tick=" << end.tick
+                << " end_qpc=" << end.qpc << " create_observed=1 show_observed=1 destroy_observed=1\n";
+    }
+    return consoleWindow;
 }
 
 void preflight(const fs::path& root, const std::wstring& native) {
@@ -499,6 +551,302 @@ void fixture(const std::string& id, const fs::path& root, const fs::path& native
     report << "PASS " << id << "\n";
 }
 
+uint64_t creationTime(HANDLE process) {
+    FILETIME created{}, exited{}, kernel{}, user{};
+    check(GetProcessTimes(process, &created, &exited, &kernel, &user) != FALSE,
+          "owned process creation identity unavailable");
+    return (static_cast<uint64_t>(created.dwHighDateTime) << 32) | created.dwLowDateTime;
+}
+
+struct AttachmentFact {
+    bool attempted = false, detachBefore = false, attached = false, detachAfter = false;
+    bool liveBefore = false, liveAfter = false, membershipKnown = false, complete = false;
+    DWORD detachBeforeError = 0, attachError = 0, detachAfterError = 0, membershipError = 0;
+    DWORD memberCount = 0;
+    std::array<DWORD, 128> members{};
+    proof::Moment begin, beforeAttach, afterAttach, end;
+    proof::WindowFact associated;
+};
+
+AttachmentFact attachment(Child& target) {
+    AttachmentFact fact;
+    fact.attempted = true;
+    fact.begin = proof::moment();
+    fact.liveBefore = target.exit() == STILL_ACTIVE;
+    fact.detachBefore = FreeConsole() != FALSE;
+    if (!fact.detachBefore) fact.detachBeforeError = GetLastError();
+    fact.beforeAttach = proof::moment();
+    if (fact.liveBefore && fact.detachBefore) {
+        fact.attached = AttachConsole(target.pid) != FALSE;
+        if (!fact.attached) fact.attachError = GetLastError();
+    }
+    fact.afterAttach = proof::moment();
+    if (fact.attached) {
+        fact.memberCount = GetConsoleProcessList(fact.members.data(), static_cast<DWORD>(fact.members.size()));
+        if (!fact.memberCount) fact.membershipError = GetLastError();
+        fact.membershipKnown = fact.memberCount > 0 && fact.memberCount <= fact.members.size();
+        fact.associated = proof::windowFact(GetConsoleWindow());
+        fact.detachAfter = FreeConsole() != FALSE;
+        if (!fact.detachAfter) fact.detachAfterError = GetLastError();
+    }
+    fact.end = proof::moment();
+    fact.liveAfter = target.exit() == STILL_ACTIVE;
+    const auto membersEnd = fact.members.begin() + std::min<size_t>(fact.memberCount, fact.members.size());
+    const bool targetMember = std::find(fact.members.begin(), membersEnd, target.pid) != membersEnd;
+    const bool observerMember = std::find(fact.members.begin(), membersEnd, GetCurrentProcessId()) != membersEnd;
+    fact.complete = fact.liveBefore && fact.liveAfter && fact.detachBefore &&
+        (fact.attached
+            ? fact.detachAfter && fact.membershipKnown && targetMember && observerMember &&
+              (!fact.associated.window || fact.associated.metadataKnown)
+            : fact.attachError == ERROR_INVALID_HANDLE);
+    return fact;
+}
+
+struct DiagnosticCase {
+    std::string id, error;
+    DWORD gui = 0, coordinator = 0;
+    uint64_t guiCreated = 0, coordinatorCreated = 0;
+    proof::Moment begin, beforeIntervention, end;
+    AttachmentFact guiAttachment, coordinatorAttachment;
+    bool acquired = false, cleanup = false, lineage = false;
+};
+
+std::string safeDiagnosticError(const std::exception& error) {
+    const std::string text(error.what());
+    if (text.size() <= 200 && std::all_of(text.begin(), text.end(), [](unsigned char c) {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||
+            (c >= '0' && c <= '9') || c == ' ' || c == '.' || c == '_' || c == '-';
+    })) return text;
+    return "native diagnostic acquisition failed with an unprintable detail";
+}
+
+DiagnosticCase diagnosticCase(const std::string& id, const fs::path& root, const fs::path& launcher,
+                              const fs::path& runtime, const fs::path& source, proof::Observer& observer) {
+    DiagnosticCase result;
+    result.id = id;
+    const auto layout = root / (fs::path(id).wstring() + L" space \u03a9");
+    Child gui, coordinator;
+    try {
+        fs::create_directories(layout / L"runtime");
+        fs::copy_file(launcher, layout / L"RecapPageLauncher.exe");
+        fs::copy_file(runtime, layout / L"runtime" / L"node.exe");
+        fs::copy_file(source, layout / L"Launcher.mjs");
+        write(layout / L"scenario.txt", "F01");
+        result.begin = proof::moment();
+        start(gui, (layout / L"RecapPageLauncher.exe").wstring(), L"", 0);
+        result.gui = gui.pid;
+        result.guiCreated = creationTime(gui.process.get());
+        observer.bindRoot(gui.pid, gui.process.get());
+        proof::nativeArchitecture(gui.process.get());
+        proof::until([&] { return windowFor(gui.pid) != nullptr; }, "diagnostic GUI window was not observed");
+        proof::until([&] { return fs::exists(layout / L"observed.txt"); }, "diagnostic coordinator did not start");
+        const auto observed = read(layout / L"observed.txt");
+        check(observed.find("pid=") == 0, "diagnostic coordinator identity missing");
+        retain(coordinator, static_cast<DWORD>(std::stoul(observed.substr(4))),
+               (layout / L"runtime" / L"node.exe").wstring());
+        result.coordinator = coordinator.pid;
+        result.coordinatorCreated = creationTime(coordinator.process.get());
+        check(observed.find("arguments=true") != std::string::npos &&
+              observed.find("environment=true") != std::string::npos &&
+              observed.find("cwd=true") != std::string::npos, "diagnostic launch contract differed");
+        const auto passiveFence = GetTickCount64() + 200;
+        proof::until([&] {
+            check(gui.exit() == STILL_ACTIVE && coordinator.exit() == STILL_ACTIVE,
+                  "diagnostic target exited during passive observation");
+            return GetTickCount64() >= passiveFence;
+        }, "passive observation fence did not finish");
+        result.beforeIntervention = proof::moment();
+        if (id != "D1") {
+            result.guiAttachment = attachment(gui);
+            result.coordinatorAttachment = attachment(coordinator);
+            check(result.guiAttachment.complete && result.coordinatorAttachment.complete,
+                  "attachment observation was incomplete");
+            check(creationTime(gui.process.get()) == result.guiCreated &&
+                  creationTime(coordinator.process.get()) == result.coordinatorCreated,
+                  "attachment target creation identity changed");
+        }
+        write(layout / L"continue.txt", "continue");
+        proof::until([&] { return gui.exit() != STILL_ACTIVE && coordinator.exit() != STILL_ACTIVE; },
+                     "diagnostic handshake did not finish");
+        check(gui.exit() == 0 && coordinator.exit() == 0, "diagnostic handshake returned failure");
+        result.acquired = true;
+    } catch (const std::exception& error) {
+        result.error = safeDiagnosticError(error);
+    }
+    try {
+        const bool detached = id == "D1" || FreeConsole() != FALSE;
+        coordinator.stop();
+        gui.stop();
+        result.cleanup = detached && (!gui.pid || coordinator.pid != 0);
+        check(result.cleanup, "diagnostic process ownership or detach cleanup was incomplete");
+    } catch (const std::exception& error) {
+        result.cleanup = false;
+        result.error = safeDiagnosticError(error);
+    }
+    result.end = proof::moment();
+    return result;
+}
+
+void reportAttachment(std::ofstream& report, const DiagnosticCase& item, const char* role,
+                      DWORD pid, const AttachmentFact& fact) {
+    report << "DIAG attachment case=" << item.id << " role=" << role << " pid=" << pid
+           << " attempted=" << fact.attempted << " complete=" << fact.complete
+           << " begin_tick=" << fact.begin.tick << " before_attach_tick=" << fact.beforeAttach.tick
+           << " after_attach_tick=" << fact.afterAttach.tick << " end_tick=" << fact.end.tick
+           << " begin_qpc=" << fact.begin.qpc << " end_qpc=" << fact.end.qpc
+           << " live_before=" << fact.liveBefore << " live_after=" << fact.liveAfter
+           << " detach_before=" << fact.detachBefore << " detach_before_error=" << fact.detachBeforeError
+           << " attach=" << fact.attached << " attach_error=" << fact.attachError
+           << " detach_after=" << fact.detachAfter << " detach_after_error=" << fact.detachAfterError
+           << " member_count=" << fact.memberCount << " membership_known=" << fact.membershipKnown
+           << " membership_error=" << fact.membershipError
+           << " associated_hwnd=" << fact.associated.window << " associated_owner=" << fact.associated.owner
+           << " associated_kind=" << proof::windowKindName(fact.associated.kind)
+           << " associated_metadata=" << fact.associated.metadataKnown
+           << " associated_present=" << fact.associated.present << " associated_visible=" << fact.associated.visible
+           << " associated_onscreen=" << fact.associated.onScreen << " members=";
+    for (size_t index = 0; index < std::min<size_t>(fact.memberCount, fact.members.size()); ++index)
+        report << (index ? "," : "") << fact.members[index];
+    report << "\n";
+}
+
+void diagnostic(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
+    SYSTEM_INFO host{};
+    GetNativeSystemInfo(&host);
+    check(host.wProcessorArchitecture == PROCESSOR_ARCHITECTURE_AMD64,
+          "diagnostic mode is restricted to the x64 host");
+    const auto& hash = options.at(L"--runtime-hash");
+    check(hash.size() == 64 && std::all_of(hash.begin(), hash.end(), [](wchar_t c) {
+        return (c >= L'0' && c <= L'9') || (c >= L'a' && c <= L'f');
+    }), "diagnostic runtime hash missing");
+    const auto& version = options.at(L"--runtime-version");
+    check(version.size() < 32 && !version.empty() && std::all_of(version.begin(), version.end(), [](wchar_t c) {
+        return (c >= L'0' && c <= L'9') || c == L'v' || c == L'.';
+    }), "diagnostic runtime version missing");
+    report << "DIAG runtime version=";
+    for (const auto c : version) report << static_cast<char>(c);
+    report << " sha256=";
+    for (const auto c : hash) report << static_cast<char>(c);
+    report << " architecture=x64 cases=3 mutation=N3\n";
+    proof::Observer observer(true);
+    std::vector<proof::WindowFact> controls;
+    size_t controlStarts = 0;
+    std::vector<DiagnosticCase> cases;
+    std::string acquisitionFailure;
+    try {
+        controls.push_back(calibration(observer, &controlStarts, &report));
+        for (const auto* id : { "D1", "D2", "D3" }) {
+            cases.push_back(diagnosticCase(id, options.at(L"--root"),
+                options.at(std::string(id) == "D3" ? L"--mutant" : L"--launcher"),
+                options.at(L"--runtime"), options.at(L"--fixture"), observer));
+            const auto& observed = cases.back();
+            report << "DIAG lifecycle case=" << id << " gui_pid=" << observed.gui
+                   << " coordinator_pid=" << observed.coordinator << " acquired=" << observed.acquired
+                   << " cleanup=" << observed.cleanup << "\n";
+            report.flush();
+            check(observed.cleanup, "diagnostic owned cleanup could not be confirmed");
+        }
+        controls.push_back(calibration(observer, &controlStarts, &report));
+    } catch (const std::exception& error) {
+        acquisitionFailure = safeDiagnosticError(error);
+    }
+    observer.stop();
+    const auto processes = observer.processes();
+    bool complete = observer.healthy() && observer.clockValid() && acquisitionFailure.empty() &&
+        cases.size() == 3 && controls.size() == 2;
+    report << "DIAG clocks window=uptime-ms process=raw-qpc creation=filetime-100ns qpc_frequency="
+           << observer.frequency() << "\n";
+    for (auto& item : cases) {
+        const auto startFor = [&](DWORD pid, DWORD parent) {
+            return std::count_if(processes.begin(), processes.end(), [&](const auto& process) {
+                return process.start && process.pid == pid && process.parent == parent &&
+                    process.timestamp >= static_cast<LONGLONG>(item.begin.qpc) &&
+                    process.timestamp <= static_cast<LONGLONG>(item.end.qpc);
+            }) == 1;
+        };
+        const auto ended = [&](DWORD pid) {
+            return std::count_if(processes.begin(), processes.end(), [&](const auto& process) {
+                return !process.start && process.pid == pid && process.exitKnown && process.exitCode == 0 &&
+                    process.timestamp >= static_cast<LONGLONG>(item.begin.qpc) &&
+                    process.timestamp <= static_cast<LONGLONG>(item.end.qpc);
+            }) == 1;
+        };
+        item.lineage = startFor(item.gui, GetCurrentProcessId()) &&
+            startFor(item.coordinator, item.gui) && ended(item.gui) && ended(item.coordinator);
+        report << "DIAG case=" << item.id << " acquired=" << item.acquired << " cleanup=" << item.cleanup
+               << " lineage=" << item.lineage << " gui_pid=" << item.gui << " coordinator_pid=" << item.coordinator
+               << " gui_creation=" << item.guiCreated << " coordinator_creation=" << item.coordinatorCreated
+               << " begin_tick=" << item.begin.tick << " begin_qpc=" << item.begin.qpc
+               << " intervention_tick=" << item.beforeIntervention.tick
+               << " intervention_qpc=" << item.beforeIntervention.qpc
+               << " end_tick=" << item.end.tick << " end_qpc=" << item.end.qpc
+               << " error=" << (item.error.empty() ? "none" : item.error) << "\n";
+        reportAttachment(report, item, "gui", item.gui, item.guiAttachment);
+        reportAttachment(report, item, "coordinator", item.coordinator, item.coordinatorAttachment);
+        std::set<uintptr_t> associated;
+        for (const auto& probe : { item.guiAttachment, item.coordinatorAttachment })
+            if (probe.attached && probe.complete && probe.associated.window) associated.insert(probe.associated.window);
+        for (const auto& event : observer.consoles()) {
+            if (event.pid != item.gui && event.pid != item.coordinator) continue;
+            if (event.generated < item.begin.tick || event.generated > item.end.tick) continue;
+            if (event.window) associated.insert(event.window);
+            report << "DIAG console case=" << item.id << " event=" << event.event << " pid=" << event.pid
+                   << " hwnd=" << event.window << " child=" << event.child << " source_thread=" << event.sourceThread
+                   << " generation32=" << event.generated32 << " generation_tick=" << event.generated
+                   << " receipt_tick=" << event.received.tick << " receipt_qpc=" << event.received.qpc << "\n";
+        }
+        std::set<std::pair<uintptr_t, DWORD>> passive, intervention, unmapped;
+        size_t unknown = 0, emitted = 0, omitted = 0;
+        for (const auto& fact : observer.windows()) {
+            if (fact.generated < item.begin.tick || fact.generated > item.end.tick) continue;
+            const bool control = std::any_of(controls.begin(), controls.end(), [&](const auto& known) {
+                return fact.window == known.window && fact.owner == known.owner;
+            });
+            if (control) continue;
+            if (!fact.metadataKnown) ++unknown;
+            const bool terminal = associated.count(fact.window) ||
+                fact.kind == proof::WindowKind::console || fact.kind == proof::WindowKind::terminal;
+            const bool visible = terminal && proof::visibleIn(fact, item.begin.tick, item.end.tick + 1);
+            const bool mapped = associated.count(fact.window) || fact.owner == item.gui || fact.owner == item.coordinator;
+            if (visible) {
+                const auto identity = std::make_pair(fact.window, fact.owner);
+                if (!mapped) unmapped.insert(identity);
+                if (item.id == "D1" || fact.generated < item.beforeIntervention.tick ||
+                    (fact.generated == item.beforeIntervention.tick && fact.received.qpc < item.beforeIntervention.qpc))
+                    passive.insert(identity);
+                else intervention.insert(identity);
+            }
+            if (!terminal && fact.kind != proof::WindowKind::startup && fact.metadataKnown) continue;
+            if (emitted >= 64) { ++omitted; continue; }
+            ++emitted;
+            report << "DIAG window case=" << item.id << " kind=" << proof::windowKindName(fact.kind)
+                   << " event=" << fact.event << " hwnd=" << fact.window << " owner=" << fact.owner
+                   << " object=" << fact.object << " child=" << fact.child << " thread=" << fact.thread
+                   << " source_thread=" << fact.sourceThread << " generation32=" << fact.generated32
+                   << " generation_tick=" << fact.generated << " receipt_tick=" << fact.received.tick
+                   << " receipt_qpc=" << fact.received.qpc << " metadata=" << fact.metadataKnown
+                   << " present=" << fact.present << " visible_now=" << fact.visible
+                   << " top=" << fact.topLevel << " onscreen=" << fact.onScreen
+                   << " left=" << fact.rectangle.left << " top_px=" << fact.rectangle.top
+                   << " right=" << fact.rectangle.right << " bottom=" << fact.rectangle.bottom << "\n";
+        }
+        const bool quality = item.acquired && item.cleanup && item.lineage && !unknown && unmapped.empty();
+        const bool negative = item.id != "D3" || !passive.empty();
+        complete = complete && quality && negative;
+        report << "DIAG result case=" << item.id << " passive_visible_terminals=" << passive.size()
+               << " intervention_visible_terminals=" << intervention.size() << " unmapped_terminals=" << unmapped.size()
+               << " unknown_window_records=" << unknown << " omitted_window_rows=" << omitted
+               << " complete=" << quality << " required_negative_observed=" << negative << "\n";
+    }
+    report << "DIAG observer healthy=" << observer.healthy() << " clock_valid=" << observer.clockValid()
+           << " etw_events_lost=" << observer.eventsLost() << " etw_buffers_lost=" << observer.buffersLost()
+           << " console_records=" << observer.consoles().size() << " window_records=" << observer.windows().size()
+           << " calibration_starts=" << controlStarts << " calibration_complete=" << controls.size()
+           << " acquisition_error=" << (acquisitionFailure.empty() ? "none" : acquisitionFailure) << "\n";
+    check(complete, "diagnostic acquisition was incomplete or the visible negative was not observed");
+    report << "PASS diagnostic-facts-only;feature-acceptance=not-evaluated\n";
+}
+
 void installed(const std::map<std::wstring, std::wstring>& options, std::ofstream& report) {
     wchar_t hosted[16]{};
     GetEnvironmentVariableW(L"GITHUB_ACTIONS", hosted, static_cast<DWORD>(std::size(hosted)));
@@ -572,6 +920,11 @@ int wmain(int argc, wchar_t** argv) {
         check(static_cast<bool>(report), "proof report path is required");
         check(SUCCEEDED(com), "proof COM initialization failed");
         proof::nativeArchitecture(GetCurrentProcess());
+        if (options[L"--mode"] == L"diagnostic") {
+            diagnostic(options, report);
+            CoUninitialize();
+            return 0;
+        }
         if (options[L"--mode"] == L"functionality" || options[L"--mode"] == L"busy") {
             installed(options, report);
             CoUninitialize();

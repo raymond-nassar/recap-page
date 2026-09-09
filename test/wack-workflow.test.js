@@ -75,13 +75,14 @@ test('WACK uses the supported no-cost x64 host and least privilege', () => {
 });
 
 test('the supported Windows job executes parser fixtures before certification', () => {
-  const fixtures = workflow.indexOf('run: ./scripts/test-wack-report.ps1');
-  const builds = [...workflow.matchAll(/run: npm run msix:pack/g)].map((match) => match.index);
-  const inspections = [...workflow.matchAll(
+  const ordinary = workflow.slice(workflow.indexOf('\n  certify:'));
+  const fixtures = ordinary.indexOf('run: ./scripts/test-wack-report.ps1');
+  const builds = [...ordinary.matchAll(/run: npm run msix:pack/g)].map((match) => match.index);
+  const inspections = [...ordinary.matchAll(
     /run: npm run msix:inspect -- --structural/g,
   )].map((match) => match.index);
-  const certification = workflow.indexOf('./scripts/run-wack.ps1');
-  const installedProof = workflow.indexOf('npm run msix:prove --');
+  const certification = ordinary.indexOf('./scripts/run-wack.ps1');
+  const installedProof = ordinary.indexOf('npm run msix:prove --');
   assert.ok(fixtures > 0, 'the executable PowerShell fixture suite is not run');
   assert.ok(certification > fixtures, 'certification runs before its parser fixture suite');
   assert.equal(builds.length, 2, 'each proof lane should build one package set');
@@ -128,7 +129,7 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
   }
   assert.doesNotMatch(workflow, /cache\/save|gh release|store upload/i);
   assert.doesNotMatch(workflow, /\.pfx|winsdksetup/);
-  assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 2);
+  assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 3);
   assert.match(workflow, /if: always\(\)/);
   assert.match(workflow, /Get-AppxPackage -Name PanelStackLabs\.RecapPage/);
   assert.match(workflow, /Cert:\\LocalMachine\\TrustedPeople/);
@@ -148,6 +149,9 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
     /- name: Remove installed proof material[\s\S]*?shell: (.+)\r?\n/,
   )?.[1];
   assert.equal(installedCleanup, 'powershell');
+  assert.match(runner, /Data\.Contains\('WackRejectedSummary'\)/);
+  assert.match(runner, /WACK rejected summary: \$safeSummary/);
+  assert.match(runner, /throw \$primaryFailure/);
 });
 
 test('native producer outputs and job deadlines bind every package consumer', () => {
@@ -161,19 +165,48 @@ test('native producer outputs and job deadlines bind every package consumer', ()
     .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
   assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed']);
   assert.match(workflow, /native_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
-  const predicate = "!(github.event_name == 'workflow_dispatch' && inputs.native_only == true)";
+  assert.match(workflow, /diagnostic_only:\r?\n {8}description: .+\r?\n {8}type: boolean\r?\n {8}required: false\r?\n {8}default: false/);
+  const predicate = "!(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true))";
   for (const job of jobs.slice(1)) {
     const expression = job.match(/^ {4}if: \$\{\{ (.+) \}\}\r?$/m)?.[1];
     assert.equal(expression, predicate);
     for (const [event, inputs, expected] of [
       ['workflow_dispatch', { native_only: true }, false],
       ['workflow_dispatch', { native_only: false }, true],
+      ['workflow_dispatch', { diagnostic_only: true }, false],
+      ['workflow_dispatch', { native_only: false, diagnostic_only: false }, true],
+      ['workflow_dispatch', { native_only: true, diagnostic_only: true }, false],
       ['workflow_dispatch', {}, true],
       ['pull_request', { native_only: true }, true],
+      ['pull_request', { diagnostic_only: true }, true],
+      ['pull_request', { native_only: true, diagnostic_only: true }, true],
       ['pull_request', {}, true],
     ]) {
       assert.equal(runInNewContext(expression, { github: { event_name: event }, inputs }), expected);
     }
+    assert.match(jobs[0], /\$env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and\r?\n\s*\$env:NATIVE_ONLY -eq 'true' -and \$env:DIAGNOSTIC_ONLY -eq 'true'/);
+    assert.ok(jobs[0].indexOf('Reject conflicting manual diagnostic modes') < jobs[0].indexOf('Build both native targets'));
+    const nativeStep = (name) => {
+      const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      return jobs[0].match(new RegExp(` {6}- name: ${escaped}\\r?\\n[\\s\\S]*?(?=\\r?\\n {6}- name:|$)`))?.[0] ?? '';
+    };
+    const diagnostic = "github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true";
+    for (const name of [
+      'Install the checksum-verified diagnostic package tool',
+      'Build one diagnostic package set',
+      'Inspect the diagnostic package set',
+      'Acquire both native and WACK diagnostic facts',
+    ]) {
+      assert.equal(nativeStep(name).match(/if: \$\{\{ (.+) \}\}/)?.[1], diagnostic);
+    }
+    assert.equal(nativeStep('Prove the three aimed startup negatives').match(/if: \$\{\{ (.+) \}\}/)?.[1], `!(${diagnostic})`);
+    const acquisition = nativeStep('Acquire both native and WACK diagnostic facts');
+    assert.equal((acquisition.match(/\btry \{/g) ?? []).length, 2);
+    assert.equal((acquisition.match(/\bcatch \{/g) ?? []).length, 2);
+    assert.ok(acquisition.indexOf('-Diagnostic') < acquisition.indexOf('./scripts/run-wack.ps1'));
+    assert.ok(acquisition.indexOf('$failures.Count') > acquisition.indexOf('./scripts/run-wack.ps1'));
+    assert.match(acquisition, /throw \[AggregateException\]/);
+    assert.doesNotMatch(workflow, /continue-on-error/);
   }
   for (const job of jobs) {
     const backstop = Number(job.match(/^ {4}timeout-minutes: (\d+)/m)?.[1]);

@@ -8,6 +8,11 @@ on:
         type: boolean
         required: false
         default: false
+      diagnostic_only:
+        description: Acquire the bounded x64 console and WACK diagnostic facts
+        type: boolean
+        required: false
+        default: false
   pull_request:
     branches: [main]
     paths:
@@ -50,11 +55,22 @@ jobs:
   native:
     name: Build and prove the native startup boundary
     runs-on: windows-2022
-    timeout-minutes: 43
+    timeout-minutes: 150
     outputs:
       native_sha256: ${{ steps.build.outputs.native_sha256 }}
       proof_sha256: ${{ steps.build.outputs.proof_sha256 }}
     steps:
+      - name: Reject conflicting manual diagnostic modes
+        timeout-minutes: 2
+        shell: pwsh
+        env:
+          NATIVE_ONLY: ${{ inputs.native_only }}
+          DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
+        run: |
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and
+              $env:NATIVE_ONLY -eq 'true' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
+            throw 'native_only and diagnostic_only cannot both be enabled.'
+          }
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
         with:
@@ -74,9 +90,68 @@ jobs:
         shell: pwsh
         run: ./scripts/build-native-launcher.ps1 -IncludeProofTools
       - name: Prove the three aimed startup negatives
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true) }}
         timeout-minutes: 12
         shell: pwsh
         run: ./scripts/native-startup-proof.ps1 -Negatives
+      - name: Install the checksum-verified diagnostic package tool
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        timeout-minutes: 6
+        shell: pwsh
+        run: |
+          $archive = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'
+          $toolRoot = Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'
+          Invoke-WebRequest `
+            -Uri 'https://github.com/microsoft/winappCli/releases/download/v0.6.0/winappcli-x64.zip' `
+            -OutFile $archive
+          $actual = (Get-FileHash -Algorithm SHA256 -LiteralPath $archive).Hash
+          $expected = 'F6DC42E3B4E4709C8F617003008E2CFDD9A51735E04E7170D60EDDA258DB78A8'
+          if ($actual -ne $expected) {
+            throw 'WinApp CLI v0.6.0 did not match its reviewed SHA-256.'
+          }
+          Expand-Archive -LiteralPath $archive -DestinationPath $toolRoot
+          $version = @(& (Join-Path $toolRoot 'winapp.exe') --version)[-1].Trim()
+          if (@('0.6.0', 'v0.6.0') -notcontains $version) {
+            throw 'The diagnostic package tool did not report version 0.6.0.'
+          }
+          $toolRoot >> $env:GITHUB_PATH
+      - name: Build one diagnostic package set
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        timeout-minutes: 15
+        run: npm run msix:pack
+      - name: Inspect the diagnostic package set
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        timeout-minutes: 8
+        run: npm run msix:inspect -- --structural
+      - name: Acquire both native and WACK diagnostic facts
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.diagnostic_only == true }}
+        timeout-minutes: 70
+        shell: pwsh
+        run: |
+          $failures = @()
+          try {
+            ./scripts/native-startup-proof.ps1 -Diagnostic
+          } catch {
+            "Native diagnostic failed: type=$($_.Exception.GetType().Name); code=$($_.Exception.HResult)"
+            $failures += [InvalidOperationException]::new(
+              'Native diagnostic acquisition failed; consult the bounded diagnostic facts.'
+            )
+          }
+          $version = (Get-Content -LiteralPath ./package.json -Raw | ConvertFrom-Json).version
+          try {
+            ./scripts/run-wack.ps1 `
+              -X64Package "./dist/msix/RecapPage_${version}.0_x64.msix" `
+              -Bundle "./dist/msix/RecapPage_${version}.0_x64_arm64.msixbundle" `
+              -Certificate './dist/msix/RecapPage-local-proof.cer'
+          } catch {
+            "WACK diagnostic rejected or failed: type=$($_.Exception.GetType().Name); code=$($_.Exception.HResult)"
+            $failures += [InvalidOperationException]::new(
+              'WACK rejected or failed; consult the sanitized category facts when available.'
+            )
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new('Diagnostic acquisition or certification failed.', [Exception[]]$failures)
+          }
       - name: Transfer only the native launchers and their provenance
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         timeout-minutes: 2
@@ -103,13 +178,53 @@ jobs:
           compression-level: 0
       - name: Remove native build outputs
         if: always()
-        timeout-minutes: 2
-        shell: pwsh
+        timeout-minutes: 5
+        shell: powershell
+        env:
+          DIAGNOSTIC_ONLY: ${{ inputs.diagnostic_only }}
         run: |
-          foreach ($path in @('./dist/native-launcher', './dist/native-proof')) {
-            if (Test-Path -LiteralPath $path) {
-              Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
-            }
+          $failures = @()
+          $paths = @('./dist/native-launcher', './dist/native-proof')
+          if ($env:GITHUB_EVENT_NAME -eq 'workflow_dispatch' -and $env:DIAGNOSTIC_ONLY -eq 'true') {
+            try {
+              Get-AppxPackage -Name PanelStackLabs.RecapPage |
+                Where-Object PackageFamilyName -eq 'PanelStackLabs.RecapPage_we33aa8nvkpcc' |
+                ForEach-Object { Remove-AppxPackage -Package $_.PackageFullName -ErrorAction Stop }
+              if (Get-AppxPackage -Name PanelStackLabs.RecapPage) {
+                throw 'The diagnostic package remains registered.'
+              }
+            } catch { $failures += $_.Exception }
+            try {
+              $cer = './dist/msix/RecapPage-local-proof.cer'
+              if (Test-Path -LiteralPath $cer) {
+                $certificate = [Security.Cryptography.X509Certificates.X509Certificate2]::new(
+                  (Resolve-Path -LiteralPath $cer).Path
+                )
+                $trusted = "Cert:\LocalMachine\TrustedPeople\$($certificate.Thumbprint)"
+                if (Test-Path -LiteralPath $trusted) {
+                  Remove-Item -LiteralPath $trusted -ErrorAction Stop
+                }
+                if (Test-Path -LiteralPath $trusted) {
+                  throw 'The diagnostic certificate remains trusted.'
+                }
+              }
+            } catch { $failures += $_.Exception }
+            $paths += @(
+              './dist/msix', './dist/msix-proof',
+              (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0.zip'),
+              (Join-Path $env:RUNNER_TEMP 'winappcli-x64-v0.6.0'),
+              (Join-Path $env:RUNNER_TEMP "recap-native-negative-inputs-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT")
+            )
+          }
+          foreach ($path in $paths) {
+            try {
+              if (Test-Path -LiteralPath $path) {
+                Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
+              }
+            } catch { $failures += $_.Exception }
+          }
+          if ($failures.Count -ne 0) {
+            throw [AggregateException]::new('Native diagnostic cleanup failed.', [Exception[]]$failures)
           }
 
   certify:
@@ -119,7 +234,7 @@ jobs:
     # in that supported-host list, so windows-latest is deliberately not used.
     runs-on: windows-2022
     needs: native
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.native_only == true) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
     timeout-minutes: 110
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
@@ -299,7 +414,7 @@ jobs:
     name: Installed functionality on ${{ matrix.architecture }}
     runs-on: ${{ matrix.runner }}
     needs: native
-    if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.native_only == true) }}
+    if: ${{ !(github.event_name == 'workflow_dispatch' && (inputs.native_only == true || inputs.diagnostic_only == true)) }}
     timeout-minutes: 96
     env:
       MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
