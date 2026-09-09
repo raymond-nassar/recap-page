@@ -6,6 +6,7 @@ on:
     branches: [main]
     paths:
       - .github/workflows/wack.yml
+      - .github/workflows/microsoft-store-release.yml
       - .github/browser-proof/**
       - LICENSE
       - package.json
@@ -13,13 +14,18 @@ on:
       - server.mjs
       - src/**
       - scripts/inspect-msix.mjs
+      - scripts/build-native-launcher.ps1
+      - scripts/lib/native-launcher.mjs
       - scripts/msix-proof.mjs
+      - scripts/native-startup-proof.ps1
       - scripts/pack-msix.mjs
       - scripts/pack-windows.mjs
       - scripts/run-wack.ps1
       - scripts/test-wack-report.ps1
       - scripts/wack-report.ps1
       - test/msix-packaging.test.js
+      - test/microsoft-store-release.test.js
+      - test/native/**
       - test/server-contract.test.js
       - test/wack-workflow.test.js
 
@@ -35,13 +41,81 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  native:
+    name: Build and prove the native startup boundary
+    runs-on: windows-2022
+    timeout-minutes: 43
+    outputs:
+      native_sha256: ${{ steps.build.outputs.native_sha256 }}
+      proof_sha256: ${{ steps.build.outputs.proof_sha256 }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        timeout-minutes: 2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        timeout-minutes: 4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install repository tooling
+        timeout-minutes: 4
+        run: npm ci --ignore-scripts
+      - name: Build both native targets and isolated proof tools
+        id: build
+        timeout-minutes: 12
+        shell: pwsh
+        run: ./scripts/build-native-launcher.ps1 -IncludeProofTools
+      - name: Prove the three aimed startup negatives
+        timeout-minutes: 12
+        shell: pwsh
+        run: ./scripts/native-startup-proof.ps1 -Negatives
+      - name: Transfer only the native launchers and their provenance
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 2
+        with:
+          name: native-launcher-${{ github.sha }}
+          path: |
+            dist/native-launcher/build.json
+            dist/native-launcher/x64/RecapPageLauncher.exe
+            dist/native-launcher/arm64/RecapPageLauncher.exe
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+      - name: Transfer only the isolated proof tools and their provenance
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        timeout-minutes: 2
+        with:
+          name: native-proof-${{ github.sha }}
+          path: |
+            dist/native-proof/build.json
+            dist/native-proof/x64/NativeStartupTests.exe
+            dist/native-proof/arm64/NativeStartupTests.exe
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
+      - name: Remove native build outputs
+        if: always()
+        timeout-minutes: 2
+        shell: pwsh
+        run: |
+          foreach ($path in @('./dist/native-launcher', './dist/native-proof')) {
+            if (Test-Path -LiteralPath $path) {
+              Remove-Item -LiteralPath $path -Recurse -Force -ErrorAction Stop
+            }
+          }
+
   certify:
     name: WACK on supported x64 Windows
     # Microsoft's current SDK requirements list Server 2022 for command-line tools.
     # The standard x64 runner is free for this public repository. Server 2025 is not
     # in that supported-host list, so windows-latest is deliberately not used.
     runs-on: windows-2022
-    timeout-minutes: 105
+    needs: native
+    timeout-minutes: 110
+    env:
+      MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         timeout-minutes: 2
@@ -79,6 +153,18 @@ jobs:
       - name: Install repository tooling
         timeout-minutes: 4
         run: npm ci --ignore-scripts
+
+      - name: Receive the exact native producer output
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        timeout-minutes: 2
+        with:
+          name: native-launcher-${{ github.sha }}
+          path: dist/native-launcher
+          digest-mismatch: error
+
+      - name: Verify native source and output provenance
+        timeout-minutes: 2
+        run: node scripts/lib/native-launcher.mjs --verify
 
       - name: Prove packaging leaves tracked inputs unchanged
         timeout-minutes: 2
@@ -205,7 +291,11 @@ jobs:
   installed:
     name: Installed functionality on ${{ matrix.architecture }}
     runs-on: ${{ matrix.runner }}
-    timeout-minutes: 75
+    needs: native
+    timeout-minutes: 96
+    env:
+      MRT_NATIVE_SHA256: ${{ needs.native.outputs.native_sha256 }}
+      MRT_NATIVE_PROOF_SHA256: ${{ needs.native.outputs.proof_sha256 }}
     strategy:
       fail-fast: false
       matrix:
@@ -253,6 +343,22 @@ jobs:
         timeout-minutes: 4
         run: npm ci --ignore-scripts
 
+      - name: Receive the exact native producer output
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        timeout-minutes: 2
+        with:
+          name: native-launcher-${{ github.sha }}
+          path: dist/native-launcher
+          digest-mismatch: error
+
+      - name: Receive the exact isolated proof tools
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        timeout-minutes: 2
+        with:
+          name: native-proof-${{ github.sha }}
+          path: dist/native-proof
+          digest-mismatch: error
+
       - name: Install external browser driver
         timeout-minutes: 4
         shell: pwsh
@@ -276,6 +382,11 @@ jobs:
       - name: Inspect every installed-proof package without executing foreign runtimes
         timeout-minutes: 5
         run: npm run msix:inspect -- --structural
+
+      - name: Exercise the matching native startup fixtures
+        timeout-minutes: 18
+        shell: pwsh
+        run: ./scripts/native-startup-proof.ps1 -Architecture '${{ matrix.architecture }}'
 
       - name: Trust exact ephemeral certificate
         timeout-minutes: 2

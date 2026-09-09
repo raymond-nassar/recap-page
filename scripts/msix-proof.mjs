@@ -2,7 +2,7 @@
 import { execFileSync, spawn } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import {
-  copyFileSync, existsSync, mkdirSync, mkdtempSync, rmSync,
+  copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync,
 } from 'node:fs';
 import { createServer } from 'node:net';
 import { tmpdir } from 'node:os';
@@ -13,6 +13,7 @@ import {
   AUMID, PACKAGE_ARCHITECTURES, PACKAGE_FAMILY, PACKAGE_NAME,
   PROOF_UPDATE_VERSION, STORE_PACKAGE_VERSION, bundlePath, packagePath, proofPackagePath,
 } from './pack-msix.mjs';
+import { verifyNativeArtifact } from './lib/native-launcher.mjs';
 
 export const SCENARIOS = Object.freeze([
   'certification-functionality',
@@ -264,6 +265,85 @@ async function runInstalledScenario(body, { afterCleanup } = {}) {
 
 function activate() {
   powershell(`Start-Process explorer.exe -ArgumentList ${psLiteral(`shell:AppsFolder\\${AUMID}`)}`);
+}
+
+async function withNativeObservation(installed, architecture, mode, body) {
+  if (process.env.GITHUB_ACTIONS !== 'true') {
+    throw new Error('native installed observation is restricted to controlled Actions runners');
+  }
+  const artifact = await verifyNativeArtifact({ proof: true });
+  const root = mkdtempSync(join(tmpdir(), 'recap-native-observer-'));
+  const report = join(root, 'result.txt');
+  const failures = [];
+  let child;
+  let exited = false;
+  let exitCode = null;
+  let spawnFailure = null;
+  let unexpectedOutput = false;
+  let result;
+  try {
+    child = spawn(join(artifact.root, architecture, 'NativeStartupTests.exe'), [
+      '--mode', mode, '--root', root, '--report', report,
+      '--installed-root', installed.InstallLocation,
+    ], { cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], windowsHide: true });
+    child.once('error', (error) => { spawnFailure = error; });
+    child.once('exit', (code) => { exited = true; exitCode = code; });
+    child.stdout.on('data', () => { unexpectedOutput = true; });
+    child.stderr.on('data', () => { unexpectedOutput = true; });
+    const assertAlive = () => {
+      if (spawnFailure) throw spawnFailure;
+      if (exited) {
+        const detail = existsSync(report) ? readFileSync(report, 'utf8') : 'no observer report';
+        throw new Error(`native observer exited ${exitCode}: ${detail}`);
+      }
+    };
+    await waitFor(() => {
+      assertAlive();
+      return existsSync(join(root, 'ready.txt'));
+    }, 'native observer did not become ready', 30000);
+    try {
+      result = await body({
+        waitForSettledRoots: (count) => waitFor(() => {
+          assertAlive();
+          const counts = join(root, 'counts.txt');
+          return existsSync(counts)
+            && readFileSync(counts, 'utf8') === `started=${count}\nended=${count}\n`;
+        }, 'native activation lifecycle did not settle', 30000),
+      });
+    } catch (error) {
+      failures.push(error);
+    }
+    if (mode === 'functionality') writeFileSync(join(root, 'finish.txt'), 'finish');
+    await waitFor(() => {
+      if (spawnFailure) throw spawnFailure;
+      return exited;
+    }, 'native observer did not finish', 30000);
+    const text = existsSync(report) ? readFileSync(report, 'utf8') : '';
+    if (exitCode !== 0 || unexpectedOutput || !text.includes(`PASS installed-${mode}`)) {
+      throw new Error(`native installed observation failed: exit ${exitCode}; ${text || 'no report'}`);
+    }
+    console.log(text.trim());
+  } catch (error) {
+    failures.push(error);
+  } finally {
+    if (child?.pid && !exited) {
+      try {
+        child.kill();
+        await waitFor(() => exited, 'owned native observer did not stop', 2000);
+      } catch (error) {
+        failures.push(error);
+      }
+    }
+    if (!child?.pid || exited) {
+      try {
+        rmSync(root, { recursive: true, force: true });
+      } catch (error) {
+        failures.push(error);
+      }
+    }
+  }
+  if (failures.length) throw new AggregateError(failures, 'native observed journey failed');
+  return result;
 }
 
 function browserSnapshotDigest() {
@@ -577,32 +657,41 @@ async function certificationFunctionality(architecture, source) {
     context.cleanupAuthorized = true;
     context.installed = installPackage(STORE_PACKAGE_VERSION, architecture, source);
     context.since = new Date();
-    activate();
-    activate();
-    const marker = await waitFor(generation, 'the package server did not answer at the canonical origin');
-    const settledListenerPid = await waitFor(
-      () => listenerPid(),
-      'the package server did not own port 8787',
+    const { marker, settledListenerPid, serverProcess, settledServers } = await withNativeObservation(
+      context.installed, architecture, 'functionality', async (observation) => {
+        activate();
+        activate();
+        const marker = await waitFor(generation, 'the package server did not answer at the canonical origin');
+        const settledListenerPid = await waitFor(
+          () => listenerPid(),
+          'the package server did not own port 8787',
+        );
+        const serverProcess = await waitFor(
+          () => selectListenerServer(
+            packageProcesses(context.installed, context.since),
+            settledListenerPid,
+          ),
+          `listener PID ${settledListenerPid} was not owned by the installed package`,
+        );
+        const launchersExited = () => !packageProcesses(context.installed, context.since)
+          .some((process) => process.CommandLine?.includes('Launcher.mjs')
+            || process.Name?.toLowerCase() === 'recappagelauncher.exe');
+        await observation.waitForSettledRoots(2);
+        await waitFor(launchersExited, 'the overlapping native launchers or coordinators did not exit');
+        const settledServers = packageProcesses(context.installed, context.since)
+          .filter((process) => process.CommandLine?.includes('server.mjs'));
+        if (settledServers.length !== 1
+          || settledServers[0].ProcessId !== settledListenerPid
+          || listenerPid() !== settledListenerPid) {
+          throw new Error(`overlapping activation left ${settledServers.length} server processes`);
+        }
+        activate();
+        await observation.waitForSettledRoots(3);
+        await waitFor(launchersExited, 'the warm native launcher or coordinator did not exit');
+        if (listenerPid() !== settledListenerPid) throw new Error('warm activation replaced the healthy server');
+        return { marker, settledListenerPid, serverProcess, settledServers };
+      },
     );
-    const serverProcess = await waitFor(
-      () => selectListenerServer(
-        packageProcesses(context.installed, context.since),
-        settledListenerPid,
-      ),
-      `listener PID ${settledListenerPid} was not owned by the installed package`,
-    );
-    await waitFor(
-      () => !packageProcesses(context.installed, context.since)
-        .some((process) => process.CommandLine?.includes('Launcher.mjs')),
-      'the overlapping package coordinators did not exit after launch settling',
-    );
-    const settledServers = packageProcesses(context.installed, context.since)
-      .filter((process) => process.CommandLine?.includes('server.mjs'));
-    if (settledServers.length !== 1
-      || settledServers[0].ProcessId !== settledListenerPid
-      || listenerPid() !== settledListenerPid) {
-      throw new Error(`overlapping activation left ${settledServers.length} server processes`);
-    }
     if (marker.packageVersion !== STORE_PACKAGE_VERSION) {
       throw new Error(`served ${marker.packageVersion}, expected ${STORE_PACKAGE_VERSION}`);
     }
@@ -797,6 +886,16 @@ async function busyPortRefusal(architecture, source) {
       'another port opens a separate browser storage location.',
     ]) {
       if (!guidance.includes(expected)) throw new Error(`busy-port guidance omitted: ${expected}`);
+    }
+    await withNativeObservation(context.installed, architecture, 'busy', async () => {
+      activate();
+    });
+    if (browserSnapshotDigest() !== browserBefore) {
+      throw new Error('native busy-port refusal changed browser windows');
+    }
+    if (packageProcesses(context.installed, context.since)
+      .some((candidate) => candidate.CommandLine?.includes('server.mjs'))) {
+      throw new Error('native busy-port refusal started a server child');
     }
     console.log(JSON.stringify({
       scenario: SCENARIOS[1],

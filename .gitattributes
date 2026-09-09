@@ -1,5 +1,4 @@
-# Line endings for the two launcher scripts, which are the only files here whose behaviour
-# depends on them.
+# Launcher line endings and byte-stable native build inputs.
 #
 # A shell script with CRLF endings fails on macOS before it runs a line of its own: the kernel
 # reads the shebang as `/bin/bash\r`, which does not exist, and reports "bad interpreter" naming
@@ -7,11 +6,18 @@
 # multi-line parenthesised block reliably without CRLF.
 #
 # Both are pinned rather than left to core.autocrlf, which is a setting on whoever happens to be
-# cloning. Nothing else is listed: a blanket `text=auto` would renormalise every file in the tree
-# and bury this in a formatting commit.
+# cloning. Avoid a blanket `text=auto`, which would renormalise unrelated files.
 *.cmd text eol=crlf
 *.command text eol=lf
 docs/anchors.history.json -text
+
+# Native artifacts bind raw source bytes across x64 and ARM64 checkouts.
+packaging/windows/native/* text eol=lf
+scripts/build-native-launcher.ps1 text eol=lf
+scripts/lib/native-launcher.mjs text eol=lf
+scripts/native-startup-proof.ps1 text eol=lf
+test/native/* text eol=lf
+src/icons/icon-512.png -text
 
 # Derived reports and regenerated indexes are reviewable through their source inputs and checks.
 # Reviewed mappings, packets, issue data and order pages remain visible in diffs.

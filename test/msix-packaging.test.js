@@ -23,21 +23,368 @@ const PROOF = join(ROOT, 'scripts', 'msix-proof.mjs');
 
 const read = (path) => readFileSync(path, 'utf8');
 
+function capturedStream() {
+  const stream = new EventEmitter();
+  stream.frames = [];
+  stream.write = (bytes, callback) => {
+    stream.frames.push(Buffer.from(bytes));
+    queueMicrotask(() => callback?.());
+    return true;
+  };
+  return stream;
+}
+
+function browserClock() {
+  let next = 0;
+  const timers = new Map();
+  return {
+    timers,
+    setTimer(callback, delay) {
+      const id = ++next;
+      timers.set(id, { callback, delay });
+      return id;
+    },
+    clearTimer(id) { timers.delete(id); },
+    fire(delay) {
+      const entry = [...timers].find(([, timer]) => timer.delay === delay);
+      assert.ok(entry, `no timer for ${delay}`);
+      timers.delete(entry[0]);
+      entry[1].callback();
+    },
+  };
+}
+
+test('GUI serialization matches independent literal frame goldens', async () => {
+  const { encodeGuiResult } = await import('../packaging/windows/Launcher.mjs');
+  const goldens = new Map(read(join(ROOT, 'test', 'native', 'startup-frames.txt'))
+    .trim().split(/\r?\n/).map((line) => line.split(' ')));
+  for (const [status, lines, exitCode] of [
+    ['opened', undefined, 0],
+    ['failed', ['Problem.', 'Retry.'], 1],
+  ]) {
+    const result = encodeGuiResult(lines ? { status, lines } : { status });
+    assert.equal(result.frame.toString('hex'), goldens.get(status));
+    assert.equal(result.exitCode, exitCode);
+  }
+});
+
+test('GUI error text preserves valid scalars and fails closed at byte and control boundaries', async () => {
+  const { encodeGuiResult, GUI_BODY_LIMIT } = await import('../packaging/windows/Launcher.mjs');
+  const encode = (lines) => encodeGuiResult({ status: 'failed', lines });
+  const valid = encode(['Room \u03a9.\r\nNext\rLast\titem']);
+  assert.equal(valid.frame.subarray(12).toString('utf8'), 'Room \u03a9.\nNext\nLast\titem');
+  for (const text of ['x'.repeat(GUI_BODY_LIMIT), '\u00e9'.repeat(GUI_BODY_LIMIT / 2)]) {
+    const result = encode([text]);
+    assert.equal(result.frame.length, 12 + GUI_BODY_LIMIT);
+    assert.equal(result.frame.readUInt32LE(8), GUI_BODY_LIMIT);
+    assert.equal(result.frame.subarray(12).toString('utf8'), text);
+  }
+  for (const lines of [
+    ['x'.repeat(GUI_BODY_LIMIT + 1)], ['\ud800'], ['\udfff'], ['x\0y'],
+    ['x\u000by'], ['x\u007fy'], ['\ufeffproblem'], [' \n\t'], [], null, [42],
+  ]) {
+    const result = encode(lines);
+    assert.equal(result.exitCode, 1);
+    assert.match(result.frame.subarray(12).toString('utf8'), /invalid or too large/);
+  }
+  assert.equal(encodeGuiResult({ status: 'unexpected' }).exitCode, 1);
+  assert.equal(encodeGuiResult({ status: 'opened', lines: ['Problem.'] }).exitCode, 1);
+});
+
+test('GUI reserved arguments refuse coordination without changing ordinary argument selection', async () => {
+  const { selectGuiStartup, presentLaunch } = await import('../packaging/windows/Launcher.mjs');
+  assert.equal(selectGuiStartup([]), false);
+  assert.equal(selectGuiStartup(['ignored-legacy-argument']), false);
+  assert.equal(selectGuiStartup(['--gui-startup-v1']), true);
+  for (const args of [
+    ['--gui-startup-v2'], ['--gui-startup-v1', 'extra'], ['extra', '--gui-startup-v1'],
+  ]) {
+    assert.throws(() => selectGuiStartup(args), /unsupported startup request/);
+    let calls = 0;
+    let code;
+    const output = capturedStream();
+    await presentLaunch({
+      args, output, setExitCode: (value) => { code = value; },
+      coordinate: async () => { calls += 1; },
+    });
+    assert.equal(calls, 0);
+    assert.equal(code, 1);
+    assert.equal(output.frames.length, 1);
+    assert.equal(output.frames[0][5], 1);
+  }
+});
+
+test('GUI presentation waits for one complete backpressured write before successful exit', async () => {
+  const { presentLaunch } = await import('../packaging/windows/Launcher.mjs');
+  const output = capturedStream();
+  const exits = [];
+  let release;
+  output.write = (bytes, callback) => {
+    output.frames.push(bytes);
+    release = callback;
+    return false;
+  };
+  const pending = presentLaunch({
+    args: ['--gui-startup-v1'], output,
+    coordinate: async () => ({ status: 'opened' }),
+    setExitCode: (code) => exits.push(code),
+  });
+  await new Promise(setImmediate);
+  assert.equal(typeof release, 'function');
+  assert.deepEqual(exits, []);
+  release();
+  await pending;
+  assert.deepEqual(exits, [0]);
+  assert.equal(output.frames.length, 1);
+  assert.equal(output.frames[0].length, 12);
+});
+
+test('GUI exceptions and result write races never retry a frame or appear successful', async () => {
+  const { presentLaunch } = await import('../packaging/windows/Launcher.mjs');
+  for (const coordinate of [
+    async () => { throw new Error('fixture launch error'); },
+    async () => null,
+    async () => ({ status: 'unknown' }),
+    async () => ({ get status() { throw new Error('invalid result'); } }),
+  ]) {
+    const output = capturedStream();
+    let code;
+    await presentLaunch({
+      args: ['--gui-startup-v1'], coordinate, output,
+      setExitCode: (value) => { code = value; },
+    });
+    assert.equal(code, 1);
+    assert.equal(output.frames.length, 1);
+    assert.equal(output.frames[0][5], 1);
+  }
+  const output = capturedStream();
+  const diagnostics = capturedStream();
+  output.write = (bytes, callback) => {
+    output.frames.push(bytes);
+    queueMicrotask(() => {
+      const error = new Error('fixture broken output');
+      callback(error);
+      output.emit('error', error);
+    });
+    return false;
+  };
+  let code;
+  await presentLaunch({
+    args: ['--gui-startup-v1'], output, errorOutput: diagnostics,
+    coordinate: async () => ({ status: 'opened' }),
+    setExitCode: (value) => { code = value; },
+  });
+  assert.equal(code, 1);
+  assert.equal(output.frames.length, 1);
+  assert.match(diagnostics.frames[0].toString('utf8'), /could not write.*fixture broken output/);
+});
+
+test('GUI diagnostics stay out of the frame while console probe and failure presentation remain', async () => {
+  const { presentLaunch } = await import('../packaging/windows/Launcher.mjs');
+  for (const gui of [false, true]) {
+    const output = capturedStream();
+    const failures = [];
+    const calls = [];
+    await presentLaunch({
+      args: gui ? ['--gui-startup-v1'] : ['ignored'],
+      output, environment: { MRT_PACKAGE_ARCH_PROBE: '1' }, architecture: 'arm64',
+      coordinate: async (...args) => {
+        calls.push(args);
+        return { status: 'failed', lines: ['fixture failure'] };
+      },
+      consoleFail: (lines) => failures.push(lines),
+      setExitCode: () => {},
+    });
+    assert.equal(calls.length, 1);
+    if (gui) {
+      assert.equal(typeof calls[0][0].openBrowser, 'function');
+      assert.equal(output.frames.length, 1);
+      assert.equal(output.frames[0].subarray(0, 4).toString(), 'RCPG');
+      assert.deepEqual(failures, []);
+    } else {
+      assert.deepEqual(calls[0], []);
+      assert.equal(output.frames[0].toString(), 'launcher=arm64\n');
+      assert.deepEqual(failures, [['fixture failure']]);
+    }
+  }
+});
+
+test('the browser helper settles once and keeps the legacy no-timeout default', async () => {
+  const { openDefaultBrowser } = await import('../packaging/windows/Launcher.mjs');
+  for (const timeoutMs of [undefined, 30000]) {
+    const clock = browserClock();
+    const child = fakeChild();
+    const pending = openDefaultBrowser(undefined, {
+      spawnImpl: () => child, ...clock, ...(timeoutMs ? { timeoutMs } : {}),
+    });
+    assert.equal(clock.timers.size, timeoutMs ? 1 : 0);
+    child.emit('exit', 0);
+    child.emit('error', new Error('late event'));
+    await pending;
+    assert.equal(clock.timers.size, 0);
+    assert.equal(child.killCalls, 0);
+  }
+  const child = fakeChild();
+  const pending = openDefaultBrowser(undefined, { spawnImpl: () => child });
+  child.emit('exit', 7);
+  await assert.rejects(pending, /exited 7/);
+  await assert.rejects(openDefaultBrowser(undefined, { timeoutMs: -1 }), /invalid.*timeout/);
+});
+
+test('GUI browser timeout retains the healthy server and reports uncertain cleanup with manual guidance', async () => {
+  const {
+    coordinateLaunch, openDefaultBrowser, GUI_BROWSER_TIMEOUT_MS,
+  } = await import('../packaging/windows/Launcher.mjs');
+  const child = fakeChild();
+  child.kill = () => { child.killCalls += 1; return true; };
+  const clock = browserClock();
+  const pending = coordinateLaunch({
+    exists: () => true,
+    generation: 'current-build',
+    probe: async () => ({ status: 'ready', processId: 99 }),
+    startServer: () => { throw new Error('a healthy server must not be replaced'); },
+    openBrowser: () => openDefaultBrowser(undefined, {
+      spawnImpl: () => child, timeoutMs: GUI_BROWSER_TIMEOUT_MS, ...clock,
+    }),
+  });
+  await new Promise(setImmediate);
+  clock.fire(30000);
+  clock.fire(2000);
+  const result = await pending;
+  assert.equal(result.status, 'failed');
+  assert.equal(result.retainServer, true);
+  assert.equal(child.killCalls, 1);
+  assert.equal(child.unrefCalls, 1);
+  assert.equal(clock.timers.size, 0);
+  assert.match(result.lines.join('\n'), /cleanup could not be confirmed/);
+  assert.match(result.lines.join('\n'), /browser may still open later/);
+  assert.match(result.lines.join('\n'), /Open http:\/\/127\.0\.0\.1:8787\//);
+});
+
 function element(source, name) {
   return source.match(new RegExp(`<${name}\\b[^>]*>`, 'i'))?.[0] ?? '';
 }
+
+function nativeImage(machine = 0x8664) {
+  const bytes = Buffer.alloc(512);
+  bytes.write('MZ');
+  bytes.writeUInt32LE(64, 0x3c);
+  bytes.write('PE\0\0', 64, 'ascii');
+  bytes.writeUInt16LE(machine, 68);
+  bytes.writeUInt16LE(240, 84);
+  bytes.writeUInt16LE(2, 86);
+  bytes.writeUInt16LE(0x20b, 88);
+  bytes.writeUInt16LE(2, 156);
+  return bytes;
+}
+
+test('native PE policy requires complete architecture-matched GUI executable headers', async () => {
+  const { nativePe, NATIVE_TARGETS } = await import('../scripts/lib/native-launcher.mjs');
+  for (const target of NATIVE_TARGETS) {
+    const bytes = nativeImage(target.machine);
+    assert.deepEqual(nativePe(bytes, target), { machine: target.machine, subsystem: 2, imports: [] });
+    for (const mutate of [
+      (image) => image.writeUInt16LE(0x14c, 68),
+      (image) => image.writeUInt16LE(3, 156),
+      (image) => image.writeUInt16LE(0x2002, 86),
+      (image) => image.writeUInt16LE(0, 86),
+      (image) => image.writeUInt16LE(0x10b, 88),
+      (image) => image.writeUInt16LE(2, 84),
+      (image) => image.writeUInt32LE(0xffffffff, 0x3c),
+    ]) {
+      const invalid = Buffer.from(bytes);
+      mutate(invalid);
+      assert.throws(() => nativePe(invalid, target), /native launcher:/);
+    }
+    assert.throws(() => nativePe(bytes.subarray(0, 90), target), /truncated/);
+  }
+});
+
+test('native package policy permits only the exact two executable relative paths', async () => {
+  const { exactExecutablePayloads } = await import('../scripts/lib/native-launcher.mjs');
+  const expected = ['RecapPageLauncher.exe', 'runtime\\node.exe', 'Launcher.mjs'];
+  assert.deepEqual(exactExecutablePayloads(expected), ['recappagelauncher.exe', 'runtime/node.exe']);
+  for (const paths of [
+    expected.slice(1), [...expected, 'extra.exe'], [...expected, 'runtime/addon.node'],
+    [...expected, 'extra.dll'], [...expected, 'node.exe'], [...expected, 'RUNTIME/NODE.EXE'],
+    ['nested/RecapPageLauncher.exe', 'runtime/node.exe'],
+  ]) assert.throws(() => exactExecutablePayloads(paths), /unexpected executable payloads/);
+});
+
+test('native artifact records reject stale inputs and changed or ambiguous outputs', async () => {
+  const {
+    validateNativeRecord, inputDigest, NATIVE_INPUTS, NATIVE_TARGETS,
+  } = await import('../scripts/lib/native-launcher.mjs');
+  const inputs = NATIVE_INPUTS.map((path) => ({ path, bytes: 1, sha256: 'a'.repeat(64) }));
+  const outputs = NATIVE_TARGETS.map((target) => ({
+    architecture: target.id, path: `${target.id}/RecapPageLauncher.exe`,
+    bytes: 512, sha256: 'b'.repeat(64), machine: target.machine, subsystem: 2, imports: [],
+  }));
+  const record = {
+    schemaVersion: 1, commit: 'a'.repeat(40), inputs, inputDigest: inputDigest(inputs), outputs,
+    productionDigest: null,
+    toolchain: {
+      image: 'win22 2026', sdk: '10.0.26100.0', compilerVersion: '19.44.35217.0',
+      targets: NATIVE_TARGETS.map(({ id }) => ({
+        architecture: id, compiler: 'c'.repeat(64), linker: 'd'.repeat(64), resources: 'e'.repeat(64),
+      })),
+    },
+  };
+  const expected = { commit: record.commit, inputs, outputs };
+  assert.equal(validateNativeRecord(record, expected), record);
+  for (const change of [
+    (value) => { value.commit = 'b'.repeat(40); },
+    (value) => { value.inputs[0].sha256 = 'f'.repeat(64); },
+    (value) => { value.outputs[0].sha256 = 'f'.repeat(64); },
+    (value) => { value.inputs.pop(); },
+    (value) => { value.inputs.push(value.inputs[0]); },
+    (value) => { value.inputs[0].path = 'unknown.cpp'; },
+    (value) => { value.outputs.reverse(); },
+    (value) => { value.unexpected = true; },
+    (value) => { value.toolchain.sdk = 'unreviewed'; },
+  ]) {
+    const invalid = structuredClone(record);
+    change(invalid);
+    assert.throws(() => validateNativeRecord(invalid, expected), /native launcher:/);
+  }
+});
+
+test('package generation covers staged native bytes and their build input record', async () => {
+  const { layoutGeneration } = await import('../scripts/pack-msix.mjs');
+  const { mkdtemp, rm, writeFile } = await import('node:fs/promises');
+  const { tmpdir } = await import('node:os');
+  const root = await mkdtemp(join(tmpdir(), 'recap-native-generation-'));
+  try {
+    await writeFile(join(root, 'RecapPageLauncher.exe'), 'native-a');
+    await writeFile(join(root, 'native-build.json'), '{"inputDigest":"a"}');
+    const before = await layoutGeneration(root);
+    await writeFile(join(root, 'RecapPageLauncher.exe'), 'native-b');
+    const changedBinary = await layoutGeneration(root);
+    assert.notEqual(changedBinary, before);
+    await writeFile(join(root, 'native-build.json'), '{"inputDigest":"b"}');
+    assert.notEqual(await layoutGeneration(root), changedBinary);
+    const source = read(PACK);
+    const hash = source.indexOf('const generation = await layoutGeneration(layout)');
+    assert.ok(source.indexOf('copyFile(join(native.root') < hash);
+    assert.ok(source.indexOf("join(layout, 'native-build.json')") < hash);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
 
 function attribute(tag, name) {
   return tag.match(new RegExp(`\\b${name}="([^"]*)"`, 'i'))?.[1] ?? null;
 }
 
-test('the maintained MSIX inputs exist outside the browser application', () => {
+test('the maintained MSIX inputs exist outside the browser application', async () => {
   assert.ok(existsSync(MANIFEST), 'the package manifest is missing');
   assert.ok(existsSync(LAUNCHER), 'the package launcher is missing');
   assert.ok(existsSync(PACK), 'the MSIX packer is missing');
   assert.ok(existsSync(INSPECT), 'the MSIX inspector is missing');
   assert.ok(existsSync(PROOF), 'the installed proof runner is missing');
   assert.equal(existsSync(join(ROOT, 'src', 'Package.appxmanifest')), false);
+  const { PROOF_INPUTS } = await import('../scripts/lib/native-launcher.mjs');
+  for (const path of PROOF_INPUTS) assert.ok(existsSync(join(ROOT, ...path.split('/'))), `${path} is missing`);
 });
 
 test('the manifest uses the exact Partner Center identity', () => {
@@ -53,19 +400,19 @@ test('the manifest uses the exact Partner Center identity', () => {
   assert.match(properties, /<PublisherDisplayName>PanelStack Labs<\/PublisherDisplayName>/);
 });
 
-test('Start activation uses the architecture-matched Node supervisor', () => {
+test('Start activation uses the architecture-matched native GUI', () => {
   const source = read(MANIFEST);
   const application = element(source, 'Application');
 
   assert.equal(attribute(application, 'Id'), 'App');
-  assert.equal(attribute(application, 'Executable'), 'runtime\\node.exe');
+  assert.equal(attribute(application, 'Executable'), 'RecapPageLauncher.exe');
   assert.equal(attribute(application, 'uap10:RuntimeBehavior'), 'packagedClassicApp');
   assert.equal(attribute(application, 'uap10:TrustLevel'), 'mediumIL');
-  assert.equal(attribute(application, 'uap10:Subsystem'), 'console');
+  assert.equal(attribute(application, 'uap10:Subsystem'), 'windows');
   assert.equal(attribute(application, 'uap10:SupportsMultipleInstances'), 'true');
   assert.equal(
     attribute(application, 'uap10:Parameters'),
-    '&quot;$(package.effectivePath)\\Launcher.mjs&quot;',
+    null,
   );
 });
 

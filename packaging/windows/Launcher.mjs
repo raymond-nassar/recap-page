@@ -179,8 +179,14 @@ export function openDefaultBrowser(
   url = `${ORIGIN}/`,
   {
     spawnImpl = spawn,
+    timeoutMs = 0,
+    setTimer = setTimeout,
+    clearTimer = clearTimeout,
   } = {},
 ) {
+  if (!Number.isFinite(timeoutMs) || timeoutMs < 0) {
+    return Promise.reject(new Error('invalid browser-command timeout'));
+  }
   return new Promise((resolveOpen, rejectOpen) => {
     let child;
     try {
@@ -193,17 +199,63 @@ export function openDefaultBrowser(
       return;
     }
     let settled = false;
-    child.once('error', (error) => {
+    let timer = null;
+    const finish = (error) => {
       if (settled) return;
       settled = true;
-      rejectOpen(error);
-    });
-    child.once('exit', (code) => {
+      if (timer !== null) clearTimer(timer);
+      child.removeListener('exit', onExit);
+      if (error) rejectOpen(error);
+      else resolveOpen();
+    };
+    const onError = (error) => finish(error);
+    const onExit = (code) => finish(code === 0
+      ? null
+      : new Error(`the default browser command exited ${code ?? 'without a status'}`));
+    child.on('error', onError);
+    child.once('exit', onExit);
+    child.once('close', () => child.removeListener('error', onError));
+    if (timeoutMs > 0) {
+      timer = setTimer(async () => {
+        if (settled) return;
+        settled = true;
+        clearTimer(timer);
+        child.removeListener('exit', onExit);
+        const cleanup = await stopBrowserHelper(child, { setTimer, clearTimer });
+        rejectOpen(new Error(
+          'The default browser command did not finish in time.'
+          + (cleanup ? ` ${cleanup}` : '')
+          + ' The browser may still open later.',
+        ));
+      }, timeoutMs);
+    }
+  });
+}
+
+function stopBrowserHelper(child, { setTimer, clearTimer }) {
+  if (child.exitCode !== null) return Promise.resolve('');
+  return new Promise((resolveStop) => {
+    let settled = false;
+    let timer = null;
+    const finish = (detail = '') => {
       if (settled) return;
       settled = true;
-      if (code === 0) resolveOpen();
-      else rejectOpen(new Error(`the default browser command exited ${code ?? 'without a status'}`));
-    });
+      if (timer !== null) clearTimer(timer);
+      child.removeListener('exit', onExit);
+      child.removeListener('error', onError);
+      if (detail) child.unref();
+      resolveStop(detail);
+    };
+    const onExit = () => finish();
+    const onError = (error) => finish(`Browser-command cleanup could not be confirmed: ${error.message}`);
+    child.once('exit', onExit);
+    child.once('error', onError);
+    timer = setTimer(() => finish('Browser-command cleanup could not be confirmed.'), 2000);
+    try {
+      if (!child.kill()) finish('Browser-command cleanup could not be confirmed.');
+    } catch (error) {
+      onError(error);
+    }
   });
 }
 
@@ -398,16 +450,134 @@ export async function coordinateLaunch({
   };
 }
 
-async function main() {
-  if (process.env.MRT_PACKAGE_ARCH_PROBE === '1') {
-    console.log(`launcher=${process.arch}`);
+export const GUI_STARTUP_ARGUMENT = '--gui-startup-v1';
+export const GUI_BODY_LIMIT = 16384;
+export const GUI_BROWSER_TIMEOUT_MS = 30000;
+const INVALID_GUI_DETAIL = [
+  'Recap Page could not confirm startup.',
+  'The startup error details were invalid or too large.',
+  `If the app is running, open ${ORIGIN}/ in your browser.`,
+].join('\n');
+
+export function selectGuiStartup(args) {
+  if (!args.some((arg) => arg.startsWith('--gui-startup-'))) return false;
+  if (args.length !== 1 || args[0] !== GUI_STARTUP_ARGUMENT) {
+    throw new Error('Recap Page received an unsupported startup request. Try starting the app again.');
   }
-  const result = await coordinateLaunch();
-  if (result.status === LAUNCH_RESULT.FAILED) fail(result.lines);
+  return true;
+}
+
+function validGuiText(text) {
+  if (!text.trim() || text.charCodeAt(0) === 0xfeff) {
+    return false;
+  }
+  for (const character of text) {
+    const code = character.charCodeAt(0);
+    if ((code < 32 && code !== 9 && code !== 10) || code === 127) return false;
+    if (character.length === 1 && code >= 0xd800 && code <= 0xdfff) return false;
+  }
+  return Buffer.byteLength(text, 'utf8') <= GUI_BODY_LIMIT;
+}
+
+export function encodeGuiResult(result) {
+  let opened = result?.status === LAUNCH_RESULT.OPENED;
+  let text = '';
+  if (!opened) {
+    text = result?.status === LAUNCH_RESULT.FAILED
+      && Array.isArray(result.lines) && result.lines.every((line) => typeof line === 'string')
+      ? result.lines.join('\n').replace(/\r\n?/g, '\n')
+      : INVALID_GUI_DETAIL;
+    if (!validGuiText(text)) text = INVALID_GUI_DETAIL;
+  } else if (Object.hasOwn(result, 'lines')) {
+    opened = false;
+    text = INVALID_GUI_DETAIL;
+  }
+  const body = Buffer.from(text, 'utf8');
+  const frame = Buffer.alloc(12 + body.length);
+  frame.write('RCPG', 0, 'ascii');
+  frame[4] = 1;
+  frame[5] = opened ? 0 : 1;
+  frame.writeUInt32LE(body.length, 8);
+  body.copy(frame, 12);
+  return { frame, exitCode: opened ? 0 : 1 };
+}
+
+export function writeGuiFrame(stream, frame) {
+  return new Promise((resolveWrite, rejectWrite) => {
+    let settled = false;
+    const finish = (error) => {
+      if (settled) return;
+      settled = true;
+      // A Writable can emit its error after invoking the failed write callback.
+      if (!error) stream.removeListener('error', onError);
+      if (error) rejectWrite(error);
+      else resolveWrite();
+    };
+    const onError = (error) => finish(error);
+    stream.once('error', onError);
+    try {
+      stream.write(frame, finish);
+    } catch (error) {
+      stream.removeListener('error', onError);
+      finish(error);
+    }
+  });
+}
+
+export async function presentLaunch({
+  args = process.argv.slice(2),
+  coordinate = coordinateLaunch,
+  output = process.stdout,
+  errorOutput = process.stderr,
+  environment = process.env,
+  architecture = process.arch,
+  consoleFail = fail,
+  setExitCode = (code) => { process.exitCode = code; },
+  openBrowser = () => openDefaultBrowser(`${ORIGIN}/`, { timeoutMs: GUI_BROWSER_TIMEOUT_MS }),
+} = {}) {
+  let gui;
+  let requestError;
+  try {
+    gui = selectGuiStartup(args);
+  } catch (error) {
+    gui = true;
+    requestError = error;
+  }
+  if (!gui) {
+    if (environment.MRT_PACKAGE_ARCH_PROBE === '1') output.write(`launcher=${architecture}\n`);
+    const result = await coordinate();
+    if (result.status === LAUNCH_RESULT.FAILED) consoleFail(result.lines);
+    return;
+  }
+
+  let encoded;
+  try {
+    const result = requestError
+      ? { status: LAUNCH_RESULT.FAILED, lines: [requestError.message] }
+      : await coordinate({ openBrowser });
+    encoded = encodeGuiResult(result);
+  } catch (error) {
+    encoded = encodeGuiResult({
+      status: LAUNCH_RESULT.FAILED,
+      lines: ['Recap Page could not confirm startup.', String(error?.message ?? error)],
+    });
+  }
+  try {
+    await writeGuiFrame(output, encoded.frame);
+    setExitCode(encoded.exitCode);
+  } catch (error) {
+    setExitCode(1);
+    const detail = String(error?.message ?? error);
+    await writeGuiFrame(errorOutput, Buffer.from(
+      `Recap Page could not write its startup result: ${detail.slice(0, 2048)}`
+      + `${detail.length > 2048 ? ' (additional diagnostic text omitted)' : ''}\n`,
+      'utf8',
+    ));
+  }
 }
 
 if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  await main();
+  await presentLaunch();
 }
 
 export {

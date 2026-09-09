@@ -29,6 +29,7 @@ test('WACK and installed proof run when package behavior changes', () => {
     [...paths.matchAll(/ {6}- (.+)/g)].map((match) => match[1]),
     [
       '.github/workflows/wack.yml',
+      '.github/workflows/microsoft-store-release.yml',
       '.github/browser-proof/**',
       'LICENSE',
       'package.json',
@@ -36,13 +37,18 @@ test('WACK and installed proof run when package behavior changes', () => {
       'server.mjs',
       'src/**',
       'scripts/inspect-msix.mjs',
+      'scripts/build-native-launcher.ps1',
+      'scripts/lib/native-launcher.mjs',
       'scripts/msix-proof.mjs',
+      'scripts/native-startup-proof.ps1',
       'scripts/pack-msix.mjs',
       'scripts/pack-windows.mjs',
       'scripts/run-wack.ps1',
       'scripts/test-wack-report.ps1',
       'scripts/wack-report.ps1',
       'test/msix-packaging.test.js',
+      'test/microsoft-store-release.test.js',
+      'test/native/**',
       'test/server-contract.test.js',
       'test/wack-workflow.test.js',
     ],
@@ -112,7 +118,14 @@ test('WACK builds exact clean package inputs at the canonical version', () => {
 });
 
 test('WACK uploads no package, certificate, installer, or raw report', () => {
-  assert.doesNotMatch(workflow, /upload-artifact|cache\/save|gh release|store upload/i);
+  const uploads = [...workflow.matchAll(/ {6}- name: Transfer only[\s\S]*?(?=\n {6}- name:|\n {2}[a-z])/g)]
+    .map((match) => match[0]);
+  assert.equal(uploads.length, 2);
+  for (const upload of uploads) {
+    assert.match(upload, /path: \|\r?\n {12}dist\/native-(?:launcher|proof)\/build\.json/);
+    assert.doesNotMatch(upload, /msix|\.cer|\.pfx|\.log|\.xml|\.bmp|\.png|\*\*/i);
+  }
+  assert.doesNotMatch(workflow, /cache\/save|gh release|store upload/i);
   assert.doesNotMatch(workflow, /\.pfx|winsdksetup/);
   assert.equal((workflow.match(/Invoke-WebRequest/g) ?? []).length, 2);
   assert.match(workflow, /if: always\(\)/);
@@ -134,4 +147,40 @@ test('WACK uploads no package, certificate, installer, or raw report', () => {
     /- name: Remove installed proof material[\s\S]*?shell: (.+)\r?\n/,
   )?.[1];
   assert.equal(installedCleanup, 'powershell');
+});
+
+test('native producer outputs and job deadlines bind every package consumer', () => {
+  assert.match(workflow, /run: \.\/scripts\/build-native-launcher\.ps1 -IncludeProofTools/);
+  assert.match(workflow, /run: \.\/scripts\/native-startup-proof\.ps1 -Negatives/);
+  assert.equal((workflow.match(/^ {4}needs: native$/gm) ?? []).length, 2);
+  assert.equal((workflow.match(/MRT_NATIVE_SHA256:/g) ?? []).length, 2);
+  assert.match(workflow, /MRT_NATIVE_PROOF_SHA256: \$\{\{ needs\.native\.outputs\.proof_sha256 \}\}/);
+  assert.match(workflow, /native-startup-proof\.ps1 -Architecture '\$\{\{ matrix\.architecture \}\}'/);
+  const jobs = workflow.slice(workflow.search(/^jobs:\r?$/m))
+    .split(/(?=^ {2}[a-z][\w-]*:)/m).slice(1);
+  assert.deepEqual(jobs.map((job) => /^ {2}([\w-]+):/.exec(job)?.[1]), ['native', 'certify', 'installed']);
+  for (const job of jobs) {
+    const backstop = Number(job.match(/^ {4}timeout-minutes: (\d+)/m)?.[1]);
+    const steps = [...job.matchAll(/^ {8}timeout-minutes: (\d+)/gm)].map((match) => Number(match[1]));
+    assert.equal(steps.length, (job.match(/^ {6}- (?:name|uses):/gm) ?? []).length);
+    assert.ok(steps.length > 0 && backstop > steps.reduce((sum, value) => sum + value, 0));
+  }
+});
+
+test('native artifact transfer pins exact inputs and refuses digest mismatches', () => {
+  assert.equal((workflow.match(/actions\/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a/g) ?? []).length, 2);
+  assert.equal((workflow.match(/actions\/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c/g) ?? []).length, 3);
+  assert.equal((workflow.match(/digest-mismatch: error/g) ?? []).length, 3);
+  const inputs = [...workflow.matchAll(/^ {12}(dist\/native-(?:launcher|proof)\/.+)$/gm)]
+    .map((match) => match[1]);
+  assert.deepEqual(inputs, [
+    'dist/native-launcher/build.json',
+    'dist/native-launcher/x64/RecapPageLauncher.exe',
+    'dist/native-launcher/arm64/RecapPageLauncher.exe',
+    'dist/native-proof/build.json',
+    'dist/native-proof/x64/NativeStartupTests.exe',
+    'dist/native-proof/arm64/NativeStartupTests.exe',
+  ]);
+  assert.equal((workflow.match(/retention-days: 1/g) ?? []).length, 2);
+  assert.doesNotMatch(workflow, /merge-multiple: true|include-hidden-files: true|overwrite: true/);
 });

@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import {
   NODE_ARCH, NODE_VERSION, appFiles, fetchRuntime, runtimeArchiveName,
 } from './pack-windows.mjs';
+import { NATIVE_NAME, verifyNativeArtifact } from './lib/native-launcher.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf8'));
@@ -130,11 +131,13 @@ async function layoutGeneration(layout) {
   return digest.digest('hex');
 }
 
-async function prepareLayout(staging, version, target, runtimeDir) {
+async function prepareLayout(staging, version, target, runtimeDir, native) {
   const layout = layoutPath(staging, version, target.id);
   await mkdir(layout, { recursive: true });
   await copyApp(layout);
   await copyFile(LAUNCHER_SOURCE, join(layout, LAUNCHER_NAME));
+  await copyFile(join(native.root, target.id, NATIVE_NAME), join(layout, NATIVE_NAME));
+  await writeFile(join(layout, 'native-build.json'), native.bytes);
 
   const manifest = (await readFile(MANIFEST_SOURCE, 'utf8'))
     .replace(/Version="[^"]+"/, `Version="${version}"`)
@@ -190,6 +193,7 @@ function packageLayout(layout, output, password) {
 }
 
 async function build() {
+  const native = await verifyNativeArtifact();
   const version = winAppCliVersion(run('winapp', ['--version']));
   if (version !== '0.6.0') {
     throw new Error(`winapp 0.6.0 is required for this build; found ${version || 'no version'}`);
@@ -217,6 +221,7 @@ async function build() {
         STORE_PACKAGE_VERSION,
         target,
         runtimeDirectories.get(target.id),
+        native,
       ));
     }
     const x64 = architecture('x64');
@@ -225,6 +230,7 @@ async function build() {
       PROOF_UPDATE_VERSION,
       x64,
       runtimeDirectories.get(x64.id),
+      native,
     );
     const password = randomBytes(32).toString('hex');
     run('winapp', [

@@ -168,6 +168,9 @@ x64 and Windows on Arm. Every job uses a read-only token, telemetry opt-out, and
 signed packages. The browser driver is installed outside the repository and does not become a
 dependency. The workflow uploads no package, certificate, installer, browser profile, raw output, or
 WACK report. The maintained Store guide records its bounded result and cleanup contract.
+One Windows producer compiles the native x64/ARM64 GUI and isolated proof tools. Only those exact
+binaries and source/output hash records transfer to other jobs; consumers verify their producer
+digest against the same commit and source bytes. Native console/UI observation is CI-only.
 
 The installed proof's `puppeteer-core` graph is pinned in `.github/browser-proof/package-lock.json`.
 The workflow copies that manifest and lock into its temporary directory and runs `npm ci` there. It
@@ -766,25 +769,32 @@ and keyboard focus.
 ## Build and prove the Microsoft Store bundle
 
 [The Microsoft Store package guide](MICROSOFT_STORE.md) owns the exact production identity, activation
-decision, local trust procedure, proof matrix, cleanup, and remaining Store gates.
+decision, isolated trust procedure, proof matrix, cleanup, and remaining Store gates.
 
-Use winapp CLI 0.6.0 exactly. The packer stops on any other version:
+Use the controlled Windows Actions workflow, not the personal Store installation. The native
+producer requires the hosted Visual Studio 2022 x64/ARM64 tools and SDK 10.0.26100.0. It builds
+the native GUI with a static runtime and records the exact inputs and output hashes. The packer
+requires that verified artifact and winapp CLI 0.6.0; it stops rather than substituting a launcher:
 
 ```text
 winapp --version
+.\scripts\build-native-launcher.ps1 -IncludeProofTools
 npm run msix:pack
 ```
 
 The packer writes signed x64 and ARM64 packages at `<application-version>.0` plus their bundle under
 ignored `dist/msix/`. It also writes the x64 `<application-version>.1` update artifact under
 `dist/msix-proof/`, where it cannot enter the Store bundle. Both official Node archives are checked
-against Node's published SHA-256 list. Each package uses its native Node executable to run the
-maintained supervisor and the unchanged server. Package assets are generated and all outputs are
+against Node's published SHA-256 list. Each package activates its native GUI, which starts the
+official architecture-matched Node coordinator without a console. That coordinator remains the
+authority for readiness, browser handoff and the unchanged detached server. Startup inputs are
+included before generation hashing. Package assets are generated and all outputs are
 signed with one transient certificate before the private key and password are deleted. Never commit
 anything under `dist/`.
 
 On any build host, inspect every package and both bundle slices for identity, updater absence, Node
-hashes, and PE machine fields without starting a foreign runtime:
+hashes, the exact native-plus-Node executable set, native source/hash binding and PE machine/subsystem
+fields without starting a foreign runtime:
 
 ```text
 npm run msix:inspect -- --structural
@@ -794,8 +804,9 @@ On Windows on Arm, `npm run msix:inspect` also measures the x64-emulated and nat
 processes. Certification workflows use the structural form, then leave native execution to the
 matching installed-proof host.
 
-The public CER requires an administrator-approved trust step before `.msix` installation. No owner
-credential or Store signing secret is used. Run the three proof scenarios only after that trust step:
+The public CER requires temporary administrator trust in the disposable runner before installation.
+No owner credential or Store signing secret is used. The hosted jobs run the three proof scenarios
+after that trust step; do not run them against a personal installation:
 
 ```text
 npm run msix:prove -- --scenario=certification-functionality
